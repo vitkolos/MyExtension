@@ -1,5 +1,5 @@
 {
-    "name": "webtales/myextension",
+    "name": "nicolasrhone/myextension",
     "require": {
         "php": ">=5.3.0"
     },
