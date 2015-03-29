@@ -1,0 +1,21 @@
+{
+    "FR.Label": "French",
+    "EN.Label": "English",
+    "DE.Label": "German",
+    "ES.Label": "Spanish",
+    "IT.Label": "Italian",
+    "PT.Label": "Portuguese",
+    "HU.Label": "Hungarian",
+    "NL.Label": "Dutch",
+    "SK.Label": "Solvak",
+    "LV.Label": "Latvian",
+    "LT.Label": "Lithuanian",
+    "PL.Label": "Polish",
+    "AR.Label": "Arabic",
+    "MU.Label": "Mauritian Creole",
+    "CS.Label": "Czech",
+    "HY.Label": "Armenian",
+    "RN.Label": "Kirundi",
+    "MG.Label": "Malagasy",
+    "RU.Label":"Russian"
+}
