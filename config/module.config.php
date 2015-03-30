@@ -16,11 +16,11 @@ return array(
        'form' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/form.json'
-        ),
+        )/*,
        'simpleContact' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/simpleContact.json'
-        )       
+        ) */      
     ),
 
     /**
@@ -48,11 +48,11 @@ return array(
     
         /*
      * Surcharge des traductions
-     */   
+       
     'localisationfiles' => array(
         100 => 'extensions/WebTales/MyExtension/rubedo-localization/languagekey/FrontOffice/Blocks/General/labels.json'
         
-    ),
+    ),*/ 
 
 
 );
