@@ -16,7 +16,7 @@
     <![endif]-->
     <meta charset="UTF-8">
     <meta name="fragment" content="!">
-    <meta ng-if="rubedo.current.page.description" name="description"
+    <meta ng-if="rubedo.current.page.description" name="description"  property="og:description"
           ng-attr-content="{{rubedo.current.page.description}}"/>
     <meta ng-if="rubedo.current.page.metaKeywords" name="keywords"
           ng-attr-content="{{ rubedo.current.page.metaKeywords }}">
@@ -25,6 +25,8 @@
 
     <link ng-if="rubedo.current.page.contentCanonicalUrl" rel="canonical"
           ng-href="{{ rubedo.current.page.contentCanonicalUrl }}"/>
+    <meta property="og:image" content="http://5.196.27.53/theme/<?php echo $this->siteTheme; ?>/img/image.jpg" />
+    <link rel="shortcut icon" href="/theme/<?php echo $this->siteTheme; ?>/img/favicon.ico" type="image/x-icon" />
     <link rel="alternate" ng-repeat="alternate in rubedo.current.page.i18n" ng-href="{{alternate.fullUrl}}" hreflang="{{alternate.locale}}" />
     <!--mobile meta-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,6 +53,9 @@
             <link rel="stylesheet" href="<?php echo $internalStyle ?>">
         <?php endif; ?>
     <?php endforeach; ?>
+    <?php if ($this->angularLocale=="ru"): ?>
+        <link rel="stylesheet" href="/theme/<?php echo $this->siteTheme; ?>/css/ru.css">
+    <?php endif; ?>
     <!--[if lte IE 8]>
     <script src="/theme/<?php echo $this->siteTheme; ?>/legacyFixes/respond.js"></script>
     <![endif]-->
