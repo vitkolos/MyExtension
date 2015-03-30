@@ -16,11 +16,11 @@ return array(
        'form' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/form.json'
-        )/*,
+        ),
        'simpleContact' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/simpleContact.json'
-        ) */      
+        ) 
     ),
 
     /**
