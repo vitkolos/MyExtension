@@ -25,13 +25,13 @@ return array(
 
     /**
      * Template definitions
-     */
+     
 
     'templates' => array(
  		'namespaces' => array(
 			'MyExtension' => realpath(__DIR__ . '/../templates')
 		)
-	),
+	),*/
     'namespaces_api' => array(
         'MyExtension',
     ),
