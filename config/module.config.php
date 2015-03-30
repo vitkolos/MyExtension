@@ -42,8 +42,8 @@ return array(
     'view_manager' => array(
         'template_map' => array(
           'rubedo/index/index' => realpath(__DIR__) . '/../views/index/index.phtml'
-        ),*/
-    ),
+        ),
+    ),*/
     
     
         /*
