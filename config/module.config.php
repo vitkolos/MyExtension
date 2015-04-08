@@ -20,10 +20,6 @@ return array(
        'simpleContact' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/simpleContact.json'
-        ),
-        'searchResults' => array(
-            'maxlifeTime' => 60,
-            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
         )
     ),
 
