@@ -25,7 +25,6 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
         )
-                 
     ),
 
  
