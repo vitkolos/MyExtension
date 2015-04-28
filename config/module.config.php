@@ -23,7 +23,7 @@ return array(
         ),
         'searchResults' => array(
             'maxlifeTime' => 60,
-            'definitionFile' => $blocksPath . '/searchResults.json'
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
         )               
     ),
 
