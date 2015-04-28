@@ -73,7 +73,15 @@
                                 "forceSelection": true,
                                 "queryMode": "local"
                             }
-                        }
+                        },
+                        {
+						    "type":"Ext.form.field.Text",
+						    "config":{
+							"fieldLabel":"Taxonomies",
+							 "name": "taxonomies",
+							 "value": ""
+							}
+						},
                     ]
                 },
                 {
@@ -90,7 +98,8 @@
                             }
                         }
                     ]
-                }
+                },
+
             ]
         },
         "configBloc": {
