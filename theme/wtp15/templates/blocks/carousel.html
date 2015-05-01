@@ -1,0 +1,23 @@
+<div id="{{'block'+block.id}}" class="owl-carousel" ng-controller="CarouselController as carouselCtrl">
+    <div ng-repeat="content in carouselCtrl.contents" ng-if="content.fields[blockConfig.imageField]" ng-init="click = 'false' ">
+            <img class="lazyOwl" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"
+                    alt="{{content.fields.text}}"
+                    title="{{content.fields.text}}"
+                   >
+            <div class="caption-01">{{content.fields.text}}</div>
+            <div ng-if="content.fields.subTitle != '' " class="caption-02">{{content.fields.subTitle}}</div>
+             <div ng-if="content.fields.video.url != '' && content.fields.video" id="myModal" class="modal fade" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+
+                        <div class="modal-body">
+                            <iframe width="100%" height="100%" ng-src="{{carouselCtrl.trustSrc(content.fields.video.url)}}" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            <a href="" ng-if="content.fields.video.url != '' && content.fields.video" class="play-button link" load-modal ng-click="">ì</div>
+           
+            
+    </div>
+</div>
