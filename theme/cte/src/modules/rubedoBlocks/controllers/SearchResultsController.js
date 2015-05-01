@@ -18,6 +18,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
         me.template = themePath+"/templates/blocks/searchResults/"+config.displayMode+".html";
         me.template_actus = themePath+"/templates/blocks/searchResults/actus.html";
+        
         me.template_foi = themePath+"/templates/blocks/searchResults/foi.html";
         var predefinedFacets = !config.predefinedFacets?{}:JSON.parse(config.predefinedFacets);
         me.displayedResults = 10;
