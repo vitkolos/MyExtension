@@ -1,0 +1,32 @@
+<div class="text-center rubedo-admin-image-holder">
+    <img alt="Rubedo" title="Rubedo" ng-src="{{rubedo.themePath}}/img/logo_ccn.png">
+</div>
+<ul class="nav nav-pills nav-stacked rubedo-admin-nav">
+    <li ng-if="rubedo.current.user.rights.boAccess" >
+        <a
+           href="/backoffice" target="_blank">
+            <span class="glyphicon glyphicon-cog"></span> Back Office
+        </a>
+    </li>
+    <li ng-if="rubedo.current.user.rights.canEdit">
+        <ul class="nav nav-pills nav-stacked rubedo-admin-nav">
+            <li ng-if="!rubedo.fieldEditMode&&rubedo.current.user.rights.canEdit">
+                <a ng-click="rubedo.enterEditMode()"
+                   class="cursor-as-pointer">
+                    <span class="glyphicon glyphicon-pencil"></span> {{rubedo.translate('Label.Edit','Edit')}}</a>
+            </li>
+            <li ng-if="rubedo.fieldEditMode&&rubedo.current.user.rights.canEdit">
+                <a ng-click="rubedo.persistChanges()"
+                   class="cursor-as-pointer">
+                    <span class="glyphicon glyphicon-ok"></span> {{rubedo.translate('Edition.Label.SaveChanges','Save changes')}}</a>
+            </li>
+            <li ng-if="rubedo.fieldEditMode&&rubedo.current.user.rights.canEdit">
+                <a ng-click="rubedo.revertChanges()"
+                   class="cursor-as-pointer">
+                    <span class="glyphicon glyphicon-remove"></span> {{rubedo.translate('Edition.Label.DiscardChanges','Discard changes')}}</a>
+            </li>
+            <hr/>
+            <li><a class="cursor-as-pointer" ng-click="rubedo.logOut()"><span class="glyphicon glyphicon-log-out"></span> {{rubedo.translate("Block.Auth.LogOut","Log out")}}</a></li>
+        </ul>
+    </li>
+</ul>
