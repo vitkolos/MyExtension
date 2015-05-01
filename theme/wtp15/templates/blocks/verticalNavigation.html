@@ -1,0 +1,59 @@
+<div ng-controller="MenuController as menuCtrl">
+    <div class="">
+        <div class="panel-heading" ng-if="menuCtrl.searchEnabled">
+            <form class="form"  ng-submit="menuCtrl.onSubmit()" role="form">
+                <div class="input-group">
+                    <input class="form-control" type="text" ng-model="menuCtrl.query" placeholder="Search"/>
+                            <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span></button></span>
+                </div>
+            </form>
+        </div>
+<!--        <div class="panel-body">
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-if="blockConfig.displayRootPage" ng-class="{active:menuCtrl.currentRouteleine==menuCtrl.menu.url}"><a ng-href="{{menuCtrl.menu.url}}">{{menuCtrl.menu.text}} <span class="glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+                <li ng-repeat="page in menuCtrl.menu.pages" ng-class="{active:menuCtrl.currentRouteleine==page.url}">
+                    <a ng-href="{{page.url}}">{{page.text}} <span class="glyphicon glyphicon-chevron-right pull-right"></span></a>
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1" class="nav nav-pills nav-stacked">
+                        <li ng-repeat="subPage in page.pages" ng-class="{active:menuCtrl.currentRouteleine==subPage.url}">
+                            <a ng-href="{{subPage.url}}">&nbsp; &nbsp;{{subPage.text}} <span class="glyphicon glyphicon-chevron-right pull-right"></span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>-->
+    
+         <div class="">
+            <ul class="push-menu">
+                <li ng-if="blockConfig.displayRootPage" ng-class="{active:menuCtrl.currentRouteleine==menuCtrl.menu.url}" ><a ng-href="{{menuCtrl.menu.url}}" class="push-menu-title">{{menuCtrl.menu.text}} </a></li>
+                <li ng-repeat="page in menuCtrl.menu.pages" ng-class="{active:menuCtrl.currentRouteleine==page.url}">
+                    <a ng-href="{{page.url}}" class="push-menu-title">{{page.text}} </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+   
+</div>
+
+
+
+
+
+
+<!--
+<div ng-if=" block.code =='menu' " ng-controller="ContentListController as contentListCtrl" ng-attr-id="">
+    <input type="checkbox" ng-attr-id="{{'section-'+block.title}}" ng-model="section" ng-init="section=true">
+    <label class='push-menu-title' ng-attr-for="{{'section-'+block.title}}">{{block.title}}</label>
+    <div ng-repeat="content in contentListCtrl.contentList[0]"  ng-class="{'displayed' : section}">
+        <a href="#{{content.fields.urlSegment}}" scroll-to-anchor>
+            <div class='push-menu-button'>
+                <div ng-attr-id="{{'dots-'+content.fields.urlSegment}}" class="dots" ></div>
+                <p>{{content.text}} </p>
+            </div>
+        </a>
+    </div>
+   
+</div>
+
+-->
