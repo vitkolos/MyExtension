@@ -1,0 +1,84 @@
+
+angular.module('rubedoBlocks').directive('loadModal', function () {
+    return {
+        restrict: 'A',
+        link: function(scope, $elm, attrs) {
+            $elm.bind('click', function(event) {
+                event.preventDefault();
+                /*angular.element('#myModal iframe').attr('src', src);*/
+                angular.element('#myModal').appendTo('body').modal('show');
+            });
+        }
+    }
+});
+
+angular.module('rubedoBlocks').filter('cleanUrl', function () {
+    return function (input) {
+        return input.replace("//","/");
+     };
+  });
+
+angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
+        var me=this;
+        var mediaId=$scope.audioFileId;
+         me.displayMedia=function(){
+            if (me.media&&me.media.originalFileId){
+
+                        me.jwSettings={
+                            primary:"flash",
+                            width:"100%",
+                            height:40,
+                            file:me.media.url,
+                        };
+                        setTimeout(function(){jwplayer("audio"+me.media.originalFileId).setup(me.jwSettings);}, 200);
+            }
+        };
+        if (mediaId){
+            RubedoMediaService.getMediaById(mediaId).then(
+                function(response){
+                    if (response.data.success){
+                        me.media=response.data.media;
+                        me.displayMedia();
+                    }
+                }
+            );
+        }
+    }]);
+
+ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
+    return {
+        restrict: 'EC',
+        link: function (scope, element, attrs) {
+           var filmUrl = attrs.videoUrl;
+            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
+            getTemplate = function (playerId) {
+                      
+                return '<div id="' + playerId + '"></div>';
+            };
+           var options = {
+                      file: filmUrl,
+                      modestbranding:0,
+                      showinfo:1,
+                      width:"100%",
+                      aspectratio:"16:9"};
+            element.html(getTemplate(id));
+            $compile(element.contents())(scope);
+            jwplayer(id).setup(options);
+            
+        }
+    };
+}]);
+
+ angular.module('rubedoBlocks').directive('balanceText', function ($timeout) {
+    return {
+        restrict: 'C',
+        link:  function (scope, element, attr) {
+           function balanceText() {
+                      element.balanceText();
+            }
+            $timeout(balanceText);
+                    
+        }
+    };
+});
+
