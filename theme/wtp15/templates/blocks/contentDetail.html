@@ -1,0 +1,52 @@
+<a ng-attr-name=" {{block.code}}" ></a>
+<div ng-if="block.code!=''" ng-controller="ContentDetailController as contentDetailCtrl" ng-attr-id=" {{block.code}}" >
+    <button ng-if="fieldEditMode"
+            title="Edit full content"
+            class="btn btn-default"
+            ng-click="contentDetailCtrl.launchFullEditor()">
+        <span class="glyphicon glyphicon-list-alt"></span>
+    </button>
+    <div class="row page">
+            <div class="col-xs-12 section-header">
+            <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[2]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[2].config.name]" class="hidden-xs"></rubedo-field>
+            <div class="section-header-title">
+                    <div class="sec-logo">
+                    <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[1]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[1].config.name]"></rubedo-field>
+                </div>
+                <div class="section-title-h1">
+                    <div class="section-title-h2 hidden-xs" ng-if="block.title | section" >
+                            <p> {{block.title | section}}</p>
+                    </div>
+                <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[0]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[0].config.name]"></rubedo-field>
+    
+                </div>
+            </div>
+         </div>
+    </div>
+    <div class="row" style="margin-top:20px">
+            <div class="col-sm-12 col-md-6">
+            <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[3]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[3].config.name]" class="intro"></rubedo-field>
+            <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[4]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[4].config.name]" class="text-bg"></rubedo-field>
+        </div>
+            <div class="col-sm-12 col-md-6">
+            <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[6]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[6].config.name]" class="hidden-xs"></rubedo-field>
+            <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[8]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[8].config.name]" ></rubedo-field>
+            <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[7]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[7].config.name]"></rubedo-field>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px">
+              <div class="col-sm-12">
+            <rubedo-field class="text-it" ng-init="field = contentDetailCtrl.content.type.fields[5]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[5].config.name]" ></rubedo-field>
+            </div>
+    <div class="row" style="margin-top:20px">
+            <div class="col-xs-12">
+            <rubedo-field class="titre-details" ng-init="field = contentDetailCtrl.content.type.fields[9]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[9].config.name]"></rubedo-field>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px;text-align:center">
+            <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[10]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[10].config.name]" ></rubedo-field>
+    </div>
+</div>
+</div>
+
+</div>
