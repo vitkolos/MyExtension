@@ -40,6 +40,17 @@ return array(
                     '/js/cte.js',
                 ),
             ),
+            'wtp15' => array(
+                'label' => 'WTP15',
+                'basePath' => realpath(__DIR__ . '/../theme/wtp15'),
+                'css' => array(
+                    '/css/wtp15.css',
+                    '/css/ru.css'
+                ),
+                'js' => array(
+                    '/js/wtp.js',
+                ),
+            ),
         ),
     ),
     
