@@ -1,0 +1,491 @@
+ <div ng-show="formCtrl.registration_status=='erreur_paiement'" class="bg-danger row text-center">
+	<p>Nous avons bien reçu ton inscription, mais il semble y avoir eu un problème avec ton paiement en ligne.<br/>
+    	Tu vas recevoir un mail avec un récapitulatif de ton inscription et nous te recontacterons par la suite
+         pour régler les derniers détails pratiques et le règlement de ta participation financière.</p>
+	<p style="margin-top:15px">L'Équipe du Festival Welcome to Paradise</p>
+</div>
+  
+<div ng-show="formCtrl.registration_status=='confirmation_inscription'" class="bg-success row text-center">
+	<p>Nous avons bien reçu ton inscription et ton paiement en ligne.<br/>
+Tu vas recevoir un mail avec un récapitulatif de ton inscription et nous te recontacterons par la suite pour régler les derniers détails pratiques.</p>
+	<p style="margin-top:15px">L'Équipe du Festival Welcome to Paradise</p>
+</div>
+<div ng-show="formCtrl.registration_status=='confirmation_paiement'" class="bg-success row text-center">
+	<p>Ton paiement en ligne suite à ton inscription au Festival Welcome to Paradise a bien été enregistré.<br/>
+N'hésite pas à nous contacter pour tout renseignement complémentaire !</p>
+	<p style="margin-top:15px">L'Équipe du Festival Welcome to Paradise</p>
+</div>
+<div ng-show="formCtrl.registration_status=='attente_paiement'" class="bg-success row text-center">
+	<p>Nous avons bien reçu ton inscription et nous attendons ton paiement par chèque pour confirmer ton inscription.<br/>
+Tu vas recevoir un mail avec un récapitulatif de ton inscription et nous te recontacterons par la suite pour régler les derniers détails pratiques.</p>
+	<p style="margin-top:15px">L'Équipe du Festival Welcome to Paradise</p>
+</div>
+	<p ng-show="formCtrl.showConfirmPreRegister">Tu as bien été préinscrit au Festival Welcome to Paradise 2015 !<br/>
+Pour confirmer ton inscription, merci de remplir le formulaire complet en ligne au plus tard le 31 juin 2015.<br/>
+D'ici là, pour des raisons d'organisation et de logistique, nous nous permettrons de te rappeler de t'inscrire.<br/>
+À très bientôt !<br/>
+L'équipe du Festival</p>
+    <div class="bg-danger">
+	<p ng-show="formCtrl.showMailError">Les deux adresses mail indiquées sont différentes ! Merci de corriger ton inscription.</p>
+	<p ng-show="formCtrl.showPreRegisterError">Il y a eu un problème lors de la préinscription... Merci de contacter le secrétariat.</p>
+    </div>
+
+
+<form class="page row" name="form" method="post" style="margin-bottom:20%" novalidate ng-show="formCtrl.showForm" action="{{formCtrl.trustSrc(formCtrl.action)}}">
+	<input type="radio" value="attente_paiement" ng-model="formCtrl.registration_status" name="registration_status">
+	<input type="radio" value="confirmation_inscription"  ng-model="formCtrl.registration_status" name="registration_status">   
+	<input type="radio" value="confirmation_paiement"  ng-model="formCtrl.registration_status" name="registration_status">   
+	<input type="radio" value="erreur_paiement" ng-model="formCtrl.registration_status" name="registration_status">   
+
+ 
+    <ul class="steps col-sm-12"  >
+
+	<p>{{rubedo.translate("Blocks.Form.Label.Step")}} {{formCtrl.inscription.step}}/3</p>
+	<li ng-class="{active: formCtrl.inscription.step==1, complete: formCtrl.inscription.step>1}"></li>
+	<li ng-class="{active: formCtrl.inscription.step==2, complete: formCtrl.inscription.step>2}"></li>
+	<li ng-class="{active: formCtrl.inscription.step==3, complete: formCtrl.inscription.step>3}"></li>
+    </ul>
+    <div ng-show="formCtrl.inscription.step==1">
+	<div class="col-sm-12 col-md-6 padding-large" id="formule">  			
+	    <!--choice of the FESTIVAL-->
+	    <div class="row">
+		<input type="checkbox" id="hautecombe-2015" class="question-title" ng-model="formCtrl.inscription.festival" ng-change="formCtrl.updateStatus()">
+		<label for="hautecombe-2015" class="choice-proposition" >Je viens à Hautecombe 2015 ! 
+		</label>
+	    </div>
+	    <div class="row">
+		<!--choice of the FESTIVAL as a participant-->
+		<div class="col-sm-6 padding">
+		    		    
+
+		    <div class="row">
+			<div class="col-xs-12 choice-festival" ng-class="{highlight : formCtrl.inscription.dates == 1}">
+			    <p class="title-paragraph-1" style="margin:15px 0">Comme festivalier</p>
+			</div>
+			<div class="col-xs-12 choice-dates double">
+			    <input type="radio" id="festivalier" name="dates" ng-model="formCtrl.inscription.dates" value="1" ng-change="formCtrl.updateStatus()">
+			    <label for="festivalier" >du 2 au 9 août</label>
+			</div>
+		    </div>
+		</div>
+		<!--choice of the FESTIVAL as a volunteer-->
+		<div class="col-sm-6 padding">
+		    <div class="choice-volunteer"  ng-class="{highlight : formCtrl.inscription.dates > 1 }">
+			<p class="title-paragraph-1" style="margin:15px 0">Comme volontaire</p>
+		    </div>
+		    <div class="col-xs-12 choice-dates">
+			<input type="radio" id="prepa" name="dates" ng-model="formCtrl.inscription.dates" value="2" ng-change="formCtrl.updateStatus()">
+			<label for="prepa" style="padding-bottom:5px">du 25 juillet au 9 août</label>
+		    </div>
+		    <div class="col-xs-12 choice-dates">
+			<input type="radio" id="volontaire" name="dates" ng-model="formCtrl.inscription.dates" value="3" ng-change="formCtrl.updateStatus()">
+			<label for="volontaire">du 31 juillet au 9 août </label>
+		    </div>
+		</div>
+	    </div>
+    
+    
+	    <!--choice of the RETREAT-->
+	    <div class="row">
+		<input type="checkbox" id="retraite" class="question-title" ng-model="formCtrl.inscription.retraite" ng-change="formCtrl.updateStatus()">
+		<label for="retraite" class="choice-proposition" >Je viens à la retraite Choix de Vie
+		</label>
+	    </div>
+	    <div class="row">
+		<div class="col-md-12 retraite-comment" ng-class="{highlight : formCtrl.inscription.retraite}">
+		    <b>Maison Forte de Montagnieu (38)</b><br/>
+		    <span>du lundi 10 août à 18h au dimanche 16 août 2015 à 10h</span>
+		</div>
+	    </div>
+	</div>
+       
+       
+    
+	<!--INFOS PERSONNELLES - PREINSCRIPTION-->
+	<div class="col-sm-12 col-md-6 padding-large">
+	    <div class="row">
+		<p class="choice-proposition" style="margin-top:30px">Mes infos personnelles
+		</p>
+	    </div>
+	    <div class="row">
+		<div class="col-xs-12">
+		    <!--hidden inputs for community website-->
+		    <input id="serviteur" type="hidden" name="serviteur">
+		    <input id="public_choisi" type="hidden" value="jeune-18-30-ans" name="public_choisi" >
+		    <input id="type_public_choisi" type="hidden" value="jeune-adulte" name="type_public_choisi">
+		    <input type="hidden" name="form.submitted" value="1">
+		</div>
+	    </div>
+	    <!--inputs for preinscription-->
+	    <ng-form name="preregister" class="row">
+		<div class="col-xs-4">
+		    <label for="nom-P" class="preinscription">Nom</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="nom-P" name="nom-P" ng-model="formCtrl.inscription.name" required ng-pattern="/[a-zA-Z]/">
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="prenom-P" class="preinscription">Prénom</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="prenom-P" name="prenom-P"  ng-model="formCtrl.inscription.surname" required ng-pattern="/[a-zA-Z]/">
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="naissance-P" class="preinscription">Date de naissance</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="naissance-P" name="naissance-P" ng-model="formCtrl.inscription.birthdate" required ng-pattern="/\d{2}/\d{2}/\d{4}/" placeholder="jj/mm/aaaa">
+		</div>
+		<div class="col-xs-4">
+		    <p class="preinscription ">Sexe</p>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input id="sexe-H" type="radio" name="sexe-P" value="H" ng-model="formCtrl.inscription.sex" >	
+		    <label for="sexe-H" class="checkboxes col-xxs-6 col-xs-6">H</label>
+		    <input id="sexe-F" type="radio" name="sexe-P" value="F" ng-model="formCtrl.inscription.sex">
+		    <label for="sexe-F" class="checkboxes col-xxs-6 col-xs-6">F</label>			
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="cp-P" class="preinscription">Code postal</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="cp-P" name="cp-P" ng-model="formCtrl.inscription.cp" required>
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="email-P" class="preinscription">Email</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="email" id="email-P" name="email-P" ng-model="formCtrl.inscription.email" required>
+		</div>
+		
+		
+		
+		<div class="col-xs-4">
+		    <label for="email-verif-P" class="preinscription">Email (vérification)</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="email" id="email-verif-P" name="email-verif-P" ng-model="formCtrl.inscription.email_verif" required>
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="telephone2-P" class="preinscription">Téléphone portable</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="tel" id="telephone2-P" name="telephone2-P" ng-model="formCtrl.inscription.telephone" required ng-pattern="/(\+\d{2}\/\d){1}(\s\d{2}){4}/"  placeholder="+33/6 00 00 00 00">
+		</div>
+		
+		<div class="col-xs-12 bg-danger">
+		    <p  ng-show="form.preregister['telephone2-P'].$dirty && form.preregister['telephone2-P'].$error.pattern">Le numéro doit être au format +xx/x xx xx xx xx</p>
+		    <p  ng-show="form.preregister['naissance-P'].$dirty && form.preregister['naissance-P'].$error.pattern">La date de naissance doit être au format jj/mm/aaaa</p>
+		    <p  ng-show="form.preregister.$dirty && form.preregister.$invalid">Merci de remplir tous les champs</p>
+		</div>
+		<div class="col-sm-12">
+		    <input type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6" ng-click="formCtrl.preRegister()" ng-show="formCtrl.inscription.registrationStep == '0' " ng-disabled="form.preregister.$invalid" value="Je me préinscris">
+		    <input  type="button" id="btn_inscription" class="col-xs-6 col-xxs-6" ng-click="formCtrl.inscription.registrationStep=1" ng-show="formCtrl.inscription.registrationStep == '0' " value="Continuer">
+		</div>
+		
+	    </ng-form>
+			
+	    
+	    <ng-form class="row" ng-show="formCtrl.inscription.registrationStep == 1" name="register_1">
+		<div class="col-xs-4">
+		    <label for="nationalite" class="inscription">Nationalité</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="nationalite" name="nationalite-P" ng-model="formCtrl.inscription.nationality" >
+		</div>
+		
+		<div class="col-xs-4" >
+		    <label for="adresse" class="inscription" style="height:60px">Adresse</label>
+		</div>
+		<div class="preinscription-entry col-xs-8" style="height:60px">
+		    <textarea id="adresse" name="adresse-P" rows="2" cols="" ng-model="formCtrl.inscription.address" required></textarea>
+		</div>
+    
+		<div class="col-xs-4">
+		    <label for="ville" class="inscription">Ville</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="ville" name="ville-P" ng-model="formCtrl.inscription.city" required>
+		</div>
+    
+		<div class="col-xs-4">
+		    <label for="pays" class="inscription">Pays</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="pays" name="pays-P" ng-model="formCtrl.inscription.country">
+		</div>
+    
+		<div class="col-xs-4">
+		    <p class="inscription " style="height:60px">Situation</p>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input id="etudiant" type="radio" name="situation" value="etudiant" ng-model="formCtrl.inscription.situation" required>	
+		    <label for="etudiant" class="checkboxes col-xxs-6 col-xs-6">étudiant</label>
+		    <input id="jeunePro" type="radio" name="situation" value="jeunePro" ng-model="formCtrl.inscription.situation">
+		    <label for="jeunePro" class="checkboxes col-xxs-6 col-xs-6">jeune pro</label>			
+		    <input id="situationAutre" type="radio" name="situation" value="situationAutre" ng-model="formCtrl.inscription.situation">
+		    <label for="situationAutre" class="checkboxes col-xxs-6 col-xs-6">autre</label>			
+		    <div class="col-xxs-6 col-xs-6"><input id="autreSituation" type="text" name="autreSituation" ng-model="formCtrl.inscription.situationAutre"></div>
+		</div>
+	    </ng-form>
+    
+	</div>
+	<div class="col-sm-12 col-md-6 choix-final padding-large pull-right" ng-class="{volontaire : formCtrl.inscription.festival && formCtrl.inscription.dates>1}">
+	    <p>{{tarifs[formCtrl.inscription.formule].text}}</p>
+	</div>
+    	
+	<div class="col-sm-12 col-md-6 padding-large">
+	    <input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6" ng-click="formCtrl.inscription.registrationStep=0" ng-show="formCtrl.inscription.registrationStep == '1' " value="Revenir">
+	    <input  type="button" id="btn_inscription" class=" col-xs-6 col-xxs-6" ng-click="formCtrl.inscription.step=2" ng-show="formCtrl.inscription.registrationStep == '1' " value="Continuer" ng-disabled="form.preregister.$invalid || form.register_1.$invalid">
+
+	</div>
+    </div>
+    <ng-form name="register_2" ng-show="formCtrl.inscription.step==2">
+	<div class="col-sm-12 col-md-6 padding-large">
+	    <!--OPTIONS-->
+	    <div class="row" ng-if="formCtrl.inscription.festival && formCtrl.inscription.dates==1">
+		<p class="choice-proposition col-sm-12">Mes options</p>
+		<div class="col-sm-12  bg-grey">
+		    <input type="radio" id="carte" name="formule" ng-model="formCtrl.inscription.parcours" value="0" required>
+		    <label for="carte" class="row">à la carte</label>
+		    <input type="radio" id="studilac" name="formule" ng-model="formCtrl.inscription.parcours" value="1">
+		    <label for="studilac" class="row">en parcours Studilac</label>
+		    <input type="radio" id="manaim" name="formule" ng-model="formCtrl.inscription.parcours" value="2">
+		    <label for="manaim" class="row">en parcours Manaïm</label>
+		    <input type="radio" id="hozana" name="formule" ng-model="formCtrl.inscription.parcours" value="3">
+		    <label for="hozana" class="row">en parcours Hozana</label>
+		</div>
+	    </div>
+	    <!--QUESTIONS COMPEMENTAIRES-->
+	    <div class="row">
+		<p class="choice-proposition">Questions complémentaires</p>
+	    </div>
+	    <div class="row bg-grey">
+		<div class="col-sm-6 " >
+		    <p class="titre-cap">Je suis...</p>
+		    <input type="radio" id="catholic" name="confession" class="question_complementaire" ng-model="formCtrl.inscription.confession" value="0">
+		    <label for="catholic" class="row">catholique</label>
+		    <input type="radio" id="protestant" name="confession" class="question_complementaire" ng-model="formCtrl.inscription.confession" value="1">
+		    <label for="protestant" class="row">protestant</label>
+		    <input type="radio" id="evangelic" name="confession" class="question_complementaire" ng-model="formCtrl.inscription.confession" value="3">
+		    <label for="evangelic" class="row">évangélique</label>
+		    <input type="radio" id="orthodox" name="confession" class="question_complementaire" ng-model="formCtrl.inscription.confession" value="4">
+		    <label for="orthodox" class="row">orthodoxe</label>
+		    <input type="radio" id="confession_autre" name="confession" class="question_complementaire" ng-model="formCtrl.inscription.confession" value="4">
+		    <label for="confession_autre" class="row">autre
+			<input type="text" name="confession-4-c" ng-model="formCtrl.inscription.confession_autre" class="complement">
+		    </label>
+		</div>
+		<div class="col-sm-6 " >
+		    <p class="titre-cap">J'ai connu le festival...</p>
+		    <input type="checkbox" id="fcb" name="jai-connu-0" ng-model="formCtrl.inscription.fcb">
+		    <label for="fcb" class="row">Facebook, vidéos</label>
+		    <input type="checkbox" id="flyer" name="jai-connu-1" ng-model="formCtrl.inscription.tract">
+		    <label for="flyer" class="row">Tracts, presse</label>
+		    <input type="checkbox" id="google" name="jai-connu-2" ng-model="formCtrl.inscription.google">
+		    <label for="google" class="row">par Google</label>
+		    <input type="checkbox" id="famille" name="jai-connu-3" ng-model="formCtrl.inscription.famille">
+		    <label for="famille" class="row">Ma famille / amis</label>
+		    <input type="checkbox" id="paroisse" name="jai-connu-4" ng-model="formCtrl.inscription.paroisse">
+		    <label for="paroisse" class="row">Aumônerie / paroisse</label>
+		    <input type="checkbox" id="gp" name="jai-connu-5" ng-model="formCtrl.inscription.gp">
+		    <label for="gp" class="row">Groupe de prière, w-e de la Communauté </label>
+		</div>
+		<div class="col-sm-12" ng-if="formCtrl.inscription.dates >1 && formCtrl.inscription.festival">
+		    <label for="volontariat">Dans quel domaine préférerais-tu être volontaire ?</label>
+		    <input type="text" class="row" name="domaine-de-volontariat" id="volontariat"ng-model="formCtrl.inscription.volontariat" style="background-color:white">
+		</div>
+		<div class="col-sm-12" ng-if="formCtrl.inscription.dates == 1 && formCtrl.inscription.festival">
+		    <input type="checkbox" id="groupe" name="groupe" ng-model="formCtrl.inscription.groupe" value="Oui">
+		    <label for="groupe" class="row">Je viens avec mon groupe (diocèse, aumônerie)
+			<input type="text" class="complement" name="groupe-c" ng-model="formCtrl.inscription.groupe_nom" id="groupe_nom">
+		    </label>
+		</div>
+	    </div>
+	</div>
+	<!--TRANSPORT-->
+	<div class="col-sm-12 col-md-6 padding-large">
+	    <div class="row">
+		<p class="choice-proposition">Mon transport</p>
+	    </div>
+    	    <div class="row bg-grey">
+		
+		<!--ALLER HAUTECOMBE-->
+		<div class="col-sm-6 "  ng-if="formCtrl.inscription.festival">
+		    <p class="titre-cap">Trajet aller</p>
+		    <input type="radio" id="aller_not" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <label for="aller_not" class="row">Je ne sais pas encore</label>
+		    <input type="radio" id="aller_car" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="1" ng-change="formCtrl.updatePrice()">
+		    <label for="aller_car" class="row">Voiture</label>
+		    <input type="radio" id="aller_train" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="2" ng-change="formCtrl.updatePrice()">
+		    <label for="aller_train" class="row">Train Culoz + navette 5€</label>
+		    <label for="aller_train_heure" class="row">heure arrivée
+			<input type="text" class="complement" name="trajet-aller-2-c" ng-model="formCtrl.inscription.aller_train_heure" id="aller_train_heure">
+		    </label>
+		</div>
+		<!--ALLER RETRAITE SANS HAUTECOMBE-->
+		<div class="col-sm-6 "  ng-if="!(formCtrl.inscription.festival)  && formCtrl.inscription.retraite">
+		    <p class="titre-cap">Trajet aller</p>
+		    <input type="radio" id="aller_not" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <label for="aller_not" class="row">Je ne sais pas encore</label>
+		    <input type="radio" id="aller_car" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="1" ng-change="formCtrl.updatePrice()">
+		    <label for="aller_car" class="row">Voiture</label>
+		    <input type="radio" id="aller_train" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="2" ng-change="formCtrl.updatePrice()">
+		    <label for="aller_train" class="row">Train Culoz + navette 5€</label>
+		    <label for="aller_train_heure" class="row">heure arrivée
+			<input type="text" class="complement" name="trajet-aller-2-c" ng-model="formCtrl.inscription.aller_train_heure" id="aller_train_heure">
+		    </label>
+		</div>
+		<!--RETOUR SANS RETRAITE-->
+		<div class="col-sm-6 "  ng-if="!(formCtrl.inscription.retraite)">
+		    <p class="titre-cap">Trajet retour</p>
+		    <input type="radio" id="retour_not" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <label for="retour_not" class="row">Je ne sais pas encore</label>
+		    <input type="radio" id="retour_car" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="1" ng-change="formCtrl.updatePrice()">
+		    <label for="retour_car" class="row">Voiture</label>
+		    <input type="radio" id="retour_train" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="2" ng-change="formCtrl.updatePrice()">
+		    <label for="retour_train" class="row">Train Culoz + navette 5€</label>
+		    <label for="retour_train_heure" class="row">heure départ
+			<input type="text" class="complement"  name="trajet-retour-2-c" ng-model="formCtrl.inscription.retour_train_heure" id="retour_train_heure">
+		    </label>
+		</div>
+		<!--RETOUR APRES RETRAITE-->
+		<div class="col-sm-6 "  ng-if="formCtrl.inscription.retraite">
+		    <p class="titre-cap">Trajet retour</p>
+		    <input type="radio" id="retour_not" name="trajet-retour-retraite" ng-model="formCtrl.inscription.retour" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <label for="retour_not" class="row">Je ne sais pas encore</label>
+		    <input type="radio" id="retour_car" name="trajet-retour-retraite" ng-model="formCtrl.inscription.retour" value="1" ng-change="formCtrl.updatePrice()">
+		    <label for="retour_car" class="row">Voiture</label>
+		    <input type="radio" id="retour_train" name="trajet-retour-retraite" ng-model="formCtrl.inscription.retour" value="2" ng-change="formCtrl.updatePrice()">
+		    <label for="retour_train" class="row">Train Bourgoin-Jallieu</label>
+		    <label for="retour_train_heure" class="row">heure départ
+			<input type="text" class="complement"  name="trajet-retour-retraite-2-c" ng-model="formCtrl.inscription.retour_train_heure" id="retour_train_heure">
+		    </label>
+		</div>
+		<div class="col-sm-12" ng-if="formCtrl.inscription.retraite">
+		    <input type="checkbox" id="x_bus-retraite" name="bus-retraite" ng-model="formCtrl.inscription.bus_retraite" value="Oui">
+		    <label for="x_bus-retraite" class="row">Je prends le bus pour rejoindre le lieu de la retraite après le Festival </label>
+		</div>
+	    </div>
+	    
+	    <div class="row">
+		<p class="choice-proposition">Mon logement</p>
+	    </div>
+    	    <div class="row bg-grey">
+		<div class="col-sm-12 " >
+		    <input type="radio" id="perso" name="logement" ng-model="formCtrl.inscription.logement" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <label for="perso" class="row">J'apporte une tente personnelle</label>
+		    <input type="radio" id="tent_cte" name="logement" ng-model="formCtrl.inscription.logement" value="1" ng-change="formCtrl.updatePrice()">
+		    <label for="tent_cte" class="row">Je loue une place dans une tente 2 places (15€)</label>
+		</div>
+	    </div>
+	    <div class="row">
+		<p class="choice-proposition">Précisions</p>
+	    </div>
+    	    <div class="row bg-grey" style="padding:0">
+		<div class="col-sm-12 " >
+		    <input type="textarea" rows="2" id="remarques" name="remarques" ng-model="formCtrl.inscription.remarques" >
+		    
+		</div>
+	    </div>
+	</div>
+	<div class="col-sm-12 col-md-6 padding-large">
+	    <input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6"  value="Revenir" ng-click="formCtrl.inscription.step=1">
+	    <input  type="button" id="btn_inscription" class=" col-xs-6 col-xxs-6"  value="Continuer" ng-click="formCtrl.inscription.step=3" ng-disabled="form.register_2.$invalid">
+	    <p ng-show="form.register_2.$invalid && form.register_2.$dirty" class="bg-danger">Tu as oublié de renseigner certains champs obligatoires...</p>
+	</div>
+    </ng-form>
+    <ng-form name="register_3" ng-show="formCtrl.inscription.step==3">
+	<div class="col-sm-6 padding-large">
+	    <div class="row">
+		<p class="choice-proposition" style="margin-top:30px">Ma participation aux frais</p>
+	    </div>
+	    <div class="row bg-grey">
+		<div class="col-sm-12 ">
+		    <input type="radio" id="tarif-1" name="tarif" ng-model="formCtrl.inscription.tarif" ng-attr-value="{{'etudiant-'+formCtrl.inscription.formule}}" ng-change="formCtrl.updatePrice()" required>
+		    <label for="tarif-1" class="row">Étudiant <span class="col-sm-4 pull-right">{{tarifs[formCtrl.inscription.formule].etudiant}}€</span></label>
+		    <input type="radio" id="tarif-2" name="tarif" ng-model="formCtrl.inscription.tarif" ng-attr-value="{{'jeune-pro-'+formCtrl.inscription.formule}}" ng-change="formCtrl.updatePrice()">
+		    <label for="tarif-2" class="row">Jeune pro  <span class="col-sm-4 pull-right">{{tarifs[formCtrl.inscription.formule].jpro}}€</span></label>
+		    <input type="radio" id="tarif-3" name="tarif" ng-model="formCtrl.inscription.tarif" ng-attr-value="{{'reduit-'+formCtrl.inscription.formule}}" ng-change="formCtrl.updatePrice()">
+		    <label for="tarif-3" class="row">Réduit* <span class="col-sm-4 pull-right">{{tarifs[formCtrl.inscription.formule].reduit}}€</span></label>
+		    <input type="radio" id="tarif-4" name="tarif" ng-model="formCtrl.inscription.tarif" ng-attr-value="{{'solidarite-'+formCtrl.inscription.formule}}" ng-change="formCtrl.updatePrice()">
+		    <label for="tarif-4" class="row">Solidarité**  <span class="col-sm-4 pull-right">{{tarifs[formCtrl.inscription.formule].solidarite}}€</span></label>
+		</div>
+		<div class="col-sm-12">
+		    <p>* étudiants en difficulté financière et chômeurs<br/>
+		    ** j'aide un jeune étranger à venir au Festival</p>
+		</div>
+	    </div>
+	    <div class="row">
+		<p class="choice-proposition" style="margin-top:30px">Mon récapitulatif</p>
+	    </div>
+	    <div class="row bg-grey">
+		<div class="col-sm-12 ">
+		    <p class="choice-proposition" >{{tarifs[formCtrl.inscription.formule].text}}</p>
+		    <input type="hidden" id="hid_fi" value="50">
+		    <label class="row">Accompte (non remboursable)<span class="col-sm-4 pull-right">50€</span></label>
+		    <label class="row">Participation restante<span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_formule-50}}€</span></label>
+		    <label class="row" ng-if="formCtrl.inscription.logement==1">Logement (1 place sous tente)<span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_logement}}€</span></label>
+		    <label class="row" ng-if="formCtrl.inscription.aller==2 || formCtrl.inscription.retour==2">Transport<span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_transport}}€</span></label>
+		    <label class="row">TOTAL<span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_total}}€</span></label>
+		    <input type="hidden" id="hid_montant_a_payer" name="montant_a_payer" value="{{formCtrl.inscription.montant_a_payer}}">
+		    <input type="hidden" id="hid_montant_total" name="montant_total" value="{{formCtrl.inscription.prix_total}}">
+    		</div>
+			
+		
+	    </div>
+	</div>
+	
+	<div class="col-sm-6 padding-large">
+	    <div class="row">
+		<p class="choice-proposition" style="margin-top:30px">Mon paiement</p>
+	    </div>
+	    <div class="row bg-grey">
+		<div class="col-sm-6 ">
+		    <p class="titre-cap">Je paye maintenant</p>
+		    <input type="radio" id="acompte" name="paiement" ng-change="formCtrl.updatePaf()" ng-model="formCtrl.inscription.paiement" value="fraisDInscription" required>
+		    <label for="acompte" class="row">l'acompte* <span class="col-sm-4 pull-right">50€</span></label>
+		    <input type="radio" id="partie" name="paiement" ng-change="formCtrl.updatePaf()" ng-model="formCtrl.inscription.paiement" value="partie">
+		    <label for="partie" class="row">une partie*<span class="col-sm-4 pull-right">51 à {{formCtrl.inscription.prix_total}}€</span>
+			<input type="text" class="complement" ng-change="formCtrl.updatePaf()" name="montant_partie" ng-model="formCtrl.inscription.montant_partie" id="montant_partie"></label>
+		    <input type="radio" id="totalite" name="paiement" ng-change="formCtrl.updatePaf()" ng-model="formCtrl.inscription.paiement" value="totalite">
+		    <label for="totalite" class="row">la totalité <span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_total}}€</span></label>
+		</div>
+		<div class="col-sm-6 ">
+		    <p class="titre-cap">Moyen de payement :</p>
+		    <input type="radio" id="paiement_carte" name="mode_de_paiement" ng-model="formCtrl.inscription.mode_paiement" value="carte" required>
+		    <label for="paiement_carte" class="row">par carte</label>
+		    <input type="radio" id="paiement_cheque" name="mode_de_paiement" ng-model="formCtrl.inscription.mode_paiement" value="cheque">
+		    <label for="paiement_cheque" class="row">par chèque</label>
+		</div>
+		<div class="col-sm-12">
+		    <p>* et je payerai le reste plus tard par chèque ou espèces</p>
+		</div>
+	    </div>
+	    <div class="row">
+		<input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6"  value="Revenir" ng-click="formCtrl.inscription.step=2">
+		<input  type="submit" id="btn_inscription" class=" col-xs-6 col-xxs-6"  value="Valider l'inscription">
+		<p ng-show="form.$invalid && form.$dirty && formCtrl.inscription.registrationStep == 1 ">Tu as oublié de renseigner certains champs obligatoires...</p>
+		<p ng-show="form.$invalid && formCtrl.inscription.registrationStep == 0 && formCtrl.inscription.message">{{formCtrl.inscription.message}}</p>
+	    </div>
+	</div>
+    </ng-form>
+		
+</form>
+	    
+	    
+	    
+
+<!--
+           <input id="btn_preinscription" type="button" value="Je me préinscris !" name="preinscription" class="span12">
+            <input id="btn_montrer_inscription" type="button" value="Continuer" name="montrer_inscription" class="span16 offset1">
+            <input id="btn_montrer_preinscription" type="button" value="Revenir" name="montrer_preinscription" class="span12" style="display:none">
+            <input id="btn_inscription" type="button" value="Continuer" name="inscription" class="inscription span16 offset1" style="display:none">
+
+
+-->
