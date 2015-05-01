@@ -44,7 +44,7 @@ return array(
                 'label' => 'WTP15',
                 'basePath' => realpath(__DIR__ . '/../theme/wtp15'),
                 'css' => array(
-                    '/css/wtp15.css',
+                    '/css/wtp2015.css',
                     '/css/ru.css'
                 ),
                 'js' => array(
