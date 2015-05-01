@@ -1,0 +1,90 @@
+
+<div class="row border-top">
+    <div class="col-md-3 col-md-push-9" style="padding-top:24px">
+        <div class="panel panel-default" ng-init="searchDisplayed=false">
+            <div class="panel-heading actus "  ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">Catégories</div>
+            <div class="panel-body">
+                <ul class="search-tags">
+                    <!--
+                    <li class="cursor-as-pointer" ng-if="facet.terms" ng-repeat="term in facet.terms" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
+                        <input ng-class="{'disabled':searchResultsCtrl.disabled(term.term)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.term)"/>
+                        {{term.label}}&nbsp;({{term.count}})
+                    </li>
+                    <li class="cursor-as-pointer" ng-if="facet.ranges && term.count > 0" ng-repeat="term in facet.ranges" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.from)">
+                        <input ng-class="{'disabled':searchResultsCtrl.disabled(term.from)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.from)"/>
+                        {{term.label}}&nbsp;({{term.count}})
+                    </li>
+            -->
+                     <li class="cursor-as-pointer resultData search-result"  ng-click="searchResultsCtrl.clickOnFacetsRadio('5524db6945205e627a8d8c4e', '5524db8f45205ebd7a8d8c4c')" ng-class=" {'checked' : searchResultsCtrl.checked('5524db8f45205ebd7a8d8c4c')}">
+                        Oecuménisme
+                    </li>
+                     <li class="cursor-as-pointer resultData search-result" ng-click="searchResultsCtrl.clickOnFacetsRadio('5524db6945205e627a8d8c4e', '5524db9845205e907a8d8c55')" ng-class=" {'checked' : searchResultsCtrl.checked('5524db9845205e907a8d8c55')}">
+                        Vie de la Communauté
+                    </li>
+                     <li class="cursor-as-pointer resultData search-result" ng-click="searchResultsCtrl.clickOnFacetsRadio('5524db6945205e627a8d8c4e', '5524dbac45205e687a8d8c52')" ng-class=" {'checked' : searchResultsCtrl.checked('5524dbac45205e687a8d8c52')}">
+                        Formation chrétienne
+                    </li>
+                     <li class="cursor-as-pointer resultData search-result" ng-click="searchResultsCtrl.clickOnFacetsRadio('5524db6945205e627a8d8c4e', '5524dba145205e687a8d8c50')" ng-class=" {'checked' : searchResultsCtrl.checked('5524dba145205e687a8d8c50')}">
+                        Témoignages
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="hidden-xs hidden-sm" ng-init = "blockConfig={'theme':'normal','mode':'tweets','widgetId':'587557771534540800','account':'Chemin_Neuf','width':'100','options':['noHeader']}">
+            <div class="panel-heading actus">Follow us<br/> on Twitter</div>
+                <div ng-include="rubedo.blockTemplateResolver.getTemplate('twitter',blockConfig)"></div>
+        </div>
+    </div>
+
+    <div class="col-md-9 col-md-pull-3">
+        <div class="row border-bottom">
+            <h2 style="margin:0 auto; padding-left:15px;">{{block.title}}</h2>
+            <div class="panel panel-default query-actus" style="float:right">
+                    <form ng-submit="searchResultsCtrl.onSubmit()" role="form">
+                        <div class="input-group">
+                            <input class="form-control" type="text" ng-model="searchResultsCtrl.query" placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
+                                <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                                    <span class="glyphicon glyphicon-search"></span></button></span>
+                        </div>
+                    </form>
+            </div>
+        </div>
+        <div ng-repeat="datum in searchResultsCtrl.data | orderBy:'-lastUpdateTime' | limitTo:searchResultsCtrl.displayedResults" class="resultData search-result">
+            <div ng-if="!datum['fields.video'][0]">
+                <img class="media-object pull-left padding-right" ng-if="datum['fields.image'][0]"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'160px',height:'160px',mode:'crop'})}}"
+                             alt="{{ datum.title }}"/>
+    
+                <div ng-init="audioFileId = datum['fields.audio'][0]" ng-if="datum['fields.audio'][0]" class="pull-left padding-right">
+                    <div ng-controller="AudioFileController as audioCtrl">
+                        <div id="{{'audio'+audioCtrl.media.originalFileId}}"></div>
+                    </div>
+                </div>
+    
+                
+                <p class="capital">{{datum.lastUpdateTime * 1000 | date}} <span class="pull-right tags" ng-if="datum['fields.audio'][0]">audio</span></p>
+                <h3><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl }}">{{datum.title}}</a></h3>
+                <p>{{datum.summary}}</p>
+            </div>
+             <div ng-if="datum['fields.video'][0]">
+                <div class="col-sm-4">
+                    <p class="capital tags">vidéo</p>
+                    <h3><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl }}">{{datum.title}}</a></h3>
+                    <p>{{datum.summary}}</p>
+                    <p class="capital">{{datum.lastUpdateTime * 1000 | date}} </p>
+                </div>
+                <div class="col-sm-8">
+                    <jwplayer video-url="{{datum['fields.video'][0]}}"></jwplayer>
+                </div>
+             </div>
+
+        </div>
+         <div class="resultData search-result text-center cursor-as-pointer"  ng-click="searchResultsCtrl.loadMore()">
+            <p class="capital">Load more content</p>
+         </div>
+        <!--
+        <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"
+                   count="searchResultsCtrl.count"
+                   change-page-action="searchResultsCtrl.changePageAction()"></paginator>-->
+    </div>
+</div>
