@@ -1,0 +1,12 @@
+<div ng-controller="LanguageMenuController as languageMenuCtrl">
+    <div ng-if="languageMenuCtrl.mode" class="btn-group nav-item language">
+        <span>
+        	<img ng-if="languageMenuCtrl.showFlags" ng-src="{{languageMenuCtrl.getFlagUrl(languageMenuCtrl.currentLang.flagCode)}}" alt="{{languageMenuCtrl.currentLang.flagCode}}" style="vertical-align: top"/>
+        </span>
+        <div>
+        <a ng-repeat="lang in languageMenuCtrl.languages" ng-click="languageMenuCtrl.changeLang(lang.lang)" href ng-if="!languageMenuCtrl.isDisabled(lang.lang)">
+        	<span ng-if="languageMenuCtrl.showFlags"><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></span>
+        </a>
+    </div>
+
+</div>
