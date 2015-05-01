@@ -1,0 +1,73 @@
+<div class=" content_border">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12">
+			<a class="pull-left header_link" ng-href="{{contentDetailCtrl.callUrl}}">Retour aux actualités</a>
+		</div>
+	</div>
+</div>
+<header class="container-fluid content" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'2000px'}) }}')">
+	<div class="text-article container">
+		<p class='capital'>{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
+		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+			<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+			<h1 ng-if="fieldEditMode"
+			   ng-controller="RTEFieldController as rteFieldCtrl"
+			   ckeditor="editorOptions"
+			   contenteditable="true"
+			   ready="setCKEIsReady()"
+			   ng-model="fieldEntity[field.config.name]"
+			   output-plain-text="true"
+			   ng-bind-html="rteFieldCtrl.html">
+			</h1>
+		</div>
+
+	</div>
+</header>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="text-article">
+				<div ng-controller="AddThisShareController as addThisShareCtrl" class="socials col-xs-12 col-sm-3 col-sm-push-9">
+				
+				    <div class=" addthis_toolbox addthis_32x32_style addthis_default_style" data-url="{{ rubedo.current.page.contentCanonicalUrl }}" data-title="{{rubedo.current.page.title}}">
+					<a class="addthis_button_facebook txt-red" href=""><img class="hidden"><i class="fa fa-facebook-official"></i> </a>
+					<a class="addthis_button_twitter txt-red"><img  class="hidden"><i class="fa fa-twitter-square"></i> </a>
+					<a class="addthis_button_gmail txt-red" ><img class="hidden"><i class="fa fa-share-square"></i></a>
+				    
+					<a class="addthis_button_expanded txt-red"><img class="hidden"><i class="fa fa-plus-square"></i></a>
+					<a  class="addthis_counter addthis_bubble_style"></a>
+				
+				    </div>
+				    {{addThisShareCtrl.loadAddThis()}}
+				</div>
+				<div class="col-xs-12 col-sm-9 col-sm-pull-3">
+					<rubedo-field class="capital tags"  field =  "{{contentDetailCtrl.getFieldByName('author')}}"></rubedo-field><!--Auteur-->					
+				</div>
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ></rubedo-field><!--Texte-->
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div style="margin:0 auto; max-width:750px">
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('externalMedia')}}"   ></rubedo-field><!--Video-->
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('audio')}}" ></rubedo-field><!--Audio-->			
+		</div>
+	</div>
+	<div class="row" >
+		<div class="col-xs-12 col-sm-10 col-sm-offset-1" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[5].config.name]">
+			<jwplayer video-url="{{fieldEntity['video']}}"></jwplayer>
+		</div>
+	</div>
+	<div class="row" >
+		<div class="text-article">
+			<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
+		</div>
+		
+	</div>
+</div>
+
+<div style="margin-top:24px"></div>
+</div>
+
