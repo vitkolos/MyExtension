@@ -1,0 +1,229 @@
+{
+ "festival" : { "etudiant":220, "jpro":270, "reduit":200, "solidarite": 300, "text":"Le Festival du 2 au 9 août", "text_en":"Festival: 2nd to 9th August"},
+ "volontaire" : { "etudiant":220, "jpro":270, "reduit":200, "solidarite": 300, "text": "Volontaire du 31 juillet au 9 août", "text_en":"Volunteer: 31st July to 9th August"},
+ "prepa" :{ "etudiant":270, "jpro":320,"reduit":250, "solidarite": 350, "text":"Volontaire du 25 juillet au 9 août","text_en":"Volunteer: 26th July to 9th August"}, 
+ "retraite" : { "etudiant":180, "jpro":220,"reduit":160, "solidarite": 260, "text":"Retraite du 10 au 16 août", "text_en":"Retreat: 10th to 16th August"},
+ "festival-retraite" : { "etudiant":360, "jpro":440,"reduit":320, "solidarite": 500, "text":"Festival du 2 au 9 août et retraite du 10 au 16 août", "text_en":"Festival: 2nd to 9th August and Retreat: 10th to 16 August"},
+ "prepa-retraite" : { "etudiant":410, "jpro":490,"reduit":320, "solidarite": 550, "text":"Volontaire du 25 juillet au 9 août et retraite du 10 au 16 août", "text_en":"Volunteer: 25st July to 9th August  and Retreat: 10th to 16 August"},
+ "volontaire-retraite" : { "etudiant":360, "jpro":440,"reduit":320, "solidarite": 500, "text":"Volontaire du 31 juillet au 9 août et retraite du 10 au 16 août","text_en":"Volunteer: 31st July to 9th August  and Retreat: 10th to 16 August"},
+
+ 
+    "be" : {
+        "festival":{"min":220,"max":250},
+        "volontaire":{"min":220,"max":250},
+        "prepa":{"min":270,"max":320},
+        "festival-retraite":{"min":360,"max":410},
+        "volontaire-retraite":{"min":360,"max":410},
+        "prepa-retraite":{"min":410,"max":480},
+        "retraite":{"min":180,"max":220},
+         "currency"                : "€"
+    },
+    "de" : {
+       "festival":{"min":220,"max":250},
+        "volontaire":{"min":220,"max":250},
+        "prepa":{"min":270,"max":320},
+        "festival-retraite":{"min":360,"max":410},
+        "volontaire-retraite":{"min":360,"max":410},
+        "prepa-retraite":{"min":410,"max":480},
+        "retraite":{"min":180,"max":220},
+         "currency"                : "€"
+    },    
+    "gb" : {
+        "festival":{"min":220,"max":250},
+        "volontaire":{"min":220,"max":250},
+        "prepa":{"min":270,"max":320},
+        "festival-retraite":{"min":360,"max":410},
+        "volontaire-retraite":{"min":360,"max":410},
+        "prepa-retraite":{"min":410,"max":480},
+        "retraite":{"min":180,"max":220},
+        "currency"                : "€"
+    },    
+    "ca" : {
+       "festival":{"min":220,"max":250},
+        "volontaire":{"min":220,"max":250},
+        "prepa":{"min":270,"max":320},
+        "festival-retraite":{"min":360,"max":410},
+        "volontaire-retraite":{"min":360,"max":410},
+        "prepa-retraite":{"min":410,"max":480},
+        "retraite":{"min":180,"max":220},
+         "currency"                : "€"
+    },    
+    "nl" : {
+       "festival":{"min":220,"max":250},
+        "volontaire":{"min":220,"max":250},
+        "prepa":{"min":270,"max":320},
+        "festival-retraite":{"min":360,"max":410},
+        "volontaire-retraite":{"min":360,"max":410},
+        "prepa-retraite":{"min":410,"max":480},
+        "retraite":{"min":180,"max":220},
+         "currency"                : "€"
+    },    
+    "ch" : {
+        "festival":{"min":220,"max":250},
+        "volontaire":{"min":220,"max":250},
+        "prepa":{"min":270,"max":320},
+        "festival-retraite":{"min":360,"max":410},
+        "volontaire-retraite":{"min":360,"max":410},
+        "prepa-retraite":{"min":410,"max":480},
+        "retraite":{"min":180,"max":220},
+        "currency"                : "€"
+    },
+
+    "it" : {
+       "festival":{"min":180,"max":220},
+        "volontaire":{"min":180,"max":220},
+        "prepa":{"min":230,"max":290},
+        "festival-retraite":{"min":290,"max":360},
+        "volontaire-retraite":{"min":290,"max":360},
+        "prepa-retraite":{"min":340,"max":430},
+        "retraite":{"min":160,"max":200},
+         "currency"                : "€"
+    },
+    
+    "es" : {
+       "festival":{"min":140,"max":180},
+        "volontaire":{"min":140,"max":180},
+        "prepa":{"min":190,"max":250},
+        "festival-retraite":{"min":230,"max":300},
+        "volontaire-retraite":{"min":230,"max":300},
+        "prepa-retraite":{"min":280,"max":370},
+        "retraite":{"min":110,"max":140},
+         "currency"                : "€"
+    },
+    "lb" : {
+       "festival":{"min":120,"max":160},
+        "volontaire":{"min":120,"max":160},
+        "prepa":{"min":170,"max":230},
+        "festival-retraite":{"min":200,"max":260},
+        "volontaire-retraite":{"min":200,"max":260},
+        "prepa-retraite":{"min":250,"max":330},
+        "retraite":{"min":100,"max":120},
+         "currency"                : "€"
+    },     
+    "cz" : {
+       "festival":{"min":100,"max":140},
+        "volontaire":{"min":100,"max":140},
+        "prepa":{"min":140,"max":200},
+        "festival-retraite":{"min":160,"max":220},
+        "volontaire-retraite":{"min":160,"max":220},
+        "prepa-retraite":{"min":200,"max":280},
+        "retraite":{"min":80,"max":100},
+         "currency"                : "€"
+    },
+    "ru" : {
+       "festival":{"min":100,"max":140},
+        "volontaire":{"min":100,"max":140},
+        "prepa":{"min":140,"max":200},
+        "festival-retraite":{"min":160,"max":220},
+        "volontaire-retraite":{"min":160,"max":220},
+        "prepa-retraite":{"min":200,"max":280},
+        "retraite":{"min":80,"max":100},
+         "currency"                : "€"
+    },    
+    "sk" : {
+       "festival":{"min":100,"max":140},
+        "volontaire":{"min":100,"max":140},
+        "prepa":{"min":140,"max":200},
+        "festival-retraite":{"min":160,"max":220},
+        "volontaire-retraite":{"min":160,"max":220},
+        "prepa-retraite":{"min":200,"max":280},
+        "retraite":{"min":80,"max":100},
+         "currency"                : "€"
+    },    
+    
+    
+    "br" : {
+       "festival":{"min":80,"max":120},
+        "volontaire":{"min":80,"max":120},
+        "prepa":{"min":110,"max":170},
+        "festival-retraite":{"min":120,"max":180},
+        "volontaire-retraite":{"min":120,"max":180},
+        "prepa-retraite":{"min":150,"max":230},
+        "retraite":{"min":60,"max":80},
+         "currency"                : "€"
+    },
+    "bg" : {
+       "festival":{"min":80,"max":120},
+        "volontaire":{"min":80,"max":120},
+        "prepa":{"min":110,"max":170},
+        "festival-retraite":{"min":120,"max":180},
+        "volontaire-retraite":{"min":120,"max":180},
+        "prepa-retraite":{"min":150,"max":230},
+        "retraite":{"min":60,"max":80},
+         "currency"                : "€"
+    },
+    "eg" : {
+       "festival":{"min":80,"max":120},
+        "volontaire":{"min":80,"max":120},
+        "prepa":{"min":110,"max":170},
+        "festival-retraite":{"min":120,"max":180},
+        "volontaire-retraite":{"min":120,"max":180},
+        "prepa-retraite":{"min":150,"max":230},
+        "retraite":{"min":60,"max":80},
+         "currency"                : "€"
+    },
+    "hu" : {
+       "festival":{"min":80,"max":120},
+        "volontaire":{"min":80,"max":120},
+        "prepa":{"min":110,"max":170},
+        "festival-retraite":{"min":120,"max":180},
+        "volontaire-retraite":{"min":120,"max":180},
+        "prepa-retraite":{"min":150,"max":230},
+        "retraite":{"min":60,"max":80},
+         "currency"                : "€"
+    },    
+    "lv" : {
+       "festival":{"min":80,"max":120},
+        "volontaire":{"min":80,"max":120},
+        "prepa":{"min":110,"max":170},
+        "festival-retraite":{"min":120,"max":180},
+        "volontaire-retraite":{"min":120,"max":180},
+        "prepa-retraite":{"min":150,"max":230},
+        "retraite":{"min":60,"max":80},
+         "currency"                : "€"
+    },    
+    "lt" : {
+       "festival":{"min":80,"max":120},
+        "volontaire":{"min":80,"max":120},
+        "prepa":{"min":110,"max":170},
+        "festival-retraite":{"min":120,"max":180},
+        "volontaire-retraite":{"min":120,"max":180},
+        "prepa-retraite":{"min":150,"max":230},
+        "retraite":{"min":60,"max":80},
+         "currency"                : "€"
+    },    
+    "pl" : {
+        "festival":{"min":80,"max":120},
+        "volontaire":{"min":80,"max":120},
+        "prepa":{"min":110,"max":170},
+        "festival-retraite":{"min":120,"max":180},
+        "volontaire-retraite":{"min":120,"max":180},
+        "prepa-retraite":{"min":150,"max":230},
+        "retraite":{"min":60,"max":80},
+         "currency"                : "€"
+    },  
+    "si" : {
+       "festival":{"min":80,"max":120},
+        "volontaire":{"min":80,"max":120},
+        "prepa":{"min":110,"max":170},
+        "festival-retraite":{"min":120,"max":180},
+        "volontaire-retraite":{"min":120,"max":180},
+        "prepa-retraite":{"min":150,"max":230},
+        "retraite":{"min":60,"max":80},
+         "currency"                : "€"
+    },    
+    "other" : {
+       "festival":{"min":80,"max":120},
+        "volontaire":{"min":80,"max":120},
+        "prepa":{"min":110,"max":170},
+        "festival-retraite":{"min":120,"max":180},
+        "volontaire-retraite":{"min":120,"max":180},
+        "prepa-retraite":{"min":150,"max":230},
+        "retraite":{"min":60,"max":80},
+         "currency"                : "€"
+    }
+
+
+
+
+}
