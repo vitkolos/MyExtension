@@ -1,0 +1,69 @@
+<div ng-controller="MenuController as menuCtrl">
+<nav class="bg-0" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul class="navbar-nav nav navbar-toggle" data-target="#bs-example-navbar-collapse-1">
+            <li id="push-button" class="home-button" ng-click="ToggleNav()" ><a>Æ</a></li>
+            <li class="home-button">
+                <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+            </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            	<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>
+           		<li class="home-button">
+                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+                </li>
+                <li ng-repeat="page in menuCtrl.menu.pages" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}">
+                    <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
+                    <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-menu" role="menu">
+                        <li ng-class="{active:rubedo.current.page.id==page.id}"><a ng-href="{{page.url}}">{{page.text}}</a></li>
+                        <li class="divider"></li>
+                        <li ng-repeat="subpage in page.pages" ng-class="{active:menuCtrl.currentRouteleine.indexOf(subpage.url) > -1}">
+                            <a ng-href="{{subpage.url}}">{{subpage.text}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <form class="navbar-form" ng-if="menuCtrl.searchEnabled" ng-submit="menuCtrl.onSubmit()" role="form">
+                    <div class="input-group">
+                        <input class="form-control" type="text" ng-model="menuCtrl.query" ng-attr-placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
+                            <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span></button></span>
+                    </div>
+                </form>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--
+<div id='push-menu-container'>
+    <div id='push-menu-02'>
+	<div class="visible-xs">
+                <div ng-repeat="page in menuCtrl.menu.pages" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}" class="push-menu-title  page-title">
+                    <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" >{{page.text}}</a>
+                 </div>
+	    </div>
+
+
+
+	
+    <div ng-repeat="(rowIndex, row) in rubedo.current.page.rows  |limitTo : -4 |limitTo :3">
+	<input type="checkbox" ng-model="section" ng-attr-id="{{'section-'+rowIndex}}" ng-init="section=true">
+	<label class='push-menu-title' for="{{'section-'+rowIndex}}" >{{row.eTitle}}</label>
+			<div ng-repeat="row in row.columns[0].rows" ng-if="row.columns[0].blocks[0].bType=='contentDetail'" ng-class="{'displayed' : $parent.section}">
+			    <a scroll-to-anchor="#{{row.columns[0].blocks[0].code}}" >
+				<div class='push-menu-button'>
+				    <div ng-attr-id="{{'dots-'+row.columns[0].blocks[0].code}}" class="dots" ></div>
+				    <p>{{row.columns[0].blocks[0].title | title}} </p>
+				</div>
+			    </a>
+			</div>
+		    
+    </div>
+</div>
+
+</div>-->
