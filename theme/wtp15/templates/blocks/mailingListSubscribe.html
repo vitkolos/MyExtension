@@ -1,0 +1,29 @@
+<div ng-controller="MailingListSuscribeController as mailingListSusCtrl">
+    <div class="nav-item news">
+        <div class="home-button"><a href="" title="Newsletter" ng-click="mailingListSusCtrl.display=!mailingListSusCtrl.display">C</a></div>
+    </div>
+    
+    
+    <div ng-if="!mailingListSusCtrl.display && mailingListSusCtrl.userType" class="newsletter">
+        <rubedo-notification ng-if="notification"></rubedo-notification>
+        <h4 style="font-variant: small-caps; font-weight: bold; text-align:left">newsletter</h4>
+        <form class="form-inline" role="form" ng-submit="mailingListSusCtrl.submit()" ng-if="(!mailingListSusCtrl.display && !notification) || (notification && mailingListSusCtrl.display)" style="padding:5px">
+            <div class="form-group" style="margin-right:15px">
+                <i class="glyphicon glyphicon-user "></i>
+                <input ng-model="mailingListSusCtrl.name" type="text" style="height:auto" class="form-control" ng-attr-id="{{mailingListSusCtrl.prefix+'name'}}" placeholder="{{rubedo.translate('Blocks.SignUp.label.name', 'Name')}}" required>
+            </div>
+
+            <div class="form-group">
+                <i class="label_newsletter">@</i>
+                <input ng-model="mailingListSusCtrl.email" type="email" class="form-control" ng-attr-id="{{mailingListSusCtrl.prefix+'email'}}" placeholder="{{rubedo.translate('Label.Email', 'Email')}}" required>
+            </div>
+            <div ng-repeat="mailingList in mailingListSusCtrl.mailingLists" class="checkbox" ng-show="false">
+                <label>
+                    <input ng-model="mailingList.checked" type="checkbox" ng-init="mailingList.checked='true'"> {{mailingList.name}}{{mailingList.checked}}
+                </label>
+            </div>
+
+           <button type="submit" class="btn submit">OK</button>
+        </form>
+    </div>
+</div>
