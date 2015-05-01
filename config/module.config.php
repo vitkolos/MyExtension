@@ -27,7 +27,21 @@ return array(
         )
     ),
 
- 
+    'templates' => array(
+        'themes' => array(
+            'cte' => array(
+                'label' => 'CTE',
+                'basePath' => realpath(__DIR__ . '/../theme/cte'),
+                'css' => array(
+                    '/css/cte.css',
+                ),
+                'js' => array(
+                    '/js/cte.js',
+                ),
+            ),
+        ),
+    ),
+    
     'namespaces_api' => array(
         'MyExtension',
     ),
