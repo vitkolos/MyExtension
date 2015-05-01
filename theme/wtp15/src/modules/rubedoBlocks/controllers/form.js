@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FormController2',['$scope','$http','$location','$sce','RubedoContactService',function($scope,$http,$location,$sce,RubedoContactService){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','$location','$sce','RubedoContactService',function($scope,$http,$location,$sce,RubedoContactService){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
