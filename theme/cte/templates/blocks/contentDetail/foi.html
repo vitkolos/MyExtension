@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-sm-6">
+		<img class="media-object pull-right padding-top padding-right" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[1].config.name]"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity[contentDetailCtrl.content.type.fields[1].config.name],{height:'420px',width:'300px',mode:'crop'}) }}"
+				 alt=""/>	
+	</div>
+	<div class="col-sm-6">
+		<h1>Revue FOI</h1>
+		<p class="clearfix">Une partie des articles publiés dans le magazine sont disponibles en ligne</p>
+		<a class="button rouge" href="http://ame-boutique.com/fr/21-abonnement-foi">S'abonner à la revue</a>
+		<a class="button rouge" href="http://ame-boutique.com/fr/91-foi-nouvelle-formule">Acheter le dernier numéro</a>
+	</div>
+</div>
+<div class="row">
+	<h1>Sommaire - {{fieldEntity[contentDetailCtrl.content.type.fields[0].config.name]}}</h1>
+</div>
+<div class="row sommaire">
+	<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[2]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[2].config.name]" ></rubedo-field><!--Sommaire-->
+</div>
+<div style="margin-top:24px"></div>
