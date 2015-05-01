@@ -1,0 +1,7 @@
+<div class="container-fluid test" autoscroll="true" style="margin-top:50px;" id="top">
+    <div ng-repeat="row in rubedo.current.page.rows"
+         ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
+         class="row "  ng-class="{'sections-container-push':!toggleNav &&$index>1 ,'sections-container':$index>1, 'first' : row.code=='slider' }"
+         ng-class="rubedo.componentsService.resolveResponsiveClass(row.responsive)"></div>
+</div>
+
