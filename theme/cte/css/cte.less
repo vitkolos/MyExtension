@@ -219,10 +219,13 @@ blockquote {
 .text-article blockquote p{.capital;.txt-red; text-align: center}
 @media screen and (max-width:@min_xs){
   .text-article{text-align:left}
-  .text-article p img {max-width:100%;}
 }
 @media screen and (min-width:@min_xs){.content_border{margin-top:0px}}
-@media screen and (min-width:@min_sm){.text-article p{font-size:22px; line-height: 1.7} .header_link{float:left} }
+@media screen and (min-width:@min_sm){
+  .text-article p{font-size:22px; line-height: 1.7}
+  .header_link{float:left}
+  .text-article p img {max-width:100%;}
+  }
 @media screen and (min-width:@min_md){.text-article{max-width:720px}}
 @media screen and (min-width:@min_lg){blockquote{width:50%; float:right; position: relative; left:20%; margin-left:-17.5%}}
 @media screen and (min-width:@min_xs) and (max-width:@min_sm){.header_link{margin-top:33px}}
