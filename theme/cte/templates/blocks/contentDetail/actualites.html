@@ -69,14 +69,18 @@
 		</div>
 	</div>
 	<div class="row">
-		<div style="margin:0 auto; max-width:750px">
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('externalMedia')}}"  ng-if="fieldEntity['externalMedia']" ></rubedo-field><!--Video-->
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('audio')}}"   ng-if="fieldEntity['audio']"></rubedo-field><!--Audio-->			
+		<div class="col-xs-12">
+			<div class="text-article">
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('externalMedia')}}"  ng-if="fieldEntity['externalMedia']" ></rubedo-field><!--Video-->
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('audio')}}"   ng-if="fieldEntity['audio']"></rubedo-field><!--Audio-->							
+			</div>
 		</div>
 	</div>
 	<div class="row" >
-		<div class="col-xs-12 col-sm-10 col-sm-offset-1" ng-if="fieldEntity['video']">
-			<jwplayer video-url="{{fieldEntity['video']}}"></jwplayer>
+		<div class="col-xs-12 " ng-if="fieldEntity['video']">
+			<div class="text-article">
+				<jwplayer video-url="{{fieldEntity['video']}}"></jwplayer>
+			</div>
 		</div>
 	</div>
 	<div class="row" >
