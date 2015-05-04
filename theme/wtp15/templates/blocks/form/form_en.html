@@ -365,6 +365,10 @@ The Festival Team.</p>
 		    </label>
 			</div>
 		</div>
+		<div class="col-sm-12" ng-if="formCtrl.lang =='pl' && formCtrl.inscription.festival">
+		    <input type="checkbox" id="bus_pl" name="bus_pl" ng-model="formCtrl.inscription.bus_pl" value="Non" ng-change="formCtrl.updatePriceEn()">
+		    <label for="bus_pl" class="row">I take the bus with the Community (60€)</label>
+		</div>
 	    </div>
 	    
 	    <div class="row">

@@ -98,8 +98,14 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
        if (me.inscription.logement!='rent') {
             me.inscription.prix_logement = 0;
         }
-       me.price_min = $scope.tarifs[me.lang][me.inscription.formule].min + me.inscription.prix_logement;
-        me.price_max = $scope.tarifs[me.lang][me.inscription.formule].max + me.inscription.prix_logement;
+        if (me.inscription.bus_pl) {
+           me.inscription.prix_transport = 60;
+        }
+        if (!me.inscription.bus_pl) {
+           me.inscription.prix_transport = 0;
+        }
+       me.price_min = $scope.tarifs[me.lang][me.inscription.formule].min + me.inscription.prix_logement + me.inscription.prix_transport;
+        me.price_max = $scope.tarifs[me.lang][me.inscription.formule].max + me.inscription.prix_logement + me.inscription.prix_transport;
         me.price_moy = (me.price_min+me.price_max)/2;
         
      }
@@ -235,6 +241,9 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 if(me.inscription.retour_train_gare) mailInfo.transport_retour+= " : " +me.inscription.retour_train_gare;
                 if(me.inscription.retour_train_date)  mailInfo.transport_retour+= ", "+me.inscription.retour_train_date;
                 if(me.inscription.retour_train_heure)  mailInfo.transport_retour+=" "+me.inscription.retour_train_heure;
+            if (me.inscription.bus_pl) {
+               mailInfo['Bus with the Community'] = "Yes";
+            }
             mailInfo.logement = me.inscription.logement;
             mailInfo.groupe = me.inscription.groupe ?me.inscription.groupe:" ";
             mailInfo.remarques = me.inscription.remarques ? me.inscription.remarques:" ";
