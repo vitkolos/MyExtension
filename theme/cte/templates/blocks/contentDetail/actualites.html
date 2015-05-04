@@ -26,9 +26,9 @@
 </header>
 <header class="container-fluid" ng-if="!fieldEntity['image']">
 	<div class="text-article container">
-		<p class='capital txt-red' >{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
+		<p class='capital txt-red' style="text-shadow: none">{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
-			<h1 class="balance-text txt-marron" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+			<h1 class="txt-marron" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
 			<h1 ng-if="fieldEditMode"
 			   ng-controller="RTEFieldController as rteFieldCtrl"
 			   ckeditor="editorOptions"
