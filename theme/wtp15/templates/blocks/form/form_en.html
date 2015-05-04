@@ -1,1 +1,465 @@
+    
+	<p ng-show="formCtrl.showConfirmRegister">You have succesfully registered to Welcome to Paradise Festival!<br/>
+We will contact you soon to confirm the remaining details. Meanwhile, don't hesitate to contact us if you have any question.<br/>
+We look forward to seeing you this summer !<br/>
+The Festival Team.</p>
+	<p ng-show="formCtrl.showRegisterError">It seems that there has been a problem during your registration. Please try again later or contact us directly on the 'Contact' page.<br/>
+The Festival Team.</p>
+    <div class="bg-danger">
+	<p ng-show="formCtrl.showMailError">Les deux adresses mail indiquées sont différentes ! Merci de corriger ton inscription.</p>
+	<p ng-show="formCtrl.showPreRegisterError">Il y a eu un problème lors de la préinscription... Merci de contacter le secrétariat.</p>
+    </div>
 
+
+<form class="page row" name="form" method="post" style="margin-bottom:20%" novalidate ng-show="formCtrl.showForm" action="{{formCtrl.trustSrc(formCtrl.action)}}">
+    <ul class="steps col-sm-12"  >
+
+	<p>{{rubedo.translate("Blocks.Form.Label.Step")}} {{formCtrl.inscription.step}}/4</p>
+	<li ng-class="{active: formCtrl.inscription.step==1, complete: formCtrl.inscription.step>1}"></li>
+	<li ng-class="{active: formCtrl.inscription.step==2, complete: formCtrl.inscription.step>2}"></li>
+	<li ng-class="{active: formCtrl.inscription.step==3, complete: formCtrl.inscription.step>3}"></li>
+	<li ng-class="{active: formCtrl.inscription.step==4, complete: formCtrl.inscription.step>4}"></li>
+    </ul>
+    <div ng-show="formCtrl.inscription.step==1">
+	<div class="col-sm-12 padding-large">
+		<p class="choice-proposition">Please select your country</p>
+	</div>
+	<ul class="col-sm-12 country-list" ng-init="formCtrl.inscription.country='FRANCE'">
+		<li onclick="location.href='/fr/accueil/inscription'"><img ng-src="{{formCtrl.getFlagUrl('FR')}}"/><p>France</p></li>
+		<li ng-click="formCtrl.inscription.country='BELGIUM'; formCtrl.chooseLang(); "><img ng-src="{{formCtrl.getFlagUrl('BE')}}"/><p>Belgium</p></li>
+		<li ng-click="formCtrl.inscription.country='BRAZIL'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('BR')}}"/><p>Brazil</p></li>
+		<li ng-click="formCtrl.inscription.country='CANADA'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('CA')}}"/><p>Canada</p></li>
+		<li ng-click="formCtrl.inscription.country='CZECH REPUBLIC'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('CZ')}}"/><p>Czech Republic</p></li>
+		<li ng-click="formCtrl.inscription.country='EGYPT'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('EG')}}"/><p>Egypt</p></li>
+		<li ng-click="formCtrl.inscription.country='GERMANY'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('DE')}}"/><p>Germany</p></li>
+		<li ng-click="formCtrl.inscription.country='HUNGARY'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('HU')}}"/><p>Hungary</p></li>
+		<li ng-click="formCtrl.inscription.country='ITALY'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('IT')}}"/><p>Italy</p></li>
+		<li ng-click="formCtrl.inscription.country='LATVIA'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('LV')}}"/><p>Latvia</p></li>
+		<li ng-click="formCtrl.inscription.country='LEBANON'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('LB')}}"/><p>Lebanon</p></li>
+		<li ng-click="formCtrl.inscription.country='NETHERLANDS'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('NL')}}"/><p>Netherlands</p></li>
+		<li ng-click="formCtrl.inscription.country='POLAND'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('PL')}}"/><p>Poland</p></li>
+		<li ng-click="formCtrl.inscription.country='RUSSIA'; formCtrl.chooseLang(); "><img ng-src="{{formCtrl.getFlagUrl('RU')}}"/><p>Russia</p></li>
+		<li ng-click="formCtrl.inscription.country='SLOVAKIA'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('SK')}}"/><p>Slovakia</p></li>
+		<li ng-click="formCtrl.inscription.country='SPAIN'; formCtrl.chooseLang(); "><img ng-src="{{formCtrl.getFlagUrl('ES')}}"/><p>Spain</p></li>
+		<li ng-click="formCtrl.inscription.country='SWITZERLAND'; formCtrl.chooseLang(); "><img ng-src="{{formCtrl.getFlagUrl('CH')}}"/><p>Switzerland</p></li>
+		<li ng-click="formCtrl.inscription.country='UNITED KINGDOM'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('GB')}}"/><p>United Kingdom</p></li>
+		<li ng-click="formCtrl.inscription.country=''; formCtrl.chooseLang();"><p style="font-family:hautecombe-2015regular; font-size:64px;padding-top:22px; padding-bottom:10px">È</p><p>Other Countries</p></li>
+	</ul>
+
+    </div>
+    <ng-form name="register_1" ng-show="formCtrl.inscription.step==2">
+	<div class="col-sm-12 col-md-6 padding-large" id="formule">  			
+	    <!--choice of the FESTIVAL-->
+		<div class="row">
+			<input type="checkbox" id="hautecombe-2015" class="question-title" ng-model="formCtrl.inscription.festival" ng-change="formCtrl.updateStatus()">
+			<label for="hautecombe-2015" class="choice-proposition" >I'm coming to Hautecombe 2015! 
+			</label>
+		</div>
+		<div class="row">
+			<!--choice of the FESTIVAL as a participant-->
+			<div class="col-sm-6 padding">
+				<div class="row">
+					<div class="col-xs-12 choice-festival" ng-class="{highlight : formCtrl.inscription.dates == 1}">
+						<p class="title-paragraph-1" style="margin:15px 0">As a participant</p>
+					</div>
+					<div class="col-xs-12 choice-dates double">
+						<input type="radio" id="festivalier" name="dates" ng-model="formCtrl.inscription.dates" value="1" ng-change="formCtrl.updateStatus()">
+						<label for="festivalier" >2th to 9th August</label>
+					</div>
+				</div>
+			</div>
+			<!--choice of the FESTIVAL as a volunteer-->
+			<div class="col-sm-6 padding">
+				<div class="choice-volunteer"  ng-class="{highlight : formCtrl.inscription.dates > 1 }">
+					<p class="title-paragraph-1" style="margin:15px 0">As a volunteer</p>
+				</div>
+				<div class="col-xs-12 choice-dates">
+					<input type="radio" id="prepa" name="dates" ng-model="formCtrl.inscription.dates" value="2" ng-change="formCtrl.updateStatus()">
+					<label for="prepa" style="padding-bottom:5px">26th July - 9th August</label>
+				</div>
+				<div class="col-xs-12 choice-dates">
+					<input type="radio" id="volontaire" name="dates" ng-model="formCtrl.inscription.dates" value="3" ng-change="formCtrl.updateStatus()">
+					<label for="volontaire">31st July - 9th August</label>
+				</div>
+			</div>
+		</div>
+    
+    
+		<!--choice of the RETREAT-->
+		<div class="row">
+			<input type="checkbox" id="retraite" class="question-title" ng-model="formCtrl.inscription.retraite" ng-change="formCtrl.updateStatus()">
+			<label for="retraite" class="choice-proposition" >I'm coming to the retreat
+			</label>
+		</div>
+		<div class="row">
+			<div class="col-md-12 retraite-comment" ng-class="{highlight : formCtrl.inscription.retraite}">
+				<b>Maison Forte de Montagnieu (38)</b><br/>
+				<span>from the 10th August at 6pm to the 16th August at 10am</span>
+			</div>
+		</div>
+		<!--OPTIONS-->
+		<div class="row" ng-if="formCtrl.inscription.festival && formCtrl.inscription.dates==1">
+			<label class="choice-proposition col-sm-12">Choose an option</label>
+			<div class="col-sm-12  bg-grey" >
+				<input type="radio" id="carte" name="parcours" ng-model="formCtrl.inscription.parcours" value="carte" required>
+				<label for="carte" class="row">Selection from menu</label>
+				<input type="radio" id="studilac" name="parcours" ng-model="formCtrl.inscription.parcours" value="studilac">
+				<label for="studilac" class="row">Study' lake</label>
+				<input type="radio" id="manaim" name="parcours" ng-model="formCtrl.inscription.parcours" value="manaim">
+				<label for="manaim" class="row">Manaïm</label>
+				<input type="radio" id="hozana" name="formule" ng-model="formCtrl.inscription.parcours" value="hozana">
+				<label for="hozana" class="row">Hozana</label>
+				<p>Please select your prefered formule for the Festival keeping in mind that you need to speak French in order to take part in Special Courses (Study'lake, Manaïm or Hozana).</p>
+			</div>
+		</div>
+		<div class="row" ng-if="formCtrl.inscription.dates >1 && formCtrl.inscription.festival">
+			<label class="choice-proposition col-sm-12">For volunteers</label>
+			<div class="col-sm-12  bg-grey" >
+			    <label for="volontariat">In what area would you prefer to volunteer?</label>
+			    <input type="text" class="row" name="domaine-de-volontariat" id="volontariat"ng-model="formCtrl.inscription.volontariat" style="background-color:white">
+			</div>
+		</div>		
+	</div>
+       
+       
+    
+	<!--INFOS PERSONNELLES - PREINSCRIPTION-->
+	<div class="col-sm-12 col-md-6 padding-large">
+	    <div class="row">
+		<p class="choice-proposition" style="margin-top:30px">Personal informations
+		</p>
+	    </div>
+	    <div class="row">
+		<div class="col-xs-12">
+		    <!--hidden inputs for community website-->
+		    <input id="serviteur" type="hidden" name="serviteur">
+		    <input id="public_choisi" type="hidden" value="jeune-18-30-ans" name="public_choisi" >
+		    <input id="type_public_choisi" type="hidden" value="jeune-adulte" name="type_public_choisi">
+		    <input type="hidden" name="form.submitted" value="1">
+		</div>
+	    </div>
+	    <!--inputs for preinscription-->
+	    <div class="row">
+		<div class="col-xs-4">
+		    <label for="nom-P" class="preinscription">Last name</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="nom-P" name="nom-P" ng-model="formCtrl.inscription.name" required ng-pattern="/[a-zA-Z]/">
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="prenom-P" class="preinscription">First name</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="prenom-P" name="prenom-P"  ng-model="formCtrl.inscription.surname" required ng-pattern="/[a-zA-Z]/">
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="naissance-P" class="preinscription">Date of birth</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="naissance-P" name="naissance-P" ng-model="formCtrl.inscription.birthdate" required ng-pattern="/\d{2}/\d{2}/\d{4}/" placeholder="jj/mm/aaaa">
+		</div>
+		<div class="col-xs-4">
+		    <p class="preinscription ">Gender</p>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input id="sexe-H" type="radio" name="sexe-P" value="H" ng-model="formCtrl.inscription.sex" value="man">	
+		    <label for="sexe-H" class="checkboxes col-xxs-6 col-xs-6">man</label>
+		    <input id="sexe-F" type="radio" name="sexe-P" value="F" ng-model="formCtrl.inscription.sex" value="woman">
+		    <label for="sexe-F" class="checkboxes col-xxs-6 col-xs-6">woman</label>			
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="cp-P" class="preinscription">Postal code</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="cp-P" name="cp-P" ng-model="formCtrl.inscription.cp" required>
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="email-P" class="preinscription">Email</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="email" id="email-P" name="email-P" ng-model="formCtrl.inscription.email" required>
+		</div>
+		
+		
+		
+		<div class="col-xs-4">
+		    <label for="email-verif-P" class="preinscription">Email (verification)</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="email" id="email-verif-P" name="email-verif-P" ng-model="formCtrl.inscription.email_verif" required>
+		</div>
+		
+		<div class="col-xs-4">
+		    <label for="telephone2-P" class="preinscription">Mobile phone</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="tel" id="telephone2-P" name="telephone2-P" ng-model="formCtrl.inscription.telephone" required ng-pattern="/(\+\d{2}\/\d){1}(\s\d{2}){4}/"  placeholder="+33/6 00 00 00 00">
+		</div>
+		
+		
+	    </div>
+			
+	    
+	    <div class="row">
+		<div class="col-xs-4">
+		    <label for="nationalite" class="inscription">Nationality</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="nationalite" name="nationalite-P" ng-model="formCtrl.inscription.nationality" >
+		</div>
+		
+		<div class="col-xs-4" >
+		    <label for="adresse" class="inscription" style="height:60px">Address</label>
+		</div>
+		<div class="preinscription-entry col-xs-8" style="height:60px">
+		    <textarea id="adresse" name="adresse-P" rows="2" cols="" ng-model="formCtrl.inscription.address" required></textarea>
+		</div>
+    
+		<div class="col-xs-4">
+		    <label for="ville" class="inscription">City</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="ville" name="ville-P" ng-model="formCtrl.inscription.city" required>
+		</div>
+    
+		<div class="col-xs-4">
+		    <label for="pays" class="inscription">Country</label>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input type="text" id="pays" name="pays-P" ng-model="formCtrl.inscription.country" value="{{formCtrl.inscription.country}}" ng-disabled="formCtrl.inscription.country!=''" required>
+		</div>
+    
+		<div class="col-xs-4">
+		    <p class="inscription " style="height:60px">Situation</p>
+		</div>
+		<div class="preinscription-entry col-xs-8">
+		    <input id="etudiant" type="radio" name="situation" value="student" ng-model="formCtrl.inscription.situation" required>	
+		    <label for="etudiant" class="checkboxes col-xxs-6 col-xs-6">student</label>
+		    <input id="jeunePro" type="radio" name="situation" value="young professional" ng-model="formCtrl.inscription.situation">
+		    <label for="jeunePro" class="checkboxes col-xxs-6 col-xs-6">young professionnal</label>			
+		    <input id="situationAutre" type="radio" name="situation" value="other" ng-model="formCtrl.inscription.situation">
+		    <label for="situationAutre" class="checkboxes col-xxs-6 col-xs-6">other</label>			
+		    <div class="col-xxs-6 col-xs-6"><input id="autreSituation" type="text" name="autreSituation" ng-model="formCtrl.inscription.situationAutre"></div>
+		</div>
+	    </div>
+    
+	</div>
+
+  	
+	<div class="col-sm-12 col-md-6 padding-large">
+		<div class="row bg-danger">
+		    <p  ng-show="form.register_1['telephone2-P'].$dirty && form.register_1['telephone2-P'].$error.pattern">Phone number must be in the following format: +xx/x xx xx xx xx</p>
+		    <p  ng-show="form.preregister['naissance-P'].$dirty && form.preregister['naissance-P'].$error.pattern">The birth date must be in the following format : dd/mm/yyyy</p>
+		    <p  ng-show="form.register_1.$dirty && form.register_1.$invalid">Please fill in all the required fields</p>
+		</div>
+		<input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6" ng-click="formCtrl.inscription.step=1"  value="Back">
+		<input  type="button" id="btn_inscription" class=" col-xs-6 col-xxs-6" ng-click="formCtrl.inscription.step=3"  value="Next" ng-disabled="form.register_1.$invalid"><!--ng-disabled="form.register_1.$invalid"-->
+
+	</div>
+    </ng-form>
+    <ng-form name="register_2" ng-show="formCtrl.inscription.step==3">
+	<div class="col-sm-12 col-md-6 padding-large">
+	    <!--QUESTIONS COMPEMENTAIRES-->
+	    <div class="row">
+		<p class="choice-proposition">Complementary informations</p>
+	    </div>
+	    <div class="row bg-grey">
+		<div class="col-sm-6 " >
+		    <p class="titre-cap">I am...</p>
+		    <input type="radio" id="catholic" name="confession" ng-model="formCtrl.inscription.confession" value="catholic">
+		    <label for="catholic" class="row">catholic</label>
+		    <input type="radio" id="protestant" name="confession" ng-model="formCtrl.inscription.confession" value="protestant">
+		    <label for="protestant" class="row">protestant</label>
+		    <input type="radio" id="evangelic" name="confession" ng-model="formCtrl.inscription.confession" value="evangelic">
+		    <label for="evangelic" class="row">evangélic</label>
+		    <input type="radio" id="orthodox" name="confession" ng-model="formCtrl.inscription.confession" value="orthodox">
+		    <label for="orthodox" class="row">orthodox</label>
+		    <input type="radio" id="confession_autre" name="confession" ng-model="formCtrl.inscription.confession" value="other">
+		    <label for="confession_autre" class="row">other
+			<input type="text" name="confession-4-c" ng-model="formCtrl.inscription.confession_autre" class="complement">
+		    </label>
+		</div>
+		<div class="col-sm-6 " >
+		    <p class="titre-cap">I've heard about the Festival from...</p>
+		    <input type="checkbox" id="fcb" name="jai-connu-0" ng-model="formCtrl.inscription.fcb">
+		    <label for="fcb" class="row">Facebook, YouTube</label>
+		    <input type="checkbox" id="flyer" name="jai-connu-1" ng-model="formCtrl.inscription.tract">
+		    <label for="flyer" class="row">Leaflets, press</label>
+		    <input type="checkbox" id="google" name="jai-connu-2" ng-model="formCtrl.inscription.google">
+		    <label for="google" class="row">Google</label>
+		    <input type="checkbox" id="famille" name="jai-connu-3" ng-model="formCtrl.inscription.famille">
+		    <label for="famille" class="row">My family / friends</label>
+		    <input type="checkbox" id="paroisse" name="jai-connu-4" ng-model="formCtrl.inscription.paroisse">
+		    <label for="paroisse" class="row">Chaplaincy / parish</label>
+		    <input type="checkbox" id="gp" name="jai-connu-5" ng-model="formCtrl.inscription.gp">
+		    <label for="gp" class="row">Prayer group, Community weekends...</label>
+		</div>
+		<div class="col-sm-12 " >
+		    <p class="titre-cap">Name of my group</p>
+		    <p>Please indicate the name of your group if you are coming with a specified group.</p>
+			<input type="text" class="complement" name="groupe" ng-model="formCtrl.inscription.groupe" id="groupe_nom">
+		    </label>
+		</div>
+	    </div>
+	</div>
+	<!--TRANSPORT-->
+	<div class="col-sm-12 col-md-6 padding-large">
+	    <div class="row">
+		<p class="choice-proposition">My transport</p>
+	    </div>
+    	    <div class="row bg-grey">
+		
+		<!--ALLER-->
+		<div class="col-sm-6 " >
+		    <p class="titre-cap">Outbound</p>
+		    <input type="radio" id="aller_not" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="unknown" required>
+		    <label for="aller_not" class="row">I don't know yet</label>
+		    <input type="radio" id="aller_car" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="car" >
+		    <label for="aller_car" class="row">Car</label>
+		    <input type="radio" id="aller_bus" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="coach">
+		    <label for="aller_bus" class="row">Coach</label>
+		    <input type="radio" id="aller_avion" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="plane">
+		    <label for="aller_avion" class="row">Plane</label>
+		<div ng-if="formCtrl.inscription.aller=='plane' || formCtrl.inscription.aller=='coach'">
+		    <label for="aller_bus_date" class="row">date
+			<input type="date" class="datepicker" name="trajet-aller-2-date" ng-model="formCtrl.inscription.aller_train_date" id="aller_bus_date">
+		    </label>			
+		    <label for="aller_bus_heure" class="row">arrival time
+			<input type="text" class="complement" name="trajet-aller-2-heure" ng-model="formCtrl.inscription.aller_train_heure" id="aller_bus_heure">
+		    </label>
+		    <label for="aller_bus_gare" class="row">airsport / station
+			<select  class="complement" name="trajet-aller-2-gare" ng-model="formCtrl.inscription.aller_train_gare" id="aller_bus_gare">
+					<option selected>Geneva
+					<option>Lyon
+			</select>
+		    </label>
+			</div>
+		</div>
+		<!--RETOUR SANS RETRAITE-->
+		<div class="col-sm-6 "  >
+		    <p class="titre-cap">Return</p>
+		    <input type="radio" id="retour_not" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="unknown" required>
+		    <label for="retour_not" class="row">I don't know yet</label>
+		    <input type="radio" id="retour_car" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="car">
+		    <label for="retour_car" class="row">Car</label>
+		    <input type="radio" id="retour_bus" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="coach">
+		    <label for="retour_bus" class="row">Coach</label>
+		    <input type="radio" id="retour_avion" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="plane" >
+		    <label for="retour_avion" class="row">Plane</label>
+		<div ng-if="formCtrl.inscription.retour=='plane' || formCtrl.inscription.retour=='coach'">
+		    <label for="retour_bus_date" class="row">date
+			<input type="date" class="datepicker" name="trajet-retour-2-date" ng-model="formCtrl.inscription.retour_train_date" id="retour_bus_date">
+		    </label>			
+		    <label for="retour_bus_heure" class="row">arrival time
+			<input type="text" class="complement" name="trajet-retour-2-heure" ng-model="formCtrl.inscription.retour_train_heure" id="retour_bus_heure">
+		    </label>
+		    <label for="retour_bus_gare" class="row">airsport / station
+			<select  class="complement" name="trajet-retour-2-gare" ng-model="formCtrl.inscription.retour_train_gare" id="retour_bus_gare">
+					<option selected>Geneva
+					<option>Lyon
+			</select>
+		    </label>
+			</div>
+		</div>
+	    </div>
+	    
+	    <div class="row">
+		<p class="choice-proposition">Accomodation</p>
+	    </div>
+    	    <div class="row bg-grey">
+		<div class="col-sm-12 " >
+		    <input type="radio" id="perso" name="logement" ng-model="formCtrl.inscription.logement" value="own tent" ng-change="formCtrl.updatePriceEn()" required>
+		    <label for="perso" class="row">I'll bring my own tent</label>
+		    <input type="radio" id="tent_cte" name="logement" ng-model="formCtrl.inscription.logement" value="rent" ng-change="formCtrl.updatePriceEn()">
+		    <label for="tent_cte" class="row">I would like to rent a place in double tent (15 €)</label>
+		</div>
+	    </div>
+	    <div class="row">
+		<p class="choice-proposition">Remarks</p>
+	    </div>
+    	    <div class="row bg-grey" style="padding:0">
+		<div class="col-sm-12 " >
+		    <input type="textarea" rows="2" id="remarques" name="remarques" ng-model="formCtrl.inscription.remarques" >
+		    
+		</div>
+	    </div>
+	</div>
+	<div class="col-sm-12 col-md-6 padding-large">
+		<div class="row bg-danger"  ng-show="form.register_2.$dirty && form.register_2.$invalid">
+		    <p>Please fill in all the required fields</p>
+		</div>
+	    <input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6"  value="Back" ng-click="formCtrl.inscription.step=2">
+	    <input  type="button" id="btn_inscription" class=" col-xs-6 col-xxs-6"  value="Next" ng-click="formCtrl.inscription.step=4" ng-disabled="form.register_2.$invalid">
+	</div>
+
+    </ng-form>
+    <ng-form name="register_3" ng-show="formCtrl.inscription.step==4">
+	<div class="col-sm-6 padding-large">
+		<div class="row">
+			<p class="choice-proposition" style="margin-top:30px">Precise your contribution</p>
+		</div>
+		<div class="row bg-grey">
+			<div class="col-sm-12 ">
+				<label for="payment" class="row">Contribution:
+					{{formCtrl.inscription.payment}}{{tarifs[formCtrl.lang].currency}}
+				</label>
+				<input type="range" value="{{formCtrl.price_moy}}" max="{{formCtrl.price_max}}" min="{{formCtrl.price_min}}" step="5" style="width:80%; margin-left:10%" ng-model="formCtrl.inscription.payment" ng-change="formCtrl.updatePriceEn()">
+				<div class="col-xxs-6 col-xs-6">
+					<p class="text-left">{{formCtrl.price_min}}€ (reduced price *)</p>
+				</div>
+				<div class="col-xxs-6 col-xs-6">
+					<p class="text-right">{{formCtrl.price_max}}€ (solidarity price **)</p>
+				</div>
+			</div>
+			<div class="col-sm-12">
+			    <p>* students with financial difficulties and unemployed<br/>
+			    ** to help youth with financial difficulties to come to the Festivall</p>
+			</div>
+		</div>		
+	    
+	    <div class="row">
+		<input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6"  value="Back" ng-click="formCtrl.inscription.step=3">
+		<input  type="button" id="btn_inscription" ng-click="formCtrl.register()" class=" col-xs-6 col-xxs-6" value="Register">
+		<p ng-show="formCtrl.process">Processing the form... please wait...</p>
+		<p ng-show="form.$invalid && form.$dirty && formCtrl.inscription.registrationStep == 1 ">Tu as oublié de renseigner certains champs obligatoires...</p>
+		<p ng-show="form.$invalid && formCtrl.inscription.registrationStep == 0 && formCtrl.inscription.message">{{formCtrl.inscription.message}}</p>
+	    </div>
+	</div>
+	
+    </ng-form>
+	<div class="col-sm-6 padding-large" ng-show="formCtrl.inscription.step>1">
+	    <div class="row">
+		<p class="choice-proposition" style="margin-top:30px">My choice</p>
+	    </div>
+	    <div class="row ">
+		<div class="col-sm-12 choix-final " ng-class="{volontaire : formCtrl.inscription.festival && formCtrl.inscription.dates>1}">
+			 <p>{{tarifs[formCtrl.inscription.formule].text_en}}</p>
+		</div>		
+		<div class="col-sm-12 choix-final price" ng-class="{volontaire : formCtrl.inscription.festival && formCtrl.inscription.dates>1}" ng-show="formCtrl.lang=='lb' || formCtrl.lang=='other' ">
+			<p >To get info about the prices, please fill the form and we will contact you.</p>
+    		</div>
+		<div class="col-sm-12 choix-final price" ng-class="{volontaire : formCtrl.inscription.festival && formCtrl.inscription.dates>1}" ng-show="formCtrl.lang !='lb' && formCtrl.lang !='other' ">
+			<p  ng-if="formCtrl.inscription.step<4">{{formCtrl.price_min}} -  {{formCtrl.price_max}}{{tarifs[formCtrl.lang].currency}}</p>
+			<p ng-if="formCtrl.inscription.step==4">{{formCtrl.inscription.payment}}{{tarifs[formCtrl.lang].currency}}</p>
+    		</div>
+		
+		
+	    </div>
+	</div>		
+</form>
+	    
+	    
+	    
+
+<!--
+           <input id="btn_preinscription" type="button" value="Je me préinscris !" name="preinscription" class="span12">
+            <input id="btn_montrer_inscription" type="button" value="Continuer" name="montrer_inscription" class="span16 offset1">
+            <input id="btn_montrer_preinscription" type="button" value="Revenir" name="montrer_preinscription" class="span12" style="display:none">
+            <input id="btn_inscription" type="button" value="Continuer" name="inscription" class="inscription span16 offset1" style="display:none">
+
+
+-->
