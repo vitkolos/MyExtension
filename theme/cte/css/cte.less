@@ -291,14 +291,12 @@ blockquote {
 .search-result {
     p.capital{margin-bottom:0}
     h3{margin-top:10px}
-    border-bottom:solid 1px @marron;
-    padding:24px 0;
     .clearfix();
 }
 .search-tags .search-result{padding:12px 0;padding-left: 12px;    }
 .search-tags .search-result.checked, .search-tags .search-result:hover{background-color:@marron; color:white}
-@media screen and (max-width: @min_xs) {
-  .search-result{border:none; padding-top:0}
+@media screen and (min-width: @min_sm) {
+  .search-result{border-bottom:solid 1px @marron;padding:24px 0;}
 }
 @media screen and (max-width: @min_sm) {
     .panel-heading.actus.panel-hidden + .panel-body{display:none; padding:0}
