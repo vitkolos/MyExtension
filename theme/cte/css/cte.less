@@ -320,7 +320,7 @@ blockquote {
     content: "\f14c";
     font-family: 'FontAwesome'; color:@rouge;
      margin-left:5px;display: inline-block;font-size: 0.8em}
-p.red-sub{.capital; font-size:11px; .txt-red; margin-bottom: 24px}
+p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
 
 
 .sommaire {
@@ -333,7 +333,14 @@ p.red-sub{.capital; font-size:11px; .txt-red; margin-bottom: 24px}
    -o-column-gap:20px;
    column-gap:20px;    
 }
-.sommaire p+p.red-sub{margin-bottom:0}
+@media (screen) and (max-width:@min_sm){
+  .sommaire{
+     -moz-column-count:1;
+   -webkit-column-count:1;
+   -o-column-count:1;
+   column-count:1;
+ }}
+.sommaire p.red-sub+p{margin-bottom:0}
 .homelink{
     background: @rouge;
      padding:12px;
