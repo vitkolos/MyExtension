@@ -248,7 +248,7 @@ blockquote {
   .media.media4{text-align: left}
 }
 @media screen and (max-width:@min_sm){
-  .ratio_321{position:relative; width:100%; overflow:hidden; margin-bottom:12px}
+  .ratio_321{position:relative; width:100%; overflow:hidden; }
   .ratio_321:before{
     content: "";
     display: block;
@@ -261,9 +261,10 @@ blockquote {
     bottom: -50%;
     right: 0;
     width:100%;
-    padding-right: 0; padding-bottom:12px;
+    padding-right: 0;
   }
-  .ratio_321 ~ div{padding:12px; padding-top: 0; background: white}
+  .ratio_321 ~ div{padding:12px; background: white}
+  .summary{.ellipsis(5)}
 }
 
 @media screen and (min-width:@min_xs) and (max-width:@min_sm) {.ratio_321:before{padding-top:50%;}}
