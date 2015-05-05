@@ -268,6 +268,9 @@ blockquote {
 }
 .search-tags .search-result{padding:12px 0;padding-left: 12px;    }
 .search-tags .search-result.checked, .search-tags .search-result:hover{background-color:@marron; color:white}
+@media screen and (max-width: @min_xs) {
+  .search-result p{.ellipsis(1.4,5)}
+}
 @media screen and (max-width: @min_sm) {
     .panel-heading.actus.panel-hidden + .panel-body{display:none; padding:0}
     .panel-heading.actus{.uparrow()}
