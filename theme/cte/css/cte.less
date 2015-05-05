@@ -13,7 +13,7 @@
 .ellipsis(@line-height, @number){
   overflow: hidden;
   position: relative;
-  max-height: @number*@line-height em; /*display ellipsis after 5 lines*/
+  max-height: (@number*@line-height)em; /*display ellipsis after 5 lines*/
   &:before {
   bottom: 0;
   position: absolute;
