@@ -242,9 +242,16 @@ blockquote {
 @media screen and (min-width:@min_xs) and (max-width:@min_sm){.header_link{margin-top:33px}}
 .media.mediaFoi {text-align: center; .border-bottom; img{padding-bottom: 12px; display: inline; width:140px}}
 @media screen and (min-width:@min_md) {
-  .media.mediaFoi {text-align: left; }
+  .media.mediaFoi {text-align: left; border-bottom:none}
   .media.mediaFoi img{float:left;.padding-right; padding-bottom: 0; display: block; width:auto}
 }
+
+.img-special{
+  display:block;
+  width:100%
+}
+.img-special >div{padding-top:50%; overflow:hidden}
+
 
 ////////////////////////////////////////////////////
     ///////////CAROUSEL///////////////////
