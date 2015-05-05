@@ -75,8 +75,8 @@
     
                 <div>
                 <p class="capital">{{datum.lastUpdateTime * 1000 | date}} <span class="pull-right tags" ng-if="datum['fields.audio'][0]">audio</span></p>
-                <h3><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl }}">{{datum.title}}</a></h3>
-                <p class="summary">{{datum.summary}}</p>
+                <a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl }}"><h3>{{datum.title}}</h3>
+                <p class="summary">{{datum.summary}}</p></a>
                 <div ng-init="audioFileId = datum['fields.audio'][0]" ng-if="datum['fields.audio'][0]" style="display:inline-block">
                     <div ng-controller="AudioFileController as audioCtrl">
                         <div id="{{'audio'+audioCtrl.media.originalFileId}}"></div>
