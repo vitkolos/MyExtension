@@ -103,8 +103,8 @@ input:focus{outline: 0; border-color:transparent; box-shadow:0}
 ////////////////////////////////////////////////
     ///////global variables////////////////
 ////////////////////////////////////////////////
-@width_xxs:450px;
-@min_xs:530px;
+@width_xxs:420px;
+@min_xs:500px;
 @min_sm:768px;
 @min_md:992px;
 @min_lg:1200px;
@@ -240,6 +240,12 @@ blockquote {
 @media screen and (min-width:@min_md){.text-article{max-width:720px}}
 @media screen and (min-width:@min_lg){blockquote{width:50%; float:right; position: relative; left:20%; margin-left:-17.5%}}
 @media screen and (min-width:@min_xs) and (max-width:@min_sm){.header_link{margin-top:33px}}
+.media.mediaFoi {text-align: center}
+@media screen and (min-width:@min_md) {
+  .media.mediaFoi {text-align: left}
+  .media.mediaFoi img{float:left}
+}
+
 ////////////////////////////////////////////////////
     ///////////CAROUSEL///////////////////
 ///////////////////////////////////////////////////
@@ -269,7 +275,7 @@ blockquote {
 .search-tags .search-result{padding:12px 0;padding-left: 12px;    }
 .search-tags .search-result.checked, .search-tags .search-result:hover{background-color:@marron; color:white}
 @media screen and (max-width: @min_xs) {
-  .search-result p{.ellipsis(5)}
+  .search-result p:nth-of-type(2){.ellipsis(5)}
 }
 @media screen and (max-width: @min_sm) {
     .panel-heading.actus.panel-hidden + .panel-body{display:none; padding:0}
