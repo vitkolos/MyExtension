@@ -51,26 +51,33 @@
         </div>
         <div ng-repeat="datum in searchResultsCtrl.data | orderBy:'-lastUpdateTime' | limitTo:searchResultsCtrl.displayedResults" class="resultData search-result">
             <div ng-if="!datum['fields.video'][0]">
-                <img class="media-object pull-left padding-right" ng-if="datum['fields.image'][0]"
-                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'160px',height:'160px',mode:'crop'})}}"
+                <div class="ratio_321" ng-if="datum['fields.image'][0]">
+                <img class="media-object pull-left padding-right"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'420px',height:'420px',mode:'crop'})}}"
                              alt="{{ datum.title }}"/>
+                </div>
+                <img class="media-object pull-left padding-right" ng-if="datum['fields.audio'][0]"
+                             src="/assets/icons/audio-thumb.jpg" style="width:160px"
+                             alt="{{ datum.title }}"/>
+     
     
-                <div ng-init="audioFileId = datum['fields.audio'][0]" ng-if="datum['fields.audio'][0]" class="pull-left padding-right">
+                <div>
+                <p class="capital">{{datum.lastUpdateTime * 1000 | date}} <span class="pull-right tags" ng-if="datum['fields.audio'][0]">audio</span></p>
+                <a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl }}"><h3>{{datum.title}}</h3>
+                <p class="summary">{{datum.summary}}</p></a>
+                <div ng-init="audioFileId = datum['fields.audio'][0]" ng-if="datum['fields.audio'][0]" style="display:inline-block">
                     <div ng-controller="AudioFileController as audioCtrl">
                         <div id="{{'audio'+audioCtrl.media.originalFileId}}"></div>
                     </div>
                 </div>
-    
-                
-                <p class="capital">{{datum.lastUpdateTime * 1000 | date}} <span class="pull-right tags" ng-if="datum['fields.audio'][0]">audio</span></p>
-                <h3><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl }}">{{datum.title}}</a></h3>
-                <p>{{datum.summary}}</p>
+                </div>
+
             </div>
              <div ng-if="datum['fields.video'][0]">
                 <div class="col-sm-4">
                     <p class="capital tags">vidéo</p>
                     <h3><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl }}">{{datum.title}}</a></h3>
-                    <p>{{datum.summary}}</p>
+                    <p class="summary">{{datum.summary}}</p>
                     <p class="capital">{{datum.lastUpdateTime * 1000 | date}} </p>
                 </div>
                 <div class="col-sm-8">
@@ -87,4 +94,5 @@
                    count="searchResultsCtrl.count"
                    change-page-action="searchResultsCtrl.changePageAction()"></paginator>-->
     </div>
+
 </div>
