@@ -44,7 +44,7 @@
 
 @import url(http://fonts.googleapis.com/css?family=Merriweather:400,400italic);
 @import url(http://fonts.googleapis.com/css?family=Montserrat);
-body{font-size:16px; min-height:100%; }
+body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: 'Merriweather','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:@beigeCCN;}
 .container-fluid{overflow-x:hidden;}
 .container-fluid{padding:0}
@@ -235,6 +235,25 @@ blockquote {
 ///////////////////////////////////////////////////
 .carousel-caption{text-align:left;background-color:#2f2e2a;opacity:1; h3{border-bottom:1px solid white; padding-bottom:12px;margin-top:0};p{color:white}}
 .carousel-caption{padding:24px}
+.carousel-caption p{
+  overflow: hidden;
+  position: relative;
+  max-height: 5*1.4em; /*display ellipsis after 5 lines*/
+}
+.carousel-caption p:before {
+  bottom: 0;
+  position: absolute;
+  right: 0;
+  content: '\2026';
+}
+.carousel-caption p:before {
+  content: '';
+  background: #fff;
+  position: absolute;
+  height: 50px;
+  width: 100%;
+  z-index: 1;
+}
 .owl-theme .owl-controls{position:absolute;right:0;margin-top:-30px;margin-right:10px;}
 .owl-theme .owl-controls .owl-page span{background:white;opacity:0.75}
 .owl-theme .owl-controls .owl-page.active span{background:#869791}
