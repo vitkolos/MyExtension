@@ -1,0 +1,87 @@
+<div  ng-controller="ContentDetailController as contentDetailCtrl" ng-attr-id=" {{block.code}}">
+    <button ng-if="fieldEditMode"
+            title="Edit full content"
+            class="btn btn-default"
+            ng-click="contentDetailCtrl.launchFullEditor()">
+        <span class="glyphicon glyphicon-list-alt"></span>
+    </button>
+    <div ng-if="contentDetailCtrl.content.type.code=='pageJMJ' ">
+<a ng-attr-name="{{block.title | split:'/':0}}"></a>
+
+        <div class="row">
+                <div class="col-xs-12 ">
+                <!--<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[2]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[2].config.name]" ></rubedo-field>-->
+                        <div  ng-if="!fieldInputMode"
+                              ng-init="field = contentDetailCtrl.content.type.fields[1]"
+                              ng-if="fieldEntity[contentDetailCtrl.content.type.fields[1].config.name]" >
+                                <div ng-controller="MediaFieldController as mediaFieldCtrl" style="background-image: url({{rubedo.imageUrl.getUrlByMediaId(mediaFieldCtrl.media.id)}})" class="parallax section-header">
+                                
+                                </div>	
+                        </div>
+                        <div class="section-header-title">
+                                <div ng-init="field = contentDetailCtrl.content.type.fields[0]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[0].config.name]"  style>
+                                        <h1 ng-if="!fieldEditMode">{{fieldEntity[field.config.name]}}</h1>
+                                        <h1 ng-if="fieldEditMode"
+                                           ng-controller="RTEFieldController as rteFieldCtrl"
+                                           ckeditor="editorOptions"
+                                           contenteditable="true"
+                                           ready="setCKEIsReady()"
+                                           ng-model="fieldEntity[field.config.name]"
+                                           output-plain-text="true"
+                                           ng-bind-html="rteFieldCtrl.html">
+                                        </h1>
+                                        <h1></h1>
+                                </div>
+                        </div>
+                        <div class="section-header-txt" ng-class=" {'left' : fieldEntity[contentDetailCtrl.content.type.fields[3].config.name]}">
+                                <div style="line-height: normal; display: inline-block;vertical-align: middle">
+                                        <rubedo-field  field = "{{contentDetailCtrl.getFieldByName('desc_img')}}"></rubedo-field>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        
+        <div class="row text-center text-bg " ng-if="fieldEntity['texteRiche']" ng-class="{'bg1' : fieldEntity['listBox'] == 1 ,
+                                                                                'bg2' : fieldEntity['listBox'] == 2,
+                                                                                'bg3' : fieldEntity['listBox'] == 3 }">
+                <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('texteRiche')}}" ></rubedo-field>
+                        
+        </div>
+    </div>
+
+    <div ng-if="contentDetailCtrl.content.type.code=='contenuJMJ' ">
+        <div class="row text-center text-bg tiroir" ng-class="{'bg1' : fieldEntity['listBox'] == 1 ,
+                                                                                'bg2' : fieldEntity['listBox'] == 2,
+                                                                                'bg3' : fieldEntity['listBox'] == 3 }"
+                                                                        ng-init="showTab=false">
+                <div class="col-xs-6 tiroir-header">
+                        <div field = "{{contentDetailCtrl.getFieldByName('text')}}"   class="titre_tiroir" ng-class="{ tab : $parent.showTab}" ng-click="$parent.showTab = !$parent.showTab ">
+                                <h1 ng-if="!fieldEditMode">{{fieldEntity['text']}}
+                                        <rubedo-field  class="icon_tiroir" field = "{{contentDetailCtrl.getFieldByName('icon')}}"  ></rubedo-field>
+                                </h1>
+                                <h1 ng-if="fieldEditMode"
+                                   ng-controller="RTEFieldController as rteFieldCtrl"
+                                   ckeditor="editorOptions"
+                                   contenteditable="true"
+                                   ready="setCKEIsReady()"
+                                   ng-model="fieldEntity[field.config.name]"
+                                   output-plain-text="true"
+                                   ng-bind-html="rteFieldCtrl.html">
+                                </h1>
+                        </div>
+                        
+                        
+                        
+                        
+                </div>
+            <div class="col-xs-6 text-left">
+                    <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('intro')}}"></rubedo-field><!--description-->
+            </div>
+    
+            <div class="col-xs-12 tab_tiroir"  ng-class="{ 'displayed' : $parent.showTab}">
+                    <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('pave')}}" ></rubedo-field><!--description-->
+            </div>
+        </div>
+    </div>
+
+</div>

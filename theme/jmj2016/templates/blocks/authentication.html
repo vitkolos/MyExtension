@@ -1,0 +1,136 @@
+<div ng-controller="AuthenticationController as authCtrl">
+    <div ng-if="rubedo.current.user" class="btn-group">
+        <button class="btn btn-default"><span class="glyphicon glyphicon-user"></span> {{rubedo.current.user.name}}</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+            <span class="caret"></span>
+            <span class="sr-only">{{rubedo.translate("Block.Auth.ToggleDropdown","Toggle dropdown")}}</span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-if="rubedo.current.user.rights.boAccess" ><a href="/backoffice" target="_blank"><span class="glyphicon glyphicon-cog"></span> Back Office</a></li>
+            <li ng-if="authCtrl.profilePageUrl" ><a ng-href="{{authCtrl.profilePageUrl}}" ><span class="glyphicon glyphicon-user"></span> {{rubedo.translate("Block.Auth.Profile","Profile")}}</a></li>
+            <li><a class="cursor-as-pointer" ng-click="authCtrl.logOut()"><span class="glyphicon glyphicon-log-out"></span> {{rubedo.translate("Block.Auth.LogOut","Log out")}}</a></li>
+        </ul>
+    </div>
+    <div ng-if="blockConfig.displayMode!='form'">
+        <u ng-if="!rubedo.current.user" class="btn " ng-click="authCtrl.showModal()"><small><span class="glyphicon glyphicon-log-in"></span> {{rubedo.translate("Blocks.Auth.Label.LogIn","Log in")}}</small></u>
+        <div class="modal fade" id="rubedoAuthModal" tabindex="-1" role="dialog" aria-labelledby="rubedoAuthModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close","Close")}}</span></button>
+                        <h4 class="modal-title" id="rubedoAuthModalLabel">{{rubedo.translate("Blocks.Auth.Label.LogIn","Log in")}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form" role="form" name="rubedoAuthForm" ng-submit="authCtrl.authenticate()">
+                            <div class="form-group" ng-class="{'has-error':rubedoAuthForm.login.$error.required}">
+                                <label class="sr-only" for="rubedoAuthLoginInput">{{rubedo.translate("Blocks.Auth.Label.Login","Login")}}</label>
+                                <input type="text" name="login" class="form-control" id="rubedoAuthLoginInput" placeholder="{{rubedo.translate('Blocks.Auth.Label.Login','Login')}}" ng-model="authCtrl.credentials.login" required>
+                            </div>
+                            <div class="form-group" ng-class="{'has-error':rubedoAuthForm.password.$error.required}">
+                                <label class="sr-only" for="rubedoAuthPasswordInput">{{rubedo.translate("Blocks.Auth.Label.Password","Password")}}</label>
+                                <input type="password" name="password" class="form-control" id="rubedoAuthPasswordInput" placeholder="{{rubedo.translate('Blocks.Auth.Label.Password','Password')}}" ng-model="authCtrl.credentials.password" required>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" ng-model="authCtrl.rememberMe"> {{rubedo.translate("Blocks.Auth.Label.RememberMe","Remember me")}}
+                                </label>
+                            </div>
+                            <input type="submit" class="hidden">
+                        </form>
+                        <a href ng-click="authCtrl.recoverPwdModal()">{{rubedo.translate("Blocks.Auth.ForgotPassword", "I lost my password")}}</a>
+                        <div ng-show="authCtrl.authError" class="alert alert-danger alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close","Close")}}</span></button>
+                            <strong>Error !</strong> {{authCtrl.authError}}
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> {{rubedo.translate("Label.Cancel", "Cancel")}}</button>
+                        <button type="button" class="btn btn-primary" ng-click="authCtrl.authenticate()"><span class="glyphicon glyphicon-ok"></span> {{rubedo.translate("Label.Submit", "Submit")}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="rubedoRecoverPwdModal" tabindex="-1" role="dialog" aria-labelledby="rubedoRecoverPwdModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close","Close")}}</span></button>
+                    <h4 class="modal-title" id="rubedoRecoverPwdModalLabel">{{rubedo.translate("Blocks.Auth.Title.RecoverPassword","Recover my password")}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" ng-submit="authCtrl.recoverPassword()">
+                        <div class="form-group">
+                            <label for="inputEmailRecoverPwd" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Auth.Label.Email", "Email")}}</label>
+                            <div class="col-sm-10">
+                                <input required ng-model="authCtrl.recoverUserEmail" type="email" class="form-control" id="inputEmailRecoverPwd" placeholder="{{rubedo.translate('Blocks.Auth.Label.Email', 'Email')}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">{{rubedo.translate("Blocks.Auth.Title.RecoverPassword","Recover my password")}}</button>
+                            </div>
+                        </div>
+                    </form>
+                    <rubedo-notification ng-if="notification"></rubedo-notification>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="rubedoChangePwdModal" tabindex="-1" role="dialog" aria-labelledby="rubedoChangePwdModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close", "Close")}}</span></button>
+                    <h4 class="modal-title" id="rubedoChangePwdModalLabel">{{rubedo.translate("Blocks.Auth.Title.ChangePassword", "Change your password")}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" ng-submit="authCtrl.changePassword()">
+                        <div class="form-group">
+                            <label for="inputPwdRecoverPwd" class="col-sm-3 control-label">{{rubedo.translate("Blocks.Auth.Label.Password","Password")}}</label>
+                            <div class="col-sm-9">
+                                <input required ng-model="authCtrl.newPassword" type="password" class="form-control" id="inputPwdRecoverPwd" placeholder="{{rubedo.translate('Blocks.Auth.Label.Password','Password')}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputConfirmPwdRecoverPwd" class="col-sm-3 control-label">{{rubedo.translate("Blocks.Auth.Label.PasswordConfirm", "Confirm password")}}</label>
+                            <div class="col-sm-9">
+                                <input required ng-model="authCtrl.newConfirmPassword" type="password"
+                                       class="form-control" id="inputConfirmPwdRecoverPwd"
+                                       placeholder="{{rubedo.translate('Blocks.Auth.Label.PasswordConfirm', 'Confirm password')}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-primary">{{rubedo.translate("Blocks.Auth.Title.ChangePassword", "Change your password")}}</button>
+                            </div>
+                        </div>
+                    </form>
+                    <rubedo-notification ng-if="notification"></rubedo-notification>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="blockConfig.displayMode=='form'&&!rubedo.current.user">
+        <form class="form" role="form" name="rubedoAuthForm" ng-submit="authCtrl.authenticate()">
+            <div class="form-group" ng-class="{'has-error':rubedoAuthForm.login.$error.required}">
+                <label class="sr-only" for="rubedoAuthLoginInput">{{rubedo.translate("Blocks.Auth.Label.Login","Login")}}</label>
+                <input type="text" name="login" class="form-control" id="rubedoAuthLoginInput" placeholder="{{rubedo.translate('Blocks.Auth.Label.Login','Login')}}" ng-model="authCtrl.credentials.login" required>
+            </div>
+            <div class="form-group" ng-class="{'has-error':rubedoAuthForm.password.$error.required}">
+                <label class="sr-only" for="rubedoAuthPasswordInput">{{rubedo.translate("Block.Auth.Password","Password")}}</label>
+                <input type="password" name="password" class="form-control" id="rubedoAuthPasswordInput" placeholder="{{rubedo.translate('Block.Auth.Password','Password')}}" ng-model="authCtrl.credentials.password" required>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input type="checkbox" ng-model="authCtrl.rememberMe"> {{rubedo.translate("Blocks.Auth.Label.RememberMe", "Remember me")}}
+                </label>
+            </div>
+            <input type="submit" class="btn btn-primary" value="Submit">
+        </form>
+        <div ng-show="authCtrl.authError" class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close", "Close")}}</span></button>
+            <strong>{{rubedo.translate("Block.error", "Error !")}}</strong> {{authCtrl.authError}}
+        </div>
+    </div>
+</div>

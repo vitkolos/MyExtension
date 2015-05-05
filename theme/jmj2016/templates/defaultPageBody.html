@@ -1,0 +1,8 @@
+<div class="container-fluid" style="margin-top:50px;" id="top">
+    <div ng-repeat="row in rubedo.current.page.rows"
+         ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
+         class="row " 
+         ng-class="rubedo.componentsService.resolveResponsiveClass(row.responsive)"
+    </div>
+</div>
+

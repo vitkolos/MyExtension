@@ -51,6 +51,16 @@ return array(
                     '/js/wtp.js',
                 ),
             ),
+            'jmj2016' => array(
+                'label' => 'JMJ2016',
+                'basePath' => realpath(__DIR__ . '/../theme/jmj2016'),
+                'css' => array(
+                    '/css/jmj2016.css',
+                ),
+                'js' => array(
+                    '/js/jmj.js',
+                ),
+            ),
         ),
     ),
     
