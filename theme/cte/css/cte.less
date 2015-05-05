@@ -242,12 +242,24 @@ blockquote {
 @media screen and (min-width:@min_xs) and (max-width:@min_sm){.header_link{margin-top:33px}}
 .media.media2 {text-align: center; .border-bottom; img{padding-bottom: 12px; display: inline; width:140px}} // liste de contenus de 2 élements par ligne
 .media.media4{text-align: center} // liste de contenus de 4 éléments en ligne sur lg
-@media screen and (min-width:@min_md) {
+@media screen and (min-width:@min_sm) {
   .media.media2 {text-align: left; border-bottom:none}
   .media.media2 img{float:left;.padding-right; padding-bottom: 0; display: block; width:auto}
   .media.media4{text-align: left}
 }
-
+.ratio2_1{position:relative; width:100%}
+.ratio2_1:before{
+  content: "";
+  display: block;
+  padding-top: 50%; 	/* initial ratio of 1:1*/
+}
+.ratio2_1>img{
+  position:  absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
 
 ////////////////////////////////////////////////////
     ///////////CAROUSEL///////////////////
