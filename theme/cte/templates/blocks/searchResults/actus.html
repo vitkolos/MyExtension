@@ -63,11 +63,13 @@
         </div>
         <div ng-repeat="datum in searchResultsCtrl.data | orderBy:'-lastUpdateTime' | limitTo:searchResultsCtrl.displayedResults" class="resultData search-result">
             <div ng-if="!datum['fields.video'][0]">
-                <img class="media-object pull-left padding-right" ng-if="datum['fields.image'][0]"
-                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'160px',height:'160px',mode:'crop'})}}"
+                <div class="ratio_321" ng-if="datum['fields.image'][0]">
+                <img class="media-object pull-left padding-right"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'420px',height:'420px',mode:'crop'})}}"
                              alt="{{ datum.title }}"/>
+                </div>
                 <img class="media-object pull-left padding-right" ng-if="datum['fields.audio'][0]"
-                             src="/assets/icons/audio-thumb.jpg"
+                             src="/assets/icons/audio-thumb.jpg" style="width:160px"
                              alt="{{ datum.title }}"/>
      
     
