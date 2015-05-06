@@ -16,7 +16,7 @@
     <div class="col-md-6" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'">
     </div>
     <div class="col-md-3">
-        <div class="row" ng-repeat="data in geoSearchResultsCtrl.data">
+        <div class="row" ng-repeat="data in geoSearchResultsCtrl.data">{{data}}
             <p class="capital">{{data.type}}</p>
             <h3>{{data.text}}</h3>
         </div>
