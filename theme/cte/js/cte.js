@@ -102,3 +102,16 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
         }
     }
 });
+    angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
+        var serviceInstance={};
+        serviceInstance.sendMail=function(payload){
+            return ($http({
+                url:"api/v1/mail",
+                method:"POST",
+                data : payload
+            }));
+        };
+        return serviceInstance;
+    }]);
+
+
