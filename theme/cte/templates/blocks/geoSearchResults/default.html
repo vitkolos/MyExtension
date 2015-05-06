@@ -13,9 +13,9 @@
     </div>
 </nav>-->
 <div class="row">
-    <div class="col-md-6" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'">
+    <div class="col-md-5" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'">
     </div>
-    <div class="col-md-3 geo-search">
+    <div class="col-md-4 geo-search">
         <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data">
             <p class="capital">{{data.itemData.type}}</p>
             <h3>{{data.itemData.title}}</h3>
