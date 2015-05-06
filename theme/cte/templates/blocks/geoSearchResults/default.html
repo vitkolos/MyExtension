@@ -15,10 +15,10 @@
 <div class="row">
     <div class="col-md-6" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'">
     </div>
-    <div class="col-md-3">
-        <div class="row" ng-repeat="data in geoSearchResultsCtrl.data">
+    <div class="col-md-3 geo-search">
+        <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data">
             <p class="capital">{{data.itemData.type}}</p>
-            <h3>{{data.itemData.text}}</h3>
+            <h3>{{data.itemData.title}}</h3>
         </div>
     </div>
     <div class="col-md-3">
