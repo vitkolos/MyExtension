@@ -87,3 +87,18 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
     };
 });
 
+angular.module('rubedoBlocks').directive('loadModal', function () {
+    return {
+        restrict: 'A',
+        link: function(scope, $elm, attrs) {
+            $elm.bind('click', function(event) {
+                event.preventDefault();
+                /*angular.element('#myModal iframe').attr('src', src);*/
+                angular.element('#myModal').appendTo('body').modal('show');
+            });
+            scope.dismiss = function() {
+                      angular.element('#myModal').modal('hide');
+           };
+        }
+    }
+});
