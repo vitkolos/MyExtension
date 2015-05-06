@@ -1,3 +1,8 @@
+blocksConfig.simpleContact={
+           "template": "/templates/blocks/simpleContact.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
+};
+
 
 angular.module('rubedoBlocks').directive('loadModal', function () {
     return {
