@@ -45,7 +45,10 @@
         </div>
     </div>
     <div class="col-md-3">
-        <div class="row" ng-repeat="data in geoSearchResultsCtrl.data">{{data}}</div>
+        <div class="row" ng-repeat="data in geoSearchResultsCtrl.data">{{data}}
+            <p class="capital">{{data.type}}</p>
+            <h3>{{data.text}}</h3>
+        </div>
     </div>
 
 </div>
