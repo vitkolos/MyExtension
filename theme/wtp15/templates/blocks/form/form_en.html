@@ -27,6 +27,7 @@ The Festival Team.</p>
 	<ul class="col-sm-12 country-list" ng-init="formCtrl.inscription.country='FRANCE'">
 		<li onclick="location.href='/fr/accueil/inscription'"><img ng-src="{{formCtrl.getFlagUrl('FR')}}"/><p>France</p></li>
 		<li ng-click="formCtrl.inscription.country='BELGIUM'; formCtrl.chooseLang(); "><img ng-src="{{formCtrl.getFlagUrl('BE')}}"/><p>Belgium</p></li>
+		<li ng-click="formCtrl.inscription.country='BULGARIA'; formCtrl.chooseLang(); "><img ng-src="{{formCtrl.getFlagUrl('BG')}}"/><p>Bulgaria</p></li>
 		<li ng-click="formCtrl.inscription.country='BRAZIL'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('BR')}}"/><p>Brazil</p></li>
 		<li ng-click="formCtrl.inscription.country='CANADA'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('CA')}}"/><p>Canada</p></li>
 		<li ng-click="formCtrl.inscription.country='CZECH REPUBLIC'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('CZ')}}"/><p>Czech Republic</p></li>
@@ -36,10 +37,12 @@ The Festival Team.</p>
 		<li ng-click="formCtrl.inscription.country='ITALY'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('IT')}}"/><p>Italy</p></li>
 		<li ng-click="formCtrl.inscription.country='LATVIA'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('LV')}}"/><p>Latvia</p></li>
 		<li ng-click="formCtrl.inscription.country='LEBANON'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('LB')}}"/><p>Lebanon</p></li>
+		<li ng-click="formCtrl.inscription.country='LITHUANIA'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('LT')}}"/><p>Lebanon</p></li>
 		<li ng-click="formCtrl.inscription.country='NETHERLANDS'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('NL')}}"/><p>Netherlands</p></li>
 		<li ng-click="formCtrl.inscription.country='POLAND'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('PL')}}"/><p>Poland</p></li>
 		<li ng-click="formCtrl.inscription.country='RUSSIA'; formCtrl.chooseLang(); "><img ng-src="{{formCtrl.getFlagUrl('RU')}}"/><p>Russia</p></li>
 		<li ng-click="formCtrl.inscription.country='SLOVAKIA'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('SK')}}"/><p>Slovakia</p></li>
+		<li ng-click="formCtrl.inscription.country='SLOVENIA'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('SI')}}"/><p>Slovenia</p></li>
 		<li ng-click="formCtrl.inscription.country='SPAIN'; formCtrl.chooseLang(); "><img ng-src="{{formCtrl.getFlagUrl('ES')}}"/><p>Spain</p></li>
 		<li ng-click="formCtrl.inscription.country='SWITZERLAND'; formCtrl.chooseLang(); "><img ng-src="{{formCtrl.getFlagUrl('CH')}}"/><p>Switzerland</p></li>
 		<li ng-click="formCtrl.inscription.country='UNITED KINGDOM'; formCtrl.chooseLang();"><img ng-src="{{formCtrl.getFlagUrl('GB')}}"/><p>United Kingdom</p></li>
@@ -367,7 +370,7 @@ The Festival Team.</p>
 		</div>
 		<div class="col-sm-12" ng-if="formCtrl.lang =='pl' && formCtrl.inscription.festival">
 		    <input type="checkbox" id="bus_pl" name="bus_pl" ng-model="formCtrl.inscription.bus_pl" value="Non" ng-change="formCtrl.updatePriceEn()">
-		    <label for="bus_pl" class="row">I take the bus with the Community (60€)</label>
+		    <label for="bus_pl" class="row">I take the bus with the Community (560{{tarifs[formCtrl.lang].currency}})</label>
 		</div>
 	    </div>
 	    
