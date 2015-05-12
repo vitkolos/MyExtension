@@ -331,7 +331,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     }
                     switch(item['type']) {
                         case "Point Net":
-                            item['groupe']="Rencontre"; break;
+                            item['groupe']="Rencontre"; refinedData.markerOptions.icon="/assets/icons/gmaps-rencontres.png";break;
                         default:
                             item['groupe']="";
                     }
@@ -339,6 +339,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             }
             return refinedData;
         };
+
+        
         me.searchByQuery = function(options){
             var bounds=me.mapControl.getGMap().getBounds();
             options.inflat=bounds.getSouthWest().lat();
