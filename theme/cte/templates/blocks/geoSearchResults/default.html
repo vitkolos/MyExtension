@@ -18,7 +18,7 @@
     <div class="col-md-4 geo-search">
         <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data">
             <div style="height:100%; float:left" >
-                <img ng-src="/assets/icons/gmaps-''{{item.groupe}}.png">
+                <img ng-src="/assets/icons/gmaps-{{item.groupe}}.png">
             </div>
             <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}</p>
             <h4>{{data.itemData.title}}</h4>
