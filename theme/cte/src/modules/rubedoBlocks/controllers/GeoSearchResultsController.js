@@ -329,6 +329,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                             });
                         }
                     }
+                    switch(item['type']) {
+                        case "Point Net":
+                            item['groupe']="Rencontre"; break;
+                        default:
+                            item['groupe']="";
+                    }
                 });
             }
             return refinedData;
