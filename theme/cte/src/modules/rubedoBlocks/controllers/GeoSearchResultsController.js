@@ -332,7 +332,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     }
                     switch(item['type']) {
                         case "Point Net":
-                            item['groupe']="Rencontre"; refinedData.markerOptions.icon="/assets/icons/gmaps-rencontres.png";break;
+                            item['groupe']="Rencontre"; break;
                         default:
                             item['groupe']="";
                     }
