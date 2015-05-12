@@ -314,6 +314,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     switch(item['type']) {
                         case "Point Net":
                             item['groupe']="rencontre"; break;
+                        case "NLieu":
+                            item['groupe']="lieux"; break;
                         default:
                             item['groupe']="";
                     }
