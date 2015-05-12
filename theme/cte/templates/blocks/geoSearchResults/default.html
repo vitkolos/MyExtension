@@ -16,7 +16,7 @@
     <div class="col-md-5" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'">
     </div>
     <div class="col-md-4 geo-search">
-        <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data">
+        <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data" ng-href="{{data.itemData.url}}">
             <div style="line-height: 60px; float:left" >
                 <img ng-src="/assets/icons/gmaps-{{data.itemData.groupe}}.png">
             </div>
