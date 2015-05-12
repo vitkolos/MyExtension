@@ -99,7 +99,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             me.inscription.prix_logement = 0;
         }
         if (me.inscription.bus_pl) {
-           me.inscription.prix_transport = 60;
+           me.inscription.prix_transport = 560;
         }
         if (!me.inscription.bus_pl) {
            me.inscription.prix_transport = 0;
@@ -177,6 +177,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
              switch (me.inscription.country) {
                case("FRANCE") : me.lang="fr"; break;
                case("BELGIUM") : me.lang="be"; break;
+               case("BULGARIA") : me.lang="bg"; break;
                case("BRAZIL") : me.lang="br"; break;
                case("CANADA") : me.lang="ca"; break;
                case("CZECH REPUBLIC") : me.lang="cz"; break;
@@ -185,11 +186,13 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                case("HUNGARY") : me.lang="hu"; break;
                case("ITALY") : me.lang="it"; break;
                case("LATVIA") : me.lang="lv"; break;
+                case("LITHUANIA") : me.lang="lt"; break;
                case("LEBANON") : me.lang="lb"; break;
                case("NETHERLANDS") : me.lang="nl"; break;
                case("POLAND") : me.lang="pl"; break;
                case("RUSSIA") : me.lang="ru"; break;
                case("SLOVAKIA") : me.lang="sk"; break;
+               case("SLOVENIA") : me.lang="si"; break;
                case("SPAIN") : me.lang="es"; break;
                case("SWITZERLAND") : me.lang="ch"; break;
                case("UNITED KINGDOM") : me.lang="gb"; break;
