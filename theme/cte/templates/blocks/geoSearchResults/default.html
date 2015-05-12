@@ -22,7 +22,7 @@
             </div>
             <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}</p>
             <h4>{{data.itemData.title}}</h4>
-            <p ng-if="data.itemData.groupe == 'rencontre' ">{{data.itemData['fields.position.address'][0]}}</p>
+            <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
             <p ng-if="data.itemData.groupe == 'evenement' ">{{data.itemData['fields.date'][0]}}</p>
         </div>
     </div>
