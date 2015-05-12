@@ -311,6 +311,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             } else {
                 me.apiClusterMode=false;
                 angular.forEach(data.results.data,function(item){
+                    switch(item['type']) {
+                        case "Point Net":
+                            item['groupe']="rencontre"; break;
+                        default:
+                            item['groupe']="";
+                    }
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
                         var coords=item['fields.position.location.coordinates'][0].split(",");
                         if (coords[0]&&coords[1]){
@@ -325,16 +331,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                 itemData:item,
                                 markerOptions:{
                                     title:item.title,
-                                    icon:"/assets/icons/gmaps-rencontres.png"
+                                    icon:"/assets/icons/gmaps-"+item.groupe+".png"
                                 }
                             });
                         }
-                    }
-                    switch(item['type']) {
-                        case "Point Net":
-                            item['groupe']="Rencontre"; break;
-                        default:
-                            item['groupe']="";
                     }
                 });
             }
