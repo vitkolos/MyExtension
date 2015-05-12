@@ -325,7 +325,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                 itemData:item,
                                 markerOptions:{
                                     title:item.title,
-                                    icon:"/assets/icons/gmaps-rencontres.png""
+                                    icon:"/assets/icons/gmaps-rencontres.png"
                                 }
                             });
                         }
