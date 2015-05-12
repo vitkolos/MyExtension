@@ -17,8 +17,8 @@
     </div>
     <div class="col-md-4 geo-search">
         <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data">
-            <p class="capital" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}</p>
-            <h3>{{data.itemData.title}}</h3>
+            <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}</p>
+            <h4>{{data.itemData.title}}</h4>
             <p ng-if="data.itemData.groupe == 'Rencontre' ">{{data.itemData['fields.position.address'][0]}}</p>
         </div>
     </div>
