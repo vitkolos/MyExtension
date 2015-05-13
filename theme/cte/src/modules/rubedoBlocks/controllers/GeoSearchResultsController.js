@@ -133,7 +133,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         me.smallClusterEvents= {
             click: function(cluster,markers){
-                if (cluster.getMap().getZoom()>19){
+                if (cluster.getMap().getZoom()>16){
                     var targetId=markers[0].id;
                     var markerHolder=cluster.getMarkerClusterer().getMarkers().get(targetId);
 
@@ -325,7 +325,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                             item['groupe']="";
                     }
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
-                        var coords=item['fields.position.location.coordinates'][0].split(",");
+                        var coords=item['fields.papiClusterModeosition.location.coordinates'][0].split(",");
                         if (coords[0]&&coords[1]){
                             refinedData.push({
                                 coordinates:{
