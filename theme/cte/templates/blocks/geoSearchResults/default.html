@@ -19,7 +19,7 @@
         
         <a  ng-href="{{data.itemData.url}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'"><div class="row search-result " >
             <div style="line-height: 60px; float:left" >
-                <img ng-src="/assets/icons/gmaps-{{data.itemData.groupe}}.png">
+                <img ng-src="/assets/icons/gmaps-{{data.itemData.groupe}}.png" width="50">
             </div>
             <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}</p>
             <h4>{{data.itemData.title}}</h4>
