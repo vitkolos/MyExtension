@@ -29,8 +29,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             averageCenter : false,
             gridSize : 60,
             zoomOnClick:false,
-            batchSizeIE : 20000,
-            maxZoom : 15
+            batchSizeIE : 20000/*,
+            maxZoom : 15*/
         };
         //api clustering options
         me.apiClusterOptions={
@@ -128,7 +128,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             click: function(cluster){
                 var map=cluster.getMap();
                 map.setCenter(cluster.getCenter());
-                map.setZoom(map.getZoom()+5);
+                map.setZoom(map.getZoom()+3); // zoom +3 if big clusters
             }
         };
         me.smallClusterEvents= {
@@ -158,7 +158,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 } else {
                     var map=cluster.getMap();
                     map.setCenter(cluster.getCenter());
-                    map.setZoom(map.getZoom()+5);
+                    map.setZoom(map.getZoom()+5);  // zoom +5 if small clusters
                 }
             }
         };
