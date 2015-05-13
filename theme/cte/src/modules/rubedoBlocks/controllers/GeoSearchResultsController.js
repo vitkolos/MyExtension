@@ -27,21 +27,9 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
           {
             textColor: 'white',
             url: '/assets/icons/cluster-02.png',
-            height: 50,
-            width: 50
+            height: 60,
+            width: 60
           },
-         {
-            textColor: 'white',
-            url: '/assets/icons/cluster-02.png',
-            height: 50,
-            width: 50
-          },
-         {
-            textColor: 'white',
-            url: '/assets/icons/cluster-02.png',
-            height: 50,
-            width: 50
-          }
         ];
         //clustering options
         me.clusterOptions={
@@ -351,6 +339,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     }
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
                         var coords=item['fields.position.location.coordinates'][0].split(",");
+                        var icon = new google.maps.MarkerImage("/assets/icons/gmaps-"+item.groupe+".png", null, null, null, new google.maps.Size(50, 50));
                         if (coords[0]&&coords[1]){
                             refinedData.push({
                                 coordinates:{
@@ -364,7 +353,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                 itemData:item,
                                 markerOptions:{
                                     title:item.title,
-                                    icon:"/assets/icons/gmaps-"+item.groupe+".png"
+                                    icon: icon
                                 }
                             });
                         }
