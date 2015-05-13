@@ -90,6 +90,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 longitude:config.centerLongitude
             };
         }
+        
+        
         //map control object recieves several control methods upon map render
         me.mapControl={ };
         //map events
@@ -332,6 +334,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                     latitude:coords[0],
                                     longitude:coords[1]
                                 },
+                                distance:me.distance(coords[0],coords[1]),
                                 id:item.id,
                                 objectType:item.objectType,
                                 title:item.title,
@@ -348,7 +351,23 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             return refinedData;
         };
 
-        
+        me.distance = function(lat2, lon2){
+            var lat1=me.map.center.latitude;
+            var lon1=me.map.center.longitude;
+            var R = 6371000; // metres
+            var φ1 = lat1.toRadians();
+            var φ2 = lat2.toRadians();
+            var Δφ = (lat2-lat1).toRadians();
+            var Δλ = (lon2-lon1).toRadians();
+               
+            var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                       Math.cos(φ1) * Math.cos(φ2) *
+                       Math.sin(Δλ/2) * Math.sin(Δλ/2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+               
+            var d = R * c;
+            return d;
+        };
         me.searchByQuery = function(options){
             var bounds=me.mapControl.getGMap().getBounds();
             options.inflat=bounds.getSouthWest().lat();

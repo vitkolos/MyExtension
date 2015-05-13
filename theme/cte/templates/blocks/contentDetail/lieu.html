@@ -7,7 +7,7 @@
 	</div>
 </div>
 <header class="container-fluid content" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
-	<div class="text-article container">
+	<div class="text-article container" style="text-align: center; vertical-align: middle; padding-bottom: 0">
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
 			<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
 			<h1 ng-if="fieldEditMode"
@@ -20,6 +20,7 @@
 			   ng-bind-html="rteFieldCtrl.html">
 			</h1>
 		</div>
+		<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 
 	</div>
 </header>
@@ -45,7 +46,7 @@
 	
 	<div class="row" >
 		<div class="text-article">
-			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Auteur-->		
+			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
 			<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
 		</div>
 		
