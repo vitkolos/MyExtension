@@ -325,7 +325,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                             item['groupe']="";
                     }
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
-                        var coords=item['fields.papiClusterModeosition.location.coordinates'][0].split(",");
+                        var coords=item['fields.apiClusterModeposition.location.coordinates'][0].split(",");
                         if (coords[0]&&coords[1]){
                             refinedData.push({
                                 coordinates:{
