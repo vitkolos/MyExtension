@@ -355,10 +355,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             var lat1=me.map.center.latitude;
             var lon1=me.map.center.longitude;
             var R = 6371000; // metres
-            var φ1 = lat1.toRadians();
-            var φ2 = lat2.toRadians();
-            var Δφ = (lat2-lat1).toRadians();
-            var Δλ = (lon2-lon1).toRadians();
+            var φ1 = lat1 * Math.PI / 180;
+            var φ2 = lat2 * Math.PI / 180;
+            var Δφ = (lat2-lat1) * Math.PI / 180;
+            var Δλ = (lon2-lon1)* Math.PI / 180;
                
             var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
                        Math.cos(φ1) * Math.cos(φ2) *
