@@ -31,7 +31,9 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             zoomOnClick:false,
             batchSizeIE : 20000,
             maxZoom : 15,
-            enableRetinaIcons :true
+            enableRetinaIcons :true,
+            styles : clusterStyles
+           
         };
         var clusterStyles = [
           {
