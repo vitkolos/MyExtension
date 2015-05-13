@@ -23,18 +23,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             me.activatePlacesSearch=true;
             me.placesSearchTemplate=themePath+"/templates/blocks/geoSearchResults/placesSearch.html";
         }
-        //clustering options
-        me.clusterOptions={
-            batchSize : 20000,
-            averageCenter : false,
-            gridSize : 40,
-            zoomOnClick:false,
-            batchSizeIE : 20000,
-            maxZoom : 15,
-            enableRetinaIcons :true,
-            styles : clusterStyles
-           
-        };
         var clusterStyles = [
           {
             textColor: 'white',
@@ -55,6 +43,18 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             width: 50
           }
         ];
+        //clustering options
+        me.clusterOptions={
+            batchSize : 20000,
+            averageCenter : false,
+            gridSize : 40,
+            zoomOnClick:false,
+            batchSizeIE : 20000,
+            maxZoom : 15,
+            enableRetinaIcons :true,
+            styles : clusterStyles
+           
+        };
         //api clustering options
         me.apiClusterOptions={
             batchSize : 20000,
