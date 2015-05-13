@@ -158,7 +158,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 } else {
                     var map=cluster.getMap();
                     map.setCenter(cluster.getCenter());
-                    map.setZoom(map.getZoom()+3);  // zoom +5 if small clusters
+                    map.setZoom(map.getZoom()+5);  // zoom +5 if small clusters
                 }
             }
         };
@@ -325,7 +325,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                             item['groupe']="";
                     }
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
-                        var coords=item['fields.apiClusterModeposition.location.coordinates'][0].split(",");
+                        var coords=item['fields.position.location.coordinates'][0].split(",");
                         if (coords[0]&&coords[1]){
                             refinedData.push({
                                 coordinates:{
