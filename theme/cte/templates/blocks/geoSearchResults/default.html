@@ -17,7 +17,7 @@
     </div>
     <div class="col-md-4 geo-search">
         
-        <a  ng-href="{{data.itemData.url}}" ng-repeat="data in geoSearchResultsCtrl.data"><div class="row search-result " >
+        <a  ng-href="{{data.itemData.url}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'-distance'"><div class="row search-result " >
             <div style="line-height: 60px; float:left" >
                 <img ng-src="/assets/icons/gmaps-{{data.itemData.groupe}}.png">
             </div>
@@ -25,7 +25,6 @@
             <h4>{{data.itemData.title}}</h4>
             <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
             <p ng-if="data.itemData.groupe == 'evenement' ">du {{data.itemData['fields.dateDebut'][0]* 1000 | date:'d MMM'}} au {{data.itemData['fields.dateFin'][0]* 1000 | date:'d MMM yyyy'}}</p>
-            <p>Distance form center : {{data.distance}}</p>
         </div></a>
     </div>
     <div class="col-md-3">
