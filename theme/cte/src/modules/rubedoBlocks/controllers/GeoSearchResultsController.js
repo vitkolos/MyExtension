@@ -133,7 +133,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         me.smallClusterEvents= {
             click: function(cluster,markers){
-                if (cluster.getMap().getZoom()>16){
+                if (cluster.getMap().getZoom()>15){
                     var targetId=markers[0].id;
                     var markerHolder=cluster.getMarkerClusterer().getMarkers().get(targetId);
 

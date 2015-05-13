@@ -45,6 +45,7 @@
 	
 	<div class="row" >
 		<div class="text-article">
+			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Auteur-->		
 			<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
 		</div>
 		
