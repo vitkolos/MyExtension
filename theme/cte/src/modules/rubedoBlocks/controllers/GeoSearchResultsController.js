@@ -60,7 +60,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             minimumClusterSize:1,
             zoomOnClick:false,
             maxZoom : 15,
-
+            styles : clusterStyles,
             calculator:function (markers, numStyles) {
                 var index = 0;
                 var count = 0;
