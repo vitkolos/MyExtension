@@ -367,6 +367,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                
             var d = R * c;
             return d;
+        console.log(d);
         };
         me.searchByQuery = function(options){
             var bounds=me.mapControl.getGMap().getBounds();
