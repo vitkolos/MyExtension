@@ -128,7 +128,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             click: function(cluster){
                 var map=cluster.getMap();
                 map.setCenter(cluster.getCenter());
-                map.setZoom(map.getZoom()+3); // zoom +3 if big clusters
+                map.setZoom(map.getZoom()+2); // zoom +3 if big clusters
             }
         };
         me.smallClusterEvents= {
