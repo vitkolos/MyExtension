@@ -161,7 +161,7 @@ The Festival Team.</p>
 		    <label for="naissance-P" class="preinscription">Date of birth</label>
 		</div>
 		<div class="preinscription-entry col-xs-8">
-		    <input type="text" id="naissance-P" name="naissance-P" ng-model="formCtrl.inscription.birthdate" required ng-pattern="/\d{2}/\d{2}/\d{4}/" placeholder="jj/mm/aaaa">
+		    <input type="text" id="naissance-P" name="naissance-P" ng-model="formCtrl.inscription.birthdate" required ng-pattern="/\d{1,2}/\d{1,2}/\d{2,4}/" placeholder="dd/mm/yyyy">
 		</div>
 		<div class="col-xs-4">
 		    <p class="preinscription ">Gender</p>
@@ -200,7 +200,7 @@ The Festival Team.</p>
 		    <label for="telephone2-P" class="preinscription">Mobile phone</label>
 		</div>
 		<div class="preinscription-entry col-xs-8">
-		    <input type="tel" id="telephone2-P" name="telephone2-P" ng-model="formCtrl.inscription.telephone" required ng-pattern="/(\+\d{2}\/\d){1}(\s\d{2}){4}/"  placeholder="+33/6 00 00 00 00">
+		    <input type="tel" id="telephone2-P" name="telephone2-P" ng-model="formCtrl.inscription.telephone" required>
 		</div>
 		
 		
@@ -255,7 +255,6 @@ The Festival Team.</p>
   	
 	<div class="col-sm-12 col-md-6 padding-large">
 		<div class="row bg-danger">
-		    <p  ng-show="form.register_1['telephone2-P'].$dirty && form.register_1['telephone2-P'].$error.pattern">Phone number must be in the following format: +xx/x xx xx xx xx</p>
 		    <p  ng-show="form.preregister['naissance-P'].$dirty && form.preregister['naissance-P'].$error.pattern">The birth date must be in the following format : dd/mm/yyyy</p>
 		    <p  ng-show="form.register_1.$dirty && form.register_1.$invalid">Please fill in all the required fields</p>
 		</div>
@@ -416,10 +415,10 @@ The Festival Team.</p>
 				</label>
 				<input type="range" value="{{formCtrl.price_moy}}" max="{{formCtrl.price_max}}" min="{{formCtrl.price_min}}" step="5" style="width:80%; margin-left:10%" ng-model="formCtrl.inscription.payment" ng-change="formCtrl.updatePriceEn()">
 				<div class="col-xxs-6 col-xs-6">
-					<p class="text-left">{{formCtrl.price_min}}€ (reduced price *)</p>
+					<p class="text-left">{{formCtrl.price_min}}{{tarifs[formCtrl.lang].currency}} (reduced price *)</p>
 				</div>
 				<div class="col-xxs-6 col-xs-6">
-					<p class="text-right">{{formCtrl.price_max}}€ (solidarity price **)</p>
+					<p class="text-right">{{formCtrl.price_max}}{{tarifs[formCtrl.lang].currency}} (solidarity price **)</p>
 				</div>
 			</div>
 			<div class="col-sm-12">
