@@ -28,6 +28,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     me.inscription.registrationStep = '0';
     me.inscription.festival=true;
     me.inscription.formule="festival";
+    me.inscription.parcours="carte";
     me.inscription.retraite=false;
     me.inscription.dates='1';
     me.inscription.sex = 'H';
