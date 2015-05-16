@@ -16,6 +16,8 @@
         "volontaire-retraite":{"min":360,"max":430},
         "prepa-retraite":{"min":410,"max":510},
         "retraite":{"min":180,"max":220},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },
     "de" : {
@@ -26,6 +28,8 @@
         "volontaire-retraite":{"min":380,"max":440},
         "prepa-retraite":{"min":430,"max":520},
         "retraite":{"min":180,"max":220},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },    
     "gb" : {
@@ -36,6 +40,8 @@
         "volontaire-retraite":{"min":290,"max":345},
         "prepa-retraite":{"min":330,"max":405},
         "retraite":{"min":145,"max":170},
+        "tente":10,
+        "navette":4,
         "currency"                : "£"
     },    
     "ca" : {
@@ -46,6 +52,8 @@
         "volontaire-retraite":{"min":360,"max":440},
         "prepa-retraite":{"min":410,"max":520},
         "retraite":{"min":180,"max":220},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },    
     "nl" : {
@@ -56,6 +64,8 @@
         "volontaire-retraite":{"min":380,"max":440},
         "prepa-retraite":{"min":430,"max":520},
         "retraite":{"min":180,"max":220},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },    
     "ch" : {
@@ -66,6 +76,8 @@
         "volontaire-retraite":{"min":400,"max":460},
         "prepa-retraite":{"min":460,"max":550},
         "retraite":{"min":190,"max":230},
+        "tente":16,
+        "navette":5,
         "currency"                : "CHF"
     },
 
@@ -77,6 +89,8 @@
         "volontaire-retraite":{"min":290,"max":360},
         "prepa-retraite":{"min":340,"max":430},
         "retraite":{"min":160,"max":200},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },
     
@@ -98,7 +112,9 @@
         "volontaire-retraite":{"min":240,"max":310},
         "prepa-retraite":{"min":290,"max":380},
         "retraite":{"min":100,"max":120},
-         "currency"                : "€"
+         "tente":15,
+        "navette":5,
+        "currency"                : "€"
     },     
     "cz" : {
        "festival":{"min":2750,"max":3800},
@@ -108,6 +124,8 @@
         "volontaire-retraite":{"min":4400,"max":6000},
         "prepa-retraite":{"min":5500,"max":7600},
         "retraite":{"min":2200,"max":2750},
+        "tente":410,
+        "navette":140,
          "currency"                : "Kč"
     },
     "ru" : {
@@ -118,6 +136,8 @@
         "volontaire-retraite":{"min":9100,"max":12600},
         "prepa-retraite":{"min":11400,"max":16050},
         "retraite":{"min":4600,"max":5700},
+        "tente":860,
+        "navette":290,
          "currency"                : "ϼ"
     },    
     "sk" : {
@@ -128,6 +148,8 @@
         "volontaire-retraite":{"min":160,"max":220},
         "prepa-retraite":{"min":200,"max":280},
         "retraite":{"min":80,"max":100},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },    
     
@@ -140,6 +162,8 @@
         "volontaire-retraite":{"min":410,"max":600},
         "prepa-retraite":{"min":510,"max":770},
         "retraite":{"min":200,"max":270},
+        "tente":50,
+        "navette":17,
          "currency"                : "R$"
     },
     "bg" : {
@@ -150,6 +174,8 @@
         "volontaire-retraite":{"min":240,"max":350},
         "prepa-retraite":{"min":300,"max":450},
         "retraite":{"min":120,"max":160},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },
     "eg" : {
@@ -160,6 +186,8 @@
         "volontaire-retraite":{"min":120,"max":180},
         "prepa-retraite":{"min":150,"max":230},
         "retraite":{"min":60,"max":80},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },
     "hu" : {
@@ -170,6 +198,8 @@
         "volontaire-retraite":{"min":37000,"max":53000},
         "prepa-retraite":{"min":46000,"max":68000},
         "retraite":{"min":18000,"max":24000},
+        "tente":0,
+        "navette":0,
          "currency"                : "Ft"
     },    
     "lv" : {
@@ -180,6 +210,8 @@
         "volontaire-retraite":{"min":120,"max":180},
         "prepa-retraite":{"min":150,"max":230},
         "retraite":{"min":60,"max":80},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },    
     "lt" : {
@@ -190,6 +222,8 @@
         "volontaire-retraite":{"min":120,"max":180},
         "prepa-retraite":{"min":150,"max":230},
         "retraite":{"min":60,"max":80},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },    
     "pl" : {
@@ -200,6 +234,8 @@
         "volontaire-retraite":{"min":480,"max":660},
         "prepa-retraite":{"min":600,"max":860},
         "retraite":{"min":245,"max":325},
+        "tente":60,
+        "navette":0,
          "currency"                : "zł"
     },  
     "si" : {
@@ -210,6 +246,8 @@
         "volontaire-retraite":{"min":120,"max":180},
         "prepa-retraite":{"min":150,"max":230},
         "retraite":{"min":60,"max":80},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     },    
     "other" : {
@@ -220,6 +258,8 @@
         "volontaire-retraite":{"min":120,"max":180},
         "prepa-retraite":{"min":150,"max":230},
         "retraite":{"min":60,"max":80},
+        "tente":15,
+        "navette":5,
          "currency"                : "€"
     }
 
