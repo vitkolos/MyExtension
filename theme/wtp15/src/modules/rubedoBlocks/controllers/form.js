@@ -251,7 +251,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             mailInfo.logement = me.inscription.logement;
             mailInfo.groupe = me.inscription.groupe ?me.inscription.groupe:" ";
             mailInfo.remarques = me.inscription.remarques ? me.inscription.remarques:" ";
-            mailInfo.payment = me.inscription.payment;
+            mailInfo.payment = me.inscription.payment + $scope.tarifs[me.lang].currency;
             if (me.lang=='lb' || me.lang=='other') {
                 mailInfo.payment = "No specified price for this country "
             }
@@ -269,7 +269,9 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 "Secrétariat JMJ" : "jeunes@chemin-neuf.org",
                 "Arnaud BONNASSIES" : "arnaud.bonnassies@chemin-neuf.org",
                 "Patricia PLACE" : "patricia.place@chemin-neuf.org",
-                "Paula COSTA" : "pax.loureiro@gmail.com"
+                "Paula COSTA" : "pax.loureiro@gmail.com",
+                "Mission Jeunes France" :  "jeunes.france@chemin-neuf.org",
+                "Tudual SERVEL" : "tudual.servel@gmail.com"
             };
 
             
