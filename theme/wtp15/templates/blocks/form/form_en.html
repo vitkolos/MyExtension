@@ -381,7 +381,7 @@ The Festival Team.</p>
 		    <input type="radio" id="perso" name="logement" ng-model="formCtrl.inscription.logement" value="own tent" ng-change="formCtrl.updatePriceEn()" required>
 		    <label for="perso" class="row">I'll bring my own tent</label>
 		    <input type="radio" id="tent_cte" name="logement" ng-model="formCtrl.inscription.logement" value="rent" ng-change="formCtrl.updatePriceEn()">
-		    <label for="tent_cte" class="row">I would like to rent a place in double tent (15 €)</label>
+		    <label for="tent_cte" class="row">I would like to rent a place in double tent ({{tarifs[formCtrl.lang].tente}} {{tarifs[formCtrl.lang].currency}})</label>
 		</div>
 	    </div>
 	    <div class="row">

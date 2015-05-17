@@ -94,7 +94,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
      me.updatePriceEn = function() {
        
         if (me.inscription.logement=='rent') {
-            me.inscription.prix_logement = 15;
+            me.inscription.prix_logement = $scope.tarifs[me.lang].tente;
         }
        if (me.inscription.logement!='rent') {
             me.inscription.prix_logement = 0;
@@ -108,6 +108,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
        me.price_min = $scope.tarifs[me.lang][me.inscription.formule].min + me.inscription.prix_logement + me.inscription.prix_transport;
         me.price_max = $scope.tarifs[me.lang][me.inscription.formule].max + me.inscription.prix_logement + me.inscription.prix_transport;
         me.price_moy = (me.price_min+me.price_max)/2;
+        me.inscription.payment = me.price_moy;
         
      }
      
