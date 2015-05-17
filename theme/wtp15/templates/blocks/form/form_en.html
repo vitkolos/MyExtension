@@ -413,7 +413,7 @@ The Festival Team.</p>
 				<label for="payment" class="row">Contribution:
 					{{formCtrl.inscription.payment}}{{tarifs[formCtrl.lang].currency}}
 				</label>
-				<input type="range" value="{{formCtrl.price_moy}}" max="{{formCtrl.price_max}}" min="{{formCtrl.price_min}}" step="5" style="width:80%; margin-left:10%" ng-model="formCtrl.inscription.payment" ng-change="formCtrl.updatePriceEn()">
+				<input type="range" value="{{formCtrl.price_moy}}" max="{{formCtrl.price_max}}" min="{{formCtrl.price_min}}" step="5" style="width:80%; margin-left:10%" ng-model="formCtrl.inscription.payment">
 				<div class="col-xxs-6 col-xs-6">
 					<p class="text-left">{{formCtrl.price_min}}{{tarifs[formCtrl.lang].currency}} (reduced price *)</p>
 				</div>
