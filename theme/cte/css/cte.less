@@ -302,7 +302,8 @@ blockquote {
     ///////////SEARCH RESULTS///////////////////
 ///////////////////////////////////////////////////
 .media{padding:24px 0;}
-.panel-heading.actus{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital}
+.panel-heading.actus{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital;.uparrow()}
+    .panel-heading.actus.panel-hidden{.downarrow()}
 .search-result {
     p.capital{margin-bottom:0}
     h3{margin-top:10px}
@@ -317,8 +318,6 @@ blockquote {
 }
 @media screen and (max-width: @min_sm) {
     .panel-heading.actus.panel-hidden + .panel-body{display:none; padding:0}
-    .panel-heading.actus{.uparrow()}
-    .panel-heading.actus.panel-hidden{.downarrow()}
 }
 
 .border-top{border-top:solid 2px @marron; margin-top:0;}
