@@ -119,9 +119,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                                         function(i, address_component) {
         
                                                             if (address_component.types[0] == "locality") {
-                                                                console.log("City: "
-                                                                                + address_component.address_components[0].long_name);
-                                                                itemLocality = address_component.address_components[0].long_name;
+                                                                me.map.center.city =address_component.address_components[0].long_name;
                                                             }
                                                         });
         
