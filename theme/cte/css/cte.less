@@ -369,8 +369,7 @@ blockquote {
 .panel-geo{
   border:none;
   background: none;
-  .panel-heading{background: @rouge_shadow}
-  }
+  .panel-heading{background: @rouge_shadow; border: none} }
   li.tags{
     display: inline-block;
     width:auto;
@@ -380,8 +379,9 @@ blockquote {
     color:@rouge_shadow;
     padding:0 5px;
     cursor: pointer;
+    margin-bottom:4px
   }
-  li.tags:after{display: inline-block; content:"+"; font-weight: bold}
+  li.tags:after{display: inline-block; content:"+"; font-weight: bold; font-size: 1.5em; line-height: 0.8em;}
   li.tags.checked, li.tags:hover{background: white; color:@txt_dark;}
   li.tags.checked:after, li.tags:hover:after{transform:rotate(45deg);}
 ////////////////////////////////////////////////////
