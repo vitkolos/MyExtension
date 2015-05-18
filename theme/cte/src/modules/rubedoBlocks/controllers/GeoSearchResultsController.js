@@ -417,8 +417,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             options.suplat=bounds.getNorthEast().lat();
             options.inflon=bounds.getSouthWest().lng();
             options.suplon=bounds.getNorthEast().lng();
-            me.getLocationCenter();
-
             RubedoSearchService.searchGeo(options).then(function(response){
                 if(response.data.success){
                     me.query = response.data.results.query;
@@ -465,6 +463,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     } else {
                         me.mapControl.getGMap().setZoom(14);
                     }
+                    me.getLocationCenter();
 
                 });
             },4000);
@@ -482,4 +481,5 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 $element.find(".angular-google-map-container").height(config.height);
             },190);
         }
+        me.getLocationCenter();
     }]);
