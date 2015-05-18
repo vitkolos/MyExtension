@@ -346,7 +346,7 @@ blockquote {
 .full_page{height:auto }
 @media screen and (min-width:@min_sm){.full_page{height: 100%; height:100vh;}.map-container{height:100%}}
 .full_page > div, .full_page >div > div.row{height:100%; }
-.full_page >div div[class*="col-"]{height:100%; overflow-y: scroll; overflow-x: hidden}
+.full_page >div div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
 .geo-tags, .geo-search{padding-right: 15px;padding-left:40px; }
 .cluster img{width:100%}
 .geo-tags{
@@ -354,7 +354,7 @@ blockquote {
   .form-control,.btn{border:none}
 }
 @media screen and (min-width:@min_sm) {.geo-tags, .geo-search{padding-left:25px}}
-@media screen and (min-width:@min_lg) {.geo-tags, .geo-search{padding-left:15px}}
+@media screen and (min-width:@min_lg) {.geo-tags, .geo-search{padding-left:15px}.full_page >div div[class*="col-"]{height:100%}}
 @media screen and (max-width:@min_sm) {.geo-tags{ padding-top: 0}}
 .rubedo-places-search{
   display: inline-block;
