@@ -1,0 +1,59 @@
+<nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl" >
+   <div class="container-fluid footer menu" ng-class="{'displayed':menu}">
+        <div class="container">
+        <div class="row text-center">
+            <a href="http://www.chemin-neuf.fr" style="font-size:16px"><b>Communauté du Chemin Neuf</b></a>
+        </div>
+        <div class="row">
+        <div class="col-sm-3 col-xs-6"><a class="capital" href="http://www.chemin-neuf.fr/annuaire/france/qui_sommes_nous_view_remote?id=ccn">Qui sommes nous</a> <a class="capital" href="http://www.chemin-neuf.fr/ou-nous-trouver/regions-de-france">Pr&egrave;s de chez toi</a></div>
+        
+        <div class="col-sm-3 col-xs-6"><a class="capital" href="">Nos propositions</a> <a href="http://www.chemin-neuf.fr/cana-couples-familles-fr/cana">Couples et familles</a><br />
+        <a href="http://www.chemin-neuf.fr/jeunes-fr/14-18-ans">Jeunes 14-18 ans</a><br />
+        <a href="http://www.chemin-neuf.fr/jeunes-fr/18-30-ans">Jeunes 18-30 ans</a><br />
+        <a href="http://www.chemin-neuf.fr/">Formation chr&eacute;tienne</a><br />
+        <a href="http://www.chemin-neuf.fr/">Vie Spirituelle</a></div>
+        
+        <div class="col-sm-3 col-xs-6 col-xs-push-6 col-sm-push-0">
+        <a class="capital" href="http://actualites.chemin-neuf.fr/fr/accueil">Actualit&eacute;s</a>
+        <a href="http://actualites.chemin-neuf.fr/fr/accueil/foi">Revue F.O.I</a><br />
+        <a href="http://netforgod.tv">Net for God</a></div>
+        
+        <!--<div class="col-sm-3 col-xs-6 col-xs-pull-6 col-sm-pull-0">
+        <div class="dons"><a class="capital" href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don"><span>aidez nous</span></a></div>
+        <a class="dons" href="">Faire un don</a><br />
+        <a class="dons" href="">Nos projets</a></div>
+        </div>
+        </div>-->
+        <div class="col-sm-3 col-xs-6 col-xs-pull-6 col-sm-pull-0">
+        <a class="capital" href="http://www.chemin-neuf.fr/aidez-nous/">aidez nous</a>
+        <a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">Faire un don</a><br />
+        <a  href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don#table_projets">Nos projets</a></div>
+        </div></div>
+        
+    </div>
+    <div class="container-fluid" ng-init="search=false;menu=false">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-click="search=!search" class="cursor-as-pointer">
+                    <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
+                </li>
+                <li ng-click="menu=!menu" class="cursor-as-pointer" >
+                    menu
+                </li>
+                <li>
+                    <span style="line-height:1em"><a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">Faire un don</a></span>
+                </li>
+
+            </ul>
+    </div>
+    <div class="container-fluid searchbar"ng-class="{'displayed':search}">
+        <div class="navbar-nav navbar-right" >
+            <form ng-if="menuCtrl.searchEnabled" ng-submit="menuCtrl.onSubmit()"role="form">
+                <div class="input-group">
+                    <input class="form-control" type="text" ng-model="menuCtrl.query" ng-attr-placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
+                        <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"></span></button></span>
+                </div>
+            </form>
+        </div>
+    </div>
+ </nav>

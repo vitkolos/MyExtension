@@ -140,6 +140,8 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
     ///////////MENU///////////////////
 ///////////////////////////////////////////////////
 .header{ margin:15px 0}
+.navbar-fixed-top{width:300px; left:auto}
+.navbar-fixed-top.displayed{width:100%; left:0}
 
 ul.navbar-right{height:40px; float: right; font-size: 0; width: 100%}
 nav.navbar-fixed-top li{
@@ -180,7 +182,7 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
     -webkit-transform: translate3d(0, 0, 0);
 }
 .searchbar.displayed{opacity:1;margin-top:0}
- .menu.displayed .container{opacity:1;margin-top:0;}
+ .displayed>.menu .container{opacity:1;margin-top:0;}
   .menu +div{width:100%;top:0;left:0;position:relative;z-index:2;-webkit-transform: translate3d(0, 0, 0);}
  @media screen and (max-width: @min_xs) {
     nav.navbar-fixed-top{position:relative;width: 100%; }
