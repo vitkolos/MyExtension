@@ -379,10 +379,11 @@ blockquote {
     border:2px solid @rouge_shadow;
     color:@rouge_shadow;
     padding:0 5px;
+    cursor: pointer;
   }
-  li.tags:after{display: inline-block; content:"+"}
+  li.tags:after{display: inline-block; content:"+"; font-weight: bold}
   li.tags.checked, li.tags:hover{background: white; color:@txt_dark;}
-  li.tags.checked:after, li.tags:hover:after{content:"x"}
+  li.tags.checked:after, li.tags:hover:after{transform:rotate(45deg);}
 ////////////////////////////////////////////////////
     ///////////FOI///////////////////
 ///////////////////////////////////////////////////
