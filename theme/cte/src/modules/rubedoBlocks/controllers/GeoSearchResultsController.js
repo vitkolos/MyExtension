@@ -101,7 +101,14 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 longitude:config.centerLongitude
             };
         }
-        
+    me.geocoder.geocode({'latLng': latlng}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                if (results[0]) {
+                    var loc = getCountry(results);
+                    alert("location is::"+loc);
+                }
+            }
+        });
         
         //map control object recieves several control methods upon map render
         me.mapControl={ };
