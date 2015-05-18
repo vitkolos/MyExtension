@@ -33,7 +33,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="panel panel-default" ng-repeat="facet in geoSearchResultsCtrl.facets" ng-if="facet.terms || facet.ranges">
+                <!--<div class="panel panel-default" ng-repeat="facet in geoSearchResultsCtrl.facets" ng-if="facet.terms || facet.ranges">
                     <div class="panel-heading">{{facet.label}}&nbsp;<span
                             ng-if="facet.total && (facet.total - facet.other) <= geoSearchResultsCtrl.count" class="badge pull-right">{{facet.total - facet.other}}</span></div>
                     <div class="panel-body">
@@ -48,7 +48,46 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div>-->
+        <div class="panel panel-default" ng-init="evenement=false;  lieux = false">
+            <div class="panel-heading actus "  ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="evenement = !evenement">Evénements</div>
+            <div class="panel-body">
+                <ul class="search-tags">
+                    <!--
+                    <li class="cursor-as-pointer" ng-if="facet.terms" ng-repeat="term in facet.terms" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
+                        <input ng-class="{'disabled':searchResultsCtrl.disabled(term.term)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.term)"/>
+                        {{term.label}}&nbsp;({{term.count}})
+                    </li>
+                    <li class="cursor-as-pointer" ng-if="facet.ranges && term.count > 0" ng-repeat="term in facet.ranges" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.from)">
+                        <input ng-class="{'disabled':searchResultsCtrl.disabled(term.from)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.from)"/>
+                        {{term.label}}&nbsp;({{term.count}})
+                    </li>
+            -->
+                     <li class="cursor-as-pointer resultData search-result"  ng-click="searchResultsCtrl.clickOnFacetsRadio('5524db6945205e627a8d8c4e', '5524db8f45205ebd7a8d8c4c')" ng-class=" {'checked' : searchResultsCtrl.checked('5524db8f45205ebd7a8d8c4c')}">
+                        Oecuménisme
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-heading actus "  ng-class="{'panel-hidden' :!lieux }" ng-click="lieux = !lieux">Lieux</div>
+            <div class="panel-body">
+                <ul class="search-tags">
+                    <!--
+                    <li class="cursor-as-pointer" ng-if="facet.terms" ng-repeat="term in facet.terms" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
+                        <input ng-class="{'disabled':searchResultsCtrl.disabled(term.term)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.term)"/>
+                        {{term.label}}&nbsp;({{term.count}})
+                    </li>
+                    <li class="cursor-as-pointer" ng-if="facet.ranges && term.count > 0" ng-repeat="term in facet.ranges" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.from)">
+                        <input ng-class="{'disabled':searchResultsCtrl.disabled(term.from)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.from)"/>
+                        {{term.label}}&nbsp;({{term.count}})
+                    </li>
+            -->
+                     <li class="cursor-as-pointer resultData search-result"  ng-click="searchResultsCtrl.clickOnFacetsRadio('5524db6945205e627a8d8c4e', '5524db8f45205ebd7a8d8c4c')" ng-class=" {'checked' : searchResultsCtrl.checked('5524db8f45205ebd7a8d8c4c')}">
+                        Oecuménisme
+                    </li>
+                </ul>
+            </div>
+        </div>
+                
             </div>
             
             <div class="col-lg-7 col-md-12 col-lg-pull-5 geo-search">
