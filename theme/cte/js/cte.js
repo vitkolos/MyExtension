@@ -115,7 +115,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
     }]);
 
 
-  angular.module('rubedoBlocks').directive('focusOnClick', function () {
+  angular.module('rubedoBlocks').directive('focusOnClick', function ($timeout) {
     return {
          link: function ( scope, element, attrs ) {
             scope.$watch( attrs.ngFocus, function ( val ) {
