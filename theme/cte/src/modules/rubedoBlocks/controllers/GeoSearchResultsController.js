@@ -80,6 +80,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     latitude:position.coords.latitude,
                     longitude:position.coords.longitude
                 };
+                me.getLocationCenter();
+
             }, function() {
                 //handle geoloc error
             });
@@ -92,6 +94,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         latitude:results[0].geometry.location.lat(),
                         longitude:results[0].geometry.location.lng()
                     };
+                    me.getLocationCenter();
+
                 }
             });
 
@@ -100,6 +104,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 latitude:config.centerLatitude,
                 longitude:config.centerLongitude
             };
+            me.getLocationCenter();
+
         }
         me.getLocationCenter = function(){
             me.geocoder.geocode(
@@ -481,5 +487,4 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 $element.find(".angular-google-map-container").height(config.height);
             },190);
         }
-        me.getLocationCenter();
     }]);
