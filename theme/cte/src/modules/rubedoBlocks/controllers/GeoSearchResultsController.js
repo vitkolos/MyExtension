@@ -101,36 +101,38 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 longitude:config.centerLongitude
             };
         }
-    me.geocoder.geocode(
-                    {
-                        'latLng' : new google.maps.LatLng(me.map.center.latitude, me.map.center.longitude)
-                    },
-                    function(results, status) {
-                        if (status == google.maps.GeocoderStatus.OK) {
-                            if (results[1]) {
-
-                                var arrAddress = results;
-                                console.log(results);
-                                // iterate through address_component array
-                                $
-                                        .each(
-                                                arrAddress,
-                                                function(i, address_component) {
-
-                                                    if (address_component.types[0] == "locality") {
-                                                        console.log("City: "
-                                                                        + address_component.address_components[0].long_name);
-                                                        itemLocality = address_component.address_components[0].long_name;
-                                                    }
-                                                });
-
-                            } else {
-                                alert("No results found");
-                            }
-                        } else {
-                            alert("Geocoder failed due to: " + status);
-                        }
-                    });
+        me.getLocationCenter = function(){
+            me.geocoder.geocode(
+                            {
+                                'latLng' : new google.maps.LatLng(me.map.center.latitude, me.map.center.longitude)
+                            },
+                            function(results, status) {
+                                if (status == google.maps.GeocoderStatus.OK) {
+                                    if (results[1]) {
+        
+                                        var arrAddress = results;
+                                        console.log(results);
+                                        // iterate through address_component array
+                                        $
+                                                .each(
+                                                        arrAddress,
+                                                        function(i, address_component) {
+        
+                                                            if (address_component.types[0] == "locality") {
+                                                                console.log("City: "
+                                                                                + address_component.address_components[0].long_name);
+                                                                itemLocality = address_component.address_components[0].long_name;
+                                                            }
+                                                        });
+        
+                                    } else {
+                                        /*alert("No results found");*/
+                                    }
+                                } else {
+                                   /* alert("Geocoder failed due to: " + status);*/
+                                }
+                            });
+        }
         
         //map control object recieves several control methods upon map render
         me.mapControl={ };
@@ -416,6 +418,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             options.suplat=bounds.getNorthEast().lat();
             options.inflon=bounds.getSouthWest().lng();
             options.suplon=bounds.getNorthEast().lng();
+            me.getLocationCenter();
+
             RubedoSearchService.searchGeo(options).then(function(response){
                 if(response.data.success){
                     me.query = response.data.results.query;
