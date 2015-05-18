@@ -49,8 +49,10 @@
                         </ul>
                     </div>
                 </div>-->
-        <div class="panel panel-default panel-geo" ng-init="evenement=false;  lieux = false">
-            <div class="panel-heading actus "  ng-class="{'panel-hidden' :!evenement }" ng-click="evenement = !evenement">Evénements</div>
+        <div class="panel panel-default panel-geo" ng-init="searchDisplayed=false">
+            <div class="panel-heading actus" ng-click="searchDisplayed=!searchDisplayed">Recherche avancée</div>
+            <div ng-show="!searchDisplayed">
+            <div class="panel-heading actus" >Evénements</div>
             <div class="panel-body">
                 <ul class="search-tags">
                     <!--
@@ -86,7 +88,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="panel-heading actus "  ng-class="{'panel-hidden' :!lieux }" ng-click="lieux = !lieux">Lieux</div>
+            <div class="panel-heading actus " >Lieux</div>
             <div class="panel-body">
                 <ul class="search-tags">
                     <!--
@@ -103,6 +105,7 @@
                         Oecuménisme
                     </li>
                 </ul>
+            </div>
             </div>
         </div>
                 
