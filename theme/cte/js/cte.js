@@ -115,3 +115,13 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
     }]);
 
 
+  angular.module('rubedoBlocks').directive('focusOnClick', function () {
+    return {
+         link: function ( scope, element, attrs ) {
+            scope.$watch( attrs.ngFocus, function ( val ) {
+                if ( angular.isDefined( val ) && val ) {
+                    $timeout( function () { element[0].focus(); } );
+                }
+            }, true);
+         }}
+  });
