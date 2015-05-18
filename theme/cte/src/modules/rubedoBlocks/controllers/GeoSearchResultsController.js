@@ -101,15 +101,36 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 longitude:config.centerLongitude
             };
         }
-    me.latlng = new google.maps.LatLng(me.map.center.latitude, me.map.center.longitude);
-    me.geocoder.geocode({'latLng': me.latlng}, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                if (results[0]) {
-                    var loc = getCountry(results);
-                    alert("location is::"+loc);
-                }
-            }
-        });
+    me.geocoder.geocode(
+                    {
+                        'latLng' : new google.maps.LatLng(me.map.center.latitude, me.map.center.longitude)
+                    },
+                    function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            if (results[1]) {
+
+                                var arrAddress = results;
+                                console.log(results);
+                                // iterate through address_component array
+                                $
+                                        .each(
+                                                arrAddress,
+                                                function(i, address_component) {
+
+                                                    if (address_component.types[0] == "locality") {
+                                                        console.log("City: "
+                                                                        + address_component.address_components[0].long_name);
+                                                        itemLocality = address_component.address_components[0].long_name;
+                                                    }
+                                                });
+
+                            } else {
+                                alert("No results found");
+                            }
+                        } else {
+                            alert("Geocoder failed due to: " + status);
+                        }
+                    });
         
         //map control object recieves several control methods upon map render
         me.mapControl={ };
