@@ -238,14 +238,14 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 if(me.inscription.famille)  mailInfo.connu+="My family / friends, ";
                 if(me.inscription.paroisse)  mailInfo.connu+="Chaplaincy / parish, ";
                 if(me.inscription.gp)  mailInfo.connu+="Prayer group, Community weekends, ";
-            mailInfo.transport_aller=me.inscription.aller;
+            /*mailInfo.transport_aller=me.inscription.aller;
                 if(me.inscription.aller_train_gare) mailInfo.transport_aller+= " : " +me.inscription.aller_train_gare;
                 if(me.inscription.aller_train_date)  mailInfo.transport_aller+= ", "+me.inscription.aller_train_date;
                 if(me.inscription.aller_train_heure)  mailInfo.transport_aller+=" "+me.inscription.aller_train_heure;
             mailInfo.transport_retour=me.inscription.retour;
                 if(me.inscription.retour_train_gare) mailInfo.transport_retour+= " : " +me.inscription.retour_train_gare;
                 if(me.inscription.retour_train_date)  mailInfo.transport_retour+= ", "+me.inscription.retour_train_date;
-                if(me.inscription.retour_train_heure)  mailInfo.transport_retour+=" "+me.inscription.retour_train_heure;
+                if(me.inscription.retour_train_heure)  mailInfo.transport_retour+=" "+me.inscription.retour_train_heure;*/
             if (me.inscription.bus_pl) {
                mailInfo['Bus with the Community'] = "Yes";
             }
