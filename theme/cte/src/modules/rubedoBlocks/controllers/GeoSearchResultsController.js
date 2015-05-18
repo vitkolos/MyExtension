@@ -121,6 +121,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                                             if (address_component.types[0] == "locality") {
                                                                 me.city =address_component.address_components[0].long_name;
                                                             }
+                                                            if (address_component.types[0] == "country") {me.city +=", "+address_component.address_components[0].long_name}
                                                         });
         
                                     } else {
