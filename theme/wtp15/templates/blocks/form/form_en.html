@@ -318,7 +318,7 @@ The Festival Team.</p>
 		<!--ALLER-->
 		<div class="col-sm-6 " >
 		    <p class="titre-cap">Outbound</p>
-		    <input type="radio" id="aller_not" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="unknown" required>
+		    <input type="radio" id="aller_not" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="unknown" ng-required="!(formCtrl.lang =='pl' && formCtrl.inscription.festival)">
 		    <label for="aller_not" class="row">I don't know yet</label>
 		    <input type="radio" id="aller_car" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="car" >
 		    <label for="aller_car" class="row">Car</label>
