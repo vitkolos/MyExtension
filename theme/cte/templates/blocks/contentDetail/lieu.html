@@ -48,19 +48,20 @@
 		<div class="text-article">
 			<h3>Informations pratiques</h3>
 			<div class="row">
-			<div class="col-xs-12 col-sm-3 border-top-red">
-				<p class="capital">Rencontres</p>
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">Rencontres</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('rencontres')}}"></rubedo-field><!--Description-->
+				</div>
 			</div>
-			<div class="col-xs-12 col-sm-9 ">
-				<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('rencontres')}}"></rubedo-field><!--Description-->
-			</div></div>
 			<div class="row">
-			<div class="col-xs-12 col-sm-3 border-top-red ">
-				<p class="capital">Horaires</p>
-			</div>
-			<div class="col-xs-12 col-sm-9 ">
-				<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
-			</div>
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">Horaires</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
+				</div>
 			</div>
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
 			<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
