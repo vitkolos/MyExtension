@@ -309,11 +309,11 @@ The Festival Team.</p>
 	    </div>
 	</div>
 	<!--TRANSPORT-->
-	<div class="col-sm-12 col-md-6 padding-large" ng-if="formCtrl.lang =='pl' && formCtrl.inscription.festival">
-	    <div class="row">
+	<div class="col-sm-12 col-md-6 padding-large">
+	    <div class="row"  ng-if="formCtrl.lang =='pl' && formCtrl.inscription.festival">
 		<p class="choice-proposition">My transport</p>
 	    </div>
-    	    <div class="row bg-grey">
+    	    <div class="row bg-grey" ng-if="formCtrl.lang =='pl' && formCtrl.inscription.festival">
 		
 		<!--ALLER
 		<div class="col-sm-6 " >
