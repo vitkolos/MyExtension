@@ -293,7 +293,7 @@ blockquote {
 ///////////////////////////////////////////////////
 .media{padding:24px 0;}
 .panel-heading.actus.no-arrow{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; }
-.panel-heading.actus{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; .uparrow()}
+.panel-heading.actus:not(.no-arrow){background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; .uparrow()}
 .panel-heading.actus.panel-hidden{.downarrow()}
 .panel-heading.actus.panel-hidden + .panel-body{display:block; padding:0}
 .panel-heading.actus + .panel-body{display:none; padding:0}
