@@ -33,34 +33,20 @@
 
 .uparrow() {
     &:after{
-    font-family:'hautecombe-2015regular';
-    content:'f';
+    font-family:'FontAwesome';
+    content:'\f077';
 	float: right;
 	text-transform: none;
     }
 }
 .downarrow() {
     &:after{
-    font-family:'hautecombe-2015regular';
-    content:'c';
+    font-family:'FontAwesome';
+    content:'"\f078"';
 	float: right;
 	text-transform: none;
     }
 }
-
-@font-face {
-    font-family: 'hautecombe-2015regular';
-    src: url('/assets/fonts/hautecombe-2015_regular-webfont.eot');
-    src: url('/assets/fonts/hautecombe-2015_regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('/assets/fonts/hautecombe-2015_regular-webfont.woff2') format('woff2'),
-         url('/assets/fonts/hautecombe-2015_regular-webfont.woff') format('woff'),
-         url('/assets/fonts/hautecombe-2015_regular-webfont.ttf') format('truetype'),
-         url('/assets/fonts/hautecombe-2015_regular-webfont.svg#hautecombe-2015regular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 
 
 @import url(http://fonts.googleapis.com/css?family=Merriweather:400,400italic);
@@ -306,7 +292,10 @@ blockquote {
     ///////////SEARCH RESULTS///////////////////
 ///////////////////////////////////////////////////
 .media{padding:24px 0;}
-.panel-heading.actus{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital}
+.panel-heading.actus{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; .uparrow()}
+.panel-heading.actus.panel-hidden{.downarrow()}
+.panel-heading.actus.panel-hidden + .panel-body{display:block; padding:0}
+.panel-heading.actus + .panel-body{display:none; padding:0}
 .search-result {
     p.capital{margin-bottom:0}
     h3{margin-top:10px}
@@ -321,8 +310,8 @@ blockquote {
 }
 @media screen and (max-width: @min_sm) {
     .panel-heading.actus.panel-hidden + .panel-body{display:none; padding:0}
-    .panel-heading.actus{.uparrow()}
-    .panel-heading.actus.panel-hidden{.downarrow()}
+    .panel-heading.actus + .panel-body{display:block; padding:0}
+    
 }
 
 .border-top{border-top:solid 2px @marron; margin-top:0;}
@@ -368,7 +357,8 @@ blockquote {
   border:none;
   box-shadow: none;
   width:auto;
-  position: relative
+  position: relative;
+  padding-left:5px; 
 }
 .rubedo-places-search::-webkit-input-placeholder {color: white; text-decoration: underline}
 .rubedo-places-search:-moz-placeholder { /* Firefox 18- */   color: white; text-decoration: underline  }
@@ -393,6 +383,10 @@ blockquote {
   li.tags:after{display: inline-block; content:"+"; font-weight: bold; font-size: 1.5em; line-height: 0.8em;vertical-align: middle}
   li.tags.checked, li.tags:hover{background: white; color:@txt_dark;}
   li.tags.checked:after, li.tags:hover:after{transform:rotate(45deg);}
+  // do not show advanced search on smartphones
+   #advanced-search{display:none}
+  #advanced-search.displayed{display: block;}
+  @media screen and (min-width:@min_sm){ #advanced-search.displayed{display: none;} #advanced-search{display:block}}
 ////////////////////////////////////////////////////
     ///////////FOI///////////////////
 ///////////////////////////////////////////////////
