@@ -246,8 +246,9 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 if(me.inscription.retour_train_gare) mailInfo.transport_retour+= " : " +me.inscription.retour_train_gare;
                 if(me.inscription.retour_train_date)  mailInfo.transport_retour+= ", "+me.inscription.retour_train_date;
                 if(me.inscription.retour_train_heure)  mailInfo.transport_retour+=" "+me.inscription.retour_train_heure;*/
+            mailInfo.transport="";
             if (me.inscription.bus_pl) {
-               mailInfo['Bus with the Community'] = "Yes";
+               mailInfo.transport="Bus with the Community";
             }
             mailInfo.logement = me.inscription.logement;
             mailInfo.groupe = me.inscription.groupe ?me.inscription.groupe:" ";
