@@ -120,7 +120,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
          link: function ( scope, element, attrs ) {
             scope.$watch( attrs.ngFocus, function ( val ) {
                 if ( angular.isDefined( val ) && val ) {
-                    $timeout( function () { element[0].focus(); } );
+                    $timeout( function () { element[0].focus();element[0].value=""; } );
                 }
             }, true);
          }}
