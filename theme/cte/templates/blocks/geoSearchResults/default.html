@@ -22,7 +22,7 @@
                 <p>Toutes nos propositions autour de : <input type="text" class="rubedo-places-search " focus-on-click="focus" placeholder="{{geoSearchResultsCtrl.city}}" ng-focus="focus">
                 <span ng-click="focus=!focus" ng-init="focus==false" class="capital2" style="color:white">changer</span></p>
                 <div class="panel-heading actus visible-xs-block" ng-click="searchDisplayed=!searchDisplayed" style="margin-bottom:12px">Recherche avancée</div>
-                <div id="advanced-search" ng-class="'{'displayed': searchDisplayed}'" ng-init="searchDisplayed=false">
+                <div id="advanced-search" ng-class="{'displayed': searchDisplayed}" ng-init="searchDisplayed=false">
                     <div class="panel">
                         <form ng-submit="geoSearchResultsCtrl.onSubmit()" role="form">
                             <div class="input-group">
