@@ -159,7 +159,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 if (response.data.success){
                     me.mailInfo={ };
                     me.showForm=false;
-                    me.showConfirmPreRegister=true;
+                    me.registration_status='preinscription';
                 } else {
                     me.contactError=response.data.message;
                     me.showPreRegisterError=true;
