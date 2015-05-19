@@ -42,7 +42,7 @@
 .downarrow() {
     &:after{
     font-family:'FontAwesome';
-    content:'"\f078"';
+    content:'\f078';
 	float: right;
 	text-transform: none;
     }
@@ -292,6 +292,7 @@ blockquote {
     ///////////SEARCH RESULTS///////////////////
 ///////////////////////////////////////////////////
 .media{padding:24px 0;}
+.panel-heading.actus.no-arrow{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; }
 .panel-heading.actus{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; .uparrow()}
 .panel-heading.actus.panel-hidden{.downarrow()}
 .panel-heading.actus.panel-hidden + .panel-body{display:block; padding:0}
