@@ -61,6 +61,17 @@ return array(
                     '/js/jmj.js',
                 ),
             ),
+            'netforgod' => array(
+                'label' => 'Net4God',
+                'basePath' => realpath(__DIR__ . '/../theme/netforgod'),
+                'css' => array(
+                    '/css/netforgod.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '/js/netforgod.js',
+                ),
+            ),
         ),
     ),
     
