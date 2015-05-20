@@ -47,7 +47,7 @@
 	<div class="row" >
 		<div class="text-article">
 			<h3>Informations pratiques</h3>
-			<div class="row">
+			<div class="row" ng-if="fieldEntity['rencontres']">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 					<p class="capital">Rencontres</p>
 				</div>
@@ -55,7 +55,7 @@
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('rencontres')}}"></rubedo-field><!--Description-->
 				</div>
 			</div>
-			<div class="row">
+			<div class="row" ng-if="fieldEntity['horaires']">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 					<p class="capital">Horaires</p>
 				</div>
