@@ -385,10 +385,13 @@ blockquote {
   li.tags:after{display: inline-block; content:"+"; font-weight: bold; font-size: 1.5em; line-height: 0.8em;vertical-align: middle}
   li.tags.checked, li.tags:hover{background: white; color:@txt_dark;}
   li.tags.checked:after, li.tags:hover:after{transform:rotate(45deg);}
+  
   // do not show advanced search on smartphones
    #advanced-search{display:none}
   #advanced-search.displayed{display: block;}
   @media screen and (min-width:@min_sm){ #advanced-search.displayed{display: none;} #advanced-search{display:block}}
+  
+.resultData input{color:white; margin-right: 5px; font-size: 14px}
 ////////////////////////////////////////////////////
     ///////////FOI///////////////////
 ///////////////////////////////////////////////////
