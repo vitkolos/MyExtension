@@ -1,6 +1,6 @@
 <div ng-controller="FacebookController as fcbCtrl">
     <div class="fb-page" data-href="https://www.facebook.com/{{blockConfig.account}}"
-         data-width="{{blockConfig.width}}" data-hide-cover="{{showCover}}" data-show-facepile="{{showFaces}}" data-show-posts="{{showPosts}}">
+         data-width="{{blockConfig.width}}" data-hide-cover="!{{fcbCtrl.showCover}}" data-show-facepile="{{fcbCtrl.showFaces}}" data-show-posts="{{fcbCtrl.showPosts}}">
             <div class="fb-xfbml-parse-ignore">
                 <blockquote cite="https://www.facebook.com/mission.jeunes.chemin.neuf.18.30">
                     <a href="https://www.facebook.com/mission.jeunes.chemin.neuf.18.30">Mission Jeunes Chemin Neuf</a>
