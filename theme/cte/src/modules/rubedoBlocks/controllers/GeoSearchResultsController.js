@@ -269,6 +269,17 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             });
             return checked;
         };
+        me.checkedRadio = function(term){
+            var checked = false;
+            var taxIndex = 0;
+            while (taxIndex < me.options.taxonomies.length && checked == false) {
+                //vérifier si la facette demandée est déjà présente
+                for (var i = 0; i < me.options.taxonomies[taxIndex].length; i++) {
+                    if (me.options.taxonomies[taxIndex][i] == term) { checked=true;}
+                }
+            }            
+            return checked;
+        };
         me.disabled = function(term){
             var disabled = false;
             angular.forEach(me.notRemovableTerms,function(notRemovableTerm){
@@ -282,6 +293,35 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             me.options.query = me.query;
             me.searchByQuery(me.options, true);
         };
+        
+        me.clickOnFacetsRadio = function(facetId,term){
+            // si la taxonomie est déjà présente
+            if (me.options.taxonomies[facetId]) {
+                var del=false;
+                //vérifier si la facette demandée est déjà présente
+                for (var i = 0; i < me.options.taxonomies[facetId].length; i++) {
+                    if (me.options.taxonomies[facetId][i] == term) {
+                        del=true;
+                    }
+                }
+                // si présente, alors supprimer la taxonomie
+                if (del) {
+                   me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
+                }
+                // si nouvelle facette, l'ajouter
+                else {
+                     me.options.taxonomies[facetId].push(term);
+                }
+            }
+            // si la taxonomie n'est pas présente
+            else {
+                me.options.taxonomies[facetId] = [];//créer taxonomie
+                me.options.taxonomies[facetId].push(term);// ajouter facette
+           }
+            me.searchByQuery(me.options);
+        }        
+        
+        
         me.clickOnFacets =  function(facetId,term){
             var del = false;
             angular.forEach(me.activeTerms,function(activeTerm){
