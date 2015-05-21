@@ -1,8 +1,8 @@
 {
-    "type": "#ext-gen1382#",
+    "type": "Facebook",
     "description": "Fil d'actualités d'une page Facebook",
     "configBasique": {
-        "title": "#ext-gen1382#",
+        "title": "Facebook",
         "bType": "facebook",
         "flex": 1,
         "champsConfig": {
@@ -32,7 +32,7 @@
                             "autoStoreData": [
                                 {
                                     "value": "showFaces",
-                                    "label": "#Montrer amis#"
+                                    "label": "Montrer amis"
                                 },
                                 {
                                     "value": "showCover",
@@ -57,19 +57,6 @@
             ],
             "avance": [
                 {
-                    "categorie": "Template",
-                    "champs": [
-                        {
-                            "type": "Rubedo.view.ACEField",
-                            "config": {
-                                "fieldLabel": "Custom template",
-                                "name": "customTemplate",
-                                "defaultTemplateUrl": "blocks/facebook.html",
-                                "twigMode": false
-
-                            }
-                        }
-                    ]
                 }
             ]
         },
