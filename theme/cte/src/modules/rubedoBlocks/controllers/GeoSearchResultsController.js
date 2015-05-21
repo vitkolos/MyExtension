@@ -147,7 +147,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             "bounds_changed": function (map) {
                 clearTimeout(me.mapTimer);
                 me.mapTimer = setTimeout(function() {
-                    me.searchByQuery(options);
+                    me.searchByQuery(me.options);
                 }, 300);
             }
         };
