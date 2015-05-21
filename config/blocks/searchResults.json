@@ -75,13 +75,13 @@
                             }
                         },
                         {
-						    "type":"Ext.form.field.Text",
-						    "config":{
-							    "fieldLabel":"Taxonomies",
-							    "name": "taxonomies",
-							    "value": ""
-							}
-						}                        
+			    "type":"Ext.form.field.Text",
+			    "config":{
+				    "fieldLabel":"Taxonomies",
+				    "name": "taxonomies",
+				    "value": ""
+				}
+			}                        
                     ]
                 },
                 {

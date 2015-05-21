@@ -24,8 +24,12 @@ return array(
         'searchResults' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
-        )
-    ),
+        ),
+        'geoSearchResults' => array(
+               'maxlifeTime' => 60,
+               'definitionFile' => realpath(__DIR__ . "/blocks/")  . '/geoSearchResults.json'
+           )
+ ),
 
     'templates' => array(
         'themes' => array(
