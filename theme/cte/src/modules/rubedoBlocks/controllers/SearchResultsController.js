@@ -127,7 +127,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             me.updateSearch();
         };
         me.clickOnFacetsRadio = function(facetId,term){
-            console.log("Before :"+taxonomiesReset);
             if (me.options.taxonomies[facetId]) {
                 var del=false;
                 for (var i = 0; i < me.options.taxonomies[facetId].length; i++) {
@@ -137,12 +136,10 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                 }
                 if (del) {
                    me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
-                   console.log("Del2");
                 }
                 else {
                     me.options.taxonomies={};
                     me.options.taxonomies = angular.copy(taxonomiesReset);
-                    console.log("after :"+taxonomiesReset);
                     if (!me.options.taxonomies[facetId]) me.options.taxonomies[facetId]=[];
                      me.options.taxonomies[facetId].push(term);
                 }
