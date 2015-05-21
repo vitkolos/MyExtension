@@ -1,22 +1,68 @@
 {
-    "type": "Facebook",
-    "description": "Fil d'actualités d'une page Facebook",
-    "configBasique": {
-        "title": "Facebook",
-        "bType": "facebook",
-        "flex": 1,
-        "champsConfig": {
-            "simple": [
-                 {}
-            ],
-            "avance": [
-                {
-                }
-            ]
-        },
+	"type":"Facebook",
+	"description":"Bloc facebook (fil d'actualité d'une page)",
+	"configBasique":{
+		"title":"Facebook",
+		"bType":"facebook",
+		"flex":1,
+		"champsConfig":{
+			"simple":[
+				{
+					"categorie":"#ext-gen1068#",
+					"champs":[
+						{
+							"type":"Ext.ux.TreePicker",
+							"config":{
+								"fieldLabel":"#ext-gen1073#",
+								"name":"linkedPage"
+							}
+						},
+						{
+						    "type":"Ext.form.field.Text",
+						    "config":{
+							"fieldLabel":"Ancre",
+							 "name": "anchor",
+							 "value": ""
+							}
+						},
+						{
+							"type":"Rubedo.view.ImagePickerField",
+							"config":{
+								"fieldLabel":"#ext-gen1219#",
+								"name":"imageFile",
+								"allowedFileType":"Image",
+								"smallMode":true
+							}
+						},
+						{
+						    "type":"Ext.form.field.Text",
+						    "config":{
+							"fieldLabel":"Icône",
+							 "name": "icon",
+							 "value": ""
+							}
+						},
+						{
+						    "type": "Rubedo.view.DCEField",
+						    "config": {
+							"fieldLabel": "Texte",
+							"name": "text",
+							"allowedCT": "simpleText",
+							"addOnly": true
+						    }
+						}
+					]
+				}
+			],
+			"avance":[
+			
+			]
+		},
+		"configBloc":[
 
-    },
-    "category": "#ext-gen1331#",
-    "bType": "facebook",
-    "id": "514ae0c5c0e051ac0d444999"
+		]
+	},
+	"category":"#ext-gen1068#",
+	"bType":"facebook",
+	"id":"514ae0c5c0e051ac0d777999"
 }
