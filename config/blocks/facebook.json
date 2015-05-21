@@ -7,51 +7,52 @@
 		"flex":1,
 		"champsConfig":{
 			"simple":[
-				{
-					"categorie":"#ext-gen1068#",
-					"champs":[
-						{
-							"type":"Ext.ux.TreePicker",
-							"config":{
-								"fieldLabel":"#ext-gen1073#",
-								"name":"linkedPage"
-							}
-						},
-						{
-						    "type":"Ext.form.field.Text",
-						    "config":{
-							"fieldLabel":"Ancre",
-							 "name": "anchor",
-							 "value": ""
-							}
-						},
-						{
-							"type":"Rubedo.view.ImagePickerField",
-							"config":{
-								"fieldLabel":"#ext-gen1219#",
-								"name":"imageFile",
-								"allowedFileType":"Image",
-								"smallMode":true
-							}
-						},
-						{
-						    "type":"Ext.form.field.Text",
-						    "config":{
-							"fieldLabel":"Icône",
-							 "name": "icon",
-							 "value": ""
-							}
-						},
-						{
-						    "type": "Rubedo.view.DCEField",
-						    "config": {
-							"fieldLabel": "Texte",
-							"name": "text",
-							"allowedCT": "simpleText",
-							"addOnly": true
-						    }
-						}
-					]
+                                        {
+                           "categorie": "#ext-gen1143#",
+                            "champs": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "config": {
+                                        "fieldLabel": "ID de la page",
+                                        "name": "account"
+                                    }
+                                },
+                                {
+                                    "type": "Ext.form.field.Number",
+                                    "config": {
+                                        "fieldLabel": "#ext-gen1391#",
+                                        "name": "width",
+                                        "allowDecimals": false,
+                                        "minValue": 1
+                                    }
+                                },
+                                {
+                                    "type": "Ext.form.field.ComboBox",
+                                    "isAutoStored": true,
+                                    "autoStoreData": [
+                                        {
+                                            "value": "showFaces",
+                                            "label": "Montrer amis"
+                                        },
+                                        {
+                                            "value": "showCover",
+                                            "label": "Afficher cover"
+                                        },
+                                        {
+                                            "value": "showPosts",
+                                            "label": "Montrer les posts"
+                                        }
+                                    ],
+                                    "config": {
+                                        "fieldLabel": "#ext-gen1393#",
+                                        "multiSelect": true,
+                                        "name": "options",
+                                        "editable": false,
+                                        "forceSelection": true,
+                                        "queryMode": "local"
+                                    }
+                                }
+                            ]
 				}
 			],
 			"avance":[
@@ -62,7 +63,7 @@
 
 		]
 	},
-	"category":"#ext-gen1068#",
+	"category":"#ext-gen1331#",
 	"bType":"facebook",
 	"id":"514ae0c5c0e051ac0d777999"
 }
