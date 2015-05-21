@@ -224,7 +224,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         if (config.displayedFacets=="all"){
             config.displayedFacets="['all']";
         }
-        var defaultOptions = {
+        me.options = {
             start: me.start,
             limit: me.limit,
             constrainToSite: config.constrainToSite,
@@ -235,33 +235,32 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             siteId: $scope.rubedo.current.site.id
         };
         if (config.singlePage){
-            defaultOptions.detailPageId = config.singlePage;
+            me.options.detailPageId = config.singlePage;
         }
-        var options = angular.copy(defaultOptions);
+        /*var options = angular.copy(defaultOptions);*/
         var parseQueryParamsToOptions = function(){
             angular.forEach($location.search(), function(queryParam, key){
                 if(typeof queryParam !== "boolean"){
                     if(key == 'taxonomies'){
-                        options[key] = JSON.parse(queryParam);
+                        me.options[key] = JSON.parse(queryParam);
                     } else {
                         if(key == 'query'){
-                            me.query = queryParam;
+                            me.options.query = queryParam;
                         }
-                        options[key] = queryParam;
+                        me.options[key] = queryParam;
                     }
                 }
             });
         };
         if(predefinedFacets.query) {
-            me.query = options.query = predefinedFacets.query;
+            me.options.query  = predefinedFacets.query;
             $location.search('query',me.query);
         }
         $scope.$on('$routeUpdate', function(scope, next, current) {
-            options = angular.copy(defaultOptions);
-            options.start = me.start;
-            options.limit = me.limit;
+            me.options.start = me.start;
+            me.options.limit = me.limit;
             parseQueryParamsToOptions();
-            me.searchByQuery(options, true);
+            me.searchByQuery(me.options, true);
         });
         me.checked = function(term){
             var checked = false;
@@ -278,11 +277,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         me.onSubmit = function(){
             me.start = 0;
-            options = angular.copy(defaultOptions);
-            options.start = me.start;
-            options.limit = me.limit;
-            options.query = me.query;
-            $location.search('query',me.query);
+            me.options.start = me.start;
+            me.options.limit = me.limit;
+            me.options.query = me.query;
+            me.searchByQuery(me.options, true);
         };
         me.clickOnFacets =  function(facetId,term){
             var del = false;
@@ -293,28 +291,28 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             });
             if(del){
                 if(facetsId.indexOf(facetId)==-1){
-                    options.taxonomies[facetId].splice(options.taxonomies[facetId].indexOf(term),1);
+                    me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
                     if(options.taxonomies[facetId].length == 0){
                         delete options.taxonomies[facetId];
                     }
-                    if(Object.keys(options['taxonomies']).length == 0){
+                    if(Object.keys(me.options['taxonomies']).length == 0){
                         $location.search('taxonomies',null);
                     } else {
-                        $location.search('taxonomies',JSON.stringify(options.taxonomies));
+                        $location.search('taxonomies',JSON.stringify(me.options.taxonomies));
                     }
                 } else if (facetId == 'query') {
                     $location.search('query',null);
-                    delete options.query;
+                    delete me.options.query;
                 } else if(facetId == 'lastupdatetime') {
-                    delete options[facetId];
+                    delete me.options[facetId];
                     $location.search(facetId,null);
                 } else {
-                    if(angular.isArray(options[facetId+'[]'])){
-                        options[facetId+'[]'].splice(options[facetId+'[]'].indexOf(term),1);
+                    if(angular.isArray(me.options[facetId+'[]'])){
+                        me.options[facetId+'[]'].splice(me.options[facetId+'[]'].indexOf(term),1);
                     } else {
-                        delete options[facetId+'[]'];
+                        delete me.options[facetId+'[]'];
                     }
-                    if(!options[facetId+'[]'] || options[facetId+'[]'].length == 0){
+                    if(!me.options[facetId+'[]'] || me.options[facetId+'[]'].length == 0){
                         $location.search(facetId+'[]',null)
                     } else {
                         $location.search(facetId+'[]',options[facetId+'[]']);
@@ -322,27 +320,27 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 }
             } else {
                 if(facetsId.indexOf(facetId)==-1){
-                    if(!options.taxonomies){
-                        options.taxonomies = {};
+                    if(!me.options.taxonomies){
+                        me.options.taxonomies = {};
                     }
-                    if(!options.taxonomies[facetId]){
-                        options.taxonomies[facetId] = [];
+                    if(!me.options.taxonomies[facetId]){
+                        me.options.taxonomies[facetId] = [];
                     }
-                    options.taxonomies[facetId].push(term);
-                    $location.search('taxonomies',JSON.stringify(options.taxonomies));
+                    me.options.taxonomies[facetId].push(term);
+                    $location.search('taxonomies',JSON.stringify(me.options.taxonomies));
                 } else if(facetId == 'lastupdatetime') {
-                    options[facetId] = term;
-                    $location.search(facetId,options[facetId]);
+                    me.options[facetId] = term;
+                    $location.search(facetId,me.options[facetId]);
                 } else {
-                    if(!options[facetId+'[]']){
-                        options[facetId+'[]'] = [];
+                    if(!me.options[facetId+'[]']){
+                        me.options[facetId+'[]'] = [];
                     }
-                    options[facetId+'[]'].push(term);
-                    $location.search(facetId+'[]',options[facetId+'[]']);
+                    me.options[facetId+'[]'].push(term);
+                    $location.search(facetId+'[]',me.options[facetId+'[]']);
                 }
             }
             me.start = 0;
-            options.start = me.start;
+            me.options.start = me.start;
         };
         me.preprocessData=function(data){
             var refinedData=[];
