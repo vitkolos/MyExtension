@@ -2,6 +2,10 @@ blocksConfig.simpleContact={
            "template": "/templates/blocks/simpleContact.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
+blocksConfig.facebook={
+           "template": "/templates/blocks/facebook.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
+};
 
 
 angular.module('rubedoBlocks').directive('loadModal', function () {
