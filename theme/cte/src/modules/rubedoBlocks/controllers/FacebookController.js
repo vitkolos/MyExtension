@@ -1,7 +1,22 @@
 angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope',function($scope){
     var me = this;
     var config = $scope.blockConfig;
-
+    me.showFaces = false;
+    me.showCover=false;
+    me.showPosts=false;
+    if(config.options){
+        angular.forEach(config.options, function(option, key){
+            if (option=="showFaces") {
+                me.showFaces = true;
+            }
+            else if (option=="showCover") {
+                me.showCover = true;
+            }
+            else if (option=="showPosts") {
+                me.showPosts = true;
+            }
+        });
+    }
  
     me.loadFcb = function(){
         window.twttr = (function(d, s, id) {
