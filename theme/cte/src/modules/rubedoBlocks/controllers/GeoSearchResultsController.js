@@ -117,7 +117,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                     if (results[1]) {
         
                                         var arrAddress = results;
-                                        console.log(results);
                                         // iterate through address_component array
                                         $
                                                 .each(
@@ -319,7 +318,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 me.options.taxonomies[facetId] = [];//créer taxonomie
                 me.options.taxonomies[facetId].push(term);// ajouter facette
            }
-            me.searchByQuery(me.options);
+            me.searchByQuery(me.options, true);
         }        
         
         
@@ -454,9 +453,11 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                
             var d = R * c;
             return d;
-        console.log(d);
         };
-        me.searchByQuery = function(options){
+        
+        
+        me.searchByQuery = function(options, adjustZoom){
+            if (typeof adjustZoom === 'undefined') { adjustZoom = false; }
             var bounds=me.mapControl.getGMap().getBounds();
             options.inflat=bounds.getSouthWest().lat();
             options.suplat=bounds.getNorthEast().lat();
@@ -466,6 +467,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if(response.data.success){
                     me.query = response.data.results.query;
                     me.count = response.data.count;
+                    if (adjustZoom) {
+                        if (me.count==0 && me.mapControl.getGMap().getZoom()>5) {
+                            me.mapControl.getGMap().setZoom(me.mapControl.getGMap().getZoom()-1);
+                            me.searchByQuery(me.options, true);
+                        }
+                    }
                     me.data =  me.preprocessData(response.data);
                     me.facets = response.data.results.facets;
                     me.notRemovableTerms = [];
@@ -527,3 +534,4 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             },190);
         }
     }]);
+
