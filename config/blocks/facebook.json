@@ -32,15 +32,15 @@
                                     "autoStoreData": [
                                         {
                                             "value": "showFaces",
-                                            "label": "Montrer amis"
+                                            "label": "Masquer amis"
                                         },
                                         {
                                             "value": "showCover",
-                                            "label": "Afficher cover"
+                                            "label": "Masquer cover"
                                         },
                                         {
                                             "value": "showPosts",
-                                            "label": "Montrer les posts"
+                                            "label": "Masquer les posts"
                                         }
                                     ],
                                     "config": {

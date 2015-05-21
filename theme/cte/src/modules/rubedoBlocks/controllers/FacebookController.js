@@ -1,19 +1,19 @@
 angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope',function($scope){
     var me = this;
     var config = $scope.blockConfig;
-    me.showFaces = false;
-    me.showCover=false;
-    me.showPosts=false;
+    me.showFaces = true;
+    me.hideCover=false;
+    me.showPosts=true;
     if(config.options){
         angular.forEach(config.options, function(option, key){
             if (option=="showFaces") {
-                me.showFaces = true;
+                me.showFaces = false;
             }
-            else if (option=="showCover") {
+            else if (option=="hideCover") {
                 me.showCover = true;
             }
             else if (option=="showPosts") {
-                me.showPosts = true;
+                me.showPosts = false;
             }
         });
     }
