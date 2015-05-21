@@ -272,13 +272,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         me.checkedRadio = function(term){
             var checked = false;
-            var taxIndex = 0;
-            while (taxIndex < me.options.taxonomies.length && checked == false) {
-                //vérifier si la facette demandée est déjà présente
-                for (var i = 0; i < me.options.taxonomies[taxIndex].length; i++) {
-                    if (me.options.taxonomies[taxIndex][i] == term) { checked=true;}
+           angular.forEach(me.options.taxonomies,function(taxonomy){
+                for (var i = 0; i < taxonomy.length; i++) {
+
+                    if (taxonomy[i] == term) { checked=true;}
                 }
-            }            
+            });            
             return checked;
         };
         me.disabled = function(term){
@@ -309,8 +308,9 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if (del) {
                    me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
                 }
-                // si nouvelle facette, l'ajouter
+                // si nouvelle facette, supprimer l'ancienne valeur et l'ajouter
                 else {
+                    me.options.taxonomies[facetId]=[];
                      me.options.taxonomies[facetId].push(term);
                 }
             }
