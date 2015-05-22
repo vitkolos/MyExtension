@@ -17,7 +17,7 @@
     </div>
     <div class="col-xs-12 col-sm-5 col-md-6 col-lg-7 " style="padding-right:0">
         <div class="row">
-            <div class="col-lg-7 col-md-12 col-lg-push-5 geo-tags">
+            <div class="col-lg-6 col-md-12 col-lg-push-6 geo-tags">
                 <h3>Autour de vous</h3>
                 <p>Toutes nos propositions autour de : <input type="text" class="rubedo-places-search " focus-on-click="focus" placeholder="{{geoSearchResultsCtrl.city}}" ng-focus="focus">
                 <span ng-click="focus=!focus" ng-init="focus==false" class="capital2" style="color:white">changer</span></p>
@@ -110,7 +110,7 @@
 
             </div>
             
-            <div class="col-lg-5 col-md-12 col-lg-pull-7 geo-search">
+            <div class="col-lg-6 col-md-12 col-lg-pull-6 geo-search">
                 <a  ng-href="{{data.itemData.url}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'"><div class="row search-result " >
                     <div style="line-height: 60px; float:left" >
                         <img ng-src="/assets/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
