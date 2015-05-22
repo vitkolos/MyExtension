@@ -313,8 +313,11 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                      me.options.taxonomies[facetId].push(term);
                 }
             }
+
             // si la taxonomie n'est pas présente
             else {
+                //reset taxonomies : supprimer toutes les autres taxos présentes
+                me.options.taxonomies={};
                 me.options.taxonomies[facetId] = [];//créer taxonomie
                 me.options.taxonomies[facetId].push(term);// ajouter facette
            }
