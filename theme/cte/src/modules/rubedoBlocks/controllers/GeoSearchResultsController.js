@@ -323,6 +323,35 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
            }
             me.searchByQuery(me.options, true);
         }        
+        me.clickOnFacetsCheckbox = function(facetId,term){
+            // si la taxonomie est déjà présente
+            if (me.options.taxonomies[facetId]) {
+                var del=false;
+                //vérifier si la facette demandée est déjà présente
+                for (var i = 0; i < me.options.taxonomies[facetId].length; i++) {
+                    if (me.options.taxonomies[facetId][i] == term) {
+                        del=true;
+                    }
+                }
+                // si présente, alors supprimer la taxonomie
+                if (del) {
+                   me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
+                }
+                // si nouvelle facette de la même taxonomie, l'ajouter
+                else {
+                     me.options.taxonomies[facetId].push(term);
+                }
+            }
+
+            // si la taxonomie n'est pas présente
+            else {
+                //reset taxonomies : supprimer toutes les autres taxos présentes
+                me.options.taxonomies={};
+                me.options.taxonomies[facetId] = [];//créer taxonomie
+                me.options.taxonomies[facetId].push(term);// ajouter facette
+           }
+            me.searchByQuery(me.options, true);
+        }        
         
         
         me.clickOnFacets =  function(facetId,term){
