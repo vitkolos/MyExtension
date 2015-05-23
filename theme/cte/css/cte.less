@@ -95,6 +95,15 @@ input:focus{outline: 0; border-color:transparent; box-shadow:0}
 @media screen and (min-width: @min_xs){
     .no-padding{padding: 0}
 }
+::selection {
+  background: @rouge; color:white/* WebKit/Blink Browsers */
+}
+::selection {
+  background: @rouge; color:white /* Gecko Browsers */
+}
+span.glyphicon{margin: 0 5px; vertical-align: middle}
+.var-narrow .tweet{padding:12px !important}
+
 ////////////////////////////////////////////////
     ///////global variables////////////////
 ////////////////////////////////////////////////
@@ -111,21 +120,18 @@ input:focus{outline: 0; border-color:transparent; box-shadow:0}
 @rencontre:#7d77bf; //violet rencontres
 @lieux:#fbbd58; //jaune lieux communautaires
 @evenement:#f96847; //orange propositions;
+
+////////////////////////////////////////////////
+    ///////classes utiles////////////////
+////////////////////////////////////////////////
 .txt-red{color:@rouge}
 .txt-marron{color:@marron}
 .txt-beige{color:@beigeCCN}
 .txt-rencontre{color:@rencontre}
 .txt-lieux{color:@lieux}
 .txt-evenement{color:@evenement}
-::selection {
-  background: @rouge; color:white/* WebKit/Blink Browsers */
-}
-::selection {
-  background: @rouge; color:white /* Gecko Browsers */
-}
+.bg-white{background: white}
 
-span.glyphicon{margin: 0 5px; vertical-align: middle}
-.var-narrow .tweet{padding:12px !important}
 
 
 ////////////////////////////////////////////////////
@@ -477,3 +483,7 @@ header.content>div{line-height: normal;display: inline-block;text-align:center; 
 }
 .socials {font-size:30px; width: 100%;text-align: center; margin-bottom:12px}
 @media  screen and(min-width:@min_sm) {.socials{text-align:right; width:auto}}
+
+////////////////////////////////////////////////////
+    ///////////14-18///////////////////
+///////////////////////////////////////////////////
