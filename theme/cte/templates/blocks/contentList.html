@@ -18,13 +18,13 @@
                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
                     
                     <div class="media-body">
-                        <h4 class="list-item-title">
+                        <h4 class="list-item-title capital">
                                 {{content.fields.text}}
                             <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                         </h4>
-                        <div class="ratio_321">
+                        <div class="list-item-img">
                             <img class="media-object pull-left" ng-if="content.fields.image"
-                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',mode:'crop'}) }}"
+                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',mode:'boxed'}) }}"
                                                  alt="{{ content.fields.text }}"/>       
                         </div>
                                              
