@@ -24,7 +24,7 @@
                         </h4>
                         <div class="ratio_321">
                             <img class="media-object pull-left" ng-if="content.fields.image"
-                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{size:'thumbnail'}) }}"
+                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>       
                         </div>
                                              
