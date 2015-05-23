@@ -21,7 +21,9 @@
 			</h1>
 		</div>
 		<p>{{contentDetailCtrl.content.fields.position.address}}</p>
-		<button>Informations pratiques</button>		<button>S'inscrire</button>
+		<p>du {{data.itemData['fields.dateDebut'][0]* 1000 | date:'d MMM'}} au {{data.itemData['fields.dateFin'][0]* 1000 | date:'d MMM yyyy'}}</p>
+		<a href="#" class="button rouge">Informations pratiques</a>
+		<a href="#" class="button rouge">S'inscrire</a>
 
 
 	</div>
@@ -44,8 +46,14 @@
 	</div>
 </header>
 
-<div class="container">
+<div class="container-fluid">
 	
+	<div class="row bg-white" >
+		<div class="text-article">
+			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+		</div>
+		
+	</div>
 	<div class="row" >
 		<div class="text-article">
 			<h3>Informations pratiques</h3>
@@ -65,7 +73,6 @@
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
 				</div>
 			</div>
-			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
 			<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
 		</div>
 		
