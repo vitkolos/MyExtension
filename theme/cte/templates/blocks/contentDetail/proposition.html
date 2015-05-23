@@ -6,7 +6,7 @@
 		</div>
 	</div>
 </div>
-<header class="container-fluid content" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
+<header class="container-fluid content bg-white" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
 	<div class="text-article container" style="text-align: center; vertical-align: middle; padding-bottom: 0">
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
 			<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
@@ -21,7 +21,7 @@
 			</h1>
 		</div>
 		<p>{{contentDetailCtrl.content.fields.position.address}}</p>
-		<p>du {{data.itemData['fields.dateDebut'][0]* 1000 | date:'d MMM'}} au {{data.itemData['fields.dateFin'][0]* 1000 | date:'d MMM yyyy'}}</p>
+		<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p>
 		<a href="#" class="button rouge">Informations pratiques</a>
 		<a href="#" class="button rouge">S'inscrire</a>
 
