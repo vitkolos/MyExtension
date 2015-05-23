@@ -15,24 +15,25 @@
             <!--<div id="infiniteScrollCtrl">-->
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div class="media" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents">
-                    <img class="media-object pull-left" ng-if="content.fields.image && !contentListCtrl.titleOnly"
-                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{size:'thumbnail'}) }}"
-                         alt="{{ content.fields.text }}"/>
+                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
+                    
                     <div class="media-body">
-                        <h4 class="media-heading">
-                            <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
+                        <h4 class="list-item-title">
                                 {{content.fields.text}}
-                            </a>
                             <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                         </h4>
-                        <span>{{ content.createTime*1000 | date }}</span>
+                        <div class="ratio_321">
+                            <img class="media-object pull-left" ng-if="content.fields.image"
+                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{size:'thumbnail'}) }}"
+                                                 alt="{{ content.fields.text }}"/>       
+                        </div>
+                                             
                         <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
                             <rubedo-field field="{{content.type.summary}}"></rubedo-field>
                         </p>
                     </div>
-                    <a class="pull-right" ng-href="{{ content.detailPageUrl }}">
-                        {{rubedo.translate('Block.ContentList.Label.ReadMore','read more')}}
-                    </a>
+                   </a>
+
                 </div>
             </div>
         </div>
