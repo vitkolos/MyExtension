@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService){
+angular.module("rubedoBlocolumlsks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         options.detailPageId = config.singlePage;
     }
     me.titleOnly = config.showOnlyTitle;
-    me.columns = config.columns && !config.infiniteScroll ? 'col-md-'+(12/config.columns):'col-md-12';
+    me.columns = config.columns && !config.infiniteScroll ? 'col-md-'+(12/config.columns)+'col-sm-'+(6/config.columns):'col-md-12';
     me.showPaginator = config.showPager && !config.infiniteScroll;
     me.changePageAction = function(){
         options.start = me.start;

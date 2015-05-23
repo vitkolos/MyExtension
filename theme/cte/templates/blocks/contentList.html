@@ -11,9 +11,9 @@
     <div class="row">
         <div ng-attr-lr-infinite-scroll="loadMoreContents"
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
-             ng-style="contentListCtrl.blockStyle">
+             ng-style="contentListCtrl.blockStyle" ng-switch="blockConfig.columns">
             <!--<div id="infiniteScrollCtrl">-->
-            <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
+            <div ng-switch-when="3" class="col-md-4 col-sm-6 col-xs-12" ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div class="media" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents">
                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
                     
