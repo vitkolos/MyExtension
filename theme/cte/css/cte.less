@@ -282,7 +282,7 @@ blockquote {
   .summary{.ellipsis(5)}
 }
 
-@media screen and (min-width:@min_xs) and (max-width:@min_sm) {.ratio_321:before{padding-top:33.333%;}}
+@media screen and (min-width:@min_xs) and (max-width:@min_sm) {.ratio_321:before{padding-top:33.333%;} .ratio_321>img{top:-85%}}
 @media screen and (min-width:@min_sm){.ratio_321>img{width:160px}}
 ////////////////////////////////////////////////////
     ///////////CAROUSEL///////////////////
@@ -502,7 +502,7 @@ header.content>div{line-height: normal;display: inline-block;text-align:center; 
 .list-item-img:before{
   content: "";
   display: block;
-  padding-top: 33.333%; 	/* initial ratio of 3:1*/
+  padding-top: 50%; 	/* initial ratio of 2:1*/
 }
 .list-item-img>img{
   position:  absolute;
@@ -515,5 +515,5 @@ header.content>div{line-height: normal;display: inline-block;text-align:center; 
 }
 
 
-@media screen and (min-width:@min_xs) {.list-item-img:before{padding-top:50%;}}/*  ratio of 2:1*/
-@media screen and (min-width:@min_lg) {.list-item-img:before{padding-top:75%;}}/*  ratio of 1:1*/
+@media screen and (min-width:@min_xs) {.list-item-img:before{padding-top:33.333%;}.list-item-img>img{top:-85%}}/*  ratio of 3:1*/
+@media screen and (min-width:@min_lg) {.list-item-img:before{padding-top:60%;}.list-item-img>img{top:-70%}}/*  ratio of 1:1*/
