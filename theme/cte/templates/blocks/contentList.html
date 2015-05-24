@@ -49,7 +49,7 @@
                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
                     <div class="col-sm-8 col-xs-12">
                     <img class="img-responsive" ng-if="content.fields.image"
-                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'750px',height:'300px',mode:'boxed'}) }}"
+                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'750px',height:'300px',mode:'crop'}) }}"
                                                                      alt="{{ content.fields.text }}"/>                                                   
                     </div>
                     <div class="col-sm-4 col-xs-12">
