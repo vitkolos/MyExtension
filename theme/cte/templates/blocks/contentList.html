@@ -9,6 +9,7 @@
         <span class="glyphicon glyphicon-plus"></span>
     </button>
     <div class="row" ng-switch="blockConfig.columns">
+        <!--POUR 3 COLONNES-->
         <div ng-attr-lr-infinite-scroll="loadMoreContents"
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
@@ -37,6 +38,34 @@
                 </div>
             </div>
         </div>
+ 
+       <!--POUR 1 COLONNE-->
+        <div ng-attr-lr-infinite-scroll="loadMoreContents"
+             ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
+             ng-style="contentListCtrl.blockStyle" ng-switch-when="1">
+            <!--<div id="infiniteScrollCtrl">-->
+            <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
+                <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents">
+                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
+                    <div class="col-sm-8 col-xs-12">
+                    <img class="img-responsive" ng-if="content.fields.image"
+                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',mode:'boxed'}) }}"
+                                                                     alt="{{ content.fields.text }}"/>                                                   
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <h4>
+                            {{content.fields.text}}
+                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                        </h4>
+                       <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
+
+                    </div>                    
+                   </a>
+
+                </div>
+            </div>
+        </div>
+        
     </div>
 
     <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit"
