@@ -8,19 +8,6 @@ blocksConfig.facebook={
 };
 
 
-angular.module('rubedoBlocks').directive('loadModal', function () {
-    return {
-        restrict: 'A',
-        link: function(scope, $elm, attrs) {
-            $elm.bind('click', function(event) {
-                event.preventDefault();
-                /*angular.element('#myModal iframe').attr('src', src);*/
-                angular.element('#myModal').appendTo('body').modal('show');
-            });
-        }
-    }
-});
-
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
@@ -106,6 +93,9 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
         }
     }
 });
+
+
+
     angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
         var serviceInstance={};
         serviceInstance.sendMail=function(payload){
