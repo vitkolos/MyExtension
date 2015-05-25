@@ -87,6 +87,12 @@ return array(
         'MyExtension',
     ),
     
+    'controllers' => array(
+        'invokables' => array(
+            'Rubedo\\Backoffice\\Controller\\Contents' =>realpath(__DIR__) . '/../src/Backoffice/Controller/ContentsController'
+        )
+    ),
+    
         /*
       Surcharge de la vue index du front
      */

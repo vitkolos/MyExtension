@@ -6,7 +6,10 @@ blocksConfig.facebook={
            "template": "/templates/blocks/facebook.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
 };
-
+blocksConfig.buttonToPage={
+           "template": "/templates/blocks/buttonToPage.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
+};
 
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
