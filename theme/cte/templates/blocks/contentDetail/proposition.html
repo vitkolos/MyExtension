@@ -2,7 +2,11 @@
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-xs-12">
-			<a class="header_link" ng-href="{{contentDetailCtrl.callUrl}}">Retour aux actualités</a>
+<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+    <ol class="breadcrumb">
+        <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+    </ol>
+</div>
 		</div>
 	</div>
 </div>
