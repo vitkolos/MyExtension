@@ -527,6 +527,12 @@ header.content>div{line-height: normal;display: inline-block;text-align:center; 
 
 #ados .list-item-title{  background-color:@14-18;}
 .regions-list{
-  ul{  list-style-type: none;}
-  li{a{.capital} border-top:1px solid white}
+  ul{  list-style-type: none;margin:3px 0}
+  li{a{.capital} border-top:2px solid white; padding:3px 12px}
+  li:after{
+    position:absolute;
+    right:-5px;
+     content: "\f0da";
+     font-family: 'FontAwesome'
+  }
 }
