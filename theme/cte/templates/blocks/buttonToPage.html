@@ -1,0 +1,14 @@
+<div class="text-center" ng-controller="ButtonToPageController as btnToPageCtrl">
+	
+    	<div class="google-btn">
+		<a ng-href="{{btnToPageCtrl.pageLink}}">
+			<img class="img-responsive " ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {mode:'boxed'})}}"/>
+		</a>
+		<h3 >{{block.title}}</h3>
+		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
+		</div>
+		<div class="linkbox"><a ng-href="{{btnToPageCtrl.pageLink}}">{{block.title}}</a></div>
+	</div>
+    </a>
+ 
+</div>
