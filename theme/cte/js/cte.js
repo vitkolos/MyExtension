@@ -11,8 +11,8 @@ blocksConfig.buttonToPage={
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
 };
 blocksConfig.form={
-           "template": "/templates/blocks/buttonToPage.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
+           "template": "/templates/blocks/formInscription.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/formInscription.js"]
 };
 
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
