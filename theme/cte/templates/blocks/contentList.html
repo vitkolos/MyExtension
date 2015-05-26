@@ -19,9 +19,9 @@
                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
                     
                     <div class="media-body">
-                        <h4 class="list-item-title capital">
+                        <h4 class="list-item-title capital"><span style="line-height: 0.8em;">
                                 {{content.fields.text}}
-                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field></span>
                         </h4>
                         <div class="list-item-img">
                             <img class="media-object pull-left" ng-if="content.fields.image"
