@@ -10,6 +10,10 @@ blocksConfig.buttonToPage={
            "template": "/templates/blocks/buttonToPage.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
 };
+blocksConfig.form={
+           "template": "/templates/blocks/buttonToPage.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
+};
 
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
