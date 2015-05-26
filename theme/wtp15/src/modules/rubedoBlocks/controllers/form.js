@@ -272,29 +272,34 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 "Arnaud BONNASSIES" : "arnaud.bonnassies@chemin-neuf.org",
                 "Patricia PLACE" : "patricia.place@chemin-neuf.org",
                 "Paula COSTA" : "pax.loureiro@gmail.com",
-                "Mission Jeunes France" :  "jeunes.france@chemin-neuf.org",
-                "Tudual SERVEL" : "tudual.servel@gmail.com"
+                "Tudual SERVEL" : "tudual.servel@gmail.com",
+                "Mission Jeunes France 2" : "mjfr2.ccn@gmail.com",
+                "Mission Jeunes France" : "jeunes.france@gmail.com"
             };
 
             
             switch(me.lang) {
                 case("be") : payload.to["Secrétariat Belgique"]="muriel.ccn@gmail.com";break;
                 case("br") : payload.to["Secrétariat Brésil"]="anneclaire.truchot@gmail.com";break;
-                case("cz") : payload.to["Christophe JACOB"]="christophe.jakob@gmail.com"; payload.to["Bianca MAIER"]="bianca.maier@wanadoo.fr";break;
+                case("cz") : payload.to["Christophe JACOB"]="christophe.jakob@gmail.com";
+                                    payload.to["Bianca MAIER"]="bianca.maier@wanadoo.fr";
+                                    payload.to["Secrétariat"] = "sekretariat.mladezeccn@gmail.com";break;
                 /*CANADA ?*/
                 /*EGYPT*/
                 case("de") : payload.to["Gerold JAEGER"]="gerold.jaeger@chemin-neuf.de";payload.to["Annadeline BURGNARD"]="annadeline@gmail.com ";break;
                 case("hu") : payload.to["Nolwenn MASSON"]="masson.nolwenn@yahoo.fr";
-                                    payload.to["Bernadett FEKETE"]="bernadett.fekete09@gmail.com";
+                                    payload.to["Kata GYORI"]="kata.gyori@chemin-neuf.org";
                                     payload.to["Aron SISAK"]="asisak@gmail.com ";break;
                 case("it") : payload.to["Antonio ACHILLE"]="ant.achille91@gmail.com";break;
                 case("lv") : payload.to["Nils JANSONS"]="nils.jansons@gmail.com";
-                                    payload.to["Inese MOTTE"]="inesemotte@yahoo.fr";break;
+                                    payload.to["Inese MOTTE"]="inesemotte@yahoo.fr";
+                                    payload.to["Madara SINKE"]="madara.sinke@gmail.com"; break;
                 case("lb") : payload.to["Saba SAMAR"]="saba_samar@yahoo.com";break;
                 case("nl") : payload.to["Gabriel MUELLER"]="gabriel.mueller@chemin-neuf.org";break;
                 case("pl") : payload.to["Emmanuel PROIX"]="emmanuel.proix@chemin-neuf.org";
                                     payload.to["Ania SWIECKA"]=" aniaswiecka@hotmail.com";
-                                    payload.to["Secrétariat"]="violaz@wp.pl";break;
+                                    payload.to["Secrétariat"]="violaz@wp.pl";
+                                    payload.to["Secretariat Mission Jeunes"]="mlodzi@chemin-neuf.pl"; break;
                 case("ru") : payload.to["Norbert ROUSSELLE"]="norbert.rousselle@chemin-neuf.org";
                                     payload.to["Ludmila MAMPOUYA"]="ludmilabro@gmail.com";break;
                 case("sk") : payload.to["Christophe JACOB"]="christophe.jakob@gmail.com";break;
@@ -302,7 +307,8 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                                     payload.to["Vincent BREYNAERT"]="vincent.breynaert@wanadoo.fr ";break;
                 case("ch") :  payload.to["Séverine de MONTCLOS"]="sr.severine@haus-bethanien.ch";break;
                 case("gb") : payload.to["Katie BECKER"]="katie.becker@chemin-neuf.org";
-                                    payload.to["Valérie DUQUESNOY"]="valeried95@hotmail.com";break;
+                                    payload.to["Valérie DUQUESNOY"]="valeried95@hotmail.com";
+                                    payload.to["Kate MARTIN"]="katemartin_au@yahoo.com.au"; break;
             }
             
            
