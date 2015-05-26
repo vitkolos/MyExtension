@@ -300,8 +300,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 case("sk") : payload.to["Christophe JACOB"]="christophe.jakob@gmail.com";break;
                 case("es") : payload.to["Sibylle WISSERMANN"]="sibywi@yahoo.fr";
                                     payload.to["Vincent BREYNAERT"]="vincent.breynaert@wanadoo.fr ";break;
-                case("ch") : payload.to["Mirjam ROMBOUTS"]="mirjam.rombouts@chemin-neuf.de";
-                                    payload.to["Séverine de MONTCLOS"]="sr.severine@haus-bethanien.ch";break;
+                case("ch") :  payload.to["Séverine de MONTCLOS"]="sr.severine@haus-bethanien.ch";break;
                 case("gb") : payload.to["Katie BECKER"]="katie.becker@chemin-neuf.org";
                                     payload.to["Valérie DUQUESNOY"]="valeried95@hotmail.com";break;
             }
