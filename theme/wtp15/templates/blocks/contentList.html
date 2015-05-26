@@ -150,7 +150,7 @@
        <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList">
             <!--CARRES-->
             <div class="col-sm-8 sport-container" ng-class="{'not-displayed' : selectContent >= 0, 'noclick':noclick }">
-                <div ng-repeat="content in columnContents" class="square" ng-class="{'double':content.fields.couple}">
+                <div ng-repeat="content in columnContents" class="square" ng-class="{'couple':content.fields.couple}">
                     <input type="radio" name="intervenants" ng-model="$parent.selectContent" ng-attr-value="{{$index}}" id="{{'intervenants-'+$index}}" >
                     <label ng-attr-for="{{'intervenants-'+$index}}" ng-click="$parent.noclick = false">
                         <img class="media-object" ng-if="content.fields.image && !contentListCtrl.titleOnly"
