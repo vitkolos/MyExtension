@@ -227,12 +227,12 @@
          "currency"                : "€"
     },    
     "pl" : {
-        "festival":{"min":360,"max":460},
-        "volontaire":{"min":360,"max":460},
-        "prepa":{"min":490,"max":670},
-        "festival-retraite":{"min":550,"max":710},
-        "volontaire-retraite":{"min":550,"max":710},
-        "prepa-retraite":{"min":680,"max":920},
+        "festival":{"min":360,"max":510},
+        "volontaire":{"min":360,"max":510},
+        "prepa":{"min":490,"max":720},
+        "festival-retraite":{"min":550,"max":760},
+        "volontaire-retraite":{"min":550,"max":760},
+        "prepa-retraite":{"min":680,"max":970},
         "retraite":{"min":320,"max":450},
         "tente":60,
         "navette":0,
