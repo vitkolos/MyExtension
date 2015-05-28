@@ -100,7 +100,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             me.inscription.prix_logement = 0;
         }
         if (me.inscription.bus_pl) {
-           me.inscription.prix_transport = 560;
+           me.inscription.prix_transport = 460;
         }
         if (!me.inscription.bus_pl) {
            me.inscription.prix_transport = 0;
