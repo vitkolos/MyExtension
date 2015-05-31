@@ -274,7 +274,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 "Paula COSTA" : "pax.loureiro@gmail.com",
                 "Tudual SERVEL" : "tudual.servel@gmail.com",
                 "Mission Jeunes France 2" : "mjfr2.ccn@gmail.com",
-                "Mission Jeunes France" : "jeunes.france@gmail.com"
+                "Mission Jeunes France" : "inscriptions.mj@gmail.com"
             };
 
             
