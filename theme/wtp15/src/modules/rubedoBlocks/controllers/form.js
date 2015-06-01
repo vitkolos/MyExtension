@@ -70,14 +70,14 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         }
         }
         switch(me.inscription.aller){
-            case 2:me.inscription.prix_transport = 5;break;
-            case 2:me.inscription.prix_transport = 49;break;
+            case "2":me.inscription.prix_transport = 5;break;
+            case "3":me.inscription.prix_transport = 49;break;
             default:me.inscription.prix_transport =0;
         }
 
         switch (me.inscription.retour) {
-            case 2:me.inscription.prix_transport+=5;break;
-            case 3:me.inscription.prix_transport+=49;break;
+            case "2":me.inscription.prix_transport+=5;break;
+            case "3":me.inscription.prix_transport+=49;break;
             default: me.inscription.prix_transport+=0;
         }
         if (me.inscription.bus_ar) {
