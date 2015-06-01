@@ -389,7 +389,7 @@ L'équipe du Festival</p>
 		    <label for="x_bus-retraite" class="row">Je prends le bus pour rejoindre le lieu de la retraite après le Festival </label>
 		</div>
 	      <div class="col-sm-12" ng-if="formCtrl.inscription.festival && formCtrl.inscription.dates==1 && !formCtrl.inscription.retraite" style="margin-top:20px">
-		    <input type="checkbox" id="x_bus-ar" name="bus-ar" ng-model="formCtrl.inscription.bus_ar" value="Non">
+		    <input type="checkbox" id="x_bus-ar" name="bus-ar" ng-model="formCtrl.inscription.bus_ar" ng-true-value="Oui" ng-false-value="Non">
 		    <label for="x_bus-ar" class="row">Je prends le bus de Paris (aller et retour) <br/>
 		    <em>Dans ce cas, cocher "je ne sais pas" pour "trajet aller" et "trajet retour"</em></label>
 		</div>
@@ -453,7 +453,7 @@ L'équipe du Festival</p>
 		    <label class="row">Accompte (non remboursable)<span class="col-sm-4 pull-right">50€</span></label>
 		    <label class="row">Participation restante<span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_formule-50}}€</span></label>
 		    <label class="row" ng-if="formCtrl.inscription.logement==1">Logement (1 place sous tente)<span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_logement}}€</span></label>
-		    <label class="row" ng-if="formCtrl.inscription.aller>=2 || formCtrl.inscription.retour>=2">Transport<span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_transport}}€</span></label>
+		    <label class="row" ng-if="formCtrl.inscription.aller>=2 || formCtrl.inscription.retour>=2 || formCtrl.inscription.bus_ar='Oui' ">Transport<span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_transport}}€</span></label>
 		    <label class="row">TOTAL<span class="col-sm-4 pull-right">{{formCtrl.inscription.prix_total}}€</span></label>
 		    <input type="hidden" id="hid_montant_a_payer" name="montant_a_payer" value="{{formCtrl.inscription.montant_a_payer}}">
 		    <input type="hidden" id="hid_montant_total" name="montant_total" value="{{formCtrl.inscription.prix_total}}">
