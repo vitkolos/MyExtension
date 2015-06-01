@@ -77,7 +77,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             case 3:me.inscription.prix_transport+=49;break;
             default: me.inscription.prix_transport+=0;
         }
-        if (me.inscription.bus_ar=="Oui") {
+        if (me.inscription.bus_ar!="Non") {
             me.inscription.prix_transport+=80;
         }
         
