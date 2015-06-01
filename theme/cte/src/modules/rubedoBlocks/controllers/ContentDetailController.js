@@ -45,10 +45,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     me.content=response.data.content;
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     if (me.content.fields['description'] ) {
-                        $scope.rubedo.current.page.description = me.content.fields['description'].substring(0, 300).replace(/(<([^>]+)>)/ig,"")+"..."
+                        $scope.rubedo.current.page.description = me.content.fields['description'].substring(0, 300).replace(/(<([^>]+)>)/ig,"").replace(/\u00a0/g, " ")+"..."
                     }
                     else if (me.content.fields['richText']) {
-                        $scope.rubedo.current.page.description = me.content.fields['richText'].substring(0, 300).replace(/(<([^>]+)>)/ig,"")+"...";
+                        $scope.rubedo.current.page.description = me.content.fields['richText'].substring(0, 300).replace(/(<([^>]+)>)/ig,"").replace(/\u00a0/g, " ")+"...";
                     }
 
                     $scope.fieldLanguage=me.content.locale;
