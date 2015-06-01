@@ -30,6 +30,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     $scope.rubedo.current.page.title = response.data.content.text;
+                    $scope.rubedo.current.page.description = response.data.content.summary;
                     if(response.data.content.fields.image) $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
                     console.log($scope.rubedo.current.page.image);
                     var canonicUrl = angular.copy(response.data.content.canonicalUrl);
