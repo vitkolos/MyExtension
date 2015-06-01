@@ -315,53 +315,70 @@ L'équipe du Festival</p>
 	    </div>
     	    <div class="row bg-grey">
 		
-		<!--ALLER HAUTECOMBE-->
-		<div class="col-sm-6 "  ng-if="formCtrl.inscription.festival">
+		<!--ALLER HAUTECOMBE AVANT FESTIVAL-->
+		<div class="col-sm-6 "  ng-if="formCtrl.inscription.festival && formCtrl.inscription.dates!=1">
 		    <p class="titre-cap">Trajet aller</p>
-		    <input type="radio" id="aller_not" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <input type="radio" id="aller_not" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="0"  required>
 		    <label for="aller_not" class="row">Je ne sais pas encore</label>
-		    <input type="radio" id="aller_car" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="1" ng-change="formCtrl.updatePrice()">
+		    <input type="radio" id="aller_car" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="1" >
 		    <label for="aller_car" class="row">Voiture</label>
-		    <input type="radio" id="aller_train" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="2" ng-change="formCtrl.updatePrice()">
+		    <input type="radio" id="aller_train" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="2" >
 		    <label for="aller_train" class="row">Train Culoz + navette 5€</label>
 		    <label for="aller_train_heure" class="row">heure arrivée
 			<input type="text" class="complement" name="trajet-aller-2-c" ng-model="formCtrl.inscription.aller_train_heure" id="aller_train_heure">
 		    </label>
 		</div>
+		<!--ALLER HAUTECOMBE POUR FESTIVAL-->
+		<div class="col-sm-6 "  ng-if="formCtrl.inscription.festival && formCtrl.inscription.dates==1">
+		    <p class="titre-cap">Trajet aller</p>
+		    <input type="radio" id="aller_not" name="trajet-aller-bus" ng-model="formCtrl.inscription.aller" value="0"  required>
+		    <label for="aller_not" class="row">Je ne sais pas encore</label>
+		    <input type="radio" id="aller_car" name="trajet-aller-bus" ng-model="formCtrl.inscription.aller" value="1" >
+		    <label for="aller_car" class="row">Voiture</label>
+		    <input type="radio" id="aller_train" name="trajet-aller-bus" ng-model="formCtrl.inscription.aller" value="2" >
+		    <label for="aller_train" class="row">Train Culoz + navette 5€</label>
+		    <label for="aller_train_heure" class="row">heure arrivée
+			<input type="text" class="complement" name="trajet-aller-2-c" ng-model="formCtrl.inscription.aller_train_heure" id="aller_train_heure">
+		    </label>
+		    <input type="radio" id="aller_bus" name="trajet-aller-bus" ng-model="formCtrl.inscription.aller" value="3"required>
+		    <label for="retour_bus" class="row">Bus de Paris (49€)</label>
+		</div>		
 		<!--ALLER RETRAITE SANS HAUTECOMBE-->
 		<div class="col-sm-6 "  ng-if="!(formCtrl.inscription.festival)  && formCtrl.inscription.retraite">
 		    <p class="titre-cap">Trajet aller</p>
-		    <input type="radio" id="aller_not" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <input type="radio" id="aller_not" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="0" required>
 		    <label for="aller_not" class="row">Je ne sais pas encore</label>
-		    <input type="radio" id="aller_car" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="1" ng-change="formCtrl.updatePrice()">
+		    <input type="radio" id="aller_car" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="1" >
 		    <label for="aller_car" class="row">Voiture</label>
-		    <input type="radio" id="aller_train" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="2" ng-change="formCtrl.updatePrice()">
+		    <input type="radio" id="aller_train" name="trajet-aller" ng-model="formCtrl.inscription.aller" value="2" >
 		    <label for="aller_train" class="row">Train Culoz + navette 5€</label>
 		    <label for="aller_train_heure" class="row">heure arrivée
 			<input type="text" class="complement" name="trajet-aller-2-c" ng-model="formCtrl.inscription.aller_train_heure" id="aller_train_heure">
 		    </label>
 		</div>
-		<!--RETOUR SANS RETRAITE-->
+		<!--RETOUR SANS RETRAITE AVEC BUS-->
 		<div class="col-sm-6 "  ng-if="!(formCtrl.inscription.retraite)">
 		    <p class="titre-cap">Trajet retour</p>
-		    <input type="radio" id="retour_not" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <input type="radio" id="retour_not" name="trajet-retour-bus" ng-model="formCtrl.inscription.retour" value="0"  required>
 		    <label for="retour_not" class="row">Je ne sais pas encore</label>
-		    <input type="radio" id="retour_car" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="1" ng-change="formCtrl.updatePrice()">
+		    <input type="radio" id="retour_car" name="trajet-retour-bus" ng-model="formCtrl.inscription.retour" value="1" >
 		    <label for="retour_car" class="row">Voiture</label>
-		    <input type="radio" id="retour_train" name="trajet-retour" ng-model="formCtrl.inscription.retour" value="2" ng-change="formCtrl.updatePrice()">
+		    <input type="radio" id="retour_train" name="trajet-retour-bus" ng-model="formCtrl.inscription.retour" value="2">
 		    <label for="retour_train" class="row">Train Culoz + navette 5€</label>
 		    <label for="retour_train_heure" class="row">heure départ
 			<input type="text" class="complement"  name="trajet-retour-2-c" ng-model="formCtrl.inscription.retour_train_heure" id="retour_train_heure">
 		    </label>
+		    <input type="radio" id="retour_bus" name="trajet-retour-bus" ng-model="formCtrl.inscription.retour" value="3"required>
+		    <label for="retour_bus" class="row">Bus pour Paris (49€)</label>
 		</div>
 		<!--RETOUR APRES RETRAITE-->
 		<div class="col-sm-6 "  ng-if="formCtrl.inscription.retraite">
 		    <p class="titre-cap">Trajet retour</p>
-		    <input type="radio" id="retour_not" name="trajet-retour-retraite" ng-model="formCtrl.inscription.retour" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <input type="radio" id="retour_not" name="trajet-retour-retraite" ng-model="formCtrl.inscription.retour" value="0"  required>
 		    <label for="retour_not" class="row">Je ne sais pas encore</label>
-		    <input type="radio" id="retour_car" name="trajet-retour-retraite" ng-model="formCtrl.inscription.retour" value="1" ng-change="formCtrl.updatePrice()">
+		    <input type="radio" id="retour_car" name="trajet-retour-retraite" ng-model="formCtrl.inscription.retour" value="1" >
 		    <label for="retour_car" class="row">Voiture</label>
-		    <input type="radio" id="retour_train" name="trajet-retour-retraite" ng-model="formCtrl.inscription.retour" value="2" ng-change="formCtrl.updatePrice()">
+		    <input type="radio" id="retour_train" name="trajet-retour-retraite" ng-model="formCtrl.inscription.retour" value="2">
 		    <label for="retour_train" class="row">Train Bourgoin-Jallieu</label>
 		    <label for="retour_train_heure" class="row">heure départ
 			<input type="text" class="complement"  name="trajet-retour-retraite-2-c" ng-model="formCtrl.inscription.retour_train_heure" id="retour_train_heure">
@@ -371,6 +388,11 @@ L'équipe du Festival</p>
 		    <input type="checkbox" id="x_bus-retraite" name="bus-retraite" ng-model="formCtrl.inscription.bus_retraite" value="Oui">
 		    <label for="x_bus-retraite" class="row">Je prends le bus pour rejoindre le lieu de la retraite après le Festival </label>
 		</div>
+		<div class="col-sm-12" ng-if="formCtrl.inscription.festival && formCtrl.inscription.dates==1 && !formCtrl.inscription.retraite">
+		    <input type="checkbox" id="x_bus-ar" name="bus-ar" ng-model="formCtrl.inscription.bus_ar" value="Oui">
+		    <label for="x_bus-ar" class="row">Je prends le bus de Paris (aller et retour) <br/>
+		    Dans ce cas, cocher "je ne sais pas" pour "trajet aller" et "trajet retour"</label>
+		</div>
 	    </div>
 	    
 	    <div class="row">
@@ -378,9 +400,9 @@ L'équipe du Festival</p>
 	    </div>
     	    <div class="row bg-grey">
 		<div class="col-sm-12 " >
-		    <input type="radio" id="perso" name="logement" ng-model="formCtrl.inscription.logement" value="0" ng-change="formCtrl.updatePrice()" required>
+		    <input type="radio" id="perso" name="logement" ng-model="formCtrl.inscription.logement" value="0" required>
 		    <label for="perso" class="row">J'apporte une tente personnelle</label>
-		    <input type="radio" id="tent_cte" name="logement" ng-model="formCtrl.inscription.logement" value="1" ng-change="formCtrl.updatePrice()">
+		    <input type="radio" id="tent_cte" name="logement" ng-model="formCtrl.inscription.logement" value="1" ">
 		    <label for="tent_cte" class="row">Je loue une place dans une tente 2 places (15€)</label>
 		</div>
 	    </div>
@@ -396,7 +418,7 @@ L'équipe du Festival</p>
 	</div>
 	<div class="col-sm-12 col-md-6 padding-large">
 	    <input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6"  value="Revenir" ng-click="formCtrl.inscription.step=1">
-	    <input  type="button" id="btn_inscription" class=" col-xs-6 col-xxs-6"  value="Continuer" ng-click="formCtrl.inscription.step=3" ng-disabled="form.register_2.$invalid">
+	    <input  type="button" id="btn_inscription" class=" col-xs-6 col-xxs-6"  value="Continuer" ng-click="formCtrl.inscription.step=3; formCtrl.updatePrice()" ng-disabled="form.register_2.$invalid">
 	    <p ng-show="form.register_2.$invalid && form.register_2.$dirty" class="bg-danger">Tu as oublié de renseigner certains champs obligatoires...</p>
 	</div>
     </ng-form>

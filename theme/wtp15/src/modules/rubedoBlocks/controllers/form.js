@@ -66,11 +66,19 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             case ("reduit") : me.inscription.prix_formule =  $scope.tarifs[me.inscription.formule].reduit; break;
             case ("solidarite") : me.inscription.prix_formule =  $scope.tarifs[me.inscription.formule].solidarite; break;
         }
-        if (me.inscription.aller==2) {
-            me.inscription.prix_transport = 5;
+        switch(me.inscription.aller){
+            case 2:me.inscription.prix_transport = 5;break;
+            case 2:me.inscription.prix_transport = 49;break;
+            default:me.inscription.prix_transport =0;
         }
-        if (me.inscription.retour==2) {
-            me.inscription.prix_transport += 5;
+
+        switch (me.inscription.retour) {
+            case 2:me.inscription.prix_transport+=5;break;
+            case 3:me.inscription.prix_transport+=49;break;
+            default: me.inscription.prix_transport+=0;
+        }
+        if (me.inscription.bus_ar=="Oui") {
+            me.inscription.prix_transport+=80;
         }
         
         if (me.inscription.logement==1) {
