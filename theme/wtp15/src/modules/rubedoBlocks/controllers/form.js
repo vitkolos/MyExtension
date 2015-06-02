@@ -283,8 +283,6 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 "Arnaud BONNASSIES" : "arnaud.bonnassies@chemin-neuf.org",
                 "Patricia PLACE" : "patricia.place@chemin-neuf.org",
                 "Paula COSTA" : "pax.loureiro@gmail.com",
-                "Tudual SERVEL" : "tudual.servel@gmail.com",
-                "Mission Jeunes France 2" : "mjfr2.ccn@gmail.com",
                 "Mission Jeunes France" : "inscriptions.mj@gmail.com"
             };
 
