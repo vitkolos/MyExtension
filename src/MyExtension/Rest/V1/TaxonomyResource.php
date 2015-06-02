@@ -187,7 +187,7 @@ class TaxonomyResource extends AbstractResource
         }
         $page = $this->getPagesCollection()->findById($params['pageId']);
         $site = $this->getSitesCollection()->findById($params['siteId']);
-       /* foreach ($results['data'] as $key => $value) {
+        foreach ($results['data'] as $key => $value) {
             switch ($value['objectType']) {
                 case 'dam':
                     $results['data'][$key]['url'] = $this->getUrlAPIService()->mediaUrl($results['data'][$key]['id']);
@@ -208,7 +208,7 @@ class TaxonomyResource extends AbstractResource
                         $this->getUrlAPIService()->userAvatar($results['data'][$key]['id'], 100, 100, 'boxed') == ' ' ?
                             false : $this->getUrlAPIService()->userAvatar($results['data'][$key]['id'], 100, 100, 'boxed');
             }
-        }*/
+        }
         if (isset($params['displayedFacets'])) {
             $this->injectOperatorsInActiveFacets($results, $params);
         }
