@@ -135,10 +135,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                      
                     var options4 = {
                         pageId: $scope.rubedo.current.page.id,
-                        typeArray: [me.content.id]
                      };
-                     var typeArray = [me.content.id,"5517c04245205ec708869bc6"];
-                     typeArray.push(me.content.id);
+                     var typeArray = [];
+                     typeArray.push(me.content.type.id);
                      
                      TaxonomyService.getTaxonomyByContentId(options4.pageId, typeArray).then(function(response){
                          if(response.data.success){
