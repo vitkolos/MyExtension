@@ -204,7 +204,7 @@ class TaxonomyResource extends AbstractResource
         $query = $this->getElasticDataSearchService();
         $query::setIsFrontEnd(true);
         $query->init();
-
+        
         $results = $query->search($params, $this->searchOption);
 
         $this->injectDataInResults($results, $queryParams);
@@ -246,6 +246,7 @@ class TaxonomyResource extends AbstractResource
                 }
             }
         }
+        $params['fields']=["activeFacets"];
         return $params;
     }
 
