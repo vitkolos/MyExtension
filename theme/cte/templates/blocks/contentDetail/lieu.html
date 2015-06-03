@@ -41,7 +41,6 @@
 
 	</div>
 </header>
-{{contentDetailCtrl.content}}
 <div class="container">
 	
 	<div class="row" >
@@ -64,7 +63,7 @@
 				</div>
 			</div>
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
-			<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
+			<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['555a164d45205eea0a7e689b']" class="capital tags pull-right">{{contentDetailCtrl.getTermInTaxo("555a164d45205eea0a7e689b",taxonomy)}}</span>
 		</div>
 		
 	</div>
