@@ -19,7 +19,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field;
     };
-
+    me.getTermInTaxo=function(taxoKey,termId){
+        if(!me.taxo){return(null);}
+        var term=null;
+        angular.forEach(me.taxo[taxoKey].terms,function(candidate, id){
+            if(!term){if(id==termId){term=candidate;}}
+         });
+    return(term);
+    }
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
@@ -133,12 +140,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                          }
                      });
                      
-                    var options4 = {
-                        pageId: $scope.rubedo.current.page.id,
-                     };
-                     var typeArray = "['"+me.content.type.id+"']";
+/*GET CONTENT TAXONOMIES*/
+
+                     var typeArray =[];
+                     typeArray.push(me.content.type.id);
                      
-                     TaxonomyService.getTaxonomyByContentId(options4.pageId, typeArray).then(function(response){
+                     TaxonomyService.getTaxonomyByContentId(options.pageId, JSON.stringify(typeArray)).then(function(response){
                          if(response.data.success){
                             me.taxo = response.data.results;
 
