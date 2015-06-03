@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","TaxonomyService","$http","$route",function($scope, TaxonomyService,RubedoContentsService, RubedoSearchService,$http,$route){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","TaxonomyService","$http","$route",function($scope,RubedoContentsService, RubedoSearchService,TaxonomyService,$http,$route){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
