@@ -114,7 +114,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
         };
         return serviceInstance;
     }]);
-    module.factory('TaxonomyService', ['$route','$http',function($http) {
+    angular.module('rubedoDataAccess').factory('TaxonomyService', ['$route','$http',function($http) {
         var serviceInstance={};
         serviceInstance.getTaxonomyByContentId=function(pageId,contentIds){
             return ($http.get(config.baseUrl+"/api/v1/taxonomy",{
