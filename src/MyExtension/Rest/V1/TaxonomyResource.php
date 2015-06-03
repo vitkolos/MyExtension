@@ -97,7 +97,7 @@ class TaxonomyResource extends AbstractResource
         
         $taxonomyService = Manager::getService('Taxonomy');
         $taxonomies=[];
-        foreach($params['contentId'] as $paramId ) {
+        foreach($params as $paramId ) {
             $newTaxonomies=$taxonomyService->findByContentTypeID($paramId);
             foreach($newTaxonomies as $label => $newTaxonomy) {
                 $taxonomies[$newTaxonomy["id"]]=$newTaxonomy;
@@ -127,8 +127,8 @@ class TaxonomyResource extends AbstractResource
         $blockConfigArray = array('displayMode', 'displayedFacets');
 
         foreach ($queryParams as $keyQueryParams => $param) {
-            if ($keyQueryParams == 'taxonomies') {
-                $taxonomies = JSON::decode($param, Json::TYPE_ARRAY);
+            if ($keyQueryParams == 'type') {
+                $taxonomies = JSON::decode($param);
                 $params=$taxonomies;
             }
         }
