@@ -133,16 +133,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                          }
                      });
                      
-                    /* var options4 = {
+                    var options4 = {
                         pageId: $scope.rubedo.current.page.id,
                         type: me.content.typeId
                      };
-                     TaxonomyService.getTaxonomyByContentId(options4).then(function(response){
+                     TaxonomyService.getTaxonomyByContentId(pageId, options4.type).then(function(response){
                          if(response.data.success){
                             me.taxo = response.data.results;
 
                          }
-                     });*/
+                     });
                     
                     
                     
