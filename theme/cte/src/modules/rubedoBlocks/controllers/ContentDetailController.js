@@ -114,31 +114,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         me.getMedia(options2);
                     }
                     
-/*GET CONTENT TAXONOMIES*/
-                    var options3 = {
-                        pageId: $scope.rubedo.current.page.id,
-                        taxonomies: me.content.taxonomy
-                     };
-                     RubedoSearchService.searchByQuery(options3).then(function(response){
-                         if(response.data.success){
-                            var previousFacetId;
-                            angular.forEach(response.data.results.activeFacets,function(activeFacet){
-                                if(activeFacet.id != 'navigation'){
-                                    angular.forEach(activeFacet.terms,function(term){
-                                        var newTerm = {};
-                                        newTerm.term = term.term;
-                                        newTerm.label = term.label;
-                                        newTerm.facetId = activeFacet.id;
-
-                                        me.taxonomy.push(newTerm);
-                                        previousFacetId = activeFacet.id;
-                                    });
-                                }
-                            });
-
-
-                         }
-                     });
                      
 /*GET CONTENT TAXONOMIES*/
 
