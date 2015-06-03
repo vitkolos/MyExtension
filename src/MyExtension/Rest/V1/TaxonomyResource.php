@@ -58,7 +58,6 @@ class TaxonomyResource extends AbstractResource
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('siteId')
-                            ->setRequired()
                             ->setDescription('Id of the site')
                             ->setFilter('\\MongoId')
                     )
@@ -71,124 +70,18 @@ class TaxonomyResource extends AbstractResource
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setKey('orderbyDirection')
-                            ->setDescription('Sort parameter, must be \'asc\' or \'desc\'')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('orderby')
-                            ->setDescription('Orderby parameter')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
                             ->setKey('type')
                             ->setDescription('Content Type array')
                     )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('damType')
-                            ->setDescription('Dam Type array')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('objectType')
-                            ->setDescription('Object Type array')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('userType')
-                            ->setDescription('User Type array')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('author')
-                            ->setDescription('Author')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('userName')
-                            ->setDescription('Username')
-                    )
-                    ->addInputFilter(
+                     ->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('taxonomies')
-                            ->setDescription('Taxonomies Array')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('lastupdatetime')
-                            ->setDescription('Last update time')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('detailPageId')
-                            ->setDescription('Id of the linked page')
-                            ->setFilter('\\MongoId')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('query')
-                            ->setDescription('Query parameter')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('predefinedFacets')
-                            ->setDescription('Json array facets')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('displayedFacets')
-                            ->setDescription('Json array displayed facets')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('displayMode')
-                            ->setDescription('Display Mode')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('siteId')
-                            ->setDescription('Id of the site')
-                            ->setFilter('\\MongoId')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('profilePageId')
-                            ->setDescription('Id of the profile page')
-                            ->setFilter('\\MongoId')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('constrainToSite')
-                            ->setDescription('Property to constrain to the site given with siteId')
-                            ->setFilter('boolean')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('start')
-                            ->setDescription('Item\'s index number to start')
-                            ->setFilter('int')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('limit')
-                            ->setDescription('How much contents to return')
-                            ->setFilter('int')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('searchMode')
-                            ->setDescription('Search mode : default, count or aggregate')
+                            ->setDescription('Content Type array')
                     )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('results')
                             ->setDescription('List of result return by the research')
-                    )
-                    ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('count')
-                            ->setDescription('Number of results return by the research')
                     );
             });
     }
@@ -203,18 +96,25 @@ class TaxonomyResource extends AbstractResource
         $params = $this->initParams($queryParams);
         
         $taxonomyService = Manager::getService('Taxonomy');
-        $taxonomies={};
-        foreach($paramsId in $params) {
-            $taxonomies[$paramsId]=$taxonomyService->findByContentTypeID($paramsId);
+        $taxonomies=[];
+        foreach($params['contentId'] as $paramId ) {
+            $newTaxonomies=$taxonomyService->findByContentTypeID($paramId);
+            foreach($newTaxonomies as $label => $newTaxonomy) {
+                $taxonomies[$newTaxonomy["id"]]=$newTaxonomy;
+                $taxonomies[$newTaxonomy["id"]]["label"]=$label;
+            }
         }
 
         return [
             'success' => true,
-            'results' => $taxonomies,
-            'count' => $results['total']
+            'results' => $taxonomies
         ];
 
     }
+    
+    /*
+    $params = "contentId":["5517c04245205ec708869bc6"]
+    */
 
     /**
      * init params
@@ -227,11 +127,9 @@ class TaxonomyResource extends AbstractResource
         $blockConfigArray = array('displayMode', 'displayedFacets');
 
         foreach ($queryParams as $keyQueryParams => $param) {
-            if ($keyQueryParams == 'contentId') {
-                $taxonomies = JSON::decode($param);
-                foreach ($taxonomies as $taxonomy => $verbs) {
-                    $params[$taxonomy] = $verbs;
-                }
+            if ($keyQueryParams == 'taxonomies') {
+                $taxonomies = JSON::decode($param, Json::TYPE_ARRAY);
+                $params=$taxonomies;
             }
         }
         return $params;
