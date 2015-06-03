@@ -133,7 +133,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                          }
                      });
                      
-                     var options4 = {
+                    /* var options4 = {
                         pageId: $scope.rubedo.current.page.id,
                         type: me.content.typeId
                      };
@@ -142,7 +142,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.taxo = response.data.results;
 
                          }
-                     });
+                     });*/
                     
                     
                     
