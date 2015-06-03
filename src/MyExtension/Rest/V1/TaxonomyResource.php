@@ -17,6 +17,7 @@
 
 namespace RubedoAPI\Rest\V1;
 
+use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use Zend\Json\Json;
@@ -200,18 +201,15 @@ class TaxonomyResource extends AbstractResource
     public function getAction($queryParams)
     {
         $params = $this->initParams($queryParams);
-
-        $query = $this->getElasticDataSearchService();
-        $query::setIsFrontEnd(true);
-        $query->init();
         
-        $results = $query->search($params, $this->searchOption);
-
-        $this->injectDataInResults($results, $queryParams);
+        $taxonomyService = Manager::getService('Taxonomy');
+        $taxonomies={};
+        foreach($paramsId in $params)
+        $taxonomies[$paramsId]=$taxonomyService->findByContentTypeID($paramsId);
 
         return [
             'success' => true,
-            'results' => $results,
+            'results' => $taxonomies,
             'count' => $results['total']
         ];
 
@@ -226,27 +224,15 @@ class TaxonomyResource extends AbstractResource
     protected function initParams($queryParams)
     {
         $blockConfigArray = array('displayMode', 'displayedFacets');
-        $params = array(
-            'limit' => 25,
-            'start' => 0
-        );
+
         foreach ($queryParams as $keyQueryParams => $param) {
-            if ($keyQueryParams == 'constrainToSite' && $param && isset($queryParams['siteId'])) {
-                $params['navigation'][] = (string)$queryParams['siteId'];
-            } else if ($keyQueryParams == 'predefinedFacets') {
-                $this->parsePrefedinedFacets($params, $queryParams);
-            } else if (in_array($keyQueryParams, $blockConfigArray)) {
-                $params['block-config'][$keyQueryParams] = $param;
-            } else if (in_array($keyQueryParams, $this->searchParamsArray)) {
-                $params[$keyQueryParams] = $param;
-            } else if ($keyQueryParams == 'taxonomies') {
+            if ($keyQueryParams == 'contentId') {
                 $taxonomies = JSON::decode($param);
                 foreach ($taxonomies as $taxonomy => $verbs) {
                     $params[$taxonomy] = $verbs;
                 }
             }
         }
-        $params['fields']=["activeFacets"];
         return $params;
     }
 
@@ -271,91 +257,4 @@ class TaxonomyResource extends AbstractResource
         }
     }
 
-    /**
-     * Inject data in results
-     *
-     * @param $results
-     * @param $params
-     */
-    protected function injectDataInResults(&$results, $params)
-    {
-        if (isset($params['profilePageId'])) {
-            $urlOptions = array(
-                'encode' => true,
-                'reset' => true,
-            );
-            $profilePageUrl = $this->getContext()->url()->fromRoute('rewrite', array(
-                'pageId' => $params['profilePageId'],
-                'locale' => $params['lang']->getLocale(),
-            ), $urlOptions);
-        }
-        $page = $this->getPagesCollection()->findById($params['pageId']);
-        $site = $this->getSitesCollection()->findById($params['siteId']);
-        foreach ($results['data'] as $key => $value) {
-            switch ($value['objectType']) {
-                case 'dam':
-                    $results['data'][$key]['url'] = $this->getUrlAPIService()->mediaUrl($results['data'][$key]['id']);
-                    if (isset($results['data'][$key]['author'])) {
-                        $results['data'][$key]['authorUrl'] = isset($profilePageUrl) ? $profilePageUrl . '?userprofile=' . $results['data'][$key]['id'] : '';
-                    }
-                    break;
-                case 'content':
-                    $results['data'][$key]['url'] = $this->getUrlAPIService()->displayUrlApi($results['data'][$key], 'default', $site,
-                    $page, $params['lang']->getLocale(), isset($params['detailPageId']) ? (string)$params['detailPageId'] : null);
-                    if (isset($results['data'][$key]['author'])) {
-                        $results['data'][$key]['authorUrl'] = isset($profilePageUrl) ? $profilePageUrl . '?userprofile=' . $results['data'][$key]['id'] : '';
-                    }
-                    break;
-                case 'user':
-                    $results['data'][$key]['url'] = isset($profilePageUrl) ? $profilePageUrl . '?userprofile=' . $results['data'][$key]['id'] : '';
-                    $results['data'][$key]['avatar'] =
-                        $this->getUrlAPIService()->userAvatar($results['data'][$key]['id'], 100, 100, 'boxed') == ' ' ?
-                            false : $this->getUrlAPIService()->userAvatar($results['data'][$key]['id'], 100, 100, 'boxed');
-            }
-        }
-        if (isset($params['displayedFacets'])) {
-            $this->injectOperatorsInActiveFacets($results, $params);
-        }
-    }
-
-    /**
-     * inject operators in active facets
-     *
-     * @param $results
-     * @param $params
-     */
-    protected function injectOperatorsInActiveFacets(&$results, $params)
-    {
-        if ($params['displayedFacets'] == "['all']") {
-            $taxonomyService = $this->getTaxonomyCollection();
-            foreach ($results['activeFacets'] as $key => $activeFacet) {
-                if (in_array($activeFacet['id'], $this->searchParamsArray)) {
-                    $results['activeFacets'][$key]['operator'] = 'and';
-                } else {
-                    //Todo regex MongoId
-                    try {
-                        $taxonomy = $taxonomyService->findById($activeFacet['id']);
-                        $results['activeFacets'][$key]['operator'] = isset($taxonomy['facetOperator']) ? strtolower(
-                            $taxonomy['facetOperator']) : 'and';
-                    } catch (\Exception $e) {
-                        $results['activeFacets'][$key]['operator'] = 'and';
-                    }
-                }
-            }
-
-        } else {
-            $displayedFacets = Json::decode($params['displayedFacets'], Json::TYPE_ARRAY);
-            $operatorByActiveFacet = array();
-            foreach ($displayedFacets as $displayedFacet) {
-                $operatorByActiveFacet[$displayedFacet['name']] = strtolower($displayedFacet['operator']);
-            }
-            foreach ($results['activeFacets'] as $key => $activeFacet) {
-                if ($activeFacet['id'] == 'query' || !isset($operatorByActiveFacet[$activeFacet['id']])) {
-                    $results['activeFacets'][$key]['operator'] = 'and';
-                } else {
-                    $results['activeFacets'][$key]['operator'] = $operatorByActiveFacet[$activeFacet['id']];
-                }
-            }
-        }
-    }
-}
+ }
