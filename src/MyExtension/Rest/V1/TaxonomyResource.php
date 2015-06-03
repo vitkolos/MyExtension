@@ -204,8 +204,9 @@ class TaxonomyResource extends AbstractResource
         
         $taxonomyService = Manager::getService('Taxonomy');
         $taxonomies={};
-        foreach($paramsId in $params)
-        $taxonomies[$paramsId]=$taxonomyService->findByContentTypeID($paramsId);
+        foreach($paramsId in $params) {
+            $taxonomies[$paramsId]=$taxonomyService->findByContentTypeID($paramsId);
+        }
 
         return [
             'success' => true,
