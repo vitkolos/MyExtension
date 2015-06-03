@@ -31,7 +31,7 @@
                         {
                             "type": "Rubedo.view.DCEField",
                             "config": {
-                                "fieldLabel": "#ext-gen1255#",
+                                "fieldLabel": "Titre",
                                 "name": "pageTitle",
                                 "allowedCT": "richText",
                                 "addOnly": true
