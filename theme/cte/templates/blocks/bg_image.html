@@ -1,0 +1,6 @@
+<div ng-controller="ImageController as imageCtrl">
+    <a ng-if="imageCtrl.url&&blockConfig.imageFile" ng-href="{{imageCtrl.url}}">
+        <img alt="{{blockConfig.imageAlt}}" class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{mode:blockConfig.mode,height:blockConfig.imageHeight,width:blockConfig.imageWidth})}}"/>
+    </a>
+    <img ng-if="!imageCtrl.url&&blockConfig.imageFile" class="img-responsive" alt="{{blockConfig.imageAlt}}" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{mode:blockConfig.mode,height:blockConfig.imageHeight,width:blockConfig.imageWidth})}}"/>
+</div>

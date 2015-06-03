@@ -14,7 +14,10 @@ blocksConfig.form={
            "template": "/templates/blocks/formInscription.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/formInscription.js"]
 };
-
+blocksConfig.bg_image={
+           "template": "/templates/blocks/bg_image.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/ImageController.js"]
+};
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
