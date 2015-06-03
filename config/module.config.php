@@ -32,6 +32,10 @@ return array(
         'geoSearchResults' => array(
                'maxlifeTime' => 60,
                'definitionFile' => realpath(__DIR__ . "/blocks/")  . '/geoSearchResults.json'
+           ),
+        'bg_image' => array(
+               'maxlifeTime' => 60,
+               'definitionFile' => realpath(__DIR__ . "/blocks/")  . '/bg_image.json'
            )
  ),
 
