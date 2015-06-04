@@ -101,13 +101,12 @@ return array(
     ),
     
     
-        /*
-     * Surcharge des traductions
-       
-    'localisationfiles' => array(
-        100 => 'extensions/WebTales/MyExtension/rubedo-localization/languagekey/FrontOffice/Blocks/General/labels.json'
         
-    ),*/ 
+    /* Surcharge des traductions
+       */
+    'localisationfiles' => array(
+        100 =>  'module/MyExtension/localization/languagekey/Blocks/ButtonToPage.json'
+    ),
 
 
 );
