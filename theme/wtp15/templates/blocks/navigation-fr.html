@@ -15,7 +15,10 @@
            	<li class="home-button">
                     <a  ng-href="{{menuCtrl.menu.url}}">$</a>
                 </li>
-<!--		
+           	<li class="home-button">
+                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+                </li>
+		<!--		
                 <li ng-repeat="page in menuCtrl.menu.pages" class=="dropdown" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}">
                     <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
                     <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
