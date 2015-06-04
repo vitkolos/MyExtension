@@ -1,8 +1,18 @@
-<div  ng-controller="ButtonToPageController as btnToPageCtrl">
+<div  ng-controller="ButtonToPageController as btnToPageCtrl" class="text-center">
 	
-	<a ng-href="#{{blockConfig.anchor}}" class="slider-button">
+	<a ng-href="#{{blockConfig.anchor}}" class="slider-button"  ng-if="block.code =='slider' " >
 		<p>{{blockConfig.icon}}</p>
 		<h4>{{block.title}}</h4>
-    </a>
- 
+	</a>
+     	<div class="google-btn" ng-if="block.code =='btn' ">
+		<a ng-if="btnToPageCtrl.pageLink" ng-href="{{btnToPageCtrl.pageLink}}">
+			<img class="img-responsive " ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {mode:'boxed'})}}"/>
+		</a>
+
+		<h3 >{{block.title}}</h3>
+		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
+		</div>
+		<div class="linkbox"><a ng-href="{{btnToPageCtrl.pageLink}}">{{block.title}}</a></div>
+	</div>
 </div>
+
