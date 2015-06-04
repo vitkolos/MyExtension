@@ -47,15 +47,11 @@
                 window.location.href=newLoc;
             } else if (newLoc.indexOf("#") > -1){
                 event.preventDefault();
-                if (newLoc.split("#")[0]!=currentLoc.split("#")[0]) {
-                    window.location.href=newLoc;
-                  }
-                else {     
+                
                     var target=angular.element("[name='"+newLoc.split("#")[1]+"']");
                         if (target){
                                 angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
                         }
-                    }
             }
         });
         $scope.$on("$locationChangeSuccess",function(scope, newLoc,currentLoc){
