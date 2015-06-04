@@ -11,8 +11,8 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-            	<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>
-           		<li class="home-button">
+            	<!--<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>-->
+           	<li class="home-button">
                     <a  ng-href="{{menuCtrl.menu.url}}">$</a>
                 </li>
                 <li ng-repeat="page in menuCtrl.menu.pages" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}">
