@@ -441,10 +441,36 @@ a.slider-button:hover {
     padding:80px 0;
     background-color:#eaeaea;
     text-align: center;
-    h1{color:#262626; font-weight: bold; font-size: 35px}
-    p{color:#808080; margin-top:60px;padding: 0 20px}
+    h1{color:#262626; font-weight: bold; font-size: 35px;  margin-bottom:60px;}
+    p{color:#808080;padding: 0 20px; line-height: 30px}
 }
 .presentation div{max-width: 800px; margin:auto;}
+
+.google-btn{margin:80px auto;width:80%;padding-top:20px}
+.google-btn img{transition:opacity 0.3s ease-out; width:75%; margin:0 auto}
+.google-btn img:hover{opacity:0.65;  }
+.google-btn > div {
+    color:@txt_grey;
+}
+.google-btn {
+    h3, p{
+	padding:0 5px; 
+	color:@txt_grey;
+    }
+}
+.linkbox{display:block}
+.linkbox a{
+    letter-spacing: 0.2em;
+    text-align: center;
+    display: inline-block;
+    color:#898989;
+    border: 2px solid rgba(137,137,137,0.5);
+    padding:10px 15px;
+    border-radius: 3px;
+    transition:all 0.4s ease 0s;
+    text-transform: uppercase;
+}
+.linkbox a:hover{border-color: rgb(137,137,137)}
 
 /*PAGES*/
 .page{margin-top:30px}
