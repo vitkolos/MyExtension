@@ -33,37 +33,42 @@
 		    <ul class="dropdown-menu" role="menu">
 			<li><a href="/fr/accueil/festival?page=intervenants">Intervenants</a></li>
 			<li><a href="/fr/accueil/festival?page=fit-fun">Fit & Fun</a></li>
+			<li><a href="/fr/accueil/festival?page=workshops">Workshops</a></li>
+			<li><a href="/fr/accueil/festival?page=temps-forts">Temps forts</a></li>
+			<li><a href="/fr/accueil/festival?page=coeur-a-coeur">Coeur à coeur</a></li>
+			<li><a href="/fr/accueil/festival?page=ateliers">Ateliers</a></li>
+			<li><a href="/fr/accueil/festival?page=kawaco">Kawaco</a></li>
+			<li><a href="/fr/accueil/festival?page=cte">Qui sommes nous</a></li>
 		    </ul>
 		</li>
-            </ul>
-         </div>
+		<li class="dropdown" >
+		    <a href="/fr/accueil/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">En parcours</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/fr/accueil/parcours?page=studilac">Engagement</a></li>
+			<li><a href="/fr/accueil/parcours?page=manaim">Manaïm</a></li>
+			<li><a href="/fr/accueil/parcours?page=hozana">Hozana</a></li>
+			<li><a href="/fr/accueil/parcours?page=jpros">Jeunes pros</a></li>
+			<li><a href="/fr/accueil/parcours?page=groupe">Venir en groupe</a></li>
+		    </ul>
+		</li>
+		<li class="dropdown" >
+		    <a href="/fr/accueil/volontaires" >Volontaires</a>
+		</li>		
+		<li class="dropdown" >
+		    <a href="/fr/accueil/infos-pratiques" >Infos pratiques</a>
+		</li>		
+		<li class="dropdown" id="inscription">
+		    <a href="/fr/accueil/inscription" >Pré-inscription</a>
+		</li>
+		<li class="dropdown" >
+		    <a href="/fr/accueil/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">En plus</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/fr/accueil/plus?page=retraite">Retraite</a></li>
+			<li><a href="/fr/accueil/plus?page=stage">Stage Co</a></li>
+		    </ul>
+		</li>
+	    </ul>
+	</div>
     </div>
 </nav>
-<!--
-<div id='push-menu-container'>
-    <div id='push-menu-02'>
-	<div class="visible-xs">
-                <div ng-repeat="page in menuCtrl.menu.pages" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}" class="push-menu-title  page-title">
-                    <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" >{{page.text}}</a>
-                 </div>
-	    </div>
 
-
-
-	
-    <div ng-repeat="(rowIndex, row) in rubedo.current.page.rows  |limitTo : -4 |limitTo :3">
-	<input type="checkbox" ng-model="section" ng-attr-id="{{'section-'+rowIndex}}" ng-init="section=true">
-	<label class='push-menu-title' for="{{'section-'+rowIndex}}" >{{row.eTitle}}</label>
-			<div ng-repeat="row in row.columns[0].rows" ng-if="row.columns[0].blocks[0].bType=='contentDetail'" ng-class="{'displayed' : $parent.section}">
-			    <a scroll-to-anchor="#{{row.columns[0].blocks[0].code}}" >
-				<div class='push-menu-button'>
-				    <div ng-attr-id="{{'dots-'+row.columns[0].blocks[0].code}}" class="dots" ></div>
-				    <p>{{row.columns[0].blocks[0].title | title}} </p>
-				</div>
-			    </a>
-			</div>
-		    
-    </div>
-</div>
-
-</div>-->
