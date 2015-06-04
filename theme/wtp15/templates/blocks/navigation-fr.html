@@ -15,6 +15,7 @@
            	<li class="home-button">
                     <a  ng-href="{{menuCtrl.menu.url}}">$</a>
                 </li>
+<!--		
                 <li ng-repeat="page in menuCtrl.menu.pages" class=="dropdown" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}">
                     <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
                     <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
@@ -26,17 +27,16 @@
                         </li>
                     </ul>
                 </li>
+-->
+		<li class=="dropdown" >
+		    <a href="/fr/accueil/festival" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Festival</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/fr/accueil/festival?page=intervenants">Intervenants</a></li>
+			<li><a href="/fr/accueil/festival?page=fit-fun">Fit & Fun</a></li>
+		    </ul>
+		</li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <form class="navbar-form" ng-if="menuCtrl.searchEnabled" ng-submit="menuCtrl.onSubmit()" role="form">
-                    <div class="input-group">
-                        <input class="form-control" type="text" ng-model="menuCtrl.query" ng-attr-placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
-                            <span class="input-group-btn"><button class="btn btn-default" type="submit">
-                                <span class="glyphicon glyphicon-search"></span></button></span>
-                    </div>
-                </form>
-            </ul>
-        </div>
+         </div>
     </div>
 </nav>
 <!--

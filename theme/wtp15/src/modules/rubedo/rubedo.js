@@ -59,7 +59,7 @@
 // if change of page -> wait for load
                 if (currentLoc.split("?")[0] != newLoc.split("?")[0]) {
                     setTimeout(function(){
-                        var target=angular.element("[name='"+$routeParams.anchor+"']");
+                        var target=angular.element("[name='"+$routeParams.page+"']");
                         if (target){
                                 angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
                         }
@@ -69,7 +69,7 @@
 // if first page with anchor (direct access) -> wait for load
                     if ( currentLoc.split("?")[1] == newLoc.split("?")[1]) {
                         setTimeout(function(){
-                            var target=angular.element("[name='"+$routeParams.anchor+"']");
+                            var target=angular.element("[name='"+$routeParams.page+"']");
                             if (target){
                                     angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
                             }
@@ -77,7 +77,7 @@
                     }
 // if same page and different anchor -> scroll
                     else {
-                        var target=angular.element("[name='"+$routeParams.anchor+"']");
+                        var target=angular.element("[name='"+$routeParams.page+"']");
                         if (target){
                                 angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
                         }
