@@ -51,7 +51,11 @@
                     window.location.href=newLoc;
                   }
                 else {     
-                }
+                    var target=angular.element("[name='"+newLoc.split("#")[1]+"']");
+                        if (target){
+                                angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
+                        }
+                    }
             }
         });
         $scope.$on("$locationChangeSuccess",function(scope, newLoc,currentLoc){
