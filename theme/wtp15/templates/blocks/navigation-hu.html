@@ -1,0 +1,61 @@
+<div ng-controller="MenuController as menuCtrl">
+<nav class="bg-0" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul class="navbar-nav nav navbar-toggle" data-target="#bs-example-navbar-collapse-1">
+            <li id="push-button" class="home-button" ng-click="ToggleNav()" ><a>Æ</a></li>
+            <li class="home-button">
+                <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+            </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            	<!--<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>-->
+           	<li class="home-button">
+                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+                </li>
+           	
+
+		<li class="dropdown" >
+		    <a href="/hu/kezdolap/festival" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown"> A fesztivál</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/hu/kezdolap/festival?page=intervenants">Meghívott előadók</a></li>
+			<li><a href="/hu/kezdolap/festival?page=fit-fun">Fit & Fun</a></li>
+			<li><a href="/hu/kezdolap/festival?page=workshops">Workshopok</a></li>
+			<li><a href="/hu/kezdolap/festival?page=temps-forts">Közös program</a></li>
+			<li><a href="/hu/kezdolap/festival?page=coeur-a-coeur">Lélektől lélekig</a></li>
+			<li><a href="/hu/kezdolap/festival?page=ateliers">Műhelyek</a></li>
+			<li><a href="/hu/kezdolap/festival?page=kawaco">Kawaco</a></li>
+			<li><a href="/hu/kezdolap/festival?page=cte">Kik vagyunk?</a></li>
+		    </ul>
+		</li>
+		<li class="dropdown" >
+		    <a href="/hu/kezdolap/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Kurzusok</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/hu/kezdolap/parcours?page=studilac">Studi'lac</a></li>
+			<li><a href="/hu/kezdolap/parcours?page=manaim">Manaïm</a></li>
+			<li><a href="/hu/kezdolap/parcours?page=jpros">Dolgozó fiatalok</a></li>
+			<li><a href="/hu/kezdolap/parcours?page=groupe">Gyertek csoportban</a></li>
+		    </ul>
+		</li>
+
+		<li class="dropdown" >
+		    <a href="/hu/kezdolap/infok" >Hasznos infók</a>
+		</li>		
+		<li class="dropdown" id="inscription">
+		    <a href="/hu/kezdolap/registration" >A regisztrációhoz</a>
+		</li>
+		<li class="dropdown" >
+		    <a href="/hu/kezdolap/plus" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">További programok</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/hu/kezdolap/plus?page=volontaires">Önkéntesek</a></li>
+			<li><a href="/hu/kezdolap/plus?page=retraite">Lelkigyakorlat </a></li>
+			<li><a href="/hu/kezdolap/plus?page=stage">Stage co</a></li>
+		    </ul>
+		</li>
+	    </ul>
+	</div>
+    </div>
+</nav>
+

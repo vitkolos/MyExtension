@@ -1,0 +1,61 @@
+<div ng-controller="MenuController as menuCtrl">
+<nav class="bg-0" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul class="navbar-nav nav navbar-toggle" data-target="#bs-example-navbar-collapse-1">
+            <li id="push-button" class="home-button" ng-click="ToggleNav()" ><a>Æ</a></li>
+            <li class="home-button">
+                <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+            </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            	<!--<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>-->
+           	<li class="home-button">
+                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+                </li>
+           	
+
+		<li class="dropdown" >
+		    <a href="/es/inicio/festival" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown"> El festival</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/es/inicio/festival?page=intervenants">Colaboradores</a></li>
+			<li><a href="/es/inicio/festival?page=fit-fun">Fit & Fun</a></li>
+			<li><a href="/es/inicio/festival?page=workshops">Workshops</a></li>
+			<li><a href="/es/inicio/festival?page=temps-forts">Tiempos fuertes</a></li>
+			<li><a href="/es/inicio/festival?page=coeur-a-coeur">Corazón a corazón</a></li>
+			<li><a href="/es/inicio/festival?page=ateliers">Talleres</a></li>
+			<li><a href="/es/inicio/festival?page=kawaco">Kawaco</a></li>
+			<li><a href="/es/inicio/festival?page=cte">¿Quiénes somos?</a></li>
+		    </ul>
+		</li>
+		<li class="dropdown" >
+		    <a href="/es/inicio/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">De recorrido</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/es/inicio/parcours?page=studilac">Studi'lac</a></li>
+			<li><a href="/es/inicio/parcours?page=manaim">Manaïm</a></li>
+			<li><a href="/es/inicio/parcours?page=jpros">Jóvenes profesionales</a></li>
+			<li><a href="/es/inicio/parcours?page=groupe">Venir en grupo</a></li>
+		    </ul>
+		</li>
+
+		<li class="dropdown" >
+		    <a href="/es/inicio/infos-practicas" >Infos prácticas</a>
+		</li>		
+		<li class="dropdown" id="inscription">
+		    <a href="/es/inicio/registration" >Inscripción</a>
+		</li>
+		<li class="dropdown" >
+		    <a href="/es/inicio/plus" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Además</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/es/inicio/plus?page=volontaires">Voluntarios</a></li>
+			<li><a href="/es/inicio/plus?page=retraite">Retiro „Opción de vida“</a></li>
+			<li><a href="/es/inicio/plus?page=stage">Experiencia comunitaria</a></li>
+		    </ul>
+		</li>
+	    </ul>
+	</div>
+    </div>
+</nav>
+

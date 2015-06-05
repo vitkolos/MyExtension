@@ -1,0 +1,61 @@
+<div ng-controller="MenuController as menuCtrl">
+<nav class="bg-0" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul class="navbar-nav nav navbar-toggle" data-target="#bs-example-navbar-collapse-1">
+            <li id="push-button" class="home-button" ng-click="ToggleNav()" ><a>Æ</a></li>
+            <li class="home-button">
+                <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+            </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            	<!--<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>-->
+           	<li class="home-button">
+                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+                </li>
+           	
+
+		<li class="dropdown" >
+		    <a href="/it/accoglienza/festival" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown"> Il festival</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/it/accoglienza/festival?page=intervenants">Relatori</a></li>
+			<li><a href="/it/accoglienza/festival?page=fit-fun">Sport & co</a></li>
+			<li><a href="/it/accoglienza/festival?page=workshops">Conferenze</a></li>
+			<li><a href="/it/accoglienza/festival?page=temps-forts">Momenti forti</a></li>
+			<li><a href="/it/accoglienza/festival?page=coeur-a-coeur">Cuore a cuore</a></li>
+			<li><a href="/it/accoglienza/festival?page=ateliers">Laboratori</a></li>
+			<li><a href="/it/accoglienza/festival?page=kawaco">Kawaco</a></li>
+			<li><a href="/it/accoglienza/festival?page=cte">Chi siamo?</a></li>
+		    </ul>
+		</li>
+		<li class="dropdown" >
+		    <a href="/it/accoglienza/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Corsi speciali</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/it/accoglienza/parcours?page=studilac">Studi'lac</a></li>
+			<li><a href="/it/accoglienza/parcours?page=manaim">Manaïm</a></li>
+			<li><a href="/it/accoglienza/parcours?page=jpros">Giovani lavoratori</a></li>
+			<li><a href="/it/accoglienza/parcours?page=groupe">Gruppi</a></li>
+		    </ul>
+		</li>
+
+		<li class="dropdown" >
+		    <a href="/it/accoglienza/informazioni" >Informazioni</a>
+		</li>		
+		<li class="dropdown" id="inscription">
+		    <a href="/it/accoglienza/registration" >Iscriviti</a>
+		</li>
+		<li class="dropdown" >
+		    <a href="/it/accoglienza/plus" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">In più</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/it/accoglienza/plus?page=volontaires">Volontari</a></li>
+			<li><a href="/it/accoglienza/plus?page=retraite">Ritiro "Scelte di vita"</a></li>
+			<li><a href="/it/accoglienza/plus?page=stage">Stage comunitario</a></li>
+		    </ul>
+		</li>
+	    </ul>
+	</div>
+    </div>
+</nav>
+

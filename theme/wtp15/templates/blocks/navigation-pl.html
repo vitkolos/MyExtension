@@ -1,0 +1,62 @@
+<div ng-controller="MenuController as menuCtrl">
+<nav class="bg-0" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul class="navbar-nav nav navbar-toggle" data-target="#bs-example-navbar-collapse-1">
+            <li id="push-button" class="home-button" ng-click="ToggleNav()" ><a>Æ</a></li>
+            <li class="home-button">
+                <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+            </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            	<!--<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>-->
+           	<li class="home-button">
+                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+                </li>
+           	
+
+		<li class="dropdown" >
+		    <a href="/pl/home/festival" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown"> Festiwal</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/pl/home/festival?page=intervenants">Prelegenci</a></li>
+			<li><a href="/pl/home/festival?page=fit-fun">Fit & Fun</a></li>
+			<li><a href="/pl/home/festival?page=workshops">Workshops</a></li>
+			<li><a href="/pl/home/festival?page=temps-forts">Spotkania główne</a></li>
+			<li><a href="/pl/home/festival?page=coeur-a-coeur">Serce przy sercu</a></li>
+			<li><a href="/pl/home/festival?page=ateliers">Warsztaty</a></li>
+			<li><a href="/pl/home/festival?page=kawaco">Kawaco</a></li>
+			<li><a href="/pl/home/festival?page=cte">Kim jesteśmy?</a></li>
+		    </ul>
+		</li>
+		<li class="dropdown" >
+		    <a href="/pl/home/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Kursy</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/pl/home/parcours?page=studilac">Formuła Studi'lac</a></li>
+			<li><a href="/pl/home/parcours?page=manaim">Obóz Manaïm</a></li>
+			<li><a href="/pl/home/parcours?page=hozana">Hozana</a></li>
+			<li><a href="/pl/home/parcours?page=jpros">Młodzi pracujący</a></li>
+			<li><a href="/pl/home/parcours?page=groupe">Przyjedź z grupą</a></li>
+		    </ul>
+		</li>
+
+		<li class="dropdown" >
+		    <a href="/pl/home/informacje" >Informacje prakticzne</a>
+		</li>		
+		<li class="dropdown" id="inscription">
+		    <a href="/pl/home/registration" >Rejestracji</a>
+		</li>
+		<li class="dropdown" >
+		    <a href="/pl/home/plus" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Dodatkowo</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/pl/home/plus?page=volontaires">Wolontariusze</a></li>
+			<li><a href="/pl/home/plus?page=retraite">Rekolekcje "Wybory w moim życiu"</a></li>
+			<li><a href="/pl/home/plus?page=stage">Staż wspólnotowy</a></li>
+		    </ul>
+		</li>
+	    </ul>
+	</div>
+    </div>
+</nav>
+
