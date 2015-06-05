@@ -1,0 +1,62 @@
+<div ng-controller="MenuController as menuCtrl">
+<nav class="bg-0" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul class="navbar-nav nav navbar-toggle" data-target="#bs-example-navbar-collapse-1">
+            <li id="push-button" class="home-button" ng-click="ToggleNav()" ><a>Æ</a></li>
+            <li class="home-button">
+                <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+            </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            	<!--<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>-->
+           	<li class="home-button">
+                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+                </li>
+           	
+
+		<li class="dropdown" >
+		    <a href="/de/startseite/festival" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown"> Das festival</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/de/startseite/festival?page=intervenants">Gastredner</a></li>
+			<li><a href="/de/startseite/festival?page=fit-fun">Fit & Fun</a></li>
+			<li><a href="/de/startseite/festival?page=workshops">Workshops</a></li>
+			<li><a href="/de/startseite/festival?page=temps-forts">Höhepunkte</a></li>
+			<li><a href="/de/startseite/festival?page=coeur-a-coeur">Von Herz zu Herz</a></li>
+			<li><a href="/de/startseite/festival?page=ateliers">Kreativ workshops</a></li>
+			<li><a href="/de/startseite/festival?page=kawaco">Kawaco</a></li>
+			<li><a href="/de/startseite/festival?page=cte">Wer sind wir?</a></li>
+		    </ul>
+		</li>
+		<li class="dropdown" >
+		    <a href="/de/startseite/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Im Kurs</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/de/startseite/parcours?page=studilac">Study'lake</a></li>
+			<li><a href="/de/startseite/parcours?page=manaim">Manaïm</a></li>
+			<li><a href="/de/startseite/parcours?page=hozana">Hozana</a></li>
+			<li><a href="/de/startseite/parcours?page=jpros">Junge Berufstätige</a></li>
+			<li><a href="/de/startseite/parcours?page=groupe">Als Gruppe kommen</a></li>
+		    </ul>
+		</li>
+
+		<li class="dropdown" >
+		    <a href="/de/startseite/informationen" >Allgemeine Informationen</a>
+		</li>		
+		<li class="dropdown" id="inscription">
+		    <a href="/de/startseite/registration" >Anmeldung</a>
+		</li>
+		<li class="dropdown" >
+		    <a href="/de/startseite/plus" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Ausserdem</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/de/startseite/plus?page=volontaires">Freiwillige</a></li>
+			<li><a href="/de/startseite/plus?page=retraite">Exertizien "Wähle das Leben"</a></li>
+			<li><a href="/de/startseite/plus?page=stage">Praktikum bei der Gemeinschaft</a></li>
+		    </ul>
+		</li>
+	    </ul>
+	</div>
+    </div>
+</nav>
+
