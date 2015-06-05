@@ -1,0 +1,62 @@
+<div ng-controller="MenuController as menuCtrl">
+<nav class="bg-0" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul class="navbar-nav nav navbar-toggle" data-target="#bs-example-navbar-collapse-1">
+            <li id="push-button" class="home-button" ng-click="ToggleNav()" ><a>Æ</a></li>
+            <li class="home-button">
+                <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+            </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            	<!--<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>-->
+           	<li class="home-button">
+                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+                </li>
+           	
+
+		<li class="dropdown" >
+		    <a href="/ru/home/festival" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">ФЕСТИВАЛЬ</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/ru/home/festival?page=intervenants">ПРИГЛАШЕННЫЕ СПИКЕРЫ</a></li>
+			<li><a href="/ru/home/festival?page=fit-fun">FIT & FUN</a></li>
+			<li><a href="/ru/home/festival?page=workshops">СЕМИНАРЫ</a></li>
+			<li><a href="/ru/home/festival?page=temps-forts">КЛЮЧЕВЫЕ МОМЕНТЫ</a></li>
+			<li><a href="/ru/home/festival?page=coeur-a-coeur">СЕРДЦЕ К СЕРДЦУ</a></li>
+			<li><a href="/ru/home/festival?page=ateliers">МАСТЕР-КЛАССЫ</a></li>
+			<li><a href="/ru/home/festival?page=kawaco">KAWACO</a></li>
+			<li><a href="/ru/home/festival?page=cte">Who are we ?</a></li>
+		    </ul>
+		</li>
+		<li class="dropdown" >
+		    <a href="/ru/home/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">ОСОБЫЕ НАПРАВЛЕНИЯ</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/ru/home/parcours?page=studilac">STUDI'LAC</a></li>
+			<li><a href="/ru/home/parcours?page=manaim">МАНАИМ</a></li>
+			<!--<li><a href="/ru/home/parcours?page=hozana">Hozana</a></li>-->
+			<li><a href="/ru/home/parcours?page=jpros">МОЛОДЫЕ СПЕЦИАЛИСТЫ</a></li>
+			<li><a href="/ru/home/parcours?page=groupe">ПРИЕЗЖАЙ ГРУППОЙ</a></li>
+		    </ul>
+		</li>
+
+		<li class="dropdown" >
+		    <a href="/ru/home/infos-pratiques" >ОБЩАЯ ИНФОРМАЦИЯ</a>
+		</li>		
+		<li class="dropdown" id="inscription">
+		    <a href="/ru/home/inscription" >АНКЕТА</a>
+		</li>
+		<li class="dropdown" >
+		    <a href="/ru/home/plus" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">А ТАКЖЕ</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/ru/home/plus?page=volontaires">ВОЛОНТЕРСТВО</a></li>
+			<li><a href="/ru/home/plus?page=retraite">РЕТРИТ ЖИЗНЕННЫЙ ВЫБОР</a></li>
+			<li><a href="/ru/home/plus?page=stage">ОПЫТ ОБЩИННОЙ ЖИЗНИ</a></li>
+		    </ul>
+		</li>
+	    </ul>
+	</div>
+    </div>
+</nav>
+

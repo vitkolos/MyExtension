@@ -1,0 +1,60 @@
+<div ng-controller="MenuController as menuCtrl">
+<nav class="bg-0" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <ul class="navbar-nav nav navbar-toggle" data-target="#bs-example-navbar-collapse-1">
+            <li id="push-button" class="home-button" ng-click="ToggleNav()" ><a>Æ</a></li>
+            <li class="home-button">
+                <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+            </li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+            	<!--<li id="push-button" class="home-button" ng-click="ToggleNav()"><a>Æ</a></li>-->
+           	<li class="home-button">
+                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
+                </li>
+           	
+
+		<li class="dropdown" >
+		    <a href="/cs/uvod/festival" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Festival</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/cs/uvod/festival?page=intervenants">Hosté</a></li>
+			<li><a href="/cs/uvod/festival?page=fit-fun">Fit & Fun</a></li>
+			<li><a href="/cs/uvod/festival?page=workshops">Workshopy</a></li>
+			<li><a href="/cs/uvod/festival?page=temps-forts">Klíčové momenty</a></li>
+			<li><a href="/cs/uvod/festival?page=coeur-a-coeur">Od srdce k srdci</a></li>
+			<li><a href="/cs/uvod/festival?page=ateliers">Ateliéry</a></li>
+			<li><a href="/cs/uvod/festival?page=kawaco">Kawaco</a></li>
+			<li><a href="/cs/uvod/festival?page=cte">Kdo jsme?</a></li>
+		    </ul>
+		</li>
+		<li class="dropdown" >
+		    <a href="/cs/uvod/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Nebo také</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/cs/uvod/parcours?page=studilac">Study'lake</a></li>
+			<li><a href="/cs/uvod/parcours?page=manaim">Manaïm</a></li>
+			<li><a href="/cs/uvod/parcours?page=groupe">Přijeď ve skupině</a></li>
+		    </ul>
+		</li>
+
+		<li class="dropdown" >
+		    <a href="/cs/uvod/praktike-info" >Praktické info</a>
+		</li>		
+		<li class="dropdown" id="inscription">
+		    <a href="/cs/uvod/registration" >Registrace</a>
+		</li>
+		<li class="dropdown" >
+		    <a href="/cs/uvod/plus" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">A navíc</a>
+		    <ul class="dropdown-menu" role="menu">
+			<li><a href="/cs/uvod/plus?page=volontaires">Dobrovolníci</a></li>
+			<li><a href="/cs/uvod/plus?page=retraite">Duchovní cvičení "Životní volba" </a></li>
+			<li><a href="/cs/uvod/plus?page=stage">Komunitní Stáž </a></li>
+		    </ul>
+		</li>
+	    </ul>
+	</div>
+    </div>
+</nav>
+
