@@ -15,22 +15,8 @@
            	<li class="home-button">
                     <a  ng-href="{{menuCtrl.menu.url}}">$</a>
                 </li>
-           	<li class="home-button">
-                    <a  ng-href="{{menuCtrl.menu.url}}">$</a>
-                </li>
-		<!--		
-                <li ng-repeat="page in menuCtrl.menu.pages" class=="dropdown" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}">
-                    <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
-                    <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
-                    <ul ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-menu" role="menu">
-                        <li ng-class="{active:rubedo.current.page.id==page.id}"><a ng-href="{{page.url}}">{{page.text}}</a></li>
-                        <li class="divider"></li>
-                        <li ng-repeat="subpage in page.pages" ng-class="{active:menuCtrl.currentRouteleine.indexOf(subpage.url) > -1}">
-                            <a ng-href="{{subpage.url}}">{{subpage.text}}</a>
-                        </li>
-                    </ul>
-                </li>
--->
+           	
+
 		<li class="dropdown" >
 		    <a href="/fr/accueil/festival" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">Festival</a>
 		    <ul class="dropdown-menu" role="menu">
@@ -64,7 +50,7 @@
 		    <a href="/fr/accueil/inscription" >Pré-inscription</a>
 		</li>
 		<li class="dropdown" >
-		    <a href="/fr/accueil/parcours" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">En plus</a>
+		    <a href="/fr/accueil/plus" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown">En plus</a>
 		    <ul class="dropdown-menu" role="menu">
 			<li><a href="/fr/accueil/plus?page=retraite">Retraite</a></li>
 			<li><a href="/fr/accueil/plus?page=stage">Stage Co</a></li>
