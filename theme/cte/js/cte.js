@@ -18,6 +18,9 @@ blocksConfig.bg_image={
            "template": "/templates/blocks/bg_image.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
 };
+blocksConfig.footer={
+           "template": "/templates/blocks/footer.html"
+};
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
