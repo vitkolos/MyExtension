@@ -1,8 +1,8 @@
 <nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  ng-class="{'displayed':menu}">
    <div class="container-fluid footer menu">
-        <div class="container">
-                <div class="row text-center">
-                    <a href="http://www.chemin-neuf.fr" style="font-size:16px"><b>Communauté du Chemin Neuf</b></a>
+        <div class="container" style="padding-bottom: 0">
+                <div class="row ">
+                    <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:0"><b>Communauté du Chemin Neuf</b></a>
                 </div>
         </div>
         <div class="container" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })">
