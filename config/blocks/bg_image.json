@@ -50,7 +50,7 @@
                             "config": {
                                 "fieldLabel": "Custom template",
                                 "name": "customTemplate",
-                                "defaultTemplateUrl": "blocks/image.html",
+                                "defaultTemplateUrl": "blocks/bg_image.html",
                                 "twigMode": false
 
                             }
