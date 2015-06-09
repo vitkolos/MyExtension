@@ -93,7 +93,10 @@ dot = '';
 
 
 $(window).bind("scroll", function(){
-    if ($('#infos').length)  {
+    if ($('#cte').length)  {
+        $("nav").attr("class","cte");
+    }   
+    else if ($('#infos').length)  {
         $("nav").attr("class"," infos");
     }
     else if ($('#inscriptions').length)  {
@@ -111,11 +114,23 @@ $(window).bind("scroll", function(){
         $(dot_kill).removeClass('dots-active');
         $("nav").attr("class","retraite");
     }                
-    else if ($('#volontaires').length && $(window).scrollTop() > $('#volontaires').offset().top - 20)  {
+    else if ( $('#alpha').length && $(window).scrollTop() > $('#alpha').offset().top - 20)  {
     	dot_kill= dot;
-        dot= $('#dots-volontaires');
+        dot= $('#dots-alpha');
         $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","volontaires");
+        $("nav").attr("class","alpha");
+    }            
+    else if ($('#hozana').length && $(window).scrollTop() > $('#hozana').offset().top - 20)  {
+    	dot_kill= dot;
+        dot= $('#dots-manaim');
+        $(dot_kill).removeClass('dots-active');
+        $("nav").attr("class","manaim");
+    }  
+    else if ($('#studilac').length && $(window).scrollTop() > $('#studilac').offset().top - 20)  {
+    	dot_kill= dot;
+        dot= $('#dots-studilac');
+        $(dot_kill).removeClass('dots-active');
+        $("nav").attr("class","studilac");
     }  
     else if ($('#groupe').length && $(window).scrollTop() > $('#groupe').offset().top - 20)  {
     	dot_kill= dot;
@@ -128,31 +143,13 @@ $(window).bind("scroll", function(){
         dot= $('#dots-jpros');
         $(dot_kill).removeClass('dots-active');
         $("nav").attr("class","jpros");
-    }
-    else if ( $('#hozana').length && $(window).scrollTop() > $('#hozana').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-hozana');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","hozana");
-    }            
-    else if ($('#manaim').length && $(window).scrollTop() > $('#manaim').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-manaim');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","manaim");
     }  
-    else if ($('#studilac').length && $(window).scrollTop() > $('#studilac').offset().top - 20)  {
+    else if ($('#volontaires').length && $(window).scrollTop() > $('#volontaires').offset().top - 20)  {
     	dot_kill= dot;
-        dot= $('#dots-studilac');
+        dot= $('#dots-volontaires');
         $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","studilac");
+        $("nav").attr("class","volontaires");
     }  
-    else if ($('#cte').length && $(window).scrollTop() > $('#cte').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-cte');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","cte");
-    }
     else if ($('#kawaco').length && $(window).scrollTop() > $('#kawaco').offset().top - 20)  {
     	dot_kill= dot;
         dot= $('#dots-kawaco');
