@@ -334,25 +334,24 @@ blockquote {
 
 
 
-@media screen and (max-width:@min_sm){
-  .ratio_21{position:relative; width:100%; overflow:hidden; }
-  .ratio_21:before{
-    content: "";
-    display: block;
-    padding-top: 50%; 	/* initial ratio of 3:1*/
-  }
-  .ratio_21>img{
-    position:  absolute;
-    top: -50%;
-    left: 0;
-    bottom: -50%;
-    right: 0;
-    width:100%;
-    padding-right: 0;
-  }
+.ratio_21{position:relative; width:100%; overflow:hidden; }
+.ratio_21:before{
+  content: "";
+  display: block;
+  padding-top: 50%; 	/* initial ratio of 3:1*/
+}
+.ratio_21>img{
+  position:  absolute;
+  top: -50%;
+  left: 0;
+  bottom: -50%;
+  right: 0;
+  width:100%;
+  padding-right: 0;
 }
 
-@media screen and (min-width:@min_xs)  {.ratio_21:before{padding-top:200%;} .ratio_21>img{top:-85%}}
+
+@media screen and (min-width:@min_sm)  {.ratio_21:before{padding-top:200%;} .ratio_21>img{top:-85%}}
 
 
 ////////////////////////////////////////////////////
