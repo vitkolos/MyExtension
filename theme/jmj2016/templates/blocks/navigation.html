@@ -13,7 +13,7 @@
                     <a  ng-href="{{menuCtrl.menu.url}}">$</a>
                 </li>
 
-		<li ng-repeat="page in menuCtrl.pagesBlocks" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.blocks.length>1}">
+		<li ng-repeat="page in menuCtrl.pagesBlocks" class="lvl-1" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.blocks.length>1}">
                     <a ng-if="page.blocks.length<=1" ng-href="{{page.url}}">{{page.title}}</a>
                     <a ng-if="page.blocks.length>1" ng-href="{{page.url}}" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.title}}</a>
                     <ul ng-if="page.blocks.length>1" class="dropdown-menu-jmj hidden-xs" role="menu">
