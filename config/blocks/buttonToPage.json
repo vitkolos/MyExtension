@@ -79,9 +79,24 @@
 					]
 				},
 			],
-			"avance": [
+			"avance":[
+               {
+                    "categorie": "Template",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "Custom template",
+                                "name": "customTemplate",
+                                "defaultTemplateUrl": "",
+                                "twigMode": false
 
-			 ]
+                            }
+                        }
+                    ]
+                }
+			
+			]
 		},
 		"configBloc":[
 
