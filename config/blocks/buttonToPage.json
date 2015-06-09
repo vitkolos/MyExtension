@@ -58,6 +58,18 @@
 							"allowedCT": "simpleText",
 							"addOnly": true
 						    }
+						},
+						{
+						    "type": "Ext.form.field.Number",
+						    "config": {
+							"fieldLabel": "#ext-gen1114#",
+							"name": "columns",
+							"allowBlank": false,
+							"editable": false,
+							"allowDecimals": false,
+							"minValue": 1,
+							"maxValue": 4
+						    }
 						}
 					]
 				}
@@ -66,9 +78,9 @@
 			
 			]
 		},
-		"configBloc":[
-
-		]
+		"configBloc":{
+				"columns": 1
+		}
 	},
 	"category":"#ext-gen1068#",
 	"bType":"buttonToPage",
