@@ -206,6 +206,7 @@ nav{min-height:0;}
     height: 100%;
     height: 100vh;
 }
+@media screen and (max-width: 768px) {.festival, .cracovie, .homepage{height:50vh}}
 .festival {
     background-image: url( '../img/festival.jpg');
     margin-bottom:4px;
@@ -258,7 +259,7 @@ nav{min-height:0;}
     background:#eaeaea;
     color: white;
     text-align:center;
-    p,h1{width: 800px; margin:0 auto;line-height:1.75em;}
+    p,h1{max-width: 800px; margin:0 auto;line-height:1.75em;}
     p{color:#89896F}
     h1{color:#464646; margin-bottom:20px; font-weight: bold}
     font-size: 1.25em;
@@ -266,7 +267,7 @@ nav{min-height:0;}
     padding-bottom: 30px;
 }
 @media screen and (max-width: @tablet) {
-    .accueil_vision p, .accueil_viion h1{width:90%; margin-left:5%}
+    .accueil_vision p, .accueil_vision h1{width:90%; margin-left:5%}
 }
  
 
@@ -408,10 +409,10 @@ h1.titre-section {
 .tab_tiroir.displayed{padding-bottom: 15px}
 .tab_tiroir.displayed .block-detail{max-height:300px}
 @media screen and (max-width: 768px) {
-    .section-header-title h1{font-size:1em; white-space: normal;display: inline-block}
+    .section-header-title h1{font-size:0.8em; white-space: normal;display: inline-block}
     .section-header-txt, .txt_pape{font-size:1.1em;width:90%;margin-left:5%;right:0;left:0}
     .section-header-txt.left{left:0}
-    .titre_tiroir h1{font-size:2.75em}
+    .titre_tiroir h1{font-size:2em}
     .tiroir{font-size:1em;}
 }
 
