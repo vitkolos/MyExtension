@@ -8,12 +8,12 @@
 		"champsConfig":{
 			"simple":[
 				{
-					"categorie":"#ext-gen1068#",
+					"categorie":"#ext-gen1073#",
 					"champs":[
 						{
 							"type":"Ext.ux.TreePicker",
 							"config":{
-								"fieldLabel":"#ext-gen1073#",
+								"fieldLabel":"#ext-gen1223#",
 								"name":"linkedPage"
 							}
 						},
@@ -25,6 +25,19 @@
 							 "value": ""
 							}
 						},
+						{
+						    "type": "Ext.form.field.Text",
+						    "config": {
+							"fieldLabel": "#ext-gen1225#",
+							"name": "externalURL",
+							"vtype": "url"
+						    }
+						}
+					]
+				},
+				{
+				    "categorie": "#ext-gen1072#",
+				    "champs": [
 						{
 							"type":"Rubedo.view.ImagePickerField",
 							"config":{
@@ -50,11 +63,38 @@
 							"allowedCT": "simpleText",
 							"addOnly": true
 						    }
+						},
+						{
+						    "type": "Ext.form.field.Number",
+						    "config": {
+							"fieldLabel": "#ext-gen1114#",
+							"name": "columns",
+							"allowBlank": false,
+							"editable": false,
+							"allowDecimals": false,
+							"minValue": 1,
+							"maxValue": 4
+						    }
 						}
 					]
-				}
+				},
 			],
 			"avance":[
+               {
+                    "categorie": "Template",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "Custom template",
+                                "name": "customTemplate",
+                                "defaultTemplateUrl": "",
+                                "twigMode": false
+
+                            }
+                        }
+                    ]
+                }
 			
 			]
 		},
