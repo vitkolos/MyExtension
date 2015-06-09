@@ -14,7 +14,7 @@
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
             <!--<div id="infiniteScrollCtrl">-->
-            <div class="col-md-4 col-sm-6 col-xs-12" ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
+            <div class="col-md-4 col-xs-6 col-xxs-12" ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div class="media" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents">
                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
                     
