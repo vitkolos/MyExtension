@@ -212,7 +212,6 @@ li.lvl-1{min-width:50%; text-align: center}
     height: 100%;
     height: 100vh;
 }
-@media screen and (max-width: 768px) {.festival, .cracovie, .homepage{height:50vh}}
 .festival {
     background-image: url( '../img/festival.jpg');
     margin-bottom:4px;
@@ -235,6 +234,15 @@ li.lvl-1{min-width:50%; text-align: center}
     p:nth-of-type(2){text-transform: uppercase; font-size:60px; font-weight:bold;}
     p:nth-of-type(3), p:nth-of-type(4){font-size:25px; }
 }
+@media screen and (max-width: 768px) {
+    .festival, .cracovie, .homepage{height:50vh}
+    .homepage_txt {
+	p:first-of-type{text-transform: uppercase; font-size:25px}
+	p:nth-of-type(2){text-transform: uppercase; font-size:40px; font-weight:bold;}
+	p:nth-of-type(3), p:nth-of-type(4){font-size:20px; }
+    }
+}
+
 .pape_container>div{height: 500px; overflow-x: hidden; background: black;
 			.img-responsive{height:500px; max-width: none; width: auto}}
 .txt_pape{
