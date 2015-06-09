@@ -18,6 +18,14 @@
 							}
 						},
 						{
+						    "type": "Ext.form.field.Text",
+						    "config": {
+							"fieldLabel": "#ext-gen1225#",
+							"name": "externalURL",
+							"vtype": "url"
+						    }
+						},
+						{
 						    "type":"Ext.form.field.Text",
 						    "config":{
 							"fieldLabel":"Ancre",
@@ -45,7 +53,7 @@
 						{
 						    "type": "Rubedo.view.DCEField",
 						    "config": {
-							"fieldLabel": "Texte",
+							"fieldLabel": "#ext-gen1124#",
 							"name": "text",
 							"allowedCT": "simpleText",
 							"addOnly": true
