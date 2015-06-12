@@ -1,10 +1,14 @@
 <div  ng-controller="ButtonToPageController as btnToPageCtrl" class="text-center">
 	
-	<a ng-href="#{{blockConfig.anchor}}" class="slider-button"  ng-if="block.code =='slider' " >
+	<a ng-href="#{{blockConfig.anchor}}" class="slider-button"  ng-if="block.code =='slider' & blockConfig.anchor" >
 		<p>{{blockConfig.icon}}</p>
 		<h4>{{block.title}}</h4>
 	</a>
-     	<div class="google-btn" ng-if="block.code =='btn' ">
+	<a ng-href="{{btnToPageCtrl.pageLink}}" class="slider-button"  ng-if="block.code =='slider' & blockConfig.linkedPage" >
+		<p>{{blockConfig.icon}}</p>
+		<h4>{{block.title}}</h4>
+	</a>
+	<div class="google-btn" ng-if="block.code =='btn' ">
 		<a ng-if="btnToPageCtrl.pageLink" ng-href="{{btnToPageCtrl.pageLink}}">
 			<img class="img-responsive " ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {mode:'boxed'})}}"/>
 		</a>
