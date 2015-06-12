@@ -1,10 +1,10 @@
 <div  ng-controller="ButtonToPageController as btnToPageCtrl" class="text-center">
 	
-	<a ng-href="#{{blockConfig.anchor}}" class="slider-button"  ng-if="block.code =='slider' & blockConfig.anchor" >
+	<a ng-href="#{{blockConfig.anchor}}" class="slider-button"  ng-if="block.code =='slider' && blockConfig.anchor" >
 		<p>{{blockConfig.icon}}</p>
 		<h4>{{block.title}}</h4>
 	</a>
-	<a ng-href="{{btnToPageCtrl.pageLink}}" class="slider-button"  ng-if="block.code =='slider' & blockConfig.linkedPage" >
+	<a ng-href="{{btnToPageCtrl.pageLink}}" class="slider-button"  ng-if="block.code =='slider' && blockConfig.linkedPage" >
 		<p>{{blockConfig.icon}}</p>
 		<h4>{{block.title}}</h4>
 	</a>
