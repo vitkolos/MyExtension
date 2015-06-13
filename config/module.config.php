@@ -96,7 +96,8 @@ return array(
      */
     'view_manager' => array(
         'template_map' => array(
-          'rubedo/index/index' => realpath(__DIR__) . '/../views/index/index.phtml'
+            'error/404' =>  realpath(__DIR__) . '/../view/error/404.phtml',
+            'rubedo/index/index' => realpath(__DIR__) . '/../views/index/index.phtml'
         ),
     ),
     
