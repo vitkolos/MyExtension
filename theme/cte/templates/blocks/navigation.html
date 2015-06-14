@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  ng-class="{'displayed':menu}">
+<nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  ng-class="{'displayed':menu}" ng-if="!block.code || block.code=='' ">
    <div class="container-fluid footer menu">
         <div class="container" style="padding-bottom: 0">
                 <div class="row text-center">
@@ -38,3 +38,24 @@
         </div>
     </div>
  </nav>
+
+<nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  ng-class="{'displayed':menu}" ng-if="block.code=='menu' ">
+    <div class="container-fluid" ng-init="search=false;menu=false">
+            <ul class="nav navbar-nav navbar-right">
+                <li ng-click="search=!search" class="cursor-as-pointer">
+                    <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
+                </li>
+                <li ng-click="menu=!menu" class="cursor-as-pointer" >
+                    menu
+                </li>
+                <li>
+                    <span style="line-height:1em"><a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">Faire un don</a></span>
+                </li>
+
+            </ul>
+    </div>
+    <div class="container-fluid footer menu" style="">
+         <div class="container" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })">
+         </div>       
+    </div>
+</nav>
