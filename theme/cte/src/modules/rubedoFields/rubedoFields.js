@@ -187,6 +187,7 @@
         var editorOptions={
             toolbar:  myTBConfig,
             allowedContent:true,
+            extraAllowedContent:'iframe',
             language:$scope.fieldLanguage,
             entities:false,
             entities_latin:false,
