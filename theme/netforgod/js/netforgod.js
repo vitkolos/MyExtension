@@ -55,7 +55,8 @@ angular.module('rubedoBlocks').filter('homepage', function() {
                 return '<div id="' + playerId + '"></div>';
             };
            var options = {
-                      file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",
+                      file:"http://www.netforgod.tv/s/dlHD.php?l=FR&y=15&m=6",/*
+                      file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",*/
                       image: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/affiche.jpg",
                       width:"100%",
                       aspectratio:"16:9"};
