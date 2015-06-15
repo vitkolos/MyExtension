@@ -48,11 +48,8 @@
 
             }
             else if (newLoc.indexOf("#.") > -1) {
-                console.log(newLoc.indexOf("#."));
             }
             else if (newLoc.indexOf("#") > -1){
-                                console.log(newLoc.indexOf("#"));
-
                 event.preventDefault();
                 var target=angular.element("[name='"+newLoc.split("#")[1]+"']");
                 if (target){
