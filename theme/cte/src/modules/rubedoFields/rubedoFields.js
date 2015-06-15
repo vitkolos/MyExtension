@@ -220,7 +220,7 @@
                     }
                     me.html=jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"],["target"]],
-                        allowedTags: ['iframe','p','div','img','h2','h3','h4','h5','h6'],
+                        allowedTags: ['iframe','p','div','a','span','img','h1','h2','h3','h4','h5','h6'],
                         format: true
                     });
 
@@ -230,7 +230,7 @@
                     }
                     me.html=$sce.trustAsHtml(jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"]],
-                        allowedTags: ['iframe','p','div','img','h2','h3','h4','h5','h6'],
+                        allowedTags: ['iframe','p','div','img','a','span','h1','h2','h3','h4','h5','h6'],
                         format: true
                     }));
                 }
