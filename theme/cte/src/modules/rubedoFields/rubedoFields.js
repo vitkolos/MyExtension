@@ -220,6 +220,7 @@
                     }
                     me.html=jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"],["target"]],
+                        allowedTags: ['iframe'],
                         format: true
                     });
 
