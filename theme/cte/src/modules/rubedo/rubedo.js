@@ -47,8 +47,8 @@
                 window.location.href=newLoc;
 
             }
-            else if (newLoc.indexOf("#.") > -1) {
-            }
+            /*else if (newLoc.indexOf("#.") > -1) {
+            }*/
             else if (newLoc.indexOf("#") > -1){
                 event.preventDefault();
                 var target=angular.element("[name='"+newLoc.split("#")[1]+"']");
