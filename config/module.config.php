@@ -86,13 +86,6 @@ return array(
             ),
         ),
     ),
-
-   /* 'service_manager' => array(
-        'invokables' => array(
-            HtmlCleaner' => 'Rubedo\\Security\\HtmlPurifier',
-        ),
-    ),*/
-
     
     'namespaces_api' => array(
         'MyExtension',
