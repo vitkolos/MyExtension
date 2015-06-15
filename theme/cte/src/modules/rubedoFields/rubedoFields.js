@@ -229,6 +229,7 @@
                     }
                     me.html=$sce.trustAsHtml(jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"]],
+                        allowedTags: ['iframe'],
                         format: true
                     }));
                 }
