@@ -1,0 +1,288 @@
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","$http","$route",function($scope, RubedoContentsService,RubedoSearchService,$http,$route){
+    var me = this;
+    var config = $scope.blockConfig;
+    var themePath="/theme/"+window.rubedoConfig.siteTheme;
+    var previousFields;
+    $scope.fieldInputMode=false;
+    $scope.$watch('rubedo.fieldEditMode', function(newValue) {
+        $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
+
+    });
+    me.getFieldByName=function(name){
+        var field=null;
+        angular.forEach(me.content.type.fields,function(candidate){
+            if (candidate.config.name==name){
+                field=candidate;
+            }
+        });
+        return field;
+    };
+    me.taxonomy=[];
+    me.linkedContents = [];
+    me.linkedContentsNumber = 4;
+    me.getContentById = function (contentId){
+        var options = {
+            /*siteId: $scope.rubedo.current.site.id,*/
+            pageId: $scope.rubedo.current.page.id
+        };
+        RubedoContentsService.getContentById(contentId, options).then(
+            function(response){
+                if(response.data.success){
+                    $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
+                    me.content=response.data.content;
+                    $scope.fieldEntity=angular.copy(me.content.fields);
+                    $scope.fieldLanguage=me.content.locale;
+                    me.content.type.fields.unshift({
+                        cType:"title",
+                        config:{
+                            name:"text",
+                            fieldLabel:"Title",
+                            allowBlank:false
+                        }
+                    });
+                    $scope.rubedo.current.breadcrumb.push({title:response.data.content.text});
+                    if (me.content.type.activateDisqus&&$scope.rubedo.current.site.disqusKey){
+                        me.activateDisqus=true;
+                        me.disqusShortname=$scope.rubedo.current.site.disqusKey;
+                        me.disqusIdentifier=me.content.id;
+                        me.disqusUrl=window.location.href;
+                        me.disqusTitle=me.content.text;
+                    }
+                    me.customLayout=null;
+                    if (angular.isArray(me.content.type.layouts)){
+                        angular.forEach(me.content.type.layouts,function(layout){
+                            if (layout.active&&layout.site==$scope.rubedo.current.site.id){
+                                me.customLayout=layout;
+                            }
+                        });
+                    }
+                    if(me.customLayout){
+                        me.content.type.fields.unshift({
+                            cType:"textarea",
+                            config:{
+                                name:"summary",
+                                fieldLabel:"Summary",
+                                allowBlank:false
+                            }
+                        });
+                        me.detailTemplate=me.customLayout.customTemplate?themePath+'/templates/blocks/contentDetail/customTemplate.html':themePath+'/templates/blocks/contentDetail/customLayout.html';
+                    } else {
+                        if(me.content.type.code&&me.content.type.code!=""){
+                            $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
+                                function (response){
+                                    me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
+                                },
+                                function (response){
+                                    me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
+                                    $scope.fields=me.transformForFront(me.content.type.fields);
+                                }
+                            );
+                        } else {
+                            me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
+                            $scope.fields=me.transformForFront(me.content.type.fields);
+                        }
+                        //$http.get(themePath+'/templates/blocks/contentDetail/)
+                    }
+
+/*GET CONTENT TAXONOMIES*/
+                    var options2 = {
+                        pageId: $scope.rubedo.current.page.id,
+                        taxonomies: me.content.taxonomy
+                     };
+                     RubedoSearchService.searchByQuery(options2).then(function(response){
+                         if(response.data.success){
+                            var previousFacetId;
+                            angular.forEach(response.data.results.activeFacets,function(activeFacet){
+                                if(activeFacet.id != 'navigation'){
+                                    angular.forEach(activeFacet.terms,function(term){
+                                        var newTerm = {};
+                                        newTerm.term = term.term;
+                                        newTerm.label = term.label;
+                                        newTerm.facetId = activeFacet.id;
+
+                                        me.taxonomy.push(newTerm);
+                                        previousFacetId = activeFacet.id;
+                                    });
+                                }
+                            });
+
+
+                         }
+                     });
+                     
+                     
+                     
+                     
+                     
+/*GET LIST OF CONTENTS WITH EXACT SAME TAXONOMY*/
+                     var options3  = {
+                        /*siteId: $scope.rubedo.current.site.id,*/
+                        pageId: $scope.rubedo.current.page.id,
+                        taxonomies:JSON.stringify(me.content.taxonomy),
+                        detailPageId:config.singlePage,
+                        limit:3
+                     }; 
+                    RubedoSearchService.searchByQuery(options3).then(function(response){
+                         if(response.data.success){
+                            angular.forEach(response.data.results.data,function(content){
+                                if (content.id != config.contentId) {
+                                    me.linkedContents.push(content);
+                               }
+                            });
+                         }
+                    });
+                    options4 = {
+                        siteId: $scope.rubedo.current.site.id,
+                        pageId: $scope.rubedo.current.page.id,
+                        detailPageId:$scope.rubedo.current.page.id ,
+                        limit:me.linkedContentsNumber                        
+                    };
+                    var tax = me.content.taxonomy;
+                    options4.taxonomies= {};
+                    options4.taxonomies.navigation= "";
+                    if (me.linkedContents.length<me.linkedContentsNumber) {
+                        for (var taxonomy in tax) {
+                            if (taxonomy == 'navigation') {
+                                options4.taxonomies[taxonomy] = tax[taxonomy] ;
+                            }
+                            else {
+                                options4.taxonomies[taxonomy] = new Array(1);
+                                options4.taxonomies[taxonomy] =tax[taxonomy][0];
+                            }
+                            options4.taxonomies=options4.taxonomies;
+                        }
+                        RubedoSearchService.searchByQuery(options4).then(function(response){
+                             if(response.data.success){
+                                me.linkedContents.length = 0;
+                                angular.forEach(response.data.results.data,function(content){
+                                    if (content.id != config.contentId) {
+                                        var fieldsToReturn =["text","summary","vignette"];
+                                          var options5 = {
+                                            pageId: $scope.rubedo.current.page.id,
+                                            siteId: $scope.rubedo.current.site.id
+                                        }
+                                        options5["fields[]"] = fieldsToReturn;
+                                        RubedoContentsService.getContentById(content.id, options5).then(function(response){
+                                            
+                                            if(response.data.success){
+                                                me.linkedContents.push(response.data.content);
+                                            }
+                                        
+                                        });
+                                    
+                                    }
+                                });
+                             }
+                        });
+                    }
+/*If list is too short*/
+
+
+
+                }
+            }
+        );
+     };
+     
+    
+     
+    if (config.contentId){
+        me.getContentById(config.contentId);
+    }
+    me.revertChanges=function(){
+        $scope.fieldEntity=angular.copy(previousFields);
+    };
+    me.registerEditChanges=function(){
+        $scope.rubedo.registerEditCtrl(me);
+    };
+    me.launchFullEditor=function(){
+        var modalUrl = "/backoffice/content-contributor?edit-mode=true&content-id="+me.content.id+"&workingLanguage="+$route.current.params.lang;
+        var availHeight=window.innerHeight*(90/100);
+        var properHeight=Math.max(400,availHeight);
+        var iframeHeight=properHeight-10;
+        angular.element("#content-contribute-frame").empty();
+        angular.element("#content-contribute-frame").html("<iframe style='width:100%;  height:"+iframeHeight+"px; border:none;' src='" + modalUrl + "'></iframe>");
+        angular.element('#content-contribute-modal').appendTo('body').modal('show');
+        window.confirmContentContribution=function(){
+            angular.element("#content-contribute-frame").empty();
+            angular.element('#content-contribute-modal').modal('hide');
+            $scope.rubedo.addNotification("success","Success","Contents updated.");
+            me.getContentById(me.content.id);
+        };
+        window.cancelContentContribution=function(){
+            angular.element("#content-contribute-frame").empty();
+            angular.element('#content-contribute-modal').modal('hide');
+        };
+    };
+    me.persistChanges=function(){
+        var payload=angular.copy(me.content);
+        payload.fields=transformForPersist();
+        delete (payload.type);
+        RubedoContentsService.updateContent(payload).then(
+            function(response){
+                if (response.data.success){
+                    me.content.version = response.data.version;
+                    $scope.rubedo.addNotification("success","Success","Content updated.");
+                } else {
+                    $scope.rubedo.addNotification("danger","Error","Content update error.");
+                }
+
+            },
+            function(response){
+                $scope.rubedo.addNotification("danger","Error","Content update error.");
+            }
+        );
+    };
+    var transformForPersist = function(){
+        var returnFields = angular.copy(me.content.fields);
+        angular.forEach(me.content.fields, function(field, fieldKey){
+            if(angular.isArray(field)){
+                angular.forEach(field, function(fld, fldKey){
+                    if(fldKey === 0){
+                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
+                    } else {
+                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey+fldKey];
+                    }
+                })
+            } else {
+                returnFields[fieldKey] = $scope.fieldEntity[fieldKey];
+            }
+        });
+        return returnFields;
+    };
+    me.transformForFront = function(fieldsType){
+        var res = [];
+        angular.forEach(fieldsType, function(fieldTp){
+            var fieldType;
+            if(!fieldTp.config&&fieldTp.name){
+                fieldTp.field=me.getFieldByName(fieldTp.name);
+                fieldType = fieldTp.field;
+            } else {
+                fieldType = fieldTp;
+            }
+            res.push(fieldTp);
+            if(angular.isArray(me.content.fields[fieldType.config.name])&&fieldType.config.multivalued){
+                var fields = $scope.fieldEntity[fieldType.config.name];
+                angular.forEach(fields, function(fld, keyFld){
+                    if(keyFld === 0){
+                        $scope.fieldEntity[fieldType.config.name] = me.content.fields[fieldType.config.name][keyFld];
+                    } else {
+                        var name = fieldType.config.name + keyFld;
+                        var newField = angular.copy(fieldTp);
+                        if(!newField.config&&newField.name){
+                            newField.field = angular.copy(fieldType);
+                            newField.field.config.name = name;
+                        } else {
+                            newField.config.name = name;
+                        }
+                        res.push(newField);
+                        $scope.fieldEntity[name] = me.content.fields[fieldType.config.name][keyFld];
+                    }
+                });
+            }
+        });
+        previousFields = angular.copy($scope.fieldEntity);
+        return res;
+    };
+    $scope.registerFieldEditChanges=me.registerEditChanges;
+}]);

@@ -1,0 +1,42 @@
+<div class="row">
+	<div class="col-xs-12 ">
+    	<!--<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[2]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[2].config.name]" ></rubedo-field>-->
+	    	<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[0]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[0].config.name]" ></rubedo-field><!--titre-->
+	    	<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[1]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[1].config.name]" ></rubedo-field><!--sous titre-->
+		<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[8]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[8].config.name]" ></rubedo-field><!--saison-->
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-3">
+		<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[6]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[6].config.name]" ></rubedo-field><!--affiche-->		
+	</div>
+	<div class="col-xs-9">
+		<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[3]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[3].config.name]" ></rubedo-field><!--description-->		
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-5">
+		<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[5]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[5].config.name]" ></rubedo-field><!--parole-->		
+		<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[4]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[4].config.name]" ></rubedo-field><!--intercession-->		
+	</div>
+	<div class="col-xs-7">
+		<rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[7]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[7].config.name]" ></rubedo-field><!--trailer-->		
+	</div>
+</div>
+<div class="row" >
+	<!--<div class="col-xs-12" id="film_container" ng-init="id = fieldEntity[contentDetailCtrl.content.type.fields[15].config.name] " load-video>
+		Show video {{id}}
+	</div>-->
+	<!--<div load-video="{{id}}"  ng-init="id = fieldEntity[contentDetailCtrl.content.type.fields[15].config.name] "></div>-->
+	    <jwplayer filmid='{{id}}' lang="{{lang}}" ng-init="id = fieldEntity[contentDetailCtrl.content.type.fields[15].config.name] ; lang = fieldEntity[contentDetailCtrl.content.type.fields[16].config.name]  "></jwplayer>
+
+		<div ng-init="field = contentDetailCtrl.content.type.fields[16]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[16].config.name]">
+			<a ng-repeat="lang in  fieldEntity[contentDetailCtrl.content.type.fields[16].config.name]" ng-click=" loadVideo(lang) " >- {{rubedo.translate(lang+".Label",lang)}} </a>
+		</div>
+</div>
+     <!--               
+<div>
+    <li><a href="javascript:loadVideo('http://www.netforgod.tv/VOD/FOI_15_02/EN_divx.flv')">EN</a></li>
+<li><a href="javascript:loadVideo('http://www.netforgod.tv/VOD/FOI_15_02/DE_divx.flv')">DE</a></li>
+<li><a href="javascript:loadVideo('http://www.netforgod.tv/VOD/FOI_15_02/IT_divx.flv')">IT</a></li>
+</div>-->

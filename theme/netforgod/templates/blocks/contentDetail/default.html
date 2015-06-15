@@ -1,0 +1,41 @@
+<rubedo-field ng-repeat="field in fields" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'"></rubedo-field>
+<h2>TAGS</h2>
+<p ng-repeat="facet in contentDetailCtrl.taxonomy">
+    {{facet.label | uppercase}} </p>
+ <p ng-repeat="facets in contentDetailCtrl.content.taxonomy">
+    <span ng-repeat="facet in facets">{{facet}} : {{rubedo.getTerm(facet)}} </span></p>  
+<h2>Linked contents</h2>
+<p>{{contentDetailCtrl.linkedContents}}</p>
+
+                <div class="media" ng-repeat="content in contentDetailCtrl.linkedContents">
+                    <img class="media-object pull-left" ng-if="content.fields.image"
+                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{size:'thumbnail'}) }}"
+                         alt="{{ content.fields.text }}"/>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a ng-href="{{content.url }}">
+                                {{content.title}}
+                            </a>
+                            <!--<rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>-->
+                        </h4>
+                        <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
+                            {{content.summary}}
+                            <!--<rubedo-field field="{{content.type.summary}}"></rubedo-field>-->
+                        </p>
+                    </div>
+                    <a class="pull-right" ng-href="{{ content.url }}">
+                        {{rubedo.translate('Block.ContentList.Label.ReadMore','read more')}}
+                    </a>
+                </div>
+
+
+
+
+
+
+<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
+            disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
+            disqus-identifier="{{ contentDetailCtrl.disqusIdentifier }}"
+            disqus-url="{{ contentDetailCtrl.disqusUrl}}"
+            disqus-title="{{ contentDetailCtrl.disqusTitle }}">
+</dir-disqus>
