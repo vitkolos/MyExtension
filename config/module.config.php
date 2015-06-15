@@ -89,7 +89,7 @@ return array(
 
     'service_manager' => array(
         'invokables' => array(
-            'HtmlCleaner' => 'Rubedo\\Security\\HtmlPurifier',
+            /*'HtmlCleaner' => 'Rubedo\\Security\\HtmlPurifier',*/
         ),
     ),
 
