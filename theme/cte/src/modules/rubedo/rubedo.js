@@ -212,7 +212,7 @@
                         } else {
                             me.currentBodyTemplate=themePath+'/templates/defaultPageBody.html';
                         }
-                        /*$scope.$apply();*/
+                        $scope.$apply();
                     });
                 } else {
                     if (newPage.pageProperties.customTemplate){
