@@ -56,8 +56,8 @@ class HtmlPurifier extends HtmlCleaner
                 "_top"
             ));
             $config->set('HTML.Attr.Name.UseCDATA', true);
-            $config->set('HTML.SafeIframe', true);
-            $config->set('URI.SafeIframeRegexp', '%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%'); //allow YouTube and Vimeo
+            /*$config->set('HTML.SafeIframe', true);
+            $config->set('URI.SafeIframeRegexp', '%^(https?:)?//(www\.youtube(?:-nocookie)?\.com/embed/|player\.vimeo\.com/video/)%'); //allow YouTube and Vimeo*/
             $def = $config->getHTMLDefinition(true);
             $def->addAttribute('a', 'rubedo-page-link', 'CDATA');
             self::$_purifier = new \HTMLPurifier($config);
