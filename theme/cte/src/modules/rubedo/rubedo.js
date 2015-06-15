@@ -206,12 +206,13 @@
                 var dependencies=RubedoBlockDependencyResolver.getDependencies(usedblockTypes);
                 if (dependencies.length>0){
                     $script(dependencies, function() {
+                       
                         if (newPage.pageProperties.customTemplate){
                             me.currentBodyTemplate=themePath+'/templates/customPageBody.html';
                         } else {
                             me.currentBodyTemplate=themePath+'/templates/defaultPageBody.html';
                         }
-                        $scope.$apply();
+                        /*$scope.$apply();*/
                     });
                 } else {
                     if (newPage.pageProperties.customTemplate){
