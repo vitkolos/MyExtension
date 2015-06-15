@@ -179,7 +179,7 @@
             { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo',"Source"  ] },
            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [  'Outdent', 'Indent', 'Blockquote']},
             { name: 'styles', items: [ 'Format' ] },
-            { name: 'insert', items: [ 'Image', 'YouTube', '-', 'HorizontalRule'] },
+            { name: 'insert', items: [ 'Image', 'Youtube', '-', 'HorizontalRule'] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink'] },
             { name: 'colors', items: [ 'Scayt'] }
             ];
