@@ -174,10 +174,13 @@
             ];
         } else if (CKEMode=="Basic"){
             myTBConfig=[
-                { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline','Strike', '-', 'RemoveFormat' ] },
-                { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-',  'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock','-','Image']},
-                { name: 'colors', items: [ 'TextColor','BGColor' ,'-', 'Scayt'] },
-                { name: 'styles', items: [ 'Font', 'FontSize' ] }
+            { name: 'clipboard', groups: [ 'undo' ], items: [ 'Undo', 'Redo' ] },
+           { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic','-', 'RemoveFormat' ] },
+            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo',"Source"  ] },
+           { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [  'Outdent', 'Indent', 'Blockquote']},
+            { name: 'insert', items: [ 'Image' , '-', 'HorizontalRule'] },
+            { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink'] },
+            { name: 'colors', items: [ 'Scayt'] }
             ];
         }
         var editorOptions={
@@ -191,7 +194,7 @@
             filebrowserImageUploadUrl:null
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
-            editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
+            editorOptions.removePlugins= 'colorbutton,find,flash,font' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
             editorOptions.toolbar = [
                 { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo' ] }
             ];
