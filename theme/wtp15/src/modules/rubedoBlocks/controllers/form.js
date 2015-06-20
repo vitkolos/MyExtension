@@ -306,7 +306,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                                     payload.to["Inese MOTTE"]="inesemotte@yahoo.fr";
                                     payload.to["Madara SINKE"]="madara.sinke@gmail.com"; break;
                 case("lb") : payload.to["Saba SAMAR"]="saba_samar@yahoo.com";break;
-                case("nl") : payload.to["Gabriel MUELLER"]="gabriel.mueller@chemin-neuf.org";break;
+                case("nl") : payload.to["Gabriel MUELLER"]="paulusabdij@chemin-neuf.org";break;
                 case("pl") : payload.to["Emmanuel PROIX"]="emmanuel.proix@chemin-neuf.org";
                                     payload.to["Ania SWIECKA"]=" aniaswiecka@hotmail.com";
                                     payload.to["Secrétariat"]="violaz@wp.pl";
