@@ -41,7 +41,7 @@
 
 
 <div  role="navigation" ng-controller="MenuController as menuCtrl"  ng-if="block.code=='menu' " >
-    <div class="container-fluid navbar-fixed-top" ng-init="search=false;menu=false">
+    <nav class="container-fluid navbar-fixed-top" ng-init="search=false;menu=false">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-click="search=!search" class="cursor-as-pointer">
                     <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
@@ -54,7 +54,7 @@
                 </li>
 
             </ul>
-    </div>
+    </nav>
         <nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  ng-class="{'displayed':menu}" style="height:100%">
             </div>
             <div class="container-fluid footer menu" style="">
