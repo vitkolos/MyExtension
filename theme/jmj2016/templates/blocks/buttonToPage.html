@@ -7,7 +7,7 @@
 		<h3 >{{block.title}}</h3>
 		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 		</div>
-		<div class="linkbox"><a ng-href="{{btnToPageCtrl.pageLink}}">{{block.title}}</a></div>
+		<div class="linkbox"><a ng-href="{{btnToPageCtrl.pageLink}}">{{rubedo.translate('Block.ButtonToPage.ReadMore','read more')}}</a></div>
 	</div>
     </a>
  
