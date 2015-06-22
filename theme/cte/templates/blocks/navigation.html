@@ -40,14 +40,14 @@
  </nav>
 
 
-<div  role="navigation" ng-controller="MenuController as menuCtrl"  ng-if="block.code=='menu' " >
-    <nav class="container-fluid navbar-fixed-top" ng-init="search=false;menu=false">
+<div  role="navigation" ng-controller="MenuController as menuCtrl"  ng-if="block.code=='menu' "  ng-init="search=false;menu=false">
+    <nav class="container-fluid navbar-fixed-top">
             <ul class="nav navbar-nav navbar-right">
                 <li ng-click="search=!search" class="cursor-as-pointer">
                     <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
                 </li>
                 <li ng-click="menu=!menu" class="cursor-as-pointer" >
-                    menu {{menu}}
+                    menu
                 </li>
                 <li>
                     <span style="line-height:1em"><a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">Faire un don</a></span>
