@@ -69,7 +69,7 @@
                         <div   ng-repeat="workshop in content.fields.workshop | split : '&&' ">
                             <p ng-repeat="detail in workshop | split:'_' track by $index" ng-show="detail !='\n'" ng-if="$index!=2" toggleclass ng-attr-condition="{{$index==1}}">
                                 {{detail}}
-                                <span ng-repeat="detail2 in workshop | split:'_'  " ng-if="$index==2 && $parent.$index==1"> {{detail2}}</span>
+                                <span ng-repeat="detail2 in workshop | split:'_'  track by $index " ng-if="$index==2 && $parent.$index==1"> {{detail2}}</span>
                             </p>
                         </div>
                     </div>
