@@ -3,7 +3,7 @@
         <div class="container" style="padding-bottom: 0">
                 <div class="row text-center">
                     <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:0"><b>Communauté du Chemin Neuf</b></a>
-                    <div class="pull-right" style="padding:6px 24px">
+                    <div class="pull-right" style="padding:0px 24px">
                         <span id="close" ng-click="menu=!menu"></span>
                     </div>
                 </div>
@@ -58,7 +58,8 @@
         <nav class="navbar footer navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  ng-class="{'displayed2':menu}" style="height:100%; ">
             <div class="container-fluid menu" style="">
                  <div class="container" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })">
-                 </div>       
+                 </div>
+                 <div style="height:100%"></div>
             </div>
         </nav>
 </div>
