@@ -207,6 +207,8 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
  }
  
  .navbar.footer{transition: margin-right 0.8s cubic-bezier(.33,.66,.66,1); width:100%; margin-right: 100%; }
+ .navbar.footer.top{margin-top:-100%; transition: margin-top 0.8s cubic-bezier(.33,.66,.66,1);}
+ .navbar.footer.top.displayed2{margin-top:0;}
  .navbar.footer.displayed2{margin-right: 0%}
   .navbar.footer>div>div{display: inline-block; vertical-align: middle;}
   .retour, .nav-suivant{
@@ -253,9 +255,9 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
     top:-25px;
     width:200px;
   }
-  .retour p, .nav-suivant p{.capital; width:150px !important; line-height: 20px; border-top: none !important; vertical-align: middle}
-   .nav-suivant p{text-align: center;padding-top:55px !important;}
-   .retour p{padding-right:55px;text-align: right;  }
+  .retour p, .nav-suivant p{.capital;  line-height: 20px; border-top: none !important; vertical-align: middle}
+   .nav-suivant p{text-align: center;padding-top:55px !important;width:150px !important;}
+   .retour p{padding-right:55px;text-align: right; width:200px !important; }
 /*CLOSE*/
 
 span#close, span#close:before,span#close:after {
