@@ -193,7 +193,8 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
  .displayed>.menu .container{opacity:1;margin-top:0;}
   .menu +div{width:100%;top:0;left:0;position:relative;z-index:2;-webkit-transform: translate3d(0, 0, 0);}
  @media screen and (max-width: @min_xs) {
-    nav.navbar-fixed-top{position:relative;width: 100%; }
+    nav.navbar-fixed-top:not(.footer){position:relative; }
+    nav.navbar-fixed-top{width: 100%; }
  }
  @media screen and (min-width: @min_xs) {
     nav.navbar-fixed-top li{width:100px}
