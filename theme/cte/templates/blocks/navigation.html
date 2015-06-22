@@ -46,8 +46,9 @@
                         <span id="close" ng-click="menu=!menu"></span>
                     </div>
             <div class="container-fluid menu" style="height: 100%;text-align: center">
-                <div style=text-align:center"> <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:0"><b>Communauté du Chemin Neuf</b></a></div>
-                 <div class="container" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })">
+                 <div class="container" >
+                        <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:0"><b>Communauté du Chemin Neuf</b></a>
+                        <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" style="text-align: left"></div>
                  </div>
                  <div style="height:100%"></div>
             </div>
