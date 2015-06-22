@@ -201,6 +201,7 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
     ul.navbar-right{width:auto;float:right}
     nav .container-fluid{padding-right:15px}
     .searchbar>div{width:300px; float: right}
+.navbar.footer>.container-fluid{height: 100%;}
  }
  @media screen and (max-width: @min_sm) {
     .navbar-nav{margin:0}
@@ -208,7 +209,8 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
  }
  
  .navbar.footer{transition: margin-right 0.6s cubic-bezier(.33,.66,.66,1); width:100%; margin-right: 100%; }
- .navbar.footer.top{margin-top:-100%; transition: all 0.6s cubic-bezier(.33,.66,.66,1);}
+.navbar.footer>.container-fluid{text-align: center}
+ .navbar.footer.top{margin-top:-100vh; margin-top:-1000px; transition: all 0.6s cubic-bezier(.33,.66,.66,1);}
  .navbar.footer.top.displayed1{margin-right:0;}
  .navbar.footer.top.displayed2{margin-top:0;}
  .navbar.footer.displayed1{margin-right: 0%}
