@@ -217,20 +217,21 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
     line-height: 100px;
   }
   .retour:after{
-    width:100px;
+    width:50px;
     height: 100px;
     border:solid white 5px;
-    border-radius: 100px;
+    border-radius: 100px 0 0 100px;
+    border-right:none;
     content: '\f061';
     font-family: 'FontAwesome';
     display: block;
     position:absolute;
     top:0;
-    right:-50px;
+    right:0px;
     padding-left: 12px;
     font-size: 25px
   }
-  .retour p{height:100px; width:150px !important; padding-right:55px; line-height: 20px; text-align: right; border-top: none !important}
+  .retour p{.capital; height:100px; width:150px !important; padding-right:55px; line-height: 20px; text-align: right; border-top: none !important}
 /*CLOSE*/
 
 span#close, span#close:before,span#close:after {
