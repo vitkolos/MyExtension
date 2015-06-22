@@ -37,57 +37,27 @@
 
     });
 
-    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope','$routeParams',
-        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope,$routeParams){
-         var me=this;
+    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope',
+        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope){
+        var me=this;
         //break nav on non-page routes
         $scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
+            console.log("from : "+currentLoc+" to : "+newLoc)
             if (newLoc.indexOf("file?file-id") > -1||newLoc.indexOf("dam?media-id") > -1){
                 event.preventDefault();
                 window.location.href=newLoc;
-            } else if (newLoc.indexOf("#") > -1){
+
+            }
+            else if (newLoc.indexOf("#.") > -1) {
+            }
+            else if (newLoc.indexOf("#") > -1){
                 event.preventDefault();
-                if (newLoc.split("#")[0]!=currentLoc.split("#")[0]) {
-                    window.location.href=newLoc;
-                  }
-                else {     
+                var target=angular.element("[name='"+newLoc.split("#")[1]+"']");
+                if (target){
+                    angular.element("body").animate({scrollTop: target.offset().top}, "slow");
                 }
             }
         });
-        $scope.$on("$locationChangeSuccess",function(scope, newLoc,currentLoc){
-            if(newLoc.indexOf("?") > -1){
-// if change of page -> wait for load
-                if (currentLoc.split("?")[0] != newLoc.split("?")[0]) {
-                    setTimeout(function(){
-                        var target=angular.element("[name='"+$routeParams.anchor+"']");
-                        if (target){
-                                angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
-                        }
-                    },3000);
-               }
-               else{
-// if first page with anchor (direct access) -> wait for load
-                    if ( currentLoc.split("?")[1] == newLoc.split("?")[1]) {
-                        setTimeout(function(){
-                            var target=angular.element("[name='"+$routeParams.anchor+"']");
-                            if (target){
-                                    angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
-                            }
-                        },3000);
-                    }
-// if same page and different anchor -> scroll
-                    else {
-                        var target=angular.element("[name='"+$routeParams.anchor+"']");
-                        if (target){
-                                angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
-                        }
-                    }
-                    
-               }}
-              });
-        
-
-        
         //set context and page-wide services
         me.adminBtnIconClass="glyphicon glyphicon-arrow-right";
         me.snapOpts={
