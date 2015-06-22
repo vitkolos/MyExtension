@@ -1,6 +1,6 @@
     
 	<p ng-show="formCtrl.showConfirmRegister">Zostałeś zapisany/a na Festiwal Welcome to Paradise! <br/>
-WNiebawem skontaktujemy się z tobą, aby ustalić szczegóły. W razie jakichkolwiek pytań, skontaktuj się z Sekretariatem Misji Młodych.<br/>
+Niebawem skontaktujemy się z Tobą, aby ustalić szczegóły. W razie jakichkolwiek pytań, skontaktuj się z Sekretariatem Misji Młodych.<br/>
 Do zobaczenia tego lata w Hautecombe!<br/>
 Organizatorzy Festiwalu.</p>
 	<p ng-show="formCtrl.showRegisterError">It seems that there has been a problem during your registration. Please try again later or contact us directly on the 'Contact' page.<br/>
@@ -91,7 +91,7 @@ The Festival Team.</p>
 		<!--choice of the RETREAT-->
 		<div class="row">
 			<input type="checkbox" id="retraite" class="question-title" ng-model="formCtrl.inscription.retraite" ng-change="formCtrl.updateStatus()">
-			<label for="retraite" class="choice-proposition" >Jade na rekolekcje
+			<label for="retraite" class="choice-proposition" >Jadę na rekolekcje
 			</label>
 		</div>
 		<div class="row">
@@ -102,17 +102,18 @@ The Festival Team.</p>
 		</div>
 		<!--OPTIONS-->
 		<div class="row" ng-if="formCtrl.inscription.festival && formCtrl.inscription.dates==1">
-			<label class="choice-proposition col-sm-12">Choose an option</label>
+			<label class="choice-proposition col-sm-12">Wybierz jedną z możliwości</label>
 			<div class="col-sm-12  bg-grey" >
 				<input type="radio" id="carte" name="parcours" ng-model="formCtrl.inscription.parcours" value="carte" required>
-				<label for="carte" class="row">Selection from menu</label>
+				<label for="carte" class="row">Wybierz z menu </label>
 				<input type="radio" id="studilac" name="parcours" ng-model="formCtrl.inscription.parcours" value="studilac">
-				<label for="studilac" class="row">Study' lake</label>
+				<label for="studilac" class="row">Polityka & zaangażowanie </label>
 				<input type="radio" id="manaim" name="parcours" ng-model="formCtrl.inscription.parcours" value="manaim">
 				<label for="manaim" class="row">Manaïm</label>
 				<input type="radio" id="hozana" name="formule" ng-model="formCtrl.inscription.parcours" value="hozana">
 				<label for="hozana" class="row">Hozana</label>
-				<p>Please select your prefered formule for the Festival keeping in mind that you need to speak French in order to take part in Special Courses (Study'lake, Manaïm or Hozana).</p>
+				<p>Możesz wybrać jeden z kursów. Uwaga, kursy Polityka & zaangażowanie, Manaïm oraz Hozana będą prowadzone jedynie w języku francuskim.
+</p>
 			</div>
 		</div>
 		<div class="row" ng-if="formCtrl.inscription.dates >1 && formCtrl.inscription.festival">
@@ -168,9 +169,9 @@ The Festival Team.</p>
 		</div>
 		<div class="preinscription-entry col-xs-8">
 		    <input id="sexe-H" type="radio" name="sexe-P" value="H" ng-model="formCtrl.inscription.sex" value="man">	
-		    <label for="sexe-H" class="checkboxes col-xxs-6 col-xs-6">man</label>
+		    <label for="sexe-H" class="checkboxes col-xxs-6 col-xs-6">Mężczyzna</label>
 		    <input id="sexe-F" type="radio" name="sexe-P" value="F" ng-model="formCtrl.inscription.sex" value="woman">
-		    <label for="sexe-F" class="checkboxes col-xxs-6 col-xs-6">woman</label>			
+		    <label for="sexe-F" class="checkboxes col-xxs-6 col-xs-6">Kobieta</label>			
 		</div>
 		
 		<div class="col-xs-4">
@@ -346,8 +347,8 @@ The Festival Team.</p>
 		<div class="row bg-danger"  ng-show="form.register_2.$dirty && form.register_2.$invalid">
 		    <p>Proszę wypełnić wszystkie pola</p>
 		</div>
-	    <input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6"  value="Back" ng-click="formCtrl.inscription.step=2">
-	    <input  type="button" id="btn_inscription" class=" col-xs-6 col-xxs-6"  value="Next" ng-click="formCtrl.inscription.step=4" ng-disabled="form.register_2.$invalid">
+	    <input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6"  value="Wróć" ng-click="formCtrl.inscription.step=2">
+	    <input  type="button" id="btn_inscription" class=" col-xs-6 col-xxs-6"  value="dalej" ng-click="formCtrl.inscription.step=4" ng-disabled="form.register_2.$invalid">
 	</div>
 
     </ng-form>
@@ -370,14 +371,14 @@ The Festival Team.</p>
 				</div>
 			</div>
 			<div class="col-sm-12">
-			    <p>* Studenci mający problem finansowe oraz osoby bezrobotne<br/>
-			    ** Aby pomóc przyjechać na Festiwal młodym nieposiadającym wystarczających srodków finansowych</p>
+			    <p>* Studenci mający problemy finansowe oraz osoby bezrobotne<br/>
+			    ** Aby pomóc przyjechać na Festiwal młodym nieposiadającym wystarczających środków finansowych</p>
 			</div>
 		</div>		
 	    
 	    <div class="row">
-		<input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6"  value="Back" ng-click="formCtrl.inscription.step=3">
-		<input  type="button" id="btn_inscription" ng-click="formCtrl.register()" class=" col-xs-6 col-xxs-6" value="Register">
+		<input  type="button" id="btn_preinscription" class=" col-xs-6 col-xxs-6"  value="Wróć" ng-click="formCtrl.inscription.step=3">
+		<input  type="button" id="btn_inscription" ng-click="formCtrl.register()" class=" col-xs-6 col-xxs-6" value="Rejestruj ">
 		<p ng-show="formCtrl.process">Processing the form... please wait...</p>
 		<p ng-show="form.$invalid && form.$dirty && formCtrl.inscription.registrationStep == 1 ">Tu as oublié de renseigner certains champs obligatoires...</p>
 		<p ng-show="form.$invalid && formCtrl.inscription.registrationStep == 0 && formCtrl.inscription.message">{{formCtrl.inscription.message}}</p>

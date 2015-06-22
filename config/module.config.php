@@ -107,7 +107,8 @@ return array(
     /* Surcharge des traductions
        */
     'localisationfiles' => array(
-        100 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/ButtonToPage.json'
+        100 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/ButtonToPage.json',
+        101 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Form.json'
     ),
 
 
