@@ -56,7 +56,9 @@
             </ul>
     </nav>
         <nav class="navbar footer navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  ng-class="{'displayed2':menu}" style="height:100%; ">
-
+                    <div class="pull-right" style="padding:0px 24px">
+                        <span id="close" ng-click="menu=!menu"></span>
+                    </div>
             <div class="container-fluid menu">                
                  <div class="container" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })">
                  </div>
