@@ -209,14 +209,14 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
  .navbar.footer{transition: margin-right 0.8s cubic-bezier(.33,.66,.66,1); width:100%; margin-right: 100%; }
  .navbar.footer.displayed2{margin-right: 0%}
   .navbar.footer>div>div{display: inline-block; vertical-align: middle;}
-  .retour{
+  .retour, .nav-suivant{
     position:absolute;
-    right: 0;
-    top:10%;
     cursor: pointer;
     line-height: 100px;
     height: 100px;
   }
+  .retour{right:0; top:10%}
+  .nav-suivant{top:0; right:45%}
   .retour:after{
     width:50px;
     height: 100px;
@@ -232,7 +232,22 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
     padding-left: 12px;
     font-size: 25px
   }
-  .retour p{.capital; width:150px !important; padding-right:55px; line-height: 20px; text-align: right; border-top: none !important; vertical-align: middle}
+    .nav-suivant:after{
+    width:100px;
+    height: 50px;
+    border:solid white 5px;
+    border-radius: 100px 0 0 100px;
+    border-top:none;
+    content: '\f062';
+    font-family: 'FontAwesome';
+    display: block;
+    position:absolute;
+    bottom:0;
+    right:0px;
+    padding-bottom: 12px;
+    font-size: 25px
+  }
+  .retour p, .nav-suivant p{.capital; width:150px !important; padding-right:55px; line-height: 20px; text-align: right; border-top: none !important; vertical-align: middle}
 /*CLOSE*/
 
 span#close, span#close:before,span#close:after {

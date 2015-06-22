@@ -45,17 +45,26 @@
                 <div class="retour" ng-click="menu=!menu">
                         <p class="capital">retour à la page</p>
                 </div>
+                <div class="nav-suivant" ng-click="menu2=!menu2">
+                        <p class="capital">Communauté du Chemin Neuf</p>
+                </div>
+            <div class="container-fluid menu" style="height: 100%;text-align: center">
+                 <div class="container" >
+                        <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:24px"><b>Jeunes 18-30 ans</b></a>
+                        <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" style="text-align: left"></div>
+                 </div>
+                 <div style="height:100%"></div>
+            </div>
+        </nav>
+        <nav class="navbar footer navbar-fixed-top" role="navigation" ng-class="{'displayed3':menu2}" style="height:100%;z-index:9999">
+                <div class="retour" ng-click="menu=!menu">
+                        <p class="capital">retour à la page</p>
+                </div>
 
             <div class="container-fluid menu" style="height: 100%;text-align: center">
                  <div class="container" >
-                        <div class="col-xs-12">
                         <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:24px"><b>Communauté du Chemin Neuf</b></a>
                         <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" style="text-align: left"></div>
-                        </div>
-                        <div class="col-xs-12 col-xs-pull-12">
-                        <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:24px"><b>Communauté du Chemin Neuf</b></a>
-                        <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" style="text-align: left"></div>
-                        </div>
                  </div>
                  <div style="height:100%"></div>
             </div>
