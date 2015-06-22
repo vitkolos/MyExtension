@@ -17,7 +17,7 @@
         user:null
     };
 
-    app.config(function($routeProvider,$locationProvider,$controllerProvider, $compileProvider, $filterProvider, $provide) {
+    app.config(function($routeProvider,$locationProvider,$controllerProvider, $compileProvider, $filterProvider, $provide,$rootScopeProvider) {
         app.lazy = {
             controller: $controllerProvider.register,
             directive: $compileProvider.directive,
@@ -34,6 +34,7 @@
                 templateUrl:themePath+'/templates/404.html'
         });
         $locationProvider.html5Mode(true);
+        $rootScopeProvider.digestTtl(15); 
 
     });
 
