@@ -237,17 +237,22 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
     border:solid white 5px;
     border-radius: 0 0 100px 100px;
     border-top:none;
-    content: '\f062';
-    font-family: 'FontAwesome';
+    content: '';
     display: block;
     position:absolute;
-    bottom:0;
+    top:0;
     right:25px;
     padding-bottom: 12px;
+  }
+  .nav-suivant:before{
+    content: '\f062';
+    position: absolute;
+    text-align: center;
+    font-family: 'FontAwesome';
     font-size: 25px
   }
   .retour p, .nav-suivant p{.capital; width:150px !important; line-height: 20px; border-top: none !important; vertical-align: middle}
-   .nav-suivant p{text-align: center}
+   .nav-suivant p{text-align: center;padding-top:55px;}
    .retour p{padding-right:55px;text-align: right;  }
 /*CLOSE*/
 
