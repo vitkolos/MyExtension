@@ -28,7 +28,7 @@
 		Show video {{id}}
 	</div>-->
 	<!--<div load-video="{{id}}"  ng-init="id = fieldEntity[contentDetailCtrl.content.type.fields[15].config.name] "></div>-->
-	    <jwplayer filmid='{{id}}' lang="{{lang}}" ng-init="id = fieldEntity[contentDetailCtrl.content.type.fields[15].config.name] ; lang = fieldEntity[contentDetailCtrl.content.type.fields[16].config.name]  "></jwplayer>
+	    <jwplayer filmid='{{id}}' lang="{{lang}}" ng-init="id = fieldEntity[contentDetailCtrl.content.type.fields[15].config.name] ; lang = fieldEntity[contentDetailCtrl.content.type.fields[16].config.name][0]  "></jwplayer>
 
 		<div ng-init="field = contentDetailCtrl.content.type.fields[16]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[16].config.name]">
 			<a ng-repeat="lang in  fieldEntity[contentDetailCtrl.content.type.fields[16].config.name]" ng-click=" loadVideo(lang) " >- {{rubedo.translate(lang+".Label",lang)}} </a>
