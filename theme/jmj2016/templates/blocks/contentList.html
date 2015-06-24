@@ -1,4 +1,5 @@
 <div ng-controller="ContentListController as contentListCtrl">
+    
     <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
             ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
             ng-model="contentListCtrl.selectedManualType"></select>
@@ -8,6 +9,7 @@
             ng-click="contentListCtrl.launchContribute()">
         <span class="glyphicon glyphicon-plus"></span>
     </button>
+    <div class="container">
     <div class="row" ng-switch="blockConfig.columns">
         <!--POUR 3 COLONNES-->
         <div ng-attr-lr-infinite-scroll="loadMoreContents"
@@ -39,7 +41,7 @@
                 </div>
             </div>
         </div>
- 
+ </div>
     <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit"
                count="contentListCtrl.count" change-page-action="contentListCtrl.changePageAction()"></paginator>
 </div>
