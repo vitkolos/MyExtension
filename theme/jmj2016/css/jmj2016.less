@@ -1104,3 +1104,28 @@ input[type=range]::-ms-fill-upper {
     form{color:white}
     textarea, input[type=text], input[type=email]{opacity:0.8}
 }
+.actus{margin:0 auto; width:100%; display: block; padding-top:50px; position: absolute; top:0; left:50%; transform:translate(-50%,0); -webkit-transform: translate(-50%,0); -ms-transform: translate(-50%,0); }
+.list-item-title{
+  padding:0 12px;
+  color:white;
+  margin-bottom: 0;
+  min-height: 54px;
+  line-height: 54px;
+  span{line-height: 1em; display: inline-block; vertical-align: middle}
+}
+.list-item-img{position:relative; width:100%; overflow:hidden; }
+.list-item-img:before{
+  content: "";
+  display: block;
+  padding-top: 50%; 	/* initial ratio of 2:1*/
+}
+.list-item-img>img{
+  position:  absolute;
+  top: -20%;
+  left: 0;
+  bottom: -50%;
+  right: 0;
+  width:100%;
+  padding-right: 0;
+}
+
