@@ -1,4 +1,4 @@
-<div ng-controller="ContentListController as contentListCtrl" class="homepage parallax contact-img">
+<div ng-controller="ContentListController as contentListCtrl" class="actus parallax contact-img">
     <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
             ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
             ng-model="contentListCtrl.selectedManualType"></select>
