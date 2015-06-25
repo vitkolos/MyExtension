@@ -7,7 +7,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.facets = [];
         me.activeFacets = [];
         me.start = 0;
-        me.limit = $routeParams.limit?$routeParams.limit:10; // nombre de résultats affichés par défaut
+        me.limit = $routeParams.limit?$routeParams.limit:20; // nombre de résultats affichés par défaut
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"lastUpdateTime";
        var resolveOrderBy = {
             '_score': 'relevance',
@@ -255,9 +255,9 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         
         
         me.loadMore = function(){
-            me.displayedResults=me.displayedResults+10; // nombre de résultats à ajouter en load more
+            me.displayedResults=me.displayedResults+20; // nombre de résultats à ajouter en load more
             if (me.displayedResults>=me.options.limit) {
-                me.options.limit+=20;// nombre de résultats à ajouter à la liste si elle est trop courte
+                me.options.limit+=40;// nombre de résultats à ajouter à la liste si elle est trop courte
                 me.searchByQuery(me.options);
             }
         }
