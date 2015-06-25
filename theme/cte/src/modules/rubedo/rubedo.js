@@ -55,7 +55,7 @@
                 event.preventDefault();
                 var target=angular.element("[name='"+newLoc.split("#")[1]+"']");
                 if (target){
-                    angular.element("body").animate({scrollTop: target.offset().top}, "slow");
+                    angular.element("html,body").animate({scrollTop: target.offset().top}, "slow");
                 }
             }
         });
