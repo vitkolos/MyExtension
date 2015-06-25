@@ -19,7 +19,7 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope',fu
     }
  
     me.loadFcb = function(){
-        window.twttr = (function(d, s, id) {
+         (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
             js = d.createElement(s); js.id = id;
