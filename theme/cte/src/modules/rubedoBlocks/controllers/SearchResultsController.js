@@ -21,7 +21,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         
         me.template_foi = themePath+"/templates/blocks/searchResults/foi.html";
         var predefinedFacets = !config.predefinedFacets?{}:JSON.parse(config.predefinedFacets);
-        me.displayedResults = 10;
+        me.displayedResults = 20; // nombre de résultats affichés par défaut
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','query'];
         me.options = {};
         me.options = {
