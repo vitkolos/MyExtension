@@ -283,7 +283,8 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 "Arnaud BONNASSIES" : "arnaud.bonnassies@chemin-neuf.org",
                 "Patricia PLACE" : "patricia.place@chemin-neuf.org",
                 "Paula COSTA" : "pax.loureiro@gmail.com",
-                "Mission Jeunes France" : "inscriptions.mj@gmail.com"
+                "Mission Jeunes France" : "inscriptions.mj@gmail.com",
+                "Web" : "webmaster.ccn49@gmail.com"
             };
 
             
@@ -299,8 +300,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                                     payload.to["Annadeline BURGNARD"]="annadeline@gmail.com ";
                                     payload.to["Alessandra SCHUMACHER"]="jugend@chemin-neuf.de"; break;
                 case("hu") : payload.to["Nolwenn MASSON"]="ifjusagi.misszio@chemin-neuf.org";
-                                    payload.to["Kata GYORI"]="kata.gyori@chemin-neuf.org";
-                                    payload.to["Aron SISAK"]="asisak@gmail.com ";break;
+                                    payload.to["Kata GYORI"]="kata.gyori@chemin-neuf.org";break;
                 case("it") : payload.to["Antonio ACHILLE"]="ant.achille91@gmail.com";break;
                 case("lv") : payload.to["Nils JANSONS"]="nils.jansons@gmail.com";
                                     payload.to["Inese MOTTE"]="inesemotte@yahoo.fr";
