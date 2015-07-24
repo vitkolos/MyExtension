@@ -36,7 +36,11 @@ return array(
         'bg_image' => array(
                'maxlifeTime' => 60,
                'definitionFile' => realpath(__DIR__ . "/blocks/")  . '/bg_image.json'
-           )
+           ),
+        'carrousel2' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => $blocksPath . '/carrousel2.json'
+        )   
  ),
 
     'templates' => array(
