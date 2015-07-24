@@ -6,7 +6,10 @@ blocksConfig.simpleContact={
            "template": "/templates/blocks/simpleContact.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
-
+blocksConfig.carrousel2={
+           "template": "/templates/blocks/carrousel_fullWidth.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
+};
 
 angular.module('rubedoBlocks').directive('scrollToAnchor', function ($location, $anchorScroll) {
     return  function(scope, element, attrs) {
