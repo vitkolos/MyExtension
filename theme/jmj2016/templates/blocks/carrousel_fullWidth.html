@@ -1,0 +1,26 @@
+<div id="{{'block'+block.id}}" class="carousel slide" ng-controller="FWCarouselController as carouselCtrl">
+  <ol class="carousel-indicators">
+    <li ng-repeat="content in carouselCtrl.contents" 
+      ng-if="content.fields[blockConfig.imageField]" 
+      data-target="{{'block'+block.id}}"
+      data-slide-to="{{$index}}"
+      ng-class="{{'active':$first}}">
+    </li>
+  </ol>
+
+  <div class="carousel-inner">
+      <div class="item" 
+            ng-repeat="content in carouselCtrl.contents" 
+            ng-if="content.fields[blockConfig.imageField]"
+            ng-class="{{'active':$first}}">
+          <!-- Set the first background image using inline CSS below. -->
+          <div class="fill" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}');"></div>
+          <div class="carousel-caption">
+              <h3>{{content.fields.text}}</h3>
+              <p ng-if="blockConfig.showSummary">{{content.fields.summary}}</p>
+          </div>
+      </div>
+  </div>
+</div>
+
+ 
