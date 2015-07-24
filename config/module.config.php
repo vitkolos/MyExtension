@@ -39,7 +39,7 @@ return array(
            ),
         'carrousel2' => array(
             'maxlifeTime' => 60,
-            'definitionFile' => $blocksPath . '/carrousel2.json'
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/carrousel2.json'
         )   
  ),
 
