@@ -24,7 +24,7 @@
                     </ul>
                 </li>		
             </ul>
-            <ul class="nav navbar-nav navbar-right nav-item follow" style="margin-right:-50px">
+            <ul class="nav navbar-nav navbar-right nav-item follow">
             	<li class="home-button hidden-xs hidden-sm">
             		<a href="https://twitter.com/@Festival_WTP" target="_blank">ú</a>
             	</li>
@@ -37,7 +37,16 @@
             	<li class="home-button">
             		<a rubedo-page-link="5570489045205e1154a22040">C</a>
             	</li>
-            	
+            	<li ng-controller="LanguageMenuController as languageMenuCtrl">
+		        <span>
+		        	<img ng-if="languageMenuCtrl.showFlags" ng-src="{{languageMenuCtrl.getFlagUrl(languageMenuCtrl.currentLang.flagCode)}}" alt="{{languageMenuCtrl.currentLang.flagCode}}" style="vertical-align: top"/>
+		        </span>
+		        <div>
+		        <a ng-repeat="lang in languageMenuCtrl.languages" ng-click="languageMenuCtrl.changeLang(lang.lang)" href ng-if="!languageMenuCtrl.isDisabled(lang.lang)">
+		        	<span ng-if="languageMenuCtrl.showFlags"><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></span>
+		        </a>
+		    	</div>
+		</li>
 
             </ul>
         </div>
