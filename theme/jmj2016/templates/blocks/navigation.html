@@ -37,7 +37,9 @@
             	<li class="home-button">
             		<a rubedo-page-link="5570489045205e1154a22040">C</a>
             	</li>
-            	<li ng-controller="LanguageMenuController as languageMenuCtrl">
+            </ul>
+            
+            <!--	<li ng-controller="LanguageMenuController as languageMenuCtrl">
 		        <span>
 		        	<img  ng-src="{{languageMenuCtrl.getFlagUrl(languageMenuCtrl.currentLang.flagCode)}}" alt="{{languageMenuCtrl.currentLang.flagCode}}" style="vertical-align: top"/>
 		        </span>
@@ -46,9 +48,20 @@
 		        	<span><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></span>
 		        </a>
 		    	</div>
-		</li>
+		</li>-->
 
-            </ul>
-        </div>
+<div ng-controller="LanguageMenuController as languageMenuCtrl" class="pull-right">
+    <div ng-if="languageMenuCtrl.mode" class="btn-group nav-item language">
+        <span>
+        	<img  ng-src="{{languageMenuCtrl.getFlagUrl(languageMenuCtrl.currentLang.flagCode)}}" alt="{{languageMenuCtrl.currentLang.flagCode}}" style="vertical-align: top"/>
+        </span>
+        <div>
+        <a ng-repeat="lang in languageMenuCtrl.languages" ng-click="languageMenuCtrl.changeLang(lang.lang)" href ng-if="!languageMenuCtrl.isDisabled(lang.lang)">
+        	<span><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></span>
+        </a>
+	</div>
+    </div>
+</div>
+</div>
     </div>
 </nav>
