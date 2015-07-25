@@ -29,7 +29,8 @@
       ng-if="content.fields[blockConfig.imageField]" 
       data-target="{{'block'+block.id}}"
       data-slide-to="{{$index}}"
-      ng-class="{'active':$first}">
+      ng-class="{'active':$first}"
+      ng-click="carouselCtrl.slideTo()">
     </li>
   </ol>
 
