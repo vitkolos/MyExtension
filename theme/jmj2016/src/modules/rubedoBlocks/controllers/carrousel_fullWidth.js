@@ -39,6 +39,10 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         interval: 5000 //changes the speed
         });
     };
+    me.slideTo=function(index){
+        var targetElSelector="#block"+$scope.block.id;
+        angular.element(targetElSelector).carousel(index);
+    }
     me.getImageOptions=function(){
         return({
             height:blockConfig.imageHeight,
