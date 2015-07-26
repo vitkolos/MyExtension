@@ -6,8 +6,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         start: blockConfig.resultsSkip ? blockConfig.resultsSkip : 0,
         limit: blockConfig.pageSize ? blockConfig.pageSize : 6,
         'fields[]' : ["text","summary",blockConfig.imageField],
-        'requiredFields[]':[blockConfig.imageField],
-        ismagic: blockConfig.magicQuery ? blockConfig.magicQuery : false
+        'requiredFields[]':[blockConfig.imageField]
     };
     var stopOnHover=blockConfig.stopOnHover;
     if(blockConfig.stopOnHover==true) stopOnHover="hover";
@@ -40,7 +39,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         angular.element(targetElSelector).owlCarousel(options);*/
         angular.element(targetElSelector).carousel({
             interval: blockConfig.duration*1000, //changes the speed
-            pause: stopOnHover
+            pause: blockConfig.stopOnHover?"hover":"false"
         });
     };
     me.slideTo=function(index){
