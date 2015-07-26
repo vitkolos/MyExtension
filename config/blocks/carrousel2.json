@@ -34,29 +34,12 @@
                             }
                         },
                         {
-                            "type": "Ext.form.field.Checkbox",
-                            "config": {
-                                "fieldLabel": "#ext-gen1447#",
-                                "name": "magicQuery",
-                                "inputValue": true
-                            }
-                        },
-                        {
                             "type": "Ext.form.field.Number",
                             "config": {
                                 "fieldLabel": "#ext-gen1095#",
                                 "name": "pageSize",
                                 "allowDecimals": false,
                                 "minValue": 0
-                            }
-                        },
-                        {
-                            "type": "Ext.form.field.Number",
-                            "config": {
-                                "fieldLabel": "#ext-gen1096#",
-                                "allowDecimals": false,
-                                "name": "resultsSkip",
-                                "minValue": 1
                             }
                         }
                     ]
@@ -66,27 +49,12 @@
                     "champs": [
 
                         {
-                            "type": "Ext.form.field.Checkbox",
+                            "type": "Ext.form.field.Number",
                             "config": {
-                                "fieldLabel": "#ext-gen1453#",
-                                "name": "showPager",
-                                "inputValue": true
-                            }
-                        },
-                        {
-                            "type": "Ext.form.field.Checkbox",
-                            "config": {
-                                "fieldLabel": "#ext-gen1454#",
-                                "name": "showPagingNumbers",
-                                "inputValue": true
-                            }
-                        },
-                        {
-                            "type": "Ext.form.field.Checkbox",
-                            "config": {
-                                "fieldLabel": "#ext-gen1455#",
-                                "name": "showNavigation",
-                                "inputValue": true
+                                "fieldLabel": "Durée",
+                                "allowDecimals": false,
+                                "name": "duration",
+                                "minValue": 1
                             }
                         },
                         {
