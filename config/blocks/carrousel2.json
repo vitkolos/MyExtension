@@ -144,7 +144,13 @@
             ]
         },
         "configBloc": {
-            "imageField": "image"
+            "imageField": "image",
+            "imageResizeMode": "boxed",
+            "autoPlay": true,
+            "duration":5,
+            "showCaption": true,
+            "showSummary":true
+            
 
         }
     },
