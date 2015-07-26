@@ -1,11 +1,39 @@
 <style>
+
+    
+        .carousel-inner .item {
+            transition-property: opacity;
+        }
+        
+        .carousel-inner .item,
+        .carousel-inner .active.left,
+        .carousel-inner .active.right {
+            opacity: 0;
+        }
+
+        .carousel-inner .active,
+        .carousel-inner .next.left,
+        .carousel-inner .prev.right {
+            opacity: 1;
+        }
+
+        .carousel-inner .next,
+        .carousel-inner .prev,
+        .carousel-inner .active.left,
+        .carousel-inner .active.right {
+            left: 0;
+            transform: translate3d(0, 0, 0);
+        }
+
+
   .carousel,
 .item,
 .active {
-    height: 100vh;
+    height: 100%;
 }
 
 .carousel-inner {
+  
     height: 100vh;
 }
 
@@ -23,7 +51,7 @@
 }
 </style>
 
-<div id="{{'block'+block.id}}" class="carousel slide" ng-controller="FWCarouselController as carouselCtrl" style="margin-top:-50px">
+<div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" style="margin-top:-50px">
   <ol class="carousel-indicators">
     <li ng-repeat="content in carouselCtrl.contents" 
       ng-if="content.fields[blockConfig.imageField]" 
