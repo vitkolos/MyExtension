@@ -9,6 +9,9 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         'requiredFields[]':[blockConfig.imageField],
         ismagic: blockConfig.magicQuery ? blockConfig.magicQuery : false
     };
+    var stopOnHover=blockConfig.stopOnHover;
+    if(stopOnHover==true) stopOnHover="hover";
+    else stopOnHover="false";
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
     me.getContents=function(){
@@ -36,8 +39,8 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         };
         angular.element(targetElSelector).owlCarousel(options);*/
         angular.element(targetElSelector).carousel({
-            interval: 5000, //changes the speed
-            pause: "false"
+            interval: blockConfig.duration*1000, //changes the speed
+            pause: stopOnHover
         });
     };
     me.slideTo=function(index){
