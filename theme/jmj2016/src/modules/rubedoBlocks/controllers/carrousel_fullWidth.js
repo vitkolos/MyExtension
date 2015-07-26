@@ -10,7 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         ismagic: blockConfig.magicQuery ? blockConfig.magicQuery : false
     };
     var stopOnHover=blockConfig.stopOnHover;
-    if(stopOnHover==true) stopOnHover="hover";
+    if(blockConfig.stopOnHover==true) stopOnHover="hover";
     else stopOnHover="false";
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
