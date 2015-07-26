@@ -51,7 +51,7 @@
                         {
                             "type": "Ext.form.field.Number",
                             "config": {
-                                "fieldLabel": "Durée",
+                                "fieldLabel": "Durée (s)",
                                 "allowDecimals": false,
                                 "name": "duration",
                                 "minValue": 1
