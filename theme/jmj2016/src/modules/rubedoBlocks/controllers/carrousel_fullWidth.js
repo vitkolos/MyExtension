@@ -36,7 +36,8 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         };
         angular.element(targetElSelector).owlCarousel(options);*/
         angular.element(targetElSelector).carousel({
-        interval: 5000 //changes the speed
+            interval: 5000 //changes the speed
+            pause:'false'
         });
     };
     me.slideTo=function(index){
