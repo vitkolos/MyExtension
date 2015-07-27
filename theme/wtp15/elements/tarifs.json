@@ -102,6 +102,7 @@
         "volontaire-retraite":{"min":230,"max":300},
         "prepa-retraite":{"min":280,"max":370},
         "retraite":{"min":110,"max":140},
+        "tente":15,
          "currency"                : "€"
     },
     "lb" : {
