@@ -34,8 +34,8 @@
             angular.forEach(page.blocks, function(block, key2){
                 if (block.bType=="contentDetail" && block.orderValue==1) {
                     me.pagesBlocks[key].blocks.push({"title":block.title});
-                    if(block.i18n[lang]) console.log(block.i18n[lang]);
-                    else console.log(block.i18n.fr);
+                    if(block.i18n[lang]) console.log(block.i18n[lang].title);
+                    else console.log(block.i18n.fr.title);
                 
                  }
                  else {}
