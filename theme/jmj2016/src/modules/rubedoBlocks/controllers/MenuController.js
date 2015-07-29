@@ -35,6 +35,7 @@
                 if (block.bType=="contentDetail" && block.orderValue==1) {
                     
                     if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title});
+                    else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
 
                  }
                  else {}
