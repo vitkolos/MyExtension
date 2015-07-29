@@ -1,4 +1,4 @@
-    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService',function($scope,$location,RubedoMenuService,RubedoPagesService){
+    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','$route','RubedoMenuService','RubedoPagesService',function($scope,$location,$route,RubedoMenuService,RubedoPagesService){
         var me=this;
         me.menu={};
         me.pagesBlocks={};
@@ -32,7 +32,7 @@
             me.pagesBlocks[key].blocks=[]; 
             angular.forEach(page.blocks, function(block, key2){
                 if (block.bType=="contentDetail" && block.orderValue==1) {
-                me.pagesBlocks[key].blocks.push({"title":block.title}); 
+                me.pagesBlocks[key].blocks.push({"title":block["i18n"][$route.current.params.lang].title}); 
                  }
                  else {}
                })
