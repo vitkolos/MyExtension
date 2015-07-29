@@ -32,7 +32,8 @@
             me.pagesBlocks[key].blocks=[]; 
             angular.forEach(page.blocks, function(block, key2){
                 if (block.bType=="contentDetail" && block.orderValue==1) {
-                me.pagesBlocks[key].blocks.push({"title":block["i18n"][$route.current.params.lang].title}); 
+                me.pagesBlocks[key].blocks.push({"title":block.title}); 
+                console.log(me.pagesBlocks[key].blocks["i18n"])
                  }
                  else {}
                })
