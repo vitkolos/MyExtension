@@ -42,21 +42,20 @@
         function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope){
         var me=this;
         //break nav on non-page routes
-        $scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
-            console.log("from : "+currentLoc+" to : "+newLoc)
+         $scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
             if (newLoc.indexOf("file?file-id") > -1||newLoc.indexOf("dam?media-id") > -1){
                 event.preventDefault();
                 window.location.href=newLoc;
-
-            }
-            else if (newLoc.indexOf("#.") > -1) {
-            }
-            else if (newLoc.indexOf("#") > -1){
+            } else if (newLoc.indexOf("#") > -1){
                 event.preventDefault();
                 var target=angular.element("[name='"+newLoc.split("#")[1]+"']");
-                if (target){
-                    angular.element("html,body").animate({scrollTop: target.offset().top}, "slow");
+                if (target&&target.length>0){
+                    angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
+                } else {
+                    window.location.href=newLoc.slice(0,newLoc.indexOf("#"));
                 }
+            } else if (window._gaq) {
+                window._gaq.push(['_trackPageview', newLoc]);
             }
         });
         //set context and page-wide services
