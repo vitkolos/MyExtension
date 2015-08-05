@@ -28,7 +28,7 @@
     <meta property="og:image" ng-attr-content="{{'http://5.196.27.53'+rubedo.current.page.image}}" />
     <meta property="og:image" content="http://5.196.27.53/theme/<?php echo $this->siteTheme; ?>/img/image.jpg" />
     <link rel="shortcut icon" href="/theme/<?php echo $this->siteTheme; ?>/img/favicon.ico" type="image/x-icon" />
-    <link rel="alternate" ng-repeat="alternate in rubedo.current.page.i18n" ng-href="{{alternate.fullUrl}}" hreflang="{{alternate.locale}}" />
+    <link rel="alternate" ng-repeat="alternate in rubedo.current.page.i18n track by $index" ng-href="{{alternate.fullUrl}}" hreflang="{{alternate.locale}}" />
     <!--mobile meta-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title ng-bind-template="{{rubedo.current.page.title}}"></title>
