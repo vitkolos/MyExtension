@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope','$http',function($scope,$http){
+angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope','$resource',function($scope,$resource){
     var me = this;
     var config = $scope.blockConfig;
     me.like = config.like == 1;
@@ -26,7 +26,9 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         }
     }
     me.shareCounter = 0;
-    me.shareCounter += $http.get("https://cdn.api.twitter.com/1/urls/count.json?url=http://actualites.chemin-neuf.fr/fr/accueil/558bcda545205ebe06c1fd2c/fondation-de-la-fraternite-politique").count;
+    jQuery.getJSON('https://cdn.api.twitter.com/1/urls/count.json?url=http://stackoverflow.com/&callback=?', function (data) {
+    me.shareCounter +=data.count;
+});
     console.log(me.shareCounter);
     me.loadAddThis = function(){
         addthis.toolbox('.addthis_toolbox');
