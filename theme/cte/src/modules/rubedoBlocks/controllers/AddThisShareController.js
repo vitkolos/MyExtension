@@ -2,7 +2,6 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
     var me = this;
     var config = $scope.blockConfig;
     me.like = config.like == 1;
-    me.shareCounter=0;
     me.disposition = config.disposition;
     me.class = 'addthis_toolbox';
     if(me.like){
@@ -31,7 +30,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
               + '?url=http://stackoverflow.com'
               + '&callback=JSON_CALLBACK')
          .success(function(data, status) {
-        me.shareCounter = data.count;
+        $scope.shareCounter = data.count;
         console.log("url : "+data.url+" ; count : "+data.count);
     });
 
@@ -39,5 +38,5 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         addthis.toolbox('.addthis_toolbox');
 
     };
-    console.log("end : "+me.shareCounter);
+    console.log("end : "+$scope.shareCounter);
 }]);
