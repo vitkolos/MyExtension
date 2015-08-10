@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope','$resource',function($scope,$resource){
+angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope','$http',function($scope,$http){
     var me = this;
     var config = $scope.blockConfig;
     me.like = config.like == 1;
@@ -26,14 +26,14 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         }
     }
     me.shareCounter = 0;
- var TwitterAPI = $resource("http://search.twitter.com/search.json",
-    { callback: "JSON_CALLBACK" },
-    { get: { method: "JSONP" }});
 
-  $scope.search = function() {
-    me.shareCounter = TwitterAPI.get({ q: $scope.searchTerm });
-  };
-    me.shareCounter +=data.count;
+    $http.jsonp('https://cdn.api.twitter.com/1/urls/count.json'
+              + '?url=http://actualites.chemin-neuf.fr/fr/accueil/558bcda545205ebe06c1fd2c/fondation-de-la-fraternite-politique'
+              + '&callback=JSON_CALLBACK')
+         .success(function(data, status) {
+        me.shareCounter += data.count;
+    });
+
     console.log(me.shareCounter);
     me.loadAddThis = function(){
         addthis.toolbox('.addthis_toolbox');
