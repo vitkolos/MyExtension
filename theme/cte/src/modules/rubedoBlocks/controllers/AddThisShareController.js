@@ -28,7 +28,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
     me.shareCounter = 0;
 
     $http.jsonp('https://cdn.api.twitter.com/1/urls/count.json'
-              + '?url=http://actualites.chemin-neuf.fr/fr/accueil/558bcda545205ebe06c1fd2c/fondation-de-la-fraternite-politique'
+              + '?url=http://stackoverflow.com'
               + '&callback=JSON_CALLBACK')
          .success(function(data, status) {
         me.shareCounter += data.count;
