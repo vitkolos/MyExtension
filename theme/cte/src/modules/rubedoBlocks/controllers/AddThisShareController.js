@@ -2,6 +2,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
     var me = this;
     var config = $scope.blockConfig;
     me.like = config.like == 1;
+    me.shareCounter=0;
     me.disposition = config.disposition;
     me.class = 'addthis_toolbox';
     if(me.like){
@@ -34,9 +35,9 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         console.log("url : "+data.url+" ; count : "+data.count);
     });
 
-    console.log(me.shareCounter);
     me.loadAddThis = function(){
         addthis.toolbox('.addthis_toolbox');
 
     };
+    console.log("end : "+me.shareCounter);
 }]);
