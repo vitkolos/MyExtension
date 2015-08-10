@@ -32,6 +32,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
               + '&callback=JSON_CALLBACK')
          .success(function(data, status) {
         me.shareCounter += data.count;
+        console.log("url : "data.url+" ; count : "+data.count);
     });
 
     console.log(me.shareCounter);
