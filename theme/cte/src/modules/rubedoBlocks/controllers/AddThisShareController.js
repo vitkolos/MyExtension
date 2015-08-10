@@ -25,13 +25,12 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
             }
         }
     }
-    me.shareCounter = 0;
 
     $http.jsonp('https://cdn.api.twitter.com/1/urls/count.json'
               + '?url=http://stackoverflow.com'
               + '&callback=JSON_CALLBACK')
          .success(function(data, status) {
-        me.shareCounter += data.count;
+        me.shareCounter = data.count;
         console.log("url : "+data.url+" ; count : "+data.count);
     });
 
