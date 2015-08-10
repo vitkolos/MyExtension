@@ -34,7 +34,6 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
     me.shareCounter = TwitterAPI.get({ q: $scope.searchTerm });
   };
     me.shareCounter +=data.count;
-});
     console.log(me.shareCounter);
     me.loadAddThis = function(){
         addthis.toolbox('.addthis_toolbox');
