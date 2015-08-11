@@ -28,18 +28,18 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
 
     me.shareCounter=0;
         
-        
+    addthis.sharecounters.getShareCounts(['facebook', 'twitter'], function(obj) {
+        for (var i = 0; i < 2; i++) {
+            if(obj[i].service=="twitter") {me.shareCounter+=obj[i].count; }
+            else if(obj[i].service=="facebook") {me.shareCounter+=obj[i].share.total_count;}
+            
+        }
+    });        
 
 
 
     me.loadAddThis = function(){
         addthis.toolbox('.addthis_toolbox');
-        addthis.sharecounters.getShareCounts(['facebook', 'twitter'], function(obj) {
-            for (var i = 0; i < 2; i++) {
-                if(obj[i].service=="twitter") {me.shareCounter+=obj[i].count; }
-                else if(obj[i].service=="facebook") {me.shareCounter+=obj[i].share.total_count;}
-                
-            }
-        });
+
         };
 }]);
