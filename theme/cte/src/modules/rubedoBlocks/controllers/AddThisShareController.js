@@ -38,6 +38,6 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
 };
     me.loadAddThis = function(){
         addthis.toolbox('.addthis_toolbox');
-        if(shareCounter>0) me.shares();
+        if(me.shareCounter>0) me.shares();
         };
 }]);
