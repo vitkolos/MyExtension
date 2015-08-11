@@ -27,7 +27,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
     }
 
     $http.jsonp('https://cdn.api.twitter.com/1/urls/count.json'
-              + '?url=http://stackoverflow.com'
+              + '?url='+$scope.rubedo.current.page.contentCanonicalUrl
               + '&callback=JSON_CALLBACK')
          .success(function(data, status) {
         $scope.shareCounter = data.count;
