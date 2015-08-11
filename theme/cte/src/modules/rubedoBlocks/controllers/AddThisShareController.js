@@ -26,12 +26,17 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         }
     }
 
-    $http.jsonp('https://cdn.api.twitter.com/1/urls/count.json'
-              + '?url='+$location.absUrl()
-              + '&callback=JSON_CALLBACK')
+    $http.jsonp('https://cdn.api.twitter.com/1/urls/count.json' + '?url='+$location.absUrl() +'&callback=JSON_CALLBACK')
          .success(function(data, status) {
-        $scope.shareCounter = data.count;
-        console.log("url : "+data.url+" ; count : "+data.count);
+            $scope.shareCounter = data.count;
+            console.log("count twitter : "+data.count);
+            $http.jsonp('http://graph.facebook.com/' + '?id='+$location.absUrl() + '&callback=JSON_CALLBACK')
+                .success(function(data2, status) {
+                    $scope.shareCounter+=data2.count;
+                    console.log("count facebook : "+data.count);
+                });
+        
+        
     });
 
     me.loadAddThis = function(){
