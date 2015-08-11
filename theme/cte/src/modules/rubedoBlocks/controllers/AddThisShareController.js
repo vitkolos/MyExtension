@@ -28,16 +28,16 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
 
     me.shareCounter=0;
     me.shares = function(){   
-        var shares = 0;
+        var share = 0;
         addthis.sharecounters.getShareCounts(['facebook', 'twitter'], function(obj) {
             for (var i = 0; i < 2; i++) {
-                if(obj[i].service=="twitter") {shares+=obj[i].count; }
-                else if(obj[i].service=="facebook") shares+=obj[i].share.total_count;
+                if(obj[i].service=="twitter") {share+=obj[i].count; }
+                else if(obj[i].service=="facebook") share+=obj[i].share.total_count;
             }
             
         });
         me.shareCounter = share;
-        return shares;
+        return share;
     };
 
 
