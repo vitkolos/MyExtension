@@ -44,9 +44,13 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         
 
         addthis.sharecounters.getShareCounts(['facebook', 'twitter'], function(obj) {
-            console.log(obj[0]);
+            for (var i = 0; i < 2; i++) {
+                if(obj[i].service="twitter") me.shareCounter+=obj[i].count;
+                if(obj[i].service="facebook") me.shareCounter+=obj[i].total_count;
+                
+            }
+  console.log(me.shareCounter);
         });
-  
 
     me.loadAddThis = function(){
         addthis.toolbox('.addthis_toolbox');
