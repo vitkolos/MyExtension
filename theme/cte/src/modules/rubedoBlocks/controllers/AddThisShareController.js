@@ -32,7 +32,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
             console.log("count twitter : "+me.shareCounter);
             $http.jsonp('http://graph.facebook.com/' + '?id='+$location.absUrl() + '&callback=JSON_CALLBACK')
                 .success(function(data2, status) {
-                    me.shareCounter+=data2.count;
+                    me.shareCounter=me.shareCounter + data2.count;
                     console.log("count facebook : "+me.shareCounter);
                 });
         
