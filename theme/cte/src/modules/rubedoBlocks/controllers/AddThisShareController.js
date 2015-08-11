@@ -27,19 +27,18 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
     }
 
     me.shareCounter=0;
-    me.shares = function(){   
-        var share = 0;
+    
+    
+    $scope.$on("$routeChangeSuccess", function($currentRoute, $previousRoute) {
         addthis.sharecounters.getShareCounts(['facebook', 'twitter'], function(obj) {
             for (var i = 0; i < 2; i++) {
-                if(obj[i].service=="twitter") {share+=obj[i].count; }
-                else if(obj[i].service=="facebook") share+=obj[i].share.total_count;
+                if(obj[i].service=="twitter") {me.shareCounter+=obj[i].count; }
+                else if(obj[i].service=="facebook") me.shareCounter+=obj[i].share.total_count;
             }
             
         });
-        me.shareCounter = share;
-        console.log(share);
-        return share;
-    };
+    });    
+
 
 
 
