@@ -10,6 +10,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
 
     });
+    me.tooltips=function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    }
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
