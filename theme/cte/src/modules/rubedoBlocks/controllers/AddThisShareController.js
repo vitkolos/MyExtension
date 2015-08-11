@@ -39,7 +39,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         
         
     });*/
-    me.shareCounter=0
+    me.shareCounter=0;
     addthis.sharecounters.getShareCounts(['facebook', 'twitter'], function(obj) {
         console.log()obj[0];
     });
