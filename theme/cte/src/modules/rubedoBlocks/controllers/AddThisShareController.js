@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope','$http',function($scope,$http){
+angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope','$http','$location',function($scope,$http,$location){
     var me = this;
     var config = $scope.blockConfig;
     me.like = config.like == 1;
@@ -27,7 +27,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
     }
 
     $http.jsonp('https://cdn.api.twitter.com/1/urls/count.json'
-              + '?url='+$scope.rubedo.current.page.contentCanonicalUrl
+              + '?url='+$location.absUrl()
               + '&callback=JSON_CALLBACK')
          .success(function(data, status) {
         $scope.shareCounter = data.count;
