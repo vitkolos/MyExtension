@@ -37,6 +37,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
             }
             
         });
+        console.log(me.shareCounter);
     });    
 
 
