@@ -29,11 +29,11 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
     $http.jsonp('https://cdn.api.twitter.com/1/urls/count.json' + '?url='+$location.absUrl() +'&callback=JSON_CALLBACK')
          .success(function(data, status) {
             me.shareCounter = data.count;
-            console.log("count twitter : "+data.count);
+            console.log("count twitter : "+me.shareCounter);
             $http.jsonp('http://graph.facebook.com/' + '?id='+$location.absUrl() + '&callback=JSON_CALLBACK')
                 .success(function(data2, status) {
                     me.shareCounter+=data2.count;
-                    console.log("count facebook : "+data.count);
+                    console.log("count facebook : "+me.shareCounter);
                 });
         
         
@@ -43,5 +43,4 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         addthis.toolbox('.addthis_toolbox');
 
     };
-    console.log("end : "+me.shareCounter);
 }]);
