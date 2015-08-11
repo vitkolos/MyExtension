@@ -34,6 +34,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
             else if(obj[i].service=="facebook") {me.shareCounter+=obj[i].share.total_count;}
             
         }
+        $scope.$apply;
     });        
 
 
