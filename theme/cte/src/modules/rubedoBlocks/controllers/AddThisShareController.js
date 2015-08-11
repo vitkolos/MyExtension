@@ -26,7 +26,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         }
     }
 
-    $http.jsonp('https://cdn.api.twitter.com/1/urls/count.json' + '?url='+$location.absUrl() +'&callback=JSON_CALLBACK')
+    /*$http.jsonp('https://cdn.api.twitter.com/1/urls/count.json' + '?url='+$location.absUrl() +'&callback=JSON_CALLBACK')
          .success(function(data, status) {
             me.shareCounter = Number(data.count);
             console.log("count twitter : "+me.shareCounter);
@@ -38,10 +38,16 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
                 });
         
         
-    });
+    });*/
+    
 
     me.loadAddThis = function(){
         addthis.toolbox('.addthis_toolbox');
+        addthis.sharecounters.getShareCounts(['facebook', 'twitter'], function(obj) {
+    console.log("total count : "+obj)
+});
+        
+        
 
     };
 }]);
