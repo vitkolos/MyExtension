@@ -43,12 +43,12 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         
         
 
-   
-
-    me.loadAddThis = function(){
-        addthis.toolbox('.addthis_toolbox');
         addthis.sharecounters.getShareCounts(['facebook', 'twitter'], function(obj) {
             console.log(obj[0]);
         });
-    };
+  
+
+    me.loadAddThis = function(){
+        addthis.toolbox('.addthis_toolbox');
+     };
 }]);
