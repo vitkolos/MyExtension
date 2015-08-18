@@ -35,9 +35,8 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         
     });*/
     me.loadAddThis = function(){
-        
-$timeout(function() {
-+        addthis.toolbox('.addthis_toolbox');
-+    }, 500);
-        };
+        $timeout(function() {
++        addthis.toolbox('.addthis_toolbox')
++       }, 500);
+    };
 }]);
