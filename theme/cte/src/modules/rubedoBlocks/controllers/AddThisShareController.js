@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope',function($scope){
+angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope','$location',function($scope,$location){
     var me = this;
     var config = $scope.blockConfig;
     me.like = config.like == 1;
