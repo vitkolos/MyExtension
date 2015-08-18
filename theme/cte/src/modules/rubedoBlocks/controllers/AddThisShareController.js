@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope','$timeout',function($scope,$timeout){
+angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope',function($scope){
     var me = this;
     var config = $scope.blockConfig;
     me.like = config.like == 1;
@@ -24,7 +24,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
                 me.class += ' addthis_32x32_style addthis-pos'
             }
         }
-    };
+    }
 
     me.shareCounter=0;
     addthis.sharecounters.getShareCounts(['facebook', 'twitter'], function(obj) {
@@ -35,9 +35,6 @@ angular.module("rubedoBlocks").lazy.controller('AddThisShareController',['$scope
         
     });
     me.loadAddThis = function(){
-    
         addthis.toolbox('.addthis_toolbox');
-    }, 500);
-};
-    
+        };
 }]);
