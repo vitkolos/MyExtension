@@ -50,10 +50,11 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 	        method: 'JSONP',
 	        url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5'/*,
 	        params: 'limit=10, sort_by=created:desc'*/,
-	        headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
+	        headers: {'Access-Control-Allow-Origin:': '*'}
 	     }).success(function(data){
 	        // With the data succesfully returned, call our callback
 	        callbackFunc(data);
+	        console.log(data);
 	    }).error(function(){
 	        alert("error");
 	    });
@@ -73,19 +74,12 @@ angular.module('rubedoBlocks').filter('homepage', function() {
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId + '"></div>';
-            };/*
+            };
             NFGFilms.getData(function(dataResponse) {
        		filmUrl = dataResponse;
-    		});*/
-    		$http.jsonp('http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5', { 
-			// params: j your jason 
-			})
-			.success(function (data) {
-				alert(data); 
-				})
-			.error(function (data) { 
-				alert("error"); 
-		});
+       		
+    		});
+    	
 
            var options = {
            	      file:filmUrl,/*
