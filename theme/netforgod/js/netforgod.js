@@ -47,7 +47,7 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 	delete $http.defaults.headers.common['X-Requested-With'];
 	this.getData = function(callbackFunc) {
 	    $http({
-	        method: 'GET',
+	        method: 'JSONP',
 	        url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5'/*,
 	        params: 'limit=10, sort_by=created:desc'*/,
 	        headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
@@ -74,11 +74,9 @@ angular.module('rubedoBlocks').filter('homepage', function() {
                       
                 return '<div id="' + playerId + '"></div>';
             };
-            /*NFGFilms.getData(function(dataResponse) {
+            NFGFilms.getData(function(dataResponse) {
        		filmUrl = dataResponse;
-    		});*/
-    		delete $http.defaults.headers.common['X-Requested-With'];
-    	$http.jsonp("http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5&callback=JSON_CALLBACK").success(function(data) { console.log(data); }); 
+    		});
 
            var options = {
            	      file:filmUrl,/*
