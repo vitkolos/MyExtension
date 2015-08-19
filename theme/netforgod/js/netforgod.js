@@ -43,7 +43,26 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 });
 
 
- angular.module('rubedoBlocks').directive('jwplayer', ['$compile','$http', function ($compile,$http) {
+ angular.module('rubedoBlocks').service('NFGFilms', function($http) {
+	delete $http.defaults.headers.common['X-Requested-With'];
+	this.getData = function(callbackFunc) {
+	    $http({
+	        method: 'GET',
+	        url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5&callback=JSON_CALLBACK'/*,
+	        params: 'limit=10, sort_by=created:desc',
+	        headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}*/
+	     }).success(function(data){
+	        // With the data succesfully returned, call our callback
+	        callbackFunc(data);
+	    }).error(function(){
+	        alert("error");
+	    });
+	 }
+});
+
+
+
+ angular.module('rubedoBlocks').directive('jwplayer', ['$compile','$http', function ($compile,$http, NFGFilms) {
     return {
         restrict: 'EC',
         link: function (scope, element, attrs) {
@@ -55,6 +74,9 @@ angular.module('rubedoBlocks').filter('homepage', function() {
                       
                 return '<div id="' + playerId + '"></div>';
             };
+            NFGFilms.getData(function(dataResponse) {
+       filmUrl = dataResponse;
+    		});
            $http({
     		method: 'JSONP',
     		url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5&callback=JSON_CALLBACK'
