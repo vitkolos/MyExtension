@@ -48,9 +48,9 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 	this.getData = function(callbackFunc) {
 	    $http({
 	        method: 'GET',
-	        url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5&callback=JSON_CALLBACK'/*,
-	        params: 'limit=10, sort_by=created:desc',
-	        headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}*/
+	        url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5'/*,
+	        params: 'limit=10, sort_by=created:desc'*/,
+	        headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
 	     }).success(function(data){
 	        // With the data succesfully returned, call our callback
 	        callbackFunc(data);
