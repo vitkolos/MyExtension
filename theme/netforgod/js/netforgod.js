@@ -55,7 +55,8 @@ angular.module('rubedoBlocks').filter('homepage', function() {
                 return '<div id="' + playerId + '"></div>';
             };
            var options = {
-                      file:"http://www.netforgod.tv/videos/FOI_15_06/FR_HD.mp4",/*
+           	      file:"http://www.netforgod.tv/VOD/FOI_15_05/EN_HD.mp4",/*
+                      file:"http://www.netforgod.tv/videos/FOI_15_06/FR_HD.mp4",
                       file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",*/
                       image: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/affiche.jpg",
                       width:"100%",
