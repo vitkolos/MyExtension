@@ -43,19 +43,27 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 });
 
 
- angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
+ angular.module('rubedoBlocks').directive('jwplayer', ['$compile','$http', function ($compile,$http) {
     return {
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmId = attrs.filmid;
            var languages = attrs.lang;
+           var filmUrl="";
+           $http.get('http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5')
+		.success(function(data) {
+  			filmUrl = data;
+		})
+		.error(function(data, status) {
+  			console.error('Repos error', status, data);
+	    });
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId + '"></div>';
             };
            var options = {
-           	      file:"http://www.netforgod.tv/VOD/FOI_15_05/EN_HD.mp4",/*
+           	      file:filmUrl,/*
                       file:"http://www.netforgod.tv/videos/FOI_15_06/FR_HD.mp4",
                       file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",*/
                       image: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/affiche.jpg",
