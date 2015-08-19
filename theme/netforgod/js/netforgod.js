@@ -50,7 +50,10 @@ angular.module('rubedoBlocks').filter('homepage', function() {
            var filmId = attrs.filmid;
            var languages = attrs.lang;
            var filmUrl="";
-           $http.get('http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5')
+           $http({
+    		method: 'JSONP',
+    		url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5'
+		})
 		.success(function(data) {
   			filmUrl = data;
 		})
