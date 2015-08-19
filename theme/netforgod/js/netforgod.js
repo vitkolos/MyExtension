@@ -62,7 +62,7 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 
 
 
- angular.module('rubedoBlocks').directive('jwplayer', ['$compile','$http', function ($compile,$http, NFGFilms) {
+ angular.module('rubedoBlocks').directive('jwplayer', ['$compile','$http','NFGFilms', function ($compile,$http, NFGFilms) {
     return {
         restrict: 'EC',
         link: function (scope, element, attrs) {
