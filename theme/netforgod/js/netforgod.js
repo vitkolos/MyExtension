@@ -77,7 +77,7 @@ angular.module('rubedoBlocks').filter('homepage', function() {
             NFGFilms.getData(function(dataResponse) {
        		filmUrl = dataResponse;
     		});*/
-    		$http.get('http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5', { 
+    		$http.jsonp('http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5', { 
 			// params: j your jason 
 			})
 			.success(function (data) {
