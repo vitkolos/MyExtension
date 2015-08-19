@@ -73,10 +73,19 @@ angular.module('rubedoBlocks').filter('homepage', function() {
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId + '"></div>';
-            };
+            };/*
             NFGFilms.getData(function(dataResponse) {
        		filmUrl = dataResponse;
-    		});
+    		});*/
+    		$http.get('http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5', { 
+			// params: j your jason 
+			})
+			.success(function (data) {
+				alert(data); 
+				})
+			.error(function (data) { 
+				alert("error"); 
+		});
 
            var options = {
            	      file:filmUrl,/*
