@@ -50,21 +50,18 @@ angular.module('rubedoBlocks').filter('homepage', function() {
            var filmId = attrs.filmid;
            var languages = attrs.lang;
            var filmUrl="";
+            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
+            getTemplate = function (playerId) {
+                      
+                return '<div id="' + playerId + '"></div>';
+            };
            $http({
     		method: 'JSONP',
     		url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5&callback=JSON_CALLBACK'
 		})
 		.success(function(data) {
   			filmUrl = data;
-		})
-		.error(function(data, status) {
-  			console.error('Repos error', status, data);
-	    });
-            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
-            getTemplate = function (playerId) {
-                      
-                return '<div id="' + playerId + '"></div>';
-            };
+  			
            var options = {
            	      file:filmUrl,/*
                       file:"http://www.netforgod.tv/videos/FOI_15_06/FR_HD.mp4",
@@ -76,7 +73,14 @@ angular.module('rubedoBlocks').filter('homepage', function() {
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
             
-           scope.loadVideo = function(lang) { 
+			
+  			
+  			
+		})
+		.error(function(data, status) {
+  			console.error('Repos error', status, data);
+	    });
+             scope.loadVideo = function(lang) { 
                    jwplayer().load([{
                      file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/"+lang+"_divx.flv"
                    }]);
