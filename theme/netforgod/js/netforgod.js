@@ -83,7 +83,7 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 
            var options = {
            	      /*file:filmUrl,*/
-                      file:"http://www.netforgod.tv/s/HD.php?l=FR&y=15&m=5",
+                      file:"http://www.netforgod.tv/VOD/FOI_15_05/FR_HD.mp4",
                       /*file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",*/
                       image: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/affiche.jpg",
                       width:"100%",
