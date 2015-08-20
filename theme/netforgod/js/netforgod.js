@@ -82,9 +82,9 @@ angular.module('rubedoBlocks').filter('homepage', function() {
     	
 
            var options = {
-           	      file:filmUrl,/*
+           	      /*file:filmUrl,*/
                       file:"http://www.netforgod.tv/videos/FOI_15_06/FR_HD.mp4",
-                      file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",*/
+                      /*file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",*/
                       image: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/affiche.jpg",
                       width:"100%",
                       aspectratio:"16:9"};
