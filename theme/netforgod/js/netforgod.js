@@ -48,7 +48,7 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 	this.getData = function(callbackFunc) {
 	    $http({
 	        method: 'JSONP',
-	        url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5'/*,
+	        url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5&callback=JSON_CALLBACK'/*,
 	        params: 'limit=10, sort_by=created:desc'*/,
 	        headers: {'Access-Control-Allow-Origin:': '*'}
 	     }).success(function(data){
