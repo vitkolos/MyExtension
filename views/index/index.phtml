@@ -26,9 +26,9 @@
     <link ng-if="rubedo.current.page.contentCanonicalUrl" rel="canonical"
           ng-href="{{ rubedo.current.page.contentCanonicalUrl }}"/>
     <link rel="alternate" ng-repeat="alternate in rubedo.current.page.i18n track by $index" ng-href="{{alternate.fullUrl}}" hreflang="{{alternate.locale}}" />
-    <!--<meta property="og:image" content="http://5.196.27.53/theme/<?php echo $this->siteTheme; ?>/img/image.jpg" />
+    <meta property="og:image" content="http://5.196.27.53/theme/<?php echo $this->siteTheme; ?>/img/image.jpg" />
     <link rel="shortcut icon" href="/theme/<?php echo $this->siteTheme; ?>/img/favicon.ico" type="image/x-icon" />
-    -->
+    
     
     <!--mobile meta-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
