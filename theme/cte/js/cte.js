@@ -6,6 +6,11 @@ blocksConfig.facebook={
            "template": "/templates/blocks/facebook.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
 };
+blocksConfig.d3Script= {
+            "template": "/templates/blocks/d3Script.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/D3ScriptController.js"],
+            "externalDependencies":['/components/mbostock/d3/d3.min.js','//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js','/datamaps.world.min.js']
+        },
 blocksConfig.buttonToPage={
            "template": "/templates/blocks/buttonToPage.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
