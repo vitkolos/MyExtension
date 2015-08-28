@@ -26,6 +26,11 @@ blocksConfig.bg_image={
 blocksConfig.footer={
            "template": "/templates/blocks/footer.html"
 };
+blocksConfig.contentDetail = {
+            "template": "/templates/blocks/contentDetail.html",
+            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/AddThisShareController.js"]
+        },
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
