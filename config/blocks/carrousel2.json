@@ -1,0 +1,160 @@
+{
+    "type": "Full width slider",
+    "description": "Carousel en pleine page",
+    "configBasique": {
+        "title": "Full width slider",
+        "bType": "carrousel2",
+        "flex": 1,
+        "champsConfig": {
+            "simple": [
+
+                {
+                    "categorie": "#ext-gen1068#",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.queryBuilderField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1093#",
+                                "name": "query"
+                            }
+                        },
+                        {
+                            "type": "Ext.ux.TreePicker",
+                            "config": {
+                                "fieldLabel": "#ext-gen1073#",
+                                "name": "singlePage"
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "config": {
+                                "fieldLabel": "#ext-gen1405#",
+                                "name": "imageField",
+                                "value": "image"
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "config": {
+                                "fieldLabel": "#ext-gen1095#",
+                                "name": "pageSize",
+                                "allowDecimals": false,
+                                "minValue": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "categorie": "#ext-gen1072#",
+                    "champs": [
+
+                        {
+                            "type": "Ext.form.field.Number",
+                            "config": {
+                                "fieldLabel": "Durée (s)",
+                                "allowDecimals": false,
+                                "name": "duration",
+                                "minValue": 1
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "#ext-gen1456#",
+                                "name": "showCaption",
+                                "inputValue": true
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "#ext-gen1457#",
+                                "name": "showSummary",
+                                "inputValue": true
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "#ext-gen1459#",
+                                "name": "autoPlay",
+                                "inputValue": true
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "#ext-gen1460#",
+                                "name": "stopOnHover",
+                                "inputValue": true
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "config": {
+                                "fieldLabel": "#ext-gen1461#",
+                                "name": "imageHeight",
+                                "allowDecimals": false,
+                                "minValue": 0
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "config": {
+                                "fieldLabel": "#ext-gen1450#",
+                                "name": "imageWidth",
+                                "allowDecimals": false,
+                                "minValue": 0
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.ComboBox",
+                            "config": {
+                                "fieldLabel": "#ext-gen1451#",
+                                "name": "imageResizeMode",
+                                "editable": false,
+                                "forceSelection": true,
+                                "queryMode": "local",
+                                "store": [
+                                    "boxed",
+                                    "crop",
+                                    "morph"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ],
+            "avance": [
+                {
+                    "categorie": "Template",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1452#",
+                                "name": "customTemplate",
+                                "defaultTemplateUrl": "blocks/carousel.html",
+                                "twigMode": false
+
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "configBloc": {
+            "imageField": "image",
+            "imageResizeMode": "boxed",
+            "autoPlay": true,
+            "duration":5,
+            "showCaption": true,
+            "showSummary":true
+            
+
+        }
+    },
+    "category": "#ext-gen1068#",
+    "bType": "carrousel2",
+    "id": "506441f8c64804d514022999"
+}

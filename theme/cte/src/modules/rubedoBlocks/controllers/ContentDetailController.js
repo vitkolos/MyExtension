@@ -10,6 +10,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
 
     });
+    me.tooltips=function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    }
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
@@ -20,11 +23,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return field;
     };
     me.getTermInTaxo=function(taxoKey,termId){
-        if(!me.taxo){return(null);}
+        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
-        angular.forEach(me.taxo[taxoKey].terms,function(candidate, id){
+        angular.forEach(me.taxo[taxoKey].terms,function(candidate, id){ // chercher l'id dans les taxonomies de ce type de contenu si 
             if(!term){if(id==termId){term=candidate;}}
          });
+         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
     return(term);
     }
     me.getContentById = function (contentId){

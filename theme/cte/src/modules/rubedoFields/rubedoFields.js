@@ -63,6 +63,10 @@
         "ratingField":"/templates/fields/rating.html",
         "Rubedo.ux.widget.Rating":"/templates/fields/rating.html",
         "productBox":"/templates/fields/productBox.html",
+        "embeddedImageField":"/templates/fields/embeddedImage.html",
+        "Rubedo.view.embeddedImageField":"/templates/fields/embeddedImage.html",
+        "RDirectObjectField":"/templates/fields/jsonObject.html",
+        "Rubedo.view.RDirectObjectField":"/templates/fields/jsonObject.html",
         "fieldNotFound":"/templates/fields/fieldNotFound.html"
     };
 
@@ -84,7 +88,15 @@
         "radiogroup":"/templates/inputFields/radioGroup.html",
         "Ext.form.RadioGroup":"/templates/inputFields/radioGroup.html",
         "datefield":"/templates/inputFields/date.html",
-        "Ext.form.field.Date":"/templates/inputFields/date.html"
+        "Ext.form.field.Date":"/templates/inputFields/date.html",
+        "localiserField":"/templates/inputFields/localiser.html",
+        "Rubedo.view.localiserField":"/templates/inputFields/localiser.html",
+        "ImagePickerField":"/templates/inputFields/media.html",
+        "Rubedo.view.ImagePickerField":"/templates/inputFields/media.html",
+        "externalMediaField":"/templates/inputFields/externalMedia.html",
+        "Rubedo.view.externalMediaField":"/templates/inputFields/externalMedia.html",
+        "ratingField":"/templates/inputFields/rating.html",
+        "Rubedo.ux.widget.Rating":"/templates/inputFields/rating.html"
     };
 
     //service for resolving field templates
@@ -187,7 +199,6 @@
         var editorOptions={
             toolbar:  myTBConfig,
             allowedContent:true,
-            extraAllowedContent:'iframe',
             language:$scope.fieldLanguage,
             entities:false,
             entities_latin:false,
@@ -196,7 +207,7 @@
             filebrowserImageUploadUrl:null
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
-            editorOptions.removePlugins= 'colorbutton,find,flash,font' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
+            editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
             editorOptions.toolbar = [
                 { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', '-', 'Undo', 'Redo' ] }
             ];
@@ -220,8 +231,7 @@
                     }
                     me.html=jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"],["target"]],
-                        allowedTags: ['iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote'],
-                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],
+                        replace: [[["b", "big"], "strong"]],
                         format: true
                     });
 
@@ -231,8 +241,6 @@
                     }
                     me.html=$sce.trustAsHtml(jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"]],
-                        allowedTags: ['iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote'],
-                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],
                         format: true
                     }));
                 }
@@ -245,18 +253,30 @@
 
     module.controller("ExternalMediaFieldController",['$scope','$http','$sce',function($scope,$http,$sce){
         var me=this;
-        var myValue=$scope.fieldEntity[$scope.field.config.name];
-        if ((myValue)&&(myValue.url)){
-            var url = "http://iframe.ly/api/oembed?callback=JSON_CALLBACK&url="+encodeURIComponent(myValue.url);
-            if ($scope.rubedo.current.site.iframelyKey){
-                url=url+"&api_key="+$scope.rubedo.current.site.iframelyKey;
-            }
-            $http.jsonp(url).success(function(response){
+        me.refreshRender=function(){
+            var myValue=$scope.fieldEntity[$scope.field.config.name];
+            if ((myValue)&&(myValue.url)){
+                var url = "http://iframe.ly/api/oembed?callback=JSON_CALLBACK&url="+encodeURIComponent(myValue.url);
+                if ($scope.rubedo.current.site.iframelyKey){
+                    url=url+"&api_key="+$scope.rubedo.current.site.iframelyKey;
+                }
+                $http.jsonp(url).success(function(response){
                     me.html=$sce.trustAsHtml(response.html);
                 });
-
-
-        }
+            }
+        };
+        me.refreshRender();
+        me.handleSizeChanges=function(){
+            if ($scope.fieldEditMode){
+                $scope.registerFieldEditChanges();
+            }
+        };
+        me.handleUrlChanges=function(){
+            me.refreshRender();
+            if ($scope.fieldEditMode){
+                $scope.registerFieldEditChanges();
+            }
+        };
     }]);
 
     module.controller("RadioGroupController",['$scope',function($scope){
@@ -283,9 +303,11 @@
             return (starArray);
         };
         me.editValue=function(index){
-          if ($scope.fieldEditMode){
+          if ($scope.fieldEditMode||$scope.fieldInputMode){
               $scope.fieldEntity[$scope.field.config.name]=index;
-              $scope.registerFieldEditChanges();
+              if ($scope.fieldEditMode){
+                  $scope.registerFieldEditChanges();
+              }
           }
         };
     }]);
@@ -355,7 +377,7 @@
             zoom:4
         };
         $scope.$watch("fieldEntity."+$scope.field.config.name, function(newValue){
-            if (newValue.lat&&newValue.lon){
+            if (newValue&&newValue.lat&&newValue.lon){
                 me.map.center={
                     latitude:newValue.lat,
                     longitude:newValue.lon
@@ -369,7 +391,7 @@
                 };
                 if (newValue.address){
                     me.positionMarker.label=newValue.address;
-                    if (!$scope.feildEditMode){
+                    if ((!$scope.feildEditMode&&!$scope.fieldInputMode)||!me.editableAddress){
                         me.editableAddress=angular.copy(newValue.address);
                     }
                 }
@@ -379,8 +401,21 @@
         });
         me.geocoder = new google.maps.Geocoder();
         me.reGeocode=function(){
-          if (me.editableAddress){
+          if (me.editableAddress&&me.editableAddress!=""){
               var value=angular.copy($scope.fieldEntity[$scope.field.config.name]);
+              if (!value){
+                  value={
+                      address:null,
+                      altitude:null,
+                      lat:null,
+                      lon:null,
+                      location:{
+                          type:"Point",
+                          coordinates:[]
+                      }
+                      };
+              }
+
               me.geocoder.geocode({
                   'address' : me.editableAddress
               }, function(results, status) {
@@ -392,7 +427,9 @@
                       value.lon=longitude;
                       value.location.coordinates=[longitude,latitude];
                       $scope.fieldEntity[$scope.field.config.name]=angular.copy(value);
-                      $scope.registerFieldEditChanges();
+                      if ($scope.registerFieldEditChanges){
+                        $scope.registerFieldEditChanges();
+                      }
                       $scope.$apply();
                   }
               });
@@ -400,7 +437,7 @@
         };
         me.mapTimer=null;
         me.handleAddressEdit=function(){
-            if ($scope.fieldEditMode){
+            if ($scope.fieldEditMode||$scope.fieldInputMode){
                 clearTimeout(me.mapTimer);
                 me.mapTimer = setTimeout(function() {
                     me.reGeocode();
@@ -499,7 +536,7 @@
         };
     }]);
 
-    module.controller("MediaFieldController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
+    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",function($scope,RubedoMediaService,$element){
         var me=this;
         var mediaId=$scope.fieldEntity[$scope.field.config.name];
         me.launchEditor=function(){
@@ -574,6 +611,53 @@
                     }
                 }
             );
+        }
+        me.newFile=null;
+        me.uploadNewFile=function(){
+           me.notification=null;
+           if ($scope.fieldInputMode&&me.newFile&&$scope.field.config.allowedDAMTypes){
+               var uploadOptions={
+                   typeId:$scope.field.config.allowedDAMTypes,
+                   fields:{
+                       title:me.newFile.name
+                   }
+               };
+               RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
+                   function(response){
+                       if (response.data.success){
+                           var id=response.data.media.id;
+                           $scope.fieldEntity[$scope.field.config.name]=id;
+                           mediaId=id;
+                           if ($scope.registerFieldEditChanges){
+                               $scope.registerFieldEditChanges();
+                           }
+                            me.media=response.data.media;
+                            me.displayMedia();
+                       } else {
+                           console.log(response);
+                           me.notification={
+                               type:"error",
+                               text:response.data.message
+                           };
+                       }
+                   },
+                   function(response){
+                       console.log(response);
+                       me.notification={
+                           type:"error",
+                           text:response.data.message
+                       };
+                   }
+               );
+           }
+
+        };
+        if ($scope.fieldInputMode){
+            $element.find('.form-control').on('change', function(){
+                setTimeout(function(){
+                    me.uploadNewFile();
+                }, 200);
+            });
         }
     }]);
 

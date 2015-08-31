@@ -43,28 +43,56 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 });
 
 
- angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
+ angular.module('rubedoBlocks').service('NFGFilms', function($http) {
+	delete $http.defaults.headers.common['X-Requested-With'];
+	this.getData = function(callbackFunc) {
+	    $http({
+	        method: 'JSONP',
+	        url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5&callback=JSON_CALLBACK'/*,
+	        params: 'limit=10, sort_by=created:desc'*/,
+	        headers: {'Access-Control-Allow-Origin:': '*'}
+	     }).success(function(data){
+	        // With the data succesfully returned, call our callback
+	        callbackFunc(data);
+	        console.log(data);
+	    }).error(function(){
+	        alert("error");
+	    });
+	 }
+});
+
+
+
+ angular.module('rubedoBlocks').directive('jwplayer', ['$compile','$http','NFGFilms', function ($compile,$http, NFGFilms) {
     return {
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmId = attrs.filmid;
            var languages = attrs.lang;
+           var filmUrl="";
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId + '"></div>';
             };
+            /*NFGFilms.getData(function(dataResponse) {
+       		filmUrl = dataResponse;
+       		
+    		});*/
+    	
+
            var options = {
-                      file:"http://www.netforgod.tv/videos/FOI_15_06/FR_HD.mp4",/*
-                      file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",*/
+           	      /*file:filmUrl,*/
+                      file:"http://www.netforgod.tv/VOD/FOI_15_05/FR_HD.mp4",
+                      /*file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",*/
                       image: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/affiche.jpg",
                       width:"100%",
                       aspectratio:"16:9"};
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
-            
-           scope.loadVideo = function(lang) { 
+ 
+             scope.loadVideo = function(lang) { 
                    jwplayer().load([{
                      file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/"+lang+"_divx.flv"
                    }]);
