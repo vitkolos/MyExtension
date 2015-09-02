@@ -40,27 +40,25 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             function(response){
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
-                    $scope.rubedo.current.page.title = response.data.content.text;
-                    if(response.data.content.fields.image) $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
-                    console.log($scope.rubedo.current.page.image);
-                    var canonicUrl = angular.copy(response.data.content.canonicalUrl);
-                    var array = canonicUrl.split('/');
-                    var callUrl = array[0];
-                    for (i = 1; i < array.length-2; i++) {callUrl = callUrl+ '/'+ array[i];}
-                  me.callUrl = callUrl;
-                  console.log(callUrl);
-                     
-                    
-                    
-                    
                     me.content=response.data.content;
+                    if (config.isAutoInjected){
+                        if (me.content.fields.text){
+                            $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
+                        }
+                        if (me.content.fields.summary){
+                            $scope.rubedo.setPageDescription(angular.copy(me.content.fields.summary));
+                        }
+                        if(response.data.content.fields.image) {
+                            $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
+                        }
+                       
+                    }
+                
+                    
+                    
+                    
                     $scope.fieldEntity=angular.copy(me.content.fields);
-                    if (me.content.fields['description'] ) {
-                        $scope.rubedo.current.page.description = me.content.fields['description'].substring(0, 300).replace(/(<([^>]+)>)/ig,"").replace(/\u00a0/g, " ")+"..."
-                    }
-                    else if (me.content.fields['richText']) {
-                        $scope.rubedo.current.page.description = me.content.fields['richText'].substring(0, 300).replace(/(<([^>]+)>)/ig,"").replace(/\u00a0/g, " ")+"...";
-                    }
+                    
 
                     $scope.fieldLanguage=me.content.locale;
                     if (me.content.isProduct){
