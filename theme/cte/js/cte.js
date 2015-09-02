@@ -171,6 +171,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
           description : 'Checkout this awesome post on blog.me'        
         });
         addthis.counter(angular.element('.addthis_toolbox'));
+        addthis.counter(angular.element('.addthis_counter').get());
       });
 	  }
 	};
