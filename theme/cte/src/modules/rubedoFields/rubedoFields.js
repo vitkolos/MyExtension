@@ -231,6 +231,8 @@
                     }
                     me.html=jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"],["target"]],
+                        allowedTags: ['iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote'],
+                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],                        
                         replace: [[["b", "big"], "strong"]],
                         format: true
                     });
@@ -241,6 +243,8 @@
                     }
                     me.html=$sce.trustAsHtml(jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"]],
+                        allowedTags: ['iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote'],
+                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],                        
                         format: true
                     }));
                 }
