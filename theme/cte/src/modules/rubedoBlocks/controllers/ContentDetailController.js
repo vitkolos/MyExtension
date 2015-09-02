@@ -36,7 +36,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.search = function(taxoKey,termId){
         RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
             if (response.data.success){
-                $location.url(response.data.url+"?taxonomies={' "+taxoKey+"':['"+termId+"']}");
+                $location.url(response.data.url+'?taxonomies={"'+taxoKey+'":["'+termId+'"]}');
             }
         });        
     };
