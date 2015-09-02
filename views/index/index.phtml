@@ -16,15 +16,17 @@
     <![endif]-->
     <meta charset="UTF-8">
     <meta name="fragment" content="!">
-    <meta ng-if="rubedo.current.page.description" name="description"
+    <meta property="og:title" content="{{rubedo.current.page.title}}" />
+    <meta ng-if="rubedo.current.page.description" name="description" property="og:description"
           ng-attr-content="{{rubedo.current.page.description}}"/>
     <meta ng-if="rubedo.current.page.metaKeywords" name="keywords"
           ng-attr-content="{{ rubedo.current.page.metaKeywords }}">
     <meta ng-if="rubedo.current.page.metaRobots" name="robots" ng-attr-content="{{ rubedo.current.page.metaRobots }}">
     <meta ng-if="rubedo.current.page.metaAuthor" name="author" ng-attr-content="{{ rubedo.current.page.metaAuthor }}">
+    <meta property="og:url" content="{{ rubedo.current.page.contentCanonicalUrl }}" />
 
     <link ng-if="rubedo.current.page.contentCanonicalUrl" rel="canonical"
-          ng-href="{{ rubedo.current.page.contentCanonicalUrl }}"/>
+          ng-href="{{ rubedo.current.page.contentCanonicalUrl }}" />
     <link rel="alternate" ng-repeat="alternate in rubedo.current.page.i18n track by $index" ng-href="{{alternate.fullUrl}}" hreflang="{{alternate.locale}}" />
     <meta property="og:image" content="http://5.196.27.53/theme/<?php echo $this->siteTheme; ?>/img/image.jpg" />
     <link rel="shortcut icon" href="/theme/<?php echo $this->siteTheme; ?>/img/favicon.ico" type="image/x-icon" />
@@ -32,7 +34,7 @@
     
     <!--mobile meta-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title ng-bind-template="{{rubedo.current.page.title}}"></title>
+    <title ng-bind-template="{{rubedo.current.page.title}}" ></title>
     <!--css-->
 
     <?php if ($this->includeBaseBootstrap){ ?>
