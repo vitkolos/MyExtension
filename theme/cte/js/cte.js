@@ -29,7 +29,7 @@ blocksConfig.footer={
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
             "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-553e2efb75d1d292'],
-            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/AddThisShareController.js"]
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js"]
         },
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
@@ -154,3 +154,21 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
             }, true);
          }}
   });
+angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout', function($timeout) {
+  return {
+    restrict : 'A',
+	  transclude : true,
+	  replace : true,
+	  template : '<div ng-transclude></div>',
+	  link : function($scope, element, attrs) {
+		  $timeout(function () {
+        addthis.init();
+        addthis.toolbox($(element).get(), {}, {
+          url: attrs.url,
+          title : "My Awesome Blog",
+          description : 'Checkout this awesome post on blog.me'        
+        });
+      });
+	  }
+	};
+}]);
