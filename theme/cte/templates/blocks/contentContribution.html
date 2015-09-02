@@ -1,5 +1,5 @@
 <div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl" ng-init="showForm=false">
-        <h2 ng-if="!ccCtrl.updateMode" class="text-center" ng-click="showForm=!showForm"><i class="fa fa-plus"></i> {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}} : {{ccCtrl.contentType.type}}</h2>
+        <h2 ng-if="!ccCtrl.updateMode" class="text-center" ng-click="showForm=!showForm"><i class="fa fa-plus"></i>{{showForm}} {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}} : {{ccCtrl.contentType.type}}</h2>
         <h2 ng-if="ccCtrl.updateMode" class="text-center">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>
     <form ng-if="ccCtrl.contentType && showForm" class="form form-horizontal" ng-submit="ccCtrl.submitNewContent()">
         <rubedo-field ng-repeat="field in fields track by $index"></rubedo-field>
