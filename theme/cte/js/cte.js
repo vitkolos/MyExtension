@@ -168,9 +168,8 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
         addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
           url: contentUrl,
           title : attrs.title,
-          description : 'Checkout this awesome post on blog.me'        
+          description : ''        
         });
-        addthis.counter(angular.element('.addthis_toolbox'));
         addthis.counter(angular.element('.addthis_counter').get());
       });
 	  }
