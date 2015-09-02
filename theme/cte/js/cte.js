@@ -163,7 +163,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout', function
 	  link : function($scope, element, attrs) {
 		  $timeout(function () {
         addthis.init();
-        addthis.toolbox($(element).get(), {}, {
+        addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
           url: attrs.url,
           title : attrs.title,
           description : 'Checkout this awesome post on blog.me'        
