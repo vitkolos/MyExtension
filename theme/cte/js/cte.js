@@ -161,7 +161,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 	  replace : true,
 	  template : '<div ng-transclude></div>',
 	  link : function($scope, element, attrs,$location) {
-		  $timeout(function () {
+		  $timeout(function ($location) {
         addthis.init();
         addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
           url: $location.absUrl(),
