@@ -164,7 +164,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 	  link : function($scope, element, attrs) {
 		  $timeout(function () {
         addthis.init();
-        addthis.counter();
+        addthis.counter(angular.element('.addthis_toolbox'));
         var contentUrl = $location.absUrl();
         addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
           url: contentUrl,
