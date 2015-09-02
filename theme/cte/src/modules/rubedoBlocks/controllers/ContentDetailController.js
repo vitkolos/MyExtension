@@ -1,4 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","TaxonomyService","$http","$route",function($scope,RubedoContentsService, RubedoSearchService,TaxonomyService,$http,$route){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -31,6 +32,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
          if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
     return(term);
     }
+    
+    me.search = function(taxoKey,termId){
+        RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+            if (response.data.success){
+                $location.url(response.data.url+"?taxonomies={' "+taxoKey+"':['"+termId+"']}");
+            }
+        });        
+    };
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
@@ -166,6 +175,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     if (config.contentId){
         me.getContentById(config.contentId);
     }
+    
     me.revertChanges=function(){
         $scope.fieldEntity=angular.copy(previousFields);
     };
