@@ -154,17 +154,17 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
             }, true);
          }}
   });
-angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout', function($timeout) {
+angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location', function($timeout,$location) {
   return {
     restrict : 'A',
 	  transclude : true,
 	  replace : true,
 	  template : '<div ng-transclude></div>',
-	  link : function($scope, element, attrs) {
+	  link : function($scope, element, attrs,$location) {
 		  $timeout(function () {
         addthis.init();
         addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
-          url: attrs.url,
+          url: $location.absUrl();
           title : attrs.title,
           description : 'Checkout this awesome post on blog.me'        
         });
