@@ -171,9 +171,8 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
           description : ''        
         });
         
-           if (addthis.layers.refresh) {
-               addthis.layers.refresh();
-            }
+          
+           addthis.layers.refresh();
             /*addthis.counter(angular.element('.addthis_counter').get());*/
       });
 	  }
