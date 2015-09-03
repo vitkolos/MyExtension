@@ -172,6 +172,9 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                       });
            addthis.layers.refresh();
            addthis.counter(angular.element('.addthis_counter').get());
+           addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: 'http://www.addthis.com/'}, function(obj) {
+    console.log(obj)
+});
       });
 	  }
 	};
