@@ -163,17 +163,15 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 	  template : '<div ng-transclude></div>',
 	  link : function($scope, element, attrs) {
 		  $timeout(function () {
-        addthis.init();
-        var contentUrl = $location.absUrl();
-        addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
-          url: contentUrl,
-          title : attrs.title,
-          description : ''        
-        });
-        
-          
-           addthis.counter(angular.element('.addthis_counter').get());
+                      addthis.init();
+                      var contentUrl = $location.absUrl();
+                      addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
+                                 url: contentUrl,
+                                 title : attrs.title,
+                                 description : ''        
+                      });
            addthis.layers.refresh();
+           addthis.counter(angular.element('.addthis_counter').get());
       });
 	  }
 	};
