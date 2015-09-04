@@ -114,6 +114,6 @@ return array(
         100 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/ButtonToPage.json',
         101 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Form.json'
     ),
-
+    
 
 );
