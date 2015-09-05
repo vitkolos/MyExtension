@@ -155,11 +155,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         };
                         
                         RubedoSearchService.searchByQuery(options3).then(function(response){
-                            if (response.data.results.success) {
+                            if (response.data.success) {
                                 me.linkedContents=response.data.results.data;
                                 console.log(me.linkedContents);
                             }
-                            else console.log("erreur");
+                            else console.log("erreur")
                         });
                     }
                     
