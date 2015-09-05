@@ -106,7 +106,15 @@
 		
 	</div>
 	
-	<div class="row" ng-if="rubedo.current.user.rights.canEdit"></div>
+	<div class="row" ng-if="rubedo.current.user.rights.canEdit">
+		<h3 class="text-center">À lire aussi :</h3>
+		<div class="col-xs-12 col-sm-4 text-center" ng-repeat="content in contentDetailCtrl.linkedContents">
+			<a ng-href="{{content.url}}">
+				<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.field.image[0],{width:'420px',height:'420px',mode:'crop'})}}">
+				<h3>{{content.text[0]}}</h3>
+			</a>	
+		</div>
+	</div>
 </div>
 
 <div style="margin-top:24px"></div>
