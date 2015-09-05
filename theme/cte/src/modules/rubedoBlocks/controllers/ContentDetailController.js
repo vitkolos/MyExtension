@@ -143,13 +143,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                        if (actusTaxonomy["navigation"]) {
                             delete actusTaxonomy["navigation"];
                        }
+                       var displayedFacets = array({"name":"5524db6945205e627a8d8c4e","operator":"OR"});
                         var options3 = {
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:3,
                             taxonomies: actusTaxonomy,
-                            displayedFacets:[{"name":"5524db6945205e627a8d8c4e","operator":"OR"}] // pour la taxonomie d'actus, recherche additive
+                            displayedFacets:displayedFacets // pour la taxonomie d'actus, recherche additive
                         };
                         
                         RubedoSearchService.searchByQuery(options3).then(function(response){
