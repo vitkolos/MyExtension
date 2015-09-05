@@ -143,7 +143,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                        if (actusTaxonomy["navigation"]) {
                             delete actusTaxonomy["navigation"];
                        }
-                       var displayedFacets = array({"name":"5524db6945205e627a8d8c4e","operator":"OR"});
+                       var displayedFacets = [];
+                       displayedFacets.push({"name":"5524db6945205e627a8d8c4e","operator":"OR"});
                         var options3 = {
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
