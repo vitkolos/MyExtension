@@ -140,10 +140,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     //Actualités : 3 autres articles
                     if (me.content.type.code=="actualites") {
                         var actusTaxonomy = angular.copy(me.content.taxonomy);
-                        var index = actusTaxonomy.indexOf("navigation");
-                        if (index > -1) {
-                            actusTaxonomy.splice(index, 1);
-                        };
+                       if (actusTaxonomy["navigation"]) {
+                            delete actusTaxonomy["navigation"];
+                       }
                         var options3 = {
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
