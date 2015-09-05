@@ -151,7 +151,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             start:0,
                             limit:3,
                             taxonomies: actusTaxonomy,
-                            displayedFacets: JSON.parse(displayedFacets) // pour la taxonomie d'actus, recherche additive
+                            displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
                         };
                         
                         RubedoSearchService.searchByQuery(options3).then(function(response){
