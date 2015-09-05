@@ -161,15 +161,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 var counter=0;
                                 me.linkedContents={};
                                 angular.forEach(results, function(content, key){
-                                    if (content.id != me.content.id && counter <2) {
+                                    if (content.id != me.content.id && counter <3) {
                                         me.linkedContents[counter] = content;
                                         counter++;
                                         console.log(counter);
                                         console.log(content);
                                     }
                                 });
-                                me.linkedContents = response.data.results.data;
-                                console.log(me.linkedContents);
                             }
                             else console.log("erreur")
                         });
