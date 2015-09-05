@@ -165,6 +165,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                         me.linkedContents[counter] = content;
                                         counter++;
                                         console.log(counter);
+                                        console.log(content);
                                     }
                                 });
                                 me.linkedContents = response.data.results.data;
