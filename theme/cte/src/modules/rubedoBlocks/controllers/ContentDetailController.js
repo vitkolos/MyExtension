@@ -144,7 +144,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:3,
-                            taxonomies: me.taxonomies
+                            taxonomies: me.taxonomy
                         };
                         
                         RubedoSearchService.searchByQuery(options3).then(function(response){
