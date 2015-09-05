@@ -168,7 +168,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 });
                                 me.linkedContents = response.data.results.data;
                                 console.log(me.linkedContents);
-                                me.linkedContents
                             }
                             else console.log("erreur")
                         });
