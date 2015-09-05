@@ -139,12 +139,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     //Actualités : 3 autres articles
                     if (me.content.type.code=="actualites") {
+                        var actusTaxonomy = angular.copy(me.content.taxonomy);
+                        var index = actusTaxonomy.indexOf("navigation");
+                        if (index > -1) {
+                            actusTaxonomy.splice(index, 1);
+                        };
                         var options3 = {
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:3,
-                            taxonomies: me.taxonomy
+                            taxonomies: actusTaxonomy
                         };
                         
                         RubedoSearchService.searchByQuery(options3).then(function(response){
