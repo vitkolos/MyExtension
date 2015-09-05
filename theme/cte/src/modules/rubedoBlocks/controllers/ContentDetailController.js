@@ -149,15 +149,25 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
-                            limit:3,
+                            limit:4,
+                            orderby:'lastUpdateTime',
                             taxonomies: actusTaxonomy,
                             displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
                         };
                         
                         RubedoSearchService.searchByQuery(options3).then(function(response){
                             if (response.data.success) {
+                                var results = response.data.results.data;
+                                var counter=0;
+                                me.linkedContents={};
+                                angular.forEach(results, function(content, key){
+                                    if (content.id != me.content.id && counter <3) {
+                                        me.linkedContents[counter] = content;
+                                    }
+                                });
                                 me.linkedContents = response.data.results.data;
                                 console.log(me.linkedContents);
+                                me.linkedContents
                             }
                             else console.log("erreur")
                         });
