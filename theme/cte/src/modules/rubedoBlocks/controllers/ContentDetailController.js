@@ -124,7 +124,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         };
                         me.getMedia(options2);
                     }
-                    
                      
 /*GET CONTENT TAXONOMIES*/
 
@@ -138,6 +137,20 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                          }
                      });
                     
+                    //Actualités : 3 autres articles
+                    if (me.content.type.code=="actualites") {
+                        var options3 = {
+                            siteId: $scope.rubedo.current.site.id,
+                            pageId: $scope.rubedo.current.page.id,
+                            start:0,
+                            limit:3,
+                            taxonomies: me.taxonomies
+                        };
+                        
+                        RubedoSearchService.searchByQuery(options3).then(function(response){
+                            me.linkedContents=response.data;
+                            });
+                    }
                     
                     
                     
