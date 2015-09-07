@@ -163,7 +163,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 	  template : '<div ng-transclude></div>',
 	  link : function($scope, element, attrs) {
 		  $timeout(function () {
-                      addthis.init();
+                      //addthis.init();
                       var contentUrl = $location.absUrl();
                       addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
                                  url: contentUrl,
@@ -171,7 +171,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                                  description : ''        
                       });
 
-           $timeout(function (){addthis.counter(angular.element('.addthis_counter'));},100);
+           $timeout(function (){addthis.counter(angular.element('.addthis_counter').get());},100);
            addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: $location.absUrl()}, function(obj) {
                       console.log(obj)
            });
