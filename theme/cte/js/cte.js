@@ -171,7 +171,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                                  description : ''        
                       });
            //addthis.layers.refresh();
-           $timeout(function (){addthis.counter(angular.element('.addthis_counter').get());});
+           $timeout(function (){addthis.counter(angular.element('.addthis_counter').get());},100);
            addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: $location.absUrl()}, function(obj) {
                       console.log(obj)
            });
