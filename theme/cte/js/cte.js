@@ -155,22 +155,24 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
          }}
   });
   
-angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location', function($timeout,$location) {
+angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$window', function($timeout,$location,$window) {
   return {
     restrict : 'A',
 	  transclude : true,
 	  replace : true,
 	  template : '<div ng-transclude></div>',
 	  link : function($scope, element, attrs) {
-		  $timeout(function () {
-                      //addthis.init();
+		 $timeout(function () {
+                      addthis.init();
                       var contentUrl = $location.absUrl();
                       addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
                                  url: contentUrl,
                                  title : attrs.title,
                                  description : ''        
                       });
-
+		if ($window.addthis.layers && $window.addthis.layers.refresh) {
+                        $window.addthis.layers.refresh();
+                    }
            $timeout(function (){addthis.counter(angular.element('.addthis_counter').get());},100);
            /*addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: $location.absUrl()}, function(obj) {
                       console.log(obj)
