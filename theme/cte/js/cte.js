@@ -173,6 +173,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 		if ($window.addthis.layers && $window.addthis.layers.refresh) {
                         $window.addthis.layers.refresh();
                     }
+                    angular.element('.addthis_counter').html("");
            $timeout(function (){addthis.counter(angular.element('.addthis_counter').get());},100);
            /*addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: $location.absUrl()}, function(obj) {
                       console.log(obj)
