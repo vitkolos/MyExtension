@@ -57,6 +57,27 @@
 							 "name": "email_txt",
 							 "value": ""
 							}
+						},
+						{
+						    "type": "Ext.form.field.ComboBox",
+						    "isAutoStored": true,
+						    "autoStoreData": [
+							{
+							    "value": "pop-in",
+							    "label": "#ext-gen1411#"
+							},
+							{
+							    "value": "form",
+							    "label": "#ext-gen1412#"
+							}
+						    ],
+						    "config": {
+							"fieldLabel": "#ext-gen1374#",
+							"name": "displayMode",
+							"editable": false,
+							"forceSelection": true,
+							"queryMode": "local"
+						    }
 						}
 					]
 				}
@@ -65,9 +86,9 @@
 			
 			]
 		},
-		"configBloc":[
-
-		]
+		"configBloc": {
+			"displayMode": "pop-in"
+		}
 	},
 	"category":"#ext-gen1150#",
 	"bType":"simpleContact",
