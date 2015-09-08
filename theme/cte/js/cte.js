@@ -28,7 +28,7 @@ blocksConfig.footer={
 };
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
-            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
+            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js#async=1'],
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js"]
         },
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
