@@ -11,6 +11,15 @@
 					"categorie":"#ext-gen1063#",
 					"champs":[
 						{
+						    "type": "Rubedo.view.DCEField",
+						    "config": {
+							"fieldLabel": "#ext-gen1255#",
+							"name": "introduction",
+							"allowedCT": "richText",
+							"addOnly": true
+						    }
+						},
+						{
 						    "type":"Ext.form.field.Text",
 						    "config":{
 							"fieldLabel":"Adresse mail",
