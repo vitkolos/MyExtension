@@ -128,7 +128,7 @@ class MenuResource extends AbstractResource
                 if(isset($params["includeRichText"])&&isset($page["richTextId"])&&$page["richTextId"]&&$page["richTextId"]!=""){
                     $pages[$key]["includedRichText"]=$this->getContentsCollection()->findById($page["richTextId"], true, false);
                 }
-                $pages[$key]= array_intersect_key($pages[$key], array_flip(array('title','description' ,'id', 'text','pages','url','eCTitle','eCDescription','eCImage','richTextId','includedRichText','taxonomy','orderValue')));
+                $pages[$key]= array_intersect_key($pages[$key], array_flip(array('title','description' ,'id', 'text','pages','url','eCTitle','eCDescription','eCImage','richTextId','includedRichText','taxonomy','orderValue','blocks')));
             }
             return $pages;
         }
