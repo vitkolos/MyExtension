@@ -175,10 +175,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                     }
                     angular.element('.addthis_counter').html("");
                     console.log("before : " + angular.element('.addthis_counter').html());
-           $timeout(function (){addthis.counter(angular.element('.addthis_counter').get());
-           	                    console.log("after : " + angular.element('.addthis_counter').html());
-
-           },100);
+           $timeout(function (){addthis.counter(angular.element('.addthis_counter').get(), {}, {url: contentUrl});  },100);
            /*addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: $location.absUrl()}, function(obj) {
                       console.log(obj)
            });*/
