@@ -155,7 +155,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
          }}
   });
   
-angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$window', function($timeout,$location,$window) {
+angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location', function($timeout,$location) {
   return {
     restrict : 'A',
 	  transclude : true,
@@ -170,12 +170,10 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                                  title : attrs.title,
                                  description : ''        
                       });
-		if ($window.addthis.layers && $window.addthis.layers.refresh) {
+		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
                         $window.addthis.layers.refresh();
-                    }
-                    angular.element('.addthis_counter').html("");
-                    console.log("before : " + angular.element('.addthis_counter').html());
-           $timeout(function (){addthis.counter(angular.element('.addthis_counter').get(), {}, {url: contentUrl});  },100);
+                    }*/
+	           addthis.counter(angular.element('.addthis_counter').get(), {}, {url: contentUrl});
            /*addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: $location.absUrl()}, function(obj) {
                       console.log(obj)
            });*/
