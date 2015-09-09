@@ -95,11 +95,10 @@ class MailResource extends AbstractResource
 
         /*$destinataires=$this->buildDest($params['to']);*/
         $destinataires=array($params['to']);
-        $from = array($params['from']);
+        $from = array($params['from'] => $params['fields']['name']);
  
         $mailerObject->setTo($destinataires);
-        $mailerObject->setFrom($from);
-        //$mailerObject->setReplyTo(array($from => $params['fields']['name']));
+        $mailerObject->setReplyTo($from);
         $mailerObject->setSubject($params['subject']);
         if ($params['template'] == null) $mailerObject->setBody($this->buildEmail($params['fields']));
         else $mailerObject->setBody($this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']), 'text/html', 'utf-8');
