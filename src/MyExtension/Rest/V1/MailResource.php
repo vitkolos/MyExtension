@@ -58,6 +58,11 @@ class MailResource extends AbstractResource
                             ->setDescription('Sender is required')
                             ->setFilter('validate_email')
                     )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('website')
+                            ->setDescription('Page of origin')
+                    )
                    ->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('to')
@@ -97,9 +102,9 @@ class MailResource extends AbstractResource
         $destinataires=array($params['to']);
         $from = array($params['from']);
  
-
         $mailerObject->setTo($destinataires);
         $mailerObject->setFrom($from);
+        $mailerObject->setReplyTo(array($from => $params['fields']['name']);
         $mailerObject->setSubject($params['subject']);
         if ($params['template'] == null) $mailerObject->setBody($this->buildEmail($params['fields']));
         else $mailerObject->setBody($this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']), 'text/html', 'utf-8');
