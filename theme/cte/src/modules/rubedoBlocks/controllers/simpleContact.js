@@ -11,12 +11,13 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             to:config.email,
             from:me.contactData.email,
             subject:contactSnap.subject,
-            website: $location.absUrl()
         };
         /*var destinataires = {'Nicolas':'nicolas.rhone@gmail.com' ,'Nicolas Rhoné':'nicolas.rhone@wanadoo.fr' }*/
         delete (contactSnap.subject);
         delete (contactSnap.to);
         payload.fields=contactSnap;
+        payload.fields.website = $location.absUrl();
+
         RubedoMailService.sendMail(payload).then(
             function(response){
                 if (response.data.success){
