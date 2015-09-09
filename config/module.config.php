@@ -88,6 +88,16 @@ return array(
                     '/js/netforgod.js',
                 ),
             ),
+            'musculine' => array(
+                'label' => 'Musculine',
+                'basePath' => realpath(__DIR__ . '/../theme/musculine'),
+                'css' => array(
+                    '/css/musculine.css'
+                ),
+                'js' => array(
+                    '/js/musculine.js',
+                ),
+            ),
         ),
     ),
     
