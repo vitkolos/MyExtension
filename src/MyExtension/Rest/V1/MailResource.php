@@ -60,11 +60,6 @@ class MailResource extends AbstractResource
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setKey('website')
-                            ->setDescription('Page of origin')
-                    )
-                   ->addInputFilter(
-                        (new FilterDefinitionEntity())
                             ->setKey('to')
                             ->setRequired()
                             ->setDescription('Mail is required')
@@ -104,7 +99,7 @@ class MailResource extends AbstractResource
  
         $mailerObject->setTo($destinataires);
         $mailerObject->setFrom($from);
-        $mailerObject->setReplyTo(array($from => $params['fields']['name']));
+        //$mailerObject->setReplyTo(array($from => $params['fields']['name']));
         $mailerObject->setSubject($params['subject']);
         if ($params['template'] == null) $mailerObject->setBody($this->buildEmail($params['fields']));
         else $mailerObject->setBody($this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']), 'text/html', 'utf-8');
