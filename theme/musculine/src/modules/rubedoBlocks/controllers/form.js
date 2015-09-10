@@ -38,7 +38,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             
         }
     };
-    me.getParameters = function(){
+    me.getParameters = function($http){
         $http.get('/api/v1/TestPaybox'
                      + '?montant=' + me.total
                      + '&prenom=' + me.surname
