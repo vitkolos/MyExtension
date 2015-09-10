@@ -46,6 +46,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             email: me.email
         };
         PaymentService.getParameters(options).then(function(response){
+            console.log(response);
             if (response.success) {
                 console.log('retour de l appel de TestPaybox en get');
                 console.log(response.parametres);
