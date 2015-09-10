@@ -40,7 +40,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     };
     me.getParameters = function(){
         var options = {
-            montant:me.total,
+            montant:me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp,
             prenom: me.surname,
             nom: me.surname,
             email: me.email
