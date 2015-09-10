@@ -7,7 +7,7 @@ blocksConfig.form={
 angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($http) {
     var serviceInstance={};
     serviceInstance.getParameters=function(options){
-        return ($http.get("/api/v1/TestPaybox",{
+        return ($http.get("/api/v1/Paybox",{
             params: options
         }));
     };
