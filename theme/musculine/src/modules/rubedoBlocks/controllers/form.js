@@ -39,18 +39,18 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         }
     };
     me.getParameters = function(){
-        options = {
+        var options = {
             montant:me.total,
             prenom: me.surname,
             nom: me.surname,
             email: me.email
         };
         PaymentService.getParameters(options).then(function(response){
-            console.log(response);
-            if (response.success) {
+            console.log(response.data);
+            if (response.data.success) {
                 console.log('retour de l appel de TestPaybox en get');
-                console.log(response.parametres);
-                $scope.parametres = response.parametres;
+                console.log(response.data.parametres);
+                $scope.parametres = response.data.parametres;
                 me.displaySubmit = "block";  
             }
             else console.log("Problème avec le service");
