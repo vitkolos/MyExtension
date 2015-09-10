@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','$location','$sce','RubedoContactService',function($scope,$http,$location,$sce,RubedoContactService){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http',function($scope,$http){
     var me = this;
     var config = $scope.blockConfig;
     me.small_trad=0;
@@ -11,6 +11,8 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     me.boprice = 15.5;
     me.exp = 0;
     me.total = me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
+
+    me.displaySubmit = "none";
 
     
     me.copy_address = function(){
@@ -35,5 +37,22 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             me.email2 = "";
             
         }
+    };
+    me.getParametres = function(){
+        $http.get('/api/v1/TestPaybox'
+                     + '?montant=' + me.total
+                     + '&prenom=' + me.surname
+                     + '&nom=' + me.surname
+                     + '&email=' +me.email
+                     ).success(function(response) {
+          console.log('retour de l appel de TestPaybox en get');
+          
+          console.log(response.parametres);
+         
+  
+          $scope.parametres = response.parametres;
+          me.displaySubmit = "block";
+        });
+        
     }
 }]);
