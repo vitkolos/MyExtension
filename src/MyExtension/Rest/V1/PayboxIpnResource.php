@@ -7,7 +7,7 @@ use RubedoAPI\Rest\V1\AbstractResource;
 use RubedoAPI\Exceptions\APIControllerException;
 
 
-class TestPayboxIpnResource extends AbstractResource {
+class PayboxIpnResource extends AbstractResource {
     function __construct()
     {
         parent::__construct();
