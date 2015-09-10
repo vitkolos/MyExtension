@@ -53,7 +53,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 me.displaySubmit = "block";  
             }
             else console.log("Problème avec le service");
-        }));
+        });
        
     }
 }]);
