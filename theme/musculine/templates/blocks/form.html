@@ -155,8 +155,8 @@
 	      </div>
        </form>
        <form ng-style="{  'display' : formCtrl.displaySubmit }"  id="payboxPaiement" method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
-		<!--<input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
-		<input type="hidden" name="PBX_TYPECARTE" value ="{{parametres.typeCarte}}">-->
+		<input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
+		<input type="hidden" name="PBX_TYPECARTE" value ="{{parametres.typeCarte}}">
 		<input type="hidden" name="PBX_SITE" value ="{{parametres.payboxSite}}">
 		<input type="hidden" name="PBX_RANG" value ="{{parametres.payboxRang}}">
 		<input type="hidden" name="PBX_IDENTIFIANT" value ="{{parametres.payboxIdentifiant}}">
