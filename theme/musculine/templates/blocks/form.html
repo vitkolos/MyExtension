@@ -151,7 +151,7 @@
 			    <p ng-if="formCtrl.big_or>0">{{formCtrl.big_or}} X Musculine 700g arôme naturel orange</p>
 	      </div>
 	      <div class="payment" ng-click="formCtrl.getParameters()">
-		     <p>payer avec Paypal</p>
+		     <p>Valider ma commande</p>
 	      </div>
        </form>
        <form ng-style="{  'display' : formCtrl.displaySubmit }"  id="payboxPaiement" method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
@@ -176,7 +176,7 @@
 		
 		<input type="hidden" name="PBX_HMAC" value ="{{parametres['empeinteHasheeHex']}}">
 	
-		<input type="image" src="http://www.chemin-neuf.fr/paybox-bouton" alt="Paiement sécurisé par Paybox">
+		<input type="submit" class="payment" alt="Paiement sécurisé par Paybox" value="Payer ma commande">
 	      
        </form>
 </div>
