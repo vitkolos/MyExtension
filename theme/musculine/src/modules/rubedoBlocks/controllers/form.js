@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http',function($scope,$http){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','PaymentService'function($scope,$http,PaymentService){
     var me = this;
     var config = $scope.blockConfig;
     me.small_trad=0;
@@ -38,21 +38,22 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             
         }
     };
-    me.getParameters = function($http){
-        $http.get('/api/v1/TestPaybox'
-                     + '?montant=' + me.total
-                     + '&prenom=' + me.surname
-                     + '&nom=' + me.surname
-                     + '&email=' +me.email
-                     ).success(function(response) {
-          console.log('retour de l appel de TestPaybox en get');
-          
-          console.log(response.parametres);
-         
-  
-          $scope.parametres = response.parametres;
-          me.displaySubmit = "block";
-        });
-        
+    me.getParameters = function(){
+        options = {
+            montant:me.total,
+            prenom: me.surname,
+            nom: me.surname,
+            email: me.email
+        };
+        PaymentService.getParameters(options).then(function(response){
+            if (response.success) {
+                console.log('retour de l appel de TestPaybox en get');
+                console.log(response.parametres);
+                $scope.parametres = response.parametres;
+                me.displaySubmit = "block";  
+            }
+            else console.log("Problème avec le service");
+        }));
+       
     }
 }]);
