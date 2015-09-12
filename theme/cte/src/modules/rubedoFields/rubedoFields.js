@@ -53,7 +53,7 @@
         "Rubedo.view.localiserField":"/templates/fields/localiser.html",
         "treepicker":"/templates/fields/pageLink.html",
         "Ext.ux.TreePicker":"/templates/fields/pageLink.html",
-        "checkboxfield":"/templates/fields/checkbox.html",
+        "checkbox":"/templates/fields/checkbox.html",
         "Ext.form.field.Checkbox":"/templates/fields/checkbox.html",
         "ImagePickerField":"/templates/fields/media.html",
         "Rubedo.view.ImagePickerField":"/templates/fields/media.html",
