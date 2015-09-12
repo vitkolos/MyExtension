@@ -321,6 +321,7 @@
     module.controller("CheckboxGroupController",['$scope',function($scope){
         var me=this;
         var items=$scope.field.config.items;
+        console.log(items);
         var itemsObj={};
         if (!angular.isArray($scope.fieldEntity[$scope.field.config.name][$scope.field.config.name])){
             $scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]=[$scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]];
