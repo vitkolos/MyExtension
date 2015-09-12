@@ -81,7 +81,7 @@
         "Ext.form.field.TextArea":"/templates/inputFields/textarea.html",
         "CKEField":"/templates/inputFields/richText.html",
         "Rubedo.view.CKEField":"/templates/inputFields/richText.html",
-        "checkboxfield":"/templates/inputFields/checkbox.html",
+        "checkbox":"/templates/inputFields/checkbox.html",
         "Ext.form.field.Checkbox":"/templates/inputFields/checkbox.html",
         "combobox":"/templates/inputFields/combobox.html",
         "Ext.form.field.ComboBox":"/templates/inputFields/combobox.html",
