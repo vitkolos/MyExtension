@@ -133,5 +133,4 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
             }
         }
     };
-    console.log($scope.fieldEntity);
 }]);
