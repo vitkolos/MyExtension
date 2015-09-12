@@ -98,6 +98,8 @@
         "externalMediaField":"/templates/inputFields/externalMedia.html",
         "Rubedo.view.externalMediaField":"/templates/inputFields/externalMedia.html",
         "ratingField":"/templates/inputFields/rating.html",
+        "DCEField":"/templates/fields/contentLink.html",
+        "Rubedo.view.DCEField":"/templates/fields/contentLink.html",
         "Rubedo.ux.widget.Rating":"/templates/inputFields/rating.html"
     };
 
