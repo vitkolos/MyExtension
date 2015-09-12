@@ -324,7 +324,7 @@
         console.log(items);
         var itemsObj={};
         if (!$scope.fieldEntity[$scope.field.config.name]) {
-            $scope.fieldEntity[$scope.field.config.name]=[];
+            $scope.fieldEntity[$scope.field.config.name]={};
         }
         if (!angular.isArray($scope.fieldEntity[$scope.field.config.name][$scope.field.config.name])){
             $scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]=[$scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]];
