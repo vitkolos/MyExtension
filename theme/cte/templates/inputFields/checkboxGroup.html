@@ -1,4 +1,4 @@
-{{fieldEntity[$scope.field.config.name]}}
+{{$scope.field.config.name}}
 <div class="form-group" ng-controller="CheckboxGroupController as ctrl">
     <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="col-sm-4 control-label">{{field.config.fieldLabel}} <span ng-if="!field.config.allowBlank&&!field.config.fieldLabel.includes('*')">*</span></label>
     <div class="col-sm-8" id="{{fieldIdPrefix+'_'+field.config.name}}">
