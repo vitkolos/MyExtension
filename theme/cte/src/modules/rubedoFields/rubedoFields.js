@@ -499,6 +499,25 @@
             }
         }
     }]);
+    module.controller("ContentChoiceController",["$scope","RubedoSearchService",function($scope,RubedoSearchService){
+        var me=this;
+        var options = {
+            siteId: $scope.rubedo.current.site.id,
+            pageId: $scope.rubedo.current.page.id,
+            type: $scope.field.config.allowedCT,
+            constrainToSite: true
+        };
+        RubedoSearchService.searchByQuery(options).then(
+             function(response){
+                 if (response.data.success){
+                     me.contents=response.results;
+                     console.log(me.contents);
+                 }
+             }
+         );
+     
+        
+    }]);
 
     module.controller("ContentLinkController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
         var me=this;
@@ -547,7 +566,7 @@
                     "menubar=no, status=no, scrollbars=no, top="+top+", left="+left+", width="+width+", height="+height+""
                 );
             }
-        };
+        };            
     }]);
 
     module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",function($scope,RubedoMediaService,$element){
