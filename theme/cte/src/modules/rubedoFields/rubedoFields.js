@@ -510,7 +510,7 @@
         RubedoSearchService.searchByQuery(options).then(
              function(response){
                  if (response.data.success){
-                     me.contents=response.results;
+                     me.contents=response.data.results;
                      console.log(me.contents);
                  }
              }
