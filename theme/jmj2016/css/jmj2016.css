@@ -470,6 +470,11 @@ nav {
   .txt_pape {
     line-height: 400px;
   }
+  .festival,
+  .cracovie,
+  .homepage {
+    min-height: 500px;
+  }
 }
 @media screen and (max-width: 500px) {
   .section-1,
@@ -479,6 +484,11 @@ nav {
   }
   .txt_pape {
     line-height: 200px;
+  }
+  .festival,
+  .cracovie,
+  .homepage {
+    min-height: 200px;
   }
 }
 .footer {
