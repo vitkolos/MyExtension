@@ -11,7 +11,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     me.boprice = 24.96;
     me.exp = 0;
     me.total = me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
-    me.totaPrice = function(){
+    me.totalPrice = function(){
         return me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
     };
     me.displaySubmit = "none";
