@@ -17,8 +17,11 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     };
     me.fraisExp = function(){
         var poids = 340 * (me.small_trad + me.small_or) + 850 * (me.big_or + me.big_trad);
-        var fraisExp = 6.13;
-        if (poids>500 && poids<=750) {
+        var fraisExp = 0;
+        if (poids>0 && poids<=500) {
+           fraisExp = 6.13;
+        }
+        else if (poids>500 && poids<=750) {
             fraisExp = 6.89;
         }
         else if (poids>750 && poids<=1000) {
@@ -61,7 +64,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     };
     me.getParameters = function(){
         var options = {
-            montant:/*me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp*/me.totaPrice(),
+            montant:/*me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp*/me.totalPrice(),
             prenom: me.surname,
             nom: me.surname,
             email: me.email
