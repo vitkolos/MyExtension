@@ -16,7 +16,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         return $filter('number')(me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.fraisExp(), 2);
     };
     me.fraisExp = function(){
-        var poids = 340 * (small_trad + small_or) + 850 * (big_or + big_trad);
+        var poids = 340 * (me.small_trad + me.small_or) + 850 * (me.big_or + me.big_trad);
         var fraisExp = 6.13;
         if (poids>500 && poids<=750) {
             fraisExp = 6.89;
