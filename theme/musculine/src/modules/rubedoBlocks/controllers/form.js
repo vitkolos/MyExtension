@@ -1,5 +1,6 @@
 angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','PaymentService',function($scope,$http,PaymentService){
     var me = this;
+    $scope.Math = window.Math;
     var config = $scope.blockConfig;
     me.small_trad=0;
     me.small_or=0;
@@ -12,7 +13,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     me.exp = 0;
     me.total = me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
     me.totalPrice = function(){
-        return Math(me.small_trad*me.stprice*100 + me.small_or*me.soprice*100 + me.big_trad*me.btprice*100 + me.big_or*me.boprice*100 + me.exp)/100;
+        return $scope.Math(me.small_trad*me.stprice*100 + me.small_or*me.soprice*100 + me.big_trad*me.btprice*100 + me.big_or*me.boprice*100 + me.exp)/100;
     };
     me.displaySubmit = "none";
 
