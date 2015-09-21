@@ -13,9 +13,25 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     me.exp = 0;
     me.total = me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
     me.totalPrice = function(){
-        return $filter('number')(me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp, 2);
+        return $filter('number')(me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.fraisExp(), 2);
     };
-    
+    me.fraisExp = function(){
+        var poids = 340 * (small_trad + small_or) + 850 * (big_or + big_trad);
+        var fraisExp = 6.13;
+        if (poids>500 && poids<=750) {
+            fraisExp = 6.89;
+        }
+        else if (poids>750 && poids<=1000) {
+            fraisExp =7.51;
+        }
+        else if (poids>1000 && poids<=2000) {
+            fraisExp =8.50;
+        }
+        else if (poids>2000) {
+            fraisExp =10.93;
+        }
+        return fraisExp;
+    }
     
     me.displaySubmit = "none";
 
