@@ -1,6 +1,7 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','PaymentService','Math',function($scope,$http,PaymentService,Math){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','PaymentService',function($scope,$http,PaymentService){
     var me = this;
     var config = $scope.blockConfig;
+    $scope.Math = Math;
     me.small_trad=0;
     me.small_or=0;
     me.big_trad=0;
