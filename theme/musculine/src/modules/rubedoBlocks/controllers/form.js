@@ -5,13 +5,15 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     me.small_or=0;
     me.big_trad=0;
     me.big_or=0;
-    me.stprice = 9.5;
-    me.soprice = 9.5;
-    me.btprice = 15.5;
-    me.boprice = 15.5;
+    me.stprice = 10.52;
+    me.soprice = 10.52;
+    me.btprice = 24.96;
+    me.boprice = 24.96;
     me.exp = 0;
     me.total = me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
-
+    me.totaPrice = function(){
+        return me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
+    };
     me.displaySubmit = "none";
 
     
@@ -40,7 +42,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     };
     me.getParameters = function(){
         var options = {
-            montant:me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp,
+            montant:/*me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp*/me.totaPrice(),
             prenom: me.surname,
             nom: me.surname,
             email: me.email

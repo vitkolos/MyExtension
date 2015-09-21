@@ -144,7 +144,7 @@
 		     </div>
 	      </div>
 	      <div class="row text-center">
-			    <p><b>€ {{formCtrl.small_trad*formCtrl.stprice + formCtrl.small_or*formCtrl.soprice + formCtrl.big_trad*formCtrl.btprice + formCtrl.big_or*formCtrl.boprice + formCtrl.exp}}</b></p>
+			    <p><b>€ {{formCtrl.totalPrice()}}<!--{{formCtrl.small_trad*formCtrl.stprice + formCtrl.small_or*formCtrl.soprice + formCtrl.big_trad*formCtrl.btprice + formCtrl.big_or*formCtrl.boprice + formCtrl.exp}}--></b></p>
 			    <p ng-if="formCtrl.small_trad>0">{{formCtrl.small_trad}} X Musculine 250g traditionnelle</p>
 			    <p ng-if="formCtrl.small_or>0">{{formCtrl.small_or}} X Musculine 250g arôme naturel orange</p>
 			    <p ng-if="formCtrl.big_trad>0">{{formCtrl.big_trad}} X Musculine 700g traditionnelle</p>
