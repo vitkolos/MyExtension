@@ -4,10 +4,8 @@ html,body{font-family: 'Open Sans Condensed','Arimo', "Helvetica Neue",Helvetica
 snap-content>div{overflow:hidden}
 .snap-drawers, .snap-content{z-index:-1}
 .container-fluid{padding:0; }
-.container-fluid{border: 6px white solid; }
-@media screen and (min-width: 768px) {
-     .container-fluid{border: 6px white solid; margin: 23px }
-}
+.container-fluid{border: 6px white solid; padding: 0 15px}
+
 
 //.row{margin-right:0 !important; margin-left:0 !important}
 
@@ -15,8 +13,12 @@ snap-content>div{overflow:hidden}
 h2{font-weight: bold}
 h3{font-size:28px;font-weight: bold}
 @media screen and (min-width: 992px) and (max-width: 1200px){h3{font-size:24px}}
-p{color:@txt_dark; font-size:23px}
+p{color:@txt_dark; font-size:18px}
 .capital{font-family: 'Montserrat','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; text-transform: uppercase}
+@media screen and (min-width: 768px) {
+     .container-fluid{border: 6px white solid; margin: 23px; padding: 0 }
+     p{font-size:23px}
+}
 /*code Nicolas*/
 /*site communauté*/
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{min-height:0.1px}
@@ -29,7 +31,7 @@ a,a:hover, a:active{text-decoration: none; color:@txt_dark}
     .col-xs-4{width:33.33333333%;}
     .col-xs-8{width:66.66666666%;}
 }*/
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
      .col-xxs-12{width:100%}
 }
 .img_full img{width:100%}
@@ -53,7 +55,7 @@ a,a:hover, a:active{text-decoration: none; color:@txt_dark}
   font-size: 30px; text-transform: uppercase; letter-spacing: 3px;
   p:nth-of-type(3) a{font-size: 11px;font-family: 'Montserrat'; letter-spacing: 3px;position: relative; top:-15px}
   p:nth-of-type(3) a:after{content:'→'; padding-left:3px}
-  img{width: 80%;}
+  img{width: 200px;}
 }
 .bg-image{width:100%;width:100vw; height:400px; margin-top:60px; background-position:center center; background-size: cover; background-repeat: no-repeat;margin-left:-30px;position: relative; z-index: -1  }
 .tradition{background-image: url('../img/tradition.jpg')}
@@ -63,11 +65,12 @@ a,a:hover, a:active{text-decoration: none; color:@txt_dark}
 .footer{background-image: url('../img/footer.jpg'); margin-bottom:-29px}
 
 .presentation p{font-family: 'Open Sans Condensed', sans-serif; max-width: 800px; margin:0 auto; text-align:center;}
-.presentation p:first-of-type{font-family: 'Oswald', sans-serif;  font-size:80px; padding: 30px 0; letter-spacing: 16px; text-transform: uppercase}
+.presentation p:first-of-type{font-family: 'Oswald', sans-serif;  font-size:40px; padding: 30px 0; text-transform: uppercase}
 .commande-titre h1{font-family: 'Oswald', sans-serif;  font-size:40px; padding: 60px 0; letter-spacing: 5px; text-transform: uppercase; display:table; border-bottom: solid white 6px; margin:0 auto; font-weight: normal}
 
 @media screen and (min-width: 500px) {
      .commande-titre h1{font-size: 60px;letter-spacing: 10px}
+     .boite img{width: 80%}
 }
 @media screen and (min-width: 768px) {
      .commande-titre h1{font-size: 80px;letter-spacing: 16px}
@@ -76,6 +79,8 @@ a,a:hover, a:active{text-decoration: none; color:@txt_dark}
      .boite img{width: 250px}
      .boite.left{padding-right: 50px; float:right }
      .boite.right{padding-left: 50px; float:left }
+    .presentation p:first-of-type{font-size:80px; letter-spacing: 16px;}
+ 
 }
 
 
