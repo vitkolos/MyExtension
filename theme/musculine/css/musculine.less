@@ -1,10 +1,14 @@
 
 body{font-size:16px; min-height:100%; }
 html,body{font-family: 'Open Sans Condensed','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; overflow: auto;background-color:@background;}
-snap-content>div{overflow-x:hidden}
+snap-content>div{overflow:hidden}
 .snap-drawers, .snap-content{z-index:-1}
 .container-fluid{padding:0; }
-.container-fluid{border: 6px white solid; margin: 23px }
+.container-fluid{border: 6px white solid; }
+@media screen and (min-width: 768px) {
+     .container-fluid{border: 6px white solid; margin: 23px }
+}
+
 //.row{margin-right:0 !important; margin-left:0 !important}
 
 /*TYPO*/
@@ -37,7 +41,7 @@ a,a:hover, a:active{text-decoration: none; color:@txt_dark}
 @txt_dark:#2e2c29;// couleur texte
 
 //////////Titre de page//////////////////////
-.date, .dombes{text-transform: uppercase; font-size:38px; text-align:center; font-family: 'Oswald'; font-weight: 300; letter-spacing: 6px;}
+.date, .dombes{text-transform: uppercase; font-size:20px; text-align:center; font-family: 'Oswald'; font-weight: 300; letter-spacing: 6px;}
 .date{margin-top:60px}
 .date:before, .date:after{content:"◆"; color:white; font-size:0.5em;position:relative; bottom:0.5em}
 .logo img{margin: 5px auto; border:white solid; border-width:2px 0; padding:40px 0px;}
@@ -49,6 +53,7 @@ a,a:hover, a:active{text-decoration: none; color:@txt_dark}
   font-size: 30px; text-transform: uppercase; letter-spacing: 3px;
   p:nth-of-type(3) a{font-size: 11px;font-family: 'Montserrat'; letter-spacing: 3px;position: relative; top:-15px}
   p:nth-of-type(3) a:after{content:'→'; padding-left:3px}
+  img{width: 250px;}
 }
 .boite.left{padding-right: 50px; float:right }
 .boite.right{padding-left: 50px; float:left }
@@ -68,6 +73,7 @@ a,a:hover, a:active{text-decoration: none; color:@txt_dark}
 }
 @media screen and (min-width: 768px) {
      .commande-titre h1{font-size: 80px;letter-spacing: 16px}
+     .date{font-size:38px}
 }
 
 
