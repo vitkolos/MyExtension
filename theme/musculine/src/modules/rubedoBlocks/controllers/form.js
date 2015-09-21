@@ -12,7 +12,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     me.exp = 0;
     me.total = me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
     me.totalPrice = function(){
-        return (me.small_trad*me.stprice*100 + me.small_or*me.soprice*100 + me.big_trad*me.btprice*100 + me.big_or*me.boprice*100 + me.exp)/100;
+        return window.Math(me.small_trad*me.stprice*100 + me.small_or*me.soprice*100 + me.big_trad*me.btprice*100 + me.big_or*me.boprice*100 + me.exp)/100;
     };
     me.displaySubmit = "none";
 
