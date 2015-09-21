@@ -216,7 +216,6 @@ nav{min-height:0;}
     background-position:center center;
     margin-bottom:4px;
 }
-
 .homepage_txt {
     position: absolute;
     bottom: 20%;
@@ -240,6 +239,17 @@ nav{min-height:0;}
     line-height: 600px;
     p{line-height: 1.5em; display: inline-block;color:#2f2e2a; padding:0 15px }
 }
+@media screen and (min-width: 500px) and (max-width: 768px) {
+    .section-1,.section-2, .section-3 {min-height:400px}
+    .txt_pape{line-height: 400px}
+    .festival, .cracovie, .homepage {min-height: 500px}
+}
+@media screen and (max-width: 500px) {
+  .section-1,.section-2, .section-3 {min-height:200px}
+    .txt_pape{line-height: 200px}
+    .festival, .cracovie, .homepage {min-height: 200px}
+}
+  
 .footer {
     min-height: 200px;
     background-color:#dbdcdc;
@@ -267,7 +277,7 @@ nav{min-height:0;}
     padding-bottom: 30px;
 }
 @media screen and (max-width: @tablet) {
-    .accueil_vision p, .accueil_viion h1{width:90%; margin-left:5%}
+    .accueil_vision p, .accueil_vision h1{width:90%; margin-left:5%}
 }
  
 
