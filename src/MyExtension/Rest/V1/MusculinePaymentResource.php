@@ -28,7 +28,7 @@ class MusculinepaymentResource extends AbstractResource {
             ->definition
             ->setName('TestPaybox')
             ->setDescription('Test PayBox API')
-            ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
+            ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Get info de paiement Paybox')
                     /*->addInputFilter(
