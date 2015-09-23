@@ -8,7 +8,7 @@ angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',f
     var serviceInstance={};
     serviceInstance.getParameters=function(options){
         return($http({
-                url:config.baseUrl+"/musculinepayment",
+                url:"/api/v1/musculinepayment",
                 method:"POST",
                 data:{
                     content:options
