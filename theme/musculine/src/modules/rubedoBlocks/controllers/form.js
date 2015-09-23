@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','PaymentService','$filter',function($scope,$http,PaymentService,$filter){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','$filter',function($scope,$http,PaymentService,$filter){
     var me = this;
     var config = $scope.blockConfig;
     $scope.Math = Math;
@@ -69,7 +69,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             nom: me.surname,
             email: me.email*/
         };
-        PaymentService.getParameters(options).then(function(response){
+        MusculinePaymentService.getParameters(options).then(function(response){
             console.log(response.data);
             if (response.data.success) {
                 console.log('retour de l appel de TestPaybox en get');
