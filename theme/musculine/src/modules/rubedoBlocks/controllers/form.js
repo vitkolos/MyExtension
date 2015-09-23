@@ -75,7 +75,8 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 console.log('retour de l appel de TestPaybox en get');
                 console.log(response.data.parametres);
                 $scope.parametres = response.data.parametres;
-                me.displaySubmit = "block";  
+                me.displaySubmit = "block";
+                angular.element("form#payment").submit();
             }
             else console.log("Problème avec le service");
         });

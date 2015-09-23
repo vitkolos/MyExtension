@@ -154,29 +154,36 @@
 		     <p>Valider ma commande</p>
 	      </div>
        </form>
-       <form ng-style="{  'display' : formCtrl.displaySubmit }"  id="payboxPaiement" method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
-		<!--<input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
-		<input type="hidden" name="PBX_TYPECARTE" value ="{{parametres.typeCarte}}">-->
-		<input type="hidden" name="PBX_SITE" value ="{{parametres.payboxSite}}">
-		<input type="hidden" name="PBX_RANG" value ="{{parametres.payboxRang}}">
-		<input type="hidden" name="PBX_IDENTIFIANT" value ="{{parametres.payboxIdentifiant}}">
-		<input type="hidden" name="PBX_TOTAL" value ="{{parametres['montantEnCentimes']}}">
-		<input type="hidden" name="PBX_DEVISE" value ="{{parametres['codeMonnaieNumerique']}}">
-		<input type="hidden" name="PBX_CMD" value ="{{parametres['commande']}}">
-		<input type="hidden" name="PBX_PORTEUR" value ="{{parametres['email']}}">
-		<input type="hidden" name="PBX_RETOUR" value ="{{parametres['payboxRetour']}}">
-		<input type="hidden" name="PBX_HASH" value="SHA512">
-		<input type="hidden" name="PBX_TIME" value ="{{parametres['dateTime']}}">
-		
-		<input type="hidden" name="PBX_EFFECTUE" value ="{{parametres['urlRetourNormal']}}">
-		<input type="hidden" name="PBX_REFUSE" value ="{{parametres['urlRetourEchec']}}">
-		<input type="hidden" name="PBX_ANNULE" value ="{{parametres['urlRetourEchec']}}">
-		
-		<input type="hidden" name="PBX_REPONDRE_A" value ="{{parametres['urlCallback']}}">
-		
-		<input type="hidden" name="PBX_HMAC" value ="{{parametres['empeinteHasheeHex']}}">
-	
-		<input type="submit" class="payment" alt="Paiement sécurisé par Paybox" value="Payer ma commande">
-	      
-       </form>
+
+       
+       
+       <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="payment">
+<input name="currency_code" type="hidden" value="EUR" />
+<input name="shipping_1" type="hidden" value="{{formCtrl.fraisExp()}}" />
+<input name="shipping2_1" type="hidden" value="0" />
+<input name="shipping_2" type="hidden" value="0" />
+<input name="shipping2_2" type="hidden" value="0" />
+<input name="tax" type="hidden" value="0.00" />
+<input name="return" type="hidden" value="http://musculine.fr" />
+<input name="cancel_return" type="hidden" value="http://musculine.fr" />
+<input name="notify_url" type="hidden" value="http://musculine.fr" />
+<input name="cmd" type="hidden" value="_cart" />
+<input type="hidden" name="upload" value="1">
+       
+<input name="business" type="hidden" value="ccn.ateliers.dombes-facilitator@wanadoo.fr" />
+
+<input name="item_name_1" type="hidden" value="Musculine 250g traditionnelle" />
+<input type='hidden' ng-value="10" name="amount_1" />
+<input type="hidden" name="quantity_1" value="2">
+ 
+ <input name="item_name_2" type="hidden" value="Musculine 250g arome naturel orange" />
+<input type='hidden' value="10" name="amount_2" />
+<input type="hidden" name="quantity_2" value="2">
+       
+<input name="no_note" type="hidden" value="1" />
+<input name="lc" type="hidden" value="FR" />
+<!--<input name="bn" type="hidden" value="PP-BuyNowBF" />-->
+<input name="custom" type="hidden" value="nicolas.rhone@gmail.com" />
+<input alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
+</form>
 </div>
