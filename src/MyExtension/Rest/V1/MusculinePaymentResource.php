@@ -74,7 +74,7 @@ class MusculinePaymentResource extends AbstractResource {
                     ;
             });
     }
-    public function getAction($params) {
+    public function postAction($params) {
 
  
   $query = array();
