@@ -89,7 +89,7 @@ class MusculinepaymentResource extends AbstractResource {
     $query['notify_url'] = 'http://jackeyes.com/ipn';
     $query['cmd'] = '_cart';
     $query['upload'] = '1';
-    $query['business'] ='ccn.ateliers.dombes-facilitator@wanadoo.fr';
+    $query['business'] ='ateliers.dombes@chemin-neuf.org';
     $query['address_override'] = '1';/*
     $query['first_name'] = $first_name;
     $query['last_name'] = $last_name;
