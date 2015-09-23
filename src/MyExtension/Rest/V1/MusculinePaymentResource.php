@@ -65,12 +65,12 @@ class MusculinepaymentResource extends AbstractResource {
                             ->setKey('idInscription')
                             ->setFilter('string')
                             
-                    )
+                    )*/
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Parametres pour bouton Paybox')
                             ->setKey('parametres')
-                    )*/
+                    )
                     ;
             });
     }
@@ -112,7 +112,8 @@ class MusculinepaymentResource extends AbstractResource {
 
     header('Location: https://www.paypal.com/cgi-bin/webscr?' . $query_string);
             return array(
-            'success' => true
+            'success' => true,
+            'parametres' => $query_string
         );
 
     }
