@@ -72,10 +72,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         MusculinePaymentService.getParameters(options).then(function(response){
             console.log(response.data);
             if (response.data.success) {
-                console.log('retour de l appel de TestPaybox en get');
-                console.log(response.data.parametres);
-                $scope.parametres = response.data.parametres;
-                me.displaySubmit = "block";
+                window.location.href= response.data.url;
             }
             else console.log("Problème avec le service");
         });
