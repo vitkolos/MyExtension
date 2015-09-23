@@ -7,9 +7,13 @@ blocksConfig.form={
 angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',function($http) {
     var serviceInstance={};
     serviceInstance.getParameters=function(options){
-        return ($http.post("/api/v1/musculinepayment",{
-            params: options
-        }));
+        return($http({
+                url:config.baseUrl+"/musculinepayment",
+                method:"POST",
+                data:{
+                    content:options
+                }
+            }));
     };
     return serviceInstance;
 }]);
