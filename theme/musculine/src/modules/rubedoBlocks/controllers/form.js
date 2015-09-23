@@ -2,6 +2,8 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     var me = this;
     var config = $scope.blockConfig;
     $scope.Math = Math;
+    me.user={};
+    me.facture={};
     // get prices of products
     me.stprice = 0;
     me.soprice = 0;
@@ -18,13 +20,14 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                                     'prix': content.productProperties.lowestFinalPrice,
                                     'titre' : content.text,
                                     'id' : content.id,
-                                    'quantite':0
-                                    };
-            me.stprice = me.contents['MUS250T'].prix;
-            me.soprice = me.contents['MUS250O'].prix;
-            me.btprice =me.contents['MUS700T'].prix;
-            me.boprice = me.contents['MUS700O'].prix;
-        });
+                                    'quantite':0,
+                                    'poids' : content.productProperties.variations[0].poids
+                        };
+            });
+        me.stprice = me.contents['MUS250T'].prix;
+        me.soprice = me.contents['MUS250O'].prix;
+        me.btprice =me.contents['MUS700T'].prix;
+        me.boprice = me.contents['MUS700O'].prix;
         }
         console.log(me.contents);
     });
@@ -59,48 +62,37 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         return fraisExp;
     }
     
-    me.displaySubmit = "none";
-
     
     me.copy_address = function(){
         if (me.copy_adress) {
-            me.name2 = me.name;
-            me.surname2 = me.surname;
-            me.address2 = me.address;
-            me.city2 = me.city;
-            me.cp2 = me.cp;
-            me.telephone2 = me.telephone;
-            me.name2 = me.name;
-            me.email2 = me.email;
+            me.facture.name = me.facture.name;
+            me.facture.surname = me.facture.surname;
+            me.facture.address = me.facture.address;
+            me.facture.city = me.facture.city;
+            me.facture.cp = me.facture.cp;
+            me.facture.telephone = me.facture.telephone;
+            me.facture.email = me.facture.email;
         }
         else {
-           me.name2 = "";
-            me.surname2 = "";
-            me.address2 = "";
-            me.city2 = "";
-            me.cp2 = "";
-            me.telephone2 = "";
-            me.name2 = "";
-            me.email2 = "";
-            
+           me.expedition.name = "";
+            me.expedition.surname = "";
+            me.expedition.address = "";
+            me.expedition.city = "";
+            me.expedition.cp = "";
+            me.expedition.telephone = "";
+            me.expedition.email = "";            
         }
+ 
     };
     me.payment = function(){
         me.contents['MUS250T'].quantite = me.small_trad;
         me.contents['MUS250O'].quantite = me.small_or;
         me.contents['MUS700T'].quantite = me.big_trad;
         me.contents['MUS700O'].quantite = me.big_or;
-        var options = {
-            products:contents
-            /*montant:me.totalPrice(),
-            prenom: me.surname,
-            nom: me.surname,
-            email: me.email*/
-        };
-        MusculinePaymentService.paymentService(options).then(function(response){
+
+        MusculinePaymentService.paymentService(me.contents, me.facture, me.expedition).then(function(response){
             if (response.data.success) {
-                /*window.location.href= response.data.url;*/
-                console.log(response.data.url);
+                window.location.href= response.data.url;
             }
             else console.log("Problème avec le service");
         });

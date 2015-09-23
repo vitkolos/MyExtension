@@ -36,6 +36,16 @@ class MusculinepaymentResource extends AbstractResource {
                             ->setDescription('Détails de la commande')
                             ->setKey('products')                            
                     )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Adresse de facturation')
+                            ->setKey('facturation')                            
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Adresse de livraison')
+                            ->setKey('livraison')                            
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Paypal Url')
@@ -54,39 +64,60 @@ class MusculinepaymentResource extends AbstractResource {
     
     /*quantités et prix des produits*/
     $counter = 1;
+    $poids = 0;
     foreach ($params['products'] as $sku => $product) {
-        $query['item_name_'.$counter] = $product["titre"] ;
-        $query['quantity_'.$counter] =$product["quantite"];
-        $query['amount_'.$counter] = $product["prix"];
-        $counter++;
-        
+        if($product["quantite"]>0){
+            $query['item_name_'.$counter] = $product["titre"] ;
+            $query['quantity_'.$counter] =$product["quantite"];
+            $query['amount_'.$counter] = round($product["prix"],2);
+            $poids+= $product["quantite"] * $product["poids"];
+            $counter++;
+        };
 
+    };
+    
+    /*frais d'expédition*/
+        $fraisExp = 0;
+        if ($poids>0 AND $poids<=500) {
+           $fraisExp = 6.13;
         }
+        elseif ($poids>500 AND $poids<=750) {
+            $fraisExp = 6.89;
+        }
+        elseif ($poids>750 AND $poids<=1000) {
+            $fraisExp =7.51;
+        }
+        elseif ($poids>1000 AND $poids<=2000) {
+            $fraisExp =8.50;
+        }
+        elseif ($poids>2000) {
+            $fraisExp =10.93;
+        }
+    /*infos de facturation*/
+
+
         
-    $query['shipping_1'] = '5';
-    $query['shipping2_1'] = '0';
-    $query['shipping_2'] = '0';
-    $query['shipping2_2'] = '0';
+    $query['shipping_1'] = $fraisExp;
     $query['return'] = 'http://musculine.fr';
 
     $query['notify_url'] = 'http://jackeyes.com/ipn';
     $query['cmd'] = '_cart';
     $query['upload'] = '1';
     $query['business'] ='ccn.ateliers.dombes-facilitator@wanadoo.fr';
-    $query['address_override'] = '1';/*
-    $query['first_name'] = $first_name;
-    $query['last_name'] = $last_name;
-    $query['email'] = $email;
-    $query['address1'] = $ship_to_address;
-    $query['city'] = $ship_to_city;
-    $query['state'] = $ship_to_state;
-    $query['zip'] = $ship_to_zip;
-    $query['item_name_1'] ="Musculine 250g traditionnelle" ;
-    $query['quantity_1'] =1;
-    $query['amount_1'] = 10;
-    $query['item_name_2'] = "Musculine 250g orange" ;
-    $query['quantity_2'] = 2;
-    $query['amount_2'] = 20;*/
+    $query['address_override'] = '1';
+    $query['first_name'] = $params['facturation']['surname'];
+    $query['last_name'] =$params['facturation']['name'];
+    $query['email'] =$params['facturation']['email'];
+    $query['address1'] = $params['facturation']['address'];
+    $query['city'] = $params['facturation']['city'];
+    /*$query['state'] = $params['facturation']['state'];*/
+    $query['zip'] = $params['facturation']['cp'];
+    if($params['facturation']['telephone'][0] == 0) {
+        $query['night_phone_b'] = substr($params['facturation']['telephone'],1);
+    }
+    else {
+        $query['night_phone_b'] = $params['facturation']['telephone'];
+    }
     $query['email'] = "nicolas.rhone@gmail.com";
 
 

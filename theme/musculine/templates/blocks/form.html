@@ -67,31 +67,31 @@
 		     <div class="infos">
 			    <div>
 				   <label for="name">Nom*</label>
-				   <input type="text" name="name" ng-model="formCtrl.name" required>			    
+				   <input type="text" name="name" ng-model="formCtrl.facture.name" required>			    
 			    </div>
 			    <div>
 				   <label for="surname">Prénom*</label>
-				   <input type="text" name="surname" ng-model="formCtrl.surname" required>
+				   <input type="text" name="surname" ng-model="formCtrl.facture.surname" required>
 			    </div>
 			    <div>
 				   <label for="address">Adresse*</label>
-				   <input type="text" name="address" ng-model="formCtrl.address" required>			    
+				   <input type="text" name="address" ng-model="formCtrl.facture.address" required>			    
 			    </div>
 			    <div>
 				   <label for="city">Ville*</label>
-				   <input type="text" name="city" ng-model="formCtrl.city" required>			    
+				   <input type="text" name="city" ng-model="formCtrl.facture.city" required>			    
 			    </div>
 			    <div>
 				   <label for="cp">Code postal*</label>
-				   <input type="text" name="cp" ng-model="formCtrl.cp" required>			    
+				   <input type="text" name="cp" ng-model="formCtrl.facture.cp" required>			    
 			    </div>
 			    <div>
 				   <label for="telephone">Téléphone</label>
-				   <input type="text" name="telephone" ng-model="formCtrl.telephone" ng-pattern="/^\+?[0-9 ]+$/">			    
+				   <input type="text" name="telephone" ng-model="formCtrl.facture.telephone" ng-pattern="/^\+?[0-9 ]+$/">			    
 			    </div>
 			    <div>
 				   <label for="email">Email*</label>
-				   <input type="email" name="email" ng-model="formCtrl.email" required>			    
+				   <input type="email" name="email" ng-model="formCtrl.facture.email" required>			    
 			    </div>
 		     </div>
 		     
@@ -108,31 +108,31 @@
 			    </div>
 			    <div>
 				   <label for="name2">Nom*</label>
-				   <input type="text" name="name2" ng-model="formCtrl.name2" required>			    
+				   <input type="text" name="name2" ng-model="formCtrl.expedition.name" required>			    
 			    </div>
 			    <div>
 				   <label for="surname2">Prénom*</label>
-				   <input type="text" name="surname2" ng-model="formCtrl.surname2" required>
+				   <input type="text" name="surname2" ng-model="formCtrl.expedition.surname" required>
 			    </div>
 			    <div>
 				   <label for="address2">Adresse*</label>
-				   <input type="text" name="address2" ng-model="formCtrl.address2" required>			    
+				   <input type="text" name="address2" ng-model="formCtrl.expedition.address" required>			    
 			    </div>
 			    <div>
 				   <label for="city2">Ville*</label>
-				   <input type="text" name="city2" ng-model="formCtrl.city2" required>			    
+				   <input type="text" name="city2" ng-model="formCtrl.expedition.city" required>			    
 			    </div>
 			    <div>
 				   <label for="cp2">Code postal*</label>
-				   <input type="text" name="cp2" ng-model="formCtrl.cp2" required>			    
+				   <input type="text" name="cp2" ng-model="formCtrl.expedition.cp" required>			    
 			    </div>
 			    <div>
 				   <label for="telephone2">Téléphone</label>
-				   <input type="text" name="telephone2" ng-model="formCtrl.telephone2" ng-pattern="/^\+?[0-9 ]+$/">			    
+				   <input type="text" name="telephone2" ng-model="formCtrl.expedition.telephone" ng-pattern="/^\+?[0-9 ]+$/">			    
 			    </div>
 			    <div>
 				   <label for="email2">Email*</label>
-				   <input type="email" name="email2" ng-model="formCtrl.email2" required>			    
+				   <input type="email" name="email2" ng-model="formCtrl.expedition.email" required>			    
 			    </div>
 		     </div>
 		     
@@ -150,40 +150,11 @@
 			    <p ng-if="formCtrl.big_trad>0">{{formCtrl.big_trad}} X Musculine 700g traditionnelle</p>
 			    <p ng-if="formCtrl.big_or>0">{{formCtrl.big_or}} X Musculine 700g arôme naturel orange</p>
 	      </div>
-	      <div class="payment" ng-click="formCtrl.getParameters()">
+	      <div class="payment" ng-click="formCtrl.payment()">
 		     <p>Valider ma commande</p>
 	      </div>
+	      <div id="loading"></div>
        </form>
 
        
-       
-       <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="payment">
-<input name="currency_code" type="hidden" value="EUR" />
-<input name="shipping_1" type="hidden" value="{{formCtrl.fraisExp()}}" />
-<input name="shipping2_1" type="hidden" value="0" />
-<input name="shipping_2" type="hidden" value="0" />
-<input name="shipping2_2" type="hidden" value="0" />
-<input name="tax" type="hidden" value="0.00" />
-<input name="return" type="hidden" value="http://musculine.fr" />
-<input name="cancel_return" type="hidden" value="http://musculine.fr" />
-<input name="notify_url" type="hidden" value="http://musculine.fr" />
-<input name="cmd" type="hidden" value="_cart" />
-<input type="hidden" name="upload" value="1">
-       
-<input name="business" type="hidden" value="ccn.ateliers.dombes-facilitator@wanadoo.fr" />
-
-<input name="item_name_1" type="hidden" value="Musculine 250g traditionnelle" />
-<input type='hidden' ng-value="10" name="amount_1" />
-<input type="hidden" name="quantity_1" value="2">
- 
- <input name="item_name_2" type="hidden" value="Musculine 250g arome naturel orange" />
-<input type='hidden' value="10" name="amount_2" />
-<input type="hidden" name="quantity_2" value="2">
-       
-<input name="no_note" type="hidden" value="1" />
-<input name="lc" type="hidden" value="FR" />
-<!--<input name="bn" type="hidden" value="PP-BuyNowBF" />-->
-<input name="custom" type="hidden" value="nicolas.rhone@gmail.com" />
-<input alt="Effectuez vos paiements via PayPal : une solution rapide, gratuite et sécurisée" name="submit" src="https://www.paypal.com/fr_FR/FR/i/btn/btn_buynow_LG.gif" type="image" /><img src="https://www.paypal.com/fr_FR/i/scr/pixel.gif" border="0" alt="" width="1" height="1" />
-</form>
 </div>
