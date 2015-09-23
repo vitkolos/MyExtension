@@ -16,7 +16,11 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                                     'id' : content.id,
                                     'quantite':0
                                     };
-            });
+            me.stprice = me.contents['MUS250T'];
+            me.soprice = me.contents['MUS250O'];
+            me.btprice =me.contents['MUS700T'];
+            me.boprice = me.contents['MUS700O'];
+        });
         }
         console.log(me.contents);
     });
@@ -24,10 +28,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     me.small_or=0;
     me.big_trad=0;
     me.big_or=0;
-    me.stprice = me.contents['MUS250T'];
-    me.soprice = me.contents['MUS250O'];
-    me.btprice =me.contents['MUS700T'];
-    me.boprice = me.contents['MUS700O'];
+
     me.exp = 0;
     me.total = me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
     me.totalPrice = function(){
