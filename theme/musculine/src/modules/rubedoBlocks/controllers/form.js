@@ -20,10 +20,10 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                                     'id' : content.id,
                                     'quantite':0
                                     };
-            me.stprice = me.contents['MUS250T'];
-            me.soprice = me.contents['MUS250O'];
-            me.btprice =me.contents['MUS700T'];
-            me.boprice = me.contents['MUS700O'];
+            me.stprice = me.contents['MUS250T'].prix;
+            me.soprice = me.contents['MUS250O'].prix;
+            me.btprice =me.contents['MUS700T'].prix;
+            me.boprice = me.contents['MUS700O'].prix;
         });
         }
         console.log(me.contents);
