@@ -31,7 +31,7 @@ class MusculinePaymentResource extends AbstractResource {
             ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Get info de paiement Paybox')
-                    ->addInputFilter(
+                    /*->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Montant')
                             ->setKey('montant')
@@ -70,93 +70,51 @@ class MusculinePaymentResource extends AbstractResource {
                         (new FilterDefinitionEntity())
                             ->setDescription('Parametres pour bouton Paybox')
                             ->setKey('parametres')
-                    )
+                    )*/
                     ;
             });
     }
     public function getAction($params) {
 
  
-        $dateTime = date("c");
-        /*$dateTime = "2015-05-12T15:01:50+01:00";*/
+  $query = array();
+      $query['currency_code'] = 'EUR';
+      $query['lc'] = 'FR';
+    $query['shipping_1'] = '5';
+    $query['shipping2_1'] = '0';
+    $query['shipping_2'] = '0';
+    $query['shipping2_2'] = '0';
+    $query['return'] = 'http://musculine.fr';
 
-        /*$idInscription = "WTP123456";*/
-        $nom = $params['nom'];
-        $email = $params['email'];
-        $proposition = "Festival WTP F";
-        $urlNormal="http://" . $_SERVER['HTTP_HOST'] . "/payment/success";
-        $urlEchec="http://" . $_SERVER['HTTP_HOST'] . "/payment/cancel";
-        $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/TestPayboxIpn";
-        $idInscription="123456FR";
-        $commande = $idInscription . "|" . $nom . "|" . $email . "|" . $proposition; 
-        
-        
-        
-        $id = "55473e9745205e1d3ef1864d";
-        $payBoxAccount = $this->getPaymentMeans($id);
-        $payboxSite = $payBoxAccount['site'];
-        $payboxRang = $payBoxAccount['rang'];
-        $payboxID = $payBoxAccount['identifiant'];
-        $payboxDevise = $payBoxAccount['devise'];
-        
-        $parametres = [
-            "typePaiement" => "CARTE",
-            "typeCarte" => "VISA",
-            "payboxSite" => $payboxSite,
-            "payboxRang" => $payboxRang,
-            "payboxIdentifiant" => $payboxID,
-            "montantEnCentimes" => $params['montant'] *100,
-            "codeMonnaieNumerique" =>$payboxDevise,
-            "commande" => $commande, 
-            "email" => $email, 
-            "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;signature:K",
-            "dateTime" => $dateTime,
-            "urlRetourNormal" => $urlNormal,
-            "urlRetourEchec" => $urlEchec,
-            "urlCallback" => $urlCallback,
-        ];
-
-        $empeinteBrute  =
-            /*"PBX_TYPEPAIEMENT=" . $parametres['typePaiement'] . 
-            "&PBX_TYPECARTE=" . $parametres['typeCarte']  .*/
-            "PBX_SITE=" . $parametres['payboxSite']  .
-            "&PBX_RANG=" . $parametres['payboxRang']  .
-            "&PBX_IDENTIFIANT=" . $parametres['payboxIdentifiant']  .
-            "&PBX_TOTAL=" . $parametres['montantEnCentimes']  .
-            "&PBX_DEVISE=" . $parametres['codeMonnaieNumerique']  .
-            "&PBX_CMD=" . $parametres['commande'] . 
-            "&PBX_PORTEUR=" . $parametres['email']  .
-            "&PBX_RETOUR=" . $parametres['payboxRetour']  .
-            "&PBX_HASH=" . "SHA512"  .
-            "&PBX_TIME=" . $parametres['dateTime']  .
-            "&PBX_EFFECTUE=" . $parametres['urlRetourNormal']  .
-            "&PBX_REFUSE=" . $parametres['urlRetourEchec']  .
-            "&PBX_ANNULE=" . $parametres['urlRetourEchec']  .
-            "&PBX_REPONDRE_A=" . $parametres['urlCallback']  ;
-
-        //$key = "0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF";
-        $key = $payBoxAccount['clef'];
-        // On transforme la clé en binaire
-        $binKey = pack("H*", $key);
-
-        // On calcule l’empreinte (à renseigner dans le paramètre PBX_HMAC) grâce à la fonction hash_hmac et 
-        // la clé binaire
-        // On envoie via la variable PBX_HASH l'algorithme de hachage qui a été utilisé (SHA512 dans ce cas)
-        
-        // Pour afficher la liste des algorithmes disponibles sur votre environnement, décommentez la ligne 
-        // suivante
-        // print_r(hash_algos());
-
-        $empeinteHasheeHex = strtoupper(hash_hmac('sha512', $empeinteBrute, $binKey));
-        // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
-        $parametres['empeinteHasheeHex'] = $empeinteHasheeHex;
+    $query['notify_url'] = 'http://jackeyes.com/ipn';
+    $query['cmd'] = '_cart';
+    $query['upload'] = '1';
+    $query['business'] ='ccn.ateliers.dombes-facilitator@wanadoo.fr';
+    $query['address_override'] = '1';/*
+    $query['first_name'] = $first_name;
+    $query['last_name'] = $last_name;
+    $query['email'] = $email;
+    $query['address1'] = $ship_to_address;
+    $query['city'] = $ship_to_city;
+    $query['state'] = $ship_to_state;
+    $query['zip'] = $ship_to_zip;*/
+    $query['item_name_1'] ="Musculine 250g traditionnelle" ;
+    $query['quantity_1'] =1;
+    $query['amount_1'] = 10;
+    $query['item_name_2'] = "Musculine 250g orange" ;
+    $query['quantity_2'] = 2;
+    $query['amount_2'] = 20;
+        $query['email'] = "nicolas.rhone@gmail.com";
 
 
-        
-        return array(
-            'success' => true,
-            'parametres' => $parametres
+    // Prepare query string
+    $query_string = http_build_query($query);
+
+    header('Location: https://www.paypal.com/cgi-bin/webscr?' . $query_string);
+            return array(
+            'success' => true
         );
+
     }
     
     public function getPaymentMeans($id){

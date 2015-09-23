@@ -4,10 +4,10 @@ blocksConfig.form={
 };
 
 
-angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($http) {
+angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',function($http) {
     var serviceInstance={};
     serviceInstance.getParameters=function(options){
-        return ($http.get("/api/v1/Paybox",{
+        return ($http.get("/api/v1/MusculinePayment",{
             params: options
         }));
     };

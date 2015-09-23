@@ -64,10 +64,10 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     };
     me.getParameters = function(){
         var options = {
-            montant:/*me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp*/me.totalPrice(),
+            /*montant:me.totalPrice(),
             prenom: me.surname,
             nom: me.surname,
-            email: me.email
+            email: me.email*/
         };
         PaymentService.getParameters(options).then(function(response){
             console.log(response.data);
@@ -76,7 +76,6 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                 console.log(response.data.parametres);
                 $scope.parametres = response.data.parametres;
                 me.displaySubmit = "block";
-                angular.element("form#payment").submit();
             }
             else console.log("Problème avec le service");
         });
