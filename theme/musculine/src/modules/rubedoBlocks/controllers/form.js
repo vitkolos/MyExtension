@@ -3,6 +3,10 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     var config = $scope.blockConfig;
     $scope.Math = Math;
     // get prices of products
+    me.stprice = 0;
+    me.soprice = 0;
+    me.btprice =0;
+    me.boprice = 0;
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
     var queryId = "5601574645205ebc536e124c";
