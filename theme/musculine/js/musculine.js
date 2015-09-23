@@ -4,12 +4,6 @@ blocksConfig.form={
 };
 
 
-angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',function($http) {
-    var serviceInstance={};
-    serviceInstance.blocksConfig.form={
-           "template": "/templates/blocks/form.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/form.js" ]
-};
 
 
 angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',function($http) {
