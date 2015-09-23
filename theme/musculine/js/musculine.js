@@ -28,15 +28,3 @@ angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',f
     return serviceInstance;
 }]);
 
-=function(options){
-        return($http({
-                url:"/api/v1/musculinepayment",
-                method:"POST",
-                data:{
-                    content:options
-                }
-            }));
-    };
-    return serviceInstance;
-}]);
-
