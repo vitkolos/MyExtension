@@ -1,7 +1,32 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','$filter',function($scope,$http,MusculinePaymentService,$filter){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','RubedoProductsService','$filter',function($scope,$http,MusculinePaymentService,RubedoProductsService,$filter){
     var me = this;
     var config = $scope.blockConfig;
     $scope.Math = Math;
+    // get prices of products
+    var pageId=$scope.rubedo.current.page.id;
+    var siteId=$scope.rubedo.current.site.id;
+    var queryId = "5601574645205ebc536e124c";
+    RubedoProductsService.getContents(queryId,pageId,siteId).then(function(response){
+        if (response.data.success){
+            me.contents = response.data.contents;
+            console.log(me.contents);
+        }
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     me.small_trad=0;
     me.small_or=0;
     me.big_trad=0;
@@ -62,15 +87,14 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             
         }
     };
-    me.getParameters = function(){
+    me.payment = function(){
         var options = {
             /*montant:me.totalPrice(),
             prenom: me.surname,
             nom: me.surname,
             email: me.email*/
         };
-        MusculinePaymentService.getParameters(options).then(function(response){
-            console.log(response.data);
+        MusculinePaymentService.paymentService(options).then(function(response){
             if (response.data.success) {
                 window.location.href= response.data.url;
             }

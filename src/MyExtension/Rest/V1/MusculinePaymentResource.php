@@ -58,14 +58,12 @@ class MusculinepaymentResource extends AbstractResource {
                             ->setKey('email')
                             ->setFilter('string')
                             ->setRequired()
-                    )
+                    )*/
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('idInscription')
-                            ->setKey('idInscription')
-                            ->setFilter('string')
-                            
-                    )*/
+                            ->setDescription('Détails de la commande')
+                            ->setKey('products')                            
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Paypal Url')
@@ -78,8 +76,8 @@ class MusculinepaymentResource extends AbstractResource {
 
  
   $query = array();
-      $query['currency_code'] = 'EUR';
-      $query['lc'] = 'FR';
+    $query['currency_code'] = 'EUR'; //devise
+    $query['lc'] = 'FR'; // langue
     $query['shipping_1'] = '5';
     $query['shipping2_1'] = '0';
     $query['shipping_2'] = '0';
@@ -89,7 +87,7 @@ class MusculinepaymentResource extends AbstractResource {
     $query['notify_url'] = 'http://jackeyes.com/ipn';
     $query['cmd'] = '_cart';
     $query['upload'] = '1';
-    $query['business'] ='ateliers.dombes@chemin-neuf.org';
+    $query['business'] ='ccn.ateliers.dombes-facilitator@wanadoo.fr';
     $query['address_override'] = '1';/*
     $query['first_name'] = $first_name;
     $query['last_name'] = $last_name;
@@ -113,7 +111,7 @@ class MusculinepaymentResource extends AbstractResource {
     header('Location: https://www.paypal.com/cgi-bin/webscr?' . $query_string);
     return array(
             'success' => true,
-            'url' => 'https://www.paypal.com/cgi-bin/webscr?' . $query_string
+            'url' => 'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
         );
 
     }

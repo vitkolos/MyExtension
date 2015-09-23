@@ -6,7 +6,7 @@ blocksConfig.form={
 
 angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',function($http) {
     var serviceInstance={};
-    serviceInstance.getParameters=function(options){
+    serviceInstance.paymentService=function(options){
         return($http({
                 url:"/api/v1/musculinepayment",
                 method:"POST",
