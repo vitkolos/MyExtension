@@ -12,7 +12,7 @@ use RubedoAPI\Exceptions\APIRequestException;
 use WebTales\MongoFilters\Filter;
 
 
-class MusculinePaymentResource extends AbstractResource {
+class MusculinepaymentResource extends AbstractResource {
    /**
      * @var array
      */
