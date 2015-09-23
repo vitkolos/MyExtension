@@ -31,34 +31,6 @@ class MusculinepaymentResource extends AbstractResource {
             ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Get info de paiement Paybox')
-                    /*->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Montant')
-                            ->setKey('montant')
-                            ->setFilter('string')
-                            ->setRequired()
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('prenom')
-                            ->setKey('prenom')
-                            ->setFilter('string')
-                            ->setRequired()
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('nom')
-                            ->setKey('nom')
-                            ->setFilter('string')
-                            ->setRequired()
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('email')
-                            ->setKey('email')
-                            ->setFilter('string')
-                            ->setRequired()
-                    )*/
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Détails de la commande')
@@ -74,10 +46,23 @@ class MusculinepaymentResource extends AbstractResource {
     }
     public function postAction($params) {
 
- 
+    
   $query = array();
     $query['currency_code'] = 'EUR'; //devise
     $query['lc'] = 'FR'; // langue
+    
+    
+    /*quantités et prix des produits*/
+    $counter = 1;
+    foreach ($params['products'] as $sku => $product) {
+        $query['item_name_'.$counter] = $product["titre"] ;
+        $query['quantity_'.$counter] =$product["quantite"];
+        $query['amount_'.$counter] = $product["prix"];
+        $counter++;
+        
+
+        }
+        
     $query['shipping_1'] = '5';
     $query['shipping2_1'] = '0';
     $query['shipping_2'] = '0';
@@ -95,14 +80,14 @@ class MusculinepaymentResource extends AbstractResource {
     $query['address1'] = $ship_to_address;
     $query['city'] = $ship_to_city;
     $query['state'] = $ship_to_state;
-    $query['zip'] = $ship_to_zip;*/
+    $query['zip'] = $ship_to_zip;
     $query['item_name_1'] ="Musculine 250g traditionnelle" ;
     $query['quantity_1'] =1;
     $query['amount_1'] = 10;
     $query['item_name_2'] = "Musculine 250g orange" ;
     $query['quantity_2'] = 2;
-    $query['amount_2'] = 20;
-        $query['email'] = "nicolas.rhone@gmail.com";
+    $query['amount_2'] = 20;*/
+    $query['email'] = "nicolas.rhone@gmail.com";
 
 
     // Prepare query string

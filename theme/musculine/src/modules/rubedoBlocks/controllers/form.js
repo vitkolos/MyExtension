@@ -81,7 +81,12 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         }
     };
     me.payment = function(){
+        me.contents['MUS250T'].quantite = me.small_trad;
+        me.contents['MUS250O'].quantite = me.small_or;
+        me.contents['MUS700T'].quantite = me.big_trad;
+        me.contents['MUS700O'].quantite = me.big_or;
         var options = {
+            products:contents
             /*montant:me.totalPrice(),
             prenom: me.surname,
             nom: me.surname,
@@ -89,7 +94,8 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         };
         MusculinePaymentService.paymentService(options).then(function(response){
             if (response.data.success) {
-                window.location.href= response.data.url;
+                /*window.location.href= response.data.url;*/
+                console.log(response.data.url);
             }
             else console.log("Problème avec le service");
         });
