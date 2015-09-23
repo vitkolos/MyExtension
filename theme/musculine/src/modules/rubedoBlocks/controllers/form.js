@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','$filter',function($scope,$http,PaymentService,$filter){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','$filter',function($scope,$http,MusculinePaymentService,$filter){
     var me = this;
     var config = $scope.blockConfig;
     $scope.Math = Math;
