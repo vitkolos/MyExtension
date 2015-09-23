@@ -10,38 +10,24 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         if (response.data.success){
             me.contents = {};
             angular.forEach(response.data.contents,function(content){
-                        me.contents[content.id]= {
+                        me.contents[content.productProperties.sku]= {
                                     'prix': content.productProperties.lowestFinalPrice,
                                     'titre' : content.text,
-                                    'SKU' : content.productProperties.sku
+                                    'id' : content.id,
+                                    'quantite':0
                                     };
             });
         }
         console.log(me.contents);
     });
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     me.small_trad=0;
     me.small_or=0;
     me.big_trad=0;
     me.big_or=0;
-    me.stprice = 10.52;
-    me.soprice = 10.52;
-    me.btprice = 24.96;
-    me.boprice = 24.96;
+    me.stprice = me.contents['MUS250T'];
+    me.soprice = me.contents['MUS250O'];
+    me.btprice =me.contents['MUS700T'];
+    me.boprice = me.contents['MUS700O'];
     me.exp = 0;
     me.total = me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
     me.totalPrice = function(){
