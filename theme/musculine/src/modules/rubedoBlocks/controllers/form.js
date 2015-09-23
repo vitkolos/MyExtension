@@ -8,9 +8,16 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     var queryId = "5601574645205ebc536e124c";
     RubedoProductsService.getContents(queryId,pageId,siteId).then(function(response){
         if (response.data.success){
-            me.contents = response.data.contents;
-            console.log(me.contents);
+            me.contents = {};
+            angular.forEach(response.data.contents,function(content){
+                        me.contents[content.id]= {
+                                    'prix': content.productProperties.lowestFinalPrice,
+                                    'titre' : content.text,
+                                    'SKU' : content.productProperties.sku
+                                    };
+            });
         }
+        console.log(me.contents);
     });
     
     
