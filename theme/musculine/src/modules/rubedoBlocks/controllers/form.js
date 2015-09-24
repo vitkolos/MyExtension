@@ -66,20 +66,20 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     
     me.copy_address = function(){
         if (me.copy_adress) {
-            me.expedition = angular.copy(me.facture);
+            $scope.formulaire.expedition = angular.copy($scope.formulaire.facture);
         }
         else {
-           me.expedition.name = "";
-            me.expedition.surname = "";
-            me.expedition.address = "";
-            me.expedition.city = "";
-            me.expedition.cp = "";
-            me.expedition.telephone = "";
-            me.expedition.email = "";            
+           $scope.formulaire.expedition.name = "";
+            $scope.formulaire.expedition.surname = "";
+            $scope.formulaire.expedition.address = "";
+            $scope.formulaire.expedition.city = "";
+            $scope.formulaire.expedition.cp = "";
+            $scope.formulaire.expedition.telephone = "";
+            $scope.formulaire.expedition.email = "";            
         }
  
     };
-    me.payment = function(valide){
+    me.payment = function($scope){
         me.contents['MUS250T'].quantite = me.small_trad;
         me.contents['MUS250O'].quantite = me.small_or;
         me.contents['MUS700T'].quantite = me.big_trad;
@@ -87,13 +87,14 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         if (me.totalPrice() == 0 ) {
             alert("Votre panier est vide");
         }
-        else if (!valide) {
+        else if (!$scope.formulaire.$valid) {
             alert("Merci de remplir tous les champs obligatoires");
+            console.log($scope.formulaire.$valid);
         }
         else {
             alert("Redirect");
             me.loading=true;
-            MusculinePaymentService.paymentService(me.contents, me.facture, me.expedition).then(function(response){
+            MusculinePaymentService.paymentService(me.contents, $scope.formulaire, $scope.formulaire).then(function(response){
                 if (response.data.success) {
                     window.location.href= response.data.url;
                     me.loading = false;
