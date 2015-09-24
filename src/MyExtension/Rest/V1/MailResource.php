@@ -18,6 +18,13 @@
 namespace MyExtension\Rest\V1;
 
 
+use Rubedo\Collection\AbstractLocalizableCollection;
+use RubedoAPI\Exceptions\APIAuthException;
+use RubedoAPI\Exceptions\APIEntityException;
+use RubedoAPI\Exceptions\APIRequestException;
+use WebTales\MongoFilters\Filter;
+use Rubedo\Content\Context;
+
 use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
