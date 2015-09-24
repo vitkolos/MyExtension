@@ -3,8 +3,8 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     var config = $scope.blockConfig;
     me.loading=false;
     $scope.Math = Math;
-    me.user={};
     me.facture={};
+    me.expedition={};
     // get prices of products
     me.stprice = 0;
     me.soprice = 0;
