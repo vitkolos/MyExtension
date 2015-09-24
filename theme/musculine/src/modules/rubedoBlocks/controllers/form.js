@@ -85,6 +85,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         me.contents['MUS700T'].quantite = me.big_trad;
         me.contents['MUS700O'].quantite = me.big_or;
         var prix = me.totalPrice() ;
+        console.log(prix);
         if (prix == 0 ) {
             alert("Votre panier est vide");
         }
@@ -92,12 +93,11 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             alert("Merci de remplir tous les champs obligatoires");
         }
         else {
-            alert("Redirect");
             me.loading=true;
             MusculinePaymentService.paymentService(me.contents, me.facture, me.facture).then(function(response){
                 if (response.data.success) {
                     window.location.href= response.data.url;
-                    me.loading = false;
+                    /*me.loading = false;*/
                 }
                 else {
                     me.loading = false;
