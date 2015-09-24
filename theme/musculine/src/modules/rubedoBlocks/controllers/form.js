@@ -79,7 +79,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         }
  
     };
-    me.payment = function($scope){
+    me.payment = function(valide){
         me.contents['MUS250T'].quantite = me.small_trad;
         me.contents['MUS250O'].quantite = me.small_or;
         me.contents['MUS700T'].quantite = me.big_trad;
@@ -87,7 +87,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         if (me.totalPrice() == 0 ) {
             alert("Votre panier est vide");
         }
-        else if (!$scope.form.$valid) {
+        else if (!valide) {
             alert("Merci de remplir tous les champs obligatoires");
         }
         else {
