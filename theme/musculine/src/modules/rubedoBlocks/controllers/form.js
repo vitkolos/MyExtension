@@ -94,7 +94,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         if (me.totalPrice() == 0 ) {
             alert("Votre panier est vide");
         }
-        else if (!$scope.formulaire.$valid) {
+        else if (!formulaire.$valid) {
             alert("Merci de remplir tous les champs obligatoires");
         }
         MusculinePaymentService.paymentService(me.contents, me.facture, me.expedition).then(function(response){
