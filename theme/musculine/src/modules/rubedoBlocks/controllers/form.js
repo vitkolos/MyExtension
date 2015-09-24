@@ -66,13 +66,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     
     me.copy_address = function(){
         if (me.copy_adress) {
-            me.facture.name = me.facture.name;
-            me.facture.surname = me.facture.surname;
-            me.facture.address = me.facture.address;
-            me.facture.city = me.facture.city;
-            me.facture.cp = me.facture.cp;
-            me.facture.telephone = me.facture.telephone;
-            me.facture.email = me.facture.email;
+            me.expedition = angular.copy(me.facture);
         }
         else {
            me.expedition.name = "";
