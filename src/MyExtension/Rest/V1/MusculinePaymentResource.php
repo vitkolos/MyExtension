@@ -136,10 +136,9 @@ class MusculinepaymentResource extends AbstractResource {
  
  
  
-    protected function registerCommand($content)
+    protected function registerCommand($data)
     {
         AbstractLocalizableCollection::setIncludeI18n(true);
-        $data = &$params['content'];
         if (empty($data['typeId'])) {
             throw new APIEntityException('typeId data is missing.', 400);
         }
