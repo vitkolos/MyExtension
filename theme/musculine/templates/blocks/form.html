@@ -1,6 +1,6 @@
 <div ng-controller="FormController as formCtrl">
 
-       <form name="form" method="post"  novalidate name="formulaire">
+       <form name="form" method="post"  novalidate>
 	      <div class="row" ng-class="{'checked':formCtrl.small_trad>0}">
 		     <div class="inputs">
 			     <input id="st" type="number" min="0" name="small_trad" ng-model="formCtrl.small_trad">
@@ -152,7 +152,7 @@
 	      </div>
 	      <div class="payment" ng-click="formCtrl.payment()">
 		     <p>Valider ma commande test</p>
-		     <p ng-if="formulaire.$valid">Valide !</p>
+		     <p ng-if="form.$valid">Valide !</p>
 		     <img src="/theme/musculine/img/spinner.gif" ng-if="formCtrl.loading">
 	      </div>
        </form>
