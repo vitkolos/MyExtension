@@ -150,7 +150,7 @@
 			    <p ng-if="formCtrl.big_trad>0">{{formCtrl.big_trad}} X Musculine 700g traditionnelle</p>
 			    <p ng-if="formCtrl.big_or>0">{{formCtrl.big_or}} X Musculine 700g arôme naturel orange</p>
 	      </div>
-	      <div class="payment" ng-click="formCtrl.payment()">
+	      <div class="payment" ng-click="formCtrl.payment(formulaire)">
 		     <p>Valider ma commande</p>
 		     <img src="/theme/musculine/img/spinner.gif" ng-if="formCtrl.loading">
 	      </div>
