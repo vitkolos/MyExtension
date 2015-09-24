@@ -12,7 +12,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
     me.boprice = 0;
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
-    var queryId = "5601574645205ebc536e124c";
+    var queryId = "5604067145205eb9346e124b";
     RubedoProductsService.getContents(queryId,pageId,siteId).then(function(response){
         if (response.data.success){
             me.contents = {};
