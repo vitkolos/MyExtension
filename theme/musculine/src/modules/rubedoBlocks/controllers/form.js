@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','RubedoProductsService','RubedoContentsService','$filter',function($scope,$http,MusculinePaymentService,RubedoContentsService,RubedoProductsService,$filter){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','RubedoProductsService','RubedoContentsService','$filter',function($scope,$http,MusculinePaymentService,RubedoProductsService,RubedoContentsService,$filter){
     var me = this;
     var config = $scope.blockConfig;
     me.loading=false;
