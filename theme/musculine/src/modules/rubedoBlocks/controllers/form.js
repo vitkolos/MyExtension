@@ -97,6 +97,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
             alert("Merci de remplir tous les champs obligatoires");
         }
         else {
+            alert("Redirect");
             me.loading=true;
             MusculinePaymentService.paymentService(me.contents, me.facture, me.expedition).then(function(response){
                 if (response.data.success) {
