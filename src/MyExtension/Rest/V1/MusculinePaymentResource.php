@@ -12,15 +12,51 @@ use RubedoAPI\Exceptions\APIRequestException;
 use WebTales\MongoFilters\Filter;
 
 
+
+use Rubedo\Interfaces\Collection\IAbstractCollection;
+
 class MusculinepaymentResource extends AbstractResource {
-   /**
+
+    const POST_CREATE_COLLECTION = 'rubedo_collection_create_post';
+
+
+    /**
+     * Cache lifetime for api cache (only for get and getEntity)
+     * @var int
+     */
+    public $cacheLifeTime=60;
+    /**
+     * @var array
+     */
+    protected $toExtractFromFields = array('text');
+    /**
+     * @var array
+     */
+    protected $otherLocalizableFields = array('text', 'summary');
+    /**
      * @var array
      */
     protected $returnedEntityFields = array(
-        'fields'
+        'id',
+        'text',
+        'version',
+        'createUser',
+        'lastUpdateUser',
+        'fields',
+        'taxonomy',
+        'status',
+        'pageId',
+        'maskId',
+        'locale',
+        'readOnly',
+        'createTime',
+        'lastUpdateTime',
+        'isProduct',
+        'productProperties'
     );
-    protected $_dataService;
-    protected $_collectionName;
+
+
+    
     public function __construct()
     {
         parent::__construct();
@@ -123,63 +159,124 @@ class MusculinepaymentResource extends AbstractResource {
 
     // Prepare query string
     $query_string = http_build_query($query);
-    this->registerCommand($params['content']);
+
+    $data = $params['content'];
+        $response = $this->getAuthAPIService()->APIAuth('musculine', 'Musc2015');
+        $output['token'] = $this->subTokenFilter($response['token']);
+        $this->subUserFilter($response['user']);
+        $route = $this->getContext()->params()->fromRoute();
+        $route['api'] = array('auth');
+        $route['method'] = 'GET';
+        $route['access_token'] = $output['token']['access_token'];
+
+
+        $payload = json_encode( array( "content" => $data ) );
+
+$curl = curl_init();
+// Set some options - we are passing in a useragent too here
+curl_setopt_array($curl, array(
+    CURLOPT_RETURNTRANSFER => 1,
+    CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$route['access_token'].'&lang=fr',
+    CURLOPT_POST => 1
+));
+                    curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
+                    //curl_setopt($curly, CURLOPT_HEADER, false);         // Don't retrieve headers
+                    //curl_setopt($curly, CURLOPT_NOBODY, true);          // Don't retrieve the body
+                    curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
+
+curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload );
+
+// Send the request & save response to $resp
+$resp = curl_exec($curl);
+// Close request to clear up some resources
+curl_close($curl);
+
+
+
+ 
+        //$this->getContentsCollection()->create($data, array(), false);     
+ 
+
+
+
+
+
+
+
+
+
     
     
     return array(
             'success' => true,
-            'url' => 'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
+            'url' =>// 'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
+            $resp
         );
 
     }
- 
- 
- 
- 
-    protected function registerCommand($data)
+    protected function subTokenFilter(&$token)
     {
-        AbstractLocalizableCollection::setIncludeI18n(true);
-        if (empty($data['typeId'])) {
-            throw new APIEntityException('typeId data is missing.', 400);
-        }
-        $type = $this->getContentTypesCollection()->findById($data['typeId']);
-        if (empty($type)) {
-            throw new APIEntityException('ContentType not found.', 404);
-        }
-        foreach ($data['fields'] as $fieldName => $fieldValue) {
-            if (in_array($fieldName, $this->toExtractFromFields)) {
-                $data[$fieldName] = $fieldValue;
+        return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
+    }
+    /**
+     * Filter user from database
+     *
+     * @param $user
+     * @return array
+     */
+    protected function subUserFilter(&$user)
+    {
+        $user = $this->getUsersCollection()->findById($user['id']);
+        return array_intersect_key($user, array_flip(array('id', 'login', 'name','fields')));
+    } 
+     public function getCollectionName()
+    {
+        return "Contents";
+    }
+   /**
+     * Remove fields if not in content type
+     *
+     * @param $type
+     * @param $fields
+     */
+    protected function filterFields($type, $fields)
+    {
+        $existingFields = array();
+        foreach ($type['fields'] as $field) {
+            if (!($field['config']['localizable'] || in_array($field['config']['name'], $this->otherLocalizableFields))) {
+                $existingFields[] = $field['config']['name'];
             }
         }
-        if (!isset($data['i18n'])) {
-            $data['i18n'] = array();
+        foreach ($fields as $key => $value) {
+            unset($value); //unused
+            if (!in_array($key, $existingFields)) {
+                unset ($fields[$key]);
+            }
         }
-        if (!isset($data['i18n'][$params['lang']->getLocale()])) {
-            $data['i18n'][$params['lang']->getLocale()] = array();
+        return $fields;
+    }
+    /**
+     * Return localizable fields if not in content type
+     *
+     * @param $type
+     * @param $fields
+     */
+    protected function localizableFields($type, $fields)
+    {
+        $existingFields = array();
+        foreach ($type['fields'] as $field) {
+            if ($field['config']['localizable']) {
+                $existingFields[] = $field['config']['name'];
+            }
         }
-        $data['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $data['fields']);
-        $data['fields'] = $this->filterFields($type, $data['fields']);
-        if (!isset($data['status'])) {
-            $data['status'] = 'published';
+        foreach ($fields as $key => $value) {
+            unset($value); //unused
+            if (!(in_array($key, $existingFields) || in_array($key, $this->otherLocalizableFields))) {
+                unset ($fields[$key]);
+            }
         }
-        if (!isset($data['target'])) {
-            $data['target'] = array();
-        }
-        if (!isset($data['online'])) {
-            $data['online'] = true;
-        }
-        if (!isset($data['startPublicationDate'])) {
-            $data['startPublicationDate'] = "";
-        }
-        if (!isset($data['endPublicationDate'])) {
-            $data['endPublicationDate'] = "";
-        }
-        if (!isset($data['nativeLanguage'])) {
-            $data['nativeLanguage'] = $params['lang']->getLocale();
-        }
-
- 
-        return $this->getContentsCollection()->create($data, array(), false);        
+        return $fields;
     }
 
  

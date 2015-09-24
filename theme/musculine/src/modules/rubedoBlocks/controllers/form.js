@@ -96,7 +96,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
              var payLoad={
                     status:"published",
                     typeId:"5603f8b245205e0e2a6e1271",
-                    fields: {"text":"hh","summary":"h","commande":"hhh","payment":"hhtdh"}
+                    fields: {"text":"hh","summary":"","commande":"hhh","payment":"hhtdh"}
             };
 
             
