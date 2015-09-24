@@ -1,6 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','RubedoProductsService','$filter',function($scope,$http,MusculinePaymentService,RubedoProductsService,$filter){
     var me = this;
     var config = $scope.blockConfig;
+    me.loading=false;
     $scope.Math = Math;
     me.user={};
     me.facture={};
@@ -85,6 +86,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
  
     };
     me.payment = function(){
+        me.loading=true;
         me.contents['MUS250T'].quantite = me.small_trad;
         me.contents['MUS250O'].quantite = me.small_or;
         me.contents['MUS700T'].quantite = me.big_trad;
@@ -92,9 +94,13 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
 
         MusculinePaymentService.paymentService(me.contents, me.facture, me.expedition).then(function(response){
             if (response.data.success) {
+                me.loading = false;
                 window.location.href= response.data.url;
             }
-            else console.log("Problème avec le service");
+            else {
+                me.loading = false;
+                alert("Connexion au service de payement impossible");
+            }
         });
        
     }
