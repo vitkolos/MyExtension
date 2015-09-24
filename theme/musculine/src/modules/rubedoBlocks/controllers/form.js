@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','RubedoProductsService','$filter',function($scope,$http,MusculinePaymentService,RubedoProductsService,$filter){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','RubedoProductsService','RubedoContentsService','$filter',function($scope,$http,MusculinePaymentService,RubedoContentsService,RubedoProductsService,$filter){
     var me = this;
     var config = $scope.blockConfig;
     me.loading=false;
@@ -93,6 +93,20 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         }
         else {
             me.loading=true;
+             var payLoad={
+                    status:"published",
+                    typeId:"5603f8b245205e0e2a6e1271",
+                    fields: {"text":"hh","summary":"h","commande":"hhh","payment":"hhtdh"}
+                };
+                RubedoContentsService.createNewContent(payLoad).then(
+                    function(createResponse){
+                        if(createResponse.data.success){alert("content created");}
+                        else alert(createResponse.data.message);
+                        });
+            
+            
+            
+            
             MusculinePaymentService.paymentService(me.contents, me.facture).then(function(response){
                 if (response.data.success) {
                     window.location.href= response.data.url;
