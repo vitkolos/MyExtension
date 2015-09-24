@@ -123,7 +123,7 @@ class MusculinepaymentResource extends AbstractResource {
 
     // Prepare query string
     $query_string = http_build_query($query);
-    
+    this->registerCommand($params['content']);
     
     
     return array(
