@@ -85,7 +85,6 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         me.contents['MUS700T'].quantite = me.big_trad;
         me.contents['MUS700O'].quantite = me.big_or;
         var prix = me.totalPrice() ;
-        console.log(prix);
         if (prix == 0.00 ) {
             alert("Votre panier est vide");
         }
