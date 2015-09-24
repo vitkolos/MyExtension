@@ -30,7 +30,6 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         me.btprice =me.contents['MUS700T'].prix;
         me.boprice = me.contents['MUS700O'].prix;
         }
-        console.log(me.contents);
     });
     me.small_trad=0;
     me.small_or=0;
