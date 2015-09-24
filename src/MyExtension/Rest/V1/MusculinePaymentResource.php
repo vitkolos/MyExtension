@@ -40,12 +40,12 @@ class MusculinepaymentResource extends AbstractResource {
                         (new FilterDefinitionEntity())
                             ->setDescription('Adresse de facturation')
                             ->setKey('facturation')                            
-                    )/*
+                    )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Adresse de livraison')
-                            ->setKey('livraison')                            
-                    )*/
+                            ->setDescription('Contenu')
+                            ->setKey('content')                            
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Paypal Url')
@@ -123,14 +123,68 @@ class MusculinepaymentResource extends AbstractResource {
 
     // Prepare query string
     $query_string = http_build_query($query);
-
-    header('Location: https://www.paypal.com/cgi-bin/webscr?' . $query_string);
+    
+    
+    
     return array(
             'success' => true,
             'url' => 'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
         );
 
     }
+ 
+ 
+ 
+ 
+    protected function registerCommand($content)
+    {
+        AbstractLocalizableCollection::setIncludeI18n(true);
+        $data = &$params['content'];
+        if (empty($data['typeId'])) {
+            throw new APIEntityException('typeId data is missing.', 400);
+        }
+        $type = $this->getContentTypesCollection()->findById($data['typeId']);
+        if (empty($type)) {
+            throw new APIEntityException('ContentType not found.', 404);
+        }
+        foreach ($data['fields'] as $fieldName => $fieldValue) {
+            if (in_array($fieldName, $this->toExtractFromFields)) {
+                $data[$fieldName] = $fieldValue;
+            }
+        }
+        if (!isset($data['i18n'])) {
+            $data['i18n'] = array();
+        }
+        if (!isset($data['i18n'][$params['lang']->getLocale()])) {
+            $data['i18n'][$params['lang']->getLocale()] = array();
+        }
+        $data['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $data['fields']);
+        $data['fields'] = $this->filterFields($type, $data['fields']);
+        if (!isset($data['status'])) {
+            $data['status'] = 'published';
+        }
+        if (!isset($data['target'])) {
+            $data['target'] = array();
+        }
+        if (!isset($data['online'])) {
+            $data['online'] = true;
+        }
+        if (!isset($data['startPublicationDate'])) {
+            $data['startPublicationDate'] = "";
+        }
+        if (!isset($data['endPublicationDate'])) {
+            $data['endPublicationDate'] = "";
+        }
+        if (!isset($data['nativeLanguage'])) {
+            $data['nativeLanguage'] = $params['lang']->getLocale();
+        }
+
+ 
+        return $this->getContentsCollection()->create($data, array(), false);        
+    }
+
+ 
+ 
     
     public function getPaymentMeans($id){
             $contentId = (string)$id;

@@ -8,14 +8,14 @@ blocksConfig.form={
 
 angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',function($http) {
     var serviceInstance={};
-    serviceInstance.paymentService=function(produits, facturation, livraison){
+    serviceInstance.paymentService=function(produits, facturation, content){
         return($http({
                 url:"/api/v1/musculinepayment",
                 method:"POST",
                 data:{
                     products:produits,
                     facturation:facturation,
-                    livraison: livraison
+                    content: content
                 }
             }));
     };

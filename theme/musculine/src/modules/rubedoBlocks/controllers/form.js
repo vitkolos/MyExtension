@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http','MusculinePaymentService','RubedoProductsService','RubedoContentsService','$filter',function($scope,$http,MusculinePaymentService,RubedoProductsService,RubedoContentsService,$filter){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','RubedoContentsService','$http','MusculinePaymentService','RubedoProductsService','$filter',function($scope,RubedoContentsService,$http,MusculinePaymentService,RubedoProductsService,$filter){
     var me = this;
     var config = $scope.blockConfig;
     me.loading=false;
@@ -97,24 +97,20 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
                     status:"published",
                     typeId:"5603f8b245205e0e2a6e1271",
                     fields: {"text":"hh","summary":"h","commande":"hhh","payment":"hhtdh"}
-                };
-                RubedoContentsService.createNewContent(payLoad).then(
-                    function(createResponse){
-                        if(createResponse.data.success){alert("content created");}
-                        else alert(createResponse.data.message);
-                        });
+            };
+
             
             
             
             
-            MusculinePaymentService.paymentService(me.contents, me.facture).then(function(response){
+            MusculinePaymentService.paymentService(me.contents, me.facture, payLoad).then(function(response){
                 if (response.data.success) {
-                    window.location.href= response.data.url;
-                    /*me.loading = false;*/
+                    /*window.location.href= response.data.url;*/
                 }
                 else {
                     me.loading = false;
-                    alert("Connexion au service de payement impossible");
+                    /*alert("Connexion au service de payement impossible");*/
+                    console.log(response.data.message);
                 }
             });
         }
