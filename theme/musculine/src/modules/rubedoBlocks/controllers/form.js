@@ -93,7 +93,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','$http
         }
         else {
             me.loading=true;
-            MusculinePaymentService.paymentService(me.contents, me.facture, me.facture).then(function(response){
+            MusculinePaymentService.paymentService(me.contents, me.facture).then(function(response){
                 if (response.data.success) {
                     window.location.href= response.data.url;
                     /*me.loading = false;*/

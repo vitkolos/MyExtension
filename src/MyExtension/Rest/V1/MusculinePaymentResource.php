@@ -40,12 +40,12 @@ class MusculinepaymentResource extends AbstractResource {
                         (new FilterDefinitionEntity())
                             ->setDescription('Adresse de facturation')
                             ->setKey('facturation')                            
-                    )
+                    )/*
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Adresse de livraison')
                             ->setKey('livraison')                            
-                    )
+                    )*/
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Paypal Url')
