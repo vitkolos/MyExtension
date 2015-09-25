@@ -64,7 +64,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
     }
     
     
-    me.copy_address = function(){
+    /*me.copy_address = function(){
         if (me.copy_adress) {
             $scope.formulaire.expedition = angular.copy($scope.formulaire.facture);
         }
@@ -78,7 +78,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
             $scope.formulaire.expedition.email = "";            
         }
  
-    };
+    };*/
     me.payment = function(valide){
         me.contents['MUS250T'].quantite = me.small_trad;
         me.contents['MUS250O'].quantite = me.small_or;
@@ -96,7 +96,17 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
              var payLoad={
                     status:"published",
                     typeId:"5603f8b245205e0e2a6e1271",
-                    fields: {"text":"hh","summary":"","commande":"hhh","payment":"hhtdh"}
+                    fields: {
+                        "text":"Commande "+me.facture.surname+" "+me.facture.name,
+                        "summary":"",
+                        "name":me.facture.name,
+                        "surname":me.facture.surname,
+                        "address":me.facture.address,
+                        "city":me.facture.city,
+                        "cp":me.facture.cp,
+                        "telephone":me.facture.telephone,
+                        "email":me.facture.email
+                        }
             };
 
             

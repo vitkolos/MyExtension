@@ -122,58 +122,33 @@ class MusculinepaymentResource extends AbstractResource {
     // Prepare query string
     $query_string = http_build_query($query);
 
+    //authentification
+    $response = $this->getAuthAPIService()->APIAuth('musculine', 'Musc2015');
+    $output['token'] = $this->subTokenFilter($response['token']);
+    $route['access_token'] = $output['token']['access_token'];
+
+    //create order
     $data = $params['content'];
-        $response = $this->getAuthAPIService()->APIAuth('musculine', 'Musc2015');
-        $output['token'] = $this->subTokenFilter($response['token']);
-        //$this->subUserFilter($response['user']);
-        //$route = $this->getContext()->params()->fromRoute();
-        //$route['api'] = array('auth');
-        //$route['method'] = 'GET';
-        $route['access_token'] = $output['token']['access_token'];
+    $payload = json_encode( array( "content" => $data ) );
 
-
-        $payload = json_encode( array( "content" => $data ) );
-
-$curl = curl_init();
-// Set some options - we are passing in a useragent too here
-curl_setopt_array($curl, array(
-    CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$route['access_token'].'&lang=fr',
-    CURLOPT_POST => 1
-));
-                    curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
-                    //curl_setopt($curly, CURLOPT_HEADER, false);         // Don't retrieve headers
-                    //curl_setopt($curly, CURLOPT_NOBODY, true);          // Don't retrieve the body
-                    curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
-
-curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload );
-
-// Send the request & save response to $resp
-$resp = curl_exec($curl);
-// Close request to clear up some resources
-curl_close($curl);
-
-
-
- 
-        //$this->getContentsCollection()->create($data, array(), false);     
- 
-
-
-
-
-
-
-
-
-
+    $curl = curl_init();
+    // Set some options - we are passing in a useragent too here
+    curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$route['access_token'].'&lang=fr',
+        CURLOPT_POST => 1
+    ));
+    curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
+    curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
+    curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $payload );
+    // Close request to clear up some resources
+    curl_close($curl);
     
     
     return array(
             'success' => true,
-            'url' =>// 'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
-            $resp
+            'url' =>'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
         );
 
     }
@@ -181,17 +156,8 @@ curl_close($curl);
     {
         return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
     }
-    /**
-     * Filter user from database
-     *
-     * @param $user
-     * @return array
-     */
-    protected function subUserFilter(&$user)
-    {
-        $user = $this->getUsersCollection()->findById($user['id']);
-        return array_intersect_key($user, array_flip(array('id', 'login', 'name','fields')));
-    } 
+
+    
      
     
     public function getPaymentMeans($id){
