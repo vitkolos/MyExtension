@@ -142,13 +142,15 @@ class MusculinepaymentResource extends AbstractResource {
     curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
     curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
     curl_setopt($curl, CURLOPT_POSTFIELDS, $payload );
-    // Close request to clear up some resources
+    $result = curl_exec($curl);
+// Close request to clear up some resources
     curl_close($curl);
     
     
     return array(
             'success' => true,
-            'url' =>'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
+            'url' =>//'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
+        $result
         );
 
     }
