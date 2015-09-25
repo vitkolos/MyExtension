@@ -128,7 +128,7 @@ class MusculinepaymentResource extends AbstractResource {
 
     //create order
     $data = $params['content'];
-    $data["fields"]["commande"] = $params['products'];
+    //$data["fields"]["commande"] = $params['products'];
     $payload = json_encode( array( "content" => $data ) );
 
     $curl = curl_init();

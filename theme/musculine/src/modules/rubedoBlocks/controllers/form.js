@@ -105,8 +105,14 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
                         "city":me.facture.city,
                         "cp":me.facture.cp,
                         "telephone":me.facture.telephone,
-                        "email":me.facture.email
+                        "email":me.facture.email,
+                        "commande": {
+                            MUS250T:me.small_trad,
+                            MUS250O: me.small_or,
+                            MUS700T: me.big_trad,
+                            MUS700O: me.big_or
                         }
+                    }
             };
 
             
