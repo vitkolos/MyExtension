@@ -17,44 +17,6 @@ use Rubedo\Interfaces\Collection\IAbstractCollection;
 
 class MusculinepaymentResource extends AbstractResource {
 
-    const POST_CREATE_COLLECTION = 'rubedo_collection_create_post';
-
-
-    /**
-     * Cache lifetime for api cache (only for get and getEntity)
-     * @var int
-     */
-    public $cacheLifeTime=60;
-    /**
-     * @var array
-     */
-    protected $toExtractFromFields = array('text');
-    /**
-     * @var array
-     */
-    protected $otherLocalizableFields = array('text', 'summary');
-    /**
-     * @var array
-     */
-    protected $returnedEntityFields = array(
-        'id',
-        'text',
-        'version',
-        'createUser',
-        'lastUpdateUser',
-        'fields',
-        'taxonomy',
-        'status',
-        'pageId',
-        'maskId',
-        'locale',
-        'readOnly',
-        'createTime',
-        'lastUpdateTime',
-        'isProduct',
-        'productProperties'
-    );
-
 
     
     public function __construct()
@@ -163,10 +125,10 @@ class MusculinepaymentResource extends AbstractResource {
     $data = $params['content'];
         $response = $this->getAuthAPIService()->APIAuth('musculine', 'Musc2015');
         $output['token'] = $this->subTokenFilter($response['token']);
-        $this->subUserFilter($response['user']);
-        $route = $this->getContext()->params()->fromRoute();
-        $route['api'] = array('auth');
-        $route['method'] = 'GET';
+        //$this->subUserFilter($response['user']);
+        //$route = $this->getContext()->params()->fromRoute();
+        //$route['api'] = array('auth');
+        //$route['method'] = 'GET';
         $route['access_token'] = $output['token']['access_token'];
 
 
@@ -230,57 +192,7 @@ curl_close($curl);
         $user = $this->getUsersCollection()->findById($user['id']);
         return array_intersect_key($user, array_flip(array('id', 'login', 'name','fields')));
     } 
-     public function getCollectionName()
-    {
-        return "Contents";
-    }
-   /**
-     * Remove fields if not in content type
-     *
-     * @param $type
-     * @param $fields
-     */
-    protected function filterFields($type, $fields)
-    {
-        $existingFields = array();
-        foreach ($type['fields'] as $field) {
-            if (!($field['config']['localizable'] || in_array($field['config']['name'], $this->otherLocalizableFields))) {
-                $existingFields[] = $field['config']['name'];
-            }
-        }
-        foreach ($fields as $key => $value) {
-            unset($value); //unused
-            if (!in_array($key, $existingFields)) {
-                unset ($fields[$key]);
-            }
-        }
-        return $fields;
-    }
-    /**
-     * Return localizable fields if not in content type
-     *
-     * @param $type
-     * @param $fields
-     */
-    protected function localizableFields($type, $fields)
-    {
-        $existingFields = array();
-        foreach ($type['fields'] as $field) {
-            if ($field['config']['localizable']) {
-                $existingFields[] = $field['config']['name'];
-            }
-        }
-        foreach ($fields as $key => $value) {
-            unset($value); //unused
-            if (!(in_array($key, $existingFields) || in_array($key, $this->otherLocalizableFields))) {
-                unset ($fields[$key]);
-            }
-        }
-        return $fields;
-    }
-
- 
- 
+     
     
     public function getPaymentMeans($id){
             $contentId = (string)$id;
