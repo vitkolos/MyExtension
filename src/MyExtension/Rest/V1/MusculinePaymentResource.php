@@ -142,6 +142,7 @@ class MusculinepaymentResource extends AbstractResource {
     curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
     curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
     curl_setopt($curl, CURLOPT_POSTFIELDS, $payload );
+    curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
     $result = curl_exec($curl);
 // Close request to clear up some resources
     curl_close($curl);
