@@ -116,7 +116,6 @@ class MusculinepaymentResource extends AbstractResource {
     else {
         $query['night_phone_b'] = $params['facturation']['telephone'];
     }
-    $query['email'] = "nicolas.rhone@gmail.com";
 
 
     // Prepare query string
@@ -129,6 +128,7 @@ class MusculinepaymentResource extends AbstractResource {
 
     //create order
     $data = $params['content'];
+    $data["fields"]["commande"] = $params['products'];
     $payload = json_encode( array( "content" => $data ) );
 
     $curl = curl_init();
