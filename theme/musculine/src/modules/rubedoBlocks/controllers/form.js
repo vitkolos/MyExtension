@@ -115,12 +115,11 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
             
             MusculinePaymentService.paymentService(me.contents, me.facture, payLoad).then(function(response){
                 if (response.data.success) {
-                    /*window.location.href= response.data.url;*/
+                    window.location.href= response.data.url;
                 }
                 else {
                     me.loading = false;
-                    /*alert("Connexion au service de payement impossible");*/
-                    console.log(response.data.message);
+                    alert("Connexion au service de payement impossible");
                 }
             });
         }
