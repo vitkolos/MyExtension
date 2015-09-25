@@ -106,12 +106,12 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
                         "cp":me.facture.cp,
                         "telephone":me.facture.telephone,
                         "email":me.facture.email,
-                        "commande": {
+                        /*"commande": {
                             MUS250T:me.small_trad,
                             MUS250O: me.small_or,
                             MUS700T: me.big_trad,
                             MUS700O: me.big_or
-                        }
+                        }*/
                     }
             };
 
@@ -121,7 +121,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
             
             MusculinePaymentService.paymentService(me.contents, me.facture, payLoad).then(function(response){
                 if (response.data.success) {
-                    window.location.href= response.data.url;
+                    //window.location.href= response.data.url;
                 }
                 else {
                     me.loading = false;
