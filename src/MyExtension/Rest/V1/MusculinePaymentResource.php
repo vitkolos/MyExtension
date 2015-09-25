@@ -149,8 +149,7 @@ class MusculinepaymentResource extends AbstractResource {
     
     return array(
             'success' => true,
-            'url' =>//'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
-        $result
+            'url' =>'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string
         );
 
     }
