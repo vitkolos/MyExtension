@@ -37,9 +37,9 @@
 
     });
 
-    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope','$routeParams',
-        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope,$routeParams){
-         var me=this;
+    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope',
+        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope){
+        var me=this;
         //break nav on non-page routes
         $scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
             if (newLoc.indexOf("file?file-id") > -1||newLoc.indexOf("dam?media-id") > -1){
@@ -47,11 +47,14 @@
                 window.location.href=newLoc;
             } else if (newLoc.indexOf("#") > -1){
                 event.preventDefault();
-                if (newLoc.split("#")[0]!=currentLoc.split("#")[0]) {
-                    window.location.href=newLoc;
-                  }
-                else {     
+                var target=angular.element("[name='"+newLoc.split("#")[1]+"']");
+                if (target&&target.length>0){
+                    angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
+                } else {
+                    window.location.href=newLoc.slice(0,newLoc.indexOf("#"));
                 }
+            } else if (window._gaq) {
+                window._gaq.push(['_trackPageview', newLoc]);
             }
         });
         $scope.$on("$locationChangeSuccess",function(scope, newLoc,currentLoc){
@@ -85,9 +88,6 @@
                     
                }}
               });
-        
-
-        
         //set context and page-wide services
         me.adminBtnIconClass="glyphicon glyphicon-arrow-right";
         me.snapOpts={
@@ -195,6 +195,12 @@
                 me.registeredEditCtrls.push(ctrlRef);
             }
         };
+            me.setPageTitle=function(newTitle){
+                me.current.page.title=newTitle;
+            };
+            me.setPageDescription=function(newDescription){
+                me.current.page.description=newDescription;
+            }
 
     }]);
 
