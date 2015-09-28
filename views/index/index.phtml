@@ -27,8 +27,8 @@
     <link ng-if="rubedo.current.page.contentCanonicalUrl" rel="canonical"
           ng-href="{{ rubedo.current.page.contentCanonicalUrl }}" />
     <link rel="alternate" ng-repeat="alternate in rubedo.current.page.i18n track by $index" ng-href="{{alternate.fullUrl}}" hreflang="{{alternate.locale}}" />
-    <meta property="og:image" ng-if="!rubedo.current.page.image" content="<?php echo $_SERVER['HTTP_HOST'] . "theme/".$this->siteTheme; ?>/img/image.jpg" />
-    <meta property="og:image"  ng-attr-content="{{'http://5.196.27.53'+rubedo.current.page.image}}" />
+    <meta property="og:image" ng-if="!rubedo.current.page.image" content="http://<?php echo $_SERVER['HTTP_HOST'] . "/theme/".$this->siteTheme; ?>/img/image.jpg" />
+    <meta property="og:image"  content="http://<?php echo $_SERVER['HTTP_HOST']; ?>/{{rubedo.current.page.image}}" />
     <link rel="shortcut icon" href="/theme/<?php echo $this->siteTheme; ?>/img/favicon.ico" type="image/x-icon" />
     
     
