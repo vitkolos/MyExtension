@@ -53,7 +53,7 @@
         "Rubedo.view.localiserField":"/templates/fields/localiser.html",
         "treepicker":"/templates/fields/pageLink.html",
         "Ext.ux.TreePicker":"/templates/fields/pageLink.html",
-        "checkbox":"/templates/fields/checkbox.html",
+        "checkboxfield":"/templates/fields/checkbox.html",
         "Ext.form.field.Checkbox":"/templates/fields/checkbox.html",
         "ImagePickerField":"/templates/fields/media.html",
         "Rubedo.view.ImagePickerField":"/templates/fields/media.html",
@@ -81,11 +81,9 @@
         "Ext.form.field.TextArea":"/templates/inputFields/textarea.html",
         "CKEField":"/templates/inputFields/richText.html",
         "Rubedo.view.CKEField":"/templates/inputFields/richText.html",
-        "checkbox":"/templates/inputFields/checkbox.html",
+        "checkboxfield":"/templates/inputFields/checkbox.html",
         "Ext.form.field.Checkbox":"/templates/inputFields/checkbox.html",
         "combobox":"/templates/inputFields/combobox.html",
-        "checkboxgroup":"/templates/inputFields/checkboxGroup.html",
-        "Ext.form.CheckboxGroup":"/templates/inputFields/checkboxGroup.html",
         "Ext.form.field.ComboBox":"/templates/inputFields/combobox.html",
         "radiogroup":"/templates/inputFields/radioGroup.html",
         "Ext.form.RadioGroup":"/templates/inputFields/radioGroup.html",
@@ -98,8 +96,6 @@
         "externalMediaField":"/templates/inputFields/externalMedia.html",
         "Rubedo.view.externalMediaField":"/templates/inputFields/externalMedia.html",
         "ratingField":"/templates/inputFields/rating.html",
-        "DCEField":"/templates/inputFields/contentLink.html",
-        "Rubedo.view.DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.ux.widget.Rating":"/templates/inputFields/rating.html"
     };
 
@@ -166,7 +162,7 @@
         var CKEMode=$scope.field.config.CKETBConfig;
         var myTBConfig=[
             { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
-            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', '-', 'Undo', 'Redo',"Source"  ] },
+            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo',"Source"  ] },
             { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
             { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
             '/',
@@ -208,9 +204,7 @@
             entities_latin:false,
             extraPlugins:'rubedolink,youtube',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
-            filebrowserImageUploadUrl:null,
-            forcePasteAsPlainText: true
-
+            filebrowserImageUploadUrl:null
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
@@ -326,12 +320,6 @@
         var me=this;
         var items=$scope.field.config.items;
         var itemsObj={};
-        if (!$scope.fieldEntity[$scope.field.config.name]) {
-            $scope.fieldEntity[$scope.field.config.name]={};
-        }
-        if (!angular.isArray($scope.fieldEntity[$scope.field.config.name][$scope.field.config.name])) {
-            $scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]=[];
-        }
         if (!angular.isArray($scope.fieldEntity[$scope.field.config.name][$scope.field.config.name])){
             $scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]=[$scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]];
             $scope.$watch('fieldEntity.'+$scope.field.config.name+'.'+$scope.field.config.name,function(changedValue){
@@ -501,24 +489,6 @@
             }
         }
     }]);
-    module.controller("ContentChoiceController",["$scope","RubedoSearchService",function($scope,RubedoSearchService){
-        var me=this;
-        var options = {
-            siteId: $scope.rubedo.current.site.id,
-            pageId: $scope.rubedo.current.page.id,
-            type: $scope.field.config.allowedCT,
-            constrainToSite: true
-        };
-        RubedoSearchService.searchByQuery(options).then(
-             function(response){
-                 if (response.data.success){
-                     me.contents=response.data.results.data;
-                 }
-             }
-         );
-     
-        
-    }]);
 
     module.controller("ContentLinkController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
         var me=this;
@@ -567,7 +537,7 @@
                     "menubar=no, status=no, scrollbars=no, top="+top+", left="+left+", width="+width+", height="+height+""
                 );
             }
-        };            
+        };
     }]);
 
     module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",function($scope,RubedoMediaService,$element){
