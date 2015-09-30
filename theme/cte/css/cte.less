@@ -698,6 +698,10 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   width:100%;
   padding-right: 0;
 }
+.equal-height-cols{
+  display: table;
+  div[class^="col"]{display: table-cell; vertical-align: middle; float: none; height:200px}
+}
 
 
 @media screen and (min-width:@min_xs) {.list-item-img:before{padding-top:33.333%;}.list-item-img>img{top:-50%}}/*  ratio of 3:1*/
