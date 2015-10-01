@@ -58,6 +58,7 @@ return array(
                 ),
                 'js' => array(
                     '/js/cte.js',
+                    '../js/blocks.js'
                 ),
             ),
             'wtp15' => array(
