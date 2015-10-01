@@ -870,13 +870,7 @@
 
     module.controller("TimePickerController",["$scope",function($scope){
         var me=this;
-        angular.element('#timepicker').timepicker({
-            hours: { starts: 7, ends: 22 },
-            minutes: { interval: 15 },
-            rows: 3,
-            showPeriodLabels: false,
-            minuteText: 'Min'
-        });
+       
     }]);
 
 })();

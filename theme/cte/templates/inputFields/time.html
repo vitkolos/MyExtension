@@ -1,7 +1,7 @@
 <div class="form-group" ng-controller="TimePickerController as timeCtrl">
     <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="col-sm-4 control-label">{{field.config.fieldLabel}}</label>
     <div class="col-sm-8">
-        <div id="timepicker"></div>
+        <datetimepicker data-ng-model="timeCtrl.date" data-datetimepicker-config="{ dropdownSelector: '.dropdown-toggle', startView: 'hour', minuteStep: '30' }"></datetimepicker>
         <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
     </div>
 </div>
