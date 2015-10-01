@@ -8,6 +8,12 @@
             ng-click="contentListCtrl.launchContribute()">
         <span class="glyphicon glyphicon-plus"></span>
     </button>
+    <button ng-if="!contentListCtrl.canAddToList()&&contentListCtrl.isFOContributeMode&&contentListCtrl.editorPageUrl"
+            title="Add content"
+            class="btn btn-default"
+            ng-click="contentListCtrl.launchFOContribute()">
+        <span class="glyphicon glyphicon-plus"></span> Contribute
+    </button>
     <div class="row" ng-switch="blockConfig.columns">
         <!--POUR 3 COLONNES-->
         <div ng-attr-lr-infinite-scroll="loadMoreContents"
