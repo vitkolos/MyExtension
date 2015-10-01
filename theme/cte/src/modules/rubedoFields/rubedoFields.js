@@ -879,6 +879,7 @@
         }
         me.setTime=function(newDate){
             $scope.fieldEntity[$scope.field.config.name]=$filter('date')(newDate, "H:mm");
+            me.formattedDate=$filter('date')(newDate, "H:mm");
             if ($scope.registerFieldEditChanges){
                 $scope.registerFieldEditChanges();
             }
