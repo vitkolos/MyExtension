@@ -98,7 +98,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 delete (formData.taxonomy);
                 payLoad.fields=formData;
                 payLoad.taxonomy.navigation = [];
-                payLoad.taxonomy.navigation[0] = config.listPageId;
+                payLoad.taxonomy.navigation[0] = config.listPageId ? config.listPageId : $scope.rubedo.current.page.id;
                 RubedoContentsService.createNewContent(payLoad).then(
                     function(createResponse){
                         if (createResponse.data.success){

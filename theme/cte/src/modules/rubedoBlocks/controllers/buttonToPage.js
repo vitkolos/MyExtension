@@ -3,6 +3,8 @@ angular.module("rubedoBlocks").lazy.controller("ButtonToPageController",['$scope
     var blockConfig=$scope.blockConfig;
     me.inputFields=[ ];
     $scope.fieldEntity={ };
+    me.columns = config.columns ? 'col-md-'+(12/config.columns):'col-md-12';
+
     $scope.fieldInputMode=true;
     var fields=angular.copy($scope.fieldEntity);
     
