@@ -5,6 +5,12 @@ angular.module('rubedoBlocks').filter('cleanUrl', function () {
      };
   });
 
+angular.module('rubedo').filter('ligneNonVide', function () {
+    return function (input) {
+        return (row.columns[0].blocks).length > 0; 
+     };
+  });
+
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
         var me=this;
         var mediaId=$scope.audioFileId;
@@ -84,6 +90,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
         }
     }
 });
+
 
 
 
