@@ -9,9 +9,12 @@ angular.module('rubedo').filter('ligneNonVide', function () {
            return function (rows) {
                       var filtered = [];
                       angular.forEach(rows, function(row) {
-                      if( (row.columns[0].blocks).length > 0) {
-                                 filtered.push(row);
-                      }
+                                 if (row.columns[0].isTerminal) {
+                                            filtered.push(row);
+                                 }
+                                 else if( (row.columns[0].blocks).length > 0) {
+                                            filtered.push(row);
+                                 }
                       });
                       return filtered;
      };
