@@ -15,10 +15,6 @@ blocksConfig.buttonToPage={
            "template": "/templates/blocks/buttonToPage.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
 };
-blocksConfig.sectionPresentation={
-           "template": "/templates/blocks/sectionPresentation.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/sectionPresentation.js"]
-};
 blocksConfig.form={
            "template": "/templates/blocks/formInscription.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/formInscription.js"]
@@ -34,10 +30,7 @@ blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
             "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-553e2efb75d1d292'],
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js"]
-};
-        
-        
-        
+        },
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
