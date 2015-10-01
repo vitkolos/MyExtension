@@ -1,0 +1,7 @@
+<div class="form-group" ng-controller="TimePickerController as timeCtrl">
+    <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="col-sm-4 control-label">{{field.config.fieldLabel}}</label>
+    <div class="col-sm-8">
+        <div id="timepicker"></div>
+        <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
+    </div>
+</div>
