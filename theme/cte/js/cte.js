@@ -7,7 +7,7 @@ angular.module('rubedoBlocks').filter('cleanUrl', function () {
 
 angular.module('rubedo').filter('ligneNonVide', function () {
     return function (input) {
-        return (row.columns[0].blocks).length > 0; 
+        return (input.columns[0].blocks).length > 0; 
      };
   });
 
