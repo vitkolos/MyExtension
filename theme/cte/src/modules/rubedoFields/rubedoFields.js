@@ -868,9 +868,9 @@
 
     }]);
 
-    module.controller("TimePickerController","$element",["$scope",function($scope,$element){
+    module.controller("TimePickerController",["$scope",function($scope){
         var me=this;
-        angular.element.find('#timepicker').timepicker({
+        angular.element('#timepicker').timepicker({
             hours: { starts: 7, ends: 22 },
             minutes: { interval: 15 },
             rows: 3,
