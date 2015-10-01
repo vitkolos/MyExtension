@@ -870,7 +870,6 @@
 
     module.controller("TimePickerController",["$scope",function($scope){
         var me=this;
-       
-    }]);
+        }]);
 
 })();
