@@ -52,7 +52,7 @@
 					<p class="capital">Date</p>
 				</div>
 				<div class="col-xs-12 col-sm-8 ">
-					<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p><!--Description-->
+					<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMMM'}} à   {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'H:mm'} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMMM yyyy'}}</p><!--Description-->
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('complement_date')}}"></rubedo-field>
 				</div>
 			</div>
