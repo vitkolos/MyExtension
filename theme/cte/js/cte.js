@@ -9,7 +9,7 @@ angular.module('rubedo').filter('ligneNonVide', function () {
            return function (rows) {
                       var filtered = [];
                       angular.forEach(rows, function(row) {
-                      if( (row.colums[0].blocks).length > 0) {
+                      if( (row.columns[0].blocks).length > 0) {
                                  filtered.push(row);
                       }
                       });
