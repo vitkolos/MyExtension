@@ -91,6 +91,8 @@
         "Ext.form.RadioGroup":"/templates/inputFields/radioGroup.html",
         "datefield":"/templates/inputFields/date.html",
         "Ext.form.field.Date":"/templates/inputFields/date.html",
+        "Ext.form.field.Time":"/templates/fields/time.html",
+        "timefield":"/templates/fields/time.html",
         "localiserField":"/templates/inputFields/localiser.html",
         "Rubedo.view.localiserField":"/templates/inputFields/localiser.html",
         "ImagePickerField":"/templates/inputFields/media.html",
@@ -515,10 +517,9 @@
                      me.contents=response.data.results.data;
                  }
              }
-         );
-     
-        
+         );     
     }]);
+
 
     module.controller("ContentLinkController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
         var me=this;
@@ -867,6 +868,15 @@
 
     }]);
 
-
+    module.controller("TimePickerController","$element",["$scope",function($scope,$element){
+        var me=this;
+        angular.element.find('#timepicker').timepicker({
+            hours: { starts: 7, ends: 22 },
+            minutes: { interval: 15 },
+            rows: 3,
+            showPeriodLabels: false,
+            minuteText: 'Min'
+        });
+    }]);
 
 })();
