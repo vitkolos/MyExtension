@@ -37,13 +37,13 @@ return array(
                'maxlifeTime' => 60,
                'definitionFile' => realpath(__DIR__ . "/blocks/")  . '/bg_image.json'
            ),
+        'sectionPresentation' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/sectionPresentation.json'
+        )
         'carrousel2' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/carrousel2.json'
-        ),
-         'sectionPresentation' => array(
-            'maxlifeTime' => 60,
-            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/sectionPresentation.json'
         )   
  ),
 
