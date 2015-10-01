@@ -40,6 +40,10 @@ return array(
         'carrousel2' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/carrousel2.json'
+        ),
+         'sectionPresentation' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/sectionPresentation.json'
         )   
  ),
 
