@@ -27,7 +27,7 @@
 		</div>
 		<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 		<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p>
-		<a href="#" class="button rouge">Informations pratiques</a>
+		<a href="#infos_pratiques" class="button rouge">Informations pratiques</a>
 		<a href="#" class="button rouge">S'inscrire</a>
 
 
@@ -43,25 +43,52 @@
 		</div>
 		
 	</div>
+	<a name="infos_pratiques"></a>
 	<div class="row" >
 		<div class="text-article">
 			<h3>Informations pratiques</h3>
-			<div class="row" ng-if="fieldEntity['rencontres']">
+			<div class="row" ng-if="fieldEntity['dateDebut']">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Rencontres</p>
+					<p class="capital">Date</p>
 				</div>
 				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('rencontres')}}"></rubedo-field><!--Description-->
+					<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p><!--Description-->
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('complement_date')}}"></rubedo-field>
 				</div>
 			</div>
-			<div class="row" ng-if="fieldEntity['horaires']">
+			<div class="row" ng-if="fieldEntity['position']">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Horaires</p>
+					<p class="capital">Lieu</p>
 				</div>
 				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
+					<p>{{contentDetailCtrl.content.fields.position.address}}</p><!--Description-->
 				</div>
 			</div>
+			<div class="row" ng-if="fieldEntity['logement']">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">Logement</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('logement')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>
+			<div class="row" ng-if="fieldEntity['transport']">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">Transport</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('transport')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>
+			<div class="row" ng-if="fieldEntity['position']">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">Plan</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>
+			
 			<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
 		</div>
 		
