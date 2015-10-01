@@ -868,8 +868,24 @@
 
     }]);
 
-    module.controller("TimePickerController",["$scope",function($scope){
+    module.controller("TimePickerController",["$scope","$element","$filter",function($scope,$element,$filter){
         var me=this;
-        }]);
+        var originalDate=$scope.fieldEntity[$scope.field.config.name];
+        if (originalDate){
+            me.date=new Date($scope.fieldEntity[$scope.field.config.name]*1000);
+            me.formattedDate=$filter('date')(me.date, "H:mm");
+        } else {
+            me.date=new Date();
+        }
+        me.setTime=function(newDate){
+            $scope.fieldEntity[$scope.field.config.name]=newDate.getTime()/1000;
+            me.formattedDate=$filter('date')(newDate, "H:mm");
+            if ($scope.registerFieldEditChanges){
+                $scope.registerFieldEditChanges();
+            }
+
+        };
+
+    }]);
 
 })();
