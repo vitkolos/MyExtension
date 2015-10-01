@@ -15,6 +15,10 @@ blocksConfig.buttonToPage={
            "template": "/templates/blocks/buttonToPage.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
 };
+blocksConfig.sectionPresentation={
+           "template": "/templates/blocks/sectionPresentation.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/sectionPresentation.js"]
+};
 blocksConfig.form={
            "template": "/templates/blocks/formInscription.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/formInscription.js"]
