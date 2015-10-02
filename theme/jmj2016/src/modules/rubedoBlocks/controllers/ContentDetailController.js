@@ -309,7 +309,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     $scope.registerFieldEditChanges=me.registerEditChanges;
     /*pour albums photos*/
     me.gallery.start = 0;
-    me.gallery.limit = config.pageSize?config.pageSize:8;
+    me.gallery.limit = config.pageSize?config.pageSize:9;
     
     me.loadModal = function(index){
         angular.element('#rubedoGalleryDetailModal').appendTo('body').modal('show');

@@ -1,5 +1,5 @@
 <div class="row">
-	<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images track by $index | limitTo:contentDetailCtrl.gallery.limit:contentDetailCtrl.gallery.start" class="pull-left thumbnail gallery">
+	<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images | limitTo : contentDetailCtrl.gallery.limit : contentDetailCtrl.gallery.start track by $index" class="pull-left thumbnail gallery">
 	    <a href data-toggle="modal" ng-click="galleryCtrl.loadModal($index)">
 		<img class="img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'150px',height:'100px',mode:'boxed'})}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"/>
 	    </a>
