@@ -84,7 +84,18 @@ angular.module('rubedoBlocks').directive('scrollDelay',['$timeout', '$location',
         return serviceInstance;
     }]);
 
-
+    angular.module('rubedoDataAccess').factory('TaxonomyService', ['$http',function($http) {
+        var serviceInstance={};
+        serviceInstance.getTaxonomyByContentId=function(pageId,contentIds){
+            return ($http.get("/api/v1/taxonomy",{
+                params:{
+                    pageId:pageId,
+                    type:contentIds
+                }
+            }));
+        };
+        return serviceInstance;
+    }]);
 
 
  angular.module('rubedoFields').filter('split', function() {
