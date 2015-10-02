@@ -324,6 +324,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         me.gallery.start = (me.gallery.actualPage-1)*me.gallery.limit;
         console.log(me.gallery.start);
     };
-    me.gallery.start = function(){return me.gallery.start};
+    me.getGalleryStart = function(){return me.gallery.start};
 
 }]);
