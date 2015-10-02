@@ -119,6 +119,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             RubedoSearchService.getMediaById(options).then(function(response){
                                 if(response.data.success){
                                     me.content.images = response.data.results.data;
+                                    me.gallery.count = response.data.count;
                                 }
                             });
                         };
@@ -304,4 +305,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
+    /*pour albums photos*/
+    me.gallery.start = 0;
+    me.gallery.limit = config.pageSize?config.pageSize:8;
+    
+    me.loadModal = function(index){
+        angular.element('#rubedoGalleryDetailModal').appendTo('body').modal('show');
+        me.currentIndex = index;
+        me.currentImage = me.images[me.currentIndex];
+    };
+    me.changeImage = function(side){
+        if(side == 'left' && me.currentIndex > 0){
+            me.currentIndex -= 1;
+        } else if(side == 'right' && me.currentIndex < me.images.length - 1) {
+            me.currentIndex += 1;
+        }
+        me.currentImage = me.images[me.currentIndex];
+    };
+
 }]);

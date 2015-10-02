@@ -1,0 +1,33 @@
+<div class="row">
+	<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images track by $index" class="pull-left thumbnail gallery">
+	    <a href data-toggle="modal" ng-click="galleryCtrl.loadModal($index)">
+		<img class="img-rounded" ng-src="{{image.thumbnailUrl}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"/>
+	    </a>
+	    <div class="caption" >
+		{{image.title}}
+	    </div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<paginator start="contentDetailCtrl.gallery.start" limit="contentDetailCtrl.gallery.limit"
+	   count="contentDetailCtrl.gallery.count" change-page-action="contentDetailCtrl.changePageAction()"></paginator>
+<div id="rubedoGalleryDetailModal" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+	<div class="modal-content">
+	    <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		<h4 class="modal-title">{{contentDetailCtrl.images[contentDetailCtrl.gallery.currentIndex].title}}</h4>
+	    </div>
+	    <div class="modal-body text-center">
+		<div ng-if="contentDetailCtrl.currentIndex < contentDetailCtrl.images.length - 1" class="rightZoneModal cursor-as-pointer" ng-click="contentDetailCtrl.changeImage('right')">
+		    <span class="glyphicon glyphicon-chevron-right"></span>
+		</div>
+		<div ng-if="contentDetailCtrl.currentIndex > 0" class="leftZoneModal cursor-as-pointer" ng-click="contentDetailCtrl.changeImage('left')">
+		    <span class="glyphicon glyphicon-chevron-left"></span>
+		</div>
+		<img class="img-responsive" ng-src="{{contentDetailCtrl.currentImage.url}}"
+		     ng-attr-alt="{{contentDetailCtrl.currentImage.title}}" ng-attr-title="{{contentDetailCtrl.currentImage.title}}">
+	    </div>
+	</div>
+    </div>
+</div>
