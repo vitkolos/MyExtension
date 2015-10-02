@@ -317,7 +317,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         } else if(side == 'right' && me.gallery.currentIndex < me.images.length - 1) {
             me.gallery.currentIndex += 1;
         }
-        me.gallery.currentImage = me.images[me.gallery.currentIndex];
+        me.gallery.currentImage = me.content.images[me.gallery.currentIndex];
         me.gallery.start = Math.floor(me.gallery.currentIndex / me.gallery.limit) ;
     };
 
