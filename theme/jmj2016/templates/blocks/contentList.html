@@ -5,7 +5,7 @@
             ng-click="contentListCtrl.launchFOContribute()">
         <span class="glyphicon glyphicon-plus"></span> Contribute
     </button>
-    <div class="row" ng-switch-when="552bda1945205e53368a64ea">
+    <div class="row bg-photos" ng-switch-when="552bda1945205e53368a64ea" >
         <div  ng-style="contentListCtrl.blockStyle" class="container">
             <!--<div id="infiniteScrollCtrl">-->
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
@@ -13,7 +13,7 @@
                     <img ng-if="content.fields.image && !contentListCtrl.titleOnly"
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px'}) }}"
                          alt="{{ content.fields.text }}" style="width:80%; margin-bottom: 24"/>
-                        <h4>
+                    <h4>
                         <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
                             {{content.fields.text }}
                         </a>
@@ -24,8 +24,6 @@
                     </h4>
                     <p>{{content.fields.date * 1000 | date:'d MMMM'}} | {{content.fields.position.address}}</p>
                     </p>
-
-                    
                     <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
                         Preview detail
                     </a>
