@@ -25,6 +25,10 @@
                     <p>{{content.fields.date * 1000 | date:'d MMMM'}} | {{content.fields.position.address}}</p>
                     </p>
 
+                    
+                    <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                        Preview detail
+                    </a>
                 </div>
             </div>
         </div>
