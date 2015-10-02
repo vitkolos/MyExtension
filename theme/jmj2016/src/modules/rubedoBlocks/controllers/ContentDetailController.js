@@ -115,7 +115,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:200,
-                            query:me.content.fields.titrePhoto
+                            query:me.content.fields.titrePhoto,
+                            orderBy: title
                         };
                         me.getMedia = function(options){
                             RubedoSearchService.getMediaById(options).then(function(response){
