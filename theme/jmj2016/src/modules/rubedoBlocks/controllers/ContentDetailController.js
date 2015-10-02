@@ -5,6 +5,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
     me.taxonomy=[];
+    me.gallery={}; // for album photo
+
 
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
@@ -108,7 +110,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     //Albums photos
                     if (me.content.type.code=="album") {
                         me.content.images={};
-                        me.gallery={};
                         var options2 = {
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
