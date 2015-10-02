@@ -10,10 +10,10 @@
             <!--<div id="infiniteScrollCtrl">-->
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
-                    <img class="media-object pull-left" ng-if="content.fields.image && !contentListCtrl.titleOnly"
+                    <img ng-if="content.fields.image && !contentListCtrl.titleOnly"
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px'}) }}"
                          alt="{{ content.fields.text }}" style="width:80%"/>
-                        <h4 class="media-heading">
+                        <h4>
                         <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
                             {{content.fields.text }}
                         </a>
