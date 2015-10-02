@@ -1,4 +1,4 @@
-<div class="row">
+<div class="container">
 	<div class="col-sm-6">
 		<div class="gallery-left" ng-click="contentDetailCtrl.changePage('left')"><span>e</span></div>
 		<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images | limitTo:contentDetailCtrl.gallery.start+contentDetailCtrl.gallery.nbImages | limitTo:-contentDetailCtrl.gallery.nbImages" class="pull-left thumbnail gallery">
@@ -9,7 +9,8 @@
 
 	</div>
 	<div class="col-sm-6">
-		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].id)}}" />
+		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].id)}}"
+		     ng-attr-alt="{{contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].title}}" ng-attr-title="{{contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].title}}"/>
 	</div>
 </div>
 <div class="clearfix"></div>

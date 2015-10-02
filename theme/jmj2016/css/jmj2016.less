@@ -421,9 +421,11 @@ h1.titre-section {
 
 /* IMAGE GALLERY */
 .gallery-left, .gallery-right{
-    width:35px; height:100px; background-color:#262626;float:left;
-    span{position:absolute; top:50%; color:white; font-family: 'jmj2016regular'; font-size: 40px}
+    width:35px; height:100px; background-color:#262626;float:left; position: relative;
+    span{position:absolute; top:30px; color:white; font-family: 'jmj2016regular'; font-size: 40px}
 }
+.gallery-left{margin-right:-3px; border-radius: 8px 0 0 8px}
+.gallery-right{margin-left:-3px; border-radius: 0 8px 8px 0}
 
 /*LISTES DE SPORTS / WORKSHOPS/ ... */
 .titre_tiroir h1{
