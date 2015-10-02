@@ -12,7 +12,7 @@
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <img ng-if="content.fields.image && !contentListCtrl.titleOnly"
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px'}) }}"
-                         alt="{{ content.fields.text }}" style="width:80%"/>
+                         alt="{{ content.fields.text }}" style="width:80%; margin-bottom: 24"/>
                         <h4>
                         <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
                             {{content.fields.text }}
@@ -22,13 +22,11 @@
                         </a>
                         <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                     </h4>
-                    <p>{{contentDetailCtrl.content.fields.date* 1000 | date:'d MMMM'}} | {{contentDetailCtrl.content.fields.position.address}}</p>
+                    <p>{{content.fields.date * 1000 | date:'d MMMM'}} | {{content.fields.position.address}}</p>
                     </p>
-                    <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
-                        {{content.fields.summary}}
-                    </p>
+
                     
-                    <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                    <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ blockConfig.singlePage+'?preview=true&preview_draft=true' }}">
                         Preview detail
                     </a>
                 </div>
