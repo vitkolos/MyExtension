@@ -1,11 +1,11 @@
-<div ng-controller="ContentListController as contentListCtrl" ng-switch="contentListCtrl.usedContentTypes[0]">
+<div ng-controller="ContentListController as contentListCtrl" ng-switch="contentListCtrl.usedContentTypes[0]" >
     <button ng-if="!contentListCtrl.canAddToList()&&contentListCtrl.isFOContributeMode&&contentListCtrl.editorPageUrl"
             title="Add content"
             class="btn btn-default"
             ng-click="contentListCtrl.launchFOContribute()">
         <span class="glyphicon glyphicon-plus"></span> Contribute
     </button>
-    <div class="row bg-photos" ng-switch-when="552bda1945205e53368a64ea" >
+    <div class="row bg-photos padding-tb" ng-switch-when="552bda1945205e53368a64ea" >
         <div  ng-style="contentListCtrl.blockStyle" class="container">
             <!--<div id="infiniteScrollCtrl">-->
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
