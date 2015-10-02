@@ -122,6 +122,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 if(response.data.success){
                                     me.content.images = response.data.results.data;
                                     me.gallery.count = response.data.count;
+                                    me.gallery.nbPages = Math.ceil(me.gallery.count/me.gallery.limit);
                                 }
                             });
                         };
@@ -311,14 +312,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.gallery.start = 0;
     me.gallery.limit = config.pageSize?config.pageSize:9;
     me.gallery.currentIndex = 0;
-    me.changeImage = function(side){
-        if(side == 'left' && me.gallery.currentIndex > 0){
-            me.gallery.currentIndex -= 1;
-        } else if(side == 'right' && me.gallery.currentIndex < me.images.length - 1) {
-            me.gallery.currentIndex += 1;
+    me.gallery.actualPage = 1;
+    me.changePage = function(side){
+        if(side == 'left' && me.gallery.actualPage > 1){
+            me.gallery.actualPage -= 1;
+            me.gallery.currentIndex= (me.gallery.actualPage)*me.gallery.limit-1;
+        } else if(side == 'right' && me.gallery.actualPage < me.gallery.nbPages) {
+            me.gallery.actualPage += 1;
+            me.gallery.currentIndex= (me.gallery.actualPage-1)*me.gallery.limit;
         }
-        me.gallery.currentImage = me.content.images[me.gallery.currentIndex];
-        me.gallery.start = Math.floor(me.gallery.currentIndex / me.gallery.limit) ;
+        me.gallery.start = (me.gallery.actualPage-1)*me.gallery.limit;
     };
 
 }]);
