@@ -311,11 +311,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.gallery.start = 0;
     me.gallery.limit = config.pageSize?config.pageSize:9;
     
-    me.loadModal = function(index){
-        angular.element('#rubedoGalleryDetailModal').appendTo('body').modal('show');
-        me.currentIndex = index;
-        me.currentImage = me.images[me.currentIndex];
-    };
     me.changeImage = function(side){
         if(side == 'left' && me.currentIndex > 0){
             me.currentIndex -= 1;
