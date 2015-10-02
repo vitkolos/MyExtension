@@ -1,0 +1,69 @@
+<div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl" ng-init="showForm=false">
+    <form ng-if="ccCtrl.contentType" class="form form-horizontal" ng-submit="ccCtrl.submitNewContent()" ng-click="showForm= !showForm">
+        <h2 ng-if="!ccCtrl.updateMode" class="text-center">{{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}} : {{ccCtrl.contentType.type}}</h2>
+        <h2 ng-if="ccCtrl.updateMode" class="text-center">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>
+        <div ng-if="showForm">
+        <rubedo-field ng-repeat="field in fields track by $index">{{field}}</rubedo-field>
+        <div ng-repeat="vocabulary in vocabularies track by $index" class="form-group">
+            <label  class="col-sm-4 control-label">{{vocabulary.name}} <span ng-if="vocabulary.mandatory">*</span></label>
+            <div class="col-sm-8">
+                <select ng-if="vocabulary.multiSelect&&vocabulary.expandable"
+                        chosen
+                        class="form-control"
+                        data-placeholder="{{rubedo.translate('Taxonomy.Picker.Label.Select')}}"
+                        no-results-text="'{{rubedo.translate('Taxonomy.Picker.Label.NoResults','No result found. Press enter to add ')}}'"
+                        extendable="true"
+                        multiple
+                        ng-required="vocabulary.mandatory"
+                        ng-options="s.id as s.text for s in vocabulary.terms"
+                        ng-model="fieldEntity.taxonomy[vocabulary.id]"
+                        ></select>
+                <select ng-if="vocabulary.multiSelect&&!vocabulary.expandable"
+                        chosen
+                        class="form-control"
+                        data-placeholder="{{rubedo.translate('Taxonomy.Picker.Label.Select')}}"
+                        no-results-text="'{{rubedo.translate('Taxonomy.Picker.Label.NoResults','No result found. Press enter to add ')}}'"
+                        multiple
+                        ng-required="vocabulary.mandatory"
+                        ng-options="s.id as s.text for s in vocabulary.terms"
+                        ng-model="fieldEntity.taxonomy[vocabulary.id]"
+                        ></select>
+                <select ng-if="!vocabulary.multiSelect&&!vocabulary.expandable"
+                        chosen
+                        class="form-control"
+                        data-placeholder="{{rubedo.translate('Taxonomy.Picker.Label.Select')}}"
+                        no-results-text="'{{rubedo.translate('Taxonomy.Picker.Label.NoResults','No result found. Press enter to add ')}}'"
+                        ng-required="vocabulary.mandatory"
+                        ng-options="s.id as s.text for s in vocabulary.terms"
+                        ng-model="fieldEntity.taxonomy[vocabulary.id]"
+                        ></select>
+                <select ng-if="!vocabulary.multiSelect&&vocabulary.expandable"
+                        chosen
+                        extendable="true"
+                        data-placeholder="{{rubedo.translate('Taxonomy.Picker.Label.Select')}}"
+                        no-results-text="'{{rubedo.translate('Taxonomy.Picker.Label.NoResults','No result found. Press enter to add ')}}'"
+                        class="form-control"
+                        ng-required="vocabulary.mandatory"
+                        ng-options="s.id as s.text for s in vocabulary.terms"
+                        ng-model="fieldEntity.taxonomy[vocabulary.id]"
+                        ></select>
+                <span ng-if="vocabulary.helpText" class="help-block">{{vocabulary.helpText}}</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-8 col-md-offset-4">
+                <button type="submit" class="btn btn-primary" ng-if="rubedo.current.user.rights.canContributeFODraft" ng-click="ccCtrl.submitStatus='draft'">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.SaveDraft", "Save as draft")}}
+                </button>
+                <button type="submit" class="btn btn-primary" ng-if="rubedo.current.user.rights.canContributeFOPending" ng-click="ccCtrl.submitStatus='pending'">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Submit", "Submit")}}
+                </button>
+                <button type="submit" class="btn btn-primary" ng-if="rubedo.current.user.rights.canContributeFOPublished" ng-click="ccCtrl.submitStatus='published'">
+                    <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Publish", "Publish")}}
+                </button>
+            </div>
+        </div>
+        </div>
+    </form>
+
+</div>
