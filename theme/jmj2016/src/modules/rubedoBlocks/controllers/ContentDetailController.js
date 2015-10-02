@@ -323,6 +323,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             me.currentIndex += 1;
         }
         me.currentImage = me.images[me.currentIndex];
+        me.gallery.start = Math.floor(me.currentIndex / me.gallery.limit) ;
     };
 
 }]);
