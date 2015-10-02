@@ -310,7 +310,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     /*pour albums photos*/
     me.gallery.start = 0;
     me.gallery.limit = config.pageSize?config.pageSize:9;
-    
+    me.gallery.currentIndex = 0;
     me.changeImage = function(side){
         if(side == 'left' && me.currentIndex > 0){
             me.currentIndex -= 1;
