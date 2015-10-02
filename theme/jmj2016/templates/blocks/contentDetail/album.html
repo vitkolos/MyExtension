@@ -1,5 +1,5 @@
 <div class="container">
-	<div class="col-sm-6">
+	<div class="col-sm-6 gallery">
 		<div class="gallery-left" ng-click="contentDetailCtrl.changePage('left')"><span>e</span></div>
 		<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images | limitTo:contentDetailCtrl.gallery.start+contentDetailCtrl.gallery.nbImages | limitTo:-contentDetailCtrl.gallery.nbImages" class="pull-left gallery-img">
 			<img class="img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'150px',height:'100px',mode:'crop'})}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"
