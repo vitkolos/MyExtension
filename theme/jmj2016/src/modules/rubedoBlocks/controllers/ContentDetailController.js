@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -115,13 +115,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:200,
-                            query:me.content.fields.titrePhoto+"*",
-                            orderBy: 'title'
+                            query:me.content.fields.titrePhoto+"*"
                         };
                         me.getMedia = function(options){
                             RubedoSearchService.getMediaById(options).then(function(response){
                                 if(response.data.success){
-                                    me.content.images = response.data.results.data;
+                                    me.content.images = $filter('orderBy')(response.data.results.data, 'title') ;
                                     me.gallery.count = response.data.count;
                                     me.gallery.nbPages = Math.ceil(me.gallery.count/me.gallery.limit);
                                 }
