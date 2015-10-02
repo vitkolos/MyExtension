@@ -29,9 +29,7 @@
                             {{content.fields.summary}}
                         </p>
                     </div>
-                    <a ng-if="!contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl }}">
-                        {{rubedo.translate('Block.ContentList.Label.ReadMore','read more')}}
-                    </a>
+                    
                     <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
                         Preview detail
                     </a>
