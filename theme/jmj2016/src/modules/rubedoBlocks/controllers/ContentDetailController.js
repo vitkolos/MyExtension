@@ -315,9 +315,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.gallery.actualPage = 1;
     me.gallery.nbImages = angular.copy(me.gallery.limit);
     me.changePage = function(side){
-        if(side == 'left' && (me.gallery.start - me.gallery.nbImages  >= 0) ){
+        if(side == 'left' && (me.gallery.start - me.gallery.limit  >= 0) ){
             me.gallery.currentIndex= me.gallery.start-1;
-            me.gallery.start -= me.gallery.nbImages;
+            me.gallery.start -= me.gallery.limit;
         } else if(side == 'right' && (me.gallery.start + me.gallery.nbImages < me.gallery.count) ) {
             me.gallery.start += me.gallery.nbImages;
             me.gallery.currentIndex= me.gallery.start;
