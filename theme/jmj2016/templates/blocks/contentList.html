@@ -6,29 +6,27 @@
         <span class="glyphicon glyphicon-plus"></span> Contribute
     </button>
     <div class="row" ng-switch-when="552bda1945205e53368a64ea">
-        <div  ng-style="contentListCtrl.blockStyle">
+        <div  ng-style="contentListCtrl.blockStyle" class="container">
             <!--<div id="infiniteScrollCtrl">-->
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <img class="media-object pull-left" ng-if="content.fields.image && !contentListCtrl.titleOnly"
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px'}) }}"
                          alt="{{ content.fields.text }}" style="width:80%"/>
-                    <div class="media-body">
                         <h4 class="media-heading">
-                            <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
-                                {{content.fields.text }}
-                            </a>
-                            <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                {{content.fields.text }} ( {{content.status}} )
-                            </a>
-                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                        </h4>
-                        <p>{{contentDetailCtrl.content.fields.date* 1000 | date:'d MMMM'}} | {{contentDetailCtrl.content.fields.position.address}}</p>
-                        </p>
-                        <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
-                            {{content.fields.summary}}
-                        </p>
-                    </div>
+                        <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
+                            {{content.fields.text }}
+                        </a>
+                        <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                            {{content.fields.text }} ( {{content.status}} )
+                        </a>
+                        <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                    </h4>
+                    <p>{{contentDetailCtrl.content.fields.date* 1000 | date:'d MMMM'}} | {{contentDetailCtrl.content.fields.position.address}}</p>
+                    </p>
+                    <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
+                        {{content.fields.summary}}
+                    </p>
                     
                     <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
                         Preview detail
