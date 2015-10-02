@@ -313,15 +313,19 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.gallery.limit = config.pageSize?config.pageSize:9;
     me.gallery.currentIndex = 0;
     me.gallery.actualPage = 1;
+    me.gallery.nbImages = angular.copy(me.gallery.limit);
     me.changePage = function(side){
-        if(side == 'left' && me.gallery.actualPage > 1){
-            me.gallery.actualPage -= 1;
-            me.gallery.currentIndex= (me.gallery.actualPage)*me.gallery.limit-1;
-        } else if(side == 'right' && me.gallery.actualPage < me.gallery.nbPages) {
-            me.gallery.actualPage += 1;
-            me.gallery.currentIndex= (me.gallery.actualPage-1)*me.gallery.limit;
+        if(side == 'left' && (me.gallery.start - me.gallery.nbImages  >= 0) ){
+            me.gallery.currentIndex= me.gallery.start-1;
+            me.gallery.start -= me.gallery.nbImages;
+        } else if(side == 'right' && (me.gallery.start + me.gallery.nbImages < me.gallery.count) ) {
+            me.gallery.start += me.gallery.nbImages;
+            me.gallery.currentIndex= me.gallery.start;
         }
-        me.gallery.start = (me.gallery.actualPage-1)*me.gallery.limit;
+        if (me.gallery.start + me.gallery.nbImages>=me.gallery.count) {
+            me.gallery.nbImages = me.gallery.count- me.gallery.start;
+        }
+        else{me.gallery.nbImages =me.gallery.limit ;}
     };
 
 }]);
