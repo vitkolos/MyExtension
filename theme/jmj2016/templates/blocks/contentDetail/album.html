@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="col-sm-6">
 		<div style="width:20px; height:100px; background-color:grey;float:left" ng-click="contentDetailCtrl.changePage('left')"></div>
-		<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images | limitTo:contentDetailCtrl.gallery.start+limitTo:contentDetailCtrl.gallery.nbImages | limitTo:-contentDetailCtrl.gallery.nbImages" class="pull-left thumbnail gallery">
+		<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images | limitTo:contentDetailCtrl.gallery.start+contentDetailCtrl.gallery.nbImages | limitTo:-contentDetailCtrl.gallery.nbImages" class="pull-left thumbnail gallery">
 			<img class="img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'150px',height:'100px',mode:'crop'})}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"
-			     ng-click="contentDetailCtrl.gallery.currentIndex=contentDetailCtrl.gallery.limit*(contentDetailCtrl.gallery.actualPage-1)+$index"/>
+			     ng-click="contentDetailCtrl.gallery.currentIndex=contentDetailCtrl.gallery.start+$index"/>
 		</div>
 		<div style="width:20px; height:100px; background-color:grey;float:left" ng-click="contentDetailCtrl.changePage('right')"></div>
 
