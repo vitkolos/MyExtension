@@ -1,11 +1,8 @@
 <div class="row">
 	<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images track by $index" class="pull-left thumbnail gallery">
 	    <a href data-toggle="modal" ng-click="galleryCtrl.loadModal($index)">
-		<img class="img-rounded" ng-src="{{image.thumbnailUrl}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"/>
+		<img class="img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'100px',mode:'boxed'})}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"/>
 	    </a>
-	    <div class="caption" >
-		{{image.title}}
-	    </div>
 	</div>
 </div>
 <div class="clearfix"></div>
