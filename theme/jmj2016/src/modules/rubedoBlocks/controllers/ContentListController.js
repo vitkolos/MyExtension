@@ -77,29 +77,53 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     /**ALBUMS LISTS*/
     //if content type is album
     me.gallery={};
-    var options2 = {
-         siteId: $scope.rubedo.current.site.id,
-         pageId: $scope.rubedo.current.page.id,
-         start:0,
-         limit:200
-         //query:me.content.fields.titrePhoto+"*"
-     };
+
     me.getMedia = function(options){
         RubedoSearchService.getMediaById(options).then(function(response){
             if(response.data.success){
                 me.gallery.images = $filter('orderBy')(response.data.results.data, 'title') ;
                 me.gallery.count = response.data.count;
                 me.gallery.nbPages = Math.ceil(me.gallery.count/me.gallery.limit);
-    console.log(me.gallery.images);
+                console.log(me.gallery.images);
             }
         });
     };
     
     me.getGallery = function(query){
-        options2.query = query;
+        var options2 = {
+             siteId: $scope.rubedo.current.site.id,
+             pageId: $scope.rubedo.current.page.id,
+             start:0,
+             limit:200,
+             query:query+"*"
+         };         
         me.getMedia(options2);
     }
-    
+    me.changeGallery = function(content){
+        me.getGallery(content.fields.titrePhoto);
+        me.gallery.title = content.fields.text;
+        me.gallery.date = content.fields.date;
+        me.gallery.location = content.fields.position.address;
+   }
+    /*pour albums photos*/
+    me.gallery.start = 0;
+    me.gallery.limit = config.pageSize?config.pageSize:9;
+    me.gallery.currentIndex = 0;
+    me.gallery.actualPage = 1;
+    me.gallery.nbImages = angular.copy(me.gallery.limit);
+    me.changePage = function(side){
+        if(side == 'left' && (me.gallery.start - me.gallery.limit  >= 0) ){
+            me.gallery.currentIndex= me.gallery.start-1;
+            me.gallery.start -= me.gallery.limit;
+        } else if(side == 'right' && (me.gallery.start + me.gallery.nbImages < me.gallery.count) ) {
+            me.gallery.start += me.gallery.nbImages;
+            me.gallery.currentIndex= me.gallery.start;
+        }
+        if (me.gallery.start + me.gallery.nbImages>=me.gallery.count) {
+            me.gallery.nbImages = me.gallery.count- me.gallery.start;
+        }
+        else{me.gallery.nbImages =me.gallery.limit ;}
+    };
     /*GET CONTENTS*/
         
     me.getContents = function (queryId, pageId, siteId, options, add){
@@ -130,7 +154,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 
                 if (me.usedContentTypes[0]=="552bda1945205e53368a64ea") {
                     me.firstAlbumTitle=response.data.contents[0].fields.titrePhoto;
-                    me.getGallery(me.firstAlbumTitle);
+                    me.changeGallery(response.data.contents[0]);
                 }
                 
                 

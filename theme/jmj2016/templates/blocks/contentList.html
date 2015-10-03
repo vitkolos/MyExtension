@@ -6,20 +6,34 @@
         <span class="glyphicon glyphicon-plus"></span> Contribute
     </button>
     <div class="row bg-photos padding-tb" ng-switch-when="552bda1945205e53368a64ea" >
-        <div  ng-style="contentListCtrl.blockStyle" class="container">
-            <!--<div id="infiniteScrollCtrl">-->
+        
+        <div class="container">
+                <div class="col-sm-6">
+                        <h3 class="album-title">{{contentListCtrl.gallery.title | uppercase}}</h3><!--Titre-->
+                        <p class="album-desc">{{contentListCtrl.gallery.date* 1000 | date:'d MMM'}} | {{contentListCtrl.gallery.location}}</p>
+                        <div class="gallery-left" ng-click="contentListCtrl.changePage('left')"><span>e</span></div>
+                        <div ng-if="contentListCtrl.gallery.images" ng-repeat="image in contentListCtrl.gallery.images | limitTo:contentListCtrl.gallery.start+contentListCtrl.gallery.nbImages | limitTo:-contentListCtrl.gallery.nbImages" class="pull-left gallery-img">
+                                <img class="img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'150px',height:'100px',mode:'crop'})}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"
+                                     ng-click="contentListCtrl.gallery.currentIndex=contentListCtrl.gallery.start+$index"/>
+                        </div>
+                        <div class="gallery-right" ng-click="contentListCtrl.changePage('right')"><span>d</span></div>
+        
+                </div>
+                <div class="col-sm-6">
+                        <img class="img-responsive img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentListCtrl.gallery.images[contentListCtrl.gallery.currentIndex].id)}}"
+                             ng-attr-alt="{{contentListCtrl.images[contentListCtrl.gallery.currentIndex].title}}" ng-attr-title="{{contentListCtrl.images[contentListCtrl.gallery.currentIndex].title}}"/>
+                </div>
+        </div>
+        <div class="clearfix"></div>
+        
+        <!---Content list-->
+        <div class="container padding-tb">
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
-                <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
+                <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" ng-click="contentListCtrl.changeGallery(content)">
                     <img ng-if="content.fields.image && !contentListCtrl.titleOnly"
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px'}) }}"
                          alt="{{ content.fields.text }}" style="width:80%; margin-bottom: 24"/>
                     <h4>
-                        <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
-                            {{content.fields.text }}
-                        </a>
-                        <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                            {{content.fields.text }} ( {{content.status}} )
-                        </a>
                         <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                     </h4>
                     <p>{{content.fields.date * 1000 | date:'d MMMM'}} | {{content.fields.position.address}}</p>
