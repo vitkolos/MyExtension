@@ -75,7 +75,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     
     /**ALBUMS LISTS*/
     //if content type is album
-    me.gallery.images={};
+    me.gallery={};
     var options2 = {
          siteId: $scope.rubedo.current.site.id,
          pageId: $scope.rubedo.current.page.id,
