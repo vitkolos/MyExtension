@@ -31,7 +31,7 @@
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" ng-click="contentListCtrl.changeGallery(content)">
                     <img ng-if="content.fields.image && !contentListCtrl.titleOnly"
-                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px', }) }}"
+                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'320px',height:'215px',mode:'crop' }) }}"
                          alt="{{ content.fields.text }}" style="width:80%; margin-bottom: 24"/>
                     <h4>
                         <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
