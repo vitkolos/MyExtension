@@ -127,10 +127,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     }
                 }
                 
-                if (me.usedContentTypes=="552bda1945205e53368a64ea") {
+                if (me.usedContentTypes[0]=="552bda1945205e53368a64ea") {
                     me.firstAlbumTitle=response.data.contents[0].fields.titrePhoto;
                     me.getGallery(me.firstAlbumTitle);
-                    console.log("ok");
                 }
                 
                 
