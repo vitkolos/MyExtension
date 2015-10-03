@@ -99,8 +99,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             me.getMedia(options2);
         }
         console.log(me.gallery.images);
-        
-        
     }
         
     me.getContents = function (queryId, pageId, siteId, options, add){
