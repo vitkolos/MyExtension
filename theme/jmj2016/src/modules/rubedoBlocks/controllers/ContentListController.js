@@ -1,4 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService','RubedoSearchService',"$route","RubedoContentTypesService","RubedoPagesService","$location",function($scope,$compile,RubedoContentsService,RubedoSearchService,$route,RubedoContentTypesService,RubedoPagesService,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService','RubedoSearchService',"$route","RubedoContentTypesService","RubedoPagesService","$location",'$filter',
+                                                                        function($scope,$compile,RubedoContentsService,RubedoSearchService,$route,RubedoContentTypesService,RubedoPagesService,$location,$filter){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
