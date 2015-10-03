@@ -75,31 +75,31 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     
     /**ALBUMS LISTS*/
     //if content type is album
-    if (me.usedContentTypes=="552bda1945205e53368a64ea") {
-        me.gallery.images={};
-        var options2 = {
-             siteId: $scope.rubedo.current.site.id,
-             pageId: $scope.rubedo.current.page.id,
-             start:0,
-             limit:200
-             //query:me.content.fields.titrePhoto+"*"
-         };
-        me.getMedia = function(options){
-            RubedoSearchService.getMediaById(options).then(function(response){
-                if(response.data.success){
-                    me.gallery.images = $filter('orderBy')(response.data.results.data, 'title') ;
-                    me.gallery.count = response.data.count;
-                    me.gallery.nbPages = Math.ceil(me.gallery.count/me.gallery.limit);
-                }
-            });
-        };
-        
-        me.getGallery = function(query){
-            options2.query = query;
-            me.getMedia(options2);
-        }
-        console.log(me.gallery.images);
+    me.gallery.images={};
+    var options2 = {
+         siteId: $scope.rubedo.current.site.id,
+         pageId: $scope.rubedo.current.page.id,
+         start:0,
+         limit:200
+         //query:me.content.fields.titrePhoto+"*"
+     };
+    me.getMedia = function(options){
+        RubedoSearchService.getMediaById(options).then(function(response){
+            if(response.data.success){
+                me.gallery.images = $filter('orderBy')(response.data.results.data, 'title') ;
+                me.gallery.count = response.data.count;
+                me.gallery.nbPages = Math.ceil(me.gallery.count/me.gallery.limit);
+    console.log(me.gallery.images);
+            }
+        });
+    };
+    
+    me.getGallery = function(query){
+        options2.query = query;
+        me.getMedia(options2);
     }
+    
+    /*GET CONTENTS*/
         
     me.getContents = function (queryId, pageId, siteId, options, add){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
