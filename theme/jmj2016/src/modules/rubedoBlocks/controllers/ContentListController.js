@@ -84,7 +84,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.gallery.images = $filter('orderBy')(response.data.results.data, 'title') ;
                 me.gallery.count = response.data.count;
                 me.gallery.nbPages = Math.ceil(me.gallery.count/me.gallery.limit);
-                console.log(me.gallery.images);
             }
         });
     };

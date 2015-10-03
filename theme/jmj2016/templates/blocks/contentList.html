@@ -8,7 +8,7 @@
     <div class="row bg-photos padding-tb" ng-switch-when="552bda1945205e53368a64ea" >
         
         <div class="container">
-                <div class="col-sm-6">
+                <div class="col-sm-6 pull-left">
                         <h3 class="album-title">{{contentListCtrl.gallery.title | uppercase}}</h3><!--Titre-->
                         <p class="album-desc">{{contentListCtrl.gallery.date* 1000 | date:'d MMM'}} | {{contentListCtrl.gallery.location}}</p>
                         <div class="gallery-left" ng-click="contentListCtrl.changePage('left')"><span>e</span></div>
@@ -19,8 +19,8 @@
                         <div class="gallery-right" ng-click="contentListCtrl.changePage('right')"><span>d</span></div>
         
                 </div>
-                <div class="col-sm-6">
-                        <img class="img-responsive img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentListCtrl.gallery.images[contentListCtrl.gallery.currentIndex].id)}}"
+                <div class="col-sm-6 pull-left">
+                        <img class="img-responsive img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentListCtrl.gallery.images[contentListCtrl.gallery.currentIndex].id,{width:'570px', height,'380', mode:'crop'})}}"
                              ng-attr-alt="{{contentListCtrl.images[contentListCtrl.gallery.currentIndex].title}}" ng-attr-title="{{contentListCtrl.images[contentListCtrl.gallery.currentIndex].title}}"/>
                 </div>
         </div>
@@ -31,7 +31,7 @@
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" ng-click="contentListCtrl.changeGallery(content)">
                     <img ng-if="content.fields.image && !contentListCtrl.titleOnly"
-                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px'}) }}"
+                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px', }) }}"
                          alt="{{ content.fields.text }}" style="width:80%; margin-bottom: 24"/>
                     <h4>
                         <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
