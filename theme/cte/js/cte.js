@@ -6,17 +6,30 @@ angular.module('rubedoBlocks').filter('cleanUrl', function () {
   });
 
 angular.module('rubedo').filter('ligneNonVide', function () {
-           return function (rows) {
+           return function (input) {
                       var filtered = [];
-                      angular.forEach(rows, function(row) {
-                                 if (row.columns[0].isTerminal) {
-                                            filtered.push(row);
-                                 }
-                                 else if( (row.columns[0].blocks).length > 0) {
-                                            filtered.push(row);
+		      var contentDisplay = false;
+                      angular.forEach(input, function(row, index) {
+				// si la 1ère colonne est terminale et non vide
+                                 if (row.columns[0].isTerminal&&row.columns[0].blocks) {
+				    // toujours afficher la 1ère ligne (menu) et les 2 dernières (footer)
+				    if (index ==0 || index >= input.length-2) {
+					filtered.push(row);
+				    }
+				    // si la page sert à afficher un contenu (en 2ème ligne) on n'affiche pas les autres lignes
+				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected) {
+					filtered.push(row);
+					contentDisplay = true;
+				    }
+				    // sinon on affiche tout
+				    else if(!contentDisplay) {filtered.push(row);}
+                                            
+					    
                                  }
                       });
+		      console.log(filtered);
                       return filtered;
+		    
      };
   });
 
