@@ -27,7 +27,6 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 					    
                                  }
                       });
-		      console.log(filtered);
                       return filtered;
 		    
      };
