@@ -16,9 +16,7 @@
     </button>
     <div class="row" ng-switch="blockConfig.columns">
         <!--POUR 3 COLONNES-->
-        <div ng-attr-lr-infinite-scroll="loadMoreContents"
-             ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
-             ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
+        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
             <!--<div id="infiniteScrollCtrl">-->
             <div class="col-md-4 col-xs-6 col-xxs-12" ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div class="media" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents">
