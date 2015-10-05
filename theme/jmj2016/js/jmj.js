@@ -34,6 +34,31 @@ angular.module('rubedoBlocks').directive('scrollToAnchor', function ($location, 
         }
     
 });
+
+ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
+    return {
+        restrict: 'EC',
+        link: function (scope, element, attrs) {
+           var filmUrl = attrs.videoUrl;
+            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
+            getTemplate = function (playerId) {
+                      
+                return '<div id="' + playerId + '"></div>';
+            };
+           var options = {
+                      file: filmUrl,
+                      modestbranding:0,
+                      showinfo:1,
+                      width:"75%",
+                      aspectratio:"16:9"};
+            element.html(getTemplate(id));
+            $compile(element.contents())(scope);
+            jwplayer(id).setup(options);
+            
+        }
+    };
+}]);
+
 angular.module('rubedoBlocks').directive('loadModal', function () {
     return {
         restrict: 'A',

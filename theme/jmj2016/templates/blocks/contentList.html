@@ -45,7 +45,40 @@
             </div>
         </div>
     </div>
+ 
+ 
+<!--VIDEOS-->
+    <div class="row bg-photos padding-tb" ng-switch-when="56094a2245205e0e2541ea77" >
+        
+       
+        <!---Content list-->
+        <div class="container padding-tb">
+            <div class="col-xs-6 cursor-as-pointer" ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
+                <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" >
+                    <jwplayer video-url="{{content.fields.video}}"></jwplayer>
+                    <h4>
+                        <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                    </h4>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit"
-               count="contentListCtrl.count" change-page-action="contentListCtrl.changePageAction()"></paginator>
+ 
+ 
+ <div ng-if="datum['fields.video'][0]">
+                <div class="col-sm-4">
+                    <p class="capital tags">vidéo</p>
+                    <h3><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl }}">{{datum.title}}</a></h3>
+                    <p class="summary">{{datum.summary}}</p>
+                    <p class="capital">{{datum.lastUpdateTime * 1000 | date}} </p>
+                </div>
+                <div class="col-sm-8">
+                    <jwplayer video-url="{{datum['fields.video'][0]}}"></jwplayer>
+                </div>
+             </div>
+ 
+    
+    
 </div>
