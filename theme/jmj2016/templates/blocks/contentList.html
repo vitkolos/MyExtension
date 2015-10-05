@@ -66,19 +66,6 @@
     </div>
 
  
- 
- <div ng-if="datum['fields.video'][0]">
-                <div class="col-sm-4">
-                    <p class="capital tags">vidéo</p>
-                    <h3><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl }}">{{datum.title}}</a></h3>
-                    <p class="summary">{{datum.summary}}</p>
-                    <p class="capital">{{datum.lastUpdateTime * 1000 | date}} </p>
-                </div>
-                <div class="col-sm-8">
-                    <jwplayer video-url="{{datum['fields.video'][0]}}"></jwplayer>
-                </div>
-             </div>
- 
     
     
 </div>
