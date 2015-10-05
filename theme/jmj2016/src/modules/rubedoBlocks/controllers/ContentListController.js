@@ -114,12 +114,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         if(side == 'left' && (me.gallery.currentIndex>0) ){
             if (me.gallery.currentIndex == me.gallery.start && me.gallery.start>0) {
                 me.gallery.start-=me.gallery.limit;
+                if (me.gallery.currentIndex+me.gallery.nbImages == me.gallery.count) {
+                    me.gallery.nbImages = me.gallery.limit;
+                }
             }
             me.gallery.currentIndex--;
     
         } else if(side == 'right' && (me.gallery.currentIndex < me.gallery.count-1) ) {
             if (me.gallery.currentIndex == (me.gallery.start+ me.gallery.nbImages-1) ) {
                 me.gallery.start+=me.gallery.nbImages;
+                if (me.gallery.start + me.gallery.nbImages >= me.gallery.count-1) {
+                    me.gallery.nbImages = me.gallery.count-me.gallery.start;
+                }
             }
             me.gallery.currentIndex++;
             console.log(me.gallery.currentIndex);
