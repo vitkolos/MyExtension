@@ -15,7 +15,7 @@
 
 		<li ng-repeat="page in menuCtrl.pagesBlocks" class="lvl-1" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.blocks.length>1}">
                     <a ng-if="page.blocks.length<=1" ng-href="{{page.url}}">{{page.title |uppercase}}</a>
-                    <a ng-if="page.blocks.length>1" ng-href="{{page.url}}" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.title}}</a>
+                    <a ng-if="page.blocks.length>1" ng-href="{{page.url}}" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.title |uppercase}}</a>
                     <ul ng-if="page.blocks.length>1" class="dropdown-menu-jmj hidden-xs" role="menu">
                         <li ng-repeat="bloc in page.blocks | orderBy :'title' track by $index" class="" >
 			    <!--<a ng-if="menuCtrl.currentRouteleine.indexOf(page.url) > -1" ng-href="{{page.url}}#{{bloc.title | split:'/':0}}">{{bloc.title | split:'/':1}}</a>-->
