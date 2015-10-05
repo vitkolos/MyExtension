@@ -78,14 +78,14 @@
         <div class=" col-xs-12 col-sm-8 col-md-9 padding-tb">
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
-                    <img class="media-object" ng-if="content.fields.image && !contentListCtrl.titleOnly"
+                    <a ng-href="{{ content.detailPageUrl }}">
+                    <img ng-if="content.fields.image && !contentListCtrl.titleOnly"
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'600px'}) }}"
-                         alt="{{ content.fields.text }}" style="width:75%; max-width: 600px"/>
+                         alt="{{ content.fields.text }}" style="width:75%; max-width: 600px"/></a>
                     <div class="actus-list">
+                        <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
                         <h3 class="album-title">
-                            <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
                                 {{content.fields.text | uppercase}}
-                            </a>
                             <!--<a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
                                 {{content.fields.text }} ( {{content.status}} )
                             </a>-->
@@ -99,6 +99,7 @@
                         <p class="album-desc" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
                             {{content.fields.summary}}
                         </p>
+                        </a>
                     </div>
 
                 </div>
