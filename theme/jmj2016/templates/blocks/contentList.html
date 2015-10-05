@@ -8,7 +8,7 @@
     <div class="row bg-photos padding-tb" ng-switch-when="552bda1945205e53368a64ea" >
         
         <div class="container">
-                <div class="col-sm-6 pull-left">
+                <div class="col-sm-6 pull-left hidden-sx">
                         <h3 class="album-title">{{contentListCtrl.gallery.title | uppercase}}</h3><!--Titre-->
                         <p class="album-desc">{{contentListCtrl.gallery.date* 1000 | date:'d MMM'}} | {{contentListCtrl.gallery.location}}</p>
                         <div class="gallery-left" ng-click="contentListCtrl.changePage('left')"><span>e</span></div>
@@ -20,9 +20,10 @@
         
                 </div>
                 <div class="col-sm-6 pull-left">
-                        <div class="gallery-full-left visible-xs-block"><span>e</span></div>
+                        <div class="gallery-full-left visible-xs-block" ng-click="contentListCtrl.nextImg()"><span>e</span></div>
                         <img class="img-responsive img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentListCtrl.gallery.images[contentListCtrl.gallery.currentIndex].id,{width:'570px', height:'380px', mode:'crop'})}}"
                              ng-attr-alt="{{contentListCtrl.images[contentListCtrl.gallery.currentIndex].title}}" ng-attr-title="{{contentListCtrl.images[contentListCtrl.gallery.currentIndex].title}}"/>
+                        <div class="gallery-full-right visible-xs-block" ng-click="contentListCtrl.prevImg()"><span>d</span></div>
                 </div>
         </div>
         <div class="clearfix"></div>

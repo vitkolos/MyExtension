@@ -123,7 +123,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
         else{me.gallery.nbImages =me.gallery.limit ;}
     };
-    /*GET CONTENTS*/
+    me.nextImg = function(){
+        if (me.gallery.currentIndex<me.gallery.count) {
+            me.gallery.currentIndex++;
+        }
+    }
+    me.prevImg = function(){
+        if (me.gallery.currentIndex>0) {
+            me.gallery.currentIndex--;
+        }
+    }    /*GET CONTENTS*/
         
     me.getContents = function (queryId, pageId, siteId, options, add){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
