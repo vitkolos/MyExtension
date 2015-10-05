@@ -73,9 +73,9 @@
 <!--ACTUS-->
     <div class="row bg-videos padding-tb" ng-switch-when="5517c04245205ec708869bc6" >
         
-       
+       <div class="container"
         <!---Content list-->
-        <div class="container padding-tb">
+        <div class="col-sm-8 col-xs-12 padding-tb">
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <img class="media-object" ng-if="content.fields.image && !contentListCtrl.titleOnly"
@@ -103,6 +103,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     
