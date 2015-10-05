@@ -91,6 +91,7 @@ span.font-jmj{font-size: 20px; vertical-align: bottom; font-family: 'jmj2016regu
   content: "J";
 }
 .font-jmj.lieu:before{content:'z'}
+.font-jmj.user:before{content:'n'}
 ////////////////////////////////////////////////
     ///////  WYD Krakow  ////////////////
 ////////////////////////////////////////////////
@@ -444,10 +445,8 @@ h1.titre-section {
 .gallery-full-right{border-radius: 0 6px 6px 0; right: 0}
 .gallery-img{margin-right:25px; margin-bottom:18px}
 .gallery-left.big, .gallery-right.big{}
-.album-title{color:white}
-.album-desc{
-    color:white
-}
+.album-title,.album-desc{color:white}
+
 /* VIDEOS GALLERY */
 .bg-videos{background-color: #e6e6e6}
 ////////////////////////////////////////////////////
@@ -455,6 +454,13 @@ h1.titre-section {
 ///////////////////////////////////////////////////
 .jwlogo{display: none}
  .jwplayer .jwpreview.jwuniform{background-size: cover!important}
+ 
+ /*LISTE ACTUS*/
+ .actus-list {
+    .album-title,.album-desc{color:@txt_grey}
+ }
+ 
+ 
  
  
 /*LISTES DE SPORTS / WORKSHOPS/ ... */

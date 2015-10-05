@@ -75,14 +75,14 @@
         
        <div class="container"
         <!---Content list-->
-        <div class="col-sm-8 col-xs-12 padding-tb">
+        <div class=" col-xs-12 col-sm-8 col-md-9 padding-tb">
             <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <img class="media-object" ng-if="content.fields.image && !contentListCtrl.titleOnly"
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'600px'}) }}"
-                         alt="{{ content.fields.text }}" style="width:80%"/>
-                    <div class="media-body">
-                        <h4 class="media-heading">
+                         alt="{{ content.fields.text }}" style="width:75%"/>
+                    <div class="actus-list">
+                        <h3 class="album-title">
                             <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
                                 {{content.fields.text | uppercase}}
                             </a>
@@ -90,8 +90,9 @@
                                 {{content.fields.text }} ( {{content.status}} )
                             </a>-->
                             <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                        </h4>
-                        <span>{{ content.createTime*1000 | date }}</span>
+                        </h3>
+                        <p class="album-desc"><span class="font-jmj date"></span>{{content.createTime* 1000 | date:'d MMM'}} <span class="font-jmj user"></span> {{content.createUser.fullName}}</p>
+                        
                         <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly&&fieldEditMode">
                             <rubedo-field field="{{content.type.summary}}"></rubedo-field>
                         </p>
@@ -103,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div class="hidden-xs hidden-sm col-sm-4" ng-init = "blockConfig={'theme':'normal','mode':'tweets','widgetId':'651025227502198784','account':'Festival_WTP','width':'300','options':['noHeader']}">
+        <div class="hidden-xs col-sm-4 col-md-3" ng-init = "blockConfig={'theme':'normal','mode':'tweets','widgetId':'651025227502198784','account':'Festival_WTP','width':'300','options':['noHeader']}">
                 <div ng-include="rubedo.blockTemplateResolver.getTemplate('twitter',blockConfig)"></div>
         </div>
 
