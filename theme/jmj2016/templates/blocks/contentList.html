@@ -10,7 +10,7 @@
         <div class="container">
                 <div class="col-sm-6 pull-left hidden-xs">
                         <h3 class="album-title">{{contentListCtrl.gallery.title | uppercase}}</h3><!--Titre-->
-                        <p class="album-desc"><span class="font-jmj date"></span>{{contentListCtrl.gallery.date* 1000 | date:'d MMM'}} | {{contentListCtrl.gallery.location}}</p>
+                        <p class="album-desc"><span class="font-jmj date"></span>{{contentListCtrl.gallery.date* 1000 | date:'d MMM'}} <span class="font-jmj lieu"></span> {{contentListCtrl.gallery.location}}</p>
                         <div class="gallery-left" ng-click="contentListCtrl.changePage('left')"><span>e</span></div>
                         <div ng-if="contentListCtrl.gallery.images" ng-repeat="image in contentListCtrl.gallery.images | limitTo:contentListCtrl.gallery.start+contentListCtrl.gallery.nbImages | limitTo:-contentListCtrl.gallery.nbImages" class="pull-left gallery-img">
                                 <img class="img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'150px',height:'100px',mode:'crop'})}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"
