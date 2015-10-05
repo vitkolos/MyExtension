@@ -83,23 +83,28 @@
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'600px'}) }}"
                          alt="{{ content.fields.text }}" style="width:75%; max-width: 600px"/></a>
                     <div class="actus-list">
-                        <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
-                        <h3 class="album-title">
-                                {{content.fields.text | uppercase}}
-                            <!--<a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                {{content.fields.text }} ( {{content.status}} )
-                            </a>-->
-                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                        <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
+                            <h3 class="album-title">
+                                    {{content.fields.text | uppercase}}
+                                <!--<a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                                    {{content.fields.text }} ( {{content.status}} )
+                                </a>-->
+                                <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                            </h3>
+
+                            <p class="album-desc" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
+                                {{content.fields.summary}}
+                            </p>
+                            <a ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}" ng-if="contentListCtrl.isFOContributeMode">
+                                <button><span class="glyphicon glyphicon-plus"></span>Edit</button>
+                            </a>
+                        </a>
+                        <h3 class="album-title" ng-if="fieldEditMode">
+                            <rubedo-field field="{{content.type.title}}"></rubedo-field>
                         </h3>
-                        <p class="album-desc"><span class="font-jmj date"></span>{{content.createTime* 1000 | date:'d MMM'}} <span class="font-jmj user"></span> {{content.createUser.fullName}}</p>
-                        
-                        <p  ng-if="!contentListCtrl.titleOnly&&fieldEditMode">
+                        <p class="album-desc" ng-if="fieldEditMode">
                             <rubedo-field field="{{content.type.summary}}"></rubedo-field>
                         </p>
-                        <p class="album-desc" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
-                            {{content.fields.summary}}
-                        </p>
-                        </a>
                     </div>
 
                 </div>
