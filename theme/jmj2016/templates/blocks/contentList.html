@@ -80,7 +80,7 @@
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <img class="media-object" ng-if="content.fields.image && !contentListCtrl.titleOnly"
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'600px'}) }}"
-                         alt="{{ content.fields.text }}" style="width:75%"/>
+                         alt="{{ content.fields.text }}" style="width:75%; max-width: 600px"/>
                     <div class="actus-list">
                         <h3 class="album-title">
                             <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
@@ -93,10 +93,10 @@
                         </h3>
                         <p class="album-desc"><span class="font-jmj date"></span>{{content.createTime* 1000 | date:'d MMM'}} <span class="font-jmj user"></span> {{content.createUser.fullName}}</p>
                         
-                        <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly&&fieldEditMode">
+                        <p  ng-if="!contentListCtrl.titleOnly&&fieldEditMode">
                             <rubedo-field field="{{content.type.summary}}"></rubedo-field>
                         </p>
-                        <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
+                        <p class="album-desc" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
                             {{content.fields.summary}}
                         </p>
                     </div>
