@@ -127,11 +127,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         if (me.gallery.currentIndex<me.gallery.count) {
             me.gallery.currentIndex++;
         }
+        else me.gallery.currentIndex=0;
     }
     me.prevImg = function(){
         if (me.gallery.currentIndex>0) {
             me.gallery.currentIndex--;
         }
+        else me.gallery.currentIndex = me.gallery.count-1;
     }    /*GET CONTENTS*/
         
     me.getContents = function (queryId, pageId, siteId, options, add){
