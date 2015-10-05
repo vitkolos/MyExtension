@@ -38,7 +38,7 @@
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'320px',height:'215px',mode:'crop' }) }}"
                          alt="{{ content.fields.text }}" style="width:80%; margin-bottom: 24"/>
                     <h4>
-                        <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                        <rubedo-field field="{{content.type.title}}"></rubedo-field>
                     </h4>
                     <p>{{content.fields.date * 1000 | date:'d MMMM'}} | {{content.fields.position.address}}</p>
                     </p>
@@ -61,7 +61,7 @@
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" >
                     <jwplayer video-url="{{content.fields.video.url}}"></jwplayer>
                     <h4>
-                        <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                        <rubedo-field  field="{{content.type.title}}"></rubedo-field>
                     </h4>
                     
                 </div>

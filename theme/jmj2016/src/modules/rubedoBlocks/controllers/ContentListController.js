@@ -128,7 +128,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 }
             }
             me.gallery.currentIndex++;
-            console.log(me.gallery.currentIndex);
         }
 
         
