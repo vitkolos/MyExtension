@@ -48,14 +48,14 @@
  
  
 <!--VIDEOS-->
-    <div class="row bg-photos padding-tb" ng-switch-when="56094a2245205e0e2541ea77" >
+    <div class="row bg-videos padding-tb" ng-switch-when="56094a2245205e0e2541ea77" >
         
        
         <!---Content list-->
         <div class="container padding-tb">
             <div class="col-xs-6 cursor-as-pointer" ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" >
-                    <jwplayer video-url="{{content.fields.video}}"></jwplayer>
+                    <jwplayer video-url="{{content.fields.video.url}}"></jwplayer>
                     <h4>
                         <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                     </h4>
