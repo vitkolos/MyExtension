@@ -92,7 +92,7 @@
                                 <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                             </h3>
 
-                            <p class="album-desc" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
+                            <p class="album-desc" ng-if="!contentListCtrl.titleOnly&&!fieldEditMode" ng-style="{'height':contentListCtrl.contentHeight}">
                                 {{content.fields.summary}}
                             </p>
                             <a ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}" ng-if="contentListCtrl.isFOContributeMode">
