@@ -1,4 +1,4 @@
-<div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl">
+<div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl" ng-init="showForm">
     <form ng-if="ccCtrl.contentType" class="form form-horizontal" ng-submit="ccCtrl.submitNewContent()">
         <h2 ng-if="!ccCtrl.updateMode" class="text-center" ng-click="showForm= !showForm">{{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}} : {{ccCtrl.contentType.type}}</h2>
         <h2 ng-if="ccCtrl.updateMode" class="text-center" ng-click="showForm= !showForm">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>
