@@ -191,9 +191,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
    me.persons = 0;
     me.nbPersons = 16;
     me.nbPersonsDisplayed = 16;
+    me.pageNb = 1;
     me.nextPersons = function(){
         if (me.persons + me.nbPersonsDisplayed < me.count) {
             me.persons += me.nbPersonsDisplayed;
+            me.pageNb++;
         }
         if (me.persons + me.nbPersonsDisplayed > me.count-1) {
             me.nbPersonsDisplayed = me.count-me.persons;
@@ -202,6 +204,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.prevPersons = function(){
         if (me.persons > me.nbPersonsDisplayed) {
             me.persons -= me.nbPersonsDisplayed;
+            me.pageNb--;
         }
         if (me.nbPersonsDisplayed !=me.nbPersons) {
             me.nbPersonsDisplayed =me.nbPersons;
