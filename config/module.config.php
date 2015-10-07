@@ -127,7 +127,8 @@ return array(
        */
     'localisationfiles' => array(
         100 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/ButtonToPage.json',
-        101 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Form.json'
+        101 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Form.json',
+        102 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Share.json'
     ),
     
 
