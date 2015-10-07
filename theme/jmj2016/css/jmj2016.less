@@ -467,13 +467,17 @@ h1.titre-section {
     width: 60%;
  }
  @media screen and (max-width: 768px){.actus-list{width:90%}}
-.article.container, .texte.container{max-width: 600px; padding: 48px 0}
+.article.container, .texte.container{max-width: 800px; padding: 48px 0}
 .section-header.article-header{height:400px}
 
 .article h1,.article h3,.article p{color:#2f2e2a}
  
   /*SOCIALS*/
-  
+[class^="addthis_button"]{
+    a, a:hover, a:active{color:@txt_dark; font-weight: bold}
+    a{background: white; border-radius: 5px}
+    a span{font-size: 48px; font-weight: normal;vertical-align: middle }
+  }
   
   
  
