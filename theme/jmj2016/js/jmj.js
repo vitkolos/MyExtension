@@ -136,6 +136,26 @@ angular.module('rubedoBlocks').directive('scrollDelay',['$timeout', '$location',
     
 
 
+angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location', function($timeout,$location) {
+  return {
+    restrict : 'A',
+	  transclude : true,
+	  replace : true,
+	  template : '<div ng-transclude></div>',
+	  link : function($scope, element, attrs) {
+		 $timeout(function () {
+                      addthis.init();
+                      var contentUrl = $location.absUrl();
+                      addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
+                                 url: contentUrl,
+                                 title : attrs.title,
+                                 description : ''        
+                      });
+
+      });
+	  }
+	};
+}]);
  
 
 

@@ -84,36 +84,7 @@
                 </div>
             </div>
         </div>
-        <div ng-switch-when="actualites">
-            <div class="row bg-videos">
-                    <div class="col-xs-12 ">
-			<div class="parallax section-header article-header" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
-			</div>
-                    </div>
-            </div>    
-	    <div class="container article">
-		<div class="row">
-		    <div class="col-xs-12">
-			<h1 ng-if="!fieldEditMode">{{fieldEntity['text'] |uppercase}}</h1>
-			<h1 ng-if="fieldEditMode"
-			   ng-controller="RTEFieldController as rteFieldCtrl"
-			   ckeditor="editorOptions"
-			   contenteditable="true"
-			   ready="setCKEIsReady()"
-			   ng-model="fieldEntity['text']"
-			   output-plain-text="true"
-			   ng-bind-html="rteFieldCtrl.html">
-			</h1>				    
-		    </div>
-		    <div class="col-xs-12">
-			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ></rubedo-field><!--Texte-->
-		    </div>
-		</div>
-	    </div>
-    
-	    <div style="margin-top:24px"></div>
-		
-	</div>
+
 	<div ng-switch-default >
 	    <div ng-include="contentDetailCtrl.detailTemplate"></div>
 	</div>
