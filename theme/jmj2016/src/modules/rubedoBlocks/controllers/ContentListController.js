@@ -144,15 +144,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
         else me.gallery.currentIndex = me.gallery.count-1;
     }
-    /*GET CONTENTS*/
+    
+     /*GET CONTENTS*/
         
     me.getContents = function (queryId, pageId, siteId, options, add){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
             if (response.data.success){
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
-                me.allContents = response.data.contents;
-                console.log(me.allContents);
+
                 me.usedContentTypes=response.data.usedContentTypes;
                 var columnContentList = [];
                 if (add){
@@ -185,6 +185,32 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             }
         });
     };
+    
+    
+    /*PERSONS LIST*/
+   me.persons = 0;
+    me.nbPersons = 16;
+    me.nbPersonsDisplayed = 16;
+    me.nextPersons = function(){
+        if (me.persons + me.nbPersonsDisplayed < me.count) {
+            me.persons += me.nbPersonsDisplayed;
+        }
+        if (me.persons + me.nbPersonsDisplayed > me.count-1) {
+            me.nbPersonsDisplayed = me.count-me.persons;
+        }
+    };
+    me.prevPersons = function(){
+        if (me.persons > me.nbPersonsDisplayed) {
+            me.persons -= me.nbPersonsDisplayed;
+        }
+        if (me.nbPersonsDisplayed !=me.nbPersons) {
+            me.nbPersonsDisplayed !=me.nbPersons;
+        }
+    }
+    
+    
+    
+    
     me.canAddToList=function(){
         return ($scope.rubedo.fieldEditMode&&me.queryType&&(me.queryType=="simple"||me.queryType=="manual"));
     };
