@@ -204,7 +204,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             me.persons -= me.nbPersonsDisplayed;
         }
         if (me.nbPersonsDisplayed !=me.nbPersons) {
-            me.nbPersonsDisplayed !=me.nbPersons;
+            me.nbPersonsDisplayed =me.nbPersons;
         }
     }
     
