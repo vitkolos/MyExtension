@@ -1,10 +1,11 @@
+<div class="bg-videos">
 <div class="row bg-videos">
 	<div class="col-xs-12 ">
 	    <div class="parallax section-header article-header" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
 	    </div>
 	</div>
 </div>    
-<div class="container article bg-videos">
+<div class="container article">
     <div class="row">
 	<div class="col-xs-12">
 	    <h1 ng-if="!fieldEditMode">{{fieldEntity['text'] |uppercase}}</h1>
@@ -36,4 +37,5 @@
 </div>
 
 <div style="margin-top:24px"></div>
+</div>
     
