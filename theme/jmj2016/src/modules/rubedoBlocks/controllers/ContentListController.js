@@ -143,13 +143,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             me.gallery.currentIndex--;
         }
         else me.gallery.currentIndex = me.gallery.count-1;
-    }    /*GET CONTENTS*/
+    }
+    /*GET CONTENTS*/
         
     me.getContents = function (queryId, pageId, siteId, options, add){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
             if (response.data.success){
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
+                me.allContents = response.data.contents;
                 me.usedContentTypes=response.data.usedContentTypes;
                 var columnContentList = [];
                 if (add){
