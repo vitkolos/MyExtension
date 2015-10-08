@@ -1,3 +1,9 @@
+blocksConfig.contentDetail= {
+            "template": "/templates/blocks/contentDetail.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/directives/InscriptionController.js"]
+        };
+
+
 
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
