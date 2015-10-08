@@ -158,7 +158,7 @@ class MailResource extends AbstractResource
         foreach ($fields as $name => $content) {
             $lines[] = $name . ' : ' . $content;
         }
-        return implode("\n", $lines);
+        return implode("<br/>", $lines);
     }
    /**
      *
