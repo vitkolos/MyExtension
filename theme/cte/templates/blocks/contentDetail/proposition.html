@@ -101,7 +101,16 @@
 		
 	</div>
 	<a name="inscription"></a>
-	<div class="row bg-white"></div>
+	<div class="row bg-white" ng-controller="InscriptionController as formCtrl">
+		<form ng-switch="formCtrl.form.public">
+			<h2>Renseignements personnels</h2>
+			<div ng-if="formCtrl.form.public in {'adolescent':'', 'jeune-adulte':'','adulte':'', 'personne-avec-enfants':''}" ng-include="formCtrl.individ">
+		</form>
+		
+			
+		</div>
+		
+	</div>
 
 </div>
 
