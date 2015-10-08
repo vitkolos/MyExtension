@@ -11,6 +11,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
         });
     };
+    
+    me.getFormulaire(me.formId);
 
     
     
