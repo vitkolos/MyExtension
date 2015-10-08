@@ -203,8 +203,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
     };
     me.prevPersons = function(){
-        if (me.persons > me.nbPersonsDisplayed) {
-            me.persons -= me.nbPersonsDisplayed;
+        if (me.persons >= me.nbPersonsDisplayed) {
+            me.persons -= me.nbPersons;
             me.pageNb--;
         }
         if (me.nbPersonsDisplayed !=me.nbPersons) {
