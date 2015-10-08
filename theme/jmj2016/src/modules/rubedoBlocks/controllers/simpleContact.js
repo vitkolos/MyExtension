@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','RubedoMailService',function($scope,RubedoMailService){
+angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','RubedoMailService',function($scope,$location,RubedoMailService){
     var me = this;
     var config = $scope.blockConfig;
     me.contactData={ };
@@ -10,18 +10,19 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         var payload={
             to:config.email,
             from:me.contactData.email,
-            subject:contactSnap.subject,
+            subject:contactSnap.subject
         };
         /*var destinataires = {'Nicolas':'nicolas.rhone@gmail.com' ,'Nicolas Rhoné':'nicolas.rhone@wanadoo.fr' }*/
         delete (contactSnap.subject);
         delete (contactSnap.to);
         payload.fields=contactSnap;
+        payload.fields["website"] = $location.absUrl();
+
         RubedoMailService.sendMail(payload).then(
             function(response){
                 if (response.data.success){
                     me.contactData={ };
                     me.showForm=false;
-                    $scope.dismiss();
 
                     me.showConfirmMessage=true;
                 } else {
