@@ -123,7 +123,7 @@ class MusculinepaymentResource extends AbstractResource {
 
     //authentification
     //$response = $this->getAuthAPIService()->APIAuth('musculine', 'Musc2015');
-    $response = $this->getAuthAPIService()->APIAuth('admin', 'adminCCN');
+    $response = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
     $output['token'] = $this->subTokenFilter($response['token']);
     $route['access_token'] = $output['token']['access_token'];
 
