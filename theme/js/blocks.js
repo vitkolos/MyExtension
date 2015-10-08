@@ -25,7 +25,7 @@ blocksConfig.footer={
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
             "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-553e2efb75d1d292'],
-            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js"]
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/InscriptionController.js"]
 };
 blocksConfig.sectionPresentation={
            "template": "/templates/blocks/sectionPresentation.html",
