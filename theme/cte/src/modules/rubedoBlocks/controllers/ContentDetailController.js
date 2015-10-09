@@ -3,6 +3,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
+    me.inscriptionTemplate = themePath+'/templates/blocks/inscription.html';
     var previousFields;
     me.taxonomy=[];
     me.showInscription = false; // pour les inscriptions

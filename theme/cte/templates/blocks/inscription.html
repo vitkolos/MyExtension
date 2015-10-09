@@ -1,0 +1,23 @@
+<div class="container" ng-controller="InscriptionController as formCtrl">
+        <div class="text-center">
+                <p class="capital">fiche d'inscription</p>
+                <h3>{{contentDetailCtrl.content.fields.text}}</h3>
+                <p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMMM yyyy'}}<br/><!--Description-->
+                {{contentDetailCtrl.content.fields.position.address}}</p>
+
+        </div>
+        
+        <form name="inscription_form">
+                <p>Je m'inscris comme : </p>
+        <!--Type de public -->
+                <div ng-repeat="public in formCtrl.form.fields.publics" ng-if="(formCtrl.form.fields.publics).length>1">
+                        <input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_type" ng-change="formCtrl.getTemplate()">
+                                <label for="{{public}}">{{formCtrl.getValueInStore(formCtrl.fields.publics, public)}}</label>	
+                </div>
+                
+                <div ng-include="formCtrl.template"></div>
+        </form>
+        
+
+        
+</div>
