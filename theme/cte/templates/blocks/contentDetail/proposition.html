@@ -36,7 +36,7 @@
 	</div>
 
 
-	<div class="container-fluid">
+	<div class="container-fluid" ng-if="contentDetailCtrl.showInscription">
 		<div class="row">
 			<div class="col-xs-12 bg-white" >
 				<div class="text-article">
@@ -120,7 +120,7 @@
 	</div>
 		
 		
-	<div class="container-fluid" ng-if="contentDetailCtrl.showInscription">
+	<div class="container-fluid" ng-if="!contentDetailCtrl.showInscription">
 		<div ng-init="proposition = contentDetailCtrl.content" class="row padding-large">
 			<div class="container" ng-controller="InscriptionController as formCtrl">
 				<div class="text-center">
@@ -132,11 +132,17 @@
 				</div>
 				
 				<form name="inscription">
+					<p>Je m'inscris comme : </p>
+				<!--Type de public -->
+					<div ng-repeat="public in formCtrl.form.fields.publics">
+					<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}"><label for="public1">{{public}}</label>	
+					</div>
+					<input type="checkbox" name="public_type2" id="public3"><label for="public3">Public1</label>
+					<input type="checkbox" name="public_type2" id="public4"><label for="public4">Public2</label>
 					<h2 class="capital txt-red">Informations personnelles</h2>
-					
-					<div ng-repeat="public in formCtrl.form.fields.publics">{{public}}</div>
-					<p>{{formCtrl.publics}}</p>
+					<div ng-init="field = formCtrl.getFormFieldByName('publics')">{{formCtrl.getValueInStore('adolescents')}}</div>
 				</form>
+				
 			
 				
 			</div>

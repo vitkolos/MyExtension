@@ -1,11 +1,10 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService',function($scope,RubedoContentsService){
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','$timeout',function($scope,RubedoContentsService,$timeout){
     var me = this;
     me.content = angular.copy($scope.proposition);
-    console.log(me.content);
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
     var formId = me.content.fields.formulaire;
-
+    me.form={};
     //pour récupérer les champs du formulaire
     me.getFormulaire = function (contentId){
         var options = {
@@ -15,12 +14,34 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         RubedoContentsService.getContentById(contentId, options).then(function(response){
             if (response.data.success){
                 me.form = response.data.content;
-                me.publics = JSON.stringify(me.form.fields.publics);
+                //me.publics = JSON.stringify(me.form.fields.publics);
             }
         });
     };
+    if(formId) me.getFormulaire(formId);
+    me.getFormFieldByName=function(name){
+        $timeout(function(){
+            console.log(me.form);
+            /*var field=null;
+            angular.forEach(me.form.type.fields,function(candidate){
+                if (candidate.config.name==name){
+                    field=candidate;
+                }
+            });*/
+            },1000);
+        return field;
+    };
+    me.getValueInStore = function(name) {/*
+        angular.forEach($scope.field.store.data,function(candidate){
+            if (candidate.valeur == name) {
+                return candidate.nom;
+            }
+        });*/
+    return "ok";
+    };
     
-    me.getFormulaire(formId);
+
+
 
     
     
