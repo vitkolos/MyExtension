@@ -135,7 +135,8 @@
 					<p>Je m'inscris comme : </p>
 				<!--Type de public -->
 					<div ng-repeat="public in formCtrl.form.fields.publics" ng-if="(formCtrl.form.fields.publics).length>1">
-						<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}" ng-model="inscription.public" ng-change="formCtrl.getTemplate()"><label for="{{public}}">{{public}}</label>	
+						<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}" ng-model="inscription.public_type" ng-change="formCtrl.getTemplate()">
+							<label for="{{public}}">{{formCtrl.getValueInStore(formCtrl.fields.publics, public)}}</label>	
 					</div>
 					
 					<div ng-include="formCtrl.template"></div>
