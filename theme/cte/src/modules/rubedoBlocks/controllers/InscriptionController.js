@@ -1,5 +1,8 @@
 angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','$timeout',function($scope,RubedoContentsService,$timeout){
     var me = this;
+    var themePath="/theme/"+window.rubedoConfig.siteTheme;
+    me.template=themePath+'/templates/blocks/formulaire/default.html';
+
     me.content = angular.copy($scope.proposition);
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
@@ -27,7 +30,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     field=candidate;
                 }
             });
-        },500);
+        },0);
+        return field;
     };
     me.getValueInStore = function(name) {/*
         angular.forEach($scope.field.store.data,function(candidate){
@@ -38,7 +42,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     return "ok";
     };
     
-    me.getFormFieldByName('publics');
 
 
 
