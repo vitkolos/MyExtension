@@ -101,15 +101,18 @@
 		
 	</div>
 	<a name="inscription"></a>
-	<div class="row bg-white" ng-controller="InscriptionController as formCtrl">
-		<form ng-switch="formCtrl.form.public">
+	<div ng-init="proposition = contentDetailCtrl.content" class="row bg-white">
+		<div class="container" ng-controller="InscriptionController as formCtrl">
+		<form name="inscription">
 			<h2>Renseignements personnels</h2>
-			<p>{{$scope.content}}</p>
-			<div ng-if="formCtrl.form.public in {'adolescent':'', 'jeune-adulte':'','adulte':'', 'personne-avec-enfants':''}" ng-include="formCtrl.individ">
+			
+			<div ng-repeat="public in formCtrl.form.fields.publics">{{public}}</div>
+			<p>{{formCtrl.publics}}</p>
 		</form>
 		
 			
-		</div>
+		</div></div>
+
 		
 	</div>
 </div>
