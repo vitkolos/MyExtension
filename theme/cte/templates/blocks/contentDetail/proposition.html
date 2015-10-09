@@ -135,7 +135,7 @@
 					<p>Je m'inscris comme : </p>
 				<!--Type de public -->
 					<div ng-repeat="public in formCtrl.form.fields.publics">
-					<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}"><label for="public1">{{public}}</label>	
+						<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}"><label ng-attr-for="{{public}}">{{public}}</label>	
 					</div>
 					<input type="checkbox" name="public_type2" id="public3"><label for="public3">Public1</label>
 					<input type="checkbox" name="public_type2" id="public4"><label for="public4">Public2</label>

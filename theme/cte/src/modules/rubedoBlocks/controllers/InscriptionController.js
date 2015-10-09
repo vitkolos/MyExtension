@@ -14,7 +14,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         RubedoContentsService.getContentById(contentId, options).then(function(response){
             if (response.data.success){
                 me.form = response.data.content;
-                //me.publics = JSON.stringify(me.form.fields.publics);
             }
         });
     };
@@ -22,12 +21,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.getFormFieldByName=function(name){
         $timeout(function(){
             console.log(me.form);
-            /*var field=null;
+            var field=null;
             angular.forEach(me.form.type.fields,function(candidate){
                 if (candidate.config.name==name){
                     field=candidate;
                 }
-            });*/
+            });
             },1000);
     };
     me.getValueInStore = function(name) {/*
@@ -38,6 +37,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         });*/
     return "ok";
     };
+    
     
 
 
