@@ -1,4 +1,6 @@
 {
     "Block.Inscription.Fiche": "Fiche d'inscription",
-    "Block.Inscription.InfosPerso": "Informations personnelles"
+    "Block.Inscription.InfosPerso": "Informations personnelles",
+    "Block.Inscription.Nom": "Nom",
+    "Block.Inscription.Prenom": "Prénom"
 }
