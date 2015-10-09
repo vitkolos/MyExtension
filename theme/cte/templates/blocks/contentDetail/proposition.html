@@ -11,37 +11,38 @@
 	</div>
 </div>
 <div class="bg-white" style="overflow-y: hidden">
-<header class="container-fluid content prop " style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
-	<div class="text-article container" >
-		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
-			<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
-			<h1 ng-if="fieldEditMode"
-			   ng-controller="RTEFieldController as rteFieldCtrl"
-			   ckeditor="editorOptions"
-			   contenteditable="true"
-			   ready="setCKEIsReady()"
-			   ng-model="fieldEntity[field.config.name]"
-			   output-plain-text="true"
-			   ng-bind-html="rteFieldCtrl.html">
-			</h1>
+	<header class="container-fluid content prop " style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
+		<div class="text-article container" >
+			<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+				<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+				<h1 ng-if="fieldEditMode"
+				   ng-controller="RTEFieldController as rteFieldCtrl"
+				   ckeditor="editorOptions"
+				   contenteditable="true"
+				   ready="setCKEIsReady()"
+				   ng-model="fieldEntity[field.config.name]"
+				   output-plain-text="true"
+				   ng-bind-html="rteFieldCtrl.html">
+				</h1>
+			</div>
+			<p>{{contentDetailCtrl.content.fields.position.address}}</p>
+			<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p>
+			<a href="#infos_pratiques" class="button rouge">Informations pratiques</a>
+			<a href="#inscription" class="button rouge">S'inscrire</a>
+	
+	
 		</div>
-		<p>{{contentDetailCtrl.content.fields.position.address}}</p>
-		<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p>
-		<a href="#infos_pratiques" class="button rouge">Informations pratiques</a>
-		<a href="#inscription" class="button rouge">S'inscrire</a>
+	</header>
+</div>
 
 
-	</div>
-</header></div>
-
-
-<div class="container-fluid">
+<div class="container-fluid" ng-if="!showInscription">
 	<div class="row">
-	<div class="col-xs-12 bg-white" >
-		<div class="text-article">
-			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
-		</div>
-	</div>		
+		<div class="col-xs-12 bg-white" >
+			<div class="text-article">
+				<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+			</div>
+		</div>		
 	</div>
 	<a name="infos_pratiques"></a>
 	<div class="row" >
@@ -101,6 +102,24 @@
 		
 	</div>
 	<a name="inscription"></a>
+	<div class="row" >
+		<div class="text-article">
+			<div class="col-xs-12"><h3>Inscriptions</h3></div>
+			<div ng-if="fieldEntity['inscriptionState']">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">État des incriptions</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('inscriptionState')}}"></rubedo-field>
+					<a class="button rouge" href="" ng-click="showInscription = true">S'inscrire</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	
+<div class="container-fluid" ng-if="showInscription">
 	<div ng-init="proposition = contentDetailCtrl.content" class="row bg-white">
 		<div class="container" ng-controller="InscriptionController as formCtrl">
 		<form name="inscription">
@@ -115,6 +134,8 @@
 
 		
 	</div>
+	
+	
 </div>
 
 <div style="margin-top:24px"></div>
