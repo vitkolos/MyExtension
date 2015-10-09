@@ -751,11 +751,7 @@ form[name="inscription"]{
 	position: relative;
 	padding-left: 25px;
 	margin-right: 15px;
-	font-size: 13px;
-}
-.wrapper {
-	width: 500px;
-	margin: 50px auto;
+	font-weight: normal;
 }
 input[type=radio],
 input[type=checkbox] {
@@ -765,30 +761,30 @@ label:before {
 	content: "";
 	display: inline-block;
 
-	width: 16px;
-	height: 16px;
+	width: 20px;
+	height: 20px;
 
 	margin-right: 10px;
 	position: absolute;
 	left: 0;
-	bottom: 1px;
-	background-color: #aaa;
-	box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, .3), 0px 1px 0px 0px rgba(255, 255, 255, .8);
+	vertical-align: middle;
+	background-color: white;
+	border: 1px solid @marron;
 }
 
-.radio label:before {
-	border-radius: 8px;
+ input[type=radio]:before {
+	border-radius: 10px;
 }
-.checkbox label {
+input[type=checkbox] + label {
 	margin-bottom: 10px;
 }
-.checkbox label:before {
+input[type=checkbox] + label:before {
     border-radius: 3px;
 }
 
 input[type=radio]:checked + label:before {
     content: "\2022";
-    color: #f3f3f3;
+    color: @rouge;
     font-size: 30px;
     text-align: center;
     line-height: 18px;
@@ -798,7 +794,7 @@ input[type=checkbox]:checked + label:before {
 	content: "\2713";
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
 	font-size: 15px;
-	color: #f3f3f3;
+	color: input[type=checkbox];
 	text-align: center;
     line-height: 15px;
 }
