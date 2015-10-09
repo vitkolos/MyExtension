@@ -38,7 +38,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     return "ok";
     };
     
-    
+    me.getFormFieldByName('publics');
 
 
 
