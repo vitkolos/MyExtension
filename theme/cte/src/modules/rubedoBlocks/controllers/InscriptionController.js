@@ -1,13 +1,17 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','$timeout',function($scope,RubedoContentsService,$timeout){
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService',function($scope,RubedoContentsService){
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
-    me.template=themePath+'/templates/blocks/formulaire/default.html';
-
+    $scope.inscription={};
+    me.template="";
+    me.getTemplate = function(){
+        me.template = themePath+'/templates/blocks/formulaire/'+ 'default'+'.html';//$scope.inscription.public_type
+    }
     me.content = angular.copy($scope.proposition);
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
     var formId = me.content.fields.formulaire;
     me.form={};
+    me.fields={};
     //pour récupérer les champs du formulaire
     me.getFormulaire = function (contentId){
         var options = {
@@ -17,25 +21,27 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         RubedoContentsService.getContentById(contentId, options).then(function(response){
             if (response.data.success){
                 me.form = response.data.content;
+                
+                //get fields infos
+                angular.forEach(me.form.type.fields, function(field){
+                    me.fields[field.config.name] = field;
+                });
             }
         });
     };
     me.getFormulaire(formId);
-    me.getFormFieldByName=function(name){
-            var field=null;
-            angular.forEach(me.form.type.fields,function(candidate){
-                if (candidate.config.name==name){
-                    field=candidate;
+
+    me.getLabel = function(field,name) {
+        var value = null;
+        if (field.cType == 'combobox') {
+            angular.forEach(field.store.data,function(candidate){
+                if (candidate.valeur == name) {
+                    value = candidate.nom;
                 }
             });
-        return field;
-    };
-    me.getValueInStore = function(name) {
-        angular.forEach($scope.field.store.data,function(candidate){
-            if (candidate.valeur == name) {
-                return candidate.nom;
-            }
-        });
+        }
+        
+        return value;
     };
     
 

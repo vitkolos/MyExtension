@@ -131,17 +131,14 @@
 
 				</div>
 				
-				<form name="inscription">
+				<form name="inscription_form">
 					<p>Je m'inscris comme : </p>
 				<!--Type de public -->
 					<div ng-repeat="public in formCtrl.form.fields.publics">
-						<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}"><label ng-attr-for="{{public}}">{{public}}</label>	
+						<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}" ng-model="inscription.public" ng-change="formCtrl.getTemplate()"><label for="public1">{{public}}</label>	
 					</div>
-
-					<h2 class="capital txt-red">Informations personnelles</h2>
-					<div ng-include="formCtrl.template">
-						
-					</div>
+					
+					<div ng-include="formCtrl.template"></div>
 				</form>
 				
 			
