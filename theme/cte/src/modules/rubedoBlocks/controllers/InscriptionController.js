@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
         });
     };
-    if(formId) me.getFormulaire(formId);
+    me.getFormulaire(formId);
     me.getFormFieldByName=function(name){
         $timeout(function(){
             console.log(me.form);
@@ -29,7 +29,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 }
             });*/
             },1000);
-        return field;
     };
     me.getValueInStore = function(name) {/*
         angular.forEach($scope.field.store.data,function(candidate){
