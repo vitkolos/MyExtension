@@ -134,8 +134,8 @@
 				<form name="inscription_form">
 					<p>Je m'inscris comme : </p>
 				<!--Type de public -->
-					<div ng-repeat="public in formCtrl.form.fields.publics">
-						<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}" ng-model="inscription.public" ng-change="formCtrl.getTemplate()"><label for="public1">{{public}}</label>	
+					<div ng-repeat="public in formCtrl.form.fields.publics" ng-if="(formCtrl.form.fields.publics).length>1">
+						<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}" ng-model="inscription.public" ng-change="formCtrl.getTemplate()"><label for="{{public}}">{{public}}</label>	
 					</div>
 					
 					<div ng-include="formCtrl.template"></div>
