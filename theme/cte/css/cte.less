@@ -746,7 +746,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 h2.capital{text-align: center; padding-bottom:12px; border-bottom: 2px solid}
 form[name="inscription_form"]{
   .capital.txt-red{font-size:16px !important}
-  label {
+input[type=radio]+ label, input[type=checkbox]+ label {
 	display: inline-block;
 	cursor: pointer;
 	position: relative;
@@ -758,7 +758,7 @@ input[type=radio],
 input[type=checkbox] {
 	display: none;
 }
-label:before {
+input[type=radio]+ label:before, input[type=checkbox]+ label:before {
 	content: "";
 	display: inline-block;
 	width: 20px;
@@ -798,6 +798,11 @@ input[type=checkbox]:checked + label:before {
 	text-align: center;
       line-height: 19px;
       color:@rouge;
+}
+input[type=text] + label{
+  .txt-red;
+  .capital;
+  text-align: right;
 }
 input[type=text] {
   
