@@ -3,9 +3,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
     me.template="";
-    if ( (me.form.fields.publics).length==1) {
-        me.template = themePath+'/templates/blocks/formulaire/'+ me.form.fields.publics[0]+'.html';
-    }
+
     me.getTemplate = function(){
         me.template = themePath+'/templates/blocks/formulaire/'+ 'default'+'.html';//$scope.inscription.public_type
     }
@@ -24,7 +22,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         RubedoContentsService.getContentById(contentId, options).then(function(response){
             if (response.data.success){
                 me.form = response.data.content;
-                
+                if ( (me.form.fields.publics).length==1) {
+                    me.template = themePath+'/templates/blocks/formulaire/'+ me.form.fields.publics[0]+'.html';
+                }
                 //get fields infos
                 angular.forEach(me.form.type.fields, function(field){
                     me.fields[field.config.name] = field;
