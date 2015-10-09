@@ -31,13 +31,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             });
         return field;
     };
-    me.getValueInStore = function(name) {/*
+    me.getValueInStore = function(name) {
         angular.forEach($scope.field.store.data,function(candidate){
             if (candidate.valeur == name) {
                 return candidate.nom;
             }
-        });*/
-    return "ok";
+        });
     };
     
 
