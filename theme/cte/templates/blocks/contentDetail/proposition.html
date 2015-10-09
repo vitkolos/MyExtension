@@ -1,143 +1,152 @@
 <div class=" content_border">
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-xs-12">
-<div ng-controller="BreadcrumbController as breadcrumbCtrl">
-    <ol class="breadcrumb">
-        <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
-    </ol>
-</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+					<ol class="breadcrumb">
+					    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+					</ol>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
-<div class="bg-white" style="overflow-y: hidden">
-	<header class="container-fluid content prop " style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
-		<div class="text-article container" >
-			<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
-				<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
-				<h1 ng-if="fieldEditMode"
-				   ng-controller="RTEFieldController as rteFieldCtrl"
-				   ckeditor="editorOptions"
-				   contenteditable="true"
-				   ready="setCKEIsReady()"
-				   ng-model="fieldEntity[field.config.name]"
-				   output-plain-text="true"
-				   ng-bind-html="rteFieldCtrl.html">
-				</h1>
+	<div class="bg-white" style="overflow-y: hidden">
+		<header class="container-fluid content prop " style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
+			<div class="text-article container" >
+				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+					<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+					<h1 ng-if="fieldEditMode"
+					   ng-controller="RTEFieldController as rteFieldCtrl"
+					   ckeditor="editorOptions"
+					   contenteditable="true"
+					   ready="setCKEIsReady()"
+					   ng-model="fieldEntity[field.config.name]"
+					   output-plain-text="true"
+					   ng-bind-html="rteFieldCtrl.html">
+					</h1>
+				</div>
+				<p>{{contentDetailCtrl.content.fields.position.address}}</p>
+				<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p>
+				<a href="#infos_pratiques" class="button rouge">Informations pratiques</a>
+				<a href="#inscription" class="button rouge">S'inscrire</a>
+		
+		
 			</div>
-			<p>{{contentDetailCtrl.content.fields.position.address}}</p>
-			<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p>
-			<a href="#infos_pratiques" class="button rouge">Informations pratiques</a>
-			<a href="#inscription" class="button rouge">S'inscrire</a>
-	
-	
+		</header>
+	</div>
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 bg-white" >
+				<div class="text-article">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>		
 		</div>
-	</header>
-</div>
-
-
-<div class="container-fluid" ng-if="!showInscription">
-	<div class="row">
-		<div class="col-xs-12 bg-white" >
+		<a name="infos_pratiques"></a>
+		<div class="row" >
 			<div class="text-article">
-				<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+				<div class="col-xs-12"><h3>Informations pratiques</h3></div>
+				<div ng-if="fieldEntity['dateDebut']">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">Date</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMMM'}} à  {{contentDetailCtrl.content.fields.heureDebut}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMMM yyyy'}} à  {{contentDetailCtrl.content.fields.heureFin}}</p><!--Description-->
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('complement_date')}}"></rubedo-field>
+					</div>
+				</div>
+				<div ng-if="fieldEntity['position']">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">Lieu</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<p>{{contentDetailCtrl.content.fields.position.address}}</p><!--Description-->
+					</div>
+				</div>
+				<div ng-if="fieldEntity['logement']">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">Logement</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('logement')}}"></rubedo-field><!--Description-->
+					</div>
+				</div>
+				<div ng-if="fieldEntity['transport']">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">Transport</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('transport')}}"></rubedo-field><!--Description-->
+					</div>
+				</div>
+				<div ng-if="fieldEntity['position']">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">Plan</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
+					</div>
+				</div>
+				<div ng-if="fieldEntity['contact']">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">Contact</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contact')}}"></rubedo-field><!--Contact-->
+					</div>
+				</div>			
+				<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
 			</div>
-		</div>		
-	</div>
-	<a name="infos_pratiques"></a>
-	<div class="row" >
-		<div class="text-article">
-			<div class="col-xs-12"><h3>Informations pratiques</h3></div>
-			<div ng-if="fieldEntity['dateDebut']">
-				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Date</p>
-				</div>
-				<div class="col-xs-12 col-sm-8 ">
-					<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMMM'}} à  {{contentDetailCtrl.content.fields.heureDebut}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMMM yyyy'}} à  {{contentDetailCtrl.content.fields.heureFin}}</p><!--Description-->
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('complement_date')}}"></rubedo-field>
-				</div>
-			</div>
-			<div ng-if="fieldEntity['position']">
-				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Lieu</p>
-				</div>
-				<div class="col-xs-12 col-sm-8 ">
-					<p>{{contentDetailCtrl.content.fields.position.address}}</p><!--Description-->
-				</div>
-			</div>
-			<div ng-if="fieldEntity['logement']">
-				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Logement</p>
-				</div>
-				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('logement')}}"></rubedo-field><!--Description-->
-				</div>
-			</div>
-			<div ng-if="fieldEntity['transport']">
-				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Transport</p>
-				</div>
-				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('transport')}}"></rubedo-field><!--Description-->
-				</div>
-			</div>
-			<div ng-if="fieldEntity['position']">
-				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Plan</p>
-				</div>
-				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
-				</div>
-			</div>
-			<div ng-if="fieldEntity['contact']">
-				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Contact</p>
-				</div>
-				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contact')}}"></rubedo-field><!--Contact-->
-				</div>
-			</div>			
-			<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
+			
 		</div>
-		
-	</div>
-	<a name="inscription"></a>
-	<div class="row" >
-		<div class="text-article">
-			<div class="col-xs-12"><h3>Inscriptions</h3></div>
-			<div ng-if="fieldEntity['inscriptionState']">
-				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">État des incriptions</p>
-				</div>
-				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('inscriptionState')}}"></rubedo-field>
-					<a class="button rouge" href="" ng-click="showInscription = true">S'inscrire</a>
+		<a name="inscription"></a>
+		<div class="row  bg-white" >
+			<div class="text-article">
+				<div class="col-xs-12"><h3>Inscriptions</h3></div>
+				<div ng-if="fieldEntity['inscriptionState']">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">État des incriptions</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('inscriptionState')}}"></rubedo-field>
+						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription ">S'inscrire</div>
+					</div>
 				</div>
 			</div>
 		</div>
+		<div style="padding-top:24px" class="bg-white"></div>
 	</div>
-</div>
-	
-	
-<div class="container-fluid" ng-if="showInscription">
-	<div ng-init="proposition = contentDetailCtrl.content" class="row bg-white">
-		<div class="container" ng-controller="InscriptionController as formCtrl">
-		<form name="inscription">
-			<h2>Renseignements personnels</h2>
-			
-			<div ng-repeat="public in formCtrl.form.fields.publics">{{public}}</div>
-			<p>{{formCtrl.publics}}</p>
-		</form>
 		
-			
-		</div></div>
+		
+	<div class="container-fluid" ng-if="contentDetailCtrl.showInscription">
+		<div ng-init="proposition = contentDetailCtrl.content" class="row padding">
+			<div class="container" ng-controller="InscriptionController as formCtrl">
+				<div class="text-center">
+					<p class="capital">fiche d'incription</p>
+					<h3>{{contentDetailCtrl.content.fields.text}}</h3>
+					<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMMM yyyy'}}</p><!--Description-->
+					<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 
+				</div>
+				
+				<form name="inscription">
+					<h2 class="capital txt-red">Renseignements personnels</h2>
+					
+					<div ng-repeat="public in formCtrl.form.fields.publics">{{public}}</div>
+					<p>{{formCtrl.publics}}</p>
+				</form>
+			
+				
+			</div>
+	
+			
+		</div>
+		
+		<div style="margin-top:24px"></div>
 		
 	</div>
 	
-	
-</div>
-
-<div style="margin-top:24px"></div>
 </div>
 
