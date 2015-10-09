@@ -27,7 +27,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     field=candidate;
                 }
             });
-            },1000);
+        },1000);
     };
     me.getValueInStore = function(name) {/*
         angular.forEach($scope.field.store.data,function(candidate){
