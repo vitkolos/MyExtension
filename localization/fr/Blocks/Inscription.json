@@ -12,5 +12,13 @@
     "Block.Inscription.Adresse":"Adresse",
     "Block.Inscription.CodePostal":"Code Postal",
     "Block.Inscription.Ville":"Ville",
-    "Block.Inscription.Pays":"Pays"
+    "Block.Inscription.Pays":"Pays",
+    "Block.Inscription.Classe":"Classe",
+    "Block.Inscription.Situation":"Situation",
+    "Block.Inscription.Situation.Etudiant":"Étudiant",
+    "Block.Inscription.Situation.JPro":"Jeune professionnel",
+    "Block.Inscription.Situation.Autre":"Autre situation"
+
+
+
 } 
