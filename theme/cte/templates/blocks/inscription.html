@@ -12,7 +12,7 @@
         <!--Type de public -->
                 <div ng-repeat="public in formCtrl.content.fields.publics" ng-if="(formCtrl.content.fields.publics).length>1">
                         <input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_type">
-                        <label for="{{public}}">{{formCtrl.getLabel(formCtrl.content.fields.publics, public)}}</label>	
+                        <label for="{{public}}">{{formCtrl.getLabel(contentDetailCtrl.content.fields.publics, public)}}</label>	
                 </div>
                 <div ng-switch="inscription.public_type">
                     <div ng-switch-when="adolescent" >
