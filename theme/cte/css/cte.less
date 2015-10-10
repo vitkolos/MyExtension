@@ -757,13 +757,15 @@ input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
 }
 label.sexe_label{
   background-color:transparent;
-  height: 30px; width:30px;
+  height: 36px; width:36px;
   color:@marron;
   border: 2px white solid;
-  border-radius: 15px;
-  line-height: 27px;
+  border-radius: 18px;
+  line-height: 33px;
   font-family: Montserrat;
   text-align: center;
+  cursor: pointer;
+  margin-right:25px;
 }
 input[type=radio],
 input[type=checkbox] {
@@ -801,7 +803,7 @@ input[type=radio]:checked + label:not(.sexe_label):after {
     position:absolute;
     left:0; bottom: -4px;
 }
-input[type=radio]:checked + label.sexe_label:after {
+input[type=radio]:checked + label.sexe_label {
   color:white; background-color: @txt_dark;
 }
 input[type=checkbox]:checked + label:before {
