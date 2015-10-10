@@ -9,5 +9,8 @@
     "Block.Inscription.Sexe.H":"H",
     "Block.Inscription.Sexe.F":"F",
     "Block.Inscription.Nationalite":"Nationalité",
-    "Block.Inscription.Adresse":"Adresse"
+    "Block.Inscription.Adresse":"Adresse",
+    "Block.Inscription.CodePostal":"Code Postal",
+    "Block.Inscription.Ville":"Ville",
+    "Block.Inscription.Pays":"Pays"
 } 
