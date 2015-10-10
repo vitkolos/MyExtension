@@ -825,7 +825,12 @@ input[type=text], input[type=textarea] {
 }
 input[type=text].ng-dirty.ng-invalid,  input[type=textarea].ng-dirty.ng-invalid{border:3px solid @rouge}
 }
-
+/*AUTOFILLS*/
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill{background-color: @beigeCCN !important; color:@txt_dark !important}
+input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px @beigeCCN inset; /* Change the color to your own background color */
+    -webkit-text-fill-color: @txt_dark;
+}
 ////////////////////////////////////////////////////
     ///////////MISSIONS///////////////////
 ///////////////////////////////////////////////////
