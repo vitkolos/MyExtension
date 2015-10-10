@@ -761,7 +761,7 @@ label.sexe_label{
   color:@marron;
   border: 2px white solid;
   border-radius: 18px;
-  line-height: 33px;
+  line-height: 32px;
   font-family: Montserrat;
   text-align: center;
   cursor: pointer;
@@ -804,7 +804,7 @@ input[type=radio]:checked + label:not(.sexe_label):after {
     left:0; bottom: -4px;
 }
 input[type=radio]:checked + label.sexe_label {
-  color:white; background-color: @txt_dark;
+  color:white; background-color: @txt_dark; border: none; line-height: 36px;
 }
 input[type=checkbox]:checked + label:before {
 	content: "\f00c"; font-family: 'FontAwesome';
@@ -820,10 +820,10 @@ label.label_style{
   .txt-red;
   .capital;
 }
-input[type=text] {
+input[type=text], input[type=textarea] {
   width:100%; border:3px solid white; background-color: transparent; font-family: Merriweather; font-size: 18px; padding:4px 12px;
 }
-input[type=text].ng-dirty.ng-invalid{border:3px solid @rouge}
+input[type=text].ng-dirty.ng-invalid,  input[type=textarea].ng-dirty.ng-invalid{border:3px solid @rouge}
 }
 
 ////////////////////////////////////////////////////
