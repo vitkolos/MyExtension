@@ -24,6 +24,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.form = response.data.content;
                 if ( (me.form.fields.publics).length==1) {
                     me.template = themePath+'/templates/blocks/formulaire/'+ me.form.fields.publics[0]+'.html';
+                    $scope.inscription.public_type=me.form.fields.publics[0];
                 }
                 //get fields infos
                 angular.forEach(me.form.type.fields, function(field){
