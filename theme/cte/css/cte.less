@@ -755,11 +755,18 @@ input[type=radio]+ label, input[type=checkbox]+ label {
 	margin-right: 15px;
 	font-weight: normal;
 }
+label.sexe_label{
+  background-color:transparent;
+  height: 30px; width:30px;
+  color:@marron;
+  border: 2px white solid;
+  border-radius: 15px;
+}
 input[type=radio],
 input[type=checkbox] {
 	display: none;
 }
-input[type=radio]+ label:before, input[type=checkbox]+ label:before {
+input[type=radio]:not(.sexe_label)+ label:before, input[type=checkbox]+ label:before {
 	content: "";
 	display: inline-block;
 	width: 20px;
@@ -772,7 +779,7 @@ input[type=radio]+ label:before, input[type=checkbox]+ label:before {
 	border: 1px solid @marron;
 }
 
- input[type=radio] +label:before {
+ input[type=radio]:not(.sexe_label) +label:before {
 	border-radius: 10px;
 }
 input[type=checkbox] + label {
@@ -782,7 +789,7 @@ input[type=checkbox] + label:before {
     border-radius: 3px;
 }
 
-input[type=radio]:checked + label:after {
+input[type=radio]:not(.sexe_label):checked + label:after {
     content: "\2022";
     color: @rouge;
     font-size: 48px;
