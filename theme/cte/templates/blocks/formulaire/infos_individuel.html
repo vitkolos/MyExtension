@@ -50,11 +50,14 @@
         <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.Situation")}}</label></div>
         <div class="col-sm-8">
             <input type="radio"  name="situation" id="etudiant" value="{{rubedo.translate('Block.Inscription.Situation.Etudiant')}}" ng-model="inscription.situation">
-                        <label for="etudiant">{{rubedo.translate('Block.Inscription.Situation.Etudiant')}}</label>
+                        <label for="etudiant" class="col-xs-12">{{rubedo.translate('Block.Inscription.Situation.Etudiant')}}</label>
             <input type="radio"  name="situation" id="jeunePro" value="{{rubedo.translate('Block.Inscription.Situation.JPro')}}" ng-model="inscription.situation">
-                        <label for="jeunePro">{{rubedo.translate('Block.Inscription.Situation.JPro')}}</label>
-            <input type="radio"  name="situation" id="situationAutre" value="{{rubedo.translate('Block.Inscription.Situation.Autre')}}" ng-model="inscription.situation">
+                        <label for="jeunePro" class="col-xs-12">{{rubedo.translate('Block.Inscription.Situation.JPro')}}</label>
+            <div class="col-xs-12">
+                <input type="radio"  name="situation" id="situationAutre" value="{{rubedo.translate('Block.Inscription.Situation.Autre')}}" ng-model="inscription.situation">
                         <label for="situationAutre">{{rubedo.translate("Block.Inscription.Situation.Autre")}}</label>
+                        <input type="text" name="autreSituation" id="autreSituation" ng-model="inscription.autreSituation" />
+            </div>
         </div>
     </div>
 </ng-form>
