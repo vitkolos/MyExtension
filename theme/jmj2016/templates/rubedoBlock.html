@@ -1,6 +1,5 @@
 <div ng-init="blockConfig=block.configBloc" ng-class="rubedo.componentsService.resolveResponsiveClass(block.responsive)" class="{{block.code}}">
-    <div>
-        <h1 ng-if="block.displayTitle && block.bType=='simpleText' " ng-class="{'titre-section' : block.bType=='simpleText'}" scroll-delay="">{{block.title}}</h1>
-    </div>
+
     <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)" ng-class="{'text-section' : block.bType=='simpleText'}"></div>
+    <h4 ng-if="block.displayTitle">{{block.title}}</h4>
 </div>
