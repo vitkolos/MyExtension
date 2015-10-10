@@ -17,8 +17,11 @@
     "Block.Inscription.Situation":"Situation",
     "Block.Inscription.Situation.Etudiant":"Étudiant",
     "Block.Inscription.Situation.JPro":"Jeune professionnel",
-    "Block.Inscription.Situation.Autre":"Autre situation"
-
+    "Block.Inscription.Situation.Autre":"Autre situation",
+    "Block.Inscription.Profession":"Profession",
+    "Block.Inscription.Contact":"Contact",
+    "Block.Inscription.Email":"Email",
+    "Block.Inscription.Email.Verification":"Email (vérification)"
 
 
 } 
