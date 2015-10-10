@@ -8,7 +8,7 @@
         </div>
         
         <form name="inscription_form" novalidate>
-                <p>Je m'inscris comme : </p>
+                <p ng-if="(formCtrl.content.fields.publics).length>1">Je m'inscris comme : </p>
         <!--Type de public -->
                 <div ng-repeat="public in formCtrl.content.fields.publics" ng-if="(formCtrl.content.fields.publics).length>1">
                         <input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_type">
