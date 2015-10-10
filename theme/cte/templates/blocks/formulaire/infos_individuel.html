@@ -71,11 +71,11 @@
     <h2 class="capital txt-red">{{rubedo.translate("Block.Inscription.Contact", "Contact")}}</h2>
     <div class="row">
         <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}</label></div>
-        <div class="col-sm-8"><input type="email" id="email" name="email"  ng-model="inscription.email" required></div>
+        <div class="col-sm-8"><input type="email" id="email" name="email"  ng-model="inscription.email" placeholder="user@mydomain.com" required></div>
     </div>    
     <div class="row">
         <div class="col-sm-4"><label for="email_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}</label></div>
-        <div class="col-sm-8"><input type="email" id="email_verif" name="email_verif"  ng-model="inscription.email_verif" required></div>
+        <div class="col-sm-8"><input type="email" id="email_verif" name="email_verif" placeholder="user@mydomain.com" ng-model="inscription.email_verif" required></div>
     </div>
 </ng-form>
 
