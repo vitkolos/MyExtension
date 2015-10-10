@@ -15,7 +15,8 @@
                         <label for="{{public}}">{{formCtrl.getLabel(formCtrl.fields.publics, public)}}</label>	
                 </div>
                 <div ng-switch="inscription.public_type">
-                    <div ng-switch-when="adolescent"  ng-include="formCtrl.infos_individuel">
+                    <div ng-switch-when="adolescent" >
+                        <div  ng-include="formCtrl.infos_individuel"></div>
                     </div>
                 </div>
                 
