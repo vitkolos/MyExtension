@@ -4,5 +4,8 @@
     "Block.Inscription.Nom": "Nom",
     "Block.Inscription.Prenom": "Prénom",
     "Block.Inscription.DateNaiss":"Date de naissance",
-    "Block.Inscription.DateFormat":"jj/mm/aaaa"
+    "Block.Inscription.DateFormat":"jj/mm/aaaa",
+    "Block.Inscription.Sexe":"Sexe",
+    "Block.Inscription.Sexe.H":"H",
+    "Block.Inscription.Sexe.F":"F"    
 }
