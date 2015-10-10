@@ -3,10 +3,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
     me.template="";
-
-    me.getTemplate = function(){
+    me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+    /*me.getTemplate = function(){
         me.template = themePath+'/templates/blocks/formulaire/'+ $scope.inscription.public_type+'.html';//$scope.inscription.public_type
-    }
+    }*/
     me.content = angular.copy($scope.proposition);
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;

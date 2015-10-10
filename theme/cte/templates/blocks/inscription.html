@@ -14,8 +14,10 @@
                         <input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_type" ng-change="formCtrl.getTemplate()">
                         <label for="{{public}}">{{formCtrl.getLabel(formCtrl.fields.publics, public)}}</label>	
                 </div>
-                
-                <div ng-include="formCtrl.template"></div>
+                <div ng-switch="inscription.public_type">
+                    <div ng-switch-when="adolescent"  ng-include="formCtrl.infos_individuel">
+                    </div>
+                </div>
                 
                 {{inscription}}
         </form>
