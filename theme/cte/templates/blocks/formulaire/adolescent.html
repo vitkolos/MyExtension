@@ -2,13 +2,20 @@
 <!--<div ng-repeat="public in formCtrl.form.fields.publics">
     <input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}"><label ng-attr-for="{{public}}">{{formCtrl.getValueInStore(formCtrl.fields.publics, public)}}</label>	
 </div>-->
+<ng-form name="infos_personnelles">
     <h2 class="capital txt-red">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}</h2>
     <!--NOM-->
     <div class="row">
         <div class="col-sm-4"><label for="nom" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}</label></div>
-        <div class="col-sm-8"><input type="text" id="nom" ng-model="inscription.nom"></div>
+        <div class="col-sm-8"><input type="text" id="nom" ng-model="inscription.nom" name="name" required></div>
     </div>
     <div class="row">
         <div class="col-sm-4"><label for="prenom" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}</label></div>
-        <div class="col-sm-8"><input type="text" id="prenom" ng-model="inscription.prenom"></div>
+        <div class="col-sm-8"><input type="text" id="prenom" ng-model="inscription.prenom" name="surname" required></div>
     </div>
+    <div class="row">
+        <div class="col-sm-4"><label for="dateNaiss" class="label_style">{{rubedo.translate("Block.Inscription.DateNaiss")}}</label></div>
+        <div class="col-sm-8"><input type="text" id="dateNaiss" ng-model="inscription.dateNaiss" name="birthdate" required ng-pattern="/\d{2}/\d{2}/\d{4}/" placeholder='{{rubedo.translate("Block.Inscription.DateFormat")}}'></div>
+    </div>    
+</ng-form>
+

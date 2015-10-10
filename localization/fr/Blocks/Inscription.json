@@ -2,5 +2,7 @@
     "Block.Inscription.Fiche": "Fiche d'inscription",
     "Block.Inscription.InfosPerso": "Informations personnelles",
     "Block.Inscription.Nom": "Nom",
-    "Block.Inscription.Prenom": "Prénom"
+    "Block.Inscription.Prenom": "Prénom",
+    "Block.Inscription.DateNaiss":"Date de naissance",
+    "Block.Inscription.DateFormat":"jj/mm/aaaa"
 }
