@@ -747,7 +747,7 @@ h2.capital{text-align: center; padding-bottom:12px; border-bottom: 2px solid}
 form[name="inscription_form"]{
   .row{margin-bottom:12px}
   .capital.txt-red{font-size:16px !important}
-input[type=radio]+ label, input[type=checkbox]+ label {
+input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
 	display: inline-block;
 	cursor: pointer;
 	position: relative;
@@ -761,12 +761,15 @@ label.sexe_label{
   color:@marron;
   border: 2px white solid;
   border-radius: 15px;
+  line-height: 27px;
+  font-family: Montserrat;
+  text-align: center;
 }
 input[type=radio],
 input[type=checkbox] {
 	display: none;
 }
-input[type=radio]:not(.sexe_label)+ label:before, input[type=checkbox]+ label:before {
+input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:before {
 	content: "";
 	display: inline-block;
 	width: 20px;
@@ -779,7 +782,7 @@ input[type=radio]:not(.sexe_label)+ label:before, input[type=checkbox]+ label:be
 	border: 1px solid @marron;
 }
 
- input[type=radio]:not(.sexe_label) +label:before {
+ input[type=radio] +label:not(.sexe_label):before {
 	border-radius: 10px;
 }
 input[type=checkbox] + label {
@@ -789,7 +792,7 @@ input[type=checkbox] + label:before {
     border-radius: 3px;
 }
 
-input[type=radio]:not(.sexe_label):checked + label:after {
+input[type=radio]:checked + label:not(.sexe_label):after {
     content: "\2022";
     color: @rouge;
     font-size: 48px;
@@ -798,7 +801,9 @@ input[type=radio]:not(.sexe_label):checked + label:after {
     position:absolute;
     left:0; bottom: -4px;
 }
-
+input[type=radio]:checked + label.sexe_label:after {
+  color:white; background-color: @txt_dark;
+}
 input[type=checkbox]:checked + label:before {
 	content: "\f00c"; font-family: 'FontAwesome';
 	text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
