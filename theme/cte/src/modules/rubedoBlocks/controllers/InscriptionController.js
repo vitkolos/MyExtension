@@ -11,12 +11,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
     var formId = me.content.fields.formulaire;
-    if ( (me.fields.publics).length==1) {
-        $scope.inscription.public_type=me.fields.publics[0];
+    if ( (me.content.fields.publics).length==1) {
+        $scope.inscription.public_type=me.content.fields.publics[0];
     }
     
-    
-    $scope.inscription.public_type
     me.form={};
     me.fields={};
     //pour récupérer les champs du formulaire
