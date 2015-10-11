@@ -55,7 +55,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     //telephones
     $scope.isTelephoneRequired = function () {
-        if(inscription.public_type == 'adolescent')
+        if($scope.inscription.public_type == 'adolescent')
             return !($scope.inscription.tel1 || $scope.inscription.tel2 || $scope.inscription.tel2Pers2);
         else
             return  !($scope.inscription.tel1 || $scope.inscription.tel2);
