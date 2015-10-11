@@ -79,10 +79,10 @@
     </div>
     <div class="row">
         <div class="col-sm-4"><label for="tel1" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
-        <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="inscription.tel1" placeholder="" required></div>
+        <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="inscription.tel1" placeholder="+33/x xx xx xx xx"  ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s){8}/" required></div>
     </div>    
     <div class="row">
         <div class="col-sm-4"><label for="tel2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
-        <div class="col-sm-8"><input type="text" id="tel2" name="tel2" placeholder="" ng-model="inscription.tel2" ng-pattern='{{rubedo.translate("Block.Inscription.Telephone.Pattern")}}' required></div>
+        <div class="col-sm-8"><input type="text" id="tel2" name="tel2" placeholder="+33/x xx xx xx xx" ng-model="inscription.tel2" ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s){8}/" required></div>
     </div></ng-form>
 
