@@ -100,11 +100,11 @@
             <p class="infos_validation" ng-class=" {'txt-red' : isTelephoneRequired()}">** {{rubedo.translate("Block.Inscription.Telephone.Condition.Ados")}}</p>
         </div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="inscription.public_type == 'adolescent' ">
         <div class="col-sm-4"><label for="emailPers2" class="label_style">{{rubedo.translate("Block.Inscription.Email.Parent")}}</label></div>
         <div class="col-sm-8"><input type="email" id="emailPers2" name="emailPers2"  ng-model="inscription.emailPers2" placeholder="user@mydomain.com" required></div>
     </div>    
-    <div class="row">
+    <div class="row" ng-if="inscription.public_type == 'adolescent' ">
         <div class="col-sm-4"><label for="emailPers2_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Parent.Verification")}}</label></div>
         <div class="col-sm-8"><input type="email" id="emailPers2_verif" name="emailPers2_verif" placeholder="user@mydomain.com" ng-model="inscription.emailPers2_verif" required></div>
     </div>

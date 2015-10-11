@@ -23,7 +23,7 @@
     "Block.Inscription.Email":"Email",
     "Block.Inscription.Email.Verification":"Email (vérification)",
     "Block.Inscription.Email.Parent":"Email d'un des parents",
-    "Block.Inscription.Email..Parent.Verification":"Email d'un des parents (vérification)",
+    "Block.Inscription.Email.Parent.Verification":"Email d'un des parents (vérification)",
     "Block.Inscription.Telephone.Fixe":"Téléphone fixe",
     "Block.Inscription.Telephone.Portable":"Téléphone portable",
     "Block.Inscription.Telephone.Portable.Parents":"Téléphone portable d'un des parents",
