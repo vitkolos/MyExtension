@@ -1,4 +1,4 @@
-<div ng-controller="MediaListController as mediaListCtrl" class="row bg-videos padding-tb">
+<div ng-controller="MediaListController as mediaListCtrl" class="row bg-videos padding-tb" >
     <div ng-if="mediaListCtrl.display" class="container">
         <div class="col-xxs-6 col-xs-6 text-center" ng-repeat="media in mediaListCtrl.media track by $index" style="border:2px solid white">
              {{ media.title }}
