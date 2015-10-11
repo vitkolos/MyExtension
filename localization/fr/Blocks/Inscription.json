@@ -24,7 +24,7 @@
     "Block.Inscription.Email.Verification":"Email (vérification)",
     "Block.Inscription.Telephone.Fixe":"Téléphone fixe",
     "Block.Inscription.Telephone.Portable":"Téléphone portable",
-    "Block.Inscription.Telephone.Pattern":"/(0|\+33|0033)\/?[1-9]\s?([0-9]\s){8}/"
+    "Block.Inscription.Telephone.Pattern": /(0|\+33|0033)\/?[1-9]\s?([0-9]\s){8}/
 
 
 } 
