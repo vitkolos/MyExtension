@@ -8,7 +8,7 @@
 <div class="container article">
     <div class="row">
 	<div class="col-xs-12">
-		<div class="pull-left date" ng-if="rubedo.current.user">{{contentDetailCtrl.content.createTime*1000 | date:'dd'}}<br/><span>{{contentDetailCtrl.content.createTime*1000 | date:'MMM'}}</span></div>
+		<p class="pull-left date" ng-if="rubedo.current.user">{{contentDetailCtrl.content.createTime*1000 | date:'dd'}}<br/><span>{{contentDetailCtrl.content.createTime*1000 | date:'MMM'}}</span></p>
 	    <h1 ng-if="!fieldEditMode">{{fieldEntity['text'] |uppercase}}</h1>
 	    <h1 ng-if="fieldEditMode"
 	       ng-controller="RTEFieldController as rteFieldCtrl"
