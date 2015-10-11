@@ -77,5 +77,12 @@
         <div class="col-sm-4"><label for="email_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}</label></div>
         <div class="col-sm-8"><input type="email" id="email_verif" name="email_verif" placeholder="user@mydomain.com" ng-model="inscription.email_verif" required></div>
     </div>
-</ng-form>
+    <div class="row">
+        <div class="col-sm-4"><label for="tel1" class="label_style">{{rubedo.translate("Block.Inscription.Telephone1")}}**</label></div>
+        <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="inscription.tel1" placeholder="" required></div>
+    </div>    
+    <div class="row">
+        <div class="col-sm-4"><label for="tel2" class="label_style">{{rubedo.translate("Block.Inscription.Email.Telephone2")}}**</label></div>
+        <div class="col-sm-8"><input type="text" id="tel2" name="tel2" placeholder="" ng-model="inscription.tel2" ng-pattern="/(0|\\+33|0033)/?[1-9][0-9]{8}/" required></div>
+    </div></ng-form>
 
