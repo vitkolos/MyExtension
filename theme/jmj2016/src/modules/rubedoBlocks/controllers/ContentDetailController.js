@@ -175,6 +175,21 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     
+                    if (me.content.fields.author_jmj) {
+                        me.auteur_jmj ={};
+                        var options_auteur = {
+                            siteId: $scope.rubedo.current.site.id,
+                            pageId: $scope.rubedo.current.page.id
+                        };
+                        RubedoContentsService.getContentById(me.content.fields.author_jmj, options_auteur).then(
+                            function(response){
+                                if(response.data.success){
+                                    me.auteur_jmj = response.data.content;
+                                    console.log(me.auteur_jmj);
+                                }
+                            });
+                    };
+                    
                     
                     
                     if(me.customLayout){
