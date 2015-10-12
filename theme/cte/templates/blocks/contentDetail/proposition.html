@@ -36,7 +36,7 @@
 	</div>
 
 
-	<div class="container-fluid" ng-if="contentDetailCtrl.showInscription">
+	<div class="container-fluid" ng-if="!contentDetailCtrl.showInscription">
 		<div class="row">
 			<div class="col-xs-12 bg-white" >
 				<div class="text-article">
@@ -120,7 +120,7 @@
 	</div>
 		
 		
-	<div class="container-fluid" ng-if="!contentDetailCtrl.showInscription">
+	<div class="container-fluid" ng-if="contentDetailCtrl.showInscription" >
 		<div ng-init="proposition = contentDetailCtrl.content" class="row padding-large" ng-include="contentDetailCtrl.inscriptionTemplate">
 			
 	
