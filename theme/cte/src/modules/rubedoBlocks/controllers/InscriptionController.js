@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.inscription={};
     me.template="";
     me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
-    me.transport = themePath+'/templates/blocks/formulaire/questions.html';
+    me.questions = themePath+'/templates/blocks/formulaire/questions.html';
     /*me.getTemplate = function(){
         me.template = themePath+'/templates/blocks/formulaire/'+ $scope.inscription.public_type+'.html';//$scope.inscription.public_type
     }*/
