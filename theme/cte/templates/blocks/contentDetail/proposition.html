@@ -114,7 +114,10 @@
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('publics')}}"></rubedo-field>
 						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription ">S'inscrire</div>
 						<div class="button rouge cursor-as-pointer">S'inscrire au service</a>
-
+					</div>
+					<div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte' ">
+						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.publics).length>0">S'inscrire</div>
+						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.public_service).length>0">S'inscrire</div>
 					</div>
 				</div>
 			</div>
