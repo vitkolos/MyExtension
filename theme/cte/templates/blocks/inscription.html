@@ -12,15 +12,16 @@
             <p>{rubedo.translate("Block.Inscription.Attente.Ligne3", "Les frais d'inscription vous seront demandés à la confirmation de votre inscription.")}}</p>
             
         </div>
-        <div ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente' " class="text-center">
-        </div>
+        <div ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'libre' " class="text-center">
+             <p>{rubedo.translate("Block.Inscription.Libre", "La proposition choisie est complète.")}}</p>
+       </div>
         
         <form name="inscription_form" novalidate ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'">
                 <p ng-if="(formCtrl.content.fields.publics).length>1">Je m'inscris comme : </p>
         <!--Type de public -->
                 <div ng-repeat="public in formCtrl.content.fields.publics" ng-if="(formCtrl.content.fields.publics).length>1">
                         <input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_type">
-                        <label for="{{public}}">{{formCtrl.getLabel(contentDetailCtrl.content.fields.publics, public)}}</label>	
+                        <label for="{{public}}">{{formCtrl.getLabel(contentDetailCtrl.content.type.fields[0], public)}}</label>	<!--Attention, ce label dépend du format de type de contenu-->
                 </div>
                 <div ng-switch="inscription.public_type">
                     <div ng-switch-when="adolescent" >
