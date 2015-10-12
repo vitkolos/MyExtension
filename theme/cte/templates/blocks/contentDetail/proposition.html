@@ -110,13 +110,14 @@
 						<p class="capital">État des incriptions</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
-						<rubedo-field ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState != 'attente' || fieldEditMode " field =  "{{contentDetailCtrl.getFieldByName('inscriptionState')}}"></rubedo-field>
+						<rubedo-field ng-if=" (contentDetailCtrl.content.fields.inscriptionState.inscriptionState != 'attente') || fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('inscriptionState')}}"></rubedo-field>
 						<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('publics')}}"></rubedo-field>
 						<div ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente' ">
 						        <p>{{rubedo.translate("Block.Inscription.Attente.Ligne1", "La proposition choisie est complète.")}}</p>
 							<p>{{rubedo.translate("Block.Inscription.Attente.Ligne2", "Vous pouvez vous inscrire sur liste d'attente.")}}</p>
 							<p>{{rubedo.translate("Block.Inscription.Attente.Ligne3", "Les frais d'inscription vous seront demandés à la confirmation de votre inscription.")}}</p>
 						</div>
+						{{contentDetailCtrl.content.fields.inscriptionState.inscriptionState}}
 						
 
 						
