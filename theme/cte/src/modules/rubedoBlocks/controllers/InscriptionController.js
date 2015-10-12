@@ -2,12 +2,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
-    me.template="";
     me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
     me.questions = themePath+'/templates/blocks/formulaire/questions.html';
-    /*me.getTemplate = function(){
-        me.template = themePath+'/templates/blocks/formulaire/'+ $scope.inscription.public_type+'.html';//$scope.inscription.public_type
-    }*/
+
     me.content = angular.copy($scope.proposition);
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
@@ -27,10 +24,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         RubedoContentsService.getContentById(contentId, options).then(function(response){
             if (response.data.success){
                 me.form = response.data.content;
-                if ( (me.form.fields.publics).length==1) {
-                    me.template = themePath+'/templates/blocks/formulaire/'+ me.form.fields.publics[0]+'.html';
-                    $scope.inscription.public_type=me.form.fields.publics[0];
-                }
+
                 //get fields infos
                 angular.forEach(me.form.type.fields, function(field){
                     me.fields[field.config.name] = field;
@@ -46,6 +40,13 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             angular.forEach(field.store.data,function(candidate){
                 if (candidate.valeur == name) {
                     value = candidate.nom;
+                }
+            });
+        }
+        else if (field.cType == 'checkboxgroup') {
+            angular.forEach(field.config.items,function(candidate){
+                if (candidate.inputValue == name) {
+                    value = candidate.boxLabel;
                 }
             });
         }
