@@ -9,6 +9,14 @@
     <div class="row">
 	<div class="col-xs-12">
 		<p class="pull-left date">{{contentDetailCtrl.content.createTime*1000 | date:'dd'}}<br/><span>{{contentDetailCtrl.content.createTime*1000 | date:'MMM'}}</span></p>
+		<div class="pull-left" ng-if="rubedo.current.user">
+			<img class="img-circle" ng-if="contentDetailCtrl.auteur_jmj.fields.image" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.auteur_jmj.fields.image,{height:'60px'}) }}"
+                         alt="{{ contentDetailCtrl.auteur_jmj.text}}"/>
+			<p>par <b>{{contentDetailCtrl.auteur_jmj.text}}</b><br/>
+			{{contentDetailCtrl.auteur_jmj.fields.summary}}</p>
+			
+		</div>
+		
 	    <h1 ng-if="!fieldEditMode">{{fieldEntity['text'] |uppercase}}</h1>
 	    <h1 ng-if="fieldEditMode"
 	       ng-controller="RTEFieldController as rteFieldCtrl"
