@@ -1,7 +1,8 @@
 {
     "Block.Inscription.Attente.Ligne1":"La proposition choisie est complète.",
     "Block.Inscription.Attente.Ligne2":"Vous pouvez vous inscrire sur liste d'attente.",
-    "Block.Inscription.Attente.Ligne3":"Les frais d'inscription vous seront demandés à la confirmation de votre inscription."
+    "Block.Inscription.Attente.Ligne3":"Les frais d'inscription vous seront demandés à la confirmation de votre inscription.",
+    "Block.Inscription.Libre":"Accès libre, pas d'inscription nécessaire.",
     "Block.Inscription.Fiche": "Fiche d'inscription",
     "Block.Inscription.InfosPerso": "Informations personnelles",
     "Block.Inscription.Nom": "Nom",

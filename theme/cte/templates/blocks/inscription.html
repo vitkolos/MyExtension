@@ -12,6 +12,8 @@
             <p>{rubedo.translate("Block.Inscription.Attente.Ligne3", "Les frais d'inscription vous seront demandés à la confirmation de votre inscription.")}}</p>
             
         </div>
+        <div ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente' " class="text-center">
+        </div>
         
         <form name="inscription_form" novalidate ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'">
                 <p ng-if="(formCtrl.content.fields.publics).length>1">Je m'inscris comme : </p>
