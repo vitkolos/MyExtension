@@ -185,7 +185,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             function(response){
                                 if(response.data.success){
                                     me.auteur_jmj = response.data.content;
-                                    console.log(me.auteur_jmj);
                                 }
                             });
                     };

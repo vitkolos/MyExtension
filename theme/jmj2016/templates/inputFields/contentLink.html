@@ -1,0 +1,13 @@
+<div class="form-group" ng-controller="ContentChoiceController as contentLinkCtrl">
+    <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="col-sm-4 control-label">{{field.config.fieldLabel}}</label>
+    <div class="col-sm-8">
+        <select 
+                class="form-control"
+                id="{{fieldIdPrefix+'_'+field.config.name}}"
+                ng-required="!field.config.allowBlank"
+                ng-options="content.id as content.title for content in contentLinkCtrl.contents"
+                ng-model="fieldEntity[field.config.name]"
+                ></select>
+        <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
+    </div>
+</div>
