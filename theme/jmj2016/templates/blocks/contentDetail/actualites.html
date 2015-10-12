@@ -8,7 +8,7 @@
 <div class="container article">
     <div class="row">
 	<div class="col-xs-12">
-		<h1 ng-if="!fieldEditMode">{{fieldEntity['text'] |uppercase}}</h1>
+		<h1 ng-if="!fieldEditMode" style="margin-bottom:12px">{{fieldEntity['text'] |uppercase}}</h1>
 		<h1 ng-if="fieldEditMode"
 		   ng-controller="RTEFieldController as rteFieldCtrl"
 		   ckeditor="editorOptions"
@@ -24,7 +24,7 @@
 			<img class="img-circle pull-left" ng-if="contentDetailCtrl.auteur_jmj.fields.image" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.auteur_jmj.fields.image,{height:'65px'}) }}"
                          alt="{{ contentDetailCtrl.auteur_jmj.text}}" style="margin-right:5px"/>
 			<div class="pull-left">
-				<h3 style="margin:0">{{rubedo.translate("Contents.PublishedBy", "published by")}}<b>{{contentDetailCtrl.auteur_jmj.text}}</b></h3>
+				<h3 style="margin:0">{{rubedo.translate("Contents.PublishedBy", "published by")}} <b>{{contentDetailCtrl.auteur_jmj.text}}</b></h3>
 				<p style="margin-top:0">{{contentDetailCtrl.auteur_jmj.fields.summary}}</p>
 			</div>
 		</div>
