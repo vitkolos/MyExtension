@@ -36,7 +36,7 @@
 	</div>
 
 
-	<div class="container-fluid" ng-if="!contentDetailCtrl.showInscription">
+	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 bg-white" >
 				<div class="text-article">
@@ -59,7 +59,7 @@
 				</div>
 				<div ng-if="fieldEntity['position']">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital">Lieu</p>
+						<p class="capital">{{contentDetailCtrl.getLabelByName('lieuCommunautaire')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<p>{{contentDetailCtrl.content.fields.position.address}}</p><!--Description-->
@@ -67,7 +67,7 @@
 				</div>
 				<div ng-if="fieldEntity['logement']">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital">Logement</p>
+						<p class="capital">{{contentDetailCtrl.getLabelByName('logement')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('logement')}}"></rubedo-field><!--Description-->
@@ -75,7 +75,7 @@
 				</div>
 				<div ng-if="fieldEntity['transport']">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital">Transport</p>
+						<p class="capital">{{contentDetailCtrl.getLabelByName('transport')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('transport')}}"></rubedo-field><!--Description-->
@@ -83,7 +83,7 @@
 				</div>
 				<div ng-if="fieldEntity['position']">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital">Plan</p>
+						<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
@@ -91,7 +91,7 @@
 				</div>
 				<div ng-if="fieldEntity['contact']">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital">Contact</p>
+						<p class="capital">{{contentDetailCtrl.getLabelByName('contact')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contact')}}"></rubedo-field><!--Contact-->
@@ -117,10 +117,16 @@
 							<p>{{rubedo.translate("Block.Inscription.Attente.Ligne3", "Les frais d'inscription vous seront demandés à la confirmation de votre inscription.")}}</p>
 						</div>
 					</div>
-					<div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte' ">
-						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription">
+					<div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte' && contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription' ">
+						<!--si un seul public accueilli-->
+						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
 							S'inscrire
 						</div>
+						<!--si un plusieurs types de public accueillis-->
+						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1">
+							<div class="button rouge cursor-as-pointer"  >S'inscrire comme :</div>
+							
+						</div>						
 						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.public_service).length>0">S'inscrire au service</div>
 					</div>
 				</div>

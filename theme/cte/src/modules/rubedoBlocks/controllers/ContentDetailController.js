@@ -24,6 +24,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field;
     };
+    me.getLabelByName=function(name){
+        var field=null;
+        angular.forEach(me.content.type.fields,function(candidate){
+            if (candidate.config.name==name){
+                field=candidate;
+            }
+        });
+        return field.config.fieldLabel;
+    };
+
     me.getTermInTaxo=function(taxoKey,termId){
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
