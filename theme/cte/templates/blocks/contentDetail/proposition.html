@@ -117,7 +117,7 @@
 							<p>{{rubedo.translate("Block.Inscription.Attente.Ligne3", "Les frais d'inscription vous seront demandés à la confirmation de votre inscription.")}}</p>
 						</div>
 					</div>
-					<div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte' && contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription' ">
+					<div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte' || contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription' ">
 						<!--si un seul public accueilli-->
 						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
 							S'inscrire
@@ -125,9 +125,25 @@
 						<!--si un plusieurs types de public accueillis-->
 						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1">
 							<div class="button rouge cursor-as-pointer"  >S'inscrire comme :</div>
-							
+							        <!--Type de public -->
+								<div ng-repeat="public in contentDetailCtrl.content.fields.publics">
+									<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_type">
+									<label for="{{public}}">{{formCtrl.getLabel(contentDetailCtrl.content.type.fields[19], public)}} </label>	<!--Attention, ce label dépend du format de type de contenu-->
+								</div>
 						</div>						
-						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.public_service).length>0">S'inscrire au service</div>
+						<!--si un seul public au service-->
+						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.public_service).length==1">
+							S'inscrire au service
+						</div>
+						<!--si un plusieurs types de public au service-->
+						<div ng-if="(contentDetailCtrl.content.fields.public_service).length>1">
+							<div class="button rouge cursor-as-pointer"  >S'inscrire  au service comme :</div>
+							        <!--Type de public -->
+								<div ng-repeat="public in contentDetailCtrl.content.fields.public_service">
+									<input type="radio"  name="public_service" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_service">
+									<label for="{{public}}">{{formCtrl.getLabel(contentDetailCtrl.content.type.fields[19], public)}} </label>	<!--Attention, ce label dépend du format de type de contenu-->
+								</div>
+						</div>						
 					</div>
 				</div>
 			</div>
