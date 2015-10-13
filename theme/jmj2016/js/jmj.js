@@ -17,7 +17,6 @@ blocksConfig.contentDetail = {
 };
 blocksConfig.facebook={
            "template": "/templates/blocks/facebook.html",
-           "externalDependencies":['http://pc035860.github.io/angular-easyfb/angular-easyfb.min.js'],
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
 };
 angular.module('rubedoBlocks').directive('scrollToAnchor', function ($location, $anchorScroll) {
