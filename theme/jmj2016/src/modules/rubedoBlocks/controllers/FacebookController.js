@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope',function($scope){
+angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope','$timeout',function($scope,$timeout){
     var me = this;
     var config = $scope.blockConfig;
     me.showFaces = true;
@@ -27,5 +27,10 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope',fu
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
     };
-    me.loadFcb();
+    $timeout(function() {
+            me.me.loadFcb()
+        }, 1000);
 }]);
+
+
+
