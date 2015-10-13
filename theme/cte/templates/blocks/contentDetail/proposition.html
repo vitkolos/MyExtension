@@ -119,11 +119,11 @@
 					</div>
 					<div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte' || contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription' ">
 						<!--si un seul public accueilli-->
-						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
+						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
 							S'inscrire
 						</div>
 						<!--si un plusieurs types de public accueillis-->
-						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1">
+						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1" class="col-xs-6">
 							<div class="button rouge cursor-as-pointer"  >S'inscrire comme :</div>
 							        <!--Type de public -->
 								<div ng-repeat="public in contentDetailCtrl.content.fields.publics">
@@ -132,12 +132,12 @@
 								</div>
 						</div>						
 						<!--si un seul public au service-->
-						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.public_service).length==1">
+						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.public_service).length==1">
 							S'inscrire au service
 						</div>
 						<!--si un plusieurs types de public au service-->
-						<div ng-if="(contentDetailCtrl.content.fields.public_service).length>1">
-							<div class="button rouge cursor-as-pointer"  >S'inscrire  au service comme :</div>
+						<div ng-if="(contentDetailCtrl.content.fields.public_service).length>1" class="col-xs-6">
+							<div class="button rouge cursor-as-pointer"  >S'inscrire  au service :</div>
 							        <!--Type de public -->
 								<div ng-repeat="public in contentDetailCtrl.content.fields.public_service">
 									<input type="radio"  name="public_service" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_service">
