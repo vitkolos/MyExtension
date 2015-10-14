@@ -71,7 +71,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             RubedoContentsService.getContentById(questionId, options).then(function(response){
                 if (response.data.success){
                     var questionReponse= response.data.content;
-                    switch (question.fields.categorie.categorie) {
+                    switch (questionReponse.fields.categorie.categorie) {
                         case "complementaire": me.form.questions.complementaires.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                         case "transport": me.form.questions.transport.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                         case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
