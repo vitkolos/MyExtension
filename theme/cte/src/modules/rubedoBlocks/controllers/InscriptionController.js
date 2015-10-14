@@ -10,10 +10,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var propositionTitle = me.content.text;
     var formId = me.content.fields.formulaire;
     //surveiller si le type de formulaire est changé
-    $scope.$watch("contentDetailCtrl.content.public + contentDetailCtrl.content.service", function(newValue, oldValue) {
-        $scope.inscription.public_type=contentDetailCtrl.content.public;
-        $scope.inscription.serviteur=contentDetailCtrl.content.service;
-        console.log(contentDetailCtrl.content.service +" "+contentDetailCtrl.content.public);
+    $scope.$watch("[contentDetailCtrl.content.public, contentDetailCtrl.content.service]", function(newValue, oldValue) {
+        $scope.inscription.public_type=newValue[0];
+        $scope.inscription.serviteur=newValue[1];
+        console.log(newValue[0] +" "+newValue[1]);
 });
 
     me.form={};
