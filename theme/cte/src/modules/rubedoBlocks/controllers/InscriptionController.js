@@ -76,13 +76,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     
     me.getFormulaire(formId);
-    if (test) {
-        //code
-    }
- 
- 
- 
- 
+  
  
     // VALIDATIONS
     
