@@ -76,7 +76,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         case "transport": me.form.questions.transport.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                         case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                         case "generale": me.form.questions.generale.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
-                    }
+                    };
                 }
             });
             
