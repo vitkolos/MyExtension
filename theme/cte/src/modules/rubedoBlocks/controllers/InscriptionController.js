@@ -9,14 +9,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
     var formId = me.content.fields.formulaire;
-    if (me.content.public) {
-        $scope.inscription.public_type=me.content.public;
-        $scope.inscription.serviteur=false;
-    }
-    else if (me.content.public_service) {
-        $scope.inscription.public_type=me.content.public;
-        $scope.inscription.serviteur=true;
-    }
+    $scope.inscription.public_type=me.content.public;
+    $scope.inscription.serviteur=me.content.service;
+    
 
     me.form={};
     me.fields={};
