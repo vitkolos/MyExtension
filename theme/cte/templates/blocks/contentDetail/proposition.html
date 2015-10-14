@@ -119,7 +119,7 @@
 					</div>
 					<div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte' || contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription' ">
 						<!--si un seul public accueilli-->
-						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
+						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.showInscription = true" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
 							S'inscrire
 						</div>
 						<!--si un plusieurs types de public accueillis-->
@@ -132,7 +132,7 @@
 								</div>
 						</div>						
 						<!--si un seul public au service-->
-						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.public_service).length==1">
+						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.public_service[0];contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = true"  ng-if="(contentDetailCtrl.content.fields.public_service).length==1">
 							S'inscrire au service
 						</div>
 						<!--si un plusieurs types de public au service-->
@@ -141,7 +141,7 @@
 							        <!--Type de public -->
 								<div ng-repeat="public in contentDetailCtrl.content.fields.public_service" class="text-center">
 
-									<p><a href="" ng-click="contentDetailCtrl.content.public = public;contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[20], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
+									<p><a href="" ng-click="contentDetailCtrl.content.public = public;contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription =true">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[20], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
 								</div>
 						</div>						
 					</div>
