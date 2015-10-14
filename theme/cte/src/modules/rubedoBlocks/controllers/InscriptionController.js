@@ -13,7 +13,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.$watch("contentDetailCtrl.content.public + contentDetailCtrl.content.service", function(newValue, oldValue) {
         $scope.inscription.public_type=me.content.public;
         $scope.inscription.serviteur=me.content.service;
-        consle.log(me.content.service +" "+me.content.public);
+        console.log(me.content.service +" "+me.content.public);
 });
 
     me.form={};
