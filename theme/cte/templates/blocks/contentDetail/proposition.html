@@ -81,13 +81,15 @@
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('transport')}}"></rubedo-field><!--Description-->
 					</div>
 				</div>
-				<div ng-if="fieldEntity['position']">
+				<div ng-if="fieldEntity['position']" ng-init="showMap=false">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
 					</div>
+					
 					<div class="col-xs-12 col-sm-8 ">
-						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
+						<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
 					</div>
+					<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
 				</div>
 				<div ng-if="fieldEntity['contact']">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">

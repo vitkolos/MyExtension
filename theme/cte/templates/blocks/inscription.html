@@ -6,15 +6,8 @@
                 {{contentDetailCtrl.content.fields.position.address}}</p>
 
         </div>
-        <div ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente' " class="text-center">
-            <p>{rubedo.translate("Block.Inscription.Attente.Ligne1", "La proposition choisie est complète.")}}</p>
-            <p>{rubedo.translate("Block.Inscription.Attente.Ligne2", "Vous pouvez vous inscrire sur liste d'attente.")}}</p>
-            <p>{rubedo.translate("Block.Inscription.Attente.Ligne3", "Les frais d'inscription vous seront demandés à la confirmation de votre inscription.")}}</p>
-            
-        </div>
-        <div ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'libre' " class="text-center">
-             <p>{rubedo.translate("Block.Inscription.Libre", "Accès libre, pas d'inscription nécessaire.")}}</p>
-       </div>
+
+
         
         <form name="inscription_form" novalidate ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'">
 
