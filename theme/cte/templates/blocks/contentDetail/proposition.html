@@ -119,7 +119,7 @@
 					</div>
 					<div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte' || contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription' ">
 						<!--si un seul public accueilli-->
-						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
+						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.showInscription = !contentDetailCtrl.showInscription" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
 							S'inscrire
 						</div>
 						<!--si un plusieurs types de public accueillis-->
