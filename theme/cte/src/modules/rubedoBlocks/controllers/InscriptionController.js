@@ -61,16 +61,27 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     };
     // récupérer les questions complémentaires
     me.getQuestions = function() {
-        me.form.questions={};
+        me.form.questions={
+            "complementaires":[],
+            "transport":[],
+            "logement":[],
+            "generale":[]
+        };
         angular.forEach(me.form.fields.questions, function(questionId){
             RubedoContentsService.getContentById(questionId, options).then(function(response){
                 if (response.data.success){
-                    var question= response.data.content;
-                    console.log(question);
+                    var questionReponse= response.data.content;
+                    switch (question.fields.categorie.categorie) {
+                        case "complementaire": me.form.questions.complementaires.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
+                        case "transport": me.form.questions.transport.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
+                        case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
+                        case "generale": me.form.questions.generale.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
+                    }
                 }
             });
             
         });
+        console.log(me.form.questions);
     };
     
     
