@@ -33,7 +33,25 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field.config.fieldLabel;
     };
-
+    me.getLabel = function(field,name) {
+        var value = null;
+        if (field.cType == 'combobox') {
+            angular.forEach(field.store.data,function(candidate){
+                if (candidate.valeur == name) {
+                    value = candidate.nom;
+                }
+            });
+        }
+        else if (field.cType == 'checkboxgroup') {
+            angular.forEach(field.config.items,function(candidate){
+                if (candidate.inputValue == name) {
+                    value = candidate.boxLabel;
+                }
+            });
+        }
+        
+        return value;
+    };
     me.getTermInTaxo=function(taxoKey,termId){
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;

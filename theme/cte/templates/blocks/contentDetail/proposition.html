@@ -129,7 +129,7 @@
 								<div ng-repeat="public in contentDetailCtrl.content.fields.publics">
 									<!--<input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_type">
 									<label for="{{public}}">{{formCtrl.getLabel(contentDetailCtrl.content.type.fields[19], public)}} </label>-->	<!--Attention, ce label dépend du format de type de contenu-->
-									<a href="">{{formCtrl.getLabel(contentDetailCtrl.content.type.fields[19], public)}} </a>
+									<a href="">{{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[19], public)}} </a>
 								</div>
 						</div>						
 						<!--si un seul public au service-->
@@ -140,11 +140,10 @@
 						<div ng-if="(contentDetailCtrl.content.fields.public_service).length>1" class="col-xs-6">
 							<div class="button rouge cursor-as-pointer"  >S'inscrire  au service :</div>
 							        <!--Type de public -->
-									<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('public_service')}}"></rubedo-field>
 								<div ng-repeat="public in contentDetailCtrl.content.fields.public_service">
 									<!--<input type="radio"  name="public_service" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_service">
 									<label for="{{public}}">{{formCtrl.getLabel(contentDetailCtrl.content.type.fields[19], public)}} </label>-->	<!--Attention, ce label dépend du format de type de contenu-->
-									<a href="">{{formCtrl.getLabel(contentDetailCtrl.content.type.fields[20], public)}} </a>
+									<a href="">{{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[20], public)}} </a>
 								</div>
 						</div>						
 					</div>
