@@ -17,17 +17,7 @@
        </div>
         
         <form name="inscription_form" novalidate ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'">
-                <p ng-if="(formCtrl.content.fields.publics).length>1">Je m'inscris comme : </p>
-        <!--Type de public -->
-                <div ng-repeat="public in formCtrl.content.fields.publics" ng-if="(formCtrl.content.fields.publics).length>1">
-                        <input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_type">
-                        <label for="{{public}}">{{formCtrl.getLabel(contentDetailCtrl.content.type.fields[19], public)}} </label>	<!--Attention, ce label dépend du format de type de contenu-->
-                </div>
-        <!--Type de public au service-->
-                <div ng-repeat="public in formCtrl.content.fields.public_service" ng-if="(formCtrl.content.fields.public_service).length>1">
-                        <input type="radio"  name="public_service" ng-attr-id="{{public}}" ng-value="public" ng-model="inscription.public_service">
-                        <label for="{{public}}">{{formCtrl.getLabel(contentDetailCtrl.content.type.fields[20], public)}} </label>	<!--Attention, ce label dépend du format de type de contenu-->
-                </div>
+
                 <div ng-switch="inscription.public_type">
                     <div ng-switch-when="adolescent" >
                         <div  ng-include="formCtrl.infos_individuel"></div>
