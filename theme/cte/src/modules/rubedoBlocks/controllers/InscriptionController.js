@@ -18,12 +18,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     });
     me.form={};
     me.fields={};
-    //pour récupérer les champs du formulaire
-    me.getFormulaire = function (contentId){
-        var options = {
+    var options = {
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id
-        };        
+    };  
+    //pour récupérer les champs du formulaire
+    me.getFormulaire = function (contentId){
         RubedoContentsService.getContentById(contentId, options).then(function(response){
             if (response.data.success){
                 me.form = response.data.content;
@@ -32,11 +32,14 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 angular.forEach(me.form.type.fields, function(field){
                     me.fields[field.config.name] = field;
                 });
+                // s'il y a des questions complémentaires, les récupérer
+                if ((me.form.fields.questions).length>0) {
+                    me.getQuestions();
+                }
             }
         });
     };
-    me.getFormulaire(formId);
-
+       //labels des questions radio / checkbox
     me.getLabel = function(field,name) {
         var value = null;
         if (field.cType == 'combobox') {
@@ -56,6 +59,31 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         
         return value;
     };
+    // récupérer les questions complémentaires
+    me.getQuestions = function() {
+        me.form.questions={};
+        angular.forEach(me.form.fields.questions, function(questionId){
+            RubedoContentsService.getContentById(questionId, options).then(function(response){
+                if (response.data.success){
+                    var question= response.data.content;
+                    console.log(question);
+                }
+            });
+            
+        });
+    };
+    
+    
+    
+    me.getFormulaire(formId);
+    if (test) {
+        //code
+    }
+ 
+ 
+ 
+ 
+ 
     // VALIDATIONS
     
     //telephones
