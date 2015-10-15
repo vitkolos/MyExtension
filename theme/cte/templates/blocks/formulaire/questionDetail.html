@@ -1,7 +1,7 @@
 <div ng-switch="question.fields.type.type">
-    <div ng-switch-when="radiogroup" class="row">
+    <div ng-switch-when="radio_group" class="row">
         <div class="col-sm-4">
-            <label for="classe" class="label_style">{{question.text}}</label>
+            <label class="label_style">{{question.text}}</label>
         </div>
         <div class="col-sm-8">
             <div class="col-xs-12" ng-repeat="questionField in question.fields.question">
