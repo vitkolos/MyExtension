@@ -108,7 +108,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             displayed = true;
         }
         else if (step == 2) {
-            if ($scope.form_inscription.infos_personnelles.$valid) {
+            if ($scope.inscription_form.infos_personnelles.$valid) {
             displayed = true;
             }
         }
