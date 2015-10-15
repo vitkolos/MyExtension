@@ -6,7 +6,7 @@
         </div>
         <div class="col-sm-8">
             <div class="col-xs-12" ng-repeat="questionField in question.fields.question">
-        <input type="radio"  name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-value=" '{{questionField.titre}}' '" ng-model="inscription[question.fields.categorie.categorie][question.text]">
+        <input type="radio"  name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-value=" {{questionField.titre}} '" ng-model="inscription[question.fields.categorie.categorie][question.text]">
                         <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label>
             </div>
         </div>
@@ -19,7 +19,7 @@
         </div>
         <div class="col-sm-8">
             <div class="col-xs-12" ng-repeat="questionField in question.fields.question">
-                <input type="checkbox"  name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-true-value=" '{{questionField.titre}}' "
+                <input type="checkbox"  name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-true-value=" {{questionField.titre}} "
                                 ng-model="inscription[question.fields.categorie.categorie][question.text][$index]">
                         <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label>
             </div>
