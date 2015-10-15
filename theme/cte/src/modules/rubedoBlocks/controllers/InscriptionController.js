@@ -102,16 +102,17 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
 
     // affichage des sections du formulaire
-    me.isCurrentStage = function(step){
+    me.isCurrentStage = function(step, prev_validity){
         var displayed = false;
         if (step==1) {
             displayed = true;
         }
         else if (step == 2) {
-            if ($scope.inscription_form.infos_personnelles.$valid) {
+            if (prev_validity) {
             displayed = true;
             }
         }
+        console.log(step+ " "+ prev_validity);
         return displayed;
     }
     
