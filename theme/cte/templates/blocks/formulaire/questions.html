@@ -1,7 +1,7 @@
 
-<ng-form name="questions">
+<ng-form name="transport">
+    <!--questions de transport-->
     <h2 class="capital txt-red" ng-if="formCtrl.form.fields.transport || (formCtrl.form.questions.transport).length > 0">{{formCtrl.fields.transport.config.fieldLabel}}*</h2>
-    <!--questions du formulaire-->
    <div class="row" ng-if="formCtrl.form.fields.transport">
         <div class="col-sm-3"><div class="row"></div></div>
         <div class="col-sm-8">
@@ -12,10 +12,11 @@
         </div>
     </div>
    <div class="row" ng-repeat="question in formCtrl.form.questions.transport">
-    <ng-include src="formCtrl.questionDetail"></ng-include>
-        
+        <ng-include src="formCtrl.questionDetail"></ng-include>
    </div>
-   <!--questions de transport-->
+</ng-form>
+   <!--questions de logement-->
+<ng-form name="logement">
     <h2 class="capital txt-red" ng-if="formCtrl.form.fields.logement">{{formCtrl.fields.logement.config.fieldLabel}}*</h2>
    <div class="row" ng-if="formCtrl.form.fields.logement">
         <div class="col-sm-3"><div class="row"></div></div>

@@ -815,12 +815,12 @@ input[type=checkbox]:checked + label:before {
 }
 label.label_style{
   float: right;
-  line-height: 2.5em;
+  line-height: 1.5em;
   .txt-red;
   .capital;
   text-align: right;
   position: relative;
-  top:-0.5em;
+  top:0.5em;
 }
 input[type=text], textarea, input[type=email] {
   width:100%; border:3px solid white; background-color: transparent; font-family: Merriweather; font-size: 18px; padding:4px 12px;
@@ -836,6 +836,9 @@ input:-webkit-autofill {
     -webkit-text-fill-color: @txt_dark;
 }
 textarea:focus{outline:none}
+
+@media screen and (max-width:@min_sm) {label.label_style{text-align:left}}
+
 ////////////////////////////////////////////////////
     ///////////MISSIONS///////////////////
 ///////////////////////////////////////////////////
