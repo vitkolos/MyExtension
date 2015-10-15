@@ -1,7 +1,6 @@
-
-<ng-form name="transport">
+<h2 class="capital txt-red" ng-if="formCtrl.form.fields.transport || (formCtrl.form.questions.transport).length > 0">{{formCtrl.fields.transport.config.fieldLabel}}*</h2>
+<ng-form name="transport" ng-class="{'displayed' : formCtrl.isCurrentStage(3,contact.$valid)}">
     <!--questions de transport-->
-    <h2 class="capital txt-red" ng-if="formCtrl.form.fields.transport || (formCtrl.form.questions.transport).length > 0">{{formCtrl.fields.transport.config.fieldLabel}}*</h2>
    <div class="row" ng-if="formCtrl.form.fields.transport">
         <div class="col-sm-3"><div class="row"></div></div>
         <div class="col-sm-8">
@@ -16,8 +15,8 @@
    </div>
 </ng-form>
    <!--questions de logement-->
-<ng-form name="logement">
-    <h2 class="capital txt-red" ng-if="formCtrl.form.fields.logement">{{formCtrl.fields.logement.config.fieldLabel}}*</h2>
+<h2 class="capital txt-red" ng-if="formCtrl.form.fields.logement">{{formCtrl.fields.logement.config.fieldLabel}}*</h2>
+<ng-form name="logement" ng-class="{'displayed' : formCtrl.isCurrentStage(4,transport.$valid)}">
    <div class="row" ng-if="formCtrl.form.fields.logement">
         <div class="col-sm-3"><div class="row"></div></div>
         <div class="col-sm-8">
