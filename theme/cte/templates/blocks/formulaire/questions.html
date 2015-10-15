@@ -1,12 +1,12 @@
 
 <ng-form name="questions">
-    <h2 class="capital txt-red" ng-if="formCtrl.form.fields.transport || (formCtrl.questions.transport).length > 0">{{formCtrl.fields.transport.config.fieldLabel}}*</h2>
+    <h2 class="capital txt-red" ng-if="formCtrl.form.fields.transport || (formCtrl.form.questions.transport).length > 0">{{formCtrl.fields.transport.config.fieldLabel}}*</h2>
     <!--questions du formulaire-->
    <div class="row" ng-if="formCtrl.form.fields.transport">
         <div class="col-sm-3"><div class="row"></div></div>
         <div class="col-sm-8">
             <div class="col-xs-12" ng-repeat="option in formCtrl.form.fields.transport.transport">
-                <input type="radio"  name="transport" ng-attr-id="{{option}}" ng-value="'{{formCtrl.getLabel(formCtrl.fields.transport, option)}}'" ng-model="inscription.transport" required>
+                <input type="radio"  name="transport" ng-attr-id="{{option}}" ng-value=' " {{formCtrl.getLabel(formCtrl.fields.transport, option)}}\" '" ng-model="inscription.transport" required>
                         <label for="{{option}}">{{formCtrl.getLabel(formCtrl.fields.transport, option)}}</label>
             </div>
         </div>
@@ -21,7 +21,7 @@
         <div class="col-sm-3"><div class="row"></div></div>
         <div class="col-sm-8">
             <div class="col-xs-12" ng-repeat="option in formCtrl.form.fields.logement.logement">
-                <input type="radio"  name="logement" ng-attr-id="{{option}}" ng-value="'{{formCtrl.getLabel(formCtrl.fields.logement, option)}}'" ng-model="inscription.logement" required>
+                <input type="radio"  name="logement" ng-attr-id="{{option}}" ng-value=' "{{formCtrl.getLabel(formCtrl.fields.logement, option)}}" ' ng-model="inscription.logement" required>
                         <label for="{{option}}">{{formCtrl.getLabel(formCtrl.fields.logement, option)}}</label>
             </div>
         </div>
@@ -36,4 +36,5 @@
         </div>
     </div>
 </ng-form>
+
 
