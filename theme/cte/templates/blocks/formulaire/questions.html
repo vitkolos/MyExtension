@@ -1,5 +1,5 @@
 <h2 class="capital txt-red" ng-if="formCtrl.form.fields.transport || (formCtrl.form.questions.transport).length > 0">{{formCtrl.fields.transport.config.fieldLabel}}*</h2>
-<ng-form name="transport" ng-class="{'displayed' : formCtrl.isCurrentStage(3,contact.$valid)}">
+<ng-form name="transport" ng-class="{'displayed' : formCtrl.isCurrentStage(3,$parent.contact.$valid)}">
     <!--questions de transport-->
    <div class="row" ng-if="formCtrl.form.fields.transport">
         <div class="col-sm-3"><div class="row"></div></div>
