@@ -4,6 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.inscription={};
     me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
     me.questions = themePath+'/templates/blocks/formulaire/questions.html';
+    me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
 
     me.content = angular.copy($scope.proposition);
     var propositionId = me.content.id;
