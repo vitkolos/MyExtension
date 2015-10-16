@@ -115,7 +115,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (prev_validity && (me.currentStage == step-1)) {
             displayed = true;
             me.currentStage++;
-            console.log(me.currentStage);
+            console.log(me.currentStage +" "+displayed);
             }
         }
         return displayed;
