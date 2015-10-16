@@ -22,7 +22,7 @@
                 <input type="checkbox"  name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-true-value="{{questionField.titre}}"
                                 ng-model="inscription[question.fields.categorie.categorie][question.text][$index]">
                         <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label><label ng-if="questionField.prix>0">{{questionField.prix}} €</label>
-                        <label>{{questionField.libelle-apres-prix}}</label>
+                        <label>{{questionField.libelleApresPrix}}</label>
                         <input type="text" ng-if="questionField.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement" ng-model="inscription[question.fields.categorie.categorie][question.text].complement" class="complement_text" />
             </div>
         </div>
