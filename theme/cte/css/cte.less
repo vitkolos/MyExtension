@@ -747,8 +747,8 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 h2.capital{text-align: center; padding:12px 0; border-bottom: 2px solid; margin-top:12px; margin-bottom:24px}
 form[name="inscription_form"]{
   h2.displayed{background-color: white}
-  h2.displayed + ng-form .row{max-height:100px; transition: max-height 0.8s ease; margin-bottom:12px}
-  ng-form .row{max-height: 0; transition: max-height 0.8s ease; display: block; overflow: hidden; margin: 0 15px}
+  h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-in; margin-bottom:12px}
+  ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px}
   .capital.txt-red{font-size:16px !important}
 input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
 	display: inline-block;
@@ -841,7 +841,7 @@ label.label_style{
   position: relative;
   top:0.5em;
 }
-@media screen and (max-width:@min_sm) {label.label_style{text-align:left}}
+@media screen and (max-width:@min_sm) {label.label_style{text-align:left; float:left}}
 
 ////////////////////////////////////////////////////
     ///////////MISSIONS///////////////////
