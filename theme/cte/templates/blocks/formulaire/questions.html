@@ -1,5 +1,5 @@
 <!--question complémentaires-->
-<h2 class="capital txt-red" ng-if="(formCtrl.form.questions.complementaires.length > 0) || (formCtrl.form.jai_connu)">{{formCtrl.fields.transport.config.fieldLabel}}*</h2>
+<h2 class="capital txt-red" ng-if="(formCtrl.form.questions.complementaires.length > 0) || (formCtrl.form.jai_connu)">{{formCtrl.fields.questions1.config.fieldLabel}}</h2>
 <ng-form name="infos_complementaires" ng-class="{'displayed' : formCtrl.isCurrentStage(3,inscription_form.contact.$valid)}">
     <!--questions de transport-->
    <div class="row" ng-if="formCtrl.form.jai_connu">
@@ -17,7 +17,7 @@
             </div>
             <div class="col-xs-6">
                 <input type="checkbox"  name="jai_connu" id="internet" ng-true-value='{{rubedo.translate("Block.Inscription.Connu.Internet")}}'
-                                ng-model="inscription.jai_connu.tracts">
+                                ng-model="inscription.jai_connu.internet">
                         <label for="internet">{{rubedo.translate("Block.Inscription.Connu.Internet")}}</label>
             </div>
             <div class="col-xs-6">

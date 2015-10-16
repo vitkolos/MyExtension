@@ -104,7 +104,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             return  !($scope.inscription.tel1 || $scope.inscription.tel2); // au moins téléphone fixe ou portable
     };
     
-
+    me.currentStage = 1;
     // affichage des sections du formulaire
     me.isCurrentStage = function(step, prev_validity){
         var displayed = false;
@@ -112,8 +112,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             displayed = true;
         }
         else if (step > 1) {
-            if (prev_validity) {
+            if (prev_validity && me.currentStage == step-1) {
             displayed = true;
+            me.currentStage++;
             }
         }
         return displayed;
