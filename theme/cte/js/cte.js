@@ -140,6 +140,20 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
         };
         return serviceInstance;
     }]);
+angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
+    var serviceInstance={};
+    serviceInstance.inscrire=function(inscription, workspace){
+        return($http({
+                url:"/api/v1/inscription",
+                method:"POST",
+                data:{
+                    inscription:inscription,
+                    workspace: workspace
+                }
+            }));
+    };
+    return serviceInstance;
+}]);
 
 
   angular.module('rubedoBlocks').directive('focusOnClick', function ($timeout) {
