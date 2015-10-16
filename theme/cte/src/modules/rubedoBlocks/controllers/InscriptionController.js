@@ -40,7 +40,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 // check infos complémentaires
                 angular.forEach(me.form.fields.questions1, function(option){
                     me.form[option] = true;
+                    
                     });
+                console.log(me.form);
             }
         });
     };
