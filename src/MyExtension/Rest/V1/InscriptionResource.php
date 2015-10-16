@@ -39,7 +39,6 @@ class InscriptionResource extends AbstractResource {
                             ->setKey('worskspace')
                             ->setRequired()
                             ->setDescription('Workspace')
-                            ->setFilter('\\MongoId')
                     )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
