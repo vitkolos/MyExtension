@@ -17,6 +17,8 @@ use Rubedo\Interfaces\Collection\IAbstractCollection;
 
 class InscriptionResource extends AbstractResource {
 
+    protected $_dataService;
+    protected $_collectionName;
 
     
     public function __construct()
@@ -65,7 +67,9 @@ class InscriptionResource extends AbstractResource {
     $data["fields"] = $params['inscription'];
     $data["writeWorkspace"] = $params['workspace'];
     $data["typeId"] = "561627c945205e41208b4581";
-    $data["fields"]["text"] = "FR"+$this->getInscriptionId();
+    $idNumber = $this->getInscriptionId();
+    //$data["fields"]["text"] = "FR".(string)$this->getInscriptionId();
+    $data["fields"]["text"] = "FR100001";
     //$data["fields"]["commande"] = $params['products'];
     
     
@@ -89,9 +93,9 @@ class InscriptionResource extends AbstractResource {
 // Close request to clear up some resources
     curl_close($curl);
     
-    
+    $inscriptionInfo = $this->getInscriptionId();
     return array(
-            'result' =>  $this->getInscriptionId(),
+            'result' =>  $inscriptionInfo,
             'success' => true,
             'message' => $result
         );
@@ -119,12 +123,18 @@ class InscriptionResource extends AbstractResource {
     }
     public function getInscriptionId(){
         $id="558d586c45205ee07cc1fd3c";
-        $contentId = (string)$id;
-
-        $this->_dataService = Manager::getService('MongoDataAccess');
-        $this->_dataService->init("Contents");
-        $content = $this->_dataService->findById($contentId);
-
-        return $content['live']['fields']['value'];
+        $content = $this->getContentsCollection()->findById($id, true, false);
+        
+        //idNumbr ++
+        $data=array();
+        $data['fields'] = array();
+        $data['fields']['value'] = (int)$content['fields']['value']+1;
+        //$content = array_replace_recursive($content, $data);
+        //$update = $this->getContentsCollection()->update($content, array(), true);
+        return $content;
+    
+    
     }
-} 
+}
+
+
