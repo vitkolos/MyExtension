@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService',function($scope,RubedoContentsService){
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService',function($scope,RubedoContentsService,InscriptionService){
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
@@ -41,11 +41,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 angular.forEach(me.form.fields.questions1.questions1, function(option){
                     me.form[option] = true;
                 });
-                // questions complémentaires ?
-                if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
-                if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport).length>0))) {me.isTransport = true;}
-                if ( ( (me.form.fields.logement)&&((me.form.fields.logement).length>0 )) || (me.form.questions.logement.length > 0) ) {me.isLogement = true;}
-                
                 
             }
         });
@@ -88,6 +83,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                         case "generale": me.form.questions.generale.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                     };
+                                    // questions complémentaires ?
+                    if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
+                    if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport).length>0))) {me.isTransport = true;}
+                    if ( ( (me.form.fields.logement)&&((me.form.fields.logement).length>0 )) || ((me.form.questions.logement).length > 0) ) {me.isLogement = true;}
+
+
                 }
             });
             
@@ -127,7 +128,16 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if (step==4) {
                 if (me.isLogement) {me.currentStage=5;}
             }
-            else me.currentStage=6;
+            else if(step==5) me.currentStage=6;
+            else if (step==6) {
+                
+                InscriptionService.inscrire(me.inscription, "556088a945205e36757e688f").then(function(response){
+                    console.log(reponse);
+            });
+                
+                
+                
+            }
         }
     }
     
