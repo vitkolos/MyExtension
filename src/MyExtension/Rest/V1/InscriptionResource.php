@@ -36,7 +36,7 @@ class InscriptionResource extends AbstractResource {
                     )
                      ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setKey('worskspace')
+                            ->setKey('workspace')
                             ->setRequired()
                             ->setDescription('Workspace')
                     )
