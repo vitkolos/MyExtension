@@ -65,7 +65,7 @@ class InscriptionResource extends AbstractResource {
     $data["fields"] = $params['inscription'];
     $data["writeWorkspace"] = $params['workspace'];
     $data["typeId"] = "561627c945205e41208b4581";
-    $data["fields"]["text"] = "FR"+getInscriptionId();
+    $data["fields"]["text"] = "FR"+$this->getInscriptionId();
     //$data["fields"]["commande"] = $params['products'];
     
     
