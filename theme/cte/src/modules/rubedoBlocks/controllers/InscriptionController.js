@@ -40,8 +40,13 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 // check infos complémentaires
                 angular.forEach(me.form.fields.questions1.questions1, function(option){
                     me.form[option] = true;
-                    
-                    });
+                });
+                // questions complémentaires ?
+                if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
+                if ( (formCtrl.form.questions.transport.length > 0) || (formCtrl.form.fields.transport)) {me.isTransport = true;}
+                if ((formCtrl.form.fields.logement) || (formCtrl.form.questions.logement.length > 0) ) {me.isLogement = true;}
+                
+                
             }
         });
     };
@@ -106,6 +111,24 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     me.currentStage = 1;
     // affichage des sections du formulaire
+    me.setCurrentStage = function(step, valide) {
+        if (valide) {
+            if (step==1) {me.currentStage=2;}
+            if (step==2) {
+                if (isComplement) {me.currentStage=3;}
+                else if (isTransport) {me.currentStage=4;}
+                else if (isLogement) {me.currentStage=5;}
+            }
+            else if (step==3) {
+                if (isTransport) {me.currentStage=4;}
+                else if (isLogement) {me.currentStage=5;}
+            }
+            else if (step==4) {
+                if (isLogement) {me.currentStage=5;}
+            }
+            else me.currentStage=6;
+        }
+    }
     me.isCurrentStage = function(step, prev_validity){
         var displayed = false;
         if (step==me.currentStage) {

@@ -2,7 +2,7 @@
 <!--<div ng-repeat="public in formCtrl.form.fields.publics">
     <input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}"><label ng-attr-for="{{public}}">{{formCtrl.getValueInStore(formCtrl.fields.publics, public)}}</label>	
 </div>-->
-<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.isCurrentStage(1, false)}">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}</h2>
+<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==1}">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}</h2>
 <ng-form name="infos_personnelles">
     <!--NOM-->
     <div class="row">
@@ -75,11 +75,11 @@
         <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
         <div class="col-sm-8"><input type="text" id="profession" ng-model="inscription.profession" name="profession"></div>
     </div>
-    <div class="row">
-        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.currentStage==2">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+    <div class="row text-center">
+        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
     </div>
 </ng-form>
-<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.isCurrentStage(2,infos_personnelles.$valid)}">{{rubedo.translate("Block.Inscription.Contact", "Contact")}}</h2>
+<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==2}">{{rubedo.translate("Block.Inscription.Contact", "Contact")}}</h2>
 <ng-form name="contact">
     <div class="row">
         <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}</label></div>
@@ -112,6 +112,9 @@
     <div class="row" ng-if="inscription.public_type == 'adolescent' ">
         <div class="col-sm-4"><label for="emailPers2_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Parent.Verification")}}</label></div>
         <div class="col-sm-8"><input type="email" id="emailPers2_verif" name="emailPers2_verif" placeholder="user@mydomain.com" ng-model="inscription.emailPers2_verif" required></div>
+    </div>
+    <div class="row text-center">
+        <div class="button submit" ng-class="{'disabled' : contact.$invalid}" ng-click="formCtrl.setCurrentStage(2,contact.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
     </div>
 </ng-form>
 

@@ -1,5 +1,5 @@
 <!--question complémentaires-->
-<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.isCurrentStage(3,inscription_form.contact.$valid)}" ng-if="(formCtrl.form.questions.complementaires.length > 0) || (formCtrl.form.jai_connu)">{{formCtrl.fields.questions1.config.fieldLabel}}</h2>
+<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==3}" ng-if="formCtrl.isComplement">{{formCtrl.fields.questions1.config.fieldLabel}}</h2>
 <ng-form name="infos_complementaires">
     <!--questions de transport-->
    <div class="row" ng-if="formCtrl.form.jai_connu">
@@ -30,9 +30,12 @@
    <div class="row" ng-repeat="question in formCtrl.form.questions.complementaires">
         <ng-include src="formCtrl.questionDetail"></ng-include>
    </div>
+    <div class="row text-center">
+        <div class="button submit" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(3,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+    </div>
 </ng-form>
 
-<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.isCurrentStage(4,infos_complementaires.$valid)}" ng-if="(formCtrl.form.questions.transport.length > 0) || (formCtrl.form.fields.transport)">{{formCtrl.fields.transport.config.fieldLabel}}*</h2>
+<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==4}" ng-if="formCtrl.isTransport">{{formCtrl.fields.transport.config.fieldLabel}}*</h2>
 <ng-form name="transport">
     <!--questions de transport-->
    <div class="row" ng-if="formCtrl.form.fields.transport">
@@ -47,9 +50,12 @@
    <div class="row" ng-repeat="question in formCtrl.form.questions.transport">
         <ng-include src="formCtrl.questionDetail"></ng-include>
    </div>
+    <div class="row text-center">
+        <div class="button submit" ng-class="{'disabled' : transport.$invalid}" ng-click="formCtrl.setCurrentStage(4,transport.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+    </div>
 </ng-form>
    <!--questions de logement-->
-<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.isCurrentStage(5,transport.$valid)}" ng-if="(formCtrl.form.fields.logement) || (formCtrl.form.questions.logement.length > 0)  ">{{formCtrl.fields.logement.config.fieldLabel}}*</h2>
+<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==5}" ng-if="formCtrl.isLogement">{{formCtrl.fields.logement.config.fieldLabel}}*</h2>
 <ng-form name="logement">
    <div class="row" ng-if="formCtrl.form.fields.logement">
         <div class="col-sm-3"><div class="row"></div></div>
@@ -63,6 +69,9 @@
     <div class="row" ng-repeat="question in formCtrl.form.questions.logement">
         <ng-include src="formCtrl.questionDetail"></ng-include>
    </div>
+    <div class="row text-center">
+        <div class="button submit" ng-class="{'disabled' : logement.$invalid}" ng-click="formCtrl.setCurrentStage(5,logement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+    </div>
 </ng-form>
 
 <h2 class="capital txt-red">{{rubedo.translate("Block.Inscription.Remarques")}}</h2>
@@ -73,6 +82,9 @@
                 <textarea rows="5" id="remarques" ng-model="inscription.remarques" name="remarques" placeholder="" required></textarea>
             </div>
         </div>
+    </div>
+    <div class="row text-center">
+        <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(6,inscription_form.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
     </div>
 </ng-form>
 
