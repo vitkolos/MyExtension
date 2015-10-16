@@ -113,7 +113,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     // affichage des sections du formulaire
     me.setCurrentStage = function(step, valide) {
         if (valide) {
-            if (step==1) {me.currentStage=2;}
+            if (step==0) {me.currentStage=1;}
+            else if (step==1) {me.currentStage=2;}
             else if (step==2) {
                 if (me.isComplement) {me.currentStage=3;}
                 else if (me.isTransport) {me.currentStage=4;}
