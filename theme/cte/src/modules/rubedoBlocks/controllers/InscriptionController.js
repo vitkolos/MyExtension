@@ -37,6 +37,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if ((me.form.fields.questions).length>0) {
                     me.getQuestions();
                 }
+                // check infos complémentaires
+                angular.forEach(me.form.fields.questions1, function(option){
+                    me.form[option] = true;
+                    });
             }
         });
     };

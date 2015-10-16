@@ -34,5 +34,9 @@
     "Block.Inscription.Telephone.Portable.Parents":"Téléphone portable d'un des parents",
     "Block.Inscription.Telephone.Condition":"Au moins l'un des numéros de téléphone est nécessaire",
     "Block.Inscription.Telephone.Condition.Ados":" Le téléphone fixe ou le téléphone portable d'un des parents est nécessaire ",
-    "Block.Inscription.Remarques":"Remarques et précisions"
-} 
+    "Block.Inscription.Remarques":"Remarques et précisions",
+    "Block.Inscription.Connu":"J'ai connu cette proposition par :",
+    "Block.Inscription.Connu.Internet":"Internet",
+    "Block.Inscription.Connu.Tracts":"Tracts",
+    "Block.Inscription.Connu.Famille":"Famille/amis"
+    } 

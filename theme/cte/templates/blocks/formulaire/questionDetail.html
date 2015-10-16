@@ -7,7 +7,10 @@
         <div class="col-sm-8">
             <div class="col-xs-12" ng-repeat="questionField in question.fields.question">
                 <input type="radio" required name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-value=' "{{questionField.titre}}"' ng-model="inscription[question.fields.categorie.categorie][question.text]">
-                        <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label>
+                        <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label><label ng-if="questionField.prix>0">{{questionField.prix}} €</label>
+                        <label>{{questionField.libelleApresPrix}}</label>
+                        <input type="text" ng-if="questionField.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement" ng-model="inscription[question.fields.categorie.categorie][question.text].complement" class="complement_text" />
+
             </div>
         </div>
     </div>
@@ -28,7 +31,7 @@
         </div>
     </div>
 
-        <!--text-->
+    <!--text-->
     <div ng-switch-when="text" class="row">
         <div class="col-sm-4">
             <label class="label_style">{{question.text}}</label>
@@ -39,27 +42,18 @@
             </div>
         </div>
     </div>
-</div>
     
-    
-   
-     <!--radio
-   <div class="row" ng-if="inscription.public_type == 'jeune-adulte' ">
-        <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.Situation")}}</label></div>
+    <!--number-->
+    <div ng-switch-when="number" class="row">
+        <div class="col-sm-4">
+            <label class="label_style">{{question.text}}</label>
+        </div>
         <div class="col-sm-8">
             <div class="col-xs-12">
-                <input type="radio"  name="situation" id="etudiant" value="{{rubedo.translate('Block.Inscription.Situation.Etudiant')}}" ng-model="inscription.situation">
-                        <label for="etudiant">{{rubedo.translate('Block.Inscription.Situation.Etudiant')}}</label>
+                <input type="number" ng-model="inscription[question.fields.categorie.categorie][question.text]" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}">
             </div>
-            <div class="col-xs-12">
-                <input type="radio"  name="situation" id="jeunePro" value="{{rubedo.translate('Block.Inscription.Situation.JPro')}}" ng-model="inscription.situation">
-                        <label for="jeunePro">{{rubedo.translate('Block.Inscription.Situation.JPro')}}</label>
-            </div>
-            <div class="col-xs-12">
-                <input type="radio"  name="situation" id="situationAutre" value="{{rubedo.translate('Block.Inscription.Situation.Autre')}}" ng-model="inscription.situation">
-                        <label for="situationAutre">{{rubedo.translate("Block.Inscription.Situation.Autre")}}</label>
-                        <input type="text" name="autreSituation" id="autreSituation" ng-model="inscription.autreSituation" class="complement_text" />
-            </div>
-        </div>-->
+        </div>
     </div>
+</div>
+    
 
