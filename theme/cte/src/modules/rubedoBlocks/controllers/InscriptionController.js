@@ -42,9 +42,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     me.form[option] = true;
                 });
                 // questions complémentaires ?
-                if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;console.log(me.isComplement);}
-                if ( (me.form.questions.transport.length > 0) || ((me.form.fields.transport)&&(me.form.fields.transport).length>0)) {me.isTransport = true;console.log(me.isTransport);}
-                if ((me.form.fields.logement) || (me.form.questions.logement.length > 0) ) {me.isLogement = true;console.log(me.isLogement);}
+                if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
+                if ( (me.form.questions.transport.length > 0) || ((me.form.fields.transport)&&(me.form.fields.transport).length>0)) {me.isTransport = true;}
+                if (( (me.form.fields.logement)&&(me.form.fields.logement).length>0 ) || (me.form.questions.logement.length > 0) ) {me.isLogement = true;}
                 
                 
             }
