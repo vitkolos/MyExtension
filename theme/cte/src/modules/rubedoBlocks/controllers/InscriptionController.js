@@ -43,8 +43,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 });
                 // questions complémentaires ?
                 if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
-                if ( (formCtrl.form.questions.transport.length > 0) || (formCtrl.form.fields.transport)) {me.isTransport = true;}
-                if ((formCtrl.form.fields.logement) || (formCtrl.form.questions.logement.length > 0) ) {me.isLogement = true;}
+                if ( (me.form.questions.transport.length > 0) || (me.form.fields.transport)) {me.isTransport = true;}
+                if ((me.form.fields.logement) || (me.form.questions.logement.length > 0) ) {me.isLogement = true;}
                 
                 
             }
@@ -128,18 +128,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
             else me.currentStage=6;
         }
-    }
-    me.isCurrentStage = function(step, prev_validity){
-        var displayed = false;
-        if (step==me.currentStage) {
-            displayed = true;
-        }
-        else if (step > 1) {
-            if (prev_validity && (me.currentStage == step-1)) {
-            me.currentStage++;
-            }
-        }
-        return displayed;
     }
     
     
