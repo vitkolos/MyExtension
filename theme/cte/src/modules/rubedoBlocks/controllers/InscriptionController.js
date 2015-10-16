@@ -42,7 +42,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     me.form[option] = true;
                     
                     });
-                console.log(me.form);
             }
         });
     };
@@ -88,7 +87,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             });
             
         });
-        console.log(me.form.questions);
     };
     
     
