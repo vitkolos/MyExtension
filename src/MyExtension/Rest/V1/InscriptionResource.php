@@ -63,7 +63,7 @@ class InscriptionResource extends AbstractResource {
 
     //create order
     $data["fields"] = $params['inscription'];
-    $data["writeWorkspace"] = $params['worskpace'];
+    $data["writeWorkspace"] = $params['workspace'];
     $data["typeId"] = "561627c945205e41208b4581";
     //$data["fields"]["commande"] = $params['products'];
     $payload = json_encode( array( "content" => $data ) );
