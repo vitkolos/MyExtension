@@ -628,12 +628,12 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
     margin-top:12px;
     transition: 0.3s ease opacity;
     display: inline-block;
-    box-shadow: 0px 2px @rouge_shadow;
     border-radius: 5px;
  }
  .button:hover{opacity:0.8;}
-.button.rouge{background: @rouge;
-    color:white}
+.button.rouge{background: @rouge;box-shadow: 0px 2px @rouge_shadow; color:white}
+  .button.submit{border: 2px solid @rouge; color:@rouge;}
+  .button.submit:disabled{color:@marron; border: 2px solid @marron; cursor: default}
 
     ////////////////////////////////////////////////////
     ///////////LISTE///////////////////
