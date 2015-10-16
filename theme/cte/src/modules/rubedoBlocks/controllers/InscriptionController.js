@@ -42,9 +42,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     me.form[option] = true;
                 });
                 // questions complémentaires ?
-                if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
-                if ( (me.form.questions.transport.length > 0) || (me.form.fields.transport)) {me.isTransport = true;}
-                if ((me.form.fields.logement) || (me.form.questions.logement.length > 0) ) {me.isLogement = true;}
+                if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;console.log(me.isComplement);}
+                if ( (me.form.questions.transport.length > 0) || (me.form.fields.transport)) {me.isTransport = true;console.log(me.isTransport);}
+                if ((me.form.fields.logement) || (me.form.questions.logement.length > 0) ) {me.isLogement = true;console.log(me.isLogement);}
                 
                 
             }
@@ -114,17 +114,17 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.setCurrentStage = function(step, valide) {
         if (valide) {
             if (step==1) {me.currentStage=2;}
-            if (step==2) {
-                if (isComplement) {me.currentStage=3;}
-                else if (isTransport) {me.currentStage=4;}
-                else if (isLogement) {me.currentStage=5;}
+            else if (step==2) {
+                if (me.isComplement) {me.currentStage=3;}
+                else if (me.isTransport) {me.currentStage=4;}
+                else if (me.isLogement) {me.currentStage=5;}
             }
             else if (step==3) {
-                if (isTransport) {me.currentStage=4;}
-                else if (isLogement) {me.currentStage=5;}
+                if (me.isTransport) {me.currentStage=4;}
+                else if (me.isLogement) {me.currentStage=5;}
             }
             else if (step==4) {
-                if (isLogement) {me.currentStage=5;}
+                if (me.isLogement) {me.currentStage=5;}
             }
             else me.currentStage=6;
         }
