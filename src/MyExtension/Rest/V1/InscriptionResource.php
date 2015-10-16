@@ -65,7 +65,12 @@ class InscriptionResource extends AbstractResource {
     $data["fields"] = $params['inscription'];
     $data["writeWorkspace"] = $params['workspace'];
     $data["typeId"] = "561627c945205e41208b4581";
+    $data["fields"]["text"] = "FR"+getInscriptionId();
     //$data["fields"]["commande"] = $params['products'];
+    
+    
+    
+    
     $payload = json_encode( array( "content" => $data ) );
 
     $curl = curl_init();
@@ -86,7 +91,7 @@ class InscriptionResource extends AbstractResource {
     
     
     return array(
-            'result' => $result,
+            'result' => $data["fields"]["text"],
             'success' => true,
             'message' => $result
         );
@@ -110,10 +115,16 @@ class InscriptionResource extends AbstractResource {
         if (empty($content)) {
             throw new APIEntityException('Content not found', 404);
         }
-
-
-
- 
         return $content['live']['fields'];
+    }
+    public function getInscriptionId(){
+        $id="558d586c45205ee07cc1fd3c";
+        $contentId = (string)$id;
+
+        $this->_dataService = Manager::getService('MongoDataAccess');
+        $this->_dataService->init("Contents");
+        $content = $this->_dataService->findById($id);
+
+        return $content['live']['fields']['value'];
     }
 } 
