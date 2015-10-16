@@ -91,7 +91,7 @@ class InscriptionResource extends AbstractResource {
     
     
     return array(
-            'result' =>  getInscriptionId(),
+            'result' =>  $this->getInscriptionId(),
             'success' => true,
             'message' => $result
         );
