@@ -75,7 +75,9 @@
         <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
         <div class="col-sm-8"><input type="text" id="profession" ng-model="inscription.profession" name="profession"></div>
     </div>
-    <div class="button submit" ng-disabled="infos_personnelles.$invalid" ng-click="formCtrl.currentStage==2">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+    <div class="row">
+        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.currentStage==2">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+    </div>
 </ng-form>
 <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.isCurrentStage(2,infos_personnelles.$valid)}">{{rubedo.translate("Block.Inscription.Contact", "Contact")}}</h2>
 <ng-form name="contact">
