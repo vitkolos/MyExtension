@@ -88,7 +88,6 @@ class InscriptionResource extends AbstractResource {
     return array(
             'result' => $result,
             'success' => true,
-            'url' =>'https://www.paypal.com/cgi-bin/webscr?' . $query_string,
             'message' => $result
         );
 
