@@ -38,7 +38,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     me.getQuestions();
                 }
                 // check infos complémentaires
-                angular.forEach(me.form.fields.questions1, function(option){
+                angular.forEach(me.form.fields.questions1.questions1, function(option){
                     me.form[option] = true;
                     
                     });
