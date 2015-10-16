@@ -132,7 +132,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if (step==6) {
                 
                 InscriptionService.inscrire($scope.inscription, "556088a945205e36757e688f").then(function(response){
-                    console.log(reponse);
+                    console.log(response);
             });
                 
                 
