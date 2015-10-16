@@ -91,7 +91,7 @@ class InscriptionResource extends AbstractResource {
     
     
     return array(
-            'result' => $data["fields"]["text"],
+            'result' =>  getInscriptionId(),
             'success' => true,
             'message' => $result
         );
@@ -123,7 +123,7 @@ class InscriptionResource extends AbstractResource {
 
         $this->_dataService = Manager::getService('MongoDataAccess');
         $this->_dataService->init("Contents");
-        $content = $this->_dataService->findById($id);
+        $content = $this->_dataService->findById($contentId);
 
         return $content['live']['fields']['value'];
     }
