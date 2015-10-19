@@ -82,7 +82,7 @@ class InscriptionResource extends AbstractResource
     $inscriptionForm['fields']['text'] = "FR-".(string)$inscriptionNumber;
     $inscriptionForm['writeWorkspace'] = $params['workspace'];
     $inscriptionForm['typeId'] = "561627c945205e41208b4581";
-    $incriptionForm['fields'] = this->processInscription($incriptionForm['fields']);
+    $incriptionForm['fields'] = $this->processInscription($incriptionForm['fields']);
     $payload2 = json_encode( array( "content" => $inscriptionForm ) );
 
    $curly = curl_init();
