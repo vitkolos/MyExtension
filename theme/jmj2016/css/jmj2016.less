@@ -525,8 +525,10 @@ p.date{
 .titre_tiroir.tab h1:before, .titre_tiroir:hover h1:before{ transform:rotate(225deg);}
 .tiroir {color:white;border: solid white; border-width: 1px 0;padding:20px 0 0}
 .tiroir-header{ font-size:1.2em;  text-align: left;}
+
 .tab_tiroir .block-detail{max-height:0; transition: max-height 0.3s ease; overflow-y:hidden}
 .tab_tiroir.displayed{padding-bottom: 15px}
+.tab_tiroir:not(.displayed){height: 20px}
 .tab_tiroir.displayed .block-detail{max-height:600px}
 @media screen and (max-width: 768px) {
     .section-header-title h1{font-size:1em; white-space: normal;display: inline-block}
