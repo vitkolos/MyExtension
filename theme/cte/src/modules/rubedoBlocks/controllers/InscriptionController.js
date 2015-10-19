@@ -131,6 +131,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if(step==5) me.currentStage=6;
             else if (step==6) {
                 $scope.inscription.proposition=  propositionId;
+                $scope.inscription.propositionTitre=  propositionTitle;                
                 InscriptionService.inscrire($scope.inscription, "556088a945205e36757e688f").then(function(response){
                     console.log(response);
             });
