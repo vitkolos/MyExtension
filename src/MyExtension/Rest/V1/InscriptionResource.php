@@ -75,7 +75,8 @@ class InscriptionResource extends AbstractResource
         
         
         //CREATE INSCRIPTION
-    $inscriptionForm =  $params['inscription'];
+    $inscriptionForm=[];
+    $inscriptionForm['fields'] =  $params['inscription'];
     $inscriptionForm['fields']['text'] = "FR-".(string)$inscriptionNumber;
     $inscriptionForm['writeWorkspace'] = $params['workspace'];
     $inscriptionForm['typeId'] = "561627c945205e41208b4581";
