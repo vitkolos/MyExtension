@@ -85,7 +85,7 @@ class InscriptionResource extends AbstractResource
     // Set some options - we are passing in a useragent too here
     curl_setopt_array($curly, array(
         CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$route['access_token'].'&lang=fr',
+        CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$token.'&lang=fr',
         CURLOPT_POST => 1
     ));
     curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
