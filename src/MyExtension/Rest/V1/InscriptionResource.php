@@ -49,6 +49,8 @@ class InscriptionResource extends AbstractResource
         $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
         $output['token'] = $this->subTokenFilter($auth['token']);
         $token = $output['token']['access_token'];
+        
+        
         //GET NUMERO D'INSCRIPTION ACTUEL
         $inscription = $this->getContentsCollection()->findById($id, true, false);
         $inscriptionNumber = (int)$inscription['fields']['value'] +1;
@@ -74,12 +76,13 @@ class InscriptionResource extends AbstractResource
         curl_close($curl);
         
         
-        //CREATE INSCRIPTION
+    //CREATE INSCRIPTION
     $inscriptionForm=[];
     $inscriptionForm['fields'] =  $params['inscription'];
     $inscriptionForm['fields']['text'] = "FR-".(string)$inscriptionNumber;
     $inscriptionForm['writeWorkspace'] = $params['workspace'];
     $inscriptionForm['typeId'] = "561627c945205e41208b4581";
+    $incriptionForm['fields'] = this->processInscription($incriptionForm['fields']);
     $payload2 = json_encode( array( "content" => $inscriptionForm ) );
 
    $curly = curl_init();
@@ -110,7 +113,11 @@ class InscriptionResource extends AbstractResource
     {
         return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
     }
-    
+    protected function processInscription($incription) {
+        $inscription['birthdate'] = strtotime("06/18/2000");
+        return $inscription;
+        
+    }
 
    
 }     
