@@ -80,21 +80,21 @@ class InscriptionResource extends AbstractResource
     $inscriptionForm['writeWorkspace'] = $params['workspace']
     $payload2 = json_encode( array( "content" => $inscriptionForm ) );
 
-    $curl = curl_init();
+    $curly = curl_init();
     // Set some options - we are passing in a useragent too here
-    curl_setopt_array($curl, array(
+    curl_setopt_array($curly, array(
         CURLOPT_RETURNTRANSFER => 1,
         CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$route['access_token'].'&lang=fr',
         CURLOPT_POST => 1
     ));
-    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
-    curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
-    curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $payload );
-    curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
-    $resultInscription = curl_exec($curl);
+    curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
+    curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
+    curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($curly, CURLOPT_POSTFIELDS, $payload2 );
+    curl_setopt($curly, CURLOPT_ENCODING, 'windows-1252');
+    $resultInscription = curl_exec($curly);
 // Close request to clear up some resources
-    curl_close($curl);
+    curl_close($curly);
 
     return array('success' => true, 'result'=>$resultInscription, 'message' =>$inscriptionNumber );
     
