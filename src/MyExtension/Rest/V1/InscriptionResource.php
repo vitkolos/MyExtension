@@ -80,7 +80,7 @@ class InscriptionResource extends AbstractResource
     $inscriptionForm['writeWorkspace'] = $params['workspace']
     $payload2 = json_encode( array( "content" => $inscriptionForm ) );
 
-    $curly = curl_init();
+   /* $curly = curl_init();
     // Set some options - we are passing in a useragent too here
     curl_setopt_array($curly, array(
         CURLOPT_RETURNTRANSFER => 1,
@@ -94,9 +94,9 @@ class InscriptionResource extends AbstractResource
     curl_setopt($curly, CURLOPT_ENCODING, 'windows-1252');
     $resultInscription = curl_exec($curly);
 // Close request to clear up some resources
-    curl_close($curly);
+    curl_close($curly);*/
 
-    return array('success' => true, 'result'=>$resultInscription, 'message' =>$inscriptionNumber );
+    return array('success' => true, 'result'=>$result, 'message' =>$inscriptionNumber );
     
    }
    
