@@ -27,6 +27,7 @@
     "Block.Inscription.Contact":"Contact",
     "Block.Inscription.Email":"Email",
     "Block.Inscription.Email.Verification":"Email (vérification)",
+    "Block.Inscription.Email.Error.Different":"Les deux adresses mails indiquées sont différentes",
     "Block.Inscription.Email.Parent":"Email d'un des parents",
     "Block.Inscription.Email.Parent.Verification":"Email d'un des parents (vérification)",
     "Block.Inscription.Telephone.Fixe":"Téléphone fixe",

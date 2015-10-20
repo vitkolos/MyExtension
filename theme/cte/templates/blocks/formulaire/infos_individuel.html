@@ -92,7 +92,10 @@
     </div>    
     <div class="row">
         <div class="col-sm-4"><label for="email_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}</label></div>
-        <div class="col-sm-8"><input type="email" id="email_verif" name="email_verif" placeholder="user@mydomain.com" ng-model="inscription.email_verif" required></div>
+        <div class="col-sm-8">
+            <input type="email" id="email_verif" name="email_verif" placeholder="user@mydomain.com" ng-model="inscription.email_verif" required>
+            <p ng-if="mailError" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
+        </div>
     </div>
     <div class="row">
         <div class="col-sm-4"><label for="tel1" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>

@@ -44,36 +44,26 @@ class InscriptionResource extends AbstractResource
     public function postAction($params)
     {
         $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
-        $language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]);
-        //authentication
+        $language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]); // langue du site
+        //authentication comme admin
         $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
         $output['token'] = $this->subTokenFilter($auth['token']);
         $token = $output['token']['access_token'];
         
         
         //GET NUMERO D'INSCRIPTION ACTUEL
-        $inscription = $this->getContentsCollection()->findById($id, true, false);
-        $inscriptionNumber = (int)$inscription['fields']['value'] +1;
+        $inscription = $this->callAPI("GET", $token, $id);
+        if($inscription['success']) {
+            $inscription = $inscription['content'];
+            $inscriptionNumber = (int)$inscription['fields']['value'] +1;
+        }
+        else throw new APIEntityException('Content not found', 404);
+        
         
         $inscription['fields']['value'] = (string)$inscriptionNumber;
         
-        //UPDATE NUMERO D'INSCRIPTION
+        //UPDATE NUMERO D'INSCRIPTION +1
         $payload = json_encode( array( "content" => $inscription ) );
-        /*$curl = curl_init();
-        // Set some options - we are passing in a useragent too here
-        curl_setopt_array($curl, array(
-            CURLOPT_RETURNTRANSFER => 1,
-            CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$id.'?access_token='.$token.'&lang=fr'
-        ));
-        curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
-        curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
-        curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PATCH');
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
-        $result = curl_exec($curl);
-    // Close request to clear up some resources
-        curl_close($curl);*/
         $result = $this->callAPI("PATCH", $token, $payload, $id);
         
     //CREATE INSCRIPTION
@@ -85,21 +75,6 @@ class InscriptionResource extends AbstractResource
     $incriptionForm['fields'] = $this->processInscription($incriptionForm['fields']);
     $payload2 = json_encode( array( "content" => $inscriptionForm ) );
 
-   /*$curly = curl_init();
-    // Set some options - we are passing in a useragent too here
-    curl_setopt_array($curly, array(
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$token.'&lang=fr',
-        CURLOPT_POST => 1
-    ));
-    curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
-    curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
-    curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-    curl_setopt($curly, CURLOPT_POSTFIELDS, $payload2 );
-    curl_setopt($curly, CURLOPT_ENCODING, 'windows-1252');
-    $resultInscription = curl_exec($curly);
-// Close request to clear up some resources
-    curl_close($curly);*/
    $resultInscription = $this->callAPI("POST", $token, $payload2);
 
     return array('success' => true, 'result'=>$resultInscription, 'message' =>$inscriptionNumber );
@@ -157,8 +132,8 @@ class InscriptionResource extends AbstractResource
     $result = curl_exec($curl);
 
     curl_close($curl);
-
-    return $result;
+    if($method == "GET") return json_decode($result, true);
+    else return $result;
 }
    
 }     

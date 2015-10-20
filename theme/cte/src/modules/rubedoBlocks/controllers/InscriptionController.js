@@ -100,7 +100,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.getFormulaire(formId);
   
  
-    // VALIDATIONS
+    // VALIDATIONS ANGULAR
     
     //telephones
     $scope.isTelephoneRequired = function () {
@@ -117,7 +117,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (step==0) {me.currentStage=1;}
             else if (step==1) {me.currentStage=2;}
             else if (step==2) {
-                if (me.isComplement) {me.currentStage=3;}
+                if($scope.inscription.email != $scope.inscription.email_verif){
+                    $scope.mailError = true;
+                }
+                else if (me.isComplement) {me.currentStage=3;}
                 else if (me.isTransport) {me.currentStage=4;}
                 else if (me.isLogement) {me.currentStage=5;}
             }
@@ -130,6 +133,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
             else if(step==5) me.currentStage=6;
             else if (step==6) {
+                // validations préliminaires
+                
+                
+                
                 $scope.inscription.proposition=  propositionId;
                 InscriptionService.inscrire($scope.inscription, "556088a945205e36757e688f").then(function(response){
                     console.log(response);
