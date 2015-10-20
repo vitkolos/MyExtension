@@ -120,9 +120,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if($scope.inscription.email != $scope.inscription.email_verif){
                     $scope.mailError = true;
                 }
-                else if (me.isComplement) {me.currentStage=3;}
-                else if (me.isTransport) {me.currentStage=4;}
-                else if (me.isLogement) {me.currentStage=5;}
+                else if (me.isComplement) {me.currentStage=3;$scope.mailError = false;}
+                else if (me.isTransport) {me.currentStage=4;$scope.mailError = false;}
+                else if (me.isLogement) {me.currentStage=5;$scope.mailError = false;}
             }
             else if (step==3) {
                 if (me.isTransport) {me.currentStage=4;}
