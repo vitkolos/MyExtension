@@ -91,6 +91,7 @@ class InscriptionResource extends AbstractResource
     }
     protected function processInscription($incription) {
         $inscription['birthdate'] = strtotime("18-06-2000");
+        var_dump($inscription['birthdate']);
         return $inscription;
         
     }
