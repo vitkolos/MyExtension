@@ -1,148 +1,168 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService',function($scope,RubedoContentsService,InscriptionService){
-    var me = this;
-    var themePath="/theme/"+window.rubedoConfig.siteTheme;
-    $scope.inscription={};
-    me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
-    me.questions = themePath+'/templates/blocks/formulaire/questions.html';
-    me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
+<?php
+namespace RubedoAPI\Rest\V1;
 
-    me.content = angular.copy($scope.proposition);
-    var propositionId = me.content.id;
-    var propositionTitle = me.content.text;
-    var formId = me.content.fields.formulaire;
-    //surveiller si le type de formulaire est changé
-    $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
-        $scope.inscription.public_type=newValue;
-    });
-    $scope.$watch("contentDetailCtrl.content.service", function(newValue, oldValue) {
-        $scope.inscription.serviteur=newValue;
-    });
-    me.form={};
-    me.fields={};
-    var options = {
-            siteId: $scope.rubedo.current.site.id,
-            pageId: $scope.rubedo.current.page.id
-    };  
-    //pour récupérer les champs du formulaire
-    me.getFormulaire = function (contentId){
-        RubedoContentsService.getContentById(contentId, options).then(function(response){
-            if (response.data.success){
-                me.form = response.data.content;
-
-                //get fields infos
-                angular.forEach(me.form.type.fields, function(field){
-                    me.fields[field.config.name] = field;
-                });
-                // s'il y a des questions complémentaires, les récupérer
-                if ((me.form.fields.questions).length>0) {
-                    me.getQuestions();
-                }
-                // check infos complémentaires
-                angular.forEach(me.form.fields.questions1.questions1, function(option){
-                    me.form[option] = true;
-                });
-                
-            }
-        });
-    };
-       //labels des questions radio / checkbox
-    me.getLabel = function(field,name) {
-        var value = null;
-        if (field.cType == 'combobox') {
-            angular.forEach(field.store.data,function(candidate){
-                if (candidate.valeur == name) {
-                    value = candidate.nom;
-                }
+use RubedoAPI\Rest\V1\AbstractResource;
+use Rubedo\Services\Manager;
+use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
+use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
+use WebTales\MongoFilters\Filter;
+class InscriptionResource extends AbstractResource
+{
+    /**
+     * native config for this payment means
+     *
+     * @var array
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this
+            ->definition
+            ->setName('Inscription')
+            ->setDescription('Service d\'inscription')
+            ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
+                $verbDefinitionEntity
+                    ->setDescription('Get résultats du formulaire d\'inscription')
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Inscription')
+                            ->setKey('inscription')                            
+                    )
+                     ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('workspace')
+                            ->setRequired()
+                            ->setDescription('Workspace')
+                    )
+                    ->addOutputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Résultat de l\'inscription')
+                            ->setKey('result')
+                    );
             });
-        }
-        else if (field.cType == 'checkboxgroup') {
-            angular.forEach(field.config.items,function(candidate){
-                if (candidate.inputValue == name) {
-                    value = candidate.boxLabel;
-                }
-            });
-        }
-        
-        return value;
-    };
-    // récupérer les questions complémentaires
-    me.getQuestions = function() {
-        me.form.questions={
-            "complementaires":[],
-            "transport":[],
-            "logement":[],
-            "generale":[]
-        };
-        angular.forEach(me.form.fields.questions, function(questionId){
-            RubedoContentsService.getContentById(questionId, options).then(function(response){
-                if (response.data.success){
-                    var questionReponse= response.data.content;
-                    switch (questionReponse.fields.categorie.categorie) {
-                        case "complementaire": me.form.questions.complementaires.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
-                        case "transport": me.form.questions.transport.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
-                        case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
-                        case "generale": me.form.questions.generale.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
-                    };
-                                    // questions complémentaires ?
-                    if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
-                    if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport).length>0))) {me.isTransport = true;}
-                    if ( ( (me.form.fields.logement)&&((me.form.fields.logement).length>0 )) || ((me.form.questions.logement).length > 0) ) {me.isLogement = true;}
-
-
-                }
-            });
-            
-        });
-    };
-    
-    
-    
-    me.getFormulaire(formId);
-  
- 
-    // VALIDATIONS
-    
-    //telephones
-    $scope.isTelephoneRequired = function () {
-        if($scope.inscription.public_type == 'adolescent')
-            return !($scope.inscription.tel1 || $scope.inscription.tel2 || $scope.inscription.tel2Pers2); // au moins téléphone fixe / portable / parent
-        else
-            return  !($scope.inscription.tel1 || $scope.inscription.tel2); // au moins téléphone fixe ou portable
-    };
-    
-    me.currentStage = 1;
-    // affichage des sections du formulaire
-    me.setCurrentStage = function(step, valide) {
-        if (valide) {
-            if (step==0) {me.currentStage=1;}
-            else if (step==1) {me.currentStage=2;}
-            else if (step==2) {
-                if (me.isComplement) {me.currentStage=3;}
-                else if (me.isTransport) {me.currentStage=4;}
-                else if (me.isLogement) {me.currentStage=5;}
-            }
-            else if (step==3) {
-                if (me.isTransport) {me.currentStage=4;}
-                else if (me.isLogement) {me.currentStage=5;}
-            }
-            else if (step==4) {
-                if (me.isLogement) {me.currentStage=5;}
-            }
-            else if(step==5) me.currentStage=6;
-            else if (step==6) {
-                $scope.inscription.proposition=  propositionId;
-                $scope.inscription.propositionTitre=  propositionTitle;                
-                InscriptionService.inscrire($scope.inscription, "556088a945205e36757e688f").then(function(response){
-                    console.log(response);
-            });
-                
-                
-                
-            }
-        }
     }
+    public function postAction($params)
+    {
+        $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
+        $language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]);
+        //authentication
+        $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
+        $output['token'] = $this->subTokenFilter($auth['token']);
+        $token = $output['token']['access_token'];
+        
+        
+        //GET NUMERO D'INSCRIPTION ACTUEL
+        $inscription = $this->getContentsCollection()->findById($id, true, false);
+        $inscriptionNumber = (int)$inscription['fields']['value'] +1;
+        
+        $inscription['fields']['value'] = (string)$inscriptionNumber;
+        
+        //UPDATE NUMERO D'INSCRIPTION
+        $payload = json_encode( array( "content" => $inscription ) );
+        /*$curl = curl_init();
+        // Set some options - we are passing in a useragent too here
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$id.'?access_token='.$token.'&lang=fr'
+        ));
+        curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
+        curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
+        curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PATCH');
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
+        $result = curl_exec($curl);
+    // Close request to clear up some resources
+        curl_close($curl);*/
+        $result = $this->callAPI("PATCH", $token, $payload, $id);
+        
+    //CREATE INSCRIPTION
+    $inscriptionForm=[];
+    $inscriptionForm['fields'] =  $params['inscription'];
+    $inscriptionForm['fields']['text'] = "FR-".(string)$inscriptionNumber;
+    $inscriptionForm['writeWorkspace'] = $params['workspace'];
+    $inscriptionForm['typeId'] = "561627c945205e41208b4581";
+    $incriptionForm['fields'] = $this->processInscription($incriptionForm['fields']);
+    $payload2 = json_encode( array( "content" => $inscriptionForm ) );
+
+   /*$curly = curl_init();
+    // Set some options - we are passing in a useragent too here
+    curl_setopt_array($curly, array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$token.'&lang=fr',
+        CURLOPT_POST => 1
+    ));
+    curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
+    curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
+    curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($curly, CURLOPT_POSTFIELDS, $payload2 );
+    curl_setopt($curly, CURLOPT_ENCODING, 'windows-1252');
+    $resultInscription = curl_exec($curly);
+// Close request to clear up some resources
+    curl_close($curly);*/
+   $resultInscription = $this->callAPI("POST", $token, $payload2);
+
+    return array('success' => true, 'result'=>$resultInscription, 'message' =>$inscriptionNumber );
+    
+   }
+   
+   
+   
+
+    
+    protected function subTokenFilter(&$token)
+    {
+        return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
+    }
+    protected function processInscription(&$incription) {
+        $inscription['birthdate'] = strtotime("18-06-2000");
+        return $inscription;
+        
+    }
+
     
     
-    
-    
- }]);
+    protected function callAPI($method, $token, $data = false, $id=false)
+{
+    $curl = curl_init();
+
+    switch ($method)
+    {
+        case "POST": // pour créer un contenu
+            curl_setopt($curl, CURLOPT_POST, 1);
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$token.'&lang=fr';
+            if ($data)
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            break;
+        case "PATCH": // pour modifier un contenu (numéro d'inscription)
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PATCH');
+            if($id)
+                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$id.'?access_token='.$token.'&lang=fr';
+            if ($data)
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            break;
+        case "GET":
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$data.'?access_token='.$token.'&lang=fr';
+            break;
+        
+    }
+
+
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
+    curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
+    curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
+    $result = curl_exec($curl);
+
+    curl_close($curl);
+
+    return $result;
+}
+   
+}     
+
+
+
+
