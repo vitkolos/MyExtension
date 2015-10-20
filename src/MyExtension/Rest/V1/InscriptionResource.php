@@ -90,7 +90,7 @@ class InscriptionResource extends AbstractResource
     {
         return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
     }
-    protected function processInscription($incription) {
+    protected function processInscription($inscription) {
         $inscription['birthdate'] = strtotime("18-06-2000");
         return $inscription;
         
