@@ -73,6 +73,7 @@ class InscriptionResource extends AbstractResource
     $inscriptionForm['writeWorkspace'] = $params['workspace'];
     $inscriptionForm['typeId'] = "561627c945205e41208b4581";
     $incriptionForm['fields'] = $this->processInscription($incriptionForm['fields']);
+    var_dump($incriptionForm['fields']);
     $payload2 = json_encode( array( "content" => $inscriptionForm ) );
 
    $resultInscription = $this->callAPI("POST", $token, $payload2);
@@ -91,7 +92,6 @@ class InscriptionResource extends AbstractResource
     }
     protected function processInscription($incription) {
         $inscription['birthdate'] = strtotime("18-06-2000");
-        var_dump($inscription['birthdate']);
         return $inscription;
         
     }
