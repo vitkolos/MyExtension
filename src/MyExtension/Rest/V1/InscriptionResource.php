@@ -59,7 +59,7 @@ class InscriptionResource extends AbstractResource
         
         //UPDATE NUMERO D'INSCRIPTION
         $payload = json_encode( array( "content" => $inscription ) );
-        $curl = curl_init();
+        /*$curl = curl_init();
         // Set some options - we are passing in a useragent too here
         curl_setopt_array($curl, array(
             CURLOPT_RETURNTRANSFER => 1,
@@ -73,8 +73,8 @@ class InscriptionResource extends AbstractResource
         curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
         $result = curl_exec($curl);
     // Close request to clear up some resources
-        curl_close($curl);
-        
+        curl_close($curl);*/
+        $result = $this->callAPI("PATCH", $token, $payload, $id);
         
     //CREATE INSCRIPTION
     $inscriptionForm=[];
@@ -85,7 +85,7 @@ class InscriptionResource extends AbstractResource
     $incriptionForm['fields'] = $this->processInscription($incriptionForm['fields']);
     $payload2 = json_encode( array( "content" => $inscriptionForm ) );
 
-   $curly = curl_init();
+   /*$curly = curl_init();
     // Set some options - we are passing in a useragent too here
     curl_setopt_array($curly, array(
         CURLOPT_RETURNTRANSFER => 1,
@@ -99,7 +99,8 @@ class InscriptionResource extends AbstractResource
     curl_setopt($curly, CURLOPT_ENCODING, 'windows-1252');
     $resultInscription = curl_exec($curly);
 // Close request to clear up some resources
-    curl_close($curly);
+    curl_close($curly);*/
+   $resultInscription = $this->callAPI("POST", $token, $payload2);
 
     return array('success' => true, 'result'=>$resultInscription, 'message' =>$inscriptionNumber );
     
@@ -119,6 +120,46 @@ class InscriptionResource extends AbstractResource
         
     }
 
+    
+    
+    protected function callAPI($method, $token, $data = false, $id=false)
+{
+    $curl = curl_init();
+
+    switch ($method)
+    {
+        case "POST": // pour créer un contenu
+            curl_setopt($curl, CURLOPT_POST, 1);
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$token.'&lang=fr';
+            if ($data)
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            break;
+        case "PATCH": // pour modifier un contenu (numéro d'inscription)
+            curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PATCH');
+            if($id)
+                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$id.'?access_token='.$token.'&lang=fr';
+            if ($data)
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+            break;
+        case "GET":
+            $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$data.'?access_token='.$token.'&lang=fr';
+            break;
+        
+    }
+
+
+    curl_setopt($curl, CURLOPT_URL, $url);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
+    curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
+    curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+    curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
+    $result = curl_exec($curl);
+
+    curl_close($curl);
+
+    return $result;
+}
    
 }     
 
