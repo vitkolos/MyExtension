@@ -16,7 +16,7 @@
     </div>
     <div class="row">
         <div class="col-sm-4"><label for="dateNaiss" class="label_style">{{rubedo.translate("Block.Inscription.DateNaiss")}}*</label></div>
-        <div class="col-sm-8" ng-controller="DateFieldController as dateFieldCtrl"><!--<input type="text" id="dateNaiss" ng-model="inscription.birthdate" name="birthdate" required ng-pattern="/\d{2}/\d{2}/\d{4}/" placeholder='{{rubedo.translate("Block.Inscription.DateFormat")}}'>-->
+        <div class="col-sm-8" ng-controller="DateController as dateFieldCtrl"><!--<input type="text" id="dateNaiss" ng-model="inscription.birthdate" name="birthdate" required ng-pattern="/\d{2}/\d{2}/\d{4}/" placeholder='{{rubedo.translate("Block.Inscription.DateFormat")}}'>-->
             <div class="dropdown">
                 <a showtab class="dropdown-toggle" id="dropdowndateNaiss" role="button" data-toggle="dropdown" data-target="#" href="#">
                     <div class="input-group"><input readonly id="dateNaiss" ng-model="dateFieldCtrl.formattedDate" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
