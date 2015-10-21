@@ -37,10 +37,21 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-xs-12" >
-				
-				
-			</div>		
+			<div class="col-xs-4" >
+				<p><i class="fa fa-phone"></i></p>
+				<p><b>Téléphone</b></p>
+				<p><rubedo-field field =  "{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field></p>
+			</div>
+			<div class="col-xs-4" >
+				<p><i class="fa fa-map-marker"></i></p>
+				<p><b>Adresse</b></p>
+				<p><rubedo-field field =  "{{contentDetailCtrl.content.fields.position.address}}"></rubedo-field></p>
+			</div>
+			<div class="col-xs-4" >
+				<p><i class="fa fa-envelope"></i></p>
+				<p><b>Email</b></p>
+				<p></p>
+			</div>
 		</div>
 
 		<div style="padding-top:24px" class=""></div>
