@@ -73,7 +73,6 @@ class InscriptionResource extends AbstractResource
     $inscriptionForm['writeWorkspace'] = $params['workspace'];
     $inscriptionForm['typeId'] = "561627c945205e41208b4581";
     $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
-    var_dump($inscriptionForm['fields']);
     $payload2 = json_encode( array( "content" => $inscriptionForm ) );
 
    $resultInscription = $this->callAPI("POST", $token, $payload2);
@@ -91,11 +90,39 @@ class InscriptionResource extends AbstractResource
         return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
     }
     protected function processInscription($inscription) {
+        //dates
         $inscription['birthdate'] = strtotime($inscription['birthdate']);
+        if($inscription['dateNaissPers2']) $inscription['dateNaissPers2'] = strtotime($inscription['dateNaissPers2']);
+        if($inscription['logement']) {
+            $inscription['logement'] = $this->questionToAnswer($inscription['logement']);
+        }
+        if($inscription['transport']) {
+            $inscription['transport'] = $this->questionToAnswer($inscription['transport']);
+        }
+        if($inscription['complementaire']) {
+            $inscription['complementaire'] = $this->questionToAnswer($inscription['complementaire']);
+        }        
+        if($inscription['jai_connu']){
+            
+        }
         return $inscription;
         
     }
-
+    protected function questionToAnswer($question){
+            $answer="";
+            foreach ($question as $titre => $reponse){
+                $answer .= $titre." = ";
+                if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
+                else {
+                    foreach($reponse as $value) $answer .= $value.", ";
+                }
+                $answer.="; "
+                
+            }
+            var_dump($answer);
+            return $answer;
+        
+        }
     
     
     protected function callAPI($method, $token, $data = false, $id=false)
