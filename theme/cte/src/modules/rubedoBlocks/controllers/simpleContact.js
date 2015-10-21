@@ -17,7 +17,6 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         delete (contactSnap.to);
         payload.fields=contactSnap;
         payload.fields["website"] = $location.absUrl();
-        angular.element.find('#myModal').modal('hide');
         RubedoMailService.sendMail(payload).then(
             function(response){
                 if (response.data.success){
