@@ -102,16 +102,16 @@ class InscriptionResource extends AbstractResource
         if($inscription['complementaire']) {
             $inscription['complementaire'] = $this->questionToAnswer($inscription['complementaire']);
         }        
-        if($inscription['jai_connu']){
-            
+        if($inscription['jai_connu'], false){
+            $inscription['jai_connu'] = $this->questionToAnswer($inscription['jai_connu']);
         }
         return $inscription;
         
     }
-    protected function questionToAnswer($question){
+    protected function questionToAnswer($question, printTitle = true){
             $answer="";
             foreach ($question as $titre => $reponse){
-                $answer .= $titre." = ";
+                if(printTitle) $answer .= $titre." = ";
                 if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
                 else {
                     foreach($reponse as $value) $answer .= $value.", ";
