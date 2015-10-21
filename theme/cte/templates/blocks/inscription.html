@@ -33,7 +33,7 @@
                    <div class="row">
                         <div class="col-xs-12 text-center">
                             <p>{{rubedo.translate("Block.Inscription.Paf")}} <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field></p>
-                            <label class="label_style" style="text-align:center" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label>
+                            <div class="row"><label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label></div>
                             <p><input type="text" class="number" ng-model="inscription.montantAPayerMaintenant" ng-pattern="/^[0-9]{1,4}$/"><b>€</b></p>
                         </div>
                     </div>

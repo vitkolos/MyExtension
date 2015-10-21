@@ -199,6 +199,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if(me.isPaiement) {me.currentStage=6;}
                 else me.currentStage=7;
             }
+            else if (step==6) {
+                me.currentStage=7;
+            }
             else if (step==7) {
                 // validations préliminaires
                $scope.inscription.proposition=  propositionId;
