@@ -111,7 +111,7 @@ class InscriptionResource extends AbstractResource
     protected function questionToAnswer($question, $printTitle = true){
             $answer="";
             foreach ($question as $titre => $reponse){
-                if(printTitle) $answer .= $titre." = ";
+                if($printTitle) $answer .= $titre." = ";
                 if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
                 else {
                     foreach($reponse as $value) $answer .= $value.", ";
