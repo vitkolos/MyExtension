@@ -36,29 +36,33 @@
 
 
 	<div class="container">
-		<div class="row padding-large">
-			<div class="col-xs-4 text-center" >
+		<div class="row padding-large text-center">
+			<div class="col-xs-12 text-center">
+				
+			</div>
+		</div>
+		<div class="row padding-large text-center">
+			<div class="col-xs-4 " >
 				<p><i class="fa fa-phone icon"></i></p>
 				<p><b>{{rubedo.translate("Block.Inscription.Telephone")}}</b></p>
-				<p>{{contentDetailCtrl.getFieldByName('telephone')}}</p>
+				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field></p>
 			</div>
 			<div class="col-xs-4" >
 				<p><i class="fa fa-map-marker icon"></i></p>
 				<p><b>{{rubedo.translate("Block.Inscription.Adresse")}}</b></p>
-				<p>{contentDetailCtrl.content.fields.position.address}}</p>
+				<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 			</div>
 			<div class="col-xs-4" >
 				<p><i class="fa fa-envelope icon"></i></p>
 				<p><b>{{rubedo.translate("Block.Inscription.Email")}}</b></p>
-				<div ng-init="blockConfig={email:'nicolas.rhone@gmail.com', name:'Nicolas Rhoné'}, block.bType='simpleContact' ">
-					<div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)"></div>
+				<div ng-init="blockConfig={'email':'nicolas.rhone@gmail.com', 'name':'Nicolas Rhoné', 'email_txt':'Nous contacter'}">
+					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
 				</div>
 			</div>
 		</div>
 
 		<div style="padding-top:24px" class=""></div>
 	</div>
-		
 		
 	
 </div>

@@ -1,6 +1,7 @@
 <div ng-controller="ContactBlockController as contactCtrl" ng-if="blockConfig.displayMode!='form'">
         <div>
-        <a href="" class="capital" load-modal>contact</a>
+        <a href="" class="capital" load-modal ng-if="!blockConfig.email_txt">contact</a>
+        <a href=""  load-modal ng-if="blockConfig.email_txt">{{blockConfig.email_txt}}</a>
         </div>
               <div  id="myModal" class="modal fade" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
