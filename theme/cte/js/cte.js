@@ -1,6 +1,3 @@
-
-
-
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");

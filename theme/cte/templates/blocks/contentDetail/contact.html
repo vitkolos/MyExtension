@@ -1,0 +1,52 @@
+<div class=" content_border">
+	<div style="overflow-y: hidden">
+		<header class="container-fluid content prop" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
+			<div class="text-article container" >
+				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+					<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+					<h1 ng-if="fieldEditMode"
+					   ng-controller="RTEFieldController as rteFieldCtrl"
+					   ckeditor="editorOptions"
+					   contenteditable="true"
+					   ready="setCKEIsReady()"
+					   ng-model="fieldEntity[field.config.name]"
+					   output-plain-text="true"
+					   ng-bind-html="rteFieldCtrl.html">
+					</h1>
+				</div>
+			</div>
+		</header>
+		<header class="container-fluid content prop" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(\"5627b1f345205eaf17832544\",{width:'1650px',mode:'boxed'}) }}')" ng-if="!fieldEntity['image']">
+			<div class="text-article container" >
+				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+					<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+					<h1 ng-if="fieldEditMode"
+					   ng-controller="RTEFieldController as rteFieldCtrl"
+					   ckeditor="editorOptions"
+					   contenteditable="true"
+					   ready="setCKEIsReady()"
+					   ng-model="fieldEntity[field.config.name]"
+					   output-plain-text="true"
+					   ng-bind-html="rteFieldCtrl.html">
+					</h1>
+				</div>
+			</div>
+		</header>
+	</div>
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-12" >
+				
+				
+			</div>		
+		</div>
+
+		<div style="padding-top:24px" class=""></div>
+	</div>
+		
+		
+	
+</div>
+
