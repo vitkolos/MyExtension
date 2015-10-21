@@ -155,7 +155,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
 
 
- angular.module("rubedoBlocks").controller("DateController",["$scope","$element","$filter",function($scope,$element,$filter){
+ angular.module("rubedoBlocks").lazy.controller("DateController",["$scope","$element","$filter",function($scope,$element,$filter){
         var me=this;
         var originalDate=$scope.inscription.birthdate;
         if (originalDate){
