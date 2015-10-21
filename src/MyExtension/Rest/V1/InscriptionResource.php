@@ -102,8 +102,8 @@ class InscriptionResource extends AbstractResource
         if($inscription['complementaire']) {
             $inscription['complementaire'] = $this->questionToAnswer($inscription['complementaire']);
         }        
-        if($inscription['jai_connu'], false){
-            $inscription['jai_connu'] = $this->questionToAnswer($inscription['jai_connu']);
+        if($inscription['jai_connu']){
+            $inscription['jai_connu'] = $this->questionToAnswer($inscription['jai_connu'], false);
         }
         return $inscription;
         
