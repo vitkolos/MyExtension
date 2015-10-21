@@ -87,6 +87,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
                     if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport).length>0))) {me.isTransport = true;}
                     if ( ( (me.form.fields.logement)&&((me.form.fields.logement).length>0 )) || ((me.form.questions.logement).length > 0) ) {me.isLogement = true;}
+                    if ((me.content.fields.paimentOption)&&((me.content.fields.paimentOption.paimentOption).length>0)) {me.isPaiement = true}
 
 
                 }
@@ -180,24 +181,27 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 else if (me.isComplement) {me.currentStage=3;$scope.mailError = false;}
                 else if (me.isTransport) {me.currentStage=4;$scope.mailError = false;}
                 else if (me.isLogement) {me.currentStage=5;$scope.mailError = false;}
-                else {me.currentStage=6;$scope.mailError = false;}
+                else if(me.isPaiement) {me.currentStage=6;$scope.mailError = false;}
+                else {me.currentStage=7;$scope.mailError = false;}
             }
             else if (step==3) {
                 if (me.isTransport) {me.currentStage=4;}
                 else if (me.isLogement) {me.currentStage=5;}
-                else {me.currentStage=6;}
+                 else if(me.isPaiement) {me.currentStage=6;}
+               else {me.currentStage=7;}
             }
             else if (step==4) {
                 if (me.isLogement) {me.currentStage=5;}
-                else {me.currentStage=6;}
+                 else if(me.isPaiement) {me.currentStage=6;}
+                else {me.currentStage=7;}
             }
-            else if(step==5) me.currentStage=6;
-            else if (step==6) {
+            else if(step==5) {
+                if(me.isPaiement) {me.currentStage=6;}
+                else me.currentStage=7;
+            }
+            else if (step==7) {
                 // validations préliminaires
-                
-                
-                
-                $scope.inscription.proposition=  propositionId;
+               $scope.inscription.proposition=  propositionId;
                 $scope.inscription.propositionTitre=  propositionTitle;
                 InscriptionService.inscrire($scope.inscription, "556088a945205e36757e688f").then(function(response){
                 console.log(response);

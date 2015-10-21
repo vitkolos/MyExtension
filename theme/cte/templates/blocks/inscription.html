@@ -10,7 +10,11 @@
 
         
         <form name="inscription_form" novalidate ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'">
-
+                <!--si pas de payement en ligne-->
+                <h2 class="capital txt-red"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0">
+                    {{contentDetailCtrl.getLabelByName('paf_text')}}
+                </h2>
+                <div class="col-xs-12 text-center"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0"><rubedo-field field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field></div>
                 <div ng-switch="inscription.public_type">
                     <div ng-switch-when="adolescent" >
                         <div  ng-include="formCtrl.infos_individuel"></div>
@@ -20,7 +24,35 @@
                     </div>
                 </div>
                 <div ng-include="formCtrl.questions"></div>
-                
+                <!--PAIEMENT-->
+                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==6}" ng-if="formCtrl.isPaiement" ng-click="formCtrl.setCurrentStage(5,paiement.$valid)">{{contentDetailCtrl.getLabelByName('paf_text')}}</h2>
+                <ng-form name="paiement">
+                   <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <p>{{rubedo.translate("Block.Inscription.Paf")}} <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field></p>
+                            <label class="label_style" style="text-align:center" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label>
+                            <input type="text" ng-model="inscription.montantAPayerMaintenant" ng-pattern="/^[0-9]{1,4}$/">€
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(6,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div><!----inscription_form.$valid)-->
+                    </div>
+                </ng-form>
+                <!--remarques-->
+                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==7}"  ng-click="formCtrl.setCurrentStage(6,remarques.$valid)">{{rubedo.translate("Block.Inscription.Remarques")}}</h2>
+                <ng-form name="remarques">
+                   <div class="row">
+                        <div class="col-sm-3"><div class="row vide"></div></div>
+                        <div class="col-sm-6">
+                            <div class="col-xs-12">
+                                <textarea rows="5" id="remarques" ng-model="inscription.remarques" name="remarques" placeholder=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(7,remarques.$valid)">{{rubedo.translate("Block.Inscription.Inscrire")}}</div><!----inscription_form.$valid)-->
+                    </div>
+                </ng-form>
                 {{inscription}}
         </form>
         
