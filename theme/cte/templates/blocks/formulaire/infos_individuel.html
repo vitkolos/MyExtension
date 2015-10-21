@@ -23,7 +23,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <datetimepicker data-ng-model="inscription.birthdate"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateNaiss', startView: 'year', minView:'day'}" data-on-set-time="inscription.birthdateF = (inscription.birthdate |date:'dd/MM/yyyy')"/>
+                    <datetimepicker data-ng-model="inscription.birthdate"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateNaiss', startView: 'year', minView:'day'}" data-on-set-time="inscription.birthdateF = (inscription.birthdate |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                 </ul>
             </div>
         </div>

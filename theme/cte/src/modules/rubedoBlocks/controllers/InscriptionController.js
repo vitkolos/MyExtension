@@ -95,7 +95,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         });
     };
     
-    moment.locale('fr');
+
     
     me.getFormulaire(formId);
   
