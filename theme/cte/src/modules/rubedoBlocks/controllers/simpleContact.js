@@ -23,7 +23,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
                 if (response.data.success){
                     me.contactData={ };
                     me.showForm=false;
-                $scope.dismiss();
+                    angular.element('#myModal').modal('hide');
                     me.showConfirmMessage=true;
                 } else {
                     me.contactError=response.data.message;
