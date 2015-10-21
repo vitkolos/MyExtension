@@ -108,18 +108,17 @@ class InscriptionResource extends AbstractResource
         return $inscription;
         
     }
-    protected function questionToAnswer($question, $printTitle = true){
+    protected function questionToAnswer($question, $printTitre = tsrue){
             $answer="";
             foreach ($question as $titre => $reponse){
-                if($printTitle) $answer .= $titre." = ";
+                if($printTitre) $answer .= $titre." = ";
                 if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
                 else {
                     foreach($reponse as $value) $answer .= $value.", ";
                 }
-                $answer.="; "
+                if($printTitre) $answer.="; ";
                 
             }
-            var_dump($answer);
             return $answer;
         
         }
