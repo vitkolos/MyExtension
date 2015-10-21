@@ -8,6 +8,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
     var options={
         includeTaxonomy:true
     };
+    me.showForm =  angular.copy(me.updateMode);
+
     me.submitStatus=null;
     me.loadContentType=function(ctId){
         RubedoContentTypesService.findById(ctId,options).then(
