@@ -48,7 +48,7 @@
 		<div class="row" >
 			<div class="text-article">
 				<div class="col-xs-12"><h3>Informations pratiques</h3></div>
-				<div ng-if="fieldEntity['dateDebut']">
+				<div ng-if="fieldEntity['dateDebut']" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital">Date</p>
 					</div>
@@ -57,7 +57,7 @@
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('complement_date')}}"></rubedo-field>
 					</div>
 				</div>
-				<div ng-if="fieldEntity['position']">
+				<div ng-if="fieldEntity['position']" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital">{{contentDetailCtrl.getLabelByName('lieuCommunautaire')}}</p>
 					</div>
@@ -65,7 +65,7 @@
 						<p>{{contentDetailCtrl.content.fields.position.address}}</p><!--Description-->
 					</div>
 				</div>
-				<div ng-if="fieldEntity['logement']">
+				<div ng-if="fieldEntity['logement']" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital">{{contentDetailCtrl.getLabelByName('logement')}}</p>
 					</div>
@@ -73,7 +73,7 @@
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('logement')}}"></rubedo-field><!--Description-->
 					</div>
 				</div>
-				<div ng-if="fieldEntity['transport']">
+				<div ng-if="fieldEntity['transport']" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital">{{contentDetailCtrl.getLabelByName('transport')}}</p>
 					</div>
@@ -81,7 +81,7 @@
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('transport')}}"></rubedo-field><!--Description-->
 					</div>
 				</div>
-				<div ng-if="fieldEntity['paf_text']">
+				<div ng-if="fieldEntity['paf_text']" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital">{{contentDetailCtrl.getLabelByName('paf_text')}}</p>
 					</div>
@@ -89,7 +89,7 @@
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field><!--Description-->
 					</div>
 				</div>
-				<div ng-if="fieldEntity['position']" ng-init="showMap=false">
+				<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
 					</div>
@@ -98,7 +98,7 @@
 					</div>
 					<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
 				</div>
-				<div ng-if="fieldEntity['contact']">
+				<div ng-if="fieldEntity['contact']" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital">{{contentDetailCtrl.getLabelByName('contact')}}</p>
 					</div>

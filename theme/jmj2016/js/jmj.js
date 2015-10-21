@@ -19,6 +19,10 @@ blocksConfig.facebook={
            "template": "/templates/blocks/facebook.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
 };
+blocksConfig.bg_image={
+           "template": "/templates/blocks/bg_image.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
+};
 angular.module('rubedoBlocks').directive('scrollToAnchor', function ($location, $anchorScroll) {
     return  function(scope, element, attrs) {
             /*var idToScroll = attrs.scrollToAnchor;
