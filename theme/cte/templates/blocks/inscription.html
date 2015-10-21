@@ -25,17 +25,20 @@
                 </div>
                 <div ng-include="formCtrl.questions"></div>
                 <!--PAIEMENT-->
-                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==6}" ng-if="formCtrl.isPaiement" ng-click="formCtrl.setCurrentStage(5,paiement.$valid)">{{contentDetailCtrl.getLabelByName('paf_text')}}</h2>
+                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==6}" ng-if="formCtrl.isPaiement" ng-click="formCtrl.setCurrentStage(5,paiement.$valid)">
+                    {{contentDetailCtrl.getLabelByName('paf_text')}}
+                    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>6"></span>
+                </h2>
                 <ng-form name="paiement">
                    <div class="row">
                         <div class="col-xs-12 text-center">
                             <p>{{rubedo.translate("Block.Inscription.Paf")}} <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field></p>
                             <label class="label_style" style="text-align:center" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label>
-                            <input type="text" ng-model="inscription.montantAPayerMaintenant" ng-pattern="/^[0-9]{1,4}$/">€
+                            <p><input type="text" class="number" ng-model="inscription.montantAPayerMaintenant" ng-pattern="/^[0-9]{1,4}$/"><b>€</b></p>
                         </div>
                     </div>
                     <div class="row text-center">
-                        <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(6,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div><!----inscription_form.$valid)-->
+                        <div class="button submit" ng-class="{'disabled' : paiement.$invalid}" ng-click="formCtrl.setCurrentStage(6,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div><!----inscription_form.$valid)-->
                     </div>
                 </ng-form>
                 <!--remarques-->
