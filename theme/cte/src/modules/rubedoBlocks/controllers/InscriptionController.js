@@ -180,13 +180,16 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 else if (me.isComplement) {me.currentStage=3;$scope.mailError = false;}
                 else if (me.isTransport) {me.currentStage=4;$scope.mailError = false;}
                 else if (me.isLogement) {me.currentStage=5;$scope.mailError = false;}
+                else {me.currentStage=6;$scope.mailError = false;}
             }
             else if (step==3) {
                 if (me.isTransport) {me.currentStage=4;}
                 else if (me.isLogement) {me.currentStage=5;}
+                else {me.currentStage=6;}
             }
             else if (step==4) {
                 if (me.isLogement) {me.currentStage=5;}
+                else {me.currentStage=6;}
             }
             else if(step==5) me.currentStage=6;
             else if (step==6) {
@@ -195,8 +198,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 
                 
                 $scope.inscription.proposition=  propositionId;
+                $scope.inscription.propositionTitre=  propositionTitle;
                 InscriptionService.inscrire($scope.inscription, "556088a945205e36757e688f").then(function(response){
-                    console.log(response);
+                console.log(response);
             });
                 
                 

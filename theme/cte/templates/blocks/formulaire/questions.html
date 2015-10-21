@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
-   <div class="row" ng-repeat="question in formCtrl.form.questions.complementaires">
+   <div class="row" ng-repeat="question in formCtrl.form.questions.complementaires track by $index">
         <ng-include src="formCtrl.questionDetail"></ng-include>
    </div>
     <div class="row text-center">
@@ -45,7 +45,7 @@
    <div class="row" ng-if="formCtrl.form.fields.transport">
         <div class="col-sm-3"><div class="row"></div></div>
         <div class="col-sm-8">
-            <div class="col-xs-12" ng-repeat="option in formCtrl.form.fields.transport.transport">
+            <div class="col-xs-12" ng-repeat="option in formCtrl.form.fields.transport.transport track by $index">
                 <input type="radio"  name="transport" ng-attr-id="{{option}}" ng-value=' " {{formCtrl.getLabel(formCtrl.fields.transport, option)}}" ' ng-model="inscription.transport[formCtrl.fields.transport.config.fieldLabel]" required>
                         <label for="{{option}}">{{formCtrl.getLabel(formCtrl.fields.transport, option)}}</label>
             </div>
@@ -63,7 +63,7 @@
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>5"></span>
 </h2>
 <ng-form name="logement">
-   <div class="row" ng-if="formCtrl.form.fields.logement">
+   <div class="row" ng-if="formCtrl.form.fields.logement track by $index">
         <div class="col-sm-3"><div class="row"></div></div>
         <div class="col-sm-8">
             <div class="col-xs-12" ng-repeat="option in formCtrl.form.fields.logement.logement">

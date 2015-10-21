@@ -1,11 +1,12 @@
-<div ng-switch="question.fields.type.type">
+<div ng-switch="question.fields.type.type"
+     ng-if="(question.fields.questionPour.questionPour == 'tous') || ((question.fields.questionPour.questionPour == 'serviteurs')&&(inscription.serviteur)) || ((question.fields.questionPour.questionPour == 'sessionistes')&&!(inscription.serviteur))">
     <!--radio group-->
     <div ng-switch-when="radio_group" class="row">
         <div class="col-sm-4">
             <label class="label_style">{{question.text}}</label>
         </div>
         <div class="col-sm-8">
-            <div class="col-xs-12" ng-repeat="questionField in question.fields.question">
+            <div class="col-xs-12" ng-repeat="questionField in question.fields.question track by $index">
                 <input type="radio" required name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-value=' "{{questionField.titre}}"' ng-model="inscription[question.fields.categorie.categorie][question.text].value">
                         <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label><label ng-if="questionField.prix>0">{{questionField.prix}} €</label>
                         <label>{{questionField.libelleApresPrix}}</label>
@@ -21,7 +22,7 @@
             <label class="label_style">{{question.text}}</label>
         </div>
         <div class="col-sm-8">
-            <div class="col-xs-12" ng-repeat="questionField in question.fields.question">
+            <div class="col-xs-12" ng-repeat="questionField in question.fields.question track by $index">
                 <input type="checkbox"  name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-true-value="{{questionField.titre}}"
                                 ng-model="inscription[question.fields.categorie.categorie][question.text][$index]">
                         <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label><label ng-if="questionField.prix>0">{{questionField.prix}} €</label>

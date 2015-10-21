@@ -105,6 +105,9 @@ class InscriptionResource extends AbstractResource
         if($inscription['jai_connu']){
             $inscription['jai_connu'] = $this->questionToAnswer($inscription['jai_connu'], false);
         }
+        if($inscription['autreSituation']){
+            $inscription['situation'] .= " : ".$inscription['autreSituation'];
+        }
         return $inscription;
         
     }
