@@ -152,3 +152,21 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     
  }]);
+
+
+
+ angular.module("rubedoBlocks").controller("DateFieldController",["$scope","$element","$filter",function($scope,$element,$filter){
+        var me=this;
+        var originalDate=$scope.inscription.birthdate;
+        if (originalDate){
+            me.date=new Date($scope.inscription.birthdate*1000);
+            me.formattedDate=$filter('date')(me.date, "shortDate");
+        } else {
+            me.date=new Date();
+        }
+        me.setTime=function(newDate){
+            $scope.inscription.birthdate=newDate.getTime()/1000;
+            me.formattedDate=$filter('date')(newDate, "shortDate");
+        };
+
+    }]);
