@@ -43,6 +43,8 @@
     "Block.Inscription.Connu.Famille":"Famille/amis",
     "Block.Inscription.Inscrire":"S'inscrire",
     "Block.Inscription.Paf":"La participation aux frais est comprise",
-    "Block.Inscription.Paf.Montant":"J'envisage de payer le montant suivant  :" 
+    "Block.Inscription.Paf.Montant":"J'envisage de payer le montant suivant  :",
+    "Block.Inscription.Entretien": "Un entretien sera nécessaire pour confirmer votre inscription.",
+    "Block.Inscription.Motivation": "Pour que votre inscription soit complète, merci d'envoyer une lettre de motivation à l'adresse du secrétariat indiquée ci-dessus."
 
     } 

@@ -38,9 +38,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     me.getQuestions();
                 }
                 // check infos complémentaires
-                angular.forEach(me.form.fields.questions1.questions1, function(option){
-                    me.form[option] = true;
-                });
+                if ((me.form.fields.questions1).length>0) {
+                    angular.forEach(me.form.fields.questions1.questions1, function(option){
+                        me.form[option] = true;
+                    });
+                }
+                
                 
             }
         });
@@ -88,7 +91,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport).length>0))) {me.isTransport = true;}
                     if ( ( (me.form.fields.logement)&&((me.form.fields.logement).length>0 )) || ((me.form.questions.logement).length > 0) ) {me.isLogement = true;}
                     if ((me.content.fields.paimentOption)&&((me.content.fields.paimentOption.paimentOption).length>0)) {me.isPaiement = true}
-
+                    
 
                 }
             });
@@ -167,6 +170,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         else
             return  !($scope.inscription.tel1 || $scope.inscription.tel2); // au moins téléphone fixe ou portable
     };
+    
+
     
     me.currentStage = 1;
     // affichage des sections du formulaire
