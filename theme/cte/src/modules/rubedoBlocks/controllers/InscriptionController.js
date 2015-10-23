@@ -23,15 +23,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id
     };
-    me.getFieldByName=function(name){
-        var field=null;
-        angular.forEach(me.form.type.fields,function(candidate){
-            if (candidate.config.name==name){
-                field=candidate;
-            }
-        });
-        return field;
-    };
+
     //pour récupérer les champs du formulaire
     me.getFormulaire = function (contentId){
         RubedoContentsService.getContentById(contentId, options).then(function(response){
@@ -232,6 +224,15 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
         }
     }
+    me.getFieldByName=function(name){
+        var field=null;
+        angular.forEach(me.form.type.fields,function(candidate){
+            if (candidate.config.name==name){
+                field=candidate;
+            }
+        });
+        return field;
+    };
     
     
     
