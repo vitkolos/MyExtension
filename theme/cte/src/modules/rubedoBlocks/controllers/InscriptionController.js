@@ -37,7 +37,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 // check infos complémentaires
                 if ((me.form.fields.questions1).length>0) {
                     angular.forEach(me.form.fields.questions1.questions1, function(option){
-                        me.form[option] = true;
+                        me.form.options[option] = true;
                     });
                 }
                 // s'il y a des questions complémentaires, les récupérer
