@@ -15,6 +15,33 @@
                     {{contentDetailCtrl.getLabelByName('paf_text')}}
                 </h2>
                 <div class="col-xs-12 text-center"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0"><rubedo-field field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field></div>
+                
+                
+                <ng-form name="enfants">
+                    <input type="text" ng-model="enfant_nom" placeholder="Name" ><br />
+                    <input type="number" ng-model="enfant_prenom" placeholder="Prénom" ><br />
+                    <input type="text" ng-model="enfant_age" placeholder="Age" ><br />
+                    <button type="button" ng-click="addPerson()">Add Child</button>
+                </ng-form>
+                <tr ng-repeat="enfant in inscription.enfants">
+                    <td>
+                      {{ enfant.nom }}
+                   </td>
+                   <td>
+                      {{ enfant.renom }}
+                   </td>
+                   <td>
+                      {{ enfant.age }}
+                   </td>
+                   <td>
+                      <button type="button" ng-click="removePerson($index)">Remove Person</button>
+                   </td>
+                   
+                </tr>
+                
+                
+                
+                
                 <div ng-switch="inscription.public_type">
                     <div ng-switch-when="adolescent" >
                         <div  ng-include="formCtrl.infos_individuel"></div>

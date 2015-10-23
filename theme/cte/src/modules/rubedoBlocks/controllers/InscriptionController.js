@@ -36,6 +36,24 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         
         return field;
     };
+    // ajouter enfants
+    $scope.inscription.enfants=[];
+    $scope.addChild = function(){
+        var enfant = {
+            nom: $scope.nom_enfant,
+            age: $scope.age_enfant,
+            prenom: $scope.prenom_enfant
+        };
+        $scope.inscription.enfants.push(enfant);
+    }
+    // supprimer enfant
+    $scope.removeChild = function(index){
+        $scope.inscription.enfants.splice(index, 1);
+    };  
+
+    
+    
+    
     //pour récupérer les champs du formulaire
     me.getFormulaire = function (contentId){
         RubedoContentsService.getContentById(contentId, options).then(function(response){
