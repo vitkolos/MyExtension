@@ -2,7 +2,7 @@
 <h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==3}" ng-if="formCtrl.isComplement" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{formCtrl.fields.questions1.config.fieldLabel}}
     <span class="fa fa-pencil pull-right" ng-if="formCtrl.currentStage>3"></span>
 </h2>
-<ng-form name="infos_complementaires">
+<ng-form name="infos_complementaires" ng-if="formCtrl.isComplement">
     <!--questions de transport-->
    <div class="row" ng-if="formCtrl.form.jai_connu">
         <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.Connu")}}</label></div>
@@ -40,7 +40,7 @@
 <h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==4}" ng-if="formCtrl.isTransport" ng-click="formCtrl.setCurrentStage(3,transport.$valid)">{{formCtrl.fields.transport.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>4"></span>
 </h2>
-<ng-form name="transport">
+<ng-form name="transport" ng-if="formCtrl.isTransport">
     <!--questions de transport-->
    <div class="row" ng-if="formCtrl.form.fields.transport">
         <div class="col-sm-3"><div class="row"></div></div>
@@ -62,7 +62,7 @@
 <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==5}" ng-if="formCtrl.isLogement" ng-click="formCtrl.setCurrentStage(4,logement.$valid)">{{formCtrl.fields.logement.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>5"></span>
 </h2>
-<ng-form name="logement">
+<ng-form name="logement" ng-if="formCtrl.isLogement">
    <div class="row" ng-if="formCtrl.form.fields.logement">
         <div class="col-sm-3"><div class="row"></div></div>
         <div class="col-sm-8">

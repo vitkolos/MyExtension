@@ -29,7 +29,7 @@
                     {{contentDetailCtrl.getLabelByName('paf_text')}}
                     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>6"></span>
                 </h2>
-                <ng-form name="paiement">
+                <ng-form name="paiement" ng-if="formCtrl.isPaiement">
                    <div class="row">
                         <div class="col-xs-12 text-center">
                             <p>{{rubedo.translate("Block.Inscription.Paf")}} <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field></p>

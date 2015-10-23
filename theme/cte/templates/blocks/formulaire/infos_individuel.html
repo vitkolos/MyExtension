@@ -3,7 +3,8 @@
     <input type="radio"  name="public_type" ng-attr-id="{{public}}" ng-value="{{public}}"><label ng-attr-for="{{public}}">{{formCtrl.getValueInStore(formCtrl.fields.publics, public)}}</label>	
 </div>-->
 <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==1}" ng-click="formCtrl.setCurrentStage(0,infos_personnelles.$valid)">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
-    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>1"></span></h2>
+    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>1"></span>
+</h2>
 <ng-form name="infos_personnelles">
     <!--NOM-->
     <div class="row">
