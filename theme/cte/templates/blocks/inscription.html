@@ -57,7 +57,8 @@
                 <div class="row">
                     <div class="col-xs-12 text-left">
                         <p ng-if="formCtrl.form.entretien" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Entretien")}}</p>
-                        <p ng-if="formCtrl.form.motivation" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Entretien")}}</p>
+                        <p ng-if="formCtrl.form.motivation && !fieldEntity['formulaire_pdf']" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Motivation")}}</p>
+                        <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('formulaire_pdf')}}" ng-if="formCtrl.form.motivation"></rubedo-field><!--Formulaire-->
                     </div>
                 </div>
                 
