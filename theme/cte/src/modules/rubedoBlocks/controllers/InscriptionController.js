@@ -43,7 +43,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 // s'il y a des questions complémentaires, les récupérer
                 if ((me.form.fields.questions).length>0) {
                     me.getQuestions();
-                }                
+                }
+                console.log(me.form);
                 
             }
         });
