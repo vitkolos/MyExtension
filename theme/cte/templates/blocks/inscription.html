@@ -58,30 +58,12 @@
                     <div class="col-xs-12 text-left">
                         <p ng-if="formCtrl.form.entretien" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Entretien")}}</p>
                         <p ng-if="formCtrl.form.motivation && !formCtrl.getFieldByName('formulaire_pdf')" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Motivation")}}</p>
+                        <p ng-if="!formCtrl.form.motivation && formCtrl.getFieldByName('formulaire_pdf')" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Formulaire")}}</p>
+                        <p ng-if="formCtrl.form.motivation && formCtrl.getFieldByName('formulaire_pdf')" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.FormulaireEtMotiv")}}</p>
                         <rubedo-field  field =  "{{formCtrl.getFieldByName('formulaire_pdf')}}" ng-if="formCtrl.form.motivation"></rubedo-field><!--Formulaire-->
                     </div>
                 </div>
                 
-
-            
-            <p class="note_rouge_formulaire" tal:condition="python: here.getDemanderLettreMotivationContextuel() and not here.getUrlFormulairePdfComplementaire()"
-               i18n:translate="ccn_form_envoyer_lettre_motivation">
-            	Pour que votre inscription soit complète, merci d'envoyer une lettre de motivation à l'adresse du secrétariat indiquée ci-dessus.
-            </p>
-            
-            <p class="note_rouge_formulaire" tal:condition="python: not here.getDemanderLettreMotivationContextuel() and here.getUrlFormulairePdfComplementaire()">
-            	<normal i18n:translate="ccn_form_remplir_formulaire">
-            		Pour que votre inscription soit complète, merci d'imprimer et de remplir à la main le formulaire complementaire suivant et de l'envoyer à l'adresse du secrétariat indiquée ci-dessus.
-            	</normal>
-            	<a target="_blank" tal:attributes="href here/getUrlFormulairePdfComplementaire" i18n:translate="ccn_formulaire_complementaire">formulaire complémentaire</a>
-            </p>
-            
-            <p class="note_rouge_formulaire" tal:condition="python: here.getDemanderLettreMotivationContextuel() and here.getUrlFormulairePdfComplementaire()">
-            	<normal i18n:translate="ccn_form_remplir_formulaire_et_envoyer_lettre_motivation">
-            		Pour que votre inscription soit complète, merci d'écrire une lettre de motivation, d'imprimer le formulaire complémentaire suivant, de le remplir à la main et d'envoyer ces deux documents à l'adresse du secrétariat indiquée ci-dessus.
-            	</normal>
-            	<a target="_blank" tal:attributes="href here/getUrlFormulairePdfComplementaire" i18n:translate="ccn_formulaire_complementaire">formulaire complémentaire</a>
-            </p>
 
                 
                 <div class="row text-center">

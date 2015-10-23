@@ -55,7 +55,7 @@
 			<div class="col-xs-4"  ng-if="fieldEntity['email']">
 				<p><i class="fa fa-envelope icon"></i></p>
 				<p><b>{{rubedo.translate("Block.Inscription.Email")}}</b></p>
-				<div ng-init="blockConfig={'email':'nicolas.rhone@gmail.com', 'name':'Nicolas Rhoné'}">
+				<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':'Envoyer un mail'}">
 					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
 				</div>
 			</div>
