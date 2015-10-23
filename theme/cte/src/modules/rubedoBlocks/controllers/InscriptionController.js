@@ -33,17 +33,17 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 angular.forEach(me.form.type.fields, function(field){
                     me.fields[field.config.name] = field;
                 });
-                // s'il y a des questions complémentaires, les récupérer
-                if ((me.form.fields.questions).length>0) {
-                    me.getQuestions();
-                }
+
                 // check infos complémentaires
                 if ((me.form.fields.questions1).length>0) {
                     angular.forEach(me.form.fields.questions1.questions1, function(option){
                         me.form[option] = true;
                     });
                 }
-                
+                // s'il y a des questions complémentaires, les récupérer
+                if ((me.form.fields.questions).length>0) {
+                    me.getQuestions();
+                }                
                 
             }
         });
