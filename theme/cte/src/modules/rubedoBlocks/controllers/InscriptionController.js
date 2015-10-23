@@ -25,7 +25,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     };
     me.getFieldByName=function(name){
         var field=null;
-        angular.forEach(me.content.type.fields,function(candidate){
+        angular.forEach(me.form.type.fields,function(candidate){
             if (candidate.config.name==name){
                 field=candidate;
             }
