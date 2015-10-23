@@ -25,11 +25,14 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     };
     me.getFieldByName=function(name){
         var field=null;
-        angular.forEach(me.form.type.fields,function(candidate){
-            if (candidate.config.name==name){
-                field=candidate;
-            }
-        });
+        if (me.form) {
+            angular.forEach(me.form.type.fields,function(candidate){
+                if (candidate.config.name==name){
+                    field=candidate;
+                }
+            });
+        }
+        
         return field;
     };
     //pour récupérer les champs du formulaire
