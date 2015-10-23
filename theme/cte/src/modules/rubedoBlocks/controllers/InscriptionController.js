@@ -37,7 +37,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         return field;
     };
     // ajouter enfants
-    $scope.inscription.enfants=[];
+    $scope.inscription.enfants={};
     $scope.addChild = function(){
         var enfant = {
             nom: $scope.nom_enfant,
