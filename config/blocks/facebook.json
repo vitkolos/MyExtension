@@ -56,7 +56,21 @@
 				}
 			],
 			"avance":[
-			
+				{
+					"categorie": "Template",
+					"champs": [
+					    {
+						"type": "Rubedo.view.ACEField",
+						"config": {
+						    "fieldLabel": "#ext-gen1452#",
+						    "name": "customTemplate",
+						    "defaultTemplateUrl": "blocks/facebook.html",
+						    "twigMode": false
+		    
+						}
+					    }
+					]
+				}			
 			]
 		},
 		"configBloc":[
