@@ -61,8 +61,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 }
                                 // questions complémentaires ?
                 if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
-                if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport.transport).length>0))) {me.isTransport = true;}
-                if ( ((me.form.questions.logement).length > 0)  || ( (me.form.fields.logement)&&((me.form.fields.logement.logement).length>0 ))) {me.isLogement = true;}
+                if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport.transport).length>1))) {me.isTransport = true;}
+                if ( ((me.form.questions.logement).length > 0)  || ( (me.form.fields.logement)&&((me.form.fields.logement.logement).length>1 ))) {me.isLogement = true;}
                 if ((me.content.fields.paimentOption)&&((me.content.fields.paimentOption.paimentOption).length>0)) {me.isPaiement = true}
               
                 console.log(me.form);
