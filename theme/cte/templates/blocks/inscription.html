@@ -18,9 +18,9 @@
                 
                 
                 <ng-form name="enfants">
-                    <input type="text" ng-model="nom_enfant" placeholder="Name" ><br />
-                    <input type="text" ng-model="prenom_enfant" placeholder="Prénom" ><br />
-                    <input type="text" ng-model="age_enfant" placeholder="Age" ><br />
+                    <input type="text" ng-model="inscription.enfants.add.nom_enfant" placeholder="Name" ><br />
+                    <input type="text" ng-model="inscription.enfants.add.prenom_enfant" placeholder="Prénom" ><br />
+                    <input type="text" ng-model="inscription.enfants.add.age_enfant" placeholder="Age" ><br />
                     <button type="button" ng-click="addChild()">Add Child</button>
                 </ng-form>
                 <ul ng-repeat="enfant in inscription.enfants">
