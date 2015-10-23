@@ -36,8 +36,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
                 // check infos complémentaires
                 if ((me.form.fields.questions1).length>0) {
-                    angular.forEach(me.form.fields.questions1.questions1, function(option){
+                    angular.forEach(me.form.fields.questions1.questions1, function(option, key){
                         me.form.options[option] = true;
+                        console.log();
                     });
                 }
                 // s'il y a des questions complémentaires, les récupérer
@@ -214,7 +215,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                $scope.inscription.proposition=  propositionId;
                 $scope.inscription.propositionTitre=  propositionTitle;
                 InscriptionService.inscrire($scope.inscription, "556088a945205e36757e688f").then(function(response){
-                console.log(response);
             });
                 
                 
