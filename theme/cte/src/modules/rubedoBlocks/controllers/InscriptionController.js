@@ -37,13 +37,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         return field;
     };
     // ajouter enfants
-    $scope.inscription.enfants={'add':{}};
-    $scope.addChild = function(){
-        $scope.inscription.enfants.push($scope.inscription.enfants.add);
-        $scope.inscription.enfants.add={};
+    $scope.inscription.enfants=[];
+    me.addChild = function(enfant){
+        $scope.inscription.enfants.push(angular.copy(enfant));
     }
     // supprimer enfant
-    $scope.removeChild = function(index){
+    me.removeChild = function(index){
         $scope.inscription.enfants.splice(index, 1);
     };  
 

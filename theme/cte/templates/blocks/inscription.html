@@ -18,12 +18,11 @@
                 
                 
                 <ng-form name="enfants">
-                    <input type="text" ng-model="inscription.enfants.add.nom_enfant" placeholder="Name" ><br />
-                    <input type="text" ng-model="inscription.enfants.add.prenom_enfant" placeholder="Prénom" ><br />
-                    <input type="text" ng-model="inscription.enfants.add.age_enfant" placeholder="Age" ><br />
-                    <button type="button" ng-click="addChild()">Add Child</button>
-                </ng-form>
-                <ul ng-repeat="enfant in inscription.enfants">
+                    <input type="text" ng-model="enfant.nom" placeholder="Name" ><br />
+                    <input type="text" ng-model="enfant.prenom" placeholder="Prénom" ><br />
+                    <input type="text" ng-model="enfant.age" placeholder="Age" ><br />
+                    <button type="button" ng-click="formCtrl.addChild(enfant);enfant={}">Add Child</button>
+                    <ul ng-repeat="enfant in inscription.enfants">
                     <li>
                       {{ enfant.nom }}
                    </li>
@@ -34,10 +33,13 @@
                       {{ enfant.age }}
                    </li>
                    <li>
-                      <button type="button" ng-click="removeChild($index)">Remove Person</button>
+                      <button type="button" ng-click="formCtrl.removeChild($index)">Remove Person</button>
                    </li>
+                
                    
                 </ul>
+                </ng-form>
+                
                 
                 
                 
