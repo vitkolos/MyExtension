@@ -45,6 +45,7 @@ class InscriptionResource extends AbstractResource
     {
         $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
         $language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]); // langue du site
+        var_dump($language);
         //authentication comme admin
         $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
         $output['token'] = $this->subTokenFilter($auth['token']);
