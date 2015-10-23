@@ -44,6 +44,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if ((me.form.fields.questions).length>0) {
                     me.getQuestions();
                 }
+                                // questions complémentaires ?
+                if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
+                if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport).length>0))) {me.isTransport = true;}
+                if ( ( (me.form.fields.logement)&&((me.form.fields.logement).length>0 )) || ((me.form.questions.logement).length > 0) ) {me.isLogement = true;}
+                if ((me.content.fields.paimentOption)&&((me.content.fields.paimentOption.paimentOption).length>0)) {me.isPaiement = true}
+              
                 console.log(me.form);
                 
             }
@@ -87,12 +93,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                         case "generale": me.form.questions.generale.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                     };
-                                    // questions complémentaires ?
-                    if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
-                    if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport).length>0))) {me.isTransport = true;}
-                    if ( ( (me.form.fields.logement)&&((me.form.fields.logement).length>0 )) || ((me.form.questions.logement).length > 0) ) {me.isLogement = true;}
-                    if ((me.content.fields.paimentOption)&&((me.content.fields.paimentOption.paimentOption).length>0)) {me.isPaiement = true}
-                    
+                  
 
                 }
             });
