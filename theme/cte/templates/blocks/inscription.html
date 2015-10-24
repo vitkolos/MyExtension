@@ -79,9 +79,10 @@
                                 <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement.accompte" checked="checked" required>
                                 <label for="accompte">{{contentDetailCtrl.getFieldByName('accompte')}} : {{formCtrl.content.fields.accompte}}</label> 
                             </div>                            
-                            <div class="col-xs-12" ng-repeat="">
-                                <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement.accompte" required>
-                                <label for="accompte">{{contentDetailCtrl.getFieldByName('accompte')}} : {{formCtrl.content.fields.accompte}}</label> 
+                            <div class="col-xs-12" ng-repeat="option in formCtrl.content.fields.paimentOption.paimentOption">
+                                <input type="radio"  name="paiement_maintenant" ng-attr-id="{{option}}" ng-model="inscription.paiement[option]" required>
+                                <label for="{{option}}" ng-if="option == 'partie'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Partie")}}</label> 
+                                <label for="{{option}}" ng-if="option == 'totalite'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Totalite")}}</label> 
                             </div>
                         </div>  
                     </div>

@@ -47,6 +47,7 @@
     "Block.Inscription.Paf.Maintenant":"Je paye maintenant",
     "Block.Inscription.Paf.Maintenant.Rien":"Rien pour l'instant",
     "Block.Inscription.Paf.Maintenant.Totalite":"La totalité des frais",
+    "Block.Inscription.Paf.Maintenant.Partie":"Une partie des frais.",
     "Block.Inscription.Entretien": "Un entretien sera nécessaire pour confirmer votre inscription.",
     "Block.Inscription.Motivation": "Pour que votre inscription soit complète, merci d'envoyer une lettre de motivation à l'adresse du secrétariat indiquée ci-dessus.",
     "Block.Inscription.Formulaire": "Pour que votre inscription soit complète, merci d'imprimer et de remplir à la main le formulaire complementaire suivant et de l'envoyer à l'adresse du secrétariat indiquée ci-dessus.",
