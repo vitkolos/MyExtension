@@ -63,7 +63,7 @@
                         <div class="col-xs-12 text-center">
                             <p>{{rubedo.translate("Block.Inscription.Paf")}} <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field></p>
                             <div class="row"><label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label></div>
-                            <p><input type="text" class="number" ng-model="inscription.montantAPayerMaintenant" ng-pattern="/^[0-9]{1,4}$/"><b>€</b></p>
+                            <p><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[0-9]{1,4}$/"><b>€</b></p>
                         </div>
                     </div>
                    <div class="row">
@@ -81,7 +81,7 @@
                             </div>                            
                             <div class="col-xs-12" ng-repeat="option in formCtrl.content.fields.paimentOption.paimentOption">
                                 <input type="radio"  name="paiement_maintenant" ng-attr-id="{{option}}" ng-model="inscription.paiement[option]" required>
-                                <label for="{{option}}" ng-if="option == 'partie'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Partie")}}</label> 
+                                <label for="{{option}}" ng-if="option == 'partie'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Partie")}}<input type="text"  name="montantAPayerMaintenant" ng-model="inscription.paiement.montantAPayerMaintenant" ng-required="paiement_maintenant == 'partie' "></label> 
                                 <label for="{{option}}" ng-if="option == 'totalite'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Totalite")}}</label> 
                             </div>
                         </div>  
