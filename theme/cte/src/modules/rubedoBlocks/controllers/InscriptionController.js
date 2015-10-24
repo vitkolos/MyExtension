@@ -76,7 +76,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
                 if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport.transport).length>1) && (typeof me.form.fields.transport.transport != 'string') )) {me.isTransport = true;}
                 if ( ((me.form.questions.logement).length > 0)  || ( (me.form.fields.logement)&&((me.form.fields.logement.logement).length>1 ) && ( typeof me.form.fields.logement.logement !='string') )) {me.isLogement = true;}
-                if ((me.content.fields.paimentOption)&&((me.content.fields.paimentOption.paimentOption).length>0)) {me.isPaiement = true}
+                if (((me.form.fields.paimentOption)&&((me.form.fields.paimentOption.paimentOption).length>0)) || me.form.fields.accompte>0) {me.isPaiement = true}
+                if (( typeof me.form.fields.paimentOption.paimentOption =='string')) {
+                    me.form.fields.paimentOption.paimentOption = {0 : me.form.fields.paimentOption.paimentOption};
+                }
               
                 console.log(me.form);
                 
@@ -241,6 +244,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 // validations préliminaires
                $scope.inscription.proposition=  propositionId;
                 $scope.inscription.propositionTitre=  propositionTitle;
+                me.inscription.accompte = me.content.fields.accompte;
                 InscriptionService.inscrire($scope.inscription, "556088a945205e36757e688f").then(function(response){
                 });
                 
