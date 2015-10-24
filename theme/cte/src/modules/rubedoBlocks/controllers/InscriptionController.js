@@ -76,9 +76,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
                 if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport.transport).length>1) && (typeof me.form.fields.transport.transport != 'string') )) {me.isTransport = true;}
                 if ( ((me.form.questions.logement).length > 0)  || ( (me.form.fields.logement)&&((me.form.fields.logement.logement).length>1 ) && ( typeof me.form.fields.logement.logement !='string') )) {me.isLogement = true;}
-                if (((me.form.fields.paimentOption)&&((me.form.fields.paimentOption.paimentOption).length>0)) || me.form.fields.accompte>0) {me.isPaiement = true}
-                if (( typeof me.form.fields.paimentOption.paimentOption =='string')) {
-                    me.form.fields.paimentOption.paimentOption = {0 : me.form.fields.paimentOption.paimentOption};
+                if (((me.content.fields.paimentOption)&&((me.content.fields.paimentOption.paimentOption).length>0)) || me.content.fields.accompte>0) {me.isPaiement = true}
+                if (( typeof me.content.fields.paimentOption.paimentOption =='string')) {
+                    me.content.fields.paimentOption.paimentOption = {0 : me.content.fields.paimentOption.paimentOption};
                 }
               
                 console.log(me.form);
@@ -255,7 +255,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     }
 
     
-    console.log(me.form);
+    console.log(me);
     
     
  }]);
