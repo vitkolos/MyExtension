@@ -3,6 +3,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
     me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+    me.couple = themePath+'/templates/blocks/formulaire/infos_individuel.html';
     me.questions = themePath+'/templates/blocks/formulaire/questions.html';
     me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
     me.infosFin = themePath+'/templates/blocks/formulaire/infosFin.html';
