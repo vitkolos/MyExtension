@@ -124,7 +124,7 @@
                             <li ng-click="search=!search" class="cursor-as-pointer">
                                 <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
                             </li>
-                            <li ng-click="menuCtrl.showMenu()" class="cursor-as-pointer" >
+                            <li ng-click="menuCtrl.showMenu()" class="cursor-as-pointer"  data-dismiss="modal">
                                 menu
                             </li>
                             <li>
@@ -149,11 +149,12 @@
                                         
 
 
-        <div class="modal fade right" id="menu" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+        <div class="modal fade right {{menuCtrl.class}}" id="menu" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
                 <div class="modal-dialog">
                         <nav class="navbar footer" style="position:fixed; height:100%">
                                 <div class="container-fluid menu">
-                                        <div style="width:90%" ng-include="menuCtrl.menuTemplate">
+                                       <div class="menu-close"></div>
+                                        <div style="width:90%; margin-top:50px" ng-include="menuCtrl.menuTemplate">
                                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close","Close")}}</span></button>
                                                 
                                         </div>
