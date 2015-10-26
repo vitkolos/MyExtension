@@ -18,8 +18,8 @@
         <!--POUR 3 COLONNES-->
         <div ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
             <!--<div id="infiniteScrollCtrl">-->
-            <div class="col-md-4 col-xs-6 col-xxs-12" ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
-                <div class="media" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents">
+            <div ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
+                <div class="media col-md-4 col-xs-6 col-xxs-12" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents">
                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
                     
                     <div class="media-body">

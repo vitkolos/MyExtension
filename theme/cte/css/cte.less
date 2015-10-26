@@ -316,14 +316,16 @@ span#close:after {
     ///////////NEW MENU 2///////////////////
 ///////////////////////////////////////////////////
  .modal[id^=menu] > .modal-dialog {
-  width:80%;
+  width:100%;
   height: 100%;
   margin: 0;
   margin-left: 20%;
  }
  
  .modal.menu1418 > .modal-dialog,  .modal.menu1418 .footer{background-color: @14-18}
- 
+  @media screen and (min-width: @min_sm) {
+    .modal[id^=menu] > .modal-dialog{width:80%}
+  }
  
 ////////////////////////////////////////////////////
     ///////////FOOTER///////////////////
