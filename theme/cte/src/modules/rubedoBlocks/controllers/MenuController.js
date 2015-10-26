@@ -1,8 +1,13 @@
     angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService',function($scope,$location,RubedoMenuService,RubedoPagesService){
         var me=this;
+        var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
         me.currentRouteline=$location.path();
         var config=$scope.blockConfig;
+	me.menuTemplate = themePath+'/templates/blocks/navigation/1418.html';
+	if ($scope.block.code == '1418') {
+	    me.menuClass="menu1418";
+	}
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
         if (config.rootPage){
             var pageId=config.rootPage;

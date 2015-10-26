@@ -40,119 +40,8 @@
  </nav>
 
 
-<div  role="navigation" ng-controller="MenuController as menuCtrl"  ng-if="block.code=='menu' "  ng-init="search=false;menu=false;menu2=false">
-        <nav class="navbar footer jeunes navbar-fixed-top" role="navigation" ng-class="{'displayed1':menu}" style="height:100%;z-index:9999">
-                <div class="retour" ng-click="menu=!menu">
-                        <p class="capital">retour à la page</p>
-                </div>
-                <div class="nav-suivant" ng-click="menu2=!menu2">
-                        <p class="capital">Communauté du Chemin Neuf</p>
-                </div>
-            <div class="container-fluid menu">
-                 <div class="container" >
-                        <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:24px"><h4>Jeunes 14-18 ans</h4></a>
-                        <div  style="text-align: left">
- 
- 
-<div class="row">
-   <div class="col-sm-3 col-xs-6">
-      <a class="capital" href="http://www.chemin-neuf.fr/annuaire/france/qui_sommes_nous_view_remote?id=ccn">La Mission 14-18 ans</a>
-      <a class="capital" href="http://www.chemin-neuf.fr/ou-nous-trouver/regions-de-france">Shut up and dance</a>
-   </div>
 
-   <div class="col-sm-3 col-xs-6">
-      <a class="capital" href="">Propositions</a>
-      <a href="http://www.chemin-neuf.fr/cana-couples-familles-fr/cana">Week-ends nationaux</a><br />
-      <a href="http://www.chemin-neuf.fr/jeunes-fr/14-18-ans">Semaines nationales</a><br />
-      <a href="http://www.chemin-neuf.fr/jeunes-fr/18-30-ans">Ecole de langues</a><br />
-      <a href="http://www.chemin-neuf.fr/">Sablonceaux 2016</a><br />
-      <a href="http://www.chemin-neuf.fr/">Calendrier</a>
-   </div>
-
-   <div class="col-sm-3 col-xs-6 col-xs-push-6 col-sm-push-0">
-      <a class="capital" href="http://actualites.chemin-neuf.fr/fr/accueil">Dans ta région</a>
-      <a href="http://actualites.chemin-neuf.fr/fr/accueil/foi">Lyon</a><br />
-      <a href="http://netforgod.tv">Paris</a>
-      <a href="http://netforgod.tv">Bretagne</a>
-      <a href="http://netforgod.tv">Région Ouest</a>
-      <a href="http://netforgod.tv">Région Est</a>
-      <a href="http://netforgod.tv">Région Sud</a>
-   </div>
-
-<!--<div class="col-sm-3 col-xs-6 col-xs-pull-6 col-sm-pull-0">
-<div class="dons"><a class="capital" href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don"><span>aidez nous</span></a></div>
-<a class="dons" href="">Faire un don</a><br />
-<a class="dons" href="">Nos projets</a></div>
-</div>
-</div>-->
-   <div class="col-sm-3 col-xs-6 col-xs-pull-6 col-sm-pull-0">
-      <a class="capital" href="http://www.chemin-neuf.fr/aidez-nous/">S'engager</a>
-      <a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">5 minutes pour Dieu</a><br />
-      <a  href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don#table_projets">Eclats</a>
-   </div>
-
-
-</div>
-
- 
- 
- 
-                                
-                        </div>
-                 </div>
-                 <div style="height:100%"></div>
-            </div>
-        </nav>
-        <nav class="navbar footer navbar-fixed-top top" role="navigation" ng-class="{'displayed2':menu2, 'displayed1':menu}" style="height:100%;z-index:9999">
-                <div class="retour" ng-click="menu=!menu">
-                        <p class="capital">retour à la page</p>
-                </div>
-                <div class="nav-suivant down" ng-click="menu2=!menu2" >
-                        <p class="capital">Jeunes 14-18 ans</p>
-                </div>
-
-            <div class="container-fluid menu" >
-                 <div class="container" >
-                        <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:24px"><h4>Communauté du Chemin Neuf</h4></a>
-                        <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" style="text-align: left"></div>
-                 </div>
-                 <div style="height:100%"></div>
-            </div>
-        </nav>
-        <nav class="navbar-fixed-top">
-                <div class="container-fluid">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li ng-click="search=!search" class="cursor-as-pointer">
-                                <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
-                            </li>
-                            <li ng-click="menu=!menu" class="cursor-as-pointer" >
-                                menu
-                            </li>
-                            <li>
-                                <span style="line-height:1em"><a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">Faire un don</a></span>
-                            </li>
-            
-                        </ul>
-                </div> 
-                <div class="container-fluid searchbar"ng-class="{'displayed':search}">
-                    <div class="navbar-nav navbar-right" >
-                        <form ng-if="menuCtrl.searchEnabled" ng-submit="menuCtrl.onSubmit()"role="form">
-                            <div class="input-group">
-                                <input class="form-control" type="text" ng-model="menuCtrl.query" ng-attr-placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
-                                    <span class="input-group-btn"><button class="btn btn-default" type="submit">
-                                        <span class="glyphicon glyphicon-search"></span></button></span>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-    </nav>
-
-</div>
-
-
-
-
-<div  role="navigation" ng-controller="MenuController as menuCtrl"  ng-if="block.code=='menu2' "  ng-init="search=false;menu=false;menu2=false">
+<div  role="navigation" ng-controller="MenuController as menuCtrl"  ng-if="block.code=='1418' "  ng-init="search=false;menu=false;menu2=false" class="{{menuCtrl.menuClass}}">
 <!--
         <nav class="navbar footer jeunes navbar-fixed-top" role="navigation" ng-class="{'displayed1':menu}" style="height:100%;z-index:9999">
                 <div class="retour" ng-click="menu=!menu">
@@ -260,48 +149,13 @@
                                         
 
 
-        <div class="modal fade menu1418 right" id="menu" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+        <div class="modal fade right" id="menu" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
                 <div class="modal-dialog">
                         <nav class="navbar footer" style="position:fixed; height:100%">
                                 <div class="container-fluid menu">
-                                        <div style="90%">
+                                        <div style="width:90%" ng-include="menuCtrl.menuTemplate">
                                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close","Close")}}</span></button>
-                                                <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:24px"><h4>Jeunes 14-18 ans</h4></a>
-                                                <div class="text-left">
-                                                        <div class="row">
-                                                                <div class="col-sm-3 col-xs-6">
-                                                                        <a class="capital" href="http://www.chemin-neuf.fr/annuaire/france/qui_sommes_nous_view_remote?id=ccn">La Mission 14-18 ans</a>
-                                                                        <a class="capital" href="http://www.chemin-neuf.fr/ou-nous-trouver/regions-de-france">Shut up and dance</a>
-                                                                </div>
-                                                       
-                                                                <div class="col-sm-3 col-xs-6">
-                                                                        <a class="capital" href="">Propositions</a>
-                                                                        <a href="http://www.chemin-neuf.fr/cana-couples-familles-fr/cana">Week-ends nationaux</a><br />
-                                                                        <a href="http://www.chemin-neuf.fr/jeunes-fr/14-18-ans">Semaines nationales</a><br />
-                                                                        <a href="http://www.chemin-neuf.fr/jeunes-fr/18-30-ans">Ecole de langues</a><br />
-                                                                        <a href="http://www.chemin-neuf.fr/">Sablonceaux 2016</a><br />
-                                                                        <a href="http://www.chemin-neuf.fr/">Calendrier</a>
-                                                                </div>
-                                                       
-                                                                <div class="col-sm-3 col-xs-6 col-xs-push-6 col-sm-push-0">
-                                                                        <a class="capital" href="http://actualites.chemin-neuf.fr/fr/accueil">Dans ta région</a>
-                                                                        <a href="http://actualites.chemin-neuf.fr/fr/accueil/foi">Lyon</a><br />
-                                                                        <a href="http://netforgod.tv">Paris</a><br />
-                                                                        <a href="http://netforgod.tv">Bretagne</a><br />
-                                                                        <a href="http://netforgod.tv">Région Ouest</a><br />
-                                                                        <a href="http://netforgod.tv">Région Est</a><br />
-                                                                        <a href="http://netforgod.tv">Région Sud - Marseille</a>
-                                                                        <a href="http://netforgod.tv">Région Sud - Nice</a>
-                                                                </div>
-                                                       
-                                                       
-                                                                <div class="col-sm-3 col-xs-6 col-xs-pull-6 col-sm-pull-0">
-                                                                        <a class="capital" href="http://www.chemin-neuf.fr/aidez-nous/">S'engager</a>
-                                                                        <a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">5 minutes pour Dieu</a><br />
-                                                                        <a  href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don#table_projets">Eclats</a>
-                                                                </div>
-                                                        </div>
-                                                </div>
+                                                
                                         </div>
                                         <div style="height: 100%"></div>
                                </div>

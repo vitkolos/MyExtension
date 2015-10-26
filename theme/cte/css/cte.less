@@ -146,7 +146,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
     ///////////MENU///////////////////
 ///////////////////////////////////////////////////
 .header{ margin:15px 0}
-.navbar-fixed-top{width:310px; left:auto}
+.navbar-fixed-top{width:310px; left:auto; z-index:1051;}
 .navbar-fixed-top.displayed{width:100%; left:0}
 @media screen and (min-width: @min_xs) and (max-width: @min_sm){
 }
@@ -319,12 +319,13 @@ span#close:after {
   width:100%;
   height: 100%;
   margin: 0;
-  margin-left: 20%;
+  margin-left: 0;
  }
  
- .modal.menu1418 > .modal-dialog,  .modal.menu1418 .footer{background-color: @14-18}
+ .menu1418 .modal> .modal-dialog,  .modal.menu1418 .footer{background-color: @14-18}
+ .menu1418 nav.navbar-fixed-top li{background: @14-18;}
   @media screen and (min-width: @min_sm) {
-    .modal[id^=menu] > .modal-dialog{width:80%}
+    .modal[id^=menu] > .modal-dialog{width:80%; margin-left:20%}
   }
  
 ////////////////////////////////////////////////////
