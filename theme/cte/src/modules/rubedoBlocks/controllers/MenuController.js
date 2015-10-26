@@ -31,7 +31,7 @@
                 me.menu={};
             }
         });
-	scope.$watch(menu2, function(value) {
+	$scope.$watch("menu2", function(value) {
                 if (value) angular.element('#menuModal').modal('show');
                 else angular.element('#menuModal').modal('hide');
             });
