@@ -31,6 +31,10 @@
                 me.menu={};
             }
         });
+	scope.$watch(menu2, function(value) {
+                if (value) angular.element('#menuModal').modal('show');
+                else angular.element('#menuModal').modal('hide');
+            });
 	/*me.showMenu =function(){
 	    angular.element('#menu').appendTo('body').modal('show');
 	};*/
