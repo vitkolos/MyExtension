@@ -138,10 +138,10 @@
                             <li ng-click="search=!search" class="cursor-as-pointer">
                                 <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
                             </li>
-                            <li ng-if="!menu2" data-toggle="modal" data-target="#menuModal" class="cursor-as-pointer" data-dismiss="modal" ng-click="menu2=!menu2">
+                            <li ng-if="!menu"  class="cursor-as-pointer" data-dismiss="modal" ng-click="menu=!menu">
                                 menu
                             </li>
-                            <li ng-if="menu2" data-toggle="modal" data-target="#menuModal" class="cursor-as-pointer" data-dismiss="modal" ng-click="menu2=!menu2">
+                            <li ng-if="menu" class="cursor-as-pointer" data-dismiss="modal" ng-click="menu=!menu">
                                 close
                             </li>
                             <li>
