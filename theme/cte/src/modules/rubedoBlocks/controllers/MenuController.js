@@ -33,7 +33,7 @@
         });
 	me.showMenu =function(){
 	    $scope.menu = !$scope.menu;
-	    if($scope.menu) angular.element('#menu').modal('show');
-	    else angular.element('#menu').modal('hide');
+	    if($scope.menu) angular.element('#menuModal').modal('show');
+	    else angular.element('#menuModal').modal('hide');
 	};
 }]);
