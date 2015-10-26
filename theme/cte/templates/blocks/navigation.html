@@ -121,7 +121,6 @@
                 <div class="modal-dialog">
                         <nav class="navbar footer" style="position:fixed; height:100%">
                                 <div class="container-fluid menu">
-                                       <div class="menu-close"></div>
                                         <div style="width:90%; margin-top:50px" ng-include="menuCtrl.menuTemplate">
                                                 
                                         </div>
@@ -138,10 +137,10 @@
                             <li ng-click="search=!search" class="cursor-as-pointer">
                                 <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
                             </li>
-                            <li ng-if="!menu"  class="cursor-as-pointer" data-dismiss="modal" ng-click="menu=!menu">
+                            <li ng-if="!menu" class="cursor-as-pointer"  ng-click="menu=!menu">
                                 menu
                             </li>
-                            <li ng-if="menu" class="cursor-as-pointer" data-dismiss="modal" ng-click="menu=!menu">
+                            <li ng-if="menu" class="cursor-as-pointer" ng-click="menu=!menu">
                                 close
                             </li>
                             <li>
