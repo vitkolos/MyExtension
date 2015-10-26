@@ -31,7 +31,7 @@
                 me.menu={};
             }
         });
-	me.showMenu =function(){
+	/*me.showMenu =function(){
 	    angular.element('#menu').appendTo('body').modal('show');
-	};
+	};*/
 }]);
