@@ -31,11 +31,9 @@
                 me.menu={};
             }
         });
-	$scope.$watch("menu", function(value) {
-                if (value) angular.element('#menuModal').modal('show');
-                else angular.element('#menuModal').modal('hide');
-            });
-	/*me.showMenu =function(){
-	    angular.element('#menu').appendTo('body').modal('show');
-	};*/
+	me.showMenu =function(){
+	    $scope.menu = !$scope.menu;
+	    if($scope.menu) angular.element('#menu').modal('show');
+	    else angular.element('#menu').modal('hide');
+	};
 }]);
