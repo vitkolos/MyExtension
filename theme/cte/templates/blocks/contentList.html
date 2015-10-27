@@ -47,7 +47,7 @@
         </div>
  
        <!--POUR 1 COLONNE-->
-        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1">
+        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1" style="margin:-12px 0">
             <!--<div id="infiniteScrollCtrl">-->
             <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="equal-height-cols">
