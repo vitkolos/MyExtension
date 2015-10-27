@@ -38,5 +38,5 @@
 	};
 	$scope.$on("$locationChangeStart",function(newLoc,currentLoc){
 	    angular.element('#menuModal').modal('hide');
-	}
+	});
 }]);
