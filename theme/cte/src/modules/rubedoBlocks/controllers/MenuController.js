@@ -38,5 +38,6 @@
 	};
 	$scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
 	    angular.element('#menuModal').modal('hide');
+	    console.log('test');
 	});
 }]);
