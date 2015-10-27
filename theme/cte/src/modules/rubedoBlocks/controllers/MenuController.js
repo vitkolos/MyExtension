@@ -37,7 +37,7 @@
 	    else angular.element('#menuModal').modal('hide');
 	};
 	$scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
-	    angular.element('#menuModal').modal('hide');
+	    angular.element('body .modal-backdrop ').remove();
 	    console.log('test');
 	});
 }]);
