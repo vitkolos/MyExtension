@@ -323,13 +323,14 @@ span#close:after {
   margin-left: 0;
  }
  
-.menu1418.modal .footer, .menu1418.modal .modal-dialog{background-color: @14-18}
+.menu1418.modal .footer, .menu1418.modal .modal-dialog {background-color: @14-18}
 .modal.in.menu1418 + nav.navbar-fixed-top li{background: @14-18;}
-  @media screen and (min-width: @min_sm) {
+@media screen and (min-width: @min_sm) {
     .modal[id^=menu] > .modal-dialog{width:80%; margin-left:20%}
   }
-   @media screen and (max-width: @min_xs) {.menu1418.modal{background-color: @14-18}
-   }
+@media screen and (max-width: @min_xs) {
+  .menu1418.modal{background-color: @14-18}
+}
 /*HAMBURGER MENU*/ 
 * {
   margin: 0;
@@ -822,11 +823,11 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 #ados .list-item-title{  background-color:@14-18;}
 .regions-list{
   ul{  list-style-type: none;margin:6px 0; padding-left: 0}
-  li{ a{.capital; display: inline-block; width:100%}; border-top:2px solid white; padding:6px 12px; }
+  li{ a{.capital; display: inline-block; width:100%}; border-top:2px solid white; padding:6px 24px 6px 12px; }
   li:last-of-type{border-bottom: 2px solid white}
   li a:after{
     position:absolute;
-    right:48px;
+    right:30px;
      content: "\f0da";
      font-family: 'FontAwesome'
   }
