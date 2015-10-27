@@ -36,4 +36,5 @@
 	    if($scope.menu) angular.element('#menuModal').modal('show');
 	    else angular.element('#menuModal').modal('hide');
 	};
+	$scope.$on('$locationChangeSuccess'){angular.element('#menuModal').modal('hide');}
 }]);
