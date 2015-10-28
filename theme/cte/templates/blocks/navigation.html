@@ -128,13 +128,13 @@
                                        </div>
                                        <div id="menuCCN" class="collapse" ng-class="{'in':!menuCtrl.menuTab}" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })"></div>
                                        
-                                       <div class="menuTab" ng-if="menuTab">
+                                       <div class="menuTab" ng-if="menuCtrl.menuTab">
                                           <a ng-href="{{menuCtrl.menu.url}}" class="menu_header">
                                              <h4>{{menuCtrl.menu.text}}</h4>
                                           </a>
                                           <span data-toggle="collapse" data-parent="#accordion" href="#menuBis" class="menuToggle">toggle</span>
                                        </div>
-                                       <div ng-if="menuTab" class="collapse in" id="menuBis">
+                                       <div ng-if="menuCtrl.menuTab" class="collapse in" id="menuBis">
                                           <div class="row">
                                              <div class="col-sm-3 col-xs-6" ng-repeat="page in menuCtrl.menu.pages track by $index">
                                                 <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
