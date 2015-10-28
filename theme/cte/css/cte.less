@@ -444,9 +444,10 @@ span#close:after {
     a.dons:first-of-type{border-bottom:3px solid white}
     a:last-of-type{margin-bottom:24px}
 }
+.footer, .footer .collapse{text-align: left}
 .footer.links .container{border-top:1px solid white; padding-top:12px; .capital{border:none; text-align: center; font-size:10px !important}}
 .footer a:hover{color:@rouge}
-@media screen and (max-width: @min_xs){.footer{text-align: center} .footer a{padding:3px 0}}
+@media screen and (max-width: @min_xs){.footer, .footer .collapse{text-align: center} .footer a{padding:3px 0}}
 @media screen and (min-width: @min_sm) {/*.carousel-caption{width:41.68%;height:100%;margin-left:58.33%}.owl-item img{width:58.33%}*/}
 @media screen and (min-width: @min_md) { .carousel-caption{width:32%;height:100%;margin-left:68%}.owl-item img{width:68%}}
 @media screen and (min-width: @min_lg) {.carousel-caption{width:26.5%;height:100%;margin-left:73.5%; padding:48px }.owl-item img{width:73.5%}}
