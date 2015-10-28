@@ -53,6 +53,7 @@ body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: 'Merriweather','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:@beigeCCN;}
 .container-fluid{overflow-x:hidden;}
 .container-fluid{padding:0}
+.container-fluid > .row:not(:first-of-type){margin-right: 0; margin-left:0;}
 .container.page{min-height: 80vh; margin-top:50px}
 .glyphicon-list-alt{z-index:9999}
 /*TYPO*/
@@ -87,7 +88,6 @@ input:focus{outline: 0; border-color:transparent; box-shadow:0}
 @media screen and (min-width: @min_xs) and (max-width: @min_sm){
     .container{width:@width_xxs}
 }
-.container-fluid > .row{margin-right: 0; margin-left:0;}
 .img_full img{width:100%}
 .padding-right{padding-right:24px}
 .padding-left{padding-right:24px}
@@ -444,10 +444,10 @@ span#close:after {
     a.dons:first-of-type{border-bottom:3px solid white}
     a:last-of-type{margin-bottom:24px}
 }
-.footer, .footer .collapse{text-align: left}
+.footer, .footer .menu{text-align: left}
 .footer.links .container{border-top:1px solid white; padding-top:12px; .capital{border:none; text-align: center; font-size:10px !important}}
 .footer a:hover{color:@rouge}
-@media screen and (max-width: @min_xs){.footer, .footer .collapse{text-align: center} .footer a{padding:3px 0}}
+@media screen and (max-width: @min_xs){.footer, .footer .menu{text-align: center} .footer a{padding:3px 0}}
 @media screen and (min-width: @min_sm) {/*.carousel-caption{width:41.68%;height:100%;margin-left:58.33%}.owl-item img{width:58.33%}*/}
 @media screen and (min-width: @min_md) { .carousel-caption{width:32%;height:100%;margin-left:68%}.owl-item img{width:68%}}
 @media screen and (min-width: @min_lg) {.carousel-caption{width:26.5%;height:100%;margin-left:73.5%; padding:48px }.owl-item img{width:73.5%}}
