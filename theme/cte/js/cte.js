@@ -16,9 +16,14 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 					filtered.push(row);
 				    }
 				    // si la page sert à afficher un contenu (en 2ème ligne) on n'affiche pas les autres lignes
-				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected) {
+				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
 					filtered.push(row);
 					contentDisplay = true;
+				    }
+				    //si la ligne a un bloc de détail en premier, on affiche seulement le bloc détail dans la ligne
+				    else if (row.columns[0].blocks[0].bType="contentDetail") {
+					row.colums[0].blocks = {0 : row.columns[0].blocks[0]};
+					
 				    }
 				    // sinon on affiche tout
 				    else if(!contentDisplay) {filtered.push(row);console.log(row);}
