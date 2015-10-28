@@ -36,6 +36,7 @@
 	    if($scope.menu) angular.element('#menuModal').modal('show');
 	    else angular.element('#menuModal').modal('hide');
 	};
+	// pour fermer le modal quand on clique sur un lien
 	$scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
 	    angular.element('body .modal-backdrop ').remove();
 	    console.log('test');
