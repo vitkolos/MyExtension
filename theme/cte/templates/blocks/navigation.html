@@ -127,6 +127,43 @@
                                           <span data-toggle="collapse" data-parent="#accordion" href="#menuCCN" class="menuToggle">toggle</span>
                                        </div>
                                        <div id="menuCCN" class="collapse" ng-class="{'in':!menuCtrl.menuTab}" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })"></div>
+                                       
+                                       <div class="menuTab" ng-if="menuTab">
+                                          <a ng-href="{{menuCtrl.menu.url}}" class="menu_header">
+                                             <h4>{{menuCtrl.menu.text}}</h4>
+                                          </a>
+                                          <span data-toggle="collapse" data-parent="#accordion" href="#menuBis" class="menuToggle">toggle</span>
+                                       </div>
+                                       <div ng-if="menuTab" class="collapse in" id="menuBis">
+                                          <div class="row">
+                                             <div class="col-sm-3 col-xs-6" ng-repeat="page in menuCtrl.menu.pages track by $index">
+                                                <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
+                                                <a ng-if="page.pages&&blockConfig.menuLevel>1" class="capital">{{page.text}}</a>
+                                                <a ng-repeat="subpage in page.pages track by $index" ng-href="{{subpage.url}}">{{subpage.text}}<br/></a>
+
+                                             </div>
+                                          </div>
+                                       </div>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ng-repeat="page in menuCtrl.menu.pages track by $index" ng-class="{active:menuCtrl.currentRouteline.indexOf(page.url) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}">
+                    <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
+                    <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-menu" role="menu">
+                        <li ng-if="!blockConfig.disableLevelOne" ng-class="{active:rubedo.current.page.id==page.id}"><a ng-href="{{page.url}}">{{page.text}}</a></li>
+                        <li ng-if="!blockConfig.disableLevelOne" class="divider"></li>
+                        <li ng-repeat="subpage in page.pages track by $index" ng-class="{active:menuCtrl.currentRouteline.indexOf(subpage.url) > -1}">
+                            <a ng-href="{{subpage.url}}">{{subpage.text}}</a>
+                        </li>
+                    </ul>
+                </li>
+
+                                       
+                                       
+                                       
+                                       
+                                       
                                        <div ng-include="menuCtrl.menuTemplate"></div>
                                     </div>
                                     <div style="height: 100%"></div>
@@ -144,11 +181,12 @@
                                 <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
                             </li>
                             <li class="cursor-as-pointer" ng-click="menuCtrl.showMenu()">
-                                menu <div id="nav-icon4">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>
+                                menu
+                                <div id="nav-icon4">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                 </div>
                             </li>
 
                             <li>
