@@ -139,7 +139,7 @@
                                              <div class="col-sm-3 col-xs-6" ng-repeat="page in menuCtrl.menu.pages track by $index">
                                                 <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
                                                 <a ng-if="page.pages&&blockConfig.menuLevel>1" class="capital">{{page.text}}</a>
-                                                <a ng-repeat="subpage in page.pages track by $index" ng-href="{{subpage.url}}">{{subpage.text}}<br/></a>
+                                                <a ng-repeat-start="subpage in page.pages track by $index" ng-href="{{subpage.url}}">{{subpage.text}}</a><br ng-repeat-end></br>
                                              </div>
                                           </div>
                                        </div>
