@@ -120,11 +120,13 @@
        <div class="modal fade right {{menuCtrl.menuClass}}" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
                 <div class="modal-dialog">
                         <nav class="navbar footer" style="position:fixed; height:100%">
-                                <div class="container-fluid menu" id="accordion">
-                                    <div style="width:90%; margin-top:50px" >
-                                       <a rubedo-page-link="562f32ff45205e453512ef7a" style="font-size:16px; margin-bottom:24px"><h4>Communauté du Chemin Neuf</h4></a>
-                                       <span data-toggle="collapse" data-parent="#accordion" href="#menuCCN">Toggle</span>
-                                       <div id="menuCCN" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })"></div>
+                                <div class="container-fluid menu">
+                                    <div style="width:90%; margin-top:50px" id="accordion">
+                                       <div>
+                                          <a rubedo-page-link="562f32ff45205e453512ef7a" style="font-size:16px; margin-bottom:24px"><h4>Communauté du Chemin Neuf</h4></a>
+                                          <span data-toggle="collapse" data-parent="#accordion" href="#menuCCN">Toggle</span>
+                                          <div id="menuCCN" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })"></div>
+                                       </div>
                                        <div ng-include="menuCtrl.menuTemplate"></div>
                                     </div>
                                     <div style="height: 100%"></div>
