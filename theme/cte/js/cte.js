@@ -22,7 +22,7 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 				    }
 				    //si la ligne a un bloc de détail en premier, on affiche seulement le bloc détail dans la ligne
 				    else if (row.columns[0].blocks[0].bType="contentDetail") {
-					row.colums[0].blocks = {0 : row.columns[0].blocks[0]};
+					row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
 					
 				    }
 				    // sinon on affiche tout
