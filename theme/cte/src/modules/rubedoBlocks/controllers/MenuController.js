@@ -4,10 +4,12 @@
         me.menu={};
         me.currentRouteline=$location.path();
         var config=$scope.blockConfig;
-	me.menuTab = "menuCCN"; //par défaut, le menu montré est le menu général
+	me.menuTab = false; //par défaut, le menu montré est le menu général
 	me.menuTemplate = themePath+'/templates/blocks/navigation/1418.html';
 	if ($scope.block.code == '1418') {
 	    me.menuClass="menu1418";
+	    me.menuTab = true; //par défaut, le menu montré est le menu général
+
 	}
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
         if (config.rootPage){
