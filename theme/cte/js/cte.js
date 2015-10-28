@@ -26,7 +26,7 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 					
 				    }
 				    // sinon on affiche tout
-				    else if(!contentDisplay) {filtered.push(row);console.log(row);}
+				    else if(!contentDisplay) {filtered.push(row);}
                                             
 					    
                                  }
