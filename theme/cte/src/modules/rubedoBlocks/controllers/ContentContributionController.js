@@ -43,15 +43,31 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
         RubedoContentsService.getContentById($location.search()["content-edit"],{useDraftMode:true}).then(
             function(ecResponse){
                 if (ecResponse.data.success){
-                    me.existingContent=ecResponse.data.content;
-                    var initialValues=angular.copy(me.existingContent.fields);
-                    initialValues.taxonomy=angular.copy(me.existingContent.taxonomy);
-                    if(angular.element.isEmptyObject(initialValues.taxonomy)){
-                        initialValues.taxonomy={};
+                    // edit seulement les contenus du bon type si un type de contenu est configuré
+                    if(config.contentType&&config.contentType!="")
+                        if(ecResponse.data.content.type.id==config.contentType) {
+                            me.existingContent=ecResponse.data.content;
+                            var initialValues=angular.copy(me.existingContent.fields);
+                            initialValues.taxonomy=angular.copy(me.existingContent.taxonomy);
+                            if(angular.element.isEmptyObject(initialValues.taxonomy)){
+                                initialValues.taxonomy={};
+                            }
+                            $scope.fieldEntity=angular.copy(initialValues);
+                            me.updateMode=true;
+                            me.loadContentType(me.existingContent.type.id);
+                        }
                     }
-                    $scope.fieldEntity=angular.copy(initialValues);
-                    if((config.contentType&&config.contentType!="")&&me.existingContent.type.id==config.contentType) me.updateMode=true;// edit seulement les contenus du bon type
-                    me.loadContentType(me.existingContent.type.id);
+                    else {
+                        me.existingContent=ecResponse.data.content;
+                        var initialValues=angular.copy(me.existingContent.fields);
+                        initialValues.taxonomy=angular.copy(me.existingContent.taxonomy);
+                        if(angular.element.isEmptyObject(initialValues.taxonomy)){
+                            initialValues.taxonomy={};
+                        }
+                        $scope.fieldEntity=angular.copy(initialValues);
+                        me.updateMode=true;
+                        me.loadContentType(me.existingContent.type.id);
+                    }
                 }
             }
         );
