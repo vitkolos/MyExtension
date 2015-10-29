@@ -50,7 +50,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                         initialValues.taxonomy={};
                     }
                     $scope.fieldEntity=angular.copy(initialValues);
-                    me.updateMode=true;
+                    if((config.contentType&&config.contentType!="")&&me.existingContent.type.id==config.contentType) me.updateMode=true;// edit seulement les contenus du bon type
                     me.loadContentType(me.existingContent.type.id);
                 }
             }
