@@ -89,6 +89,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if(response.data.content.fields.image) {
                             $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
                         }
+                        if(response.data.content.fields.video) {
+                            $scope.rubedo.current.page.video = response.data.content.fields.video.url;
+                        }
                        
                     }
                 
