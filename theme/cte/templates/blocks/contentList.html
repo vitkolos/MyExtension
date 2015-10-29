@@ -23,13 +23,14 @@
                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
                     
                     <div class="media-body">
+                        <div ng-if="contentListCtrl.usedContentTypes[0]=='56094a2245205e0e2541ea77'"><jwplayer video-url="{{content.fields.video.url}}"></jwplayer></div>
                         <h4 class="list-item-title capital"><span>
                                 {{content.fields.text}}
                             <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field></span>
                         </h4>
                         <div class="list-item-img">
                             <img class="media-object pull-left" ng-if="content.fields.image"
-                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',mode:'boxed'}) }}"
+                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>       
                         </div>
                                              
