@@ -44,7 +44,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
             function(ecResponse){
                 if (ecResponse.data.success){
                     // edit seulement les contenus du bon type si un type de contenu est configuré
-                    if(config.contentType&&config.contentType!="")
+                    if(config.contentType&&config.contentType!=""){
                         if(ecResponse.data.content.type.id==config.contentType) {
                             me.existingContent=ecResponse.data.content;
                             var initialValues=angular.copy(me.existingContent.fields);
