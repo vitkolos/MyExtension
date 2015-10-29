@@ -29,7 +29,7 @@
     <link rel="alternate" ng-repeat="alternate in rubedo.current.page.i18n track by $index" ng-href="{{alternate.fullUrl}}" hreflang="{{alternate.locale}}" />
     <meta property="og:image" ng-if="!rubedo.current.page.image" content="http://<?php echo $_SERVER['HTTP_HOST'] . "/theme/".$this->siteTheme; ?>/img/image.jpg" />
     <meta property="og:image"  content="http://<?php echo $_SERVER['HTTP_HOST']; ?>{{rubedo.current.page.image}}" />
-    <meta property="og:video" ng-if="rubedo.current.page.video" content="{{rubedo.current.page.imagvideoe}}">
+    <meta property="og:url" ng-if="rubedo.current.page.video" content="{{rubedo.current.page.video}}">
     <link rel="shortcut icon" href="/theme/<?php echo $this->siteTheme; ?>/img/favicon.ico" type="image/x-icon" />
     
     
