@@ -22,25 +22,25 @@
                    <!--propositions-->
                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}" ng-switch-when="54dc614245205e1d4a8b456b">
                     
-                    <div class="media-body">
-                        <h4 class="list-item-title capital"><span>
-                                {{content.fields.text}}
-                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field></span>
-                        </h4>
-                        <div class="list-item-img">
-                            <img class="media-object pull-left" ng-if="content.fields.image"
-                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
-                                                 alt="{{ content.fields.text }}"/>       
+                        <div class="media-body">
+                            <h4 class="list-item-title capital"><span>
+                                    {{content.fields.text}}
+                                <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field></span>
+                            </h4>
+                            <div class="list-item-img">
+                                <img class="media-object pull-left" ng-if="content.fields.image"
+                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
+                                                     alt="{{ content.fields.text }}"/>       
+                            </div>
+                                                 
+                            <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
+                                <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                            </p>
+                            <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                                <button><span class="glyphicon glyphicon-plus"></span>Edit</button>
+                            </a>
                         </div>
-                                             
-                        <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
-                            <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                        </p>
-                        <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                            <button><span class="glyphicon glyphicon-plus"></span>Edit</button>
-                        </a>
-                    </div>
-                   </a>
+                    </a>
                    
                    
                     <div ng-switch-when="56094a2245205e0e2541ea77">
