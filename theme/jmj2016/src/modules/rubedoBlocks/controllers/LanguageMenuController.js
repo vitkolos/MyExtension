@@ -10,7 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
             delete me.languages[$route.current.params.lang];
         }
         me.getFlagUrl = function(flagCode){
-            return '/assets/flags/16/'+flagCode+'.png';
+            return '/assets/flags/32/'+flagCode+'.png';
         };
  
         me.changeLang = function (lang) {
