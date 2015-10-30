@@ -55,7 +55,6 @@ html,body{font-family: 'Merriweather','Arimo', "Helvetica Neue",Helvetica,Arial,
 .container-fluid{padding:0}
 .container-fluid > .row:nth-of-type(n+3){margin-right: 0; margin-left:0;}
 .container-fluid > .row.no-margin{margin-right: -15px; margin-left:-15px;}
-.no-margin{margin-left:-15px; margin-right: -15px}
 .container.page{min-height: 80vh; margin-top:50px}
 .glyphicon-list-alt{z-index:9999}
 /*TYPO*/
@@ -97,7 +96,8 @@ input:focus{outline: 0; border-color:transparent; box-shadow:0}
 .padding-top{padding-top:24px}
 .padding{padding-top:12px; padding-bottom: 12px}
 .padding-large{padding-top:24px; padding-bottom: 24px}
-.padding-{margin:-12px 0}
+.padding-{margin-top:-12px; margin-bottom:-12px} // pour ne pas avoir le padding en hauteur des lignes normales
+.no-margin{margin-left:-15px; margin-right: -15px}// pour ne pas avoir le padding en largeur des lignes normales
 .padding-col{padding:0px 48px;}
 .padding-col >rubedo-block>div{padding:24px 0}
 @media screen and (max-width: @min_sm){
