@@ -1,9 +1,9 @@
 {
-    "type": "#ext-gen1445#",
-    "description": "#ext-gen1488#",
+    "type": "Redirection",
+    "description": "Bloc de redirection - pour une page dans le menu qui pointe vers une autre page / contenu",
     "configBasique": {
-        "title": "#ext-gen1445#",
-        "bType": "development",
+        "title": "Redirection",
+        "bType": "redirect",
         "flex": 1,
         "champsConfig": {
             "simple": [
@@ -27,6 +27,6 @@
 
     },
     "category": "#ext-gen1135#",
-    "bType": "development",
+    "bType": "redirect",
     "id": "530f265ef05c1dd81b111000"
 }
