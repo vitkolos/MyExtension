@@ -1,0 +1,32 @@
+{
+    "type": "#ext-gen1445#",
+    "description": "#ext-gen1488#",
+    "configBasique": {
+        "title": "#ext-gen1445#",
+        "bType": "development",
+        "flex": 1,
+        "champsConfig": {
+            "simple": [
+                {
+                    "categorie": "Code",
+                    "champs": [
+			{
+                            "type": "Ext.form.field.Text",
+                            "config": {
+                                "fieldLabel": "#ext-gen1225#",
+                                "name": "url",
+                                "vtype": "url"
+                            }
+                        },
+                    ]
+                }
+            ],
+            "avance": []
+        },
+        "configBloc": {}
+
+    },
+    "category": "#ext-gen1135#",
+    "bType": "development",
+    "id": "530f265ef05c1dd81b111000"
+}
