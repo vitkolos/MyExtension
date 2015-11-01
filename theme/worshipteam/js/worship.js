@@ -1,4 +1,30 @@
-
+angular.module('rubedo').filter('ligneNonVide', function () {
+           return function (input) {
+                      var filtered = [];
+		      var contentDisplay = false;
+                      angular.forEach(input, function(row, index) {
+				// si la 1ère colonne est terminale et non vide
+                                 if (row.columns[0].isTerminal&&row.columns[0].blocks) {
+				    // toujours afficher la 1ère ligne (menu) et la dernière (footer)
+				    if (index ==0 || index >= input.length-1) {
+					filtered.push(row);
+				    }
+				    // si la page sert à afficher un contenu (en 2ème ligne) on n'affiche pas les autres lignes
+				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
+					filtered.push(row);
+					contentDisplay = true;
+				    }
+				    
+				    // sinon on affiche tout
+				    else if(!contentDisplay) {filtered.push(row);}
+                                            
+					    
+                                 }
+                      });
+                      return filtered;
+		    
+     };
+  });
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
         var me=this;

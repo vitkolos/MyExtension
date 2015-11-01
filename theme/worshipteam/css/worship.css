@@ -68,7 +68,6 @@ h4 {
   }
 }
 p {
-  color: #2e2c29;
   font-size: 16px;
 }
 label {
@@ -78,14 +77,12 @@ label {
 .text-article .capital,
 .capital p,
 .text-article .capital p {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
   font-weight: normal;
 }
 .capital2 {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 10px !important;
@@ -172,17 +169,6 @@ input:focus {
 }
 .col-sm-6:after:after {
   clear: both;
-}
-@media screen and (max-width: 500px) {
-  [class*="col-xs-"] {
-    width: 100%;
-  }
-  [class*="col-xs-pull-"] {
-    right: 0;
-  }
-  [class*="col-xs-push-"] {
-    left: 0;
-  }
 }
 @media screen and (min-width: 500px) and (max-width: 768px) {
   .container {
@@ -295,6 +281,7 @@ nav li a {
 }
 .media {
   margin-top: 0;
+  padding: 0 24px;
 }
 .carre-date {
   height: 255px;
@@ -426,7 +413,6 @@ nav li a {
 a.header_link {
   color: #c1573c;
   padding: 15px;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -468,7 +454,6 @@ header .text-article p {
   display: block;
 }
 blockquote {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -481,7 +466,6 @@ blockquote {
   margin: 30px auto;
 }
 .text-article blockquote p {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -672,7 +656,6 @@ blockquote {
   }
 }
 .tooltip-inner {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -776,7 +759,6 @@ blockquote {
   color: white;
   border-radius: 0;
   text-align: center;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -787,7 +769,6 @@ blockquote {
   color: white;
   border-radius: 0;
   text-align: center;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -909,7 +890,6 @@ blockquote {
   list-style-type: none;
 }
 .site-link {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1038,7 +1018,6 @@ blockquote {
 li.tags {
   display: inline-block;
   width: auto;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 10px !important;
@@ -1092,7 +1071,6 @@ li.tags:hover:after {
   font-size: 14px;
 }
 .breadcrumb a {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1101,7 +1079,6 @@ li.tags:hover:after {
 }
 .breadcrumb a,
 .breadcrumb span {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1124,7 +1101,6 @@ li.tags:hover:after {
   font-size: 0.8em;
 }
 p.red-sub {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1162,7 +1138,6 @@ p.red-sub {
   padding: 12px;
 }
 .homelink a {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1177,7 +1152,6 @@ p.red-sub {
   min-width: 300px;
   padding: 12px;
   text-align: center;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1284,7 +1258,6 @@ header.content.prop > div {
 .socials .addthis_counter .addthis_button_expanded,
 .socials .addthis_counter .addthis_button_expanded a {
   color: #c1573c;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1295,7 +1268,6 @@ header.content.prop > div {
 }
 .socials .addthis_counter {
   color: #c1573c;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1367,7 +1339,6 @@ header.content.prop > div {
 /*  ratio of 1:1*/
 .secondary-nav {
   margin-top: 50px;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1394,7 +1365,6 @@ header.content.prop > div {
   padding: 6px 24px 6px 12px;
 }
 .regions-list li a {
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
@@ -1566,7 +1536,6 @@ label.label_style {
   float: right;
   line-height: 1.5em;
   color: #c1573c;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
