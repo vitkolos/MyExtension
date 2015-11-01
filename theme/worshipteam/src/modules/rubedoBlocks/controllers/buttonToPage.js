@@ -3,18 +3,17 @@ angular.module("rubedoBlocks").lazy.controller("ButtonToPageController",['$scope
     var blockConfig=$scope.blockConfig;
     me.inputFields=[ ];
     $scope.fieldEntity={ };
-    me.columns = config.columns ? 'col-md-'+(12/config.columns):'col-md-12';
-
     $scope.fieldInputMode=true;
     var fields=angular.copy($scope.fieldEntity);
     
-    if (blockConfig.linkedPage&&mongoIdRegex.test(blockConfig.linkedPage))   {
-		    RubedoPagesService.getPageById(blockConfig.linkedPage).then(function(response){
-				    if (response.data.success){
-					    me.pageLink=response.data.url;
-				    }
-			    });
-    };
+	if (blockConfig.linkedPage&&mongoIdRegex.test(blockConfig.linkedPage)) 
+		{
+			RubedoPagesService.getPageById(blockConfig.linkedPage).then(function(response){
+					if (response.data.success){
+						me.pageLink=response.data.url;
+					}
+				});
+		};
 			
 	
 }]);

@@ -1,3 +1,7 @@
+blocksConfig.buttonToPage={
+           "template": "/templates/blocks/buttonToPage.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
+};
 blocksConfig.simpleContact={
            "template": "/templates/blocks/simpleContact.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]

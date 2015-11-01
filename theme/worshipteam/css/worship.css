@@ -283,6 +283,7 @@ span.glyphicon {
 }
 nav li a {
   text-transform: uppercase;
+  font-size: 13px;
 }
 .footer {
   background-color: #2e2c29;
