@@ -103,6 +103,18 @@ return array(
                     '/js/musculine.js',
                 ),
             ),
+            'worshipteam' => array(
+                'label' => 'Worship Team',
+                'basePath' => realpath(__DIR__ . '/../theme/worshipteam'),
+                'css' => array(
+                    '/css/worship.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '/js/worship.js',
+                    '../js/blocks.js'
+                ),
+            ),
         ),
     ),
     

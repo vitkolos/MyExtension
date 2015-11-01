@@ -1,0 +1,69 @@
+<div class=" content_border">
+	<div style="overflow-y: hidden">
+		<header class="container-fluid content prop" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
+			<div class="text-article container" >
+				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+					<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+					<h1 ng-if="fieldEditMode"
+					   ng-controller="RTEFieldController as rteFieldCtrl"
+					   ckeditor="editorOptions"
+					   contenteditable="true"
+					   ready="setCKEIsReady()"
+					   ng-model="fieldEntity[field.config.name]"
+					   output-plain-text="true"
+					   ng-bind-html="rteFieldCtrl.html">
+					</h1>
+				</div>
+			</div>
+		</header>
+		<header class="container-fluid content prop" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId('5627b1f345205eaf17832547',{width:'1650px',mode:'boxed'}) }}')" ng-if="!fieldEntity['image']">
+			<div class="text-article container" >
+				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+					<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+					<h1 ng-if="fieldEditMode"
+					   ng-controller="RTEFieldController as rteFieldCtrl"
+					   ckeditor="editorOptions"
+					   contenteditable="true"
+					   ready="setCKEIsReady()"
+					   ng-model="fieldEntity[field.config.name]"
+					   output-plain-text="true"
+					   ng-bind-html="rteFieldCtrl.html">
+					</h1>
+				</div>
+			</div>
+		</header>
+	</div>
+
+
+	<div class="container">
+		<div class="row padding-large text-center">
+			<div class="col-xs-12 text-center">
+				
+			</div>
+		</div>
+		<div class="row padding-large text-center">
+			<div class="col-xs-4 " ng-if="fieldEntity['telephone']">
+				<p><i class="fa fa-phone icon"></i></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Telephone")}}</b></p>
+				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field></p>
+			</div>
+			<div class="col-xs-4" ng-if="fieldEntity['position']">
+				<p><i class="fa fa-map-marker icon"></i></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Adresse")}}</b></p>
+				<p>{{contentDetailCtrl.content.fields.position.address}}</p>
+			</div>
+			<div class="col-xs-4"  ng-if="fieldEntity['email']">
+				<p><i class="fa fa-envelope icon"></i></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Email")}}</b></p>
+				<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':'Envoyer un mail'}">
+					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
+				</div>
+			</div>
+		</div>
+
+		<div style="padding-top:24px" class=""></div>
+	</div>
+		
+	
+</div>
+

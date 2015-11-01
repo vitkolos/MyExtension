@@ -1,0 +1,74 @@
+<div class=" content_border">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12">
+			<a class="header_link" ng-href="{{contentDetailCtrl.callUrl}}">Retour aux actualités</a>
+		</div>
+	</div>
+</div>
+<header class="container-fluid content prop" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
+	<div class="text-article container" >
+		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+			<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+			<h1 ng-if="fieldEditMode"
+			   ng-controller="RTEFieldController as rteFieldCtrl"
+			   ckeditor="editorOptions"
+			   contenteditable="true"
+			   ready="setCKEIsReady()"
+			   ng-model="fieldEntity[field.config.name]"
+			   output-plain-text="true"
+			   ng-bind-html="rteFieldCtrl.html">
+			</h1>
+		</div>
+		<p>{{contentDetailCtrl.content.fields.position.address}}</p>
+
+	</div>
+</header>
+<header class="container-fluid" ng-if="!fieldEntity['image']">
+	<div class="text-article container">
+		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+			<h1 class="text-left" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
+			<h1 ng-if="fieldEditMode"
+			   ng-controller="RTEFieldController as rteFieldCtrl"
+			   ckeditor="editorOptions"
+			   contenteditable="true"
+			   ready="setCKEIsReady()"
+			   ng-model="fieldEntity[field.config.name]"
+			   output-plain-text="true"
+			   ng-bind-html="rteFieldCtrl.html">
+			</h1>
+		</div>
+
+	</div>
+</header>
+<div class="container">
+	
+	<div class="row" >
+		<div class="text-article">
+			<h3>Informations pratiques</h3>
+			<div class="row" ng-if="fieldEntity['rencontres']">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">Rencontres</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('rencontres')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>
+			<div class="row" ng-if="fieldEntity['horaires']">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">Horaires</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>
+			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+			<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['555a164d45205eea0a7e689b']" class="capital tags pull-right">{{contentDetailCtrl.getTermInTaxo("555a164d45205eea0a7e689b",taxonomy)}}</span>
+		</div>
+		
+	</div>
+</div>
+
+<div style="margin-top:24px"></div>
+</div>
+

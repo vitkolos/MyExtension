@@ -1,0 +1,14 @@
+<div ng-controller="PresentationController as presentationCtrl" ng-class="presentationCtrl.columns" >
+	<div class="col-xs-6 text-right">
+		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
+		</div>
+	</div>
+	<div class="col-xs-6">
+		<a ng-href="{{presentationCtrl.pageLink}}">
+			<div class="ratio_21">
+				<img alt="{{blockConfig.title}}" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'400px'})}}" />
+			</div>
+		</a>
+	</div>
+ 
+</div>

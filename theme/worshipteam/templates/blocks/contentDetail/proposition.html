@@ -1,0 +1,184 @@
+<div class=" content_border">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12">
+				<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+					<ol class="breadcrumb">
+					    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="bg-white" style="overflow-y: hidden">
+		<header class="container-fluid content prop " style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
+			<div class="text-article container" >
+				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+					<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+					<h1 ng-if="fieldEditMode"
+					   ng-controller="RTEFieldController as rteFieldCtrl"
+					   ckeditor="editorOptions"
+					   contenteditable="true"
+					   ready="setCKEIsReady()"
+					   ng-model="fieldEntity[field.config.name]"
+					   output-plain-text="true"
+					   ng-bind-html="rteFieldCtrl.html">
+					</h1>
+				</div>
+				<p>{{contentDetailCtrl.content.fields.positionName}}</p>
+				<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p>
+				<a href="#infos_pratiques" class="button rouge">Informations pratiques</a>
+				<a href="#inscription" class="button rouge">S'inscrire</a>
+		
+		
+			</div>
+		</header>
+	</div>
+
+
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 bg-white" >
+				<div class="text-article">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>		
+		</div>
+		<a name="infos_pratiques"></a>
+		<div class="row" >
+			<div class="text-article">
+				<div class="col-xs-12"><h3>Informations pratiques</h3></div>
+				<div ng-if="fieldEntity['dateDebut']" class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">Date</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMMM'}} à  {{contentDetailCtrl.content.fields.heureDebut}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMMM yyyy'}} à  {{contentDetailCtrl.content.fields.heureFin}}</p><!--Description-->
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('complement_date')}}"></rubedo-field>
+					</div>
+				</div>
+				<div ng-if="fieldEntity['position']" class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">{{contentDetailCtrl.getLabelByName('lieuCommunautaire')}}</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<p>{{contentDetailCtrl.content.fields.position.address}}</p><!--Description-->
+					</div>
+				</div>
+				<div ng-if="fieldEntity['logement']" class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">{{contentDetailCtrl.getLabelByName('logement')}}</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('logement')}}"></rubedo-field><!--Description-->
+					</div>
+				</div>
+				<div ng-if="fieldEntity['transport']" class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">{{contentDetailCtrl.getLabelByName('transport')}}</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('transport')}}"></rubedo-field><!--Description-->
+					</div>
+				</div>
+				<div ng-if="fieldEntity['accompte']" class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">{{contentDetailCtrl.getLabelByName('accompte')}}</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('accompte')}}"></rubedo-field><!--Description-->
+					</div>
+				</div>
+				<div ng-if="fieldEntity['paf_text']" class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">{{contentDetailCtrl.getLabelByName('paf_text')}}</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field><!--Description-->
+					</div>
+				</div>
+				<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
+					</div>
+					<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
+				</div>
+				<div ng-if="fieldEntity['contact']" class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">{{contentDetailCtrl.getLabelByName('contact')}}</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contact')}}"></rubedo-field><!--Contact-->
+					</div>
+				</div>			
+				<span ng-repeat="taxonomy in contentDetailCtrl.taxonomy" class="capital tags pull-right">{{taxonomy.label}}</span>
+			</div>
+			
+		</div>
+		<a name="inscription"></a>
+		<div class="row  bg-white" >
+			<div class="text-article">
+				<div class="col-xs-12"><h3>Inscriptions</h3></div>
+				<div ng-if="fieldEntity['inscriptionState']">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital">État des inscriptions</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('inscriptionState')}}"></rubedo-field>
+						<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('publics')}}"></rubedo-field>
+						<div ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente' ">
+							<p>{{rubedo.translate("Block.Inscription.Attente.Ligne2", "Vous pouvez vous inscrire sur liste d'attente.")}}</p>
+							<p>{{rubedo.translate("Block.Inscription.Attente.Ligne3", "Les frais d'inscription vous seront demandés à la confirmation de votre inscription.")}}</p>
+						</div>
+					</div>
+					<div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte' || contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription' ">
+						<!--si un seul public accueilli-->
+						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
+							S'inscrire
+						</div>
+						<!--si un plusieurs types de public accueillis-->
+						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1" class="col-xs-6 text-center">
+							<div class="button rouge cursor-as-pointer"   style="margin-bottom:12px" >S'inscrire comme :</div>
+							        <!--Type de public -->
+								<div ng-repeat="public in contentDetailCtrl.content.fields.publics" class="text-center">
+	
+									<p><a href="" ng-click="contentDetailCtrl.content.public = public; contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription =true"">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[21], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
+								</div>
+						</div>						
+						<!--si un seul public au service-->
+						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.public_service[0];contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = true"  ng-if="(contentDetailCtrl.content.fields.public_service).length==1">
+							S'inscrire au service
+						</div>
+						<!--si un plusieurs types de public au service-->
+						<div ng-if="(contentDetailCtrl.content.fields.public_service).length>1" class="col-xs-6">
+							<div class="button rouge cursor-as-pointer"  style="margin-bottom:12px">S'inscrire  au service :</div>
+							        <!--Type de public -->
+								<div ng-repeat="public in contentDetailCtrl.content.fields.public_service" class="text-center">
+
+									<p><a href="" ng-click="contentDetailCtrl.content.public = public;contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription =true">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[22], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
+								</div>
+						</div>						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div style="padding-top:24px" class="bg-white"></div>
+	</div>
+		
+		
+	<div class="container-fluid" ng-if="contentDetailCtrl.showInscription" >
+		<div ng-init="proposition = contentDetailCtrl.content" class="row padding-large" ng-include="contentDetailCtrl.inscriptionTemplate">
+			
+	
+			
+		</div>
+		
+		<div style="margin-top:24px"></div>
+		
+	</div>
+	
+</div>
+
