@@ -31,5 +31,8 @@ blocksConfig.sectionPresentation={
            "template": "/templates/blocks/sectionPresentation.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/sectionPresentation.js"]
 };
-
+blocksConfig.carrousel2={
+           "template": "/templates/blocks/carrousel_fullWidth.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
+};
 
