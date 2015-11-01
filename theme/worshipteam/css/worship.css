@@ -293,6 +293,9 @@ nav li a {
 .album-desc {
   color: #ffffff;
 }
+.media {
+  margin-top: 0;
+}
 .carre-date {
   height: 255px;
   width: 255px;
