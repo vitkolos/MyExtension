@@ -152,6 +152,7 @@ a {
 }
 a:hover {
   color: #74c6de;
+  text-decoration: none;
 }
 input:focus {
   outline: 0;
@@ -284,6 +285,9 @@ span.glyphicon {
 nav li a {
   text-transform: uppercase;
   font-size: 13px;
+}
+.album-desc {
+  color: #ffffff;
 }
 .footer {
   background-color: #2e2c29;
