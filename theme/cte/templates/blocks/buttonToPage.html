@@ -1,4 +1,4 @@
-<div ng-controller="ButtonToPageController as btnToPageCtrl" ng-class="contentListCtrl.columns" >
+<div ng-controller="ButtonToPageController as btnToPageCtrl" ng-class="btnToPageCtrl.columns" >
 	<div class="col-xs-6 text-right">
 		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 	</div>

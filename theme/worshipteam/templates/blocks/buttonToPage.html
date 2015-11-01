@@ -1,4 +1,4 @@
-<div class="text-center" ng-controller="ButtonToPageController as btnToPageCtrl">
+<div class="text-center" ng-controller="ButtonToPageController as btnToPageCtrl" ng-class="btnToPageCtrl.columns">
 	
     	<div class="google-btn">
 		<a ng-href="{{btnToPageCtrl.pageLink}}">
@@ -9,6 +9,5 @@
 		</div>
 		<div class="linkbox"><a ng-href="{{btnToPageCtrl.pageLink}}">{{rubedo.translate('Block.ButtonToPage.ReadMore','read more')}}</a></div>
 	</div>
-    </a>
  
 </div>

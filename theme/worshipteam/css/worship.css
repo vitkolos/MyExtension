@@ -287,6 +287,9 @@ nav li a {
   text-transform: uppercase;
   font-size: 13px;
 }
+.navbar-toggle .icon-bar {
+  background-color: #ffffff;
+}
 .album-desc {
   color: #ffffff;
 }
@@ -295,6 +298,9 @@ nav li a {
   width: 255px;
   padding: 32px 15px 15px;
   background: white;
+}
+.carre-date h3 {
+  color: #ffffff;
 }
 .footer {
   background-color: #2e2c29;
