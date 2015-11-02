@@ -48,9 +48,20 @@
     }
 }
 
+@font-face {
+    font-family: '.Sansation';
+    src: url('../font/sansation_regular-webfont.eot');
+    src: url('../font/sansation_regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../font/sansation_regular-webfont.woff2') format('woff2'),
+         url('../font/sansation_regular-webfont.woff') format('woff'),
+         url('../font/sansation_regular-webfont.ttf') format('truetype'),
+         url('../font/sansation_regular-webfont.svg#sansationregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
+}
 body{font-size:16px; min-height:100%; line-height: 1.4em; }
-
+p{font-family: 'Sansation'}
 html,body{font-family: 'Open Sans'; height: 100%; overflow: auto;background-color: #212121;color: @texte; }
 .container-fluid{overflow-x:hidden;}
 .container-fluid{padding:0}
@@ -184,11 +195,11 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
   span,p{color:white}
 }
 .modal h3{color:@bleu}
-.modal a{color:@texte; box-shadow: inset 0 -2px 0 @bleu; }
-
+.modal a{color:@texte; box-shadow: inset 0 -2px 0 @bleu; transition: background-color ease 0.3s}
+.modal a:hover{background-color:@bleu}
  
  ///////////////GOOGLE BUTTONS////////////////////
- .google-btn{margin:80px auto;width:80%;padding-top:20px}
+ .google-btn{margin:80px auto;width:95%;padding-top:20px}
 .google-btn img{transition:opacity 0.3s ease-out; width:80%; margin:0 auto}
 .google-btn img:hover{opacity:0.65;  }
 
