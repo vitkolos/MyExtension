@@ -4,10 +4,10 @@
         me.menu={};
         me.currentRouteline=$location.path();
         var config=$scope.blockConfig;
-	me.menuTab = false; //par défaut, le menu montr est le menu général
+	me.menuTab = false; 
 	if ($scope.block.code == '1418') {
 	    me.menuClass="menu1418";
-	    me.menuTab = true; //par défaut, le menu montré est le menu général
+	    me.menuTab = true;
 	}
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
         if (config.rootPage){
