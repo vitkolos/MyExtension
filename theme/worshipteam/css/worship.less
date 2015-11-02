@@ -147,6 +147,8 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 nav li a{text-transform: uppercase;font-size: 13px}
 .navbar-toggle .icon-bar{background-color: white}
 nav.navbar{background-color: rgba(17,17,17,0.85);}
+.nav>li>a:hover, .nav>li>a:focus{color:rgb(17,17,17);}
+.navbar-nav>li.active{background:rgba(1,1,1,0.85); color:rgb(17,17,17)}
 ///////////SLIDER///////////
 .carousel-indicators li{margin:1px 10px}
  ///////LISTE ARTICLES ////////
@@ -167,22 +169,21 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
   height:255px;
   width:255px;
   padding:32px 15px 15px;
-  background: white;
+  border: 2px solid #636363;
   h3{color:white}
+  span{font-size:35px; display:block}
  }
+ .carre-date:hover{background-color:@bleu}
  
  
  ///////////////GOOGLE BUTTONS////////////////////
  .google-btn{margin:80px auto;width:80%;padding-top:20px}
-.google-btn img{transition:opacity 0.3s ease-out; width:75%; margin:0 auto}
+.google-btn img{transition:opacity 0.3s ease-out; width:80%; margin:0 auto}
 .google-btn img:hover{opacity:0.65;  }
-.google-btn > div {
-    //color:@txt_grey;
-}
+
 .google-btn {
     h3, p{
 	padding:0 5px; 
-	//color:@txt_grey;
     }
 }
 .linkbox{display:block}
