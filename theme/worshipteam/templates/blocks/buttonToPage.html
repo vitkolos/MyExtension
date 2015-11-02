@@ -2,7 +2,7 @@
 	
     	<div class="google-btn">
 		<a ng-href="{{btnToPageCtrl.pageLink}}">
-			<img class="img-responsive " ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {mode:'boxed'})}}"/>
+			<img class="img-responsive " ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {width:'300px',mode:'boxed'})}}"/>
 		</a>
 		<h3 >{{block.title}}</h3>
 		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
