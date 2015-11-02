@@ -4,8 +4,7 @@
         me.menu={};
         me.currentRouteline=$location.path();
         var config=$scope.blockConfig;
-	me.menuTab = false; //par défaut, le menu montré est le menu général
-	me.menuTemplate = themePath+'/templates/blocks/navigation/1418.html';
+	me.menuTab = false; //par dÈéfaut, le menu montré est le menu général
 	if ($scope.block.code == '1418') {
 	    me.menuClass="menu1418";
 	    me.menuTab = true; //par défaut, le menu montré est le menu général
@@ -42,6 +41,5 @@
 	// pour fermer le modal quand on clique sur un lien
 	$scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
 	    angular.element('body .modal-backdrop ').remove();
-	    console.log('test');
 	});
 }]);
