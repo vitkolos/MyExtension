@@ -128,6 +128,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 @lieux:#fbbd58; //jaune lieux communautaires
 @evenement:#f96847; //orange propositions;
 @14-18:#59d3b6;
+@bleu:#74c6de;
 
 ////////////////////////////////////////////////
     ///////classes utiles////////////////
@@ -151,8 +152,13 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
  ///////LISTE ARTICLES ////////
  .album-desc{color:white}
  .media {margin-top:0; padding: 0 24px; margin-bottom: 24px}
- .actus-thumb{width:35%; float:left; margin-right:20px}
- .actus-date{float:left; text-align: center; margin-right: 20px; border-bottom: #74c6de 1px solid; width:65px}
+ .actus-thumb{width:35%; float:left; margin-right:20px;padding:0 12px 48px}
+ .actus-thumb:hover img{opacity:0.8} .actus-thumb img{transition: opacity ease 0.3s}
+ .actus-date{float:left; text-align: center; margin-right: 20px; border-bottom: @bleu 1px solid; width:65px; color:white}
+ .actus-date span:first-of-type{font-size:50px; margin-bottom:16px}
+ .actus-date span:nth-of-type(2){font-size:14px; margin-bottom:14px}
+ .actus-date span:nth-of-type(3){font-size:17px; }
+ 
  //////CARRES DATES///////////
  .carre-date{
   height:255px;
