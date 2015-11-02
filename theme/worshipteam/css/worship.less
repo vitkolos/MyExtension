@@ -225,13 +225,13 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
 .titre{
   padding:24px;
   h1,h2,h3,h4,p{color:white}
-  span{color:@bleu}
+  span, span a{color:@bleu}
 }
 
 ////////////////////////////////////////////////////
     ///////////FOOTER///////////////////
 ///////////////////////////////////////////////////
-.footer{color:white; a,p{color:white; display: inline-block};font-size:14px}
+.footer{color:white; margin-top:24px; a,p{color:white; display: inline-block};font-size:14px}
 .footer div.container{padding:24px}
 .footer.links .container{border-top:1px solid white; padding-top:12px; .capital{border:none; text-align: center; font-size:10px !important}}
 @media screen and (min-width: @min_md) { .carousel-caption{width:32%;height:100%;margin-left:68%}.owl-item img{width:68%}}
@@ -515,12 +515,11 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 @media  screen and(min-width:@min_sm) {.socials:not(.center){text-align:right; width:auto}}
 .addthis_counter a.atc_s{display:none !important}
 .socials .addthis_counter .addthis_button_expanded, .socials .addthis_counter .addthis_button_expanded a {
-  .txt-red; .capital;
+   .capital;
   background: none;
-  font-family: Montserrat,Arimo,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
   width:auto
   }
-  .socials .addthis_counter {.txt-red; .capital; width: auto; margin-right: 3px;
+  .socials .addthis_counter {.capital; width: auto; margin-right: 3px;
   }
 ////////////////////////////////////////////////////
     ///////////CONTENT LIST///////////////////
