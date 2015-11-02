@@ -160,24 +160,9 @@ nav li a{text-transform: uppercase;font-size: 13px}
 ////////////////////////////////////////////////////
     ///////////FOOTER///////////////////
 ///////////////////////////////////////////////////
-.footer{background-color:@txt_dark; color:white; a,p{color:white; display: inline-block};font-size:14px}
-.footer.jeunes{background-color: #663399}
+.footer{color:white; a,p{color:white; display: inline-block};font-size:14px}
 .footer div.container{padding:24px}
-.footer {
-    a{transition: color 0.3s ease}
-    div.dons a{background-color:white; color:@rouge;font-size: 1.5em;font-weight: bold; height: 80px; line-height: 80px; text-align: center; margin:0; padding: 0 12px; span{vertical-align: middle;display: inline-block;line-height: 1.2em;}}
-    .capital{width:100%; padding-top:6px; border-top:1px solid white; margin-bottom:12px; display: block}
-    .capital +.capital{margin-top:12px}
-    a.dons{width:100%; text-align: center; padding:12px 0; background: @rouge; color:white}
-    a.dons:first-of-type{border-bottom:3px solid white}
-    a:last-of-type{margin-bottom:24px}
-}
-.footer, .footer #menuCCN, .footer #menuBis{text-align: left}
-.footer a.menu_header{margin-bottom:0; font-size: 16px}
 .footer.links .container{border-top:1px solid white; padding-top:12px; .capital{border:none; text-align: center; font-size:10px !important}}
-.footer a:hover{color:@rouge}
-@media screen and (max-width: @min_xs){.footer, .footer #menuCCN, .footer #menuBis{text-align: center} .footer a{padding:3px 0}}
-@media screen and (min-width: @min_sm) {/*.carousel-caption{width:41.68%;height:100%;margin-left:58.33%}.owl-item img{width:58.33%}*/}
 @media screen and (min-width: @min_md) { .carousel-caption{width:32%;height:100%;margin-left:68%}.owl-item img{width:68%}}
 @media screen and (min-width: @min_lg) {.carousel-caption{width:26.5%;height:100%;margin-left:73.5%; padding:48px }.owl-item img{width:73.5%}}
 ////////////////////////////////////////////////////
@@ -216,7 +201,6 @@ blockquote {
 @media screen and (min-width:@min_lg){blockquote{width:60%; float:right; position: relative; left:30%; margin-left:-17.5%; margin-top:0; margin-bottom: 0}}
 @media screen and (min-width:@min_xs) and (max-width:@min_sm){.header_link{margin-top:33px}}
 .media{transition: margin-top 0.15s cubic-bezier(.33,.66,.66,1)}
-.media.media2 {text-align: center; .border-bottom; margin-bottom:-2px; img{padding-bottom: 12px; display: inline; width:140px}} // liste de contenus de 2 élements par ligne
 .media.media4{text-align: center} // liste de contenus de 4 éléments en ligne sur lg
 @media screen and (min-width:@min_sm) {
   .media.media2 {text-align: left; border-bottom:none}
@@ -296,48 +280,7 @@ blockquote {
 @media screen and (max-width: @min_sm) {.carousel-caption{position:relative; height:auto; h3{font-size:20px}}  }
 
 @media screen and (min-width:1275px) {.owl-item{max-height: 600px; overflow: hidden} }
-////////////////////////////////////////////////////
-    ///////////SEARCH RESULTS///////////////////
-///////////////////////////////////////////////////
-.media{padding:24px 0;}
-.panel-heading.actus.no-arrow{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; }
-.panel-heading.actus:not(.no-arrow){background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; .uparrow()}
-.panel-heading.actus.panel-hidden{.downarrow()}
-.panel-heading.actus.panel-hidden + .panel-body{display:block; padding:0}
-.panel-heading.actus + .panel-body{display:none; padding:0}
-.panel-heading.actus.visible-xs-block{background: @rouge_shadow}
-.search-result {
-    p.capital{margin-bottom:0}
-    h3{margin-top:10px}
-    padding-bottom:24px;
-    .clearfix();
-}
-.geo-search .search-result{padding:12px; background-color:white; border-bottom:solid 1px @marron;}
-.search-tags .search-result{padding:12px 0;padding-left: 12px;  border-bottom:solid 1px @marron;  }
-.search-tags .search-result.checked, .search-tags .search-result:hover, .search-tags .search-result a:hover{background-color:@marron; color:white}
-@media screen and (min-width: @min_sm) {
-  .search-result{border-bottom:solid 1px @marron;padding:24px 0;}
-}
-@media screen and (max-width: @min_sm) {
-    .panel-heading.actus.panel-hidden + .panel-body{display:none; padding:0}
-    .panel-heading.actus + .panel-body{display:block; padding:0}
-    
-}
 
-.border-top{border-top:solid 2px @marron; margin-top:0;}
-.border-top-red{border-top:solid 1px @rouge; margin-top:0;}
-.row.border-bottom{padding-top:24px}
-.border-bottom{border-bottom:solid 2px @marron; margin-bottom:0; padding-bottom: 24px}
-.query-actus{float:right; margin-top:-36px; margin-bottom:0; width:250px}
-@media screen and(max-width: @min_sm) {.query-actus{margin-top:12px}}
-.tags, .tags p{color:@marron;  transition: box-shadow 0.3s ease}
-.tags:hover {box-shadow: inset 0 -5px 0 white;}
-.search-video{
-    float:right;
-    width:60%;
-}
-.panel-body ul{padding-left:0; list-style-type: none;}
-.site-link{.capital; position: relative; padding-bottom:24px;top:12px}
 ////////////////////////////////////////////////////
     ///////////PLAYER///////////////////
 ///////////////////////////////////////////////////
