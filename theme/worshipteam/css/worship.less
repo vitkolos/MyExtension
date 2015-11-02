@@ -51,7 +51,7 @@
 
 body{font-size:16px; min-height:100%; line-height: 1.4em; }
 
-html,body{font-family: 'Open Sans'; height: 100%; overflow: auto;background-color: #212121;color: #c5c5c5; }
+html,body{font-family: 'Open Sans'; height: 100%; overflow: auto;background-color: #212121;color: @texte; }
 .container-fluid{overflow-x:hidden;}
 .container-fluid{padding:0}
 .container-fluid > .row:nth-of-type(n+3){margin-right: 0; margin-left:0;}
@@ -129,6 +129,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 @evenement:#f96847; //orange propositions;
 @14-18:#59d3b6;
 @bleu:#74c6de;
+@texte:#c5c5c5;
 
 ////////////////////////////////////////////////
     ///////classes utiles////////////////
@@ -182,7 +183,9 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
   background-color:@bleu; border-color: white;
   span,p{color:white}
 }
- 
+.modal h3{color:@bleu}
+.modal a{color:@texte; box-shadow: inset 0 -2px 0 @bleu; }
+
  
  ///////////////GOOGLE BUTTONS////////////////////
  .google-btn{margin:80px auto;width:80%;padding-top:20px}
