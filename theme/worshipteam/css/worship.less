@@ -198,7 +198,10 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
 .modal h3{color:@bleu}
 .modal a{color:@texte; box-shadow: inset 0 -2px 0 @bleu; transition: background-color ease 0.3s}
 .modal a:hover{background-color:@bleu; color:white}
- 
+ @media screen and (max-width: @min_xs) {
+  .carre-date{height:auto; width:100%}
+ }
+
  ///////////////GOOGLE BUTTONS////////////////////
  .google-btn{margin:80px auto;width:95%;padding-top:20px}
 .google-btn img{transition:opacity 0.3s ease-out; width:80%; margin:0 auto}
