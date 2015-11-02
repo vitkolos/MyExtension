@@ -1,3 +1,4 @@
+<a name="contact"></a>
 <div ng-controller="ContactBlockController as contactCtrl" ng-if="blockConfig.displayMode!='form'">
         <div>
         <a href="" class="capital" load-modal ng-if="!blockConfig.email_txt">contact</a>
@@ -46,7 +47,7 @@
                                         <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
                                             <rubedo-notification></rubedo-notification>
                                         </div>
-                                        <button type="submit" class="button rouge">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
+                                        <button type="submit" class="button bleu">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
                                     </div>
                                 </div>
                             </form>
@@ -104,7 +105,7 @@
                     <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
                         <rubedo-notification></rubedo-notification>
                     </div>
-                    <button type="submit" class="button rouge">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
+                    <button type="submit" class="button bleu">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
                 </div>
             </div>
         </form>

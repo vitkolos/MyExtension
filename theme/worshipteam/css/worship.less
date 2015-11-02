@@ -160,7 +160,8 @@ nav li a{text-transform: uppercase;font-size: 13px}
 .navbar-toggle .icon-bar{background-color: white}
 nav.navbar{background-color: rgba(17,17,17,0.85);}
 .nav>li>a:hover, .nav>li>a:focus{color:rgb(17,17,17);}
-.navbar-nav>li.active{background:rgba(1,1,1,0.85); color:rgb(17,17,17)}
+.navbar-nav>li.active{background:rgba(255,255,255,0.55); a{color:rgb(17,17,17)}}
+.nav>li>a:hover, .nav>li>a:focus{background:rgba(255,255,255,0.55);}
 ///////////SLIDER///////////
 .carousel-indicators li{margin:1px 10px}
  ///////LISTE ARTICLES ////////
@@ -196,7 +197,7 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
 }
 .modal h3{color:@bleu}
 .modal a{color:@texte; box-shadow: inset 0 -2px 0 @bleu; transition: background-color ease 0.3s}
-.modal a:hover{background-color:@bleu}
+.modal a:hover{background-color:@bleu; color:white}
  
  ///////////////GOOGLE BUTTONS////////////////////
  .google-btn{margin:80px auto;width:95%;padding-top:20px}
@@ -225,7 +226,7 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
 .titre{
   padding:24px;
   h1,h2,h3,h4,p{color:white}
-  span, span a{color:@bleu}
+  span, span a{color:@bleu; font-size:0.8em}
 }
 
 ////////////////////////////////////////////////////
@@ -471,7 +472,7 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
     padding:12px;
     text-align: center;
     .capital;
-    margin-top:12px;
+    margin-top:12px auto 0;
     transition: 0.3s ease opacity;
     display: inline-block;
     border-radius: 5px;
@@ -480,6 +481,7 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
  }
  .button:hover{opacity:0.8;}
 .button.rouge{background: @rouge;box-shadow: 0px 2px @rouge_shadow; color:white}
+.button.bleu{background: @bleu;box-shadow: 0px 2px @bleu; color:white}
   .button.submit{border: 2px solid @rouge; color:@rouge;}
   .button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}
 
@@ -517,7 +519,8 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 .socials .addthis_counter .addthis_button_expanded, .socials .addthis_counter .addthis_button_expanded a {
    .capital;
   background: none;
-  width:auto
+  width:auto;
+  color:@texte;
   }
   .socials .addthis_counter {.capital; width: auto; margin-right: 3px;
   }
