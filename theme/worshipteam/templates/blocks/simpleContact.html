@@ -65,14 +65,12 @@
 </div>
 
 
-<div ng-controller="ContactBlockController as contactCtrl" ng-if="blockConfig.displayMode=='form'">
+<div ng-controller="ContactBlockController as contactCtrl" ng-if="blockConfig.displayMode=='form'" class="container">
 
         <form class="form-horizontal" role="form" ng-submit="contactCtrl.submit()">
              <div class="form-group">
                 <div class="col-sm-2">&nbsp;</div>
-                <div class="col-sm-10">{{blockConfig.surname +" "+blockConfig.name}}<br/>
-                    {{blockConfig.phone}}<br/>
-                    {{blockConfig.address}}
+                <div class="col-sm-10"><h2>{{blockConfig.surname +" "+blockConfig.name}}</h2>
                 </div>
             </div>
             <div class="form-group">
@@ -87,14 +85,20 @@
                     <input type="email" name="email" ng-model="contactCtrl.contactData.email" class="form-control" id="{{'email'+block.id}}" required>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" ng-if="block.code!='organisateur' ">
                 <label for="{{'subject'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
                 <div class="col-sm-10">
                     <input type="text" name="subject" ng-model="contactCtrl.contactData.subject" class="form-control" id="{{'subject'+block.id}}" required>
                 </div>
             </div>
+            <div class="form-group" ng-if="block.code=='organisateur' ">
+                <label for="{{'subject'+block.id}}" class="col-sm-2 control-label">Organisateur *</label>
+                <div class="col-sm-10">
+                    <input type="text" name="subject" ng-model="contactCtrl.contactData.organisateur" class="form-control" id="{{'subject'+block.id}}" required>
+                </div>
+            </div>
             <div class="form-group">
-                <label for="{{'message'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
+                <label for="{{'message'+block.id}}" class="col-sm-2 control-label">Description de l'événement *</label>
                 <div class="col-sm-10">
                     <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message" class="form-control" id="{{'message'+block.id}}" required>
                     </textarea>
