@@ -430,7 +430,10 @@ span#close:after {
 ///////////////////////////////////////////////////
 .secondary-nav{
   ul{list-style: none}
-  li{display: inline-block; max-width: 200px}
+  li{display: inline-block; max-width: 200px; vertical-align: middle; line-height: 1.5em; padding: 6px 8px}
+}
+@media screen and (max-width: @min_sm) {
+  .secondary-nav li{max-width: 100%; width:100%}
 }
  
  
