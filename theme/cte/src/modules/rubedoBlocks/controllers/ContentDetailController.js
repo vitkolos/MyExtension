@@ -141,7 +141,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     //Propositions : déterminer si les inscriptions sont possibles
                     if (me.content.type.code=="proposition") {
                         var today = new Date();
-                        console.log(today);
+                        console.log(today.getTime());
                         console.log(me.content.fields.dateDebut);
                         if (me.content.fields.inscriptionState.inscriptionState == 'close') {
                             me.isInscription=false;
