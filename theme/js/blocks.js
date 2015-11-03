@@ -39,4 +39,8 @@ blocksConfig.carrousel2={
            "template": "/templates/blocks/carrousel_fullWidth.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
 };
+blocksConfig.redirect={
+           "template": "/templates/blocks/redirect.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/redirectController.js"]
+};
 

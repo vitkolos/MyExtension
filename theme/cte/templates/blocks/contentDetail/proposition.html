@@ -28,7 +28,7 @@
 				<p>{{contentDetailCtrl.content.fields.positionName}}</p>
 				<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMM yyyy'}}</p>
 				<a href="#infos_pratiques" class="button rouge">Informations pratiques</a>
-				<a href="#inscription" class="button rouge">S'inscrire</a>
+				<a href="#inscription" class="button rouge" ng-if="contentDetailCtrl.isInscription">S'inscrire</a>
 		
 		
 			</div>
@@ -143,7 +143,7 @@
 						|| contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription'
 						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente')">
 						<!--si un seul public accueilli-->
-						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
+						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
 							S'inscrire
 						</div>
 						<!--si un plusieurs types de public accueillis-->
@@ -156,7 +156,7 @@
 								</div>
 						</div>						
 						<!--si un seul public au service-->
-						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.public_service[0];contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = true"  ng-if="(contentDetailCtrl.content.fields.public_service).length==1">
+						<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.public_service[0];contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = true"  ng-if="(contentDetailCtrl.content.fields.public_service).length==1">
 							S'inscrire au service
 						</div>
 						<!--si un plusieurs types de public au service-->

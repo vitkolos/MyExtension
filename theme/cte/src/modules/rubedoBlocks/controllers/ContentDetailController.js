@@ -7,7 +7,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var previousFields;
     me.taxonomy=[];
     me.showInscription = false; // pour les inscriptions, masquer le formulaire
-    me.isInscription = true; // pour les propositions, ne pas afficher les insciptions si closes
+    me.isInscription = true; // pour les propositions, ne pas afficher les inscriptions si closes
 
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
