@@ -12,7 +12,6 @@ angular.module("rubedoBlocks").lazy.controller('RedirectController',['$scope','R
                 if(response.data.success){
                     me.redirectUrl = response.data.content.canonicalUrl;
                     window.location.href= me.redirectUrl;
-                    console.log(me.redirectUrl);
                 }
             }
         );
