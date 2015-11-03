@@ -1,14 +1,14 @@
 {
     "type": "Redirection",
     "description": "Bloc de redirection - pour une page dans le menu qui pointe vers une autre page / contenu",
-    "configBasique": {
-        "title": "Redirection",
-        "bType": "redirect",
+    "configBasique":{
+        "title":"Redirection",
+        "bType":"redirect",
         "flex": 1,
         "champsConfig": {
             "simple": [
                 {
-                    "categorie": "Code",
+                    "categorie": "#ext-gen1068#",
                     "champs": [
 			{
                             "type": "Ext.form.field.Text",
@@ -17,7 +17,7 @@
                                 "name": "url",
                                 "vtype": "url"
                             }
-                        },
+                        }
                     ]
                 }
             ],
