@@ -11,26 +11,28 @@ angular.module("rubedoBlocks").lazy.controller('RedirectController',['$scope','R
             function(response){
                 if(response.data.success){
                     me.redirectUrl = response.data.content.canonicalUrl;
+                    window.location.href= me.redirectUrl;
                 }
             }
         );
    }
-
     if (config.contentId){
         me.getContentById(config.contentId);
     }
     else if (config.url) {
         me.redirectUrl = config.url;
+        window.location.href= me.redirectUrl;
     }
     else if (config.linkedPage&&mongoIdRegex.test(config.linkedPage)) {
         RubedoPagesService.getPageById(config.linkedPage).then(function(response){
             if (response.data.success){
                 me.redirectUrl=response.data.url;
+                window.location.href= me.redirectUrl;
             }
         });
     }
     
-    window.location.href= me.redirectUrl;
+    
 
 
 
