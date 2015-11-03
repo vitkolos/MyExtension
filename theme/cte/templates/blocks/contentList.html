@@ -18,9 +18,24 @@
         <!--POUR 3 COLONNES-->
         <div ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
             <div ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
-                <div class="col-md-4 col-xs-6 col-xxs-12" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" ng-switch="content.typeId">
-                   <!--propositions-->
-                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}" ng-switch-when="54dc614245205e1d4a8b456b">
+                <div class="col-md-4 col-xs-6 col-xxs-12" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" ng-switch="content.typeId">                
+                    <!---VIDEOS-->
+                    <div ng-switch-when="56094a2245205e0e2541ea77">
+                    
+                        <div class="media-body">
+                            <jwplayer video-url="{{content.fields.video.url}}"></jwplayer>
+                            <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
+                                <h4 class="list-item-title capital"><span>
+                                        {{content.fields.text}}
+                                    </span>
+                                </h4>
+                            </a>
+                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                            
+                        </div>
+                   </div>
+                                      <!--DEFAUT-->
+                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}" ng-switch-default>
                     
                         <div class="media-body">
                             <h4 class="list-item-title capital"><span>
@@ -40,23 +55,7 @@
                                 <button><span class="glyphicon glyphicon-plus"></span>Edit</button>
                             </a>
                         </div>
-                    </a>
-                   
-                   
-                    <div ng-switch-when="56094a2245205e0e2541ea77">
-                    
-                        <div class="media-body">
-                            <jwplayer video-url="{{content.fields.video.url}}"></jwplayer>
-                            <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
-                                <h4 class="list-item-title capital"><span>
-                                        {{content.fields.text}}
-                                    </span>
-                                </h4>
-                            </a>
-                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                            
-                        </div>
-                   </div>
+                    </a> 
 
                 </div>
             </div>
