@@ -175,7 +175,7 @@
             { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
             { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
             '/',
-            { name: 'colors', items: [ 'TextColor', '-','BGColor' ] },
+            { name: 'colors', items: [ 'TextColor' ] },
             { name: 'tools', items: [ 'Maximize', '-','ShowBlocks' ] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink','-','Anchor' ] },
             { name: 'insert', items: [ 'Image',  '-', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak' ] }
@@ -184,7 +184,7 @@
             myTBConfig=[
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
                 { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
-                { name: 'colors', items: [ 'TextColor','BGColor','-', 'Scayt' ] },
+                { name: 'colors', items: [ 'TextColor','-', 'Scayt' ] },
                 '/',
                 { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
                 { name: 'insert', items: [ 'Image',  '-', 'Table', 'SpecialChar', 'PageBreak', 'Link', "Rubedolink", 'Unlink'] },
