@@ -6,11 +6,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.inscriptionTemplate = themePath+'/templates/blocks/inscription.html';
     var previousFields;
     me.taxonomy=[];
-    me.showInscription = false; // pour les inscriptions
+    me.showInscription = false; // pour les inscriptions, masquer le formulaire
+    me.isInscription = true; // pour les propositions, ne pas afficher les insciptions si closes
+
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
-
     });
     me.tooltips=function(){
         $('[data-toggle="tooltip"]').tooltip();
@@ -137,6 +138,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
+                    //Propositions : déterminer si les inscriptions sont possibles
+                    if (me.content.type.code=="proposition") {
+                        var today = new Date();
+                        if (me.content.fields.inscriptionState.inscriptionState == 'close') {
+                            me.isInscription=false;
+                        }
+                        else if (me.content.fields.dateDebut < today) {
+                            me.propDate = "passee";
+                        }
+                        else me.propDate="ouverte";
+                    }
+
                     //Albums photos
                     if (me.content.type.code=="album") {
                         me.content.images={};

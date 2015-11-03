@@ -6,6 +6,7 @@
     "Block.Inscription.Attente.Ligne2":"Vous pouvez vous inscrire sur liste d'attente.",
     "Block.Inscription.Attente.Ligne3":"Les frais d'inscription vous seront demandés à la confirmation de votre inscription.",
     "Block.Inscription.Libre":"Accès libre, pas d'inscription nécessaire.",
+    "Block.Inscription.Passee":"La proposition est passée, les inscriptions ne sont plus possibles",
     "Block.Inscription.Fiche": "Fiche d'inscription",
     "Block.Inscription.InfosPerso": "Informations personnelles",
     "Block.Inscription.Nom": "Nom",
