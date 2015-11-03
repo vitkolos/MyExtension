@@ -146,7 +146,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if (me.content.fields.inscriptionState.inscriptionState == 'close') {
                             me.isInscription=false;
                         }
-                        else if (me.content.fields.dateDebut < today.getTime()) {
+                        else if (me.content.fields.dateDebut*1000 < today.getTime()) {
                             me.propDate = "passee";
                         }
                         else me.propDate="ouverte";
