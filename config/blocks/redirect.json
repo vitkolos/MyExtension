@@ -8,7 +8,7 @@
         "champsConfig": {
             "simple": [
                 {
-                    "categorie": "#ext-gen1068#",
+                    "categorie": "#ext-gen1073#",
                     "champs": [
 			{
                             "type": "Ext.form.field.Text",
