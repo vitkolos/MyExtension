@@ -188,7 +188,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.launchFOContribute=function(){
         if(me.editorPageUrl){
             $location.url(me.editorPageUrl);
-            $window.location.reload();
+            window.location.reload();
         }
     }
 }]);
