@@ -17,7 +17,22 @@
                                 "name": "url",
                                 "vtype": "url"
                             }
-                        }
+                        },
+			{
+                            "type": "Rubedo.view.DCEField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1105#",
+                                "name": "contentId",
+                                "chooseOnly": true
+                            }
+                        },
+			{
+				"type":"Ext.ux.TreePicker",
+				"config":{
+					"fieldLabel":"#ext-gen1073#",
+					"name":"linkedPage"
+				}
+			}			
                     ]
                 }
             ],
