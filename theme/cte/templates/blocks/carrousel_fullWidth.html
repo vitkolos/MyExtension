@@ -33,8 +33,7 @@
 }
 
 .carousel-inner {
-  
-    height: 100vh;
+    height: 80vh;
 }
 
 /* Background images are set within the HTML using inline CSS, not here */
@@ -49,6 +48,7 @@
     background-size: cover;
     -o-background-size: cover;
 }
+@media screen and (max-width:500px){.carousel-inner{height:50vh}}
 </style>
 
 <div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" style="margin-top:-50px">
