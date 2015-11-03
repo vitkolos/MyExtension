@@ -141,7 +141,7 @@
 					<div class="col-xs-12" ng-if="contentDetailCtrl.propDate!='passee'
 						&& (contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'
 						|| contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription'
-						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente'")>
+						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente')">
 						<!--si un seul public accueilli-->
 						<div class="button rouge cursor-as-pointer col-xs-6"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
 							S'inscrire
