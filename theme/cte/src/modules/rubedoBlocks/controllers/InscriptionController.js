@@ -201,7 +201,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.isTelephoneRequired = function () {
         if($scope.inscription.public_type == 'adolescent')
             return !($scope.inscription.tel1 || $scope.inscription.tel2 || $scope.inscription.tel2Pers2); // au moins téléphone fixe / portable / parent
-        else if ($scope.inscription.public_type == 'couple' || $scope.inscription.public_type='famille') {
+        else if ($scope.inscription.public_type == 'couple' || $scope.inscription.public_type=='famille') {
             return !($scope.inscription.tel2 || $scope.inscription.tel2Pers2 || $scope.inscription.tel2Pers2); // au moins portable de lui / elle / téléphone fixe
         }
         else
