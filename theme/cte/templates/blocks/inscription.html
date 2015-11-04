@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-xs-12" ng-if="formCtrl.content.fields.accompte > 0">
                                 <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement.accompte" checked="checked" required>
-                                <label for="accompte">{{contentDetailCtrl.getFieldByName('accompte')}} : {{formCtrl.content.fields.accompte}}</label> 
+                                <label for="accompte">{{contentDetailCtrl.getLabelByName('accompte')}} : {{formCtrl.content.fields.accompte}}€</label> 
                             </div>                            
                             <div class="col-xs-12" ng-repeat="option in formCtrl.content.fields.paimentOption.paimentOption">
                                 <input type="radio"  name="paiement_maintenant" ng-attr-id="{{option}}" ng-model="inscription.paiement[option]" required>
