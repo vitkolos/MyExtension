@@ -3,6 +3,7 @@
                 <p class="capital">{{rubedo.translate("Block.Inscription.Fiche", "Fiche d'inscription")}}</p>
                 <h3>{{contentDetailCtrl.content.fields.text}}</h3>
                 <p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMMM yyyy'}}<br/><!--Description-->
+                {{contentDetailCtrl.content.fields.positionName}}
                 {{contentDetailCtrl.content.fields.position.address}}</p>
 
         </div>
