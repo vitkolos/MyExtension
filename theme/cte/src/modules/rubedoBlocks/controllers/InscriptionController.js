@@ -252,7 +252,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 // validations préliminaires
                $scope.inscription.proposition=  propositionId;
                 $scope.inscription.propositionTitre=  propositionTitle;
-                me.inscription.accompte = me.content.fields.accompte;
+                $scope.inscription.accompte = me.content.fields.accompte;
                 InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
                 });
                 
