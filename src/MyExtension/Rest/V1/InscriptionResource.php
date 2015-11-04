@@ -109,6 +109,7 @@ class InscriptionResource extends AbstractResource
         if($inscription['autreSituation']){
             $inscription['situation'] .= " : ".$inscription['autreSituation'];
         }
+        if($inscription['enfants'])
         return $inscription;
         
     }

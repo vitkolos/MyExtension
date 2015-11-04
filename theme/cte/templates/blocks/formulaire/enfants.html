@@ -1,6 +1,6 @@
 <h3>{{rubedo.translate("Block.Inscription.Enfants")}}</h3>
-<div class="row" ng-repeat="enfant in inscription.enfants track by $index" >
-     <p class="txt-red capital">{{rubedo.translate("Block.Inscription.Enfant")}} n°{{$index}}</p>
+<div class="row" ng-repeat="enfant in inscription.enfants track by $index" class="enfant">
+     <p class="txt-red capital">{{rubedo.translate("Block.Inscription.Enfant")}} n°{{$index +1}}</p>
     <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Nom.Different")}}</label>
         <input type="text" ng-model="inscription.enfants[$index].nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' readonly>
@@ -53,7 +53,7 @@
                         <label for="F" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.F")}}</label>
     </div>
     <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.addChild(enfant);enfant={}">
-        <span class="glyphicon glyphicon-minus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.Enfant.Ajouter")}}
+        <span class="glyphicon glyphicon-plus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.Enfant.Ajouter")}}
     </p>
 </div>
 
