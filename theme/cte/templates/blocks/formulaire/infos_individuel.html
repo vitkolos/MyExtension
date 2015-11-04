@@ -87,16 +87,7 @@
         <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
         <div class="col-sm-8"><input type="text" id="profession" ng-model="inscription.profession" name="profession"></div>
     </div>
-    <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-    </div>
-</ng-form>
 
-
-<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==2}" ng-click="formCtrl.setCurrentStage(1,contact.$valid)">{{rubedo.translate("Block.Inscription.Contact", "Contact")}}
-    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>2"></span>
-</h2>
-<ng-form name="contact">
     <div class="row">
         <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}</label></div>
         <div class="col-sm-8"><input type="email" id="email" name="email"  ng-model="inscription.email" placeholder="user@mydomain.com" required></div>
@@ -133,7 +124,7 @@
         <div class="col-sm-8"><input type="email" id="emailPers2_verif" name="emailPers2_verif" placeholder="user@mydomain.com" ng-model="inscription.emailPers2_verif" required></div>
     </div>
     <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : contact.$invalid}" ng-click="formCtrl.setCurrentStage(2,contact.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
     </div>
 </ng-form>
 

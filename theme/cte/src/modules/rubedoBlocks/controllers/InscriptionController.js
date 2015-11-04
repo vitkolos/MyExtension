@@ -216,40 +216,37 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         if (valide && (me.currentStage >= step)) {
             if (step==0) {me.currentStage=1;}
             else if (step==1) {
-                me.currentStage=2;
-            }
-            else if (step==2) {
                 if( $scope.inscription.email != $scope.inscription.email_verif){
                     $scope.mailError = true;
                 }
                 else if ($scope.inscription.emailPers2 != $scope.inscription.emailPers2_verif) {
                     $scope.mailError2 = true;
                 }
-                else if (me.isComplement) {me.currentStage=3;$scope.mailError = false;$scope.mailError2 = false;}
-                else if (me.isTransport) {me.currentStage=4;$scope.mailError = false;$scope.mailError2 = false;}
-                else if (me.isLogement) {me.currentStage=5;$scope.mailError = false;$scope.mailError2 = false;}
-                else if(me.isPaiement) {me.currentStage=6;$scope.mailError = false;$scope.mailError2 = false;}
-                else {me.currentStage=7;$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isComplement) {me.currentStage=2;$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isTransport) {me.currentStage=3;$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isLogement) {me.currentStage=4;$scope.mailError = false;$scope.mailError2 = false;}
+                else if(me.isPaiement) {me.currentStage=5;$scope.mailError = false;$scope.mailError2 = false;}
+                else {me.currentStage=6;$scope.mailError = false;$scope.mailError2 = false;}
+            }
+            else if (step==2) {
+                if (me.isTransport) {me.currentStage=3;}
+                else if (me.isLogement) {me.currentStage=4;}
+                 else if(me.isPaiement) {me.currentStage=5;}
+               else {me.currentStage=6;}
             }
             else if (step==3) {
-                if (me.isTransport) {me.currentStage=4;}
-                else if (me.isLogement) {me.currentStage=5;}
-                 else if(me.isPaiement) {me.currentStage=6;}
-               else {me.currentStage=7;}
+                if (me.isLogement) {me.currentStage=4;}
+                 else if(me.isPaiement) {me.currentStage=5;}
+                else {me.currentStage=6;}
             }
-            else if (step==4) {
-                if (me.isLogement) {me.currentStage=5;}
-                 else if(me.isPaiement) {me.currentStage=6;}
-                else {me.currentStage=7;}
+            else if(step==4) {
+                if(me.isPaiement) {me.currentStage=5;}
+                else me.currentStage=6;
             }
-            else if(step==5) {
-                if(me.isPaiement) {me.currentStage=6;}
-                else me.currentStage=7;
+            else if (step==5) {
+                me.currentStage=6;
             }
             else if (step==6) {
-                me.currentStage=7;
-            }
-            else if (step==7) {
                 // validations préliminaires
                $scope.inscription.proposition=  propositionId;
                 $scope.inscription.propositionTitre=  propositionTitle;
