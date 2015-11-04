@@ -1,7 +1,4 @@
-<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==1}" ng-click="formCtrl.setCurrentStage(0,infos_personnelles.$valid)">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
-    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>1"></span>
-</h2>
-<ng-form name="infos_personnelles">
+
     <!--NOM-->
     <div class="row">
         <div class="col-md-6 col-sm-12">
@@ -122,12 +119,7 @@
             </div>   
         </div>
     </div>
-    
-    <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-    </div>
-    </div>
-</ng-form>   
+ 
 
     
     

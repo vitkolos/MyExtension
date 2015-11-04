@@ -22,18 +22,24 @@
                 
                 
                 
+                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==1}" ng-click="formCtrl.setCurrentStage(0,infos_personnelles.$valid)">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
+                    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>1"></span>
+                </h2>
+                <ng-form name="infos_personnelles">
                 
-                <div ng-switch="inscription.public_type">
-                    <div ng-switch-when="adolescent" >
+                    <div ng-if="inscription.public_type =='adolescent' || inscription.public_type=='jeune-adulte' || inscription.public_type=='personne-avec-enfants' " >
                         <div  ng-include="formCtrl.infos_individuel"></div>
                     </div>
-                    <div ng-switch-when="jeune-adulte" >
-                        <div  ng-include="formCtrl.infos_individuel"></div>
-                    </div>
-                    <div ng-switch-when="couple">
+                    <div ng-if="inscription.public_type =='couple' || inscription.public_type=='fiances' || inscription.public_type=='famille' " >
                         <div  ng-include="formCtrl.couple"></div>
+                    </div>                    
+                    <div ng-if="inscription.public_type =='couple' || inscription.public_type=='fiances' || inscription.public_type=='famille' " >
+                        <div  ng-include="formCtrl.enfants"></div>
                     </div>
-                </div>
+                    <div class="row text-center">
+                        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                    </div>
+                </ng-form>
                 <div ng-include="formCtrl.questions"></div>
                 <!--PAIEMENT-->
                 <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==5}" ng-if="formCtrl.isPaiement" ng-click="formCtrl.setCurrentStage(5,paiement.$valid)">
