@@ -1,6 +1,6 @@
 
     <!--NOM-->
-    <div class="row">
+    <div class="container">
         <div class="col-md-6 col-sm-12">
             <h3>{{rubedo.translate("Block.Inscription.Lui")}}</h3>
             <div class="row">
@@ -117,48 +117,3 @@
             </div>   
         </div>
     </div>
- 
-
-    
-    
- 
-
-
-
-<!--
-
-<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==2}" ng-click="formCtrl.setCurrentStage(1,contact.$valid)">{{rubedo.translate("Block.Inscription.Contact", "Contact")}}
-    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>2"></span>
-</h2>
-<ng-form name="contact">
-
-    <div class="row">
-        <div class="col-sm-4"><label for="tel1" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
-        <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="inscription.tel1" placeholder="+33/x xx xx xx xx"  ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s?){8}/" ng-required="isTelephoneRequired()"></div>
-    </div>    
-    <div class="row">
-        <div class="col-sm-4"><label for="tel2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
-        <div class="col-sm-8"><input type="text" id="tel2" name="tel2" placeholder="+33/x xx xx xx xx" ng-model="inscription.tel2" ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s?){8}/" ng-required="isTelephoneRequired()">
-            <p ng-if="inscription.public_type != 'adolescent'" ng-class=" {'txt-red' : isTelephoneRequired()}" class="infos_validation">** {{rubedo.translate("Block.Inscription.Telephone.Condition")}}</p>
-        </div>
-    </div>
-    <div class="row" ng-if="inscription.public_type == 'adolescent' ">
-        <div class="col-sm-4"><label for="tel2Pers2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable.Parents")}}**</label></div>
-        <div class="col-sm-8"><input type="text" id="tel2Pers2" name="tel2Pers2" placeholder="+33/x xx xx xx xx" ng-model="inscription.tel2Pers2" ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s?){8}/" ng-required="isTelephoneRequired()">
-            <p class="infos_validation" ng-class=" {'txt-red' : isTelephoneRequired()}">** {{rubedo.translate("Block.Inscription.Telephone.Condition.Ados")}}</p>
-        </div>
-    </div>
-    <div class="row" ng-if="inscription.public_type == 'adolescent' ">
-        <div class="col-sm-4"><label for="emailPers2" class="label_style">{{rubedo.translate("Block.Inscription.Email.Parent")}}</label></div>
-        <div class="col-sm-8"><input type="email" id="emailPers2" name="emailPers2"  ng-model="inscription.emailPers2" placeholder="user@mydomain.com" required></div>
-    </div>    
-    <div class="row" ng-if="inscription.public_type == 'adolescent' ">
-        <div class="col-sm-4"><label for="emailPers2_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Parent.Verification")}}</label></div>
-        <div class="col-sm-8"><input type="email" id="emailPers2_verif" name="emailPers2_verif" placeholder="user@mydomain.com" ng-model="inscription.emailPers2_verif" required></div>
-    </div>
-    <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : contact.$invalid}" ng-click="formCtrl.setCurrentStage(2,contact.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-    </div>
-</ng-form>
-
--->
