@@ -217,7 +217,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (step==0) {me.currentStage=1;}
             else if (step==1) {
                 me.currentStage=2;
-                if ($scope.inscription.public_type == 'couple' || $scope.inscription.public_type=='famille') me.currentStage=3; // pour couple, pas de form contact séparé
             }
             else if (step==2) {
                 if( $scope.inscription.email != $scope.inscription.email_verif){
