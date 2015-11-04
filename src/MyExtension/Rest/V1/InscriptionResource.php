@@ -110,7 +110,9 @@ class InscriptionResource extends AbstractResource
             $inscription['situation'] .= " : ".$inscription['autreSituation'];
         }
         if($inscription['enfants']){
-            
+            foreach ($inscription['enfants'] as $enfant){
+                $enfant = $enfant[prenom]. " ".strtoupper($enfant[nom])." ; ".$enfant['birthdateF']." ; ".$enfant['sexe'];
+            }
         }
         return $inscription;
         
