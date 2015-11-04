@@ -32,7 +32,7 @@
         <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.SituationConjugale")}}</label></div>
         <div class="col-sm-8">
             <div class="col-xs-12">
-                <input type="radio"  name="situationConjugale" id="mariage" value="{{rubedo.translate('Block.Inscription.Situation.SituationConjugale.Maries')}}" ng-model="inscription.situationConjugale">
+                <input type="radio"  name="situationConjugale" id="mariage" value="{{rubedo.translate('Block.Inscription.SituationConjugale.Maries')}}" ng-model="inscription.situationConjugale">
                         <label for="mariage">{{rubedo.translate('Block.Inscription.SituationConjugale.Maries')}}</label>
             </div>
             <div class="col-xs-12">
@@ -43,7 +43,7 @@
                 <input type="radio"  name="situationConjugale" id="autre" value="{{rubedo.translate('Block.Inscription.SituationConjugale.Autre')}}" ng-model="inscription.situationConjugale">
                         <label for="autre">{{rubedo.translate('Block.Inscription.SituationConjugale.Autre')}}</label>
                         <label>{{rubedo.translate('Block.Inscription.SituationConjugale.Preciser')}} *</label>
-                        <input type="text" name="situationConjugale_autre" ng-model="inscription.situationConjugale_autre" class="complement_text"
+                        <input type="text" name="situationConjugale_autre" ng-model="inscription.situationConjugale_autre" class="complement_text" ng-value="inscription.situationConjugale_autre"
                                ng-focus="inscription.situationConjugale = inscription.situationConjugale_autre" ng-change="inscription.situationConjugale = inscription.situationConjugale_autre" />
             </div>
         </div>
