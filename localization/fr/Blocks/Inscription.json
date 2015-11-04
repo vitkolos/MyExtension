@@ -1,6 +1,7 @@
 {
     "Block.Inscription.Lui":"Lui",
     "Block.Inscription.Elle":"Elle",
+    "Block.Inscription.Enfants":"Enfants",
     "Block.Inscription.Couple":"Le couple",
     "Block.Inscription.VoirPlan":"Voir le plan",
     "Block.Inscription.Attente.Ligne1":"La proposition choisie est complète.",
@@ -11,6 +12,7 @@
     "Block.Inscription.Fiche": "Fiche d'inscription",
     "Block.Inscription.InfosPerso": "Informations personnelles",
     "Block.Inscription.Nom": "Nom",
+    "Block.Inscription.Nom.Different": "Nom (si différent)",
     "Block.Inscription.Prenom": "Prénom",
     "Block.Inscription.DateNaiss":"Date de naissance",
     "Block.Inscription.DateFormat":"jj/mm/aaaa",

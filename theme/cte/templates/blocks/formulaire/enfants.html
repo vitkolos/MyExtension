@@ -1,22 +1,29 @@
-<ng-form name="enfants">
-                    <input type="text" ng-model="enfant.nom" placeholder="Name" ><br />
-                    <input type="text" ng-model="enfant.prenom" placeholder="Prénom" ><br />
-                    <input type="text" ng-model="enfant.age" placeholder="Age" ><br />
-                    <button type="button" ng-click="formCtrl.addChild(enfant);enfant={}">Add Child</button>
-                    <ul ng-repeat="enfant in inscription.enfants">
-                    <li>
-                      {{ enfant.nom }}
-                   </li>
-                   <li>
-                      {{ enfant.prenom }}
-                   </li>
-                   <li>
-                      {{ enfant.age }}
-                   </li>
-                   <li>
-                      <button type="button" ng-click="formCtrl.removeChild($index)">Remove Person</button>
-                   </li>
-                
-                   
-                </ul>
-                </ng-form>
+<h3>{{rubedo.translate("Block.Inscription.Enfants")}}</h3>
+<div class="row" ng-repeat="enfant in inscription.enfants track by $index">
+    <div class="col-xs-3">{{enfant.nom}}</div>
+    <div class="col-xs-3">{{enfant.prenom}}</div>
+    <div class="col-xs-3"></div>
+    <div class="col-xs-3"></div>
+    <button type="button" ng-click="formCtrl.removeChild($index)">Remove Person</button>
+</div>
+
+<div class="row">
+    <div class="col-xs-3">
+        <label>{{rubedo.translate("Block.Inscription.Nom.Different")}}</label>
+        <input type="text" ng-model="enfant.nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}'>
+    </div>
+    <div class="col-xs-3">
+        <label>{{rubedo.translate("Block.Inscription.Prenom")}}</label>
+        <input type="text" ng-model="enfant.prenom" placeholder='{{rubedo.translate("Block.Inscription.Prenom")}}'>
+    </div>
+    <div class="col-xs-3">
+    </div>
+    <div class="col-xs-3"></div>
+    <button type="button" ng-click="formCtrl.addChild(enfant);enfant={}">Add Child</button>
+</div>
+
+  
+</li>
+
+
+</ul>

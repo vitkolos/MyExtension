@@ -33,7 +33,7 @@
                     <div ng-if="inscription.public_type =='couple' || inscription.public_type=='fiances' || inscription.public_type=='famille' " >
                         <div  ng-include="formCtrl.couple"></div>
                     </div>                    
-                    <div ng-if="inscription.public_type =='couple' || inscription.public_type=='fiances' || inscription.public_type=='famille' " >
+                    <div ng-if="inscription.public_type=='personne-avec-enfants' || inscription.public_type=='famille' " >
                         <div  ng-include="formCtrl.enfants"></div>
                     </div>
                     <div class="row text-center">
