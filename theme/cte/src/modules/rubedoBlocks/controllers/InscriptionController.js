@@ -202,7 +202,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         if($scope.inscription.public_type == 'adolescent')
             return !($scope.inscription.tel1 || $scope.inscription.tel2 || $scope.inscription.tel2Pers2); // au moins téléphone fixe / portable / parent
         else if ($scope.inscription.public_type == 'couple' || $scope.inscription.public_type=='famille') {
-            return !($scope.inscription.tel2 || $scope.inscription.tel2Pers2 || $scope.inscription.tel2Pers2); // au moins portable de lui / elle / téléphone fixe
+            return !($scope.inscription.tel2 || $scope.inscription.tel2Pers2 || $scope.inscription.tel1); // au moins portable de lui / elle / téléphone fixe
         }
         else
             return  !($scope.inscription.tel1 || $scope.inscription.tel2); // au moins téléphone fixe ou portable
@@ -217,14 +217,17 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (step==0) {me.currentStage=1;}
             else if (step==1) {me.currentStage=2;}
             else if (step==2) {
-                if($scope.inscription.email != $scope.inscription.email_verif){
+                if( $scope.inscription.email != $scope.inscription.email_verif){
                     $scope.mailError = true;
                 }
-                else if (me.isComplement) {me.currentStage=3;$scope.mailError = false;}
-                else if (me.isTransport) {me.currentStage=4;$scope.mailError = false;}
-                else if (me.isLogement) {me.currentStage=5;$scope.mailError = false;}
-                else if(me.isPaiement) {me.currentStage=6;$scope.mailError = false;}
-                else {me.currentStage=7;$scope.mailError = false;}
+                else if ($scope.inscription.emailPers2 != $scope.inscription.emailPers2_verif) {
+                    $scope.mailError2 = true;
+                }
+                else if (me.isComplement) {me.currentStage=3;$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isTransport) {me.currentStage=4;$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isLogement) {me.currentStage=5;$scope.mailError = false;$scope.mailError2 = false;}
+                else if(me.isPaiement) {me.currentStage=6;$scope.mailError = false;$scope.mailError2 = false;}
+                else {me.currentStage=7;$scope.mailError = false;$scope.mailError2 = false;}
             }
             else if (step==3) {
                 if (me.isTransport) {me.currentStage=4;}
