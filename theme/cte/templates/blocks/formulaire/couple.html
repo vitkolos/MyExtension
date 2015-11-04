@@ -90,49 +90,46 @@
                     <p ng-if="mailError2" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4"><label for="tel2Pers2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
-            <div class="col-sm-8"><input type="text" id="tel2Pers2" name="tel2Pers2" placeholder="+33/x xx xx xx xx" ng-model="inscription.tel2Pers2" ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s?){8}/" ng-required="isTelephoneRequired()">
-                <p ng-class=" {'txt-red' : isTelephoneRequired()}" class="infos_validation">** {{rubedo.translate("Block.Inscription.Telephone.Condition")}}</p>
+            <div class="row">
+                <div class="col-sm-4"><label for="tel2Pers2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
+                <div class="col-sm-8"><input type="text" id="tel2Pers2" name="tel2Pers2" placeholder="+33/x xx xx xx xx" ng-model="inscription.tel2Pers2" ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s?){8}/" ng-required="isTelephoneRequired()">
+                    <p ng-class=" {'txt-red' : isTelephoneRequired()}" class="infos_validation">** {{rubedo.translate("Block.Inscription.Telephone.Condition")}}</p>
+                </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <h3>{{rubedo.translate("Block.Inscription.Couple", "Couple")}}</h3>
+            <div class="row">
+                <div class="col-sm-4"><label for="adresse" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
+                <div class="col-sm-8"><textarea rows="3" id="adresse" ng-model="inscription.address" name="address" placeholder="" required></textarea></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="cp" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
+                <div class="col-sm-8"><input type="text" id="cp" ng-model="inscription.cp" name="cp"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="city" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
+                <div class="col-sm-8"><input type="text" id="city" ng-model="inscription.city" name="city" required></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="pays" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
+                <div class="col-sm-8"><input type="text" id="pays" ng-model="inscription.country" name="country"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="tel1" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
+                <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="inscription.tel1" placeholder="+33/x xx xx xx xx"  ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s?){8}/" ng-required="isTelephoneRequired()"></div>
+            </div>   
+        </div>
+    </div>
+    
     <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(2,infos_personnelles.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+    </div>
     </div>
 </ng-form>   
 
-
-<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==2}" ng-click="formCtrl.setCurrentStage(1,contact.$valid)">{{rubedo.translate("Block.Inscription.Couple", "Couple")}}
-    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>2"></span>
-</h2>
-<ng-form name="contact">
-   <div class="row">
-        <div class="col-sm-4"><label for="nationalite" class="label_style">{{rubedo.translate("Block.Inscription.Nationalite")}}</label></div>
-        <div class="col-sm-8"><input type="text" id="nationalite" ng-model="inscription.nationality" name="nationality"></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4"><label for="adresse" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
-        <div class="col-sm-8"><textarea rows="3" id="adresse" ng-model="inscription.address" name="address" placeholder="" required></textarea></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4"><label for="cp" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
-        <div class="col-sm-8"><input type="text" id="cp" ng-model="inscription.cp" name="cp"></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4"><label for="city" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
-        <div class="col-sm-8"><input type="text" id="city" ng-model="inscription.city" name="city" required></div>
-    </div>
-    <div class="row">
-        <div class="col-sm-4"><label for="pays" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
-        <div class="col-sm-8"><input type="text" id="pays" ng-model="inscription.country" name="country"></div>
-    </div>
-     <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : contact.$invalid}" ng-click="formCtrl.setCurrentStage(2,contact.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-    </div>   
-</ng-form>
-    
     
     
  
