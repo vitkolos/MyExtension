@@ -74,7 +74,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     me.getQuestions();
                 }
                                 // questions complémentaires ?
-                if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu)) {me.isComplement = true;}
+                if ((me.form.questions.complementaires.length > 0) || (me.form.jai_connu) || (me.form.situation_conjugale)) {me.isComplement = true;}
                 if ( (me.form.questions.transport.length > 0) || ( (me.form.fields.transport)&&((me.form.fields.transport.transport).length>1) && (typeof me.form.fields.transport.transport != 'string') )) {me.isTransport = true;}
                 if ( ((me.form.questions.logement).length > 0)  || ( (me.form.fields.logement)&&((me.form.fields.logement.logement).length>1 ) && ( typeof me.form.fields.logement.logement !='string') )) {me.isLogement = true;}
                 if (((me.content.fields.paimentOption)&&((me.content.fields.paimentOption.paimentOption).length>0)) || me.content.fields.accompte>0) {me.isPaiement = true}
@@ -221,6 +221,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 }
                 else if ($scope.inscription.emailPers2 != $scope.inscription.emailPers2_verif) {
                     $scope.mailError2 = true;
+                    $scope.mailError = false;
                 }
                 else if (me.isComplement) {me.currentStage=2;$scope.mailError = false;$scope.mailError2 = false;}
                 else if (me.isTransport) {me.currentStage=3;$scope.mailError = false;$scope.mailError2 = false;}
