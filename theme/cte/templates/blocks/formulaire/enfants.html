@@ -1,39 +1,39 @@
 <h3>{{rubedo.translate("Block.Inscription.Enfants")}}</h3>
 <div class="row" ng-repeat="enfant in inscription.enfants track by $index" >
      <p class="txt-red capital">{{rubedo.translate("Block.Inscription.Enfant")}} n°{{$index}}</p>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Nom.Different")}}</label>
         <input type="text" ng-model="inscription.enfants[$index].nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' readonly>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Prenom")}}</label>
         <input type="text" ng-model="inscription.enfants[$index].prenom" placeholder='{{rubedo.translate("Block.Inscription.Prenom")}}' readonly>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.DateNaiss")}}</label>
         <input type="text" value="{{inscription.enfants[$index].birthdateF |date:'dd/MM/yyyy'}}" readonly>
     </div>
-    <div class="col-sm-2">
+    <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Sexe")}}</label>
         <input type="text" value="{{inscription.enfants[$index].sexe}}" readonly>
     </div>
-    <div class="col-sm-1">
-        <span class="glyphicon glyphicon-minus-sign txt-red cursor-as-pointer" ng-click="formCtrl.removeChild($index)"></span>
-    </div>
+    <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.removeChild($index)">
+        <span class="glyphicon glyphicon-minus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.Enfant.Supprimer")}}
+    </p>
     
     
 </div>
 
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Nom.Different")}}</label>
         <input type="text" ng-model="enfant.nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' >
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Prenom")}}</label>
         <input type="text" ng-model="enfant.prenom" placeholder='{{rubedo.translate("Block.Inscription.Prenom")}}'>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.DateNaiss")}}</label>
         <div class="dropdown">
                 <a showtab class="dropdown-toggle" id="dropdowndateNaissEnf" role="button" data-toggle="dropdown" data-target="#" href="#">
@@ -45,14 +45,16 @@
                 </ul>
             </div>
     </div>
-    <div class="col-sm-3">
+    <div class="col-md-3 col-sm-6">
         <label class="label_style left col-xs-12">{{rubedo.translate("Block.Inscription.Sexe")}}</label>
         <input type="radio"  name="sexe" id="H" value='{{rubedo.translate("Block.Inscription.Enfant.Garçon")}}' ng-model="enfant.sexe">
                         <label for="H" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.H")}}</label>	
             <input type="radio"  name="sexe" id="F" value='{{rubedo.translate("Block.Inscription.Enfant.Fille")}}' ng-model="enfant.sexe">
                         <label for="F" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.F")}}</label>
     </div>
-    <button type="button" ng-click="formCtrl.addChild(enfant);enfant={}">{{rubedo.translate("Block.Inscription.Enfant.Ajouter")}}</button>
+    <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.addChild(enfant);enfant={}">
+        <span class="glyphicon glyphicon-minus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.Enfant.Ajouter")}}
+    </p>
 </div>
 
   
