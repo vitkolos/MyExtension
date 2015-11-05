@@ -1,6 +1,6 @@
 <!--question complémentaires-->
-<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==2}" ng-if="formCtrl.isComplement" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{formCtrl.fields.questions1.config.fieldLabel}}
-    <span class="fa fa-pencil pull-right" ng-if="formCtrl.currentStage>2"></span>
+<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==2}" ng-if="formCtrl.isComplement" ng-click="formCtrl.setCurrentStage(1,infos_complementaires.$valid)">{{formCtrl.fields.questions1.config.fieldLabel}}
+    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>2"></span>
 </h2>
 <ng-form name="infos_complementaires" ng-if="formCtrl.isComplement">
    <div class="row" ng-if="formCtrl.form.jai_connu">

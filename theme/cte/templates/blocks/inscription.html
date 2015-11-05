@@ -71,7 +71,7 @@
                             </div>                            
                             <div class="col-xs-12" ng-repeat="option in formCtrl.content.fields.paimentOption.paimentOption">
                                 <input type="radio"  name="paiement_maintenant" ng-attr-id="{{option}}" ng-model="paiement_maintenant" value="{{option}}" required>
-                                <label for="{{option}}" ng-if="option == 'partie'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Partie")}}<input type="text" class="complement_text" name="montantAPayerMaintenant" ng-model="inscription.paiement.montantAPayerMaintenant" ng-required="paiement_maintenant == 'partie' "></label> 
+                                <label for="{{option}}" ng-if="option == 'partie'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Partie")}}<input type="text" class="complement_text" name="montantAPayerMaintenant" ng-model="inscription.montantAPayerMaintenant" ng-required="inscription.paiement_maintenant == 'partie' "></label> 
                                 <label for="{{option}}" ng-if="option == 'totalite'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Totalite")}}</label> 
                             </div>
                         </div>  
@@ -93,9 +93,7 @@
                         </div>  
                        
                    </div>
-                    <div class="row text-center">
-                        <div class="button submit" ng-class="{'disabled' : paiement.$invalid}" ng-click="formCtrl.setCurrentStage(6,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div><!----inscription_form.$valid)-->
-                    </div>
+
                 </ng-form>
                 <!--remarques-->
                 <h2 class="capital txt-red displayed" ng-click="formCtrl.setCurrentStage(5,remarques.$valid)">{{rubedo.translate("Block.Inscription.Remarques")}}</h2>
