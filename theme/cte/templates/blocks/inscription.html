@@ -55,29 +55,43 @@
                             <p><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[0-9]{1,4}$/"><b>€</b></p>
                         </div>
                     </div>
-                   <div class="row">
+                   <!---CHOIX DU PAIEMENT-->
+                   <div class="row border-bottom">
                         <div class="col-xs-6">
                             <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.Maintenant")}}</label>
                         </div>
                         <div class="col-xs-6">
                             <div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.accompte == 0">
-                                <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement.accompte" required>
+                                <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement_maintenant" value="rien"required>
                                 <label for="accompte">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Rien")}}</label>    
                             </div>
                             <div class="col-xs-12" ng-if="formCtrl.content.fields.accompte > 0">
-                                <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement.accompte" checked="checked" required>
+                                <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement_maintenant" checked="checked" value="accompte" required>
                                 <label for="accompte">{{contentDetailCtrl.getLabelByName('accompte')}} : {{formCtrl.content.fields.accompte}}€</label> 
                             </div>                            
                             <div class="col-xs-12" ng-repeat="option in formCtrl.content.fields.paimentOption.paimentOption">
-                                <input type="radio"  name="paiement_maintenant" ng-attr-id="{{option}}" ng-model="inscription.paiement[option]" required>
+                                <input type="radio"  name="paiement_maintenant" ng-attr-id="{{option}}" ng-model="paiement_maintenant" value="{{option}}" required>
                                 <label for="{{option}}" ng-if="option == 'partie'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Partie")}}<input type="text" class="complement_text" name="montantAPayerMaintenant" ng-model="inscription.paiement.montantAPayerMaintenant" ng-required="paiement_maintenant == 'partie' "></label> 
                                 <label for="{{option}}" ng-if="option == 'totalite'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Totalite")}}</label> 
                             </div>
                         </div>  
-                  
-                        
-                        
-                        
+                   </div>
+                   <!---CHOIX DU MODE DE PAIEMENT-->
+                   <div class="row border-bottom" ng-if="inscription.paiement_maintenant !='rien' ">
+                        <div class="col-xs-6">
+                            <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.ModePaiment")}}</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-xs-12">
+                                <input type="radio"  name="modePaiement" id="carte" ng-model="inscription.modePaiement" value="{{rubedo.translate('Block.Inscription.Paf.Carte')}}" required>
+                                <label for="carte">{{rubedo.translate("Block.Inscription.Paf.Carte")}}</label>    
+                            </div>
+                            <div class="col-xs-12">
+                                <input type="radio"  name="modePaiement" id="cheque" ng-model="inscription.modePaiement" value="{{rubedo.translate('Block.Inscription.Paf.Cheque')}}" required>
+                                <label for="cheque">{{rubedo.translate("Block.Inscription.Paf.Cheque")}}</label> 
+                            </div>                            
+                        </div>  
+                       
                    </div>
                     <div class="row text-center">
                         <div class="button submit" ng-class="{'disabled' : paiement.$invalid}" ng-click="formCtrl.setCurrentStage(6,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div><!----inscription_form.$valid)-->
