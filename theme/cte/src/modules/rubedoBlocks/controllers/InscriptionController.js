@@ -248,18 +248,39 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if (step==5) {
                 me.currentStage=6;
             }
-            else if (step==6) {
-                // validations préliminaires
-               $scope.inscription.proposition=  propositionId;
-                $scope.inscription.propositionTitre=  propositionTitle;
-                $scope.inscription.accompte = me.content.fields.accompte;
-                console.log($scope.rubedo.current.page);
-                /*InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
-                });*/
-                
-                
-                
+        }
+        else if (valide && step==6) {
+            // validations préliminaires
+           $scope.inscription.proposition=  propositionId;
+            $scope.inscription.propositionTitre=  propositionTitle;
+            $scope.inscription.accompte = me.content.fields.accompte;
+            if($scope.inscription.accompte == 0){$scope.inscription.montantAPayerMaintenant==0}
+            /*STATUS DE L'INSCRIPTION*/
+            switch(me.content.fields.inscriptionState.inscriptionState) {
+                case "attente":
+                    $scope.inscription.statut = "liste-attente";
+                    break;
+                case 'preinscription':
+                    $scope.inscription.statut = "preinscrit";
+                    break;
+                default:
+                    if (me.isPaiement) {
+                        /*pas de paiement maintenant*/
+                        if ($scope.inscription.paiement_maintenant =="rien") {
+                            $scope.inscription.statut = 'inscrit-sans-acompte';
+                        }
+                        else{
+                            $scope.inscription.statut = "attente-paiement-"+$scope.inscription.modePaiement;
+                        }
+                    }
+                    
             }
+            console.log($scope.rubedo.current.page);
+            InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
+            });
+                
+                
+                
         }
     }
 
