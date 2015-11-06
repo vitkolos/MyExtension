@@ -120,7 +120,7 @@
                 <!---submit inscription-->
                 {{inscription}}
         </form>
-        <form ng-if="inscription.modePaiement=='carte' "id="payment" name="payment"  method="POST" action="https://urlserveur.paybox.com/cgi/MYchoix_pagepaiement.cgi">
+        <form ng-if="inscription.modePaiement=='carte' "id="payment" name="payment"  method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
             <input type="hidden" name="PBX_SITE" value="{{parametres.payboxSite}}">
             <input type="hidden" name="PBX_RANG" value="{{parametres.payboxRang}}">
             <input type="hidden" name="PBX_IDENTIFIANT" value="{{parametres.payboxIdentifiant}}">

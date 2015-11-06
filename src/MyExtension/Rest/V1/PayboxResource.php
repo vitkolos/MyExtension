@@ -61,12 +61,6 @@ class PayboxResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Titre de la proposition')
-                            ->setKey('proposition')
-                            ->setFilter('string')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
                             ->setDescription('idInscription')
                             ->setKey('idInscription')
                             ->setFilter('string')
@@ -80,18 +74,20 @@ class PayboxResource extends AbstractResource {
                     ;
             });
     }
-    public function ($params) {
+    public function postAction($params) {
 
  
         $dateTime = date("c");
+        /*$dateTime = "2015-05-12T15:01:50+01:00";*/
 
+        $idInscription = $params['idInscription'];
         $nom = $params['nom'];
         $email = $params['email'];
-        $proposition = $params['proposition'];
+        $proposition = "Festival WTP F";
         $urlNormal="http://" . $_SERVER['HTTP_HOST'] . "/payment/success";
         $urlEchec="http://" . $_SERVER['HTTP_HOST'] . "/payment/cancel";
         $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/TestPayboxIpn";
-        $idInscription= $params['idInscription'];
+        $idInscription="123456FR";
         $commande = $idInscription . "|" . $nom . "|" . $email . "|" . $proposition; 
         
         
@@ -151,11 +147,9 @@ class PayboxResource extends AbstractResource {
         // suivante
         // print_r(hash_algos());
 
-        $empreinteHasheeHex = strtoupper(hash_hmac('sha512', $empeinteBrute, $binKey));
+        $empeinteHasheeHex = strtoupper(hash_hmac('sha512', $empeinteBrute, $binKey));
         // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
-        $parametres['empreinteHasheeHex'] = $empreinteHasheeHex;
-
-
+        $parametres['empreinteHasheeHex'] = $empeinteHasheeHex;
         
         return array(
             'success' => true,
