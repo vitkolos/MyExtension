@@ -43,16 +43,16 @@ class InscriptionResource extends AbstractResource
     }
     public function postAction($params)
     {
-        $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
         $language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]); // langue du site
         var_dump($language);
-        //authentication comme admin
+        //authentication comme admin inscriptions
         $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
         $output['token'] = $this->subTokenFilter($auth['token']);
         $token = $output['token']['access_token'];
         
         
         //GET NUMERO D'INSCRIPTION ACTUEL
+        $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
         $inscription = $this->callAPI("GET", $token, $id);
         if($inscription['success']) {
             $inscription = $inscription['content'];
@@ -67,19 +67,19 @@ class InscriptionResource extends AbstractResource
         $payload = json_encode( array( "content" => $inscription ) );
         $result = $this->callAPI("PATCH", $token, $payload, $id);
         
-    //CREATE INSCRIPTION
-    $inscriptionForm=[];
-    $inscriptionForm['fields'] =  $params['inscription'];
-    $inscriptionForm['fields']['text'] = "FR-".(string)$inscriptionNumber;
-    $inscriptionForm['writeWorkspace'] = $params['workspace'];
-    $inscriptionForm['typeId'] = "561627c945205e41208b4581";
-    $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
-    $payload2 = json_encode( array( "content" => $inscriptionForm ) );
-
-   $resultInscription = $this->callAPI("POST", $token, $payload2);
-
-    return array('success' => true, 'result'=>$resultInscription, 'message' =>$inscriptionNumber );
+        //CREATE INSCRIPTION
+        $inscriptionForm=[];
+        $inscriptionForm['fields'] =  $params['inscription'];
+        $inscriptionForm['fields']['text'] = "FR_".(string)$inscriptionNumber;
+        $inscriptionForm['writeWorkspace'] = $params['workspace'];
+        $inscriptionForm['typeId'] = "561627c945205e41208b4581";
+        $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
+        $payload2 = json_encode( array( "content" => $inscriptionForm ) );
     
+       $resultInscription = $this->callAPI("POST", $token, $payload2);
+    
+        return array('success' => true, 'result'=>$resultInscription, 'message' =>$inscriptionNumber );
+        
    }
    
    
@@ -114,10 +114,11 @@ class InscriptionResource extends AbstractResource
                 $inscription['enfants'][$index] = $enfant[prenom]. " ".strtoupper($enfant[nom])." ; ".$enfant['birthdateF']." ; ".$enfant['sexe'];
             }
         }
+        if($inscription['propositionTitre'])
         return $inscription;
         
     }
-    protected function questionToAnswer($question, $printTitre = tsrue){
+    protected function questionToAnswer($question, $printTitre = true){
             $answer="";
             foreach ($question as $titre => $reponse){
                 if($printTitre) $answer .= $titre." = ";

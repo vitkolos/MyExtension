@@ -253,8 +253,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             // validations préliminaires
            $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
-            $scope.inscription.accompte = me.content.fields.accompte;
-            if($scope.inscription.accompte == 0){$scope.inscription.montantAPayerMaintenant==0}
+            $scope.inscription.shortName = propositionTitle.replace("-", "_").replace(" ", "_");
+            $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
+            if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant==0}
+            else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant==me.content.fields.accompte}
+            else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant==$scope.inscription.montantTotalAPayer}
             /*STATUS DE L'INSCRIPTION*/
             switch(me.content.fields.inscriptionState.inscriptionState) {
                 case "attente":
@@ -275,8 +278,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     }
                     
             }
-            console.log($scope.rubedo.current.page);
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
+                
             });
                 
                 
@@ -285,7 +288,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     }
 
     
-    console.log(me);
     
     
  }]);

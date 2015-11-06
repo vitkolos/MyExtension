@@ -114,8 +114,9 @@
 
                 
                 <div class="row text-center">
-                        <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(6,inscription_form.$valid)">{{rubedo.translate("Block.Inscription.Inscrire")}}</div><!----inscription_form.$valid)-->
-                    </div>
+                    <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(6,inscription_form.$valid)" ng-if="!processForm">{{rubedo.translate("Block.Inscription.Inscrire")}}</div><!----inscription_form.$valid)-->
+                    <img src="/theme/cte/img/loader.gif" ng-if="!processForm">
+                </div>
                 <!---submit inscription-->
                 {{inscription}}
         </form>
