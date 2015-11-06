@@ -134,9 +134,13 @@
             <input type="hidden" name="PBX_HMAC" value="{{parametres.empreinteHasheeHex}}">
             <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
             <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
+            <input type="hidden" name="PBX_EFFECTUE" value="{{parametres.urlRetourNormal}}">
+            <input type="hidden" name="PBX_REFUSE" value="{{parametres.urlRetourEchec}}">
+            <input type="hidden" name="PBX_ANNULE" value="{{parametres.urlRetourEchec}}">
+            <input type="hidden" name="PBX_REPONDRE_A" value="{{parametres.urlCallback}}">
         <input type="submit" value="Envoyer">
 </form>
-        
+
 
         
 </div>
