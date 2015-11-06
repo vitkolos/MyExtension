@@ -78,7 +78,7 @@ class InscriptionResource extends AbstractResource
     
        $resultInscription = $this->callAPI("POST", $token, $payload2);
     
-        return array('success' => true, 'id' =>$resultInscription);
+        return array('success' => $resultInscription['success'], 'id' =>$inscriptionNumber);
         
    }
    

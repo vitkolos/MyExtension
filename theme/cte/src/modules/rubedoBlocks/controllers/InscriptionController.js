@@ -281,6 +281,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
                 if (response.success) {
+                    $scope.processForm=false;
                     if ($scope.inscription.modePaiement=='carte') { // paiement par Paybox
                         var payload = {
                             name:''
