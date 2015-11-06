@@ -251,6 +251,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         }
         else if (valide && step==6) {
             // validations préliminaires
+            $scope.processForm=true;
            $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.shortName = propositionTitle.replace("-", "_").replace(" ", "_");
@@ -279,8 +280,18 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     
             }
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
-                
+                if (response.success) {
+                    if ($scope.inscription.modePaiement=='carte') { // paiement par Paybox
+                        var payload = {
+                            name:''
+                        }
+                        $scope.inscription.inscriptionID = response.id;
+                        
+                    }
+                }
+                 
             });
+            
                 
                 
                 

@@ -36,8 +36,8 @@ class InscriptionResource extends AbstractResource
                     )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Résultat de l\'inscription')
-                            ->setKey('result')
+                            ->setDescription('Numéro d\'inscription')
+                            ->setKey('id')
                     );
             });
     }
@@ -76,9 +76,9 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
         $payload2 = json_encode( array( "content" => $inscriptionForm ) );
     
-       $resultInscription = $this->callAPI("POST", $token, $payload2);
+       $resultInscription = json_decode($this->callAPI("POST", $token, $payload2));
     
-        return array('success' => true, 'result'=>$resultInscription, 'message' =>$inscriptionNumber );
+        return array('success' => $resultInscription['success'], 'id' =>$inscriptionNumber );
         
    }
    
