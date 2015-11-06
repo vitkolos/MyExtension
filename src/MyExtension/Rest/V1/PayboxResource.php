@@ -83,12 +83,11 @@ class PayboxResource extends AbstractResource {
         $idInscription = $params['idInscription'];
         $nom = $params['nom'];
         $email = $params['email'];
-        $proposition = "Festival WTP F";
+        $proposition = $params['proposition'];
         $urlNormal="http://" . $_SERVER['HTTP_HOST'] . "/payment/success";
         $urlEchec="http://" . $_SERVER['HTTP_HOST'] . "/payment/cancel";
         $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/TestPayboxIpn";
-        $idInscription="123456FR";
-        $commande = $idInscription . "|" . $nom . "|" . $email . "|" . $proposition; 
+        $commande = $idInscription . "|" . $proposition; 
         
         
         
@@ -113,7 +112,7 @@ class PayboxResource extends AbstractResource {
             "dateTime" => $dateTime,
             "urlRetourNormal" => $urlNormal,
             "urlRetourEchec" => $urlEchec,
-            "urlCallback" => $urlCallback,
+            "urlCallback" => $urlCallback
         ];
 
         $empeinteBrute  =

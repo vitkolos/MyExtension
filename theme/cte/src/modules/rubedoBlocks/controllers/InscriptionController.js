@@ -287,6 +287,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             prenom: $scope.inscription.surname,
                             email:$scope.inscription.email,
                             montant:$scope.inscription.montantAPayerMaintenant,
+                            propoposition:propositionTitle,
                             idInscription: response.data.id
                         }
                         PayboxService.payment(payload).then(function(response){
