@@ -255,9 +255,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.shortName = propositionTitle.replace("-", "_").replace(" ", "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
-            if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant==0}
-            else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant==me.content.fields.accompte}
-            else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant==$scope.inscription.montantTotalAPayer}
+            if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
+            else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
+            else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
             /*STATUS DE L'INSCRIPTION*/
             switch(me.content.fields.inscriptionState.inscriptionState) {
                 case "attente":
