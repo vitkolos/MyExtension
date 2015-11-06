@@ -61,6 +61,12 @@ class PayboxResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
+                            ->setDescription('Titre de la proposition')
+                            ->setKey('proposition')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
                             ->setDescription('idInscription')
                             ->setKey('idInscription')
                             ->setFilter('string')
@@ -74,20 +80,18 @@ class PayboxResource extends AbstractResource {
                     ;
             });
     }
-    public function postAction($params) {
+    public function ($params) {
 
  
         $dateTime = date("c");
-        /*$dateTime = "2015-05-12T15:01:50+01:00";*/
 
-        /*$idInscription = "WTP123456";*/
         $nom = $params['nom'];
         $email = $params['email'];
-        $proposition = "Festival WTP F";
+        $proposition = $params['proposition'];
         $urlNormal="http://" . $_SERVER['HTTP_HOST'] . "/payment/success";
         $urlEchec="http://" . $_SERVER['HTTP_HOST'] . "/payment/cancel";
         $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/TestPayboxIpn";
-        $idInscription="123456FR";
+        $idInscription= $params['idInscription'];
         $commande = $idInscription . "|" . $nom . "|" . $email . "|" . $proposition; 
         
         
@@ -101,7 +105,7 @@ class PayboxResource extends AbstractResource {
         
         $parametres = [
             "typePaiement" => "CARTE",
-            "typeCarte" => "VISA",
+            //"typeCarte" => "VISA",
             "payboxSite" => $payboxSite,
             "payboxRang" => $payboxRang,
             "payboxIdentifiant" => $payboxID,
@@ -147,9 +151,9 @@ class PayboxResource extends AbstractResource {
         // suivante
         // print_r(hash_algos());
 
-        $empeinteHasheeHex = strtoupper(hash_hmac('sha512', $empeinteBrute, $binKey));
+        $empreinteHasheeHex = strtoupper(hash_hmac('sha512', $empeinteBrute, $binKey));
         // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
-        $parametres['empeinteHasheeHex'] = $empeinteHasheeHex;
+        $parametres['empreinteHasheeHex'] = $empreinteHasheeHex;
 
 
         
