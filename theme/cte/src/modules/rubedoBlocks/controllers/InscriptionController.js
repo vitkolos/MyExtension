@@ -196,6 +196,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.getFormulaire(formId);
   
 console.log(me.form);
+
     // VALIDATIONS ANGULAR
     
     //telephones
