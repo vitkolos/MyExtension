@@ -145,7 +145,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
     }]);
 angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
     var serviceInstance={};
-    serviceInstance.inscrire=function(inscription){
+    serviceInstance.inscrire=function(inscription,workspace){
         return($http({
                 url:"/api/v1/inscription",
                 method:"POST",
