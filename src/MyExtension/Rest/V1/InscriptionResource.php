@@ -43,8 +43,8 @@ class InscriptionResource extends AbstractResource
     }
     public function postAction($params)
     {
-        $language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]); // langue du site
-        var_dump($language);
+        //$language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]); // langue du site
+        //var_dump($language);
         //authentication comme admin inscriptions
         $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
         $output['token'] = $this->subTokenFilter($auth['token']);
@@ -76,9 +76,9 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
         $payload2 = json_encode( array( "content" => $inscriptionForm ) );
     
-       $resultInscription = json_decode($this->callAPI("POST", $token, $payload2));
+       $resultInscription = $this->callAPI("POST", $token, $payload2);
     
-        return array('success' => $resultInscription['success'], 'id' =>$inscriptionNumber );
+        return array('success' => $resultInscription, 'id' =>$inscriptionNumber );
         
    }
    
@@ -170,7 +170,7 @@ class InscriptionResource extends AbstractResource
 
     curl_close($curl);
     if($method == "GET") return json_decode($result, true);
-    else return $result;
+    else return json_decode($result, true);
 }
    
 }     
