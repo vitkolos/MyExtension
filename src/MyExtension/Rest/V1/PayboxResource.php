@@ -117,9 +117,9 @@ class PayboxResource extends AbstractResource {
         ];
 
         $empeinteBrute  =
-            /*"PBX_TYPEPAIEMENT=" . $parametres['typePaiement'] . 
-            "&PBX_TYPECARTE=" . $parametres['typeCarte']  .*/
-            "PBX_SITE=" . $parametres['payboxSite']  .
+            "PBX_TYPEPAIEMENT=" . $parametres['typePaiement'] . 
+            /*"&PBX_TYPECARTE=" . $parametres['typeCarte']  .*/
+            "&PBX_SITE=" . $parametres['payboxSite']  .
             "&PBX_RANG=" . $parametres['payboxRang']  .
             "&PBX_IDENTIFIANT=" . $parametres['payboxIdentifiant']  .
             "&PBX_TOTAL=" . $parametres['montantEnCentimes']  .
