@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService',function($scope,RubedoContentsService,InscriptionService){
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PayboxService',function($scope,RubedoContentsService,InscriptionService,PayboxService){
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
@@ -289,6 +289,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             montant:$scope.inscription.montantAPayerMaintenant,
                             idInscription: response.data.id
                         }
+                        PayboxService.payment(payload).then(function(response){console.log(response)})
                         
                     }
                 }

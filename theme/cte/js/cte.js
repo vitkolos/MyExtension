@@ -159,7 +159,7 @@ angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',functi
 }]);
 angular.module('rubedoDataAccess').factory('PayboxService', ['$http',function($http) {
     var serviceInstance={};
-    serviceInstance.paymentService=function(payload){
+    serviceInstance.payment=function(payload){
         return($http({
                 url:"/api/v1/paybox",
                 method:"POST",
