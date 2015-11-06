@@ -145,7 +145,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
     }]);
 angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
     var serviceInstance={};
-    serviceInstance.inscrire=function(inscription, workspace){
+    serviceInstance.inscrire=function(inscription){
         return($http({
                 url:"/api/v1/inscription",
                 method:"POST",
@@ -153,6 +153,17 @@ angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',functi
                     inscription:inscription,
                     workspace: workspace
                 }
+            }));
+    };
+    return serviceInstance;
+}]);
+angular.module('rubedoDataAccess').factory('PayboxService', ['$http',function($http) {
+    var serviceInstance={};
+    serviceInstance.paymentService=function(payload){
+        return($http({
+                url:"/api/v1/paybox",
+                method:"POST",
+                data:payload
             }));
     };
     return serviceInstance;

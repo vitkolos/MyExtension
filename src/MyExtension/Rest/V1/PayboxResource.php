@@ -28,7 +28,7 @@ class PayboxResource extends AbstractResource {
             ->definition
             ->setName('TestPaybox')
             ->setDescription('Test PayBox API')
-            ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
+            ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Get info de paiement Paybox')
                     ->addInputFilter(
@@ -74,7 +74,7 @@ class PayboxResource extends AbstractResource {
                     ;
             });
     }
-    public function getAction($params) {
+    public function postAction($params) {
 
  
         $dateTime = date("c");
