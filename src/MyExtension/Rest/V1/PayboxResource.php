@@ -64,7 +64,12 @@ class PayboxResource extends AbstractResource {
                             ->setDescription('idInscription')
                             ->setKey('idInscription')
                             ->setFilter('string')
-                            
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Nom de la proposition')
+                            ->setKey('proposition')
+                            ->setFilter('string')
                     )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
