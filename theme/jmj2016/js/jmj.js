@@ -141,7 +141,13 @@ angular.module('rubedoBlocks').directive('scrollDelay',['$timeout', '$location',
         }
     });
     
-    
+ angular.module('rubedoBlocks').filter('capitalize', function() {
+  return function(input, scope) {
+    if (input!=null)
+    input = input.toLowerCase();
+    return input.substring(0,1).toUpperCase()+input.substring(1);
+  }
+});    
 
 
 angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location', function($timeout,$location) {

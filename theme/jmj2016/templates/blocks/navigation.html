@@ -62,8 +62,8 @@
 <div ng-controller="MenuController as menuCtrl" ng-if="block.code=='footer' && rubedo.current.user">
     <div class="clearfix">&nbsp;</div>
     <div class="row" style="padding:20px 0px;">
-	<div ng-repeat="page in menuCtrl.pagesBlocks" class="col-xs-6 col-xxs-6 col-md-3">
-	    <strong><a  ng-href="{{page.url}}">{{page.title}}</a></strong>
+	<div ng-repeat="page in menuCtrl.pagesBlocks" class="col-xs-6 col-xxs-6 col-md-3" style="margin-bottom: 24px">
+	    <strong><a  ng-href="{{page.url}}">{{page.title | capitalize}}</a></strong>
 	    <!--<ul ng-if="page.blocks.length>1" >-->
 	    <a  ng-if="page.blocks.length>1" ng-repeat="bloc in page.blocks | orderBy :'title' track by $index" ng-href="{{page.url}}?anchor={{bloc.title | split:'/':0}}">{{bloc.title | split:'/':1}}</a>
 	</div>		
