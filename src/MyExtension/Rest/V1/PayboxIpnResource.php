@@ -13,8 +13,8 @@ class PayboxIpnResource extends AbstractResource {
         parent::__construct();
         $this
             ->definition
-            ->setName('TestPaybox')
-            ->setDescription('Test PayBox API')
+            ->setName('PayboxIpn')
+            ->setDescription('Paybox IPN')
             ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Get info de paiement Paybox')
@@ -66,8 +66,8 @@ class PayboxIpnResource extends AbstractResource {
         $mailerObject = $mailerService->getNewMessage();
 
         /*$destinataires=$this->buildDest($params['to']);*/
-        $destinataires="frederic.bourdeau@chemin-neuf.org";
-        $from="frederic.bourdeau@chemin-neuf.org";
+        $destinataires="nicolas.rhone@gmail.com";
+        $from="nicolas.rhone@gmail.com";
         
         $erreur = $params['erreur'];
         if ($erreur == "00000") {

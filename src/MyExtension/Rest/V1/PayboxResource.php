@@ -84,9 +84,9 @@ class PayboxResource extends AbstractResource {
         $nom = $params['nom'];
         $email = $params['email'];
         $proposition = $params['proposition'];
-        $urlNormal="http://" . $_SERVER['HTTP_HOST'] . "/payment/success";
-        $urlEchec="http://" . $_SERVER['HTTP_HOST'] . "/payment/cancel";
-        $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/TestPayboxIpn";
+        $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
+        $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
+        $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn";
         $commande = $idInscription . "|" . $proposition; 
         
         
