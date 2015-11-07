@@ -280,7 +280,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
                 if (response.data.success) {
-                    $scope.processForm=false;
+                    
                     if ($scope.inscription.modePaiement=='carte') { // paiement par Paybox
                         var payload = {
                             nom:$scope.inscription.name,
@@ -291,10 +291,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             idInscription: response.data.id
                         }
                         PayboxService.payment(payload).then(function(response){
-                            console.log(response);
                             if (response.data.success) {
                                 $scope.parametres = response.data.parametres;
+                                /*délai pour laisser le formulaire se remplir*/
                                 $timeout(function() {
+                                    $scope.processForm=false;
                                     document.getElementById('payment').submit();
                                 }, 100);
                                 
@@ -303,6 +304,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             
                         });
                         
+                    }
+                    else{
+                        $scope.processForm=false;
                     }
                 }
                  
