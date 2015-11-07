@@ -294,7 +294,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             console.log(response);
                             if (response.data.success) {
                                 $scope.parametres = response.data.parametres;
-                                document.getElementById('payment').submit();
+                                //document.getElementById('payment').submit();
 
                             }
                             
