@@ -79,7 +79,7 @@ class PayboxIpnResource extends AbstractResource {
             $body = "montant payé : " . $params['montant'] . " euros." ;
         }
         else {
-            $body = "montant non payé : " . $params['montant']  . " euros." ;
+            $body = "montant non payé : " . $params['montant']/100  . " euros." ;
         }
         $body = $body . " \n\n " . $params['commande'];
         
