@@ -302,6 +302,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                                 
 
                             }
+                            else {
+                                $scope.processForm=false;
+                            }
                             
                         });
                         
@@ -312,6 +315,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             if (response.data.success) {                                
                                 $scope.processForm=false;
                             }
+                            else $scope.processForm=false;
                             
                         });
                     }
