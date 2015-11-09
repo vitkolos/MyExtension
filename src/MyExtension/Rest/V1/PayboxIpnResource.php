@@ -111,7 +111,6 @@ class PayboxIpnResource extends AbstractResource {
             $proposition = commande[1];
             $prenom = $commande[2];
             $nom = $commande[3];
-            $email = $commande[4];
             $montant = $params['montant'];
             // récupérer l'inscription
             $inscription = $inscription = $this->callAPI("GET", $token, $idInscription);
