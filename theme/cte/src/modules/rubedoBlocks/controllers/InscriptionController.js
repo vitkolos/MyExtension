@@ -281,33 +281,30 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
                 if (response.data.success) {
                     
-                    if ($scope.inscription.modePaiement=='carte') { // paiement par Paybox
-                        var payload = {
-                            nom:$scope.inscription.name,
-                            prenom: $scope.inscription.surname,
-                            email:$scope.inscription.email,
-                            montant:$scope.inscription.montantAPayerMaintenant,
-                            proposition:propositionTitle,
-                            idInscription: response.data.id
-                        }
-                        PaymentService.payment(payload).then(function(response){
-                            if (response.data.success) {
-                                $scope.parametres = response.data.parametres;
-                                /*délai pour laisser le formulaire se remplir*/
-                                $timeout(function() {
-                                    $scope.processForm=false;
-                                    document.getElementById('payment').submit();
-                                }, 100);
-                                
-
-                            }
+                // paiement par Paybox et carte
+                    var payload = {
+                        nom:$scope.inscription.name,
+                        prenom: $scope.inscription.surname,
+                        email:$scope.inscription.email,
+                        montant:$scope.inscription.montantAPayerMaintenant,
+                        proposition:propositionTitle,
+                        idInscription: response.data.id,
+                        paymentMode: 'carte'
+                    }
+                    PaymentService.payment(payload).then(function(response){
+                        if (response.data.success) {
+                            $scope.parametres = response.data.parametres;
+                            /*délai pour laisser le formulaire se remplir*/
+                            $timeout(function() {
+                                $scope.processForm=false;
+                                document.getElementById('payment').submit();
+                            }, 100);
                             
-                        });
+
+                        }
                         
-                    }
-                    else{
-                        $scope.processForm=false;
-                    }
+                    });
+                    $scope.processForm=false;
                 }
                  
             });

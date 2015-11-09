@@ -196,7 +196,7 @@ class PaymentResource extends AbstractResource {
     }
     
     public function getPaymentInfos($id){
-            $contentId = (string)$id;
+        $contentId = (string)$id;
         $className = (string)get_class($this);
 
         $this->_dataService = Manager::getService('MongoDataAccess');
