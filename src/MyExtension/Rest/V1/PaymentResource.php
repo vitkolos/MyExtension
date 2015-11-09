@@ -102,7 +102,7 @@ class PaymentResource extends AbstractResource {
  
         switch ($paymentMode) {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
-        case "carte":
+            case "carte":
                 $dateTime = date("c");
                 $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
                 $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
@@ -169,12 +169,24 @@ class PaymentResource extends AbstractResource {
         
         
          /*PAIEMENT PAR CHEQUE */           
-        case "cheque":
-            break;
+            case "cheque":
+                $parametres = [
+                    "libelleCheque" => $paymentInfos['libelleCheque']
+                ]
+            
+                break;
+         /*PAIEMENT PAR VIREMENT */           
+            case "virement":
+                $parametres = [
+                    "titreCompteVir" =>$paymentInfos['titreCompteVir'] ,
+                    "ribTexte" =>$paymentInfos['ribTexte'] ,
+                    "ribImg" =>$paymentInfos['rib'] 
+                ]
+                break;
          /*PAS DE MODE DE PAIMENT SPECIFIE*/           
-        default:
-            $parametres = "Pas de mode de paiement indiqué";
-    }
+            default:
+                $parametres = "Pas de mode de paiement indiqué";
+        }
         
         
         return array(
@@ -195,8 +207,11 @@ class PaymentResource extends AbstractResource {
         }
         return $content['live']['fields'];
     }
-    public function getAccountId(){
-        return "55473e9745205e1d3ef1864d";
+    protected function getAccountId(){
+        switch($_SERVER['HTTP_HOST']) {
+            case "ccn.chemin-neuf.fr" : 
+                return "55473e9745205e1d3ef1864d"; break;
+        }
      }
     
     
