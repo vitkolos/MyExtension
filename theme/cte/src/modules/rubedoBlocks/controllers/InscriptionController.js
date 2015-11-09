@@ -289,7 +289,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         montant:$scope.inscription.montantAPayerMaintenant,
                         proposition:propositionTitle,
                         idInscription: response.data.id,
-                        paymentMode: 'carte'
+                        paymentMode: $scope.inscription.modePaiement
                     }
                     PaymentService.payment(payload).then(function(response){
                         if (response.data.success) {
