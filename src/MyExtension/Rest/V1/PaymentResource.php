@@ -99,7 +99,6 @@ class PaymentResource extends AbstractResource {
         $id = $this->getAccountId();
     // récupérer les infos du compte
         $paymentInfos = $this->getPaymentInfos($id);
-                 var_dump($paymentInfos);
 
         switch ($paymentMode) {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
