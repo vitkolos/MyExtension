@@ -23,7 +23,7 @@
 			<p class="pull-left date">{{contentDetailCtrl.content.createTime*1000 | date:'dd'}}<br/><span>{{contentDetailCtrl.content.createTime*1000 | date:'MMM'}}</span></p>
 			<img class="img-circle pull-left" ng-if="contentDetailCtrl.auteur_jmj.fields.image" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.auteur_jmj.fields.image,{height:'65px'}) }}"
                          alt="{{ contentDetailCtrl.auteur_jmj.text}}" style="margin-right:5px"/>
-			<div class="pull-left" ng-if="fieldEntity['auteur_jmj']">
+			<div class="pull-left" ng-if="contentDetailCtrl.auteur_jmj">
 				<h3 style="margin:0">{{rubedo.translate("Contents.PublishedBy", "published by")}} <b>{{contentDetailCtrl.auteur_jmj.text}}</b></h3>
 				<p style="margin-top:0">{{contentDetailCtrl.auteur_jmj.fields.summary}}</p>
 			</div>

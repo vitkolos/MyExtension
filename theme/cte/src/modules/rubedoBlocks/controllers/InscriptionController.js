@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PayboxService','$timeout',function($scope,RubedoContentsService,InscriptionService,PayboxService,$timeout){
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','$timeout',function($scope,RubedoContentsService,InscriptionService,PaymentService,$timeout){
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
@@ -290,7 +290,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             proposition:propositionTitle,
                             idInscription: response.data.id
                         }
-                        PayboxService.payment(payload).then(function(response){
+                        PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
                                 $scope.parametres = response.data.parametres;
                                 /*délai pour laisser le formulaire se remplir*/
