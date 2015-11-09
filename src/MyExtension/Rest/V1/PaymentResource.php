@@ -99,7 +99,8 @@ class PaymentResource extends AbstractResource {
         $id = $this->getAccountId();
     // récupérer les infos du compte
         $paymentInfos = $this->getPaymentInfos($id);
- 
+                 var_dump($paymentInfos);
+
         switch ($paymentMode) {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
             case "carte":
@@ -112,7 +113,6 @@ class PaymentResource extends AbstractResource {
                 $payboxRang = $paymentInfos['rang'];
                 $payboxID = $paymentInfos['identifiant'];
                 $payboxDevise = $paymentInfos['devise'];
-                
                 $parametres = [
                     "typePaiement" => "CARTE",
                     "typeCarte" => "CB",
@@ -172,7 +172,7 @@ class PaymentResource extends AbstractResource {
             case "cheque":
                 $parametres = [
                     "libelleCheque" => $paymentInfos['libelleCheque']
-                ]
+                ];
             
                 break;
          /*PAIEMENT PAR VIREMENT */           
@@ -181,7 +181,7 @@ class PaymentResource extends AbstractResource {
                     "titreCompteVir" =>$paymentInfos['titreCompteVir'] ,
                     "ribTexte" =>$paymentInfos['ribTexte'] ,
                     "ribImg" =>$paymentInfos['rib'] 
-                ]
+                ];
                 break;
          /*PAS DE MODE DE PAIMENT SPECIFIE*/           
             default:
@@ -213,16 +213,5 @@ class PaymentResource extends AbstractResource {
                 return "55473e9745205e1d3ef1864d"; break;
         }
      }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+     
 } 
