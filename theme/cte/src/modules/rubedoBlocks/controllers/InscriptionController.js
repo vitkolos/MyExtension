@@ -310,7 +310,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         payload.paymentMode= 'cheque';
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {                                
-
+                                $scope.processForm=false;
                             }
                             
                         });
