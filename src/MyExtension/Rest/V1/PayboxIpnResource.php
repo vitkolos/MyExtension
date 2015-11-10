@@ -137,17 +137,17 @@ class PayboxIpnResource extends AbstractResource {
         $mailerObject = $mailerService->getNewMessage();
 
         $destinataires="nicolas.rhone@gmail.com";
-        $from="webmaster@chemin-neuf.org";
+        $from="web@chemin-neuf.org";
         
         $erreur = $params['erreur'];
         if ($erreur == "00000") {
-            $sujet = "callback paybox succes";
+            $sujet = "Paiement en ligne réussi";
         }
         else {
-            $sujet = "callback paybox echec";
+            $sujet = "Echec de paiement en ligne";
         }
         if ($erreur == "00000") {
-            $body = "montant payé : " . $params['montant'] . " euros." ;
+            $body = "montant payé : " . $params['montant']/100 . " euros." ;
         }
         else {
             $body = "montant non payé : " . $params['montant']/100  . " euros." ;
