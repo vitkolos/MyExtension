@@ -1,7 +1,8 @@
 <div class="bg-videos">
 <div class="row bg-videos">
 	<div class="col-xs-12 ">
-	    <div class="parallax section-header article-header" style="background-attachment: scroll; background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']" >
+	    <div class="parallax section-header article-header" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}"
+		 style="background-attachment: scroll;" ng-if="fieldEntity['image']" >
 	    </div>
 	</div>
 </div>    
