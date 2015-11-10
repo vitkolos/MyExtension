@@ -14,8 +14,6 @@ class PayboxIpnResource extends AbstractResource {
     );
     protected $_dataService;
     protected $_collectionName;
-
-
     function __construct()
     {
         parent::__construct();
@@ -55,6 +53,12 @@ class PayboxIpnResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
+                            ->setDescription('Pays')
+                            ->setKey('pays')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
                             ->setDescription('erreur')
                             ->setKey('erreur')
                             ->setFilter('string')
@@ -81,102 +85,101 @@ class PayboxIpnResource extends AbstractResource {
             });
     }
     function getAction($params) {
-        $securite = true; $autorisation = false;$erreur = true; $erreurMessage="";
+        $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage="";
         //VERIFICATIONS PAYBOX
         //code d'erreur
-        if($params['erreur'] == "00000") $erreur = false;
+        if($params['erreur'] == "00000") $erreurStatus = false;
         else $erreurMessage = $this->getErrorMessage($params['erreur']);
         //adresse d'appel du service
-        if(!($_SERVER['HTTP_REFERER'] == "https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi"
-           || $_SERVER['HTTP_REFERER'] =="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi"
-           || $_SERVER['HTTP_REFERER'] =="https://tpeweb1.paybox.com/cgi/MYchoix_pagepaiement.cgi"))
-            $securite = false;
-        else $erreurMessage .= " Retour Paybox provenant d'une adresse inconnue. ";
+        if(!($_SERVER['REMOTE_ADDR'] == "195.101.99.76"
+           || $_SERVER['REMOTE_ADDR'] =="194.2.122.158"
+           || $_SERVER['REMOTE_ADDR'] =="195.25.7.166"
+           || $_SERVER['REMOTE_ADDR'] =="91.121.83.38"))
+            {$securite = false; $erreurMessage .= " Retour Paybox provenant d'une adresse inconnue. ";}
+            
         //autorisation
         if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
         else $erreurMessage .= " Pas d'autorisation de Paybox. ";
-        
-        
-        if(!erreur && $securite && $autorisation) {
+    $test="notOk";
+        if(!($erreurStatus) && $securite && $autorisation) {
+            $test="OK";
             //authentication comme admin inscriptions
             $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
             $output['token'] = $this->subTokenFilter($auth['token']);
             $token = $output['token']['access_token'];
-            
             // ENREGISTRER LE PAIEMENT DANS LA BASE DE DONNEES
             
             //pour inscription, on récupère le contenu inscription et on change le statut
             $commande = explode("|", $params['commande']); // $idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
             $idInscription = $commande[0];
-            $proposition = commande[1];
+            $proposition = $commande[1];
             $prenom = $commande[2];
             $nom = $commande[3];
-            $montant = $params['montant'];
-            // récupérer l'inscription
-            $inscription = $inscription = $this->callAPI("GET", $token, $idInscription);
+            $montant = (int)$params['montant']/100;
+            // récupérer l'id du contenu "inscription"
+            $contentId = $this->getContentIdByName($idInscription);
+            $inscription = $this->callAPI("GET", $token, $contentId);
             if($inscription['success']) {
                 $inscription = $inscription['content'];
             }
             else throw new APIEntityException('Content not found', 404);
             //vérifier si le montant payé est le même que celui indiqué lors de l'inscription
-            if( (int)$montant == (int)$inscription['fields']['montantAPayerMaintenant']) {
+            if( $montant == (int)$inscription['fields']['montantAPayerMaintenant']) {
                 $inscription['fields']['statut'] = "paiement-carte-valide" ;
             }
             else $erreurMessage .="Le montant du paiement est différent de celui envoyé à Paybox.";
             
             $payload = json_encode( array( "content" => $inscription ) );
-            $resultUpdate = $this->callAPI("PATCH", $token, $payload, $id);
+            $resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
         }
-        //get parametres
-   
-    
-    
-    
+        
         $mailerService = Manager::getService('Mailer');
 
         $mailerObject = $mailerService->getNewMessage();
 
         $destinataires="nicolas.rhone@gmail.com";
+        $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
         
         $erreur = $params['erreur'];
         if ($erreur == "00000") {
-            $sujet = "Paiement en ligne réussi";
+            $sujet = "Réception d'un paiement en ligne";
         }
         else {
-            $sujet = "Echec de paiement en ligne";
+            $sujet = "Échec paiement en ligne";
         }
         if ($erreur == "00000") {
             $body = "montant payé : " . $params['montant']/100 . " euros." ;
         }
         else {
             $body = "montant non payé : " . $params['montant']/100  . " euros." ;
+            $body.="\n\n Raisons de l'échec : ".$erreurMessage;
         }
         $body = $body . " \n\n " . $params['commande'];
         
         $mailerObject->setTo($destinataires);
         $mailerObject->setFrom($from);
-        $mailerObject->setReplyTo($from);
         $mailerObject->setSubject($sujet);
+        $mailerObject->setReplyTo($replyTo);
         $mailerObject->setBody($body);
 
         // Send e-mail
-        $errors = [];
-        if ($mailerService->sendMessage($mailerObject, $errors)) {
+        //if ($mailerService->sendMessage($mailerObject, $errors)) {
+        if(true){  
             return [
                 'success' => true,
                 'message' => $body,
+                'errors' =>$resultUpdate
             ];
         } else {
             return [
                 'success' => false,
                 'message' => 'Error encountered, more details in "errors"',
-                'errors' => $errors,
+                'errors' => $erreurMessage
             ];
         }
     }
     
-
     
         protected function callAPI($method, $token, $data = false, $id=false) {
         $curl = curl_init();
@@ -289,10 +292,26 @@ class PayboxIpnResource extends AbstractResource {
             case "00194": $message =  "Demande dupliquée"; break;
             case "00196": $message =  "Mauvais fonctionnement du système"; break;
             case "00197": $message =  "Echéance de la temporisation de surveillance globale"; break;
-            default : $message  "Erreur non documentée;"
+            default : $message = "Erreur non documentée";
         }
         return $message;
     }
     
+    protected function subTokenFilter(&$token)
+    {
+        return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
+    }
     
+    public function getContentIdByName($name){
+        $contentId = (string)$id;
+        $className = (string)get_class($this);
+
+        $this->_dataService = Manager::getService('MongoDataAccess');
+        $this->_dataService->init("Contents");
+        $content = $this->_dataService->findByName($name);
+        if (empty($content)) {
+            throw new APIEntityException('Content not found', 404);
+        }
+        return $content['id'];
+    }    
 } 

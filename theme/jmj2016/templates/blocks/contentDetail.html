@@ -15,8 +15,8 @@
                             <div  ng-if="!fieldInputMode"
                                   ng-init="field = contentDetailCtrl.content.type.fields[1]"
                                   ng-if="fieldEntity[contentDetailCtrl.content.type.fields[1].config.name]" >
-                                    <div ng-controller="MediaFieldController as mediaFieldCtrl" style="background-image: url({{rubedo.imageUrl.getUrlByMediaId(mediaFieldCtrl.media.id ,{width:'1600px',mode:'boxed'})}})" class="parallax section-header">
-                                    
+                                    <div ng-controller="MediaFieldController as mediaFieldCtrl"  class="parallax section-header"
+					 ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(mediaFieldCtrl.media.id ,{width:'1600px',mode:'boxed'})+')'}">
                                     </div>	
                             </div>
                             <div class="section-header-title">
