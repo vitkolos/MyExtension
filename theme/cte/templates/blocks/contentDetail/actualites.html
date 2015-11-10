@@ -6,7 +6,7 @@
 		</div>
 	</div>
 </div>
-<header class="container-fluid content" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1650px',mode:'boxed'}) }}')" ng-if="fieldEntity['image']">
+<header class="container-fluid content" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
 	<div class="text-article container">
 		<p class='capital'>{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
