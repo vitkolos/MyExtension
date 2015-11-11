@@ -46,7 +46,7 @@ class PayboxIpnResource extends AbstractResource {
                             ->setFilter('string')
                             ->setRequired()
                     )
-                    ->addOutputFilter(
+                    /*->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('message general')
                             ->setKey('message')
@@ -55,7 +55,7 @@ class PayboxIpnResource extends AbstractResource {
                         (new FilterDefinitionEntity())
                             ->setDescription("message d'erreur de l'envoi de mail")
                             ->setKey('errors')
-                    )
+                    )*/
                     ;
             });
     }
@@ -92,10 +92,10 @@ class PayboxIpnResource extends AbstractResource {
         // Send e-mail
         $errors = [];
         if ($mailerService->sendMessage($mailerObject, $errors)) {
-            return [
+            /*return [
                 'success' => true,
                 'message' => $body,
-            ];
+            ];*/
         } else {
             return [
                 'success' => false,
