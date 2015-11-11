@@ -107,7 +107,7 @@ class PaymentResource extends AbstractResource {
                 $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
                 $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
                 $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
-                $commande = $idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom; 
+                $commande = $idInscription . "|" . urlencode($proposition) . "|" . urlencode($prenom) . "|" . urlencode($nom); 
                 $payboxSite = $paymentInfos['site'];
                 $payboxRang = $paymentInfos['rang'];
                 $payboxID = $paymentInfos['identifiant'];
@@ -122,7 +122,7 @@ class PaymentResource extends AbstractResource {
                     "codeMonnaieNumerique" =>$payboxDevise,
                     "commande" => $commande, 
                     "email" => $email, 
-                    "payboxRetour" => urlencode("referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;"),
+                    "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;",
                     "dateTime" => $dateTime,
                     "urlRetourNormal" => $urlNormal,
                     "urlRetourEchec" => $urlEchec,
