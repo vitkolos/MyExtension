@@ -107,7 +107,7 @@ class PaymentResource extends AbstractResource {
                 $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
                 $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
                 $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
-                $commande = $idInscription . "|" . urlencode($proposition) . "|" . urlencode($prenom) . "|" . urlencode($nom); 
+                $commande = $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
                 $payboxSite = $paymentInfos['site'];
                 $payboxRang = $paymentInfos['rang'];
                 $payboxID = $paymentInfos['identifiant'];
