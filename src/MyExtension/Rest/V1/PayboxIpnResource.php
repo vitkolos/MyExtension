@@ -98,7 +98,7 @@ class PayboxIpnResource extends AbstractResource {
             {$securite = false; $erreurMessage .= " Retour Paybox provenant d'une adresse inconnue. ";}
             
         //autorisation
-        if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
+       /* if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
         else $erreurMessage .= " Pas d'autorisation de Paybox. ";
     $test="notOk";
         if(!($erreurStatus) && $securite && $autorisation) {
@@ -131,7 +131,7 @@ class PayboxIpnResource extends AbstractResource {
             
             $payload = json_encode( array( "content" => $inscription ) );
             $resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
-        }
+        }*/
         
         $mailerService = Manager::getService('Mailer');
 
@@ -168,7 +168,7 @@ class PayboxIpnResource extends AbstractResource {
             return [
                 'success' => true,
                 'message' => $body,
-                'errors' =>$resultUpdate
+                'errors' =>$erreurMessage
             ];
         } else {
             return [
