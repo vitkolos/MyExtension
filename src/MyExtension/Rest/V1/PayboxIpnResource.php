@@ -65,7 +65,7 @@ class PayboxIpnResource extends AbstractResource {
         $mailerObject = $mailerService->getNewMessage();
 
         /*$destinataires=$this->buildDest($params['to']);*/
-        $destinataires="frederic.bourdeau@chemin-neuf.org";
+        $destinataires="nicolas.rhone@gmail.com";
         $from="frederic.bourdeau@chemin-neuf.org";
         
         $erreur = $params['erreur'];
