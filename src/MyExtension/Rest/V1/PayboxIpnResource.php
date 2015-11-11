@@ -164,8 +164,7 @@ class PayboxIpnResource extends AbstractResource {
         $mailerObject->setBody($body);
 
         // Send e-mail
-        //if ($mailerService->sendMessage($mailerObject, $errors)) {
-        if(true){  
+        if ($mailerService->sendMessage($mailerObject, $errors)) {
             return [
                 'success' => true,
                 'message' => $body,
@@ -179,6 +178,16 @@ class PayboxIpnResource extends AbstractResource {
             ];
         }
     }
+
+
+    protected function getMailCompta(){
+        switch($_SERVER['HTTP_HOST']) {
+            case "ccn.chemin-neuf.fr" : 
+                return "nicolas.rhone@wanadoo.fr"; break;
+        }
+    }
+     
+
     
     
         protected function callAPI($method, $token, $data = false, $id=false) {
@@ -219,10 +228,7 @@ class PayboxIpnResource extends AbstractResource {
         else return json_decode($result, true);
     }
 
-    public function getMailCompta(){
-        return "55473e9745205e1d3ef1864d";
-     }
-     
+
     public function getErrorMessage($error) {
         $message="";
         switch($error) {
