@@ -122,7 +122,7 @@ class PaymentResource extends AbstractResource {
                     "codeMonnaieNumerique" =>$payboxDevise,
                     "commande" => $commande, 
                     "email" => $email, 
-                    "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;signature:K",
+                    "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;",
                     "dateTime" => $dateTime,
                     "urlRetourNormal" => $urlNormal,
                     "urlRetourEchec" => $urlEchec,

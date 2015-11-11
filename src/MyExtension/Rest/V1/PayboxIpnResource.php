@@ -13,8 +13,8 @@ class PayboxIpnResource extends AbstractResource {
         parent::__construct();
         $this
             ->definition
-            ->setName('TestPaybox')
-            ->setDescription('Test PayBox API')
+            ->setName('PayboxIpn')
+            ->setDescription('Paybox IPN')
             ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Get info de paiement Paybox')
@@ -41,11 +41,24 @@ class PayboxIpnResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
+                            ->setDescription('Autorisation')
+                            ->setKey('autorisation')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Pays')
+                            ->setKey('pays')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
                             ->setDescription('erreur')
                             ->setKey('erreur')
                             ->setFilter('string')
                             ->setRequired()
                     )
+
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('message general')
