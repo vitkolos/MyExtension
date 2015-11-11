@@ -131,7 +131,7 @@
                                     <div style="width:90%; margin-top:50px" id="accordion">
                                        <div ng-class="{'menuTab':menuCtrl.menuTab}">
                                           <a rubedo-page-link="562f32ff45205e453512ef7a" class="menu_header"><h4>Communauté du Chemin Neuf</h4></a>
-                                          <span data-toggle="collapse" data-parent="#accordion" href="#menuCCN" class="menuToggle glyphicon"></span>
+                                          <span data-toggle="collapse" data-parent="#accordion" href="#menuCCN" class="menuToggle glyphicon" ng-class="{'collapsed':menuCtrl.menuTab}"></span>
                                        </div>
                                        <div id="menuCCN" class="collapse" ng-class="{'in':!menuCtrl.menuTab}" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })"></div>
                                        
@@ -139,7 +139,7 @@
                                           <a ng-href="{{menuCtrl.menu.url}}" class="menu_header">
                                              <h4>{{menuCtrl.menu.text}}</h4>
                                           </a>
-                                          <span data-toggle="collapse" data-parent="#accordion" href="#menuBis" class="menuToggle glyphicon collapsed"></span>
+                                          <span data-toggle="collapse" data-parent="#accordion" href="#menuBis" class="menuToggle glyphicon"></span>
                                        </div>
                                        <div ng-if="menuCtrl.menuTab" class="collapse in" id="menuBis">
                                           <div class="row">
