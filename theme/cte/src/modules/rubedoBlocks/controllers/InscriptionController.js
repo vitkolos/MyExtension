@@ -308,7 +308,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         });
                         
                     }
-                    else{
+                    else if($scope.inscription.modePaiement=='cheque'){
                         payload.paymentMode= 'cheque';
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {                                
