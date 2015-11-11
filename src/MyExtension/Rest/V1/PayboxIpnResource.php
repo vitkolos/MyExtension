@@ -93,8 +93,7 @@ class PayboxIpnResource extends AbstractResource {
         //adresse d'appel du service
         if(!($_SERVER['REMOTE_ADDR'] == "195.101.99.76"
            || $_SERVER['REMOTE_ADDR'] =="194.2.122.158"
-           || $_SERVER['REMOTE_ADDR'] =="195.25.7.166"
-           || $_SERVER['REMOTE_ADDR'] =="91.121.83.38"))
+           || $_SERVER['REMOTE_ADDR'] =="195.25.7.166"))
             {$securite = false; $erreurMessage .= " Retour Paybox provenant d'une adresse inconnue. ";}
             
         //autorisation
