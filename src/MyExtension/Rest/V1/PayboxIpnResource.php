@@ -90,6 +90,7 @@ class PayboxIpnResource extends AbstractResource {
 
         // Send e-mail
         $errors = [];
+        echo '<html><head></head><body></body></html>';
         if ($mailerService->sendMessage($mailerObject, $errors)) {
             return [
                 'success' => true,
