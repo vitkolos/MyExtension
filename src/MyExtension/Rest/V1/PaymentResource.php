@@ -104,7 +104,7 @@ class PaymentResource extends AbstractResource {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
             case "carte":
                 $dateTime = date("c");
-                $urlNormal="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";//. "/payment/success";
+                $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
                 $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
                 $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
                 $commande = $idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom; 
