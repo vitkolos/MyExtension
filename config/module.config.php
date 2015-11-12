@@ -62,6 +62,7 @@ return array(
                 ),
                 'js' => array(
                     '/js/cte.js',
+                    '/js/lazy-image.js',
                     '../js/blocks.js'
                 ),
             ),
