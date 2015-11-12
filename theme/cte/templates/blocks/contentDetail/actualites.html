@@ -6,7 +6,13 @@
 		</div>
 	</div>
 </div>
-<header class="container-fluid content" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
+		<header ng-if="fieldEntity['image']" 
+    class="afkl-lazy-wrapper container-fluid content prop" afkl-lazy-image-options='{"background": true}'>
+			
+			
+<header class="container-fluid content" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'480px',mode:'boxed'})}} 480w,
+	{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})}} 1650w"
+	ng-if="fieldEntity['image']">
 	<div class="text-article container">
 		<p class='capital'>{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
