@@ -1,7 +1,8 @@
 <div class="bg-videos">
 <div class="row bg-videos">
 	<div class="col-xs-12 ">
-	    <div class="parallax section-header article-header" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}"
+	    <div class="parallax section-header article-header" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})}} 1650w"
+		afkl-lazy-image-options='{"background": true}'
 		 style="background-attachment: scroll;" ng-if="fieldEntity['image']" >
 	    </div>
 	</div>
