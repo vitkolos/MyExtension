@@ -69,7 +69,14 @@
             ng-if="content.fields[blockConfig.imageField]"
             ng-class="{'active':$first}">
           <!-- Set the first background image using inline CSS below. -->
-          <div class="fill" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}');"></div>
+          <div class="fill" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],{width:'500px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],{width:'1000px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}} 1650w"
+               afkl-lazy-image-options='{"background": true}'></div>
+          
+           
+		
+          
+          
+          
           <div class="homepage_txt">
               <p>{{content.fields.text}}</p>
               <p>{{content.fields.summary}}</p>
