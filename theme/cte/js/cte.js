@@ -36,7 +36,7 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 		    
      };
   });
-
+angular.module('rubedo').requires.push('afkl.lazyImage');
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
         var me=this;
         var mediaId=$scope.audioFileId;
