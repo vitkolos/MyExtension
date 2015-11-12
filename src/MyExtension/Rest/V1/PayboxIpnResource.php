@@ -149,7 +149,7 @@ class PayboxIpnResource extends AbstractResource {
         }
         if ($erreur == "00000") {
             $body = "montant payé : " . $params['montant']/100 . " euros." ;
-            $body.="\n\n Message : ".$erreurMessage;
+            $body.="\n\n Message : ".$_SERVER;
         }
         else {
             $body = "montant non payé : " . $params['montant']/100  . " euros." ;
@@ -168,7 +168,7 @@ class PayboxIpnResource extends AbstractResource {
             return [
                 'success' => true,
                 'message' => $body,
-                'errors' =>$_SERVER
+                'errors' =>$erreurMessage
             ];
         } else {
             return [
