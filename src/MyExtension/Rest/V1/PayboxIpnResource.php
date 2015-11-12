@@ -168,7 +168,7 @@ class PayboxIpnResource extends AbstractResource {
             return [
                 'success' => true,
                 'message' => $body,
-                'errors' =>$erreurMessage
+                'errors' =>$_SERVER
             ];
         } else {
             return [
