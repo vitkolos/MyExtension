@@ -15,9 +15,10 @@
                             <div  ng-if="!fieldInputMode"
                                   ng-init="field = contentDetailCtrl.content.type.fields[1]"
                                   ng-if="fieldEntity[contentDetailCtrl.content.type.fields[1].config.name]" >
-                                    <div ng-controller="MediaFieldController as mediaFieldCtrl"  class="parallax section-header"
-					 ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(mediaFieldCtrl.media.id ,{width:'1600px',mode:'boxed'})+')'}">
-                                    </div>	
+                                    <div ng-controller="MediaFieldController as mediaFieldCtrl"  class="parallax section-header" afkl-lazy-image-options='{"background": true}'
+					afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(mediaFieldCtrl.media.id ,{width:'480px',mode:'boxed'})}} 480w,
+	{{rubedo.imageUrl.getUrlByMediaId(mediaFieldCtrl.media.id,{width:'768px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(mediaFieldCtrl.media.id ,{width:'1650px',mode:'boxed'})}} 1650w">
+                                    </div>
                             </div>
                             <div class="section-header-title">
                                     <div ng-init="field = contentDetailCtrl.content.type.fields[0]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[0].config.name]"  style>

@@ -85,6 +85,7 @@ return array(
                 ),
                 'js' => array(
                     '/js/jmj.js',
+                    '../js/lazy-image.js',
                 ),
             ),
             'netforgod' => array(
