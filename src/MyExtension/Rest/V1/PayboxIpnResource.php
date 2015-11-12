@@ -91,9 +91,8 @@ class PayboxIpnResource extends AbstractResource {
         if($params['erreur'] == "00000") $erreurStatus = false;
         else $erreurMessage = $this->getErrorMessage($params['erreur']);
         //adresse d'appel du service
-        if(!($_SERVER['HTTP_REFERRER'] == "195.101.99.76"
-           || $_SERVER['HTTP_REFERRER'] =="194.2.122.158"
-           || $_SERVER['HTTP_REFERRER'] =="195.25.7.166"))
+        if(!($_SERVER['REMOTE_ADDR'] == "195.101.99.76" || $_SERVER['REMOTE_ADDR'] =="194.2.122.158"|| $_SERVER['REMOTE_ADDR'] =="195.25.7.166" // accès direct de paybox
+             ||$_SERVER['HTTP_X_FORWARDED_FOR'] == "195.101.99.76" || $_SERVER['HTTP_X_FORWARDED_FOR'] =="194.2.122.158"|| $_SERVER['HTTP_X_FORWARDED_FOR'] =="195.25.7.166")) //redirection depuis site bleu
             {$securite = false; $erreurMessage .= " Retour Paybox provenant d'une adresse inconnue. ";}
             
         //autorisation
@@ -149,8 +148,7 @@ class PayboxIpnResource extends AbstractResource {
         }
         if ($erreur == "00000") {
             $body = "montant payé : " . $params['montant']/100 . " euros." ;
-            $body.="\n\n Message : ";
-            foreach ($_SERVER as $name => $info) $body.="\n".$name." : ".$info;
+            $body.="\n\n Message : " . $erreurMessage;
         }
         else {
             $body = "montant non payé : " . $params['montant']/100  . " euros." ;
