@@ -188,6 +188,7 @@
         if ($scope.rubedo.fieldEditMode){
             $scope.rubedo.revertChanges();
         }
+        $scope.name="PageBodyController";
         $scope.registerAllIncludeContentLoadedListener($scope, function() {
         console.log("Finish page");
     });
