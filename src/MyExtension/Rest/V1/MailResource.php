@@ -244,36 +244,16 @@ class MailResource extends AbstractResource
                     ->setDescription('Send an email for registration')
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setKey('fields')
+                            ->setKey('inscription')
                             ->setRequired()
                             ->setMultivalued()
-                            ->setDescription('Fields to send')
-                            ->setFilter('string')
+                            ->setDescription('Résultats du formulaire')
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setKey('from')
+                            ->setKey('traductions')
                             ->setRequired()
-                            ->setDescription('Sender is required')
-                            ->setFilter('validate_email')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('to')
-                            ->setRequired()
-                            ->setDescription('Mail is required')
-                    )
-                   ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('template')
-                            ->setDescription('Template for email')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('subject')
-                            ->setRequired()
-                            ->setDescription('Subject is required')
-                            ->setFilter('string')
+                            ->setDescription('Traductions')
                     );
     }    
    

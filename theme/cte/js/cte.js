@@ -158,6 +158,15 @@ angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',functi
                 }
             }));
     };
+    serviceInstance.sendInscriptionMails=function(inscription, traductions){
+	var params = {
+	    inscription: inscription,
+	    traductions: traductions
+	};
+	return ($http.get("api/v1/mail", {
+	    params: params
+	}));
+    };
     return serviceInstance;
 }]);
 angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($http) {
