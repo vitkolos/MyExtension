@@ -48,9 +48,7 @@ angular.module('rubedo').run( function ($rootScope, $location) {
 	}
     console.log('another include was loaded', event.targetScope);
 });
-    $rootScope.$on('$includeContentLoaded', function() {
-	
-    });
+
  
     
 });
