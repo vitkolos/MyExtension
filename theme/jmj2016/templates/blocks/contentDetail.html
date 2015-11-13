@@ -83,7 +83,7 @@
                         <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('pave')}}" ></rubedo-field>
 		</div>!-->
 		<div class="col-xs-6 tiroir-header">
-		    <div field = "{{contentDetailCtrl.getFieldByName('text')}}"   class="titre_tiroir" data-toggle="collapse" data-target="#tiroir">
+		    <div field = "{{contentDetailCtrl.getFieldByName('text')}}"   class="titre_tiroir" data-toggle="collapse" data-target="#tiroir_{{contentDetailCtrl.content.id}}">
 			    <h1 ng-if="!fieldEditMode">{{fieldEntity['text']}}
 				    <rubedo-field  class="icon_tiroir" field = "{{contentDetailCtrl.getFieldByName('icon')}}"  ></rubedo-field>
 			    </h1>
@@ -106,7 +106,7 @@
                         <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('intro')}}"></rubedo-field><!--description-->
                 </div>
         
-                <div class="col-xs-12 collapse" id="#tiroir">
+                <div class="col-xs-12 collapse" id="#tiroir_{{contentDetailCtrl.content.id}}">
                         <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('pave')}}" ></rubedo-field><!--description-->
                 </div>
             </div>
