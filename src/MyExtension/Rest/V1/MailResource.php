@@ -99,9 +99,13 @@ class MailResource extends AbstractResource
 
         $mailerObject = $mailerService->getNewMessage();
 
-        /*$destinataires=$this->buildDest($params['to']);*/
-        $destinataires=array($params['to']);
-        $from = array($params['from'] => $params['fields']['name']);
+        $inscription=$params['inscription'];
+        $traductions = $params['traductions']);
+        
+
+
+
+
  
         $mailerObject->setTo($destinataires);
         $mailerObject->setReplyTo($from);
