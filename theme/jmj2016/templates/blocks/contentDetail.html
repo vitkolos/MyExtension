@@ -55,31 +55,58 @@
                                                                                     'bg2' : fieldEntity['listBox'] == 2,
                                                                                     'bg3' : fieldEntity['listBox'] == 3 }"
                                                                             ng-init="showTab=false">
-                    <div class="col-xs-6 tiroir-header">
-                            <div field = "{{contentDetailCtrl.getFieldByName('text')}}"   class="titre_tiroir" ng-class="{ tab : $parent.showTab}" ng-click="$parent.showTab = !$parent.showTab ">
-                                    <h1 ng-if="!fieldEditMode">{{fieldEntity['text']}}
-                                            <rubedo-field  class="icon_tiroir" field = "{{contentDetailCtrl.getFieldByName('icon')}}"  ></rubedo-field>
-                                    </h1>
-                                    <h1 ng-if="fieldEditMode"
-                                       ng-controller="RTEFieldController as rteFieldCtrl"
-                                       ckeditor="editorOptions"
-                                       contenteditable="true"
-                                       ready="setCKEIsReady()"
-                                       ng-model="fieldEntity[field.config.name]"
-                                       output-plain-text="true"
-                                       ng-bind-html="rteFieldCtrl.html">
-                                    </h1>
-                            </div>
-                            
-                            
-                            
-                            
-                    </div>
+		<!--<div class="col-xs-6 tiroir-header">
+			<div field = "{{contentDetailCtrl.getFieldByName('text')}}"   class="titre_tiroir" ng-class="{ tab : $parent.showTab}" ng-click="$parent.showTab = !$parent.showTab ">
+				<h1 ng-if="!fieldEditMode">{{fieldEntity['text']}}
+					<rubedo-field  class="icon_tiroir" field = "{{contentDetailCtrl.getFieldByName('icon')}}"  ></rubedo-field>
+				</h1>
+				<h1 ng-if="fieldEditMode"
+				   ng-controller="RTEFieldController as rteFieldCtrl"
+				   ckeditor="editorOptions"
+				   contenteditable="true"
+				   ready="setCKEIsReady()"
+				   ng-model="fieldEntity[field.config.name]"
+				   output-plain-text="true"
+				   ng-bind-html="rteFieldCtrl.html">
+				</h1>
+			</div>
+			
+			
+			
+			
+		</div>
+                <div class="col-xs-6 text-left">
+                        <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('intro')}}"></rubedo-field>
+                </div>
+        
+                <div class="col-xs-12 tab_tiroir"  ng-class="{ 'displayed' : $parent.showTab}">
+                        <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('pave')}}" ></rubedo-field>
+		</div>!-->
+		<div class="col-xs-6 tiroir-header">
+		    <div field = "{{contentDetailCtrl.getFieldByName('text')}}"   class="titre_tiroir" data-toggle="collapse" data-target="#tiroir">
+			    <h1 ng-if="!fieldEditMode">{{fieldEntity['text']}}
+				    <rubedo-field  class="icon_tiroir" field = "{{contentDetailCtrl.getFieldByName('icon')}}"  ></rubedo-field>
+			    </h1>
+			    <h1 ng-if="fieldEditMode"
+			       ng-controller="RTEFieldController as rteFieldCtrl"
+			       ckeditor="editorOptions"
+			       contenteditable="true"
+			       ready="setCKEIsReady()"
+			       ng-model="fieldEntity[field.config.name]"
+			       output-plain-text="true"
+			       ng-bind-html="rteFieldCtrl.html">
+			    </h1>
+		    </div>
+			
+			
+			
+			
+		</div>
                 <div class="col-xs-6 text-left">
                         <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('intro')}}"></rubedo-field><!--description-->
                 </div>
         
-                <div class="col-xs-12 tab_tiroir"  ng-class="{ 'displayed' : $parent.showTab}">
+                <div class="col-xs-12 tab_tiroir" id="#tiroir" class="collapse">
                         <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('pave')}}" ></rubedo-field><!--description-->
                 </div>
             </div>
