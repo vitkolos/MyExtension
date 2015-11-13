@@ -36,8 +36,9 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 		    
      };
   });
-$rootScope.renderedcount=0;
+
 angular.module('rubedo').run( function ($rootScope, $location) {
+    $rootScope.renderedcount=0;
     $rootScope.$on('$includeContentLoaded', function(event) {
 	var old = $rootScope.renderedcount;
 	$rootScope.renderedcount++;
