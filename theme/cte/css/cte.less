@@ -133,7 +133,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 @lieux:#fbbd58; //jaune lieux communautaires
 @evenement:#f96847; //orange propositions;
 @14-18:#59d3b6;
-
+@bleu:#3CA6C1;
 ////////////////////////////////////////////////
     ///////classes utiles////////////////
 ////////////////////////////////////////////////
@@ -857,6 +857,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 ////////////////////////////////////////////////////
     ///////////MODAL///////////////////
 ///////////////////////////////////////////////////
+.modal-content{background-color: @beigeCCN }
 .modal.right.fade:not(.in) .modal-dialog {
 	-ms-transform: translate3d(100%, 0, 0);
 	-moz-transform: translate3d(100%, 0, 0);
@@ -868,10 +869,10 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
     ///////////FORMS///////////////////
 ///////////////////////////////////////////////////
 /*General*/
-input[type=text], textarea, input[type=email] {
+input[type=text], input[type=number],textarea, input[type=email] {
   width:100%; border:3px solid white; background-color: transparent; font-family: Merriweather; font-size: 18px; padding:4px 12px;
 }
-input[type=text].ng-dirty.ng-invalid,  textarea.ng-dirty.ng-invalid,input[type=email].ng-dirty.ng-invalid{border:3px solid @rouge}
+input[type=text].ng-dirty.ng-invalid,input[type=number].ng-dirty.ng-invalid,  textarea.ng-dirty.ng-invalid,input[type=email].ng-dirty.ng-invalid{border:3px solid @rouge}
 input[type=text].number{text-align: center; font-size: 20px; font-weight: bold;width:100px}
 input:-webkit-autofill, textarea#adresse:-webkit-autofill, select:-webkit-autofill{background-color: @beigeCCN !important; color:@txt_dark !important}
 input:-webkit-autofill {
@@ -879,7 +880,7 @@ input:-webkit-autofill {
     -webkit-text-fill-color: @txt_dark;
 }
 textarea:focus{outline:none}
-input[type=text]:focus, textarea:focus{border-color:@rouge}
+input[type=text]:focus, textarea:focus, input[type=email]:focus{border-color:@bleu; border-width: 2px}
 .btn-primary{background-color:@rouge; border:none}
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary{background-color: @rouge_shadow}
 
