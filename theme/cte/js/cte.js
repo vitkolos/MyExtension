@@ -37,10 +37,11 @@ angular.module('rubedo').filter('ligneNonVide', function () {
      };
   });
 angular.module('rubedo').run( function ($rootScope, $location) {
-    setTimeout(function(){
-  $("#ados").show();
-  console.log('success!');
-}, 0);
+    $rootScope.$on('$includeContentLoaded', function() {
+    $("#ados").show();
+	console.log('success!');
+});
+ 
     
 });
 
