@@ -136,6 +136,27 @@ class MailResource extends AbstractResource
     
     
     /**
+     * Define verbs
+     */
+    protected function define()
+    {
+        $this->definition
+            ->setName('Users')
+            ->setDescription('Deal with users')
+            ->editVerb('post', function (VerbDefinitionEntity &$verbDef) {
+                $this->definePost($verbDef);
+            });
+        $this->entityDefinition
+            ->setName('User')
+            ->setDescription('Deal with a user')
+            ->editVerb('get', function (VerbDefinitionEntity &$verbDef) {
+                $this->defineGetEntity($verbDef);
+            })
+            ->editVerb('patch', function (VerbDefinitionEntity &$verbDef) {
+                $this->definePatchEntity($verbDef);
+            });
+    }
+    /**
      * Define post
      *
      * @param VerbDefinitionEntity $verbDef
