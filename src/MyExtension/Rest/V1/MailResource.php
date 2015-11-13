@@ -141,20 +141,12 @@ class MailResource extends AbstractResource
     protected function define()
     {
         $this->definition
-            ->setName('Users')
-            ->setDescription('Deal with users')
+            ->setName('Mail')
+            ->setDescription('Envoi de mails')
             ->editVerb('post', function (VerbDefinitionEntity &$verbDef) {
                 $this->definePost($verbDef);
             });
-        $this->entityDefinition
-            ->setName('User')
-            ->setDescription('Deal with a user')
-            ->editVerb('get', function (VerbDefinitionEntity &$verbDef) {
-                $this->defineGetEntity($verbDef);
-            })
-            ->editVerb('patch', function (VerbDefinitionEntity &$verbDef) {
-                $this->definePatchEntity($verbDef);
-            });
+        
     }
     /**
      * Define post
