@@ -37,58 +37,7 @@ angular.module('rubedo').filter('ligneNonVide', function () {
      };
   });
 
-/* Directives */
-angular.module('rubedo').directive('ngInclude', function() {
-    function recursivelyRegister(scopeToRegister, scopeToRegisterWith) {
-        if(!scopeToRegisterWith.hasOwnProperty('includesLoading')) {
-            scopeToRegisterWith.includesLoading = [];
-        }
-        if(scopeToRegisterWith.includesLoading.indexOf(scopeToRegister.$id) === -1) {
-            scopeToRegisterWith.includesLoading.push(scopeToRegister.$id);
-        }
-        if (scopeToRegisterWith.$parent) {
-            recursivelyRegister(scopeToRegister, scopeToRegisterWith.$parent);
-        }
-    }
-    
-    function recursivelyDeRegisterAndNotify(scopeToDeRegister, scopeToDeRegisterFrom) {
-        var i = scopeToDeRegisterFrom.includesLoading.indexOf(scopeToDeRegister.$id);
-        if (i !== -1) {
-            scopeToDeRegisterFrom.includesLoading.splice(i, 1);
-            
-            if (scopeToDeRegisterFrom.includesLoading.length === 0) {
-                scopeToDeRegisterFrom.$emit('allIncludesLoaded' + scopeToDeRegisterFrom.$id);
-            }
-        }
-        
-        if (scopeToDeRegisterFrom.$parent) {
-            recursivelyDeRegisterAndNotify(scopeToDeRegister, scopeToDeRegisterFrom.$parent);
-        }
-    }
-    
-    function recursivelyReset(scope) {
-        scope.includesLoading.length = 0;
-        if (scope.$parent) {
-            recursivelyReset(scope.$parent);
-        }
-    }
-    
-    return {
-        restrict: 'A',
-        link: function(scope, element, attr, ngModel) {
-            recursivelyRegister(scope, scope.$parent);
-            
-            scope.$on('$routeChangeSuccess', function() {
-                // empty the tracking arrays on route changes
-                recursivelyReset(scope);
-            });
-            
-            scope.$on('$includeContentLoaded', function(event) {
-                recursivelyDeRegisterAndNotify(scope, scope.$parent);
-            });
-        }
-    };
-});
+
 
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
