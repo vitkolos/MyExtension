@@ -36,10 +36,12 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 		    
      };
   });
+$rootScope.renderedcount=0;
 angular.module('rubedo').run( function ($rootScope, $location) {
     $rootScope.$on('$includeContentLoaded', function(event) {
-	renderedcount++;
-	if (renderedcount == itemmax) {
+	var old = $rootScope.renderedcount;
+	$rootScope.renderedcount++;
+	if ($rootScope.renderedcount == old) {
 	    // Crappy hack!
 	    $("#ados").show();
 	    console.log('success!');
