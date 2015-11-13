@@ -42,13 +42,14 @@ angular.module('rubedo').run( function ($rootScope, $location) {
     $rootScope.$on('$includeContentLoaded', function(event) {
 	var old = $rootScope.renderedcount;
 	$rootScope.renderedcount++;
+	
 	if ($rootScope.renderedcount == old) {
 	    // Crappy hack!
 	    $("#ados").show();
 	    console.log('success!');
 	}
-    console.log('another include was loaded', event.targetScope);
-});
+    console.log(old +" / "+ $rootScope.renderedcount);
+    });
 
  
     
