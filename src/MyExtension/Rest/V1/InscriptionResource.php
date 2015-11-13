@@ -83,6 +83,8 @@ class InscriptionResource extends AbstractResource
         $payload2 = json_encode( array( "content" => $inscriptionForm ) );
     
        $resultInscription = $this->callAPI("POST", $token, $payload2);
+       
+       
     
         return array('success' => $resultInscription['success'], 'id' =>$inscriptionForm['fields']['text']);
         
