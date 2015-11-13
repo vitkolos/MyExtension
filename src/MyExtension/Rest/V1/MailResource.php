@@ -85,6 +85,45 @@ class MailResource extends AbstractResource
             ];
         }
     }
+    /**
+     * Email d'inscription
+     *
+     * @param $params
+     * @return array
+     * @throws \RubedoAPI\Exceptions\APIControllerException
+     */
+    public function getAction($params)
+    {
+        /** @var \Rubedo\Interfaces\Mail\IMailer $mailerService */
+        $mailerService = Manager::getService('Mailer');
+
+        $mailerObject = $mailerService->getNewMessage();
+
+        /*$destinataires=$this->buildDest($params['to']);*/
+        $destinataires=array($params['to']);
+        $from = array($params['from'] => $params['fields']['name']);
+ 
+        $mailerObject->setTo($destinataires);
+        $mailerObject->setReplyTo($from);
+        $mailerObject->setFrom($from);
+        $mailerObject->setCharset('utf-8');
+        $mailerObject->setSubject($params['subject']);
+        if ($params['template'] == null) $mailerObject->setBody($this->buildEmail($params['fields']), 'text/html', 'utf-8');
+        else $mailerObject->setBody($this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']), 'text/html', 'utf-8');
+        // Send e-mail
+        $errors = [];
+        if ($mailerService->sendMessage($mailerObject, $errors)) {
+            return [
+                'success' => true,
+            ];
+        } else {
+            return [
+                'success' => false,
+                'message' => 'Error encountered, more details in "errors"',
+                'errors' => $errors,
+            ];
+        }
+    }
 
     /**
      *
@@ -145,6 +184,9 @@ class MailResource extends AbstractResource
             ->setDescription('Envoi de mails')
             ->editVerb('post', function (VerbDefinitionEntity &$verbDef) {
                 $this->definePost($verbDef);
+            })
+            ->editVerb('get', function (VerbDefinitionEntity &$definition) {
+                $this->defineGet($definition);
             });
         
     }
@@ -191,7 +233,50 @@ class MailResource extends AbstractResource
                             ->setFilter('string')
                     );
     }    
-    
+     /**
+     * Define get
+     *
+     * @param VerbDefinitionEntity $verbDef
+     */
+    protected function defineGet(VerbDefinitionEntity &$verbDef)
+    {
+        $verbDef
+                    ->setDescription('Send an email for registration')
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('fields')
+                            ->setRequired()
+                            ->setMultivalued()
+                            ->setDescription('Fields to send')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('from')
+                            ->setRequired()
+                            ->setDescription('Sender is required')
+                            ->setFilter('validate_email')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('to')
+                            ->setRequired()
+                            ->setDescription('Mail is required')
+                    )
+                   ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('template')
+                            ->setDescription('Template for email')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('subject')
+                            ->setRequired()
+                            ->setDescription('Subject is required')
+                            ->setFilter('string')
+                    );
+    }    
+   
     
     
     
