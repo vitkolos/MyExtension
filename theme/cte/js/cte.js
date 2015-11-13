@@ -36,6 +36,11 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 		    
      };
   });
+angular.module('rubedo').run( function ($rootScope, $location) {        
+    $("#ados").show();
+
+});
+
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
         var me=this;
