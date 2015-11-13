@@ -122,6 +122,7 @@ class InscriptionResource extends AbstractResource
                 $inscription['enfants'][$index] = $enfant[prenom]. " ".strtoupper($enfant[nom])." ; ".$enfant['birthdateF']." ; ".$enfant['sexe'];
             }
         }
+        
 
         return $inscription;
         
@@ -139,7 +140,21 @@ class InscriptionResource extends AbstractResource
             }
             return $answer;
         
-        }
+    }
+    protected function formatTelephone($number){
+            $answer="";
+            foreach ($question as $titre => $reponse){
+                if($printTitre) $answer .= $titre." = ";
+                if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
+                else {
+                    foreach($reponse as $value) $answer .= $value.", ";
+                }
+                if($printTitre) $answer.="; ";
+                
+            }
+            return $answer;
+        
+    }
     
     protected function getPays(){
         switch($_SERVER['HTTP_HOST']) {
