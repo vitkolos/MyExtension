@@ -83,11 +83,12 @@
                         <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('pave')}}" ></rubedo-field>
 		</div>!-->
 		<div class="col-xs-6 tiroir-header">
-		    <div field = "{{contentDetailCtrl.getFieldByName('text')}}"   class="titre_tiroir" data-toggle="collapse" data-target="#tiroir_{{contentDetailCtrl.content.id}}">
-			    <h1 ng-if="!fieldEditMode">{{fieldEntity['text']}}
+		    <div field = "{{contentDetailCtrl.getFieldByName('text')}}"   class="titre_tiroir" >
+			    <h1 ng-if="!fieldEditMode" data-toggle="collapse" data-target="#tiroir_{{contentDetailCtrl.content.id}}">{{fieldEntity['text']}}
 				    <rubedo-field  class="icon_tiroir" field = "{{contentDetailCtrl.getFieldByName('icon')}}"  ></rubedo-field>
 			    </h1>
-			    <h1 ng-if="fieldEditMode"
+			    <h1 data-toggle="collapse" data-target="#tiroir_{{contentDetailCtrl.content.id}}"
+				ng-if="fieldEditMode"
 			       ng-controller="RTEFieldController as rteFieldCtrl"
 			       ckeditor="editorOptions"
 			       contenteditable="true"
