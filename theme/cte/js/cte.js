@@ -37,10 +37,8 @@ angular.module('rubedo').filter('ligneNonVide', function () {
      };
   });
 
-// Declare app level module which depends on filters, and services
-var allIncludeContentLoadedDemo = angular.module('AllIncludeContentLoadedDemo', []);
-
 /* Directives */
+angular.module('rubedo').
 angular.module('rubedo').directive('ngInclude', function() {
     function recursivelyRegister(scopeToRegister, scopeToRegisterWith) {
         if(!scopeToRegisterWith.hasOwnProperty('includesLoading')) {
