@@ -105,7 +105,7 @@ span.font-jmj{font-size: 20px; vertical-align: bottom; font-family: 'jmj2016regu
 .navbar-fixed-top li{line-height:30px;}
 .navbar-fixed-top{border-width:0;background-color:white}
 .navbar-fixed-top li > a, .navbar-fixed-top .home-button > a {color:@txt_grey ;text-shadow:none;}
-nav .nav  li > a:hover{background-color:@txt_grey; color:white}
+nav .nav  li > a:hover, nav .nav  li.active > a{background-color:@txt_grey; color:white}
 .navbar-fixed-top .home-button:hover{background-color:@txt_grey; a{color:white}}
 nav {margin-bottom:0px;}
 .shortsingle-rubedo .shortsingle-img-container{ width:100%;}
@@ -552,10 +552,6 @@ p.date{
 .tiroir {color:white;border: solid white; border-width: 1px 0;padding:20px 0 0}
 .tiroir-header{ font-size:1.2em;  text-align: left;}
 
-.tab_tiroir .block-detail{max-height:0; transition: max-height 0.3s ease; overflow-y:hidden}
-.tab_tiroir.displayed{padding-bottom: 15px}
-.tab_tiroir:not(.displayed){height: 20px}
-.tab_tiroir.displayed .block-detail{max-height:600px; transition: max-height 0.3s ease}
 table tr{border-bottom: solid white 1px}
 table tr:last-of-type{border-bottom:none}
 table td{border-right: solid white 1px}
