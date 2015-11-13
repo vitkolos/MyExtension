@@ -37,23 +37,6 @@ angular.module('rubedo').filter('ligneNonVide', function () {
      };
   });
 
-angular.module('rubedo').run( function ($rootScope, $location) {
-    $rootScope.renderedcount=0;
-    $rootScope.$on('$includeContentLoaded', function(event) {
-	var old = $rootScope.renderedcount;
-	$rootScope.renderedcount++;
-	
-	if ($rootScope.renderedcount == old) {
-	    // Crappy hack!
-	    $("#ados").show();
-	    console.log('success!');
-	}
-    console.log(old +" / "+ $rootScope.renderedcount);
-    });
-
- 
-    
-});
 
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
