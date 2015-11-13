@@ -53,18 +53,18 @@ class InscriptionResource extends AbstractResource
         
         //GET NUMERO D'INSCRIPTION ACTUEL
         $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
-        $inscription = $this->callAPI("GET", $token, $id);
-        if($inscription['success']) {
-            $inscription = $inscription['content'];
-            $inscriptionNumber = (int)$inscription['fields']['value'] +1;
+        $nbInscriptionContent = $this->callAPI("GET", $token, $id);
+        if($nbInscriptionContent['success']) {
+            $nbInscriptionContent = $nbInscriptionContent['content'];
+            $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
         }
         else throw new APIEntityException('Content not found', 404);
         
         
-        $inscription['fields']['value'] = (string)$inscriptionNumber;
-        
+        $nbInscriptionContent['fields']['value'] = (string)$inscriptionNumber;
+
         //UPDATE NUMERO D'INSCRIPTION +1
-        $payload = json_encode( array( "content" => $inscription ) );
+        $payload = json_encode( array( "content" => $nbInscriptionContent ) );
         $result = $this->callAPI("PATCH", $token, $payload, $id);
         
         //CREATE INSCRIPTION
@@ -74,6 +74,12 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['writeWorkspace'] = $params['workspace'];
         $inscriptionForm['typeId'] = "561627c945205e41208b4581";
         $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
+                //GET SECRETARIAT
+        if($inscriptionForm['fields']['contact']){
+            $mailSecretariat = $this->callAPI("GET", $token, $inscriptionForm['fields']['contact']);
+            if($mailSecretariat['success']) {$inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['content']['fields']['email'];}
+            else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";
+        }
         $payload2 = json_encode( array( "content" => $inscriptionForm ) );
     
        $resultInscription = $this->callAPI("POST", $token, $payload2);
@@ -114,7 +120,7 @@ class InscriptionResource extends AbstractResource
                 $inscription['enfants'][$index] = $enfant[prenom]. " ".strtoupper($enfant[nom])." ; ".$enfant['birthdateF']." ; ".$enfant['sexe'];
             }
         }
-        if($inscription['propositionTitre'])
+
         return $inscription;
         
     }

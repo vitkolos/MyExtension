@@ -207,7 +207,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         else
             return  !($scope.inscription.tel1 || $scope.inscription.tel2); // au moins téléphone fixe ou portable
     };
-    console.log($scope);
 
     
     me.currentStage = 1;
@@ -255,7 +254,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.shortName = propositionTitle.replace("-", "_").replace(" ", "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
-            //$scope.inscription.mailSecretariat = me.content.
+            $scope.inscription.contact = me.content.fields.contact;
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
