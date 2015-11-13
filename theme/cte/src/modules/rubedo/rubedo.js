@@ -188,6 +188,9 @@
         if ($scope.rubedo.fieldEditMode){
             $scope.rubedo.revertChanges();
         }
+        $scope.registerAllIncludeContentLoadedListener($scope, function() {
+        console.log("Finish page");
+    });
         RubedoPagesService.getPageByCurrentRoute().then(function(response){
             if (response.data.success){
                 var newPage=angular.copy(response.data.page);
