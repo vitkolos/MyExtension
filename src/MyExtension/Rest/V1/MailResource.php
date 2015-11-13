@@ -40,52 +40,12 @@ class MailResource extends AbstractResource
     /**
      * { @inheritdoc }
      */
-    function __construct()
-    {
-        parent::__construct();
-        $this
-            ->definition
-            ->setName('Mail')
-            ->setDescription('Send an email to contact')
-            ->editVerb('post', function (VerbDefinitionEntity &$entity) {
-                $entity
-                    ->setDescription('Send an email')
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('fields')
-                            ->setRequired()
-                            ->setMultivalued()
-                            ->setDescription('Fields to send')
-                            ->setFilter('string')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('from')
-                            ->setRequired()
-                            ->setDescription('Sender is required')
-                            ->setFilter('validate_email')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('to')
-                            ->setRequired()
-                            ->setDescription('Mail is required')
-                    )
-                   ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('template')
-                            ->setDescription('Template for email')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('subject')
-                            ->setRequired()
-                            ->setDescription('Subject is required')
-                            ->setFilter('string')
-                    );
-            });
-    }
-
+    public function __construct()
+        {
+            parent::__construct();
+            $this->define();
+        }
+ 
     /**
      * Post to contact
      *
@@ -111,10 +71,6 @@ class MailResource extends AbstractResource
         $mailerObject->setSubject($params['subject']);
         if ($params['template'] == null) $mailerObject->setBody($this->buildEmail($params['fields']), 'text/html', 'utf-8');
         else $mailerObject->setBody($this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']), 'text/html', 'utf-8');
-
-
-        
-        
         // Send e-mail
         $errors = [];
         if ($mailerService->sendMessage($mailerObject, $errors)) {
@@ -176,5 +132,55 @@ class MailResource extends AbstractResource
         return $emails;
     }
 
+    
+    
+    
+    /**
+     * Define post
+     *
+     * @param VerbDefinitionEntity $verbDef
+     */
+    protected function definePost(VerbDefinitionEntity &$verbDef)
+    {
+        $verbDef
+                    ->setDescription('Send an email')
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('fields')
+                            ->setRequired()
+                            ->setMultivalued()
+                            ->setDescription('Fields to send')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('from')
+                            ->setRequired()
+                            ->setDescription('Sender is required')
+                            ->setFilter('validate_email')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('to')
+                            ->setRequired()
+                            ->setDescription('Mail is required')
+                    )
+                   ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('template')
+                            ->setDescription('Template for email')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('subject')
+                            ->setRequired()
+                            ->setDescription('Subject is required')
+                            ->setFilter('string')
+                    );
+    }    
+    
+    
+    
+    
 
 }
