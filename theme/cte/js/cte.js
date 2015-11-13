@@ -38,7 +38,6 @@ angular.module('rubedo').filter('ligneNonVide', function () {
   });
 
 /* Directives */
-angular.module('rubedo').
 angular.module('rubedo').directive('ngInclude', function() {
     function recursivelyRegister(scopeToRegister, scopeToRegisterWith) {
         if(!scopeToRegisterWith.hasOwnProperty('includesLoading')) {
