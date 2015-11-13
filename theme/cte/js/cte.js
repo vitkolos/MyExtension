@@ -37,10 +37,18 @@ angular.module('rubedo').filter('ligneNonVide', function () {
      };
   });
 angular.module('rubedo').run( function ($rootScope, $location) {
-    $rootScope.$on('$includeContentLoaded', function() {
-    $("#ados").show();
-	console.log('success!');
+    $rootScope.$on('$includeContentLoaded', function(event) {
+	renderedcount++;
+	if (renderedcount == itemmax) {
+	    // Crappy hack!
+	    $("#ados").show();
+	    console.log('success!');
+	}
+    console.log('another include was loaded', event.targetScope);
 });
+    $rootScope.$on('$includeContentLoaded', function() {
+	
+    });
  
     
 });
