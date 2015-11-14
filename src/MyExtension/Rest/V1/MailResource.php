@@ -102,6 +102,7 @@ class MailResource extends AbstractResource
         $inscription=$params['inscription'];
         $traductions = $params['traductions']);
         $mailSecretariat = $inscription['mailSecretariat'];
+        $mailInscrit = $inscription['email'];
 
 
 
