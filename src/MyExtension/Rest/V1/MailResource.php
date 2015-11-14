@@ -99,7 +99,7 @@ class MailResource extends AbstractResource
 
         $mailerObject = $mailerService->getNewMessage();
 
-        $inscription=$params['inscription'];
+        /*$inscription=$params['inscription'];
         $traductions = $params['traductions']);
         $mailSecretariat = $inscription['mailSecretariat'];
         $mailInscrit = $inscription['email'];
@@ -116,8 +116,8 @@ class MailResource extends AbstractResource
         if ($params['template'] == null) $mailerObject->setBody($this->buildEmail($params['fields']), 'text/html', 'utf-8');
         else $mailerObject->setBody($this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']), 'text/html', 'utf-8');
         // Send e-mail
-        $errors = [];
-        if ($mailerService->sendMessage($mailerObject, $errors)) {
+        $errors = [];*/
+        if(true){//if ($mailerService->sendMessage($mailerObject, $errors)) {
             return [
                 'success' => true,
             ];
