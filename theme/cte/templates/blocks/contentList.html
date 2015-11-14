@@ -54,6 +54,10 @@
                             <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
                                 <button><span class="glyphicon glyphicon-plus"></span>Edit</button>
                             </a>
+                            <h4 class="list-item-title date-lieu capital"><span>
+                                    {{content.fields.positionName}}
+                                <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field></span>
+                            </h4>
                         </div>
                     </a> 
 
