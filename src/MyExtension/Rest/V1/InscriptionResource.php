@@ -103,23 +103,15 @@ protected function sendInscriptionMail($inscription,$traduction){
     
     /*nombre de personnes inscrites*/
     $nbInscrits = 1;
-    if($inscription['prenomPers2'] && $inscription['prenomPers2']!="")  $nbInscrits = 2;
+    if($inscription['prenomPers2']!="" && $inscription['prenomPers2'])  $nbInscrits = 2;
     
     $body="<p>Bonjour".$inscription['prenom'] ."</p>";
-    
-    
-    
-    
-    
-    
-    
-
+ 
         //MAILER SERVICE
         $mailerService = Manager::getService('Mailer');
         $mailerObject = $mailerService->getNewMessage();
 
-        $destinataires=;
-        $from =;
+
  
         $mailerObject->setTo("nicolas.rhone@gmail.com");
         $mailerObject->setReplyTo($inscription['prenom']." ". $inscription['nom']=>$inscription['email']);

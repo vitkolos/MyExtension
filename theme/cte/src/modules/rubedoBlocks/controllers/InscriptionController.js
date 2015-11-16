@@ -79,7 +79,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     me.getQuestions();
                 }
                                 // questions complémentaires ?
-                if ( me.form.jai_connu || me.form.situation_conjugale) {me.isComplement = true;}
+                if ( me.form.jai_connu) {me.isComplement = true;}
                 if ( (me.form.fields.transport) && (me.form.fields.transport.transport) &&((me.form.fields.transport.transport).length>1) && (typeof me.form.fields.transport.transport != 'string') ) {me.isTransport = true;}
                 if ( (me.form.fields.logement) && (me.form.fields.logement.logement) &&((me.form.fields.logement.logement).length>1 ) && ( typeof me.form.fields.logement.logement !='string') ) {me.isLogement = true;}
                 if (((me.content.fields.paimentOption)&&(me.content.fields.paimentOption.paimentOption) && ((me.content.fields.paimentOption.paimentOption).length>0)) || me.content.fields.accompte>0) {me.isPaiement = true}
