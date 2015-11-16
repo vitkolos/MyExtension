@@ -39,8 +39,8 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 angular.module('rubedoBlocks').filter('dateRange', function () {
     return function(startDate, endDate){
 	var formattedDate = "";
-	var start = Date.parse(startDate);
-	var end = Date.parse(endDate);
+	var start = new Date(startDate);
+	var end = new Date(endDate);
         var month = start.getMonth();
 	
         return month;
