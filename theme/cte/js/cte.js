@@ -40,7 +40,8 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
 angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     return function(startDate, endDate, rangeFormat){
-	var formatOfDate = rangeFormat || 'long';
+	var format = rangeFormat || 'long';
+	var formatOfDate =  'd MMM yyyy';
 	var start = new Date(startDate*1000);
 	var end = new Date(endDate*1000);
 	if (start.getFullYear() != end.getFullYear()) {
@@ -52,7 +53,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	else  {
 	    formatOfDate = 'd';
 	}
-	if (formatOfDate == 'short') {
+	if (format == 'short') {
 	    formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
 	}
 	else {
