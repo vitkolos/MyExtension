@@ -174,24 +174,16 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
     }]);
 angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
     var serviceInstance={};
-    serviceInstance.inscrire=function(inscription,workspace){
+    serviceInstance.inscrire=function(inscription,workspace,traductions){
         return($http({
                 url:"/api/v1/inscription",
                 method:"POST",
                 data:{
                     inscription:inscription,
-                    workspace: workspace
+                    workspace: workspace,
+		    traductions: traductions
                 }
             }));
-    };
-    serviceInstance.sendInscriptionMails=function(inscription, traductions){
-	var params = {
-	    inscription: inscription,
-	    traductions: traductions
-	};
-	return ($http.get("api/v1/mail", {
-	    params: params
-	}));
     };
     return serviceInstance;
 }]);

@@ -257,7 +257,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.processForm=true;
            $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
-            $scope.inscription.shortName = propositionTitle.replace("-", "_").replace(" ", "_");
+            $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
             $scope.inscription.contact = me.content.fields.contact;
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
@@ -283,7 +283,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     }
                     
             }
-            InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
+            InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace, $scope.rubedo.translations).then(function(response){
                 if (response.data.success) {
                     var payload = {
                             nom:$scope.inscription.name,

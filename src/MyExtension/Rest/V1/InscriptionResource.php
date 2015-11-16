@@ -34,7 +34,12 @@ class InscriptionResource extends AbstractResource
                             ->setRequired()
                             ->setDescription('Workspace')
                     )
-                    ->addOutputFilter(
+                     ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('traductions')
+                            ->setDescription('Traductions')
+                    )
+                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Numéro d\'inscription')
                             ->setKey('id')
@@ -67,7 +72,7 @@ class InscriptionResource extends AbstractResource
         $payload = json_encode( array( "content" => $nbInscriptionContent ) );
         $result = $this->callAPI("PATCH", $token, $payload, $id);
         
-        //CREATE INSCRIPTION
+        //PREPARE INSCRIPTION
         $inscriptionForm=[];
         $inscriptionForm['fields'] =  $params['inscription'];
         $inscriptionForm['fields']['text'] = "". $this->getPays()."_".(string)$inscriptionNumber;
@@ -80,9 +85,12 @@ class InscriptionResource extends AbstractResource
             if($mailSecretariat['success']) {$inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['content']['fields']['email'];}
             else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";
         }
+        
+        //CREATE INSCRIPTION IN DATABASE
         $payload2 = json_encode( array( "content" => $inscriptionForm ) );
-    
-       $resultInscription = $this->callAPI("POST", $token, $payload2);
+        $resultInscription = $this->callAPI("POST", $token, $payload2);
+        
+        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $params['traductions']);}
        
        
     
@@ -91,6 +99,51 @@ class InscriptionResource extends AbstractResource
    }
    
    
+protected function sendInscriptionMail($inscription,$traduction){
+    
+    /*nombre de personnes inscrites*/
+    $nbInscrits = 1;
+    if($inscription['prenomPers2'] && $inscription['prenomPers2']!="")  $nbInscrits = 2;
+    
+    $body="<p>Bonjour".$inscription['prenom'] ."</p>";
+    
+    
+    
+    
+    
+    
+    
+
+        //MAILER SERVICE
+        $mailerService = Manager::getService('Mailer');
+        $mailerObject = $mailerService->getNewMessage();
+
+        $destinataires=;
+        $from =;
+ 
+        $mailerObject->setTo("nicolas.rhone@gmail.com");
+        $mailerObject->setReplyTo($inscription['prenom']." ". $inscription['nom']=>$inscription['email']);
+        $mailerObject->setFrom($inscription['prenom']." ". $inscription['nom']=>$inscription['email']);
+        $mailerObject->setCharset('utf-8');
+        $mailerObject->setSubject("Inscription");
+        $mailerObject->setBody($body, 'text/html', 'utf-8');
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
    
 
     
@@ -98,6 +151,7 @@ class InscriptionResource extends AbstractResource
     {
         return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
     }
+    
     protected function processInscription($inscription) {
         //dates
         $inscription['birthdate'] = strtotime($inscription['birthdate']);
@@ -121,6 +175,10 @@ class InscriptionResource extends AbstractResource
             foreach ($inscription['enfants'] as $index => $enfant){
                 $inscription['enfants'][$index] = $enfant[prenom]. " ".strtoupper($enfant[nom])." ; ".$enfant['birthdateF']." ; ".$enfant['sexe'];
             }
+        }
+        if($inscription['prenomPers2']&&$inscription['prenomPers2']!="") {
+            $inscription['sexePers2'] = "F";
+            $inscription['sexe'] = "H";
         }
         
 
