@@ -148,6 +148,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.propDate = "passee";
                         }
                         else me.propDate="ouverte";
+                        
                     }
 
                     //Albums photos
