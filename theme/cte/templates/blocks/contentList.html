@@ -35,30 +35,38 @@
                         </div>
                    </div>
                                       <!--DEFAUT-->
-                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}" ng-switch-default>
+                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}" >
                     
-                        <div class="media-body">
-                            <h4 class="list-item-title capital"><span>
-                                    {{content.fields.text}}
-                                <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field></span>
-                            </h4>
+                    <div class="media-body" ng-switch-default>
+                        <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}" >
+                            <h4 class="list-item-title capital"><span>{{content.fields.text}}</span></h4>
+                        </a>
+                        <h4 class="list-item-title capital" ng-if="fieldEditMode">
+                            <span><rubedo-field  field="{{content.type.title}}"></rubedo-field></span>
+                        </h4>
+                        <a ng-href="{{ content.detailPageUrl }}">
                             <div class="list-item-img">
                                 <img class="media-object pull-left" ng-if="content.fields.image"
-                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
-                                                     alt="{{ content.fields.text }}"/>       
+                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
+                                                 alt="{{ content.fields.text }}"/>       
                             </div>
-                                                 
-                            <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
-                                <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                            </p>
-                            <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                <button><span class="glyphicon glyphicon-plus"></span>Edit</button>
-                            </a>
-                            <h4 class="list-item-title date-lieu capital hidden-xs hidden-sm" ng-if="content.fields.positionName"><span>
+                        </a>
+                                      
+                        <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
+                            <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                        </p>
+                        <a ng-href="{{ content.detailPageUrl }}" >
+                            <h4 class="list-item-title date-lieu capital hidden-xs hidden-sm" ng-if="content.fields.positionName">
+                                <span>
                                     {{content.fields.positionName}} <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
-                                <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field></span>
+                                </span>
                             </h4>
-                        </div>
+                        </a>
+                        <a ng-if="fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                            <button><span class="glyphicon glyphicon-plus"></span>Edit</button>
+                        </a>
+                        
+                    </div>
                     </a> 
 
                 </div>
