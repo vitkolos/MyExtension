@@ -36,11 +36,14 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 		    
      };
   });
-angular.module('rubedoBlocks').filter('dateRange', function (date) {
+angular.module('rubedoBlocks').filter('dateRange', function () {
     return function(startDate, endDate){
 	var formattedDate = "";
+	var start = Date.parse(startDate);
+	var end = Date.parse(endDate);
+        var month = start.getMonth();
 	
-        return $filter('date')(startDate, 'MMM');
+        return month;
 
     }
   });
