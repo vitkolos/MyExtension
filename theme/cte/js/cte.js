@@ -52,7 +52,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	else  {
 	    formatOfDate = 'd';
 	}
-	if (formatOfDate = 'short') {
+	if (formatOfDate == 'short') {
 	    formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
 	}
 	else {
