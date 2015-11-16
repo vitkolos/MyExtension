@@ -42,7 +42,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     return function(startDate, endDate, rangeFormat){
 	var formatOfDate = rangeFormat || 'long';
 	var start = new Date(startDate*1000);
-	if(endDate) var end = new Date(endDate*1000);
+	var end = new Date(endDate*1000);
 	if (start.getFullYear() != end.getFullYear()) {
 	    formatOfDate = 'd MMM yyyy';
 	}
