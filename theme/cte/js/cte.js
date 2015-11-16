@@ -42,7 +42,7 @@ angular.module('rubedoBlocks').filter('dateRange', function () {
 	var formatOfDate = "";
 	var start = new Date(startDate);
 	var end = new Date(endDate);
-	console.log(start.getFullYear() + " "+end.getFullYear())
+	console.log(start.getFullYear() + " "+end.getFullYear());
 	// si année différente
 	if (start.getFullYear() != end.getFullYear()) {
 	    formatOfDate = 'd MMM yyyy';
