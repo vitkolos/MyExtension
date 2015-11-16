@@ -43,19 +43,22 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	var formatOfDate = shortRangeFormat || false;
 	var start = new Date(startDate);
 	var end = new Date(endDate);
-	console.log(start.getFullYear() + " "+end.getFullYear());
-	// si année différente
-	if (start.getFullYear() != end.getFullYear()) {
-	    formatOfDate = 'd MMM yyyy';
+	    if (start.getFullYear() != end.getFullYear()) {
+		formatOfDate = 'd MMM yyyy';
+	    }
+	    else if (start.getMonth() != end.getMonth()) {
+		formatOfDate = 'd MMM';
+	    }
+	    else  {
+		formatOfDate = 'd';
+	    }
+	if (shortRangeFormat) {
+	    formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
 	}
-	else if (start.getMonth() != end.getMonth()) {
-	    formatOfDate = 'd MMM';
+	else {
+	    formattedDate= "du "+$filter('date')(start,formatOfDate) + " au "+$filter('date')(end,'d MMM yyyy');	    
 	}
-	else  {
-	    formatOfDate = 'd';
-	}	
-        return $filter('date')(start,'d MMM yyyy');
-
+	return formattedDate;
     }
   });
 
