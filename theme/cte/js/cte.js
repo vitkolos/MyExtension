@@ -36,14 +36,25 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 		    
      };
   });
+/*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
 angular.module('rubedoBlocks').filter('dateRange', function () {
     return function(startDate, endDate){
-	var formattedDate = "";
+	var formatOfDate = "";
 	var start = new Date(startDate);
 	var end = new Date(endDate);
-        var month = start.getMonth();
-	
-        return month;
+	if (!shortDate) {
+	    // si année différente
+	    if (start.getFullYear() != end.getFullYear()) {
+		formatOfDate = 'd MMM yyyy';
+	    }
+	    else if (start.getMonth() != end.getMonth()) {
+		formatOfDate = 'd MMM';
+	    }
+	    else  {
+		formatOfDate = 'd';
+	    }	
+	}
+        return formatOfDate;
 
     }
   });
