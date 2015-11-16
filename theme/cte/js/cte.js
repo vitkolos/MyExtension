@@ -36,6 +36,14 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 		    
      };
   });
+angular.module('rubedoBlocks').filter('dateRange', function (date) {
+    return function(startDate, endDate){
+	var formattedDate = "";
+	
+        return $filter('date')(startDate, 'MMM');
+
+    }
+  });
 
 
 
