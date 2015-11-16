@@ -55,7 +55,7 @@
                                 <button><span class="glyphicon glyphicon-plus"></span>Edit</button>
                             </a>
                             <h4 class="list-item-title date-lieu capital hidden-xs hidden-sm" ng-if="content.fields.positionName"><span>
-                                    {{content.fields.positionName}} <span ng-if="content.fields.startDate"> - {{content.fields.startDate|dateRange:content.fields.endDate}}</span>
+                                    {{content.fields.positionName}} - {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</span>
                                 <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field></span>
                             </h4>
                         </div>

@@ -39,20 +39,20 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 //angular.module('rubedoBlocks').requires.push('date');
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
 angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
-    return function(startDate, endDate, shortRangeFormat){
-	var formatOfDate = shortRangeFormat || false;
+    return function(startDate, endDate, rangeFormat){
+	var formatOfDate = rangeFormat || 'long';
 	var start = new Date(startDate*1000);
-	var end = new Date(endDate*1000);
-	    if (start.getFullYear() != end.getFullYear()) {
-		formatOfDate = 'd MMM yyyy';
-	    }
-	    else if (start.getMonth() != end.getMonth()) {
-		formatOfDate = 'd MMM';
-	    }
-	    else  {
-		formatOfDate = 'd';
-	    }
-	if (shortRangeFormat) {
+	if(endDate) var end = new Date(endDate*1000);
+	if (start.getFullYear() != end.getFullYear()) {
+	    formatOfDate = 'd MMM yyyy';
+	}
+	else if (start.getMonth() != end.getMonth()) {
+	    formatOfDate = 'd MMM';
+	}
+	else  {
+	    formatOfDate = 'd';
+	}
+	if (formatOfDate = 'short') {
 	    formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
 	}
 	else {
