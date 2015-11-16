@@ -26,7 +26,7 @@
 					</h1>
 				</div>
 				<p>{{contentDetailCtrl.content.fields.positionName}}</p>
-				<p>{{contentDetailCtrl.content.fields.dateDebut* 1000 | dateRange:contentDetailCtrl.content.fields.dateFin* 1000 }}</p>
+				<p>{{contentDetailCtrl.content.fields.dateDebut | dateRange:contentDetailCtrl.content.fields.dateFin:true }}</p>
 				<a href="#infos_pratiques" class="button rouge">Informations pratiques</a>
 				<a href="#inscription" class="button rouge" ng-if="contentDetailCtrl.isInscription">S'inscrire</a>
 		

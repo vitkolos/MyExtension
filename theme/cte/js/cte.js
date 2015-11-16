@@ -41,8 +41,8 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     return function(startDate, endDate, shortRangeFormat){
 	var formatOfDate = shortRangeFormat || false;
-	var start = new Date(startDate);
-	var end = new Date(endDate);
+	var start = new Date(startDate*1000);
+	var end = new Date(endDate*1000);
 	    if (start.getFullYear() != end.getFullYear()) {
 		formatOfDate = 'd MMM yyyy';
 	    }
