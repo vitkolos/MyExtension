@@ -3,7 +3,7 @@
     <div class="col-xs-12 text-left">
         <p ng-if="formCtrl.form.entretien" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Entretien")}}</p>
         <p ng-if="formCtrl.form.motivation && !formCtrl.getFieldByName('formulaire_pdf')" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Motivation")}}</p>
-        <p ng-if="!formCtrl.form.motivation && formCtrl.getFieldByName('formulaire_pdf')" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Formulaire")}} :</p>
+        <p ng-if="!formCtrl.form.motivation && formCtrl.getFieldByName('formulaire_pdf')&&(formCtrl.form.fields.formulaire_pdf!='') " class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Formulaire")}} :</p>
         <p ng-if="formCtrl.form.motivation && formCtrl.getFieldByName('formulaire_pdf')" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.FormulaireEtMotiv")}} :</p>
         <rubedo-field  field =  "{{formCtrl.getFieldByName('formulaire_pdf')}}" ng-if="formCtrl.form.motivation"></rubedo-field><!--Formulaire-->
     </div>

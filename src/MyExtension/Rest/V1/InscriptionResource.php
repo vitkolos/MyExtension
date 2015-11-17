@@ -90,7 +90,7 @@ class InscriptionResource extends AbstractResource
         $payload2 = json_encode( array( "content" => $inscriptionForm ) );
         $resultInscription = $this->callAPI("POST", $token, $payload2);
         
-        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
+       if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        
        
     
@@ -102,23 +102,25 @@ class InscriptionResource extends AbstractResource
 protected function sendInscriptionMail($inscription,$lang){
    $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/assets/mails/'.$lang.'.json'),true);
     var_dump($trad);
-    /*tutoyement pour ados ou jeunes ou personnes connues*/
-    $tutoyer = 0; $tuOuVous="vous";
+    //tutoyement pour ados ou jeunes ou personnes connues
+    $tutoyer = 0;
+    $tuOuVous="vous";
     if($inscription['public_type'] == 'adolescent' || $inscription['public_type'] == 'jeune-adulte' || $inscription['personneConnue']) {
-        $tutoyer = 1; $tuOuVous="tu";
+        $tutoyer = 1;
+        $tuOuVous="tu";
     }
-    /*nombre de personnes inscrites*/
+    //nombre de personnes inscrites
     $nbInscrits = 1;
-    /*nom pour le mail aux inscrits*/
-    if($inscription['prenomPers2']!="" && $inscription['prenomPers2'])  {
+    //nom pour le mail aux inscrits
+    if($inscription['prenomPers2'] && $inscription['prenomPers2']!="" )  {
         $nbInscrits = 2;
-        if(!$inscription['nomPers2'] || $inscription['nomPers2']="" || $inscription['nomPers2'] == $inscription['name'])
-            $nomClient = $inscription['surname'] +" "+ $trad["et"] + " " +$inscription['prenomPers2'] + " " + $inscription['name'];
+        if(!$inscription['nomPers2'] || $inscription['nomPers2']=="" || $inscription['nomPers2'] == $inscription['name'])
+            $nomClient = $inscription['surname'] . " " . $trad["et"] . " " . $inscription['prenomPers2'] . " " . $inscription['name'];
         else
-            $nomClient = $inscription['surname'] +" " + $inscription['name']+ $trad["et"] + " " +$inscription['prenomPers2'] + " " + $inscription['nomPers2'];    
+            $nomClient = $inscription['surname'] . " " . $inscription['name'] . " " . $trad["et"] . " " . $inscription['prenomPers2'] . " " . $inscription['nomPers2'];    
     }
     else {
-        $nomClient = $inscription['surname'] +" "+ $inscription['name'];
+        $nomClient = $inscription['surname'] . " ".  $inscription['name'];
     }    
     $alternative_a_Nous_avons_bien_recu = $inscription['mailInscription'];
     $alternative_a_Nous_avons_bien_recu_Serviteur = $inscription['mailInscriptionService'];
@@ -126,14 +128,15 @@ protected function sendInscriptionMail($inscription,$lang){
     $messageClient="";
     $messageSecretariat="";
     
-    /*SALUTATION*/
+    //SALUTATION
     if($tutoyer || $inscription['personneConnue']) {
-        $messageClient.="<p>".$trad["ccn_mail_1_tu"]." ".$inscription['surname'] ;// Bonjour Anne 
+        $messageClient .="<p>".$trad["ccn_mail_1_tu"]." ".$inscription['surname'] ;// Bonjour Anne 
         if($nbInscrits==2) $messageClient.= " " . $trad["et"] . " " . $inscription['prenomPers2']; //et Patrick
-    else $messageClient = "<p>".$trad["ccn_mail_1_vous"];//Madame, monsieur pour vouvoyement
+    }
+    else $messageClient .= "<p>".$trad["ccn_mail_1_vous"];//Madame, monsieur pour vouvoyement
     $messageClient.= ",<br/><br/>";
     
-     #suivi = "Ton numéro d'inscription est " + idInscription + "<br><br>"
+     //suivi = "Ton numéro d'inscription est " + idInscription + "<br><br>"
     $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . "<br/><br/>";
     
     
@@ -159,7 +162,7 @@ protected function sendInscriptionMail($inscription,$lang){
         $mailerObject->setSubject("Inscription");
         $mailerObject->setBody($messageClient, 'text/html', 'utf-8');
         $errors = [];
-        $mailerService->sendMessage($mailerObject, $errors);
+        //$mailerService->sendMessage($mailerObject, $errors);
 }
 
 
