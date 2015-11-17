@@ -147,8 +147,8 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     
     if(!$inscription['motivation'] && $inscription['formulaire_pdf']) {
-        //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire (consultable à l'adresse $formulaire), le remplir à la main et l'envoyer à l'adresse suivante" 
-    
+        //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire ( formulaire ), le remplir à la main et l'envoyer à l'adresse suivante" 
+        $messageClient.= $trad["ccn_mail_6_".$tuOuVous] . "" .$trad["ccn_mail_6_1_".$tuOuVous] ;
     }
 
         
