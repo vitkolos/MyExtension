@@ -8,7 +8,7 @@
         <div class="col-sm-4"><label for="prenom" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}*</label></div>
         <div class="col-sm-8"><input type="text" id="prenom" ng-model="inscription.surname" name="surname" required></div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="dateNaiss" class="label_style">{{rubedo.translate("Block.Inscription.DateNaiss")}}*</label></div>
         <div class="col-sm-8"><!--<input type="text" id="dateNaiss" ng-model="inscription.birthdate" name="birthdate" required ng-pattern="/\d{2}/\d{2}/\d{4}/" placeholder='{{rubedo.translate("Block.Inscription.DateFormat")}}'>-->
             <div class="dropdown">
@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>    
-    <div class="row">
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="sexe" class="label_style">{{rubedo.translate("Block.Inscription.Sexe")}}*</label></div>
         <div class="col-sm-8">
             <input type="radio"  name="sexe" id="H" value="H" ng-model="inscription.sexe.sexe" required>
@@ -31,33 +31,33 @@
                         <label for="F" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.F")}}</label>
         </div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="nationalite" class="label_style">{{rubedo.translate("Block.Inscription.Nationalite")}}</label></div>
         <div class="col-sm-8"><input type="text" id="nationalite" ng-model="inscription.nationality" name="nationality"></div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="adresse" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
         <div class="col-sm-8"><textarea rows="3" id="adresse" ng-model="inscription.address" name="address" placeholder="" required></textarea></div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="cp" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
         <div class="col-sm-8"><input type="text" id="cp" ng-model="inscription.cp" name="cp"></div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="city" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
         <div class="col-sm-8"><input type="text" id="city" ng-model="inscription.city" name="city" required></div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="pays" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
         <div class="col-sm-8"><input type="text" id="pays" ng-model="inscription.country" name="country"></div>
     </div>
     <!--Si ados, deemander classe-->
-    <div class="row" ng-if="inscription.public_type == 'adolescent' ">
+    <div class="row" ng-if="inscription.public_type == 'adolescent' && !personneConnue">
         <div class="col-sm-4"><label for="classeEtudes" class="label_style">{{rubedo.translate("Block.Inscription.Classe")}}</label></div>
         <div class="col-sm-8"><input type="text" id="classeEtudes" ng-model="inscription.classeEtudes" name="classeEtudes"></div>
     </div>
     <!--Si jeunes, deemander situation-->
-   <div class="row" ng-if="inscription.public_type == 'jeune-adulte' ">
+   <div class="row" ng-if="inscription.public_type == 'jeune-adulte' && !personneConnue">
         <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.Situation")}}</label></div>
         <div class="col-sm-8">
             <div class="col-xs-12">
@@ -76,7 +76,7 @@
         </div>
     </div>
     <!--Si adulte, deemander profession-->
-    <div class="row" ng-if="inscription.public_type == 'adulte' ">
+    <div class="row" ng-if="inscription.public_type == 'adulte' && !personneConnue">
         <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
         <div class="col-sm-8"><input type="text" id="profession" ng-model="inscription.profession" name="profession"></div>
     </div>
@@ -92,27 +92,27 @@
             <p ng-if="mailError" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
         </div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="tel1" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
         <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="inscription.tel1" placeholder="+33/x xx xx xx xx"  ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s?){8}/" ng-required="isTelephoneRequired()"></div>
     </div>    
-    <div class="row">
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="tel2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
         <div class="col-sm-8"><input type="text" id="tel2" name="tel2" placeholder="+33/x xx xx xx xx" ng-model="inscription.tel2" ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s?){8}/" ng-required="isTelephoneRequired()">
             <p ng-if="inscription.public_type != 'adolescent'" ng-class=" {'txt-red' : isTelephoneRequired()}" class="infos_validation">** {{rubedo.translate("Block.Inscription.Telephone.Condition")}}</p>
         </div>
     </div>
-    <div class="row" ng-if="inscription.public_type == 'adolescent' ">
+    <div class="row" ng-if="inscription.public_type == 'adolescent' && !personneConnue">
         <div class="col-sm-4"><label for="tel2Pers2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable.Parents")}}**</label></div>
         <div class="col-sm-8"><input type="text" id="tel2Pers2" name="tel2Pers2" placeholder="+33/x xx xx xx xx" ng-model="inscription.tel2Pers2" ng-pattern="/(0|\+33|0033)\/?[1-9]\s?([0-9]\s?){8}/" ng-required="isTelephoneRequired()">
             <p class="infos_validation" ng-class=" {'txt-red' : isTelephoneRequired()}">** {{rubedo.translate("Block.Inscription.Telephone.Condition.Ados")}}</p>
         </div>
     </div>
-    <div class="row" ng-if="inscription.public_type == 'adolescent' ">
+    <div class="row" ng-if="inscription.public_type == 'adolescent' && !personneConnue ">
         <div class="col-sm-4"><label for="emailPers2" class="label_style">{{rubedo.translate("Block.Inscription.Email.Parent")}}</label></div>
         <div class="col-sm-8"><input type="email" id="emailPers2" name="emailPers2"  ng-model="inscription.emailPers2" placeholder="user@mydomain.com" required></div>
     </div>    
-    <div class="row" ng-if="inscription.public_type == 'adolescent' ">
+    <div class="row" ng-if="inscription.public_type == 'adolescent' && !personneConnue ">
         <div class="col-sm-4"><label for="emailPers2_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Parent.Verification")}}</label></div>
         <div class="col-sm-8">
             <input type="email" id="emailPers2_verif" name="emailPers2_verif" placeholder="user@mydomain.com" ng-model="inscription.emailPers2_verif" required>

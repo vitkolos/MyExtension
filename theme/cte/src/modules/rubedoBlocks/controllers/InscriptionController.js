@@ -57,6 +57,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (response.data.success){
                 me.form = response.data.content;
                 $scope.fieldEntity=angular.copy(me.form.fields);
+                $scope.personneConnue= me.form.fields.personneConnue; //vrai si formulaire pour personnes connues -> seulement nom, prénom et mail
 
                 //get fields infos
                 angular.forEach(me.form.type.fields, function(field){
@@ -254,12 +255,15 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         }
         else if (valide && step==6) {
             // validations préliminaires
-            $scope.processForm=true;
+            //$scope.processForm=true;
            $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
             $scope.inscription.contact = me.content.fields.contact;
+            $scope.inscription.personneConnue = me.form.fields.personneConnue;
+            $scope.inscription.mailInscription = me.content.fields.mailInscription;
+            $scope.inscription.mailInscriptionService = me.content.fields.mailInscriptionService;
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
