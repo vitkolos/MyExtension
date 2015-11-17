@@ -139,8 +139,19 @@ protected function sendInscriptionMail($inscription,$lang){
      //suivi = "Ton numéro d'inscription est " + idInscription + "<br><br>"
     $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . "<br/><br/>";
     
+    if($inscription['motivation'] && !$inscription['formulaire_pdf']) {
+        //Nous te rappelons que pour que ton inscription soit complète, tu dois envoyer une lettre de motivation à l'adresse suivante
+        if($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille' $inscription['public_type'] == 'fiances')
+            $messageClient .= $trad["ccn_mail_5_couple"] . "<br/><br/>";
+        else $messageClient .= $trad["ccn_mail_5_".$tuOuVous] . "<br/><br/>";
+    }
     
+    if(!$inscription['motivation'] && $inscription['formulaire_pdf']) {
+        //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire (consultable à l'adresse $formulaire), le remplir à la main et l'envoyer à l'adresse suivante" 
     
+    }
+
+        
     
     
     

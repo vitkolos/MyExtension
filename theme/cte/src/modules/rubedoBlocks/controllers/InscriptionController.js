@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','$timeout',function($scope,RubedoContentsService,InscriptionService,PaymentService,$timeout){
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout',function($scope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout){
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
@@ -264,6 +264,17 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.personneConnue = me.form.fields.personneConnue;
             $scope.inscription.mailInscription = me.content.fields.mailInscription;
             $scope.inscription.mailInscriptionService = me.content.fields.mailInscriptionService;
+            $scope.inscription.entretien = me.form.entretien;
+            $scope.inscription.motivation = me.form.motivation;
+            if (me.form.fields.formulaire_pdf && me.form.fields.formulaire_pdf!="") {
+                RubedoMediaService.getMediaById(me.form.fields.formulaire_pdf).then(
+                    function(response){
+                        if (response.data.success){
+                            $scope.inscription.formulaire_pdf=response.data.media;
+                        }
+                    }
+                );
+            }
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
