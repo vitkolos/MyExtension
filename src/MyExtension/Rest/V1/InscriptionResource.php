@@ -131,7 +131,14 @@ protected function sendInscriptionMail($inscription,$lang){
     
     $messageClient="";
     $messageSecretariat="";
-    
+        /**************SUJET CLIENT*****************/
+    $sujetClient = "";
+    /*Si inscriptions ouvertes*/
+    if($inscription['etat'] !='liste-attente' && $inscription['etat'] !='preinscrit') {
+        if($inscription['serviteur']) $sujetClient.= $trad["ccn_mail_sujet2b_serviteur"] . " - " . $inscription['propositionTitre'] ;
+        else $sujetClient.= $trad["ccn_mail_sujet2b"] . " - " . $inscription['propositionTitre'];
+    }
+    /**************MESSAGE CLIENT*****************/
     //SALUTATION
     if($tutoyer || $inscription['personneConnue']) {
         $messageClient .="<p>".$trad["ccn_mail_1_tu"]." ".$inscription['surname'] ;// Bonjour Anne 
@@ -146,25 +153,25 @@ protected function sendInscriptionMail($inscription,$lang){
     if($inscription['motivation'] && !$inscription['formulaire_pdf']) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois envoyer une lettre de motivation à l'adresse suivante
         if($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille' || $inscription['public_type'] == 'fiances')
-            $messageClient .= $trad["ccn_mail_5_couple"] . "<br/><br/>";
-        else $messageClient .= $trad["ccn_mail_5_".$tuOuVous] . "<br/><br/>";
+            $messageClient .= $trad["ccn_mail_5_couple"] . " :<br/><br/>";
+        else $messageClient .= $trad["ccn_mail_5_".$tuOuVous] . " :<br/><br/>";
     }
     
     if(!$inscription['motivation'] && $inscription['formulaire_pdf']) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire ( formulaire ), le remplir à la main et l'envoyer à l'adresse suivante" 
         $messageClient.= $trad["ccn_mail_6_".$tuOuVous]
                 . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
-                . $trad["ccn_mail_6_1_".$tuOuVous] . "<br/><br/>" ;
+                . $trad["ccn_mail_6_1_".$tuOuVous] . " :<br/><br/>" ;
     }
     if($inscription['motivation'] && $inscription['formulaire_pdf']) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire (formulaire), le remplir à la main et l'envoyer, ainsi qu'une lettre de motivation à l'adresse suivante"
         if($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille' || $inscription['public_type'] == 'fiances')
             $messageClient.= $trad["ccn_mail_6_vous"]
                 . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
-                . $trad["ccn_mail_7_1_couple"] . "<br/><br/>" ;
+                . $trad["ccn_mail_7_1_couple"] . " :<br/><br/>" ;
         else $messageClient.= $trad["ccn_mail_6_".$tuOuVous]
                     . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
-                    . $trad["ccn_mail_7_1_".$tuOuVous] . "<br/><br/>" ;
+                    . $trad["ccn_mail_7_1_".$tuOuVous] . " :<br/><br/>" ;
     }
     if($inscription['motivation'] || $inscription['formulaire_pdf']) {
         /*adresse du contact*/
@@ -180,8 +187,9 @@ protected function sendInscriptionMail($inscription,$lang){
     
     
     
-    
-    
+/**************ADRESSE PAIEMENT*****************/    
+    $adressePaiement = $inscription['contact']['prenom'] . " <b>" . $inscription['contact']['nom'] . "</b> - ";
+        $messageClient.= $inscription['contact']['position']['address'] . "<br/><br/>";
     
     
  
@@ -198,7 +206,7 @@ protected function sendInscriptionMail($inscription,$lang){
         $mailerObject->setSubject("Inscription");
         $mailerObject->setBody($messageClient, 'text/html', 'utf-8');
         $errors = [];
-        $mailerService->sendMessage($mailerObject, $errors);
+        //$mailerService->sendMessage($mailerObject, $errors);
 }
 
 
