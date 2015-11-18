@@ -234,7 +234,7 @@ protected function sendInscriptionMail($inscription,$lang){
         $mailerObject->setSubject("Inscription");
         $mailerObject->setBody($messageClient, 'text/html', 'utf-8');
         $errors = [];
-        //$mailerService->sendMessage($mailerObject, $errors);
+        $mailerService->sendMessage($mailerObject, $errors);
 }
 
 
