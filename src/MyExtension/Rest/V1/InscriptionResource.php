@@ -82,8 +82,12 @@ class InscriptionResource extends AbstractResource
                 //GET SECRETARIAT
         if($inscriptionForm['fields']['contact']){
             $mailSecretariat = $this->callAPI("GET", $token, $inscriptionForm['fields']['contact']);
-            if($mailSecretariat['success']) {$inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['content']['fields']['email'];}
+            if($mailSecretariat['success']) {
+                $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['content']['fields']['email'];
+                $inscriptionForm['fields']['contact'] = $mailSecretariat['content']['fields'];
+            }
             else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";
+            
         }
         
         //CREATE INSCRIPTION IN DATABASE
@@ -148,10 +152,31 @@ protected function sendInscriptionMail($inscription,$lang){
     
     if(!$inscription['motivation'] && $inscription['formulaire_pdf']) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire ( formulaire ), le remplir à la main et l'envoyer à l'adresse suivante" 
-        $messageClient.= $trad["ccn_mail_6_".$tuOuVous] . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>" . $trad["ccn_mail_6_1_".$tuOuVous] ;
+        $messageClient.= $trad["ccn_mail_6_".$tuOuVous]
+                . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
+                . $trad["ccn_mail_6_1_".$tuOuVous] . "<br/><br/>" ;
     }
-
-        
+    if($inscription['motivation'] && $inscription['formulaire_pdf']) {
+        //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire (formulaire), le remplir à la main et l'envoyer, ainsi qu'une lettre de motivation à l'adresse suivante"
+        if($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille' || $inscription['public_type'] == 'fiances')
+            $messageClient.= $trad["ccn_mail_6_vous"]
+                . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
+                . $trad["ccn_mail_7_1_couple"] . "<br/><br/>" ;
+        else $messageClient.= $trad["ccn_mail_6_".$tuOuVous]
+                    . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
+                    . $trad["ccn_mail_7_1_".$tuOuVous] . "<br/><br/>" ;
+    }
+    if($inscription['motivation'] || $inscription['formulaire_pdf']) {
+        /*adresse du contact*/
+        $messageClient.= $inscription['contact']['prenom'] . " <b>" . $inscription['contact']['nom'] . "</b><br/><br/>";
+        $messageClient.= $inscription['contact']['position']['address'] . "<br/><br/>";
+    }
+    if($inscription['entretien']) {
+        /*Nous te rappelons que ton inscription sera confirmée suite à un entretien. Nous te contacterons bientôt pour fixer ensemble la date et le lieu de cet entretien.*/
+        $messageClient.= $trad["ccn_mail_8_".$tuOuVous] . "<br/><br/>";
+    }
+    /*Cordialement / à bientôt*/
+    $messageClient .= $trad["ccn_mail_9".$tuOuVous] . ",<br/><br/>";
     
     
     

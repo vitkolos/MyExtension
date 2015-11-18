@@ -1,5 +1,10 @@
 <div ng-controller="BgImageController as imageCtrl">
-        <header class="bg-image parallax section-header" style="background-image: url('{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{width:'1650px',mode:'boxed'})}}')">
+        <header class="bg-image parallax section-header" afkl-lazy-image-options='{"background": true}'
+                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1650px',mode:'boxed'})}} 1650w">
             <div class="container article" ng-if="blockConfig.pageTitle" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.pageTitle}">
         </header>
 </div>
+            
+            <div ng-controller="MediaFieldController as mediaFieldCtrl"  class="parallax section-header" afkl-lazy-image-options='{"background": true}'
+					>
+                                    </div>
