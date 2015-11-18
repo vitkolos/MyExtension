@@ -93,6 +93,13 @@ class InscriptionResource extends AbstractResource
         //CREATE INSCRIPTION IN DATABASE
         $payload2 = json_encode( array( "content" => $inscriptionForm ) );
         $resultInscription = $this->callAPI("POST", $token, $payload2);
+        //GET PAYEMENT INFOS
+        if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
+            $paymentMeansId = $this->getAccountId();
+            $paymentMeans = $this->callAPI("GET", $token, $paymentMeansId);
+            $inscriptionForm['fields']['paymentInfos'] =$paymentMeans['content']['fields'];
+        }
+        
         
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        
@@ -126,9 +133,7 @@ protected function sendInscriptionMail($inscription,$lang){
     else {
         $nomClient = $inscription['surname'] . " ".  $inscription['name'];
     }    
-    $alternative_a_Nous_avons_bien_recu = $inscription['mailInscription'];
-    $alternative_a_Nous_avons_bien_recu_Serviteur = $inscription['mailInscriptionService'];
-    
+
     $messageClient="";
     $messageSecretariat="";
         /**************SUJET CLIENT*****************/
@@ -146,6 +151,29 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     else $messageClient .= "<p>".$trad["ccn_mail_1_vous"];//Madame, monsieur pour vouvoyement
     $messageClient.= ",<br/><br/>";
+    //Nous avons bien reçu ton inscription
+    if($inscription['serviteur']) {
+        $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_20_".$tuOuVous];
+    }
+    else
+        $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_10_".$tuOuVous];
+    $messageClient.="<br/><br/>";
+
+    //INFOS POUR LE PAIEMENT SI PAIEMENT PROPOSE
+    if($inscription['montantAPayerMaintenant'] > 0) {
+        if($inscription['modePaiement'] == 'cheque') {
+            //Comme convenu, nous attendons ton cheque de 60€
+            $messageClient .= $trad["ccn_mail_23_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . ".";
+            //Ce chèque doit être à l'ordre de ${ordre_cheque} et envoyé à l'adresse suivante
+            $messageClient .= $trad["ccn_mail_24"] . $inscription['paymentInfos']['libelleCheque']. $trad["ccn_mail_24_1"] ."<br/>";
+            $messageClient .= $inscription['contact']['text'] . "<br/>" . $inscription['contact']['position']['address'] . "<br/><br/>";
+            if($inscription['paiement_maintenant'] != 'accompte') {
+                //Attention, ton inscription ne sera complète que quand nous aurons reçu ton chèque.
+                $messageClient .= $trad["ccn_mail_30_".$tuOuVous] . "<br/><br/>";
+            }
+            
+        }
+    }
     
      //suivi = "Ton numéro d'inscription est " + idInscription + "<br><br>"
     $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . "<br/><br/>";
@@ -299,6 +327,12 @@ protected function sendInscriptionMail($inscription,$lang){
                 return "FR"; break;
         }
      }
+    protected function getAccountId(){
+        switch($_SERVER['HTTP_HOST']) {
+            case "ccn.chemin-neuf.fr" : 
+                return "55473e9745205e1d3ef1864d"; break;
+        }
+     }
      
     protected function callAPI($method, $token, $data = false, $id=false) {
         $curl = curl_init();
@@ -339,7 +373,5 @@ protected function sendInscriptionMail($inscription,$lang){
     }
    
 }     
-
-
 
 

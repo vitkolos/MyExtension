@@ -295,6 +295,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         else{
                             $scope.inscription.statut = "attente-paiement-"+$scope.inscription.modePaiement;
                         }
+                        $scope.inscription.montantAPayerMaintenantAvecMonnaie = $scope.inscription.montantAPayerMaintenant + "€";
                     }
                     
             }
