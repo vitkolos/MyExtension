@@ -383,13 +383,15 @@ protected function sendInscriptionMail($inscription,$lang){
         $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) );
         if($inscription['birthdate']) {
-            $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], strtotime($inscription['dateDebut']))." ". $trad["ccn_ans"]);
+            $messageSecretariat .= $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"]);
+        }
+        if($inscription['sexe']) {
+            $sexe = ($inscription['sexe']['sexe'] =='H') ? $trad["ccn_form_homme"] : $trad["ccn_form_femme"];
+            $messageSecretariat .= $this->addLine($trad["ccn_label_sexe"], $sexe );
         }
     }
-    
+
     /*
-            if dateNaiss:
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_age_debut_proposition") + "</i></td><td width=67%><font size='3'>" +  self.getAge(dateNaiss,dateLieu.start) + " " + self.tr("ccn_ans") + "</font></td></tr>"
             if (sexe) :
                 if sexe == 'H' :
                     texteSexe = self.tr("ccn_form_homme")
