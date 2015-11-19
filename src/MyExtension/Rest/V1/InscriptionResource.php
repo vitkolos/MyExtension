@@ -143,6 +143,14 @@ protected function sendInscriptionMail($inscription,$lang){
         if($inscription['serviteur']) $sujetClient.= $trad["ccn_mail_sujet2b_serviteur"] . " - " . $inscription['propositionTitre'] ;
         else $sujetClient.= $trad["ccn_mail_sujet2b"] . " - " . $inscription['propositionTitre'];
     }
+    else if($inscription['etat'] =='liste-attente') {
+        if($inscription['serviteur']) $sujetClient.= $trad["ccn_mail_sujet3_serviteur"] . " - " . $inscription['propositionTitre'] ;
+        else $sujetClient.= $trad["ccn_mail_sujet3"] . " - " . $inscription['propositionTitre'];        
+    }
+    else if($inscription['etat'] =='preinscrit') {
+        if($inscription['serviteur']) $sujetClient.= $trad["ccn_mail_sujet9_serviteur"] . " - " . $inscription['propositionTitre'] ;
+        else $sujetClient.= $trad["ccn_mail_sujet9"] . " - " . $inscription['propositionTitre'];        
+    }
     /**************MESSAGE CLIENT*****************/
     //SALUTATION
     if($tutoyer || $inscription['personneConnue']) {
@@ -151,21 +159,44 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     else $messageClient .= "<p>".$trad["ccn_mail_1_vous"];//Madame, monsieur pour vouvoyement
     $messageClient.= ",<br/><br/>";
+    
+    //RECEPTION INSCRIPTION
     //Nous avons bien reçu ton inscription
     if($inscription['serviteur']) {
-        $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_20_".$tuOuVous];
+        if($inscription['etat'] =='liste-attente') {
+            $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_14_".$tuOuVous];
+            //Nous te contacterons si des places se libèrent.
+            $messageClient .= $trad["ccn_mail_15_".$tuOuVous];
+        }
+        if($inscription['etat'] =='preinscrit') {
+            $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_22_".$tuOuVous];
+            //Nous te contacterons pour te confirmer ton inscription.
+            $messageClient .= $trad["ccn_mail_21_".$tuOuVous];
+        }
+        else $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_20_".$tuOuVous];
     }
-    else
-        $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_10_".$tuOuVous];
+    else {
+        if($inscription['etat'] =='liste-attente') {
+            $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_14_".$tuOuVous];
+            //Nous te contacterons si des places se libèrent.
+            $messageClient .= $trad["ccn_mail_15_".$tuOuVous];
+        }
+        if($inscription['etat'] =='preinscrit') {
+            $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_22_".$tuOuVous];
+            //Nous te contacterons pour te confirmer ton inscription.
+            $messageClient .= $trad["ccn_mail_21_".$tuOuVous];
+        }
+        else $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_10_".$tuOuVous];
+    }
     $messageClient.="<br/><br/>";
 
     //INFOS POUR LE PAIEMENT SI PAIEMENT PROPOSE
     if($inscription['montantAPayerMaintenant'] > 0) {
         if($inscription['modePaiement'] == 'cheque') {
             //Comme convenu, nous attendons ton cheque de 60€
-            $messageClient .= $trad["ccn_mail_23_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . ".";
+            $messageClient .= $trad["ccn_mail_23_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . ". ";
             //Ce chèque doit être à l'ordre de ${ordre_cheque} et envoyé à l'adresse suivante
-            $messageClient .= $trad["ccn_mail_24"] . $inscription['paymentInfos']['libelleCheque']. $trad["ccn_mail_24_1"] ."<br/>";
+            $messageClient .= $trad["ccn_mail_24"] . "<i>" . $inscription['paymentInfos']['libelleCheque'] . "</i>" . $trad["ccn_mail_24_1"] ."<br/>";
             $messageClient .= $inscription['contact']['text'] . "<br/>" . $inscription['contact']['position']['address'] . "<br/><br/>";
             if($inscription['paiement_maintenant'] != 'accompte') {
                 //Attention, ton inscription ne sera complète que quand nous aurons reçu ton chèque.
@@ -173,45 +204,109 @@ protected function sendInscriptionMail($inscription,$lang){
             }
             
         }
+        
+        else if($inscription['modePaiement'] == 'virement') {
+            //Comme convenu, nous attendons ton virement de 60€
+            $messageClient .= $trad["ccn_mail_25_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . ". ";
+            //Tu dois te connecter à ton service bancaire en ligne ou te rendre à ta banque et effectuer un virement sur notre compte '${intitule}' dont les références sont '${compte}'.
+            $messageClient .= $trad["ccn_mail_26".$tuOuVous] . "<i>" . $inscription['paymentInfos']['titreCompteVir'] . "</i>" . $trad["ccn_mail_26_1"] ." : <br/>". $inscription['paymentInfos']['ribTexte'] . "<br/>";
+            /*Ajouter image RIB*/
+            $messageClient .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $inscription['paymentInfos']['rib'] . "&width=300px'></center><br/>" ;
+            if($inscription['paiement_maintenant'] != 'accompte') {
+                //Attention, ton inscription ne sera complète que quand nous aurons reçu ton virement.
+                $messageClient .= $trad["ccn_mail_31_".$tuOuVous] . "<br/><br/>";
+            }            
+        }
+        
+        else if($inscription['modePaiement'] == 'carte') {
+            //Nous allons vérifier le succès de ton paiement en ligne de 60€ et tu recevras un mail de confirmation de ton paiement.
+            $messageClient .= $trad["ccn_mail_27_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . $trad["ccn_mail_27_1".$tuOuVous] ."<br/><br/>";
+            if($inscription['paiement_maintenant'] != 'accompte') {
+                //Attention, ton inscription ne sera complète que quand ton paiement en ligne aura été confirmé.
+                $messageClient .= $trad["ccn_mail_32_".$tuOuVous] . "<br/><br/>";
+            }            
+        }
+        # si le montant total à payer n'a pas été défini, il a été mis à 0 et alors, on n'affiche pas la ligne suivante
+        if ($inscription['montantTotalAPayer'] && ($inscription['montantTotalAPayer'] >0) ) {
+            //Nous te rappelons que d'après le choix que tu as fais, ta participation totale est de 120€. 
+            $messageClient .= $trad["ccn_mail_28_".$tuOuVous] . $inscription['montantAPayerAvecMonnaie'] . ".<br/><br/>";
+        }
+            
     }
     
-     //suivi = "Ton numéro d'inscription est " + idInscription + "<br><br>"
-    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . "<br/><br/>";
+    // NUMERO D'INSCRIPTION POUR SUIVI
+     //"Ton numéro d'inscription est " + idInscription + "<br><br>"
+    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . ".<br/><br/>";
     
+    
+    // NOTES SUPPLEMENTAIRES (ENTRETIEN / LETTRES / PDF A REMPLIR)
     if($inscription['motivation'] && !$inscription['formulaire_pdf']) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois envoyer une lettre de motivation à l'adresse suivante
         if($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille' || $inscription['public_type'] == 'fiances')
-            $messageClient .= $trad["ccn_mail_5_couple"] . " :<br/><br/>";
-        else $messageClient .= $trad["ccn_mail_5_".$tuOuVous] . " :<br/><br/>";
+            $messageClient .= $trad["ccn_mail_5_couple"] . " :<br/>";
+        else $messageClient .= $trad["ccn_mail_5_".$tuOuVous] . " :<br/>";
     }
     
     if(!$inscription['motivation'] && $inscription['formulaire_pdf']) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire ( formulaire ), le remplir à la main et l'envoyer à l'adresse suivante" 
         $messageClient.= $trad["ccn_mail_6_".$tuOuVous]
                 . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
-                . $trad["ccn_mail_6_1_".$tuOuVous] . " :<br/><br/>" ;
+                . $trad["ccn_mail_6_1_".$tuOuVous] . " :<br/>" ;
     }
     if($inscription['motivation'] && $inscription['formulaire_pdf']) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire (formulaire), le remplir à la main et l'envoyer, ainsi qu'une lettre de motivation à l'adresse suivante"
         if($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille' || $inscription['public_type'] == 'fiances')
             $messageClient.= $trad["ccn_mail_6_vous"]
                 . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
-                . $trad["ccn_mail_7_1_couple"] . " :<br/><br/>" ;
+                . $trad["ccn_mail_7_1_couple"] . " :<br/>" ;
         else $messageClient.= $trad["ccn_mail_6_".$tuOuVous]
                     . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
-                    . $trad["ccn_mail_7_1_".$tuOuVous] . " :<br/><br/>" ;
+                    . $trad["ccn_mail_7_1_".$tuOuVous] . " :<br/>" ;
     }
     if($inscription['motivation'] || $inscription['formulaire_pdf']) {
         /*adresse du contact*/
         $messageClient.= $inscription['contact']['prenom'] . " <b>" . $inscription['contact']['nom'] . "</b><br/><br/>";
-        $messageClient.= $inscription['contact']['position']['address'] . "<br/><br/>";
+        $messageClient.= $inscription['contact']['position']['address'] . "<br/>";
     }
     if($inscription['entretien']) {
         /*Nous te rappelons que ton inscription sera confirmée suite à un entretien. Nous te contacterons bientôt pour fixer ensemble la date et le lieu de cet entretien.*/
         $messageClient.= $trad["ccn_mail_8_".$tuOuVous] . "<br/><br/>";
     }
+    
+    //RECAPITULATIF
+    //Voici le récapitulatif de ton inscription
+    $messageClient .= $trad["ccn_mail_8_".$tuOuVous] . "<br/><br/>";
+    $messageClient .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+    if($nbInscrits ==1)
+        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_personne_inscrite"] . "</i></td><td width=67%>" .  $nomClient . "</td></tr>";
+    else if($nbInscrits ==2)
+        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_personnes_inscrites"] . "</i></td><td width=67%>" .  $nomClient . "</td></tr>";
+    if($inscription['enfants_org']){
+        $nomsEnfants = "";
+        foreach ($inscription['enfants_org'] as $index => $enfant){
+            if($index>0) $nomsEnfants .= ", ";
+            $nomsEnfants .= $enfant['prenom'];
+        }
+        messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_enfants"] . "</i></td><td width=67%>" .  $nomsEnfants . "</td></tr>";
+    }
+    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_proposition"] . "</i></font></td><td width=67%>" .  $inscription['propositionTitre'] . "</td></tr>";
+    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_date"] . "</i></font></td><td width=67%>" .  $inscription['propositionDate'] . "</td></tr>";
+    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_lieu"] . "</i></font></td><td width=67%>" .  $inscription['propositionLieu'] . "</td></tr>";
+    $url="http://". $_SERVER['HTTP_HOST'] . $inscription['propositionUrl'];
+    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_page_web"] . "</i></font></td><td width=67%><a href='" . $url + "'>" . $url . "</a></td></tr>";
+    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_contact"] . "</i></font></td><td width=67%>" . $inscription['contact']['text'] . " - ". $inscription['contact']['prenom']." ".$inscription['contact']['nom'];
+    messageClient .= " - " . $inscription['contact']['telephone'] . " - " . $inscription['contact']['email'] ."</td></tr>";
+
+    messageClient .= "</table>"
+
+    
+    
+    
+    
+    
+    
     /*Cordialement / à bientôt*/
-    $messageClient .= $trad["ccn_mail_9".$tuOuVous] . ",<br/><br/>";
+    $messageClient .= $trad["ccn_mail_9_".$tuOuVous] . ",<br/><br/>";
     
     
     
@@ -234,7 +329,7 @@ protected function sendInscriptionMail($inscription,$lang){
         $mailerObject->setSubject("Inscription");
         $mailerObject->setBody($messageClient, 'text/html', 'utf-8');
         $errors = [];
-        $mailerService->sendMessage($mailerObject, $errors);
+        //$mailerService->sendMessage($mailerObject, $errors);
 }
 
 
@@ -279,8 +374,9 @@ protected function sendInscriptionMail($inscription,$lang){
             $inscription['situation'] .= " : ".$inscription['autreSituation'];
         }
         if($inscription['enfants']){
+            $inscription['enfants_org'] = $inscription['enfants'];
             foreach ($inscription['enfants'] as $index => $enfant){
-                $inscription['enfants'][$index] = $enfant[prenom]. " ".strtoupper($enfant[nom])." ; ".$enfant['birthdateF']." ; ".$enfant['sexe'];
+                $inscription['enfants'][$index] = $enfant['prenom']. " ".strtoupper($enfant['nom'])." ; ".$enfant['birthdateF']." ; ".$enfant['sexe'];
             }
         }
         if($inscription['prenomPers2']&&$inscription['prenomPers2']!="") {

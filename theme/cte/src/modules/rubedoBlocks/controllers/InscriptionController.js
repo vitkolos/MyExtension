@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout',function($scope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout){
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout','$filter',function($scope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout,$filter){
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
@@ -12,6 +12,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.content = angular.copy($scope.proposition);
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
+    var propositionDate = "du "+$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate') + " à " + me.content.fields.heureDebut + " au " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate') + " à " + me.content.fields.heureFin;
+
+    
     var formId = me.content.fields.formulaire;
     //surveiller si le type de formulaire est changé
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
@@ -258,6 +261,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             //$scope.processForm=true;
            $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
+            $scope.inscription.propositionDate = propositionDate;
+            $scope.inscription.propositionLieu = me.content.fields.positionName;
+            $scope.inscription.propositionUrl = me.content.canonicalUrl;
             $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
             $scope.inscription.contact = me.content.fields.contact;
@@ -278,6 +284,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
+
+            
             /*STATUS DE L'INSCRIPTION*/
             switch(me.content.fields.inscriptionState.inscriptionState) {
                 case "attente":
@@ -295,7 +303,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         else{
                             $scope.inscription.statut = "attente-paiement-"+$scope.inscription.modePaiement;
                         }
-                        $scope.inscription.montantAPayerMaintenantAvecMonnaie = $scope.inscription.montantAPayerMaintenant + "€";
+                        $scope.inscription.montantAPayerMaintenantAvecMonnaie = ($scope.inscription.montantAPayerMaintenant).toString() + "€";
+                        if($scope.inscription.montantTotalAPayer && $scope.inscription.montantTotalAPayer>0) $scope.inscription.montantTotalAPayerAvecMonnaie=($scope.inscription.montantTotalAPayer).toString() + "€"}
                     }
                     
             }
