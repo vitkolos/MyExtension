@@ -381,10 +381,41 @@ protected function sendInscriptionMail($inscription,$lang){
     if($nbInscrits == 1){
         $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], $inscription['birthdate'] );
     }
     
     
-    
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_dateNaiss") + "</i></td><td width=67%><font size='3'>" +  dateNaiss + "</font></td></tr>"
+            if dateNaiss:
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_age_debut_proposition") + "</i></td><td width=67%><font size='3'>" +  self.getAge(dateNaiss,dateLieu.start) + " " + self.tr("ccn_ans") + "</font></td></tr>"
+            if (sexe) :
+                if sexe == 'H' :
+                    texteSexe = self.tr("ccn_form_homme")
+                else :
+                    if sexe == 'F' :
+                        texteSexe = self.tr("ccn_form_femme")
+                    else :
+                        texteSexe = ''
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_sexe") + "</i></td><td width=67%><font size='3'>" +  texteSexe + "</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_nationalite") + "</i></td><td width=67%><font size='3'>" +  nationalite + "</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_profession") + "</i></td><td width=67%><font size='3'>" +  profession + "</font></td></tr>"
+            
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_adresse") + "</i></td><td width=67%><font size='3'>"  + adresse + "</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_codepostal") + " - " + self.tr("ccn_label_ville") + "</i></td><td width=67%><font size='3'>"  + codepostal + " " + ville + "</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_pays") + "</i></td><td width=67%><font size='3'>"  + pays + "&nbsp;</font></td></tr>"
+            
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_email") + "</i></td><td width=67%><font size='3'>"  + email + "</font></td></tr>"
+
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_fixe") + "</i></font></td><td width=67%><font size='3'>"  + self.getTelephoneFormate(tel1) + "&nbsp;</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_portable") + "</i></font></td><td width=67%><font size='3'>"  + self.getTelephoneFormate(tel2) + "&nbsp;</font></td></tr>"
+
+            if typePublicChoisi == "adolescent":
+                if tel2Pers2 :
+                    messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_portable_parent") + "</i></font></td><td width=67%><font size='3'>"  + self.getTelephoneFormate(tel2Pers2) + "&nbsp;</font></td></tr>"
+                if emailPers2 :
+                    messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_mail_parent") + "</i></font></td><td width=67%><font size='3'>"  + emailPers2 + "&nbsp;</font></td></tr>"
+                       
+   
     
     
     $mailSecretariat = $mailerService->getNewMessage();
