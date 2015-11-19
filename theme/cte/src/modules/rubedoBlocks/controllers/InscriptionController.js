@@ -262,6 +262,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
            $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.propositionDate = propositionDate;
+            $scope.inscription.dateDebut = me.content.fields.dateDebut;
             $scope.inscription.propositionLieu = me.content.fields.positionName;
             $scope.inscription.propositionUrl = me.content.canonicalUrl;
             $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
