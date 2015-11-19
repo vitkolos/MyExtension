@@ -434,7 +434,7 @@ protected function sendInscriptionMail($inscription,$lang){
                 else {
                     foreach($reponse as $value) $answer .= $value.", ";//pour checkbox
                 }
-                $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>"
+                $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>";
             }
         
     }
