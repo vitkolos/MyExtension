@@ -382,10 +382,12 @@ protected function sendInscriptionMail($inscription,$lang){
         $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) );
+        if($inscription['birthdate']) {
+            $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], strtotime($inscription['dateDebut']))." ". $trad["ccn_ans"]);
+        }
     }
     
     /*
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_dateNaiss") + "</i></td><td width=67%><font size='3'>" +  dateNaiss + "</font></td></tr>"
             if dateNaiss:
                 messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_age_debut_proposition") + "</i></td><td width=67%><font size='3'>" +  self.getAge(dateNaiss,dateLieu.start) + " " + self.tr("ccn_ans") + "</font></td></tr>"
             if (sexe) :
@@ -523,6 +525,9 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     protected function addLine($titre, $reponse, $colNb){
         return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $reponse . "</td></tr>";
+    }
+    protected function getAge($dateDebut, $dateFin){ // avec dates passées par strtotime (ie timestamp)
+        return floor(($dateFin-$dateDebut) / (365*60*60*24));
     }
     protected function formatTelephone($number){
         $toReplace = array(" ", "/", "+");
