@@ -287,17 +287,44 @@ protected function sendInscriptionMail($inscription,$lang){
             if($index>0) $nomsEnfants .= ", ";
             $nomsEnfants .= $enfant['prenom'];
         }
-        messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_enfants"] . "</i></td><td width=67%>" .  $nomsEnfants . "</td></tr>";
+        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_enfants"] . "</i></td><td width=67%>" .  $nomsEnfants . "</td></tr>";
     }
-    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_proposition"] . "</i></font></td><td width=67%>" .  $inscription['propositionTitre'] . "</td></tr>";
-    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_date"] . "</i></font></td><td width=67%>" .  $inscription['propositionDate'] . "</td></tr>";
-    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_lieu"] . "</i></font></td><td width=67%>" .  $inscription['propositionLieu'] . "</td></tr>";
+    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_proposition"] . "</i></td><td width=67%>" .  $inscription['propositionTitre'] . "</td></tr>";
+    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_date"] . "</i></td><td width=67%>" .  $inscription['propositionDate'] . "</td></tr>";
+    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_lieu"] . "</i></td><td width=67%>" .  $inscription['propositionLieu'] . "</td></tr>";
     $url="http://". $_SERVER['HTTP_HOST'] . $inscription['propositionUrl'];
-    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_page_web"] . "</i></font></td><td width=67%><a href='" . $url + "'>" . $url . "</a></td></tr>";
-    messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_contact"] . "</i></font></td><td width=67%>" . $inscription['contact']['text'] . " - ". $inscription['contact']['prenom']." ".$inscription['contact']['nom'];
-    messageClient .= " - " . $inscription['contact']['telephone'] . " - " . $inscription['contact']['email'] ."</td></tr>";
+    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_page_web"] . "</i></td><td width=67%><a href='" . $url . "'>" . $url . "</a></td></tr>";
+    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_contact"] . "</i></td><td width=67%>" . $inscription['contact']['text'] . " - ". $inscription['contact']['prenom']." ".$inscription['contact']['nom'];
+    $messageClient .= " - " . $inscription['contact']['telephone'] . " - " . $inscription['contact']['email'] ."</td></tr>";
 
-    messageClient .= "</table>";
+    $messageClient .= "</table>";
+
+    //OPTIONS ET QUESTIONS DIVERSES
+    $messageClient += "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>"
+    if($inscription['logement']) {
+       $this->questionToRecap($inscription['logement']);
+    }
+    if($inscription['transport']) {
+       $this->questionToRecap($inscription['transport']);
+    }
+    if($inscription['complementaire']) {
+       $this->questionToRecap($inscription['complementaire']);
+    }        
+    if($inscription['jai_connu']){
+       $this->questionToRecap($inscription['jai_connu']);
+    }
+    if($inscription['situation'] && !$inscription['autreSituation']) {
+        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['situation'] . "</td></tr>"
+    }
+    if($inscription['autreSituation']){
+       $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['autreSituation'] . "</td></tr>"
+    }
+    if($inscription['remarques']) {
+       $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_form_remarques"] . "</i></td><td width=67%>" .  $inscription['remarques'] . "</td></tr>"
+        
+    }
+    
+    $messageClient .= "</table><br><br>"
 
     
     
@@ -312,7 +339,6 @@ protected function sendInscriptionMail($inscription,$lang){
     
 /**************ADRESSE PAIEMENT*****************/    
     $adressePaiement = $inscription['contact']['prenom'] . " <b>" . $inscription['contact']['nom'] . "</b> - ";
-        $messageClient.= $inscription['contact']['position']['address'] . "<br/><br/>";
     
     
  
@@ -329,7 +355,7 @@ protected function sendInscriptionMail($inscription,$lang){
         $mailerObject->setSubject("Inscription");
         $mailerObject->setBody($messageClient, 'text/html', 'utf-8');
         $errors = [];
-        //$mailerService->sendMessage($mailerObject, $errors);
+        $mailerService->sendMessage($mailerObject, $errors);
 }
 
 
@@ -400,6 +426,16 @@ protected function sendInscriptionMail($inscription,$lang){
                 
             }
             return $answer;
+    }
+    protected function questionToRecap($question){
+            foreach ($question as $titre => $reponse){
+                $answer = "";
+                if(is_string($reponse)) $answer= $reponse; // pour texte ou radio
+                else {
+                    foreach($reponse as $value) $answer .= $value.", ";//pour checkbox
+                }
+                $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>"
+            }
         
     }
     protected function formatTelephone($number){
