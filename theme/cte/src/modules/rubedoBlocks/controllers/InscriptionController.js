@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout','$filter',function($scope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout,$filter){
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout','$filter',function($scope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout,$filter) {
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
@@ -283,7 +283,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
-            else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
+            else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer};
 
             
             /*STATUS DE L'INSCRIPTION*/
@@ -304,7 +304,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             $scope.inscription.statut = "attente-paiement-"+$scope.inscription.modePaiement;
                         }
                         $scope.inscription.montantAPayerMaintenantAvecMonnaie = ($scope.inscription.montantAPayerMaintenant).toString() + "€";
-                        if($scope.inscription.montantTotalAPayer && $scope.inscription.montantTotalAPayer>0) $scope.inscription.montantTotalAPayerAvecMonnaie=($scope.inscription.montantTotalAPayer).toString() + "€"}
+                        if($scope.inscription.montantTotalAPayer && $scope.inscription.montantTotalAPayer>0) $scope.inscription.montantTotalAPayerAvecMonnaie=($scope.inscription.montantTotalAPayer).toString() + "€";
                     }
                     
             }
@@ -352,7 +352,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     
                 }
                  
-            });
+            })
             
                 
                 
@@ -361,8 +361,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     }
 
     
-    
-    
- }]);
+}]);
 
 
