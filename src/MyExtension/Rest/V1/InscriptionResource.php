@@ -297,7 +297,7 @@ protected function sendInscriptionMail($inscription,$lang){
     messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_contact"] . "</i></font></td><td width=67%>" . $inscription['contact']['text'] . " - ". $inscription['contact']['prenom']." ".$inscription['contact']['nom'];
     messageClient .= " - " . $inscription['contact']['telephone'] . " - " . $inscription['contact']['email'] ."</td></tr>";
 
-    messageClient .= "</table>"
+    messageClient .= "</table>";
 
     
     
