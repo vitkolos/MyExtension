@@ -381,7 +381,7 @@ protected function sendInscriptionMail($inscription,$lang){
     if($nbInscrits == 1){
         $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], $inscription['birthdate'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) );
     }
     
     /*
