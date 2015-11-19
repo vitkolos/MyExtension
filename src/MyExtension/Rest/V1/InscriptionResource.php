@@ -341,6 +341,11 @@ protected function sendInscriptionMail($inscription,$lang){
     //$mailerService->sendMessage($mailClient, $errors);
     
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+    /**************SUJET SECRETARIAT*****************/
+    if($inscription['serviteur']) $sujetSecretariat = $trad["ccn_inscription_serviteur"] . " - " . $inscription['text'] . " - " . $inscription['propositionTitre'];
+   else $sujetSecretariat = $trad["ccn_inscription"] . " - " . $inscription['text'] . " - " . $inscription['propositionTitre'];
+   
+
     /**************MESSAGE SECRETARIAT*****************/
     //STATUT DE L'INSCRIPTION
     $statut="";
@@ -368,9 +373,18 @@ protected function sendInscriptionMail($inscription,$lang){
         else $statut = $trad["ccn_mail_sujet8"];
     }
     $dateInscription = date("d/m/Y");
-    $messageSecretariat .="<h3>" .  $trad["ccn_inscription"] . " " . $inscription['text'] . " - " . $dateInscription . "</h3><br/>";
+    $messageSecretariat .="<h3>" .  $trad["ccn_inscription"] . " " . $inscription['text'] . " - " . $dateInscription . "</h3>";
     $messageSecretariat .="<h4>" . $inscription['propositionTitre'] . "</h4>";
     $messageSecretariat .="<h4>" . $trad["ccn_label_statut"] . " : " . $statut . "</h4>";
+    
+    $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+    if($nbInscrits == 1){
+        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
+    }
+    
+    
+    
     
     
     $mailSecretariat = $mailerService->getNewMessage();
@@ -378,7 +392,7 @@ protected function sendInscriptionMail($inscription,$lang){
     $mailSecretariat->setFrom(array( $inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setCharset('utf-8');
-    $mailSecretariat->setSubject($statut);
+    $mailSecretariat->setSubject($sujetSecretariat);
     $mailSecretariat->setBody($messageSecretariat, 'text/html', 'utf-8');
     $errors = [];
     $mailerService->sendMessage($mailSecretariat, $errors);    
@@ -475,6 +489,9 @@ protected function sendInscriptionMail($inscription,$lang){
                 return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>";
             }
         
+    }
+    protected function addLine($titre, $reponse, $colNb){
+        return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>";
     }
     protected function formatTelephone($number){
         $toReplace = array(" ", "/", "+");
