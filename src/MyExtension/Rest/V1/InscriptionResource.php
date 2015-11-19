@@ -384,7 +384,7 @@ protected function sendInscriptionMail($inscription,$lang){
         $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], $inscription['birthdate'] );
     }
     
-    
+    /*
             messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_dateNaiss") + "</i></td><td width=67%><font size='3'>" +  dateNaiss + "</font></td></tr>"
             if dateNaiss:
                 messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_age_debut_proposition") + "</i></td><td width=67%><font size='3'>" +  self.getAge(dateNaiss,dateLieu.start) + " " + self.tr("ccn_ans") + "</font></td></tr>"
@@ -415,7 +415,7 @@ protected function sendInscriptionMail($inscription,$lang){
                 if emailPers2 :
                     messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_mail_parent") + "</i></font></td><td width=67%><font size='3'>"  + emailPers2 + "&nbsp;</font></td></tr>"
                        
-   
+   */
     
     
     $mailSecretariat = $mailerService->getNewMessage();
