@@ -284,7 +284,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer};
-
+            $scope.inscription.isPayment = me.isPaiement;
             
             /*STATUS DE L'INSCRIPTION*/
             switch(me.content.fields.inscriptionState.inscriptionState) {
@@ -305,6 +305,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         }
                         $scope.inscription.montantAPayerMaintenantAvecMonnaie = ($scope.inscription.montantAPayerMaintenant).toString() + "€";
                         if($scope.inscription.montantTotalAPayer && $scope.inscription.montantTotalAPayer>0) $scope.inscription.montantTotalAPayerAvecMonnaie=($scope.inscription.montantTotalAPayer).toString() + "€";
+                        if($scope.inscription.accompte>0) $scope.inscription.accompteAvecMonnaie=($scope.inscription.accompte).toString() + "€";
                     }
                     
             }

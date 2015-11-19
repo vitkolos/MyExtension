@@ -75,7 +75,7 @@ class InscriptionResource extends AbstractResource
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
         $inscriptionForm['fields'] =  $params['inscription'];
-        $inscriptionForm['fields']['text'] = "". $this->getPays()."_".(string)$inscriptionNumber;
+        $inscriptionForm['fields']['text'] = "". $this->getPays().(string)$inscriptionNumber;
         $inscriptionForm['writeWorkspace'] = $params['workspace'];
         $inscriptionForm['typeId'] = "561627c945205e41208b4581";
         $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
@@ -192,7 +192,7 @@ protected function sendInscriptionMail($inscription,$lang){
     $messageClient.="<br/><br/>";
 
     //INFOS POUR LE PAIEMENT SI PAIEMENT PROPOSE
-    if($inscription['montantAPayerMaintenant'] > 0) {
+    if($inscription['isPayment'] && $inscription['montantAPayerMaintenant'] > 0) {
         if($inscription['modePaiement'] == 'cheque') {
             //Comme convenu, nous attendons ton cheque de 60€
             $messageClient .= $trad["ccn_mail_23_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . ". ";
@@ -339,6 +339,39 @@ protected function sendInscriptionMail($inscription,$lang){
     $mailClient->setBody($messageClient, 'text/html', 'utf-8');
     $errors = [];
     $mailerService->sendMessage($mailClient, $errors);
+    
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
+    /**************MESSAGE SECRETARIAT*****************/
+    //STATUT DE L'INSCRIPTION
+    $statut="";
+    /*Si inscriptions ouvertes*/
+    if($inscription['etat'] !='liste-attente' && $inscription['etat'] !='preinscrit') {
+        if($inscription['accompte'] == 0) { //pas de frais d'inscription
+            //Inscription ferme (pas de frais d'inscription)
+            if($inscription['serviteur']) $statut = $trad["ccn_mail_sujet4_serviteur"];
+            else $statut = $trad["ccn_mail_sujet4"];
+        }
+        else {
+            //Inscription en attente de paiement des frais d'inscription (" accompte €)"
+            if($inscription['serviteur']) $statut = $trad["ccn_mail_sujet5_serviteur"] . $inscription['accompteAvecMonnaie'] . ")";
+            else $statut = $trad["ccn_mail_sujet5"] . $inscription['accompteAvecMonnaie'] . ")";            
+        }
+    }
+    else if($inscription['etat'] =='liste-attente') {
+        //Inscription en liste d'attente
+        if($inscription['serviteur']) $statut = $trad["ccn_mail_sujet6_serviteur"];
+        else $statut = $trad["ccn_mail_sujet6"];
+    }
+    else if($inscription['etat'] =='preinscrit') {
+        //Preinscription
+        if($inscription['serviteur']) $statut = $trad["ccn_mail_sujet8_serviteur"];
+        else $statut = $trad["ccn_mail_sujet8"];
+    }
+    $messageSecretariat .="<h3>" .  $trad["ccn_inscription"] . " " . $inscription['text'] . " - " .;
+    
+    
+    
+    
 }
 
 
@@ -426,18 +459,8 @@ protected function sendInscriptionMail($inscription,$lang){
         
     }
     protected function formatTelephone($number){
-            $answer="";
-            foreach ($question as $titre => $reponse){
-                if($printTitre) $answer .= $titre." = ";
-                if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
-                else {
-                    foreach($reponse as $value) $answer .= $value.", ";
-                }
-                if($printTitre) $answer.="; ";
-                
-            }
-            return $answer;
-        
+        $toReplace = array(" ", "/", "+");
+        $telephoneFormat = str_replace($toReplace,"",$number); //supprimer espace, + et /
     }
     
     protected function getPays(){
