@@ -338,7 +338,7 @@ protected function sendInscriptionMail($inscription,$lang){
     $mailClient->setSubject($sujetClient);
     $mailClient->setBody($messageClient, 'text/html', 'utf-8');
     $errors = [];
-    $mailerService->sendMessage($mailClient, $errors);
+    //$mailerService->sendMessage($mailClient, $errors);
     
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     /**************MESSAGE SECRETARIAT*****************/
@@ -367,10 +367,21 @@ protected function sendInscriptionMail($inscription,$lang){
         if($inscription['serviteur']) $statut = $trad["ccn_mail_sujet8_serviteur"];
         else $statut = $trad["ccn_mail_sujet8"];
     }
-    $messageSecretariat .="<h3>" .  $trad["ccn_inscription"] . " " . $inscription['text'] . " - " .;
+    $dateInscription = date("d/m/Y");
+    $messageSecretariat .="<h3>" .  $trad["ccn_inscription"] . " " . $inscription['text'] . " - " . $dateInscription . "</h3><br/>";
+    $messageSecretariat .="<h4>" . $inscription['propositionTitre'] . "</h4>";
+    $messageSecretariat .="<h4>" . $trad["ccn_label_statut"] . " : " . $statut . "</h4>";
     
     
-    
+    $mailSecretariat = $mailerService->getNewMessage();
+    $mailSecretariat->setTo('nicolas.rhone@gmail.com'); // à changer en $inscription['contact']['email']
+    $mailSecretariat->setFrom(array( $inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
+    $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
+    $mailSecretariat->setCharset('utf-8');
+    $mailSecretariat->setSubject($statut);
+    $mailSecretariat->setBody($messageSecretariat, 'text/html', 'utf-8');
+    $errors = [];
+    $mailerService->sendMessage($mailSecretariat, $errors);    
     
 }
 
@@ -400,6 +411,13 @@ protected function sendInscriptionMail($inscription,$lang){
         //dates
         $inscription['birthdate'] = strtotime($inscription['birthdate']);
         if($inscription['dateNaissPers2']) $inscription['dateNaissPers2'] = strtotime($inscription['dateNaissPers2']);
+        //telephones formatés pour la France
+        if($this->getPays() == "FR"){
+            if($inscription['tel1']) $inscription['tel1'] = $this->formatTelephone($inscription['tel1']);
+            if($inscription['tel2']) $inscription['tel2'] = $this->formatTelephone($inscription['tel2']);
+            if($inscription['tel1Pers2']) $inscription['tel1Pers2'] = $this->formatTelephone($inscription['tel1Pers2']);
+            if($inscription['tel2Pers2']) $inscription['tel2Pers2'] = $this->formatTelephone($inscription['tel2Pers2']);
+        }
         if($inscription['logement']) {
              $inscription['logement_org'] = $inscription['logement'];           
             $inscription['logement'] = $this->questionToAnswer($inscription['logement']);
@@ -461,6 +479,18 @@ protected function sendInscriptionMail($inscription,$lang){
     protected function formatTelephone($number){
         $toReplace = array(" ", "/", "+");
         $telephoneFormat = str_replace($toReplace,"",$number); //supprimer espace, + et /
+        //336xxxxxxxx
+        if(strlen($telephoneFormat) == 11) {
+            $telephoneFormat = "+".substr($telephoneFormat, 0,2)."/".substr($telephoneFormat, 2,9);
+        }
+        //00336xxxxxxxx
+        else if(strlen($telephoneFormat) == 13 && substr($telephoneFormat, 0,2) == "00") {
+            $telephoneFormat = "+".substr($telephoneFormat, 2,2)."/".substr($telephoneFormat, 4,9);
+        }
+        else if(strlen($telephoneFormat) == 10 && substr($telephoneFormat, 0,1) == "0") {
+            $telephoneFormat = "+33/".substr($telephoneFormat, 1,9);
+        }
+        return $telephoneFormat;
     }
     
     protected function getPays(){
