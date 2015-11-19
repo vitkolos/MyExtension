@@ -491,7 +491,7 @@ protected function sendInscriptionMail($inscription,$lang){
         
     }
     protected function addLine($titre, $reponse, $colNb){
-        return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>";
+        return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $reponse . "</td></tr>";
     }
     protected function formatTelephone($number){
         $toReplace = array(" ", "/", "+");
