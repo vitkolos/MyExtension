@@ -235,9 +235,6 @@ protected function sendInscriptionMail($inscription,$lang){
             
     }
     
-    // NUMERO D'INSCRIPTION POUR SUIVI
-     //"Ton numéro d'inscription est " + idInscription + "<br><br>"
-    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . ".<br/><br/>";
     
     
     // NOTES SUPPLEMENTAIRES (ENTRETIEN / LETTRES / PDF A REMPLIR)
@@ -273,6 +270,9 @@ protected function sendInscriptionMail($inscription,$lang){
         /*Nous te rappelons que ton inscription sera confirmée suite à un entretien. Nous te contacterons bientôt pour fixer ensemble la date et le lieu de cet entretien.*/
         $messageClient.= $trad["ccn_mail_8_".$tuOuVous] . "<br/><br/>";
     }
+    // NUMERO D'INSCRIPTION POUR SUIVI
+     //"Ton numéro d'inscription est " + idInscription + "<br><br>"
+    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . ".<br/><br/>";
     
     //RECAPITULATIF
     //Voici le récapitulatif de ton inscription

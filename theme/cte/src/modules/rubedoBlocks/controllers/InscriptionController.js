@@ -89,10 +89,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if (((me.content.fields.paimentOption)&&(me.content.fields.paimentOption.paimentOption) && ((me.content.fields.paimentOption.paimentOption).length>0)) || me.content.fields.accompte>0) {me.isPaiement = true}
                 if (( typeof me.content.fields.paimentOption.paimentOption =='string')) {
                     me.content.fields.paimentOption.paimentOption = {0 : me.content.fields.paimentOption.paimentOption};
-                }
-              
-                console.log(me.form);
-                
+                }                
             }
         });
     };
@@ -221,6 +218,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.currentStage = 1;
     // affichage des sections du formulaire
     me.setCurrentStage = function(step, valide) {
+        console.log(step + " " + currentStage);
         if (valide && (me.currentStage >= step)) {
             if (step==0) {me.currentStage=1;}
             else if (step==1) {
@@ -321,7 +319,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             idInscription: response.data.id
                     };
                     if ($scope.inscription.modePaiement=='carte') { // paiement par Paybox
-                        payload.paymentMode= 'carte';
+                        payload.paymentType= 'paf';
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
                                 $scope.parametres = response.data.parametres;
@@ -339,16 +337,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             
                         });
                         
-                    }
-                    else if($scope.inscription.modePaiement=='cheque'){
-                        payload.paymentMode= 'cheque';
-                        PaymentService.payment(payload).then(function(response){
-                            if (response.data.success) {                                
-                                $scope.processForm=false;
-                            }
-                            else $scope.processForm=false;
-                            
-                        });
                     }
                     
                     

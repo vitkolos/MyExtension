@@ -61,8 +61,8 @@ class PaymentResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Mode de paiement')
-                            ->setKey('paymentMode')
+                            ->setDescription('Type de paiement (paf / dons')
+                            ->setKey('paymentType')
                             ->setFilter('string')
                             ->setRequired()
                     )
@@ -93,16 +93,16 @@ class PaymentResource extends AbstractResource {
         $prenom = $params['prenom'];
         $email = $params['email'];
         $proposition = $params['proposition']; // titre de la proposition si inscription
-        $paymentMode=$params['paymentMode']; // mode de paiement
+        $paymentType=$params['paymentType']; // mode de paiement
  
     // récupérer l'id du compte de paiement
         $id = $this->getAccountId();
     // récupérer les infos du compte
         $paymentInfos = $this->getPaymentInfos($id);
 
-        switch ($paymentMode) {
+        switch ($paymentType) {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
-            case "carte":
+            case "paf":
                 $dateTime = date("c");
                 $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
                 $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
