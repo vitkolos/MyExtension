@@ -451,7 +451,24 @@ protected function sendInscriptionMail($inscription,$lang){
 
         $messageSecretariat .= "</table><br/>";
     }
+    $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+    if($inscription['logement']) {
+       $messageSecretariat .= $this->questionToRecap($inscription['logement_org']);
+    }
+    if($inscription['transport']) {
+       $messageSecretariat .= $this->questionToRecap($inscription['transport_org']);
+    }
+    if($inscription['complementaire']) {
+       $messageSecretariat .= $this->questionToRecap($inscription['complementaire_org']);
+    }        
+    if($inscription['jai_connu']){
+       $messageSecretariat .= $this->questionToRecap($inscription['jai_connu_org']);
+    }
 
+    if($inscription['remarques']) {
+       $messageSecretariat .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_form_remarques"] . "</i></td><td width=67%>" .  $inscription['remarques'] . "</td></tr>";
+    }
+    $messageSecretariat .= "</table><br/>";
     
     
     $mailSecretariat = $mailerService->getNewMessage();
