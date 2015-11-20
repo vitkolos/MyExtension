@@ -33,7 +33,7 @@
                         <div  ng-include="formCtrl.enfants"></div>
                     </div>
                     <div class="row text-center">
-                        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)" data-toggle="collapse"  data-parent="#inscription_form">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)" data-toggle="toggle"  data-parent="#inscription_form">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                     </div>
                 </ng-form></div>
                 <div ng-include="formCtrl.questions"></div>
