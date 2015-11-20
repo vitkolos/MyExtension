@@ -43,7 +43,7 @@
                 </ng-form>
                 <div ng-include="formCtrl.questions"></div>
                 <!--PAIEMENT-->
-                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==5}" ng-if="formCtrl.isPaiement" ng-click="formCtrl.setCurrentStage(5,paiement.$valid)">
+                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==5}" ng-if="formCtrl.isPaiement" ng-click="formCtrl.setCurrentStage(5,inscription_form.paiement.$valid)">
                     {{contentDetailCtrl.getLabelByName('paf_text')}}
                     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>5"></span>
                 </h2>

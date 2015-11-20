@@ -36,7 +36,7 @@
     </div>
 </ng-form>
 
-<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==3}" ng-if="formCtrl.isTransport" ng-click="formCtrl.setCurrentStage(2,transport.$valid)">{{formCtrl.fields.transport.config.fieldLabel}}*
+<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==3}" ng-if="formCtrl.isTransport" ng-click="formCtrl.setCurrentStage(2,inscription_form.transport.$valid)">{{formCtrl.fields.transport.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
 </h2>
 <ng-form name="transport" ng-if="formCtrl.isTransport">
@@ -58,7 +58,7 @@
     </div>
 </ng-form>
    <!--questions de logement-->
-<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==4}" ng-if="formCtrl.isLogement" ng-click="formCtrl.setCurrentStage(3,logement.$valid)">{{formCtrl.fields.logement.config.fieldLabel}}*
+<h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==4}" ng-if="formCtrl.isLogement" ng-click="formCtrl.setCurrentStage(3,inscription_form.logement.$valid)">{{formCtrl.fields.logement.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>4"></span>
 </h2>
 <ng-form name="logement" ng-if="formCtrl.isLogement">
