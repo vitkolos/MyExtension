@@ -1,5 +1,5 @@
 <!--question complémentaires-->
-<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==2}" ng-if="formCtrl.isComplement" ng-click="formCtrl.setCurrentStage(1,inscription_form.infos_complementaires.$valid)" data-toggle="collapse" href="#infos_complementaires">{{formCtrl.fields.questions1.config.fieldLabel}}
+<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==2}" ng-if="formCtrl.isComplement" ng-click="formCtrl.setCurrentStage(1,inscription_form.infos_complementaires.$valid)" >{{formCtrl.fields.questions1.config.fieldLabel}}
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>2"></span>
 </h2>
 <ng-form name="infos_complementaires" ng-if="formCtrl.isComplement" id="infos_complementaires" class="collapse">
@@ -32,11 +32,11 @@
         <ng-include src="formCtrl.questionDetail"></ng-include>
    </div>
     <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+        <div class="button submit" data-toggle="collapse" href="#transport" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
     </div>
 </ng-form>
 
-<h2 class="capital txt-red" data-toggle="collapse" href="#transport" ng-class="{'displayed' : formCtrl.currentStage==3}" ng-if="formCtrl.isTransport" ng-click="formCtrl.setCurrentStage(2,inscription_form.transport.$valid)">{{formCtrl.fields.transport.config.fieldLabel}}*
+<h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==3}" ng-if="formCtrl.isTransport" ng-click="formCtrl.setCurrentStage(2,inscription_form.transport.$valid)">{{formCtrl.fields.transport.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
 </h2>
 <ng-form name="transport" ng-if="formCtrl.isTransport" id="transport" class="collapse">
@@ -54,14 +54,14 @@
         <ng-include src="formCtrl.questionDetail"></ng-include>
    </div>
     <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : transport.$invalid}" ng-click="formCtrl.setCurrentStage(3,transport.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+        <div class="button submit" data-toggle="collapse" href="#logement" ng-class="{'disabled' : transport.$invalid}" ng-click="formCtrl.setCurrentStage(3,transport.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
     </div>
 </ng-form>
    <!--questions de logement-->
 <h2 class="capital txt-red"  data-toggle="collapse" href="#logement" ng-class="{'displayed' : formCtrl.currentStage==4}" ng-if="formCtrl.isLogement" ng-click="formCtrl.setCurrentStage(3,inscription_form.logement.$valid)">{{formCtrl.fields.logement.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>4"></span>
 </h2>
-<ng-form name="logement" ng-if="formCtrl.isLogement" class="collapse">
+<ng-form name="logement" ng-if="formCtrl.isLogement" class="collapse" id="logement">
    <div class="row" ng-if="formCtrl.form.fields.logement">
         <div class="col-sm-3"><div class="row"></div></div>
         <div class="col-sm-8">
