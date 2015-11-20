@@ -229,8 +229,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     $scope.mailError = false;
                     me.currentStage=1;
                 }
-                else if (me.isComplement) {me.currentStage=2;$('#infos_complementaires').collapse({toggle:true,parent:'#inscription_form'});$scope.mailError = false;$scope.mailError2 = false;}
-                else if (me.isTransport) {me.currentStage=3;$('#transport').collapse({toggle:true,parent:'#inscription_form'});$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isComplement) {me.currentStage=2;$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isTransport) {me.currentStage=3;$scope.mailError = false;$scope.mailError2 = false;}
                 else if (me.isLogement) {me.currentStage=4;$scope.mailError = false;$scope.mailError2 = false;}
                 else if(me.isPaiement) {me.currentStage=5;$scope.mailError = false;$scope.mailError2 = false;}
                 else {me.currentStage=6;$scope.mailError = false;$scope.mailError2 = false;}
