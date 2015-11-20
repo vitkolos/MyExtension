@@ -2,7 +2,8 @@
 <h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==2}" ng-if="formCtrl.isComplement" ng-click="formCtrl.setCurrentStage(1,inscription_form.infos_complementaires.$valid)" >{{formCtrl.fields.questions1.config.fieldLabel}}
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>2"></span>
 </h2>
-<ng-form name="infos_complementaires" ng-if="formCtrl.isComplement" id="infos_complementaires" class="collapse">
+<div id="infos_complementaires" class="collapse">
+<ng-form name="infos_complementaires" ng-if="formCtrl.isComplement" >
    <div class="row" ng-if="formCtrl.form.jai_connu">
         <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.Connu")}}</label></div>
         <div class="col-sm-8">
@@ -35,7 +36,7 @@
         <div class="button submit" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
     </div>
 </ng-form>
-
+</div>
 <h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==3}" ng-if="formCtrl.isTransport" ng-click="formCtrl.setCurrentStage(2,inscription_form.transport.$valid)">{{formCtrl.fields.transport.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
 </h2>
