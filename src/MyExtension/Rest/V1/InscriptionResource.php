@@ -378,6 +378,7 @@ protected function sendInscriptionMail($inscription,$lang){
     $messageSecretariat .="<h4>" . $trad["ccn_label_statut"] . " : " . $statut . "</h4>";
     
     $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+    /*pour individuels*/
     if($nbInscrits == 1){
         $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
@@ -389,36 +390,81 @@ protected function sendInscriptionMail($inscription,$lang){
             $sexe = ($inscription['sexe']['sexe'] =='H') ? $trad["ccn_form_homme"] : $trad["ccn_form_femme"];
             $messageSecretariat .= $this->addLine($trad["ccn_label_sexe"], $sexe );
         }
-    }
+        $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'] );
+        if($inscription['profession']) $messageSecretariat .= $this->addLine($trad["ccn_form_profession"], $inscription['profession'] );
+        if($inscription['classeEtudes']) $messageSecretariat .= $this->addLine($trad["ccn_label_classeEtudes"], $inscription['classeEtudes'] );
+        if($inscription['situation']) $messageSecretariat .= $this->addLine($trad["ccn_label_situation"], $inscription['situation'] );
+        if($inscription['address']) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] );
+        if($inscription['cp'] || $inscription['city']) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'] );
+        if($inscription['country']) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'] );
+        if($inscription['tel1']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] );
+        if($inscription['tel2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] );
+        if($inscription['public_type'] == 'adolescent') {
+            if($inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] );
+            if($inscription['emailPers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] );
+        }
+   }
+    /*pour couple / fiances / familles*/
+    if($nbInscrits == 2){
+        if($inscription['situationConjugale']) $messageSecretariat .= $this->addLine($trad["ccn_form_situation_couple"], $inscription['situationConjugale'] );
+        if($inscription['dateMariage']) $messageSecretariat .= $this->addLine($trad["ccn_form_date_de_mariage"], $inscription['dateMariage'] );
+        
+        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) );
+        if($inscription['birthdate']) {
+            $messageSecretariat .= $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"]);
+        }
+        if($inscription['sexe']) {
+            $sexe = ($inscription['sexe']['sexe'] =='H') ? $trad["ccn_form_homme"] : $trad["ccn_form_femme"];
+            $messageSecretariat .= $this->addLine($trad["ccn_label_sexe"], $sexe );
+        }
+        $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'] );
+        if($inscription['profession']) $messageSecretariat .= $this->addLine($trad["ccn_form_profession"], $inscription['profession'] );
+        if($inscription['classeEtudes']) $messageSecretariat .= $this->addLine($trad["ccn_label_classeEtudes"], $inscription['classeEtudes'] );
+        if($inscription['situation']) $messageSecretariat .= $this->addLine($trad["ccn_label_situation"], $inscription['situation'] );
+        if($inscription['address']) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] );
+        if($inscription['cp'] || $inscription['city']) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'] );
+        if($inscription['country']) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'] );
+        if($inscription['tel1']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] );
+        if($inscription['tel2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] );
+        if($inscription['public_type'] == 'adolescent') {
+            if($inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] );
+            if($inscription['emailPers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] );
+        }
+   }
+    $messageSecretariat .= "</table><br/>";
+
 
     /*
-            if (sexe) :
-                if sexe == 'H' :
-                    texteSexe = self.tr("ccn_form_homme")
-                else :
-                    if sexe == 'F' :
-                        texteSexe = self.tr("ccn_form_femme")
-                    else :
-                        texteSexe = ''
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_sexe") + "</i></td><td width=67%><font size='3'>" +  texteSexe + "</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_nationalite") + "</i></td><td width=67%><font size='3'>" +  nationalite + "</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_profession") + "</i></td><td width=67%><font size='3'>" +  profession + "</font></td></tr>"
-            
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_adresse") + "</i></td><td width=67%><font size='3'>"  + adresse + "</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_codepostal") + " - " + self.tr("ccn_label_ville") + "</i></td><td width=67%><font size='3'>"  + codepostal + " " + ville + "</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_pays") + "</i></td><td width=67%><font size='3'>"  + pays + "&nbsp;</font></td></tr>"
-            
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_email") + "</i></td><td width=67%><font size='3'>"  + email + "</font></td></tr>"
-
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_fixe") + "</i></font></td><td width=67%><font size='3'>"  + self.getTelephoneFormate(tel1) + "&nbsp;</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_portable") + "</i></font></td><td width=67%><font size='3'>"  + self.getTelephoneFormate(tel2) + "&nbsp;</font></td></tr>"
-
-            if typePublicChoisi == "adolescent":
-                if tel2Pers2 :
-                    messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_portable_parent") + "</i></font></td><td width=67%><font size='3'>"  + self.getTelephoneFormate(tel2Pers2) + "&nbsp;</font></td></tr>"
-                if emailPers2 :
-                    messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_mail_parent") + "</i></font></td><td width=67%><font size='3'>"  + emailPers2 + "&nbsp;</font></td></tr>"
-                       
+            if dateMariage :
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_date_de_mariage") + "</i></td><td width=67% colspan=2><font size='3'>" + dateMariage + "&nbsp;</font></td></tr>"
+            messageAdmin += "<tr><td width=100% colspan=3>&nbsp;</td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_nom") + "</i></td><td width=33%><font size='3'>" + nom + "</font></td><td width=33%><font size='3'>"  + nomPers2 + "</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_prenom") + "</i></td><td width=33%><font size='3'>" + prenom + "</font></td><td width=33%><font size='3'>"  + prenomPers2 + "</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_dateNaiss") + "</i></td><td width=33%><font size='3'>" + dateNaiss + "</font></td><td width=33%><font size='3'>"  + dateNaissPers2 + "</font></td></tr>"
+            if dateNaiss or dateNaissPers2:
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_age_debut_proposition") + "</i></td><td width=33%><font size='3'>" + self.getAge(dateNaiss,dateLieu.start) + " " + self.tr("ccn_ans") + "</font></td><td width=33%><font size='3'>"  + self.getAge(dateNaissPers2,dateLieu.start) + " " + self.tr("ccn_ans") + "</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_nationalite") + "</i></td><td width=33%><font size='3'>" + nationalite + "</font></td><td width=33%><font size='3'>"  + nationalitePers2 + "</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_profession") + "</i></td><td width=33%><font size='3'>" + profession + "</font></td><td width=33%><font size='3'>"  + professionPers2 + "</font></td></tr>"
+            messageAdmin += "<tr><td width=100% colspan=3>&nbsp;</td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_portable") + "</i></td><td width=33%><font size='3'>" + self.getTelephoneFormate(tel2) + "&nbsp;</font></td><td width=33%><font size='3'>"  + self.getTelephoneFormate(tel2Pers2) + "&nbsp;</font></td></tr>"
+            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_email") + "</i></td><td width=33%><font size='3'>" + email + "&nbsp;</font></td><td width=33%><font size='3'>" + emailPers2 + "&nbsp;</font></td></tr>"
+            messageAdmin += "<tr><td width=100% colspan=3>&nbsp;</td></tr>"
+            if typePublicChoisi == "fiances" :
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_adresse") + "</i>/td><td width=33%><font size='3'>"  + adresse + "</font></td><td width=33%><font size='3'>"  + adressePers2 + "</font></td></tr>"
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_codepostal") + " - " + self.tr("ccn_label_ville") + "</i></td><td width=33%><font size='3'>"  + codepostal + " " + ville + "</font></td><td width=33%><font size='3'>"  + codepostalPers2 + " " + villePers2 + "</font></td></tr>"
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_pays") + "</i></td><td width=33%><font size='3'>"  + pays + "&nbsp;</font></td><td width=33%><font size='3'>"  + paysPers2 + "&nbsp;</font></td></tr>"
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_fixe") + "</i></td><td width=33%><font size='3'>" + self.getTelephoneFormate(tel1) + "</font></td><td width=33%><font size='3'>" + self.getTelephoneFormate(tel1Pers2) + "</font></td></tr>"
+            else :
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_adresse") + "</i></td><td width=67% colspan=2><font size='3'>"  + adresse + "</font></td></tr>"
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_codepostal") + " - " + self.tr("ccn_label_ville") + "</i></td><td width=67% colspan=2><font size='3'>"  + codepostal + " " + ville + "</font></td></tr>"
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_pays") + "</i></td><td width=67% colspan=2><font size='3'>"  + pays + "</font></td></tr>"
+                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_fixe") + "</i></td><td width=67% colspan=2><font size='3'>" + self.getTelephoneFormate(tel1) + "</font></td></tr>"
+            messageAdmin += "</table><br>"
+                     
    */
     
     
@@ -525,9 +571,13 @@ protected function sendInscriptionMail($inscription,$lang){
             }
         
     }
-    protected function addLine($titre, $reponse, $colNb){
-        return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $reponse . "</td></tr>";
+    protected function addLine($titre, $reponse, $reponse2,$reponse3,$reponse4){
+        if($reponse2) return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=33%>" . $reponse . "</td><td width=33%>".$reponse2 ."</td></tr>";
+        else return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $reponse . "</td></tr>";
     }
+    
+"<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_dateNaiss") + "</i></td><td width=33%><font size='3'>" + dateNaiss + "</font></td><td width=33%><font size='3'>"  + dateNaissPers2 + "</font></td></tr>"
+
     protected function getAge($dateDebut, $dateFin){ // avec dates passées par strtotime (ie timestamp)
         return floor(($dateFin-$dateDebut) / (365*60*60*24));
     }
