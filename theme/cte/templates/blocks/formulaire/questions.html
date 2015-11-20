@@ -80,12 +80,8 @@
             <ng-include src="formCtrl.questionDetail"></ng-include>
        </div>
         <div class="row text-center">
-            <div class="button submit" ng-class="{'disabled' : logement.$invalid}" ng-click="formCtrl.setCurrentStage(4,logement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+            <div class="button submit" ng-class="{'disabled' : logement.$invalid}" ng-click="formCtrl.setCurrentStage(4,logement.$valid)"
+            data-toggle="collapse" data-target="{{transport.$invalid==true ? '' : '#paiement'}}" data-parent="#inscription_form">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
         </div>
     </ng-form>
 </div>
-
-
-
-
-
