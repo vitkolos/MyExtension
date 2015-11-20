@@ -2,83 +2,88 @@
 <h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==2}" ng-if="formCtrl.isComplement" ng-click="formCtrl.setCurrentStage(1,inscription_form.infos_complementaires.$valid)" >{{formCtrl.fields.questions1.config.fieldLabel}}
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>2"></span>
 </h2>
-<div id="infos_complementaires" class="collapse">
-<ng-form name="infos_complementaires" ng-if="formCtrl.isComplement" >
-   <div class="row" ng-if="formCtrl.form.jai_connu">
-        <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.Connu")}}</label></div>
-        <div class="col-sm-8">
-            <div class="col-xs-6">
-                <input type="checkbox"  name="jai_connu" id="facebook" ng-true-value='Facebook'
-                                ng-model='inscription.jai_connu[rubedo.translate("Block.Inscription.Connu")].facebook'>
-                        <label for="facebook">Facebook</label>
-            </div>
-            <div class="col-xs-6">
-                <input type="checkbox"  name="jai_connu" id="tracts" ng-true-value='{{rubedo.translate("Block.Inscription.Connu.Tracts")}}'
-                                ng-model='inscription.jai_connu[rubedo.translate("Block.Inscription.Connu")].tracts'>
-                        <label for="tracts">{{rubedo.translate("Block.Inscription.Connu.Tracts")}}</label>
-            </div>
-            <div class="col-xs-6">
-                <input type="checkbox"  name="jai_connu" id="internet" ng-true-value='{{rubedo.translate("Block.Inscription.Connu.Internet")}}'
-                                ng-model='inscription.jai_connu[rubedo.translate("Block.Inscription.Connu")].internet'>
-                        <label for="internet">{{rubedo.translate("Block.Inscription.Connu.Internet")}}</label>
-            </div>
-            <div class="col-xs-6">
-                <input type="checkbox"  name="jai_connu" id="famille_amis" ng-true-value='{{rubedo.translate("Block.Inscription.Connu.Famille")}}'
-                                ng-model='inscription.jai_connu[rubedo.translate("Block.Inscription.Connu")].famille_amis'>
-                        <label for="famille_amis">{{rubedo.translate("Block.Inscription.Connu.Famille")}}</label>
+<div id="infos_complementaires" class="collapse" ng-if="formCtrl.isComplement" >
+    <ng-form name="infos_complementaires">
+       <div class="row" ng-if="formCtrl.form.jai_connu">
+            <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.Connu")}}</label></div>
+            <div class="col-sm-8">
+                <div class="col-xs-6">
+                    <input type="checkbox"  name="jai_connu" id="facebook" ng-true-value='Facebook'
+                                    ng-model='inscription.jai_connu[rubedo.translate("Block.Inscription.Connu")].facebook'>
+                            <label for="facebook">Facebook</label>
+                </div>
+                <div class="col-xs-6">
+                    <input type="checkbox"  name="jai_connu" id="tracts" ng-true-value='{{rubedo.translate("Block.Inscription.Connu.Tracts")}}'
+                                    ng-model='inscription.jai_connu[rubedo.translate("Block.Inscription.Connu")].tracts'>
+                            <label for="tracts">{{rubedo.translate("Block.Inscription.Connu.Tracts")}}</label>
+                </div>
+                <div class="col-xs-6">
+                    <input type="checkbox"  name="jai_connu" id="internet" ng-true-value='{{rubedo.translate("Block.Inscription.Connu.Internet")}}'
+                                    ng-model='inscription.jai_connu[rubedo.translate("Block.Inscription.Connu")].internet'>
+                            <label for="internet">{{rubedo.translate("Block.Inscription.Connu.Internet")}}</label>
+                </div>
+                <div class="col-xs-6">
+                    <input type="checkbox"  name="jai_connu" id="famille_amis" ng-true-value='{{rubedo.translate("Block.Inscription.Connu.Famille")}}'
+                                    ng-model='inscription.jai_connu[rubedo.translate("Block.Inscription.Connu")].famille_amis'>
+                            <label for="famille_amis">{{rubedo.translate("Block.Inscription.Connu.Famille")}}</label>
+                </div>
             </div>
         </div>
-    </div>
-   <div class="row" ng-repeat="question in formCtrl.form.questions.complementaires track by $index">
-        <ng-include src="formCtrl.questionDetail"></ng-include>
-   </div>
-    <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : infos_complementaires.$invalid}" data-toggle="collapse" data-target="{{infos_complementaires.$invalid==true ? '' : '#transport'}}" data-parent="#inscription_form" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-    </div>
-</ng-form>
+       <div class="row" ng-repeat="question in formCtrl.form.questions.complementaires track by $index">
+            <ng-include src="formCtrl.questionDetail"></ng-include>
+       </div>
+        <div class="row text-center">
+            <div class="button submit" ng-class="{'disabled' : infos_complementaires.$invalid}" data-toggle="collapse" data-target="{{infos_complementaires.$invalid==true ? '' : '#transport'}}" data-parent="#inscription_form" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+        </div>
+    </ng-form>
 </div>
 <h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==3}" ng-if="formCtrl.isTransport" ng-click="formCtrl.setCurrentStage(2,inscription_form.transport.$valid)">{{formCtrl.fields.transport.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
 </h2>
-<ng-form name="transport" ng-if="formCtrl.isTransport" id="transport" class="collapse">
-    <!--questions de transport-->
-   <div class="row" ng-if="formCtrl.form.fields.transport">
-        <div class="col-sm-3"><div class="row"></div></div>
-        <div class="col-sm-8">
-            <div class="col-xs-12" ng-repeat="option in formCtrl.form.fields.transport.transport track by $index">
-                <input type="radio"  name="transport" ng-attr-id="{{option}}" ng-value=' " {{formCtrl.getLabel(formCtrl.fields.transport, option)}}" ' ng-model="inscription.transport[formCtrl.fields.transport.config.fieldLabel]" required>
-                        <label for="{{option}}">{{formCtrl.getLabel(formCtrl.fields.transport, option)}}</label>
+<div id="transport" class="collapse" ng-if="formCtrl.isTransport">
+    <ng-form name="transport">
+        <!--questions de transport-->
+       <div class="row" ng-if="formCtrl.form.fields.transport">
+            <div class="col-sm-3"><div class="row"></div></div>
+            <div class="col-sm-8">
+                <div class="col-xs-12" ng-repeat="option in formCtrl.form.fields.transport.transport track by $index">
+                    <input type="radio"  name="transport" ng-attr-id="{{option}}" ng-value=' " {{formCtrl.getLabel(formCtrl.fields.transport, option)}}" ' ng-model="inscription.transport[formCtrl.fields.transport.config.fieldLabel]" required>
+                            <label for="{{option}}">{{formCtrl.getLabel(formCtrl.fields.transport, option)}}</label>
+                </div>
             </div>
         </div>
-    </div>
-   <div class="row" ng-repeat="question in formCtrl.form.questions.transport">
-        <ng-include src="formCtrl.questionDetail"></ng-include>
-   </div>
-    <div class="row text-center">
-        <div class="button submit" data-toggle="collapse" href="#logement" ng-class="{'disabled' : transport.$invalid}" ng-click="formCtrl.setCurrentStage(3,transport.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-    </div>
-</ng-form>
+       <div class="row" ng-repeat="question in formCtrl.form.questions.transport">
+            <ng-include src="formCtrl.questionDetail"></ng-include>
+       </div>
+        <div class="row text-center">
+            <div class="button submit" data-toggle="collapse" ng-class="{'disabled' : transport.$invalid}"
+                  data-target="{{transport.$invalid==true ? '' : '#logement'}}" data-parent="#inscription_form" ng-click="formCtrl.setCurrentStage(3,transport.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+        </div>
+    </ng-form>
+</div>
    <!--questions de logement-->
 <h2 class="capital txt-red"  data-toggle="collapse" href="#logement" ng-class="{'displayed' : formCtrl.currentStage==4}" ng-if="formCtrl.isLogement" ng-click="formCtrl.setCurrentStage(3,inscription_form.logement.$valid)">{{formCtrl.fields.logement.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>4"></span>
 </h2>
-<ng-form name="logement" ng-if="formCtrl.isLogement" class="collapse" id="logement">
-   <div class="row" ng-if="formCtrl.form.fields.logement">
-        <div class="col-sm-3"><div class="row"></div></div>
-        <div class="col-sm-8">
-            <div class="col-xs-12" ng-repeat="option in formCtrl.form.fields.logement.logement track by $index">
-                <input type="radio"  name="logement" ng-attr-id="{{option}}" ng-value=' "{{formCtrl.getLabel(formCtrl.fields.logement, option)}}" ' ng-model="inscription.logement[formCtrl.fields.logement.config.fieldLabel]" required>
-                        <label for="{{option}}">{{formCtrl.getLabel(formCtrl.fields.logement, option)}} </label>
+<div ng-if="formCtrl.isLogement" class="collapse" id="logement">
+    <ng-form name="logement">
+       <div class="row" ng-if="formCtrl.form.fields.logement">
+            <div class="col-sm-3"><div class="row"></div></div>
+            <div class="col-sm-8">
+                <div class="col-xs-12" ng-repeat="option in formCtrl.form.fields.logement.logement track by $index">
+                    <input type="radio"  name="logement" ng-attr-id="{{option}}" ng-value=' "{{formCtrl.getLabel(formCtrl.fields.logement, option)}}" ' ng-model="inscription.logement[formCtrl.fields.logement.config.fieldLabel]" required>
+                            <label for="{{option}}">{{formCtrl.getLabel(formCtrl.fields.logement, option)}} </label>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row" ng-repeat="question in formCtrl.form.questions.logement">
-        <ng-include src="formCtrl.questionDetail"></ng-include>
-   </div>
-    <div class="row text-center">
-        <div class="button submit" ng-class="{'disabled' : logement.$invalid}" ng-click="formCtrl.setCurrentStage(4,logement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-    </div>
-</ng-form>
+        <div class="row" ng-repeat="question in formCtrl.form.questions.logement">
+            <ng-include src="formCtrl.questionDetail"></ng-include>
+       </div>
+        <div class="row text-center">
+            <div class="button submit" ng-class="{'disabled' : logement.$invalid}" ng-click="formCtrl.setCurrentStage(4,logement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+        </div>
+    </ng-form>
+</div>
 
 
 
