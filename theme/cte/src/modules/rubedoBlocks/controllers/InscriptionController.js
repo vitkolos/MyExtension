@@ -222,6 +222,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     // affichage des sections du formulaire
     me.setCurrentStage = function(step, valide) {
         if (valide && (me.currentStage >= step)) {
+            $('.collapse').collapse({
+                parent: "#inscription_form"
+              })
             if (step==0) {me.currentStage=1;}
             else if (step==1) {
                 if( $scope.inscription.email != $scope.inscription.email_verif){
