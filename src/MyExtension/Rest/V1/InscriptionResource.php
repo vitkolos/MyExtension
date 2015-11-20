@@ -338,7 +338,7 @@ protected function sendInscriptionMail($inscription,$lang){
     $mailClient->setSubject($sujetClient);
     $mailClient->setBody($messageClient, 'text/html', 'utf-8');
     $errors = [];
-    //$mailerService->sendMessage($mailClient, $errors);
+    $mailerService->sendMessage($mailClient, $errors);
     
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     /**************SUJET SECRETARIAT*****************/
