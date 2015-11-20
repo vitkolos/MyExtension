@@ -408,26 +408,26 @@ protected function sendInscriptionMail($inscription,$lang){
     /*pour couple / fiances / familles*/
     if($nbInscrits == 2){
         if($inscription['situationConjugale']) $messageSecretariat .= $this->addLine($trad["ccn_form_situation_couple"], $inscription['situationConjugale'] );
-        if($inscription['dateMariage']) $messageSecretariat .= $this->addLine($trad["ccn_form_date_de_mariage"], $inscription['dateMariage'] );
+        if($inscription['dateMariage']) $messageSecretariat .= $this->addLine($trad["ccn_form_date_de_mariage"], date("d/m/Y",$inscription['dateMariage']) );
+        $messageSecretariat .= "<tr><td width=100% colspan=3>&nbsp;</td></tr>";
+        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'],$inscription['nomPers2'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'], $inscription['prenomPers2'] );
+        if($inscription['birthdate']) $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']), date("d/m/Y",$inscription['dateNaissPers2']) );
+        if($inscription['birthdate'] || $inscription['dateNaissPers2']) {
+            $messageSecretariat .= $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"], $this->getAge($inscription['dateNaissPers2'], $inscription['dateDebut'])." ". $trad["ccn_ans"]);
+        }        
+        $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'], $inscription['nationalitePers2'] );
+        if($inscription['profession']) $messageSecretariat .= $this->addLine($trad["ccn_form_profession"], $inscription['profession'], $inscription['professionPers2'] );
+        $messageSecretariat .= "<tr><td width=100% colspan=3>&nbsp;</td></tr>";
+        if($inscription['tel2']||$inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] , $inscription['tel2Pers2'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'], $inscription['emailPers2'] );
         
-        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) );
-        if($inscription['birthdate']) {
-            $messageSecretariat .= $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"]);
-        }
-        if($inscription['sexe']) {
-            $sexe = ($inscription['sexe']['sexe'] =='H') ? $trad["ccn_form_homme"] : $trad["ccn_form_femme"];
-            $messageSecretariat .= $this->addLine($trad["ccn_label_sexe"], $sexe );
-        }
-        $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'] );
-        if($inscription['profession']) $messageSecretariat .= $this->addLine($trad["ccn_form_profession"], $inscription['profession'] );
-        if($inscription['classeEtudes']) $messageSecretariat .= $this->addLine($trad["ccn_label_classeEtudes"], $inscription['classeEtudes'] );
-        if($inscription['situation']) $messageSecretariat .= $this->addLine($trad["ccn_label_situation"], $inscription['situation'] );
+        
+
+
         if($inscription['address']) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] );
         if($inscription['cp'] || $inscription['city']) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'] );
         if($inscription['country']) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'] );
         if($inscription['tel1']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] );
         if($inscription['tel2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] );
         if($inscription['public_type'] == 'adolescent') {
@@ -439,19 +439,7 @@ protected function sendInscriptionMail($inscription,$lang){
 
 
     /*
-            if dateMariage :
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_date_de_mariage") + "</i></td><td width=67% colspan=2><font size='3'>" + dateMariage + "&nbsp;</font></td></tr>"
-            messageAdmin += "<tr><td width=100% colspan=3>&nbsp;</td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_nom") + "</i></td><td width=33%><font size='3'>" + nom + "</font></td><td width=33%><font size='3'>"  + nomPers2 + "</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_prenom") + "</i></td><td width=33%><font size='3'>" + prenom + "</font></td><td width=33%><font size='3'>"  + prenomPers2 + "</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_dateNaiss") + "</i></td><td width=33%><font size='3'>" + dateNaiss + "</font></td><td width=33%><font size='3'>"  + dateNaissPers2 + "</font></td></tr>"
-            if dateNaiss or dateNaissPers2:
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_age_debut_proposition") + "</i></td><td width=33%><font size='3'>" + self.getAge(dateNaiss,dateLieu.start) + " " + self.tr("ccn_ans") + "</font></td><td width=33%><font size='3'>"  + self.getAge(dateNaissPers2,dateLieu.start) + " " + self.tr("ccn_ans") + "</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_nationalite") + "</i></td><td width=33%><font size='3'>" + nationalite + "</font></td><td width=33%><font size='3'>"  + nationalitePers2 + "</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_profession") + "</i></td><td width=33%><font size='3'>" + profession + "</font></td><td width=33%><font size='3'>"  + professionPers2 + "</font></td></tr>"
-            messageAdmin += "<tr><td width=100% colspan=3>&nbsp;</td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_portable") + "</i></td><td width=33%><font size='3'>" + self.getTelephoneFormate(tel2) + "&nbsp;</font></td><td width=33%><font size='3'>"  + self.getTelephoneFormate(tel2Pers2) + "&nbsp;</font></td></tr>"
-            messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_email") + "</i></td><td width=33%><font size='3'>" + email + "&nbsp;</font></td><td width=33%><font size='3'>" + emailPers2 + "&nbsp;</font></td></tr>"
+             messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_email") + "</i></td><td width=33%><font size='3'>" + email + "&nbsp;</font></td><td width=33%><font size='3'>" + emailPers2 + "&nbsp;</font></td></tr>"
             messageAdmin += "<tr><td width=100% colspan=3>&nbsp;</td></tr>"
             if typePublicChoisi == "fiances" :
                 messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_adresse") + "</i>/td><td width=33%><font size='3'>"  + adresse + "</font></td><td width=33%><font size='3'>"  + adressePers2 + "</font></td></tr>"
@@ -506,6 +494,7 @@ protected function sendInscriptionMail($inscription,$lang){
         //dates
         $inscription['birthdate'] = strtotime($inscription['birthdate']);
         if($inscription['dateNaissPers2']) $inscription['dateNaissPers2'] = strtotime($inscription['dateNaissPers2']);
+        if($inscription['dateMariage']) $inscription['dateMariage'] = strtotime($inscription['dateMariage']);
         //telephones formatés pour la France
         if($this->getPays() == "FR"){
             if($inscription['tel1']) $inscription['tel1'] = $this->formatTelephone($inscription['tel1']);
