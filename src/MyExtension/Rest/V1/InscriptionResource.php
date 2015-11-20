@@ -445,7 +445,7 @@ protected function sendInscriptionMail($inscription,$lang){
             $messageSecretariat .= "<tr><td width=25%>". $enfant['prenom'] . "</td>";
             $messageSecretariat .= "<td width=25%>". $enfant['nom'] . "</td>";
             $messageSecretariat .= "<td width=25%>". $enfant['birthdateF'] . "</td>";
-            $messageSecretariat .= "<td width=10%>". $this->getAge($enfant['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"] . "</td>";
+            $messageSecretariat .= "<td width=10%>". $this->getAge(strtotime($enfant['birthdate']), $inscription['dateDebut'])." ". $trad["ccn_ans"] . "</td>";
             $messageSecretariat .= "<td width=15%>". $enfant['sexe'] . "</td></tr>";
         }
 
