@@ -223,11 +223,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (step==0) {me.currentStage=1;}
             else if (step==1) {
                 if( $scope.inscription.email != $scope.inscription.email_verif){
-                    $scope.mailError = true;
+                    $scope.mailError = true;me.currentStage=1;
                 }
                 else if ($scope.inscription.emailPers2 != $scope.inscription.emailPers2_verif) {
                     $scope.mailError2 = true;
                     $scope.mailError = false;
+                    me.currentStage=1;
                 }
                 else if (me.isComplement) {me.currentStage=2;$scope.mailError = false;$scope.mailError2 = false;}
                 else if (me.isTransport) {me.currentStage=3;$scope.mailError = false;$scope.mailError2 = false;}
@@ -254,7 +255,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.currentStage=6;
             }
         }
-        else if (valide && step==6) {
+        if (valide && step==6) {
             // validations préliminaires
             //$scope.processForm=true;
            $scope.inscription.proposition=  propositionId;
