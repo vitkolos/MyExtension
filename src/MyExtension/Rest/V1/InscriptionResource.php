@@ -276,7 +276,7 @@ protected function sendInscriptionMail($inscription,$lang){
     
     //RECAPITULATIF
     //Voici le récapitulatif de ton inscription
-    $messageClient .= $trad["ccn_mail_8_".$tuOuVous] . "<br/><br/>";
+    $messageClient .= $trad["ccn_mail_29_".$tuOuVous] . "<br/><br/>";
     $messageClient .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
     if($nbInscrits ==1)
         $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_personne_inscrite"] . "</i></td><td width=67%>" .  $nomClient . "</td></tr>";
