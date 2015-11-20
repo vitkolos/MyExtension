@@ -25,6 +25,24 @@
                     </div>
                 </div>
             </div>
+            <!--pour fiancés-->
+                <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                    <div class="col-sm-4"><label for="adresse" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
+                    <div class="col-sm-8"><textarea rows="3" id="adresse" ng-model="inscription.address" name="address" placeholder="" required></textarea></div>
+                </div>
+                <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                    <div class="col-sm-4"><label for="cp" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
+                    <div class="col-sm-8"><input type="text" id="cp" ng-model="inscription.cp" name="cp"></div>
+                </div>
+                <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                    <div class="col-sm-4"><label for="city" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
+                    <div class="col-sm-8"><input type="text" id="city" ng-model="inscription.city" name="city" required></div>
+                </div>
+                <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                    <div class="col-sm-4"><label for="pays" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
+                    <div class="col-sm-8"><input type="text" id="pays" ng-model="inscription.country" name="country"></div>
+                </div>
+            <!---->
             <div class="row" ng-if="!personneConnue">
                 <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
                 <div class="col-sm-8"><input type="text" id="profession" ng-model="inscription.profession" name="profession"></div>
@@ -39,6 +57,10 @@
                     <input type="email" id="email_verif" name="email_verif" placeholder="user@mydomain.com" ng-model="inscription.email_verif" ng-required="inscription.email">
                     <p ng-if="mailError" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
                 </div>
+            </div>
+            <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                <div class="col-sm-4"><label for="tel1" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
+                <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="inscription.tel1" placeholder="+33/x xx xx xx xx"  ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/" ng-required="isTelephoneRequired()"></div>
             </div>
             <div class="row" ng-if="!personneConnue">
                 <div class="col-sm-4"><label for="tel2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
@@ -71,6 +93,24 @@
                     </div>
                 </div>
             </div>
+            <!--pour fiancés-->
+                <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                    <div class="col-sm-4"><label for="adressePers2" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
+                    <div class="col-sm-8"><textarea rows="3" id="adressePers2" ng-model="inscription.adressePers2" name="adressePers2" placeholder="" required></textarea></div>
+                </div>
+                <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                    <div class="col-sm-4"><label for="cp2" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
+                    <div class="col-sm-8"><input type="text" id="cp2" ng-model="inscription.codepostalPers2" name="codepostalPers2"></div>
+                </div>
+                <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                    <div class="col-sm-4"><label for="city2" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
+                    <div class="col-sm-8"><input type="text" id="city2" ng-model="inscription.villePers2" name="villePers2" required></div>
+                </div>
+                <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                    <div class="col-sm-4"><label for="pays2" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
+                    <div class="col-sm-8"><input type="text" id="pays2" ng-model="inscription.paysPers2" name="paysPers2"></div>
+                </div>
+            <!---->            
             <div class="row" ng-if="!personneConnue">
                 <div class="col-sm-4"><label for="professionPers2" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
                 <div class="col-sm-8"><input type="text" id="professionPers2" ng-model="inscription.professionPers2" name="professionPers2"></div>
@@ -86,13 +126,17 @@
                     <p ng-if="mailError2" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
                 </div>
             </div>
+            <div class="row" ng-if="!personneConnue && inscription.public_type == 'fiances'">
+                <div class="col-sm-4"><label for="tel1Pers2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
+                <div class="col-sm-8"><input type="text" id="tel1Pers2" name="tel1Pers2"  ng-model="inscription.tel1Pers2" placeholder="+33/x xx xx xx xx"  ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/" ng-required="isTelephoneRequired()"></div>
+            </div>
             <div class="row" ng-if="!personneConnue">
                 <div class="col-sm-4"><label for="tel2Pers2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
                 <div class="col-sm-8"><input type="text" id="tel2Pers2" name="tel2Pers2" placeholder="+33/x xx xx xx xx" ng-model="inscription.tel2Pers2" ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/" ng-required="isTelephoneRequired()">
                 </div>
             </div>
         </div>
-        <div class="col-xs-12" ng-if="!personneConnue">
+        <div class="col-xs-12" ng-if="!personneConnue && inscription.public_type != 'fiances'">
             <h3 class="row">{{rubedo.translate("Block.Inscription.Couple", "Couple")}}</h3>
             <div class="row">
                 <div class="col-sm-4"><label for="adresse" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
@@ -161,4 +205,25 @@
                  </div>
              </div>
         </div>
+        <div class="col-xs-12" ng-if="inscription.public_type == 'fiances'">
+            <h3 class="row">{{rubedo.translate("Block.Inscription.Fiances", "Projet de mariage")}}</h3>
+            <input type="hidden" name="situationConjugale" value="{{rubedo.translate('Block.Inscription.SituationConjugale.Fiances')}}" ng-model="inscription.situationConjugale">
+            <div class="row">
+                <div class="col-sm-4"><label for="adresse" class="label_style">{{rubedo.translate('Block.Inscription.Mariage.Fiances')}}</label></div>
+                <div class="col-sm-8">
+                    <a showtab class="dropdown-toggle" id="dropdowndateMar2" role="button" data-toggle="dropdown" data-target="#" href="#">
+                        <div class="input-group">
+                            <input readonly id="dropdowndateMar2" ng-model="inscription.dateMariageF" type="text" class="form-control" >
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <datetimepicker data-ng-model="inscription.dateMariage"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateMar2', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateMariageF = (inscription.dateMariage |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    </ul>
+                </div>
+            </div>            
+        </div>
     </div>
+    
+    
+    

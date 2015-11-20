@@ -421,39 +421,37 @@ protected function sendInscriptionMail($inscription,$lang){
         $messageSecretariat .= "<tr><td width=100% colspan=3>&nbsp;</td></tr>";
         if($inscription['tel2']||$inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] , $inscription['tel2Pers2'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'], $inscription['emailPers2'] );
-        
-        
-
-
-        if($inscription['address']) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] );
-        if($inscription['cp'] || $inscription['city']) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'] );
-        if($inscription['country']) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] );
-        if($inscription['tel1']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] );
-        if($inscription['tel2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] );
-        if($inscription['public_type'] == 'adolescent') {
-            if($inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] );
-            if($inscription['emailPers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] );
+        $messageSecretariat .= "<tr><td width=100% colspan=3>&nbsp;</td></tr>";
+        if($inscription['public_type'] == 'fiances') {
+            $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'], $inscription['adressePers2'] );
+            $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'], $inscription['codepostalPers2']." - ". $inscription['villePers2'] );
+            $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'], $inscription['paysPers2'] );
+            $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'], $inscription['tel1Pers2'] );
+        }
+        else{
+            $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] );
+            $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'] );
+            $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] );
+            $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] );           
         }
    }
     $messageSecretariat .= "</table><br/>";
+    /*Enfants*/
+    if($inscription['enfants']) {
+        $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+        $messageSecretariat .= "<tr><td bgcolor='#8CACBB' width=100% colspan=5><i>".$trad["ccn_label_enfants"]."</i></td></tr>";
+        $messageSecretariat .="<tr><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_prenom"]. "</i></td><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_nom"]. "</i></td><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_dateNaiss"]. "</i></td><td bgcolor='#8CACBB' width=10%><i>" .$trad["ccn_label_age"]. "</i></td><td bgcolor='#8CACBB' width=15%><i>" .$trad["ccn_label_sexe"]. "</i></td></tr>"
+        foreach($inscription['enfants_org'] as $enfant) {
+            $messageSecretariat .= "<tr><td width=25%>". $enfant['prenom'] . "</td>";
+            $messageSecretariat .= "<td width=25%>". $enfant['nom'] . "</td>";
+            $messageSecretariat .= "<td width=25%>". $enfant['birthdateF'] . "</td>";
+            $messageSecretariat .= "<td width=10%>". $this->getAge($enfant['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"]) . "</td>";
+            $messageSecretariat .= "<td width=15%>". $enfant['sexe'] . "</td></tr>";
+        }
 
+        $messageSecretariat .= "</table><br/>";
+    }
 
-    /*
-             messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_email") + "</i></td><td width=33%><font size='3'>" + email + "&nbsp;</font></td><td width=33%><font size='3'>" + emailPers2 + "&nbsp;</font></td></tr>"
-            messageAdmin += "<tr><td width=100% colspan=3>&nbsp;</td></tr>"
-            if typePublicChoisi == "fiances" :
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_adresse") + "</i>/td><td width=33%><font size='3'>"  + adresse + "</font></td><td width=33%><font size='3'>"  + adressePers2 + "</font></td></tr>"
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_codepostal") + " - " + self.tr("ccn_label_ville") + "</i></td><td width=33%><font size='3'>"  + codepostal + " " + ville + "</font></td><td width=33%><font size='3'>"  + codepostalPers2 + " " + villePers2 + "</font></td></tr>"
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_pays") + "</i></td><td width=33%><font size='3'>"  + pays + "&nbsp;</font></td><td width=33%><font size='3'>"  + paysPers2 + "&nbsp;</font></td></tr>"
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_fixe") + "</i></td><td width=33%><font size='3'>" + self.getTelephoneFormate(tel1) + "</font></td><td width=33%><font size='3'>" + self.getTelephoneFormate(tel1Pers2) + "</font></td></tr>"
-            else :
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_adresse") + "</i></td><td width=67% colspan=2><font size='3'>"  + adresse + "</font></td></tr>"
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_codepostal") + " - " + self.tr("ccn_label_ville") + "</i></td><td width=67% colspan=2><font size='3'>"  + codepostal + " " + ville + "</font></td></tr>"
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_pays") + "</i></td><td width=67% colspan=2><font size='3'>"  + pays + "</font></td></tr>"
-                messageAdmin += "<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_form_telephone_fixe") + "</i></td><td width=67% colspan=2><font size='3'>" + self.getTelephoneFormate(tel1) + "</font></td></tr>"
-            messageAdmin += "</table><br>"
-                     
-   */
     
     
     $mailSecretariat = $mailerService->getNewMessage();
@@ -565,24 +563,24 @@ protected function sendInscriptionMail($inscription,$lang){
         else return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $reponse . "</td></tr>";
     }
     
-"<tr><td bgcolor='#8CACBB' width=33%><i>" + self.tr("ccn_label_dateNaiss") + "</i></td><td width=33%><font size='3'>" + dateNaiss + "</font></td><td width=33%><font size='3'>"  + dateNaissPers2 + "</font></td></tr>"
 
     protected function getAge($dateDebut, $dateFin){ // avec dates passées par strtotime (ie timestamp)
         return floor(($dateFin-$dateDebut) / (365*60*60*24));
     }
+    
     protected function formatTelephone($number){
         $toReplace = array(" ", "/", "+");
         $telephoneFormat = str_replace($toReplace,"",$number); //supprimer espace, + et /
         //336xxxxxxxx
         if(strlen($telephoneFormat) == 11) {
-            $telephoneFormat = "+".substr($telephoneFormat, 0,2)."/".substr($telephoneFormat, 2,9);
+            $telephoneFormat = "+".substr($telephoneFormat, 0,2)."/".substr($telephoneFormat, 2,1)." ".substr($telephoneFormat, 3,2)." ".substr($telephoneFormat, 5,2)." ".substr($telephoneFormat, 7,2)." ".substr($telephoneFormat, 9,2);
         }
         //00336xxxxxxxx
         else if(strlen($telephoneFormat) == 13 && substr($telephoneFormat, 0,2) == "00") {
-            $telephoneFormat = "+".substr($telephoneFormat, 2,2)."/".substr($telephoneFormat, 4,9);
+            $telephoneFormat = "+".substr($telephoneFormat, 2,2)."/".substr($telephoneFormat, 4,1)." ".substr($telephoneFormat, 5,2)." ".substr($telephoneFormat, 7,2)." ".substr($telephoneFormat, 9,2)." ".substr($telephoneFormat, 11,2);
         }
         else if(strlen($telephoneFormat) == 10 && substr($telephoneFormat, 0,1) == "0") {
-            $telephoneFormat = "+33/".substr($telephoneFormat, 1,9);
+            $telephoneFormat = "+33/".substr($telephoneFormat, 1,1)." ".substr($telephoneFormat, 2,2)." ".substr($telephoneFormat, 4,2)." ".substr($telephoneFormat, 6,2)." ".substr($telephoneFormat, 8,2);
         }
         return $telephoneFormat;
     }
