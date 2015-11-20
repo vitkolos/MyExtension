@@ -31,7 +31,7 @@
                         <div  ng-include="formCtrl.enfants"></div>
                     </div>
                     <div class="row text-center">
-                        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                        <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)" data-toggle="collapse" data-target="{{infos_personnelles.$invalid==true ? '' : '#infos_complementaires'}}" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                     </div>
                 </ng-form>
                 <div ng-include="formCtrl.questions"></div>
