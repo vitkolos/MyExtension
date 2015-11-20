@@ -42,7 +42,8 @@
                     {{contentDetailCtrl.getLabelByName('paf_text')}}
                     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>5"></span>
                 </h2>
-                <ng-form name="paiement" ng-if="formCtrl.isPaiement">
+                <div id="paiement" ng-if="formCtrl.isPaiement">
+                <ng-form name="paiement">
                    <div class="row">
                         <div class="col-xs-12 text-center">
                             <p>{{rubedo.translate("Block.Inscription.Paf")}} {{contentDetailCtrl.content.fields.paf_text}}</p>
@@ -93,6 +94,7 @@
                    </div>
 
                 </ng-form>
+                </div>
                 <!--remarques-->
                 <h2 class="capital txt-red displayed" ng-click="formCtrl.setCurrentStage(5,remarques.$valid)">{{rubedo.translate("Block.Inscription.Remarques")}}</h2>
                 <ng-form name="remarques">
