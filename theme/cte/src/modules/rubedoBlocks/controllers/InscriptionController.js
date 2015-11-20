@@ -219,8 +219,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     // affichage des sections du formulaire
     me.setCurrentStage = function(step, valide) {
         $('.collapse').collapse({
+            toggle:false,
+            parent: "#inscription_form"
+        });
+        $('#infos_personnelles').collapse({
             toggle:true,
-                parent: "#inscription_form"
+            parent: "#inscription_form"
         });
         if (valide && (me.currentStage >= step)) {
             
