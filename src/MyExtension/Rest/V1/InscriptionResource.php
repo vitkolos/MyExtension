@@ -337,7 +337,6 @@ protected function sendInscriptionMail($inscription,$lang){
     $mailClient->setCharset('utf-8');
     $mailClient->setSubject($sujetClient);
     $mailClient->setBody($messageClient, 'text/html', 'utf-8');
-    $errors = [];
     $mailerService->sendMessage($mailClient, $errors);
     
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
@@ -451,6 +450,7 @@ protected function sendInscriptionMail($inscription,$lang){
 
         $messageSecretariat .= "</table><br/>";
     }
+    /*QUESTIONS ET REMARQUES*/
     $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
     if($inscription['logement']) {
        $messageSecretariat .= $this->questionToRecap($inscription['logement_org']);
@@ -469,7 +469,27 @@ protected function sendInscriptionMail($inscription,$lang){
        $messageSecretariat .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_form_remarques"] . "</i></td><td width=67%>" .  $inscription['remarques'] . "</td></tr>";
     }
     $messageSecretariat .= "</table><br/>";
+    /*INFOS DE PAIEMENT*/
+    if($inscription['isPayment']) {
+        $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+        $messageSecretariat .= $this->addLine($trad["ccn_label_mode_paiement"], $inscription['modePaiement'] );          
+        $messageSecretariat .= $this->addLine($trad["ccn_label_montant_total_a_payer"], $inscription['montantTotalAPayerAvecMonnaie'] );          
+        $messageSecretariat .= $this->addLine($trad["ccn_label_montant_a_l_inscription"], $inscription['montantAPayerMaintenantAvecMonnaie'] );          
+        $messageSecretariat .= "</table><br/>";
+    }
+    /*RECAP FINAL*/
+    $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+    $messageSecretariat .= $this->addLine($trad["ccn_label_proposition"], $inscription['propositionTitre'] );          
+    $messageSecretariat .= $this->addLine($trad["ccn_label_date"], $inscription['propositionDate'] );          
+    $messageSecretariat .= $this->addLine($trad["ccn_label_lieu"], $inscription['propositionLieu'] );
+    $messageSecretariat .= $this->addLine($trad["ccn_label_page_web"], "<a href='" . $url . "'>" . $url . "</a>" );          
+    $messageSecretariat .= $this->addLine($trad["ccn_contact"], $contactSecretariat );          
+    $messageSecretariat .= "</table><br/>";
+   
     
+    /*
+
+*/
     
     $mailSecretariat = $mailerService->getNewMessage();
     $mailSecretariat->setTo('nicolas.rhone@gmail.com'); // à changer en $inscription['contact']['email']
@@ -478,8 +498,7 @@ protected function sendInscriptionMail($inscription,$lang){
     $mailSecretariat->setCharset('utf-8');
     $mailSecretariat->setSubject($sujetSecretariat);
     $mailSecretariat->setBody($messageSecretariat, 'text/html', 'utf-8');
-    $errors = [];
-    $mailerService->sendMessage($mailSecretariat, $errors);    
+    $mailerService->sendMessage($mailSecretariat);    
     
 }
 
@@ -575,7 +594,6 @@ protected function sendInscriptionMail($inscription,$lang){
             $stringToAdd .= "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>";
         }
         return $stringToAdd;
-        
     }
     protected function addLine($titre, $reponse, $reponse2){
         if($reponse2) return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=33%>" . $reponse . "</td><td width=33%>".$reponse2 ."</td></tr>";
