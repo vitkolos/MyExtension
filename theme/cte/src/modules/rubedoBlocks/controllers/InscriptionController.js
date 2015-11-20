@@ -254,6 +254,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if (step==5) {
                 me.currentStage=6;
             }
+            console.log("actual stage : "+me.currentStage);
         }
         if (valide && step==6) {
             // validations préliminaires
