@@ -16,13 +16,6 @@
                     {{contentDetailCtrl.getLabelByName('paf_text')}}
                 </h2>
                 <div class="row text-center"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0"><p>{{contentDetailCtrl.content.fields.paf_text}}</p></div>
-                
-                
-                
-                
-                
-                
-                
                 <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==1}" ng-click="formCtrl.setCurrentStage(0,infos_personnelles.$valid)">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
                     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>1"></span>
                 </h2>

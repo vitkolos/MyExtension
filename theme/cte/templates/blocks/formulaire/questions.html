@@ -32,7 +32,7 @@
         <ng-include src="formCtrl.questionDetail"></ng-include>
    </div>
     <div class="row text-center">
-        <div class="button submit" data-toggle="collapse" href="#transport" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+        <div class="button submit" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
     </div>
 </ng-form>
 
