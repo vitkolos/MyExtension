@@ -214,7 +214,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             return  !($scope.inscription.tel1 || $scope.inscription.tel2); // au moins téléphone fixe ou portable
     };
 
-    
+    $('.collapse').collapse({
+        toggle: true,
+        parent:"#inscription_form"
+    });
     me.currentStage = 1;
     // affichage des sections du formulaire
     me.setCurrentStage = function(step, valide) {
