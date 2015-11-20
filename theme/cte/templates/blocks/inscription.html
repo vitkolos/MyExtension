@@ -11,6 +11,7 @@
 
         
         <form name="inscription_form" novalidate ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState != 'close'" id="inscription_form">
+            <div class="panel">
                 <!--si pas de payement en ligne-->
                 <h2 class="capital txt-red"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0">
                     {{contentDetailCtrl.getLabelByName('paf_text')}}
@@ -115,6 +116,7 @@
                         <p ng-if="finInscription">{{message}}</p>
                 </div>
                 <!---submit inscription-->
+                </div>
         </form>
         <form ng-if="inscription.modePaiement=='carte' "id="payment" name="payment"  method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
             <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
