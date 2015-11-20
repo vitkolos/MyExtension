@@ -122,7 +122,8 @@
                          <input type="radio"  name="situationConjugale" id="mariage" value="{{rubedo.translate('Block.Inscription.SituationConjugale.Maries')}}" ng-model="inscription.situationConjugale" required>
                                  <label for="mariage">{{rubedo.translate('Block.Inscription.SituationConjugale.Maries')}}</label>
                                  
-                        <div class="dropdown" ng-if="inscription.situationConjugale == rubedo.translate('Block.Inscription.SituationConjugale.Maries') ">
+                        <div class="dropdown col-xs-12" ng-if="inscription.situationConjugale == rubedo.translate('Block.Inscription.SituationConjugale.Maries') " style="margin-bottom: 12px">
+                            <label class="col-xs-12">{{rubedo.translate('Block.Inscription.Mariage')}}</label>
                             <a showtab class="dropdown-toggle" id="dropdowndateMar" role="button" data-toggle="dropdown" data-target="#" href="#">
                                 <div class="input-group">
                                     <input readonly id="dropdowndateMar" ng-model="inscription.dateMariageF" type="text" class="form-control" required>
@@ -137,8 +138,8 @@
                      <div class="col-xs-12">
                          <input type="radio"  name="situationConjugale" id="fiances" value="{{rubedo.translate('Block.Inscription.SituationConjugale.Fiances')}}" ng-model="inscription.situationConjugale" required>
                                  <label for="fiances">{{rubedo.translate('Block.Inscription.SituationConjugale.Fiances')}}</label>
-                                 <label class="col-xs-12">Date de mariage (si vous la connaissez)</label>
-                        <div class="dropdown" ng-if="inscription.situationConjugale == rubedo.translate('Block.Inscription.SituationConjugale.Fiances') ">
+                        <div class="dropdown" ng-if="inscription.situationConjugale == rubedo.translate('Block.Inscription.SituationConjugale.Fiances') " style="margin-bottom: 12px">
+                            <label class="col-xs-12">{{rubedo.translate('Block.Inscription.Mariage.Fiances')}}</label>
                             <a showtab class="dropdown-toggle" id="dropdowndateMar2" role="button" data-toggle="dropdown" data-target="#" href="#">
                                 <div class="input-group">
                                     <input readonly id="dropdowndateMar2" ng-model="inscription.dateMariageF" type="text" class="form-control" >

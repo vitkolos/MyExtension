@@ -57,6 +57,8 @@
     "Block.Inscription.SituationConjugale.Fiances":"Fiancés",
     "Block.Inscription.SituationConjugale.Autre":"Autre",
     "Block.Inscription.SituationConjugale.Preciser":"Précisez:",
+    "Block.Inscription.Mariage":"Date de mariage:",
+    "Block.Inscription.Mariage.Fiances":"Date de mariage si vous la connaissez :",
     "Block.Inscription.Inscrire":"S'inscrire",
     "Block.Inscription.Paf":"La participation aux frais est de:",
     "Block.Inscription.Paf.Montant":"J'envisage de payer le montant suivant :",
