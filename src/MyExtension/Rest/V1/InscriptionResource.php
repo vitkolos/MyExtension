@@ -566,13 +566,15 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     protected function questionToRecap($question){
             foreach ($question as $titre => $reponse){
+                $stringToAdd="";
                 $answer = "";
                 if(is_string($reponse)) $answer= $reponse; // pour texte ou radio
                 else {
                     foreach($reponse as $value) $answer .= $value.", ";//pour checkbox
                 }
-                return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>";
+                $stringToAdd .= "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>";
             }
+            return $stringToAdd;
         
     }
     protected function addLine($titre, $reponse, $reponse2){
