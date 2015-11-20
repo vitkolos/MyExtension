@@ -218,7 +218,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.currentStage = 1;
     // affichage des sections du formulaire
     me.setCurrentStage = function(step, valide) {
-        console.log(step + " " + me.currentStage);
         if (valide && (me.currentStage >= step)) {
             if (step==0) {me.currentStage=1;}
             else if (step==1) {
@@ -254,11 +253,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if (step==5) {
                 me.currentStage=6;
             }
-            console.log("actual stage : "+me.currentStage);
         }
         if (valide && step==6) {
             // validations préliminaires
-            //$scope.processForm=true;
+            $scope.processForm=true;
            $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.propositionDate = propositionDate;
@@ -311,16 +309,18 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     
             }
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace, $scope.rubedo.translations).then(function(response){
+                $scope.message="";          
                 if (response.data.success) {
-                    var payload = {
+                    // si paiement par Paybox
+                    if ($scope.inscription.modePaiement=='carte') { 
+                        var payload = {
                             nom:$scope.inscription.name,
                             prenom: $scope.inscription.surname,
                             email:$scope.inscription.email,
                             montant:$scope.inscription.montantAPayerMaintenant,
                             proposition:propositionTitle,
                             idInscription: response.data.id
-                    };
-                    if ($scope.inscription.modePaiement=='carte') { // paiement par Paybox
+                        };
                         payload.paymentType= 'paf';
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
@@ -330,20 +330,31 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                                     $scope.processForm=false;
                                     document.getElementById('payment').submit();
                                 }, 100);
-                                
-
                             }
                             else {
                                 $scope.processForm=false;
+                                $scope.finInscription=true;      
+                                $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
                             }
                             
                         });
                         
                     }
+                    // pas de paiement par carte
+                    else {
+                        $scope.processForm=false;
+                        $scope.finInscription=true; 
+                        $scope.message += "Votre inscription a bien été prise en compte. Merci et à bientôt !";
+                    }
                     
                     
                 }
-                 
+                else {
+                    
+                    $scope.processForm=false;
+                    $scope.finInscription=true; 
+                    $scope.message +="Il y a eu une erreur lors de la prise en compte de votre inscription. Merci de réessayer plus tard ou de contacter le secrétariat.";
+                }
             })
             
                 
