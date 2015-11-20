@@ -440,12 +440,12 @@ protected function sendInscriptionMail($inscription,$lang){
     if($inscription['enfants']) {
         $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
         $messageSecretariat .= "<tr><td bgcolor='#8CACBB' width=100% colspan=5><i>".$trad["ccn_label_enfants"]."</i></td></tr>";
-        $messageSecretariat .="<tr><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_prenom"]. "</i></td><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_nom"]. "</i></td><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_dateNaiss"]. "</i></td><td bgcolor='#8CACBB' width=10%><i>" .$trad["ccn_label_age"]. "</i></td><td bgcolor='#8CACBB' width=15%><i>" .$trad["ccn_label_sexe"]. "</i></td></tr>"
-        foreach($inscription['enfants_org'] as $enfant) {
+        $messageSecretariat .="<tr><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_prenom"]. "</i></td><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_nom"]. "</i></td><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_dateNaiss"]. "</i></td><td bgcolor='#8CACBB' width=10%><i>" .$trad["ccn_label_age"]. "</i></td><td bgcolor='#8CACBB' width=15%><i>" .$trad["ccn_label_sexe"]. "</i></td></tr>";
+        foreach($inscription['enfants_org'] as $index => $enfant) {
             $messageSecretariat .= "<tr><td width=25%>". $enfant['prenom'] . "</td>";
             $messageSecretariat .= "<td width=25%>". $enfant['nom'] . "</td>";
             $messageSecretariat .= "<td width=25%>". $enfant['birthdateF'] . "</td>";
-            $messageSecretariat .= "<td width=10%>". $this->getAge($enfant['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"]) . "</td>";
+            $messageSecretariat .= "<td width=10%>". $this->getAge($enfant['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"] . "</td>";
             $messageSecretariat .= "<td width=15%>". $enfant['sexe'] . "</td></tr>";
         }
 
@@ -558,7 +558,7 @@ protected function sendInscriptionMail($inscription,$lang){
             }
         
     }
-    protected function addLine($titre, $reponse, $reponse2,$reponse3,$reponse4){
+    protected function addLine($titre, $reponse, $reponse2){
         if($reponse2) return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=33%>" . $reponse . "</td><td width=33%>".$reponse2 ."</td></tr>";
         else return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $reponse . "</td></tr>";
     }
