@@ -33,7 +33,7 @@
             <ng-include src="formCtrl.questionDetail"></ng-include>
        </div>
         <div class="row text-center">
-            <div class="button submit" ng-class="{'disabled' : infos_complementaires.$invalid}" data-toggle="collapse" data-target="{{infos_complementaires.$invalid==true ? '' : '#transport'}}" data-parent="#inscription_form" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+            <div class="button submit" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(2,infos_complementaires.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
         </div>
     </ng-form>
 </div>
@@ -56,8 +56,7 @@
             <ng-include src="formCtrl.questionDetail"></ng-include>
        </div>
         <div class="row text-center">
-            <div class="button submit" data-toggle="collapse" ng-class="{'disabled' : transport.$invalid}"
-                  data-target="{{transport.$invalid==true ? '' : '#logement'}}" data-parent="#inscription_form" ng-click="formCtrl.setCurrentStage(3,transport.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+            <div class="button submit" ng-class="{'disabled' : transport.$invalid}" ng-click="formCtrl.setCurrentStage(3,transport.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
         </div>
     </ng-form>
 </div>
@@ -80,8 +79,7 @@
             <ng-include src="formCtrl.questionDetail"></ng-include>
        </div>
         <div class="row text-center">
-            <div class="button submit" ng-class="{'disabled' : logement.$invalid}" ng-click="formCtrl.setCurrentStage(4,logement.$valid)"
-            data-toggle="collapse" data-target="{{transport.$invalid==true ? '' : '#paiement'}}" data-parent="#inscription_form">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+            <div class="button submit" ng-class="{'disabled' : logement.$invalid}" ng-click="formCtrl.setCurrentStage(4,logement.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
         </div>
     </ng-form>
 </div>
