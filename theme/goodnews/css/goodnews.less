@@ -362,7 +362,7 @@ blockquote {
   .button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}
 
 
-.list {
+.list div {
   width: 100%;
   height: 0;
   
@@ -370,9 +370,10 @@ blockquote {
   background-position: center center;
   background-repeat: no-repeat;
 }
-.list.ratio1 {padding-top: 100%;}
-.list.ratio16-9 {padding-top: 56.25%;}
-.list.ratio2-1 {padding-top: 150%;}
+.list a{display: block; height:100%; width: 100%; position:absolute}
+.list .ratio1 {padding-top: 100%;}
+.list .ratio16-9 {padding-top: 56.25%;}
+.list .ratio2-1 {padding-top: 150%;}
 
 ////////////////////////////////////////////////////
     ///////////CONTENUS///////////////////
