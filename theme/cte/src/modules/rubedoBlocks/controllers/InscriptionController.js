@@ -227,7 +227,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
         if (valide && (me.currentStage >= step)) {
             
-            if (step==0) {me.currentStage=1;}
+            if (step==0) {me.toggleStage(1);}
             else if (step==1) {
                 if( $scope.inscription.email != $scope.inscription.email_verif){
                     $scope.mailError = true;me.currentStage=1;
