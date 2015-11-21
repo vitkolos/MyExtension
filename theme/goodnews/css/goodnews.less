@@ -176,31 +176,6 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
 @media screen and (max-width: @min_sm) {
    .actus-thumb{width:100%; float:none; text-align: center; padding-bottom:12px; img{float:none}}
 }
- 
- //////CARRES DATES///////////
- .agenda{text-align: center; float:none; vertical-align: top; display: inline-block}
- .carre-date{
-  height:255px;
-  width:255px;
-  padding:25px 15px 15px;
-  border: 2px solid #636363;
-  margin-bottom: 48px;
-  transition:background-color 0.3s ease;
-  h3{color:white; font-size: 35px}
-  span{font-size:35px; display:block; margin-bottom:17px}
-  p{font-size:13px; line-height: 13px}
- }
- .carre-date:hover{
-  cursor: pointer;
-  background-color:@bleu; border-color: white;
-  span,p{color:white}
-}
-.modal h3{color:@bleu}
-.modal a{color:@texte; box-shadow: inset 0 -2px 0 @bleu; transition: background-color ease 0.3s}
-.modal a:hover{background-color:@bleu; color:white}
- @media screen and (max-width: @min_xs) {
-  .carre-date{height:auto; width:100%}
- }
 
  ///////////////GOOGLE BUTTONS////////////////////
  .google-btn{margin:80px auto;width:95%;padding-top:20px}
@@ -361,109 +336,7 @@ blockquote {
 ///////////////////////////////////////////////////
 .jwlogo{display: none}
  .jwplayer .jwpreview.jwuniform{background-size: cover!important}
-////////////////////////////////////////////////////
-    ///////////GOOGLE MAPS///////////////////
-///////////////////////////////////////////////////
-.rubedo-gmapitem{min-height:0px}
-.rubedo-gmapitem>div{padding:12px 0; border-bottom:solid 1px #d5c5b5}
-.rubedo-gmapitem>div:last-of-type{border-bottom:none}
-.map-container{width:100%; height:350px;}
-.full_page{height:auto }
-@media screen and (min-width:@min_sm){.full_page{height: 100%; height:100vh;}.map-container{height:100%}}
-.full_page > div, .full_page >div > div.row{height:100%; }
-.full_page >div div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
-.geo-tags, .geo-search{padding-right: 15px;padding-left:40px; }
-.cluster img{width:100%}
-.geo-tags{
-  background: @rouge; padding-top:50px; 
-  .form-control,.btn{border:none}
-}
-@media screen and (min-width:@min_sm) {.geo-tags, .geo-search{padding-left:25px}}
-@media screen and (min-width:@min_lg) {.geo-tags, .geo-search{padding-left:15px}.full_page >div div[class*="col-"]{height:100%}}
-@media screen and (max-width:@min_sm) {.geo-tags{ padding-top: 0}}
-.rubedo-places-search{
-  display: inline-block;
-  background: transparent;
-  color:white;
-  text-decoration: underline;
-  border:none;
-  box-shadow: none;
-  width:auto;
-  position: relative;
-  padding-left:5px; 
-}
-.rubedo-places-search::-webkit-input-placeholder {color: white; text-decoration: underline}
-.rubedo-places-search:-moz-placeholder { /* Firefox 18- */   color: white; text-decoration: underline  }
-.rubedo-places-search::-moz-placeholder {  /* Firefox 19+ */   color: white; text-decoration: underline }
-.rubedo-places-search:-ms-input-placeholder {     color: white; text-decoration: underline  }
-.rubedo-places-search:focus{background: white;color:@rouge}
-.panel-geo{
-  border:none;
-  background: none;
-  .panel-heading{background: @rouge_shadow; border: none} }
-  li.tags{
-    display: inline-block;
-    width:auto;
-    .capital2;
-    border-radius: 22px;
-    border:2px solid @rouge_shadow;
-    color:@rouge_shadow;
-    padding:0 5px;
-    cursor: pointer;
-    margin-bottom:4px;
-  }
-  li.tags.checked{background: white; color:@txt_dark}
-  li.tags:after{display: inline-block; content:"+"; font-weight: bold; font-size: 1.5em; line-height: 0.8em;vertical-align: middle}
-  li.tags.checked, li.tags:hover{background: white; color:@txt_dark;}
-  li.tags.checked:after, li.tags:hover:after{transform:rotate(45deg);}
-  
-  // do not show advanced search on smartphones
-   #advanced-search{display:none}
-  #advanced-search.displayed{display: block;}
-  @media screen and (min-width:@min_sm){ #advanced-search.displayed{display: none;} #advanced-search{display:block}}
-  
-.resultData input+span{color:white; margin-left: 5px; font-size: 14px}
-////////////////////////////////////////////////////
-    ///////////BREADCRUMB///////////////////
-///////////////////////////////////////////////////
-.breadcrumb a{.capital; color:@rouge}
-.breadcrumb a, .breadcrumb span{.capital;}
-.breadcrumb>li+li:before{
-  content: "\f0da";
-  font-family: 'FontAwesome';
-  color:@rouge
-}
-.breadcrumb{background: transparent}
 
-////////////////////////////////////////////////////
-    ///////////FOI///////////////////
-///////////////////////////////////////////////////
-.sommaire a:after{
-    content: "\f14c";
-    font-family: 'FontAwesome'; color:@rouge;
-     margin-left:5px;display: inline-block;font-size: 0.8em}
-p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
-
-
-.sommaire {
-    -moz-column-count:2;
-   -webkit-column-count:2;
-   -o-column-count:2;
-   column-count:2;
-   -moz-column-gap:20px;
-   -webkit-column-gap:20px;
-   -o-column-gap:20px;
-   column-gap:20px;    
-}
-@media screen and (max-width:@min_sm){
-  .sommaire{
-     -moz-column-count:1;
-   -webkit-column-count:1;
-   -o-column-count:1;
-   column-count:1;
- }}
-.sommaire p{margin-bottom:0}
-.sommaire p+p.red-sub{margin-bottom:24px}
 .homelink{
     background: @rouge;
      padding:12px;
@@ -488,12 +361,18 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
   .button.submit{border: 2px solid @rouge; color:@rouge;}
   .button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}
 
-    ////////////////////////////////////////////////////
-    ///////////LISTE///////////////////
-///////////////////////////////////////////////////
-.prev-page a, .next-page a{width:30px; height: 30px; border-radius: 30px; background:@txt_dark; color:white; padding:6px}
-.prev-page{position:absolute; left:0; top:42%}
-.next-page{position:absolute; right:0; top:42%}
+
+.list {
+  width: 100%;
+  height: 0;
+  
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+.list.ratio1 {padding-top: 100%;}
+.list.ratio16-9 {padding-top: 56.25%;}
+.list.ratio2-1 {padding-top: 150%;}
 
 ////////////////////////////////////////////////////
     ///////////CONTENUS///////////////////
@@ -571,7 +450,6 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   font-size: 12px;
   a{padding:12px 0; display: inline-block}}
 
-#ados .list-item-title{  background-color:@14-18;}
 .regions-list{
   ul{  list-style-type: none;margin:6px 0; padding-left: 0}
   li{ a{.capital; display: inline-block; width:100%}; border-top:2px solid white; padding:6px 24px 6px 12px; }
@@ -593,114 +471,4 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 	-o-transform: translate3d(100%, 0, 0);
 	-webkit-transform: translate3d(100%, 0, 0);
 	transform: translate3d(100%, 0, 0);
-}
-////////////////////////////////////////////////////
-    ///////////FORMS///////////////////
-///////////////////////////////////////////////////
-h2.capital{text-align: center; padding:12px 0; border-bottom: 2px solid; margin-top:12px; margin-bottom:24px}
-form[name="inscription_form"]{
-  h2.displayed{background-color: white}
-  h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
-  ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px}
-  .capital.txt-red{font-size:16px !important}
-input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
-	display: inline-block;
-	cursor: pointer;
-	position: relative;
-	padding-left: 25px;
-	margin-right: 15px;
-	font-weight: normal;
-}
-label.sexe_label{
-  background-color:transparent;
-  height: 36px; width:36px;
-  color:@marron;
-  border: 2px white solid;
-  border-radius: 18px;
-  line-height: 32px;
-  font-family: Montserrat;
-  text-align: center;
-  cursor: pointer;
-  margin-right:25px;
-}
-input[type=radio],
-input[type=checkbox] {
-	display: none;
-}
-input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:before {
-	content: "";
-	display: inline-block;
-	width: 20px;
-	height: 20px;
-	margin-right: 10px;
-	position: absolute;
-	left: 0;
-	vertical-align: middle;
-	background-color: white;
-	border: 1px solid @marron;
-}
-
- input[type=radio] +label:not(.sexe_label):before {
-	border-radius: 10px;
-}
-input[type=checkbox] + label {
-	margin-bottom: 10px;
-}
-input[type=checkbox] + label:before {
-    border-radius: 3px;
-}
-
-input[type=radio]:checked + label:not(.sexe_label):after {
-    content: "\2022";
-    color: @rouge;
-    font-size: 48px;
-    text-align: center;
-    line-height: 28px;
-    position:absolute;
-    left:0; top: -2px;
-}
-input[type=radio]:checked + label.sexe_label {
-  color:white; background-color: @txt_dark; border: none; line-height: 36px;
-}
-input[type=checkbox]:checked + label:before {
-	content: "\f00c"; font-family: 'FontAwesome';
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
-	font-size: 20px;
-	text-align: center;
-      line-height: 19px;
-      color:@rouge;
-}
-
-input[type=text], textarea, input[type=email] {
-  width:100%; border:3px solid white; background-color: transparent; font-family: Merriweather; font-size: 18px; padding:4px 12px;
-}
-input[type=text].ng-dirty.ng-invalid,  textarea.ng-dirty.ng-invalid,input[type=email].ng-dirty.ng-invalid{border:3px solid @rouge}
-input[type=text].number{text-align: center; font-size: 20px; font-weight: bold;width:100px}
-
-}
-input[type=text].complement_text{max-width:100%; width:auto !important; margin-bottom:12px}
-.infos_validation{margin-top:6px}
-/*AUTOFILLS*/
-input:-webkit-autofill, textarea#adresse:-webkit-autofill, select:-webkit-autofill{background-color: @beigeCCN !important; color:@txt_dark !important}
-input:-webkit-autofill {
-    -webkit-box-shadow:0 0 0 50px @beigeCCN inset; /* Change the color to your own background color */
-    -webkit-text-fill-color: @txt_dark;
-}
-textarea:focus{outline:none}
-label.label_style{
-  float: right;
-  line-height: 1.5em;
-  .txt-red;
-  .capital;
-  text-align: right;
-  position: relative;
-  top:0.5em;
-}
-@media screen and (max-width:@min_sm) {label.label_style{text-align:left; float:left}}
-
-////////////////////////////////////////////////////
-    ///////////MISSIONS///////////////////
-///////////////////////////////////////////////////
-#ados{
-    .fc-event{background-color:@14-18;}
 }
