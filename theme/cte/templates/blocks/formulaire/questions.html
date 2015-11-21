@@ -2,7 +2,7 @@
 <h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==2}" ng-if="formCtrl.isComplement" ng-click="formCtrl.setCurrentStage(1,inscription_form.infos_complementaires.$valid)" >{{formCtrl.fields.questions1.config.fieldLabel}}
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>2"></span>
 </h2>
-<div id="infos_complementaires" class="collapse" ng-if="formCtrl.isComplement" >
+<div id="inscriptionStage2" class="collapse" ng-if="formCtrl.isComplement" >
     <ng-form name="infos_complementaires">
        <div class="row" ng-if="formCtrl.form.jai_connu">
             <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.Connu")}}</label></div>
@@ -40,7 +40,7 @@
 <h2 class="capital txt-red"  ng-class="{'displayed' : formCtrl.currentStage==3}" ng-if="formCtrl.isTransport" ng-click="formCtrl.setCurrentStage(2,inscription_form.transport.$valid)">{{formCtrl.fields.transport.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
 </h2>
-<div id="transport" class="collapse" ng-if="formCtrl.isTransport">
+<div id="inscriptionStage3" class="collapse" ng-if="formCtrl.isTransport">
     <ng-form name="transport">
         <!--questions de transport-->
        <div class="row" ng-if="formCtrl.form.fields.transport">
@@ -64,7 +64,7 @@
 <h2 class="capital txt-red"  data-toggle="collapse" href="#logement" ng-class="{'displayed' : formCtrl.currentStage==4}" ng-if="formCtrl.isLogement" ng-click="formCtrl.setCurrentStage(3,inscription_form.logement.$valid)">{{formCtrl.fields.logement.config.fieldLabel}}*
     <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>4"></span>
 </h2>
-<div ng-if="formCtrl.isLogement" class="collapse" id="logement">
+<div ng-if="formCtrl.isLogement" class="collapse" id="inscriptionStage4">
     <ng-form name="logement">
        <div class="row" ng-if="formCtrl.form.fields.logement">
             <div class="col-sm-3"><div class="row"></div></div>
