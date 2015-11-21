@@ -1,0 +1,9 @@
+<div ng-controller="GeoSearchResultsController as geoSearchResultsCtrl">
+    <!--<nav ng-if="geoSearchResultsCtrl.activateSearch" class="navbar navbar-default">
+        <div class="navbar-header">
+            <span ng-if="geoSearchResultsCtrl.count > 1" class="navbar-brand">{{rubedo.translate("Search.ThereAre", "There are")}} <span class="badge">{{geoSearchResultsCtrl.count}}</span> {{rubedo.translate("Search.Results", "results")}}</span>
+            <span ng-if="geoSearchResultsCtrl.count <= 1" class="navbar-brand">{{rubedo.translate("Search.ThereIs", "There is")}} <span class="badge">{{geoSearchResultsCtrl.count}}</span> {{rubedo.translate("Search.Result", "result")}}</span>
+        </div>
+    </nav>-->
+    <ng-include src="geoSearchResultsCtrl.template"></ng-include>
+</div>

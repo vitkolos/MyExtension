@@ -1,0 +1,23 @@
+<div ng-controller="AddThisShareController as addThisShareCtrl">
+    <div ng-if="addThisShareCtrl.like && addThisShareCtrl.disposition == 'Horizontal'" ng-class="addThisShareCtrl.class">
+    <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    <a class="addthis_button_tweet"></a>
+    <a class="addthis_button_pinterest_pinit"></a>
+    <a class="addthis_counter addthis_pill_style"></a>
+    </div>
+    <div ng-if="addThisShareCtrl.like && addThisShareCtrl.disposition == 'Vertical'" ng-class="addThisShareCtrl.class">
+    <a class="addthis_button_facebook_like" fb:like:layout="box_count"></a>
+    <a class="addthis_button_tweet" tw:count="vertical"></a>
+    <a class="addthis_button_google_plusone" g:plusone:size="tall"></a>
+    <a class="addthis_counter"></a>
+    </div>
+    <div ng-if="!addThisShareCtrl.like" ng-class="addThisShareCtrl.class">
+    <a class="addthis_button_preferred_1"></a>
+    <a class="addthis_button_preferred_2"></a>
+    <a class="addthis_button_preferred_3"></a>
+    <a class="addthis_button_preferred_4"></a>
+    <a class="addthis_button_expanded"></a>
+    <a ng-if="addThisShareCtrl.disposition == 'Horizontal'" class="addthis_counter addthis_bubble_style"></a>
+    </div>
+    {{addThisShareCtrl.loadAddThis()}}
+</div>

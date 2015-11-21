@@ -121,6 +121,18 @@ return array(
                     '../js/blocks.js'
                 ),
             ),
+            'goodnews' => array(
+                'label' => 'Good News',
+                'basePath' => realpath(__DIR__ . '/../theme/goodnews'),
+                'css' => array(
+                    '/css/goodnews.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '/js/goodnews.js',
+                    '../js/blocks.js'
+                ),
+            ),
         ),
     ),
     
