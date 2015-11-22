@@ -321,6 +321,7 @@ blockquote {
   background-repeat: no-repeat;
 }
 .list a{display: block; height:100%; width: 100%}
+.list div[class*="ratio"]{transition: all ease-in 0.3s}
 .list .ratio1 {padding-top: 100%;}
 .list .ratio16-9 {padding-top: 56.25%;}
 .list .ratio2-1 {padding-top: 150%;}
@@ -328,13 +329,14 @@ blockquote {
 .list .ratio2{padding-top:50%}
 .list div[class*="ratio"]:before{position:absolute; height: 100%; width:100%;content: " ";top:0; left:0;;transition: all ease-in 0.3s}
 .list:hover div[class*="ratio"]:before{background-color:rgba(252, 82, 83, 0.8)}
+.list:hover div[class*="ratio"]{-webkit-transform:scale(1.1); transform:scale(1.1);}
 @media screen and (max-width: @min_sm) {
   .list div[class*="ratio"]{padding-top:50%}
 }
-.list div.list-title{position: absolute; width: 80%; height: 80%; top:10%; left:10%; text-align: center;transition: all ease-in 0.3s; border: 2px solid white;opacity:0; transform:scale(1);-webkit-transform:scale(1); }
+.list div.list-title{position: absolute; width: 80%; height: 80%; top:10%; left:10%; text-align: center;transition: all ease-in 0.3s; border: 2px solid white;opacity:0; transform:scale(1.1);-webkit-transform:scale(1); }
 .list:hover .list-title{p{opacity:1}}
 .list-title p{margin-top:33%;opacity:0; transition: opacity ease-in 0.3s; color:white}
-.list:hover div.list-title{transform:scale(1.1);-webkit-transform:scale(1.1)}
+.list:hover div.list-title{transform:scale(1);-webkit-transform:scale(1); opacity: 1}
 ////////////////////////////////////////////////////
     ///////////CONTENUS///////////////////
 ///////////////////////////////////////////////////
