@@ -379,7 +379,9 @@ blockquote {
 @media screen and (max-width: @min_sm) {
   .list [class^="ratio"] {padding-top:50%}
 }
-p.list-title{position: absolute; top:33%;}
+.list-title{position: absolute; width: 100%; height: 100%; top:0; left:0; text-align: center;transition: all ease-in 0.3s}
+.list-title:hover{background-color:rgba(252, 82, 83, 0.8); p{opacity:1}}
+.list-title p{margin-top:33%;opacity:0; transition: opacity ease-in 0.3s}
 ////////////////////////////////////////////////////
     ///////////CONTENUS///////////////////
 ///////////////////////////////////////////////////
