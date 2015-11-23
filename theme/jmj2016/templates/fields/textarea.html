@@ -1,4 +1,4 @@
-<p ng-if="!fieldEditMode">{{fieldEntity[field.config.name]}}</p>
+<p ng-if="!fieldEditMode" ng-repeat="line in fieldEntity[field.config.name] | lines">{{fieldEntity[field.config.name]}}</p>
 <p ng-if="fieldEditMode"
    ng-controller="RTEFieldController as rteFieldCtrl"
    ckeditor="editorOptions"

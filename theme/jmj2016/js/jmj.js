@@ -140,7 +140,14 @@ angular.module('rubedoBlocks').directive('scrollDelay',['$timeout', '$location',
             return input.split(splitChar)[splitIndex];
         }
     });
-    
+ angular.module('rubedoFields').filter('lines', function() {
+        return function(input) {
+            // do some bounds checking here to ensure it has that index
+
+            return input.split('<br/>');
+        }
+    });
+ 
  angular.module('rubedoBlocks').filter('capitalize', function() {
   return function(input, scope) {
     if (input!=null)
