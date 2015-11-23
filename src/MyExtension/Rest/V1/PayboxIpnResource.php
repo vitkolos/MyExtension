@@ -119,23 +119,26 @@ class PayboxIpnResource extends AbstractResource {
             $inscription = $this->callAPI("GET", $token, $contentId);
             if($inscription['success']) {
                 $inscription = $inscription['content'];
+                //vérifier si le montant payé est le même que celui indiqué lors de l'inscription
+                if( $montant == (int)$inscription['fields']['montantAPayerMaintenant']) {
+                    $inscription['fields']['statut'] = "paiement-carte-valide" ;
+                }
+                else $erreurMessage .="Le montant du paiement est différent de celui envoyé à Paybox.";
+                
+                $payload = json_encode( array( "content" => $inscription ) );
+                $resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
+                $mailSecretariat = $inscription['fields']['mailSecretariat'];
             }
-            else throw new APIEntityException('Content not found', 404);
-            //vérifier si le montant payé est le même que celui indiqué lors de l'inscription
-            if( $montant == (int)$inscription['fields']['montantAPayerMaintenant']) {
-                $inscription['fields']['statut'] = "paiement-carte-valide" ;
-            }
-            else $erreurMessage .="Le montant du paiement est différent de celui envoyé à Paybox.";
-            
-            $payload = json_encode( array( "content" => $inscription ) );
-            $resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
+            else $erreurMessage .="Le payement ".$idInscription." n'a pas été retrouvé";
+
         }
         
+        $mailCompta = this->getMailCompta();
         $mailerService = Manager::getService('Mailer');
 
         $mailerObject = $mailerService->getNewMessage();
 
-        $destinataires="nicolas.rhone@gmail.com";
+        $destinataires=array("nicolas.rhone@gmail.com",$mailCompta); // set $mailSecretariat
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
         
@@ -147,11 +150,16 @@ class PayboxIpnResource extends AbstractResource {
             $sujet = "Échec paiement en ligne";
         }
         if ($erreur == "00000") {
-            $body = "montant payé : " . $params['montant']/100 . " euros." ;
+            $body = "Montant payé : " . $params['montant']/100 . " euros.\n" ;
+            $body = "Proposition : " . $inscription['fields']['propositionTitre']."\n";
+            $body = "Id Inscription : " . $inscription['fields']['text']."\n";
+            $body = "Nom : " . $inscription['fields']['name']."\n";
+            $body = "Prénom : " . $inscription['fields']['surname']."\n";
+             $body = "Email : " . $inscription['fields']['email']."\n";
             $body.="\n\n Message : " . $erreurMessage;
         }
         else {
-            $body = "montant non payé : " . $params['montant']/100  . " euros." ;
+            $body = "Montant non payé : " . $params['montant']/100  . " euros." ;
             $body.="\n\n Raisons de l'échec : ".$erreurMessage;
         }
         $body = $body . " \n\n " . $params['commande'];

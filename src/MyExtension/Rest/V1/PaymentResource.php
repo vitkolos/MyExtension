@@ -82,19 +82,19 @@ class PaymentResource extends AbstractResource {
                         (new FilterDefinitionEntity())
                             ->setDescription('Parametres pour bouton Paybox ou infos de payement par chèque')
                             ->setKey('parametres')
-                    )
-                    ;
+                    );
             });
     }
     public function postAction($params) {
     /*récupérer les paramètres*/
-        $idInscription = $params['idInscription']; // numéro d'inscription
+        $idInscription = $params['idInscription']; // numéro d'inscription ou de paiment
         $nom = $params['nom'];
         $prenom = $params['prenom'];
         $email = $params['email'];
         $proposition = $params['proposition']; // titre de la proposition si inscription
         $paymentType=$params['paymentType']; // mode de paiement
- 
+        
+        
     // récupérer l'id du compte de paiement
         $id = $this->getAccountId();
     // récupérer les infos du compte
@@ -103,90 +103,81 @@ class PaymentResource extends AbstractResource {
         switch ($paymentType) {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
             case "paf":
-                $dateTime = date("c");
-                $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
-                $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
-                $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
                 $commande = $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
-                $payboxSite = $paymentInfos['site'];
-                $payboxRang = $paymentInfos['rang'];
-                $payboxID = $paymentInfos['identifiant'];
-                $payboxDevise = $paymentInfos['devise'];
-                $parametres = [
-                    "typePaiement" => "CARTE",
-                    "typeCarte" => "CB",
-                    "payboxSite" => $payboxSite,
-                    "payboxRang" => $payboxRang,
-                    "payboxIdentifiant" => $payboxID,
-                    "montantEnCentimes" => $params['montant'] *100,
-                    "codeMonnaieNumerique" =>$payboxDevise,
-                    "commande" => $commande, 
-                    "email" => $email, 
-                    "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;signature:K",
-                    "dateTime" => $dateTime,
-                    "urlRetourNormal" => $urlNormal,
-                    "urlRetourEchec" => $urlEchec,
-                    "urlCallback" => $urlCallback
-                ];
+                break;
         
-                $empreinteBrute  =
-                    "PBX_TYPEPAIEMENT=". $parametres['typePaiement'] . 
-                    "&PBX_TYPECARTE=" . $parametres['typeCarte']  .
-                    "&PBX_SITE=" . $parametres['payboxSite']  .
-                    "&PBX_RANG=" . $parametres['payboxRang']  .
-                    "&PBX_IDENTIFIANT=" . $parametres['payboxIdentifiant']  .
-                    "&PBX_TOTAL=" . $parametres['montantEnCentimes']  .
-                    "&PBX_DEVISE=" . $parametres['codeMonnaieNumerique']  .
-                    "&PBX_CMD=" . $parametres['commande'] . 
-                    "&PBX_PORTEUR=" . $parametres['email']  .
-                    "&PBX_RETOUR=" . $parametres['payboxRetour']  .
-                    "&PBX_HASH=" . "SHA512"  .
-                    "&PBX_TIME=" . $parametres['dateTime']  .
-                    "&PBX_EFFECTUE=" . $parametres['urlRetourNormal']  .
-                    "&PBX_REFUSE=" . $parametres['urlRetourEchec']  .
-                    "&PBX_ANNULE=" . $parametres['urlRetourEchec']  .
-                    "&PBX_REPONDRE_A=" . $parametres['urlCallback']  ;
         
-                //$key = "0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF";
-                $key = $paymentInfos['clef'];
-                // On transforme la clé en binaire
-                $binKey = pack("H*", $key);
         
-                // On calcule l’empreinte (à renseigner dans le paramètre PBX_HMAC) grâce à la fonction hash_hmac et 
-                // la clé binaire
-                // On envoie via la variable PBX_HASH l'algorithme de hachage qui a été utilisé (SHA512 dans ce cas)
+         /*DONS */           
+            case "dons":
                 
-                // Pour afficher la liste des algorithmes disponibles sur votre environnement, décommentez la ligne 
-                // suivante
-                // print_r(hash_algos());
-        
-                $empreinteHasheeHex = strtoupper(hash_hmac('sha512', $empreinteBrute, $binKey));
-                // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
-                $parametres['empreinteHasheeHex'] = $empreinteHasheeHex;
+                
+                
+                $commande = $idInscription . "|dons|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
                 break;
-        
-        
-        
-         /*PAIEMENT PAR CHEQUE */           
-            case "cheque":
-                $parametres = [
-                    "libelleCheque" => $paymentInfos['libelleCheque']
-                ];
-            
-                break;
-         /*PAIEMENT PAR VIREMENT */           
-            case "virement":
-                $parametres = [
-                    "titreCompteVir" =>$paymentInfos['titreCompteVir'] ,
-                    "ribTexte" =>$paymentInfos['ribTexte'] ,
-                    "ribImg" =>$paymentInfos['rib'] 
-                ];
-                break;
-         /*PAS DE MODE DE PAIMENT SPECIFIE*/           
             default:
                 $parametres = "Pas de mode de paiement indiqué";
         }
         
+        $dateTime = date("c");
+        $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
+        $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
+        $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
+        $payboxSite = $paymentInfos['site'];
+        $payboxRang = $paymentInfos['rang'];
+        $payboxID = $paymentInfos['identifiant'];
+        $payboxDevise = $paymentInfos['devise'];
+        $parametres = [
+            "typePaiement" => "CARTE",
+            "typeCarte" => "CB",
+            "payboxSite" => $payboxSite,
+            "payboxRang" => $payboxRang,
+            "payboxIdentifiant" => $payboxID,
+            "montantEnCentimes" => $params['montant'] *100,
+            "codeMonnaieNumerique" =>$payboxDevise,
+            "commande" => $commande, 
+            "email" => $email, 
+            "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;signature:K",
+            "dateTime" => $dateTime,
+            "urlRetourNormal" => $urlNormal,
+            "urlRetourEchec" => $urlEchec,
+            "urlCallback" => $urlCallback
+        ];
+
+        $empreinteBrute  =
+            "PBX_TYPEPAIEMENT=". $parametres['typePaiement'] . 
+            "&PBX_TYPECARTE=" . $parametres['typeCarte']  .
+            "&PBX_SITE=" . $parametres['payboxSite']  .
+            "&PBX_RANG=" . $parametres['payboxRang']  .
+            "&PBX_IDENTIFIANT=" . $parametres['payboxIdentifiant']  .
+            "&PBX_TOTAL=" . $parametres['montantEnCentimes']  .
+            "&PBX_DEVISE=" . $parametres['codeMonnaieNumerique']  .
+            "&PBX_CMD=" . $parametres['commande'] . 
+            "&PBX_PORTEUR=" . $parametres['email']  .
+            "&PBX_RETOUR=" . $parametres['payboxRetour']  .
+            "&PBX_HASH=" . "SHA512"  .
+            "&PBX_TIME=" . $parametres['dateTime']  .
+            "&PBX_EFFECTUE=" . $parametres['urlRetourNormal']  .
+            "&PBX_REFUSE=" . $parametres['urlRetourEchec']  .
+            "&PBX_ANNULE=" . $parametres['urlRetourEchec']  .
+            "&PBX_REPONDRE_A=" . $parametres['urlCallback']  ;
+
+        //$key = "0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF";
+        $key = $paymentInfos['clef'];
+        // On transforme la clé en binaire
+        $binKey = pack("H*", $key);
+
+        // On calcule l’empreinte (à renseigner dans le paramètre PBX_HMAC) grâce à la fonction hash_hmac et 
+        // la clé binaire
+        // On envoie via la variable PBX_HASH l'algorithme de hachage qui a été utilisé (SHA512 dans ce cas)
+        
+        // Pour afficher la liste des algorithmes disponibles sur votre environnement, décommentez la ligne 
+        // suivante
+        // print_r(hash_algos());
+
+        $empreinteHasheeHex = strtoupper(hash_hmac('sha512', $empreinteBrute, $binKey));
+        // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
+        $parametres['empreinteHasheeHex'] = $empreinteHasheeHex;
         
         return array(
             'success' => true,
@@ -211,6 +202,9 @@ class PaymentResource extends AbstractResource {
             case "ccn.chemin-neuf.fr" : 
                 return "55473e9745205e1d3ef1864d"; break;
         }
+     }
+     protected function createPayment(){
+        
      }
      
 } 
