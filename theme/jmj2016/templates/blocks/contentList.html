@@ -80,7 +80,7 @@
                 <div class="media text-center" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <a ng-href="{{ content.detailPageUrl }}">
                     <img ng-if="content.fields.image && !contentListCtrl.titleOnly"
-                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'600px', height:'250px',mode:'boxed'}) }}"
+                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'600px', height:'250px',mode:'crop'}) }}"
                          alt="{{ content.fields.text }}" style="width:75%; max-width: 600px"/></a>
                     <div class="actus-list">
                         <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
