@@ -55,7 +55,7 @@
 						    "config": {
 							"fieldLabel": "#ext-gen1124#",
 							"name": "text",
-							"allowedCT": "simpleText",
+							"allowedCT": "richText",
 							"addOnly": true
 						    }
 						},
