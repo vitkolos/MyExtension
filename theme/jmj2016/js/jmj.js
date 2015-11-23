@@ -142,7 +142,6 @@ angular.module('rubedoBlocks').directive('scrollDelay',['$timeout', '$location',
     });
  angular.module('rubedoFields').filter('lines', function() {
         return function(input) {
-           console.log(input.split('/'));
             return input.split('/');
         }
     });
