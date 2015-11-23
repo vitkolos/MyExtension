@@ -205,10 +205,6 @@
  
        var editorOptions={
             toolbar:  myTBConfig,
-            stylesSet: [
-    { name: 'My Custom Block', element: 'h3', styles: { color: 'blue'} },
-    { name: 'My Custom Inline', element: 'span', attributes: {'class': 'mine'} }
-  ],
             allowedContent:true,
             language:$scope.fieldLanguage,
             entities:false,
