@@ -144,7 +144,7 @@ angular.module('rubedoBlocks').directive('scrollDelay',['$timeout', '$location',
         return function(input) {
             // do some bounds checking here to ensure it has that index
 
-            return input.split('<br/>');
+            return input.split('/');
         }
     });
  
