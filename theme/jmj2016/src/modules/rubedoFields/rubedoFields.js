@@ -245,6 +245,7 @@
                         format: true
                     });
                     me.html = me.html.replace(new RegExp('\r?\n','g'), '<br />');
+                    console.log(me.html);
 
                 } else if ($scope.fieldEditMode&&!me.html){
                     if (!newValue){
