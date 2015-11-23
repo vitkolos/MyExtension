@@ -873,8 +873,7 @@
         var originalDate=$scope.fieldEntity[$scope.field.config.name];
         console.log($scope.fieldEntity[$scope.field.config.name]);
         if (originalDate){
-            me.date=Date.parse($scope.fieldEntity[$scope.field.config.name]);
-            me.formattedDate=$filter('date')(me.date, "H:mm");
+            me.formattedDate=originalDate;
         } else {
             me.date=new Date();
         }
