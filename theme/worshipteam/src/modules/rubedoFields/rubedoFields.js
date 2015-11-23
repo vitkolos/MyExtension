@@ -222,13 +222,12 @@
             editorOptions.rubedoPlainTextMode=true;
         }
         CKEDITOR.replace( 'editor1',{
-
-          stylesSet.add('default', [
-               { name: 'My Custom Block', element: 'h3', styles: { color: 'Blue'} },
-               { name: 'My Custom inline style', element: 'q'}
-          ]);    
-    });
-
+          stylesSet: 'my_custom_style'
+        });
+CKEDITOR.stylesSet.add('my_custom_style', [
+    { name: 'My Custom Block', element: 'h3', styles: { color: 'blue'} },
+    { name: 'My Custom Inline', element: 'span', attributes: {'class': 'mine'} }
+  ]);
         $scope.editorOptions=editorOptions;
         me.isCKEReady=false;
         $scope.setCKEIsReady=function(){
