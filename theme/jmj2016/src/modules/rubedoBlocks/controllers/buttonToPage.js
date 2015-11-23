@@ -14,6 +14,4 @@ angular.module("rubedoBlocks").lazy.controller("ButtonToPageController",['$scope
 					}
 				});
 		};
-			
-	
 }]);

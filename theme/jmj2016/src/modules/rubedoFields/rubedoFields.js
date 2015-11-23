@@ -244,6 +244,7 @@
                         replace: [[["b", "big"], "strong"]],
                         format: true
                     });
+                    me.html = me.html.replace(new RegExp('\r?\n','g'), '<br />');
 
                 } else if ($scope.fieldEditMode&&!me.html){
                     if (!newValue){
