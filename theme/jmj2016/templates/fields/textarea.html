@@ -1,0 +1,10 @@
+<p ng-if="!fieldEditMode">{{fieldEntity[field.config.name]}}</p>
+<p ng-if="fieldEditMode"
+   ng-controller="RTEFieldController as rteFieldCtrl"
+   ckeditor="editorOptions"
+   contenteditable="true"
+   ready="setCKEIsReady()"
+   ng-model="fieldEntity[field.config.name]"
+   output-plain-text="false"
+   ng-bind-html="rteFieldCtrl.html">
+</p>

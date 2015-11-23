@@ -21,7 +21,7 @@ angular.module("rubedoBlocks").lazy.controller("RichTextController",["$scope","$
                     if(response.data.success){
                         me.content=response.data.content;
                         if (me.content.fields.body) {
-                            me.content.fields.body = (me.content.fields.body).replace(new RegExp('\r?\n','g'), '<br />'); console.log(me.content.fields.body);
+                            me.content.fields.body = (me.content.fields.body).replace(new RegExp('\r?\n','g'), '<br/>'); console.log(me.content.fields.body);
                         }
                         
                         $scope.fieldEntity=angular.copy(me.content.fields);
