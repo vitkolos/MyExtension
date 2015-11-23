@@ -871,7 +871,7 @@
     module.controller("TimePickerController",["$scope","$element","$filter",function($scope,$element,$filter){
         var me=this;
         var originalDate=$scope.fieldEntity[$scope.field.config.name];
-        console.log($scope.field.config.name);
+        console.log($scope.fieldEntity[$scope.field.config.name]);
         if (originalDate){
             me.date=new Date($scope.fieldEntity[$scope.field.config.name]);
             me.formattedDate=$filter('date')(me.date, "H:mm");
