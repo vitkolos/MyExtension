@@ -62,8 +62,8 @@
                                 </span>
                             </h4>
                         </a>
-                        <a ng-if="fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                            <button><span class="glyphicon glyphicon-plus"></span>Edit</button>
+                        <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                            <button><span class="glyphicon glyphicon-plus"></span>Modifier</button>
                         </a>
                         
                     </div>
