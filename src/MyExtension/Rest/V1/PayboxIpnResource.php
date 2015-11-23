@@ -98,9 +98,7 @@ class PayboxIpnResource extends AbstractResource {
         //autorisation
        if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
         else $erreurMessage .= " Pas d'autorisation de Paybox. ";
-    $test="notOk";
         if(!($erreurStatus) && $securite && $autorisation) {
-            $test="OK";
             //authentication comme admin inscriptions
             $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
             $output['token'] = $this->subTokenFilter($auth['token']);
@@ -124,16 +122,16 @@ class PayboxIpnResource extends AbstractResource {
                     $inscription['fields']['statut'] = "paiement-carte-valide" ;
                 }
                 else $erreurMessage .="Le montant du paiement est différent de celui envoyé à Paybox.";
+                $mailSecretariat = $inscription['fields']['mailSecretariat'];
                 
                 $payload = json_encode( array( "content" => $inscription ) );
                 $resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
-                $mailSecretariat = $inscription['fields']['mailSecretariat'];
             }
             else $erreurMessage .="Le payement ".$idInscription." n'a pas été retrouvé";
 
         }
         
-        $mailCompta = this->getMailCompta();
+        $mailCompta = $this->getMailCompta();
         $mailerService = Manager::getService('Mailer');
 
         $mailerObject = $mailerService->getNewMessage();
@@ -156,7 +154,7 @@ class PayboxIpnResource extends AbstractResource {
             $body .= "Nom : " . $inscription['fields']['name']."\n";
             $body .= "Prénom : " . $inscription['fields']['surname']."\n";
              $body .= "Email : " . $inscription['fields']['email']."\n";
-            $body.="\n\n Message : " . $erreurMessage;
+            if($erreurMessage!="") $body.="\n\n Message : " . $erreurMessage;
         }
         else {
             $body = "Montant non payé : " . $params['montant']/100  . " euros." ;
