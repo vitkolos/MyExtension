@@ -211,7 +211,8 @@
             extraPlugins:'rubedolink,youtube',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
-            forcePasteAsPlainText: true
+            forcePasteAsPlainText: true,
+            
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
@@ -220,6 +221,14 @@
             ];
             editorOptions.rubedoPlainTextMode=true;
         }
+        CKEDITOR.replace( 'editor1',{
+
+          stylesSet.add('default', [
+               { name: 'My Custom Block', element: 'h3', styles: { color: 'Blue'} },
+               { name: 'My Custom inline style', element: 'q'}
+          ]);    
+    });
+
         $scope.editorOptions=editorOptions;
         me.isCKEReady=false;
         $scope.setCKEIsReady=function(){
