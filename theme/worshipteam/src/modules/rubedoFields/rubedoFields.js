@@ -202,8 +202,14 @@
             { name: 'colors', items: [ 'Scayt'] }
             ];
         }
-        var editorOptions={
+ 
+CKEDITOR.stylesSet.add('my_custom_style', [
+    { name: 'My Custom Block', element: 'h3', styles: { color: 'blue'} },
+    { name: 'My Custom Inline', element: 'span', attributes: {'class': 'mine'} }
+  ]);
+       var editorOptions={
             toolbar:  myTBConfig,
+            stylesSet:  'custom_styles',
             allowedContent:true,
             language:$scope.fieldLanguage,
             entities:false,
@@ -221,13 +227,6 @@
             ];
             editorOptions.rubedoPlainTextMode=true;
         }
-        CKEDITOR.replace( 'editor1',{
-          stylesSet: 'my_custom_style'
-        });
-CKEDITOR.stylesSet.add('my_custom_style', [
-    { name: 'My Custom Block', element: 'h3', styles: { color: 'blue'} },
-    { name: 'My Custom Inline', element: 'span', attributes: {'class': 'mine'} }
-  ]);
         $scope.editorOptions=editorOptions;
         me.isCKEReady=false;
         $scope.setCKEIsReady=function(){
