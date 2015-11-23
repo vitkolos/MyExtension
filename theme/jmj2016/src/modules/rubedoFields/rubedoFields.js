@@ -209,7 +209,10 @@
             extraPlugins:'rubedolink,youtube',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
-            forcePasteAsPlainText: true
+            forcePasteAsPlainText: true,
+            stylesSet: [
+                { name: 'Titre boîte', element: 'h3', attributes: { 'class': 'title-border'} }
+            ]
 
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
