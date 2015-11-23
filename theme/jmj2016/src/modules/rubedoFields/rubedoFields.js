@@ -245,8 +245,6 @@
                         format: true
                     });
                    
-                    
-
                 } else if ($scope.fieldEditMode&&!me.html){
                     if (!newValue){
                         newValue="";
@@ -258,7 +256,6 @@
                         format: true
                     }));
                 }
-                 me.html = me.html.replace(new RegExp('\r?\n','g'), '<br />'); console.log(me.html);
                 if ($scope.fieldEditMode&&me.isCKEReady){
                     $scope.registerFieldEditChanges();
                 }
