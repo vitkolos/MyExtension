@@ -203,13 +203,13 @@
             ];
         }
  
-CKEDITOR.stylesSet.add('my_custom_style', [
+CKEDITOR.stylesSet.add('custom', [
     { name: 'My Custom Block', element: 'h3', styles: { color: 'blue'} },
     { name: 'My Custom Inline', element: 'span', attributes: {'class': 'mine'} }
   ]);
        var editorOptions={
             toolbar:  myTBConfig,
-            stylesSet:  'custom_styles',
+            stylesSet:  'custom',
             allowedContent:true,
             language:$scope.fieldLanguage,
             entities:false,
