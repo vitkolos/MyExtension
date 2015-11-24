@@ -156,10 +156,13 @@
 <div class="clearfix"></div>
 </div>
 -->
-<script>$('.grid').masonry({
+<script>
+setTimeout(function(){ 
+$('.grid').masonry({
   // options...
   columnWidth: '.grid-item',
   itemSelector: '.grid-item',
   percentPosition: true
 });
+ }, 3000);
 </script>
