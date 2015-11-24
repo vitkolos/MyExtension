@@ -90,12 +90,14 @@
 
 <div class="grid js-masonry" ng-class="{'invisible':!contentDetailCtrl.albumVisibility}"
   data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
-  <div class="grid-item" ng-repeat="image in contentDetailCtrl.content.images | limitTo : 20 ">
+  <div class="grid-item" ng-repeat="image in contentDetailCtrl.content.images | limitTo : contentDetailCtrl.limit ">
 	<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive" alt="Banana" ng-if="!$last">
 	<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive" alt="Banana" ng-if="$last" imageonload="contentDetailCtrl.callMasonry()">
   </div>
  <div class="gutter-sizer"></div>
+ 
 </div>
+<button class="button-rouge" ng-click="contentDetailCtrl.add()">Add more</button>
 <!--
 <div class="row">
 	<div class="col-lg-3 col-md-4 col-xs-6" ng-repeat-start="image in contentDetailCtrl.content.images">

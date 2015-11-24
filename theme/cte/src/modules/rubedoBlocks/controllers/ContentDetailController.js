@@ -169,6 +169,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             });
                         };
                         me.getMedia(options2);
+                        me.limit = 20;
                     }
                     
                     
@@ -186,6 +187,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         
                         console.log("OK");
                     }
+                     me.add() = function(){
+                        me.limit +=20;
+                        $('.grid').masonry('');
+                     }
 /*GET CONTENT TAXONOMIES*/
 
                      var typeArray =[];
