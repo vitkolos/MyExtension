@@ -152,7 +152,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
 
                     //Albums photos
-                    //Albums photos
                     if (me.content.type.code=="album") {
                         me.content.images={};
                         var options2 = {
@@ -166,8 +165,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             RubedoSearchService.getMediaById(options).then(function(response){
                                 if(response.data.success){
                                     me.content.images = $filter('orderBy')(response.data.results.data, 'title') ;
-                                    me.gallery.count = response.data.count;
-                                    me.gallery.nbPages = Math.ceil(me.gallery.count/me.gallery.limit);
                                 }
                             });
                         };
