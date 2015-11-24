@@ -5,10 +5,6 @@ return array(
      * Your block definition : back-office json configuration file
      */
     'blocksDefinition' => array(
-       'buttonToPage2' => array(
-            'maxlifeTime' => 60,
-            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/buttonToPage2.json'
-        ),
        'buttonToPage' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/buttonToPage.json'
