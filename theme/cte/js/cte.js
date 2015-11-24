@@ -63,7 +63,17 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     }
   });
 
-
+angular.module('rubedoBlocks').directive('imageonload', function() {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                element.bind('load', function() {
+                    //call the function that was passed
+                    scope.$apply(attrs.imageonload);
+                });
+            }
+        };
+    })
 
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){

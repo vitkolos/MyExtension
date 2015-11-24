@@ -170,7 +170,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         };
                         me.getMedia(options2);
                     }
-                     
+                    
+                    
+                    me.callFunction = function(){
+                        $('.grid').masonry({
+                            // options...
+                            columnWidth: '.grid-item',
+                            itemSelector: '.grid-item',
+                            percentPosition: true
+                          });
+                    }
 /*GET CONTENT TAXONOMIES*/
 
                      var typeArray =[];
