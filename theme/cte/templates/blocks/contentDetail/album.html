@@ -79,10 +79,13 @@
   }
 }
 </style>
-<div class="col-lg-3 col-md-4 col-xs-6">
-    <a ng-href="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'400px',height:'300px',mode:'crop'})}}" title="Banana" data-gallery ng-repeat="image in contentDetailCtrl.content.images">
-        <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'crop'})}}" class="img-responsive" alt="Banana">
-    </a>
+<div class="row">
+	<div class="col-lg-3 col-md-4 col-xs-6" ng-repeat="image in contentDetailCtrl.content.images">
+		<a ng-href="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'400px',height:'300px',mode:'crop'})}}" title="Banana" data-gallery>
+			<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive" alt="Banana">
+		</a>
+	</div>
+
 </div>
 <div id="blueimp-gallery" class="blueimp-gallery">
     <!-- The container for the modal slides -->
