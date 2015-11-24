@@ -183,11 +183,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 percentPosition: true
                                 });
                               me.albumVisibility = true;
-                        }, 1000);
                         me.grid.on( 'click', '.button-rouge', function() {
                             // trigger layout
                             me.grid.masonry();
-                          });
+                          });}, 1000);
+                        
                         console.log("OK");
                     };
                     
