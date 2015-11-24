@@ -3,10 +3,7 @@ angular.module('rubedoBlocks').filter('cleanUrl', function () {
         return input.replace("//","/");
      };
   });
-blocksConfig.buttonToPage2={
-           "template": "/templates/blocks/buttonToPage.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
-};
+
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
