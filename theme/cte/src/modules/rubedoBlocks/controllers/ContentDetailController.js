@@ -175,15 +175,19 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     me.callMasonry = function(){
                         $timeout(function() {
-                        $('.grid').masonry({
-                            // options...
-                            columnWidth: '.grid-item',
-                            gutter: '.gutter-sizer',
-                            itemSelector: '.grid-item',
-                            percentPosition: true
-                            });
-                          me.albumVisibility = true;
+                            var $grid = $('.grid').masonry({
+                                // options...
+                                columnWidth: '.grid-item',
+                                gutter: '.gutter-sizer',
+                                itemSelector: '.grid-item',
+                                percentPosition: true
+                                });
+                              me.albumVisibility = true;
                         }, 1000);
+                        $grid.on( 'click', '.button-rouge', function() {
+                            // trigger layout
+                            $grid.masonry();
+                          });
                         console.log("OK");
                     };
                     
