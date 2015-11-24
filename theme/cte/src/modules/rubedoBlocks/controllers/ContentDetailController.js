@@ -189,7 +189,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     };
                      me.addImages = function(){
                         me.limit +=20;
-                        $('.grid').masonry('');
+                        $('.grid').masonry();
                      };
 /*GET CONTENT TAXONOMIES*/
 
