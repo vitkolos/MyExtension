@@ -197,7 +197,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             gutter: '.gutter-sizer',
                             itemSelector: '.grid-item',
                             percentPosition: true
-                            });
+                            });console.log("OK2");
                             }, 3000);
                      };
 /*GET CONTENT TAXONOMIES*/
