@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <div id="links">
-    <a href="images/banana.jpg" title="Banana" data-gallery ng-repeat="image in contentDetailCtrl.content.images">
+    <a ng-href="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'400px',height:'300px',mode:'crop'})}}" title="Banana" data-gallery ng-repeat="image in contentDetailCtrl.content.images">
         <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'150px',height:'100px',mode:'crop'})}}" alt="Banana">
     </a>
 </div>
