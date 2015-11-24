@@ -179,6 +179,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             itemSelector: '.grid-item',
                             percentPosition: true
                           });
+                        console.log("OK");
                     }
 /*GET CONTENT TAXONOMIES*/
 
