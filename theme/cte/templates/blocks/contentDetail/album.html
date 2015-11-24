@@ -79,6 +79,21 @@
   }
 }
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js"></script>
+<script>$('.grid').masonry({
+  // options...
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});
+</script>
+<div class="grid js-masonry"
+  data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
+  <div class="grid-item" ng-repeat="image in contentDetailCtrl.content.images">
+	<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive" alt="Banana">
+  </div>
+</div>
+<!--
 <div class="row">
 	<div class="col-lg-3 col-md-4 col-xs-6" ng-repeat-start="image in contentDetailCtrl.content.images">
 		<a ng-href="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'400px',height:'300px',mode:'crop'})}}" title="Banana" data-gallery>
@@ -87,7 +102,7 @@
 	</div>
 	<div class="clearfix" ng-repeat-end></div>
 
-</div>
+</div>-->
 <div id="blueimp-gallery" class="blueimp-gallery">
     <!-- The container for the modal slides -->
     <div class="slides"></div>
