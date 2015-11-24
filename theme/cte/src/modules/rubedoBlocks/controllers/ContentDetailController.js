@@ -172,13 +172,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                     
                     
-                    me.callFunction = function(){
+                    me.callMasonry = function(){
                         $('.grid').masonry({
                             // options...
                             columnWidth: '.grid-item',
                             itemSelector: '.grid-item',
                             percentPosition: true
                           });
+                        me.albumVisibility = true;
                         console.log("OK");
                     }
 /*GET CONTENT TAXONOMIES*/

@@ -85,11 +85,11 @@
 </style>
 
 
-<div class="grid js-masonry"
+<div class="grid js-masonry" ng-class="{'invisible':contentDetailCtrl.albumVisibility}"
   data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
   <div class="grid-item" ng-repeat="image in contentDetailCtrl.content.images">
 	<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive" alt="Banana" ng-if="!$last">
-	<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive" alt="Banana" ng-if="$last" imageonload="contentDetailCtrl.callFunction()">
+	<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive" alt="Banana" ng-if="$last" imageonload="contentDetailCtrl.callMasonry()">
   </div>
 </div>
 <!--
@@ -135,26 +135,5 @@
         </div>
     </div>
 </div>
-<!--<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-<script type="text/javascript" src="/theme/cte/js/bootstrap-image-gallery.min.js"></script>
-<!--<div class="bg-photos padding-tb"><div class="container">
-	<div class="col-sm-6">
-		<h3 class="album-title">{{contentDetailCtrl.content.fields.text | uppercase}}</h3>
-		<p class="album-desc">{{contentDetailCtrl.content.fields.date* 1000 | date:'d MMM'}} | {{contentDetailCtrl.content.fields.position.address}}</p>
-		<div class="gallery-left" ng-click="contentDetailCtrl.changePage('left')"><span>e</span></div>
-		<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images | limitTo:contentDetailCtrl.gallery.start+contentDetailCtrl.gallery.nbImages | limitTo:-contentDetailCtrl.gallery.nbImages" class="pull-left gallery-img">
-			<img class="img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'150px',height:'100px',mode:'crop'})}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"
-			     ng-click="contentDetailCtrl.gallery.currentIndex=contentDetailCtrl.gallery.start+$index"/>
-		</div>
-		<div class="gallery-right" ng-click="contentDetailCtrl.changePage('right')"><span>d</span></div>
 
-	</div>
-	<div class="col-sm-6">
-		<img class="img-responsive img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].id)}}"
-		     ng-attr-alt="{{contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].title}}" ng-attr-title="{{contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].title}}"/>
-	</div>
-</div>
-<div class="clearfix"></div>
-</div>
--->
 
