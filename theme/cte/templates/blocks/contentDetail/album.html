@@ -85,7 +85,7 @@
 </style>
 
 
-<div class="grid js-masonry" ng-class="{'invisible':contentDetailCtrl.albumVisibility}"
+<div class="grid js-masonry" ng-class="{'invisible':!contentDetailCtrl.albumVisibility}"
   data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
   <div class="grid-item" ng-repeat="image in contentDetailCtrl.content.images">
 	<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive" alt="Banana" ng-if="!$last">
