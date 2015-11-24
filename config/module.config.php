@@ -7,8 +7,9 @@ return array(
     'blocksDefinition' => array(
        'buttonToPage2' => array(
             'maxlifeTime' => 60,
-            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/buttonToPage.json'
-        ),       'buttonToPage' => array(
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/buttonToPage2.json'
+        ),
+       'buttonToPage' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/buttonToPage.json'
         ),
