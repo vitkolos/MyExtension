@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$timeout",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$timeout){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -173,14 +173,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     
                     me.callMasonry = function(){
+                        $timeout(function() {
                         $('.grid').masonry({
                             // options...
                             columnWidth: '.grid-item',
                             gutter: '.gutter-sizer',
                             itemSelector: '.grid-item',
                             percentPosition: true
-                          });
-                        me.albumVisibility = true;
+                            });
+                          me.albumVisibility = true;
+                        }, 300);
+                        
                         console.log("OK");
                     }
 /*GET CONTENT TAXONOMIES*/
