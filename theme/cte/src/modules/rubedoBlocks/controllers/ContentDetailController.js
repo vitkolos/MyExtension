@@ -176,9 +176,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         $('.grid').masonry({
                             // options...
                             columnWidth: '.grid-item',
+                            gutter: '.gutter-sizer',
                             itemSelector: '.grid-item',
-                            percentPosition: true,
-                            gutter: '.gutter-sizer'
+                            percentPosition: true
                           });
                         me.albumVisibility = true;
                         console.log("OK");
