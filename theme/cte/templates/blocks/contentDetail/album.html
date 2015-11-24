@@ -79,9 +79,9 @@
   }
 }
 </style>
-<div id="links">
+<div class="col-lg-3 col-md-4 col-xs-6">
     <a ng-href="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'400px',height:'300px',mode:'crop'})}}" title="Banana" data-gallery ng-repeat="image in contentDetailCtrl.content.images">
-        <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'150px',height:'100px',mode:'crop'})}}" alt="Banana">
+        <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'crop'})}}" class="img-responsive" alt="Banana">
     </a>
 </div>
 <div id="blueimp-gallery" class="blueimp-gallery">
@@ -117,8 +117,8 @@
         </div>
     </div>
 </div>
-<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
-<!--<script type="text/javascript" src="/theme/cte/js/bootstrap-image-gallery.min.js"></script>
+<!--<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<script type="text/javascript" src="/theme/cte/js/bootstrap-image-gallery.min.js"></script>
 <!--<div class="bg-photos padding-tb"><div class="container">
 	<div class="col-sm-6">
 		<h3 class="album-title">{{contentDetailCtrl.content.fields.text | uppercase}}</h3>
