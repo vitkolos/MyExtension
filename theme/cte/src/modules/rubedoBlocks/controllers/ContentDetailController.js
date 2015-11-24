@@ -177,7 +177,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             // options...
                             columnWidth: '.grid-item',
                             itemSelector: '.grid-item',
-                            percentPosition: true
+                            percentPosition: true,
+                            gutter:10
                           });
                         me.albumVisibility = true;
                         console.log("OK");
