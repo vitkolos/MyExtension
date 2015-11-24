@@ -97,7 +97,7 @@
  <div class="gutter-sizer"></div>
  
 </div>
-<button class="button-rouge" ng-click="contentDetailCtrl.addImages()">Add more</button>
+<button class="button-rouge" ng-click="addImages()">Add more</button>
 <!--
 <div class="row">
 	<div class="col-lg-3 col-md-4 col-xs-6" ng-repeat-start="image in contentDetailCtrl.content.images">
@@ -144,23 +144,16 @@
 
 <script>
 	
-$(document).ready( function() {
-  
-  var $grid = $('.grid').masonry({
-	columnWidth: '.grid-item',
-	gutter: '.gutter-sizer',
-	itemSelector: '.grid-item',
-	percentPosition: true
-  })
-
-  $grid.on( 'click', '.button-rouge', function() {
-	contentDetailCtrl.limit+=20;
-    // change size of item via class
-    // trigger layout
-    $grid.masonry();
-  });
-  
-});
-
+$scope.addImages = function(){
+                        me.limit +=20;
+                         var grid= angular.element('.grid').masonry({
+                                // options...
+                                columnWidth: '.grid-item',
+                                gutter: '.gutter-sizer',
+                                itemSelector: '.grid-item',
+                                percentPosition: true
+                        });
+                        $timeout(function() {grid.masonry();}, 1000);
+                     };
 
 </script>
