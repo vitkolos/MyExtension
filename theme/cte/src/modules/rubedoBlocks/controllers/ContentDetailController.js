@@ -186,9 +186,19 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }, 1000);
                         console.log("OK");
                     };
+                    
+                    
                      me.addImages = function(){
                         me.limit +=20;
-                        $timeout(function() {me.callMasonry()}, 1000);
+                        $timeout(function() {
+                            $('.grid').masonry({
+                            // options...
+                            columnWidth: '.grid-item',
+                            gutter: '.gutter-sizer',
+                            itemSelector: '.grid-item',
+                            percentPosition: true
+                            });
+                            }, 1000);
                      };
 /*GET CONTENT TAXONOMIES*/
 
