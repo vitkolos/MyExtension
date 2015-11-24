@@ -176,7 +176,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         $('.grid').masonry({
                             // options...
                             columnWidth: '.grid-item',
-                            gutter: '.gutter-sizer',
+                            //gutter: '.gutter-sizer',
                             itemSelector: '.grid-item',
                             percentPosition: true
                           });
