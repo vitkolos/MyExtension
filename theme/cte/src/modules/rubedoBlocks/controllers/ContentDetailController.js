@@ -182,7 +182,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             percentPosition: true
                             });
                           me.albumVisibility = true;
-                        }, 300);
+                        }, 1000);
                         
                         console.log("OK");
                     }
