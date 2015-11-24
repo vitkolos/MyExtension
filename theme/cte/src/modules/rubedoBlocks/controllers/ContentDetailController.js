@@ -184,12 +184,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             });
                           me.albumVisibility = true;
                         }, 1000);
-                        
                         console.log("OK");
                     };
                      me.addImages = function(){
                         me.limit +=20;
-                        $timeout(function() {$('.grid').masonry();}, 1000);
+                        $timeout(function() {me.callMasonry()}, 1000);
                      };
 /*GET CONTENT TAXONOMIES*/
 
