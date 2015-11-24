@@ -78,6 +78,10 @@
     padding-right: 5%;
   }
 }
+
+/* fluid 5 columns */
+.grid-sizer,
+.grid-item { width: 25%%; }
 </style>
 
 
@@ -154,7 +158,8 @@
 -->
 <script>$('.grid').masonry({
   // options...
+  columnWidth: '.grid-item',
   itemSelector: '.grid-item',
-  columnWidth: 200
+  percentPosition: true
 });
 </script>
