@@ -175,7 +175,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     me.callMasonry = function(){
                         $timeout(function() {
-                            var $grid = $('.grid').masonry({
+                            me.grid = $('.grid').masonry({
                                 // options...
                                 columnWidth: '.grid-item',
                                 gutter: '.gutter-sizer',
@@ -184,9 +184,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 });
                               me.albumVisibility = true;
                         }, 1000);
-                        $grid.on( 'click', '.button-rouge', function() {
+                        me.grid.on( 'click', '.button-rouge', function() {
                             // trigger layout
-                            $grid.masonry();
+                            me.grid.masonry();
                           });
                         console.log("OK");
                     };
