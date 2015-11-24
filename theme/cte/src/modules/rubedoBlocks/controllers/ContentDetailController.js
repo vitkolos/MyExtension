@@ -185,7 +185,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             grid.masonry();
                             me.albumVisibility = true;
                             // trigger layout
-                            grid.masonry();
                           }, 1000);
                         
                         console.log("OK");
@@ -201,7 +200,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 itemSelector: '.grid-item',
                                 percentPosition: true
                         });
-                        grid.masonry();
+                        $timeout(function() {grid.masonry();}, 1000);
                      };
 /*GET CONTENT TAXONOMIES*/
 
