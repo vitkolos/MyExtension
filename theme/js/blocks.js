@@ -24,7 +24,7 @@ blocksConfig.footer={
 };
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
-            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-553e2efb75d1d292'],
+            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js','//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js'],
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/InscriptionController.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 blocksConfig.sectionPresentation={
