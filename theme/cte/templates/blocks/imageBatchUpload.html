@@ -1,15 +1,11 @@
 <div ng-controller="ImageBatchUploadController as imgCtrl" ng-if="rubedo.current.user" class="row">
-        <form class="form form-horizontal" ng-submit="imgCtrl.submitNewFiles()">
+        <!--<form class="form form-horizontal" ng-submit="imgCtrl.submitNewFiles()">
         <div class="form-group" ng-if="rubedo.current.user">
             <label for="files" class="col-sm-4 control-label">{{block.title}} *</label>
             <div  class="col-sm-8">
                 <div ng-if="imgCtrl.fileTypeTemplate" ng-include="imgCtrl.fileTypeTemplate"></div>
                 <rubedo-notification ng-if="imgCtrl.notification" ng-init="notification=imgCtrl.notification"></rubedo-notification>
-                <!--<input type="file"
-                       class="form-control"
-                       id="files"
-                       file-model-multiple="imgCtrl.newFiles"
-                       multiple>-->
+                
                        <input type="file" ng-model="imgCtrl.newFiles" accept="image/*" app-filereader multiple/>
                         {{imgCtrl.newFiles}}
             </div>
@@ -20,5 +16,26 @@
                     <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Publish", "Publish")}}
                 </button>
             </div>
+        </div>-->
+        <div class="row">
+        <label for="fileToUpload">Select a File to Upload</label><br />
+        <input type="file" ng-model-instant id="fileToUpload" multiple onchange="angular.element(this).scope().setFiles(this)" />
+    </div>
+    <div id="dropbox" class="dropbox" ng-class="dropClass"><span>{{dropText}}</span></div>
+    <div ng-show="files.length">
+        <div ng-repeat="file in files.slice(0)">
+            <span>{{file.webkitRelativePath || file.name}}</span>
+            (<span ng-switch="file.size > 1024*1024">
+                <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+            </span>)
         </div>
+        <input type="button" ng-click="uploadFile()" value="Upload" />
+        <div ng-show="progressVisible">
+            <div class="percent">{{progress}}%</div>
+            <div class="progress-bar">
+                <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
+            </div>
+        </div>
+    </div>
 </div>
