@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('ImageBatchUpladController',['$scope','RubedoMediaService',function($scope,RubedoMediaService){
+angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$scope','RubedoMediaService',function($scope,RubedoMediaService){
     var me = this;
     
     

@@ -1,10 +1,10 @@
-<div ng-controller="ImageBatchUpladController as imgCtrl" ng-if="rubedo.current.user" class="row">
+<div ng-controller="ImageBatchUploadController as imgCtrl" ng-if="rubedo.current.user" class="row">
         <form class="form form-horizontal" ng-submit="imgCtrl.submitNewFiles()">
         <div class="form-group" ng-if="rubedo.current.user">
             <label for="files" class="col-sm-4 control-label">{{block.title}} *</label>
             <div  class="col-sm-8">
                 <div ng-if="imgCtrl.fileTypeTemplate" ng-include="imgCtrl.fileTypeTemplate"></div>
-                <rubedo-notification ng-if="mediaFieldCtrl.notification" ng-init="notification=mediaFieldCtrl.notification"></rubedo-notification>
+                <rubedo-notification ng-if="imgCtrl.notification" ng-init="notification=imgCtrl.notification"></rubedo-notification>
                 <input type="file"
                        class="form-control"
                        id="files"
