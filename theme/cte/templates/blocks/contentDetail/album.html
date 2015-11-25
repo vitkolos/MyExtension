@@ -114,6 +114,34 @@
 @media screen and (max-width: 768px) {.grid-sizer,
 .masonry-brick { width: 49%; }}
 .gutter-sizer{width:5px}
+.img-description {
+    background: #fff;
+    background: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    text-align: center;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    -webkit-transition: opacity 0.4s ease-in-out;
+    -moz-transition: opacity 0.4s ease-in-out;
+    -ms-transition: opacity 0.4s ease-in-out;
+    -o-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
+}
+.img-description:before, .img-description i {
+    display: inline-block;
+    vertical-align: middle;
+}
+.img-description:before {
+    content: '';
+    height: 100%;
+}
+.masonry-brick:hover .img-description{opacity:1}
+
 </style>
 
 <header class="container-fluid" style="margin-bottom: 48px">
@@ -142,6 +170,9 @@
 <div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
 	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.images" data-toggle="modal" data-target="#rubedoGalleryDetailModal" ng-click="contentDetailCtrl.loadModal($index)" >
 	    <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive"/>
+	    <div class="img-description">
+		<i class="fa fa-expand"></i>
+	    </div>
 	</div>
 	<div class="gutter-sizer"></div>
 </div>
