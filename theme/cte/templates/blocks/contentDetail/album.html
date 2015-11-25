@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <style>
+	.modal-content
 .modal .prev,
 .modal .next {
   position: absolute;
@@ -133,16 +134,16 @@
 
 <!-- The modal dialog, which will be used to wrap the lightbox content -->
 <div class="modal fade" id="rubedoGalleryDetailModal">
-    <a class="prev">‹</a>
-    <a class="next">›</a>
+    <a class="prev" ng-click="galleryCtrl.changeImage('right')">‹</a>
+    <a class="next" ng-click="galleryCtrl.changeImage('left')">›</a>
     <a class="close">×</a>
     <div class="modal-dialog modal-lg">
-	<div class="modal-content">
 	    <!--<div class="">
 		<button type="button" class="close" aria-hidden="true">&times;</button>
 		<h4 class="modal-title"></h4>
 	    </div>-->
-	    <div class="modal-body"><img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage.id,{width:'1000px',mode:'boxed'})}}"
+	    <div class="modal-body">
+		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage.id,{width:'1000px',mode:'boxed'})}}"
 		     ng-attr-alt="{{contentDetailCtrl.currentImage.title}}" ng-attr-title="{{contentDetailCtrl.currentImage.title}}"></div>
 	    <!--<div class="modal-footer">
 		<button type="button" class="btn btn-default pull-left prev">
@@ -154,7 +155,6 @@
 		    <i class="glyphicon glyphicon-chevron-right"></i>
 		</button>
 	    </div>-->
-	</div>
     </div>
 </div>
 
