@@ -23,8 +23,8 @@
                         <button type="submit" class="btn btn-primary">
                             <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Publish", "Publish")}}
                         </button>
-                        <div ng-show="progressVisible">
-                                <div class="percent">{{progress}}%</div>
+                        <div ng-show="imgCtrl.progress>0">
+                                <div class="percent">{{imgCtrl.progress}}%</div>
                                 <div class="progress-bar">
                                     <div class="uploaded" ng-style="{'width': progress+'%'}"></div>
                                 </div>
