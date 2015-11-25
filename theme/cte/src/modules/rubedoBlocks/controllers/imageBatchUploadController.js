@@ -42,8 +42,8 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
        }*/
 
     };
- $scope.trustAsResourcUrl = function(url) {
-    return $sce.trustAsResourceUrl(url);
+ $scope.trustAsResourceUrl = function(url) {
+    return $sce.trustAsResourceUrl(decodeURIComponent(url));
 } 
 
 }]);
