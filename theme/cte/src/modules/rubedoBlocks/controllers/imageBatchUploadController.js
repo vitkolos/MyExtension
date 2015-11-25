@@ -10,7 +10,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
         };
         var nbOfImages = me.files.length;
         angular.forEach(me.files, function(file, index) {
-            uploadOptions['fields']['title'] = file.name;
+            uploadOptions['fields'] = {title : file.name};
             RubedoMediaService.uploadMedia(file,uploadOptions).then(
                function(response){
                    if (response.data.success){
