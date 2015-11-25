@@ -173,7 +173,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                     
 
-                 me.callMasonry = function(){
+                 /*me.callMasonry = function(){
                     var grid= angular.element('.grid').masonry({
                                 // options...
                                 columnWidth: '.grid-item',

@@ -86,9 +86,14 @@
 .grid-item { width: 49%; }}
 .gutter-sizer{width:5px}
 </style>
+<div masonry>
+	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.images | limitTo : contentDetailCtrl.limit">
+	    <img nng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}"/>
+	</div>
+</div>
 
 
-<div class="grid js-masonry" ng-class="{'invisible':!contentDetailCtrl.albumVisibility}"
+<!--<div class="grid js-masonry" ng-class="{'invisible':!contentDetailCtrl.albumVisibility}"
   data-masonry-options='{ "itemSelector": ".grid-item", "columnWidth": 200 }'>
   <div class="grid-item" ng-repeat="image in contentDetailCtrl.content.images | limitTo : contentDetailCtrl.limit ">
 	<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive" alt="Banana" ng-if="!$last">
