@@ -127,6 +127,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 @rouge:#c1573c;//rouge brique
 @rouge_shadow:#9e4232; // rouge brique sombre
 @txt_dark:#2e2c29;// couleur texte
+@menu:#2e2c29;// couleur de fond du menu par défaut
 @beigeCCN:#f3eeea; // beige fond
 @marron:#d5c5b5 ; // beige plus sombre
 @rencontre:#7d77bf; //violet rencontres
@@ -333,8 +334,8 @@ span#close:after {
 
  a.subpage{display: inline-block; width:100%}
  
-.menuTab{background: white; margin-bottom:24px}
- .menu1418 .menuTab{color: @14-18; a{color: @14-18; margin-bottom:0}}
+.menuTab{color: white; margin-bottom:24px}
+ .menu1418 .menuTab{color: @14-18; background:white; a{color: @14-18; margin-bottom:0}}
 .menu1418.modal .footer, .menu1418.modal .modal-dialog {background-color: @14-18}
 .modal.in.menu1418 + nav.navbar-fixed-top li{background: @14-18;}
 @media screen and (min-width: @min_sm) {

@@ -41,82 +41,7 @@
 
 
 
-<div  role="navigation" ng-controller="MenuController as menuCtrl"  ng-if="block.code=='1418' "  ng-init="search=false;menu=false;menu2=false">
-<!--
-        <nav class="navbar footer jeunes navbar-fixed-top" role="navigation" ng-class="{'displayed1':menu}" style="height:100%;z-index:9999">
-                <div class="retour" ng-click="menu=!menu">
-                        <p class="capital">retour à la page</p>
-                </div>
-                <div class="nav-suivant" ng-click="menu2=!menu2">
-                        <p class="capital">Communauté du Chemin Neuf</p>
-                </div>
-            <div class="container-fluid menu">
-                 <div class="container" >
-                        <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:24px"><h4>Jeunes 14-18 ans</h4></a>
-                        <div  style="text-align: left">
- 
- 
-<div class="row">
-   <div class="col-sm-3 col-xs-6">
-      <a class="capital" href="http://www.chemin-neuf.fr/annuaire/france/qui_sommes_nous_view_remote?id=ccn">La Mission 14-18 ans</a>
-      <a class="capital" href="http://www.chemin-neuf.fr/ou-nous-trouver/regions-de-france">Shut up and dance</a>
-   </div>
-
-   <div class="col-sm-3 col-xs-6">
-      <a class="capital" href="">Propositions</a>
-      <a href="http://www.chemin-neuf.fr/cana-couples-familles-fr/cana">Week-ends nationaux</a><br />
-      <a href="http://www.chemin-neuf.fr/jeunes-fr/14-18-ans">Semaines nationales</a><br />
-      <a href="http://www.chemin-neuf.fr/jeunes-fr/18-30-ans">Ecole de langues</a><br />
-      <a href="http://www.chemin-neuf.fr/">Sablonceaux 2016</a><br />
-      <a href="http://www.chemin-neuf.fr/">Calendrier</a>
-   </div>
-
-   <div class="col-sm-3 col-xs-6 col-xs-push-6 col-sm-push-0">
-      <a class="capital" href="http://actualites.chemin-neuf.fr/fr/accueil">Dans ta région</a>
-      <a href="http://actualites.chemin-neuf.fr/fr/accueil/foi">Lyon</a><br />
-      <a href="http://netforgod.tv">Paris</a>
-      <a href="http://netforgod.tv">Bretagne</a>
-      <a href="http://netforgod.tv">Région Ouest</a>
-      <a href="http://netforgod.tv">Région Est</a>
-      <a href="http://netforgod.tv">Région Sud</a>
-   </div>
-
-
-   <div class="col-sm-3 col-xs-6 col-xs-pull-6 col-sm-pull-0">
-      <a class="capital" href="http://www.chemin-neuf.fr/aidez-nous/">S'engager</a>
-      <a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">5 minutes pour Dieu</a><br />
-      <a  href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don#table_projets">Eclats</a>
-   </div>
-
-
-</div>
-
- 
- 
- 
-                                
-                        </div>
-                 </div>
-                 <div style="height:100%"></div>
-            </div>
-        </nav>
-        <nav class="navbar footer navbar-fixed-top top" role="navigation" ng-class="{'displayed2':menu2, 'displayed1':menu}" style="height:100%;z-index:9999">
-                <div class="retour" ng-click="menu=!menu">
-                        <p class="capital">retour à la page</p>
-                </div>
-                <div class="nav-suivant down" ng-click="menu2=!menu2" >
-                        <p class="capital">Jeunes 14-18 ans</p>
-                </div>
-
-            <div class="container-fluid menu" >
-                 <div class="container" >
-                        <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:24px"><h4>Communauté du Chemin Neuf</h4></a>
-                        <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" style="text-align: left"></div>
-                 </div>
-                 <div style="height:100%"></div>
-            </div>
-        </nav>
-        -->
+<div  role="navigation" ng-controller="MenuController as menuCtrl"  ng-if="!block.code & block.code!=''"  ng-init="search=false;menu=false;menu2=false">
 <!--[if IE]>
 <style>
     .navbar.footer.navbar-modal {
@@ -131,7 +56,7 @@
                                     <div style="width:90%; margin-top:50px" id="accordion">
                                        <div ng-class="{'menuTab':menuCtrl.menuTab}">
                                           <a rubedo-page-link="562f32ff45205e453512ef7a" class="menu_header"><h4>Communauté du Chemin Neuf</h4></a>
-                                          <span data-toggle="collapse"  href="#menuCCN" class="menuToggle glyphicon" ng-class="{'collapsed':menuCtrl.menuTab}"></span>
+                                          <span data-toggle="collapse"  href="#menuCCN" class="menuToggle glyphicon" ng-class="{'collapsed':menuCtrl.menuTab}" ng-if="menuCtrl.menuTab"></span>
                                        </div>
                                        <div id="menuCCN" class="collapse" ng-class="{'in':!menuCtrl.menuTab}" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })"></div>
                                        
