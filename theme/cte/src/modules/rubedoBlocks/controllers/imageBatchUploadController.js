@@ -45,7 +45,6 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     };
 }]);
     
-
     
     
     
