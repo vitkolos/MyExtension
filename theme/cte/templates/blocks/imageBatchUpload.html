@@ -9,7 +9,7 @@
                 <div class="form-group" ng-show="imgCtrl.files.length">
                         <div class="col-sm-8 col-md-offset-4">
                                 <div ng-repeat="file in imgCtrl.files">
-                                        <span>{{file.url || file.name}}</span>
+                                        <span>{{file.name}}</span>
                                         (<span ng-switch="file.size > 1024*1024">
                                             <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
                                             <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
