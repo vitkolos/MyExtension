@@ -3,7 +3,25 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     
     
     me.files=[];
+    me.progress = 0;
     me.submitNewFiles=function(){
+        var uploadOptions={
+               typeId:"545cd95245205e91168b45b1"//pour des images
+        };
+        var nbOfImages = me.files.length;
+        angular.forEach(me.files, function(file, index) {
+            uploadOptions['fields']['title'] = file.name;
+            RubedoMediaService.uploadMedia(file,uploadOptions).then(
+               function(response){
+                   if (response.data.success){
+                       me.progress += 1/nbOfImages;
+                   } else {
+                       
+                   }
+               }
+           );
+        });
+        
        /*me.notification=null;
        if ($scope.fieldInputMode&&me.newFile){
            var uploadOptions={
@@ -42,9 +60,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
        }*/
 
     };
- $scope.trustAsResourceUrl = function(url) {
-    return $sce.trustAsResourceUrl(decodeURIComponent(url));
-} 
+
 
 }]);
     
