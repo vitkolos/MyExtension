@@ -169,7 +169,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             });
                         };
                         me.getMedia(options2);
-                        me.limit = 20;
+                        me.loadModal = function(index){
+                            me.currentIndex = index;
+                            me.currentImage = me.content.images[me.currentIndex];
+                        };
                     }
                     
 
