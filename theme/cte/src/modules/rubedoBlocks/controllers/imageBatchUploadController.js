@@ -2,7 +2,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUpladController',['$sc
     var me = this;
     
     
-    me.newFile=null;
+    me.newFiles=null;
     me.uploadNewFile=function(){
        me.notification=null;
        if ($scope.fieldInputMode&&me.newFile){
@@ -52,7 +52,7 @@ angular.module("rubedoBlocks").directive('fileModelMultiple', ['$parse', functio
 
                 element.bind('change', function(){
                     scope.$apply(function(){
-                        modelSetter(scope, element[0].files[0]);
+                        modelSetter(scope, element[0].files);
                     });
                 });
             }
