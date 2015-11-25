@@ -35,9 +35,9 @@
                         </div>
                    </div>
                                       <!--DEFAUT-->
-                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}" >
+                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}" ng-switch-default >
                     
-                    <div class="media-body" ng-switch-default>
+                    <div class="media-body" >
                         <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}" >
                             <h4 class="list-item-title capital"><span>{{content.fields.text}}</span></h4>
                         </a>
