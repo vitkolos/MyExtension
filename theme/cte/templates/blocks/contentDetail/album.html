@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <style>
-	.modal-content
 .modal .prev,
 .modal .next {
   position: absolute;
@@ -134,8 +133,8 @@
 
 <!-- The modal dialog, which will be used to wrap the lightbox content -->
 <div class="modal fade" id="rubedoGalleryDetailModal">
-    <a class="prev" ng-click="contentDetailCtrl.changeImage('right')">‹</a>
-    <a class="next" ng-click="contentDetailCtrl.changeImage('left')">›</a>
+    <a class="prev" ng-click="contentDetailCtrl.changeImage('left')">‹</a>
+    <a class="next" ng-click="contentDetailCtrl.changeImage('right')">›</a>
     <a class="close">×</a>
     <div class="modal-dialog modal-lg">
 	    <!--<div class="">
