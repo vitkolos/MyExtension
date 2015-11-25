@@ -76,10 +76,7 @@
 .modal .prev:hover,
 .modal .next:hover,
 .modal .close:hover,
-.modal .title:hover {
-  color: #fff;
-  opacity: 1;
-}	
+
 .modal .modal-body {
 	position: relative;
 	text-align: center;
@@ -110,9 +107,10 @@
 .modal.in#rubedoGalleryDetailModal{z-index:1056}
 .grid{max-width:1200px; margin: 0 auto; display: block}
 /* fluid 5 columns */
-.masonry-brick { width: 23%;margin-bottom: 5px; cursor: pointer}
-@media screen and (max-width: 768px) {.grid-sizer,
-.masonry-brick { width: 49%; }}
+.masonry-brick { width: 99%;margin-bottom: 5px; cursor: pointer}
+@media screen and (min-width: 400px) {.masonry-brick { width: 49%; }}
+@media screen and (min-width: 768px) {.masonry-brick { width: 32%; }}
+@media screen and (min-width: 1200px) {.masonry-brick { width: 23%; }}
 .gutter-sizer{width:5px}
 .img-description {
     background: #fff;
@@ -183,23 +181,11 @@
     <a class="next" ng-click="contentDetailCtrl.changeImage('right')">›</a>
     <a class="close">×</a>
     <div class="modal-dialog modal-lg">
-	    <!--<div class="">
-		<button type="button" class="close" aria-hidden="true">&times;</button>
-		<h4 class="modal-title"></h4>
-	    </div>-->
+
 	    <div class="modal-body">
 		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage.id,{width:'1000px',height:'600px',mode:'boxed'})}}"
 		     ng-attr-alt="{{contentDetailCtrl.currentImage.title}}" ng-attr-title="{{contentDetailCtrl.currentImage.title}}"></div>
-	    <!--<div class="modal-footer">
-		<button type="button" class="btn btn-default pull-left prev">
-		    <i class="glyphicon glyphicon-chevron-left"></i>
-		    Previous
-		</button>
-		<button type="button" class="btn btn-primary next">
-		    Next
-		    <i class="glyphicon glyphicon-chevron-right"></i>
-		</button>
-	    </div>-->
+
     </div>
 </div>
 
