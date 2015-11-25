@@ -83,7 +83,7 @@
 .modal .modal-body {
 	position: relative;
 	text-align: center;
-	padding: 0 0 56.25% 0;
+	padding: 0 0 60% 0;
 	overflow: hidden;
 	cursor: pointer;
 }
@@ -160,7 +160,7 @@
 		<h4 class="modal-title"></h4>
 	    </div>-->
 	    <div class="modal-body">
-		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage.id,{width:'1000px',mode:'boxed'})}}"
+		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage.id,{width:'1000px',height:'600px',mode:'boxed'})}}"
 		     ng-attr-alt="{{contentDetailCtrl.currentImage.title}}" ng-attr-title="{{contentDetailCtrl.currentImage.title}}"></div>
 	    <!--<div class="modal-footer">
 		<button type="button" class="btn btn-default pull-left prev">
