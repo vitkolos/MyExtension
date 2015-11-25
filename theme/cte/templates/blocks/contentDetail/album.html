@@ -80,15 +80,14 @@
 }
 .grid{max-width:1200px; margin: 0 auto; display: block}
 /* fluid 5 columns */
-.grid-sizer,
-.grid-item { width: 23%;margin-bottom: 5px; }
+.masonry-brick { width: 23%;margin-bottom: 5px; }
 @media screen and (max-width: 768px) {.grid-sizer,
-.grid-item { width: 49%; }}
+.masonry-brick { width: 49%; }}
 .gutter-sizer{width:5px}
 </style>
 <div masonry>
 	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.images | limitTo : contentDetailCtrl.limit">
-	    <img nng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}"/>
+	    <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}"/>
 	</div>
 </div>
 
