@@ -41,6 +41,10 @@ angular.module('rubedo').filter('ligneNonVide', function () {
      };
   });
 
+angular.module('rubedoBlocks').config(['$compileProvider',
+    function ($compileProvider) {
+        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);
+	}]);
 
 //angular.module('rubedoBlocks').requires.push('date');
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
