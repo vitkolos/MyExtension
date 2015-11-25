@@ -21,7 +21,10 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                }
            );
         });
-        
+        $scope.getUrl = function(file){
+            
+            return $sce.trustAsUrl(decodeURIComponent(URL.createObjectURL(file)));
+        }
        /*me.notification=null;
        if ($scope.fieldInputMode&&me.newFile){
            var uploadOptions={
