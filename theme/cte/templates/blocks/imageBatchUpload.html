@@ -15,6 +15,7 @@
                                             <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
                                         </span>)
                                         <span class="alert" ng-if="file.size > 1024*300">Attention, la taille de fichiers est trop grande !</span>
+                                        {{file}}
                                 </div>
                         </div>
                 </div>
