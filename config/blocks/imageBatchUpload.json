@@ -1,6 +1,6 @@
 {
     "type": "Ajout de photos",
-    "description": "Ajout de photos en masse depuis le FrontOffice (pour utilisateurs connectés",
+    "description": "Ajout de photos en masse depuis le FrontOffice (pour utilisateurs connectés)",
     "configBasique": {
         "title": "Ajout de photos en masse",
         "bType": "imageBatchUpload",
