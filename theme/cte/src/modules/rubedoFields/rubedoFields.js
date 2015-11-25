@@ -704,7 +704,7 @@
                 var modelSetter = model.assign;
                 var isMultiple = attrs.multiple;
                 element.bind('change', function(){
-                    var values = [];
+                    /*var values = [];
                     angular.forEach(element[0].files, function (item) {
                         var value = {
                            // File Name 
@@ -717,12 +717,12 @@
                             _file: item
                         };
                         values.push(value);
-                    });
+                    });*/
                     scope.$apply(function(){
                         if (isMultiple) {
-                            modelSetter(scope, values);
+                            modelSetter(scope, element[0].files);
                         } else {
-                            modelSetter(scope, values[0]);
+                            modelSetter(scope, element[0].files[0]);
                         }
                     });
                 });
