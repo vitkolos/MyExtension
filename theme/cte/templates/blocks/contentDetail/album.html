@@ -168,9 +168,9 @@
 
 
 <div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
-	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.images" data-toggle="modal" data-target="#rubedoGalleryDetailModal" ng-click="contentDetailCtrl.loadModal($index)" >
+	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.images"  >
 	    <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" class="img-responsive"/>
-	    <div class="img-description">
+	    <div class="img-description hidden-xs" data-toggle="modal" data-target="#rubedoGalleryDetailModal" ng-click="contentDetailCtrl.loadModal($index)">
 		<i class="fa fa-expand"></i>
 	    </div>
 	</div>
