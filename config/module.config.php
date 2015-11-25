@@ -48,6 +48,10 @@ return array(
         'redirect' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/redirect.json'
+        ),
+        'imageBatchUpload' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/imageBatchUpload.json'
         )  
  ),
 

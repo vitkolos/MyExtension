@@ -1,0 +1,37 @@
+{
+    "type": "Ajout de photos",
+    "description": "Ajout de photos en masse depuis le FrontOffice (pour utilisateurs connectés",
+    "configBasique": {
+        "title": "Ajout de photos en masse",
+        "bType": "imageBatchUpload",
+        "flex": 1,
+        "champsConfig": {
+            "simple": [
+                {
+                    
+                }
+            ],
+            "avance": [
+                {
+                    "categorie": "Template",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "Custom template",
+                                "name": "customTemplate",
+                                "defaultTemplateUrl": "blocks/imageBatchUpload.html",
+                                "twigMode": false
+
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        "configBloc": []
+    },
+    "category": "#ext-gen1211#",
+    "bType": "imageBatchUpload",
+    "id": "51000880c0e0518011100004"
+}
