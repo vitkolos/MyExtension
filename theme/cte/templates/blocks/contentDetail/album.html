@@ -139,6 +139,7 @@
     height: 100%;
 }
 .masonry-brick:hover .img-description{opacity:1}
+.masonry-brick:not(.loaded) .img-description{display: none}
 
 </style>
 
@@ -181,7 +182,6 @@
     <a class="next" ng-click="contentDetailCtrl.changeImage('right')">›</a>
     <a class="close">×</a>
     <div class="modal-dialog modal-lg">
-
 	    <div class="modal-body">
 		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage.id,{width:'1000px',height:'600px',mode:'boxed'})}}"
 		     ng-attr-alt="{{contentDetailCtrl.currentImage.title}}" ng-attr-title="{{contentDetailCtrl.currentImage.title}}"></div>
