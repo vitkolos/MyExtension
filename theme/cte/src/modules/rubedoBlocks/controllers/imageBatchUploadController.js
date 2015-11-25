@@ -3,8 +3,8 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUpladController',['$sc
     
     
     me.newFiles=null;
-    me.uploadNewFile=function(){
-       me.notification=null;
+    me.submitNewFiles=function(){
+       /*me.notification=null;
        if ($scope.fieldInputMode&&me.newFile){
            var uploadOptions={
                typeId:"545cd95245205e91168b45b1", //pour des images
@@ -39,7 +39,8 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUpladController',['$sc
                    };
                }
            );
-       }
+       }*/
+       console.log(me.newFiles);
 
     };    
     
