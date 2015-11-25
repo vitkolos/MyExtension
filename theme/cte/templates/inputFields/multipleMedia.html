@@ -1,0 +1,15 @@
+<div class="form-group" ng-if="rubedo.current.user&&field.config.allowedDAMTypes" ng-controller="MultipleMediaFieldController as mMediaFieldCtrl">
+    <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="col-sm-4 control-label">{{field.config.fieldLabel}} <span ng-if="!field.config.allowBlank&&!field.config.fieldLabel.includes('*')">*</span></label>
+    <div  class="col-sm-8">
+        <div ng-if="mMediaFieldCtrl.fileTypeTemplate" ng-include="mMediaFieldCtrl.fileTypeTemplate"></div>
+        <rubedo-notification ng-if="mMediaFieldCtrl.notification" ng-init="notification=mMediaFieldCtrl.notification"></rubedo-notification>
+        <input type="file"
+               class="form-control"
+               id="{{fieldIdPrefix+'_'+field.config.name}}"
+               ng-required="!field.config.allowBlank"
+               file-model="mMediaFieldCtrl.newFile"
+                >
+
+        <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
+    </div>
+</div>

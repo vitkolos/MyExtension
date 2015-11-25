@@ -7,6 +7,22 @@
         <h2 ng-if="ccCtrl.updateMode" class="text-center" ng-click="ccCtrl.showForm= !ccCtrl.showForm">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>
         <div ng-if="(!ccCtrl.updateMode && ccCtrl.showForm) || (ccCtrl.updateMode)">
         <rubedo-field ng-repeat="field in fields track by $index">{{field}}</rubedo-field>
+        <div ng-if="ccCtrl.contentType.id == '552bda1945205e53368a64ea' "class="form-group" ng-if="rubedo.current.user&&field.config.allowedDAMTypes" ng-controller="mediaFieldController as mediaFieldCtrl">
+            <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="col-sm-4 control-label">{{field.config.fieldLabel}} <span ng-if="!field.config.allowBlank&&!field.config.fieldLabel.includes('*')">*</span></label>
+            <div  class="col-sm-8">
+                <div ng-if="mediaFieldCtrl.fileTypeTemplate" ng-include="mediaFieldCtrl.fileTypeTemplate"></div>
+                <rubedo-notification ng-if="mediaFieldCtrl.notification" ng-init="notification=mediaFieldCtrl.notification"></rubedo-notification>
+                <input type="file"
+                       class="form-control"
+                       id="{{fieldIdPrefix+'_'+field.config.name}}"
+                       ng-required="!field.config.allowBlank"
+                       file-model="mediaFieldCtrl.newFile"
+                       multiple
+                        >
+        
+                <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
+            </div>
+        </div>
         <div ng-repeat="vocabulary in vocabularies track by $index" class="form-group">
             <label  class="col-sm-4 control-label">{{vocabulary.name}} <span ng-if="vocabulary.mandatory">*</span></label>
             <div class="col-sm-8">
