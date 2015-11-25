@@ -29,7 +29,6 @@
           border-radius: 23px;
   opacity: 0.5;
   cursor: pointer;
-  display: none;
 }
 .modal  .next {
   left: auto;
@@ -56,7 +55,13 @@
   text-decoration: none;
   cursor: pointer;
 }
-	
+.modal .prev:hover,
+.modal .next:hover,
+.modal .close:hover,
+.modal .title:hover {
+  color: #fff;
+  opacity: 1;
+}	
 .modal .modal-body {
 	position: relative;
 	text-align: center;
@@ -90,7 +95,7 @@
 }
 .grid{max-width:1200px; margin: 0 auto; display: block}
 /* fluid 5 columns */
-.masonry-brick { width: 23%;margin-bottom: 5px; }
+.masonry-brick { width: 23%;margin-bottom: 5px; cursor: pointer}
 @media screen and (max-width: 768px) {.grid-sizer,
 .masonry-brick { width: 49%; }}
 .gutter-sizer{width:5px}
@@ -133,13 +138,13 @@
     <a class="close">×</a>
     <div class="modal-dialog modal-lg">
 	<div class="modal-content">
-	    <div class="">
+	    <!--<div class="">
 		<button type="button" class="close" aria-hidden="true">&times;</button>
 		<h4 class="modal-title"></h4>
-	    </div>
+	    </div>-->
 	    <div class="modal-body"><img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage.id,{width:'1000px',mode:'boxed'})}}"
 		     ng-attr-alt="{{contentDetailCtrl.currentImage.title}}" ng-attr-title="{{contentDetailCtrl.currentImage.title}}"></div>
-	    <div class="modal-footer">
+	    <!--<div class="modal-footer">
 		<button type="button" class="btn btn-default pull-left prev">
 		    <i class="glyphicon glyphicon-chevron-left"></i>
 		    Previous
@@ -148,7 +153,7 @@
 		    Next
 		    <i class="glyphicon glyphicon-chevron-right"></i>
 		</button>
-	    </div>
+	    </div>-->
 	</div>
     </div>
 </div>
