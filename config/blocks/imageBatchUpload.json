@@ -8,7 +8,18 @@
         "champsConfig": {
             "simple": [
                 {
-                    
+                    "categorie": "#ext-gen1104#",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.DCEField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1104#",
+                                "name": "contentId",
+                                "allowedCT": "simpleText",
+                                "addOnly": true
+                            }
+                        }
+                    ]
                 }
             ],
             "avance": [
@@ -33,5 +44,5 @@
     },
     "category": "#ext-gen1211#",
     "bType": "imageBatchUpload",
-    "id": "51000880c0e0518011100044"
+    "id": "51000880c0e0518011100444"
 }
