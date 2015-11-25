@@ -2,6 +2,60 @@
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <style>
+.modal .prev,
+.modal .next {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  margin-top: -23px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 30px;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 0 2px #000;
+  text-align: center;
+  background: #222;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+  border: 3px solid #fff;
+  -webkit-border-radius: 23px;
+     -moz-border-radius: 23px;
+          border-radius: 23px;
+  opacity: 0.5;
+  cursor: pointer;
+  display: none;
+}
+.modal  .next {
+  left: auto;
+  right: 15px;
+}
+.modal  .close {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  margin: 0 40px 0 0;
+  font-size: 20px;
+  line-height: 30px;
+  color: #fff;
+  text-shadow: 0 0 2px #000;
+  opacity: 0.8;
+  display: none;
+}
+.modal .close {
+  padding: 15px;
+  right: 15px;
+  left: auto;
+  margin: -15px;
+  font-size: 30px;
+  text-decoration: none;
+  cursor: pointer;
+}
 	
 .modal .modal-body {
 	position: relative;
@@ -29,7 +83,7 @@
     right: auto;
     left: auto;
 	width: auto;
-    max-width: 900px;
+    max-width: 1200px;
     padding-left: 5%;
     padding-right: 5%;
   }
@@ -73,10 +127,13 @@
 </div>
 
 <!-- The modal dialog, which will be used to wrap the lightbox content -->
-<div class="modal fade modal-lg" id="rubedoGalleryDetailModal">
-    <div class="modal-dialog">
+<div class="modal fade" id="rubedoGalleryDetailModal">
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <div class="modal-dialog modal-lg">
 	<div class="modal-content">
-	    <div class="modal-header">
+	    <div class="">
 		<button type="button" class="close" aria-hidden="true">&times;</button>
 		<h4 class="modal-title"></h4>
 	    </div>
