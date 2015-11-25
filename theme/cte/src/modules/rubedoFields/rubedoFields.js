@@ -696,7 +696,7 @@
         }
     }]);
 
-    module.directive('fileModel', ['$parse', function ($parse) {
+    module.directive('fileModel', ['$parse','$sce', function ($parse,$sce) {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
@@ -712,7 +712,7 @@
                             //File Size 
                             size: item.size,
                             //File URL to view 
-                            url: URL.createObjectURL(item),
+                            url:  $sce.trustAsResourceUrl(URL.createObjectURL(item)),
                             // File Input Value 
                             _file: item
                         };
