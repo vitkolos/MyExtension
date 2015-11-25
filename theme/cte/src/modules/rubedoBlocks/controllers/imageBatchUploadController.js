@@ -80,7 +80,9 @@ angular.module('rubedoBlocks').directive('appFilereader', function($q) {
                     }
 
                 }); //change
-    
+             } //link
+    }; //return
+});   
     
     
     
