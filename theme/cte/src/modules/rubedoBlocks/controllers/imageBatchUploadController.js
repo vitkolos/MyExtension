@@ -44,22 +44,22 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
 
     };    
     
-angular.module("rubedoBlocks").directive('fileModelMultiple', ['$parse', function ($parse) {
-        return {
-            restrict: 'A',
-            link: function(scope, element, attrs) {
-                var model = $parse(attrs.fileModelMultiple);
-                var modelSetter = model.assign;
-
-                element.bind('change', function(){
-                    scope.$apply(function(){
-                        modelSetter(scope, element[0].files);
-                    });
+angular.module("rubedoBlocks").directive("fileread", [function () {
+    return {
+        scope: {
+            fileread: "="
+        },
+        link: function (scope, element, attributes) {
+            element.bind("change", function (changeEvent) {
+                scope.$apply(function () {
+                    scope.fileread = changeEvent.target.files[0];
+                    // or all selected files:
+                    // scope.fileread = changeEvent.target.files;
                 });
-            }
-        };
-    }]);
-    
+            });
+        }
+    }
+}]);
     
     
     

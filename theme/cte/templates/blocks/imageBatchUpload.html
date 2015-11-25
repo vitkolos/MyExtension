@@ -5,11 +5,12 @@
             <div  class="col-sm-8">
                 <div ng-if="imgCtrl.fileTypeTemplate" ng-include="imgCtrl.fileTypeTemplate"></div>
                 <rubedo-notification ng-if="imgCtrl.notification" ng-init="notification=imgCtrl.notification"></rubedo-notification>
-                <input type="file"
+                <!--<input type="file"
                        class="form-control"
                        id="files"
                        file-model-multiple="imgCtrl.newFiles"
-                       multiple>
+                       multiple>-->
+                       <input type="file" fileread="imgCtrl.newFiles" multiple />
                         {{imgCtrl.newFiles}}
             </div>
         </div>
