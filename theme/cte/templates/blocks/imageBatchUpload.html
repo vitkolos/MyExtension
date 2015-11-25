@@ -3,12 +3,13 @@
                 <div class="form-group" ng-if="rubedo.current.user">
                     <label for="files" class="col-sm-4 control-label">{{block.title}} *</label>
                     <div  class="col-sm-8">        
-                               <input type="file" file-model="imgCtrl.files" multiple/>
+                               <input type="file" file-model="imgCtrl.files" multiple accept="image/gif, image/jpeg, image/png"/>
                     </div>
                 </div>
                 <div class="form-group" ng-show="imgCtrl.files.length">
                         <div class="col-sm-8 col-md-offset-4">
                                 <div ng-repeat="file in imgCtrl.files">
+                                        <img ng-src="file.url"/>
                                         <span>{{file.name}}</span>
                                         (<span ng-switch="file.size > 1024*1024">
                                             <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
