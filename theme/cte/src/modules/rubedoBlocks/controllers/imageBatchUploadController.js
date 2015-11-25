@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$scope','RubedoMediaService',function($scope,RubedoMediaService){
+angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$scope','RubedoMediaService','$sce',function($scope,RubedoMediaService,$sce){
     var me = this;
     
     
@@ -42,7 +42,9 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
        }*/
 
     };
- 
+ $scope.trustAsResourcUrl = function(url) {
+    return $sce.trustAsResourceUrl(url);
+} 
 
 }]);
     
