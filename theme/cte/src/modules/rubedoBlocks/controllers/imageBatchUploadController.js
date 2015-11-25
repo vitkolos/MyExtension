@@ -42,7 +42,8 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
        }*/
        console.log(me.newFiles);
 
-    };    
+    };
+}]);
     
 angular.module('rubedoBlocks').directive('appFilereader', function($q) {
     var slice = Array.prototype.slice;
@@ -90,6 +91,3 @@ angular.module('rubedoBlocks').directive('appFilereader', function($q) {
     
     
     
-    
-    
-}]);
