@@ -85,10 +85,11 @@
 .masonry-brick { width: 49%; }}
 .gutter-sizer{width:5px}
 </style>
-<div masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }>
+<div masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }">
 	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.images | limitTo : contentDetailCtrl.limit">
 	    <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}"/>
 	</div>
+	<div class="gutter-sizer"></div>
 </div>
 <button class="button-rouge" ng-click="contentDetailCtrl.addImages()">Add more</button>
 
