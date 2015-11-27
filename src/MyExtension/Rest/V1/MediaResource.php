@@ -85,14 +85,12 @@ class MediaResource extends AbstractResource
         $media['i18n'] = array();
         $media['i18n'][$nativeLanguage] = array();
         $media['i18n'][$nativeLanguage]['fields'] = $media['fields'];
-        if (!isset($params['target'])) {
-            $media['target'] = array("global");
-            $media["writeWorkspace"]="global";
-        }
-        else {
+        $media['target'] = array("global");
+        $media["writeWorkspace"]="global";
+        /*else {
             $media["target"]=array($params['target']);
             $media["writeWorkspace"]=$params['target'];
-        }
+        }*/
         $media['Content-Type'] = null;
         $media['originalFileId'] = $this->uploadFile($params['file'], $media['Content-Type']);
         AbstractLocalizableCollection::setIncludeI18n(true);
