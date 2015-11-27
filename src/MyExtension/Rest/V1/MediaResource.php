@@ -426,6 +426,11 @@ class MediaResource extends AbstractResource
                     ->setDescription('Taxonomies for the media')
                     ->setKey('taxonomy')
             )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Workspace')
+                    ->setKey('target')
+            )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
                     ->setDescription('Media')
