@@ -882,7 +882,7 @@ input:-webkit-autofill {
     -webkit-box-shadow:0 0 0 50px @beigeCCN inset; /* Change the color to your own background color */
     -webkit-text-fill-color: @txt_dark;
 }
-textarea{}
+input[type=checkbox]:disabled + label,input[type=radio]:disabled + label{color:@marron}
 textarea:focus{outline:none}
 input[type=text]:focus, textarea:focus, input[type=email]:focus, input[type=number]:focus{border-color:@bleu !important; border-width: 2px}
 .chosen-container .chosen-results li.highlighted{background-color:@bleu}
