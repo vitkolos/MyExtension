@@ -12,7 +12,8 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                 route:$route.current.params.routeline
             }
     });
-        console.log($route);
+    }
+    console.log($route);
     me.submitNewFiles=function(){
         var uploadOptions={
                typeId:"545cd95245205e91168b45b1",//pour des images
