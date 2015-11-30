@@ -11,8 +11,9 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
         };
         var nbOfImages = me.files.length;
         angular.forEach(me.files, function(file, index) {
-            uploadOptions['fields'] = {title : file.name};
-            RubedoMediaService.uploadMedia(file,uploadOptions).then(
+            var options = angular.copy(uploadOptions);
+            options.fields={title : file.name};
+            RubedoMediaService.uploadMedia(file,options).then(
                function(response){
                    if (response.data.success){
                        me.progress += 100/nbOfImages;
@@ -22,10 +23,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                }
            );
         });
-        $scope.getUrl = function(file){
-            
-            return $sce.trustAsUrl(decodeURIComponent(URL.createObjectURL(file)));
-        }
+
        /*me.notification=null;
        if ($scope.fieldInputMode&&me.newFile){
            var uploadOptions={
