@@ -66,7 +66,7 @@ class MailResource extends AbstractResource
  
         $mailerObject->setTo($destinataires);
         $mailerObject->setReplyTo($from);
-        $mailerObject->setFrom("web@chemin-neuf.org");
+        $mailerObject->setFrom("nicolas.rhone@chemin-neuf.org");
         $mailerObject->setCharset('utf-8');
         $mailerObject->setSubject($params['subject']);
         if ($params['template'] == null) $mailerObject->setBody($this->buildEmail($params['fields']), 'text/html', 'utf-8');
