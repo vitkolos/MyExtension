@@ -81,7 +81,7 @@
               <p>{{content.fields.text}}</p>
               <p>{{content.fields.summary}}</p>
               <p >{{content.fields.titre2}}</p>
-              <p ng-repeat="text in content.fields.subTitle">{{text}}</p>
+              <p ng-repeat="text in content.fields.subTitle track by $index">{{text}}</p>
           </div>
       </div>
   </div>

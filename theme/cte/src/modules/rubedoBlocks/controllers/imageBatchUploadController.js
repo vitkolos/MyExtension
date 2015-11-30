@@ -7,19 +7,20 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     me.pageUrl="";
     me.workspace="";
     if (config.linkedPage&&mongoIdRegex.test(config.linkedPage)) {
-        /*RubedoPagesService.getPageByCurrentRoute().then(function(response){
+        RubedoPagesService.getPageByCurrentRoute().then(function(response){
             if (response.data.success){
                 me.pageUrl=response.data.url;
                 me.workspace = $http.get("/api/v1/pages",{
-                params:{
-                    site:$location.host(),
-                    route:$route.current.params.routeline
-                }
-            }));
-            }
-        });*/
-    }
+                    params:{
+                        site:$location.host(),
+                        route:me.pageUrl
+                    }
+                });
+            };
+        });
+    };
     console.log($scope.rubedo);
+    console.log(me.workspace);
     me.submitNewFiles=function(){
         var uploadOptions={
                typeId:"545cd95245205e91168b45b1",//pour des images
