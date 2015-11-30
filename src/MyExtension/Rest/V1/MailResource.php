@@ -64,14 +64,14 @@ class MailResource extends AbstractResource
         $destinataires=array($params['to']);
         $senderMail=$params['from'];
         $senderDomain = explode("@", $senderMail);
-        var_dump($senderDomain);/*
+        var_dump($senderDomain);
         if($senderDomain[1] != "chemin-neuf.org"){
             $senderMail = "web@chemin-neuf.org";
-        }*/
+        }
         $from = array($senderMail => $params['fields']['name']);
  
         $mailerObject->setTo($destinataires);
-        $mailerObject->setReplyTo(array($params['from'] => $params['fields']['name']);
+        $mailerObject->setReplyTo(array($params['from'] => $params['fields']['name']));
         $mailerObject->setFrom($from);
         $mailerObject->setCharset('utf-8');
         $mailerObject->setSubject($params['subject']);
