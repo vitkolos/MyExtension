@@ -62,10 +62,15 @@ class MailResource extends AbstractResource
 
         /*$destinataires=$this->buildDest($params['to']);*/
         $destinataires=array($params['to']);
-        $from = array($params['from'] => $params['fields']['name']);
+        $senderMail=$params['from'];
+        $senderDomain = explode("@", $senderMail);
+        if($senderDomain[1] != "chemin-neuf.org"){
+            $senderMail = "web@chemin-neuf.org";
+        }
+        $from = array($senderMail => $params['fields']['name']);
  
         $mailerObject->setTo($destinataires);
-        $mailerObject->setReplyTo($from);
+        $mailerObject->setReplyTo(array($params['from'] => $params['fields']['name']);
         $mailerObject->setFrom("web@chemin-neuf.org");
         $mailerObject->setCharset('utf-8');
         $mailerObject->setSubject($params['subject']);
