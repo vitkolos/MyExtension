@@ -136,7 +136,7 @@ class PayboxIpnResource extends AbstractResource {
 
         $mailerObject = $mailerService->getNewMessage();
 
-        $destinataires=array("nicolas.rhone@gmail.com",$mailCompta); // set $mailSecretariat
+        $destinataires=array($mailCompta); // set $mailSecretariat
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
         

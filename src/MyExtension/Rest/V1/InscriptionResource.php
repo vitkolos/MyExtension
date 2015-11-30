@@ -331,9 +331,17 @@ protected function sendInscriptionMail($inscription,$lang){
     //ENVOI DE MAIL AU JEUNE
     $mailerService = Manager::getService('Mailer');
     $mailClient = $mailerService->getNewMessage();
-    $mailClient->setTo('nicolas.rhone@gmail.com'); // à changer en $inscription['email']
-    $mailClient->setFrom(array( $inscription['email'] => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
-    $mailClient->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+    $mailClient->setTo($inscription['email']); // à changer en $inscription['email']
+    
+    // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
+    $senderMail = $inscription['contact']['email'];
+    $senderDomain = explode("@", $inscription['contact']['email']);
+    if($senderDomain[1] != "chemin-neuf.org"){
+        $senderMail = "web@chemin-neuf.org";
+    }
+
+    $mailClient->setFrom(array( $senderMail => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+    $mailClient->setReplyTo(array( $inscription['contact']['email'] => ($inscription['contact']['text']))); 
     $mailClient->setCharset('utf-8');
     $mailClient->setSubject($sujetClient);
     $mailClient->setBody($messageClient, 'text/html', 'utf-8');
@@ -493,7 +501,7 @@ protected function sendInscriptionMail($inscription,$lang){
     
     $mailSecretariat = $mailerService->getNewMessage();
     $mailSecretariat->setTo('nicolas.rhone@gmail.com'); // à changer en $inscription['contact']['email']
-    $mailSecretariat->setFrom(array( $inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
+    $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setCharset('utf-8');
     $mailSecretariat->setSubject($sujetSecretariat);

@@ -104,7 +104,12 @@ class ContactResource extends AbstractResource
         $mailerObject = $mailerService->getNewMessage();
 
         $destinataires=$this->buildDest($params['to']);
-        $from = array($params['from']);
+        $senderMail=$params['from'];
+        $senderDomain = explode("@", $senderMail);
+        if($senderDomain[1] != "chemin-neuf.org"){
+            $senderMail = "web@chemin-neuf.org";
+        }
+        $from = array($senderMail => $params['from']);
         if (empty($mailingList['replyToName']))
             array_push($destinataires, $mailingList['replyToAddress']);
             /*$mailerObject->setTo($mailingList['replyToAddress']);*/
