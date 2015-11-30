@@ -64,6 +64,7 @@ class MailResource extends AbstractResource
         $destinataires=array($params['to']);
         $senderMail=$params['from'];
         $senderDomain = explode("@", $senderMail);
+        var_dump($senderDomain);
         if($senderDomain[1] != "chemin-neuf.org"){
             $senderMail = "web@chemin-neuf.org";
         }
