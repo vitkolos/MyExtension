@@ -90,8 +90,8 @@ class MediaResource extends AbstractResource
             $media["writeWorkspace"]="global";
         }
         else {
-            $media["target"]=array($params['target']);
-            $media["writeWorkspace"]=$params['target'];
+            $media["target"]=array("562a412d45205e9217832545");
+            $media["writeWorkspace"]="562a412d45205e9217832545";
         }
         $media['Content-Type'] = null;
         $media['originalFileId'] = $this->uploadFile($params['file'], $media['Content-Type']);
