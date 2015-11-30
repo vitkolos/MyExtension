@@ -12,6 +12,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
             }
         });
     }
+    console.log($scope.rubedo);
     me.submitNewFiles=function(){
         var uploadOptions={
                typeId:"545cd95245205e91168b45b1",//pour des images
