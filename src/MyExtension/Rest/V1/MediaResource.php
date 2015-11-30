@@ -430,6 +430,7 @@ class MediaResource extends AbstractResource
                 (new FilterDefinitionEntity())
                     ->setDescription('Workspace')
                     ->setKey('target')
+                    ->setFilter('string')
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
