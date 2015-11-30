@@ -90,7 +90,7 @@ class MediaResource extends AbstractResource
             $media["writeWorkspace"]="global";
         }
         else {
-            $media["target"]=$params['target'];
+            $media["target"]=array($params['target']);
             $media["writeWorkspace"]=$params['target'];
         }
         $media['Content-Type'] = null;
