@@ -6,12 +6,12 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     me.progress = 0;
     me.workspace="";
     if (config.linkedPage&&mongoIdRegex.test(config.linkedPage)) {
-        var page = $http.get("/api/v1/pages",{
+        /*var page = $http.get("/api/v1/pages",{
             params:{
                 site:$location.host(),
                 route:$route.current.params.routeline
             }
-    });
+    });*/
     }
     console.log($route);
     me.submitNewFiles=function(){
