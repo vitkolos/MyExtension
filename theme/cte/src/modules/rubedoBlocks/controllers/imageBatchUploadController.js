@@ -1,19 +1,25 @@
-angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$scope','RubedoMediaService','$http','$location','$route',function($scope,RubedoMediaService,$http,$location,$route){
+angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$scope','RubedoMediaService','RubedoPagesService',function($scope,RubedoMediaService,RubedoPagesService){
     var me = this;
     var config = $scope.blockConfig;    
     
     me.files=[];
     me.progress = 0;
+    me.pageUrl="";
     me.workspace="";
     if (config.linkedPage&&mongoIdRegex.test(config.linkedPage)) {
-        /*var page = $http.get("/api/v1/pages",{
-            params:{
-                site:$location.host(),
-                route:$route.current.params.routeline
+        /*RubedoPagesService.getPageByCurrentRoute().then(function(response){
+            if (response.data.success){
+                me.pageUrl=response.data.url;
+                me.workspace = $http.get("/api/v1/pages",{
+                params:{
+                    site:$location.host(),
+                    route:$route.current.params.routeline
+                }
+            }));
             }
-    });*/
+        });*/
     }
-    console.log($route);
+    console.log($scope.rubedo);
     me.submitNewFiles=function(){
         var uploadOptions={
                typeId:"545cd95245205e91168b45b1",//pour des images
