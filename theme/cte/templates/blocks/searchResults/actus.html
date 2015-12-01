@@ -65,11 +65,11 @@
             <div ng-if="!datum['fields.video'][0]">
                 <div class="ratio_321" ng-if="datum['fields.image'][0]">
                 <img class="media-object pull-left padding-right"
-                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'420px',height:'420px',mode:'crop'})}}"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'390px',height:'390px',mode:'crop'})}}"
                              alt="{{ datum.title }}"/>
                 </div>
                 <img class="media-object pull-left padding-right" ng-if="datum['fields.audio'][0]"
-                             src="/assets/icons/audio-thumb.jpg" style="width:160px"
+                             src="/theme/cte/img/icons/audio-thumb.jpg" style="width:160px"
                              alt="{{ datum.title }}"/>
      
     

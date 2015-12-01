@@ -154,9 +154,13 @@ return array(
             'rubedo/index/index' => realpath(__DIR__) . '/../views/index/index.phtml'
         ),
     ),
-    
-    
-        
+    /*
+    'controllers' => array(
+        'invokables' => array(
+            'Rubedo\\Backoffice\\Controller\\Contents' => 'Rubedo\\Backoffice\\Controller\\ContentsController',
+        ),
+    ),
+        */
     /* Surcharge des traductions
        */
     'localisationfiles' => array(
