@@ -2,6 +2,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
     function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsService, $route, $location) {
         var me = this;
         var config = $scope.blockConfig;
+        var themePath="/theme/"+window.rubedoConfig.siteTheme;
         var urlArray = [];
         var contentId = "";
         me.languages = $scope.rubedo.current.site.languages;
@@ -10,7 +11,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
             delete me.languages[$route.current.params.lang];
         }
         me.getFlagUrl = function(flagCode){
-            return '/assets/flags/JMJ/'+flagCode+'.png';
+            return themePath+'/img/flags/'+flagCode+'.png';
         };
  
         me.changeLang = function (lang) {
