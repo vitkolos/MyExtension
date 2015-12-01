@@ -234,9 +234,8 @@
         return serviceInstance;
     }]);
     
-    
-    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope','$routeParams',
-        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope,$routeParams){
+    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope','$routeParams','RubedoClickStreamService','$rootScope','UXUserService','UXPageService','UXSessionService',
+        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope,$routeParams,RubedoClickStreamService,$rootScope,UXUserService,UXPageService,UXSessionService){
         var me=this;
         //break nav on non-page routes
         $scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
