@@ -105,7 +105,6 @@ class ContentsController extends DataAccessController
         $response['total'] = count($response['children']);
         $response['success'] = TRUE;
         $response['message'] = 'OK';
-        var_dump("test went all right");
         return $this->_returnJson($response);
     }
 
@@ -178,7 +177,6 @@ class ContentsController extends DataAccessController
         if (!$returnArray['success']) {
             $this->getResponse()->setStatusCode(500);
         }
-        var_dump("update");
         return $this->_returnJson($returnArray);
     }
 
