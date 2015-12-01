@@ -41,10 +41,7 @@ angular.module('rubedo').filter('ligneNonVide', function () {
      };
   });
 
-angular.module('rubedo').config(['$compileProvider',
-    function ($compileProvider) {
-        $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);
-	}]);
+
 
 //angular.module('rubedoBlocks').requires.push('date');
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
@@ -72,18 +69,6 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	return formattedDate;
     }
   });
-
-angular.module('rubedoBlocks').directive('imageonload', function() {
-        return {
-            restrict: 'A',
-            link: function(scope, element, attrs) {
-                element.bind('load', function() {
-                    //call the function that was passed
-                    scope.$apply(attrs.imageonload);
-                });
-            }
-        };
-    })
 
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){

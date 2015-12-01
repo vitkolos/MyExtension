@@ -184,6 +184,20 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
     };
     if(config.query){
+        if (config.enableContext){
+            var routeSegments=$route.current.params.routeline.split("/");
+            var detectedId=null;
+            angular.forEach(routeSegments,function(segment){
+                if (mongoIdRegex.test(segment)){
+                    detectedId=segment;
+                }
+            });
+            if (detectedId){
+                options.contextContentId=detectedId;
+                options["contextualTaxonomy[]"]=config.contextualTaxonomy;
+                options.contextualTaxonomyRule=config.contextualTaxonomyRule;
+            }
+        }
         me.getContents(config.query, pageId, siteId, options, false);
     }
     me.launchFOContribute=function(){
