@@ -233,7 +233,7 @@
         };
         return serviceInstance;
     }]);
-    
+ 
     app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope','$routeParams','RubedoClickStreamService','$rootScope','UXUserService','UXPageService','UXSessionService',
         function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope,$routeParams,RubedoClickStreamService,$rootScope,UXUserService,UXPageService,UXSessionService){
         var me=this;
@@ -426,7 +426,7 @@
 
     }]);
 
-    app.controller("PageBodyController",['RubedoPagesService', 'RubedoModuleConfigService','$scope','RubedoBlockDependencyResolver',function(RubedoPagesService, RubedoModuleConfigService,$scope,RubedoBlockDependencyResolver){
+    app.controller("PageBodyController",['RubedoPagesService', 'RubedoModuleConfigService','$scope','RubedoBlockDependencyResolver','$rootScope','UXCore','$timeout',function(RubedoPagesService, RubedoModuleConfigService,$scope,RubedoBlockDependencyResolver,$rootScope,UXCore,$timeout){
         var me=this;
         if ($scope.rubedo.fieldEditMode){
             $scope.rubedo.revertChanges();
