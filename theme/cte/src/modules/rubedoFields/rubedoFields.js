@@ -67,6 +67,10 @@
         "Rubedo.view.embeddedImageField":"/templates/fields/embeddedImage.html",
         "RDirectObjectField":"/templates/fields/jsonObject.html",
         "Rubedo.view.RDirectObjectField":"/templates/fields/jsonObject.html",
+        "urlField":"/templates/fields/url.html",
+        "Rubedo.view.urlField":"/templates/fields/url.html",
+        "RECField":"/templates/fields/recField.html",
+        "Rubedo.view.RECField":"/templates/fields/recField.html",
         "fieldNotFound":"/templates/fields/fieldNotFound.html"
     };
 
@@ -102,7 +106,11 @@
         "ratingField":"/templates/inputFields/rating.html",
         "DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.DCEField":"/templates/inputFields/contentLink.html",
-        "Rubedo.ux.widget.Rating":"/templates/inputFields/rating.html"
+        "Rubedo.view.urlField":"/templates/inputFields/url.html",
+        "Rubedo.ux.widget.Rating":"/templates/inputFields/rating.html",
+        "RECField":"/templates/inputFields/recField.html",
+        "Rubedo.view.RECField":"/templates/inputFields/recField.html",
+        "SpecialRepeatedField":"/templates/inputFields/specialRepeatedField.html"
     };
 
     //service for resolving field templates
@@ -905,6 +913,74 @@
             }
 
         };
+
+    }]);
+    
+        module.controller("RECFieldController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
+        var me=this;
+        $scope.fields=[];
+        var config=$scope.field.config;
+        if (!$scope.$parent.fieldEntity[config.name]&&$scope.fieldInputMode){
+            $scope.$parent.fieldEntity[config.name]={ };
+        }
+        $scope.fieldEntity=$scope.$parent.fieldEntity[config.name];
+
+        RubedoContentTypesService.findById(config.usedCT,{}).then(
+            function(response){
+                if(response.data.success){
+                    me.contentType=response.data.contentType;
+                    $scope.fieldIdPrefix=$scope.$parent.fieldIdPrefix+me.contentType.type;
+                    $scope.fields=me.contentType.fields;
+                }
+            }
+        );
+    }]);
+
+    module.controller("RepeatedFieldController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
+        var me=this;
+        $scope.fields=[];
+        var initialField=angular.copy($scope.field);
+        var config=initialField.config;
+        if (!$scope.$parent.fieldEntity[config.name]&&$scope.fieldInputMode){
+            $scope.$parent.fieldEntity[config.name]=[];
+        }
+        $scope.fieldEntity=$scope.$parent.fieldEntity[config.name];
+        me.fieldIterations=1;
+        if ($scope.fieldEntity.length>1){
+            me.fieldIterations=angular.copy($scope.fieldEntity.length);
+        }
+        me.buildFields=function(){
+            var fieldsArray=[];
+            for (i = 0; i < me.fieldIterations; i++) {
+                var newField=angular.copy(initialField);
+                newField.config.name=angular.copy(i);
+                newField.config.multivalued=false;
+                fieldsArray.push(newField);
+            }
+            $scope.fields=fieldsArray;
+        };
+        me.addField=function(){
+            me.fieldIterations=me.fieldIterations+1;
+            me.buildFields();
+        };
+        me.removeField=function(index){
+            $scope.fieldEntity.splice(index,1);
+            me.fieldIterations=me.fieldIterations-1;
+            me.buildFields();
+        };
+        me.moveUp=function(index){
+            var otherValue=angular.copy($scope.fieldEntity[index-1]);
+            var myValue=angular.copy($scope.fieldEntity[index]);
+            $scope.fieldEntity[index-1]=myValue;
+            $scope.fieldEntity[index]=otherValue;
+        };
+        me.moveDown=function(index){
+            var otherValue=angular.copy($scope.fieldEntity[index+1]);
+            var myValue=angular.copy($scope.fieldEntity[index]);
+            $scope.fieldEntity[index+1]=myValue;
+            $scope.fieldEntity[index]=otherValue;
+        };
+        me.buildFields();
 
     }]);
 
