@@ -64,7 +64,7 @@ class InscriptionResource extends AbstractResource
         }
         else throw new APIEntityException('Content not found', 404);
         
-        
+        /*
         $nbInscriptionContent['fields']['value'] = (string)$inscriptionNumber;
         //UPDATE NUMERO D'INSCRIPTION +1
         $payload = json_encode( array( "content" => $nbInscriptionContent ) );
@@ -100,7 +100,7 @@ class InscriptionResource extends AbstractResource
         
         
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
-       
+       */
        
     
         return array('success' => $resultInscription['success'], 'id' =>$inscriptionForm['fields']['text']);
