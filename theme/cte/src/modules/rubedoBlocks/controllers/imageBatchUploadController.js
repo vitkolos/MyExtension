@@ -12,12 +12,13 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                 me.workspace = $http.get("/api/v1/pages",{
                     params:{
                         site:$location.host(),
-                        route:me.pageUrl
+                        route:me.pageUrl.substr(4)
                     }
                 });
             };
         });
     };
+
     console.log($scope.rubedo);
     console.log(me.workspace);
     console.log(me.pageUrl);
