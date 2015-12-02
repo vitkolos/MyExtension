@@ -45,7 +45,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                        me.progress += 100* 1/nbOfImages;
                        console.log(me.progress);
                    } else {
-                       
+                       console.log(me.progress);
                    }
                }
            );
