@@ -46,7 +46,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                        console.log(me.progress);
                        console.log("succès");
                    } else {
-                       console.log(me.progress);
+                       console.log(response);
                                               console.log("echec");
 
                    }
