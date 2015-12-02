@@ -9,19 +9,18 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
         RubedoPagesService.getPageById(config.linkedPage).then(function(response){
             if (response.data.success){
                 me.pageUrl=response.data.url;
-                me.workspace = $http.get("/api/v1/pages",{
+                me.targetPage = $http.get("/api/v1/pages",{
                     params:{
                         site:$location.host(),
                         route:(me.pageUrl).substr(4)
                     }
                 });
+                me.workspace = me.targetPage.response.data.page.workspace;
+                console.log(me.workspace);
             };
         });
     };
 
-    console.log($scope.rubedo);
-    console.log(me.workspace);
-    console.log(me.pageUrl);
     me.submitNewFiles=function(){
         var uploadOptions={
                typeId:"545cd95245205e91168b45b1",//pour des images
