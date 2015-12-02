@@ -24,7 +24,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     me.submitNewFiles=function(){
         var uploadOptions={
                typeId:"545cd95245205e91168b45b1",//pour des images
-               target:me.workspace
+               target:"556088a945205e36757e688f"
         };
         var nbOfImages = me.files.length;
         angular.forEach(me.files, function(file, index) {
