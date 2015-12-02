@@ -264,7 +264,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         }
         if (valide && step==6) {
             // validations préliminaires
-            $scope.processForm=true;
+            //$scope.processForm=true;
            $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.propositionDate = propositionDate;
