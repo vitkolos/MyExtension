@@ -9,12 +9,12 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
         RubedoPagesService.getPageById(config.linkedPage).then(function(response){
             if (response.data.success){
                 me.pageUrl=response.data.url;
-                var targetPage = $http.get("/api/v1/pages",{
+                $http.get("/api/v1/pages",{
                     params:{
                         site:$location.host(),
                         route:(me.pageUrl).substr(4)
                     }
-                });
+                }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; console.log(me.workspace);}});
                 console.log(targetPage);
                 //me.workspace = me.targetPage.response.data.page.workspace;
                 //console.log(me.workspace);
