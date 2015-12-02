@@ -14,7 +14,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                         site:$location.host(),
                         route:(me.pageUrl).substr(4)
                     }
-                }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; console.log(me.workspace);}});
+                }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; }});
             };
         });
     };
@@ -44,8 +44,11 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                    if (response.data.success){
                        me.progress += 100* 1/nbOfImages;
                        console.log(me.progress);
+                       console.log("succès");
                    } else {
                        console.log(me.progress);
+                                              console.log("echec");
+
                    }
                }
            );
