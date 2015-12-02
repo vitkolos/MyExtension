@@ -22,14 +22,23 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     };
 
     me.submitNewFiles=function(){
+        var batch = false;
+
         var uploadOptions={
                typeId:"545cd95245205e91168b45b1",//pour des images
                target:"556088a945205e36757e688f"
         };
+
         var nbOfImages = me.files.length;
         angular.forEach(me.files, function(file, index) {
             var options = angular.copy(uploadOptions);
-            options.fields={title : file.name};
+            if (!batch) {
+                options.fields={title : file.name};
+            }
+            else {
+                options.fields={title : me.batchTitle + '_'+index};
+            }
+            
             RubedoMediaService.uploadMedia(file,options).then(
                function(response){
                    if (response.data.success){
