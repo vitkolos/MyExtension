@@ -628,7 +628,7 @@ protected function sendInscriptionMail($inscription,$lang){
                     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
                 break;
             case "GET":
-                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.'560e37b845205ea71141ea77'.'?access_token='.$token.'&lang=fr';
+                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$data.'?access_token='.$token.'&lang=fr';
                 break;
             
         }
