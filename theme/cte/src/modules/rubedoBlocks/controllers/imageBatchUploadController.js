@@ -42,7 +42,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
             RubedoMediaService.uploadMedia(file,options).then(
                function(response){
                    if (response.data.success){
-                       me.progress += 100/nbOfImages;
+                       me.progress += 100* 1/nbOfImages;
                        console.log(me.progress);
                    } else {
                        
