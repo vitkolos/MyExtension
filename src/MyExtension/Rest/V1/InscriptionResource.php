@@ -58,7 +58,7 @@ class InscriptionResource extends AbstractResource
         //GET NUMERO D'INSCRIPTION ACTUEL
         $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
         $nbInscriptionContent = $this->callAPI("GET", $token, $id);
-        /*
+        
         if($nbInscriptionContent['success']) {
             $nbInscriptionContent = $nbInscriptionContent['content'];
             $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
@@ -101,7 +101,7 @@ class InscriptionResource extends AbstractResource
         
         
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
-       */
+       
        
     
         return array('success' => $resultInscription['success'], 'id' =>$inscriptionForm['fields']['text']);
