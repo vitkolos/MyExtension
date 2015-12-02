@@ -8,7 +8,8 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     if (config.linkedPage&&mongoIdRegex.test(config.linkedPage)) {
         RubedoPagesService.getPageByCurrentRoute().then(function(response){
             if (response.data.success){
-                me.pageUrl=response.data.breadcrumb[breadcrumb.length()];
+                me.pageUrl=response.data.breadcrumb[breadcrumb.length];
+                console.log(response.data.breadcrumb);
                 me.workspace = $http.get("/api/v1/pages",{
                     params:{
                         site:$location.host(),
