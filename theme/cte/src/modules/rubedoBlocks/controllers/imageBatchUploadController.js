@@ -15,7 +15,6 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                         route:(me.pageUrl).substr(4)
                     }
                 }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; console.log(me.workspace);}});
-                console.log(targetPage);
                 //me.workspace = me.targetPage.response.data.page.workspace;
                 //console.log(me.workspace);
             };
@@ -25,7 +24,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     me.submitNewFiles=function(){
         var uploadOptions={
                typeId:"545cd95245205e91168b45b1",//pour des images
-               target:$scope.rubedo.current.page.workspace
+               target:me.workspace
         };
         var nbOfImages = me.files.length;
         angular.forEach(me.files, function(file, index) {
