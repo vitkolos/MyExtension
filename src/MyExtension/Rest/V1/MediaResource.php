@@ -91,7 +91,6 @@ class MediaResource extends AbstractResource
         } else {
             $media["target"]=array($params['target']);
             $media["writeWorkspace"]=$params['target'];
-            var_dump($params['target']);
         }
         $media['Content-Type'] = null;
         $media['originalFileId'] = $this->uploadFile($params['file'], $media['Content-Type']);
