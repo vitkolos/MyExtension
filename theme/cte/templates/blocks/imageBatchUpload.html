@@ -30,7 +30,7 @@
                             <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Publish", "Publish")}}
                         </button>
                         <div class="progress" ng-show="imgCtrl.progress>0">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{imgCtrl.progress}}"  ng-style="{ width : imgCtrl.progress }">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{imgCtrl.progress}}"  ng-style="{ width : imgCtrl.progress+'%' }">
                                         <span class="sr-only">{{imgCtrl.progress}}% Complete </span>
                                 </div>
                         </div>
