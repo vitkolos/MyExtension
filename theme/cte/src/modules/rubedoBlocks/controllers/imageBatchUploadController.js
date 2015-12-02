@@ -6,6 +6,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     me.pageUrl="";
     me.workspace="";
     if (config.linkedPage&&mongoIdRegex.test(config.linkedPage)) {
+        console.log("1");
         RubedoPagesService.getPageByCurrentRoute().then(function(response){
             if (response.success){
                 console.log("OK");
