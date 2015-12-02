@@ -58,12 +58,12 @@ class InscriptionResource extends AbstractResource
         //GET NUMERO D'INSCRIPTION ACTUEL
         $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
         $nbInscriptionContent = $this->callAPI("GET", $token, $id);
-        
+        /*
         if($nbInscriptionContent['success']) {
             $nbInscriptionContent = $nbInscriptionContent['content'];
             $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
         }
-        else throw new APIEntityException('Content not found', 404);
+        //else throw new APIEntityException('Content not found', 404);
         
         
         $nbInscriptionContent['fields']['value'] = (string)$inscriptionNumber;
@@ -103,7 +103,7 @@ class InscriptionResource extends AbstractResource
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        
        
-    
+    */
         return array('success' => $resultInscription['success'], 'id' =>$inscriptionForm['fields']['text']);
         
    }
@@ -640,8 +640,9 @@ protected function sendInscriptionMail($inscription,$lang){
         curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
         curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
+        curl_setopt($curl, CURLOPT_PORT,8080);
         $result = curl_exec($curl);
-    
+    var_dump(curl_getinfo($curl));
         curl_close($curl);
         if($method == "GET") return json_decode($result, true);
         else return json_decode($result, true);
