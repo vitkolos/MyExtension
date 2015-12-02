@@ -1,6 +1,5 @@
 <?php
 namespace RubedoAPI\Rest\V1;
-
 use RubedoAPI\Rest\V1\AbstractResource;
 use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
@@ -67,7 +66,6 @@ class InscriptionResource extends AbstractResource
         
         
         $nbInscriptionContent['fields']['value'] = (string)$inscriptionNumber;
-
         //UPDATE NUMERO D'INSCRIPTION +1
         $payload = json_encode( array( "content" => $nbInscriptionContent ) );
         $result = $this->callAPI("PATCH", $token, $payload, $id);
@@ -111,7 +109,7 @@ class InscriptionResource extends AbstractResource
    
    
 protected function sendInscriptionMail($inscription,$lang){
-   $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
+   $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/assets/mails/'.$lang.'.json'),true);
     //tutoyement pour ados ou jeunes ou personnes connues
     $tutoyer = 0;
     $tuOuVous="vous";
@@ -190,7 +188,6 @@ protected function sendInscriptionMail($inscription,$lang){
         else $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_10_".$tuOuVous];
     }
     $messageClient.="<br/><br/>";
-
     //INFOS POUR LE PAIEMENT SI PAIEMENT PROPOSE
     if($inscription['isPayment'] && $inscription['montantAPayerMaintenant'] > 0) {
         if($inscription['modePaiement'] == 'cheque') {
@@ -296,9 +293,7 @@ protected function sendInscriptionMail($inscription,$lang){
     $url="http://". $_SERVER['HTTP_HOST'] . $inscription['propositionUrl'];
     $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_page_web"] . "</i></td><td width=67%><a href='" . $url . "'>" . $url . "</a></td></tr>";
     $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_contact"] . "</i></td><td width=67%>" . $contactSecretariat  ."</td></tr>";
-
     $messageClient .= "</table>";
-
     //OPTIONS ET QUESTIONS DIVERSES
     $messageClient .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
     if($inscription['logement']) {
@@ -331,17 +326,9 @@ protected function sendInscriptionMail($inscription,$lang){
     //ENVOI DE MAIL AU JEUNE
     $mailerService = Manager::getService('Mailer');
     $mailClient = $mailerService->getNewMessage();
-    $mailClient->setTo($inscription['email']); // à changer en $inscription['email']
-    
-    // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
-    $senderMail = $inscription['contact']['email'];
-    $senderDomain = explode("@", $inscription['contact']['email']);
-    if($senderDomain[1] != "chemin-neuf.org"){
-        $senderMail = "web@chemin-neuf.org";
-    }
-
-    $mailClient->setFrom(array( $senderMail => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
-    $mailClient->setReplyTo(array( $inscription['contact']['email'] => ($inscription['contact']['text']))); 
+    $mailClient->setTo('nicolas.rhone@gmail.com'); // à changer en $inscription['email']
+    $mailClient->setFrom(array( $inscription['email'] => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+    $mailClient->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
     $mailClient->setCharset('utf-8');
     $mailClient->setSubject($sujetClient);
     $mailClient->setBody($messageClient, 'text/html', 'utf-8');
@@ -352,7 +339,6 @@ protected function sendInscriptionMail($inscription,$lang){
     if($inscription['serviteur']) $sujetSecretariat = $trad["ccn_inscription_serviteur"] . " - " . $inscription['text'] . " - " . $inscription['propositionTitre'];
    else $sujetSecretariat = $trad["ccn_inscription"] . " - " . $inscription['text'] . " - " . $inscription['propositionTitre'];
    
-
     /**************MESSAGE SECRETARIAT*****************/
     //STATUT DE L'INSCRIPTION
     $statut="";
@@ -455,7 +441,6 @@ protected function sendInscriptionMail($inscription,$lang){
             $messageSecretariat .= "<td width=10%>". $this->getAge(strtotime($enfant['birthdate']), $inscription['dateDebut'])." ". $trad["ccn_ans"] . "</td>";
             $messageSecretariat .= "<td width=15%>". $enfant['sexe'] . "</td></tr>";
         }
-
         $messageSecretariat .= "</table><br/>";
     }
     /*QUESTIONS ET REMARQUES*/
@@ -472,7 +457,6 @@ protected function sendInscriptionMail($inscription,$lang){
     if($inscription['jai_connu']){
        $messageSecretariat .= $this->questionToRecap($inscription['jai_connu_org']);
     }
-
     if($inscription['remarques']) {
        $messageSecretariat .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_form_remarques"] . "</i></td><td width=67%>" .  $inscription['remarques'] . "</td></tr>";
     }
@@ -496,12 +480,11 @@ protected function sendInscriptionMail($inscription,$lang){
    
     
     /*
-
 */
     
     $mailSecretariat = $mailerService->getNewMessage();
     $mailSecretariat->setTo('nicolas.rhone@gmail.com'); // à changer en $inscription['contact']['email']
-    $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['name']))); 
+    $mailSecretariat->setFrom(array( $inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setCharset('utf-8');
     $mailSecretariat->setSubject($sujetSecretariat);
@@ -509,23 +492,7 @@ protected function sendInscriptionMail($inscription,$lang){
     $mailerService->sendMessage($mailSecretariat);    
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
    
-
     
     protected function subTokenFilter(&$token)
     {
@@ -574,7 +541,6 @@ protected function sendInscriptionMail($inscription,$lang){
             $inscription['sexe'] = "H";
         }
         
-
         return $inscription;
         
     }
@@ -608,7 +574,6 @@ protected function sendInscriptionMail($inscription,$lang){
         else return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67% colspan=2>" . $reponse . "</td></tr>";
     }
     
-
     protected function getAge($dateDebut, $dateFin){ // avec dates passées par strtotime (ie timestamp)
         return floor(($dateFin-$dateDebut) / (365*60*60*24));
     }
@@ -682,5 +647,3 @@ protected function sendInscriptionMail($inscription,$lang){
     }
    
 }     
-
-
