@@ -642,7 +642,7 @@ protected function sendInscriptionMail($inscription,$lang){
         curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
         curl_setopt($curl, CURLOPT_PORT,8080);
         $result = curl_exec($curl);
-    var_dump(curl_getinfo($curl));
+    var_dump(curl_error($curl));
         curl_close($curl);
         if($method == "GET") return json_decode($result, true);
         else return json_decode($result, true);
