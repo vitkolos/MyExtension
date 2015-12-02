@@ -177,6 +177,7 @@ class ContentsController extends DataAccessController
         if (!$returnArray['success']) {
             $this->getResponse()->setStatusCode(500);
         }
+        var_dump("update ok");
         return $this->_returnJson($returnArray);
     }
 

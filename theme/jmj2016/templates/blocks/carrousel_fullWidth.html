@@ -33,10 +33,9 @@
 }
 
 .carousel-inner {
-  
-    height: 100vh;
+    height: 50vh;
 }
-@media screen and (max-width:768px){.carousel-inner{height:50vh}}
+@media screen and (min-width:768px){.carousel-inner{height:50vh}}
 
 /* Background images are set within the HTML using inline CSS, not here */
 
@@ -81,7 +80,7 @@
               <p>{{content.fields.text}}</p>
               <p>{{content.fields.summary}}</p>
               <p >{{content.fields.titre2}}</p>
-              <p ng-repeat="text in content.fields.subTitle track by $index">{{text}}</p>
+              <p ng-repeat="text in content.fields.subTitle">{{text}}</p>
           </div>
       </div>
   </div>
