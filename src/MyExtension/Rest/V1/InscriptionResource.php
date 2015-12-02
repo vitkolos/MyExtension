@@ -641,7 +641,7 @@ protected function sendInscriptionMail($inscription,$lang){
         curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
         curl_setopt($curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4); 
-        curl_setopt($curl, CURLOPT_PORT,80);
+        curl_setopt($curl, CURLOPT_PORT,222);
         $result = curl_exec($curl);
     var_dump(curl_error($curl));
         curl_close($curl);
