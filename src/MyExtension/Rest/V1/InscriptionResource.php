@@ -58,13 +58,14 @@ class InscriptionResource extends AbstractResource
         //GET NUMERO D'INSCRIPTION ACTUEL
         $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
         $nbInscriptionContent = $this->callAPI("GET", $token, $id);
+        /*
         if($nbInscriptionContent['success']) {
             $nbInscriptionContent = $nbInscriptionContent['content'];
             $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
         }
         else throw new APIEntityException('Content not found', 404);
         
-        /*
+        
         $nbInscriptionContent['fields']['value'] = (string)$inscriptionNumber;
         //UPDATE NUMERO D'INSCRIPTION +1
         $payload = json_encode( array( "content" => $nbInscriptionContent ) );
