@@ -15,8 +15,6 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                         route:(me.pageUrl).substr(4)
                     }
                 }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; console.log(me.workspace);}});
-                //me.workspace = me.targetPage.response.data.page.workspace;
-                //console.log(me.workspace);
             };
         });
     };
@@ -45,6 +43,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                function(response){
                    if (response.data.success){
                        me.progress += 100/nbOfImages;
+                       console.log(me.progress);
                    } else {
                        
                    }
@@ -52,42 +51,6 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
            );
         });
 
-       /*me.notification=null;
-       if ($scope.fieldInputMode&&me.newFile){
-           var uploadOptions={
-               typeId:"545cd95245205e91168b45b1", //pour des images
-               fields:{
-                   title:me.newFile.name
-               }
-           };
-           RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
-               function(response){
-                   if (response.data.success){
-                       var id=response.data.media.id;
-                       $scope.fieldEntity[$scope.field.config.name]=id;
-                       mediaId=id;
-                       if ($scope.registerFieldEditChanges){
-                           $scope.registerFieldEditChanges();
-                       }
-                        me.media=response.data.media;
-                        me.displayMedia();
-                   } else {
-                       console.log(response);
-                       me.notification={
-                           type:"error",
-                           text:response.data.message
-                       };
-                   }
-               },
-               function(response){
-                   console.log(response);
-                   me.notification={
-                       type:"error",
-                       text:response.data.message
-                   };
-               }
-           );
-       }*/
 
     };
 
