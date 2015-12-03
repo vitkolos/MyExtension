@@ -58,12 +58,11 @@ class InscriptionResource extends AbstractResource
         //GET NUMERO D'INSCRIPTION ACTUEL
         $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
         $nbInscriptionContent = $this->callAPI("GET", $token, $id);
-        /*
         if($nbInscriptionContent['success']) {
             $nbInscriptionContent = $nbInscriptionContent['content'];
             $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
         }
-        //else throw new APIEntityException('Content not found', 404);
+        else throw new APIEntityException('Content not found', 404);
         
         
         $nbInscriptionContent['fields']['value'] = (string)$inscriptionNumber;
@@ -103,7 +102,7 @@ class InscriptionResource extends AbstractResource
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        
        
-    */
+    
         return array('success' => $resultInscription['success'], 'id' =>$inscriptionForm['fields']['text']);
         
    }
@@ -327,9 +326,16 @@ protected function sendInscriptionMail($inscription,$lang){
     //ENVOI DE MAIL AU JEUNE
     $mailerService = Manager::getService('Mailer');
     $mailClient = $mailerService->getNewMessage();
-    $mailClient->setTo('nicolas.rhone@gmail.com'); // à changer en $inscription['email']
-    $mailClient->setFrom(array( $inscription['email'] => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
-    $mailClient->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+    $mailClient->setTo($inscription['email']); // à changer en $inscription['email']
+    
+    // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
+    $senderMail = $inscription['contact']['email'];
+    $senderDomain = explode("@", $inscription['contact']['email']);
+    if($senderDomain[1] != "chemin-neuf.org"){
+        $senderMail = "web@chemin-neuf.org";
+    }
+    $mailClient->setFrom(array( $senderMail => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+    $mailClient->setReplyTo(array( $inscription['contact']['email'] => ($inscription['contact']['text']))); 
     $mailClient->setCharset('utf-8');
     $mailClient->setSubject($sujetClient);
     $mailClient->setBody($messageClient, 'text/html', 'utf-8');
@@ -485,7 +491,7 @@ protected function sendInscriptionMail($inscription,$lang){
     
     $mailSecretariat = $mailerService->getNewMessage();
     $mailSecretariat->setTo('nicolas.rhone@gmail.com'); // à changer en $inscription['contact']['email']
-    $mailSecretariat->setFrom(array( $inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
+    $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setCharset('utf-8');
     $mailSecretariat->setSubject($sujetSecretariat);
@@ -640,10 +646,8 @@ protected function sendInscriptionMail($inscription,$lang){
         curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
         curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
         curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
-        curl_setopt($curl, CURLOPT_IPRESOLVE, CURL_IPRESOLVE_V4); 
-        curl_setopt($curl, CURLOPT_PORT,80);
         $result = curl_exec($curl);
-    var_dump(curl_error($curl));
+    
         curl_close($curl);
         if($method == "GET") return json_decode($result, true);
         else return json_decode($result, true);

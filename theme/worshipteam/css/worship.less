@@ -238,8 +238,8 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
 .footer{color:white; margin-top:24px; a,p{color:white; display: inline-block};font-size:14px}
 .footer div.container{padding:24px}
 .footer.links .container{border-top:1px solid white; padding-top:12px; .capital{border:none; text-align: center; font-size:10px !important}}
-@media screen and (min-width: @min_md) { .carousel-caption{width:32%;height:100%;margin-left:68%}.owl-item img{width:68%}}
-@media screen and (min-width: @min_lg) {.carousel-caption{width:26.5%;height:100%;margin-left:73.5%; padding:48px }.owl-item img{width:73.5%}}
+@media screen and (min-width: @min_md) { .carousel-caption{width:32%;height:100%;margin-left:0}.owl-item img{width:68%}}
+@media screen and (min-width: @min_lg) {.carousel-caption{width:26.5%;height:100%;margin-left:0; padding:48px }.owl-item img{width:73.5%}}
 ////////////////////////////////////////////////////
     ///////////ACTUS///////////////////
 ///////////////////////////////////////////////////
@@ -341,13 +341,13 @@ blockquote {
 ////////////////////////////////////////////////////
     ///////////CAROUSEL///////////////////
 ///////////////////////////////////////////////////
-.carousel-caption{text-align:left;background-color:#2f2e2a;opacity:1; h3{border-bottom:1px solid white; padding-bottom:12px;margin-top:0};p{color:white}}
+.carousel-caption{text-align:left;background-color:rgba(255,255,255,0.5);opacity:1; h3{border-bottom:1px solid white; padding-bottom:12px;margin-top:0};p{color:white}}
 .carousel-caption{padding:24px}
 @media screen and (max-width: @min_lg){
 .carousel-caption p{
   .ellipsis(5);
 }}
-.owl-theme .owl-controls{position:absolute;right:0;margin-top:-30px !important;margin-right:10px;}
+.owl-theme .owl-controls{display: none}
 .owl-theme .owl-controls .owl-page span{background:white;opacity:0.75}
 .owl-theme .owl-controls .owl-page.active span{background:@rouge}
 @media screen and (max-width:500px){.img-responsive.carousel-img{max-width:none; height: 200px; width:auto}}
