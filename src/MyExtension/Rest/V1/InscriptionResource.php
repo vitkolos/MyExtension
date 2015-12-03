@@ -109,7 +109,7 @@ class InscriptionResource extends AbstractResource
    
    
 protected function sendInscriptionMail($inscription,$lang){
-   $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/assets/mails/'.$lang.'.json'),true);
+   $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/the/cte/elements/'.$lang.'.json'),true);
     //tutoyement pour ados ou jeunes ou personnes connues
     $tutoyer = 0;
     $tuOuVous="vous";
