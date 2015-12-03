@@ -51,7 +51,7 @@
 @media screen and (max-width:500px){.carousel-inner{height:50vh}}
 </style>
 
-<div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" style="margin-top:-50px">
+<div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" style="margin-top:50px">
   <ol class="carousel-indicators">
     <li ng-repeat="content in carouselCtrl.contents" 
       ng-if="content.fields[blockConfig.imageField]" 
