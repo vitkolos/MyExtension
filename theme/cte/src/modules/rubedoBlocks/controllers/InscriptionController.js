@@ -265,7 +265,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         if (valide && step==6) {
             // validations préliminaires
             $scope.processForm=true;
-           $scope.inscription.proposition=  propositionId;
+            $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.propositionDate = propositionDate;
             $scope.inscription.dateDebut = me.content.fields.dateDebut;
@@ -341,7 +341,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             }
                             else {
                                 $scope.processForm=false;
-                                $scope.finInscription=true;      
+                                //$scope.finInscription=true;      
                                 $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
                             }
                             
@@ -351,7 +351,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     // pas de paiement par carte
                     else {
                         $scope.processForm=false;
-                        $scope.finInscription=true; 
+                        //$scope.finInscription=true; 
                         $scope.message += "Votre inscription a bien été prise en compte. Merci et à bientôt !";
                     }
                     
@@ -360,7 +360,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 else {
                     
                     $scope.processForm=false;
-                    $scope.finInscription=true; 
+                    //$scope.finInscription=true; 
                     $scope.message +="Il y a eu une erreur lors de la prise en compte de votre inscription. Merci de réessayer plus tard ou de contacter le secrétariat.";
                 }
             })
