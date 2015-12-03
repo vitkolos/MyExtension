@@ -357,16 +357,13 @@ blockquote {
 ///////////////////////////////////////////////////
 .carousel-caption{text-align:left;background-color:rgba(255,255,255,0.5);opacity:1; h3{border-bottom:1px solid white; padding-bottom:12px;margin-top:0};p{color:white}}
 .carousel-caption{padding:24px}
-@media screen and (max-width: @min_lg){
-.carousel-caption p{
-  .ellipsis(5);
-}}
+
 .owl-theme .owl-controls{display: none}
 .owl-theme .owl-controls .owl-page span{background:white;opacity:0.75}
 .owl-theme .owl-controls .owl-page.active span{background:@rouge}
 @media screen and (max-width:500px){.img-responsive.carousel-img{max-width:none; height: 200px; width:auto}}
 @media screen and (max-width: @min_md) {.carousel-caption h3{font-size:24px} .owl-pagination{display: none}}
-@media screen and (max-width: @min_sm) {.carousel-caption{position:relative; height:auto; h3{font-size:20px}}  }
+@media screen and (max-width: @min_sm) {.carousel-caption{position:absolute; height:auto; h3{font-size:20px}}  }
 
 @media screen and (min-width:1275px) {.owl-item{max-height: 600px; overflow: hidden} }
 
@@ -528,6 +525,9 @@ header.content>div{line-height: normal;display: inline-block;text-align:center; 
 @media screen and (min-width: @min_sm) {
     header.content{line-height: 400px; height:400px}
     header.content>div{text-align: left; vertical-align: bottom; padding-bottom: 24px}
+}
+@media screen and (min-width: @min_md) {
+    header.content{line-height: 600px; height:600px}
 }
 header.content.prop>div{text-align: center; vertical-align: middle; padding-bottom: 0}
 .socials {font-size:30px; width: 100%;text-align: center; margin-bottom:12px}
