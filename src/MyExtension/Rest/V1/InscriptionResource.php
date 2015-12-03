@@ -486,20 +486,18 @@ protected function sendInscriptionMail($inscription,$lang){
     $messageSecretariat .= "</table><br/>";
    
     
-    /*
-*/
     
     $mailSecretariat = $mailerService->getNewMessage();
     $mailSecretariat->setTo($inscription['contact']['email']); // à changer en $inscription['contact']['email']
-    $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['name']))); 
-    $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
+    $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => $inscription['surname']." ".$inscription['name'])); 
+    $mailSecretariat->setReplyTo(array($inscription['email'] => $inscription['surname']." ".$inscription['name'])); 
     $mailSecretariat->setCharset('utf-8');
     $mailSecretariat->setSubject($sujetSecretariat);
     $mailSecretariat->setBody($messageSecretariat, 'text/html', 'utf-8');
-    $mailerService->sendMessage($mailSecretariat);    
+    $mailerService->sendMessage($mailSecretariat,$errors);    
     
 }
-   
+    
     
     protected function subTokenFilter(&$token)
     {
