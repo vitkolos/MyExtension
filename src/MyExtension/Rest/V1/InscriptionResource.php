@@ -109,7 +109,7 @@ class InscriptionResource extends AbstractResource
    
    
 protected function sendInscriptionMail($inscription,$lang){
-   $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/the/cte/elements/'.$lang.'.json'),true);
+   $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
     //tutoyement pour ados ou jeunes ou personnes connues
     $tutoyer = 0;
     $tuOuVous="vous";
@@ -334,8 +334,8 @@ protected function sendInscriptionMail($inscription,$lang){
     if($senderDomain[1] != "chemin-neuf.org"){
         $senderMail = "web@chemin-neuf.org";
     }
-    $mailClient->setFrom(array( $senderMail => ($inscription['surname']." ".$inscription['name']))); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
-    $mailClient->setReplyTo(array( $inscription['contact']['email'] => ($inscription['contact']['text']))); 
+    $mailClient->setFrom(array( $senderMail => $inscription['contact']['text'])); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+    $mailClient->setReplyTo(array( $inscription['contact']['email'] => $inscription['contact']['text'])); 
     $mailClient->setCharset('utf-8');
     $mailClient->setSubject($sujetClient);
     $mailClient->setBody($messageClient, 'text/html', 'utf-8');
@@ -490,7 +490,7 @@ protected function sendInscriptionMail($inscription,$lang){
 */
     
     $mailSecretariat = $mailerService->getNewMessage();
-    $mailSecretariat->setTo('nicolas.rhone@gmail.com'); // à changer en $inscription['contact']['email']
+    $mailSecretariat->setTo($inscription['contact']['email']); // à changer en $inscription['contact']['email']
     $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
     $mailSecretariat->setCharset('utf-8');
