@@ -1,6 +1,6 @@
 <div ng-init="blockConfig=block.configBloc"
      ng-class="rubedo.componentsService.resolveResponsiveClass(block.responsive)"
      ng-style="{'min-height':block.configBloc.blockMinHeight}">
-    <h4 ng-if="block.displayTitle">{{block.title}}</h4>
+    <h4 ng-if="block.displayTitle" class="text-center titre-block">{{block.title}}</h4>
     <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)" class="{{block.code}}"></div>
 </div>

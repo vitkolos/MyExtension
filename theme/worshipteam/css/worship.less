@@ -441,41 +441,6 @@ blockquote {
 }
 .breadcrumb{background: transparent}
 
-////////////////////////////////////////////////////
-    ///////////FOI///////////////////
-///////////////////////////////////////////////////
-.sommaire a:after{
-    content: "\f14c";
-    font-family: 'FontAwesome'; color:@rouge;
-     margin-left:5px;display: inline-block;font-size: 0.8em}
-p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
-
-
-.sommaire {
-    -moz-column-count:2;
-   -webkit-column-count:2;
-   -o-column-count:2;
-   column-count:2;
-   -moz-column-gap:20px;
-   -webkit-column-gap:20px;
-   -o-column-gap:20px;
-   column-gap:20px;    
-}
-@media screen and (max-width:@min_sm){
-  .sommaire{
-     -moz-column-count:1;
-   -webkit-column-count:1;
-   -o-column-count:1;
-   column-count:1;
- }}
-.sommaire p{margin-bottom:0}
-.sommaire p+p.red-sub{margin-bottom:24px}
-.homelink{
-    background: @rouge;
-     padding:12px;
-    a{.capital;color:white;}
-    span{font-size: 0.8em; margin-right:5px}
-}
 .button{
     min-width:300px;
     padding:12px;
@@ -494,6 +459,14 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
   .button.submit{border: 2px solid @rouge; color:@rouge;}
   .button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}
 
+.titre-block{
+  color:white;
+  margin: 24px auto;
+  padding-top: 24px;
+  font-family: 'cheddar_jackregular';
+  font-size: 4em; font-weight: 400;
+}
+
     ////////////////////////////////////////////////////
     ///////////LISTE///////////////////
 ///////////////////////////////////////////////////
@@ -510,7 +483,7 @@ header.content{
     background-attachment: scroll;
     background-size: cover;
     h1,h2,h3,h4,h5,p{color:white};
-    h1{font-family: 'cheddar_jackregular'}
+    h1{font-family: 'cheddar_jackregular'; font-weight: 400; font-size: 5em}
     height:320px;
     box-shadow:inset 0 0 0 1000px rgba(84,84,84,.33);
     margin-bottom:24px;
