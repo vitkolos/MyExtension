@@ -184,7 +184,11 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
 @media screen and (max-width: @min_sm) {
    .actus-thumb{width:100%; float:none; text-align: center; padding-bottom:12px; img{float:none}}
 }
- 
+  ///////LISTE PROMO ////////
+.media-heading.promo{
+  margin:12px auto 24px;
+  text-align: center;
+}
  //////CARRES DATES///////////
  .agenda{text-align: center; float:none; vertical-align: top; display: inline-block}
  .carre-date{
@@ -367,68 +371,7 @@ blockquote {
 ///////////////////////////////////////////////////
 .jwlogo{display: none}
  .jwplayer .jwpreview.jwuniform{background-size: cover!important}
-////////////////////////////////////////////////////
-    ///////////GOOGLE MAPS///////////////////
-///////////////////////////////////////////////////
-.rubedo-gmapitem{min-height:0px}
-.rubedo-gmapitem>div{padding:12px 0; border-bottom:solid 1px #d5c5b5}
-.rubedo-gmapitem>div:last-of-type{border-bottom:none}
-.map-container{width:100%; height:350px;}
-.full_page{height:auto }
-@media screen and (min-width:@min_sm){.full_page{height: 100%; height:100vh;}.map-container{height:100%}}
-.full_page > div, .full_page >div > div.row{height:100%; }
-.full_page >div div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
-.geo-tags, .geo-search{padding-right: 15px;padding-left:40px; }
-.cluster img{width:100%}
-.geo-tags{
-  background: @rouge; padding-top:50px; 
-  .form-control,.btn{border:none}
-}
-@media screen and (min-width:@min_sm) {.geo-tags, .geo-search{padding-left:25px}}
-@media screen and (min-width:@min_lg) {.geo-tags, .geo-search{padding-left:15px}.full_page >div div[class*="col-"]{height:100%}}
-@media screen and (max-width:@min_sm) {.geo-tags{ padding-top: 0}}
-.rubedo-places-search{
-  display: inline-block;
-  background: transparent;
-  color:white;
-  text-decoration: underline;
-  border:none;
-  box-shadow: none;
-  width:auto;
-  position: relative;
-  padding-left:5px; 
-}
-.rubedo-places-search::-webkit-input-placeholder {color: white; text-decoration: underline}
-.rubedo-places-search:-moz-placeholder { /* Firefox 18- */   color: white; text-decoration: underline  }
-.rubedo-places-search::-moz-placeholder {  /* Firefox 19+ */   color: white; text-decoration: underline }
-.rubedo-places-search:-ms-input-placeholder {     color: white; text-decoration: underline  }
-.rubedo-places-search:focus{background: white;color:@rouge}
-.panel-geo{
-  border:none;
-  background: none;
-  .panel-heading{background: @rouge_shadow; border: none} }
-  li.tags{
-    display: inline-block;
-    width:auto;
-    .capital2;
-    border-radius: 22px;
-    border:2px solid @rouge_shadow;
-    color:@rouge_shadow;
-    padding:0 5px;
-    cursor: pointer;
-    margin-bottom:4px;
-  }
-  li.tags.checked{background: white; color:@txt_dark}
-  li.tags:after{display: inline-block; content:"+"; font-weight: bold; font-size: 1.5em; line-height: 0.8em;vertical-align: middle}
-  li.tags.checked, li.tags:hover{background: white; color:@txt_dark;}
-  li.tags.checked:after, li.tags:hover:after{transform:rotate(45deg);}
-  
-  // do not show advanced search on smartphones
-   #advanced-search{display:none}
-  #advanced-search.displayed{display: block;}
-  @media screen and (min-width:@min_sm){ #advanced-search.displayed{display: none;} #advanced-search{display:block}}
-  
-.resultData input+span{color:white; margin-left: 5px; font-size: 14px}
+
 ////////////////////////////////////////////////////
     ///////////BREADCRUMB///////////////////
 ///////////////////////////////////////////////////
