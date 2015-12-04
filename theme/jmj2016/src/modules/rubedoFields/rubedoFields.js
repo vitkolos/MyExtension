@@ -212,7 +212,7 @@
             forcePasteAsPlainText: true,
             stylesSet: [
                 { name: 'Titre boîte', element: 'h3', attributes: { 'class': 'title-border'} }
-            ]
+            ],
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
