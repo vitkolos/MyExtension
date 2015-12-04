@@ -4,4 +4,4 @@
 */
 CKEDITOR.addTemplates("default",{imagesPath:"/theme/worshipteam/img/ckeditor/",templates:[
 {title:"Présentation avec icône",image:"template1.gif",description:"Template avec une icône, un titre et une desciption",
-							html:'<div class="col-xs-6  col-md-4 block-detail" ><p>Icône</p><p>Title</p><p>Description</p></div>'}]});
+							html:'<div class="col-xs-6  col-md-3 block-detail" ><p>Icône</p><p>Title</p><p>Description</p></div>'}]});
