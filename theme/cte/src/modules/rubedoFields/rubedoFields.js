@@ -223,6 +223,7 @@
             stylesSet: [
                // { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} }
             ],
+            contentsCss : '/theme/cte/ckeditor/styles.css',
             templates_files: [ '/theme/cte/js/default.js' ],
             font_names : 'Merriweather;Montserrat;FontAwesome',
         };
