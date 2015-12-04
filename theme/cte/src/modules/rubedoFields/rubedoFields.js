@@ -181,12 +181,12 @@
             { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
             '/',
             { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
-            { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
+            { name: 'styles', items: [ 'Styles', 'Format', 'Font' ] },
             '/',
             { name: 'colors', items: [ 'TextColor' ] },
             { name: 'tools', items: [ 'Maximize', '-','ShowBlocks' ] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink','-','Anchor' ] },
-            { name: 'insert', items: [ 'Image',  '-', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak' ] }
+            { name: 'insert', items: [ 'Image', 'Youtube',  '-', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak' ] }
         ];
         if (CKEMode=="Standard"){
             myTBConfig=[
@@ -219,8 +219,12 @@
             extraPlugins:'rubedolink,youtube',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
-            forcePasteAsPlainText: true
-
+            forcePasteAsPlainText: true,
+            stylesSet: [
+               // { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} }
+            ],
+            templates_files: [ '/theme/cte/js/default.js' ],
+            font_names : 'Merriweather;Montserrat;FontAwesome',
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
