@@ -190,6 +190,34 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
   text-align: center;
 }
 .promo img{margin:0 auto}
+/////////BLOC DETAIL///////////
+.block-detail p:first-of-type{
+    margin: 15px 0 0;
+    display: block;
+    position: relative;
+    font-size : 5em;
+    font-family : 'jmj2016regular';
+}
+.block-detail p:nth-of-type(2){
+    display: inline-block;
+    width: 100%;
+    margin: 15px 0 0;
+    padding: 0 30px;
+    font-size : 1.375em;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+.block-detail p:nth-of-type(n+3) {
+    display: inline-block;
+    margin: 15px 0 0;
+    padding: 0 50px;
+    text-align: justify;
+    width: 100%;
+    color: #666;
+}
+
+.block-detail{display:inline-block;float:none;text-align:center;vertical-align:top; margin:0 -5px}
+.block-detail:nth-of-type(2n)  p:first-of-type{color:@txt_dark !important}
  //////CARRES DATES///////////
  .agenda{text-align: center; float:none; vertical-align: top; display: inline-block}
  .carre-date{
