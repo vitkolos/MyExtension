@@ -216,7 +216,7 @@
             stylesSet: [
                 { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} }
             ],
-            templates:[{title:'Image and Title',image:'/theme/worshipteam/img/ckeditor/template1.gif',description:'One main image with a title and text, which surrounds the image.',html:'<h3><img style="margin-right: 10px" height="100" alt="" width="100" align="left"/>Type the title here</h3><p>Type the text here</p>'}],
+            //templates:[{title:'Image and Title',image:'/theme/worshipteam/img/ckeditor/template1.gif',description:'One main image with a title and text, which surrounds the image.',html:'<h3><img style="margin-right: 10px" height="100" alt="" width="100" align="left"/>Type the title here</h3><p>Type the text here</p>'}],
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
