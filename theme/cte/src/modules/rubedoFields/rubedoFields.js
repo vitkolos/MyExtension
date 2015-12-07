@@ -216,14 +216,14 @@
             language:$scope.fieldLanguage,
             entities:false,
             entities_latin:false,
-            extraPlugins:'rubedolink,youtube',
+            extraPlugins:'rubedolink,youtube,stylesheetparser',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
             stylesSet: [
                // { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} }
             ],
-            contentsCss : '/theme/cte/ckeditor/styles.css',
+            contentsCss:"/theme/"+rubedoConfig.siteTheme+"/css/cte.css",
             templates_files: [ '/theme/cte/js/default.js' ],
             font_names : 'Merriweather;Montserrat;FontAwesome',
         };
