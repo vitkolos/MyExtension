@@ -281,7 +281,8 @@ span.glyphicon {
 }
 nav li a {
   font-size: 13px;
-  color: #ffffff;
+  color: white;
+  text-transform: uppercase;
 }
 .navbar-toggle .icon-bar {
   background-color: #ffffff;
@@ -301,6 +302,10 @@ nav.navbar {
     padding-top: 20px;
     padding-bottom: 20px;
   }
+}
+.nav > li > a:hover,
+.nav > li > a:focus {
+  background-color: inherit;
 }
 .carousel-indicators li {
   margin: 1px 10px;
