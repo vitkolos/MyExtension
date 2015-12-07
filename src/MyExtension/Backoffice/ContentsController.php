@@ -58,23 +58,20 @@ class ContentsController extends DataAccessController
         $jsonTFilter = $this->params()->fromQuery('tFilter', '[]');
         $filterArray = Json::decode($jsonFilter, Json::TYPE_ARRAY);
         $tFilterArray = Json::decode($jsonTFilter, Json::TYPE_ARRAY);
-
         $filters = array_merge($tFilterArray, $filterArray);
         $mongoFilters = $this->_buildFilter($filters);
-
         $sort = Json::decode($this->params()->fromQuery('sort', null), Json::TYPE_ARRAY);
         $start = Json::decode($this->params()->fromQuery('start', null), Json::TYPE_ARRAY);
         $limit = Json::decode($this->params()->fromQuery('limit', null), Json::TYPE_ARRAY);
-
         $dataValues = $this->_dataService->getList($mongoFilters, $sort, $start, $limit, false);
         $response = array();
         $response['total'] = $dataValues['count'];
         $response['data'] = $dataValues['data'];
         $response['success'] = TRUE;
         $response['message'] = 'OK';
-
         return $this->_returnJson($response);
     }
+
 
     /**
      * read child action
@@ -95,11 +92,9 @@ class ContentsController extends DataAccessController
         } else {
             $sort = null;
         }
-
         $parentId = $this->params()->fromQuery('node', 'root');
         $mongoFilters = $this->_buildFilter($filters);
         $dataValues = $this->_dataService->readChild($parentId, $mongoFilters, $sort, false);
-
         $response = array();
         $response['children'] = array_values($dataValues);
         $response['total'] = count($response['children']);
@@ -107,6 +102,7 @@ class ContentsController extends DataAccessController
         $response['message'] = 'OK';
         return $this->_returnJson($response);
     }
+
 
     /**
      * The create action of the CRUD API
@@ -186,35 +182,27 @@ class ContentsController extends DataAccessController
     public function findOneAction()
     {
         $contentId = $this->params()->fromQuery('id');
-
         if (!is_null($contentId)) {
-
             $return = $this->_dataService->findById($contentId, false, false);
-
             if (empty($return['id'])) {
-
                 $returnArray = array(
                     'success' => false,
                     "msg" => 'Object not found'
                 );
             } else {
-
                 $returnArray = array(
                     'succes' => true,
                     'data' => $return
                 );
             }
         } else {
-
             $returnArray = array(
                 'success' => false,
                 "msg" => 'Missing param'
             );
         }
-
         return $this->_returnJson($returnArray);
     }
-
     /**
      * Return a list of ordered objects
      */
@@ -225,30 +213,23 @@ class ContentsController extends DataAccessController
         $jsonTFilter = $this->params()->fromQuery('tFilter', '[]');
         $filterArray = Json::decode($jsonFilter, Json::TYPE_ARRAY);
         $tFilterArray = Json::decode($jsonTFilter, Json::TYPE_ARRAY);
-
         $filters = array_merge($tFilterArray, $filterArray);
         $sort = Json::decode($this->params()->fromQuery('sort', null), Json::TYPE_ARRAY);
         $start = Json::decode($this->params()->fromQuery('start', null), Json::TYPE_ARRAY);
         $limit = Json::decode($this->params()->fromQuery('limit', null), Json::TYPE_ARRAY);
-
         $mongoFilters = $this->_buildFilter($filters);
         return new JsonModel($this->_dataService->getOrderedList($mongoFilters, $sort, $start, $limit, false));
     }
-
     public function clearOrphanContentsAction()
     {
         $result = $this->_dataService->clearOrphanContents();
-
         return $this->_returnJson($result);
     }
-
     public function countOrphanContentsAction()
     {
         $result = $this->_dataService->countOrphanContents();
-
         return $this->_returnJson(array("orphanContents" => $result));
     }
-
     public function deleteByContentTypeIdAction()
     {
         $typeId = $this->params()->fromPost('type-id');
@@ -256,10 +237,8 @@ class ContentsController extends DataAccessController
             throw new \Rubedo\Exceptions\User('This action needs a type-id as argument.', 'Exception3');
         }
         $deleteResult = $this->_dataService->deleteByContentType($typeId);
-
         return $this->_returnJson($deleteResult);
     }
-
     public function getStockAction()
     {
         $typeId = $this->params()->fromQuery('type-id');
@@ -270,7 +249,6 @@ class ContentsController extends DataAccessController
         $result = Manager::getService("Stock")->getStock($typeId, $workingLanguage);
         return $this->_returnJson($result);
     }
-
     public function updateStockAction()
     {
         $data = $this->params()->fromPost('data', null);
@@ -305,7 +283,6 @@ class ContentsController extends DataAccessController
             "data" => $updateData
         ));
     }
-
     public function exportAction()
     {
         $params = $this->params()->fromQuery();
@@ -474,7 +451,6 @@ class ContentsController extends DataAccessController
         $response->setContent($content);
         return $response;
     }
-
     protected function formatFieldData($value, $cType = null)
     {
         switch ($cType) {
@@ -507,5 +483,4 @@ class ContentsController extends DataAccessController
                 break;
         }
     }
-
 }
