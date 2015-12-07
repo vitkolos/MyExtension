@@ -30,19 +30,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id
     };
-    /*get fields for inscription*/
-    me.getFieldByName=function(name){
-        var field=null;
-        if (me.form) {
-            angular.forEach(me.form.type.fields,function(candidate){
-                if (candidate.config.name==name){
-                    field=candidate;
-                }
-            });
-        }
-        
-        return field;
-    };
     // ajouter enfants
     $scope.inscription.enfants=[];
     me.addChild = function(enfant){
@@ -94,6 +81,19 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 }                
             }
         });
+    };
+    /*get fields for inscription*/
+    me.getFieldByName=function(name){
+        var field=null;
+        if (me.form) {
+            angular.forEach(me.form.type.fields,function(candidate){
+                if (candidate.config.name==name){
+                    field=candidate;
+                }
+            });
+        }
+        
+        return field;
     };
        //labels des questions radio / checkbox
     me.getLabel = function(field,name) {
