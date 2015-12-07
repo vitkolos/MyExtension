@@ -1,6 +1,6 @@
 <div id="{{'block'+block.id}}" class="owl-carousel pull-left" ng-controller="CarouselController as carouselCtrl">
     <div ng-repeat="content in carouselCtrl.contents" ng-if="content.fields[blockConfig.imageField]">
-        <a ng-href="{{content.detailPageUrl | cleanUrl}}" >
+        <!--<a ng-href="{{content.detailPageUrl}}" >-->
             <img class="lazyOwl img-responsive carousel-img" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"
                     alt="{{content.fields.text}}"
                     title="{{content.fields.text}}" >
@@ -8,6 +8,6 @@
                         <h3>{{content.fields.text}}</h3>
                         <p ng-if="blockConfig.showSummary" class="visible-md-inline-block visible-lg-inline-block">{{content.fields.summary}}</p>
                     </div>
-        </a>
+        <!--</a>-->
     </div>
 </div>
