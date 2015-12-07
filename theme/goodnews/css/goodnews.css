@@ -320,7 +320,15 @@ nav.navbar {
   color: #2e2c29;
   background-color: inherit;
 }
-.dropdown-menu > li > a.active {
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  color: #2e2c29;
+  background-color: inherit;
+}
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
   color: #2e2c29;
   background-color: inherit;
 }
@@ -659,18 +667,15 @@ blockquote {
     z-index: 1;
   }
 }
-.owl-theme .owl-controls {
-  position: absolute;
-  right: 0;
-  margin-top: -30px !important;
-  margin-right: 10px;
-}
 .owl-theme .owl-controls .owl-page span {
   background: white;
   opacity: 0.75;
 }
 .owl-theme .owl-controls .owl-page.active span {
   background: #c1573c;
+}
+.owl-theme span.glyphicon {
+  margin: 0;
 }
 @media screen and (max-width: 500px) {
   .img-responsive.carousel-img {
@@ -831,7 +836,8 @@ blockquote {
   transition: all ease-in 0.3s;
 }
 .list:hover div[class*="ratio"]:before {
-  background-color: rgba(252, 82, 83, 0.8);
+  background-color: #ffd600;
+  opacity: 0.8;
 }
 .list:hover div[class*="ratio"] {
   -webkit-transform: scale(1.1);
