@@ -332,6 +332,12 @@ nav.navbar {
   color: #2e2c29;
   background-color: inherit;
 }
+a.navbar-brand:hover,
+a.navbar-brand:focus,
+a.navbar-brand:active {
+  color: #2e2c29;
+  background-color: inherit;
+}
 .carousel-indicators li {
   margin: 1px 10px;
 }
@@ -836,7 +842,7 @@ blockquote {
   transition: all ease-in 0.3s;
 }
 .list:hover div[class*="ratio"]:before {
-  background-color: #ffd600;
+  background-color: black;
   opacity: 0.8;
 }
 .list:hover div[class*="ratio"] {
