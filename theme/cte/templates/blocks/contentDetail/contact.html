@@ -1,4 +1,16 @@
 <div class=" content_border">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 ">
+				<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+					<ol class="breadcrumb hidden-xs">
+					    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+					</ol>
+					<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div style="overflow-y: hidden">
 		<header ng-if="fieldEntity['image']" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})}} 1650w" 
     class="afkl-lazy-wrapper container-fluid content prop" afkl-lazy-image-options='{"background": true}'>
