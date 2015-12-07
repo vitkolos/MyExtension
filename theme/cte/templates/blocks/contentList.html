@@ -15,10 +15,37 @@
         <span class="glyphicon glyphicon-plus"></span> Contribute
     </button>
     <div class="row contentList" ng-switch="blockConfig.columns">
-        <!--POUR 3 COLONNES-->
-        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
+       <!--POUR 1 COLONNE-->
+        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1" class="padding-">
+            <!--<div id="infiniteScrollCtrl">-->
+            <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
+                <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="equal-height-cols">
+                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
+                    <div class="col-sm-8 col-xs-12">
+                    <img class="img-responsive no-margin" ng-if="content.fields.image"
+                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'700px',height:'400px',mode:'crop'}) }}"
+                                                                     alt="{{ content.fields.text }}"/>                                                   
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <h3>
+                            {{content.fields.text}}
+                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                        </h3>
+                       <p  ng-if="!contentListCtrl.titleOnly">
+                            <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                       </p>
+                    </div>                    
+                   </a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!--AUTRES-->
+        <div ng-style="contentListCtrl.blockStyle" ng-switch-default>
             <div ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
-                <div class="col-md-4 col-xs-6 col-xxs-12" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" ng-switch="content.typeId">                
+                <div class="col-xs-6 col-xxs-12" ng-class="contentListCtrl.columns" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" ng-switch="content.typeId">                
                     <!---VIDEOS-->
                     <div ng-switch-when="56094a2245205e0e2541ea77">
                     
@@ -86,31 +113,6 @@
             </div>
         </div>
  
-       <!--POUR 1 COLONNE-->
-        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1" class="padding-">
-            <!--<div id="infiniteScrollCtrl">-->
-            <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
-                <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="equal-height-cols">
-                   <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
-                    <div class="col-sm-8 col-xs-12">
-                    <img class="img-responsive no-margin" ng-if="content.fields.image"
-                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'700px',height:'400px',mode:'crop'}) }}"
-                                                                     alt="{{ content.fields.text }}"/>                                                   
-                    </div>
-                    <div class="col-sm-4 col-xs-12">
-                        <h3>
-                            {{content.fields.text}}
-                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                        </h3>
-                       <p  ng-if="!contentListCtrl.titleOnly">
-                            <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                       </p>
-                    </div>                    
-                   </a>
-
-                </div>
-            </div>
-        </div>
         
     </div>
 

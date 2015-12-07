@@ -10,6 +10,7 @@
     font-style: normal;
 }
 
+
 @import url(http://fonts.googleapis.com/css?family=Arimo:400,700&subset=latin,latin-ext);
 body{font-size:16px; min-height:100%; color:@txt_dark;}
 html,body{font-family: 'Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto}
@@ -234,7 +235,7 @@ nav{min-height:0;}
     background-position:center center;
     margin-bottom:4px;
 }
-.bg-image {line-height: 600px; .article h3, .article h4, .article p{display: inline-block; color:white}}	
+.bg-image {line-height: 600px; .article h3, .article h4, .article p{display: inline-block; color:white}.article h1{display: inline-block;color:@txt_dark;font-weight: 700;max-width: 500px;line-height: 45px}}	
 .homepage_txt {
     position: absolute;
     bottom: 20%;
@@ -325,8 +326,25 @@ nav{min-height:0;}
 @media screen and (max-width: @tablet) {
     .accueil_vision p, .accueil_vision h1{width:90%; margin-left:5%}
 }
- 
-
+ /*PAGE DONS*/
+.dons.text-bg{
+    padding:64px 12px;
+    h1,p{color:white; margin: 12px auto}
+    h1{text-align: center;max-width: 420px;margin-bottom: 24px; line-height: 42px;}
+    p{text-align: justify;max-width: 624px;}
+}
+.dons2{
+    padding:64px 0;
+    text-align: center;
+    p,h1{color:@txt_grey; margin:12px auto; max-width: 500px}
+    h1{margin-bottom: 24px}
+    .col-xs-6{padding:0 24px}
+    div.col-xs-6:first-of-type{border-right: solid 2px @txt_dark}
+    .button{border: 2px solid @txt_dark; border-radius: 5px; -moz-border-radius: 5px; margin: 12px auto; display: inline-block; text-transform: uppercase; a{color:@txt_grey}}
+}
+@media screen and (max-width: 600px) {
+    div.col-xs-6:first-of-type{border-bottom: solid 2px @txt_dark; margin-bottom: 24px}
+}
 /*GOOGLE BUTTONS*/
 
 .google-btn{margin:80px auto;width:80%;padding-top:20px}

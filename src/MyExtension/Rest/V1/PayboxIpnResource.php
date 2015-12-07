@@ -150,6 +150,8 @@ class PayboxIpnResource extends AbstractResource {
         if ($erreur == "00000") {
             $body = "Montant payé : " . $params['montant']/100 . " euros.\n" ;
             $body .= "Proposition : " . $inscription['fields']['propositionTitre']."\n";
+            $body .= "Code Onesime : " . $inscription['fields']['codeOnesime']."\n";
+            $body .= "Code Compta : " . $inscription['fields']['codeCompta']."\n";
             $body .= "Id Inscription : " . $inscription['fields']['text']."\n";
             $body .= "Nom : " . $inscription['fields']['name']."\n";
             $body .= "Prénom : " . $inscription['fields']['surname']."\n";
