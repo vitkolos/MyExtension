@@ -22,7 +22,7 @@
         </div>
         <div class="col-sm-8">
             <input type="checkbox"  name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_0" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_0" ng-true-value="Oui" ng-false-value="Non"
-                                ng-model="inscription[question.fields.categorie.categorie][question.text][0]">
+                                ng-model="inscription[question.fields.categorie.categorie][question.text][0]"><label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_0"></label>
             <input type="text" ng-if="question.fields.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement" ng-model="inscription[question.fields.categorie.categorie][question.text].complement" class="complement_text" />
         </div>
     </div>
@@ -42,7 +42,18 @@
             </div>
         </div>
     </div>
-
+    
+<!--number-->
+    <div ng-switch-when="number" class="row">
+        <div class="col-sm-4">
+            <label class="label_style">{{question.text}}</label>
+        </div>
+        <div class="col-sm-8">
+            <div class="col-xs-12">
+                <input type="number" ng-model="inscription[question.fields.categorie.categorie][question.text]" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}">
+            </div>
+        </div>
+    </div>
     <!--text-->
     <div ng-switch-when="text" class="row">
         <div class="col-sm-4">
@@ -56,17 +67,7 @@
     </div>
 
     
-    <!--number-->
-    <div ng-switch-when="number" class="row">
-        <div class="col-sm-4">
-            <label class="label_style">{{question.text}}</label>
-        </div>
-        <div class="col-sm-8">
-            <div class="col-xs-12">
-                <input type="number" ng-model="inscription[question.fields.categorie.categorie][question.text]" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}">
-            </div>
-        </div>
-    </div>
+    
     
 </div>
 
