@@ -225,6 +225,7 @@
             ],
             contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
+            templates_replaceContent : false,
             font_names : 'Merriweather;Montserrat;FontAwesome',
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
