@@ -674,9 +674,6 @@ blockquote {
 .owl-theme .owl-controls .owl-page.active span {
   background: #c1573c;
 }
-.owl-theme span.glyphicon {
-  margin: 0;
-}
 @media screen and (max-width: 500px) {
   .img-responsive.carousel-img {
     max-width: none;
@@ -734,6 +731,9 @@ blockquote {
   text-transform: none;
   background-color: rgba(0, 0, 0, 0.75);
   padding: 12px 6px;
+}
+.owl-theme span.glyphicon {
+  margin: 0;
 }
 .jwlogo {
   display: none;
