@@ -216,15 +216,15 @@
             language:$scope.fieldLanguage,
             entities:false,
             entities_latin:false,
-            extraPlugins:'rubedolink,youtube,stylesheetparser',
+            extraPlugins:'rubedolink,youtube',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
             stylesSet: [
                // { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} }
             ],
-            contentsCss:"/theme/"+rubedoConfig.siteTheme+"/css/cte.css",
-            templates_files: [ '/theme/cte/js/default.js' ],
+            contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
+            templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             font_names : 'Merriweather;Montserrat;FontAwesome',
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
