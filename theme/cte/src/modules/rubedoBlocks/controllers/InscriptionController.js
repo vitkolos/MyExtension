@@ -2,13 +2,14 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.inscription={};
+    //templates
     me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
     me.couple = themePath+'/templates/blocks/formulaire/couple.html';
     me.questions = themePath+'/templates/blocks/formulaire/questions.html';
     me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
     me.infosFin = themePath+'/templates/blocks/formulaire/infosFin.html';
     me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
-
+//get proposition
     me.content = angular.copy($scope.proposition);
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
@@ -16,7 +17,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
     
     var formId = me.content.fields.formulaire;
-    //surveiller si le type de formulaire est changé
+    //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
         $scope.inscription.public_type=newValue;
     });
@@ -29,6 +30,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id
     };
+    /*get fields for inscription*/
     me.getFieldByName=function(name){
         var field=null;
         if (me.form) {
