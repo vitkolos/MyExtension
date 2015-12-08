@@ -5,6 +5,7 @@ use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
+use Rubedo\Collection\AbstractCollection;
 class InscriptionResource extends AbstractResource
 {
     /**
@@ -50,14 +51,14 @@ class InscriptionResource extends AbstractResource
         //$language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]); // langue du site
         //var_dump($language);
         //authentication comme admin inscriptions
-        
+        /*
         $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
         $output['token'] = $this->subTokenFilter($auth['token']);
         $token = $output['token']['access_token'];
-        
+        */
         
         //GET NUMERO D'INSCRIPTION ACTUEL
-        $id = "5625176445205e6b03832548"; // id du contenu "Numéro d'inscription"
+        $id = "56619a683bc325590d8b4570"; // id du contenu "Numéro d'inscription"
         /*$nbInscriptionContent = $this->callAPI("GET", $token, $id);
         if($nbInscriptionContent['success']) {
             $nbInscriptionContent = $nbInscriptionContent['content'];
@@ -65,14 +66,15 @@ class InscriptionResource extends AbstractResource
         }
         else throw new APIEntityException('Content not found', 404);
         */
-                $wasFiltered = AbstractCollection::disableUserFilter();
+
+        $wasFiltered = AbstractCollection::disableUserFilter();
         $nbInscriptionContent = Manager::getService("Contents")->findById($id);
         AbstractCollection::disableUserFilter($wasFiltered);
-$nbInscriptionContent = $nbInscriptionContent['content'];
-            $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
+        $nbInscriptionContent = $nbInscriptionContent['content'];
+  //          $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
         
         
-        
+        /*
         $nbInscriptionContent['fields']['value'] = (string)$inscriptionNumber;
         //UPDATE NUMERO D'INSCRIPTION +1
         $payload = json_encode( array( "content" => $nbInscriptionContent ) );
@@ -108,9 +110,9 @@ $nbInscriptionContent = $nbInscriptionContent['content'];
         
         
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
+       */
        
-       
-            return array('success' => $result['success'], 'id' =>$nbInscriptionContent);
+            return array('success' => true, 'id' =>$nbInscriptionContent);
 
         //return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
         

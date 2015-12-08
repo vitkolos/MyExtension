@@ -14,7 +14,7 @@
             ng-click="contentListCtrl.launchFOContribute()">
         <span class="glyphicon glyphicon-plus"></span> Contribute
     </button>
-    <div class="row contentList" ng-switch="blockConfig.columns">
+    <div class="row contentList" ng-switch="blockConfig.columns" style="margin-top:48px">
         <!--POUR 3 COLONNES-->
         <div ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
             <div ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
