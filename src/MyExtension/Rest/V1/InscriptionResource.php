@@ -111,7 +111,7 @@ $nbInscriptionContent="test";
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        */
        
-            return array('success' => true, 'id' =>$nbInscriptionContent);
+            return array('success' => true, 'id' =>"test");
 
         //return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
         
