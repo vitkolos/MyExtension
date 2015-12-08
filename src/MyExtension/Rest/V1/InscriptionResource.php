@@ -67,9 +67,8 @@ class InscriptionResource extends AbstractResource
         */
 $nbInscriptionContent="test";
         $wasFiltered = AbstractCollection::disableUserFilter();
-        $nbInscriptionContent = Manager::getService("Contents")->findById("553e615b45205e3f2eb58890");
+        $nbInscriptionContent = Manager::getService('Contents')->findById("553e615b45205e3f2eb58890");
         //AbstractCollection::disableUserFilter($wasFiltered);
-        $nbInscriptionContent = $nbInscriptionContent['content'];
   //          $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
         
         
@@ -111,7 +110,7 @@ $nbInscriptionContent="test";
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        */
        
-            return array('success' => true, 'id' =>"test");
+            return array('success' => true, 'id' =>$nbInscriptionContent);
 
         //return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
         
