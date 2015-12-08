@@ -67,7 +67,7 @@ class InscriptionResource extends AbstractResource
         */
 
         $wasFiltered = AbstractCollection::disableUserFilter();
-        //$content=Manager::getService('Contents')->findById("56619a683bc325590d8b4570",true,false)
+        $content=Manager::getService('Contents')->findById("56619a683bc325590d8b4570",true,false)
         AbstractCollection::disableUserFilter($wasFiltered);
 
         
@@ -114,7 +114,7 @@ class InscriptionResource extends AbstractResource
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        */
        
-            return array('success' => true, 'id' => $wasFiltered);
+            return array('success' => true, 'id' => $content);
 
         //return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
         
