@@ -1,11 +1,10 @@
 <?php
 namespace RubedoAPI\Rest\V1;
-use RubedoAPI\Rest\V1\AbstractResource;
+use Rubedo\Collection\AbstractCollection;
 use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
-use Rubedo\Collection\AbstractCollection;
 class InscriptionResource extends AbstractResource
 {
     /**
@@ -68,7 +67,7 @@ class InscriptionResource extends AbstractResource
         */
 
         $wasFiltered = AbstractCollection::disableUserFilter();
-        $nbInscriptionContent = Manager::getService("Contents")->findById($id);
+        $nbInscriptionContent = Manager::getService("Contents")->findById($id,false);
         AbstractCollection::disableUserFilter($wasFiltered);
         $nbInscriptionContent = $nbInscriptionContent['content'];
   //          $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
