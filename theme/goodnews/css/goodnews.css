@@ -992,6 +992,12 @@ header.content.prop > div {
 .list-articles1 {
   padding: 30px;
 }
+.list-articles1 img {
+  transition: opacity ease 0.3s;
+}
+.list-articles1 img:hover {
+  opacity: 0.8;
+}
 .modal.right.fade:not(.in) .modal-dialog {
   -ms-transform: translate3d(100%, 0, 0);
   -moz-transform: translate3d(100%, 0, 0);
