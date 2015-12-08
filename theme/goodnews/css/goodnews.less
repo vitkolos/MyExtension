@@ -30,24 +30,6 @@
 }
 
 
-
-.uparrow() {
-    &:after{
-    font-family:'FontAwesome';
-    content:'\f077';
-	float: right;
-	text-transform: none;
-    }
-}
-.downarrow() {
-    &:after{
-    font-family:'FontAwesome';
-    content:'\f078';
-	float: right;
-	text-transform: none;
-    }
-}
-
 @font-face {
     font-family: 'Sansation';
     src: url('../font/sansation_regular-webfont.eot');
@@ -87,7 +69,7 @@ label{font-weight: normal}
 .row.vide{min-height:1px !important}
 
 a{ color: @txt_dark; }
-a:hover{ color: #74c6de; text-decoration:none}
+a:hover{ color: @main_color; text-decoration:none}
 input:focus{outline: 0; border-color:transparent; box-shadow:0}
 .media-body{min-width:200px;}
 .contentList .media-body{margin-bottom: 24px}
@@ -423,8 +405,8 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   padding: 30px;
   img{transition: opacity ease 0.3s}
   img:hover{opacity: 0.8}
-  
 }
+span.user{font-size: 0.8em}
 
 ////////////////////////////////////////////////////
     ///////////MODAL///////////////////
