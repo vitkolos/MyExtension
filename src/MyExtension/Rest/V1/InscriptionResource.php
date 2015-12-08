@@ -65,10 +65,10 @@ class InscriptionResource extends AbstractResource
         }
         else throw new APIEntityException('Content not found', 404);
         */
-
+$nbInscriptionContent="test";
         $wasFiltered = AbstractCollection::disableUserFilter();
         $nbInscriptionContent = Manager::getService("Contents")->findById("553e615b45205e3f2eb58890");
-        AbstractCollection::disableUserFilter($wasFiltered);
+        //AbstractCollection::disableUserFilter($wasFiltered);
         $nbInscriptionContent = $nbInscriptionContent['content'];
   //          $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
         
