@@ -1,21 +1,14 @@
-@font-face {
-  font-family: 'Sansation';
-  src: url('../font/sansation_regular-webfont.eot');
-  src: url('../font/sansation_regular-webfont.eot?#iefix') format('embedded-opentype'), url('../font/sansation_regular-webfont.woff2') format('woff2'), url('../font/sansation_regular-webfont.woff') format('woff'), url('../font/sansation_regular-webfont.ttf') format('truetype'), url('../font/sansation_regular-webfont.svg#sansationregular') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
 body {
   font-size: 16px;
   min-height: 100%;
   line-height: 1.4em;
 }
 p {
-  font-family: 'Sansation';
+  font-family: 'Roboto';
 }
 html,
 body {
-  font-family: 'Open Sans';
+  font-family: 'Roboto';
   height: 100%;
   overflow: auto;
   background-color: white;
