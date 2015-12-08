@@ -132,32 +132,6 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
         };
         return serviceInstance;
     }]);
-angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
-    var serviceInstance={};
-    serviceInstance.inscrire=function(inscription, workspace){
-        return($http({
-                url:"/api/v1/inscription",
-                method:"POST",
-                data:{
-                    inscription:inscription,
-                    workspace: workspace
-                }
-            }));
-    };
-    return serviceInstance;
-}]);
-
-
-  angular.module('rubedoBlocks').directive('focusOnClick', function ($timeout) {
-    return {
-         link: function ( scope, element, attrs ) {
-            scope.$watch( attrs.ngFocus, function ( val ) {
-                if ( angular.isDefined( val ) && val ) {
-                    $timeout( function () { element[0].focus();element[0].value=""; } );
-                }
-            }, true);
-         }}
-  });
   
 angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location', function($timeout,$location) {
   return {

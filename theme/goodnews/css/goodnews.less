@@ -86,7 +86,7 @@ label{font-weight: normal}
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{min-height:0.1px}
 .row.vide{min-height:1px !important}
 
-a{ color: #ffffff; }
+a{ color: @txt_dark; }
 a:hover{ color: #74c6de; text-decoration:none}
 input:focus{outline: 0; border-color:transparent; box-shadow:0}
 .media-body{min-width:200px;}
@@ -357,9 +357,9 @@ blockquote {
 @media screen and (max-width: @min_sm) {
   .list div[class*="ratio"]{padding-top:50%}
 }
-.list div.list-title{position: absolute; width: 80%; height: 80%; top:10%; left:10%; text-align: center;transition: all ease-in 0.3s; border: 2px solid white;opacity:0; transform:scale(1.2);-webkit-transform:scale(1.2); }
+.list div.list-title{position: absolute; width: 80%; height: 80%; top:10%; left:10%; text-align: center;transition: all ease-in 0.3s; opacity:0; transform:scale(1.2);-webkit-transform:scale(1.2); }
 .list:hover .list-title{p{opacity:1}}
-.list-title p{margin-top:33%;opacity:0; transition: opacity ease-in 0.3s; color:white}
+.list-title p{margin-top:16%;opacity:0; transition: opacity ease-in 0.3s; color:white; text-transform: uppercase;}
 .list:hover div.list-title{transform:scale(1);-webkit-transform:scale(1); opacity: 1}
 ////////////////////////////////////////////////////
     ///////////CONTENUS///////////////////
@@ -419,35 +419,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   width:100%;
   padding-right: 0;
 }
-@media screen and (min-width:@min_sm){
-  .equal-height-cols{
-    display: table;
-    div[class^="col"]{display: table-cell; vertical-align: middle; float: none; height:200px}
-  }
-}
 
-@media screen and (min-width:@min_xs) {.list-item-img:before{padding-top:33.333%;}.list-item-img>img{top:-50%}}/*  ratio of 3:1*/
-@media screen and (min-width:@min_sm) {.list-item-img:before{padding-top:60%;}.list-item-img>img{top:-5%}}/*  ratio of 1:1*/
-.secondary-nav{
-  margin-top:50px;
-  .capital;
-  line-height: 1em;
-  vertical-align: middle;
-  text-align: center;
-  font-size: 12px;
-  a{padding:12px 0; display: inline-block}}
-
-.regions-list{
-  ul{  list-style-type: none;margin:6px 0; padding-left: 0}
-  li{ a{.capital; display: inline-block; width:100%}; border-top:2px solid white; padding:6px 24px 6px 12px; }
-  li:last-of-type{border-bottom: 2px solid white}
-  li a:after{
-    position:absolute;
-    right:30px;
-     content: "\f0da";
-     font-family: 'FontAwesome'
-  }
-}
 
 ////////////////////////////////////////////////////
     ///////////MODAL///////////////////
