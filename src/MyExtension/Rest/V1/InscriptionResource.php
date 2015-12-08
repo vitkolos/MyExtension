@@ -4,7 +4,7 @@ use Rubedo\Collection\AbstractCollection;
 use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
-use WebTales\MongoFilters\Filter;
+
 class InscriptionResource extends AbstractResource
 {
     /**
@@ -65,10 +65,17 @@ class InscriptionResource extends AbstractResource
         }
         else throw new APIEntityException('Content not found', 404);
         */
-$nbInscriptionContent="test";
-        $wasFiltered = AbstractCollection::disableUserFilter();
-        $contentService = Manager::getService('Contents');
-        $nbInscriptionContent = $contentService->findById("5665b0ad3bc325342c8b456c",false);
+
+        $wasFiltered = AbstractCollection::disableUserFilter(true);
+        $contentsService = Manager::getService("Contents");
+        $content = $contentsService->findById($id, true, false);
+        $inscriptionNumber = (int)$content['fields']['value'] +1;
+        //$content['fields']['value'] = $inscriptionNumber;
+        //$content['version'] =$content['version']+1;
+        //AbstractCollection::disableUserFilter($wasFiltered);
+
+        
+        
         //AbstractCollection::disableUserFilter($wasFiltered);
   //          $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
         
@@ -111,7 +118,7 @@ $nbInscriptionContent="test";
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        */
        
-            return array('success' => true, 'id' =>$nbInscriptionContent);
+            return array('success' => true, 'id' => $content);
 
         //return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
         
