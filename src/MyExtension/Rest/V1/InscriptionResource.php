@@ -67,7 +67,7 @@ class InscriptionResource extends AbstractResource
         */
 
         $wasFiltered = AbstractCollection::disableUserFilter();
-        $nbInscriptionContent = Manager::getService("Contents")->findById($id,false);
+        $nbInscriptionContent = Manager::getService("Contents")->findById("553e615b45205e3f2eb58890",false);
         AbstractCollection::disableUserFilter($wasFiltered);
         $nbInscriptionContent = $nbInscriptionContent['content'];
   //          $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
