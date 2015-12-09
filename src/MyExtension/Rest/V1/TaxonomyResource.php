@@ -71,7 +71,7 @@ class TaxonomyResource extends AbstractResource
     public function getAction($params)
     {
         $taxoArray=array();
-        $vocabularies = Json::decode($params['vocabularies'], Json::TYPE_ARRAY);
+        $vocabularies = Json::decode($params['vocabularies']);
         if (!is_array($vocabularies)){
             throw new APIRequestException("Vocabularies array is required", 400);
         }
