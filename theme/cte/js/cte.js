@@ -181,6 +181,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
                     vocabularies:vocabularies
                 }
             }));
+	};
         return serviceInstance;
     }]);
 angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
