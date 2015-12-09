@@ -28,9 +28,9 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope','$
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     };
-    $timeout(function() {
+    /*$timeout(function() {*/
             me.loadFcb();
-        }, 1000);
+        /*}, 1000);*/
 }]);
 
 

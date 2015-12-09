@@ -38,11 +38,11 @@ angular.module('rubedoBlocks').lazy.directive('fbPage', ['$window', function($wi
 
         $window.addEventListener('resize', request);
         
-$window.fbAsyncInit = function() {
-    FB.init({
-        version    : 'v2.1' // use version 2.1
-    });
-}
+        $window.fbAsyncInit = function() {
+            FB.init({
+                version    : 'v2.1' // use version 2.1
+            });
+        }
       }
     };
 }]);
