@@ -109,8 +109,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                    me.taxo = taxonomie.terms;
                });
             }
-            console.log(me.taxo);
-
         });
     }
     me.getTermLabel = function(termId){
