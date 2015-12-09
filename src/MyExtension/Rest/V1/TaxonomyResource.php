@@ -72,9 +72,10 @@ class TaxonomyResource extends AbstractResource
     {
         $taxoArray=array();
         $vocabularies = Json::decode($params['vocabularies'], Json::TYPE_ARRAY);
+        var_dump($vocabularies);
         /*if (!is_array($vocabularies)){
             throw new APIRequestException("Vocabularies array is required", 400);
-        }*/
+        }
         foreach($vocabularies as $value){
             $myTaxo=$this->getTaxonomyCollection()->findById($value);
             if ($myTaxo) {
@@ -107,7 +108,7 @@ class TaxonomyResource extends AbstractResource
                     "terms" => $taxonomyTerms['data']
                 );
             }
-        }
+        }*/
         return [
             'success' => true,
             'taxo' => $taxoArray,
