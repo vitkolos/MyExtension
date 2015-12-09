@@ -28,7 +28,7 @@ angular.module('rubedoBlocks').lazy.directive('fbPage', ['$window', function($wi
         function update(){
             $scope.$evalAsync(function() {
                 $scope.width = $element.parent().width();
-                $scope.$applyAsync(function() {
+                $scope.$evalAsync(function() {
                     FB.XFBML.parse($element[0], function(){
                         requested = false;
                     });
