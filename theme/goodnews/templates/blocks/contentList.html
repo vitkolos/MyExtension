@@ -24,7 +24,7 @@
                    <div class="col-xs-12 col-sm-5">
                    <a ng-href="{{ content.detailPageUrl }}">
                    
-                        <img class="img-responsive pull-left" ng-if="content.fields.image"
+                        <img class="img-responsive pull-right" ng-if="content.fields.image"
                                                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'500px',height:'170px',mode:'crop'}) }}"
                                                                      alt="{{ content.fields.text }}"/>
                     </a>
@@ -40,10 +40,10 @@
                                 {{content.fields.text }} ( {{content.status}} )
                         </a>
                         <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                        <p><span class="glyphicon glyphicon-user"></span><span class="user">{{content.createUser.fullName |uppercase}}</span>
+                        <p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user">{{content.createUser.fullName |uppercase}}</span>
                            <span class="glyphicon glyphicon-time"></span>{{content.createTime*1000|date:'longDate'}}
                        </p>
-                       <p  ng-if="!contentListCtrl.titleOnly">
+                       <p class="thin" ng-if="!contentListCtrl.titleOnly">
                             <rubedo-field field="{{content.type.summary}}"></rubedo-field>
                        </p>
                        

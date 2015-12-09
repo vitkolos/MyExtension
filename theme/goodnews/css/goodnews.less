@@ -102,7 +102,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 @min_lg:1200px;
 @rouge:#c1573c;//rouge brique
 @rouge_shadow:#9e4232; // rouge brique sombre
-@txt_dark:#2e2c29;// couleur texte
+@txt_dark:rgb(15,15,15);// couleur texte
 @beigeCCN:#f3eeea; // beige fond
 @marron:#d5c5b5 ; // beige plus sombre
 @rencontre:#7d77bf; //violet rencontres
@@ -110,7 +110,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 @evenement:#f96847; //orange propositions;
 @14-18:#59d3b6;
 @bleu:#74c6de;
-@texte:#c5c5c5;
+@texte:rgb(135,135,135);
 @main_color:#ffd600;
 
 ////////////////////////////////////////////////
@@ -140,6 +140,9 @@ nav.navbar{background-color: @main_color;}
 .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus{color:@txt_dark; background-color: inherit}
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus{color:@txt_dark; background-color: inherit}
 a.navbar-brand:hover, a.navbar-brand:focus,a.navbar-brand:active{color:@txt_dark; background-color: inherit}
+.navbar-brand img{position:absolute;top:5px}
+@media (min-width: @min_sm){.navbar-brand img{top:0}}
+
 ///////////SLIDER///////////
 .carousel-indicators li{margin:1px 10px}
  ///////LISTE ARTICLES ////////
@@ -216,6 +219,7 @@ blockquote {
  border-left:none;
  margin: 30px auto;
 }
+
 .text-article blockquote p{.capital;.txt-red; text-align: center}
 @media screen and (max-width:@min_xs){
   .text-article{text-align:left; }
@@ -391,10 +395,11 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 }
 .list-articles1{
   padding: 30px;
-  img{transition: opacity ease 0.3s}
+  img{transition: opacity ease 0.3s; margin-bottom: 12px}
   img:hover{opacity: 0.8}
 }
 span.user{font-size: 0.8em}
+p.thin{font-weight: 300}
 
 ////////////////////////////////////////////////////
     ///////////MODAL///////////////////

@@ -1,0 +1,24 @@
+<div class="form-grup" ng-controller="LocaliserFieldController as localiserFieldCtrl">
+    <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="col-sm-4 control-label">{{field.config.fieldLabel}} <span ng-if="!field.config.allowBlank&&!field.config.fieldLabel.includes('*')">*</span></label>
+    <div class="col-sm-8" ng-init="showMap=false" >
+        <p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
+
+        <div class="rubedo-map-field" ng-if="showMap">
+            <google-map center="localiserFieldCtrl.map.center" zoom="localiserFieldCtrl.map.zoom" draggable="true">
+                <marker ng-if="localiserFieldCtrl.positionMarker" idKey="'positionMarker'" coords="localiserFieldCtrl.positionMarker.coords">
+                    <marker-label ng-if="localiserFieldCtrl.positionMarker.label" content="localiserFieldCtrl.positionMarker.label" anchor="2 0" class="badge"></marker-label>
+                </marker>
+            </google-map>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">Address</div>
+            <div class="panel-body">
+                <form class="form">
+                    <div class="form-group">
+                        <input id="{{fieldIdPrefix+'_'+field.config.name}}" type="text" class="form-control" ng-change="localiserFieldCtrl.handleAddressEdit()" ng-model="localiserFieldCtrl.editableAddress">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
