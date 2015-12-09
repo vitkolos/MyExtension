@@ -18,19 +18,19 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope','$
         });
     }
  
-    /*me.loadFcb = function(){
-         (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
-    };
-    $timeout(function() {
-            me.loadFcb();
-        }, 1000);*/
-}]);
+    me.loadFcb = function(){
+         window.fbAsyncInit = function() {
+        angular.bootstrap(document, ['rubedo']);
+      };
 
+      (function(d, s, id) {
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) return;
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.3";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    }
+}]);
 
 
