@@ -1,22 +1,5 @@
 
-<header class="container-fluid content" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
-	<div class="text-article container">
-		<p class='capital'>{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
-		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
-			<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
-			<h1 ng-if="fieldEditMode"
-			   ng-controller="RTEFieldController as rteFieldCtrl"
-			   ckeditor="editorOptions"
-			   contenteditable="true"
-			   ready="setCKEIsReady()"
-			   ng-model="fieldEntity['text']"
-			   output-plain-text="true"
-			   ng-bind-html="rteFieldCtrl.html">
-			</h1>
-		</div>
 
-	</div>
-</header>
 <div class="row">
 	<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1600px',height:'610px',mode:'crop'})}}" style="width:100%">
 </div>
