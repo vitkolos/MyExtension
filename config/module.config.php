@@ -121,8 +121,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '/js/worship.js',
-                    '../js/blocks.js'
+                    '/js/worship.js'
                 ),
             ),
             'goodnews' => array(
@@ -133,8 +132,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '/js/goodnews.js',
-                    '../js/blocks.js'
+                    '/js/goodnews.js'
                 ),
             ),
         ),
