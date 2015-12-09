@@ -96,9 +96,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         me.contentList.push(columnContentList);
                     }
                 }
+                me.getTaxonomy();
             }
         });
     };
+    me.getTaxonomy = function(){
+        TaxonomyService.getTaxonomyByVocabulary({0:"5666a87c3bc325fc368b4568"}).then(function(response){
+            if(response.data.success){
+               var tax = response.data.taxo;
+               me.taxo={};
+               angular.forEach(tax, function(taxonomie){
+                   me.taxo = taxonomie.terms;
+               });
+               console.log(me.taxo);
+            }
+        });
+    }
     me.canAddToList=function(){
         return ($scope.rubedo.fieldEditMode&&me.queryType&&(me.queryType=="simple"||me.queryType=="manual"));
     };

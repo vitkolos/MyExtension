@@ -1,16 +1,17 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$timeout",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$timeout){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.inscriptionTemplate = themePath+'/templates/blocks/inscription.html';
     var previousFields;
     me.taxonomy=[];
-    me.showInscription = false; // pour les inscriptions
+    me.showInscription = false; // pour les inscriptions, masquer le formulaire
+    me.isInscription = true; // pour les propositions, ne pas afficher les inscriptions si closes
+
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
-
     });
     me.tooltips=function(){
         $('[data-toggle="tooltip"]').tooltip();
@@ -53,10 +54,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return value;
     };
     me.getTermInTaxo=function(taxoKey,termId){
+        
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
-        angular.forEach(me.taxo[taxoKey].terms,function(candidate, id){ // chercher l'id dans les taxonomies de ce type de contenu si 
-            if(!term){if(id==termId){term=candidate;}}
+        angular.forEach(me.taxo[taxoKey],function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
+            if(!term){
+                if(candidate.id==termId){term=candidate.text;}
+            }
          });
          if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
     return(term);
@@ -137,6 +141,19 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
+                    //Propositions : déterminer si les inscriptions sont possibles
+                    if (me.content.type.code=="proposition") {
+                        var today = new Date();
+                       if (me.content.fields.inscriptionState.inscriptionState == 'close') {
+                            me.isInscription=false;
+                        }
+                        else if (me.content.fields.dateDebut*1000 < today.getTime()) {
+                            me.propDate = "passee";
+                        }
+                        else me.propDate="ouverte";
+                        
+                    }
+
                     //Albums photos
                     if (me.content.type.code=="album") {
                         me.content.images={};
@@ -145,29 +162,56 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:200,
-                            query:me.content.fields.titrePhoto
+                            query:me.content.fields.titrePhoto+"*"
                         };
                         me.getMedia = function(options){
                             RubedoSearchService.getMediaById(options).then(function(response){
                                 if(response.data.success){
-                                    me.content.images = response.data.results.data;
+                                    me.content.images = $filter('orderBy')(response.data.results.data, 'title') ;
                                 }
                             });
                         };
                         me.getMedia(options2);
+                        me.loadModal = function(index){
+                            me.currentIndex = index;
+                            me.currentImage = me.content.images[me.currentIndex];
+                        };
+                        me.changeImage = function(side){
+                            if(side == 'left' && me.currentIndex > 0){
+                                me.currentIndex -= 1;
+                            } else if(side == 'right' && me.currentIndex < me.content.images.length - 1) {
+                                me.currentIndex += 1;
+                            }
+                            me.currentImage = me.content.images[me.currentIndex];
+                        };
                     }
-                     
+                    
+                    me.addImages = function(){
+                        me.limit +=20;
+                        
+                     };
 /*GET CONTENT TAXONOMIES*/
 
-                     var typeArray =[];
-                     typeArray.push(me.content.type.id);
-                     
-                     TaxonomyService.getTaxonomyByContentId(options.pageId, JSON.stringify(typeArray)).then(function(response){
-                         if(response.data.success){
-                            me.taxo = response.data.results;
 
+                     var taxonomiesArray ={};
+                     var index=0;
+                     angular.forEach(me.content.taxonomy,function(value, taxo){
+                            if (taxo!='navigation'){
+                                taxonomiesArray[index] = taxo;
+                                index++;
+                            }
+                        });
+                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+                         if(response.data.success){
+                            var tax = response.data.taxo;
+                            me.taxo={};
+                            angular.forEach(tax, function(taxonomie){
+                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                            });
                          }
+                         
                      });
+                     
                     
                     //Actualités : 3 autres articles
                     if (me.content.type.code=="actualites") {

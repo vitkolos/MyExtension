@@ -186,40 +186,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         };
                     }
                     
-
-                 /*me.callMasonry = function(){
-                    var grid= angular.element('.grid').masonry({
-                                // options...
-                                columnWidth: '.grid-item',
-                                gutter: '.gutter-sizer',
-                                itemSelector: '.grid-item',
-                                percentPosition: true
-                        });
-                    $timeout(function() {
-                            grid.masonry();
-                            me.albumVisibility = true;
-                            // trigger layout
-                          }, 1000);
-                        
-                        console.log("OK");
-                    };*/
-                    
-                    
-                     me.addImages = function(){
+                    me.addImages = function(){
                         me.limit +=20;
                         
                      };
 /*GET CONTENT TAXONOMIES*/
 
-                     /*var typeArray =[];
-                     typeArray.push(me.content.type.id);
-                     
-                     TaxonomyService.getTaxonomyByContentId(options.pageId, JSON.stringify(typeArray)).then(function(response){
-                         if(response.data.success){
-                            me.taxo = response.data.results;
 
-                         }
-                     });*/
                      var taxonomiesArray ={};
                      var index=0;
                      angular.forEach(me.content.taxonomy,function(value, taxo){
@@ -235,7 +208,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
                             });
-                            console.log(me.taxo);
                          }
                          
                      });
