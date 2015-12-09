@@ -208,7 +208,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                      };
 /*GET CONTENT TAXONOMIES*/
 
-                     var typeArray =[];
+                     /*var typeArray =[];
                      typeArray.push(me.content.type.id);
                      
                      TaxonomyService.getTaxonomyByContentId(options.pageId, JSON.stringify(typeArray)).then(function(response){
@@ -216,7 +216,20 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.taxo = response.data.results;
 
                          }
+                     });*/
+                     var taxonomiesArray = [];
+                     angular.forEach(me.content.taxonomy,function(value, taxo){
+                            if (taxo!='navigation'){
+                                taxonomiesArray.push(taxo);
+                            }
+                        });
+                     TaxonomyService.getTaxonomyByVocabulary(JSON.stringify(taxonomiesArray)).then(function(response){
+                         if(response.data.success){
+                            me.taxo = response.data.results;
+                         }
+                         console.log(me.taxo);
                      });
+                     
                     
                     //Actualités : 3 autres articles
                     if (me.content.type.code=="actualites") {

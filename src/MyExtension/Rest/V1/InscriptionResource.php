@@ -66,9 +66,13 @@ class InscriptionResource extends AbstractResource
         else throw new APIEntityException('Content not found', 404);
         */
 
-        $wasFiltered = AbstractCollection::disableUserFilter();
-        $content=Manager::getService('Contents')->findById("56619a683bc325590d8b4570")
-        AbstractCollection::disableUserFilter($wasFiltered);
+        $wasFiltered = AbstractCollection::disableUserFilter(true);
+        $contentsService = Manager::getService("Contents");
+        $content = $contentsService->findById($id,false,false);
+        $content["fields"]["value"] = $content["fields"]["value"] +1;
+        $content["version"] = $content["version"]  +1;
+        $result = $contentsService->update($content);
+        AbstractCollection::disableUserFilter(false);
 
         
         
@@ -114,7 +118,7 @@ class InscriptionResource extends AbstractResource
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        */
        
-            return array('success' => true, 'id' => $content);
+            return array('success' => true, 'id' => $result);
 
         //return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
         

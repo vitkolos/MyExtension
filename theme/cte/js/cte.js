@@ -167,14 +167,20 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
     }]);
     angular.module('rubedoDataAccess').factory('TaxonomyService', ['$http',function($http) {
         var serviceInstance={};
-        serviceInstance.getTaxonomyByContentId=function(pageId,contentIds){
+        /*serviceInstance.getTaxonomyByContentId=function(pageId,contentIds){
             return ($http.get("/api/v1/taxonomy",{
                 params:{
                     pageId:pageId,
                     type:contentIds
                 }
             }));
-        };
+        };*/
+	serviceInstance.getTaxonomyByVocabulary=function(vocabularies){
+            return ($http.get("/api/v1/taxonomy",{
+                params:{
+                    vocabularies:vocabularies
+                }
+            }));
         return serviceInstance;
     }]);
 angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
