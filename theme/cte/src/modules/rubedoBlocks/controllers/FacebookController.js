@@ -30,7 +30,6 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope','$
     };
     /*$timeout(function() {*/
             me.loadFcb();
-            $scope.$on('$viewContentLoaded', function() {me.loadFcb()});
         /*}, 1000);*/
 }]);
 
