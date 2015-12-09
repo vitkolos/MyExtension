@@ -97,6 +97,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     }
                 }
                 me.getTaxonomy();
+                console.log(me.taxo);
+
             }
         });
     };
@@ -108,7 +110,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                angular.forEach(tax, function(taxonomie){
                    me.taxo = taxonomie.terms;
                });
-               console.log(me.taxo);
             }
         });
     }
