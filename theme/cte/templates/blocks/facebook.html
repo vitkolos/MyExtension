@@ -9,6 +9,6 @@
 
 <div ng-controller="FacebookController as fcbCtrl">
     <div style="width: 80%;">
-        <div fb-page="https://www.facebook.com/{{blockConfig.account}}" fb-faces="true"></div>
+        <div fb-page="https://www.facebook.com/{{blockConfig.account}}" fb-faces="{{fcbCtrl.showFaces}}" fb-posts="{{fcbCtrl.showPosts}}" fb-hide="{{fcbCtrl.hideCover}}" fb-height="800"></div>
 </div>
 </div>
