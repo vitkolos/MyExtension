@@ -117,7 +117,6 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
-            
         }
     };
 }]);
