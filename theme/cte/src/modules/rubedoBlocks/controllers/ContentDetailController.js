@@ -54,6 +54,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return value;
     };
     me.getTermInTaxo=function(taxoKey,termId){
+        angular.forEach(me.taxo)
+        
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
         angular.forEach(me.taxo[taxoKey].terms,function(candidate, id){ // chercher l'id dans les taxonomies de ce type de contenu si 
@@ -227,7 +229,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                      TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
                          if(response.data.success){
-                            me.taxo = response.data.taxo;
+                            var tax = response.data.taxo;
+                            angular.forEach(tax, function(taxonomie){
+                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                            });
                             console.log(me.taxo);
                          }
                          
