@@ -218,9 +218,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                          }
                      });*/
                      var taxonomiesArray = {};
+                     var index=0;
                      angular.forEach(me.content.taxonomy,function(value, taxo){
                             if (taxo!='navigation'){
-                                taxonomiesArray[taxo] = taxo;
+                                taxonomiesArray[index] = i;
+                                index++;
                             }
                         });
                      TaxonomyService.getTaxonomyByVocabulary(JSON.stringify(taxonomiesArray)).then(function(response){
