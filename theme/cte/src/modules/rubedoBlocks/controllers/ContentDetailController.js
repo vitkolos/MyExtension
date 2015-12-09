@@ -230,6 +230,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                      TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
                          if(response.data.success){
                             var tax = response.data.taxo;
+                            me.taxo={};
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
                             });
