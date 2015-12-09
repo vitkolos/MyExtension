@@ -217,15 +217,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 
                          }
                      });*/
-                     var taxonomiesArray = [];
+                     var taxonomiesArray = {};
                      angular.forEach(me.content.taxonomy,function(value, taxo){
                             if (taxo!='navigation'){
-                                taxonomiesArray.push(taxo);
+                                taxonomiesArray[taxo] = taxo;
                             }
                         });
                      TaxonomyService.getTaxonomyByVocabulary(JSON.stringify(taxonomiesArray)).then(function(response){
                          if(response.data.success){
-                            me.taxo = response.data.results;
+                            me.taxo = response.data.taxo;
                          }
                          console.log(me.taxo);
                      });
