@@ -54,12 +54,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return value;
     };
     me.getTermInTaxo=function(taxoKey,termId){
-        angular.forEach(me.taxo)
         
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
-        angular.forEach(me.taxo[taxoKey].terms,function(candidate, id){ // chercher l'id dans les taxonomies de ce type de contenu si 
-            if(!term){if(id==termId){term=candidate;}}
+        angular.forEach(me.taxo[taxoKey],function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
+            if(!term){
+                if(candidate.id==termId){term=candidate.text;}
+            }
          });
          if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
     return(term);
