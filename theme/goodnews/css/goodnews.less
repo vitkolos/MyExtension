@@ -131,7 +131,7 @@ nav li a{font-size: 13px; color:white;text-transform: uppercase}
 .navbar-toggle .icon-bar{background-color: white}
 nav.navbar{background-color: @main_color;}
 .nav>li>a:hover, .nav>li>a:focus{color:@txt_dark;}
-.navbar-nav>li.active a{color:@txt_dark}
+.navbar-nav>li.active > a{color:@txt_dark}
 @media (min-width: @min_sm){.navbar-nav>li>a {padding-top:20px; padding-bottom: 20px}}
 .nav>li>a:hover, .nav>li>a:focus,.nav>li>a:active{background-color: inherit}
 .dropdown-menu{background-color: @main_color}
@@ -141,7 +141,7 @@ nav.navbar{background-color: @main_color;}
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus{color:@txt_dark; background-color: inherit}
 a.navbar-brand:hover, a.navbar-brand:focus,a.navbar-brand:active{color:@txt_dark; background-color: inherit}
 .navbar-brand img{position:absolute;top:5px}
-@media (min-width: @min_sm){.navbar-brand img{top:0}}
+@media (max-width: @min_sm){.navbar-brand img{top:0}}
 
 ///////////SLIDER///////////
 .carousel-indicators li{margin:1px 10px}
