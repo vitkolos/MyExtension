@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope','$
         });
     }
  
-    me.loadFcb = function(){
+    /*me.loadFcb = function(){
          (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -29,7 +29,7 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope','$
     };
     $timeout(function() {
             me.loadFcb();
-        }, 1000);
+        }, 1000);*/
 }]);
 
 

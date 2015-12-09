@@ -8,7 +8,7 @@ blocksConfig.simpleContact={
 };
 blocksConfig.facebook={
            "template": "/templates/blocks/facebook.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js","/src/modules/rubedoBlocks/directives/FacebookDirective.js"]
 };
 blocksConfig.d3Script= {
             "template": "/templates/blocks/d3Script.html",
