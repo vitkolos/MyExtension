@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope','$
         });
     }
  
-    me.loadFcb = function(){
+    loadFcb = function(){
          window.fbAsyncInit = function() {
         angular.bootstrap(document, ['rubedo']);
       };
