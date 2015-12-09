@@ -18,15 +18,6 @@
                                     }
                                 },
                                 {
-                                    "type": "Ext.form.field.Number",
-                                    "config": {
-                                        "fieldLabel": "#ext-gen1391#",
-                                        "name": "width",
-                                        "allowDecimals": false,
-                                        "minValue": 1
-                                    }
-                                },
-                                {
                                     "type": "Ext.form.field.ComboBox",
                                     "isAutoStored": true,
                                     "autoStoreData": [
