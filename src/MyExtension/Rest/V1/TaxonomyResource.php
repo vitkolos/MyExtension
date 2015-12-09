@@ -72,11 +72,10 @@ class TaxonomyResource extends AbstractResource
     {
         $taxoArray=array();
         $vocabularies = Json::decode($params['vocabularies'], Json::TYPE_ARRAY);
-        if (!is_array($vocabularies)){
+        /*if (!is_array($vocabularies)){
             throw new APIRequestException("Vocabularies array is required", 400);
-        }
-        $taxonomyGetConfig=$vocabularies;
-        foreach($taxonomyGetConfig as $value){
+        }*/
+        foreach($vocabularies as $value){
             $myTaxo=$this->getTaxonomyCollection()->findById($value);
             if ($myTaxo) {
                 $filters = Filter::factory();
