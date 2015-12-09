@@ -97,7 +97,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     }
                 }
                 me.getTaxonomy();
-
             }
         });
     };
@@ -113,6 +112,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             console.log(me.taxo);
 
         });
+    }
+    me.getTermLabel = function(termId){
+        var label="";
+        angular.forEach(me.taxo, function(taxoTerm){
+            if (taxoTerm.id==termId) {
+               label =taxoTerm.text;
+            }
+        });
+        return label;
     }
     me.canAddToList=function(){
         return ($scope.rubedo.fieldEditMode&&me.queryType&&(me.queryType=="simple"||me.queryType=="manual"));
