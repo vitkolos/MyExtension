@@ -217,7 +217,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 
                          }
                      });*/
-                     var taxonomiesArray =[];
+                     var taxonomiesArray ={};
                      var index=0;
                      angular.forEach(me.content.taxonomy,function(value, taxo){
                             if (taxo!='navigation'){
