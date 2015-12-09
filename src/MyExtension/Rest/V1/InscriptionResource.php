@@ -67,11 +67,7 @@ class InscriptionResource extends AbstractResource
         */
 
         $wasFiltered = AbstractCollection::disableUserFilter();
-<<<<<<< HEAD
         $content=Manager::getService('Contents')->findById("56619a683bc325590d8b4570")
-=======
-        $content=Manager::getService('Contents')->findById("56619a683bc325590d8b4570",true,false)
->>>>>>> 9e7fbdcce88a9733d53395cf7a42871c5271c46b
         AbstractCollection::disableUserFilter($wasFiltered);
 
         
