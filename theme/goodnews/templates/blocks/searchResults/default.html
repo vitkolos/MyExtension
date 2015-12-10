@@ -40,8 +40,25 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div class="resultData" ng-repeat="datum in searchResultsCtrl.data track by $index">
-            <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
+        <div class="resultData " ng-repeat="datum in searchResultsCtrl.data track by $index">
+                <div class="col-xs-12 col-sm-5">
+                        <a ng-href="{{ datum.url }}">
+                                <img class="img-responsive pull-right" ng-if="datum.image" style="width:100%""
+                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum.image[0],{width:'500px',height:'170px',mode:'crop'}) }}"
+                                                                     alt="{{ content.fields.text }}"/>
+                        </a>
+                </div>
+                <div class="col-xs-12 col-sm-7">
+                         <!--<p class="thin" ng-if="content.taxonomy['5666a87c3bc325fc368b4568']"><span class="glyphicon glyphicon-folder-open"></span><span class="tags" ng-repeat="tagId in content.taxonomy['5666a87c3bc325fc368b4568']">{{contentListCtrl.getTermLabel(tagId)|uppercase}}</span></p>
+                        -->
+                        <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
+                        <p>{{datum.summary}}</p>
+                        <p class="thin">
+                                <span class="glyphicon glyphicon-user"></span><span class="user">{{datum.authorName |uppercase}}</span>
+                                <span class="glyphicon glyphicon-time"></span>{{datum.lastUpdateTime*1000|date:'longDate'}}
+                       </p>
+                </div>
+            
             <!--<div class="clearfix">
                 <div class="progress">
                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{datum.score}}"
@@ -51,7 +68,6 @@
                 </div>&nbsp;
                 <span class="label label-danger">{{datum.type}}</span>
             </div>-->
-            <p>{{datum.summary}}</p>
             <div>{{rubedo.translate('Contents.PublishedBy', 'Publié par')}} <a href ng-click="searchResultsCtrl.clickOnFacets('author', datum.author)">{{datum.authorName}}</a> {{rubedo.translate('Contents.The', 'le')}} {{datum.lastUpdateTime * 1000 | date: 'fullDate'}}</div>
             <hr/>
         </div>
@@ -61,3 +77,6 @@
                    change-page-action="searchResultsCtrl.changePageAction()"></paginator>
     </div>
 </div>
+
+
+
