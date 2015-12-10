@@ -1,7 +1,8 @@
 <div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl" class="container">
-    <form ng-if="ccCtrl.contentType" class="form form-horizontal" ng-submit="ccCtrl.submitNewContent()">
+    <span class="glyphicon glyphicon-plus cursor-as-pointer" style="font-size: 0.8em" data-toggle="collapse" href="#contributionForm"></span>
+    <form ng-if="ccCtrl.contentType" class="form form-horizontal collapse" ng-submit="ccCtrl.submitNewContent()" if="contributionForm">
         <h3 ng-if="!ccCtrl.updateMode" class="text-left" ng-click="ccCtrl.showForm= !ccCtrl.showForm">
-                <span class="glyphicon glyphicon-plus cursor-as-pointer" style="font-size: 0.8em"></span>
+                
                 {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}} : {{ccCtrl.contentType.type}}
         </h3>
         <h2 ng-if="ccCtrl.updateMode" class="text-center" ng-click="ccCtrl.showForm= !ccCtrl.showForm">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>

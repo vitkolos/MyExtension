@@ -42,7 +42,7 @@
     <div class="col-md-9">
         <div class="resultData" ng-repeat="datum in searchResultsCtrl.data track by $index">
             <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
-            <div class="clearfix">
+            <!--<div class="clearfix">
                 <div class="progress">
                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{datum.score}}"
                          aria-valuemin="30" aria-valuemax="100" ng-style="{'width': datum.score+'%'}">
@@ -50,7 +50,7 @@
                     </div>
                 </div>&nbsp;
                 <span class="label label-danger">{{datum.type}}</span>
-            </div>
+            </div>-->
             <p>{{datum.summary}}</p>
             <div>{{rubedo.translate('Contents.PublishedBy', 'Publié par')}} <a href ng-click="searchResultsCtrl.clickOnFacets('author', datum.author)">{{datum.authorName}}</a> {{rubedo.translate('Contents.The', 'le')}} {{datum.lastUpdateTime * 1000 | date: 'fullDate'}}</div>
             <hr/>
