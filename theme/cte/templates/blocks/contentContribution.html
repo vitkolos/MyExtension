@@ -1,5 +1,7 @@
 <div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl" class="container">
-    <span class="glyphicon glyphicon-plus cursor-as-pointer" style="font-size: 0.8em" data-toggle="collapse" href="#contributionForm"></span>
+    <button title="Add article" class="btn btn-default ng-scope" data-toggle="collapse" href="#contributionForm">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
     <form ng-if="ccCtrl.contentType" class="form form-horizontal collapse" ng-submit="ccCtrl.submitNewContent()" if="contributionForm">
         <h3 ng-if="!ccCtrl.updateMode" class="text-left" ng-click="ccCtrl.showForm= !ccCtrl.showForm">
                 
