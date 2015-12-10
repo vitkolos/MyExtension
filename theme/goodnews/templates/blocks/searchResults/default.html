@@ -40,7 +40,7 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div class="resultData " ng-repeat="datum in searchResultsCtrl.data track by $index">
+        <div class="resultData row" ng-repeat="datum in searchResultsCtrl.data track by $index">
                 <div class="col-xs-12 col-sm-5">
                         <a ng-href="{{ datum.url }}">
                                 <img class="img-responsive pull-right" ng-if="datum['fields.image']" style="width:100%""
