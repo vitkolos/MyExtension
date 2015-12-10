@@ -1,6 +1,7 @@
 {
     "Label.Email": "E-pasts",
     "Label.Name": "Nosaukums",
+    "Blocks.SignUp.label.name":"Nosaukums",
     "Blocks.Contact.Input.Name.Label":"Nosaukums *",
     "Blocks.Contact.Input.Email.Label":"E-pasts *",
     "Blocks.Contact.Input.Subject.Label":"Objekts *",

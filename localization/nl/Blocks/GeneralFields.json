@@ -1,0 +1,10 @@
+{
+    "Label.Email": "E-mail",
+    "Label.Name": "Naam",
+    "Blocks.SignUp.label.name":"Naam",
+    "Blocks.Contact.Input.Name.Label":"Naam *",
+    "Blocks.Contact.Input.Email.Label":"E-mail *",
+    "Blocks.Contact.Input.Subject.Label":"Object *",
+    "Blocks.Contact.Input.Message.Label":"Bericht *",
+    "Blocks.Contact.Input.Submit.Label":"Sturen"
+    }
