@@ -1,0 +1,9 @@
+{
+    "Label.Email": "E-pasts",
+    "Label.Name": "Nosaukums",
+    "Blocks.Contact.Input.Name.Label":"Nosaukums *",
+    "Blocks.Contact.Input.Email.Label":"E-pasts *",
+    "Blocks.Contact.Input.Subject.Label":"Objekts *",
+    "Blocks.Contact.Input.Message.Label":"Ziņa *",
+    "Blocks.Contact.Input.Submit.Label":"Sūtīt"
+    }
