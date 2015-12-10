@@ -7,7 +7,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.facets = [];
         me.activeFacets = [];
         me.start = 0;
-        me.limit = $routeParams.limit?$routeParams.limit:10;
+        me.limit = $routeParams.limit?$routeParams.limit:20;
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"lastUpdateTime";
         var resolveOrderBy = {
             'lastUpdateTime': 'date',
