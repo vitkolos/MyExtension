@@ -6,5 +6,6 @@
     "Blocks.Contact.Input.Email.Label":"E-mail *",
     "Blocks.Contact.Input.Subject.Label":"Object *",
     "Blocks.Contact.Input.Message.Label":"Bericht *",
-    "Blocks.Contact.Input.Submit.Label":"Sturen"
+    "Blocks.Contact.Input.Submit.Label":"Sturen",
+    "Contents.PublishedBy":"Uitgegeven door"
     }

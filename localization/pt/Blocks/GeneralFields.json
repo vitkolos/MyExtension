@@ -6,5 +6,6 @@
     "Blocks.Contact.Input.Email.Label":"Email *",
     "Blocks.Contact.Input.Subject.Label":"Objeto *",
     "Blocks.Contact.Input.Message.Label":"Mensagem *",
-    "Blocks.Contact.Input.Submit.Label":"Enviar"
+    "Blocks.Contact.Input.Submit.Label":"Enviar",
+    "Contents.PublishedBy":"Postado por"
     }
