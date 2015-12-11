@@ -83,6 +83,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     var columnContentList = [];
                     var currentSeason = null;
                     angular.forEach(response.data.contents,function(newContent, key){
+                        newContent.anneeFormatted = (newContent.fields.annee>=10)? '20'+newContent.fields.annee : '200'+newContent.fields.annee;
                         columnContentList.push(newContent);
                         if(currentSeason && newContent.fields.annee != currentSeason){
                             me.contentList.push(columnContentList);
