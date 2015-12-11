@@ -205,7 +205,7 @@
             { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo',"Source"  ] },
            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote']},
             { name: 'styles', items: [ 'Format' ] },
-            { name: 'insert', items: [ 'Image', 'Youtube', '-', 'HorizontalRule'] },
+            { name: 'insert', items: [ 'Image', 'Enhanced Image','Youtube', '-', 'HorizontalRule'] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink'] },
             { name: 'colors', items: [ 'Scayt'] }
             ];
@@ -216,7 +216,7 @@
             language:$scope.fieldLanguage,
             entities:false,
             entities_latin:false,
-            extraPlugins:'rubedolink,youtube',
+            extraPlugins:'rubedolink,youtube,image2',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
@@ -228,6 +228,7 @@
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             templates_replaceContent : false,
             font_names : 'Roboto',
+            customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
