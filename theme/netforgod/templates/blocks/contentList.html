@@ -65,8 +65,6 @@
                              alt="{{ content.fields.text }}"/>
                             <h4 class="media-heading">
                                     {{content.fields.date*1000 | date :'MMMM yyyy'}}
-                                
-                               <!-- <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>-->
                             </h4>
                         </a>
                         <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
