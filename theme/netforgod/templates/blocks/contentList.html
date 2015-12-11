@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <img class="media-object pull-left" ng-if="content.fields.affiche "
-                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
+                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
                          alt="{{ content.fields.text }}"/>
                         <h4 class="media-heading">
                             <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
