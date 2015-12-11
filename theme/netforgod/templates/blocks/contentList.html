@@ -58,19 +58,25 @@
                     <div class="row" ng-if="$first">
                         <h3>{{rubedo.translate('Block.Saison', 'Season')}} {{content.fields.annee}} (20{{content.fields.annee -1}}-20{{content.fields.annee}})</h3>
                     </div>
-                    <div class="col-lg-3 col-sm-6">
-                        <img class="media-object pull-left" ng-if="content.fields.affiche "
-                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
-                         alt="{{ content.fields.text }}"/>
-                        <h4 class="media-heading">
-                            <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
-                                {{content.fields.date | date :'MMMM yyyy'}}
-                            </a>
-                            <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                {{content.fields.date | date :'MMMM yyyy' }}
-                            </a>
-                           <!-- <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>-->
-                        </h4>
+                    <div class="col-lg-3 col-sm-6 filmList">
+                        <a ng-if="!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
+                            <img class="media-object pull-left" ng-if="content.fields.affiche "
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
+                             alt="{{ content.fields.text }}"/>
+                            <h4 class="media-heading">
+                                    {{content.fields.date | date :'MMMM yyyy'}}
+                                
+                               <!-- <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>-->
+                            </h4>
+                        </a>
+                        <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                            <img class="media-object pull-left" ng-if="content.fields.affiche "
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
+                                alt="{{ content.fields.text }}"/>
+                            <h4 class="media-heading">
+                                    {{content.fields.date | date :'MMMM yyyy'}}
+                            </h4>
+                        </a>
                         
                     </div>
             </div>
