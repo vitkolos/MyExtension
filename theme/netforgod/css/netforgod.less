@@ -38,8 +38,7 @@ html,body{font-family: 'Roboto Slab', serif; height: 100%; overflow: auto;backgr
   .navbar-nav > li {padding:10px 20px;margin: 20px 0; border-right: 1px solid @txt_light;}
   .navbar-nav > li:last-of-type {border-right: none;}
   .navbar-nav>li>a{ font-size: 20px; padding: 0px !important}
-  .navbar-nav > li.active, .navbar-nav > li:hover{border-bottom: 5px solid @main; border-right: none; padding-bottom: 25px; margin-bottom: 10px;}
-  .navbar-nav > li:last-of-type.active, .navbar-nav > li:last-of-type:hover{border-right: none;}
+  .navbar-nav > li:not(:last-of-type).active, .navbar-nav > li:not(:last-of-type):hover{border-bottom: 5px solid @main; border-right: none; padding-bottom: 25px; margin-bottom: 10px;}
   .navbar-nav > li.active + li, .navbar-nav > li:hover + li{border-left: 1px solid @txt_light;}
   .nav > li > a:hover, .nav > li > a:focus{background-color: white;}
   a{ color:@txt; transition: color 0.3s ease}
