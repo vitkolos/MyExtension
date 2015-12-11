@@ -14,10 +14,11 @@
             ng-click="contentListCtrl.launchFOContribute()">
         <span class="glyphicon glyphicon-plus"></span> Contribute
     </button>
-    <div class="row contentList" ng-switch="blockConfig.columns" style="margin-top:24px">
- 
+    <div class="row contentList" ng-switch="blockg.code" style="margin-top:24px">
+        <div ng-attr-lr-infinite-scroll="loadMoreContents"
+             ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
+             ng-style="contentListCtrl.blockStyle" ng-switch-when="films">
        <!--POUR 1 COLONNE-->
-        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1">
             <!--<div id="infiniteScrollCtrl">-->
             <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="col-xs-12 list-articles1">
