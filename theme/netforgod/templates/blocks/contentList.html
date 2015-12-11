@@ -53,8 +53,8 @@
                     </a>
                 </div>
             </div>
-            <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-if="contentListCtrl.filmsList">
-                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="row">
+            <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-if="contentListCtrl.filmsList" class="row">
+                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" >
                     <div class="col-xs-12" ng-if="$first">
                         <h1 class="titre-saison">{{rubedo.translate('Block.Saison', 'Season')}} {{content.fields.annee}} <span>(20{{content.fields.annee -1}}-20{{content.fields.annee}})</span></h1>
                     </div>
