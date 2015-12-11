@@ -1,5 +1,5 @@
 <div ng-controller="LanguageMenuController as languageMenuCtrl" class="languageMenu">
-    <div ng-if="languageMenuCtrl.mode" class="btn-group">
+    <div ng-if="languageMenuCtrl.mode">
         <div class="dropdown-toggle" data-toggle="dropdown">
             <i><img ng-if="languageMenuCtrl.showFlags" ng-src="{{languageMenuCtrl.getFlagUrl(languageMenuCtrl.currentLang.flagCode)}}" alt="{{languageMenuCtrl.currentLang.flagCode}}"/></i>
             {{languageMenuCtrl.currentLang.flagCode}} <span class="caret"></span>
