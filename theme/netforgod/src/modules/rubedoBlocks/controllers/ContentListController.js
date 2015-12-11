@@ -77,6 +77,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
+                console.log(me.usedContentTypes[0]);
                 if (me.usedContentTypes[0]=="54cb447145205e7d09db0590") {
                     var columnContentList = [];
                     var currentSeason = null;
@@ -86,12 +87,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                             me.contentList.push(columnContentList);
                             columnContentList = [];
                         }
-                        currentSeason = newContent.fields.anne;
+                        currentSeason = newContent.fields.annee;
                     });
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
                     }
                     console.log(me.contentList);
+                    console.log("ok;");
                 }
                 else{
                     var columnContentList = [];
