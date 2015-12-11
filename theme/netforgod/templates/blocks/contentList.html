@@ -54,34 +54,30 @@
                 </div>
             </div>
             <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-if="contentListCtrl.filmsList">
-                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
-                    <div class="row" ng-if="$first">
-                        <div class="col-xs-12">
-                            <h1 class="titre-saison">{{rubedo.translate('Block.Saison', 'Season')}} {{content.fields.annee}} <span>(20{{content.fields.annee -1}}-20{{content.fields.annee}})</span></h1>
-                        </div>
+                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="row">
+                    <div class="col-xs-12" ng-if="$first">
+                        <h1 class="titre-saison">{{rubedo.translate('Block.Saison', 'Season')}} {{content.fields.annee}} <span>(20{{content.fields.annee -1}}-20{{content.fields.annee}})</span></h1>
                     </div>
-                    <div class="row">
-                        <div class="col-lg-3 col-sm-6 filmList">
-                            <a ng-if="!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
-                                <img class="media-object pull-left" ng-if="content.fields.affiche "
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
-                                 alt="{{ content.fields.text }}"/>
-                                <h4 class="media-heading">
-                                        {{content.fields.date*1000 | date :'MMMM yyyy'}}
-                                    
-                                   <!-- <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>-->
-                                </h4>
-                            </a>
-                            <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                <img class="media-object pull-left" ng-if="content.fields.affiche "
-                                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
-                                    alt="{{ content.fields.text }}"/>
-                                <h4 class="media-heading">
-                                        {{content.fields.date*1000 | date :'MMMM yyyy'}}
-                                </h4>
-                            </a>
-                            
-                        </div>
+                    <div class="col-lg-3 col-sm-6 filmList">
+                        <a ng-if="!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
+                            <img class="media-object pull-left" ng-if="content.fields.affiche "
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
+                             alt="{{ content.fields.text }}"/>
+                            <h4 class="media-heading">
+                                    {{content.fields.date*1000 | date :'MMMM yyyy'}}
+                                
+                               <!-- <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>-->
+                            </h4>
+                        </a>
+                        <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                            <img class="media-object pull-left" ng-if="content.fields.affiche "
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
+                                alt="{{ content.fields.text }}"/>
+                            <h4 class="media-heading">
+                                    {{content.fields.date*1000 | date :'MMMM yyyy'}}
+                            </h4>
+                        </a>
+                        
                     </div>
             </div>
         </div>
