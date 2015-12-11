@@ -9,5 +9,4 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 
 };
-CKEDITOR.plugins.addExternal( 'image2', '/theme/goodnews/ckeditor/plugins/image2/' );
-CKEDITOR.plugins.addExternal( 'widget', '/theme/goodnews/ckeditor/plugins/widget/' );
+CKEDITOR.plugins.addExternal( 'youtube', '/theme/ckeditor-plugins/youtube/' );
