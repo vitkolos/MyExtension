@@ -22,7 +22,7 @@
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle">
             <!--<div id="infiniteScrollCtrl">-->
-            <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
+            <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-if="!contentListCtrl.filmsList">
                 <div class="media" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <img class="media-object pull-left" ng-if="content.fields.image && !contentListCtrl.titleOnly"
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{size:'thumbnail'}) }}"
@@ -52,6 +52,27 @@
                         Preview detail
                     </a>
                 </div>
+            </div>
+            <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-if="contentListCtrl.filmsList">
+                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
+                    <div class="row" ng-if="$first">
+                        <h3>{{rubedo.translate('Block.Saison', 'Season')}} {{content.fields.annee}} (20{{content.fields.annee -1}}-20{{content.fields.annee}})</h3>
+                    </div>
+                    <div class="col-lg-3 col-sm-6">
+                        <img class="media-object pull-left" ng-if="content.fields.affiche "
+                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
+                         alt="{{ content.fields.text }}"/>
+                        <h4 class="media-heading">
+                            <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
+                                {{content.fields.date | date:'MMMM yyyy'}}
+                            </a>
+                            <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                                {{content.fields.date | date:'MMMM yyyy }}
+                            </a>
+                           <!-- <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>-->
+                        </h4>
+                        
+                    </div>
             </div>
         </div>
     </div>

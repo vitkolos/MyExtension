@@ -10,6 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
     me.ismagic = config.magicQuery ? config.magicQuery : false;
+    me.filmsList = false;
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
         me.start=(urlCurrentPage-1)*me.limit;
@@ -78,7 +79,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
                 console.log(me.usedContentTypes[0]);
-                if (me.usedContentTypes[0]=="54cb447145205e7d09db0590") {
+                if (me.usedContentTypes[0]=="54cb447145205e7d09db0590" && me.limit>1) {
+                    me.filmsList = true;
                     var columnContentList = [];
                     var currentSeason = null;
                     angular.forEach(response.data.contents,function(newContent, key){
