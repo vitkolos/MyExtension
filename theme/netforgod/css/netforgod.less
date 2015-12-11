@@ -33,7 +33,11 @@ html,body{font-family: 'Roboto Slab', serif; height: 100%; overflow: auto;backgr
 .navbar-brand{background-color: @main_light}
 .navbar-fixed-top{
   background-color: white;
-  a{padding:20px 5px; color:@txt; text-transform: uppercase}
+  .navbar-nav > li > a{padding:20px;margin: 10px 0}
+  .navbar-nav > li.active > a{padding:20px 5px;border-bottom: 5px solid @main}
+  .navbar-nav > li{border-right: 1px solid @txt_light}
+  .nav > li > a:hover, .nav > li > a:focus{background-color: white;}
+  a{ color:@txt;}
   a:hover{color:@main}
   }
 
