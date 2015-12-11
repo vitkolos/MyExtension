@@ -31,12 +31,13 @@ html,body{font-family: 'Roboto Slab', serif; height: 100%; overflow: auto;backgr
 
 
 ///////MENU/////
-.navbar-brand{background-color: @main_light; height: auto}
+.navbar-brand{background-color: @main_light; height: auto; padding: 15px 10px}
 .navbar-fixed-top{
   background-color: white;
-  .navbar-nav > li > a{padding:10px 20px;margin: 20px 0; border-right: 1px solid @txt_light; font-size: 20px}
-  .navbar-nav > li.active > a{padding:20px 5px;border-bottom: 5px solid @main}
-  .navbar-right{margin-right: 50px}
+  .navbar-nav > li {padding:10px 20px;margin: 20px 0; }
+  .navbar-nav>li>a{border-right: 1px solid @txt_light; font-size: 20px}
+  .navbar-nav > li.active{border-bottom: 5px solid @main}
+  .navbar-right{margin-right: 80px}
   .nav > li > a:hover, .nav > li > a:focus{background-color: white;}
   a{ color:@txt;}
   a:hover{color:@main}
