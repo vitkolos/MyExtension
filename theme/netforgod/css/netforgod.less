@@ -50,3 +50,12 @@ html,body{font-family: 'Roboto Slab', serif; height: 100%; overflow: auto;backgr
   div.dropdown-toggle{padding:10px 20px;margin: 20px 0; font-size: 20px; text-transform: uppercase}
   li > a{padding:10px 20px;margin: 5px 0; font-size: 20px; text-transform: uppercase}
 }
+@media screen and (min-width: @min_sm) and (max-width: @min_lg){
+  .navbar-fixed-top{
+    .navbar-nav>li>a{ font-size: 16px;}
+    .navbar-nav > li {padding:5px 15px;margin: 15px 0;  }
+    .navbar-nav > li.active, .navbar-nav > li:hover{padding-bottom: 15px; margin-bottom: 5px;}
+
+    .navbar-brand{padding: 8px 10px}
+  }
+}
