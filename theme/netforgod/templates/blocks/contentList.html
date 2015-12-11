@@ -64,10 +64,10 @@
                          alt="{{ content.fields.text }}"/>
                         <h4 class="media-heading">
                             <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
-                                {{content.fields.date | date:'MMMM yyyy'}}
+                                {{content.fields.date | date :'MMMM yyyy'}}
                             </a>
                             <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                {{content.fields.date | date:'MMMM yyyy' }}
+                                {{content.fields.date | date :'MMMM yyyy' }}
                             </a>
                            <!-- <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>-->
                         </h4>
