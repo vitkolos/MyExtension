@@ -63,7 +63,7 @@
                             <img ng-if="content.fields.affiche "
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
                              alt="{{ content.fields.text }}"/>
-                            <img ng-if="!content.fields.affiche "
+                            <img class="default-vignette" ng-if="!content.fields.affiche "
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',mode:'boxed'}) }}"
                              alt="{{ content.fields.text }}"/>
                             
@@ -75,6 +75,9 @@
                             <img ng-if="content.fields.affiche "
                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
                                 alt="{{ content.fields.text }}"/>
+                            <img ng-if="!content.fields.affiche "
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',mode:'boxed'}) }}"
+                             alt="{{ content.fields.text }}"/>
                             <h4 class="media-heading">
                                     {{content.fields.date*1000 | date :'MMMM yyyy'}}
                             </h4>
