@@ -9,4 +9,4 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
 
 };
-CKEDITOR.plugins.addExternal( 'youtube', '/theme/ckeditor-plugins/youtube/','plugin.js' );
+CKEDITOR.plugins.addExternal( 'youtube', '/theme/goodnews/ckeditor/plugins/youtube/','plugin.js' );
