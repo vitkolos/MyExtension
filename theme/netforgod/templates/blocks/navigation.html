@@ -23,6 +23,17 @@
                             </li>
                         </ul>
                     </li>
+                    <li ng-controller="LanguageMenuController as languageMenuCtrl" class="languageMenu">
+                        <a  class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{languageMenuCtrl.currentLang.flagCode}} <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li ng-repeat="lang in languageMenuCtrl.languages track by $index">
+                                <a ng-click="languageMenuCtrl.changeLang(lang.lang)" href>
+                                    <i ng-if="languageMenuCtrl.showFlags"><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></i>
+                                    {{lang.flagCode}}
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <form class="navbar-form" ng-if="menuCtrl.searchEnabled" ng-submit="menuCtrl.onSubmit()" role="form">
@@ -37,3 +48,29 @@
         </div>
     </div>
 </nav>
+
+
+<div ng-controller="LanguageMenuController as languageMenuCtrl" >
+    <div ng-if="languageMenuCtrl.mode">
+        <div class="dropdown-toggle" data-toggle="dropdown">
+            <i><img ng-if="languageMenuCtrl.showFlags" ng-src="{{languageMenuCtrl.getFlagUrl(languageMenuCtrl.currentLang.flagCode)}}" alt="{{languageMenuCtrl.currentLang.flagCode}}"/></i>
+            {{languageMenuCtrl.currentLang.flagCode}} <span class="caret"></span>
+        </div>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="lang in languageMenuCtrl.languages track by $index">
+                <a ng-click="languageMenuCtrl.changeLang(lang.lang)" href>
+                    <i ng-if="languageMenuCtrl.showFlags"><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></i>
+                    {{lang.flagCode}}
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div ng-if="!languageMenuCtrl.mode" class="btn-group">
+        <a ng-repeat="lang in languageMenuCtrl.languages track by $index" ng-class="{'disabled':languageMenuCtrl.isDisabled(lang.lang),'btn-primary':languageMenuCtrl.isDisabled(lang.lang)}"
+           class="btn btn-default" ng-click="languageMenuCtrl.changeLang(lang.lang)" href>
+            <i ng-if="languageMenuCtrl.showFlags"><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></i>
+            {{lang.flagCode}}
+        </a>
+    </div>
+
+</div>

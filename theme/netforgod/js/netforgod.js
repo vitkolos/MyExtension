@@ -7,7 +7,10 @@ blocksConfig.simpleContact={
            "template": "/templates/blocks/simpleContact.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
-
+blocksConfig.navigation = {
+            "template": "/templates/blocks/navigation.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/MenuController.js","/src/modules/rubedoBlocks/controllers/LanguageMenuController.js"]
+        },
 
 
 
