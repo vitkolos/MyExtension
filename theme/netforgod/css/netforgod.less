@@ -21,7 +21,7 @@ html,body{font-family: 'Roboto Slab', serif; height: 100%; overflow: auto;backgr
 
 /*reponsive classes*/
 .container-fluid{padding:0;overflow-x: hidden}
-.container-fluid > .container:first-of-type{margin-top:80px}
+.container-fluid > div.container:first-of-type{margin-top:80px}
 
 
 
@@ -49,6 +49,7 @@ html,body{font-family: 'Roboto Slab', serif; height: 100%; overflow: auto;backgr
   div.dropdown-toggle{padding:10px 20px;margin: 20px 0; font-size: 20px; text-transform: uppercase}
   li > a{padding:10px 20px;margin: 5px 0; font-size: 20px; text-transform: uppercase}
 }
+.navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse{max-height: none;}
 .navbar-toggle .icon-bar{background-color: @txt;}
 @media screen and (min-width: @min_sm) and (max-width: @min_lg){
   .navbar-fixed-top{
@@ -63,4 +64,7 @@ html,body{font-family: 'Roboto Slab', serif; height: 100%; overflow: auto;backgr
   .navbar-fixed-top .navbar-nav > li {padding:5px 10px; }
   .navbar-fixed-top .navbar-nav>li>a{ font-size: 14px;}
 
+}
+@media screen and (min-width: @min_sm) {
+  
 }

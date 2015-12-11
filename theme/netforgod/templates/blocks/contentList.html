@@ -1,0 +1,64 @@
+<div ng-controller="ContentListController as contentListCtrl">
+    <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
+            ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
+            ng-model="contentListCtrl.selectedManualType"></select>
+    <button ng-if="contentListCtrl.canAddToList()"
+            title="Add content"
+            class="btn btn-default"
+            ng-click="contentListCtrl.launchContribute()">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
+    <button ng-if="!contentListCtrl.canAddToList()&&contentListCtrl.isFOContributeMode&&contentListCtrl.editorPageUrl"
+            title="Add content"
+            class="btn btn-default"
+            ng-click="contentListCtrl.launchFOContribute()">
+        <span class="glyphicon glyphicon-plus"></span> Contribute
+    </button>
+    <div class="row contentList" ng-switch="blockConfig.columns" style="margin-top:24px">
+ 
+       <!--POUR 1 COLONNE-->
+        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1">
+            <!--<div id="infiniteScrollCtrl">-->
+            <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
+                <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="col-xs-12 list-articles1">
+                   <div class="col-xs-12 col-sm-5">
+                   <a ng-href="{{ content.detailPageUrl }}">
+                   
+                        <img class="img-responsive pull-right" ng-if="content.fields.image"
+                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'500px',height:'170px',mode:'crop'}) }}"
+                                                                     alt="{{ content.fields.text }}"/>
+                    </a>
+                    </div>
+                    <div class="col-xs-12 col-sm-7"> 
+                        <p class="thin" ng-if="content.taxonomy['5666a87c3bc325fc368b4568']"><span class="glyphicon glyphicon-folder-open"></span><span class="tags" ng-repeat="tagId in content.taxonomy['5666a87c3bc325fc368b4568']">{{contentListCtrl.getTermLabel(tagId)|uppercase}}</span></p>
+                        <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
+                            <p>
+                                {{content.fields.text}}
+                                <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                            </p>
+                        </a>
+                        <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                                {{content.fields.text }} ( {{content.status}} )
+                        </a>
+                        <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                        <p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user">{{content.createUser.fullName |uppercase}}</span>
+                           <span class="glyphicon glyphicon-time"></span>{{content.createTime*1000|date:'longDate'}}
+                       </p>
+                       <p class="thin" ng-if="!contentListCtrl.titleOnly">
+                            <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                       </p>
+                       
+                       <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                        Preview detail
+                        </a>
+                       
+                   </div>
+
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+
+</div>
