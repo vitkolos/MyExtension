@@ -62,59 +62,43 @@
 
 <div ng-controller="ContactBlockController as contactCtrl" ng-if="blockConfig.displayMode=='form'" class="container">
 <a name="contact"></a>
-        <form class="form-horizontal" role="form" ng-submit="contactCtrl.submit()">
-             <div class="form-group">
-                <div class="col-sm-2">&nbsp;</div>
-                <div class="col-sm-10"><h2>{{blockConfig.surname +" "+blockConfig.name}}</h2>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="{{'name'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name *")}}</label>
-                <div class="col-sm-10">
-                    <input type="text" name="name" ng-model="contactCtrl.contactData.name" class="form-control" id="{{'name'+block.id}}" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="{{'email'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Email.Label","Email *")}}</label>
-                <div class="col-sm-10">
-                    <input type="email" name="email" ng-model="contactCtrl.contactData.email" class="form-control" id="{{'email'+block.id}}" required>
-                </div>
-            </div>
-            <div class="form-group" ng-if="block.code!='organisateur' ">
-                <label for="{{'subject'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
-                <div class="col-sm-10">
-                    <input type="text" name="subject" ng-model="contactCtrl.contactData.subject" class="form-control" id="{{'subject'+block.id}}" required>
-                </div>
-            </div>
-            <div class="form-group" ng-if="block.code=='organisateur' ">
-                <label for="{{'subject'+block.id}}" class="col-sm-2 control-label">Organisateur *</label>
-                <div class="col-sm-10">
-                    <input type="text" name="subject" ng-model="contactCtrl.contactData.organisateur" class="form-control" id="{{'subject'+block.id}}" required>
-                </div>
-            </div>
-            <div class="form-group" ng-if="block.code=='organisateur' ">
-                <label for="{{'message'+block.id}}" class="col-sm-2 control-label">Description de l'événement *</label>
-                <div class="col-sm-10">
-                    <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message" class="form-control" id="{{'message'+block.id}}" required>
-                    </textarea>
-                </div>
-            </div>
-            <div class="form-group" ng-if="block.code!='organisateur' ">
-                <label for="{{'message'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
-                <div class="col-sm-10">
-                    <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message" class="form-control" id="{{'message'+block.id}}" required>
-                    </textarea>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
-                        <rubedo-notification></rubedo-notification>
-                    </div>
-                    <button type="submit" class="button bleu">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
-                </div>
-            </div>
-        </form>
+        <form class="form-horizontal" role="form" ng-submit="contactCtrl.submit();">
+                <div class="form-group">
+                   <div class="col-sm-2">&nbsp;</div>
+                   <div class="col-sm-10">{{blockConfig.surname +" "+blockConfig.name}}<br/>
+                       {{blockConfig.phone}}<br/>
+                       {{blockConfig.address}}
+                   </div>
+               </div>
+               <div class="form-group">
+                   <div class="col-sm-5">
+                       <input type="text" name="name" ng-model="contactCtrl.contactData.name" class="form-control" id="{{'name'+block.id}}" required placeholder='{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name *")}}'>
+                   </div>
+                   <div class="col-sm-5">
+                       <input type="email" name="email" ng-model="contactCtrl.contactData.email" class="form-control" id="{{'email'+block.id}}" required placeholder='{{rubedo.translate("Blocks.Contact.Input.Email.Label","Email *")}}'>
+                   </div>
+               </div>
+               <div class="form-group">
+                   <div class="col-sm-10">
+                       <input type="text" name="subject" ng-model="contactCtrl.contactData.subject" class="form-control" id="{{'subject'+block.id}}" required placeholder='{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}'>
+                   </div>
+               </div>
+               <div class="form-group">
+                   <div class="col-sm-10">
+                       <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message" class="form-control" id="{{'message'+block.id}}" required placeholder='{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}'>
+                       </textarea>
+                   </div>
+               </div>
+               
+               <div class="form-group">
+                   <div class="col-sm-offset-2 col-sm-10">
+                       <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
+                           <rubedo-notification></rubedo-notification>
+                       </div>
+                       <button type="submit" class="button jaune">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
+                   </div>
+               </div>
+           </form>
                         
 
     
