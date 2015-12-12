@@ -63,8 +63,11 @@
 <div ng-controller="ContactBlockController as contactCtrl" ng-if="blockConfig.displayMode=='form'" class="container">
 <a name="contact"></a>
         <form class="form-horizontal" role="form" ng-submit="contactCtrl.submit();">
+                <div class="col-xs-10 col-sm-offset-2" ng-if="block.displayTitle"><h3 class="block-title">{{block.title}}</h3></div>
+
                 <div class="form-group">
                    <div class="col-sm-2">&nbsp;</div>
+
                    <div class="col-sm-10">{{blockConfig.surname +" "+blockConfig.name}}<br/>
                        {{blockConfig.phone}}<br/>
                        {{blockConfig.address}}
