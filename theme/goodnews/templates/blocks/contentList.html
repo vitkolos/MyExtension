@@ -66,8 +66,8 @@
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
             <!--<div id="infiniteScrollCtrl">-->
-            <div  ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
-                <div class="list-blog col-md-4 col-sm-6 col-xs-12" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat-start="content in columnContents track by $index">
+            <div  class="col-md-4 col-sm-6 col-xs-12" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
+                <div class="list-blog " ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat-start="content in columnContents track by $index">
                     <a ng-href="{{ content.detailPageUrl }}">
                         <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',mode:'boxed'}) }}" style="width:100%">
                         <div class="blog-bg">
