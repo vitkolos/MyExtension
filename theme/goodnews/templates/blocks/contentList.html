@@ -17,7 +17,9 @@
     <div class="row contentList" ng-switch="blockConfig.columns" style="margin-top:24px">
  
        <!--POUR 1 COLONNE-->
-        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1">
+       <div ng-attr-lr-infinite-scroll="loadMoreContents"
+             ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
+             ng-style="contentListCtrl.blockStyle" ng-switch-when="1">
             <!--<div id="infiniteScrollCtrl">-->
             <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="col-xs-12 list-articles1">
