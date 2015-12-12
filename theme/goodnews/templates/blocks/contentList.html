@@ -72,11 +72,12 @@
                         <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',mode:'boxed'}) }}" style="width:100%">
                         <div class="blog-bg">
                         </div>
-                        <div class="blog-title">
-                            <p>{{content.fields.text }}</p>
-                        </div>
+
                     </a>
 
+                </div>
+                <div class="blog-title">
+                    <p>{{content.fields.text }}</p>
                 </div>
                 <a ng-repeat-end ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
                     {{rubedo.translate("Label.Edit", "Edit")}}
