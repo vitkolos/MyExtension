@@ -3,12 +3,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
-    me.inscriptionTemplate = themePath+'/templates/blocks/inscription.html';
     var previousFields;
     me.taxonomy=[];
-    me.showInscription = false; // pour les inscriptions, masquer le formulaire
-    me.isInscription = true; // pour les propositions, ne pas afficher les inscriptions si closes
-
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
@@ -208,6 +204,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
                             });
+                            if (me.getTermInTaxo("5666a87c3bc325fc368b4568","5669edee3bc325e15f8b4584")) {
+                                me.detailTemplate=  themePath+'/templates/blocks/contentDetail/blog.html';
+                            }
                          }
                          
                      });
