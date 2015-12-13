@@ -328,16 +328,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             }
         );
     };
+    
+    
     var transformForPersist = function(){
         var returnFields = angular.copy(me.content.fields);
+        console.log($scope.fieldEntity);
         angular.forEach(me.content.fields, function(field, fieldKey){
             if(angular.isArray(field)){
                 angular.forEach(field, function(fld, fldKey){
-                    if(fldKey === 0){
-                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
-                    } else {
-                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey+fldKey];
+                    if (fieldKey!='image') {
+                        if(fldKey === 0){
+                            returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
+                        } else {
+                            returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey+fldKey];
+                        }    
                     }
+                    else returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey][fldKey];
                 })
             } else {
                 returnFields[fieldKey] = $scope.fieldEntity[fieldKey];
