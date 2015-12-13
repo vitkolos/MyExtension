@@ -1,13 +1,12 @@
 <div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl" class="container">
-    <button title="Add article" class="contribution btn btn-default ng-scope" ng-click="ccCtrl.showForm= !ccCtrl.showForm">
+    <button title="Add article" class="contribution btn btn-default ng-scope" ng-click="ccCtrl.showForm= !ccCtrl.showForm" ng-if="!ccCtrl.updateMode">
         <span class="glyphicon glyphicon-plus"></span>
     </button>
-    <form ng-if="ccCtrl.contentType && ccCtrl.showForm" class="form form-horizontal" ng-submit="ccCtrl.submitNewContent()">
+    <form ng-if="ccCtrl.contentType && ((!ccCtrl.updateMode && ccCtrl.showForm) || ccCtrl.updateMode)" class="form form-horizontal" ng-submit="ccCtrl.submitNewContent()">
         <h3 ng-if="!ccCtrl.updateMode" class="text-left">
                 {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}} : {{ccCtrl.contentType.type}}
         </h3>
-        <h2 ng-if="ccCtrl.updateMode" class="text-center">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>
-        <div ng-if="!ccCtrl.updateMode || ccCtrl.updateMode">
+        <h3 ng-if="ccCtrl.updateMode" class="text-center">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h3>
         <rubedo-field ng-repeat="field in fields track by $index" ng-if="field.config.name!='author' &&field.config.name!='author_jmj' ">{{field}}</rubedo-field>
                 <div ng-repeat="vocabulary in vocabularies track by $index" class="form-group">
             <label  class="col-sm-4 control-label">{{vocabulary.name}} <span ng-if="vocabulary.mandatory">*</span></label>
@@ -56,7 +55,6 @@
             </div>
         </div>
 
-        </div>
         <div class="form-group">
             <div class="col-sm-8 col-md-offset-4">
                 <button type="submit" class="btn btn-primary" ng-if="rubedo.current.user.rights.canContributeFODraft" ng-click="ccCtrl.submitStatus='draft'">
@@ -69,7 +67,6 @@
                     <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Publish", "Publish")}}
                 </button>
             </div>
-        </div>
         </div>
     </form>
 
