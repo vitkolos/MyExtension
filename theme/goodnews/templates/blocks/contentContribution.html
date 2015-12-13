@@ -7,7 +7,7 @@
                 {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}} : {{ccCtrl.contentType.type}}
         </h3>
         <h3 ng-if="ccCtrl.updateMode" class="text-center">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h3>
-        <rubedo-field ng-repeat="field in fields track by $index" ng-if="field.config.name!='author' &&field.config.name!='author_jmj' ">{{field}}</rubedo-field>
+        <rubedo-field ng-repeat="field in fields track by $index" ng-if="field.config.name!='author'  ">{{field}}</rubedo-field>
                 <div ng-repeat="vocabulary in vocabularies track by $index" class="form-group">
             <label  class="col-sm-4 control-label">{{vocabulary.name}} <span ng-if="vocabulary.mandatory">*</span></label>
             <div class="col-sm-8">
