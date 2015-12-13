@@ -71,7 +71,8 @@
                 <div class="list-blog" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat-start="content in columnContents track by $index">
                     <a ng-href="{{ content.detailPageUrl }}">
                         <img ng-if="!isArray(content.fields.image)" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',mode:'boxed'}) }}" style="width:100%">
-                        <img ng-if="isArray(content.fields.image)"ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image[0],{width:'400px',mode:'boxed'}) }}" style="width:100%">
+                        <img ng-if="isArray(content.fields.image) && !isArray(content.fields.image[0])" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image[0],{width:'400px',mode:'boxed'}) }}" style="width:100%">
+                        <img ng-if="isArray(content.fields.image) && isArray(content.fields.image[0])" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image[0][0],{width:'400px',mode:'boxed'}) }}" style="width:100%">
                         <div class="blog-bg">
                         </div>
                         <div class="blog-plus">
