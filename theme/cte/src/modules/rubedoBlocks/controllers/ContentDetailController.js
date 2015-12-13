@@ -103,7 +103,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);
-                        console.log($scope.fieldEntity);
 
 
                     $scope.fieldLanguage=me.content.locale;

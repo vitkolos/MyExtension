@@ -134,7 +134,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     $location.url(response.data.url+'?taxonomies={"'+taxoKey+'":["'+termId+'"]}');
                 }
             }
-            else console.log('failed');
         });        
     };
     me.canAddToList=function(){
