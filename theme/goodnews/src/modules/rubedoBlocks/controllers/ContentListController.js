@@ -63,7 +63,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         me.blockStyle = {
             height: (me.limit * me.contentHeight - me.contentHeight)+'px',
             'overflow-y': 'scroll',
-            'width':'100%'
+            width:'100%'
         };
         me.timeThreshold = config['timeThreshold'] ? config['timeThreshold']:200;
         me.scrollThreshold = config['scrollThreshold'] ? config['scrollThreshold']:300;
