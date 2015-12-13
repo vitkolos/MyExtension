@@ -16,7 +16,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         me.start=(urlCurrentPage-1)*me.limit;
     }
     $scope.isArray = angular.isArray;
-    console.log($scope.rubedo);
     var options = {
         start: me.start,
         limit: me.limit,
@@ -135,6 +134,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     $location.url(response.data.url+'?taxonomies={"'+taxoKey+'":["'+termId+'"]}');
                 }
             }
+            else console.log('failed');
         });        
     };
     me.canAddToList=function(){

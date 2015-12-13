@@ -43,7 +43,7 @@
                                 {{content.fields.text }} ( {{content.status}} )
                         </a>
                         <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                        <p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user"><a href="" ng-click="contentListCtrl.search('author',{{content.createUser.id}})">{{content.createUser.fullName |uppercase}}</a></span>
+                        <p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user"><a href="" ng-click="contentListCtrl.search('author',content.createUser.id)">{{content.createUser.fullName |uppercase}}</a></span>
                            <span class="glyphicon glyphicon-time"></span>{{content.createTime*1000|date:'longDate'}}
                        </p>
                        <p class="thin" ng-if="!contentListCtrl.titleOnly">
