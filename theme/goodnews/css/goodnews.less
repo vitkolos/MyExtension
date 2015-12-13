@@ -415,8 +415,9 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   img{transition: opacity ease 0.3s; margin-bottom: 12px}
   img:hover{opacity: 0.8}
 }
-span.user{font-size: 0.8em}
-span.tags{font-size: 0.8em}
+
+span.tags, span.user {font-size:0.8em; transition: all 0.2s ease}
+span.tags:hover, span.user:hover {font-size:0.8em; color: @main_color}
 p.thin{
   font-weight: 300;
   span.glyphicon{top:0px; margin-right: 10px}
