@@ -103,7 +103,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);
-                    
+                        console.log($scope.fieldEntity);
+
 
                     $scope.fieldLanguage=me.content.locale;
                     if (me.content.isProduct){
@@ -283,7 +284,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     if (config.contentId){
         me.getContentById(config.contentId);
     }
-    
+    console.log($scope.fieldEntity);
     me.revertChanges=function(){
         $scope.fieldEntity=angular.copy(previousFields);
     };
@@ -333,11 +334,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         angular.forEach(me.content.fields, function(field, fieldKey){
             if(angular.isArray(field)){
                 angular.forEach(field, function(fld, fldKey){
-                    if(fldKey === 0){
-                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
-                    } else {
-                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey+fldKey];
+                    if (fieldKey!='image') {
+                        if(fldKey === 0){
+                            returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
+                        } else {
+                            returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey+fldKey];
+                        }    
                     }
+                    else returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey][fldKey];
+                    
                 })
             } else {
                 returnFields[fieldKey] = $scope.fieldEntity[fieldKey];
