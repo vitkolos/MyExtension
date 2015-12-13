@@ -18,7 +18,7 @@
 	<div class="row padding-large">
 		<div class="col-sm-8">
 			<img ng-if="!isArray(content.fields.image)"
-			     ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1000px',mode:'boxed'})}}" style="width:100%">
+			     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'1000px',mode:'boxed'})}}" style="width:100%">
 			<img ng-if="isArray(content.fields.image)"
 			     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image[0],{width:'1000px',mode:'boxed'})}}" style="width:100%">
 		</div>
