@@ -225,6 +225,7 @@ blockquote {
  border-bottom:5px solid white;
  border-left:none;
  margin: 30px auto;
+ position: relative;
 }
 blockquote:before{
   content:'\275d';
@@ -233,6 +234,10 @@ blockquote:before{
 blockquote:after{
   content:'\e800';
   font-size: 3em;
+  transform:rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  position: absolute;
+  right: 0;
 }
 
 .text-article blockquote p{.capital;.txt-red; text-align: center}
