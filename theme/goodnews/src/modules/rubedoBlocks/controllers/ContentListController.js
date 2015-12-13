@@ -128,7 +128,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         RubedoPagesService.getPageById(searchPageId).then(function(response){
             if (response.data.success){
                 if (taxoKey=='author') {
-                    $location.url(response.data.url+'?author[]="'+termId);
+                    $location.url(response.data.url+'?author[]='+termId);
                 }
                 else {
                     $location.url(response.data.url+'?taxonomies={"'+taxoKey+'":["'+termId+'"]}');
