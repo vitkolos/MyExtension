@@ -36,7 +36,7 @@
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('author')}}" ></rubedo-field><!--Texte (suite)-->
 		</div>
 	</div>
-	<div class="row padding-large" ng-if="isArray(contentDetailCtrl.content.fields.image) && !isArray(contentDetailCtrl.content.fields.image[0]">
+	<div class="row padding-large" ng-if="isArray(contentDetailCtrl.content.fields.image) ">
 		<div class="col-sm-6" ng-repeat="image in contentDetailCtrl.content.fields.image" ng-if="!$first">
 			<img class="blogImage" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'600px',mode:'boxed'})}}" style="width:100%">
 		</div>
