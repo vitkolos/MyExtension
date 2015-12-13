@@ -14,6 +14,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     if (urlCurrentPage){
         me.start=(urlCurrentPage-1)*me.limit;
     }
+    $scope.isArray = angular.isArray;
     var options = {
         start: me.start,
         limit: me.limit,

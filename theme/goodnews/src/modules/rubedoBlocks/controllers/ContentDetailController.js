@@ -9,6 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
     });
+    $scope.isArray = angular.isArray;
     me.tooltips=function(){
         $('[data-toggle="tooltip"]').tooltip();
     }
