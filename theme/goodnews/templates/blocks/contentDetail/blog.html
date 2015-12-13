@@ -19,8 +19,10 @@
 		<div class="col-sm-8">
 			<img ng-if="!isArray(contentDetailCtrl.content.fields.image)"
 			     ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.fields.image,{width:'1000px',mode:'boxed'})}}" style="width:100%">
-			<img ng-if="isArray(contentDetailCtrl.content.fields.image)"
+			<img ng-if="isArray(contentDetailCtrl.content.fields.image) && !isArray(contentDetailCtrl.content.fields.image[0])"
 			     ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.fields.image[0],{width:'1000px',mode:'boxed'})}}" style="width:100%">
+			<img ng-if="isArray(contentDetailCtrl.content.fields.image) && isArray(contentDetailCtrl.content.fields.image[0]"
+			     ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.fields.image[0][0],{width:'1000px',mode:'boxed'})}}" style="width:100%">
 		</div>
 		<div class="col-sm-4 blogTexte">
 			<p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user">{{contentDetailCtrl.content.createUser.fullName |uppercase}}</span>
@@ -35,12 +37,16 @@
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('author')}}" ></rubedo-field><!--Texte (suite)-->
 		</div>
 	</div>
-	<div class="row padding-large" ng-if="isArray(contentDetailCtrl.content.fields.image)">
+	<div class="row padding-large" ng-if="isArray(contentDetailCtrl.content.fields.image) && !isArray(contentDetailCtrl.content.fields.image[0]">
 		<div class="col-sm-6" ng-repeat="image in contentDetailCtrl.content.fields.image" ng-if="!$first">
 			<img class="blogImage" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'600px',mode:'boxed'})}}" style="width:100%">
 		</div>
 	</div>
-	
+	<div class="row padding-large" ng-if="isArray(contentDetailCtrl.content.fields.image) && isArray(contentDetailCtrl.content.fields.image[0]">
+		<div class="col-sm-6" ng-repeat="image in contentDetailCtrl.content.fields.image[0]" ng-if="!$first">
+			<img class="blogImage" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'600px',mode:'boxed'})}}" style="width:100%">
+		</div>
+	</div>
 				
 				
 </div>
