@@ -2,6 +2,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
+    var searchPageId="5669ecab3bc325da5f8b4571";
     var blockPagingIdentifier=$scope.block.bType+$scope.block.id.substring(21)+"Page";
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
@@ -124,6 +125,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         });
         return label;
     }
+    me.search = function(taxoKey,termId){
+        RubedoPagesService.getPageById(searchPageId).then(function(response){
+            if (response.data.success){
+                if (taxoKey=='author') {
+                    $location.url(response.data.url+'?author[]="'+termId);
+                }
+                else {
+                    $location.url(response.data.url+'?taxonomies={"'+taxoKey+'":["'+termId+'"]}');
+                }
+            }
+        });        
+    };
     me.canAddToList=function(){
         return ($scope.rubedo.fieldEditMode&&me.queryType&&(me.queryType=="simple"||me.queryType=="manual"));
     };
