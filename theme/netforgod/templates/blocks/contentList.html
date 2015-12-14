@@ -60,7 +60,7 @@
                 </div>
                 
                 <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat-start="content in columnContents track by $index"  class="col-lg-3 col-sm-6 filmList"
-                      ng-click="contentListCtrl.togglePreview($parent.$parent.$index,$index)" ng-class="{'expanded':isExpanded">
+                      ng-click="contentListCtrl.togglePreview($parent.$parent.$index,$index)" ng-class="{'expanded':isExpanded}">
                     <!--<a ng-if="!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">-->
                         <img ng-if="content.fields.affiche "
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
