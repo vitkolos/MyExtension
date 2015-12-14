@@ -95,7 +95,11 @@
                     </div>
                     <div class="col-sm-6">
                         <h1>{{columnContents[contentListCtrl.previewIndex].fields.text}}</h1>
+                        <h4 class="media-heading">
+                                {{content.fields.date*1000 | date :'MMMM yyyy'}}
+                        </h4>
                         <p>{{columnContents[contentListCtrl.previewIndex].fields.summary}}</p>
+                        <a  ng-href="{{ content.detailPageUrl }}">Voir le film -></a>
                     </div>
                     
                 </div>
