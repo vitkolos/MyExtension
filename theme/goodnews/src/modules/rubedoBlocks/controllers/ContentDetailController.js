@@ -202,6 +202,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 angular.forEach(value, function(termId){
                                     if (termId=='5669edee3bc325e15f8b4584') {
                                         me.detailTemplate=  themePath+'/templates/blocks/contentDetail/blog.html';
+                                        console.log("blog article");
                                     }
                                 });
                             }
