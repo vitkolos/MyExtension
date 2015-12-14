@@ -211,11 +211,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             $location.url(me.editorPageUrl);
         }
     }
-    
+    $scope.isExpanded = false;
     me.previewIndex = -1; me.seasonIndex = -1;
     /*liste des films : toggle preview*/
     me.togglePreview = function(parentIndex,index){
-        
         var preview = Math.floor(index/4)+1;
         var actualPreview = Math.floor(me.previewIndex/4)+1;
        if(me.seasonIndex==parentIndex && me.previewIndex  == index) angular.element("#preview"+parentIndex+"_"+preview).collapse("toggle"); // même saison,même index= -> on toggle
@@ -226,13 +225,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
        me.previewIndex = index; me.seasonIndex=parentIndex;
        $scope.isExpanded=true;
        
-       
     }
  
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService',function($scope,$compile,RubedoContentsService){
     var me = this;
-    $scope.isExpanded = false;
+    
     me.index = $scope.$index;
     me.parentIndex = $scope.columnIndex;
     me.content = $scope.content;
