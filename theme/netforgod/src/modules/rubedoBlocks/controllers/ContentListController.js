@@ -94,6 +94,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
                     }
+                    console.log(me.contentList);
                 }
                 else {
                     var columnContentList = [];
