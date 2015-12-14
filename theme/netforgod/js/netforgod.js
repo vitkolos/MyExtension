@@ -88,3 +88,40 @@ blocksConfig.navigation = {
         };
         return serviceInstance;
     }]);
+    angular.module('rubedoDataAccess').factory('TaxonomyService', ['$http',function($http) {
+        var serviceInstance={};
+	serviceInstance.getTaxonomyByVocabulary=function(vocabularies){
+            return ($http.get("/api/v1/taxonomy",{
+                params:{
+                    vocabularies:vocabularies
+                }
+            }));
+	};
+        return serviceInstance;
+    }]);  
+angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location', function($timeout,$location) {
+  return {
+    restrict : 'A',
+	  transclude : true,
+	  replace : true,
+	  template : '<div ng-transclude></div>',
+	  link : function($scope, element, attrs) {
+		 $timeout(function () {
+                      addthis.init();
+                      var contentUrl = $location.absUrl();
+                      addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
+                                 url: contentUrl,
+                                 title : attrs.title,
+                                 description : ''        
+                      });
+		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
+                        $window.addthis.layers.refresh();
+                    }*/
+	           addthis.counter(angular.element('.addthis_counter').get(), {}, {url: contentUrl});
+           /*addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: $location.absUrl()}, function(obj) {
+                      console.log(obj)
+           });*/
+      });
+	  }
+	};
+}]);
