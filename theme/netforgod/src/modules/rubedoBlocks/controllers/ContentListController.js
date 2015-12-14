@@ -218,8 +218,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         
         var preview = Math.floor(index/4)+1;
         var actualPreview = Math.floor(me.previewIndex/4)+1;
-        
-       if(me.seasonIndex==parentIndex && me.previewIndex  == index) angular.element("#preview"+parentIndex+"_"+preview).collapse("hide"); // même saison,même index= -> on masque
+       if(me.seasonIndex==parentIndex && me.previewIndex  == index) angular.element("#preview"+parentIndex+"_"+preview).collapse("toggle"); // même saison,même index= -> on toggle
        else if((me.seasonIndex==parentIndex && preview != actualPreview) || me.seasonIndex!=parentIndex) { // même saison mais autre preview OU différente saison
             angular.element("#preview"+me.seasonIndex+"_"+me.previewIndex).collapse("hide");
             angular.element("#preview"+parentIndex+"_"+preview).collapse("show");
