@@ -212,14 +212,19 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
     }
     
-    me.previewIndex = 0;
+    me.previewIndex = 0; me.seasonIndex = 0;
     /*liste des films : toggle preview*/
     me.togglePreview = function(parentIndex,index){
         
         var preview = Math.floor(index/4)+1;
-       if(me.previewIndex != index) angular.element("#preview"+parentIndex+"_"+preview).collapse("show");
-       else angular.element("#preview"+parentIndex+"_"+preview).collapse("hide");
-       me.previewIndex = index;
+        var actualPreview = Math.floor(me.previewIndex/4)+1;
+        
+       if(me.seasonIndex==parentIndex && me.previewIndex  == index) angular.element("#preview"+parentIndex+"_"+preview).collapse("hide"); // même saison,même index= -> on masque
+       else if((me.seasonIndex==parentIndex && preview != actualPreview) || me.seasonIndex!=parentIndex) { // même saison mais autre preview OU différente saison
+            angular.element("#preview"+me.seasonIndex+"_"+me.previewIndex).collapse("hide");
+            angular.element("#preview"+parentIndex+"_"+preview).collapse("show");
+        }
+       me.previewIndex = index; me.seasonIndex=parentIndex;
     }
  
 }]);
