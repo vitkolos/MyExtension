@@ -222,10 +222,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
        else if((me.seasonIndex==parentIndex && preview != actualPreview) || me.seasonIndex!=parentIndex) { // même saison mais autre preview OU différente saison
             angular.element("#preview"+me.seasonIndex+"_"+me.actualPreview).collapse("hide");
             angular.element("#preview"+parentIndex+"_"+preview).collapse("show");
+            console.log("actualPreview : " + actualPreview+" - newPreview : "+preview);
         }
        me.previewIndex = index; me.seasonIndex=parentIndex;
-       console.log(me.seasonIndex+" "+me.previewIndex);
-       console.log("actualPreview : " + actualPreview);
+       
        
     }
  
