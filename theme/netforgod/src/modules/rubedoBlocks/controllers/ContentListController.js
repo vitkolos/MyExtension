@@ -214,10 +214,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     
     me.previewIndex = 0;
     /*liste des films : toggle preview*/
-    me.togglePreview = function(index){
+    me.togglePreview = function(parentIndex,index){
         me.previewIndex = index;
         var preview = Math.floor(index/4)+1;
-       angular.element("#preview"+preview).collapse("toggle");
+       angular.element("#preview"+parentIndex+"_"+preview).collapse("toggle");
     }
  
 }]);
