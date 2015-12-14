@@ -10,6 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
     });
     $scope.isArray = angular.isArray;
+    me.isBlog=false;
     me.tooltips=function(){
         $('[data-toggle="tooltip"]').tooltip();
     }
@@ -201,7 +202,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             if (taxo=="5666a87c3bc325fc368b4568") {
                                 angular.forEach(value, function(termId){
                                     if (termId=='5669edee3bc325e15f8b4584') {
-                                        me.detailTemplate=  themePath+'/templates/blocks/contentDetail/blog.html';
+                                        me.isBlog=true;
                                         console.log("blog article");
                                     }
                                 });
