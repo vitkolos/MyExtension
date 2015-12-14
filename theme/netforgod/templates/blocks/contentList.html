@@ -84,6 +84,21 @@
                             </h4>
                         </a>
                     </div>
+                    <div ng-if="$index%4==0" class="col-sm-12 film-preview">
+                        <div class="col-sm-6">
+                            <img ng-if="content.fields.affiche "
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
+                                alt="{{ content.fields.text }}"/>
+                            <img ng-if="!content.fields.affiche "
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',mode:'boxed'}) }}"
+                             alt="{{ content.fields.text }}"/>
+                        </div>
+                        <div class="col-sm-6">
+                            <h1>{{content.fields.text}}</h1>
+                            <p>{{content.fields.summary}}</p>
+                        </div>
+                        
+                    </div>
             </div>
         </div>
     </div>
