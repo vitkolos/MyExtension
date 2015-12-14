@@ -192,10 +192,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 
                      var taxonomiesArray ={};
                      var index=0;
+                     
                      angular.forEach(me.content.taxonomy,function(value, taxo){
                             if (taxo!='navigation'){
                                 taxonomiesArray[index] = taxo;
                                 index++;
+                            }
+                            if (taxo=="5666a87c3bc325fc368b4568") {
+                                angular.forEach(value, function(termId){
+                                    if (termId=='5669edee3bc325e15f8b4584') {
+                                        me.detailTemplate=  themePath+'/templates/blocks/contentDetail/blog.html';
+                                    }
+                                });
                             }
                         });
                      TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
@@ -205,9 +213,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
                             });
-                            if (me.getTermInTaxo("5666a87c3bc325fc368b4568","5669edee3bc325e15f8b4584")) {
-                                me.detailTemplate=  themePath+'/templates/blocks/contentDetail/blog.html';
-                            }
+
                          }
                          
                      });
@@ -328,22 +334,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             }
         );
     };
-    
-    
     var transformForPersist = function(){
         var returnFields = angular.copy(me.content.fields);
-        console.log($scope.fieldEntity);
         angular.forEach(me.content.fields, function(field, fieldKey){
             if(angular.isArray(field)){
                 angular.forEach(field, function(fld, fldKey){
-                    if (fieldKey!='image') {
-                        if(fldKey === 0){
-                            returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
-                        } else {
-                            returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey+fldKey];
-                        }    
+                    if(fldKey === 0){
+                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
+                    } else {
+                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey+fldKey];
                     }
-                    else returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey][fldKey];
                 })
             } else {
                 returnFields[fieldKey] = $scope.fieldEntity[fieldKey];
