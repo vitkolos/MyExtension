@@ -84,7 +84,7 @@
                         </h4>
                     </a>
                 </div>
-                <div ng-if="$index%4==3" class="col-sm-12 film-preview" ng-repeat-end id="preview{{$index}}">
+                <div ng-if="$index%4==3" class="col-sm-12 film-preview collapse" ng-repeat-end id="preview{{$index}}">
                     <div class="col-sm-6">
                         <img ng-if="content.fields.affiche "
                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
