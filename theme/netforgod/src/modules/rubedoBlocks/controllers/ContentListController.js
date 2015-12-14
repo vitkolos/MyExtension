@@ -211,6 +211,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             $location.url(me.editorPageUrl);
         }
     }
+    me.togglePreview = function(index){
+        var preview = Math.floor(index/4)+1;
+       angular.element("#preview"+preview).collapse("toggle");
+    }
+ 
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService',function($scope,$compile,RubedoContentsService){
     var me = this;
