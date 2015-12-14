@@ -59,7 +59,7 @@
                     <h1 class="titre-saison" ng-if="columnContents[0].fields.annee ==0">{{rubedo.translate('Block.Futurs', 'En préparation')}}</h1>
                 </div>
                 
-                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat-start="content in columnContents track by $index"  class="col-lg-3 col-sm-6 filmList" ng-click="contentListCtrl.togglePreview($parent.$index,$index)">
+                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat-start="content in columnContents track by $index"  class="col-lg-3 col-sm-6 filmList" ng-click="contentListCtrl.togglePreview($parent.$parent.$index,$index)">
                     <!--<a ng-if="!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">-->
                         <img ng-if="content.fields.affiche "
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
@@ -84,7 +84,7 @@
                         </h4>
                     <!--</a>-->
                 </div>
-                <div ng-if="$index%4==3 || $last" class="col-sm-12 film-preview collapse" ng-repeat-end id="preview{{$parent.$index}}_{{$index/4 |number:0}}">
+                <div ng-if="$index%4==3 || $last" class="col-sm-12 film-preview collapse" ng-repeat-end id="preview{{$parent.$parent.$index}}_{{$index/4 |number:0}}">
                     <div class="col-sm-6">
                         <img ng-if="columnContents[contentListCtrl.previewIndex].fields.affiche "
                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(columnContents[contentListCtrl.previewIndex].fields.affiche,{height:'400px',mode:'boxed'}) }}"
