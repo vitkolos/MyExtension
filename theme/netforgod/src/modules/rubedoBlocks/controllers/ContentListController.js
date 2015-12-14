@@ -225,7 +225,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             console.log("actualPreview : " + actualPreview+" - newPreview : "+preview);
         }
        me.previewIndex = index; me.seasonIndex=parentIndex;
-       $scope.isExpanded=true;
+       $scope.contentListDetailCtrl.isExpanded=true;
        
        
     }
@@ -233,6 +233,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService',function($scope,$compile,RubedoContentsService){
     var me = this;
+    me.isExpanded = false;
     me.index = $scope.$index;
     me.parentIndex = $scope.columnIndex;
     me.content = $scope.content;
