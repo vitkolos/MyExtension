@@ -5,6 +5,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
     me.taxonomy=[];
+    me.watch = 'no';
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
@@ -95,8 +96,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                        
                     }
-                
-                    
+                    if (me.content.fields.film.url) {
+                        me.watch = 'trailer';
+                    }
+                    else if (me.content.fields.trailer.url) {
+                        me.watch = 'trailer';
+                    }
+                    else me.watch='no';
                     
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);

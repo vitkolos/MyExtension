@@ -11,5 +11,13 @@
 		<p><span class="glyphicon glyphicon-flag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
 	</div>
 </div>
+<div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
+	<div class="col-sm-12">
+		<div class="film-controls" >
+			<p>Watch<span ng-if="fieldEntity['film']"  ng-class="{'active':contentDetailCtrl.watch =='film' }">film</span><span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }">trailer</span></p>
+		</div>
+		
+	</div>
+</div>
 
 
