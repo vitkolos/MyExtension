@@ -4,11 +4,14 @@
 	</div>
 	<div class="col-sm-8">
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" ></rubedo-field><!--Texte-->
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('subTitle')}}" ></rubedo-field><!--sous-titre-->
-		<p><span class="glyphicon glyphicon-calendar"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('subTitle')}}" class="uppercase"></rubedo-field><!--sous-titre-->
+		<p style="font-size: 0.8em"><span class="glyphicon glyphicon-calendar"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
 		<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="glyphicon glyphicon-tags"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
 		<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="glyphicon glyphicon-flag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
+		<div class="buy-dvd">
+			<a href=""><span class="glyphicon glyphicon-cd">Buy DVD...</span></a>
+		</div>
 	</div>
 </div>
 <div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
@@ -24,7 +27,8 @@
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('trailer')}}" ></rubedo-field><!--sous-titre-->
 		</div>
 		<div class="film-socials" >
-			<p>If you like this film <span>Donate</span><span><i class="fa fa-hand-paper-o"></i>Become a volunteer</span><span><i class="fa fa-share-alt"></i>Share this film</span></p>
+			<p class="pull-left">If you like this film</p>
+			<p class="pull-right"><span><i class="fa fa-money"></i>Donate</span><span><i class="fa fa-hand-paper-o"></i>Become a volunteer</span><span><i class="fa fa-share-alt"></i>Share this film</span></p>
 		</div>
 	</div>
 </div>
