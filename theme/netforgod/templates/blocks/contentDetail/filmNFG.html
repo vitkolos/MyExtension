@@ -8,7 +8,7 @@
 		<p><span class="glyphicon glyphicon-calendar"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
 		<p><span class="glyphicon glyphicon-tags"></span></p>
-		<p><span class="glyphicon glyphicon-flag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo(['54d6299445205e7877a6b28e',tagId)|uppercase}}</span></p>
+		<p><span class="glyphicon glyphicon-flag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)|uppercase}}</span></p>
 	</div>
 </div>
 
