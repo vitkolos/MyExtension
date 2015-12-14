@@ -14,13 +14,14 @@
 <div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
 	<div class="col-sm-12">
 		<div class="film-controls" >
-			<p>Watch<span ng-if="fieldEntity['film']"  ng-class="{'active':contentDetailCtrl.watch =='film' }">film</span><span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }">trailer</span></p>
+			<p>Watch <span ng-if="fieldEntity['film']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
+				<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 		</div>
 		<div ng-if="contentDetailCtrl.watch =='film'">
-			
+			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('film')}}" ></rubedo-field><!--sous-titre-->
 		</div>
 		<div ng-if="contentDetailCtrl.watch =='trailer'">
-			
+			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('trailer')}}" ></rubedo-field><!--sous-titre-->
 		</div>
 	</div>
 </div>

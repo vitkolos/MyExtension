@@ -97,7 +97,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                        
                     }
                     if (me.content.fields.film) {
-                        me.watch = 'trailer';
+                        me.watch = 'film';
                     }
                     else if (me.content.fields.trailer) {
                         me.watch = 'trailer';
