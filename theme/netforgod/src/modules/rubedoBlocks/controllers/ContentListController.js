@@ -225,6 +225,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             angular.element("#preview"+parentIndex+"_"+preview).collapse("show");
         }
        me.previewIndex = index; me.seasonIndex=parentIndex;
+       console.log(me.seasonIndex+" "+me.previewIndex);
     }
  
 }]);
