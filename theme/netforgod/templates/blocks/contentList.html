@@ -15,7 +15,6 @@
         <span class="glyphicon glyphicon-plus"></span> Contribute
     </button>
     <div class="row">
-        
     </div>
     <div class="row">
         <div ng-attr-lr-infinite-scroll="loadMoreContents"
@@ -53,9 +52,9 @@
                     </a>
                 </div>
             </div>
-            <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-if="contentListCtrl.filmsList" class="row">
+            <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-if="contentListCtrl.filmsList">
                 <div class="col-sm-12">
-                    <div class="switch pull-right" ng-click="" ng-class="{'on' : showFilters}">
+                    <div class="switch pull-right" ng-click="showFilters = !showFilters" ng-class="{'on' : showFilters}">
                         <span></span>
                     </div>
                 </div>
