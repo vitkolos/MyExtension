@@ -94,19 +94,21 @@ span.glyphicon{margin-right: 5px}
   position:absolute; top: 30px; right: 30px; opacity: 0.8; cursor: pointer;height: 40px; width:40px;z-index: 1;
   span{background-color: white; position: absolute; width: 40px; height: 2px; top:20px; right: 0}
   span:nth-child(1){transform:rotate(45deg);-webkit-transform:rotate(45deg)}
-  span:nth-child(2){transform:rotate(-45deg)}
+  span:nth-child(2){transform:rotate(-45deg);-webkit-transform:rotate(-45deg)}
 }
 .film-preview >div.prev, .film-preview >div.next{
   position:absolute; top: 40%; right: 30px; opacity: 0.8; cursor: pointer;height: 40px; width:40px; z-index: 1;
-  span{background-color: white; position: absolute; width: 40px; height: 2px; top:20px; right: 0}
-  span:nth-child(1){transform:rotate(45deg);-webkit-transform:rotate(45deg)}
-  span:nth-child(2){transform:rotate(-45deg)}
+  span{background-color: white; position: absolute; width: 40px; height: 2px; right: 0}
 }
 .film-preview >div.prev{
   left:30px;
+  span:nth-child(1){transform:rotate(-45deg);-webkit-transform:rotate(-45deg); top:0}
+  span:nth-child(2){transform:rotate(45deg); -webkit-transform:rotate(45deg);top:20px}
 }
 .film-preview >div.next{
   right:30px;
+  span:nth-child(1){transform:rotate(45deg);-webkit-transform:rotate(45deg);top: 0}
+  span:nth-child(2){transform:rotate(-45deg); -webkit-transform:rotate(-45deg); top: 20px}
 }
 @media screen and (min-width: 768px) { 
   .modal:before {
