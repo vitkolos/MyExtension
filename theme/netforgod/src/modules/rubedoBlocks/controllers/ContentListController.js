@@ -314,7 +314,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
         var predefinedFacets = {"type":"54cb447145205e7d09db0590"};
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
         var displayedFacets = [];
-        displayedFacets.push({"name":"54cb636245205e0110db058f","operator":"OR"});
+        displayedFacets.push({"name":"54cb636245205e0110db058f","operator":"AND"});
         displayedFacets.push({"name":"54d6299445205e7877a6b28e","operator":"AND"});
         var defaultOptions = {
             start: 0,

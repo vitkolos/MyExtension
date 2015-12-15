@@ -27,7 +27,7 @@
 
     <div ng-controller="SearchFilmsController as filmSearchCtrl" class="row" ng-if="showFilters">
         <div class="col-sm-12" >
-            <p><span ng-repeat="term in contentListCtrl.taxo['54cb636245205e0110db058f']" ng-click="filmSearchCtrl.filter(term.id)">{{term.text}}</span></p>
+            <p><span class="searchTags" ng-repeat="term in contentListCtrl.taxo['54cb636245205e0110db058f']" ng-click="filmSearchCtrl.filter(term.id)" ng-class="{'checked': filmSearchCtrl.checked(term.id)}">{{term.text}}</span></p>
         </div>
         <div class="col-sm-12" ng-if="rubedo.showSearchList">
         <div ng-repeat="datum in filmSearchCtrl.data track by $index" class="resultData">
