@@ -19,8 +19,8 @@
             <div class="switch pull-right" ng-click="showFilters = !showFilters" ng-class="{'on' : showFilters}">
                 <span></span>
             </div>
-            <div class="pull-right">
-                <p>Filtres</p>
+            <div class="pull-right cursor-as-pointer" ng-click="showFilters = !showFilters">
+                <p>{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} </p>
             </div>
         </div>
     </div>
