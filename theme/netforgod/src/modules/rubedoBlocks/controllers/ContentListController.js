@@ -312,13 +312,16 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
         var predefinedFacets = {"type":"54cb447145205e7d09db0590"};
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
+        var displayedFacets = [];
+        displayedFacets.push({"name":"54cb636245205e0110db058f","operator":"OR"});
+        displayedFacets.push({"name":"54d6299445205e7877a6b28e","operator":"AND"});
         var defaultOptions = {
             start: 0,
             limit: 20,
             constrainToSite: true,
             predefinedFacets: predefinedFacets,
             displayMode: 'checkbox',
-            displayedFacets: JSON.parse('[{"name":"54cb636245205e0110db058f","operator":"OR"},{"name":"54d6299445205e7877a6b28e","operator":"AND"}]'),
+            displayedFacets: JSON.stringify(displayedFacets),
             orderby: me.orderBy,
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id
