@@ -13,12 +13,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.ismagic = config.magicQuery ? config.magicQuery : false;
     $scope.rubedo.showSearchList = false;
     $scope.showFilters=false;
-    me.showFilter = function(){
+    me.showFilters = function(){
         if ($scope.showFilters) {
             $scope.rubedo.showSearchList = false;
         }
         $scope.showFilters = !$scope.showFilters;
-        
     }
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
