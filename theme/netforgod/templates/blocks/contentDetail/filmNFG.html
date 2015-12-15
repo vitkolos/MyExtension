@@ -42,5 +42,14 @@
 		</div>
 	</div>
 </div>
+<div class="row padding-large">
+	<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
+		    disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
+		    disqus-identifier="{{ contentDetailCtrl.disqusIdentifier }}"
+		    disqus-url="{{ contentDetailCtrl.disqusUrl}}"
+		    disqus-title="{{ contentDetailCtrl.disqusTitle }}">
+	</dir-disqus>	
+</div>
+
 
 
