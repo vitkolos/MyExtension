@@ -218,13 +218,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.togglePreview = function(parentIndex,index){
         var preview = Math.floor(index/4)+1;
         var actualPreview = Math.floor(me.previewIndex/4)+1;
-       if(me.seasonIndex==parentIndex && me.previewIndex  == index) angular.element("#preview"+parentIndex+"_"+preview).collapse("toggle"); // même saison,même index= -> on toggle
+       if(me.seasonIndex==parentIndex && me.previewIndex  == index) {angular.element("#preview"+parentIndex+"_"+preview).collapse("hide"); me.previewIndex = -1; me.seasonIndex = -1;}// même saison,même index= -> on toggle
        else if((me.seasonIndex==parentIndex && preview != actualPreview) || me.seasonIndex!=parentIndex) { // même saison mais autre preview OU différente saison
             angular.element("#preview"+me.seasonIndex+"_"+actualPreview).collapse("hide");
             angular.element("#preview"+parentIndex+"_"+preview).collapse("show");
         }
        me.previewIndex = index; me.seasonIndex=parentIndex;
-
     }    
     $scope.isExpanded = function(parentIndex, index){
         if (me.seasonIndex==parentIndex && me.previewIndex  == index) {
