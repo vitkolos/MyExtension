@@ -47,31 +47,30 @@
                 </h4>
             </div>
             <div class="modal fade" id="previewFilms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog">
-                        <div class="col-sm-12  film-preview">
-                            <div class="close" data-dismiss="modal" aria-label="Close"><span></span><span></span></div>
-                            <div class="prev" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex -1)" ng-if="contentListCtrl.previewIndex>0"><span></span><span></span></div>
-                            <div class="col-sm-5 text-center">
-                                <img ng-if="filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0]"
-                                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0],{height:'400px',mode:'boxed'}) }}"
-                                    alt="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].title }}"/>
-                                <img ng-if="!filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0]"
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',mode:'boxed'}) }}"
-                                 alt="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].title }}"/>
-                            </div>
-                            <div class="col-sm-7">
-                                <h1>{{filmSearchCtrl.data[contentListCtrl.previewIndex].title}}</h1>
-                                <h4 class="media-heading" style="font-size: 0.8em">
-                                        <span class="glyphicon glyphicon-calendar"></span>{{filmSearchCtrl.data[contentListCtrl.previewIndex]['fields.date'][0]*1000 | date :'MMMM yyyy' |uppercase}}
-                                </h4>
-                                <p>{{filmSearchCtrl.data[contentListCtrl.previewIndex].summary}}</p>
-                                <a  ng-href="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].url }}" class="pull-right">Voir le film -></a>
-                            </div>                       
-                            <div class="next" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex +1)" ng-if="contentListCtrl.previewIndex < filmSearchCtrl.data.length -1"><span></span><span></span></div>
+                <div class="modal-dialog">
+                    <div class="col-sm-12  film-preview">
+                        <div class="close" data-dismiss="modal" aria-label="Close"><span></span><span></span></div>
+                        <div class="prev" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex -1)" ng-if="contentListCtrl.previewIndex>0"><span></span><span></span></div>
+                        <div class="col-sm-5 text-center">
+                            <img ng-if="filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0]"
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0],{height:'400px',mode:'boxed'}) }}"
+                                alt="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].title }}"/>
+                            <img ng-if="!filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0]"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',mode:'boxed'}) }}"
+                             alt="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].title }}"/>
                         </div>
+                        <div class="col-sm-7">
+                            <h1>{{filmSearchCtrl.data[contentListCtrl.previewIndex].title}}</h1>
+                            <h4 class="media-heading" style="font-size: 0.8em">
+                                    <span class="glyphicon glyphicon-calendar"></span>{{filmSearchCtrl.data[contentListCtrl.previewIndex]['fields.date'][0]*1000 | date :'MMMM yyyy' |uppercase}}
+                            </h4>
+                            <p>{{filmSearchCtrl.data[contentListCtrl.previewIndex].summary}}</p>
+                            <a  ng-href="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].url }}" class="pull-right">Voir le film -></a>
+                        </div>                       
+                        <div class="next" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex +1)" ng-if="contentListCtrl.previewIndex < filmSearchCtrl.data.length -1"><span></span><span></span></div>
                     </div>
+                </div>
                     
-                  </div>
                 
             </div>        
         </div>
