@@ -5,10 +5,10 @@
 	<div class="col-sm-8">
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" ></rubedo-field><!--Texte-->
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('subTitle')}}" class="uppercase"></rubedo-field><!--sous-titre-->
-		<p style="font-size: 0.8em"><span class="glyphicon glyphicon-calendar"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
+		<p style="font-size: 0.8em"><span class="icon-issuedate"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
-		<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="glyphicon glyphicon-tags"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
-		<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="glyphicon glyphicon-flag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
+		<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
+		<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
 		<div class="buy-dvd">
 			<a ng-href="{{contentDetailCtrl.content.fields.boutique}}"><i class="fa fa-dot-circle-o"></i>Buy DVD...</a>
 		</div>
