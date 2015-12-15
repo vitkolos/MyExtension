@@ -27,6 +27,28 @@
     <div class="col-sm-12" ng-if="showFilters">
         <p><span ng-repeat="term in contentListCtrl.taxo['54cb636245205e0110db058f']">{{term.label}}</span></p>
     </div>
+    <div ng-controller="SearchFilmsController as filmSearchCtrl" class="row" ng-if="showFilters">
+        <div class="col-md-9">
+        <div ng-repeat="datum in filmSearchCtrl.data track by $index" class="resultData">
+            <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
+            <div class="clearfix">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{datum.score}}"
+                         aria-valuemin="0" aria-valuemax="100" ng-style="{'width': datum.score+'%'}">
+                        {{datum.score}}%
+                    </div>
+                </div>&nbsp;
+                <span class="label label-danger">{{datum.type}}</span>
+            </div>
+            <p>{{datum.summary}}</p>
+            <div>Published by <a href ng-click="searchResultsCtrl.clickOnFacets('author', datum.author)">{{datum.authorName}}</a> on {{datum.lastUpdateTime * 1000 | date: 'fullDate'}}</div>
+            <hr/>
+        </div>
+        <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"
+                   count="searchResultsCtrl.count"
+                   change-page-action="searchResultsCtrl.changePageAction()"></paginator>
+    </div>
+    </div>
     <div class="row">
         <div ng-attr-lr-infinite-scroll="loadMoreContents"
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
