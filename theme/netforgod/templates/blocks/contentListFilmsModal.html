@@ -35,10 +35,10 @@
 
         <div class="col-sm-12" ng-if="rubedo.showSearchList">
             <div ng-repeat="datum in filmSearchCtrl.data track by $index" class="col-lg-3 col-sm-6 filmList" <!--ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewSeason{{$parent.$parent.$index}}"-->>
-                <img ng-if="datum.affiche "
-                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
+                <img ng-if="datum['i18n.{{rubedo.current.site.locale}}.fields.affiche'][0] "
+                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['i18n.{{rubedo.current.site.locale}}.fields.affiche'][0],{height:'400px',width:'284px',mode:'crop'}) }}"
                  alt="{{ datum.title }}"/>
-                <img class="default-vignette" ng-if="!datum.affiche "
+                <img class="default-vignette" ng-if="!datum['i18n.{{rubedo.current.site.locale}}.fields.affiche'][0] "
                  ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
                  alt="{{ datum.title }}"/>
                 
