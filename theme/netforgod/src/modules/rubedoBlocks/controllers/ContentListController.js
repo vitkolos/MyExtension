@@ -319,7 +319,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             'text': 'title'
         };
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
-        me.template = themePath+"/templates/blocks/searchResults/"+config.displayMode+".html";
         var predefinedFacets = {"type":"54cb447145205e7d09db0590"};
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
         var defaultOptions = {
