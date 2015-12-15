@@ -53,7 +53,12 @@
                     </a>
                 </div>
             </div>
-            <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-if="contentListCtrl.filmsList && !showFilters" class="row">
+            <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-if="contentListCtrl.filmsList" class="row">
+                <div class="col-sm-12">
+                    <div class="switch pull-right" ng-click="" ng-class="{'on' : showFilters}">
+                        <span></span>
+                    </div>
+                </div>
                 <div class="col-xs-12" >
                     <h1 class="titre-saison" ng-if="columnContents[0].fields.annee >0">{{rubedo.translate('Block.Saison', 'Season')}} {{columnContents[0].fields.annee}} <span>({{columnContents[0].anneeFormatted -1}}-{{columnContents[0].anneeFormatted}})</span></h1>
                     <h1 class="titre-saison" ng-if="columnContents[0].fields.annee ==0">{{rubedo.translate('Block.Futurs', 'En préparation')}}</h1>

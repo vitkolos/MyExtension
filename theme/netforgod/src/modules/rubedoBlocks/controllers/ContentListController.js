@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$rootScope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","$location",function($scope,$rootScope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,$location){
     var me = this;
     $rootScope.showFilters = false;
     me.contentList=[];
@@ -12,6 +12,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.limit = config.pageSize?config.pageSize:12;
     me.ismagic = config.magicQuery ? config.magicQuery : false;
     me.filmsList = false;
+    $scope.showFilters=false;
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
         me.start=(urlCurrentPage-1)*me.limit;
@@ -218,7 +219,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.togglePreview = function(parentIndex,index){
         var preview = Math.floor(index/4)+1;
         var actualPreview = Math.floor(me.previewIndex/4)+1;
-       if(me.seasonIndex==parentIndex && me.previewIndex  == index) {angular.element("#preview"+parentIndex+"_"+preview).collapse("hide"); me.previewIndex = -1; me.seasonIndex = -1; console.log("same")}// même saison,même index= -> on toggle
+       if(me.seasonIndex==parentIndex && me.previewIndex  == index) {angular.element("#preview"+parentIndex+"_"+preview).collapse("hide"); me.previewIndex = -1; me.seasonIndex = -1; console.log("same");}// même saison,même index= -> on toggle
        else if((me.seasonIndex==parentIndex && preview != actualPreview) || me.seasonIndex!=parentIndex) { // même saison mais autre preview OU différente saison
             angular.element("#preview"+parentIndex+"_"+preview).collapse("show");
             angular.element("#preview"+me.seasonIndex+"_"+actualPreview).collapse("hide");
