@@ -131,7 +131,18 @@ span.glyphicon{margin-right: 5px}
   span{height: 18px; width:18px; border-radius: 9px; background: white; float: left; margin: 1px;}
 }
 .switch.on{background: @main; span{float:right}}
-.searchTags.checked{color:@main}
+.searchTags {
+  font-size: 16px; padding: 5px 10px;background: tranparent; color:@link;
+}
+.searchTags.checked,.searchTags:hover{background:@txt_light;color:@txt;}
+.searchTags.checked:after{
+  content:'✓';
+  position: relative;
+}
+.searchTags.checked:hover:after{
+  content:'\00d7';
+  position: relative;
+}
 /////////FILM DETAIL////////////
 .tags{color:@link}
 span.tags + span.tags:before{content:', '; color:@txt; margin-right:5px}

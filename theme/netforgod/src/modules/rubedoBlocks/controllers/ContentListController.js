@@ -509,7 +509,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                     });
                 }
             })
-            console.log(me.data);
         };
         parseQueryParamsToOptions();
         me.searchByQuery(options);
