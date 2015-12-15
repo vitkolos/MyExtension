@@ -106,6 +106,7 @@
         "ratingField":"/templates/inputFields/rating.html",
         "DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.DCEField":"/templates/inputFields/contentLink.html",
+        "urlField":"/templates/inputFields/url.html",
         "Rubedo.view.urlField":"/templates/inputFields/url.html",
         "Rubedo.ux.widget.Rating":"/templates/inputFields/rating.html",
         "RECField":"/templates/inputFields/recField.html",
