@@ -1,6 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService",
     function($scope,$location,$routeParams,$compile,RubedoSearchService){
         var me = this;
+        console.log($scope.rubedo);
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.data = [];
