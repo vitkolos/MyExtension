@@ -30,7 +30,7 @@
     <div ng-controller="SearchFilmsController as filmSearchCtrl" class="row" ng-if="showFilters">
         <div class="col-md-9">
         <div ng-repeat="datum in filmSearchCtrl.data track by $index" class="resultData">
-            <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
+            <h4><a target="{{filmSearchCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
             <div class="clearfix">
                 <div class="progress">
                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{datum.score}}"
@@ -41,12 +41,10 @@
                 <span class="label label-danger">{{datum.type}}</span>
             </div>
             <p>{{datum.summary}}</p>
-            <div>Published by <a href ng-click="searchResultsCtrl.clickOnFacets('author', datum.author)">{{datum.authorName}}</a> on {{datum.lastUpdateTime * 1000 | date: 'fullDate'}}</div>
+            <div>Published by <a href ng-click="filmSearchCtrl.clickOnFacets('author', datum.author)">{{datum.authorName}}</a> on {{datum.lastUpdateTime * 1000 | date: 'fullDate'}}</div>
             <hr/>
         </div>
-        <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"
-                   count="searchResultsCtrl.count"
-                   change-page-action="searchResultsCtrl.changePageAction()"></paginator>
+
     </div>
     </div>
     <div class="row">
@@ -60,7 +58,6 @@
                 
                 <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index"  class="col-lg-3 col-sm-6 filmList"
                       ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewSeason{{$parent.$parent.$index}}">
-                    <!--<a ng-if="!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">-->
                         <img ng-if="content.fields.affiche "
                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
                          alt="{{ content.fields.text }}"/>
@@ -71,6 +68,7 @@
                         <h4 class="media-heading">
                                 {{content.fields.date*1000 | date :'MMMM yyyy'}}
                         </h4>
+                        
                 </div>
                 <div class="modal fade" id="previewSeason{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog">
@@ -92,6 +90,12 @@
                                 </h4>
                                 <p>{{columnContents[contentListCtrl.previewIndex].fields.summary}}</p>
                                 <a  ng-href="{{ columnContents[contentListCtrl.previewIndex].detailPageUrl }}" class="pull-right">Voir le film -></a>
+                                <button
+
+                                <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+columnContents[contentListCtrl.previewIndex].id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
+                                    <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
+                                </a>
+                                
                             </div>                       
                             <div class="next" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex +1)" ng-if="contentListCtrl.previewIndex < columnContents.length -1"><span></span><span></span></div>
                         </div>

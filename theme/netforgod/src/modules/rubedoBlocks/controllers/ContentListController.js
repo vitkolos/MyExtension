@@ -302,7 +302,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
         me.facets = [];
         me.activeFacets = [];
         me.start = 0;
-        me.limit = $routeParams.limit?$routeParams.limit:10;
+        me.limit = $routeParams.limit?$routeParams.limit:20;
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"date";
         var resolveOrderBy = {
             'lastUpdateTime': 'date',
@@ -500,6 +500,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                     });
                 }
             })
+            console.log(me.data);
         };
         parseQueryParamsToOptions();
         me.searchByQuery(options);
