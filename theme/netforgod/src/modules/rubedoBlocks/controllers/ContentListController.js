@@ -475,7 +475,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                 }
             }
             me.start = 0;
-            options.start = me.start;
+            me.options.start = me.start;
         };
 
         me.searchByQuery = function(options){
@@ -513,5 +513,5 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             })
         };
         parseQueryParamsToOptions();
-        me.searchByQuery(options);
+        me.searchByQuery(me.options);
     }]);
