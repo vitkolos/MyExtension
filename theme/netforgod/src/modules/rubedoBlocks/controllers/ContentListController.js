@@ -96,10 +96,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         me.contentList.push(columnContentList);
                     }
                     
-                    var taxonomiesArray = {
-                        0:'54cb636245205e0110db058f',//taxo de thématiques
-                        1:'54d6299445205e7877a6b28e' // taxo de lieux
-                    };
+                    var taxonomiesArray = {};
+                    taxonomiesArray[0] = '54cb636245205e0110db058f';//taxo de thématiques
+                    // taxo de lieux : '54d6299445205e7877a6b28e'
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
                          if(response.data.success){
                             var tax = response.data.taxo;
