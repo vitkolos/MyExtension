@@ -32,24 +32,21 @@
         <div class="col-sm-12" >
             <p><span class="searchTags badge cursor-as-pointer" ng-repeat="term in contentListCtrl.taxo['54cb636245205e0110db058f']" ng-click="filmSearchCtrl.filter(term.id)" ng-class="{'checked': filmSearchCtrl.checked(term.id)}">{{term.text}}</span></p>
         </div>
-        <div class="col-sm-12" ng-if="rubedo.showSearchList">
-        <div ng-repeat="datum in filmSearchCtrl.data track by $index" class="resultData">
-            <h4><a target="{{filmSearchCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
-            <div class="clearfix">
-                <div class="progress">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{datum.score}}"
-                         aria-valuemin="0" aria-valuemax="100" ng-style="{'width': datum.score+'%'}">
-                        {{datum.score}}%
-                    </div>
-                </div>&nbsp;
-                <span class="label label-danger">{{datum.type}}</span>
-            </div>
-            <p>{{datum.summary}}</p>
-            <div>Published by <a href ng-click="filmSearchCtrl.clickOnFacets('author', datum.author)">{{datum.authorName}}</a> on {{datum.lastUpdateTime * 1000 | date: 'fullDate'}}</div>
-            <hr/>
-        </div>
 
-    </div>
+        <div class="col-sm-12" ng-if="rubedo.showSearchList">
+            <div ng-repeat="datum in filmSearchCtrl.data track by $index" class="col-lg-3 col-sm-6 filmList" <!--ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewSeason{{$parent.$parent.$index}}"-->>
+                <img ng-if="datum.affiche "
+                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
+                 alt="{{ datum.title }}"/>
+                <img class="default-vignette" ng-if="!datum.affiche "
+                 ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
+                 alt="{{ datum.title }}"/>
+                
+                <h4 class="media-heading">
+                        {{datum.date*1000 | date :'MMMM yyyy'}}
+                </h4>
+            </div>
+        </div>
     </div>
     <div class="row" ng-if="!rubedo.showSearchList">
         <div ng-style="contentListCtrl.blockStyle">
