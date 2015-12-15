@@ -329,7 +329,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             siteId: $scope.rubedo.current.site.id
         };
 
-        var options = angular.copy(defaultOptions);
 
         if(predefinedFacets.query) {
             me.options.query =  predefinedFacets.query;
