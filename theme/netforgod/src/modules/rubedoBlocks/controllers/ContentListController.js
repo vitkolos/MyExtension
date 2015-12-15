@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","$location","TaxonomyService",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,$location,TaxonomyService){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -95,6 +95,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
                     }
+                    
+                    var taxonomiesArray = {
+                        0:'54cb636245205e0110db058f',//taxo de thématiques
+                        1:'54d6299445205e7877a6b28e' // taxo de lieux
+                    };
+                    TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+                         if(response.data.success){
+                            var tax = response.data.taxo;
+                            me.taxo={};
+                            angular.forEach(tax, function(taxonomie){
+                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                            });
+
+                         }
+                         
+                     });
+                    
+                    
                 }
                 else {
                     var columnContentList = [];

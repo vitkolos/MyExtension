@@ -1,0 +1,81 @@
+<div ng-controller="ContentListController as contentListCtrl">
+    <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
+            ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
+            ng-model="contentListCtrl.selectedManualType"></select>
+    <button ng-if="contentListCtrl.canAddToList()"
+            title="{{rubedo.translate('Block.ContentList.Label.Add','add content')}}"
+            class="btn btn-default"
+            ng-click="contentListCtrl.launchContribute()">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
+    <button ng-if="!contentListCtrl.canAddToList()&&contentListCtrl.isFOContributeMode&&contentListCtrl.editorPageUrl"
+            title="{{rubedo.translate('Block.ContentList.Label.Add','add content')}}"
+            class="btn btn-default"
+            ng-click="contentListCtrl.launchFOContribute()">
+        <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate('Block.ContentList.Label.Add','add content')}}
+    </button>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="switch pull-right" ng-click="showFilters = !showFilters" ng-class="{'on' : showFilters}">
+                <span></span>
+            </div>
+            <div class="pull-right">
+                <p>Filtres</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12" ng-if="showFilters">
+        <p><span ng-repeat="term in contentListCtrl.taxo['54cb636245205e0110db058f']">{{term.label}}</span></p>
+    </div>
+    <div class="row">
+        <div ng-attr-lr-infinite-scroll="loadMoreContents"
+             ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
+             ng-style="contentListCtrl.blockStyle">
+            <!--<div id="infiniteScrollCtrl">-->
+            <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index">
+                <div class="col-xs-12" >
+                    <h1 class="titre-saison" ng-if="columnContents[0].fields.annee >0">{{rubedo.translate('Block.Saison', 'Season')}} {{columnContents[0].fields.annee}} <span>({{columnContents[0].anneeFormatted -1}}-{{columnContents[0].anneeFormatted}})</span></h1>
+                    <h1 class="titre-saison" ng-if="columnContents[0].fields.annee ==0">{{rubedo.translate('Block.Futurs', 'En préparation')}}</h1>
+                </div>
+                
+                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat-start="content in columnContents track by $index"  class="col-lg-3 col-sm-6 filmList"
+                      ng-click="contentListCtrl.togglePreview($parent.$parent.$index,$index)" ng-class="{'expanded':isExpanded($parent.$parent.$index,$index)}">
+                    <!--<a ng-if="!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">-->
+                        <img ng-if="content.fields.affiche "
+                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',mode:'boxed'}) }}"
+                         alt="{{ content.fields.text }}"/>
+                        <img class="default-vignette" ng-if="!content.fields.affiche "
+                         ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',mode:'boxed'}) }}"
+                         alt="{{ content.fields.text }}"/>
+                        
+                        <h4 class="media-heading">
+                                {{content.fields.date*1000 | date :'MMMM yyyy'}}
+                        </h4>
+
+                </div>
+                <div ng-if="$index%4==3 || $last" class="col-sm-12 film-preview collapse" ng-repeat-end id="preview{{$parent.$parent.$index}}_{{$index/4 +0.5 |number:0}}">
+                    <div class="col-sm-6 text-center">
+                        <img ng-if="columnContents[contentListCtrl.previewIndex].fields.affiche "
+                            ng-src="{{rubedo.imageUrl.getUrlByMediaId(columnContents[contentListCtrl.previewIndex].fields.affiche,{height:'400px',mode:'boxed'}) }}"
+                            alt="{{ columnContents[contentListCtrl.previewIndex].fields.text }}"/>
+                        <img ng-if="!columnContents[contentListCtrl.previewIndex].fields.affiche "
+                         ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',mode:'boxed'}) }}"
+                         alt="{{ columnContents[contentListCtrl.previewIndex].fields.text }}"/>
+                    </div>
+                    <div class="col-sm-6">
+                        <h1>{{columnContents[contentListCtrl.previewIndex].fields.text}}</h1>
+                        <h4 class="media-heading" style="font-size: 0.8em">
+                                <span class="glyphicon glyphicon-calendar"></span>{{content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}
+                        </h4>
+                        <p>{{columnContents[contentListCtrl.previewIndex].fields.summary}}</p>
+                        <a  ng-href="{{ columnContents[contentListCtrl.previewIndex].detailPageUrl }}" class="pull-right">Voir le film -></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit"
+               count="contentListCtrl.count" change-page-action="contentListCtrl.changePageAction()"></paginator>
+</div>
