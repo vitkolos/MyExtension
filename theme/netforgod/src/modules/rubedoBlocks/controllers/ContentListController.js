@@ -15,7 +15,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     $scope.showFilters=false;
     me.showFilter = function(){
         if ($scope.showFilters) {
-            $scope.rubedo.showSearchList = true;
+            $scope.rubedo.showSearchList = false;
         }
         $scope.showFilters = !$scope.showFilters;
         
