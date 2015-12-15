@@ -24,11 +24,12 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-12" ng-if="showFilters">
-        <p><span ng-repeat="term in contentListCtrl.taxo['54cb636245205e0110db058f']">{{term.label}}</span></p>
-    </div>
+
     <div ng-controller="SearchFilmsController as filmSearchCtrl" class="row" ng-if="showFilters">
-        <div class="col-md-9">
+        <div class="col-sm-12" >
+            <p><span ng-repeat="term in contentListCtrl.taxo['54cb636245205e0110db058f']" ng-click="filmSearchCtrl.filter(term.id)">{{term.text}}</span></p>
+        </div>
+        <div class="col-sm-12" ng-if="rubedo.showSearchList">
         <div ng-repeat="datum in filmSearchCtrl.data track by $index" class="resultData">
             <h4><a target="{{filmSearchCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
             <div class="clearfix">
@@ -47,7 +48,7 @@
 
     </div>
     </div>
-    <div class="row">
+    <div class="row" ng-if="!rubedo.showSearchList">
         <div ng-style="contentListCtrl.blockStyle">
             <!--<div id="infiniteScrollCtrl">-->
             <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index">

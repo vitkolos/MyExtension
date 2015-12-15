@@ -11,7 +11,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
     me.ismagic = config.magicQuery ? config.magicQuery : false;
-    me.filmsList = false;
+    $scope.rubedo.showSearchList = false;
     $scope.showFilters=false;
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
@@ -297,6 +297,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
 angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope","$location","$routeParams","$compile","RubedoSearchService",
     function($scope,$location,$routeParams,$compile,RubedoSearchService){
         var me = this;
+
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.data = [];
         me.facets = [];
@@ -351,6 +352,9 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             me.query = options.query = predefinedFacets.query;
             $location.search('query',me.query);
         }
+        me.filter = function(termId) {
+            $scope.rubedo.showSearchList = true;
+        };
         $scope.$on('$routeUpdate', function(scope, next, current) {
             options = angular.copy(defaultOptions);
             options.start = me.start;
