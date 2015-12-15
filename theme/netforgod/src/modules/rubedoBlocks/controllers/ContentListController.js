@@ -13,7 +13,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.ismagic = config.magicQuery ? config.magicQuery : false;
     $scope.rubedo.showSearchList = false;
     $scope.showFilters=false;
-    me.showFilters = function(){
+    me.showFilter = function(){
         if ($scope.showFilters) {
             $scope.rubedo.showSearchList = true;
         }
