@@ -318,7 +318,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
         var defaultOptions = {
             start: 0,
             limit: 20,
-            constrainToSite: true,
+            constrainToSite: false,
             predefinedFacets: predefinedFacets,
             displayMode: 'checkbox',
             displayedFacets: JSON.stringify(displayedFacets),
