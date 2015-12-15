@@ -297,6 +297,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
 angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope","$location","$routeParams","$compile","RubedoSearchService",
     function($scope,$location,$routeParams,$compile,RubedoSearchService){
         var me = this;
+        console.log($scope.rubedo);
 
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.data = [];
