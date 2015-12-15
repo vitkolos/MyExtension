@@ -209,7 +209,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                     me.options[facetId+'[]'].push(term);
                     me.updateSearch();
                 }
-                console.log(me.options);
             }
             me.start = 0;
             me.options.start = me.start;

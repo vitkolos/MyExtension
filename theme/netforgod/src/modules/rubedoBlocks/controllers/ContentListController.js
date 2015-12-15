@@ -415,6 +415,12 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             }
             return res;
         };
+        me.updateSearch = function() {
+            me.options.start = me.start;
+            me.options.limit = me.limit;
+            me.options.orderBy = me.orderBy;
+            me.searchByQuery(me.options, true);
+        };
         me.clickOnFacets =  function(facetId,term){
             var del = false;
             angular.forEach(me.activeTerms,function(activeTerm){
@@ -428,17 +434,13 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                     if(options.taxonomies[facetId].length == 0){
                         delete options.taxonomies[facetId];
                     }
-                    if(Object.keys(options['taxonomies']).length == 0){
-                        $location.search('taxonomies',null);
-                    } else {
-                        $location.search('taxonomies',JSON.stringify(options.taxonomies));
-                    }
+                    me.updateSearch();
                 } else if (facetId == 'query') {
-                    $location.search('query',null);
                     delete options.query;
+                    me.updateSearch();
                 } else if(facetId == 'lastupdatetime'||facetId == 'price'||facetId == 'inStock') {
                     delete options[facetId];
-                    $location.search(facetId,null);
+                    me.updateSearch();
                 } else {
                     if(angular.isArray(options[facetId+'[]'])){
                         options[facetId+'[]'].splice(options[facetId+'[]'].indexOf(term),1);
@@ -446,9 +448,9 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                         delete options[facetId+'[]'];
                     }
                     if(!options[facetId+'[]'] || options[facetId+'[]'].length == 0){
-                        $location.search(facetId+'[]',null)
+                        me.updateSearch();
                     } else {
-                        $location.search(facetId+'[]',options[facetId+'[]']);
+                        me.updateSearch();
                     }
                 }
             } else {
@@ -460,16 +462,16 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                         options.taxonomies[facetId] = [];
                     }
                     options.taxonomies[facetId].push(term);
-                    $location.search('taxonomies',JSON.stringify(options.taxonomies));
+                    me.updateSearch();
                 } else if(facetId == 'lastupdatetime'||facetId == 'price'||facetId == 'inStock') {
                     options[facetId] = term;
-                    $location.search(facetId,options[facetId]);
+                    me.updateSearch();
                 } else {
                     if(!options[facetId+'[]']){
                         options[facetId+'[]'] = [];
                     }
                     options[facetId+'[]'].push(term);
-                    $location.search(facetId+'[]',options[facetId+'[]']);
+                    me.updateSearch();
                 }
             }
             me.start = 0;
