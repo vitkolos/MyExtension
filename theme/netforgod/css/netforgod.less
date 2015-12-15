@@ -89,12 +89,24 @@ span.glyphicon{margin-right: 5px}
 .titre-saison span{font-size:0.6em; color:@txt_light}
 .default-vignette{border: solid 1px @txt_light}
 .film-preview{background-color: @txt_slight; padding: 0 30px; margin-top:5px;}
-.film-preview >div:not(.close){padding-top: 60px; padding-bottom: 60px}
+.film-preview >div[class^='col']{padding-top: 60px; padding-bottom: 60px}
 .film-preview >div.close{
-  position:absolute; top: 30px; right: 30px; opacity: 0.8; cursor: pointer;height: 40px; width:40px;
+  position:absolute; top: 30px; right: 30px; opacity: 0.8; cursor: pointer;height: 40px; width:40px;z-index: 1;
   span{background-color: white; position: absolute; width: 40px; height: 2px; top:20px; right: 0}
-  span:nth-child(1){transform:rotate(45deg)}
+  span:nth-child(1){transform:rotate(45deg);-webkit-transform:rotate(45deg)}
   span:nth-child(2){transform:rotate(-45deg)}
+}
+.film-preview >div.prev, .film-preview >div.next{
+  position:absolute; top: 40%; right: 30px; opacity: 0.8; cursor: pointer;height: 40px; width:40px; z-index: 1;
+  span{background-color: white; position: absolute; width: 40px; height: 2px; top:20px; right: 0}
+  span:nth-child(1){transform:rotate(45deg);-webkit-transform:rotate(45deg)}
+  span:nth-child(2){transform:rotate(-45deg)}
+}
+.film-preview >div.prev{
+  left:30px;
+}
+.film-preview >div.next{
+  right:30px;
 }
 @media screen and (min-width: 768px) { 
   .modal:before {
