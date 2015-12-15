@@ -251,7 +251,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
         else return false;
     };   
- 
+    me.setIndex = function(parentIndex,index){
+        me.previewIndex = index; me.seasonIndex=parentIndex;
+    }
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService',function($scope,$compile,RubedoContentsService){
     var me = this;
