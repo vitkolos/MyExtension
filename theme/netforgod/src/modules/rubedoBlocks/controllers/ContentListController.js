@@ -26,7 +26,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         options.detailPageId = config.singlePage;
     }
     if(config.enableFOContrib&&$scope.rubedo.current.user){
-        options.foContributeMode = true;
+        //options.foContributeMode = true;
         me.isFOContributeMode=true;
         if (config.editorPageId){
             RubedoPagesService.getPageById(config.editorPageId).then(function(response){
@@ -237,6 +237,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.setIndex = function(index){
         me.previewIndex = index; 
     }
+    // pour fermer le modal quand on clique sur un lien
+    $scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
+        angular.element('body .modal-backdrop ').remove();
+    });
+    
+    
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService',function($scope,$compile,RubedoContentsService){
     var me = this;
