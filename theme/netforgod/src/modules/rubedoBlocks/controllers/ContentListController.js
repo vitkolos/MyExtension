@@ -234,8 +234,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.previewIndex = -1; me.seasonIndex = -1;
     /*liste des films : toggle preview*/
   
-    me.setIndex = function(parentIndex,index){
-        me.previewIndex = index; me.seasonIndex=parentIndex;
+    me.setIndex = function(index){
+        me.previewIndex = index; 
     }
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService',function($scope,$compile,RubedoContentsService){
