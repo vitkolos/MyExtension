@@ -1,6 +1,5 @@
 angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,$location){
     var me = this;
-    $rootScope.showFilters = false;
     me.contentList=[];
     var config=$scope.blockConfig;
     var blockPagingIdentifier=$scope.block.bType+$scope.block.id.substring(21)+"Page";
