@@ -318,7 +318,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             constrainToSite: true,
             predefinedFacets: predefinedFacets,
             displayMode: 'checkbox',
-            displayedFacets: [{"name":"54cb636245205e0110db058f","operator":"OR"},{"name":"54d6299445205e7877a6b28e","operator":"AND"}],
+            displayedFacets: '[{"name":"54cb636245205e0110db058f","operator":"OR"},{"name":"54d6299445205e7877a6b28e","operator":"AND"}]',
             orderby: me.orderBy,
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id
