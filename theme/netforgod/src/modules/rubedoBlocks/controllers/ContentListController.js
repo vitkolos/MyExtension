@@ -316,8 +316,9 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
         var displayedFacets = [];
         displayedFacets.push({"name":"54cb636245205e0110db058f","operator":"AND"});
         displayedFacets.push({"name":"54d6299445205e7877a6b28e","operator":"AND"});
-        var defaultOptions = {
-            start: 0,
+        me.options = {};
+       me.options = {
+            start: me.start,
             limit: 20,
             constrainToSite: false,
             predefinedFacets: predefinedFacets,
@@ -327,44 +328,26 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id
         };
-        /*if (config.singlePage){
-            defaultOptions.detailPageId = config.singlePage;
-        }
-        if(config.profilePage){
-            defaultOptions.profilePageId = config.profilePage;
-        }*/
+
         var options = angular.copy(defaultOptions);
-        var parseQueryParamsToOptions = function(){
-            angular.forEach($location.search(), function(queryParam, key){
-                if(typeof queryParam !== "boolean"){
-                    if(key == 'taxonomies'){
-                        options[key] = JSON.parse(queryParam);
-                    } else {
-                        if(key == 'query'){
-                            me.query = queryParam;
-                        }
-                        options[key] = queryParam;
-                    }
-                }
-            });
-        };
+
         if(predefinedFacets.query) {
-            me.query = options.query = predefinedFacets.query;
-            $location.search('query',me.query);
+            me.options.query =  predefinedFacets.query;
+            me.updateSearch();
         }
         me.filter = function(termId) {
             $scope.rubedo.showSearchList = true;
             me.clickOnFacets('54cb636245205e0110db058f',termId);
 
         };
-        $scope.$on('$routeUpdate', function(scope, next, current) {
+        /*$scope.$on('$routeUpdate', function(scope, next, current) {
             options = angular.copy(defaultOptions);
             options.start = me.start;
             options.limit = me.limit;
             options.orderBy = me.orderBy;
             parseQueryParamsToOptions();
             me.searchByQuery(options, true);
-        });
+        });*/
         me.checked = function(term){
             var checked = false;
             angular.forEach(me.activeTerms,function(activeTerm){
@@ -385,20 +368,17 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             me.searchByQuery(options);
         };
         me.onSubmit = function(){
-            me.start = 0;
-            options = angular.copy(defaultOptions);
-            options.start = me.start;
-            options.limit = me.limit;
-            options.query = me.query;
-            options.orderBy = me.orderBy;
-            $location.search('query',me.query);
+            me.options.start = 0;
+            me.options.limit = me.limit;
+            me.options.query = me.query;
+            me.updateSearch();
         };
         me.changeOrderBy = function(orderBy){
             if(me.orderBy != orderBy){
                 me.orderBy = orderBy;
                 me.displayOrderBy = resolveOrderBy[orderBy];
                 me.start = 0;
-                $location.search('orderby',me.orderBy);
+                me.updateSearch();
             }
         };
         me.changeLimit = function(limit){
@@ -408,13 +388,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                 $location.search('limit',me.limit);
             }
         };
-        me.target = function(data){
-            var res = '';
-            if (data.objectType == 'dam'){
-                res = '_blank';
-            }
-            return res;
-        };
+
         me.updateSearch = function() {
             me.options.start = me.start;
             me.options.limit = me.limit;
