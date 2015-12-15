@@ -43,12 +43,12 @@
                  alt="{{ datum.title }}"/>
                 
                 <h4 class="media-heading">
-                        {{datum.date*1000 | date :'MMMM yyyy'}}
+                        {{datum.fields.date[0]*1000 | date :'MMMM yyyy'}}
                 </h4>
             </div>
         </div>
     </div>
-    <div class="row" ng-if="!rubedo.showSearchList">
+    <div class="row" ng-show="!rubedo.showSearchList">
         <div ng-style="contentListCtrl.blockStyle">
             <!--<div id="infiniteScrollCtrl">-->
             <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index">

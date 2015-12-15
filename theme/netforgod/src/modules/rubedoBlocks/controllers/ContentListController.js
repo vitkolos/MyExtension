@@ -403,24 +403,24 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             });
             if(del){
                 if(facetsId.indexOf(facetId)==-1){
-                    options.taxonomies[facetId].splice(options.taxonomies[facetId].indexOf(term),1);
-                    if(options.taxonomies[facetId].length == 0){
-                        delete options.taxonomies[facetId];
+                    me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
+                    if(me.options.taxonomies[facetId].length == 0){
+                        delete me.options.taxonomies[facetId];
                     }
                     me.updateSearch();
                 } else if (facetId == 'query') {
-                    delete options.query;
+                    delete me.options.query;
                     me.updateSearch();
                 } else if(facetId == 'lastupdatetime'||facetId == 'price'||facetId == 'inStock') {
-                    delete options[facetId];
+                    delete me.options[facetId];
                     me.updateSearch();
                 } else {
-                    if(angular.isArray(options[facetId+'[]'])){
-                        options[facetId+'[]'].splice(options[facetId+'[]'].indexOf(term),1);
+                    if(angular.isArray(me.options[facetId+'[]'])){
+                        me.options[facetId+'[]'].splice(me.options[facetId+'[]'].indexOf(term),1);
                     } else {
-                        delete options[facetId+'[]'];
+                        delete me.options[facetId+'[]'];
                     }
-                    if(!options[facetId+'[]'] || options[facetId+'[]'].length == 0){
+                    if(!me.options[facetId+'[]'] || me.options[facetId+'[]'].length == 0){
                         me.updateSearch();
                     } else {
                         me.updateSearch();
@@ -428,22 +428,22 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                 }
             } else {
                 if(facetsId.indexOf(facetId)==-1){
-                    if(!options.taxonomies){
-                        options.taxonomies = {};
+                    if(!me.options.taxonomies){
+                        me.options.taxonomies = {};
                     }
-                    if(!options.taxonomies[facetId]){
-                        options.taxonomies[facetId] = [];
+                    if(!me.options.taxonomies[facetId]){
+                        me.options.taxonomies[facetId] = [];
                     }
-                    options.taxonomies[facetId].push(term);
+                    me.options.taxonomies[facetId].push(term);
                     me.updateSearch();
                 } else if(facetId == 'lastupdatetime'||facetId == 'price'||facetId == 'inStock') {
-                    options[facetId] = term;
+                    me.options[facetId] = term;
                     me.updateSearch();
                 } else {
-                    if(!options[facetId+'[]']){
-                        options[facetId+'[]'] = [];
+                    if(!me.options[facetId+'[]']){
+                        me.options[facetId+'[]'] = [];
                     }
-                    options[facetId+'[]'].push(term);
+                    me.options[facetId+'[]'].push(term);
                     me.updateSearch();
                 }
             }
