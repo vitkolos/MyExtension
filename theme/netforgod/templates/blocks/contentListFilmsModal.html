@@ -16,10 +16,10 @@
     </button>
     <div class="row">
         <div class="col-sm-12">
-            <div class="switch pull-right" ng-click="showFilters = !showFilters" ng-class="{'on' : showFilters}">
+            <div class="switch pull-right" ng-click="contentListCtrl.showFilters()" ng-class="{'on' : showFilters}">
                 <span></span>
             </div>
-            <div class="pull-right cursor-as-pointer" ng-click="showFilters = !showFilters">
+            <div class="pull-right cursor-as-pointer" ng-click="contentListCtrl.showFilters()">
                 <p>{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} </p>
             </div>
         </div>
@@ -35,11 +35,11 @@
 
         <div class="col-sm-12" ng-if="rubedo.showSearchList">
             <div ng-repeat="datum in filmSearchCtrl.data track by $index" class="col-lg-3 col-sm-6 filmList" <!--ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewSeason{{$parent.$parent.$index}}"-->>
-                <img ng-if="datum['i18n.{{rubedo.current.site.locale}}.fields.affiche'][0] "
-                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['i18n.{{rubedo.current.site.locale}}.fields.affiche'][0],{height:'400px',width:'284px',mode:'crop'}) }}"
+                <img ng-if="datum['i18n.'+locale+'.fields.affiche'][0]"
+                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['i18n.'+locale+'.fields.affiche'][0],{height:'400px',width:'284px',mode:'crop'}) }}"
                  alt="{{ datum.title }}"/>
-                <img class="default-vignette" ng-if="!datum['i18n.{{rubedo.current.site.locale}}.fields.affiche'][0] "
-                 ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
+                <img class="default-vignette" ng-if="!datum['i18n.'+locale+'.fields.affiche'][0]"
+                ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
                  alt="{{ datum.title }}"/>
                 
                 <h4 class="media-heading">
@@ -91,7 +91,6 @@
                                 </h4>
                                 <p>{{columnContents[contentListCtrl.previewIndex].fields.summary}}</p>
                                 <a  ng-href="{{ columnContents[contentListCtrl.previewIndex].detailPageUrl }}" class="pull-right">Voir le film -></a>
-                                <button
 
                                 <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+columnContents[contentListCtrl.previewIndex].id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
                                     <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
