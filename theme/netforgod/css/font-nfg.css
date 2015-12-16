@@ -16,7 +16,8 @@
    font-weight: normal;
    line-height: 1;
    -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale
+   -moz-osx-font-smoothing: grayscale;
+   font-size: 1.4em; margin-right:5px;
 }
 .icon-imagelost:before{content:'\0041';}
 .icon-issuedate:before{content:'\0042';}
