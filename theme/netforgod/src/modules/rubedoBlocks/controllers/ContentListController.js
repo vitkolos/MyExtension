@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","$location",
-                                                                        function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","$location","TaxonomyService",
+                                                                        function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,$location,TaxonomyService){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -219,7 +219,26 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             $location.url(me.editorPageUrl);
         }
     }
+//get taxonomy
+    var taxonomiesArray = {};
+    taxonomiesArray[0] = '54cb636245205e0110db058f';//taxo de thématiques
+    // taxo de lieux : '54d6299445205e7877a6b28e'
 
+    TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+         if(response.data.success){
+            var tax = response.data.taxo;
+            me.taxo={};
+            angular.forEach(tax, function(taxonomie){
+               me.taxo[taxonomie.vocabulary.id] = {};
+               //get taxonomies
+               angular.forEach(taxonomie.terms, function(term){
+                   me.taxo[taxonomie.vocabulary.id][term.id] = term;
+               });                  
+            });
+
+         }
+         
+     });
     me.previewIndex = -1; me.seasonIndex = -1;
     /*liste des films : toggle preview*/
   
@@ -283,11 +302,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
 }]);
 
 
-angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","TaxonomyService",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,TaxonomyService){
+angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope","$location","$routeParams","$compile","RubedoSearchService",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService){
         var me = this;
         $scope.locale = $scope.rubedo.current.site.locale;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
+        me.taxo=$scope.contentListCtrl.taxo;
         me.data = [];
         me.facets = [];
         me.activeFacets = [];
@@ -318,24 +338,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             siteId: $scope.rubedo.current.site.id
         };
 
-        var taxonomiesArray = {};
-        taxonomiesArray[0] = '54cb636245205e0110db058f';//taxo de thématiques
-        // taxo de lieux : '54d6299445205e7877a6b28e'
-       TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
-             if(response.data.success){
-                var tax = response.data.taxo;
-                me.taxo={};
-                angular.forEach(tax, function(taxonomie){
-                   me.taxo[taxonomie.vocabulary.id] = {};
-                   //get taxonomies
-                   angular.forEach(taxonomie.terms, function(term){
-                       me.taxo[taxonomie.vocabulary.id][term.id] = term;
-                   });                  
-                });
-
-             }
-             
-       });
+       
         if(predefinedFacets.query) {
             me.options.query =  predefinedFacets.query;
             me.updateSearch();
@@ -456,6 +459,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             me.start = 0;
             me.options.start = me.start;
         };
+        var firstTime=false;
         me.searchByQuery = function(options){
             RubedoSearchService.searchByQuery(options).then(function(response){
                 if(response.data.success){
@@ -463,7 +467,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                     me.count = response.data.count;
                     me.data =  response.data.results.data;
                     me.facets = response.data.results.facets;
-                   //get inital counts
+                   
                    angular.forEach(me.facets[0].terms, function(term){
                        if(me.taxo["54cb636245205e0110db058f"][term.term]) me.taxo["54cb636245205e0110db058f"][term.term].count = term.count;
                    });
