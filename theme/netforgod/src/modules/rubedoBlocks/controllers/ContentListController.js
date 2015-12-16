@@ -439,7 +439,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             me.start = 0;
             me.options.start = me.start;
         };
-
+        var firstTime = true;
         me.searchByQuery = function(options){
             RubedoSearchService.searchByQuery(options).then(function(response){
                 if(response.data.success){
@@ -471,26 +471,30 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                             });
                         }
                     });
+                    if (firstTime) {
+                        var taxonomiesArray = {};
+                         taxonomiesArray[0] = '54cb636245205e0110db058f';//taxo de thématiques
+                         // taxo de lieux : '54d6299445205e7877a6b28e'
+                        TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+                              if(response.data.success){
+                                 var tax = response.data.taxo;
+                                 me.taxo={};
+                                 angular.forEach(tax, function(taxonomie){
+                                     me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                                     me.taxo[taxonomie.vocabulary.id] = angular.extend(me.taxo[taxonomie.vocabulary.id], me.facets[0].terms);
+                                     console.log(me.taxo);
+                                     
+                                 });
+                 
+                              }
+                              
+                        });
+                        firstTime=false;
+                    }
                 }
             })
         };
         //parseQueryParamsToOptions();
         me.searchByQuery(me.options);
-        var taxonomiesArray = {};
-        taxonomiesArray[0] = '54cb636245205e0110db058f';//taxo de thématiques
-        // taxo de lieux : '54d6299445205e7877a6b28e'
-        TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
-             if(response.data.success){
-                var tax = response.data.taxo;
-                me.taxo={};
-                angular.forEach(tax, function(taxonomie){
-                    me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
-                    me.taxo[taxonomie.vocabulary.id] = angular.extend(me.taxo[taxonomie.vocabulary.id], me.facets[0].terms);
-                    console.log(me.taxo);
-                    
-                });
-
-             }
-             
-         });
+        
     }]);
