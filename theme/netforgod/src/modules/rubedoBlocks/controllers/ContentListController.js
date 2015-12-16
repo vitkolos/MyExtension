@@ -91,7 +91,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     if (!add) {
                         var columnContentList = [];
                     }
-                    else  var columnContentList = angular.copy(me.contentList[me.contentList.length-1]);
+                    else {
+                        var columnContentList = angular.copy(me.contentList[me.contentList.length-1]);
+                        delete me.contentList[me.contentList.length-1];
+                    }
                     
                     var currentSeason = null;
                     angular.forEach(response.data.contents,function(newContent, key){
