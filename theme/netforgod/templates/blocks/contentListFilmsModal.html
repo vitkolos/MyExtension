@@ -20,7 +20,7 @@
                 <span></span>
             </div>
             <div class="pull-right cursor-as-pointer" ng-click="contentListCtrl.showFilters()">
-                <p>{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} </p>
+                <p><span class="icon-subjectfilter main"></span>{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} </p>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
     
     <div ng-controller="SearchFilmsController as filmSearchCtrl" class="row" ng-if="showFilters">
         <div class="col-sm-12" >
-            <p><span class="searchTags badge cursor-as-pointer" ng-repeat="term in contentListCtrl.taxo['54cb636245205e0110db058f']" ng-click="filmSearchCtrl.filter(term.id)" ng-class="{'checked': filmSearchCtrl.checked(term.id)}">{{term.text}}</span></p>
+            <p><span class="searchTags badge cursor-as-pointer" ng-repeat="term in filmSearchCtrl.taxo['54cb636245205e0110db058f']" ng-click="filmSearchCtrl.filter(term.id)" ng-class="{'checked': filmSearchCtrl.checked(term.id)}">{{term.text}}{{term.count}}</span></p>
         </div>
 
         <div class="col-sm-12" ng-if="rubedo.showSearchList">
@@ -134,6 +134,6 @@
         </div>
     </div>
 
-    <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit"
+    <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit" ng-show="!rubedo.showSearchList"
                count="contentListCtrl.count" change-page-action="contentListCtrl.changePageAction()"></paginator>
 </div>
