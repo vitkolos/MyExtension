@@ -318,7 +318,24 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             siteId: $scope.rubedo.current.site.id
         };
 
+        var taxonomiesArray = {};
+        taxonomiesArray[0] = '54cb636245205e0110db058f';//taxo de thématiques
+        // taxo de lieux : '54d6299445205e7877a6b28e'
+       TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+             if(response.data.success){
+                var tax = response.data.taxo;
+                me.taxo={};
+                angular.forEach(tax, function(taxonomie){
+                   me.taxo[taxonomie.vocabulary.id] = {};
+                   //get taxonomies
+                   angular.forEach(taxonomie.terms, function(term){
+                       me.taxo[taxonomie.vocabulary.id][term.id] = term;
+                   });                  
+                });
 
+             }
+             
+       });
         if(predefinedFacets.query) {
             me.options.query =  predefinedFacets.query;
             me.updateSearch();
@@ -439,7 +456,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             me.start = 0;
             me.options.start = me.start;
         };
-        var firstTime = true;
         me.searchByQuery = function(options){
             RubedoSearchService.searchByQuery(options).then(function(response){
                 if(response.data.success){
@@ -447,57 +463,11 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                     me.count = response.data.count;
                     me.data =  response.data.results.data;
                     me.facets = response.data.results.facets;
-                    me.notRemovableTerms = [];
-                    me.activeTerms = [];
-                    var previousFacetId;
-                    angular.forEach(response.data.results.activeFacets,function(activeFacet){
-                        if(activeFacet.id != 'navigation'){
-                            angular.forEach(activeFacet.terms,function(term){
-                                var newTerm = {};
-                                newTerm.term = term.term;
-                                newTerm.label = term.label;
-                                newTerm.facetId = activeFacet.id;
-                                if(previousFacetId == activeFacet.id){
-                                    newTerm.operator =' '+(activeFacet.operator)+' ';
-                                } else if (previousFacetId && me.notRemovableTerms.length != 0){
-                                    newTerm.operator = ', ';
-                                }
-                                if(predefinedFacets.hasOwnProperty(activeFacet.id) && predefinedFacets[activeFacet.id]==term.term){
-                                    me.notRemovableTerms.push(newTerm);
-                                } else {
-                                    me.activeTerms.push(newTerm);
-                                }
-                                previousFacetId = activeFacet.id;
-                            });
-                        }
-                    });
-                    if (firstTime) {
-                        var taxonomiesArray = {};
-                         taxonomiesArray[0] = '54cb636245205e0110db058f';//taxo de thématiques
-                         // taxo de lieux : '54d6299445205e7877a6b28e'
-                        TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
-                              if(response.data.success){
-                                 var tax = response.data.taxo;
-                                 me.taxo={};
-                                 angular.forEach(tax, function(taxonomie){
-                                    me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
-                                    //get taxonomies
-                                    angular.forEach(taxonomie.terms, function(term){
-                                        me.taxo[taxonomie.vocabulary.id][term.id] = term;
-                                    });
-                                    //get inital counts
-                                    angular.forEach(me.facets[0].terms, function(term){
-                                        if(me.taxo["54cb636245205e0110db058f"][term.term]) me.taxo["54cb636245205e0110db058f"][term.term].count = term.count;
-                                    });
-                                     console.log(me.taxo);
-                                     
-                                 });
-                 
-                              }
-                              
-                        });
-                        firstTime=false;
-                    }
+                   //get inital counts
+                   angular.forEach(me.facets[0].terms, function(term){
+                       if(me.taxo["54cb636245205e0110db058f"][term.term]) me.taxo["54cb636245205e0110db058f"][term.term].count = term.count;
+                   });
+                    console.log(me.taxo);
                 }
             })
         };
