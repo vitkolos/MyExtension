@@ -12,7 +12,7 @@
         </ul>
     </div>
     <div ng-if="blockConfig.displayMode!='form'">
-        <div ng-if="!rubedo.current.user" class="links" ng-click="authCtrl.showModal()"><span class="icon-user"></span> {{rubedo.translate("Blocks.Auth.Label.LogIn","Log in")}}</div>
+        <div ng-if="!rubedo.current.user" class="links cursor-as-pointer" ng-click="authCtrl.showModal()"><i class="icon-user"></i> {{rubedo.translate("Blocks.Auth.Label.LogIn","Log in")}}</div>
         <div class="modal fade" id="rubedoAuthModal" tabindex="-1" role="dialog" aria-labelledby="rubedoAuthModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
