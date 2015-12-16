@@ -84,7 +84,7 @@
                     <h1 class="titre-saison" ng-if="columnContents[0].fields.annee ==0">{{rubedo.translate('Block.Futurs', 'En préparation')}}</h1>
                 </div>
                 
-                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index"  class="col-lg-3 col-sm-6 filmList"
+                <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index"  class="col-lg-3 col-sm-6 col-xs-12 filmList"
                       ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewSeason{{$parent.$parent.$index}}">
                         <div class="affiche">
                             <h3 class="media-heading"  ng-if="content.fields.annee==0">
