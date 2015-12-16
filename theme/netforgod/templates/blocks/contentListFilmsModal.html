@@ -86,13 +86,17 @@
                 
                 <div  ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index"  class="col-lg-3 col-sm-6 filmList"
                       ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewSeason{{$parent.$parent.$index}}">
-                        <img ng-if="content.fields.affiche "
-                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
-                         alt="{{ content.fields.text }}"/>
-                        <img class="default-vignette" ng-if="!content.fields.affiche "
-                         ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
-                         alt="{{ content.fields.text }}"/>
-                        
+                        <div class="affiche">
+                            <h3 class="media-heading"  ng-if="content.fields.annee==0">
+                                {{content.fields.text}}
+                            </h3>
+                            <img ng-if="content.fields.affiche "
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
+                             alt="{{ content.fields.text }}"/>
+                            <img class="default-vignette" ng-if="!content.fields.affiche "
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
+                             alt="{{ content.fields.text }}"/>                            
+                        </div>
                         <h4 class="media-heading">
                                 {{content.fields.date*1000 | date :'MMMM yyyy'}}
                         </h4>
