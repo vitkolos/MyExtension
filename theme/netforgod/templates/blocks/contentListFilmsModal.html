@@ -41,7 +41,6 @@
                 <img class="default-vignette" ng-if="!datum['i18n.'+locale+'.fields.affiche'][0]"
                 ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
                  alt="{{ datum.title }}"/>
-                
                 <h4 class="media-heading">
                         {{datum['fields.date'][0]*1000 | date :'MMMM yyyy'}}
                 </h4>
@@ -104,7 +103,7 @@
                 </div>
                 <div class="modal fade" id="previewSeason{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                     <div class="modal-dialog">
-                        <div class="col-sm-12  film-preview">
+                        <div class="container  film-preview">
                             <div class="close" data-dismiss="modal" aria-label="Close"><span></span><span></span></div>
                             <div class="prev" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex -1)" ng-if="contentListCtrl.previewIndex>0"><span></span><span></span></div>
                             <div class="col-sm-5 text-center">
