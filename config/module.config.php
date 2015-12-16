@@ -97,7 +97,7 @@ return array(
                 'basePath' => realpath(__DIR__ . '/../theme/netforgod'),
                 'css' => array(
                     '/css/netforgod.css',
-                    'css/fontello.css'
+                    'css/font-nfg.css'
                 ),
                 'js' => array(
                     '/js/netforgod.js',
