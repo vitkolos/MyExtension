@@ -29,8 +29,17 @@
     
     
     <div ng-controller="SearchFilmsController as filmSearchCtrl" class="row" ng-if="showFilters">
-        <div class="col-sm-12" >
+        <div class="col-sm-10" >
             <p><span class="searchTags badge cursor-as-pointer" ng-repeat="term in contentListCtrl.taxo['54cb636245205e0110db058f']" ng-click="filmSearchCtrl.filter(term.id)" ng-class="{'checked': filmSearchCtrl.checked(term.id), 'disabled':!term.count}">{{term.text}} <sup>{{term.count}}</sup></span></p>
+        </div>
+        <div class="col-sm-2">
+            <form ng-submit="filmSearchCtrl.onSubmit()" role="form">
+                    <div class="input-group">
+                        <input class="form-control" type="text" ng-model="filmSearchCtrl.query" placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
+                            <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span></button></span>
+                    </div>
+                </form>
         </div>
 
         <div class="col-sm-12" ng-if="rubedo.showSearchList">

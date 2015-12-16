@@ -346,7 +346,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
         me.filter = function(termId) {
             $scope.rubedo.showSearchList = true;
             me.clickOnFacets('54cb636245205e0110db058f',termId);
-
         };
         /*$scope.$on('$routeUpdate', function(scope, next, current) {
             options = angular.copy(defaultOptions);
@@ -377,6 +376,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             me.searchByQuery(options);
         };
         me.onSubmit = function(){
+            $scope.rubedo.showSearchList = true;
             me.options.start = 0;
             me.options.limit = me.limit;
             me.options.query = me.query;
