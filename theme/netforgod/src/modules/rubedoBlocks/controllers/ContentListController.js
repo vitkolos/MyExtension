@@ -48,7 +48,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.changePageAction = function(){
         options.start += me.limit;
         options.limit += me.limit;
-        me.getContents(config.query, pageId, siteId, options);
+        me.getContents(config.query, pageId, siteId, options, true);
     };
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         alreadyPersist = false;
@@ -88,7 +88,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.usedContentTypes=response.data.usedContentTypes;
                 if (me.usedContentTypes[0]=="54cb447145205e7d09db0590" && me.limit>1) {
                     me.filmsList = true;
-                    var columnContentList = [];
+                    
+                    if (!add) {
+                        var columnContentList = [];
+                    }
                     var currentSeason = null;
                     angular.forEach(response.data.contents,function(newContent, key){
                         newContent.anneeFormatted = (newContent.fields.annee>=10)? '20'+newContent.fields.annee : '200'+newContent.fields.annee;

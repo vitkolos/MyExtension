@@ -74,6 +74,9 @@
                             </h4>
                             <p>{{filmSearchCtrl.data[contentListCtrl.previewIndex].summary}}</p>
                             <a  ng-href="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].url }}" class="pull-right">Voir le film -></a>
+                            <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+filmSearchCtrl.data[contentListCtrl.previewIndex].id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
+                                <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
+                            </a>
                         </div>                       
                         <div class="next" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex +1)" ng-if="contentListCtrl.previewIndex < filmSearchCtrl.data.length -1"><span></span><span></span></div>
                     </div>
