@@ -356,11 +356,12 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
             parseQueryParamsToOptions();
             me.searchByQuery(options, true);
         });*/
+        me.checkedFacets = {};
         me.checked = function(term){
             var checked = false;
-            angular.forEach(me.activeTerms,function(activeTerm){
-                if (!checked){
-                    checked = activeTerm.term==term;
+            angular.forEach(me.checkedFacets,function(facet){
+                if (facet[term]){
+                    checked = true;
                 }
             });
             return checked;
@@ -405,11 +406,16 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
         };
         me.clickOnFacets =  function(facetId,term){
             var del = false;
-            angular.forEach(me.activeTerms,function(activeTerm){
-                if(!del){
-                    del = (activeTerm.term==term && activeTerm.facetId==facetId);
+            if (!me.checkedFacets[facetId]) {
+                me.checkedFacets[facetId]={term : 1};
+            }
+            else {
+                if (me.checkedFacets[facetId][term]) {
+                    del=true;
+                    delete me.checkedFacets[facetId][term];
                 }
-            });
+                else me.checkedFacets[facetId][term]=1;
+            }
             if(del){
                 if(facetsId.indexOf(facetId)==-1){
                     me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
