@@ -416,6 +416,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                 }
                 else me.checkedFacets[facetId][term]=1;
             }
+            console.log(me.checkedFacets);
             if(del){
                 if(facetsId.indexOf(facetId)==-1){
                     me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
