@@ -480,8 +480,15 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                                  var tax = response.data.taxo;
                                  me.taxo={};
                                  angular.forEach(tax, function(taxonomie){
-                                     me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
-                                     me.taxo[taxonomie.vocabulary.id] = angular.extend(me.taxo[taxonomie.vocabulary.id], me.facets[0].terms);
+                                    me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                                    //get taxonomies
+                                    angular.forEach(taxonomie.terms, function(term){
+                                        me.taxo[taxonomie.vocabulary.id][term.id] = term;
+                                    });
+                                    //get inital counts
+                                    angular.forEach(me.facets[0].terms, function(term){
+                                        if(me.taxo["54cb636245205e0110db058f"][term.term]) me.taxo["54cb636245205e0110db058f"][term.term].count = term.count;
+                                    });
                                      console.log(me.taxo);
                                      
                                  });
