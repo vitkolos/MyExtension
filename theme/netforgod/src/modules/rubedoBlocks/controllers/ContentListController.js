@@ -46,8 +46,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.columns = config.columns && !config.infiniteScroll ? 'col-md-'+(12/config.columns):'col-md-12';
     me.showPaginator = config.showPager && !config.infiniteScroll;
     me.changePageAction = function(){
-        options.start = me.start;
-        options.limit += options.limit;
+        options.start += me.limit;
+        options.limit += me.limit;
         me.getContents(config.query, pageId, siteId, options);
     };
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
