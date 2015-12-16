@@ -88,10 +88,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.usedContentTypes=response.data.usedContentTypes;
                 if (me.usedContentTypes[0]=="54cb447145205e7d09db0590" && me.limit>1) {
                     me.filmsList = true;
-                    
                     if (!add) {
                         var columnContentList = [];
                     }
+                    else  var columnContentList = angular.copy(me.contentList[me.contentList.length-1]);
+                    
                     var currentSeason = null;
                     angular.forEach(response.data.contents,function(newContent, key){
                         newContent.anneeFormatted = (newContent.fields.annee>=10)? '20'+newContent.fields.annee : '200'+newContent.fields.annee;
