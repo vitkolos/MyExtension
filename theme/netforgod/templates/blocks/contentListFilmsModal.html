@@ -136,7 +136,7 @@
             </div>
         </div>
     </div>
-
-    <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit" ng-show="!rubedo.showSearchList"
-               count="contentListCtrl.count" change-page-action="contentListCtrl.changePageAction()"></paginator>
+    <div class="button cursor-as-pointer" ng-click = "contentListCtrl.changePageAction()">
+        See more films
+    </div>
 </div>

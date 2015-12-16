@@ -47,7 +47,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.showPaginator = config.showPager && !config.infiniteScroll;
     me.changePageAction = function(){
         options.start = me.start;
-        $location.search(blockPagingIdentifier,(me.start/me.limit)+1);
+        options.limit += options.limit;
         me.getContents(config.query, pageId, siteId, options);
     };
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
