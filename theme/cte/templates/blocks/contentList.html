@@ -82,6 +82,7 @@
                                 </h4>
                             </div>
                         </a>
+
                         <div class="media-body" ng-if="fieldEditMode">
                             <h4 class="list-item-title capital">
                                 <span><rubedo-field  field="{{content.type.title}}"></rubedo-field></span>
@@ -100,11 +101,10 @@
                                     <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
                                 </span>
                             </h4>
-                            <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                <button><span class="glyphicon glyphicon-plus"></span>Modifier</button>
-                            </a>
                         </div>
-                        
+                        <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                                <button><span class="glyphicon glyphicon-plus"></span>Modifier</button>
+                        </a>                        
                     </div>
                    
                     
