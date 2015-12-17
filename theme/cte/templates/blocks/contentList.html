@@ -80,6 +80,9 @@
                                         <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
                                     </span>
                                 </h4>
+                                <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
+                                        <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
+                                </a>
                             </div>
                         </a>
 
@@ -102,9 +105,7 @@
                                 </span>
                             </h4>
                         </div>
-                        <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
-                        </a>
+
                     </div>
                    
                     
