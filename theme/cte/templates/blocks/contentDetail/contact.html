@@ -73,6 +73,7 @@
 				<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':'Envoyer un mail'}">
 					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
 				</div>
+				<rubedo-field  ng-if="rubedo.current.user" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field>
 			</div>
 		</div>
 
