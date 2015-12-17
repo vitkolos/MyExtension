@@ -12,7 +12,7 @@
             title="Add content"
             class="btn btn-default"
             ng-click="contentListCtrl.launchFOContribute()">
-        <span class="glyphicon glyphicon-plus"></span> Contribute
+        <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}}
     </button>
     <div class="row contentList" ng-switch="blockConfig.columns">
        <!--POUR 1 COLONNE-->
@@ -103,7 +103,7 @@
                             </h4>
                         </div>
                         <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                <button><span class="glyphicon glyphicon-plus"></span>Modifier</button>
+                                <button><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
                         </a>                        
                     </div>
                    
