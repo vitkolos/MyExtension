@@ -20,13 +20,8 @@
 			<p>Watch <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
 				<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 		</div>
-		<div ng-if="contentDetailCtrl.watch =='film'">
+		<div ng-if="contentDetailCtrl.watch =='film'" ng-in>
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('filmYT')}}">
-				<div ng-if="!fieldInputMode && !field.config.useAsVariation">
-					<div ng-controller="RECFieldController as recCtrl" class="ng-scope">
-						<rubedo-field ng-repeat="field in fields track by $index" ng-if="field.config.name=='fr' " ></rubedo-field>
-					</div>
-				</div>
 			</rubedo-field>
 		</div>
 		<div ng-if="contentDetailCtrl.watch =='trailer'">
