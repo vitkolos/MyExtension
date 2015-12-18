@@ -345,6 +345,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
       var me=this;
       $scope.fields=[];
       var config=$scope.field.config;
+      $scope.fieldEntity[config.name]=$scope.contentDetailCtrl.fieldEntity[config.name];
       if (!$scope.fieldEntity[config.name]&&$scope.fieldInputMode){
           $scope.fieldEntity[config.name]={ };
       }
