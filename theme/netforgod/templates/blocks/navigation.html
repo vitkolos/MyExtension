@@ -25,12 +25,12 @@
                         </ul>
                     </li>
                     <li ng-controller="LanguageMenuController as languageMenuCtrl" class="languageMenu">
-                        <a  class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{languageMenuCtrl.currentLang.flagCode}} <span class="caret"></span></a>
+                        <a  class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{languageMenuCtrl.currentLang.lang |uppercase}} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li ng-repeat="lang in languageMenuCtrl.languages track by $index">
                                 <a ng-click="languageMenuCtrl.changeLang(lang.lang)" href>
                                     <i ng-if="languageMenuCtrl.showFlags"><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></i>
-                                    {{lang.flagCode}}
+                                    {{lang.lang |uppercase}}
                                 </a>
                             </li>
                         </ul>
