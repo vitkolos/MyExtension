@@ -161,7 +161,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
-                            limit:200,
+                            limit:50,
                             query:me.content.fields.titrePhoto+"*"
                         };
                         me.getMedia = function(options){
@@ -188,7 +188,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     me.addImages = function(){
                         me.limit +=20;
-                        
                      };
 /*GET CONTENT TAXONOMIES*/
 

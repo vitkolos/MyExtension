@@ -158,7 +158,7 @@
 
 
 
-<!--<div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
+<div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
 	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.images"  >
 	    <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" style="width:100%"/>
 	    <div class="img-description hidden-xs" data-toggle="modal" data-target="#rubedoGalleryDetailModal" ng-click="contentDetailCtrl.loadModal($index)">
@@ -166,20 +166,9 @@
 	    </div>
 	</div>
 	<div class="gutter-sizer"></div>
-</div>-->
-
-<div masonry='{ "transitionDuration" : "0.4s" , "itemSelector" : ".masonry-brick",  "gutter": ".gutter-sizer","percentPosition": true}'>
-  <!-- items -->
-  <div masonry-tile class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.images"  >
-	    <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'300px',mode:'boxed'})}}" style="width:100%"/>
-	    <div class="img-description hidden-xs" data-toggle="modal" data-target="#rubedoGalleryDetailModal" ng-click="contentDetailCtrl.loadModal($index)">
-		<i class="fa fa-expand"></i>
-	    </div>
-	</div>
-	<div class="gutter-sizer"></div>
-
-  </div>
 </div>
+
+
 
 
 <!-- The modal dialog, which will be used to wrap the lightbox content -->
