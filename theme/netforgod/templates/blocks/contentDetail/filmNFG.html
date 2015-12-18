@@ -21,13 +21,13 @@
 				<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 		</div>
 		<div ng-if="contentDetailCtrl.watch =='film'">
-			<div field = "{{contentDetailCtrl.getFieldByName('filmYT')}}">
+			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('filmYT')}}">
 				<div ng-if="!fieldInputMode && !field.config.useAsVariation">
 					<div ng-controller="RECFieldController as recCtrl" class="ng-scope">
 						<rubedo-field ng-repeat="field in fields track by $index" ng-if="field.config.name=='fr' " ></rubedo-field>
 					</div>
 				</div>
-			</div>
+			</rubedo-field>
 		</div>
 		<div ng-if="contentDetailCtrl.watch =='trailer'">
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('trailer')}}" ></rubedo-field><!--sous-titre-->
