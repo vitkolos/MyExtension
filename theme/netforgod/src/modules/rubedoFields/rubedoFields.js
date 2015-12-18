@@ -877,6 +877,8 @@
                me.lang=$scope.contentDetailCtrl.lang;
                console.log(me.lang);
            }
+	   console.log($scope.contentDetailCtrl);
+	   console.log(contentDetailCtrl);
         RubedoContentTypesService.findById(config.usedCT,{}).then(
             function(response){
                 if(response.data.success){
