@@ -164,7 +164,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             pageId: $scope.rubedo.current.page.id,
                             start:me.start,
                             query:me.content.fields.titrePhoto+"*",
-                            lastupdatetime:me.content.createTime;
+                            lastupdatetime:me.content.createTime
                         };
                         me.getMedia = function(options){
                             RubedoSearchService.getMediaById(options).then(function(response){
