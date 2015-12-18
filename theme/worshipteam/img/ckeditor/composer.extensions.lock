@@ -13,12 +13,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nicolasrhone/MyExtension.git",
-                "reference": "967e9619e25493c0db9b368e8007659e33710b4d"
+                "reference": "358c98f380447c17f5e8c9710c67fdac10c7d785"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nicolasrhone/MyExtension/zipball/967e9619e25493c0db9b368e8007659e33710b4d",
-                "reference": "967e9619e25493c0db9b368e8007659e33710b4d",
+                "url": "https://api.github.com/repos/nicolasrhone/MyExtension/zipball/358c98f380447c17f5e8c9710c67fdac10c7d785",
+                "reference": "358c98f380447c17f5e8c9710c67fdac10c7d785",
                 "shasum": ""
             },
             "require": {
@@ -34,7 +34,7 @@
                 "source": "https://github.com/nicolasrhone/MyExtension/tree/master",
                 "issues": "https://github.com/nicolasrhone/MyExtension/issues"
             },
-            "time": "2015-12-18 09:26:15"
+            "time": "2015-12-18 14:47:55"
         }
     ],
     "packages-dev": [],
