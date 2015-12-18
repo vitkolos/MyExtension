@@ -873,9 +873,11 @@
         }
         $scope.fieldEntity=$scope.$parent.fieldEntity[config.name];
            me.lang="";
-           if ($scope.contentDetailCtrl.lang) {
-               me.lang=$scope.contentDetailCtrl.lang;
-               console.log(me.lang);
+           if ($scope.contentDetailCtrl) {
+		if ($scope.contentDetailCtrl.lang) {
+		    me.lang=$scope.contentDetailCtrl.lang;
+		console.log(me.lang);
+		}
            }
         RubedoContentTypesService.findById(config.usedCT,{}).then(
             function(response){
@@ -890,7 +892,6 @@
 			});
                     }
 		    else $scope.fields=me.contentType.fields;
-                    console.log($scope.fields);
                 }
             }
         );
