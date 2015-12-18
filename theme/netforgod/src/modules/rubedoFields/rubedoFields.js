@@ -883,9 +883,13 @@
                     me.contentType=response.data.contentType;
                     $scope.fieldIdPrefix=$scope.$parent.fieldIdPrefix+me.contentType.type;
                     if (me.lang) {
-                      $scope.fields[0] = me.contentType.fields[me.lang];
+			angular.forEach(me.contentType.fields, function(field){
+			    if (field.config.name==me.lang) {
+				$scope.fields[0] = field;
+			    }
+			});
                     }
-                    $scope.fields=me.contentType.fields;
+		    else $scope.fields=me.contentType.fields;
                     console.log($scope.fields);
                 }
             }
