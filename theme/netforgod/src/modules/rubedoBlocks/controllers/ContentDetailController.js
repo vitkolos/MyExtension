@@ -94,6 +94,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if(response.data.content.fields.video) {
                             $scope.rubedo.current.page.video = response.data.content.fields.video.url;
                         }
+                        
                        
                     }
                     if (me.content.fields.film) {
@@ -106,7 +107,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);
-                    
 
                     $scope.fieldLanguage=me.content.locale;
                     if (me.content.isProduct){
@@ -144,19 +144,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
-                    //Propositions : déterminer si les inscriptions sont possibles
-                    if (me.content.type.code=="proposition") {
-                        var today = new Date();
-                       if (me.content.fields.inscriptionState.inscriptionState == 'close') {
-                            me.isInscription=false;
-                        }
-                        else if (me.content.fields.dateDebut*1000 < today.getTime()) {
-                            me.propDate = "passee";
-                        }
-                        else me.propDate="ouverte";
-                        
-                    }
-
 
 /*GET CONTENT TAXONOMIES*/
 
@@ -244,7 +231,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                             $scope.fields=me.transformForFront(me.content.type.fields);
                         }
-                        //$http.get(themePath+'/templates/blocks/contentDetail/)
+                        console.log($scope.fields);
                     }
                 }
             }
