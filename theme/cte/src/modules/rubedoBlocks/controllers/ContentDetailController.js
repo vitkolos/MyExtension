@@ -171,6 +171,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 if(response.data.success){
                                     me.content.images += $filter('orderBy')(response.data.results.data, 'title') ;
                                     me.count = response.count;
+                                    console.log(me.content.images);
                                 }
                             });
                         };
