@@ -344,32 +344,32 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
   angular.module("rubedoBlocks").lazy.controller("RECFieldFilmController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
       var me=this;
       $scope.fields=[];
-      console.log($scope.field);
       var config=$scope.field.config;
       if (!$scope.fieldEntity[config.name]&&$scope.fieldInputMode){
           $scope.fieldEntity[config.name]={ };
       }
       $scope.fieldEntity=$scope.fieldEntity[config.name];
-         me.lang="";
+         /*me.lang="";
          if ($scope.contentDetailCtrl) {
               if ($scope.contentDetailCtrl.lang) {
                 me.lang=$scope.contentDetailCtrl.lang;
                 console.log(me.lang);
               }
-         }
+         }*/
       RubedoContentTypesService.findById(config.usedCT,{}).then(
           function(response){
               if(response.data.success){
                   me.contentType=response.data.contentType;
                   $scope.fieldIdPrefix=$scope.fieldIdPrefix+me.contentType.type;
-                  if (me.lang) {
+                  /*if (me.lang) {
                       angular.forEach(me.contentType.fields, function(field){
                           if (field.config.name==me.lang) {
                               $scope.fields[0] = field;
                           }
                       });
                   }
-                  else $scope.fields=me.contentType.fields;
+                  else */
+                  $scope.fields=me.contentType.fields;
                   console.log($scope.fields);
               }
           }
