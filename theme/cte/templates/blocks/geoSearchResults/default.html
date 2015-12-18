@@ -113,7 +113,7 @@
             <div class="col-lg-6 col-md-12 col-lg-pull-6 geo-search">
                 <a  ng-href="{{data.itemData.url}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'"><div class="row search-result " >
                     <div style="line-height: 60px; float:left" >
-                        <img ng-src="/assets/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
+                        <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
                     </div>
                     <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
                     <h4>{{data.itemData.title}}</h4>
