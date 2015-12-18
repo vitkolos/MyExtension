@@ -184,11 +184,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                             me.currentImage = me.content.images[me.currentIndex];
                         };
+                        me.addImages = function(){
+                            me.limit +=50;
+                         };
                     }
                     
-                    me.addImages = function(){
-                        me.limit +=20;
-                     };
+                    
 /*GET CONTENT TAXONOMIES*/
 
 
