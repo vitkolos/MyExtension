@@ -8,7 +8,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.watch = 'no';
     var path=$location.path();
     me.lang=path.split("/")[1];
-    console.log(me.lang);
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
@@ -351,28 +350,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
           $scope.fieldEntity[config.name]={ };
       }
       $scope.fieldEntity=$scope.fieldEntity[config.name];
-         /*me.lang="";
-         if ($scope.contentDetailCtrl) {
-              if ($scope.contentDetailCtrl.lang) {
-                me.lang=$scope.contentDetailCtrl.lang;
-                console.log(me.lang);
-              }
-         }*/
+
       RubedoContentTypesService.findById(config.usedCT,{}).then(
           function(response){
               if(response.data.success){
                   me.contentType=response.data.contentType;
                   $scope.fieldIdPrefix=$scope.fieldIdPrefix+me.contentType.type;
-                  /*if (me.lang) {
-                      angular.forEach(me.contentType.fields, function(field){
-                          if (field.config.name==me.lang) {
-                              $scope.fields[0] = field;
-                          }
-                      });
-                  }
-                  else */
+ 
                   $scope.fields=me.contentType.fields;
-                  console.log($scope.fields);
               }
           }
       );
