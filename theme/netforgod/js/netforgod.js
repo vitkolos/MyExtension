@@ -138,7 +138,8 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
         $scope.fieldEntity=$scope.$parent.fieldEntity[config.name];
            me.lang="";
            if ($scope.contentDetailCtrl.lang) {
-                      me.lang=$scope.contentDetailCtrl.lang;
+               me.lang=$scope.contentDetailCtrl.lang;
+               console.log(me.lang);
            }
         RubedoContentTypesService.findById(config.usedCT,{}).then(
             function(response){
@@ -149,6 +150,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                       $scope.fields[0] = me.contentType.fields[me.lang];
                     }
                     $scope.fields=me.contentType.fields;
+                    console.log($scope.fields);
                 }
             }
         );
