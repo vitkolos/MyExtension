@@ -14,27 +14,9 @@ blocksConfig.navigation = {
 
 
 
- angular.module('rubedoBlocks').service('NFGFilms', function($http) {
-	delete $http.defaults.headers.common['X-Requested-With'];
-	this.getData = function(callbackFunc) {
-	    $http({
-	        method: 'JSONP',
-	        url: 'http://www.netforgod.tv/s/HD.php?l=EN&y=15&m=5&callback=JSON_CALLBACK'/*,
-	        params: 'limit=10, sort_by=created:desc'*/,
-	        headers: {'Access-Control-Allow-Origin:': '*'}
-	     }).success(function(data){
-	        // With the data succesfully returned, call our callback
-	        callbackFunc(data);
-	        console.log(data);
-	    }).error(function(){
-	        alert("error");
-	    });
-	 }
-});
 
 
-
- angular.module('rubedoBlocks').directive('jwplayer', ['$compile','$http','NFGFilms', function ($compile,$http, NFGFilms) {
+ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {
         restrict: 'EC',
         link: function (scope, element, attrs) {
@@ -46,11 +28,7 @@ blocksConfig.navigation = {
                       
                 return '<div id="' + playerId + '"></div>';
             };
-            /*NFGFilms.getData(function(dataResponse) {
-       		filmUrl = dataResponse;
-       		
-    		});*/
-    	
+
 
            var options = {
            	      /*file:filmUrl,*/

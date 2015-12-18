@@ -391,6 +391,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     $scope.registerFieldEditChanges=me.registerEditChanges;
 }]);
 
-
+ 
 
 
