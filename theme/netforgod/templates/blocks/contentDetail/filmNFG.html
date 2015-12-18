@@ -19,7 +19,7 @@
 		<div class="film-controls" >
 			<p>Watch <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
 				<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
-			<p class="pull-right"><span class="icon-audiolanguage"></span><select ng-model="contentDetailCtrl.lang"><option ng-repeat="(key, data) in contentDetailCtrl.fields.filmYT" value="{{key}}">{{key}}</option></select></p>
+			<p class="pull-right"><span class="icon-audiolanguage"></span><select ng-model="contentDetailCtrl.lang"><option ng-repeat="(key, data) in contentDetailCtrl.content.fields.filmYT" ng-value="{{key}}">{{key}}</option></select></p>
 		</div>
 		<div ng-if="contentDetailCtrl.watch =='film'" ng-in>
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('filmYT')}}">
