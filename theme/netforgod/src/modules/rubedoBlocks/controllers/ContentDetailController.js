@@ -344,6 +344,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
   angular.module("rubedoBlocks").lazy.controller("RECFieldFilmController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
       var me=this;
       $scope.fields=[];
+      console.log($scope.field);
       var config=$scope.field.config;
       $scope.fieldEntity[config.name]=$scope.contentDetailCtrl.fieldEntity[config.name];
       if (!$scope.fieldEntity[config.name]&&$scope.fieldInputMode){
