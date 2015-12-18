@@ -24,7 +24,7 @@
 		<div ng-if="contentDetailCtrl.watch =='film'">
 			<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
 				<div ng-controller="RECFieldFilmController as recCtrl" >
-					<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name='fr' "></rubedo-field>
+					<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang "></rubedo-field>
 				</div>
 			</div>
 			<!--<rubedo-field field = "{{contentDetailCtrl.getFieldByName('filmYT')}}">
