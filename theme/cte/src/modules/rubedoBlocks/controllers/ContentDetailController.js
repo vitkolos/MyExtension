@@ -158,7 +158,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     if (me.content.type.code=="album") {
                         me.content.images={};
                         me.start=0;
-                        me.limit = 50;
+                        me.limit = me.content.fields.number;
                         var options2 = {
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
@@ -190,8 +190,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         };
                         me.add = function(){
                             me.limit +=me.limit;
-                            me.start+=me.limit;
-                            me.getMedia(options2);
+
                          };
                     }
                     
