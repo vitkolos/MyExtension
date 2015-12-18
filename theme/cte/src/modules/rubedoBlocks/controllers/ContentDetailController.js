@@ -157,21 +157,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     //Albums photos
                     if (me.content.type.code=="album") {
                         me.content.images={};
+                        me.start=0;
+                        me.limit = 50;
                         var options2 = {
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
-                            start:0,
-                            limit:50,
+                            start:me.start,
+                            limit:me.limit,
                             query:me.content.fields.titrePhoto+"*"
                         };
-                        me.getMedia = function(options){
-                            RubedoSearchService.getMediaById(options).then(function(response){
+                        me.getMedia = function(){
+                            RubedoSearchService.getMediaById(options2).then(function(response){
                                 if(response.data.success){
-                                    me.content.images = $filter('orderBy')(response.data.results.data, 'title') ;
+                                    me.content.images += $filter('orderBy')(response.data.results.data, 'title') ;
+                                    me.count = response.count;
                                 }
                             });
                         };
-                        me.getMedia(options2);
+                        me.getMedia();
                         me.loadModal = function(index){
                             me.currentIndex = index;
                             me.currentImage = me.content.images[me.currentIndex];
@@ -184,8 +187,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                             me.currentImage = me.content.images[me.currentIndex];
                         };
-                        me.addImages = function(){
-                            me.limit +=50;
+                        me.add = function(){
+                            me.limit +=me.limit;
+                            me.start+=me.limit;
+                            me.getMedia();
                          };
                     }
                     
