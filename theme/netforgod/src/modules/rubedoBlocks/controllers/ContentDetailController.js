@@ -232,7 +232,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                             $scope.fields=me.transformForFront(me.content.type.fields);
                         }
-                        console.log(me.transformForFront(me.content.type.fields));
                     }
                 }
             }
