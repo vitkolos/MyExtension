@@ -345,10 +345,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
       var me=this;
       $scope.fields=[];
       var config=$scope.field.config;
-      if (!$scope.$parent.fieldEntity[config.name]&&$scope.fieldInputMode){
-          $scope.$parent.fieldEntity[config.name]={ };
+      if (!$scope.fieldEntity[config.name]&&$scope.fieldInputMode){
+          $scope.fieldEntity[config.name]={ };
       }
-      $scope.fieldEntity=$scope.$parent.fieldEntity[config.name];
+      $scope.fieldEntity=$scope.fieldEntity[config.name];
          me.lang="";
          if ($scope.contentDetailCtrl) {
               if ($scope.contentDetailCtrl.lang) {
@@ -360,7 +360,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
           function(response){
               if(response.data.success){
                   me.contentType=response.data.contentType;
-                  $scope.fieldIdPrefix=$scope.$parent.fieldIdPrefix+me.contentType.type;
+                  $scope.fieldIdPrefix=$scope.fieldIdPrefix+me.contentType.type;
                   if (me.lang) {
                       angular.forEach(me.contentType.fields, function(field){
                           if (field.config.name==me.lang) {
