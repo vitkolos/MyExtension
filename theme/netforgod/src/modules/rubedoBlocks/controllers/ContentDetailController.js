@@ -346,7 +346,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
       $scope.fields=[];
       console.log($scope.field);
       var config=$scope.field.config;
-      $scope.fieldEntity['filmYT']=$scope.contentDetailCtrl.fieldEntity['filmYT'];
       if (!$scope.fieldEntity[config.name]&&$scope.fieldInputMode){
           $scope.fieldEntity[config.name]={ };
       }
