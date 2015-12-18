@@ -892,6 +892,7 @@
 			});
                     }
 		    else $scope.fields=me.contentType.fields;
+		    console.log($scope.fields);
                 }
             }
         );
