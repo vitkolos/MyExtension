@@ -17,7 +17,7 @@
 <div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
 	<div class="col-sm-12">
 		<div class="film-controls" >
-			<p>Watch <span ng-if="fieldEntity['film']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
+			<p>Watch <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
 				<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 		</div>
 		<div ng-if="contentDetailCtrl.watch =='film'">
