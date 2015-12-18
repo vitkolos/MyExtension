@@ -167,8 +167,14 @@
 	</div>
 	<div class="gutter-sizer"></div>
 </div>
-<div class="button rouge" ng-click="contentDetailCtrl.add()" style="margin:24px auto">
-	Suite
+<div class="col-xs-12" style="">
+	<img src="/theme/cte/img/loader.gif" ng-if="process">
+</div>
+     
+<div class="col-xs-12 text-center" ng-if="!process">
+	<div class="button rouge" ng-click="contentDetailCtrl.add()" style="margin:48px auto">
+		Suite
+	</div>
 </div>
 
 
