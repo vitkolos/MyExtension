@@ -23,7 +23,7 @@
 		<div ng-if="contentDetailCtrl.watch =='film'">
 			<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
 				<div ng-controller="RECFieldFilmController as recCtrl" >
-					<p class="pull-right"><span class="icon-audiolanguage main"></span><select ng-model="contentDetailCtrl.lang"><option ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]"  value="{{field.name}}">{{field.fieldLabel}}</option></select></p>
+					<p class="pull-right"><span class="icon-audiolanguage main"></span><select ng-model="contentDetailCtrl.lang">{{fields}}<option ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]"  value="{{field.name}}">{{field.fieldLabel}}</option></select></p>
 					
 					<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang "></rubedo-field>
 				</div>
