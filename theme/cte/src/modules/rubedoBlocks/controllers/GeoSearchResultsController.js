@@ -433,12 +433,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             } else {
                 me.apiClusterMode=false;
                 angular.forEach(data.results.data,function(item){
-                    switch(item['type']) {
+                    switch(item['typeId']) {
                         case "Point Net":
                             item['groupe']="rencontre"; break;
-                        case "NLieu":
+                        case "54632c1545205e7c38b0c6b7": // lieux communautaires
                             item['groupe']="lieux"; break;
-                        case "NProposition":
+                        case "54dc614245205e1d4a8b456b": //propositions
                             item['groupe']="evenement"; break;
                         default:
                             item['groupe']="";
