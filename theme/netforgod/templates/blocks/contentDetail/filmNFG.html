@@ -21,8 +21,8 @@
 				<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 			<p class="pull-right"><span class="icon-audiolanguage"></span><select ng-model="contentDetailCtrl.lang"><option ng-repeat="(key, data) in contentDetailCtrl.content.fields.filmYT" value="{{key}}">{{key}}</option></select></p>
 		</div>
-		<div ng-if="contentDetailCtrl.watch =='film'">
-			<div  ng-init="field = fieldEntity['filmYT']">
+		<div  ng-init="field = fieldEntity['filmYT']">
+			<div ng-if="contentDetailCtrl.watch =='film'">
 				<div ng-if="!fieldInputMode">
 					<div ng-controller="RECFieldController as recCtrl" >
 						<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>
