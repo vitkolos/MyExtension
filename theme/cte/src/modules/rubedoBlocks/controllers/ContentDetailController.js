@@ -191,7 +191,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.currentImage = me.content.images[me.currentIndex];
                         };
                         me.add = function(){
-                            $scope.process=true;
                             me.limit +=me.limit;
                          };
                     }
