@@ -166,15 +166,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             limit:me.limit,
                             query:me.content.fields.titrePhoto+"*"
                         };
-                        me.getMedia = function(){
-                            RubedoSearchService.getMediaById(options2).then(function(response){
+                        me.getMedia = function(options2){
+                            RubedoSearchService.getMediaById(options).then(function(response){
                                 if(response.data.success){
                                     me.content.images += $filter('orderBy')(response.data.results.data, 'title') ;
                                     me.count = response.count;
                                 }
                             });
                         };
-                        me.getMedia();
+                        me.getMedia(options2);
                         me.loadModal = function(index){
                             me.currentIndex = index;
                             me.currentImage = me.content.images[me.currentIndex];
@@ -190,7 +190,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         me.add = function(){
                             me.limit +=me.limit;
                             me.start+=me.limit;
-                            me.getMedia();
+                            me.getMedia(options2);
                          };
                     }
                     
@@ -288,7 +288,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     if (config.contentId){
         me.getContentById(config.contentId);
     }
-    console.log($scope.fieldEntity);
     me.revertChanges=function(){
         $scope.fieldEntity=angular.copy(previousFields);
     };

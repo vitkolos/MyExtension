@@ -1,0 +1,50 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "0343f1497084070e93060737945b1e3c",
+    "content-hash": "7dea00cc1b73be5afd30fa18a81ea3ff",
+    "packages": [
+        {
+            "name": "nicolasrhone/myextension",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nicolasrhone/MyExtension.git",
+                "reference": "967e9619e25493c0db9b368e8007659e33710b4d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nicolasrhone/MyExtension/zipball/967e9619e25493c0db9b368e8007659e33710b4d",
+                "reference": "967e9619e25493c0db9b368e8007659e33710b4d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/MyExtension"
+                ]
+            },
+            "support": {
+                "source": "https://github.com/nicolasrhone/MyExtension/tree/master",
+                "issues": "https://github.com/nicolasrhone/MyExtension/issues"
+            },
+            "time": "2015-12-18 09:26:15"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "nicolasrhone/myextension": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
