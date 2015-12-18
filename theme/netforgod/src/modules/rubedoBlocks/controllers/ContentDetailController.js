@@ -7,6 +7,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.taxonomy=[];
     me.watch = 'no';
     me.lang=$scope.rubedo.current.site.locale;
+    console.log(me.lang);
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
