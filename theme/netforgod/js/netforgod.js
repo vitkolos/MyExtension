@@ -127,31 +127,3 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 }]);
 
 
-    //generic field directive
-    angular.module('rubedoFields').controller("RECFieldController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
-        var me=this;
-        $scope.fields=[];
-        var config=$scope.field.config;
-        if (!$scope.$parent.fieldEntity[config.name]&&$scope.fieldInputMode){
-            $scope.$parent.fieldEntity[config.name]={ };
-        }
-        $scope.fieldEntity=$scope.$parent.fieldEntity[config.name];
-           me.lang="";
-           if ($scope.contentDetailCtrl.lang) {
-               me.lang=$scope.contentDetailCtrl.lang;
-               console.log(me.lang);
-           }
-        RubedoContentTypesService.findById(config.usedCT,{}).then(
-            function(response){
-                if(response.data.success){
-                    me.contentType=response.data.contentType;
-                    $scope.fieldIdPrefix=$scope.$parent.fieldIdPrefix+me.contentType.type;
-                    if (me.lang) {
-                      $scope.fields[0] = me.contentType.fields[me.lang];
-                    }
-                    $scope.fields=me.contentType.fields;
-                    console.log($scope.fields);
-                }
-            }
-        );
-    }]);
