@@ -200,7 +200,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         }
     });
     
-    me.getFormulaire(formId);
+    if(formId) me.getFormulaire(formId);
   
 
     // VALIDATIONS ANGULAR
