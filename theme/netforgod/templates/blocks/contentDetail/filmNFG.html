@@ -51,13 +51,39 @@
 		</div>
 	</div>
 </div>
-<div class="row padding-large">
-	<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
+<div class="row padding">
+	<div class="col-xs-12">
+		<p class="tab">
+			<span ng-click="tab=0" ng-class="{'active':tab==0}">Film Info</span>
+			<span ng-click="tab=1" ng-class="{'active':tab==1}">Comments</span>
+			<span ng-click="tab=2" ng-class="{'active':tab==2}">Photos </span>
+			<span ng-if="rubedo.current.user" ng-click="tab=3" ng-class="{'active':tab==3}">Point Net Zone</span></p>
+	</div>
+</div>
+<div class="row" ng-if="tab==0">
+	<div class="col-sm-4">
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('share')}}" ></rubedo-field><!--sous-titre-->
+	</div>
+	<div class="col-sm-4">
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('intercession')}}" ></rubedo-field><!--sous-titre-->
+	</div>	
+	<div class="col-sm-4">
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('parole')}}" ></rubedo-field><!--sous-titre-->
+	</div>
+</div>
+<div class="row" ng-if="tab==1">
+	<div class="col-xs-12">
+		<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
 		    disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
 		    disqus-identifier="{{ contentDetailCtrl.disqusIdentifier }}"
 		    disqus-url="{{ contentDetailCtrl.disqusUrl}}"
 		    disqus-title="{{ contentDetailCtrl.disqusTitle }}">
-	</dir-disqus>	
+		</dir-disqus>	
+	</div>	
+</div>
+	
+<div class="row padding-large">
+	
 </div>
 
 

@@ -167,10 +167,13 @@ span.tags + span.tags:before{content:', '; color:@txt; margin-right:5px}
 .lang-selection{
   margin-top: -35px;
   select{
-    background-color: @txt; color:white;
+    background-color: @txt; color:white; border:none;
   }
 }
-
+p.tab {
+  span{color:@link;}
+  span.active,span:hover{color:@txt; font-size: 1.5em;}
+}
 
 ////////FOOTER//////////////////
 .footer{background-color:@txt; color:@txt_slight; padding-top: 36px; padding-bottom: 36px;
