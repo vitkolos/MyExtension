@@ -121,6 +121,11 @@ class ContentsController extends DataAccessController
                     $insertData["fields"]["positionName"] = $lieu["fields"]["text"];
 
                 }
+                if ($insertData["fields"]["albumImages"] && $insertData["fields"]["albumImages"]!="")  {
+                    $damService = Manager::getService('Dam');
+                    
+
+                }
                 $insertData["target"] = isset($insertData["target"]) ? $insertData["target"] : array();
                 $returnArray = $this->_dataService->create($insertData, array(), false);
             } else {
