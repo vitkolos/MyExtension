@@ -104,7 +104,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                             columnContentList = [];
                             console.log('currentSeason : '+currentSeason+', annee :' +newContent.fields.annee )
                         }
-                        console.log(' annee :' +newContent.fields.annee)
+                        console.log(' annee :' +newContent.fields.annee);
                         columnContentList.push(newContent);
                         currentSeason = newContent.fields.annee;
                     });
