@@ -102,6 +102,10 @@ span.glyphicon{margin-right: 5px}
   span:nth-child(1){transform:rotate(45deg);-webkit-transform:rotate(45deg)}
   span:nth-child(2){transform:rotate(-45deg);-webkit-transform:rotate(-45deg)}
 }
+.film-preview img{
+  margin:0 auto;
+}
+
 .film-preview >div.prev, .film-preview >div.next{
   position:absolute; top: 40%; right: 30px; opacity: 0.8; cursor: pointer;height: 60px; width:40px; z-index: 1;
   span{background-color: white; position: absolute; width: 40px; height: 3px; right: 0}
@@ -124,7 +128,11 @@ span.glyphicon{margin-right: 5px}
     height: 100%;
   }
 }
-
+@media screen and (max-width: 768px) {
+.film-preview >div[class^='col']{padding-top: 0px; padding-bottom: 20px}
+.film-preview >div[class^='col']:first-of-type{padding-top: 70px;}
+  
+}
 .modal-dialog {
   display: inline-block;
   text-align: left;
