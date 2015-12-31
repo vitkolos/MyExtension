@@ -90,6 +90,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     me.filmsList = true;
                     if (!add) {
                         var columnContentList = [];
+                        var columnContentListSpecial = [];
                     }
                     else {
                         var columnContentList = angular.copy(me.contentList[me.contentList.length-1]);
@@ -101,15 +102,26 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         newContent.anneeFormatted = (newContent.fields.annee>=10)? '20'+newContent.fields.annee : '200'+newContent.fields.annee;
                         if(  (currentSeason && newContent.fields.annee != currentSeason) || (currentSeason==0 && newContent.fields.annee != currentSeason)){
                             me.contentList.push(columnContentList);
+                            if (columnContentListSpecial.length>0) {
+                                me.contentList.push(columnContentListSpecial);
+                            }
                             columnContentList = [];
-                            console.log('currentSeason : '+currentSeason+', annee :' +newContent.fields.annee )
+                            columnContentListSpecial = [];
                         }
-                        console.log(' annee :' +newContent.fields.annee);
-                        columnContentList.push(newContent);
-                        currentSeason = newContent.fields.annee;
+                        if (newContent.fields.horsSerie) {
+                            columnContentListSpecial.push(newContent);
+                            currentSeason = newContent.fields.annee;
+                        }
+                        else {
+                            columnContentList.push(newContent);
+                            currentSeason = newContent.fields.annee;
+                        }
                     });
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
+                        if (columnContentListSpecial.length>0) {
+                            me.contentList.push(columnContentListSpecial);
+                        }
                     }
                 }
                 else {
