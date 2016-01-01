@@ -9,7 +9,7 @@
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
 		<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
 		<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
-		<div class="buy-dvd" ng-if="!contentDetailCtrl.content.horsSerie">
+		<div class="buy-dvd" ng-if="!contentDetailCtrl.content.fields.horsSerie">
 			<a ng-href="{{contentDetailCtrl.content.fields.boutique}}"><i class="icon-dvd"></i>Buy DVD...</a>
 		</div>
 	</div>
