@@ -9,7 +9,7 @@
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
 		<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
 		<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
-		<div class="buy-dvd">
+		<div class="buy-dvd" ng-if="!contentDetailCtrl.content.horsSerie">
 			<a ng-href="{{contentDetailCtrl.content.fields.boutique}}"><i class="icon-dvd"></i>Buy DVD...</a>
 		</div>
 	</div>
@@ -54,7 +54,7 @@
 <div class="row padding">
 	<div class="col-xs-12">
 		<p class="tab">
-			<span ng-click="tab=0" ng-class="{'active':tab==0}">Film Info</span>
+			<span ng-click="tab=0" ng-class="{'active':tab==0}" ng-if="">Film Info</span>
 			<span ng-click="tab=1" ng-class="{'active':tab==1}">Comments</span>
 			<span ng-click="tab=2" ng-class="{'active':tab==2}">Photos </span>
 			<span ng-if="rubedo.current.user" ng-click="tab=3" ng-class="{'active':tab==3}">Point Net Zone</span></p>
