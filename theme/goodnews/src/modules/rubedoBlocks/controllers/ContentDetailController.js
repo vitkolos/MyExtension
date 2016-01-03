@@ -283,6 +283,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.fields=me.transformForFront(me.content.type.fields);
                         }
                         //$http.get(themePath+'/templates/blocks/contentDetail/)
+                            console.log('fields : '+$scope.fields);
+    console.log('transform for persist fields : '+transformForPersist());
+
                     }
                 }
             }
@@ -392,8 +395,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     
     
-    console.log('fields : '+$scope.fields);
-    console.log('transform for persist fields : '+transformForPersist());
 }]);
 
 
