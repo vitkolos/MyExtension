@@ -79,14 +79,12 @@
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('author')}}" ></rubedo-field><!--Texte (suite)-->
 			</div>
 		</div>
-		<!--<div class="row padding-large" ng-if="isArray(contentDetailCtrl.content.fields.image2) ">
+		<div class="row padding-large" ng-if="isArray(contentDetailCtrl.content.fields.image2) ">
 			<div class="col-sm-6" ng-repeat="image in contentDetailCtrl.content.fields.image2">
 				<img class="blogImage" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'600px',mode:'boxed'})}}" style="width:100%">
 			</div>
-		</div>-->
-		<div class="row padding-large" >
-			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('image2')}}" ></rubedo-field>
-		</div>			
+		</div>
+		
 					
 	</div>
 </div>
