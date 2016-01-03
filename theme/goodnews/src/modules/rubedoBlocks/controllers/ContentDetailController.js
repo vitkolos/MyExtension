@@ -272,13 +272,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
-                                },
-                                function (response){
-                                    me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                                     $scope.fields=me.transformForFront(me.content.type.fields);
                                     console.log($scope.fields);
                                     console.log('transform for persist fields : ');
                                     console.log(transformForPersist());
+                                },
+                                function (response){
+                                    me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
+                                    $scope.fields=me.transformForFront(me.content.type.fields);
 
                                 }
                             );
