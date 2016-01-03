@@ -388,6 +388,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
+    
+    
+    
+    
+    console.log('fields : '+$scope.fields);
+    console.log('transform for persist fields : '+transformForPersist());
 }]);
 
 
