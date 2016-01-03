@@ -276,6 +276,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                                     $scope.fields=me.transformForFront(me.content.type.fields);
+                                    console.log($scope.fields);
+                                    console.log('transform for persist fields : ');
+                                    console.log(transformForPersist());
+
                                 }
                             );
                         } else {
@@ -283,8 +287,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.fields=me.transformForFront(me.content.type.fields);
                         }
                         //$http.get(themePath+'/templates/blocks/contentDetail/)
-                            console.log('fields : '+$scope.fields);
-    console.log('transform for persist fields : '+transformForPersist());
 
                     }
                 }
