@@ -424,8 +424,11 @@ h3.tab span:hover {
   font-size: 1.5em;
 }
 .foi {
-  padding: 12px 24px;
+  padding: 48px 24px;
   background: #e3dfd7;
+}
+.foi img {
+  max-width: 80%;
 }
 .footer {
   background-color: #333333;
