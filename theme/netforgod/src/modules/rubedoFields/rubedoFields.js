@@ -100,6 +100,8 @@
         "externalMediaField":"/templates/inputFields/externalMedia.html",
         "Rubedo.view.externalMediaField":"/templates/inputFields/externalMedia.html",
         "ratingField":"/templates/inputFields/rating.html",
+        "DCEField":"/templates/inputFields/contentLink.html",
+        "Rubedo.view.DCEField":"/templates/inputFields/contentLink.html",
         "urlField":"/templates/inputFields/url.html",
         "Rubedo.view.urlField":"/templates/inputFields/url.html",
         "Rubedo.ux.widget.Rating":"/templates/inputFields/rating.html",
@@ -236,11 +238,10 @@
                         newValue="<div>"+newValue+"</div>";
                     }
                     me.html=jQuery.htmlClean(newValue, {
-                        allowedAttributes:[["style"],["rubedo-page-link"],["target"]],
+                        allowedAttributes:[["style"],["rubedo-page-link"],["target"],["border"]],
                         replace: [[["b", "big"], "strong"]],
                         format: true
                     });
-
                 } else if ($scope.fieldEditMode&&!me.html){
                     if (!newValue){
                         newValue="";
@@ -514,6 +515,22 @@
 
             }
         }
+    }]);
+    module.controller("ContentChoiceController",["$scope","RubedoSearchService",function($scope,RubedoSearchService){
+        var me=this;
+        var options = {
+            siteId: $scope.rubedo.current.site.id,
+            pageId: $scope.rubedo.current.page.id,
+            type: $scope.field.config.allowedCT,
+            constrainToSite: true
+        };
+        RubedoSearchService.searchByQuery(options).then(
+             function(response){
+                 if (response.data.success){
+                     me.contents=response.data.results.data;
+                 }
+             }
+         );     
     }]);
 
     module.controller("ContentLinkController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
@@ -863,7 +880,6 @@
 
     }]);
 
-       //generic field directive
     module.controller("RECFieldController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
         var me=this;
         $scope.fields=[];
@@ -872,27 +888,13 @@
             $scope.$parent.fieldEntity[config.name]={ };
         }
         $scope.fieldEntity=$scope.$parent.fieldEntity[config.name];
-           me.lang="";
-           if ($scope.contentDetailCtrl) {
-		if ($scope.contentDetailCtrl.lang) {
-		    me.lang=$scope.contentDetailCtrl.lang;
-		console.log(me.lang);
-		}
-           }
+
         RubedoContentTypesService.findById(config.usedCT,{}).then(
             function(response){
                 if(response.data.success){
                     me.contentType=response.data.contentType;
                     $scope.fieldIdPrefix=$scope.$parent.fieldIdPrefix+me.contentType.type;
-                    if (me.lang) {
-			angular.forEach(me.contentType.fields, function(field){
-			    if (field.config.name==me.lang) {
-				$scope.fields[0] = field;
-			    }
-			});
-                    }
-		    else $scope.fields=me.contentType.fields;
-		    console.log($scope.fields);
+                    $scope.fields=me.contentType.fields;
                 }
             }
         );
