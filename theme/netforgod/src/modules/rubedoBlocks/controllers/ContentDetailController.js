@@ -108,7 +108,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         me.watch = 'trailer';
                     }
                     else me.watch='no';
+                    
                     /*si FOI lié, récupérer le contenu*/
+                    var options = {
+                        siteId: $scope.rubedo.current.site.id,
+                        pageId: $scope.rubedo.current.page.id
+                    };
                     if (me.content.fields.linkedFOI) {
                         RubedoContentsService.getContentById(me.content.fields.linkedFOI, options).then(
                             function(response){
