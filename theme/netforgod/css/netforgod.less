@@ -1,6 +1,5 @@
 /*VARIABLES GLOBALES*/
 //largeurs
-@width_xxs:420px;
 @min_xs:500px;
 @min_sm:768px;
 @min_md:992px;
@@ -25,6 +24,10 @@ div.container.first{margin-top:80px}
 p{font-family: 'Roboto'}
 h1,h2,h3{font-family: 'Roboto Slab'}
 .padding-large{padding-top:24px; padding-bottom: 24px}
+
+@media screen and (max-width: @min_xs){
+    [class*="col-xs-"].col-xxs-12{width:100%}
+}
 /*overrides*/
 span.glyphicon{margin-right: 5px}
 

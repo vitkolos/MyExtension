@@ -32,6 +32,11 @@ h3 {
   padding-top: 24px;
   padding-bottom: 24px;
 }
+@media screen and (max-width: 500px) {
+  [class*="col-xs-"].col-xxs-12 {
+    width: 100%;
+  }
+}
 /*overrides*/
 span.glyphicon {
   margin-right: 5px;
