@@ -115,6 +115,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         pageId: $scope.rubedo.current.page.id
                     };
                     if (me.content.fields.linkedFOI) {
+                        console.log(me.content.fields.linkedFOI);
                         RubedoContentsService.getContentById(me.content.fields.linkedFOI, options).then(
                             function(response){
                                 if(response.data.success){
