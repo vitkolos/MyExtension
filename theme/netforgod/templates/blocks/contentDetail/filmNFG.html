@@ -36,16 +36,16 @@
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('trailer')}}" ></rubedo-field><!--sous-titre-->
 		</div>
 		<div class="film-socials" >
-			<div class="col-sm-3 col-xs-6 text-left">
+			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
 				<p>If you like this film</p>
 			</div>
-			<div class="col-sm-3 col-xs-6 text-left">
+			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
 				<p><i class="icon-donate"></i>Donate</p>
 			</div>
-			<div class="col-sm-3 col-xs-6 text-left">
+			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
 				<p><i class="icon-volunteer"></i>Become a volunteer</p>
 			</div>
-			<div class="col-sm-3 col-xs-6 text-left">
+			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
 				<p><i class="icon-share"></i>Share this film</p>
 			</div>
 		</div>
@@ -86,7 +86,7 @@
 </div>
 <div class="row" ng-if="contentDetailCtrl.tab==3">
 	<div class="col-xs-12" ng-if="fieldEntity['downloadLinks']">
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('downloadLinks')}}" ></rubedo-field><!--lines de téléchargement-->
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('downloadLinks')}}" ></rubedo-field><!--lines de t√©l√©chargement-->
 	</div>	
 </div>
 	
@@ -101,8 +101,8 @@
 		<h4 class="media-heading" style="font-size: 0.8em">
 			<span class="icon-issuedate"></span>{{contentDetailCtrl.relatedFOI.fields.date*1000 | date :'MMMM yyyy' |uppercase}}
 		</h4>
-		<p ng-if="contentDetailCtrl.lang=='fr'">La revue FOI (pour Fraternité Oecuménique Internationale) est une revue trimestrielle éditée par la communauté du Chemin Neuf.
-		Elle donne la parole à des acteurs de l'Eglise et à des membres de la communauté qui partagent leur passion pour l'Unité.</p>
+		<p ng-if="contentDetailCtrl.lang=='fr'">La revue FOI (pour Fraternit√© Oecum√©nique Internationale) est une revue trimestrielle √©dit√©e par la communaut√© du Chemin Neuf.
+		Elle donne la parole √† des acteurs de l'Eglise et √† des membres de la communaut√© qui partagent leur passion pour l'Unit√©.</p>
 	</div>
 </div>
 
