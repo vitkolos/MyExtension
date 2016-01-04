@@ -36,16 +36,16 @@
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('trailer')}}" ></rubedo-field><!--sous-titre-->
 		</div>
 		<div class="film-socials" >
-			<div class="col-sm-6 col-md-3 text-left">
+			<div class="col-sm-3 col-xs-6 text-left">
 				<p>If you like this film</p>
 			</div>
-			<div class="col-sm-6 col-md-3 text-left">
+			<div class="col-sm-3 col-xs-6 text-left">
 				<p><i class="icon-donate"></i>Donate</p>
 			</div>
-			<div class="col-sm-6 col-md-3 text-left">
+			<div class="col-sm-3 col-xs-6 text-left">
 				<p><i class="icon-volunteer"></i>Become a volunteer</p>
 			</div>
-			<div class="col-sm-6 col-md-3 text-left">
+			<div class="col-sm-3 col-xs-6 text-left">
 				<p><i class="icon-share"></i>Share this film</p>
 			</div>
 		</div>
@@ -97,12 +97,12 @@
                                  alt="{{ contentDetailCtrl.relatedFOI.text }}"/>
 	</div>
 	<div class="col-xs-7 col-xxs-12">
-		<a ng-href="{{contentDetailCtrl.relatedFOI.canonicalUrl}}"><h3 class="media-heading">Related FOI magazine</h3></a>
+		<a ng-href="{{contentDetailCtrl.relatedFOI.canonicalUrl}}"><h3 class="media-heading">{{contentDetailCtrl.relatedFOI.text}}</h3></a>
 		<h4 class="media-heading" style="font-size: 0.8em">
 			<span class="icon-issuedate"></span>{{contentDetailCtrl.relatedFOI.fields.date*1000 | date :'MMMM yyyy' |uppercase}}
 		</h4>
 		<p ng-if="contentDetailCtrl.lang=='fr'">La revue FOI (pour Fraternité Oecuménique Internationale) est une revue trimestrielle éditée par la communauté du Chemin Neuf.
-		Elle donne la parole à des acteurs de l’Eglise et à des membres de la communauté qui partagent leur passion pour l'Unité.</p>
+		Elle donne la parole à des acteurs de l'Eglise et à des membres de la communauté qui partagent leur passion pour l'Unité.</p>
 	</div>
 </div>
 
