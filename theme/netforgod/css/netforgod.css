@@ -423,6 +423,10 @@ h3.tab span:hover {
   color: #333333;
   font-size: 1.5em;
 }
+.foi {
+  padding: 12px 24px;
+  background: #e3dfd7;
+}
 .footer {
   background-color: #333333;
   color: #e3dfd7;

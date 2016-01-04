@@ -8,7 +8,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.watch = 'no';
     var path=$location.path();
     me.lang=path.split("/")[1];
-    $scope.tab=0;
+    me.tab=0;
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
@@ -100,6 +100,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         
                        
                     }
+                    /* déterminer si on a un film ou trailer*/
                     if (me.content.fields.filmYT) {
                         me.watch = 'film';
                     }
@@ -107,10 +108,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         me.watch = 'trailer';
                     }
                     else me.watch='no';
-                    
+                    /*si FOI lié, récupérer le contenu*/
+                    if (me.content.fields.linkedFOI) {
+                        RubedoContentsService.getContentById(me.content.fields.linkedFOI, options).then(
+                            function(response){
+                                if(response.data.success){
+                                    me.relatedFOI=response.data.content;
+                                }
+                        });
+                    }
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);
-
                     $scope.fieldLanguage=me.content.locale;
                     if (me.content.isProduct){
                         me.content.type.fields.unshift({
