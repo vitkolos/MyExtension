@@ -521,8 +521,7 @@
         var options = {
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id,
-            type: $scope.field.config.allowedCT,
-            constrainToSite: true
+            type: $scope.field.config.allowedCT
         };
         RubedoSearchService.searchByQuery(options).then(
              function(response){
