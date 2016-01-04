@@ -53,21 +53,24 @@
 </div>
 <div class="row padding">
 	<div class="col-xs-12">
-		<p class="tab">
+		<h3 class="tab">
 			<span ng-click="tab=0" ng-class="{'active':tab==0}" ng-if="">Film Info</span>
 			<span ng-click="tab=1" ng-class="{'active':tab==1}">Comments</span>
-			<span ng-click="tab=2" ng-class="{'active':tab==2}">Photos </span>
+			<span ng-click="tab=2" ng-class="{'active':tab==2}" ng-if="fieldEntity['photos']">Photos </span>
 			<span ng-if="rubedo.current.user" ng-click="tab=3" ng-class="{'active':tab==3}">Point Net Zone</span></p>
 	</div>
 </div>
 <div class="row" ng-if="tab==0">
-	<div class="col-sm-4">
+	<div class="col-sm-4" ng-if="fieldEntity['share']">
+		<h4>THEME DE PARTAGE</h4>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('share')}}" ></rubedo-field><!--sous-titre-->
 	</div>
-	<div class="col-sm-4">
+	<div class="col-sm-4" ng-if="fieldEntity['intercession']">
+		<h4>INTERCESSION</h4>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('intercession')}}" ></rubedo-field><!--sous-titre-->
 	</div>	
-	<div class="col-sm-4">
+	<div class="col-sm-4" ng-if="fieldEntity['parole']">
+		<h4>PAROLE DU MOIS</h4>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('parole')}}" ></rubedo-field><!--sous-titre-->
 	</div>
 </div>

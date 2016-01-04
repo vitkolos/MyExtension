@@ -413,13 +413,13 @@ span.tags + span.tags:before {
   color: white;
   border: none;
 }
-p.tab span {
+h3.tab span {
   color: #0073b3;
   cursor: pointer;
   margin-right: 15px;
 }
-p.tab span.active,
-p.tab span:hover {
+h3.tab span.active,
+h3.tab span:hover {
   color: #333333;
   font-size: 1.5em;
 }
