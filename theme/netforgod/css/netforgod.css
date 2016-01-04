@@ -350,6 +350,9 @@ span.glyphicon {
   background-color: transparent;
   color: #1d8f9e;
 }
+.film-title h1 {
+  margin-top: 0;
+}
 .tags {
   color: #0073b3;
 }
