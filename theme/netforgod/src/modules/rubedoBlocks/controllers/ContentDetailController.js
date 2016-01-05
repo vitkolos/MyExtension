@@ -193,6 +193,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if (taxonomy["navigation"]) {
                             delete taxonomy["navigation"];
                        }
+                       /*delete texonomie de lieux de tournage*/
+                       if (taxonomy["54d6299445205e7877a6b28e"]) {
+                            delete taxonomy["54d6299445205e7877a6b28e"];
+                       }
                        var displayedFacets = [];
                        displayedFacets.push({"name":"54cb636245205e0110db058f","operator":"OR"});
                         var options3 = {

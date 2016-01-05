@@ -100,7 +100,8 @@
 		<h3 class="text-center" style="margin-bottom:24px">À lire aussi :</h3>
 		<div class="col-xs-12 col-sm-4 text-center" ng-repeat="content in contentDetailCtrl.linkedContents">
 			<a ng-href="{{content.url}}">
-				<img ng-if="content['fields.affiche'][0]" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.affiche'][0],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
+				<img ng-if="content['fields.image'][0]" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
+				<img ng-if="!content['fields.image'][0]" src="/theme/cte/img/icons/video-thumb.jpg" style="width:120px">
 				<h3>{{content.text[0]}}</h3>
 			</a>	
 		</div>
