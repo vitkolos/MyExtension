@@ -29,7 +29,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             };
            var options = {
                       file: filmUrl,
-                      modestbranding:0,
+                      modestbranding:1,
                       showinfo:1,
                       width:"100%",
                       aspectratio:"16:9"};
