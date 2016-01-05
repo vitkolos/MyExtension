@@ -108,9 +108,23 @@
 
 <div class="row padding-large" ng-if="contentDetailCtrl.linkedContents[0]">
 	<h3  style="margin-bottom:24px">À lire aussi :</h3>
-	<div class="col-xs-12 col-sm-4 text-center" ng-repeat="content in contentDetailCtrl.linkedContents">
+	<div class="col-md-3 col-sm-6 col-xs-12 filmList" ng-repeat="content in contentDetailCtrl.linkedContents">
+		<div class="affiche">
+			<h3 class="media-heading"  ng-if="!content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0]">
+                                {{content.text[0]}}
+                            </h3>
+			<img ng-if="content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0]"
+			 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0],{height:'400px',width:'284px',mode:'crop'}) }}"
+			 alt="{{ content.text[0] }}"/>
+			<img class="default-vignette" ng-if="!content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0] "
+			 ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
+			 alt="{{ content.text[0] }}"/>                            
+		    </div>
+		    <h4 class="media-heading">
+			    {{content['fields.date'][0]*1000 | date :'MMMM yyyy'}}
+		    </h4>
 		<a ng-href="{{content.url}}">
-			<img ng-if="content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0]" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
+			
 			<h3>{{content.text[0]}}</h3>
 		</a>	
 	</div>
