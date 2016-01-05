@@ -188,21 +188,21 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                      
                     
                     //Actualités : 3 autres articles
-                    if (me.content.type.code=="actualites") {
-                        var actusTaxonomy = angular.copy(me.content.taxonomy);
-                       if (actusTaxonomy["navigation"]) {
-                            delete actusTaxonomy["navigation"];
+                    if (me.content.type.code=="filmNFG") {
+                        var taxonomy = angular.copy(me.content.taxonomy);
+                        if (taxonomy["navigation"]) {
+                            delete taxonomy["navigation"];
                        }
                        var displayedFacets = [];
-                       displayedFacets.push({"name":"5524db6945205e627a8d8c4e","operator":"OR"});
+                       displayedFacets.push({"name":"54cb636245205e0110db058f","operator":"OR"});
                         var options3 = {
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:4,
                             constrainToSite: true,
-                            orderby:'lastUpdateTime',
-                            taxonomies: actusTaxonomy,
+                            orderby:'createTime',
+                            taxonomies: taxonomy,
                             displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
                         };
                         
