@@ -78,7 +78,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
-            pageId: $scope.rubedo.current.page.id
+            pageId: $scope.rubedo.current.page.id,
+            includeTermLabels:true
         };
         RubedoContentsService.getContentById(contentId, options).then(
             function(response){
@@ -188,7 +189,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                      });
                      
                     
-                    //Actualités : 3 autres articles
+                    //Films : 3 autres articles
                     if (me.content.type.code=="filmNFG") {
                         var taxonomy = angular.copy(me.content.taxonomy);
                         if (taxonomy["navigation"]) {
@@ -203,6 +204,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         var options3 = {
                             siteId: $scope.rubedo.current.site.id,
                             pageId: $scope.rubedo.current.page.id,
+                            detailPageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:4,
                             constrainToSite: false,
