@@ -16,6 +16,7 @@ blocksConfig.navigation = {
 
 
 
+
 angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {
         restrict: 'EC',
@@ -35,10 +36,16 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
+            
+            scope.$watch("attrs.videoUrl", function(newValue, oldValue) {
+                      jwplayer().load([{
+                                 file: attrs.videoUrl
+                      }]);
+                      jwplayer().play();
+           });
         }
     };
 }]);
-
 
 
     angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
