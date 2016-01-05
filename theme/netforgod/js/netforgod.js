@@ -16,42 +16,28 @@ blocksConfig.navigation = {
 
 
 
- angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
+angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {
         restrict: 'EC',
         link: function (scope, element, attrs) {
-           var filmId = attrs.filmid;
-           var languages = attrs.lang;
-           var filmUrl="";
+           var filmUrl = attrs.videoUrl;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId + '"></div>';
             };
-
-
            var options = {
-           	      /*file:filmUrl,*/
-                      file:"http://www.netforgod.tv/VOD/FOI_15_05/FR_HD.mp4",
-                      /*file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/FR_divx.flv",*/
-                      image: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/affiche.jpg",
+                      file: filmUrl,
+                      modestbranding:0,
+                      showinfo:1,
                       width:"100%",
                       aspectratio:"16:9"};
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
- 
-             scope.loadVideo = function(lang) { 
-                   jwplayer().load([{
-                     file: "http://www.netforgod.tv/VOD/FOI_"+filmId+"/"+lang+"_divx.flv"
-                   }]);
-                   jwplayer().play();
-           };    
-
         }
     };
 }]);
-
 
 
 

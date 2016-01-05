@@ -25,11 +25,12 @@
 				<div ng-controller="RECFieldFilmController as recCtrl" >
 					<p class="pull-right lang-selection" ng-if="fields.length>1"><span class="icon-audiolanguage main"></span><select ng-model="contentDetailCtrl.lang"><option ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]"  value="{{field.config.name}}">{{field.config.fieldLabel}}</option></select></p>
 					
-					<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang "></rubedo-field>
+					<!--<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang "></rubedo-field>-->
+					{{fields}}
+					<jwplayer ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang " video-url="{{fieldEntity[field.config.name]}}"></jwplayer>
 				</div>
 			</div>
-			<!--<rubedo-field field = "{{contentDetailCtrl.getFieldByName('filmYT')}}">
-			</rubedo-field>-->
+
 				
 		</div>
 		<div ng-if="contentDetailCtrl.watch =='trailer'">
@@ -90,7 +91,7 @@
 	</div>	
 </div>
 	
-<div class="row padding-large foi" ng-if="fieldEntity['linkedFOI']">
+<div class="row padding-large foi" ng-if="fieldEntity['linkedFOI']" ng-if="contentDetailCtrl.lang=='fr'">
 	<div class="col-xs-5 col-xxs-12 text-center">
 		<img ng-if="contentDetailCtrl.relatedFOI.fields.image"
                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.relatedFOI.fields.image,{width:'300px',mode:'boxed'}) }}"
@@ -101,7 +102,7 @@
 		<h4 class="media-heading" style="font-size: 0.8em">
 			<span class="icon-issuedate"></span>{{contentDetailCtrl.relatedFOI.fields.date*1000 | date :'MMMM yyyy' |uppercase}}
 		</h4>
-		<p ng-if="contentDetailCtrl.lang=='fr'">La revue FOI (pour Fraternité Oecuménique Internationale) est une revue trimestrielle éditée par la communauté du Chemin Neuf.
+		<p>La revue FOI (pour Fraternité Oecuménique Internationale) est une revue trimestrielle éditée par la communauté du Chemin Neuf.
 		Elle donne la parole à des acteurs de l'Eglise et à des membres de la communauté qui partagent leur passion pour l'Unité.</p>
 	</div>
 </div>
