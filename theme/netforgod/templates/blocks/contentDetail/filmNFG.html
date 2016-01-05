@@ -107,7 +107,7 @@
 </div>
 
 <div class="row padding-large" ng-if="contentDetailCtrl.linkedContents[0]">
-	<h3  style="margin-bottom:24px">À lire aussi :</h3>
+	<h1 class="titre-saison" style="margin-bottom:24px">À lire aussi <span>(Films sur le même sujet)</span></h1>
 	<div class="col-md-3 col-sm-6 col-xs-12 filmList" ng-repeat="content in contentDetailCtrl.linkedContents">
 		<div class="affiche">
 		<a ng-href="{{content.url}}">
