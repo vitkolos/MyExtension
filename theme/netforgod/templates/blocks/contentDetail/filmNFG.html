@@ -110,6 +110,7 @@
 	<h3  style="margin-bottom:24px">À lire aussi :</h3>
 	<div class="col-md-3 col-sm-6 col-xs-12 filmList" ng-repeat="content in contentDetailCtrl.linkedContents">
 		<div class="affiche">
+		<a ng-href="{{content.url}}">
 			<h3 class="media-heading"  ng-if="!content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0]">
                                 {{content.text[0]}}
                             </h3>
@@ -123,10 +124,9 @@
 		    <h4 class="media-heading">
 			    {{content['fields.date'][0]*1000 | date :'MMMM yyyy'}}
 		    </h4>
-		<a ng-href="{{content.url}}">
+		</a>
+		
 			
-			<h3>{{content.text[0]}}</h3>
-		</a>	
 	</div>
 </div>
 <div class="row padding-large" >
