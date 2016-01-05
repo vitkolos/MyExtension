@@ -26,7 +26,7 @@
 					<p class="pull-right lang-selection" ng-if="fields.length>1"><span class="icon-audiolanguage main"></span><select ng-model="contentDetailCtrl.lang"><option ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]"  value="{{field.config.name}}">{{field.config.fieldLabel}}</option></select></p>
 					
 					<!--<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang "></rubedo-field>-->
-					<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>
+					<jwplayer ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang " video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>
 				</div>
 			</div>
 
