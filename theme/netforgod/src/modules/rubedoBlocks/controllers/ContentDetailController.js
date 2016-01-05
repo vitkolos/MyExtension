@@ -200,7 +200,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             pageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:4,
-                            constrainToSite: true,
+                            constrainToSite: false,
                             orderby:'createTime',
                             taxonomies: taxonomy,
                             displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
