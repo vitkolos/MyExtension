@@ -37,7 +37,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
             
-            scope.$watch("attrs.videoUrl", function(newValue, oldValue) {
+            scope.$watch("contentDetailCtrl.lang", function(newValue, oldValue) {
                       jwplayer().load([{
                                  file: attrs.videoUrl
                       }]);
