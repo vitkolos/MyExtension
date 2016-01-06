@@ -100,7 +100,7 @@
 	</div>	
 </div>
 	
-<div class="row padding-large foi" ng-if="fieldEntity['linkedFOI']" ng-if="contentDetailCtrl.lang=='fr'">
+<div class="row padding-large foi" ng-if="fieldEntity['linkedFOI']&&contentDetailCtrl.defaultLang=='fr'" >
 	<div class="col-xs-5 col-xxs-12 text-center">
 		<img ng-if="contentDetailCtrl.relatedFOI.fields.image"
                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.relatedFOI.fields.image,{width:'300px',mode:'boxed'}) }}"
