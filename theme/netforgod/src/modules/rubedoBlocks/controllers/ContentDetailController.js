@@ -390,6 +390,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 field=candidate;
             }
         });
+        console.log(name);
+        console.log(field);
         return field;
     };
   }]);
