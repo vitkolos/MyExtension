@@ -375,11 +375,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 
     me.getFieldByName=function(name){
         var field=null;
-        angular.forEach(me.content.type.fields,function(candidate){
+        angular.forEach($scope.fields,function(candidate){
             if (candidate.config.name==name){
                 field=candidate;
             }
         });
+        console.log(field);
         return field;
     };      
       
