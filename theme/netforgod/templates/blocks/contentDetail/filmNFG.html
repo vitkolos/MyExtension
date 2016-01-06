@@ -33,7 +33,7 @@
 						  <li ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
 						</ul>
 					</div>-->
-					<p class="pull-right lang-selection" ng-if="fields.length>1"><span class="icon-audiolanguage main"></span><select ng-model="contentDetailCtrl.lang"><option ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang"  value="{{field.config.name}}">{{field.config.fieldLabel}}</option></select></p>
+					<p class="pull-right lang-selection" ng-if="fields.length>1"><span class="icon-audiolanguage main"></span><select ng-model="contentDetailCtrl.lang"><option ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]"  value="{{field.config.name}}">{{field.config.fieldLabel}}</option></select></p>
 					
 					<!--<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang "></rubedo-field>
 					<jwplayer ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang " video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>-->
