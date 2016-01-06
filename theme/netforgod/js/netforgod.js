@@ -51,7 +51,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                       jwplayer().load([{
                                  file: attrs.videoUrl
                       }]);
-                      jwplayer().play();
                 });
         }
     };
