@@ -24,7 +24,7 @@
 
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     
-    fieldsConfig={
+     fieldsConfig={
         "textarea":"/templates/fields/textarea.html",
         "textareafield":"/templates/fields/textarea.html",
         "Ext.form.field.TextArea":"/templates/fields/textarea.html",
@@ -53,6 +53,7 @@
         "Rubedo.view.localiserField":"/templates/fields/localiser.html",
         "treepicker":"/templates/fields/pageLink.html",
         "Ext.ux.TreePicker":"/templates/fields/pageLink.html",
+        "checkboxfield":"/templates/fields/checkbox.html",
         "checkbox":"/templates/fields/checkbox.html",
         "Ext.form.field.Checkbox":"/templates/fields/checkbox.html",
         "ImagePickerField":"/templates/fields/media.html",
@@ -85,6 +86,7 @@
         "Ext.form.field.TextArea":"/templates/inputFields/textarea.html",
         "CKEField":"/templates/inputFields/richText.html",
         "Rubedo.view.CKEField":"/templates/inputFields/richText.html",
+        "checkboxfield":"/templates/inputFields/checkbox.html",
         "checkbox":"/templates/inputFields/checkbox.html",
         "Ext.form.field.Checkbox":"/templates/inputFields/checkbox.html",
         "combobox":"/templates/inputFields/combobox.html",
@@ -106,7 +108,6 @@
         "ratingField":"/templates/inputFields/rating.html",
         "DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.DCEField":"/templates/inputFields/contentLink.html",
-        "urlField":"/templates/inputFields/url.html",
         "Rubedo.view.urlField":"/templates/inputFields/url.html",
         "Rubedo.ux.widget.Rating":"/templates/inputFields/rating.html",
         "RECField":"/templates/inputFields/recField.html",

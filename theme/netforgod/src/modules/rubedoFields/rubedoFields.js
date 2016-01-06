@@ -54,6 +54,7 @@
         "treepicker":"/templates/fields/pageLink.html",
         "Ext.ux.TreePicker":"/templates/fields/pageLink.html",
         "checkboxfield":"/templates/fields/checkbox.html",
+        "checkbox":"/templates/fields/checkbox.html",
         "Ext.form.field.Checkbox":"/templates/fields/checkbox.html",
         "ImagePickerField":"/templates/fields/media.html",
         "Rubedo.view.ImagePickerField":"/templates/fields/media.html",
@@ -86,13 +87,18 @@
         "CKEField":"/templates/inputFields/richText.html",
         "Rubedo.view.CKEField":"/templates/inputFields/richText.html",
         "checkboxfield":"/templates/inputFields/checkbox.html",
+        "checkbox":"/templates/inputFields/checkbox.html",
         "Ext.form.field.Checkbox":"/templates/inputFields/checkbox.html",
         "combobox":"/templates/inputFields/combobox.html",
+        "checkboxgroup":"/templates/inputFields/checkboxGroup.html",
+        "Ext.form.CheckboxGroup":"/templates/inputFields/checkboxGroup.html",
         "Ext.form.field.ComboBox":"/templates/inputFields/combobox.html",
         "radiogroup":"/templates/inputFields/radioGroup.html",
         "Ext.form.RadioGroup":"/templates/inputFields/radioGroup.html",
         "datefield":"/templates/inputFields/date.html",
         "Ext.form.field.Date":"/templates/inputFields/date.html",
+        "Ext.form.field.Time":"/templates/inputFields/time.html",
+        "timefield":"/templates/inputFields/time.html",
         "localiserField":"/templates/inputFields/localiser.html",
         "Rubedo.view.localiserField":"/templates/inputFields/localiser.html",
         "ImagePickerField":"/templates/inputFields/media.html",
@@ -102,14 +108,12 @@
         "ratingField":"/templates/inputFields/rating.html",
         "DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.DCEField":"/templates/inputFields/contentLink.html",
-        "urlField":"/templates/inputFields/url.html",
         "Rubedo.view.urlField":"/templates/inputFields/url.html",
         "Rubedo.ux.widget.Rating":"/templates/inputFields/rating.html",
         "RECField":"/templates/inputFields/recField.html",
         "Rubedo.view.RECField":"/templates/inputFields/recField.html",
         "SpecialRepeatedField":"/templates/inputFields/specialRepeatedField.html"
     };
-
     //service for resolving field templates
     module.factory('RubedoFieldTemplateResolver', function() {
         var serviceInstance={};
