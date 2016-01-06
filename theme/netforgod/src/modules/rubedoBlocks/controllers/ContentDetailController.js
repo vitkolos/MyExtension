@@ -379,8 +379,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             if (candidate.config.name==name){
                 field=candidate;
             }
-        });
-        
+        console.log(name);
+        console.log(field);
+        return field;
+    }); 
       RubedoContentTypesService.findById(config.usedCT,{}).then(
           function(response){
               if(response.data.success){
@@ -392,9 +394,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
           }
       );
       
-        console.log(name);
-        console.log(field);
-        return field;
+
     };
   }]);
 
