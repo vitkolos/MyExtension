@@ -417,7 +417,11 @@ span.tags + span.tags:before {
 .lang-selection {
   margin-top: -35px;
 }
-.lang-selection select {
+.lang-selection span {
+  color: white;
+  margin-right: 10px;
+}
+.lang-selection ul {
   background-color: #333333;
   color: white;
   border: none;
