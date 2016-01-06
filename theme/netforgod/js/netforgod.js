@@ -49,7 +49,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                 }, function (value) {
                       console.log(scope.contentDetailCtrl.lang);
                       jwplayer().load([{
-                                 file: attrs.videoUrl
+                                 file: value
                       }]);
                 });
         }
