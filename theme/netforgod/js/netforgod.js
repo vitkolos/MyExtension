@@ -48,8 +48,8 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                     return attrs.videoUrl;
                 }, function (value) {
                       console.log(scope.contentDetailCtrl.lang);
-                      jwplayer().load([{
-                                 file: value
+                      jwplayer(id).load([{
+                                 file: attrs.videoUrl
                       }]);
                 });
         }
