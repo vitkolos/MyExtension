@@ -372,17 +372,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
           $scope.fieldEntity[config.name]={ };
       }
       $scope.fieldEntity=$scope.fieldEntity[config.name];
-      
+
     me.getFieldByName=function(name){
         var field=null;
-        angular.forEach($scope.fields,function(candidate){
+        angular.forEach(me.content.type.fields,function(candidate){
             if (candidate.config.name==name){
                 field=candidate;
             }
-        console.log(name);
-        console.log(field);
+        });
         return field;
-    }); 
+    };      
+      
       RubedoContentTypesService.findById(config.usedCT,{}).then(
           function(response){
               if(response.data.success){
@@ -393,9 +393,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
               }
           }
       );
-      
-
-    };
+    
   }]);
 
 
