@@ -373,17 +373,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
       }
       $scope.fieldEntity=$scope.fieldEntity[config.name];
 
-    me.getFieldByName=function(name){
-        var field=null;
-        angular.forEach($scope.fields,function(candidate){
-            if (candidate.config.name==name){
-                field=candidate;
-            }
-        });
-        console.log(field);
-        return field;
-    };      
-      
+
       RubedoContentTypesService.findById(config.usedCT,{}).then(
           function(response){
               if(response.data.success){

@@ -25,8 +25,8 @@
 				<div ng-controller="RECFieldFilmController as recCtrl" >
 					<div class="dropdown pull-right lang-selection">
 						<span class="icon-audiolanguage main"></span>
-						<span id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-init = "currentField = recCtrl.getFieldByName(contentDetailCtrl.lang)">
-						  {{currentField.config.fieldLabel}}
+						<span id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-repeat="field in fields track by $index" ng-if="field.config.name==contentDetailCtrl.lang">
+						  {{field.config.fieldLabel}}
 						  <span class="caret"></span>
 						</span>
 						<ul class="dropdown-menu" aria-labelledby="dLabel">
@@ -35,8 +35,9 @@
 					</div>
 					<!--<p class="pull-right lang-selection" ng-if="fields.length>1"><span class="icon-audiolanguage main"></span><select ng-model="contentDetailCtrl.lang"><option ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]"  value="{{field.config.name}}">{{field.config.fieldLabel}}</option></select></p>
 					-->
-					<!--<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang "></rubedo-field>-->
-					<jwplayer ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang " video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>
+					<!--<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang "></rubedo-field>
+					<jwplayer ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && field.config.name==contentDetailCtrl.lang " video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>-->
+					<jwplayer  video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>
 				</div>
 			</div>
 
