@@ -383,6 +383,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
               }
           }
       );
+      me.getFieldByName=function(name){
+        var field=null;
+        angular.forEach($scope.fields,function(candidate){
+            if (candidate.config.name==name){
+                field=candidate;
+            }
+        });
+        return field;
+    };
   }]);
 
 
