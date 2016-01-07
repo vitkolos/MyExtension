@@ -121,10 +121,29 @@ class ContentsController extends DataAccessController
                     $insertData["fields"]["positionName"] = $lieu["fields"]["text"];
 
                 }
-                if ($insertData["fields"]["albumImages"] && $insertData["fields"]["albumImages"]!="")  {
-                    $damService = Manager::getService('Dam');
+                if ($insertData["fields"]["titrePhotoPourAlbum"] && $insertData["fields"]["titrePhotoPourAlbum"]!="")  {
+                    $query = Manager::getService('ElasticDataSearch');
+                    $query->init();
                     
+                    /*if (isset($params['sort'])) {
+                        $sort = Json::decode($params['sort'], Json::TYPE_ARRAY);
+                        $params['orderby'] = ($sort[0]['property'] == 'score') ? '_score' : $sort[0]['property'];
+                        $params['orderbyDirection'] = $sort[0]['direction'];
+                    }*/
+                    $params=[];
+                    $photoArray=[];
+                    $params["query"]=$insertData["fields"]["titrePhotoPourAlbum"]."*";
+                    $params["damType"]="545cd95245205e91168b45b1";
+                    $params['orderby'] = "text";
+                    $params['orderbyDirection'] = "ASC";
+                    $params["start"]=0;
+                    $params["limit"]=500;
 
+                    $results = $query->search($params, 'dam');
+                    foreach ($results["data"] as $value){
+                        array_push($photoArray, $value["id"]);
+                    }
+                    $insertData["fields"]["images"]  = $photoArray;
                 }
                 $insertData["target"] = isset($insertData["target"]) ? $insertData["target"] : array();
                 $returnArray = $this->_dataService->create($insertData, array(), false);
