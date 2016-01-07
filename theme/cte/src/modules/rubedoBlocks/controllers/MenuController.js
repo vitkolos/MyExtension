@@ -9,6 +9,10 @@
 	    me.menuClass="menu1418";
 	    me.menuTab = true;
 	}
+	else if ($scope.block.code == 'cana'){ {
+	    me.menuClass="menucana";
+	    me.menuTab = true;
+	}
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
         if (config.rootPage){
             var pageId=config.rootPage;

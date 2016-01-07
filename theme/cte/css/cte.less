@@ -135,6 +135,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 @evenement:#f96847; //orange propositions;
 //@14-18:#59d3b6;
 @14-18:#1f2d5c;
+@cana:#ff7d5f;
 @bleu:#3CA6C1;
 ////////////////////////////////////////////////
     ///////classes utiles////////////////
@@ -336,15 +337,11 @@ span#close:after {
  a.subpage{display: inline-block; width:100%}
  
 .menuTab{color: white; margin-bottom:24px}
- .menu1418 .menuTab{color: @14-18; background:white; a{color: @14-18; margin-bottom:0}}
-.menu1418.modal .footer, .menu1418.modal .modal-dialog {background-color: @14-18}
-.modal.in.menu1418 + nav.navbar-fixed-top li{background: @14-18;}
+
 @media screen and (min-width: @min_sm) {
     .modal[id^=menu] > .modal-dialog{width:80%; margin-left:20%}
   }
-@media screen and (max-width: @min_xs) {
-  .menu1418.modal{background-color: @14-18}
-}
+
 /*HAMBURGER MENU*/ 
 * {
   margin: 0;
@@ -997,4 +994,23 @@ label.label_style.left{text-align:left; float:left}
     .list-item-title{  background-color:@14-18;}
     .list-item-title.date-lieu{  background-color:white; color: @14-18}
     .carousel-caption{background-color: @14-18}
+}
+ .menu1418 .menuTab{color: @14-18; background:white; a{color: @14-18; margin-bottom:0}}
+.menu1418.modal .footer, .menu1418.modal .modal-dialog {background-color: @14-18}
+.modal.in.menu1418 + nav.navbar-fixed-top li{background: @14-18;}
+@media screen and (max-width: @min_xs) {
+  .menu1418.modal{background-color: @14-18}
+}
+
+#cana{
+    .fc-event{background-color:@cana;}
+    .list-item-title{  background-color:@cana;}
+    .list-item-title.date-lieu{  background-color:white; color: @cana}
+    .carousel-caption{background-color: @cana}
+}
+ .menucana .menuTab{color: @cana; background:white; a{color: @cana; margin-bottom:0}}
+.menucana.modal .footer, .menucana.modal .modal-dialog {background-color: @cana}
+.modal.in.menucana + nav.navbar-fixed-top li{background: @cana;}
+@media screen and (max-width: @min_xs) {
+  .menucana.modal{background-color: @cana}
 }
