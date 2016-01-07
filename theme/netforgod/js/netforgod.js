@@ -52,7 +52,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  width:"100%",
                                  aspectratio:"16:9",
                       }]);
-                      jwplayer(id).play();
                 });
         }
     };
