@@ -50,7 +50,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  modestbranding:0,
                                  showinfo:1,
                                  width:"100%",
-                                 aspectratio:"16:9",
+                                 aspectratio:"16:9"
                       }]);
                 });
         }
