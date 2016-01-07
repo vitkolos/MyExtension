@@ -41,19 +41,16 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
-            
-            /*scope.$watch("scope.contentDetailCtrl.lang", function(newValue, oldValue) {
-                      console.log(scope.contentDetailCtrl.lang);
-                      jwplayer().load([{
-                                 file: attrs.videoUrl
-                      }]);
-                      jwplayer().play();
-           });*/
+
             scope.$watch(function () {
                     return attrs.videoUrl;
                 }, function (value) {
                       jwplayer(id).load([{
-                                 file: attrs.videoUrl
+                                 file: attrs.videoUrl,
+                                 modestbranding:0,
+                                 showinfo:1,
+                                 width:"100%",
+                                 aspectratio:"16:9",
                       }]);
                 });
         }
