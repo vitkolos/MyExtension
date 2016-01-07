@@ -32,7 +32,12 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                       modestbranding:1,
                       showinfo:1,
                       width:"100%",
-                      aspectratio:"16:9"};
+                      aspectratio:"16:9",
+                      logo: {
+                                 file: '/theme/netforgod/img/favicon.png',
+                                 link: 'http://test.netforgod.org/'
+                      },
+           };
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
