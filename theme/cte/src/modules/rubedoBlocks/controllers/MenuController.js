@@ -9,7 +9,7 @@
 	    me.menuClass="menu1418";
 	    me.menuTab = true;
 	}
-	else if ($scope.block.code == 'cana'){ {
+	else if ($scope.block.code == 'cana'){
 	    me.menuClass="menucana";
 	    me.menuTab = true;
 	}
