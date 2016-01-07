@@ -1,5 +1,5 @@
 <div class="row padding-large">
-	<div class="col-sm-4" field="{{contentDetailCtrl.getFieldByName('affiche')}}">
+	<div class="col-sm-4" >
 		<rubedo-field ng-if="!fieldEntity['affiche'] " field = "{{contentDetailCtrl.getFieldByName('affiche')}}" ></rubedo-field><!--Texte-->
 		<img ng-if="fieldEntity['affiche']"
                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['affiche'],{width:'360px',mode:'boxed'}) }}"
@@ -13,14 +13,14 @@
 		<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
 		<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
 		<div class="buy-dvd cursor-as-pointer" ng-if="!contentDetailCtrl.content.fields.horsSerie && fieldEntity['boutique']">
-			<a ng-href="{{contentDetailCtrl.content.fields.boutique}}" target="_blank"><i class="icon-dvd"></i>Buy DVD...</a>
+			<a ng-href="{{contentDetailCtrl.content.fields.boutique}}" target="_blank"><i class="icon-dvd"></i>{{rubedo.translate('NFG.AcheterDVD','Buy the video')}}</a>
 		</div>
 	</div>
 </div>
 <div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
 	<div class="col-sm-12">
 		<div class="film-controls" >
-			<p>Watch <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
+			<p>{{rubedo.translate('NFG.Watch','Watch')}} <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
 				<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 		</div>
 		<div ng-if="contentDetailCtrl.watch =='film'">
@@ -50,16 +50,16 @@
 		</div>
 		<div class="film-socials" >
 			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p>If you like this film</p>
+				<p>{{rubedo.translate('NFG.Like','If you like this film')}}</p>
 			</div>
 			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p><i class="icon-donate"></i>Donate</p>
+				<p><i class="icon-donate"></i>{{rubedo.translate('NFG.Donate','Donate')}}</p>
 			</div>
 			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p><i class="icon-volunteer"></i>Become a volunteer</p>
+				<p><i class="icon-volunteer"></i>{{rubedo.translate('NFG.Volunteer','Become a volunteer')}}</p>
 			</div>
 			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p><i class="icon-share"></i>Share this film</p>
+				<p><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}</p>
 			</div>
 		</div>
 	</div>
@@ -75,15 +75,15 @@
 </div>
 <div class="row" ng-if="contentDetailCtrl.tab==0">
 	<div class="col-sm-4" ng-if="fieldEntity['share']">
-		<h4>THEME DE PARTAGE</h4>
+		<h4>{{contentDetailCtrl.getLabelByName('share') |uppercase}}</h4>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('share')}}" ></rubedo-field><!--sous-titre-->
 	</div>
 	<div class="col-sm-4" ng-if="fieldEntity['intercession']">
-		<h4>INTERCESSION</h4>
+		<h4>{{contentDetailCtrl.getLabelByName('intercession')|uppercase}}</h4>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('intercession')}}" ></rubedo-field><!--sous-titre-->
 	</div>	
 	<div class="col-sm-4" ng-if="fieldEntity['parole']">
-		<h4>PAROLE DU MOIS</h4>
+		<h4>{{contentDetailCtrl.getLabelByName('parole')|uppercase}}</h4>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('parole')}}" ></rubedo-field><!--sous-titre-->
 	</div>
 </div>
