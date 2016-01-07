@@ -156,43 +156,20 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 
                     //Albums photos
                     if (me.content.type.code=="album") {
-                        me.content.images={};
-                        me.start=0;
-                        me.limit = me.content.fields.number;
-                        $scope.process=true;
-                        var options2 = {
-                            siteId: $scope.rubedo.current.site.id,
-                            pageId: $scope.rubedo.current.page.id,
-                            start:me.start,
-                            limit:500,
-                            query:me.content.fields.titrePhoto+"*",
-                            lastupdatetime:me.content.createTime
-                        };
-                        me.getMedia = function(options){
-                            RubedoSearchService.getMediaById(options).then(function(response){
-                                if(response.data.success){
-                                    me.content.images = $filter('orderBy')(response.data.results.data, 'title') ;
-                                    me.count = response.data.count;
-                                    $scope.process=false;
-                                }
-                            });
-                        };
-                        me.getMedia(options2);
+                        me.currentIndex=0;
                         me.loadModal = function(index){
                             me.currentIndex = index;
-                            me.currentImage = me.content.images[me.currentIndex];
+                            me.currentImage = me.content.fields.images[me.currentIndex];
                         };
                         me.changeImage = function(side){
                             if(side == 'left' && me.currentIndex > 0){
                                 me.currentIndex -= 1;
-                            } else if(side == 'right' && me.currentIndex < me.content.images.length - 1) {
+                            } else if(side == 'right' && me.currentIndex < me.content.fields.images.length - 1) {
                                 me.currentIndex += 1;
                             }
-                            me.currentImage = me.content.images[me.currentIndex];
+                            me.currentImage = me.content.fields.images[me.currentIndex];
                         };
-                        me.add = function(){
-                            me.limit +=me.limit;
-                         };
+
                     }
                     
                     

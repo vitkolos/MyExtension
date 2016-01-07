@@ -1,6 +1,9 @@
 <div class="row padding-large">
 	<div class="col-sm-4" field="{{contentDetailCtrl.getFieldByName('affiche')}}">
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('affiche')}}" ></rubedo-field><!--Texte-->
+		<rubedo-field ng-if="!fieldEntity['affiche'] " field = "{{contentDetailCtrl.getFieldByName('affiche')}}" ></rubedo-field><!--Texte-->
+		<img ng-if="fieldEntity['affiche']"
+                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['affiche'],{width:'360px',mode:'boxed'}) }}"
+                                 alt="{{ fieldEntity['text'] }}"/>
 	</div>
 	<div class="col-sm-8">
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" class="film-title"></rubedo-field><!--Texte-->

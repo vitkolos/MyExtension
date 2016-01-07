@@ -162,11 +162,12 @@ return array(
     /* Surcharge des traductions
        */
     'localisationfiles' => array(
-        100 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/ButtonToPage.json',
-        101 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/GeneralFields.json',
-        102 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Share.json',
-        103 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Inscription.json',
-        104 =>  'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Emails.json'
+        'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/ButtonToPage.json',
+         'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/GeneralFields.json',
+         'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Share.json',
+         'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Inscription.json',
+         'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Emails.json',
+         'extensions/nicolasrhone/myextension/localization/languagekey/NetForGod/Texts.json'
     ),
     
 
