@@ -13,6 +13,9 @@
 	    me.menuClass="menucana";
 	    me.menuTab = true;
 	}
+	else if ($scope.block.code && $scope.block.code!="") {
+	    me.menuTab = true;
+	}
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
         if (config.rootPage){
             var pageId=config.rootPage;
