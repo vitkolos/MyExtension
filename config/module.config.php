@@ -134,18 +134,18 @@ return array(
                 'js' => array(
                     '/js/goodnews.js'
                 ),
+            ),
            'boutique' => array(
-                    'label' => 'Boutique',
-                    'basePath' => realpath(__DIR__ . '/../theme/boutique'),
-                    'css' => array(
-                        '/css/boutique.css',
-                        '/css/font-awesome.css'
-                    ),
-                    'js' => array(
-                        '/js/boutique.js'
-                    ),
-
+                'label' => 'Boutique',
+                'basePath' => realpath(__DIR__ . '/../theme/boutique'),
+                'css' => array(
+                    '/css/boutique.css',
+                    '/css/font-awesome.css'
                 ),
+                'js' => array(
+                    '/js/boutique.js'
+                ),
+           ),
         ),
     ),
     
