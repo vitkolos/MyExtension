@@ -68,6 +68,7 @@
 			</div>
 			<div class="col-sm-4 blogTexte">
 				<p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user">{{contentDetailCtrl.content.createUser.fullName |uppercase}}</span>
+				<p class="thin"><span class="glyphicon glyphicon-time"></span>{{contentDetailCtrl.content.createTime*1000|date:'longDate'}}</p>
 				<p class="thin" ng-if="contentDetailCtrlcontent.taxonomy['5666a87c3bc325fc368b4568']"><span class="glyphicon glyphicon-folder-open"></span>
 				    <span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['5666a87c3bc325fc368b4568']" >{{contentDetailCtrl.getTermInTaxo('5666a87c3bc325fc368b4568',tagId)|uppercase}}</span></p>
 	
