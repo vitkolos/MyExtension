@@ -1,5 +1,6 @@
 <div ng-controller="PresentationController as presentationCtrl" ng-class="presentationCtrl.columns" >
-	<div class="quotations" style="margin-bottom:0;width:105%; background-image: url('{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{width:'1650px',mode:'boxed'})}}')">
+	<div class="quotations" style="margin-bottom:0;width:105%; background-image: url('{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{width:'1650px',mode:'boxed'})}}')"
+	ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1650px',mode:'boxed'})+')'}">
             <div ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}" class="text-article">
         </div>	
  
