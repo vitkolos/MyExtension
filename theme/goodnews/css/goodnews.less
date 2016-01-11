@@ -218,6 +218,7 @@ a.navbar-brand:hover, a.navbar-brand:focus,a.navbar-brand:active{color:@txt_dark
 .text-article span+span.tags:after{content:','; margin-right:5px} // virgule après un tag
 .text-article p img {max-width:100%; height:auto !important; margin:20px auto; display: block}
 blockquote {
+ border-left:none;
   
 }
 .text-article {
@@ -227,7 +228,6 @@ blockquote {
  width:70%;
  border-top:5px solid white;
  border-bottom:5px solid white;
- border-left:none;
  margin: 30px auto;
  position: relative;
 }
@@ -256,7 +256,7 @@ blockquote:after{
   .text-article p img {max-width:80%;}
   }
 @media screen and (min-width:@min_md){.text-article{max-width:680px}}
-@media screen and (min-width:@min_lg){blockquote{width:60%; float:right; position: relative; left:30%; margin-left:-17.5%; margin-top:0; margin-bottom: 0}}
+@media screen and (min-width:@min_lg){.text-article blockquote{width:60%; float:right; position: relative; left:30%; margin-left:-17.5%; margin-top:0; margin-bottom: 0}}
 @media screen and (min-width:@min_xs) and (max-width:@min_sm){.header_link{margin-top:33px}}
 .media{transition: margin-top 0.15s cubic-bezier(.33,.66,.66,1)}
 .media.media4{text-align: center} // liste de contenus de 4 éléments en ligne sur lg
