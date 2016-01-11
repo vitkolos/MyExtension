@@ -1,6 +1,6 @@
 angular.module("rubedoBlocks").lazy.controller("PresentationController",['$scope','RubedoPagesService',function($scope,RubedoPagesService){
     var me = this;
-    me.blockConfig=$scope.blockConfig;
+    blockConfig=$scope.blockConfig;
     me.inputFields=[ ];
     $scope.fieldEntity={ };
     me.columns = blockConfig.columns ? 'col-md-'+(12/blockConfig.columns):'col-md-12';
