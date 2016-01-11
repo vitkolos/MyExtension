@@ -218,6 +218,10 @@ a.navbar-brand:hover, a.navbar-brand:focus,a.navbar-brand:active{color:@txt_dark
 .text-article span+span.tags:after{content:','; margin-right:5px} // virgule après un tag
 .text-article p img {max-width:100%; height:auto !important; margin:20px auto; display: block}
 blockquote {
+  
+}
+.text-article {
+  blockquote {
  .capital;
  color: @main_color;
  width:70%;
@@ -226,6 +230,7 @@ blockquote {
  border-left:none;
  margin: 30px auto;
  position: relative;
+}
 }
 blockquote:before{
   content:'\275d';
@@ -486,8 +491,7 @@ h3.block-title {
     .quotations{line-height: 300px; height:300px}
     .quotations>div{text-align: left; vertical-align: bottom; padding-bottom: 24px}
 }
-.quotations>div{text-align: center; vertical-align: middle; padding-bottom: 0}
-
+.quotations blockquote{text-transform: uppercase;}
 
 ////////////////////////////////////////////////////
     ///////////MODAL///////////////////
