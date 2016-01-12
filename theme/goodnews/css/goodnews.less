@@ -493,20 +493,20 @@ h3.block-title {
     .quotations>div{ padding-bottom: 24px}
 }
 .quotations blockquote{
-  text-transform: uppercase; position: relative; color:@main_color; font-size: 1.1em;
+  text-transform: uppercase; position: relative; color:@main_color; font-size: 1.2em; 
 }
 .quotations blockquote:before{
   font-size: 2em;
   position: absolute;
-  top:0; left:-6px;
+  top:5px; left:-6px;
 }
 .quotations blockquote:after{
   font-size: 2em;
   position: absolute;
-  bottom:0; right:-6px	;
+  bottom:10px; right:-6px;
 }
-.quotations p{font-style: italic;}
-.quotations p:before,.quotations p:after{content:"—"}
+.quotations blockquote+p{font-style: italic;}
+.quotations blockquote+p:before,.quotations blockquote+p:after{content:"—"}
 ////////////////////////////////////////////////////
     ///////////MODAL///////////////////
 ///////////////////////////////////////////////////
