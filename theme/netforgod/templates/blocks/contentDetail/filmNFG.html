@@ -1,7 +1,7 @@
 <div class="row padding-large">
 	<div class="col-sm-4" >
 		<rubedo-field ng-if="!fieldEntity['affiche'] " field = "{{contentDetailCtrl.getFieldByName('affiche')}}" ></rubedo-field><!--Texte-->
-		<img ng-if="fieldEntity['affiche']"
+		<img ng-if="fieldEntity['affiche']" class="img-responsive"
                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['affiche'],{width:'360px',mode:'boxed'}) }}"
                                  alt="{{ fieldEntity['text'] }}"/>
 	</div>
