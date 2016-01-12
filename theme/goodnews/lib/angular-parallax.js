@@ -1,8 +1,4 @@
-
-'use strict';
-
-angular.module('rubedoBlocks', [
-]).directive('parallax', ['$window', function($window) {
+angular.module('rubedoBlocks').directive('parallax', ['$window', function($window) {
   return {
     restrict: 'A',
     scope: {
