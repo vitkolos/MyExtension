@@ -8,7 +8,7 @@
 </div>
 			
 			
-<header class="container-fluid content" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})}} 1650w"
+<header class="container-fluid content" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1500px',mode:'boxed'})}} 1500w"
 	ng-if="fieldEntity['image']"  afkl-lazy-image-options='{"background": true}'>
 	<div class="text-article container">
 		<p class='capital'>{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
