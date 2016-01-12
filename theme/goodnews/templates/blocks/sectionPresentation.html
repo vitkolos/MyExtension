@@ -1,4 +1,4 @@
-<div ng-controller="PresentationController as presentationCtrl" ng-class="presentationCtrl.columns" >
+<div ng-controller="PresentationController as presentationCtrl" style="position: relative">
 
 	<div class="quotations" parallax-background parallax-ratio="0.5" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{width:'1650px',height:'500px',mode:'crop'})+')'}">
 		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"></div>
