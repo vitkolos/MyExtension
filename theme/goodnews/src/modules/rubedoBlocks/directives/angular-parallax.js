@@ -35,9 +35,9 @@ angular.module('rubedoBlocks').lazy.directive('parallaxBackground', ['$window', 
     },
     link: function($scope, elem, attrs) {
       var setPosition = function () {
-        var calcValY = (elem.prop('offsetTop') - $window.pageYOffset) * ($scope.parallaxRatio ? $scope.parallaxRatio : 1.1) - ($scope.parallaxVerticalOffset || 0);
+        var calcValY = (elem.offset().top - $window.pageYOffset) * ($scope.parallaxRatio ? $scope.parallaxRatio : 1.1) - ($scope.parallaxVerticalOffset || 0);
         // horizontal positioning
-        console.log(elem.prop('offsetTop') +" "+$window.pageYOffset);
+        console.log(elem.offset().top +" "+$window.pageYOffset);
         elem.css('background-position', "50% " + calcValY + "px");
       };
 
