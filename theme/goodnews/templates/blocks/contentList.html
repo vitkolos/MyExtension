@@ -1,21 +1,7 @@
 <div ng-controller="ContentListController as contentListCtrl">
-    <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
-            ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
-            ng-model="contentListCtrl.selectedManualType"></select>
-    <button ng-if="contentListCtrl.canAddToList()"
-            title="Add content"
-            class="btn btn-default"
-            ng-click="contentListCtrl.launchContribute()">
-        <span class="glyphicon glyphicon-plus"></span>
-    </button>
-    <button ng-if="!contentListCtrl.canAddToList()&&contentListCtrl.isFOContributeMode&&contentListCtrl.editorPageUrl"
-            title="Add content"
-            class="btn btn-default"
-            ng-click="contentListCtrl.launchFOContribute()">
-        <span class="glyphicon glyphicon-plus"></span> Contribute
-    </button>
+
     <div class="row contentList" ng-switch="blockConfig.columns" style="margin-top:24px">
-    <div class="col-xs-12" ng-if="block.displayTitle"><h3 class="block-title">{{block.title}}</h3></div>
+    <div class="col-xs-12 media" ng-if="block.displayTitle"><h3 class="block-title">{{block.title}}</h3></div>
        <!--POUR 1 COLONNE-->
        <div ng-attr-lr-infinite-scroll="loadMoreContents"
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
