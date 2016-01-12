@@ -1,5 +1,5 @@
 {
-    "type": "Image de fond",
+    "type": "Titre de page (image de fond)",
     "description": "Titre de page avec image fond",
     "configBasique": {
         "title": "Image de fond",
@@ -17,15 +17,6 @@
                                 "name": "imageFile",
                                 "allowedFileType": "Image",
                                 "smallMode": true
-                            }
-                        },
-                        {
-                            "type": "Ext.form.field.Number",
-                            "config": {
-                                "fieldLabel": "#ext-gen1090#",
-                                "name": "imageHeight",
-                                "allowDecimals": false,
-                                "minValue": 0
                             }
                         },
                         {
@@ -61,7 +52,7 @@
         },
         "configBloc": []
     },
-    "category": "#ext-gen1187#",
+    "category": "#ext-gen1068#",
     "bType": "bg_image",
     "id": "51000880c0e0518011100002"
 }
