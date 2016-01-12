@@ -23,7 +23,8 @@ angular.module('rubedoBlocks').directive('parallax', ['$window', function($windo
       angular.element($window).bind("touchmove", setPosition);
     }  // link function
   };
-}]).directive('parallaxBackground', ['$window', function($window) {
+}])
+angular.module('rubedoBlocks').directive('parallaxBackground', ['$window', function($window) {
   return {
     restrict: 'A',
     transclude: true,
