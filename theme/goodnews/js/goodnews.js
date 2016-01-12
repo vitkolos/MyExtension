@@ -26,7 +26,7 @@ blocksConfig.contentDetail = {
 };
 blocksConfig.sectionPresentation={
            "template": "/templates/blocks/sectionPresentation.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/sectionPresentation.js","/lib/angular-parallax.js"]
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/sectionPresentation.js","/src/modules/rubedoBlocks/directives/angular-parallax.js"]
 };
 blocksConfig.carrousel2={
            "template": "/templates/blocks/carrousel_fullWidth.html",

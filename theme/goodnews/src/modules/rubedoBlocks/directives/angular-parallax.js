@@ -1,4 +1,4 @@
-angular.module('rubedoBlocks').directive('parallax', ['$window', function($window) {
+angular.module('rubedoBlocks').lazy.directive('parallax', ['$window', function($window) {
   return {
     restrict: 'A',
     scope: {
@@ -24,7 +24,7 @@ angular.module('rubedoBlocks').directive('parallax', ['$window', function($windo
     }  // link function
   };
 }])
-angular.module('rubedoBlocks').directive('parallaxBackground', ['$window', function($window) {
+angular.module('rubedoBlocks').lazy.directive('parallaxBackground', ['$window', function($window) {
   return {
     restrict: 'A',
     transclude: true,
