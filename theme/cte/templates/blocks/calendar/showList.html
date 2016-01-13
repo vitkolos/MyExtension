@@ -4,7 +4,7 @@
     </div>
     <!--<div class="media" ng-repeat="content in calendarCtrl.contents">
         <img class="media-object pull-left" ng-if="content.fields.image"
-             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{size:'tdumbnail'}) }}" alt="{{ content.fields.text }}" />
+             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{size:'liumbnail'}) }}" alt="{{ content.fields.text }}" />
 
         <div class="media-body">
             <h4 class="media-heading">
@@ -18,19 +18,19 @@
         </div>
     </div>-->
     <div class="rwd-table">
-        <tr>
-            <td>Proposition</td>
-            <td>Date</td>
-            <td>Lieu</td>
-        </tr>
-        <tr ng-repeat="content in calendarCtrl.contents track by $index">
-            <td>
+        <ul>
+            <li>Proposition</li>
+            <li>Date</li>
+            <li>Lieu</li>
+        </ul>
+        <ul ng-repeat="content in calendarCtrl.contents track by $index">
+            <li>
                 <a ng-href="{{ content.detailPageUrl }}">
                     {{ content.fields.text }}
                 </a>
-            </td>
-            <td>{{content.fields.dateDebut}}</td>
-            <td>{{content.fields.positionName}}</td>
-        </tr>
+            </li>
+            <li>{{content.fields.dateDebut}}</li>
+            <li>{{content.fields.positionName}}</li>
+        </ul>
     </div>
 </div>
