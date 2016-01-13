@@ -767,9 +767,9 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
 .next-page{position:absolute; right:0; top:42%}
 
 //////////CALENDRIER///////////
-.rwd-table th:not(:last-of-type){border-bottom: 2px solid @txt_dark}
+.rwd-table tr:not(:last-of-type){border-bottom: 2px solid @txt_dark}
 @media screen and (max-width: @min_sm) {
-  .rwd-table th:before {
+  .rwd-table tbody th:before {
       content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
       font-weight: bold;
       // optional stuff to make it look nicer
@@ -779,7 +779,9 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
   
   }
 }
-
+.rwd-table{
+  .cal-date{text-transform: uppercase; font-family: 'Montserrat';font-weight: bold;}
+}
 ////////////////////////////////////////////////////
     ///////////CONTENUS///////////////////
 ///////////////////////////////////////////////////

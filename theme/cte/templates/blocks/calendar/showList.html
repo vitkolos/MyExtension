@@ -27,13 +27,13 @@
         </thead>
         <tbody>
             <tr ng-repeat="content in calendarCtrl.contents track by $index">
-                <th data-th="Date">{{content.fields.dateDebut | date:'mediumDate' |uppercase}}</th>
-                <th data-th="Proposition">
+                <th class="cal-date" data-th="Date">{{content.fields.dateDebut | date:'shortDate'}}</th>
+                <th class="cal-prop" data-th="Proposition">
                     <a ng-href="{{ content.detailPageUrl }}">
                         {{ content.fields.text }}
                     </a>
                 </th>
-                <th data-th="Lieu">{{content.fields.positionName | uppercase}}</th>
+                <th class="cal-date" data-th="Lieu">{{content.fields.positionName}}</th>
             </tr>
         </tbody>
     </table>
