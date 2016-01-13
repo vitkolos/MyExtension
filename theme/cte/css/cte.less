@@ -768,7 +768,7 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
 
 //////////CALENDRIER///////////
 .rwd-table tr:not(:last-of-type){border-bottom: 2px solid @txt_dark}
-@media screen and (max-width: @min_sm) {
+/*@media screen and (max-width: @min_sm) {
   .rwd-table tbody th:before {
       content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
       font-weight: bold;
@@ -778,9 +778,10 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
       // end options
   
   }
-}
+}*/
 .rwd-table{
-  .cal-date{text-transform: uppercase; font-family: 'Montserrat';font-weight: bold;}
+  th{padding: 6px 12px}
+  .cal-date{text-transform: uppercase; font-family: 'Montserrat';}
 }
 ////////////////////////////////////////////////////
     ///////////CONTENUS///////////////////
