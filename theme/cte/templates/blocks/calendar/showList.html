@@ -17,20 +17,24 @@
             </p>
         </div>
     </div>-->
-    <div class="rwd-table">
-        <ul>
-            <li>Proposition</li>
-            <li>Date</li>
-            <li>Lieu</li>
-        </ul>
-        <ul ng-repeat="content in calendarCtrl.contents track by $index">
-            <li>
-                <a ng-href="{{ content.detailPageUrl }}">
-                    {{ content.fields.text }}
-                </a>
-            </li>
-            <li>{{content.fields.dateDebut}}</li>
-            <li>{{content.fields.positionName}}</li>
-        </ul>
-    </div>
+    <table class="rwd-table">
+        <thead>
+            <tr>
+                <th>Proposition</th>
+                <th>Date</th>
+                <th>Lieu</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="content in calendarCtrl.contents track by $index">
+                <th>
+                    <a ng-href="{{ content.detailPageUrl }}">
+                        {{ content.fields.text }}
+                    </a>
+                </th>
+                <th>{{content.fields.dateDebut}}</th>
+                <th>{{content.fields.positionName}}</th>
+            </tr>
+        </tbody>
+    </table>
 </div>
