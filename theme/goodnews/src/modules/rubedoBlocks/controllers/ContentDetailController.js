@@ -10,7 +10,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
     });
     $scope.isArray = angular.isArray;
-    me.isBlog=false;
     me.tooltips=function(){
         $('[data-toggle="tooltip"]').tooltip();
     }
@@ -199,14 +198,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 taxonomiesArray[index] = taxo;
                                 index++;
                             }
-                            if (taxo=="5666a87c3bc325fc368b4568") {
-                                angular.forEach(value, function(termId){
-                                    if (termId=='5669edee3bc325e15f8b4584') {
-                                        me.isBlog=true;
-                                        console.log("blog article");
-                                    }
-                                });
-                            }
+                            
                         });
                      TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
                          if(response.data.success){
@@ -271,7 +263,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if(me.content.type.code&&me.content.type.code!=""){
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
                                 function (response){
-                                    me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
+                                    if ($scope.rubedo.current.page.id=="5669ec213bc325f05f8b4579") {
+                                        me.detailTemplate=themePath+'/templates/blocks/contentDetail/blog.html';
+                                    }
+                                    else me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
                                     $scope.fields=me.transformForFront(me.content.type.fields);
 
                                 },

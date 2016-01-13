@@ -1,5 +1,4 @@
 
-<div ng-if="!contentDetailCtrl.isBlog">
 	<div class="row" style="margin-top:-20px">
 		<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1600px',height:'610px',mode:'crop'})}}" style="width:100%">
 	</div>
@@ -43,51 +42,3 @@
 		</div>
 	
 	</div>
-</div>
-<div ng-if="contentDetailCtrl.isBlog">
-	<div class="container" style="margin-top:-20px">
-		<div class="row blogArticle">
-			<div class="col-xs-12">
-				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
-					<h1 ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
-					<h1 ng-if="fieldEditMode"
-					   ng-controller="RTEFieldController as rteFieldCtrl"
-					   ckeditor="editorOptions"
-					   contenteditable="true"
-					   ready="setCKEIsReady()"
-					   ng-model="fieldEntity['text']"
-					   output-plain-text="true"
-					   ng-bind-html="rteFieldCtrl.html">
-					</h1>
-				</div>
-			</div>
-		</div>
-		<div class="row padding-large">
-			<div class="col-sm-8">
-				<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.fields.image,{width:'1000px',mode:'boxed'})}}" style="width:100%">
-			</div>
-			<div class="col-sm-4 blogTexte">
-				<p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user">{{contentDetailCtrl.content.createUser.fullName |uppercase}}</span>
-				<p class="thin"><span class="glyphicon glyphicon-time"></span>{{contentDetailCtrl.content.createTime*1000|date:'longDate'}}</p>
-				<p class="thin" ng-if="contentDetailCtrlcontent.taxonomy['5666a87c3bc325fc368b4568']"><span class="glyphicon glyphicon-folder-open"></span>
-				    <span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['5666a87c3bc325fc368b4568']" >{{contentDetailCtrl.getTermInTaxo('5666a87c3bc325fc368b4568',tagId)|uppercase}}</span></p>
-	
-				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ></rubedo-field><!--Texte-->
-			</div>
-		</div>
-		<div class="row padding-large" ng-if="fieldEntity['author']">
-			<div class="col-sm-8">
-				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('author')}}" ></rubedo-field><!--Texte (suite)-->
-			</div>
-		</div>
-		<div class="row padding-large" ng-if="isArray(contentDetailCtrl.content.fields.image2) ">
-			<div class="col-sm-6" ng-repeat="image in contentDetailCtrl.content.fields.image2">
-				<img class="blogImage" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'600px',mode:'boxed'})}}" style="width:100%">
-			</div>
-		</div>
-		
-					
-	</div>
-</div>
-<div style="margin-top:24px"></div>
-
