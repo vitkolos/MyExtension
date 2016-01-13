@@ -207,6 +207,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
                             });
+                            console.log(me.taxo);
 
                          }
                          
