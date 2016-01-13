@@ -23,7 +23,7 @@
             <th>Date</th>
             <th>Lieu</th>
         </tr>
-        <tr ng-repeat="content in calendarCtrl.contents">
+        <tr ng-repeat="content in calendarCtrl.contents track by $index">
             <th>
                 <a ng-href="{{ content.detailPageUrl }}">
                     {{ content.fields.text }}
