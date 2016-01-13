@@ -20,20 +20,20 @@
     <table class="rwd-table">
         <thead>
             <tr>
-                <th>Proposition</th>
                 <th>Date</th>
+                <th>Proposition</th>
                 <th>Lieu</th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="content in calendarCtrl.contents track by $index">
-                <th>
+                <th data-th="Date">{{content.fields.dateDebut | date:'mediumDate' |uppercase}}</th>
+                <th data-th="Proposition">
                     <a ng-href="{{ content.detailPageUrl }}">
                         {{ content.fields.text }}
                     </a>
                 </th>
-                <th>{{content.fields.dateDebut}}</th>
-                <th>{{content.fields.positionName}}</th>
+                <th data-th="Lieu">{{content.fields.positionName | uppercase}}</th>
             </tr>
         </tbody>
     </table>

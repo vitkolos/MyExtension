@@ -767,11 +767,18 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
 .next-page{position:absolute; right:0; top:42%}
 
 //////////CALENDRIER///////////
-.rwd-table {
-  ul{list-style-type: none}
-  li{display: inline-block}
+.rwd-table th:not(:last-of-type){border-bottom: 2px solid @txt_dark}
+@media screen and (max-width: @min_sm) {
+  .rwd-table th:before {
+      content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
+      font-weight: bold;
+      // optional stuff to make it look nicer
+      width: 6.5em; // magic number :( adjust according to your own content
+      display: inline-block;
+      // end options
+  
+  }
 }
-
 
 ////////////////////////////////////////////////////
     ///////////CONTENUS///////////////////
