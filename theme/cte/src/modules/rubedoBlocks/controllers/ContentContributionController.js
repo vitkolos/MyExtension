@@ -152,3 +152,72 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
         }
     };
 }]);
+
+
+
+angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
+    var me=this;
+    me.workspace="";
+    $scope.ccCtrl.imagesForAlbum={};
+        if ($scope.blockConfig.linkedPage&&mongoIdRegex.test($scope.blockConfig.linkedPage)) {
+            RubedoPagesService.getPageById($scope.blockConfig.linkedPage).then(function(response){
+                if (response.data.success){
+                    me.pageUrl=response.data.url;
+                    $http.get("/api/v1/pages",{
+                        params:{
+                            site:$location.host(),
+                            route:(me.pageUrl).substr(4)
+                        }
+                    }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; }});
+                };
+            });
+        };
+    
+    me.newFiles=null;
+    var nbOfImages = 0;
+    me.progress = 0;
+    me.uploadNewFiles=function(){
+       me.notification=null;
+       nbOfImages = me.newFiles.length;
+       if ($scope.fieldInputMode&&me.newFiles){
+           var uploadOptions={
+               typeId:"545cd95245205e91168b45b1",
+                target:me.workspace
+           };
+            angular.forEach(me.newFiles, function(file, index) {
+                var options = angular.copy(uploadOptions);
+                options.fields={title : file.name};
+                RubedoMediaService.uploadMedia(file,options).then(
+                    function(response){
+                        if (response.data.success){
+                            var id=response.data.media.id;
+                            $scope.ccCtrl.imagesForAlbum.push(id);
+                            me.progress += 100* 1/nbOfImages;
+                        } else {
+                            console.log(response);
+                            me.notification={
+                                type:"error",
+                                text:response.data.message
+                            };
+                        }
+                    },
+                    function(response){
+                        console.log(response);
+                        me.notification={
+                            type:"error",
+                            text:response.data.message
+                        };
+                    }
+                );
+            }
+       }
+
+    };
+    if ($scope.fieldInputMode){
+        $element.find('.form-control').on('change', function(){
+            setTimeout(function(){
+                me.uploadNewFiles();
+            }, 200);
+        });
+    }
+}]);

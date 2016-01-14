@@ -6,6 +6,37 @@
         </h3>
         <h2 ng-if="ccCtrl.updateMode" class="text-center" ng-click="ccCtrl.showForm= !ccCtrl.showForm">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>
         <div ng-if="(!ccCtrl.updateMode && ccCtrl.showForm) || (ccCtrl.updateMode)">
+        <div class="form-group" ng-if="blockConfig.contentType=='568e3d503bc32538118b48d6'&&rubedo.current.user" ng-controller="AlbumUploadController as uploadCtrl">
+            <label for="uploadFiles" class="col-sm-4 control-label">Photos</label>
+            <div  class="col-sm-8">
+                <input type="file"
+                       class="form-control"
+                       id="uploadFiles"
+                       multiple
+                       accept="image/gif, image/jpeg, image/png"
+                       file-model="uploadCtrl.newFiles"
+                        >
+            </div>
+            <div class="col-sm-8 col-md-offset-4" ng-show="uploadCtrl.newFiles.length">
+                <div ng-repeat="file in uploadCtrl.newFiles">
+                        <span>{{file.name}}</span>
+                        (<span ng-switch="file.size > 1024*1024">
+                            <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                            <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+                        </span>)
+                        <span class="alert" ng-if="file.size > 1024*300">Attention, la taille de fichiers est trop grande !</span>
+                </div>                
+            </div>
+            <div class="col-sm-8 col-md-offset-4">
+                <div class="progress" ng-show="uploadCtrl.progress>0">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{uploadCtrl.progress}}"  ng-style="{ width : uploadCtrl.progress+'%' }">
+                                <span class="sr-only">{{uploadCtrl.progress}}% Complete
+                                </span>
+                        </div>
+                </div>
+            </div>
+        </div>
+
         <rubedo-field ng-repeat="field in fields track by $index">{{field}}</rubedo-field>
         
         <div ng-repeat="vocabulary in vocabularies track by $index" class="form-group">
