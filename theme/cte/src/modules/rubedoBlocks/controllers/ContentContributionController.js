@@ -181,6 +181,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     me.progress = 0;
     me.uploadNewFiles=function(){
        me.notification=null;
+       me.progress=1;
        nbOfImages = me.newFiles.length;
        if ($scope.fieldInputMode&&me.newFiles){
            var uploadOptions={
@@ -196,7 +197,6 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                             var id=response.data.media.id;
                             ($scope.ccCtrl.imagesForAlbum).push(id);
                             me.progress += 100* 1/nbOfImages;
-                            console.log($scope.ccCtrl.imagesForAlbum);
                         } else {
                             console.log(response);
                             me.notification={

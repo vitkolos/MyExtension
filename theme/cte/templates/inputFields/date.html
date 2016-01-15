@@ -1,4 +1,4 @@
-<div class="form-group col-xs-6" ng-controller="DateFieldController as dateFieldCtrl">
+<div class="form-group col-sm-6" ng-controller="DateFieldController as dateFieldCtrl">
     <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="col-sm-4 control-label">{{field.config.fieldLabel}} <span ng-if="!field.config.allowBlank&&!field.config.fieldLabel.includes('*')">*</span></label>
     <div class="col-sm-8">
         <div class="dropdown">
@@ -13,3 +13,6 @@
         <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
     </div>
 </div>
+
+
+
