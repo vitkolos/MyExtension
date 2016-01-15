@@ -159,8 +159,6 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     var me=this;
     me.workspace="";
     $scope.ccCtrl.imagesForAlbum=[];
-    console.log($scope.blockConfig.listPageId);
-    console.log($scope.blockConfig);
         if ($scope.blockConfig.listPageId&&mongoIdRegex.test($scope.blockConfig.listPageId)) {
             RubedoPagesService.getPageById($scope.blockConfig.listPageId).then(function(response){
                 if (response.data.success){
@@ -195,6 +193,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                             var id=response.data.media.id;
                             ($scope.ccCtrl.imagesForAlbum).push(id);
                             me.progress += 100* 1/nbOfImages;
+                            console.log($scope.ccCtrl.imagesForAlbum);
                         } else {
                             console.log(response);
                             me.notification={
