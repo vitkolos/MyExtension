@@ -10,12 +10,12 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.limit = $routeParams.limit?$routeParams.limit:20; // nombre de résultats affichés par défaut
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"lastUpdateTime";
        var resolveOrderBy = {
-            '_score': 'relevance',
-            'lastUpdateTime': 'date',
-            'authorName': 'author',
-            'text': 'title'
+            '_score': $scope.rubedo.translate('Search.Label.OrderByRelevance'),
+            'lastUpdateTime': $scope.rubedo.translate('Search.Label.OrderByDate'),
+            'authorName': $scope.rubedo.translate('Search.Label.OrderByAuthor'),
+            'text': $scope.rubedo.translate('Blocks.Search.Label.OrderByTitle')
         };
-        me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
+        me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByDate');
         me.template = themePath+"/templates/blocks/searchResults/"+config.displayMode+".html";
         me.template_actus = themePath+"/templates/blocks/searchResults/actus.html";
         
