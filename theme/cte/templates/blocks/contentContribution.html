@@ -91,9 +91,8 @@
                     <button type="submit" class="btn btn-primary" ng-if="rubedo.current.user.rights.canContributeFODraft" ng-click="ccCtrl.submitStatus='draft'">
                         <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.SaveDraft", "Save as draft")}}
                     </button>
-                    <button type="submit" class="btn btn-primary" ng-if="rubedo.current.user.rights.canContributeFOPending" ng-click="ccCtrl.submitStatus='pending'">
-                        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Submit", "Submit")}}
-                    </button>
+                    
+                    
                     <button type="submit" class="btn btn-primary" ng-if="rubedo.current.user.rights.canContributeFOPublished" ng-click="ccCtrl.submitStatus='published'">
                         <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Publish", "Publish")}}
                     </button>
