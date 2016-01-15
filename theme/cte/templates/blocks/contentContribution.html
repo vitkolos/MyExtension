@@ -17,7 +17,7 @@
                            file-model="uploadCtrl.newFiles"
                             >
                 </div>
-                <div class="col-sm-8 col-md-offset-4" ng-show="uploadCtrl.newFiles.length">
+                <div class="col-sm-8 col-md-offset-4" ng-show="uploadCtrl.newFiles.length>0">
                     <div ng-repeat="file in uploadCtrl.newFiles">
                             <span>{{file.name}}</span>
                             (<span ng-switch="file.size > 1024*1024">

@@ -159,8 +159,10 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     var me=this;
     me.workspace="";
     $scope.ccCtrl.imagesForAlbum={};
-        if ($scope.blockConfig.linkedPage&&mongoIdRegex.test($scope.blockConfig.linkedPage)) {
-            RubedoPagesService.getPageById($scope.blockConfig.linkedPage).then(function(response){
+    console.log($scope.blockConfig.listPageId);
+    console.log($scope.blockConfig);
+        if ($scope.blockConfig.listPageId&&mongoIdRegex.test($scope.blockConfig.listPageId)) {
+            RubedoPagesService.getPageById($scope.blockConfig.listPageId).then(function(response){
                 if (response.data.success){
                     me.pageUrl=response.data.url;
                     $http.get("/api/v1/pages",{
@@ -210,6 +212,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                     }
                 );
             });
+            console.log($scope.ccCtrl.imagesForAlbum);
        }
 
     };
