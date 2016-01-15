@@ -116,7 +116,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 delete (formData.taxonomy);
                 payLoad.fields=formData;
                 if (me.imagesForAlbum && me.imagesForAlbum.length>0) {
-                    payload.fields.images=angular.copy(me.imagesForAlbum);
+                    payLoad.fields.images=angular.copy(me.imagesForAlbum);
                 }
                 payLoad.taxonomy.navigation = [];
                 payLoad.taxonomy.navigation[0] = config.listPageId ? config.listPageId : $scope.rubedo.current.page.id;
