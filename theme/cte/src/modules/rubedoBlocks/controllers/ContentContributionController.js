@@ -209,7 +209,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                         };
                     }
                 );
-            }
+            });
        }
 
     };
