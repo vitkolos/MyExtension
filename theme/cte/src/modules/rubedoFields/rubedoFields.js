@@ -72,6 +72,8 @@
         "Rubedo.view.urlField":"/templates/fields/url.html",
         "RECField":"/templates/fields/recField.html",
         "Rubedo.view.RECField":"/templates/fields/recField.html",
+        "RStructuredObjectField":"/templates/fields/rsoField.html",
+        "Rubedo.view.RStructuredObjectField":"/templates/fields/rsoField.html",
         "fieldNotFound":"/templates/fields/fieldNotFound.html"
     };
 
@@ -991,5 +993,20 @@
         me.buildFields();
 
     }]);
+    module.controller("RSOFieldController",["$scope",function($scope){
+        var me=this;
+        $scope.fields=[];
+        var config=$scope.field.config;
+        if (!$scope.$parent.fieldEntity[config.name]&&$scope.fieldInputMode){
+            $scope.$parent.fieldEntity[config.name]={
+                fields:[],
+                values:{}
+            };
+        }
+        $scope.fieldEntity=$scope.$parent.fieldEntity[config.name].values;
+        $scope.fields=$scope.$parent.fieldEntity[config.name].fields;
 
+
+    }]);
+  		  
 })();

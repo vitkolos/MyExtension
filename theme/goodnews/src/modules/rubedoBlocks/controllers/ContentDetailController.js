@@ -309,7 +309,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         window.confirmContentContribution=function(){
             angular.element("#content-contribute-frame").empty();
             angular.element('#content-contribute-modal').modal('hide');
-            $scope.rubedo.addNotification("success","Success","Contents updated.");
+            $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated"));
             me.getContentById(me.content.id);
         };
         window.cancelContentContribution=function(){
@@ -325,14 +325,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             function(response){
                 if (response.data.success){
                     me.content.version = response.data.version;
-                    $scope.rubedo.addNotification("success","Success","Content updated.");
+                    $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated"));
                 } else {
-                    $scope.rubedo.addNotification("danger","Error","Content update error.");
+                    $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError"));
                 }
 
             },
             function(response){
-                $scope.rubedo.addNotification("danger","Error","Content update error.");
+                $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError"));
             }
         );
     };
