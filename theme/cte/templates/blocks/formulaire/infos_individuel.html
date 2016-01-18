@@ -92,6 +92,10 @@
             <p ng-if="mailError" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
         </div>
     </div>
+    <div class="row" ng-if="inscription.public_type == 'adolescent' && !personneConnue">
+        <div class="col-sm-4"><label for="facebook" class="label_style">Facebook</label></div>
+        <div class="col-sm-8"><input type="text" id="nom" ng-model="inscription.facebook" name="facebook" ></div>
+    </div>
     <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="tel1" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
         <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="inscription.tel1" placeholder="+33/x xx xx xx xx"  ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/" ng-required="isTelephoneRequired()"></div>
