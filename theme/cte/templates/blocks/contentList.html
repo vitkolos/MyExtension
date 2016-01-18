@@ -93,7 +93,8 @@
                             <div class="list-item-img">
                                 <img class="media-object pull-left" ng-if="content.fields.image"
                                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
-                                                 alt="{{ content.fields.text }}"/>       
+                                                 alt="{{ content.fields.text }}"/>
+                                <p ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
                             </div>
                             <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
                                 <rubedo-field field="{{content.type.summary}}"></rubedo-field>

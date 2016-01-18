@@ -72,6 +72,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             'overflow-y': 'visible'
         };
     }
+    me.getTermInTaxo=function(termId){
+        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
+        var term=null;
+        angular.forEach(me.taxo,function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
+            if(!term){
+                if(candidate.id==termId && candidate.parentId!='root'){term=candidate.text;}
+            }
+         });
+    return(term);
+    }
+
     me.getContents = function (queryId, pageId, siteId, options, add){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
             if (response.data.success){
@@ -104,11 +115,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
                          if(response.data.success){
                             var tax = response.data.taxo;
-                            console.log(tax);
+                            
                             me.taxo={};
                             angular.forEach(tax, function(taxonomie){
-                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                                me.taxo = taxonomie.terms;
                             });
+                            console.log(me.taxo);
                          }
                          
                      });
