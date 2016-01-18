@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$timeout",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$timeout){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","RubedoUsersService",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,RubedoUsersService){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -151,42 +151,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         
                     }
 
-                    //Albums photos
-                    if (me.content.type.code=="album") {
-                        me.content.images={};
-                        var options2 = {
-                            siteId: $scope.rubedo.current.site.id,
-                            pageId: $scope.rubedo.current.page.id,
-                            start:0,
-                            limit:200,
-                            query:me.content.fields.titrePhoto+"*"
-                        };
-                        me.getMedia = function(options){
-                            RubedoSearchService.getMediaById(options).then(function(response){
-                                if(response.data.success){
-                                    me.content.images = $filter('orderBy')(response.data.results.data, 'title') ;
-                                }
-                            });
-                        };
-                        me.getMedia(options2);
-                        me.loadModal = function(index){
-                            me.currentIndex = index;
-                            me.currentImage = me.content.images[me.currentIndex];
-                        };
-                        me.changeImage = function(side){
-                            if(side == 'left' && me.currentIndex > 0){
-                                me.currentIndex -= 1;
-                            } else if(side == 'right' && me.currentIndex < me.content.images.length - 1) {
-                                me.currentIndex += 1;
-                            }
-                            me.currentImage = me.content.images[me.currentIndex];
-                        };
-                    }
                     
-                    me.addImages = function(){
-                        me.limit +=20;
-                        
-                     };
 /*GET CONTENT TAXONOMIES*/
 
 
@@ -207,7 +172,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
                             });
-                            console.log(me.taxo);
 
                          }
                          
@@ -248,6 +212,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     
+                    //get user details
+                    RubedoUsersService.getUserById(userId).then(
+                        function(response){
+                            if(response.data.success){
+                                me.userDetails = response.data.user;
+                                console.log(me.userDetails);
+                            }
+                        }
+                    );
                     
                     
                     if(me.customLayout){
