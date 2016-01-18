@@ -70,12 +70,13 @@
                                     <img class="media-object pull-left" ng-if="content.fields.image"
                                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>
-                                    <p ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
+                                    
                                 </div>
                                 <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
                                     <rubedo-field field="{{content.type.summary}}"></rubedo-field>
                                 </p>
-                                <h4 class="list-item-title date-lieu capital hidden-xs hidden-sm" ng-if="content.fields.positionName">
+                                <h4 class="list-item-title date-lieu capital" ng-if="content.fields.positionName">
+                                    <p class="list-tags" ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
                                     <span>
                                         {{content.fields.positionName}}
                                         <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
@@ -95,12 +96,11 @@
                                 <img class="media-object pull-left" ng-if="content.fields.image"
                                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>
-                                <p ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
                             </div>
                             <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
                                 <rubedo-field field="{{content.type.summary}}"></rubedo-field>
                             </p>
-                            <h4 class="list-item-title date-lieu capital hidden-xs hidden-sm" ng-if="content.fields.positionName">
+                            <h4 class="list-item-title date-lieu capital" ng-if="content.fields.positionName">
                                 <span>
                                     {{content.fields.positionName}}
                                     <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>

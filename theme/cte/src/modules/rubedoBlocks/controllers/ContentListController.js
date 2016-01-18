@@ -80,7 +80,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 if(candidate.id==termId && candidate.parentId!='root'){term=candidate.text;}
             }
          });
-    return(term);
+        return(term);
     }
 
     me.getContents = function (queryId, pageId, siteId, options, add){
