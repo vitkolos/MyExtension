@@ -91,9 +91,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                             me.existingContent.version = response.data.version;
                             $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success", "Success !"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated", "Content updated"));
                             if (config.listPageId){
-                                RubedoPagesService.getPageById(config.listPageId).then(function(response2){
-                                    if (response2.data.success){
-                                        $location.url(response2.data.url);
+                                RubedoPagesService.getPageById(config.listPageId).then(function(response){
+                                    if (response.data.success){
+                                        $location.url(response.data.url);
                                     }
                                 });
                             }
@@ -128,9 +128,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                 taxonomy:{}
                             };
                             if (config.listPageId){
-                                RubedoPagesService.getPageById(config.listPageId).then(function(response2){
-                                    if (response2.data.success){
-                                        $location.url(response2.data.url);
+                                RubedoPagesService.getPageById(config.listPageId).then(function(response){
+                                    if (response.data.success){
+                                        $location.url(response.data.url);
                                     }
                                 });
                             }
