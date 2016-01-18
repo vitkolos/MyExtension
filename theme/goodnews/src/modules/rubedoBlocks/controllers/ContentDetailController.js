@@ -213,7 +213,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                     
                     //get user details
-                    RubedoUsersService.getUserById(userId).then(
+                    RubedoUsersService.getUserById(me.content.createUser.id).then(
                         function(response){
                             if(response.data.success){
                                 me.userDetails = response.data.user;
