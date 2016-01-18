@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -96,6 +96,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
                     }
+                }
+                /*taxonomies pour propositions*/
+                if (me.usedContentTypes="54dc614245205e1d4a8b456b") {
+                     var taxonomiesArray ={};
+                     taxonomiesArray[0]="555f3bc445205edc117e689b";// taxcnomie de propositions
+                    TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+                         if(response.data.success){
+                            var tax = response.data.taxo;
+                            console.log(tax);
+                            me.taxo={};
+                            angular.forEach(tax, function(taxonomie){
+                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                            });
+                         }
+                         
+                     });
                 }
             }
         });
