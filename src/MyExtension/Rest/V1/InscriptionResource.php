@@ -49,41 +49,29 @@ class InscriptionResource extends AbstractResource
     {
         //$language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]); // langue du site
         //var_dump($language);
-        //authentication comme admin inscriptions
-        /*
-        $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
-        $output['token'] = $this->subTokenFilter($auth['token']);
-        $token = $output['token']['access_token'];
-        */
+
         
         //GET NUMERO D'INSCRIPTION ACTUEL
         $id = "56619a683bc325590d8b4570"; // id du contenu "Numéro d'inscription"
-        /*$nbInscriptionContent = $this->callAPI("GET", $token, $id);
-        if($nbInscriptionContent['success']) {
-            $nbInscriptionContent = $nbInscriptionContent['content'];
-            $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
-        }
-        else throw new APIEntityException('Content not found', 404);
-        */
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("Contents");
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] = $content["fields"]["value"] +1;
         $content["version"] = $content["version"]  +1;
-        $result = $contentsService->update($content);
+        //$result = $contentsService->update($content);
         AbstractCollection::disableUserFilter(false);
 
+    
+        //authentication comme admin inscriptions
         
+        $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
+        $output['token'] = $this->subTokenFilter($auth['token']);
+        $token = $output['token']['access_token'];
+              
         
-        //AbstractCollection::disableUserFilter($wasFiltered);
-  //          $inscriptionNumber = (int)$nbInscriptionContent['fields']['value'] +1;
-        
-        
-        /*
-        $nbInscriptionContent['fields']['value'] = (string)$inscriptionNumber;
         //UPDATE NUMERO D'INSCRIPTION +1
-        $payload = json_encode( array( "content" => $nbInscriptionContent ) );
+        $payload = json_encode( array( "content" => $content ) );
         $result = $this->callAPI("PATCH", $token, $payload, $id);
         
         //PREPARE INSCRIPTION
@@ -116,11 +104,10 @@ class InscriptionResource extends AbstractResource
         
         
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
-       */
        
-            return array('success' => true, 'id' => $result);
+       
 
-        //return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
+        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
         
    }
    
