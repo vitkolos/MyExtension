@@ -43,7 +43,7 @@
         </div>
 
         <div class="col-sm-12" ng-if="rubedo.showSearchList">
-            <div ng-repeat="datum in filmSearchCtrl.data track by $index" class="col-md-3 col-sm-6 filmList" ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewFilms">
+            <div ng-repeat="datum in filmSearchCtrl.data track by $index"  ng-if="!datum['fields.horsSerie'][0]" class="col-md-3 col-sm-6 col-xs-12 filmList" ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewFilms">
                 <div class="affiche">
                     <h3 class="media-heading"  ng-if="!datum['i18n.'+locale+'.fields.affiche'][0]">
                         {{datum.title}}
@@ -68,11 +68,11 @@
                         <div class="prev" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex -1)" ng-if="contentListCtrl.previewIndex>0"><span></span><span></span></div>
                         <div class="col-sm-5 text-center">
                             <img ng-if="filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0]"
-                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0],{height:'400px',mode:'boxed'}) }}"
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0],{height:'400px',width:'284px',mode:'crop'}) }}"
                                 alt="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].title }}"
                                 class="img-responsive"/>
                             <img ng-if="!filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0]"
-                             ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',mode:'boxed'}) }}"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
                              alt="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].title }}"
                              class="img-responsive"/>
                         </div>
@@ -149,11 +149,11 @@
                             <div class="prev" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex -1)" ng-if="contentListCtrl.previewIndex>0"><span></span><span></span></div>
                             <div class="col-sm-5 text-center">
                                 <img ng-if="columnContents[contentListCtrl.previewIndex].fields.affiche "
-                                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(columnContents[contentListCtrl.previewIndex].fields.affiche,{height:'400px',mode:'boxed'}) }}"
+                                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(columnContents[contentListCtrl.previewIndex].fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
                                     alt="{{ columnContents[contentListCtrl.previewIndex].fields.text }}"
                                     class="img-responsive"/>
                                 <img ng-if="!columnContents[contentListCtrl.previewIndex].fields.affiche "
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',mode:'boxed'}) }}"
+                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
                                  alt="{{ columnContents[contentListCtrl.previewIndex].fields.text }}"
                                  class="img-responsive"/>
                             </div>

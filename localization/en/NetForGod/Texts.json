@@ -4,5 +4,7 @@
     "NFG.Like":"If you like this film",
     "NFG.Donate":"Donate",
     "NFG.Volunteer":"Become a volunteer",
-    "NFG.Share":"Share this film"
+    "NFG.Share":"Share this film",
+    "NFG.FilmsSameSubject":"Films with the same subject"
+
 }
