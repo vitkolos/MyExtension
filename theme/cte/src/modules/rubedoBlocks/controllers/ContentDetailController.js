@@ -98,10 +98,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                        
                     }
-                
-                    
-                    
-                    
                     $scope.fieldEntity=angular.copy(me.content.fields);
 
 
