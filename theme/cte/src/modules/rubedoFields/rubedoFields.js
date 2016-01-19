@@ -527,7 +527,8 @@
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id,
             type: $scope.field.config.allowedCT,
-            constrainToSite: true
+            constrainToSite: true,
+            orderby:'title'
         };
         RubedoSearchService.searchByQuery(options).then(
              function(response){
@@ -722,20 +723,7 @@
                 var modelSetter = model.assign;
                 var isMultiple = attrs.multiple;
                 element.bind('change', function(){
-                    /*var values = [];
-                    angular.forEach(element[0].files, function (item) {
-                        var value = {
-                           // File Name 
-                            name: item.name,
-                            //File Size 
-                            size: item.size,
-                            //File URL to view 
-                            url:  $sce.trustAsResourceUrl(URL.createObjectURL(item)),
-                            // File Input Value 
-                            _file: item
-                        };
-                        values.push(value);
-                    });*/
+
                     scope.$apply(function(){
                         if (isMultiple) {
                             modelSetter(scope, element[0].files);

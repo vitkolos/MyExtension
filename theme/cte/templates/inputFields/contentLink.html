@@ -7,7 +7,7 @@
                 ng-required="!field.config.allowBlank"
                 ng-options="content.id as content.title for content in contentLinkCtrl.contents"
                 ng-model="fieldEntity[field.config.name]"
-                ></select>
+                ><option value=''></option></select>
         <select ng-if="field.config.multivalued"
                 class="form-control"
                 id="{{fieldIdPrefix+'_'+field.config.name}}"
@@ -16,6 +16,7 @@
                 ng-model="fieldEntity[field.config.name]"
                 multiple="multiple"
                 ></select>
+        
 <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
     </div>
 </div>

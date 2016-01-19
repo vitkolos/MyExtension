@@ -129,51 +129,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         me.getMedia(options2);
                     }
                      
-/*GET CONTENT TAXONOMIES*/
 
-                     var typeArray =[];
-                     typeArray.push(me.content.type.id);
-                     
-                     TaxonomyService.getTaxonomyByContentId(options.pageId, JSON.stringify(typeArray)).then(function(response){
-                         if(response.data.success){
-                            me.taxo = response.data.results;
-
-                         }
-                     });
-                    
-                    //Actualités : 3 autres articles
-                    if (me.content.type.code=="actualites") {
-                        var actusTaxonomy = angular.copy(me.content.taxonomy);
-                       if (actusTaxonomy["navigation"]) {
-                            delete actusTaxonomy["navigation"];
-                       }
-                       var displayedFacets = [];
-                       displayedFacets.push({"name":"5524db6945205e627a8d8c4e","operator":"OR"});
-                        var options3 = {
-                            siteId: $scope.rubedo.current.site.id,
-                            pageId: $scope.rubedo.current.page.id,
-                            start:0,
-                            limit:4,
-                            constrainToSite: true,
-                            orderby:'lastUpdateTime',
-                            taxonomies: actusTaxonomy,
-                            displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
-                        };
-                        
-                        RubedoSearchService.searchByQuery(options3).then(function(response){
-                            if (response.data.success) {
-                                var results = response.data.results.data;
-                                var counter=0;
-                                me.linkedContents={};
-                                angular.forEach(results, function(content, key){
-                                    if (content.id != me.content.id && counter <3) {
-                                        me.linkedContents[counter] = content;
-                                        counter++;
-                                    }
-                                });
-                            }
-                        });
-                    }
                     
                     if (me.content.fields.author_jmj) {
                         me.auteur_jmj ={};
@@ -206,6 +162,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
+                                    $scope.fields=me.transformForFront(me.content.type.fields);
                                 },
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
@@ -216,7 +173,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                             $scope.fields=me.transformForFront(me.content.type.fields);
                         }
-                        //$http.get(themePath+'/templates/blocks/contentDetail/)
                     }
                 }
             }
