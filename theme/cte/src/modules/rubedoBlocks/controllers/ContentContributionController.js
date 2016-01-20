@@ -199,7 +199,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
             angular.forEach(me.newFiles, function(file, index) {
                 var options = angular.copy(uploadOptions);
                 if (me.title && me.title!="") {
-                    options.fields={title : file.name+'_'+index};
+                    options.fields={title : me.title+'_'+index};
                 }
                 else {
                     options.fields={title : file.name};

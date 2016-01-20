@@ -7,6 +7,10 @@
         <h2 ng-if="ccCtrl.updateMode" class="text-center" ng-click="ccCtrl.showForm= !ccCtrl.showForm">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>
         <div ng-if="(!ccCtrl.updateMode && ccCtrl.showForm) || (ccCtrl.updateMode)">
             <div class="form-group" ng-if="blockConfig.contentType=='568e3d503bc32538118b48d6'&&rubedo.current.user" ng-controller="AlbumUploadController as uploadCtrl">
+                <label for="titrePhotos" class="col-sm-4 control-label">Titre des photos (pour les renommer)</label>
+                <div class="col-sm-8 col-md-offset-4">
+                    <input type="text" ng-model="uploadCtrl.title">
+                </div>
                 <label for="uploadFiles" class="col-sm-4 control-label">Photos</label>
                 <div  class="col-sm-8">
                     <input type="file"
@@ -17,10 +21,7 @@
                            file-model="uploadCtrl.newFiles"
                             >
                 </div>
-                <label for="titrePhotos" class="col-sm-4 control-label">Titre des photos (pour les renommer)</label>
-                <div class="col-sm-8 col-md-offset-4">
-                    <input type="text" ng-model="uploadCtrl.title">
-                </div>
+                
                 <div class="col-sm-8 col-md-offset-4" ng-show="uploadCtrl.newFiles.length>0">
                     <div ng-repeat="file in uploadCtrl.newFiles">
                             <span>{{file.name}}</span>
