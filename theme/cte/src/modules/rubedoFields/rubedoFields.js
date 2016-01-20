@@ -673,7 +673,8 @@
                var uploadOptions={
                    typeId:$scope.field.config.allowedDAMTypes,
                    fields:{
-                       title:me.newFile.name
+                       title:me.newFile.name,
+                       target:me.workspace
                    }
                };
                RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
@@ -706,6 +707,22 @@
            }
 
         };
+        if ($scope.fieldInputMode) {
+            me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
+            if (me.pageId&&mongoIdRegex.test(me.pageId)) {
+                RubedoPagesService.getPageById(me.pageId).then(function(response){
+                    if (response.data.success){
+                        me.pageUrl=response.data.url;
+                        $http.get("/api/v1/pages",{
+                            params:{
+                                site:$location.host(),
+                                route:(me.pageUrl).substr(4)
+                            }
+                        }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; }});
+                    };
+                });
+            };
+        }
         if ($scope.fieldInputMode){
             $element.find('.form-control').on('change', function(){
                 setTimeout(function(){

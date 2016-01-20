@@ -134,6 +134,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                     }
                                 });
                             }
+                            else {
+                                RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+                                    if (response.data.success){
+                                        $location.url(response.data.url);
+                                    }
+                                });
+                            }
 
                         }else{
                             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.CreateError", "Content creation error"));
@@ -161,9 +168,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
 angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
     var me=this;
     me.workspace="";
+    me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
     $scope.ccCtrl.imagesForAlbum=[];
-        if ($scope.blockConfig.listPageId&&mongoIdRegex.test($scope.blockConfig.listPageId)) {
-            RubedoPagesService.getPageById($scope.blockConfig.listPageId).then(function(response){
+        if (me.pageId&&mongoIdRegex.test(me.pageId)) {
+            RubedoPagesService.getPageById(me.pageId).then(function(response){
                 if (response.data.success){
                     me.pageUrl=response.data.url;
                     $http.get("/api/v1/pages",{
