@@ -96,7 +96,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if(response.data.content.fields.video) {
                             $scope.rubedo.current.page.video = response.data.content.fields.video.url;
                         }
-                        $scope.rubedo.current.page.fbPage = "https://www.facebook.com/CheminNeuf/";
+                        $scope.rubedo.current.page.fbPage = "http://www.facebook.com/cheminneuf/";
                        
                     }
                     $scope.fieldEntity=angular.copy(me.content.fields);
