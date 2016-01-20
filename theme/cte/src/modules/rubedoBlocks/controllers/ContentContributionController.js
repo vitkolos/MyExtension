@@ -168,7 +168,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
 angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
     var me=this;
     me.workspace="";
-    console.log($scope.fieldEntity['text']);
+    
     me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
     $scope.ccCtrl.imagesForAlbum=[];
         if (me.pageId&&mongoIdRegex.test(me.pageId)) {
@@ -190,6 +190,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     me.progress = 0;
     me.uploadNewFiles=function(){
        me.notification=null;
+       console.log($scope.fieldEntity['text']);
        me.progress=1;
        nbOfImages = me.newFiles.length;
        if ($scope.fieldInputMode&&me.newFiles){
@@ -223,7 +224,6 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                     }
                 );
             });
-            console.log($scope.ccCtrl.imagesForAlbum);
        }
 
     };
