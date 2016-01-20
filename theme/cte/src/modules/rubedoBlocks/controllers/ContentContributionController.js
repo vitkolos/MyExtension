@@ -189,7 +189,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     me.progress = 0;
     me.uploadNewFiles=function(){
        me.notification=null;
-       console.log($scope.fieldEntity['text']);
+       console.log("title : ");console.log($scope.fieldEntity['title']);
        me.progress=1;
        nbOfImages = me.newFiles.length;
        if ($scope.fieldInputMode&&me.newFiles){
