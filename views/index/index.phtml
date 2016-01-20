@@ -23,6 +23,7 @@
           ng-attr-content="{{ rubedo.current.page.metaKeywords }}">
     <meta ng-if="rubedo.current.page.metaRobots" name="robots" ng-attr-content="{{ rubedo.current.page.metaRobots }}">
     <meta ng-if="rubedo.current.page.metaAuthor" name="author" ng-attr-content="{{ rubedo.current.page.metaAuthor }}">
+    <meta ng-if="rubedo.current.page.fbPage" property="article:publisher"  ng-attr-content="{{ rubedo.current.page.fbPage }}">
     <meta name="property" property="fb:admins" content="1143642138" /> <!--for Facebook Insights-->
     <link ng-if="rubedo.current.page.contentCanonicalUrl" rel="canonical"
           ng-href="{{ rubedo.current.page.contentCanonicalUrl }}" />
