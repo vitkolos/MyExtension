@@ -397,6 +397,7 @@ protected function sendInscriptionMail($inscription,$lang){
         $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'] );
         if($inscription['profession']) $messageSecretariat .= $this->addLine($trad["ccn_form_profession"], $inscription['profession'] );
         if($inscription['classeEtudes']) $messageSecretariat .= $this->addLine($trad["ccn_label_classeEtudes"], $inscription['classeEtudes'] );
+        if($inscription['facebook']) $messageSecretariat .= $this->addLine("Facebook", $inscription['facebook'] );
         if($inscription['situation']) $messageSecretariat .= $this->addLine($trad["ccn_label_situation"], $inscription['situation'] );
         if($inscription['address']) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] );
         if($inscription['cp'] || $inscription['city']) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'] );
