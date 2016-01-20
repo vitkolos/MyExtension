@@ -189,7 +189,6 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     me.progress = 0;
     me.uploadNewFiles=function(){
        me.notification=null;
-       console.log("title : ");console.log($scope.fieldEntity['title']);
        me.progress=1;
        nbOfImages = me.newFiles.length;
        if ($scope.fieldInputMode&&me.newFiles){
@@ -199,7 +198,12 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
            };
             angular.forEach(me.newFiles, function(file, index) {
                 var options = angular.copy(uploadOptions);
-                options.fields={title : file.name};
+                if (me.title && me.title!="") {
+                    options.fields={title : file.name+'_'+index};
+                }
+                else {
+                    options.fields={title : file.name};
+                }
                 RubedoMediaService.uploadMedia(file,options).then(
                     function(response){
                         if (response.data.success){
