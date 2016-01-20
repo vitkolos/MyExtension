@@ -1,0 +1,50 @@
+
+
+
+
+//                    --------------------------
+//                    Variables less habituelles
+//                    --------------------------
+
+@width_xxs:420px;
+@min_xs:500px;
+@min_sm:768px;
+@min_md:992px;
+@min_lg:1200px;
+@rouge:#c1573c;//rouge brique
+@rouge_shadow:#9e4232; // rouge brique sombre
+@txt_dark:#2e2c29;// couleur texte
+@menu:#2e2c29;// couleur de fond du menu par défaut
+@beigeCCN:#f3eeea; // beige fond
+@marron:#d5c5b5 ; // beige plus sombre
+@rencontre:#7d77bf; //violet rencontres
+@lieux:#fbbd58; //jaune lieux communautaires
+@evenement:#f96847; //orange propositions;
+//@14-18:#59d3b6;
+@14-18:#1f2d5c;
+@cana:#ff7d5f;
+@bleu:#3CA6C1;
+
+
+//                    --------------------------
+//                    les grandes lignes du site
+//                    --------------------------
+
+
+body{font-size:16px; min-height:100%; line-height: 1.4em }
+html,body{font-family: 'Merriweather','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:@beigeCCN;}
+.container-fluid{overflow-x:hidden;}
+.container-fluid{padding:0}
+.container-fluid > .row:nth-of-type(n+3){margin-right: 0; margin-left:0;}
+.container-fluid > .row.no-margin{margin-right: -15px; margin-left:-15px;}
+.container.page{min-height: 80vh; margin-top:50px}
+.glyphicon-list-alt{z-index:9999}
+h1{font-weight: bold; font-size:24px}
+@media screen and (min-width: @min_xs) and (max-width:@min_sm){h1{font-size: 32px}}
+@media screen and (min-width: @min_sm){h1{font-size: 48px}}
+h2{font-weight: bold}
+h3{font-size:28px;font-weight: bold; line-height: 1.25em;}
+h4{font-weight: bold;font-size: 20px; margin:0; margin-bottom: 5px; line-height: 1.4em}
+@media screen and (min-width: @min_md) and (max-width: @min_lg){h3{font-size:24px}}
+p{color:@txt_dark; font-size:16px}
+label{font-weight: normal}
