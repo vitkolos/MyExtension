@@ -590,7 +590,7 @@
         };            
     }]);
 
-    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",function($scope,RubedoMediaService,$element){
+    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
         var me=this;
         var mediaId=$scope.fieldEntity[$scope.field.config.name];
         me.launchEditor=function(){
