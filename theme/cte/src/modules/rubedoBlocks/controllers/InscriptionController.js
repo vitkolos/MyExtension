@@ -71,7 +71,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if ((me.form.fields.questions).length>0) {
                     me.getQuestions();
                 }
-                                // questions complémentaires ?
+                // questions complémentaires ?
                 if ( me.form.jai_connu) {me.isComplement = true;}
                 if ( (me.form.fields.transport) && (me.form.fields.transport.transport) &&((me.form.fields.transport.transport).length>1) && (typeof me.form.fields.transport.transport != 'string') ) {me.isTransport = true;}
                 if (((me.content.fields.paimentOption)&&(me.content.fields.paimentOption.paimentOption) && ((me.content.fields.paimentOption.paimentOption).length>0)) || me.content.fields.accompte>0) {me.isPaiement = true}
@@ -274,20 +274,32 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
             $scope.inscription.contact = me.content.fields.contact;
-            $scope.inscription.personneConnue = me.form.fields.personneConnue ? me.form.fields.personneConnue :false;
             $scope.inscription.mailInscription = me.content.fields.mailInscription;
             $scope.inscription.mailInscriptionService = me.content.fields.mailInscriptionService;
-            $scope.inscription.entretien = me.form.entretien ? me.form.entretien : false;
-            $scope.inscription.motivation = me.form.motivation ? me.form.motivation : false;
-            if (me.form.fields.formulaire_pdf && me.form.fields.formulaire_pdf!="") {
-                RubedoMediaService.getMediaById(me.form.fields.formulaire_pdf).then(
-                    function(response){
-                        if (response.data.success){
-                            $scope.inscription.formulaire_pdf=response.data.media;
+            if (me.form && me.form.fields) {
+                $scope.inscription.personneConnue = me.form.fields.personneConnue;
+                $scope.inscription.entretien = me.form.entretien;
+                $scope.inscription.motivation = me.form.motivation;
+                if (me.form.fields.formulaire_pdf && me.form.fields.formulaire_pdf!="") {
+                    RubedoMediaService.getMediaById(me.form.fields.formulaire_pdf).then(
+                        function(response){
+                            if (response.data.success){
+                                $scope.inscription.formulaire_pdf=response.data.media;
+                            }
                         }
-                    }
-                );
+                    );
+                }
             }
+            else {
+                $scope.inscription.personneConnue = false;
+                $scope.inscription.entretien = false;
+                $scope.inscription.motivation = false;                
+            }
+            
+            
+            
+            
+            
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer};
