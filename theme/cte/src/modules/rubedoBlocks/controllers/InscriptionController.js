@@ -84,7 +84,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     /*get fields for inscription*/
     me.getFieldByName=function(name){
         var field=null;
-        if (me.form) {
+        if (me.form && me.form.type) {
             angular.forEach(me.form.type.fields,function(candidate){
                 if (candidate.config.name==name){
                     field=candidate;
@@ -274,7 +274,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
             $scope.inscription.contact = me.content.fields.contact;
-            $scope.inscription.personneConnue = me.form.fields.personneConnue;
+            $scope.inscription.personneConnue = me.form.fields.personneConnue ? me.form.fields.personneConnue :false;
             $scope.inscription.mailInscription = me.content.fields.mailInscription;
             $scope.inscription.mailInscriptionService = me.content.fields.mailInscriptionService;
             $scope.inscription.entretien = me.form.entretien ? me.form.entretien : false;
