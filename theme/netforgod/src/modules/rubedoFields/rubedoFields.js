@@ -591,6 +591,40 @@
     }]);
 
         /*Modifié pour ajouter l'espace de travail de la page ou de la page liée au bloc de contribution*/
+    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
+        var me=this;
+        var mediaId=$scope.fieldEntity[$scope.field.config.name];
+        me.launchEditor=function(){
+            if ($scope.fieldEditMode){
+                var width = screen.width/2;
+                var height = screen.height/2;
+                var left = (screen.width-width)/2;
+                var top = +((screen.height-height)/2);
+                window.saveRubedoMediaChange=function(id){
+                    $scope.fieldEntity[$scope.field.config.name]=id;
+                    mediaId=id;
+                    $scope.registerFieldEditChanges();
+                    RubedoMediaService.getMediaById(mediaId).then(
+                        function(response){
+                            if (response.data.success){
+                                me.media=response.data.media;
+                                me.displayMedia();
+                            }
+                        }
+                    );
+                    window.saveRubedoMediaChange=function(){};
+                };
+                var popupUrl="/backoffice/ext-finder?soloMode=true";
+                if ($scope.field.config.allowedDAMTypes){
+                    popupUrl=popupUrl+"&allowedDT="+$scope.field.config.allowedDAMTypes+"";
+                }
+                window.open(
+                    popupUrl,
+                    "DAM",
+                    "menubar=no, status=no, scrollbars=no, top="+top+", left="+left+", width="+width+", height="+height+""
+                );
+            }
+        };
         me.displayMedia=function(){
             if (me.media&&me.media.originalFileId){
                 switch(me.media.mainFileType) {
