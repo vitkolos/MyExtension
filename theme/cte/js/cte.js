@@ -237,13 +237,11 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 		    url: 'http://graph.facebook.com/?id='+contentUrl
 		  }).then(function successCallback(response) {
 			$scope.nbOfLikes = response.data.shares;
-			console.log(response);
-
 		    }, function errorCallback(response) {
 		      // called asynchronously if an error occurs
 		      // or server returns response with an error status.
 		    });
-	           addthis.counter(angular.element('.addthis_counter').get(), {}, {url: contentUrl});
+	           //addthis.counter(angular.element('.addthis_counter').get(), {}, {url: contentUrl});
            /*addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: $location.absUrl()}, function(obj) {
                       console.log(obj)
            });*/
