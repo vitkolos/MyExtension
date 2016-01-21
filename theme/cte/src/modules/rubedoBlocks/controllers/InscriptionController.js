@@ -40,7 +40,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         $scope.inscription.enfants.splice(index, 1);
     };  
 
-    
+    if ($scope.rubedo.current.user) {
+        $scope.inscription.name=$scope.rubedo.current.user.fullName;
+    }
     
     $scope.personneConnue = false;
     //pour récupérer les champs du formulaire
