@@ -40,7 +40,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         $scope.inscription.enfants.splice(index, 1);
     };  
     if ($scope.rubedo.current.user) {
-        $scope.inscription.name=$scope.rubedo.current.user.name;
+        $scope.inscription=$scope.rubedo.current.user.fields;
     }
     
     $scope.personneConnue = false;
