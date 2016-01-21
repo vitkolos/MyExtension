@@ -58,7 +58,7 @@ class InscriptionResource extends AbstractResource
         $contentsService = Manager::getService("Contents");
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] = $content["fields"]["value"] +1;
-        $content["version"] = $content["version"]  +1;
+        //$content["version"] = $content["version"]  +1;
         //$result = $contentsService->update($content);
         AbstractCollection::disableUserFilter(false);
 
@@ -107,7 +107,7 @@ class InscriptionResource extends AbstractResource
        
        
 
-        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
+        return array('success' =>$content, 'id' =>$inscriptionForm['fields']['text']);
         
    }
    
