@@ -57,7 +57,7 @@ class InscriptionResource extends AbstractResource
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("Contents");
         $content = $contentsService->findById($id,false,false);
-        $content["fields"]["value"] = $content["fields"]["value"] +1;
+        //$content["fields"]["value"] = $content["fields"]["value"] +1;
         //$content["version"] = $content["version"]  +1;
         //$result = $contentsService->update($content);
         AbstractCollection::disableUserFilter(false);
