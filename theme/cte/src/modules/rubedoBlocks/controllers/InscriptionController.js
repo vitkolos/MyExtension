@@ -39,9 +39,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.removeChild = function(index){
         $scope.inscription.enfants.splice(index, 1);
     };  
-console.log($scope.rubedo);
     if ($scope.rubedo.current.user) {
-        $scope.inscription.name=$scope.rubedo.current.user.fullName;
+        $scope.inscription.name=$scope.rubedo.current.user.name;
     }
     
     $scope.personneConnue = false;
