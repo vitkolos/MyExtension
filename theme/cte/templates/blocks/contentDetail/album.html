@@ -138,7 +138,8 @@
 
 <header class="container-fluid" style="margin-bottom: 48px">
 	<div class="text-article container">
-		<p class='capital txt-red' style="text-shadow: none">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}}</p>
+		<p class='capital txt-red' style="text-shadow: none" ng-if="{{fieldEntity['date']}}">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}}</p>
+		<p class='capital txt-red' style="text-shadow: none" ng-if="{{fieldEntity['lieu']}}">{{fieldEntity['lieu']}}</p>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
 			<h1 class="text-left" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
 			<h1 ng-if="fieldEditMode"
@@ -187,14 +188,6 @@
 	</div>
 	<div class="gutter-sizer"></div>
 </div>
-
-     
-<!--<div class="col-xs-12 text-center" ng-if="!process">
-	<div class="button rouge" ng-click="contentDetailCtrl.add()" style="margin:48px auto">
-		Suite
-	</div>
-</div>-->
-
 
 
 
