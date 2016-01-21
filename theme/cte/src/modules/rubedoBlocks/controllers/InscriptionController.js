@@ -39,7 +39,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.removeChild = function(index){
         $scope.inscription.enfants.splice(index, 1);
     };  
-
+console.log($scope.rubedo);
     if ($scope.rubedo.current.user) {
         $scope.inscription.name=$scope.rubedo.current.user.fullName;
     }
@@ -306,7 +306,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer};
             $scope.inscription.isPayment = me.isPaiement;
-            console.log($scope.inscription);
             /*STATUS DE L'INSCRIPTION*/
             switch(me.content.fields.inscriptionState.inscriptionState) {
                 case "attente":
