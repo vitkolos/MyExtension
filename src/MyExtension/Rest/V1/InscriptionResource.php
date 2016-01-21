@@ -126,13 +126,13 @@ protected function sendInscriptionMail($inscription,$lang){
     //nom pour le mail aux inscrits
     if($inscription['prenomPers2'] && $inscription['prenomPers2']!="" )  {
         $nbInscrits = 2;
-        if(!$inscription['nomPers2'] || $inscription['nomPers2']=="" || $inscription['nomPers2'] == $inscription['name'])
-            $nomClient = $inscription['surname'] . " " . $trad["et"] . " " . $inscription['prenomPers2'] . " " . $inscription['name'];
+        if(!$inscription['nomPers2'] || $inscription['nomPers2']=="" || $inscription['nomPers2'] == $inscription['nom'])
+            $nomClient = $inscription['surname'] . " " . $trad["et"] . " " . $inscription['prenomPers2'] . " " . $inscription['nom'];
         else
-            $nomClient = $inscription['surname'] . " " . $inscription['name'] . " " . $trad["et"] . " " . $inscription['prenomPers2'] . " " . $inscription['nomPers2'];    
+            $nomClient = $inscription['surname'] . " " . $inscription['nom'] . " " . $trad["et"] . " " . $inscription['prenomPers2'] . " " . $inscription['nomPers2'];    
     }
     else {
-        $nomClient = $inscription['surname'] . " ".  $inscription['name'];
+        $nomClient = $inscription['surname'] . " ".  $inscription['nom'];
     }
     //CONTACT SECRETARIAT
     $contactSecretariat =  $inscription['contact']['text'] . " - ". $inscription['contact']['prenom']." ".$inscription['contact']['nom'] . " - " . $inscription['contact']['telephone'];
@@ -384,7 +384,7 @@ protected function sendInscriptionMail($inscription,$lang){
     $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
     /*pour individuels*/
     if($nbInscrits == 1){
-        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['nom'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) );
         if($inscription['birthdate']) {
@@ -415,7 +415,7 @@ protected function sendInscriptionMail($inscription,$lang){
         if($inscription['situationConjugale']) $messageSecretariat .= $this->addLine($trad["ccn_form_situation_couple"], $inscription['situationConjugale'] );
         if($inscription['dateMariage']) $messageSecretariat .= $this->addLine($trad["ccn_form_date_de_mariage"], date("d/m/Y",$inscription['dateMariage']) );
         $messageSecretariat .= "<tr><td width=100% colspan=3>&nbsp;</td></tr>";
-        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['name'],$inscription['nomPers2'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['nom'],$inscription['nomPers2'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'], $inscription['prenomPers2'] );
         if($inscription['birthdate']) $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']), date("d/m/Y",$inscription['dateNaissPers2']) );
         if($inscription['birthdate'] || $inscription['dateNaissPers2']) {
@@ -494,8 +494,8 @@ protected function sendInscriptionMail($inscription,$lang){
     
     $mailSecretariat = $mailerService->getNewMessage();
     $mailSecretariat->setTo($inscription['contact']['email']); // à changer en $inscription['contact']['email']
-    $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['name']))); 
-    $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['name']))); 
+    $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['nom']))); 
+    $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['nom']))); 
     $mailSecretariat->setCharset('utf-8');
     $mailSecretariat->setSubject($sujetSecretariat);
     $mailSecretariat->setBody($messageSecretariat, 'text/html', 'utf-8');
