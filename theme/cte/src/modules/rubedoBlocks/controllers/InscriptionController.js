@@ -42,7 +42,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
     
     
-    
+    $scope.personneConnue = false;
     //pour récupérer les champs du formulaire
     me.getFormulaire = function (contentId){
         RubedoContentsService.getContentById(contentId, options).then(function(response){
@@ -74,7 +74,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                                 // questions complémentaires ?
                 if ( me.form.jai_connu) {me.isComplement = true;}
                 if ( (me.form.fields.transport) && (me.form.fields.transport.transport) &&((me.form.fields.transport.transport).length>1) && (typeof me.form.fields.transport.transport != 'string') ) {me.isTransport = true;}
-                if ( (me.form.fields.logement) && (me.form.fields.logement.logement) &&((me.form.fields.logement.logement).length>1 ) && ( typeof me.form.fields.logement.logement !='string') ) {me.isLogement = true;}
                 if (((me.content.fields.paimentOption)&&(me.content.fields.paimentOption.paimentOption) && ((me.content.fields.paimentOption.paimentOption).length>0)) || me.content.fields.accompte>0) {me.isPaiement = true}
                 if (( typeof me.content.fields.paimentOption.paimentOption =='string')) {
                     me.content.fields.paimentOption.paimentOption = {0 : me.content.fields.paimentOption.paimentOption};
@@ -201,7 +200,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     });
     
     if(formId) me.getFormulaire(formId);
-  
 
     // VALIDATIONS ANGULAR
     
