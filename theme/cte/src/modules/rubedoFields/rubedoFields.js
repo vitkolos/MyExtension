@@ -624,6 +624,7 @@
                 );
             }
         };
+        /*Modifié pour ajouter l'espace de travail de la page ou de la page liée au bloc de contribution*/
         me.displayMedia=function(){
             if (me.media&&me.media.originalFileId){
                 switch(me.media.mainFileType) {
