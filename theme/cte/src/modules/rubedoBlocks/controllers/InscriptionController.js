@@ -264,7 +264,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         }
         if (valide && step==6) {
             // validations préliminaires
-            $scope.processForm=true;
+            //$scope.processForm=true;
             $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.propositionDate = propositionDate;
@@ -292,7 +292,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer};
             $scope.inscription.isPayment = me.isPaiement;
-            
+            console.log($scope.inscription);
             /*STATUS DE L'INSCRIPTION*/
             switch(me.content.fields.inscriptionState.inscriptionState) {
                 case "attente":
