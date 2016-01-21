@@ -120,7 +120,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo = taxonomie.terms;
                             });
-                            console.log(me.taxo);
                          }
                          
                      });

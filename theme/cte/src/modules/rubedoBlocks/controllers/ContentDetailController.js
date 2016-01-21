@@ -96,6 +96,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if(response.data.content.fields.video) {
                             $scope.rubedo.current.page.video = response.data.content.fields.video.url;
                         }
+                        $scope.rubedo.current.page.fbPage = "http://www.facebook.com/cheminneuf/";
                        
                     }
                     $scope.fieldEntity=angular.copy(me.content.fields);
@@ -140,9 +141,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     //Propositions : déterminer si les inscriptions sont possibles
                     if (me.content.type.code=="proposition") {
                         var today = new Date();
-                       if (me.content.fields.inscriptionState && me.content.fields.inscriptionState.inscriptionState == 'close') {
+                        if (!me.content.fields.inscriptionState
+                            || (me.content.fields.inscriptionState &&(me.content.fields.inscriptionState.inscriptionState == 'close' || me.content.fields.inscriptionState.inscriptionState == 'non'))) {
                             me.isInscription=false;
                         }
+
                         else if (me.content.fields.dateDebut*1000 < today.getTime()) {
                             me.propDate = "passee";
                         }
@@ -194,10 +197,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     //Actualités : 3 autres articles
                     if (me.content.type.code=="actualites") {
-                        var actusTaxonomy = angular.copy(me.content.taxonomy);
-                       if (actusTaxonomy["navigation"]) {
-                            delete actusTaxonomy["navigation"];
-                       }
+                        
+                        var actusTaxonomy ={};
+                        actusTaxonomy['5524db6945205e627a8d8c4e'] = me.content.taxonomy['5524db6945205e627a8d8c4e'];
                        var displayedFacets = [];
                        displayedFacets.push({"name":"5524db6945205e627a8d8c4e","operator":"OR"});
                         var options3 = {
@@ -254,7 +256,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                             $scope.fields=me.transformForFront(me.content.type.fields);
                         }
-                        //$http.get(themePath+'/templates/blocks/contentDetail/)
                     }
                 }
             }

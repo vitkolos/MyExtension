@@ -214,14 +214,14 @@ angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($
          }}
   });
   
-angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location', function($timeout,$location) {
+angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$http', function($timeout,$location,$http) {
   return {
     restrict : 'A',
 	  transclude : true,
 	  replace : true,
 	  template : '<div ng-transclude></div>',
 	  link : function($scope, element, attrs) {
-		 $timeout(function () {
+		$timeout(function () {
                       addthis.init();
                       var contentUrl = $location.absUrl();
                       addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
@@ -232,12 +232,22 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
                         $window.addthis.layers.refresh();
                     }*/
-	           addthis.counter(angular.element('.addthis_counter').get(), {}, {url: contentUrl});
-           /*addthis.sharecounters.getShareCounts({service: ['facebook','twitter'], countUrl: $location.absUrl()}, function(obj) {
-                      console.log(obj)
-           });*/
-      });
-	  }
+		$scope.nbOfLikes=0;
+		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.shares;
+		},
+		function errorCallback(response) {
+		});
+		$http({method: 'GET',url: 'http://cdn.api.twitter.com/1/urls/count.json?url='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.count;
+		},
+		function errorCallback(response) {
+		});		
+
+		});
+	    }
 	};
 }]);
 

@@ -97,6 +97,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                     }
                                 });
                             }
+                            else {
+                                RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+                                    if (response.data.success){
+                                        $location.url(response.data.url);
+                                    }
+                                });
+                            }
                         } else {
                             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
                         }
@@ -168,7 +175,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
 angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
     var me=this;
     me.workspace="";
-    console.log($scope.fieldEntity['text']);
     me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
     $scope.ccCtrl.imagesForAlbum=[];
         if (me.pageId&&mongoIdRegex.test(me.pageId)) {
@@ -199,7 +205,12 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
            };
             angular.forEach(me.newFiles, function(file, index) {
                 var options = angular.copy(uploadOptions);
-                options.fields={title : file.name};
+                if (me.title && me.title!="") {
+                    options.fields={title : me.title+'_'+index};
+                }
+                else {
+                    options.fields={title : file.name};
+                }
                 RubedoMediaService.uploadMedia(file,options).then(
                     function(response){
                         if (response.data.success){
@@ -223,7 +234,6 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                     }
                 );
             });
-            console.log($scope.ccCtrl.imagesForAlbum);
        }
 
     };

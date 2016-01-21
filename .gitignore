@@ -7,3 +7,5 @@
 .idea/MyExtension.iml
 .idea/copyright/profiles_settings.xml
 .idea/deployment.xml
+theme/boutique/css/boutique.css
+theme/boutique/css/boutique.less

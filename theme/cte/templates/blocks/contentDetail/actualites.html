@@ -58,7 +58,7 @@
 						<a class="addthis_button_twitter txt-red"><img  class="hidden"><i class="fa fa-twitter-square" data-toggle="tooltip" title="Partager sur Twitter"></i> </a>
 						<a class="addthis_button_email txt-red"><img class="hidden"><i class="fa fa-share-square" data-toggle="tooltip" title="Envoyer par mail"></i></a>
 						<a class="addthis_button_expanded txt-red"><img class="hidden"><i class="fa fa-plus-square" data-toggle="tooltip" title="Plus d'options"></i></a>
-						<a class="addthis_counter "></a><span class="txt-red capital" style="display: inline-block">partages</span>
+						<span class="txt-red capital" style="display: inline-block" ng-if="nbOfLikes>0">{{nbOfLikes}} partages</span>
 					</div>
 					{{contentDetailCtrl.tooltips()}}
 				</div>
