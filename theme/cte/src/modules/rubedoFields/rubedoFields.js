@@ -690,9 +690,9 @@
            if ($scope.fieldInputMode&&me.newFile&&$scope.field.config.allowedDAMTypes){
                var uploadOptions={
                    typeId:$scope.field.config.allowedDAMTypes,
+                   target:me.workspace,
                    fields:{
-                       title:me.newFile.name,
-                       target:me.workspace
+                       title:me.newFile.name
                    }
                };
                RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
