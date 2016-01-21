@@ -197,10 +197,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     //Actualités : 3 autres articles
                     if (me.content.type.code=="actualites") {
-                        var actusTaxonomy = angular.copy(me.content.taxonomy);
-                       if (actusTaxonomy["navigation"]) {
-                            delete actusTaxonomy["navigation"];
-                       }
+                        
+                        var actusTaxonomy ={};
+                        actusTaxonomy['5524db6945205e627a8d8c4e'] = me.content.taxonomy['5524db6945205e627a8d8c4e'];
                        var displayedFacets = [];
                        displayedFacets.push({"name":"5524db6945205e627a8d8c4e","operator":"OR"});
                         var options3 = {
