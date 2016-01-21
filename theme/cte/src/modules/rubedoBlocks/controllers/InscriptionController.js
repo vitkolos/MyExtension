@@ -41,11 +41,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     };
     console.log($scope.rubedo.current.user);
     if ($scope.rubedo.current.user) {
-        //$scope.inscription=angular.copy($scope.rubedo.current.user.fields);
-        $scope.inscription=$scope.rubedo.current.user.fields;
+        $scope.inscription=angular.copy($scope.rubedo.current.user.fields);
         $scope.inscription.email = $scope.rubedo.current.user.email;
         $scope.inscription.email_verif = $scope.rubedo.current.user.email;
-        $scope.inscription.birthdateF = $filter('date')($scope.rubedo.current.user.birthdate,'dd/MM/yyyy')
+        $scope.inscription.birthdate=new Date($scope.rubedo.current.user.fields.birthdate * 1000).toISOString();
+        $scope.inscription.birthdateF = $filter('date')( $scope.inscription.birthdate,'dd/MM/yyyy')
     }
     
     $scope.personneConnue = false;
