@@ -1,4 +1,3 @@
-alert('chargement ?');
 angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService',function($scope,$location,RubedoMenuService,RubedoPagesService){
     var me=this;
     console.log(me);
@@ -50,5 +49,4 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$loca
     $scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
         angular.element('body .modal-backdrop ').remove();
     });
-    alert('test');
 }]);
