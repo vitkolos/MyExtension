@@ -2,7 +2,7 @@
 	"type":"Bouton 'google'",
 	"description":"Pavé avec une image, un titre et une description, renvoyant sur une page",
 	"configBasique":{
-		"title":"Bouton 'google'",
+		"title":"Page mise en avant",
 		"bType":"buttonToPage",
 		"flex":1,
 		"champsConfig":{
