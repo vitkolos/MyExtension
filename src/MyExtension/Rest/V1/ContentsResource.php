@@ -498,9 +498,9 @@ class ContentsResource extends AbstractResource
         if (!$this->getAclService()->hasAccess('write.ui.contents.' . $data['status'])) {
             if (!$this->getAclService()->hasAccess('write.fo.contents.' . $data['status'])){
                 throw new APIAuthException('You have insufficient rights', 403);
-            } /*elseif ($content['createUser']['id']!=$this->getCurrentUserAPIService()->getCurrentUser()['id']){
+            } elseif ($content['createUser']['id']!=$this->getCurrentUserAPIService()->getCurrentUser()['id']){
                 throw new APIAuthException('Cannot edit contents of other users', 403);
-            }*/
+            }
         }
         if (isset($data["taxonomy"])&&is_array($data["taxonomy"])){
             $taxoService= Manager::getService("Taxonomy");
