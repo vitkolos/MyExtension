@@ -12,20 +12,23 @@
 			<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"></div>
 		</div>		
 	</div>
-	<div ng-switch-when="1" class="equal-height-cols">
-		<a ng-href="{{btnToPageCtrl.pageLink}}">
-			<div class="col-sm-8 col-xs-12">
-				<img class="img-responsive no-margin" ng-if="blockConfig.imageFile"
-                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {width:'700px',height:'400px',mode:'crop'})}}"
-                                                                     alt="{{block.title}}"/>              
-			</div>
-			<div class="col-sm-4 col-xs-12">
-				<h3>
-					{{block.title}}
-				</h3>
-				<p><div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"></div></p>
-			</div>
-		</a>
+	<div ng-switch-when="1" class="row contentList padding-">
+		<div class="equal-height-cols">
+			<a ng-href="{{btnToPageCtrl.pageLink}}">
+				<div class="col-sm-8 col-xs-12">
+					<img class="img-responsive no-margin" ng-if="blockConfig.imageFile"
+									     ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {width:'700px',height:'400px',mode:'crop'})}}"
+									     alt="{{block.title}}"/>              
+				</div>
+				<div class="col-sm-4 col-xs-12">
+					<h3>
+						{{block.title}}
+					</h3>
+					<p><div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"></div></p>
+				</div>
+			</a>			
+		</div>
+		
 	</div>
  
 </div>
