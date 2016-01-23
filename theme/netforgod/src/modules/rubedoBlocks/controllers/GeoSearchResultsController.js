@@ -333,7 +333,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         }
                     }
                     var dateDist=9999999999;
-                    if (item['fields.date'].length>0) {
+                    if (item['fields.date'] && item['fields.date'].length>0) {
                         angular.forEach(item['fields.date'],function(candidateDate){
                             if ( candidateDate*1000 - today.getTime() >0 && candidateDate*1000 - today.getTime()<dateDist) {
                                 item['nextDate']=candidateDate;
