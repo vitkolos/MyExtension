@@ -1,0 +1,19 @@
+
+<div class="row full_page">
+    <div class="col-xs-12 col-sm-7 col-md-8" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'" style="padding: 0">
+    </div>
+    <div class="col-md-4 col-xs-12 geo-search " style="padding-right:0">
+                <a  ng-href="{{data.itemData.url}}" ng-repeat="data in geoSearchResultsCtrl.data"><div class="row search-result " >
+                    <div style="line-height: 60px; float:left" >
+                        <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
+                    </div>
+                    <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
+                    <h4>{{data.itemData.title}}</h4>
+                    <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
+                    <p ng-if="data.itemData.groupe == 'evenement' ">du {{data.itemData['fields.dateDebut'][0]* 1000 | date:'d MMM'}} au {{data.itemData['fields.dateFin'][0]* 1000 | date:'d MMM yyyy'}}</p>
+                </div></a>
+            
+    </div>
+ 
+
+</div>
