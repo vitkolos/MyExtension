@@ -5,7 +5,7 @@
         <h2>Find a Point net close to you</h2>
                 <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data">
                     <h3>{{data.itemData.title}}</h3>
-                    <p>{{data.itemData['fields.'.lang.'.subTitle']}}</p>
+                    <p>{{data.itemData['i18n.'.lang.'.fields.subTitle']}}</p>
                     <div class="text-center pull-right">
                         <p>{{data.itemData.nextDate}}</p>
                     </div>
