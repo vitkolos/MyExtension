@@ -334,12 +334,21 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         }
                     }
                     var dateDist=9999999999;
+                    var oneDay = 24 * 60 * 60;
                     if (item['fields.date'] && item['fields.date'].length>0) {
                         angular.forEach(item['fields.date'],function(candidateDate){
                             if ( candidateDate*1000 - today.getTime() >0 && candidateDate*1000 - today.getTime()<dateDist) {
                                 item['nextDate']=candidateDate;
                             }
                         });
+                        console.log(Math.round(Math.abs((item['nextDate'].getTime() - today.getTime())/(oneDay))));
+                        if (Math.round(Math.abs((item['nextDate'].getTime() - today.getTime())/(oneDay)))>0) {
+                            item['class'] = "red";
+                        }
+                        
+            
+                        
+                        
                     }
                 });
             }
