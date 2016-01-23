@@ -60,7 +60,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     index: index
                 };
             },
-            gridSize : 60,
+            gridSize : 20,
             batchSizeIE : 20000
         };
         //set initial map center
