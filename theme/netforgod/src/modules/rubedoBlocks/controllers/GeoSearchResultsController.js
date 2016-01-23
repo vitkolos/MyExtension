@@ -30,7 +30,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         me.clusterOptions={
             batchSize : 20000,
             averageCenter : false,
-            gridSize : 10,
+            gridSize : 20,
             zoomOnClick:false,
             batchSizeIE : 20000
         };
@@ -60,7 +60,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     index: index
                 };
             },
-            gridSize : 10,
+            gridSize : 20,
             batchSizeIE : 20000
         };
         //set initial map center
@@ -113,6 +113,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     var newInfoWin = new google.maps.InfoWindow({
                         content : '<div class="rubedo-gmapitem" id="gmapitem'+$scope.block.id+model.id+'" ng-include="\''+themePath+'/templates/blocks/geoSearchResults/detail/'+model.objectType+'.html\'"></div>'
                     });
+                    console.log(model);
                     newInfoWin.open(gMarker.getMap(),gMarker);
                     me.activeInfoWindow=newInfoWin;
                     gMarker.hasIWindow=true;
