@@ -114,6 +114,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         content : '<div class="rubedo-gmapitem" id="gmapitem'+$scope.block.id+model.id+'" ng-include="\''+themePath+'/templates/blocks/geoSearchResults/detail/'+model.objectType+'.html\'"></div>'
                     });
                     console.log(model);
+                    me.displayedItemId = model.id;
                     newInfoWin.open(gMarker.getMap(),gMarker);
                     me.activeInfoWindow=newInfoWin;
                     gMarker.hasIWindow=true;
