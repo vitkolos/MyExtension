@@ -338,14 +338,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     if (item['fields.date'] && item['fields.date'].length>0) {
                         angular.forEach(item['fields.date'],function(candidateDate){
                             if ( candidateDate*1000 - today.getTime() >0 && candidateDate*1000 - today.getTime()<dateDist) {
+                                dateDist = candidateDate*1000 - today.getTime();
                                 item['nextDate']=candidateDate;
                             }
                         });
                         if (item['nextDate']) {
-                            console.log(Math.round(Math.abs((item['nextDate'].getTime() - today.getTime())/(oneDay))));
-                            if (Math.round(Math.abs((item['nextDate'].getTime() - today.getTime())/(oneDay)))>0) {
-                                item['class'] = "red";
-                            }
+                           console.log(dateDist);
                         }
                         
                         
