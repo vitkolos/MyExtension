@@ -107,14 +107,15 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         me.markerEvents = {
             click: function (gMarker, eventName, model) {
                 if ($element.find('#gmapitem'+$scope.block.id+model.id).length==0){
-                    if (me.activeInfoWindow){
+                    me.displayedItemId = model.id;
+                    /*if (me.activeInfoWindow){
                         me.activeInfoWindow.close();
                     }
                     var newInfoWin = new google.maps.InfoWindow({
                         content : '<div class="rubedo-gmapitem" id="gmapitem'+$scope.block.id+model.id+'" ng-include="\''+themePath+'/templates/blocks/geoSearchResults/detail/'+model.objectType+'.html\'"></div>'
                     });
-                    me.displayedItemId = model.id;
-                    /*newInfoWin.open(gMarker.getMap(),gMarker);
+                    
+                    newInfoWin.open(gMarker.getMap(),gMarker);
                     me.activeInfoWindow=newInfoWin;
                     gMarker.hasIWindow=true;*/
                     setTimeout(function(){
