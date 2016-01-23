@@ -334,7 +334,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         }
                     }
                     var dateDist=9999999999;
-                    var oneDay = 24 * 60 * 60;
+                    var oneDay = 24 * 60 * 60 * 1000;
                     if (item['fields.date'] && item['fields.date'].length>0) {
                         angular.forEach(item['fields.date'],function(candidateDate){
                             if ( candidateDate*1000 - today.getTime() >0 && candidateDate*1000 - today.getTime()<dateDist) {
@@ -343,14 +343,21 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                             }
                         });
                         if (item['nextDate']) {
-                           console.log(dateDist);
+                           if(dateDist/oneDay<=7) {
+                                item['class'] = "date1";
+                            }
+                           else if(dateDist/oneDay<=14) {
+                                item['class'] = "date2";
+                            }
+                            else if(dateDist/oneDay<=30) {
+                                item['class'] = "date3";
+                            }      
+                            else if(dateDist/oneDay<=60) {
+                                item['class'] = "date4";
+                            }
+                            else item['class'] = "date5";
                         }
-                        
-                        
-            
-                        
-                        
-                    }
+                     }
                 });
             }
             return refinedData;
