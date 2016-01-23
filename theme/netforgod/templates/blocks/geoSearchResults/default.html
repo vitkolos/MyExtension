@@ -4,8 +4,10 @@
     <div class="col-md-4 col-xs-12 geo-search " style="padding-right:0">
         <h2>Find a Point net close to you</h2>
                 <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data">
-                    <h3>{{data.itemData.title}}</h3>
-                    <p>{{data.itemData['i18n.'+lang+'.fields.subTitle'][0]}}</p>
+                    <div>
+                        <h3>{{data.itemData.title}}</h3>
+                        <p>{{data.itemData['i18n.'+lang+'.fields.subTitle'][0]}}</p>                        
+                    </div>
                     <div class="text-center pull-right" ng-class="data.itemData.class">
                         <p>{{data.itemData.nextDate*1000 |date:'d MMM'}}</p>
                     </div>
