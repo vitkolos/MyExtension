@@ -24,6 +24,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             me.activatePlacesSearch=true;
             me.placesSearchTemplate=themePath+"/templates/blocks/geoSearchResults/placesSearch.html";
         }
+        
+        
         //clustering options
         me.clusterOptions={
             batchSize : 20000,
@@ -38,6 +40,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             averageCenter : false,
             minimumClusterSize:1,
             zoomOnClick:false,
+            maxZoom : 15,
             calculator:function (markers, numStyles) {
                 var index = 0;
                 var count = 0;

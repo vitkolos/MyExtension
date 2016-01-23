@@ -1,9 +1,9 @@
 <div class="row full_page">
-    <div class="col-xs-12 col-sm-7 col-md-8" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'" style="padding: 0">
+    <div class="col-xs-12 col-sm-7 col-md-8" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'" >
     </div>
     <div class="col-md-4 col-xs-12 geo-search " style="padding-right:0">
         <h2>Find a Point net close to you</h2>
-                <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'-itemData.nextDate'">
+                <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'">
                     <div>
                         <h3>{{data.itemData.title}}</h3>
                         <p>{{data.itemData['i18n.'+lang+'.fields.subTitle'][0]}}</p>                        
