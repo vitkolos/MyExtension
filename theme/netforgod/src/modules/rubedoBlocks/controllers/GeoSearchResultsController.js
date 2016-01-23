@@ -357,6 +357,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                             }
                             else item['class'] = "date5";
                         }
+                        else item['class'] = "date5";
                      }
                 });
             }
