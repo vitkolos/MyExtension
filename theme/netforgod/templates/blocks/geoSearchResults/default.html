@@ -3,17 +3,23 @@
     </div>
     <div class="col-md-4 col-xs-12 geo-search " style="padding-right:0">
         <h2>Find a Point net close to you</h2>
-                <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'">
-                    <div>
-                        <h3>{{data.itemData.title}}</h3>
-                        <p>{{data.itemData['i18n.'+lang+'.fields.subTitle'][0]}}</p>                        
+                <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}">
+                    <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid">
+                        image bandeau
                     </div>
-                    <div class="text-center pull-right date" ng-class="data.itemData.class">
-                        <h4 ng-if="data.itemData.nextDate">{{data.itemData.nextDate*1000 |date:'d MMM'}}</h4>
-                        <h4 ng-if="!data.itemData.nextDate">no date</h4>
+                    <div class="container-fluid item">
+                        <div>
+                            <h3>{{data.itemData.title}}</h3>
+                            <p>{{data.itemData['i18n.'+lang+'.fields.subTitle'][0]}}</p>                        
+                        </div>
+                        <div class="text-center pull-right date" ng-class="data.itemData.class">
+                            <h4 ng-if="data.itemData.nextDate">{{data.itemData.nextDate*1000 |date:'d MMM'}}</h4>
+                            <h4 ng-if="!data.itemData.nextDate">no date</h4>
+                        </div>
                     </div>
-                    <div class="container-fluid" ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id">On affiche ici ce qu'on veut :=)</div>
-
+                    <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid">
+                       Adress, ...
+                    </div>
                 </div>
             
             
