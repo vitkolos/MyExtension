@@ -3,17 +3,15 @@
     </div>
     <div class="col-md-4 col-xs-12 geo-search " style="padding-right:0">
         <h2>Find a Point net close to you</h2>
-                <a  ng-href="{{data.itemData.url}}" ng-repeat="data in geoSearchResultsCtrl.data"><div class="row search-result " >
+                <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data">
                     <h3>{{data.itemData.title}}</h3>
-                    <p>{{data.itemData.fields.subTitle}}</p>
+                    <p>{{data.itemData['fields.'.lang.'.subTitle']}}</p>
                     <div class="text-center pull-right">
-                        <p>{{data.itemData.nexDate}}</p>
+                        <p>{{data.itemData.nextDate}}</p>
                     </div>
-                    <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
-                    <p ng-if="data.itemData.groupe == 'evenement' ">du {{data.itemData['fields.dateDebut'][0]* 1000 | date:'d MMM'}} au {{data.itemData['fields.dateFin'][0]* 1000 | date:'d MMM yyyy'}}</p>
+
                 </div>
             
-                </a>
             
     </div>
  

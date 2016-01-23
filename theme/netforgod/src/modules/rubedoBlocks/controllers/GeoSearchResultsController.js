@@ -1,6 +1,7 @@
-angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element){
+angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element","route",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,route){
         var me = this;
+        $scope.lang=$route.current.params.lang;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.data = [];
