@@ -10,7 +10,9 @@
                     <h4>{{data.itemData.title}}</h4>
                     <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
                     <p ng-if="data.itemData.groupe == 'evenement' ">du {{data.itemData['fields.dateDebut'][0]* 1000 | date:'d MMM'}} au {{data.itemData['fields.dateFin'][0]* 1000 | date:'d MMM yyyy'}}</p>
-                </div></a>
+                </div>
+            
+                </a>
             
     </div>
  
