@@ -8,7 +8,7 @@
                         <h3>{{data.itemData.title}}</h3>
                         <p>{{data.itemData['i18n.'+lang+'.fields.subTitle'][0]}}</p>                        
                     </div>
-                    <div class="text-center pull-right" ng-class="data.itemData.class">
+                    <div class="text-center pull-right date" ng-class="data.itemData.class">
                         <h4 ng-if="data.itemData.nextDate">{{data.itemData.nextDate*1000 |date:'d MMM'}}</h4>
                         <h4 ng-if="!data.itemData.nextDate">no date</h4>
                     </div>
