@@ -1,0 +1,37 @@
+<div class="map-container">
+    <google-map ng-if="geoSearchResultsCtrl.display()"
+                center="geoSearchResultsCtrl.map.center"
+                zoom="geoSearchResultsCtrl.map.zoom"
+                events="geoSearchResultsCtrl.mapEvents"
+                control="geoSearchResultsCtrl.mapControl"
+                draggable="true">
+        <map-control ng-if="geoSearchResultsCtrl.activatePlacesSearch"
+                     template="{{geoSearchResultsCtrl.placesSearchTemplate}}"
+                >
+        </map-control>
+        <markers
+                ng-if="!geoSearchResultsCtrl.apiClusterMode"
+                models="geoSearchResultsCtrl.data"
+                idKey="'id'"
+                coords="'coordinates'"
+                options="'markerOptions'"
+                doCluster="true"
+                clusterOptions="geoSearchResultsCtrl.clusterOptions"
+                events="geoSearchResultsCtrl.markerEvents"
+                clusterEvents="geoSearchResultsCtrl.smallClusterEvents"
+                >
+        </markers>
+        <markers ng-if="geoSearchResultsCtrl.apiClusterMode"
+                 models="geoSearchResultsCtrl.data"
+                 idKey="'id'"
+                 coords="'coordinates'"
+                 doRebuildAll="true"
+                 doCluster="true"
+                 options="'markerOptions'"
+                 clusterOptions="geoSearchResultsCtrl.apiClusterOptions"
+                 clusterEvents="geoSearchResultsCtrl.clusterEvents"
+                >
+        </markers>
+
+    </google-map>
+</div>
