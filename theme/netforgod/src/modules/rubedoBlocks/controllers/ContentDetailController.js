@@ -120,7 +120,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     /*si FOI lié, récupérer le contenu*/
                     var options = {
-                        
                     };
                     if (me.content.fields.linkedFOI) {
                         RubedoContentsService.getContentById(me.content.fields.linkedFOI, options).then(
@@ -231,6 +230,34 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 });
                             }
                         });
+                    }
+                    if (me.content.type.code="pointNet") {
+                        var dateDist=9999999999;
+                        var oneDay = 24 * 60 * 60 * 1000;
+                        if (me.content.fields.date && me.content.fields.date.length>=0) {
+                            angular.forEach(me.content.fields.date,function(candidateDate){
+                                if ( candidateDate*1000 - today.getTime() >0 && candidateDate*1000 - today.getTime()<dateDist) {
+                                    dateDist = candidateDate*1000 - today.getTime();
+                                    me.content.nextDate=candidateDate;
+                                }
+                            });
+                            if (me.content.nextDate) {
+                               if(dateDist/oneDay<=7) {
+                                    me.content.classe = "date1";
+                                }
+                               else if(dateDist/oneDay<=14) {
+                                    me.content.classe = "date2";
+                                }
+                                else if(dateDist/oneDay<=30) {
+                                    me.content.classe = "date3";
+                                }      
+                                else if(dateDist/oneDay<=60) {
+                                    me.content.classe = "date4";
+                                }
+                                else me.content.classe = "date5";
+                            }
+                            else me.content.classe = "date5";
+                         }
                     }
                     
                     
