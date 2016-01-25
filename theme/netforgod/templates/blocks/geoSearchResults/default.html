@@ -3,9 +3,9 @@
     </div>
     <div class="col-md-4 col-xs-12 geo-search ">
         <h2>Find a Point net close to you</h2>
-                <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}">
+                <div class="row search-result {{data.itemData.class}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}">
                     <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid image">
-                        <img ng-if="data.itemData['fields.image'][0]" class="img-responsive"
+                        <img ng-if="data.itemData['fields.image'][0]" style="width:100%"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(data.itemData['fields.image'][0],{width:'400px',height:'150px',mode:'crop'})}}"
                              alt="{{ data.itemData.title }}"/>
                     </div>
@@ -14,7 +14,7 @@
                             <h3>{{data.itemData.title}}</h3>
                             <p>{{data.itemData['i18n.'+lang+'.fields.subTitle'][0]}}</p>                        
                         </div>
-                        <div class="text-center pull-right date" ng-class="data.itemData.class">
+                        <div class="text-center pull-right date" >
                             <h4 ng-if="data.itemData.nextDate">{{data.itemData.nextDate*1000 |date:'d MMM'}}</h4>
                             <h4 ng-if="!data.itemData.nextDate">no date</h4>
                         </div>

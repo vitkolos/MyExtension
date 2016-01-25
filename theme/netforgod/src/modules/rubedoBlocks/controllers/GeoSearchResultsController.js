@@ -107,6 +107,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         me.markerEvents = {
             click: function (gMarker, eventName, model) {
                 me.displayedItemId = model.id;
+                console.log(model.id);
                 /*if ($element.find('#gmapitem'+$scope.block.id+model.id).length==0){
                     me.displayedItemId = model.id;
                     if (me.activeInfoWindow){
