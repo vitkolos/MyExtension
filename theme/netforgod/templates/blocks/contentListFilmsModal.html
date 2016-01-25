@@ -82,7 +82,7 @@
                                     <span class="glyphicon glyphicon-calendar"></span>{{filmSearchCtrl.data[contentListCtrl.previewIndex]['fields.date'][0]*1000 | date :'MMMM yyyy' |uppercase}}
                             </h4>
                             <p>{{filmSearchCtrl.data[contentListCtrl.previewIndex].summary}}</p>
-                            <h3><a  ng-href="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].url }}" class="pull-right">Voir le film →</a></h3>
+                            <h3><a  ng-href="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].url }}" class="pull-right">{{rubedo.translate("NFG.GoToFilm", "Voir le film")}} →</a></h3>
                             <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+filmSearchCtrl.data[contentListCtrl.previewIndex].id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
                                 <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
                             </a>
@@ -163,7 +163,7 @@
                                         <span class="icon-issuedate"></span>{{columnContents[contentListCtrl.previewIndex].fields.date*1000 | date :'MMMM yyyy' |uppercase}}
                                 </h4>
                                 <p>{{columnContents[contentListCtrl.previewIndex].fields.summary}}</p>
-                                <h3><a  ng-href="{{ columnContents[contentListCtrl.previewIndex].detailPageUrl }}" class="pull-right">Voir le film →</a></h3>
+                                <h3><a class="link" ng-href="{{ columnContents[contentListCtrl.previewIndex].detailPageUrl }}" class="pull-right">{{rubedo.translate("NFG.GoToFilm", "Voir le film")}} →</a></h3>
 
                                 <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+columnContents[contentListCtrl.previewIndex].id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
                                     <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}

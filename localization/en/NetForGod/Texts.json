@@ -5,6 +5,8 @@
     "NFG.Donate":"Donate",
     "NFG.Volunteer":"Become a volunteer",
     "NFG.Share":"Share this film",
-    "NFG.FilmsSameSubject":"Films with the same subject"
+    "NFG.FilmsSameSubject":"Films with the same subject",
+    "NFG.GoToFilm":"Film page",
+    "NFG.GoToPoint":"Point Net page"
 
 }
