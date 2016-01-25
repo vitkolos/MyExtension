@@ -1,87 +1,18 @@
 <div class="row padding-large">
-	<div class="col-sm-4" >
-		<rubedo-field ng-if="!fieldEntity['affiche'] " field = "{{contentDetailCtrl.getFieldByName('affiche')}}" ></rubedo-field><!--Texte-->
-		<img ng-if="fieldEntity['affiche']" class="img-responsive"
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['affiche'],{width:'360px',mode:'boxed'}) }}"
+	<div class="col-sm-12">
+		<img ng-if="fieldEntity['image']" class="img-responsive"
+                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1200px',mode:'boxed'}) }}"
                                  alt="{{ fieldEntity['text'] }}"/>
 	</div>
+</div>
+<div class="row padding-large" >
 	<div class="col-sm-8">
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" class="film-title"></rubedo-field><!--Texte-->
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('subTitle')}}" class="uppercase"></rubedo-field><!--sous-titre-->
-		<p style="font-size: 0.8em"><span class="icon-issuedate"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
-		<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
-		<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
-		<div class="buy-dvd cursor-as-pointer" ng-if="!contentDetailCtrl.content.fields.horsSerie && fieldEntity['boutique']">
-			<a ng-href="{{contentDetailCtrl.content.fields.boutique}}" target="_blank"><i class="icon-dvd"></i>{{rubedo.translate('NFG.AcheterDVD','Buy the video')}}</a>
-		</div>
+		<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Title-->		
+		<h4>{{contentDetailCtrl.content.fields.subTitle | uppercase}}</h4><!--Sous titre-->
+		<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
 	</div>
-</div>
-<div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
-	<div class="col-sm-12">
-		<div class="film-controls" >
-			<p>{{rubedo.translate('NFG.Watch','Watch')}} <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
-				<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
-		</div>
-		<div ng-if="contentDetailCtrl.watch =='film'">
-			<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
-				<div ng-controller="RECFieldFilmController as recCtrl" >
-					<div class="dropdown pull-right lang-selection">
-						<span class="icon-audiolanguage main"></span>
-						<span id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-repeat="field in fields track by $index" ng-if="field.config.name==contentDetailCtrl.lang">
-						  {{field.config.fieldLabel}}
-						  <span class="caret"></span>
-						</span>
-						<ul class="dropdown-menu" aria-labelledby="dLabel">
-						  <li ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
-						</ul>
-					</div>
-					<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>
-				</div>
-			</div>
-
-				
-		</div>
-		<div ng-if="contentDetailCtrl.watch =='trailer'">
-			<jwplayer video-url="{{fieldEntity['trailer'].url}}"></jwplayer>
-		</div>
-		<div class="film-socials" >
-			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p>{{rubedo.translate('NFG.Like','If you like this film')}}</p>
-			</div>
-			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p><i class="icon-donate"></i>{{rubedo.translate('NFG.Donate','Donate')}}</p>
-			</div>
-			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p><i class="icon-volunteer"></i>{{rubedo.translate('NFG.Volunteer','Become a volunteer')}}</p>
-			</div>
-			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}</p>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="row padding">
-	<div class="col-xs-12">
-		<h3 class="tab">
-			<span ng-click="contentDetailCtrl.tab=0" ng-class="{'active':contentDetailCtrl.tab==0}" ng-if="contentDetailCtrl.showInfos">Film Info</span>
-			<span ng-click="contentDetailCtrl.tab=1" ng-class="{'active':contentDetailCtrl.tab==1}">Comments</span>
-			<span ng-click="contentDetailCtrl.tab=2" ng-class="{'active':contentDetailCtrl.tab==2}" ng-if="fieldEntity['photos']">Photos </span>
-			<span ng-if="rubedo.current.user" ng-click="contentDetailCtrl.tab=3" ng-class="{'active':contentDetailCtrl.tab==3}">Point Net Zone</span></p>
-	</div>
-</div>
-<div class="row" ng-if="contentDetailCtrl.tab==0 && contentDetailCtrl.showInfos" >
-	<div class="col-sm-4" ng-if="fieldEntity['share']">
-		<h4>{{contentDetailCtrl.getLabelByName('share') |uppercase}}</h4>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('share')}}" ></rubedo-field><!--sous-titre-->
-	</div>
-	<div class="col-sm-4" ng-if="fieldEntity['intercession']">
-		<h4>{{contentDetailCtrl.getLabelByName('intercession')|uppercase}}</h4>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('intercession')}}" ></rubedo-field><!--sous-titre-->
-	</div>	
-	<div class="col-sm-4" ng-if="fieldEntity['parole']">
-		<h4>{{contentDetailCtrl.getLabelByName('parole')|uppercase}}</h4>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('parole')}}" ></rubedo-field><!--sous-titre-->
+	<div class="col-sm-4">
+		<p>Next meeting</p>
 	</div>
 </div>
 <div class="row" ng-if="contentDetailCtrl.tab==1">
@@ -93,51 +24,6 @@
 		    disqus-title="{{ contentDetailCtrl.disqusTitle }}">
 		</dir-disqus>	
 	</div>	
-</div>
-<div class="row" ng-if="contentDetailCtrl.tab==3">
-	<div class="col-xs-12" ng-if="fieldEntity['downloadLinks']">
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('downloadLinks')}}" ></rubedo-field><!--lines de téléchargement-->
-	</div>	
-</div>
-	
-<div class="row padding-large foi" ng-if="fieldEntity['linkedFOI']&&contentDetailCtrl.defaultLang=='fr'" >
-	<div class="col-xs-5 col-xxs-12 text-center">
-		<img ng-if="contentDetailCtrl.relatedFOI.fields.image"
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.relatedFOI.fields.image,{width:'300px',mode:'boxed'}) }}"
-                                 alt="{{ contentDetailCtrl.relatedFOI.text }}"/>
-	</div>
-	<div class="col-xs-7 col-xxs-12">
-		<a ng-href="{{contentDetailCtrl.relatedFOI.canonicalUrl}}"><h3 class="media-heading">{{contentDetailCtrl.relatedFOI.text}}</h3></a>
-		<h4 class="media-heading" style="font-size: 0.8em">
-			<span class="icon-issuedate"></span>{{contentDetailCtrl.relatedFOI.fields.date*1000 | date :'MMMM yyyy' |uppercase}}
-		</h4>
-		<p>La revue FOI (pour Fraternité Oecuménique Internationale) est une revue trimestrielle éditée par la communauté du Chemin Neuf.
-		Elle donne la parole à des acteurs de l'Eglise et à des membres de la communauté qui partagent leur passion pour l'Unité.</p>
-	</div>
-</div>
-
-<div class="row padding-large" ng-if="contentDetailCtrl.linkedContents[0]">
-	<h1 class="titre-saison" style="margin-bottom:24px">{{rubedo.translate('Block.VoirPlus','See more')}} <span>({{rubedo.translate('NFG.FilmsSameSubject','Films with the same subject')}})</span></h1>
-	<div class="col-md-3 col-sm-6 col-xs-12 filmList" ng-repeat="content in contentDetailCtrl.linkedContents">
-		<div class="affiche">
-		<a ng-href="{{content.url}}">
-			<h3 class="media-heading"  ng-if="!content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0]">
-                                {{content.text[0]}}
-                            </h3>
-			<img ng-if="content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0]"
-			 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0],{height:'400px',width:'284px',mode:'crop'}) }}"
-			 alt="{{ content.text[0] }}"/>
-			<img class="default-vignette" ng-if="!content['i18n.'+contentDetailCtrl.defaultLang+'.fields.affiche'][0] "
-			 ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
-			 alt="{{ content.text[0] }}"/>                            
-		    </div>
-		    <h4 class="media-heading">
-			    {{content['fields.date'][0]*1000 | date :'MMMM yyyy'}}
-		    </h4>
-		</a>
-		
-			
-	</div>
 </div>
 <div class="row padding-large" >
 	<div class="col-xs-12">
