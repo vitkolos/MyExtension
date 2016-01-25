@@ -1,4 +1,4 @@
-<div class="row padding-large">
+<div class="row">
 	<div class="col-sm-12">
 		<img ng-if="fieldEntity['image']" class="img-responsive"
                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1200px',height:'400px',mode:'crop'}) }}"
@@ -13,13 +13,11 @@
 	</div>
 	<div class="col-sm-4">
 		<p>Next meeting</p>
-		<div class="next-meeting" ng-if="contentDetailCtrl.content.nextDate">
-			<p>{{contentDetailCtrl.content.nextDate*1000 |date:'MMMM'}}<br/>
-			<span>{{contentDetailCtrl.content.nextDate*1000 |date:'d'}}</span></p>
-			<p>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
-		</div>
-			
-		</div>
+		<p class="next-meeting" ng-if="contentDetailCtrl.content.nextDate">
+			<span>{{contentDetailCtrl.content.nextDate*1000 |date:'MMMM'}}</span>
+			<span>{{contentDetailCtrl.content.nextDate*1000 |date:'d'}}</span>
+			<span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</span>
+		</p>
 	</div>
 </div>
 <div class="row" ng-if="contentDetailCtrl.tab==1">
