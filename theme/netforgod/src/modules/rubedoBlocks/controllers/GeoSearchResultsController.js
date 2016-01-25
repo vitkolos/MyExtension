@@ -106,7 +106,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         //marker events
         me.markerEvents = {
             click: function (gMarker, eventName, model) {
-                if ($element.find('#gmapitem'+$scope.block.id+model.id).length==0){
+                me.displayedItemId = model.id;
+                /*if ($element.find('#gmapitem'+$scope.block.id+model.id).length==0){
                     me.displayedItemId = model.id;
                     if (me.activeInfoWindow){
                         me.activeInfoWindow.close();
@@ -124,7 +125,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         $compile($element.find('#gmapitem'+$scope.block.id+model.id)[0])(newScope);
                         gMarker.getMap().setCenter(gMarker.getMap().getCenter());
                     }, 140);
-                }
+                }*/
             }
         };
         me.clusterEvents= {
