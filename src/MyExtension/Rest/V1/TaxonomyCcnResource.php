@@ -24,7 +24,7 @@ use WebTales\MongoFilters\Filter;
  * Class TaxonomyResource
  * @package RubedoAPI\Rest\V1
  */
-class TaxonomyResource extends AbstractResource
+class TaxonomyCcnResource extends AbstractResource
 {
     /**
      * @var static
