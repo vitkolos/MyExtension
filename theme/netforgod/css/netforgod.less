@@ -37,6 +37,7 @@ span.glyphicon{margin-right: 5px}
 ///////MENU/////
 .navbar-brand{background-color: @main_light; height: auto; padding: 15px 10px}
 .navbar-fixed-top{
+  margin-bottom: 0;
   background-color: white;
   border-width: 0;
   box-shadow: 0px 15px 15px -15px rgba(0,0,0,0.1);
@@ -74,7 +75,7 @@ span.glyphicon{margin-right: 5px}
   div.first{margin-top:50px}
 }
 
-.navbar-fixed-top.menu-carte{right:auto; color:@txt_light}
+.navbar-fixed-top.menu-carte{right:auto; position:relative;}
 div.menu-toggle.navbar-toggle{padding:30px 15px; margin:0; display: inline-block}
 .menu-toggle.navbar-toggle .icon-bar{background-color: @txt_light; width:30px; height: 5px; border-radius: 2px}
 
@@ -215,7 +216,7 @@ div.logo{font-size:5em}
 .full_page > div{height:100%; }
 .full_page >div div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
 .search-result{margin: 0 12px 0 0; border-bottom: solid 1px @txt_slight; padding:24px 0; h3,h4{margin-top:0}; h4{font-weight: 400}}
-.search-result.open{border: 2px solid @rouge}
+.search-result.open{border: 2px solid @rouge; margin: -15px 0; padding-left:15px; padding-right: 15px;}
 .search-result:first-of-type{border-top: solid 1px @txt_slight;margin-top:24px}
 .search-result div.item>div:first-of-type{float:left; margin-right: 60px;}
 .search-result div.date{width:60px; margin-left:-60px;float: left}

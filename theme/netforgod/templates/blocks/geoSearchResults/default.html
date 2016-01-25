@@ -1,11 +1,13 @@
 <div class="row full_page">
-    <div class="col-xs-12 col-sm-7 col-md-8" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'" >
+    <div class="col-xs-12 col-sm-7 col-md-8" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'" style="padding-right: 0">
     </div>
-    <div class="col-md-4 col-xs-12 geo-search " style="padding-right:0">
+    <div class="col-md-4 col-xs-12 geo-search ">
         <h2>Find a Point net close to you</h2>
                 <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}">
                     <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid">
-                        image bandeau
+                        <img ng-if="data.itemData['fields.image'][0]"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(data.itemData['fields.image'][0],{width:'400px',height:'150px',mode:'crop'})}}"
+                             alt="{{ data.itemData.title }}"/>
                     </div>
                     <div class="container-fluid item">
                         <div>
@@ -18,7 +20,7 @@
                         </div>
                     </div>
                     <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid">
-                       Adress, ...
+                       <h3><a  ng-href="{{ data.itemData.url }}" class="pull-right">Point Net page →</a></h3>
                     </div>
                 </div>
             
