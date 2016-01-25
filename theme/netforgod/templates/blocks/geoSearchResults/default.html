@@ -22,6 +22,9 @@
                     <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid">
                        <h3><a  ng-href="{{ data.itemData.url }}" class="link pull-right">{{rubedo.translate("NFG.GoToPoint", "Page du Point Net")}} →</a></h3>
                     </div>
+                    <a ng-if="!fieldEditMode&&rubedo.current.user" ng-href="{{ geoSearchResultsCtrl.editorPageUrl+'?content-edit='+data.itemData.id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
+                                <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
+                    </a>
                 </div>
             
             

@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element","$route",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,$route){
+angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element","$route","RubedoPagesService",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,$route,$RubedoPagesService){
         var me = this;
         $scope.lang=$route.current.params.lang;
         var config = $scope.blockConfig;
@@ -457,4 +457,11 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 }
             }
         },3200);
+        /*GEt Edition page*/
+        RubedoPagesService.getPageById("567124c73bc325c5308b4569").then(function(response){
+            if (response.data.success){
+                    me.editorPageUrl=response.data.url;
+                }
+        });
+        
     }]);
