@@ -75,7 +75,8 @@ span.glyphicon{margin-right: 5px}
   div.first{margin-top:50px}
 }
 
-.navbar-fixed-top.menu-carte{right:auto; position:relative;}
+.navbar-fixed-top.menu-carte{right:auto; }
+.navbar-fixed-top.menu-carte.displayed{position: relative }
 div.menu-toggle.navbar-toggle{padding:30px 15px; margin:0; display: inline-block}
 .menu-toggle.navbar-toggle .icon-bar{background-color: @txt_light; width:30px; height: 5px; border-radius: 2px}
 
@@ -214,9 +215,9 @@ div.logo{font-size:5em}
 .full_page{height:auto }
 @media screen and (min-width:@min_sm){.full_page{height: 100%; height:100vh;}.map-container{height:100%}}
 .full_page > div{height:100%; }
-.full_page >div div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
+.full_page >div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
 .search-result{margin: 0 12px 0 0; border-bottom: solid 1px @txt_slight; padding:24px 0; h3,h4{margin-top:0}; h4{font-weight: 400}}
-.search-result.open{border: 2px solid @rouge; margin: -15px 0; padding-left:15px; padding-right: 15px;}
+.search-result.open{border: 2px solid @rouge; margin:0 -15px; padding-left:15px; padding-right: 15px;}
 .search-result:first-of-type{border-top: solid 1px @txt_slight;margin-top:24px}
 .search-result div.item>div:first-of-type{float:left; margin-right: 60px;}
 .search-result div.date{width:60px; margin-left:-60px;float: left}
