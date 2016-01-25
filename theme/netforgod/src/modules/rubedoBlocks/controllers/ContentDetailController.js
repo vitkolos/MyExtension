@@ -234,6 +234,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     if (me.content.type.code="pointNet") {
                         var dateDist=9999999999;
                         var oneDay = 24 * 60 * 60 * 1000;
+                        var today = new Date();
                         if (me.content.fields.date && me.content.fields.date.length>=0) {
                             angular.forEach(me.content.fields.date,function(candidateDate){
                                 if ( candidateDate*1000 - today.getTime() >0 && candidateDate*1000 - today.getTime()<dateDist) {
