@@ -1,7 +1,7 @@
 <div class="row padding-large">
 	<div class="col-sm-12">
 		<img ng-if="fieldEntity['image']" class="img-responsive"
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1200px',mode:'boxed'}) }}"
+                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1200px',height:'400px',mode:'crop'}) }}"
                                  alt="{{ fieldEntity['text'] }}"/>
 	</div>
 </div>
