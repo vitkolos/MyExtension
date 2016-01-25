@@ -4,8 +4,8 @@
     <div class="col-md-4 col-xs-12 geo-search ">
         <h2>Find a Point net close to you</h2>
                 <div class="row search-result " ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}">
-                    <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid">
-                        <img ng-if="data.itemData['fields.image'][0]"
+                    <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid image">
+                        <img ng-if="data.itemData['fields.image'][0]" class="img-responsive"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(data.itemData['fields.image'][0],{width:'400px',height:'150px',mode:'crop'})}}"
                              alt="{{ data.itemData.title }}"/>
                     </div>
