@@ -1,20 +1,11 @@
 angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService',function($scope,$location,RubedoMenuService,RubedoPagesService){
     var me=this;
-    console.log(me);
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.menu={};
     me.currentRouteline=$location.path();
     var config=$scope.blockConfig;
     me.menuTab = false;
-    if ($scope.block.code == '1418') {
-        me.menuClass="menu1418";
-        me.menuTab = true;
-    }
-    else if ($scope.block.code == 'cana'){
-        me.menuClass="menucana";
-        me.menuTab = true;
-    }
-    else if ($scope.block.code && $scope.block.code!="") {
+     if ($scope.block.code && $scope.block.code!="") {
         me.menuTab = true;
     }
     me.searchEnabled = (config.useSearchEngine && config.searchPage);
