@@ -120,7 +120,7 @@ angular.module('rubedoBlocks').directive('scrollDelay',['$timeout', '$location',
     angular.module('rubedoDataAccess').factory('TaxonomyService', ['$http',function($http) {
         var serviceInstance={};
         serviceInstance.getTaxonomyByContentId=function(pageId,contentIds){
-            return ($http.get("/api/v1/taxonomy",{
+            return ($http.get("/api/v1/taxonomies",{
                 params:{
                     pageId:pageId,
                     type:contentIds

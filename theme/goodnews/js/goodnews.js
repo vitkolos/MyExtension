@@ -158,7 +158,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
     angular.module('rubedoDataAccess').factory('TaxonomyService', ['$http',function($http) {
         var serviceInstance={};
 	serviceInstance.getTaxonomyByVocabulary=function(vocabularies){
-            return ($http.get("/api/v1/taxonomy",{
+            return ($http.get("/api/v1/taxonomies",{
                 params:{
                     vocabularies:vocabularies
                 }

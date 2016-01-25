@@ -21,10 +21,10 @@ use RubedoAPI\Exceptions\APIRequestException;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
 /**
- * Class TaxonomyResource
+ * Class TaxonomiesResource
  * @package RubedoAPI\Rest\V1
  */
-class TaxonomyResource extends AbstractResource
+class TaxonomiesResource extends AbstractResource
 {
     /**
      * @var static

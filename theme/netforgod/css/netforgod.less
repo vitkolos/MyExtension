@@ -20,7 +20,7 @@ html,body{font-family: 'Roboto', serif; height: 100%; overflow: auto;background-
 
 /*responsive classes*/
 .container-fluid{padding:0;overflow-x: hidden}
-div.container.first{margin-top:80px}
+div.first{margin-top:80px}
 p{font-family: 'Roboto'}
 h1,h2,h3{font-family: 'Roboto Slab'}
 .padding-large{padding-top:24px; padding-bottom: 24px}
@@ -64,7 +64,7 @@ span.glyphicon{margin-right: 5px}
 
     .navbar-brand{padding: 8px 10px}
   }
-  div.container.first{margin-top:66px}
+  div.first{margin-top:66px}
 }
 @media screen and (min-width: @min_sm) and (max-width: @min_md){
   .navbar-fixed-top .navbar-nav > li {padding:5px 10px; }
@@ -72,7 +72,7 @@ span.glyphicon{margin-right: 5px}
 
 }
 @media screen and (max-width: @min_sm) {
-  div.container.first{margin-top:50px}
+  div.first{margin-top:50px}
 }
 
 
@@ -206,3 +206,19 @@ h3.tab {
 .footer-right{text-align: right;a:hover{text-decoration: none}}
 .go-up{display: inline; text-transform: uppercase; font-size: 1.3em; padding:5px 15px; border: 2px @txt_slight solid; border-radius: 20px; -webkit-border-radius: 20px;i{font-size: 0.5em; position: relative;top:-5px}}
 div.logo{font-size:5em}
+
+////////////////MAP//////////////////////
+.full_page{height:auto }
+@media screen and (min-width:@min_sm){.full_page{height: 100%; height:100vh;}.map-container{height:100%}}
+.full_page > div{height:100%; }
+.full_page >div div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
+.search-result{margin: 0 12px 0 0; border-bottom: solid 1px @txt_slight; padding:24px 0; h3,h4{margin-top:0}; h4{font-weight: 400}}
+.search-result.open{border: 2px solid @rouge}
+.search-result:first-of-type{border-top: solid 1px @txt_slight;margin-top:24px}
+.search-result div.item>div:first-of-type{float:left; margin-right: 60px;}
+.search-result div.date{width:60px; margin-left:-60px;float: left}
+.date1{color:@rouge}
+.date2{color:@orange}
+.date3{color:@main}
+.date4{color:@link}
+.date5{color:@txt_light}
