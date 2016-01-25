@@ -235,7 +235,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         var dateDist=9999999999;
                         var oneDay = 24 * 60 * 60 * 1000;
                         var today = new Date();
-                        if (me.content.fields.date && me.content.fields.date.length>=0) {
+                        if (me.content.fields.date) {
                             angular.forEach(me.content.fields.date,function(candidateDate){
                                 if ( candidateDate*1000 - today.getTime() >0 && candidateDate*1000 - today.getTime()<dateDist) {
                                     dateDist = candidateDate*1000 - today.getTime();
