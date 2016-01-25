@@ -108,28 +108,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             click: function (gMarker, eventName, model) {
                 $scope.$apply(function () {
                     me.displayedItemId = model.id;
-                });
-                
-                console.log(model.id);
-                /*if ($element.find('#gmapitem'+$scope.block.id+model.id).length==0){
-                    me.displayedItemId = model.id;
-                    if (me.activeInfoWindow){
-                        me.activeInfoWindow.close();
-                    }
-                    var newInfoWin = new google.maps.InfoWindow({
-                        content : '<div class="rubedo-gmapitem" id="gmapitem'+$scope.block.id+model.id+'" ng-include="\''+themePath+'/templates/blocks/geoSearchResults/detail/'+model.objectType+'.html\'"></div>'
-                    });
-                    
-                    newInfoWin.open(gMarker.getMap(),gMarker);
-                    me.activeInfoWindow=newInfoWin;
-                    gMarker.hasIWindow=true;
-                    setTimeout(function(){
-                        var newScope=$element.find('#gmapitem'+$scope.block.id+model.id).scope();
-                        newScope.itemData=model.itemData;
-                        $compile($element.find('#gmapitem'+$scope.block.id+model.id)[0])(newScope);
-                        gMarker.getMap().setCenter(gMarker.getMap().getCenter());
-                    }, 140);
-                }*/
+                });                
             }
         };
         me.clusterEvents= {

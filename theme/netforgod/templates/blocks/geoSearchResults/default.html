@@ -2,7 +2,7 @@
     <div class="col-xs-12 col-sm-7 col-md-8" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'" style="padding-right: 0">
     </div>
     <div class="col-md-4 col-xs-12 geo-search ">
-        <h2>Find a Point net close to you</h2>
+        <h2>{{rubedo.translate("NFG.Find", "Trouve un Point Net près de chez toi")}}</h2>
                 <div class="row search-result {{data.itemData.class}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}">
                     <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid image">
                         <img ng-if="data.itemData['fields.image'][0]" style="width:100%"
@@ -20,7 +20,7 @@
                         </div>
                     </div>
                     <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid">
-                       <h3><a  ng-href="{{ data.itemData.url }}" class="pull-right">{{rubedo.translate("NFG.GoToPoint", "Page du Point Net")}} →</a></h3>
+                       <h3><a  ng-href="{{ data.itemData.url }}" class="link pull-right">{{rubedo.translate("NFG.GoToPoint", "Page du Point Net")}} →</a></h3>
                     </div>
                 </div>
             
