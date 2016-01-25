@@ -10,6 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.lang=path.split("/")[1];
     me.defaultLang=path.split("/")[1];
     me.tab=0;
+    me.showInfos=true;
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
@@ -110,6 +111,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         me.watch = 'trailer';
                     }
                     else me.watch='no';
+                    
+                    /* déterminer l'onglet*/
+                    if (!(me.content.fields.parole ||me.content.fields.share||me.content.fields.intercession )) {
+                        me.tab=1;
+                        me.showInfos = false;
+                    }
                     
                     /*si FOI lié, récupérer le contenu*/
                     var options = {
