@@ -7,7 +7,7 @@
                 </div>
             </a>
             <ul class="dropdown-menu" role="menu">
-                <datetimepicker data-ng-model="dateFieldCtrl.date" data-on-set-time="dateFieldCtrl.setTime(newDate, oldDate)" data-datetimepicker-config="{minView:'min', dropdownSelector: '#dropdown'+fieldIdPrefix+'_'+field.config.name}"/>
+                <datetimepicker data-ng-model="dateFieldCtrl.date" data-on-set-time="dateFieldCtrl.setTime(newDate, oldDate)" data-datetimepicker-config="{minView:'day', dropdownSelector: '#dropdown'+fieldIdPrefix+'_'+field.config.name}"/>
             </ul>
         </div>
         <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
