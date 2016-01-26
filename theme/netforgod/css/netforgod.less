@@ -218,7 +218,7 @@ div.logo{font-size:5em}
 .full_page > div{height:100%; }
 .full_page >div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
 .full_page .container-fluid{overflow-x: visible}
-.search-result{margin: 0 -15px; border-bottom: solid 1px @txt_slight; padding:24px 0; h3,h4{margin-top:0}; h4{font-weight: 400}}
+.search-result{margin: 0 -15px; border-bottom: solid 1px @txt_slight; padding:24px 0; h3,h4{margin-top:0}; h4{font-weight: 400; line-height: 1.25em}}
 .search-result .container-fluid:not(.image){padding:0 12px}
 .search-result .image{margin-top: -24px; margin-bottom: 12px}
 .search-result.open{border: 2px solid @txt_light; margin:0 -15px; }
@@ -241,3 +241,12 @@ div.logo{font-size:5em}
   span:nth-of-type(2){color:@txt; border: 5px solid @main; border-top: none;font-size: 2em; line-height: 1.25em}
 }
 .next-meeting+p{margin-left:10px;}
+input.rubedo-places-search:before {
+    font-family: 'Glyphicons Halflings';
+    position: absolute;
+    top: 0px;
+    left: -5px;
+    content: "\e003";
+    color:@main
+}
+input.rubedo-places-search{background-color:@bg; color:@txt_light}
