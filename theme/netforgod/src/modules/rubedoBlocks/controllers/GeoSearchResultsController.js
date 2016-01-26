@@ -113,7 +113,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
-                gMarker.setIcon("/theme/netforgod/img/maps/orange.png");
+                gMarker.setIcon("/theme/netforgod/img/maps/"+model.data['class']+".png");
+                console.log(model);
             }
         };
         me.clusterEvents= {
@@ -309,26 +310,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 me.apiClusterMode=false;
                 var today = new Date();
                 angular.forEach(data.results.data,function(item){
-                    if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
-                        var coords=item['fields.position.location.coordinates'][0].split(",");
-                        var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/red.png", null, null, null, new google.maps.Size(50, 50));
-                        if (coords[0]&&coords[1]){
-                            refinedData.push({
-                                coordinates:{
-                                    latitude:coords[0],
-                                    longitude:coords[1]
-                                },
-                                id:item.id,
-                                objectType:item.objectType,
-                                title:item.title,
-                                itemData:item,
-                                markerOptions:{
-                                    title:item.title,
-                                    icon: icon
-                                }
-                            });
-                        }
-                    }
                     var dateDist=9999999999;
                     var oneDay = 24 * 60 * 60 * 1000;
                     if (item['fields.date']) {
@@ -355,6 +336,27 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         }
                         else item['class'] = "date5";
                      }
+                    if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
+                        var coords=item['fields.position.location.coordinates'][0].split(",");
+                        var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(30, 30));
+                        if (coords[0]&&coords[1]){
+                            refinedData.push({
+                                coordinates:{
+                                    latitude:coords[0],
+                                    longitude:coords[1]
+                                },
+                                id:item.id,
+                                objectType:item.objectType,
+                                title:item.title,
+                                itemData:item,
+                                markerOptions:{
+                                    title:item.title,
+                                    icon: icon
+                                }
+                            });
+                        }
+                    }
+                   
                 });
             }
             return refinedData;
