@@ -114,9 +114,14 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
                 gMarker.setIcon("/theme/netforgod/img/maps/"+model.itemData['class']+".png");
-                console.log(model);
             }
         };
+        //clear markers
+        function clearMarkerIcons() {
+            for (var i = 0; i < me.map.markers.length; i++) {
+                console.log(me.map.markers[i]);//.setIcon(markerIcon);
+            }
+        }
         me.clusterEvents= {
             click: function(cluster){
                 var map=cluster.getMap();
