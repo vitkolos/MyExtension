@@ -275,6 +275,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         me.detailTemplate=me.customLayout.customTemplate?themePath+'/templates/blocks/contentDetail/customTemplate.html':themePath+'/templates/blocks/contentDetail/customLayout.html';
                     } else {
                         if(me.content.type.code&&me.content.type.code!=""){
+                            console.log(me.content.type.code);
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
