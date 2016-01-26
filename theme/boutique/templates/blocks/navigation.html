@@ -44,9 +44,9 @@
 
     <nav class="navbar-fixed-top">
         <div class="container-fluid">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="">
                 <li ng-click="search=!search" class="cursor-as-pointer">
-                    <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
+                    <span class="" style="font-size:1.2em"></span>
                 </li>
                 <!--<li class="cursor-as-pointer" ng-click="menuCtrl.showMenu()">-->
                     <!--menu-->
@@ -68,12 +68,12 @@
 
             </ul>
         </div>
-        <div class="container-fluid searchbar"ng-class="{'displayed':search}">
-            <div class="navbar-nav navbar-right" >
+        <div class="container-fluid "ng-class="">
+            <div class="" >
                 <form ng-if="menuCtrl.searchEnabled" ng-submit="menuCtrl.onSubmit()"role="form">
                     <div class="input-group">
                         <input class="form-control" type="text" ng-model="menuCtrl.query" ng-attr-placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
-                                    <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                                    <span class="input-group-btn"><button class="" type="submit">
                                         <span class="glyphicon glyphicon-search"></span></button></span>
                     </div>
                 </form>
