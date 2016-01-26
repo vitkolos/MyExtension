@@ -108,7 +108,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             click: function (gMarker, eventName, model) {
                 $scope.$apply(function () {
                     me.displayedItemId = model.id;
-                });                
+                });
+                var target=angular.element("[id='"+model.id+"']");
+                console.log(target);
+                if (target&&target.length>0){
+                    angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
+                }
             }
         };
         me.clusterEvents= {
