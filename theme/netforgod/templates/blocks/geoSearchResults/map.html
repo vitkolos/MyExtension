@@ -35,9 +35,9 @@
 
     </google-map>
     <div class="colors">
-        <p ng-if="!showColors" ng-click="showColors= !showColors">Understanding <a>colors</a></p>
-        <p ng-if="showColors">Date of the next Point Net meeting</p>
-        <p ng-if="showColors"><span class="icon-geotag"></span>1 week<span class="icon-geotag"></span>1 month<span class="icon-geotag"></span>longer<br/>
+        <p ng-if="geoSearchResultsCtrl.showColors" ng-click="geoSearchResultsCtrl.showColors= !geoSearchResultsCtrl.showColors">Understanding <a>colors</a></p>
+        <p ng-if="geoSearchResultsCtrl.showColors">Date of the next Point Net meeting</p>
+        <p ng-if="geoSearchResultsCtrl.showColors"><span class="icon-geotag"></span>1 week<span class="icon-geotag"></span>1 month<span class="icon-geotag"></span>longer<br/>
             <span class="icon-geotag"></span>2 weeks<span class="icon-geotag"></span>2 months</p>
     </div>
 </div>

@@ -1,6 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element","$route","RubedoPagesService",
     function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,$route,RubedoPagesService){
         var me = this;
+        me.showColors=false;
         $scope.lang=$route.current.params.lang;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -109,12 +110,13 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 $scope.$apply(function () {
                     me.displayedItemId = model.id;
                 });
-                clearMarkerIcons();
+                //clearMarkerIcons();
                 var target=angular.element("[id='"+model.id+"']");
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
                 gMarker.setIcon("/theme/netforgod/img/maps/"+model.itemData['class']+".png");
+                console.log(gMarker);
             }
         };
         //clear markers
