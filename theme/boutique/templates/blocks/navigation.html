@@ -58,16 +58,12 @@
                 <!--</li>-->
 
                 <li>
-                    <!--<span ng-init="blockConfig={{displayMode:button},{cartDetailPage:1},{checkoutPage:2},}"></span>-->
-                    <!--<span ng-include= "/templates/blocks/shoppingCart.html" ng-init="blockCon"></span>-->
-                    <!--<span ng-init="blockConfig={displayMode:button},{cartDetailPage:55c8777145205ef317c62e2d},{checkoutPage:55c8ac3545205e972cc62e12}"></span>-->
                     <span ng-include="rubedo.blockTemplateResolver.getTemplate('shoppingCart',blockConfig)" ng-init="blockConfig={displayMode:'button' , cartDetailPage:'55c8777145205ef317c62e2d' , checkoutPage:'55c8ac3545205e972cc62e12'}"></span>
-                     votre panier
-                    
+
                 </li>
 
                 <li>
-                    s'identifier
+                    <span ng-include="rubedo.blockTemplateResolver.getTemplate('signUp',blockConfig)" ng-init="blockConfig={displayMode:'pop-in' , redirectOnConnection:false , signUpPage:'56a79674c445eccb008b464c'}"></span>
                 </li>
 
             </ul>
