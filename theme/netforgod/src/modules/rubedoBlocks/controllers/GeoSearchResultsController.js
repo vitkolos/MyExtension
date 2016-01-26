@@ -110,10 +110,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     me.displayedItemId = model.id;
                 });
                 var target=angular.element("[id='"+model.id+"']");
-                console.log(target);
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
+                gMarker.setIcon("/theme/netforgod/img/maps/orange.png");
             }
         };
         me.clusterEvents= {
