@@ -59,10 +59,11 @@
 
                 <li>
                     <!--<span ng-init="blockConfig={{displayMode:button},{cartDetailPage:1},{checkoutPage:2},}"></span>-->
-                    <span ng-include= "/templates/blocks/shoppingCart.html" ng-init="({{sayBlockConfig+ShoppingCartConfig}})"></span>
+                    <!--<span ng-include= "/templates/blocks/shoppingCart.html" ng-init="blockCon"></span>-->
                     <!--<span ng-init="blockConfig={displayMode:button},{cartDetailPage:55c8777145205ef317c62e2d},{checkoutPage:55c8ac3545205e972cc62e12}"></span>-->
-                    <!--<span ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)"></span>-->
+                    <span ng-include="rubedo.blockTemplateResolver.getTemplate('shoppingCart',blockConfig)" ng-init="blockConfig={displayMode:'button' , cartDetailPage:'55c8777145205ef317c62e2d' , checkoutPage:'55c8ac3545205e972cc62e12'}"></span>
                      votre panier
+                    
                 </li>
 
                 <li>
