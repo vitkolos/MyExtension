@@ -12,12 +12,12 @@
 		<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
 	</div>
 	<div class="col-sm-4">
-		<p>Next meeting</p>
+		<p>next meeting</p>
 		<p class="next-meeting" ng-if="contentDetailCtrl.content.nextDate">
 			<span>{{contentDetailCtrl.content.nextDate*1000 |date:'MMMM'}}</span>
 			<span>{{contentDetailCtrl.content.nextDate*1000 |date:'d'}}</span>
-			<span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</span>
 		</p>
+		<p><span class="glyphicon glyphicon-time"></span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
 	</div>
 </div>
 <div class="row" >
