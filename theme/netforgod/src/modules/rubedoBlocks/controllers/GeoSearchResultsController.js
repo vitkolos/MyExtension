@@ -113,7 +113,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
-                gMarker.setIcon("/theme/netforgod/img/maps/"+model.data['class']+".png");
+                //gMarker.setIcon("/theme/netforgod/img/maps/"+model.data['class']+".png");
                 console.log(model);
             }
         };
