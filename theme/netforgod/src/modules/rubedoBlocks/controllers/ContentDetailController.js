@@ -230,8 +230,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 });
                             }
                         });
-                    }
-                    if (me.content.type.code="pointNet") {
+                    };
+                    if (me.content.type.code=="pointNet") {
                         var dateDist=9999999999;
                         var oneDay = 24 * 60 * 60 * 1000;
                         var today = new Date();
@@ -259,7 +259,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                             else me.content.classe = "date5";
                          }
-                    }
+                    };
                     
                     
                     
