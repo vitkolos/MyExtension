@@ -213,6 +213,8 @@
             stylesSet: [
                 { name: 'Titre boîte', element: 'h3', attributes: { 'class': 'title-border'} }
             ],
+            customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
+
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
