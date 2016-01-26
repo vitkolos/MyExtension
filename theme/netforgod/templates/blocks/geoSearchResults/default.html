@@ -3,15 +3,15 @@
     </div>
     <div class="col-md-4 col-xs-12 geo-search ">
         <h2>{{rubedo.translate("NFG.Find", "Trouve un Point Net près de chez toi")}}</h2>
-                <div class="row search-result {{data.itemData.class}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}">
-                    <div ng-if="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid image">
+                <div class="row search-result {{data.itemData.class}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}" id="{{data.itemData.id}}">
+                    <div ng-show="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid image">
                         <img ng-if="data.itemData['fields.image'][0]" style="width:100%"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(data.itemData['fields.image'][0],{width:'400px',height:'150px',mode:'crop'})}}"
                              alt="{{ data.itemData.title }}"/>
                     </div>
                     <div class="container-fluid item">
                         <div>
-                            <h3>{{data.itemData.title}}</h3>
+                            <h3 ng-click="geoSearchResultsCtrl.displayedItemId == data.itemData.id">{{data.itemData.title}}</h3>
                             <p>{{data.itemData['i18n.'+lang+'.fields.subTitle'][0]}}</p>                        
                         </div>
                         <div class="text-center pull-right date" >
