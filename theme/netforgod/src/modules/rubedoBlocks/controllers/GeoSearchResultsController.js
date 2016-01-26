@@ -119,9 +119,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         //clear markers
         function clearMarkerIcons() {
-            for (var i = 0; i < me.map.markers.length; i++) {
-                console.log(me.map.markers[i]);//.setIcon(markerIcon);
-            }
+            me.preprocessData(me.data);
         }
         me.clusterEvents= {
             click: function(cluster){
