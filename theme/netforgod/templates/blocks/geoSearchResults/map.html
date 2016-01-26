@@ -34,5 +34,10 @@
         </markers>
 
     </google-map>
-    <div class="colors"><p>Understanding colors</p></div>
+    <div class="colors" ng-init="showColors=false">
+        <p ng-if="!showColors">Understanding <a href="" ng-click="showColors=!showColors">colors</a></p>
+        <p ng-if="showColors">Date of the next Point Net meeting</p>
+        <p ng-if="showColors"><span class="icon-geotag"></span>1 week<span class="icon-geotag"></span>1 month<span class="icon-geotag"></span>longer<br/>
+            <span class="icon-geotag"></span>2 weeks<span class="icon-geotag"></span>2 months</p>
+    </div>
 </div>

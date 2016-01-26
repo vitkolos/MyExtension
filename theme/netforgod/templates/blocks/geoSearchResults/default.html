@@ -1,7 +1,7 @@
 <div class="row full_page">
     <div class="col-xs-12 col-sm-7 col-md-8" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'" style="padding-right: 0">
     </div>
-    <div class="col-md-4 col-xs-12 geo-search ">
+    <div class="col-xs-12 col-sm-5 col-md-4 geo-search ">
         <h2>{{rubedo.translate("NFG.Find", "Trouve un Point Net près de chez toi")}}</h2>
                 <div class="row search-result {{data.itemData.class}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}" id="{{data.itemData.id}}">
                     <div ng-show="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid image">
