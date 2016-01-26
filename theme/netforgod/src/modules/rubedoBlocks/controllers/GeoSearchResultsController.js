@@ -344,6 +344,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
                         var coords=item['fields.position.location.coordinates'][0].split(",");
                         var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(30, 30));
+                        var icon2 = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(50, 50));
                         if (coords[0]&&coords[1]){
                             refinedData.push({
                                 coordinates:{
@@ -356,7 +357,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                 itemData:item,
                                 markerOptions:{
                                     title:item.title,
-                                    icon: icon
+                                    icon: me.displayedItemId==item['class'] ? icon2 : icon
                                 }
                             });
                         }
