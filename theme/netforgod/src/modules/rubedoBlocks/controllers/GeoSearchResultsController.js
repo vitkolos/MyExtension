@@ -115,13 +115,13 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         if (item.id != model.id) {
                             item.markerOptions = {
                                 title:item.title,
-                                icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+".png", null, null, null, new google.maps.Size(30, 30))
+                                icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+".png", null, null, null, new google.maps.Size(50, 50))
                             }
                         }
                         else
                             item.markerOptions = {
                                 title:item.title,
-                                icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+"sel.png", null, null, null, new google.maps.Size(50, 50))
+                                icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+"sel.png", null, null, null, new google.maps.Size(100, 100))
                             }
                     });
                 })
@@ -358,8 +358,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                      }
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
                         var coords=item['fields.position.location.coordinates'][0].split(",");
-                        var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(30, 30));
-                        //var icon2 = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(50, 50));
+                        var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(50, 50));
                         if (coords[0]&&coords[1]){
                             refinedData.push({
                                 coordinates:{
