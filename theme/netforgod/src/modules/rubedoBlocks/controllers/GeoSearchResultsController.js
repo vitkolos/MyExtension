@@ -118,7 +118,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
-                console.log(me.map.markers);
+                console.log(me.map);
                 
                 
             }
