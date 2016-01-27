@@ -103,9 +103,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                                  title : attrs.title,
                                  description : ''        
                       });
-		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
-                        $window.addthis.layers.refresh();
-                    }*/
+
 		$scope.nbOfLikes=0;
 		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
 		.then(function successCallback(response) {
