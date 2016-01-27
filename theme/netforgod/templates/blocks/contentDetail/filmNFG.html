@@ -65,12 +65,9 @@
 						<input id="urlToShare" value="{{contentDetailCtrl.content.canonicalUrl}}">
 						
 						<!-- Trigger -->
-						<button class="btn" ngclipboard data-clipboard-target="#urlToShare">
+						<button class="btn" ngclipboard data-clipboard-text="{{contentDetailCtrl.content.canonicalUrl}}">
 						    <span class="icon-copy" alt="Copy to clipboard">
 						</button>
-						<button class="btn" ngclipboard data-clipboard-text="{{contentDetailCtrl.content.canonicalUrl}}">
-							Copy to clipboard
-						    </button>
 					</div>
 				</div>
 			</div>
