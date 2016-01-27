@@ -91,7 +91,7 @@
 	</div>
 </div>
 <div class="container padding-large">
-	<div class="row " ng-if="contentDetailCtrl.tab==0 && contentDetailCtrl.showInfos" >
+	<div class="row " ng-show="contentDetailCtrl.tab==0 && contentDetailCtrl.showInfos" >
 		<div class="col-sm-4" ng-if="fieldEntity['share']">
 			<h3>{{contentDetailCtrl.getLabelByName('share') |uppercase}}</h3>
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('share')}}" ></rubedo-field><!--sous-titre-->
@@ -105,7 +105,7 @@
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('parole')}}" ></rubedo-field><!--sous-titre-->
 		</div>
 	</div>
-	<div class="row" ng-if="contentDetailCtrl.tab==1">
+	<div class="row" ng-show="contentDetailCtrl.tab==1">
 		<div class="col-xs-12">
 			<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
 			    disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
@@ -115,7 +115,7 @@
 			</dir-disqus>	
 		</div>	
 	</div>
-	<div class="row" ng-if="contentDetailCtrl.tab==3">
+	<div class="row" ng-show="contentDetailCtrl.tab==3">
 		<div class="col-xs-12" ng-if="fieldEntity['downloadLinks']">
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('downloadLinks')}}" ></rubedo-field><!--lines de téléchargement-->
 		</div>	
