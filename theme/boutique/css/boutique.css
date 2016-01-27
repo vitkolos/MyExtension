@@ -348,6 +348,8 @@ nav.navbar-fixed-top li:first-of-type {
   border-left: none;
 }
 .searchbar {
+  width: 100%;
+  height: 50px;
   opacity: 0;
   position: relative;
   transition: all 0.5s ease;
@@ -366,6 +368,13 @@ nav.navbar-fixed-top li:first-of-type {
 .searchbar button {
   border: 0;
   height: 50px;
+}
+.developped-menu {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  width: 350px;
+  z-index: 1100;
 }
 .footer.menu .container {
   margin-top: -1000px;

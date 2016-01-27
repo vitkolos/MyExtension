@@ -16,7 +16,7 @@
             <!--<span class="caret"></span>-->
             <!--<span class="sr-only">{{ rubedo.translate('Block.Auth.ToggleDropdown')}}</span>-->
         <!--</button>-->
-        <ul ng-if="!shoppingCartCtrl.cartIsEmpty" class="dropdown-menu searchbar displayed" role="menu">
+        <ul ng-if="!shoppingCartCtrl.cartIsEmpty" class="dropdown-menu developped-menu" role="menu">
             <table class="table">
                 <tr ng-repeat="row in shoppingCartCtrl.detailedCart.cart track by $index">
                     <td>{{row.title}}&nbsp;<small>{{row.subtitle}}</small></td>
