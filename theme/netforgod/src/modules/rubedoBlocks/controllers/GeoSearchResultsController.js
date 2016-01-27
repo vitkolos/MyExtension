@@ -110,6 +110,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 $scope.$apply(function () {
                     me.displayedItemId = model.id;
                 });
+                clearMarkerIcons();
                 var target=angular.element("[id='"+model.id+"']");
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
@@ -120,7 +121,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         //clear markers
         function clearMarkerIcons() {
-            me.preprocessData(me.data);
+            angular.forEach(me.data, function(item){
+                if (me.displayedItemId != item.id) {
+                    item.markerOptions.icon.size.height=30;
+                    item.markerOptions.icon.size.width=30;
+                }
+            });
         }
         me.clusterEvents= {
             click: function(cluster){
