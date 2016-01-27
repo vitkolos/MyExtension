@@ -125,6 +125,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         //clear markers
         function clearMarkerIcons() {
+            $scope.apply(function(){
             angular.forEach(me.data, function(item){
                 if (me.displayedItemId != item.id) {
                     console.log(item);
@@ -134,8 +135,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     }
 
                 }
-            });
-            $scope.$apply();
+            });})
             
         }
         me.clusterEvents= {
