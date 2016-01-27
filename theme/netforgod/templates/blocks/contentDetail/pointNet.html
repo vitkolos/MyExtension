@@ -1,41 +1,43 @@
-<div class="row">
-	<div class="col-sm-12">
-		<img ng-if="fieldEntity['image']" class="img-responsive"
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1200px',height:'400px',mode:'crop'}) }}"
-                                 alt="{{ fieldEntity['text'] }}"/>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<img ng-if="fieldEntity['image']" class="img-responsive"
+					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1200px',height:'400px',mode:'crop'}) }}"
+					 alt="{{ fieldEntity['text'] }}"/>
+		</div>
 	</div>
-</div>
-<div class="row padding-large" >
-	<div class="col-xs-8 col-xxs-12">
-		<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Title-->		
-		<h4>{{contentDetailCtrl.content.fields.subTitle | uppercase}}</h4><!--Sous titre-->
-		<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
+	<div class="row padding-large" >
+		<div class="col-xs-8 col-xxs-12">
+			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Title-->		
+			<h4>{{contentDetailCtrl.content.fields.subTitle | uppercase}}</h4><!--Sous titre-->
+			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
+		</div>
+		<div class="col-xs-4 col-xxs-12">
+			<p>next meeting</p>
+			<p class="next-meeting" ng-if="contentDetailCtrl.content.nextDate">
+				<span>{{contentDetailCtrl.content.nextDate*1000 |date:'MMMM' |firstUpper}}</span>
+				<span>{{contentDetailCtrl.content.nextDate*1000 |date:'d'}}</span>
+			</p>
+			<p><span class="icon-watches"></span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
+		</div>
 	</div>
-	<div class="col-xs-4 col-xxs-12">
-		<p>next meeting</p>
-		<p class="next-meeting" ng-if="contentDetailCtrl.content.nextDate">
-			<span>{{contentDetailCtrl.content.nextDate*1000 |date:'MMMM' |firstUpper}}</span>
-			<span>{{contentDetailCtrl.content.nextDate*1000 |date:'d'}}</span>
-		</p>
-		<p><span class="icon-watches"></span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
+	<div class="row" >
+		<div class="col-xs-12">
+			<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
+			    disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
+			    disqus-identifier="{{ contentDetailCtrl.disqusIdentifier }}"
+			    disqus-url="{{ contentDetailCtrl.disqusUrl}}"
+			    disqus-title="{{ contentDetailCtrl.disqusTitle }}">
+			</dir-disqus>	
+		</div>	
 	</div>
-</div>
-<div class="row" >
-	<div class="col-xs-12">
-		<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
-		    disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
-		    disqus-identifier="{{ contentDetailCtrl.disqusIdentifier }}"
-		    disqus-url="{{ contentDetailCtrl.disqusUrl}}"
-		    disqus-title="{{ contentDetailCtrl.disqusTitle }}">
-		</dir-disqus>	
-	</div>	
-</div>
-<div class="row padding-large" >
-	<div class="col-xs-12">
-		
+	<div class="row padding-large" >
+		<div class="col-xs-12">
+			
+		</div>
 	</div>
-</div>
 
+</div>
 
 
 
