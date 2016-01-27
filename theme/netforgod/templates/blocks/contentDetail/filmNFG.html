@@ -61,6 +61,13 @@
 						<p><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}<span class="caret"></span></p>
 					</div>
 					<div class="dropdown-menu col-sm-12">
+						<!-- Target -->
+						<input id="urlToShare" value="{{contentDetailCtrl.content.canonicalUrl}}">
+						
+						<!-- Trigger -->
+						<button class="btn" ngclipboard data-clipboard-target="#urlToShare">
+						    <span class="icon-copy" alt="Copy to clipboard">
+						</button>
 						<button class="btn" ngclipboard data-clipboard-text="{{contentDetailCtrl.content.canonicalUrl}}">
 							Copy to clipboard
 						    </button>
