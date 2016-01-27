@@ -127,8 +127,11 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         function clearMarkerIcons() {
             angular.forEach(me.data, function(item){
                 if (me.displayedItemId != item.id) {
-                    item.markerOptions.icon.size.height=30;
-                    item.markerOptions.icon.size.width=30;
+                    item.markerOptions = {
+                        title:item.title,
+                        icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(30, 30))
+                    }
+
                 }
             });
             $scope.$apply();
