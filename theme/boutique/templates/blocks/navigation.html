@@ -58,12 +58,12 @@
                 <!--</li>-->
 
                 <li>
-                    <div ng-include="rubedo.blockTemplateResolver.getTemplate('shoppingCart',blockConfig1)" ng-init="blockConfig1={displayMode:'button' , cartDetailPage:'55c8777145205ef317c62e2d' , checkoutPage:'55c8ac3545205e972cc62e12'}"></div>
+                    <div ng-init="blockConfig={displayMode:'button' , cartDetailPage:'55c8777145205ef317c62e2d' , checkoutPage:'55c8ac3545205e972cc62e12'}" ng-include="rubedo.blockTemplateResolver.getTemplate('shoppingCart',blockConfig)" ></div>
 
                 </li>
 
                 <li>
-                    <div ng-include="rubedo.blockTemplateResolver.getTemplate('signUp',blockConfig2)" ng-init="blockConfig2={displayMode:'pop-in' , redirectOnConnection:false , signUpPage:'56a79674c445eccb008b464c'}"></div>
+                    <div ng-init="blockConfig2={displayMode:'pop-in' , redirectOnConnection:false , signUpPage:'56a79674c445eccb008b464c'}" ng-include="rubedo.blockTemplateResolver.getTemplate('signUp',blockConfig2)" ></div>
 
                 </li>
 
