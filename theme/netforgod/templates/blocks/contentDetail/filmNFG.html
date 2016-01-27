@@ -67,6 +67,7 @@
 							<span class="icon-copy main" alt="Copy to clipboard"></span>copy link
 						</button>-->
 						<button clipboard text="Texte à copier" ><span class="icon-copy main" alt="Copy to clipboard"></span>copy link</button>
+						<div ng-copyable>{{contentDetailCtrl.content.canonicalUrl}}</div>
 					</div>
 					<div class="col-sm-12 text-center" ng-show="contentDetailCtrl.showShare" style="margin: 12px auto; max-width: 80%;">
 						<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}" class="addthis_toolbox addthis_default_style addthis_32x32_style">

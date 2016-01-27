@@ -1,65 +1,50 @@
 angular.module('rubedoBlocks')
-    .factory('clipboard', ['$document', function ($document) {
-        function createNode(text) {
-            var node = $document[0].createElement('textarea');
-            node.style.position = 'absolute';
-            node.style.left = '-10000px';
-            node.textContent = text;
-            return node;
-        }
-
-        function copyNode(node) {
-            try {
-                // Set inline style to override css styles
-                $document[0].body.style.webkitUserSelect = 'initial';
-
-                var selection = $document[0].getSelection();
-                selection.removeAllRanges();
-                node.select();
-
-                if(!$document[0].execCommand('copy')) {
-                    throw('failure copy');
-                }
-                selection.removeAllRanges();
-            } finally {
-                // Reset inline style
-                $document[0].body.style.webkitUserSelect = '';
-            }
-        }
-
-        function copyText(text) {
-            var node = createNode(text);
-            $document[0].body.appendChild(node);
-            copyNode(node);
-            $document[0].body.removeChild(node);
-        }
-
+    .factory('ngClipboard', function($compile,$rootScope,$document) {
         return {
-            copyText: copyText
-        };
-    }])
-    .directive('clipboard', ['clipboard', function (clipboard) {
+            toClipboard: function(element){
+
+            var copyElement = angular.element('<span id="ngClipboardCopyId">'+element+'</span>');
+            var body = $document.find('body').eq(0);
+            body.append($compile(copyElement)($rootScope));
+            
+            var ngClipboardElement = angular.element(document.getElementById('ngClipboardCopyId'));
+            console.log(ngClipboardElement);
+            var range = document.createRange();
+
+            range.selectNode(ngClipboardElement[0]);
+
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+
+            var successful = document.execCommand('copy');
+
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Copying text command was ' + msg);
+            window.getSelection().removeAllRanges();
+
+            copyElement.remove();
+        }
+    }
+    })
+
+    .directive('ngCopyable', function() {
         return {
             restrict: 'A',
-            scope: {
-                onCopied: '&',
-                onError: '&',
-                text: '='
-            },
-            link: function (scope, element) {
-                element.on('click', function (event) {
-                    try {
-                        clipboard.copyText(scope.text);
-                        if (angular.isFunction(scope.onCopied)) {
-                            scope.$evalAsync(scope.onCopied());
-                        }
-                    } catch (err) {
-                        if (angular.isFunction(scope.onError)) {
-                            scope.$evalAsync(scope.onError({err: err}));
-                        }
-                    }
-                });
-            }
+            link:link
         };
-    }]);
+        function link(scope, element, attrs) {
+            element.bind('click',function(){
 
+                var range = document.createRange();
+                range.selectNode(element[0]);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                var successful = document.execCommand('copy');
+
+                var msg = successful ? 'successful' : 'unsuccessful';
+                console.log('Copying text command was ' + msg);
+                window.getSelection().removeAllRanges();
+            });
+        }
+
+    });
