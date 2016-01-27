@@ -13,7 +13,7 @@ blocksConfig.navigation = {
 };
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
-            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js','//cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js"'],
+            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js','//cdn.rawgit.com/zenorocha/clipboard.js/master/dist/clipboard.min.js'],
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 
