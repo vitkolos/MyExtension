@@ -76,8 +76,6 @@ angular.module('rubedoBlocks').directive('ngCopyable', function() {
                       // select the contents
                       text.select();
                 var successful = document.execCommand('copy');
-                var msg = successful ? 'successful' : 'unsuccessful';
-                console.log('Copying text command was ' + msg);
                 window.getSelection().removeAllRanges();
             });
         }
