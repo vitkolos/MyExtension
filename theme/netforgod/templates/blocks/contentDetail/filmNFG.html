@@ -57,11 +57,13 @@
 					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
 						<p><i class="icon-volunteer"></i>{{rubedo.translate('NFG.Volunteer','Become a volunteer')}}</p>
 					</div>
-					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left" data-toggle="dropdown" >
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left cursor-as-pointer" data-toggle="dropdown" >
 						<p><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}<span class="caret"></span></p>
 					</div>
 					<div class="dropdown-menu col-sm-12">
-						Share icons
+						<button class="btn" ngclipboard data-clipboard-text="{{contentDetailCtrl.content.canonicalUrl}}">
+							Copy to clipboard
+						    </button>
 					</div>
 				</div>
 			</div>
@@ -77,15 +79,15 @@
 <div class="container padding-large">
 	<div class="row " ng-if="contentDetailCtrl.tab==0 && contentDetailCtrl.showInfos" >
 		<div class="col-sm-4" ng-if="fieldEntity['share']">
-			<h4>{{contentDetailCtrl.getLabelByName('share') |uppercase}}</h4>
+			<h3>{{contentDetailCtrl.getLabelByName('share') |uppercase}}</h3>
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('share')}}" ></rubedo-field><!--sous-titre-->
 		</div>
 		<div class="col-sm-4" ng-if="fieldEntity['intercession']">
-			<h4>{{contentDetailCtrl.getLabelByName('intercession')|uppercase}}</h4>
+			<h3>{{contentDetailCtrl.getLabelByName('intercession')|uppercase}}</h3>
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('intercession')}}" ></rubedo-field><!--sous-titre-->
 		</div>	
 		<div class="col-sm-4" ng-if="fieldEntity['parole']">
-			<h4>{{contentDetailCtrl.getLabelByName('parole')|uppercase}}</h4>
+			<h3>{{contentDetailCtrl.getLabelByName('parole')|uppercase}}</h3>
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('parole')}}" ></rubedo-field><!--sous-titre-->
 		</div>
 	</div>
