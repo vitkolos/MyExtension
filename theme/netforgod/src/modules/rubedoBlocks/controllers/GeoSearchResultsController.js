@@ -115,9 +115,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
-                gMarker.setIcon("/theme/netforgod/img/maps/"+model.itemData['class']+".png");
+                var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(50, 50));
+                gMarker.setIcon(icon);
                 console.log(me.data);
-                $scope.$apply();
+                
             }
         };
         //clear markers
@@ -128,6 +129,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     item.markerOptions.icon.size.width=30;
                 }
             });
+            $scope.$apply();
+            console.log("OK");
         }
         me.clusterEvents= {
             click: function(cluster){
