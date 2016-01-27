@@ -1,4 +1,4 @@
-angular.module('rubedoBlocks')
+angular.module('ngClipboard', [])
     .factory('ngClipboard', function($compile,$rootScope,$document) {
         return {
             toClipboard: function(element){
