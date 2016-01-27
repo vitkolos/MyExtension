@@ -35,7 +35,7 @@ span.glyphicon{margin-right: 5px}
 .uppercase, .uppercase p{text-transform: uppercase}
 .main{color:@main}
 .bg-white{background-color:white}
-.bg-degrade{background-image:linear-gradient(white, @bg);}
+.bg-degrade{background-image:linear-gradient(@bg,white);}
 ///////MENU/////
 .navbar-brand{background-color: @main_light; height: auto; padding: 15px 10px}
 .navbar-fixed-top{
@@ -186,13 +186,13 @@ span.tags + span.tags:before{content:', '; color:@txt; margin-right:5px}
 .film-socials{background: @txt_slight;  width: 100%; height:auto; line-height: 25px; float:left; padding: 10px 15px; margin-bottom: 24px; font-size: 1.2em; i{color:@main}; span{margin-left:5px}}
 .lang-selection{
   margin-top: -35px;
-  padding: 10px 25px;
   span{color:white; margin-right: 10px}
   div{
     background-color: @txt; color:white; border:none;
     p{padding: 2px 10px;margin: 0; cursor: pointer;}
   }
 }
+.lang-selection div{padding: 10px 25px;}
 h3.tab {
   margin: 0;
   span{color:@txt_light; cursor: pointer; padding: 10px 15px;}
