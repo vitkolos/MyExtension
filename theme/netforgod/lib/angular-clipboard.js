@@ -9,7 +9,7 @@
   }
 }(this, function (angular) {
 
-return angular.module('angular-clipboard', [])
+return angular.module('rubedoBlocks')
     .factory('clipboard', ['$document', function ($document) {
         function createNode(text) {
             var node = $document[0].createElement('textarea');
