@@ -117,14 +117,15 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 }
                 gMarker.setIcon("/theme/netforgod/img/maps/"+model.itemData['class']+".png");
                 console.log(me.data);
+                $scope.$apply();
             }
         };
         //clear markers
         function clearMarkerIcons() {
             angular.forEach(me.data, function(item){
                 if (me.displayedItemId != item.id) {
-                    $scope.$apply(function () {item.markerOptions.icon.size.height=30;
-                    item.markerOptions.icon.size.width=30;})
+                    item.markerOptions.icon.size.height=30;
+                    item.markerOptions.icon.size.width=30;
                 }
             });
         }
