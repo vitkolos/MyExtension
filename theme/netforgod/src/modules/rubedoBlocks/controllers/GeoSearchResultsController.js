@@ -123,8 +123,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         function clearMarkerIcons() {
             angular.forEach(me.data, function(item){
                 if (me.displayedItemId != item.id) {
-                    item.markerOptions.icon.size.height=30;
-                    item.markerOptions.icon.size.width=30;
+                    $scope.$apply(function () {item.markerOptions.icon.size.height=30;
+                    item.markerOptions.icon.size.width=30;})
                 }
             });
         }
