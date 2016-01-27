@@ -128,11 +128,11 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             $scope.$apply(function(){
             angular.forEach(me.data, function(item){
                 if (me.displayedItemId != item.id) {
-                    console.log(item);
                     item.markerOptions = {
                         title:item.title,
                         icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+".png", null, null, null, new google.maps.Size(30, 30))
                     }
+                    console.log(item);
 
                 }
             });})
