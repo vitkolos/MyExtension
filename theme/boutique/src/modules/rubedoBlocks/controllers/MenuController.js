@@ -3,7 +3,6 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$loca
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.menu={};
     me.currentRouteline=$location.path();
-    me.ShoppingCartConfig={displayMode:"button" , cartDetailPage:"55c8777145205ef317c62e2d" , checkoutPage:"55c8ac3545205e972cc62e12" };
     var config=$scope.blockConfig;
     me.menuTab = false;
      if ($scope.block.code && $scope.block.code!="") {
