@@ -4,6 +4,8 @@
 			<img ng-if="fieldEntity['image']" class="img-responsive"
 					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'1200px',height:'400px',mode:'crop'}) }}"
 					 alt="{{ fieldEntity['text'] }}"/>
+			<img ng-if="!fieldEntity['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId('56a900b4c445ecda008b4c29' ,{width:'1200px',height:'400px',mode:'crop'})}}"
+			alt="{{ fieldEntity['text'] }}"/>
 		</div>
 	</div>
 	<div class="row padding-large" >
