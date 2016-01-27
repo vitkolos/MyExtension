@@ -116,7 +116,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
-                console.log(me.mapControl.getGMap());
                 var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+model.itemData['class']+".png", null, null, null, new google.maps.Size(50, 50));
                 gMarker.setIcon(icon);
                 console.log(me.data);
@@ -127,6 +126,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         function clearMarkerIcons() {
             angular.forEach(me.data, function(item){
                 if (me.displayedItemId != item.id) {
+                    console.log(item);
                     item.markerOptions = {
                         title:item.title,
                         icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(30, 30))
