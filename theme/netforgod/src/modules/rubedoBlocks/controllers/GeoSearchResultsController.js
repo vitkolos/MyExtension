@@ -110,6 +110,26 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             click: function (gMarker, eventName, model) {
                 if(me.displayedItemId != model.id) gMarker.setIcon(new google.maps.MarkerImage("/theme/netforgod/img/maps/"+model.itemData['class']+".png", null, null, null, new google.maps.Size(50, 50)));
                 else gMarker.setIcon(new google.maps.MarkerImage("/theme/netforgod/img/maps/"+model.itemData['class']+".png", null, null, null, new google.maps.Size(30, 30)));
+                $scope.$apply(function(){
+                    angular.forEach(me.data, function(item){
+                        if (item.id != model.id) {
+                            item.markerOptions = {
+                                title:item.title,
+                                icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+".png", null, null, null, new google.maps.Size(30, 30))
+                            }
+                        }
+                        else
+                            item.markerOptions = {
+                                title:item.title,
+                                icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+".png", null, null, null, new google.maps.Size(50, 50))
+                            }
+                    });
+                })
+                
+                
+                
+                
+                
                 $scope.$apply(function () {
                     me.displayedItemId = model.id;
                 });
@@ -119,25 +139,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
                 console.log(me.data);
-                console.log($scope.markerOptions);
                 
                 
             }
         };
         //clear markers
-        function clearMarkerIcons() {
-            $scope.$apply(function(){
-            angular.forEach(me.data, function(item){
-                if (me.displayedItemId != item.id) {
-                    item.markerOptions = {
-                        title:item.title,
-                        icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+".png", null, null, null, new google.maps.Size(30, 30))
-                    }
 
-                }
-            });})
-            
-        }
         me.clusterEvents= {
             click: function(cluster){
                 var map=cluster.getMap();
