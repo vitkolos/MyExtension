@@ -125,7 +125,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         //clear markers
         function clearMarkerIcons() {
-            $scope.apply(function(){
+            $scope.$apply(function(){
             angular.forEach(me.data, function(item){
                 if (me.displayedItemId != item.id) {
                     console.log(item);
