@@ -1,0 +1,9 @@
+<p ng-if="!fieldEditMode">{{fieldEntity[field.config.name]*1000| date: "shortDate"}}</p>
+<div ng-if="fieldEditMode" class="dropdown" ng-controller="DateFieldController as dateFieldCtrl">
+    <a  showtab class="dropdown-toggle" id="dropdown{{fieldIdPrefix+'_'+field.config.name}}" role="button" data-toggle="dropdown" data-target="#" href="#">
+        {{fieldEntity[field.config.name]*1000| date: "shortDate"}}
+    </a>
+    <ul class="dropdown-menu" role="menu">
+        <datetimepicker data-ng-model="dateFieldCtrl.date" data-on-set-time="dateFieldCtrl.setTime(newDate, oldDate)" data-datetimepicker-config="{minView:'minute',dropdownSelector: '#dropdown'+fieldIdPrefix+'_'+field.config.name}"/>
+    </ul>
+</div>
