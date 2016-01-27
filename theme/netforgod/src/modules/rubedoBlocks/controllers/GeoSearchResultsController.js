@@ -108,9 +108,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         //marker events
         me.markerEvents = {
             click: function (gMarker, eventName, model) {
-                if(me.displayedItemId == model.id) gMarker.setIcon(new google.maps.MarkerImage("/theme/netforgod/img/maps/"+model.itemData['class']+".png", null, null, null, new google.maps.Size(50, 50)));
+                if(me.displayedItemId != model.id) gMarker.setIcon(new google.maps.MarkerImage("/theme/netforgod/img/maps/"+model.itemData['class']+".png", null, null, null, new google.maps.Size(50, 50)));
                 else gMarker.setIcon(new google.maps.MarkerImage("/theme/netforgod/img/maps/"+model.itemData['class']+".png", null, null, null, new google.maps.Size(30, 30)));
-                console.log(gMarker);
                 $scope.$apply(function () {
                     me.displayedItemId = model.id;
                 });
@@ -119,6 +118,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
+                console.log(me.map.markers);
                 
                 
             }
@@ -136,7 +136,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 }
             });
             $scope.$apply();
-            console.log("OK");
+            
         }
         me.clusterEvents= {
             click: function(cluster){
