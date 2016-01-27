@@ -62,15 +62,14 @@
 					</div>
 					<div class="col-sm-12 text-center" ng-show="contentDetailCtrl.showShare" style="margin-top:12px">
 						<!-- Target -->
-						<input value="{{contentDetailCtrl.content.canonicalUrl}}">
-						<!--<button class="btn" ngclipboard data-clipboard-text="{{contentDetailCtrl.content.canonicalUrl}}">
+						<input value="{{contentDetailCtrl.fullUrl}}" id="textToCopy">
+
+						<button class="btn" ng-copyable>
 							<span class="icon-copy main" alt="Copy to clipboard"></span>copy link
-						</button>-->
-						<button clipboard text="Texte à copier" ><span class="icon-copy main" alt="Copy to clipboard"></span>copy link</button>
-						<div ng-click="contentDetailCtrl.toClipboard(contentDetailCtrl.content.canonicalUrl)">{{contentDetailCtrl.content.canonicalUrl}}</div>
+						</button>
 					</div>
-					<div class="col-sm-12 text-center" ng-show="contentDetailCtrl.showShare" style="margin: 12px auto; max-width: 80%;">
-						<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}" class="addthis_toolbox addthis_default_style addthis_32x32_style">
+					<div class="col-sm-12 text-center" ng-show="contentDetailCtrl.showShare">
+						<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}" class="addthis_toolbox addthis_default_style addthis_32x32_style"  style="margin: 12px auto; max-width: 80%;">
 							<a class="addthis_button_facebook"></a>
 							<a class="addthis_button_twitter"></a>
 							<a class="addthis_button_vk"></a>
@@ -91,7 +90,13 @@
 	</div>
 </div>
 <div class="container padding-large">
-	<div class="row " ng-if="contentDetailCtrl.tab==0 && contentDetailCtrl.showInfos" >
+	<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
+			    disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
+			    disqus-identifier="{{ contentDetailCtrl.disqusIdentifier }}"
+			    disqus-url="{{ contentDetailCtrl.disqusUrl}}"
+			    disqus-title="{{ contentDetailCtrl.disqusTitle }}">
+			</dir-disqus>	
+	<div class="row " ng-show="contentDetailCtrl.tab==0 && contentDetailCtrl.showInfos" >
 		<div class="col-sm-4" ng-if="fieldEntity['share']">
 			<h3>{{contentDetailCtrl.getLabelByName('share') |uppercase}}</h3>
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('share')}}" ></rubedo-field><!--sous-titre-->
@@ -105,17 +110,12 @@
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('parole')}}" ></rubedo-field><!--sous-titre-->
 		</div>
 	</div>
-	<div class="row" ng-if="contentDetailCtrl.tab==1">
+	<div class="row" ng-show="contentDetailCtrl.tab==1">
 		<div class="col-xs-12">
-			<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
-			    disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
-			    disqus-identifier="{{ contentDetailCtrl.disqusIdentifier }}"
-			    disqus-url="{{ contentDetailCtrl.disqusUrl}}"
-			    disqus-title="{{ contentDetailCtrl.disqusTitle }}">
-			</dir-disqus>	
+			
 		</div>	
 	</div>
-	<div class="row" ng-if="contentDetailCtrl.tab==3">
+	<div class="row" ng-show="contentDetailCtrl.tab==3">
 		<div class="col-xs-12" ng-if="fieldEntity['downloadLinks']">
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('downloadLinks')}}" ></rubedo-field><!--lines de téléchargement-->
 		</div>	
