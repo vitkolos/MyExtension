@@ -64,9 +64,19 @@
 						<!-- Target -->
 						<input value="{{contentDetailCtrl.content.canonicalUrl}}">
 						<!-- Trigger -->
-						<button class="btn" ngclipboard data-clipboard-text="{{contentDetailCtrl.content.canonicalUrl}}">
-						    <span class="icon-copy" alt="Copy to clipboard">
+						<span ngclipboard data-clipboard-text="{{contentDetailCtrl.content.canonicalUrl}}">
+						    <span class="icon-copy main" alt="Copy to clipboard"></span>copy link</span>
 						</button>
+						
+						<div class="addthis_toolbox addthis_default_style">
+							<a class="addthis_button_facebook"></a>
+							<a class="addthis_button_twitter"></a>
+							<a class="addthis_button_instagram"></a>
+							<a class="addthis_button_vk"></a>
+							<a class="addthis_button_pinterest"></a>
+							<a class="addthis_button_google_plusone"></a>
+							<a class="addthis_button_compact"></a>
+						</div>
 					</div>
 				</div>
 			</div>
