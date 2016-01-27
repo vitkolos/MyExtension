@@ -64,7 +64,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
         }
     };
 }]);
-
+/*
 angular.module('rubedoBlocks').directive('ngCopyable', function() {
         return {
             restrict: 'A',
@@ -73,7 +73,6 @@ angular.module('rubedoBlocks').directive('ngCopyable', function() {
         function link(scope, element, attrs) {
             element.bind('click',function(){
                       var text = document.querySelector('#textToCopy');
-                      // select the contents
                       text.select();
                 var successful = document.execCommand('copy');
                 window.getSelection().removeAllRanges();
@@ -81,7 +80,7 @@ angular.module('rubedoBlocks').directive('ngCopyable', function() {
         }
 
     });
-
+*/
     angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
         var serviceInstance={};
         serviceInstance.sendMail=function(payload){
@@ -103,7 +102,8 @@ angular.module('rubedoBlocks').directive('ngCopyable', function() {
             }));
 	};
         return serviceInstance;
-    }]);  
+    }]);
+    /*
 angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$http', function($timeout,$location,$http) {
   return {
     restrict : 'A',
@@ -124,4 +124,5 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 	    }
 	};
 }]);
+*/
 
