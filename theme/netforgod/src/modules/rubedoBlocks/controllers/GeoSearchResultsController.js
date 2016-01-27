@@ -134,7 +134,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             }
         };
         me.setDisplayedId = function(currentId){
-            $scope.$apply(function(){
+
                 angular.forEach(me.data, function(item){
                     if (item.id != currentId) {
                         item.markerOptions = {
@@ -149,7 +149,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         }
                 });
                 me.displayedItemId = currentId;
-            })
             
         }
 
