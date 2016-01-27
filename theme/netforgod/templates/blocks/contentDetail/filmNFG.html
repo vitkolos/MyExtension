@@ -47,7 +47,7 @@
 				<div ng-if="contentDetailCtrl.watch =='trailer'">
 					<jwplayer video-url="{{fieldEntity['trailer'].url}}"></jwplayer>
 				</div>
-				<div class="film-socials" >
+				<div class="film-socials dropdown" >
 					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
 						<p>{{rubedo.translate('NFG.Like','If you like this film')}}</p>
 					</div>
@@ -57,8 +57,11 @@
 					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
 						<p><i class="icon-volunteer"></i>{{rubedo.translate('NFG.Volunteer','Become a volunteer')}}</p>
 					</div>
-					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-						<p><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}</p>
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left" >
+						<p data-toggle="dropdown"><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}<span class="caret"></span></p>
+					</div>
+					<div class="dropdown-menu col-sm-12">
+						Share icons
 					</div>
 				</div>
 			</div>
