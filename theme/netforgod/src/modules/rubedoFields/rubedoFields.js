@@ -893,13 +893,13 @@
         var originalDate=$scope.fieldEntity[$scope.field.config.name];
         if (originalDate){
             me.date=new Date($scope.fieldEntity[$scope.field.config.name]*1000);
-            me.formattedDate=$filter('date')(me.date, "shortDate");
+            me.formattedDate=$filter('date')(me.date, "medium");
         } else {
             me.date=new Date();
         }
         me.setTime=function(newDate){
             $scope.fieldEntity[$scope.field.config.name]=newDate.getTime()/1000;
-            me.formattedDate=$filter('date')(newDate, "shortDate");
+            me.formattedDate=$filter('date')(newDate, "medium");
             if ($scope.registerFieldEditChanges){
                 $scope.registerFieldEditChanges();
             }
