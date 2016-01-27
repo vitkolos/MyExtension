@@ -115,7 +115,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                 }
-                var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(50, 50));
+                var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+model.data['class']+".png", null, null, null, new google.maps.Size(50, 50));
                 gMarker.setIcon(icon);
                 console.log(me.data);
                 
