@@ -138,9 +138,8 @@
 
 <header class="container-fluid" style="margin-bottom: 48px">
 	<div class="text-article container">
-		<p class='capital txt-red' style="text-shadow: none" ng-if="fieldEntity['date']">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}}</p>
+		<p class='capital txt-red' style="text-shadow: none" ng-if="fieldEntity['date']">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}} - {{fieldEntity['lieu']}}</p>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('date')}}" ng-if="fieldEditMode"></rubedo-field>
-		<p class='capital txt-red' style="text-shadow: none" ng-if="fieldEntity['lieu']">{{fieldEntity['lieu']}}</p>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('lieus')}}" ng-if="fieldEditMode"></rubedo-field>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
 			<h1 class="text-left" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
@@ -154,7 +153,6 @@
 			   ng-bind-html="rteFieldCtrl.html">
 			</h1>
 		</div>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field>
 
 	</div>
 </header>
@@ -163,6 +161,8 @@
 		<div class="text-article">
 
 			<div class=" col-xs-12 ">
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field>
+
 				<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}"  class="addthis_toolbox socials pull-right" >
 					<!--<a class="addthis_button_facebook_like txt-red" fb:like:layout="button_count"><img class="hidden"><i class="fa fa-thumbs-up" ></i> </a> -->
 					<a class="addthis_button_facebook txt-red"><img class="hidden"><i class="fa fa-facebook-official" data-toggle="tooltip" title="Partager sur Facebook"></i> </a>
