@@ -42,21 +42,12 @@
         <!--</div>-->
     <!--</div>-->
 
-    <nav class="navbar-fixed-top">
+    <nav class="n-navbar-fixed-top">
         <div class="container-fluid">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav n-navbar-right">
                 <li ng-click="search=!search" class="cursor-as-pointer">
                     <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
                 </li>
-                <!--<li class="cursor-as-pointer" ng-click="menuCtrl.showMenu()">-->
-                    <!--menu-->
-                    <!--<div id="nav-icon4">-->
-                        <!--<span></span>-->
-                        <!--<span></span>-->
-                        <!--<span></span>-->
-                    <!--</div>-->
-                <!--</li>-->
-
                 <li>
                     <div ng-include="rubedo.blockTemplateResolver.getTemplate('shoppingCart',blockConfig)" ng-init="blockConfig={displayMode:'button' , cartDetailPage:'55c8777145205ef317c62e2d' , checkoutPage:'55c8ac3545205e972cc62e12'}"></div>
 
@@ -70,7 +61,7 @@
             </ul>
         </div>
         <div class="container-fluid searchbar"ng-class="{'displayed':search}">
-            <div class="navbar-nav navbar-right" >
+            <div class="navbar-nav n-navbar-right" >
                 <form ng-if="menuCtrl.searchEnabled" ng-submit="menuCtrl.onSubmit()"role="form">
                     <div class="input-group">
                         <input class="form-control" type="text" ng-model="menuCtrl.query" ng-attr-placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
