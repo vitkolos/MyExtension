@@ -4,16 +4,18 @@
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
             {{ rubedo.translate('Label.Empty')}}
         </button>
-        <button ng-if="!shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-default">
+        <button ng-if="!shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
             <span class="badge">{{shoppingCartCtrl.detailedCart.totalItems}} </span>
             <span ng-show="shoppingCartCtrl.detailedCart.totalItems>1"> {{ rubedo.translate('Label.Items')}}</span>
             <span ng-show="shoppingCartCtrl.detailedCart.totalItems==1"> {{ rubedo.translate('Label.Item')}}</span>
-        </button>
-        <button ng-if="!shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
             <span class="caret"></span>
             <span class="sr-only">{{ rubedo.translate('Block.Auth.ToggleDropdown')}}</span>
         </button>
+        <!--<button ng-if="!shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">-->
+            <!--<span class="caret"></span>-->
+            <!--<span class="sr-only">{{ rubedo.translate('Block.Auth.ToggleDropdown')}}</span>-->
+        <!--</button>-->
         <ul ng-if="!shoppingCartCtrl.cartIsEmpty" class="dropdown-menu" role="menu">
             <table class="table">
                 <tr ng-repeat="row in shoppingCartCtrl.detailedCart.cart track by $index">
