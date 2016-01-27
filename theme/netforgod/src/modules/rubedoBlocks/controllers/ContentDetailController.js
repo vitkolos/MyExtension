@@ -10,6 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.lang=path.split("/")[1];
     me.defaultLang=path.split("/")[1];
     me.tab=0;
+    me.showShare=false;
     me.showInfos=true;
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
