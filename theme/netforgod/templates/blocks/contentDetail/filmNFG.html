@@ -60,17 +60,17 @@
 					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left cursor-as-pointer" ng-click="contentDetailCtrl.showShare = !contentDetailCtrl.showShare">
 						<p><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}<span class="caret"></span></p>
 					</div>
-					<div class="col-sm-12" ng-show="contentDetailCtrl.showShare">
+					<div class="col-sm-12 text-center" ng-show="contentDetailCtrl.showShare">
 						<!-- Target -->
 						<input value="{{contentDetailCtrl.content.canonicalUrl}}">
-						<!-- Trigger -->
-						<span ngclipboard data-clipboard-text="{{contentDetailCtrl.content.canonicalUrl}}">
-						    <span class="icon-copy main" alt="Copy to clipboard"></span>copy link
-						</span>
-						<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}" class="addthis_toolbox">
+						<button class="btn" ngclipboard data-clipboard-text="{{contentDetailCtrl.content.canonicalUrl}}">
+							<span class="icon-copy main" alt="Copy to clipboard"></span>copy link
+						</button>
+					</div>
+					<div class="col-sm-12 text-center" ng-show="contentDetailCtrl.showShare">
+						<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}" class="addthis_toolbox addthis_default_style addthis_32x32_style">
 							<a class="addthis_button_facebook"></a>
 							<a class="addthis_button_twitter"></a>
-							<a class="addthis_button_instagram"></a>
 							<a class="addthis_button_vk"></a>
 							<a class="addthis_button_pinterest"></a>
 							<a class="addthis_button_google_plusone"></a>

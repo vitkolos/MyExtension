@@ -104,20 +104,6 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                                  description : ''        
                       });
 
-		$scope.nbOfLikes=0;
-		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
-		.then(function successCallback(response) {
-			$scope.nbOfLikes += response.data.shares;
-		},
-		function errorCallback(response) {
-		});
-		$http({method: 'GET',url: 'http://cdn.api.twitter.com/1/urls/count.json?url='+contentUrl})
-		.then(function successCallback(response) {
-			$scope.nbOfLikes += response.data.count;
-		},
-		function errorCallback(response) {
-		});		
-
 		});
 	    }
 	};
