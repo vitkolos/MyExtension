@@ -154,7 +154,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
     ///////////MENU///////////////////
 ///////////////////////////////////////////////////
 .header{ margin:15px 0}
-.navbar-fixed-top{left:auto; z-index:1051;}
+.navbar-fixed-top{width:310px; left:auto; z-index:1051;}
 .navbar-fixed-top.displayed{width:100%; left:0}
 @media screen and (min-width: @min_xs) and (max-width: @min_sm){
 }
@@ -163,6 +163,7 @@ nav.navbar-fixed-top li{
     background: @rouge;
     color:white;
     a{color:white}
+    .capital;
     width:33.333%;
     height:40px;
     line-height: 40px;
@@ -173,7 +174,6 @@ nav.navbar-fixed-top li{
     display: block; float: left;
     padding: 0 5px;
     span{line-height: 1.2em;display: inline-block;vertical-align: middle }
-    .badge {color: @rouge };
 }
 nav.navbar-fixed-top li:first-of-type{border-left:none}
 
@@ -264,12 +264,12 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
 .retour:after,  .nav-suivant:after{border: none; }
 .retour{top:0}
  }
- @media screen and (min-width: @min_xs) {
-    nav.navbar-fixed-top li{width:100px}
-    ul.navbar-right{width:auto;float:right}
-    nav .container-fluid{padding-right:15px}
-    width:300px; float: right}; float: right}
-.navbar.footer>.container-fluid{height: 100%;}
+@media screen and (min-width: @min_xs) {
+      nav.navbar-fixed-top li{width:100px}
+      ul.navbar-right{width:auto;float:right}
+      nav .container-fluid{padding-right:15px}
+      .searchbar>div{width:300px; float: right}
+  .navbar.footer>.container-fluid{height: 100%;}
  }
  @media screen and (max-width: @min_sm) {
     .navbar-nav{margin:0}
