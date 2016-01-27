@@ -21,6 +21,8 @@
 				<span>{{contentDetailCtrl.content.nextDate*1000 |date:'d'}}</span>
 			</p>
 			<p><span class="icon-watches"></span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
+			<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('date')}}"></rubedo-field><!--Title-->
+
 		</div>
 	</div>
 	<div class="row" >
