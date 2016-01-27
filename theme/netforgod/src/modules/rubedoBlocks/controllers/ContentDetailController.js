@@ -12,6 +12,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.tab=0;
     me.showShare=false;
     me.showInfos=true;
+    me.fullUrl=$location.absUrl();
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
