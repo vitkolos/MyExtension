@@ -20,6 +20,25 @@
 					<p>{{rubedo.translate('NFG.Watch','Watch')}} <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
 						<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 				</div>
+				<div ng-if="contentDetailCtrl.watch =='film'">
+					<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
+						<div ng-controller="RECFieldFilmController as recCtrl" >
+							<div class="dropdown pull-right lang-selection">
+								<span class="icon-audiolanguage main"></span>
+								<span id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-repeat="field in fields track by $index" ng-if="field.config.name==contentDetailCtrl.lang">
+								  {{field.config.fieldLabel}}
+								  <span class="caret"></span>
+								</span>
+								<div class="dropdown-menu" aria-labelledby="dLabel" style="-webkit-columns: 2;-moz-columns: 2; columns:2">
+								  <p ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
+								</div>
+							</div>
+							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>
+						</div>
+					</div>
+		
+						
+				</div>
 				
 				<div ng-if="contentDetailCtrl.watch =='trailer'">
 					<jwplayer video-url="{{fieldEntity['trailer'].url}}"></jwplayer>
