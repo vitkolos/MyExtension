@@ -336,6 +336,7 @@ nav.navbar-fixed-top li {
   display: block;
   float: left;
   padding: 0 5px;
+  overflow: visible;
 }
 nav.navbar-fixed-top li a {
   color: white;
@@ -344,6 +345,9 @@ nav.navbar-fixed-top li span {
   line-height: 1.2em;
   display: inline-block;
   vertical-align: middle;
+}
+nav.navbar-fixed-top li badge {
+  color: #c1573c;
 }
 nav.navbar-fixed-top li:first-of-type {
   border-left: none;
