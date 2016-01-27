@@ -4,8 +4,8 @@
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
             {{ rubedo.translate('Label.Empty')}}
         </button>
-        <button ng-if="!shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+        <button ng-if="!shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true" ></span>
             <span class="badge">{{shoppingCartCtrl.detailedCart.totalItems}} </span>
             <span ng-show="shoppingCartCtrl.detailedCart.totalItems>1"> {{ rubedo.translate('Label.Items')}}</span>
             <span ng-show="shoppingCartCtrl.detailedCart.totalItems==1"> {{ rubedo.translate('Label.Item')}}</span>
