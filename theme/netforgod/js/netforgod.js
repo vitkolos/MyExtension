@@ -72,11 +72,9 @@ angular.module('rubedoBlocks').directive('ngCopyable', function() {
         };
         function link(scope, element, attrs) {
             element.bind('click',function(){
-                      var filmUrl = attrs.text;
-                var range = document.createRange();
-                range.selectNode(filmUrl);
-                window.getSelection().removeAllRanges();
-                window.getSelection().addRange(range);
+                      var text = document.querySelector('#textToCopy');
+                      // select the contents
+                      text.select();
                 var successful = document.execCommand('copy');
                 var msg = successful ? 'successful' : 'unsuccessful';
                 console.log('Copying text command was ' + msg);
