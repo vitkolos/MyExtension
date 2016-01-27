@@ -1,62 +1,66 @@
-<div class="row padding-large">
-	<div class="col-sm-4" >
-		<rubedo-field ng-if="!fieldEntity['affiche'] " field = "{{contentDetailCtrl.getFieldByName('affiche')}}" ></rubedo-field><!--Texte-->
-		<img ng-if="fieldEntity['affiche']" class="img-responsive"
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['affiche'],{width:'360px',mode:'boxed'}) }}"
-                                 alt="{{ fieldEntity['text'] }}"/>
-	</div>
-	<div class="col-sm-8">
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" class="film-title"></rubedo-field><!--Texte-->
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('subTitle')}}" class="uppercase"></rubedo-field><!--sous-titre-->
-		<p style="font-size: 0.8em"><span class="icon-issuedate"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
-		<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
-		<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
-		<div class="buy-dvd cursor-as-pointer" ng-if="!contentDetailCtrl.content.fields.horsSerie && fieldEntity['boutique']">
-			<a ng-href="{{contentDetailCtrl.content.fields.boutique}}" target="_blank"><i class="icon-dvd"></i>{{rubedo.translate('NFG.AcheterDVD','Buy the video')}}</a>
-		</div>
-	</div>
-</div>
-<div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
-	<div class="col-sm-12">
-		<div class="film-controls" >
-			<p>{{rubedo.translate('NFG.Watch','Watch')}} <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
-				<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
-		</div>
-		<div ng-if="contentDetailCtrl.watch =='film'">
-			<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
-				<div ng-controller="RECFieldFilmController as recCtrl" >
-					<div class="dropdown pull-right lang-selection">
-						<span class="icon-audiolanguage main"></span>
-						<span id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-repeat="field in fields track by $index" ng-if="field.config.name==contentDetailCtrl.lang">
-						  {{field.config.fieldLabel}}
-						  <span class="caret"></span>
-						</span>
-						<ul class="dropdown-menu" aria-labelledby="dLabel">
-						  <li ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
-						</ul>
-					</div>
-					<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>
+<div class="bg-white">
+	<div class="container">
+		<div class="row padding-large">
+			<div class="col-sm-4" >
+				<rubedo-field ng-if="!fieldEntity['affiche'] " field = "{{contentDetailCtrl.getFieldByName('affiche')}}" ></rubedo-field><!--Texte-->
+				<img ng-if="fieldEntity['affiche']" class="img-responsive"
+						 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['affiche'],{width:'360px',mode:'boxed'}) }}"
+						 alt="{{ fieldEntity['text'] }}"/>
+			</div>
+			<div class="col-sm-8">
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" class="film-title"></rubedo-field><!--Texte-->
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('subTitle')}}" class="uppercase"></rubedo-field><!--sous-titre-->
+				<p style="font-size: 0.8em"><span class="icon-issuedate"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
+				<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
+				<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
+				<div class="buy-dvd cursor-as-pointer" ng-if="!contentDetailCtrl.content.fields.horsSerie && fieldEntity['boutique']">
+					<a ng-href="{{contentDetailCtrl.content.fields.boutique}}" target="_blank"><i class="icon-dvd"></i>{{rubedo.translate('NFG.AcheterDVD','Buy the video')}}</a>
 				</div>
 			</div>
-
-				
 		</div>
-		<div ng-if="contentDetailCtrl.watch =='trailer'">
-			<jwplayer video-url="{{fieldEntity['trailer'].url}}"></jwplayer>
-		</div>
-		<div class="film-socials" >
-			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p>{{rubedo.translate('NFG.Like','If you like this film')}}</p>
-			</div>
-			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p><i class="icon-donate"></i>{{rubedo.translate('NFG.Donate','Donate')}}</p>
-			</div>
-			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p><i class="icon-volunteer"></i>{{rubedo.translate('NFG.Volunteer','Become a volunteer')}}</p>
-			</div>
-			<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
-				<p><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}</p>
+		<div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
+			<div class="col-sm-12">
+				<div class="film-controls" >
+					<p>{{rubedo.translate('NFG.Watch','Watch')}} <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
+						<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
+				</div>
+				<div ng-if="contentDetailCtrl.watch =='film'">
+					<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
+						<div ng-controller="RECFieldFilmController as recCtrl" >
+							<div class="dropdown pull-right lang-selection">
+								<span class="icon-audiolanguage main"></span>
+								<span id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-repeat="field in fields track by $index" ng-if="field.config.name==contentDetailCtrl.lang">
+								  {{field.config.fieldLabel}}
+								  <span class="caret"></span>
+								</span>
+								<ul class="dropdown-menu" aria-labelledby="dLabel">
+								  <li ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
+								</ul>
+							</div>
+							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}"></jwplayer>
+						</div>
+					</div>
+		
+						
+				</div>
+				<div ng-if="contentDetailCtrl.watch =='trailer'">
+					<jwplayer video-url="{{fieldEntity['trailer'].url}}"></jwplayer>
+				</div>
+				<div class="film-socials" >
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
+						<p>{{rubedo.translate('NFG.Like','If you like this film')}}</p>
+					</div>
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
+						<p><i class="icon-donate"></i>{{rubedo.translate('NFG.Donate','Donate')}}</p>
+					</div>
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
+						<p><i class="icon-volunteer"></i>{{rubedo.translate('NFG.Volunteer','Become a volunteer')}}</p>
+					</div>
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
+						<p><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}</p>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
