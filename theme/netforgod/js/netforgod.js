@@ -14,7 +14,7 @@ blocksConfig.navigation = {
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
             "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
-            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/controllers/simpleContact.js","/lib/angular-clipboard.js"]
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 
 angular.module('rubedoBlocks').filter('firstUpper', function() {
@@ -65,6 +65,26 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
     };
 }]);
 
+angular.module('rubedoBlocks').directive('ngCopyable', function() {
+        return {
+            restrict: 'A',
+            link:link
+        };
+        function link(scope, element, attrs) {
+            element.bind('click',function(){
+
+                var range = document.createRange();
+                range.selectNode(element[0]);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                var successful = document.execCommand('copy');
+                var msg = successful ? 'successful' : 'unsuccessful';
+                console.log('Copying text command was ' + msg);
+                window.getSelection().removeAllRanges();
+            });
+        }
+
+    });
 
     angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
         var serviceInstance={};
