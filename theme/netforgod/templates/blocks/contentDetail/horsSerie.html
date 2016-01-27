@@ -1,0 +1,94 @@
+<div class="bg-degrade">
+	<div class="container">
+		<div class="row padding-large">
+
+			<div class="col-sm-8 col-sm-offset-2">
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" class="film-title"></rubedo-field><!--Texte-->
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('subTitle')}}" class="uppercase"></rubedo-field><!--sous-titre-->
+				<p style="font-size: 0.8em"><span class="icon-issuedate"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
+				<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
+				<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
+				<div class="buy-dvd cursor-as-pointer" ng-if="!contentDetailCtrl.content.fields.horsSerie && fieldEntity['boutique']">
+					<a ng-href="{{contentDetailCtrl.content.fields.boutique}}" target="_blank"><i class="icon-dvd"></i>{{rubedo.translate('NFG.AcheterDVD','Buy the video')}}</a>
+				</div>
+			</div>
+		</div>
+		<div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
+			<div class="col-sm-12">
+				<div class="film-controls" >
+					<p>{{rubedo.translate('NFG.Watch','Watch')}} <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
+						<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
+				</div>
+				
+				<div ng-if="contentDetailCtrl.watch =='trailer'">
+					<jwplayer video-url="{{fieldEntity['trailer'].url}}"></jwplayer>
+				</div>
+				<div class="film-socials">
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
+						<p>{{rubedo.translate('NFG.Like','If you like this film')}}</p>
+					</div>
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
+						<p><i class="icon-donate"></i>{{rubedo.translate('NFG.Donate','Donate')}}</p>
+					</div>
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
+						<p><i class="icon-volunteer"></i>{{rubedo.translate('NFG.Volunteer','Become a volunteer')}}</p>
+					</div>
+					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left cursor-as-pointer" ng-click="contentDetailCtrl.showShare = !contentDetailCtrl.showShare">
+						<p><i class="icon-share"></i>{{rubedo.translate('NFG.Share','Share this film')}}<span class="caret"></span></p>
+					</div>
+					<div class="col-sm-12 text-center" ng-show="contentDetailCtrl.showShare" style="margin-top:12px">
+						<!-- Target -->
+						<input value="{{contentDetailCtrl.fullUrl}}" id="textToCopy">
+
+						<button class="btn" ng-copyable>
+							<span class="icon-copy main" alt="Copy to clipboard"></span>copy link
+						</button>
+					</div>
+					<div class="col-sm-12 text-center" ng-show="contentDetailCtrl.showShare">
+						<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}" class="addthis_toolbox addthis_default_style addthis_32x32_style"  style="margin: 12px auto; max-width: 80%;">
+							<a class="addthis_button_facebook"></a>
+							<a class="addthis_button_twitter"></a>
+							<a class="addthis_button_vk"></a>
+							<a class="addthis_button_pinterest"></a>
+							<a class="addthis_button_google_plusone"></a>
+							<a class="addthis_button_compact"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12">
+				<h3 class="tab">
+					<span class="active">Comments</span></p>
+			</div>			
+		</div>
+	</div>
+</div>
+<div class="container padding-large">
+	
+	<div class="row" >
+		<div class="col-xs-12">
+			<dir-disqus ng-if="contentDetailCtrl.activateDisqus"
+			    disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
+			    disqus-identifier="{{ contentDetailCtrl.disqusIdentifier }}"
+			    disqus-url="{{ contentDetailCtrl.disqusUrl}}"
+			    disqus-title="{{ contentDetailCtrl.disqusTitle }}">
+			</dir-disqus>	
+		</div>	
+	</div>
+
+	
+	
+</div>
+<div class="row padding-large" >
+	<div class="col-xs-12">
+		
+	</div>
+</div>
+
+
+
+
+

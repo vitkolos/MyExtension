@@ -279,6 +279,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if(me.content.type.code&&me.content.type.code!=""){
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
                                 function (response){
+                                    if (me.content.fields.horsSerie) {
+                                        me.detailTemplate=themePath+'/templates/blocks/contentDetail/horsSerie.html';
+                                    }
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
                                     $scope.fields=me.transformForFront(me.content.type.fields);
                                 },
