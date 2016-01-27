@@ -28,12 +28,12 @@
 .icon-playbutton:before{content:'\0047';}
 .icon-pressinfo:before{content:'\0048';}
 .icon-previousarrow:before{content:'\0049';}
-.icon-previousfirst:before{content:'\004A';}
-.icon-recentfirst:before{content:'\004B';}
-.icon-search:before{content:'\004C';}
-.icon-share:before{content:'\004D';}
-.icon-sitemap:before{content:'\004E';}
-.icon-subjectfilter:before{content:'\004F';}
+.icon-previousfirst:before{content:'\004a';}
+.icon-recentfirst:before{content:'\004b';}
+.icon-search:before{content:'\004c';}
+.icon-share:before{content:'\004d';}
+.icon-sitemap:before{content:'\004e';}
+.icon-subjectfilter:before{content:'\004f';}
 .icon-subjecttag:before{content:'\0050';}
 .icon-textlanguage:before{content:'\0051';}
 .icon-down:before{content:'\0052';}
@@ -44,7 +44,7 @@
 .icon-video:before{content:'\0057';}
 .icon-volunteer:before{content:'\0058';}
 .icon-audiolanguage:before{content:'\0059';}
-.icon-checkmark:before{content:'\005A';}
+.icon-checkmark:before{content:'\005a';}
 .icon-cross:before{content:'\0061';}
 .icon-donate:before{content:'\0062';}
 .icon-dvd:before{content:'\0063';}

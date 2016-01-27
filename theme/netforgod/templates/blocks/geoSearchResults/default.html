@@ -11,7 +11,7 @@
                     </div>
                     <div class="container-fluid item">
                         <div>
-                            <h3 ng-click="geoSearchResultsCtrl.displayedItemId = data.itemData.id" class="cursor-as-pointer">{{data.itemData.title}}</h3>
+                            <h3 ng-click="geoSearchResultsCtrl.setDisplayedId(data.itemData.id)" class="cursor-as-pointer">{{data.itemData.title}}</h3>
                             <p>{{data.itemData['i18n.'+lang+'.fields.subTitle'][0]}}</p>                        
                         </div>
                         <div class="text-center pull-right date" >

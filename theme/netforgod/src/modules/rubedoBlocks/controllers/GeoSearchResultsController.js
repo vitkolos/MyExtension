@@ -108,8 +108,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         //marker events
         me.markerEvents = {
             click: function (gMarker, eventName, model) {
-                if(me.displayedItemId != model.id) gMarker.setIcon(new google.maps.MarkerImage("/theme/netforgod/img/maps/"+model.itemData['class']+".png", null, null, null, new google.maps.Size(50, 50)));
-                else gMarker.setIcon(new google.maps.MarkerImage("/theme/netforgod/img/maps/"+model.itemData['class']+".png", null, null, null, new google.maps.Size(30, 30)));
                 $scope.$apply(function(){
                     angular.forEach(me.data, function(item){
                         if (item.id != model.id) {
@@ -135,7 +133,25 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 
             }
         };
-        //clear markers
+        me.setDisplayedId = function(currentId){
+            $scope.$apply(function(){
+                angular.forEach(me.data, function(item){
+                    if (item.id != currentId) {
+                        item.markerOptions = {
+                            title:item.title,
+                            icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+".png", null, null, null, new google.maps.Size(50, 50))
+                        }
+                    }
+                    else
+                        item.markerOptions = {
+                            title:item.title,
+                            icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+"sel.png", null, null, null, new google.maps.Size(100, 100))
+                        }
+                });
+                me.displayedItemId = currentId;
+            })
+            
+        }
 
         me.clusterEvents= {
             click: function(cluster){
