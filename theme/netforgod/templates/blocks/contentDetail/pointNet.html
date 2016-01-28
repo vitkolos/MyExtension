@@ -26,6 +26,11 @@
 			<h3>Contact</h3>
 			<rubedo-field ng-if="fieldEntity['nom']" field =  "{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field><!--Nom du contact-->
 			<rubedo-field ng-if="fieldEntity['telephone']" field =  "{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field><!--Téléphone du contact-->
+			<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'email_txt':'Send email'}">
+				<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
+			</div>
+			<rubedo-field  ng-if="rubedo.current.user" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user">(visible car vous êtes connectés)</span>
+
 			<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
 			<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 			<a><span class="icon-route"></span>Show route</a>
