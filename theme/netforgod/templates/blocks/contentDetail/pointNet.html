@@ -8,11 +8,12 @@
 			alt="{{ fieldEntity['text'] }}"/>
 		</div>
 	</div>
-	<div class="row padding-large" >
+	<div class="row padding-large" ng-init="showMap=false">
 		<div class="col-xs-8 col-xxs-12">
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Title-->		
 			<h4>{{contentDetailCtrl.content.fields.subTitle | uppercase}}</h4><!--Sous titre-->
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
+			<rubedo-field ng-if="showMap" field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field>
 		</div>
 		<div class="col-xs-4 col-xxs-12">
 			<p>next meeting</p>
@@ -32,7 +33,7 @@
 
 			<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
 			<p>{{contentDetailCtrl.content.fields.position.address}}</p>
-			<a><span class="icon-route"></span>Show route</a>
+			<p class="cursor-as-pointer" ng-click="showMap=!showMap"><span class="icon-route"></span>Show route</p>
 		</div>
 	</div>
 	<div class="row" >
