@@ -167,6 +167,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     if ($scope.fieldEntity['filmYT'] && $scope.fieldEntity['filmYT'] !=[]) {
                         me.watch = 'film';
                         console.log("film");
+                        console.log($scope.fieldEntity['filmYT']);
                     }
                     else if ($scope.fieldEntity['trailer']) {
                         me.watch = 'trailer';
