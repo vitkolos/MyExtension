@@ -22,7 +22,6 @@
 			</p>
 			<p><span class="icon-watches"></span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
 			<rubedo-field ng-if="fieldEditMode" ng-repeat="field in fields|filter:'date' track by $index "></rubedo-field><!--Title-->
-			<a><span class="icon-mail"></span>Send email</a>
 			<h3>Contact</h3>
 			<rubedo-field ng-if="fieldEntity['nom']" field =  "{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field><!--Nom du contact-->
 			<rubedo-field ng-if="fieldEntity['telephone']" field =  "{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field><!--Téléphone du contact-->
