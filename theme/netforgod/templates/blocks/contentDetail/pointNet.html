@@ -33,7 +33,7 @@
 
 			<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
 			<p ng-if="!fieldEntity['hideAddress']">{{contentDetailCtrl.content.fields.position.address}}</p>
-			<p ng-if="!fieldEntity['hideAddress']" class="cursor-as-pointer" ng-click="showMap=!showMap"><span class="icon-route"></span><a>Show route</a></p>
+			<p ng-if="!fieldEntity['hideAddress']" class="cursor-as-pointer" ng-click="$parent.showMap=!$parent.showMap"><span class="icon-route"></span><a>Show route</a></p>
 			<p ng-if="fieldEntity['hideAddress']">Pour participer à la rencontre, merci de contacter le responsable (contact ci-dessus).</p>
 		</div>
 	</div>
