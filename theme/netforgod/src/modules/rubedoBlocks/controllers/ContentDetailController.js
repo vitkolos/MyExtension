@@ -164,7 +164,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     /* déterminer si on a un film ou trailer*/
-                    if ($scope.fieldEntity['filmYT']) {
+                    if ($scope.fieldEntity['filmYT'] && $scope.fieldEntity['filmYT'] !=[]) {
                         me.watch = 'film';
                         console.log("film");
                     }
