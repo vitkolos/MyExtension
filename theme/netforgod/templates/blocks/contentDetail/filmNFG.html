@@ -116,15 +116,25 @@
 	</div>
 	<div class="row" ng-if="contentDetailCtrl.tab==2">
 		<div class="col-xs-12">
-			<img ng-repeat="image in contentDetailCtrl.content.fields.images" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image ,{width:'800px',mode:'boxed'})}}" class="pull-left img-responsive"/>
+			<img ng-repeat="image in contentDetailCtrl.content.fields.images" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image ,{width:'800px',mode:'boxed'})}}" class="pull-left img-responsive padding-large"/>
 		</div>
 	</div>
 	<div class="row" ng-if="contentDetailCtrl.tab==3">
 		<div class="col-xs-12">
-			<rubedo-field  ng-if="fieldEntity['downloadLinks']" field = "{{contentDetailCtrl.getFieldByName('downloadLinks')}}" ></rubedo-field><!--lines de téléchargement-->
-			<rubedo-field  ng-if="fieldEntity['afficheImpression']" field = "{{contentDetailCtrl.getFieldByName('afficheImpression')}}" ></rubedo-field><!--lines de téléchargement-->
-			<rubedo-field ng-if="fieldEntity['AfficheNoirEtBlanc']" field = "{{contentDetailCtrl.getFieldByName('AfficheNoirEtBlanc')}}" ></rubedo-field><!--lines de téléchargement-->
-			<rubedo-field ng-if="fieldEntity['lettre']" field = "{{contentDetailCtrl.getFieldByName('lettre')}}" ></rubedo-field><!--lines de téléchargement-->
+			<p>Here you can download everythin that you need</p>
+			<div class="col-sm-4" ng-if="fieldEntity['afficheImpression'] || fieldEntity['AfficheNoirEtBlanc']">
+				<h3>Poster</h3>
+				<a ng-if="fieldEntity['afficheImpression']" href="/dam?media-id={{fieldEntity['afficheImpression']}}" target="_blank">JPG</a>
+				<a ng-if="fieldEntity['AfficheNoirEtBlanc']" href="/dam?media-id={{fieldEntity['AfficheNoirEtBlanc']}}" target="_blank">Black&White</a>
+			</div>
+			<div class="col-sm-4" ng-if="fieldEntity['lettre']">
+				<h3>Letter script</h3>
+				<rubedo-field ng-if="fieldEntity['lettre']" field = "{{contentDetailCtrl.getFieldByName('lettre')}}" ></rubedo-field><!--lettre-->
+			</div>
+			<div class="col-sm-4" ng-if="fieldEntity['downloadLinks']">
+				<h3>Video</h3>
+				<rubedo-field ng-if="fieldEntity['downloadLinks']" field = "{{contentDetailCtrl.getFieldByName('downloadLinks')}}" ></rubedo-field><!--vidéo-->
+			</div>
 		</div>	
 	</div>
 		

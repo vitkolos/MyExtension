@@ -105,14 +105,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         
                        
                     }
-                    /* déterminer si on a un film ou trailer*/
-                    if (me.content.fields.filmYT) {
-                        me.watch = 'film';
-                    }
-                    else if (me.content.fields.trailer) {
-                        me.watch = 'trailer';
-                    }
-                    else me.watch='no';
                     
                     /* déterminer l'onglet*/
                     if (!(me.content.fields.parole ||me.content.fields.share||me.content.fields.intercession )) {
@@ -171,6 +163,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
+                    /* déterminer si on a un film ou trailer*/
+                    if ($scope.fieldEntity['filmYT']) {
+                        me.watch = 'film';
+                    }
+                    else if ($scope.fieldEntity['trailer']) {
+                        me.watch = 'trailer';
+                    }
+                    else me.watch='no';
+                    
 
 /*GET CONTENT TAXONOMIES*/
 
