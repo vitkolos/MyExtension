@@ -114,7 +114,7 @@
 			</dir-disqus>	
 		</div>	
 	</div>
-	<div class="row" ng-if="contentDetailCtrl.tab==2">
+	<div class="row" ng-show="contentDetailCtrl.tab==2">
 		<div class="col-xs-12">
 			<img ng-repeat="image in contentDetailCtrl.content.fields.images" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image ,{width:'800px',mode:'boxed'})}}" class="pull-left img-responsive padding-large"/>
 		</div>
