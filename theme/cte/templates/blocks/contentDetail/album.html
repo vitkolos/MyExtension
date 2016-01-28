@@ -161,7 +161,6 @@
 		<div class="text-article">
 
 			<div class=" col-xs-12 ">
-				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field>
 
 				<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}"  class="addthis_toolbox socials pull-right" >
 					<!--<a class="addthis_button_facebook_like txt-red" fb:like:layout="button_count"><img class="hidden"><i class="fa fa-thumbs-up" ></i> </a> -->
@@ -172,6 +171,8 @@
 					<span class="txt-red capital" style="display: inline-block" ng-if="nbOfLikes>0">{{nbOfLikes}} partages</span>
 				</div>
 				{{contentDetailCtrl.tooltips()}}
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field>
+
 			</div>
 
 		</div>

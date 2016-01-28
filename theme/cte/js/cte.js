@@ -28,12 +28,9 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 				    else if (row.columns[0].blocks[0].bType=="contentDetail") {
 					row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
 					filtered.push(row);
-					
 				    }
 				    // sinon on affiche tout
 				    else if(!contentDisplay) {filtered.push(row);}
-                                            
-					    
                                  }
                       });
                       return filtered;
@@ -42,8 +39,6 @@ angular.module('rubedo').filter('ligneNonVide', function () {
   });
 
 
-
-//angular.module('rubedoBlocks').requires.push('date');
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
 angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     return function(startDate, endDate, rangeFormat){
@@ -134,21 +129,6 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
     };
 });
 
-angular.module('rubedoBlocks').directive('loadModal', function () {
-    return {
-        restrict: 'A',
-        link: function(scope, $elm, attrs) {
-            $elm.bind('click', function(event) {
-                event.preventDefault();
-                /*angular.element('#myModal iframe').attr('src', src);*/
-                angular.element('#myModal').appendTo('body').modal('show');
-            });
-            scope.dismiss = function() {
-                      angular.element('#myModal').modal('hide');
-           };
-        }
-    }
-});
 
 
 
