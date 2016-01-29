@@ -417,13 +417,30 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
           $scope.fieldEntity[config.name]={ };
       }
       $scope.fieldEntity=$scope.fieldEntity[config.name];
-
-      RubedoContentTypesService.findById(config.usedCT,{}).then(
+    me.getFieldByName=function(name){
+        var field=null;
+        angular.forEach($scope.fields,function(candidate){
+            if (candidate.config.name==name){
+                field=candidate;
+            }
+        });
+        return field;
+    };
+    me.getLabelByName=function(name){
+        var field=null;
+        angular.forEach($scope.fields,function(candidate){
+            if (candidate.config.name==name){
+                field=candidate;
+            }
+        });
+        return field.config.fieldLabel;
+    };
+    
+    RubedoContentTypesService.findById(config.usedCT,{}).then(
           function(response){
               if(response.data.success){
                   me.contentType=response.data.contentType;
                   $scope.fieldIdPrefix=$scope.fieldIdPrefix+me.contentType.type;
- 
                   $scope.fields=me.contentType.fields;
               }
           }

@@ -84,7 +84,7 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<h3 class="tab">
-					<span ng-click="contentDetailCtrl.tab=0" ng-class="{'active':contentDetailCtrl.tab==0}" ng-if="contentDetailCtrl.showInfos">Film Info</span><span ng-click="contentDetailCtrl.tab=1" ng-class="{'active':contentDetailCtrl.tab==1}">Comments</span><span ng-click="contentDetailCtrl.tab=2" ng-class="{'active':contentDetailCtrl.tab==2}" ng-if="fieldEntity['images']">Photos </span><span ng-if="rubedo.current.user" ng-click="contentDetailCtrl.tab=3" ng-class="{'active':contentDetailCtrl.tab==3}">Point Net Zone</span></p>
+					<span ng-click="contentDetailCtrl.tab=0" ng-class="{'active':contentDetailCtrl.tab==0}" ng-if="contentDetailCtrl.showInfos">Film Info</span><span ng-click="contentDetailCtrl.tab=1" ng-class="{'active':contentDetailCtrl.tab==1}">Comments</span><span ng-click="contentDetailCtrl.tab=2" ng-class="{'active':contentDetailCtrl.tab==2}" ng-if="fieldEntity['images']">{{contentDetailCtrl.getLabelByName('images')}} </span><span ng-if="rubedo.current.user" ng-click="contentDetailCtrl.tab=3" ng-class="{'active':contentDetailCtrl.tab==3}">Point Net Zone</span></p>
 			</div>			
 		</div>
 	</div>
@@ -121,20 +121,24 @@
 	</div>
 	<div class="row" ng-if="contentDetailCtrl.tab==3">
 		<div class="col-xs-12">
-			<p>Here you can download everythin that you need</p>
+			<p>Here you can download everything that you need</p>
 			<div class="col-sm-4" ng-if="fieldEntity['afficheImpression'] || fieldEntity['AfficheNoirEtBlanc']">
+				<span class="icon-imagelost pull-left"></span>
 				<h3>Poster</h3>
 				<a ng-if="fieldEntity['afficheImpression']" href="/dam?media-id={{fieldEntity['afficheImpression']}}" target="_blank">JPG</a>
 				<a ng-if="fieldEntity['AfficheNoirEtBlanc']" href="/dam?media-id={{fieldEntity['AfficheNoirEtBlanc']}}" target="_blank">Black&White</a>
 			</div>
-			<div class="col-sm-4" ng-if="fieldEntity['lettre']">
-				<h3>Letter script</h3>
-				<rubedo-field ng-if="fieldEntity['lettre']" field = "{{contentDetailCtrl.getFieldByName('lettre')}}" ></rubedo-field><!--lettre-->
+			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')">
+				<div ng-controller="RECFieldFilmController as recCtrl" >
+					<rubedo-field field = "{{contentDetailCtrl.getFieldByName('lettre_fr')}}" ></rubedo-field>
+				</div>
 			</div>
-			<div class="col-sm-4" ng-if="fieldEntity['downloadLinks']">
-				<h3>Video</h3>
-				<rubedo-field ng-if="fieldEntity['downloadLinks']" field = "{{contentDetailCtrl.getFieldByName('downloadLinks')}}" ></rubedo-field><!--vidéo-->
-			</div>
+			
+			
+			
+			
+			
+			
 		</div>	
 	</div>
 		
