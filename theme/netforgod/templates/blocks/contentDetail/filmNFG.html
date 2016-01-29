@@ -145,8 +145,8 @@
 			<div class="col-sm-4" ng-if="fieldEntity['afficheImpression'] || fieldEntity['AfficheNoirEtBlanc']">
 				<span class="icon-imagelost pull-left trapezoid"></span>
 				<h3 style="margin-top:0">Poster</h3>
-				<a ng-if="fieldEntity['afficheImpression']" href="/dam?media-id={{fieldEntity['afficheImpression']}}" target="_blank">JPG</a>
-				<a ng-if="fieldEntity['AfficheNoirEtBlanc']" href="/dam?media-id={{fieldEntity['AfficheNoirEtBlanc']}}" target="_blank">Black&White</a>
+				<p ng-if="fieldEntity['afficheImpression']"><a href="/dam?media-id={{fieldEntity['afficheImpression']}}" target="_blank">JPG</a></p>
+				<p ng-if="fieldEntity['AfficheNoirEtBlanc']"><a href="/dam?media-id={{fieldEntity['AfficheNoirEtBlanc']}}" target="_blank">Black&White</a></p>
 			</div>
 			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')" ng-if="fieldEntity['downloadLinks']">
 				<div ng-controller="RECFieldFilmController as recCtrl" >
