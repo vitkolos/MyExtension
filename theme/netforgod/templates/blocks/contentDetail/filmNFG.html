@@ -147,14 +147,14 @@
 				<a ng-if="fieldEntity['AfficheNoirEtBlanc']" href="/dam?media-id={{fieldEntity['AfficheNoirEtBlanc']}}" target="_blank">Black&White</a>
 			</div>
 			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')" ng-if="fieldEntity['downloadLinks']">
-				<div ng-controller="RECFieldFilmController as recCtrl" class="pull-left">
+				<div ng-controller="RECFieldFilmController as recCtrl" >
 					<h3>Lettre</h3>
-					<rubedo-field field = "{{recCtrl.getFieldByName('lettre_'+contentDetailCtrl.lang)}}" ></rubedo-field>
+					<rubedo-field ng-repeat="field in fields" ng-if="field.config.name== 'lettre_'+contentDetailCtrl.lang " ></rubedo-field>
 				</div>
 			</div>
 			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')" ng-if="fieldEntity['downloadLinks']">
-				<div ng-controller="RECFieldFilmController as recCtrl" class="pull-left">
-					<rubedo-field field = "{{recCtrl.getFieldByName(contentDetailCtrl.lang)}}" ></rubedo-field>
+				<div ng-controller="RECFieldFilmController as recCtrl" >
+					<rubedo-field ng-repeat="field in fields" ng-if="field.config.name==contentDetailCtrl.lang " ></rubedo-field>
 				</div>
 				<h3 style="margin-top:0">Video</h3>
 			</div>			
