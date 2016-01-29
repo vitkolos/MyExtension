@@ -38,7 +38,7 @@
 								  <p ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
 								</div>
 							</div>
-							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" video-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['affiche'],{width:'800px',height:'450px',mode:'crop'}) }}></jwplayer>
+							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" video-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['affiche'],{width:'800px',height:'450px',mode:'crop'}) }}"></jwplayer>
 						</div>
 					</div>
 		
