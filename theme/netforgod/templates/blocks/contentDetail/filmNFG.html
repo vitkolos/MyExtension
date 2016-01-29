@@ -125,7 +125,7 @@
 		<div class="col-sm-12">
 			<p class="text-center">Here you can download everything that you need</p>
 		</div>
-		<div class="col-sm-12">
+		<div class="col-sm-12" style="margin-top:36px;">
 			<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
 				<div ng-controller="RECFieldFilmController as recCtrl" >
 					<div class="dropdown text-center lang-selection pointNet">
@@ -141,7 +141,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-sm-12">
+		<div class="col-sm-12 border">
 			<div class="col-sm-4" ng-if="fieldEntity['afficheImpression'] || fieldEntity['AfficheNoirEtBlanc']">
 				<span class="icon-imagelost pull-left trapezoid"></span>
 				<h3 style="margin-top:0">Poster</h3>
@@ -159,11 +159,6 @@
 				</div>
 				<h3 style="margin-top:0">Video</h3>
 			</div>			
-			
-			
-			
-			
-			
 		</div>	
 	</div>
 		
