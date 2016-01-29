@@ -50,7 +50,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
-
+/*
             scope.$watch(function () {
                     return attrs.videoUrl;
                 }, function (value) {
@@ -62,7 +62,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  aspectratio:"16:9"
                       }]);
                        jwplayer(id).stop();
-                });
+                });*/
         }
     };
 }]);
