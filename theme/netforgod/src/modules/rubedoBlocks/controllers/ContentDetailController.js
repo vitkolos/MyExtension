@@ -96,12 +96,19 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if (me.content.fields.summary){
                             $scope.rubedo.setPageDescription(angular.copy(me.content.fields.summary));
                         }
+                        if(response.data.content.fields.bandeau) {
+                            $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.bandeau,{width:'1200px'});
+                        }
+                        else if(response.data.content.fields.affiche) {
+                            $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.affiche,{width:'800px'});
+                        }
                         if(response.data.content.fields.image) {
                             $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
                         }
                         if(response.data.content.fields.video) {
                             $scope.rubedo.current.page.video = response.data.content.fields.video.url;
                         }
+                        $scope.rubedo.current.page.fbPage = "http://www.facebook.com/INTERNATIONAL.ECUMENICAL.FRATERNITY/";
                         
                        
                     }
