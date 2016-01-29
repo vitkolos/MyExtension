@@ -184,7 +184,9 @@
 	</div>
 	
 	<div class="row padding-large" ng-if="contentDetailCtrl.linkedContents[0]">
-		<h1 class="titre-saison" style="margin-bottom:24px">{{rubedo.translate('Block.VoirPlus','See more')}} <span>({{rubedo.translate('NFG.FilmsSameSubject','Films with the same subject')}})</span></h1>
+		<div class="col-sm-12">
+			<h1 class="titre-saison" style="margin-bottom:24px">{{rubedo.translate('Block.VoirPlus','See more')}} <span>({{rubedo.translate('NFG.FilmsSameSubject','Films with the same subject')}})</span></h1>
+		</div>
 		<div class="col-md-3 col-sm-6 col-xs-12 filmList" ng-repeat="content in contentDetailCtrl.linkedContents">
 			<div class="affiche">
 			<a ng-href="{{content.url}}">
