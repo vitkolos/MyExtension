@@ -28,6 +28,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
+           var image = attrs.videoImage;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                 return '<div id="' + playerId + '"></div>';
@@ -42,7 +43,8 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  file: '/theme/netforgod/img/favicon.png',
                                  link: 'http://test.netforgod.org/'
                       },
-                      displaytitle:true
+                      displaytitle:true,
+                      image:image
            };
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
@@ -56,7 +58,8 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  modestbranding:0,
                                  showinfo:1,
                                  width:"100%",
-                                 aspectratio:"16:9"
+                                 aspectratio:"16:9",
+                                 image:image
                       }]);
                        jwplayer(id).stop();
                 });
