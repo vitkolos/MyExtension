@@ -33,7 +33,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             getTemplate = function (playerId) {
                 return '<div id="' + playerId + '"></div>';
             };
-            scope.first = true;
            var options = {
                       file: filmUrl,
                       modestbranding:0,
@@ -53,9 +52,9 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
 
             scope.$watch(function () {
                     return attrs.videoUrl;
-                }, function (value) {
-                      if (scope.first) {
-                                 console.log('first time');
+                }, function (newValue, oldValue) {
+                      if (!oldValue || oldValue==newValue) {
+                                 console.log(oldValue + ' '+newValue);
                       }
                       else {
                                  jwplayer(id).load([{
@@ -66,7 +65,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             aspectratio:"16:9",
                                             image:image
                                  }]);
-                                  scope.first=false;
                       }
                 });
         }
