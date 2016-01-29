@@ -53,7 +53,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             scope.$watch(function () {
                     return attrs.videoUrl;
                 }, function (value) {
-                      jwplayer(id).load([{
+                      jwplayer(id).setup([{
                                  file: attrs.videoUrl,
                                  modestbranding:0,
                                  showinfo:1,
