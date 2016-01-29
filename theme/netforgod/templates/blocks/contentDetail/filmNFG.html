@@ -121,7 +121,23 @@
 	</div>
 	<div class="row" ng-if="contentDetailCtrl.tab==3">
 		<div class="col-xs-12">
-			<p>Here you can download everything that you need</p>
+			<p class="text-center">Here you can download everything that you need</p>
+			
+			<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
+				<div ng-controller="RECFieldFilmController as recCtrl" >
+					<div class="dropdown pull-right lang-selection">
+						<span class="icon-audiolanguage main"></span>
+						<span id="dLabel" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ng-repeat="field in fields track by $index" ng-if="field.config.name==contentDetailCtrl.lang">
+						  {{field.config.fieldLabel}}
+						  <span class="caret"></span>
+						</span>
+						<div class="dropdown-menu" aria-labelledby="dLabel" style="-webkit-columns: 2;-moz-columns: 2; columns:2">
+						  <p ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
+						</div>
+					</div>
+				</div>
+			</div>			
+			
 			<div class="col-sm-4" ng-if="fieldEntity['afficheImpression'] || fieldEntity['AfficheNoirEtBlanc']">
 				<span class="icon-imagelost pull-left trapezoid"></span>
 				<h3 style="margin-top:0">Poster</h3>
