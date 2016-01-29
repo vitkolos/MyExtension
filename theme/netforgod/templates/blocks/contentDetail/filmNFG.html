@@ -148,6 +148,7 @@
 			</div>
 			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')" ng-if="fieldEntity['downloadLinks']">
 				<div ng-controller="RECFieldFilmController as recCtrl" class="pull-left">
+					<h3>Lettre</h3>
 					<rubedo-field field = "{{recCtrl.getFieldByName('lettre_'+contentDetailCtrl.lang)}}" ></rubedo-field>
 				</div>
 			</div>
