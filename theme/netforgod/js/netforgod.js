@@ -24,7 +24,7 @@ angular.module('rubedoBlocks').filter('firstUpper', function() {
 });
 
 
-
+/*
 angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {
         restrict: 'EC',
@@ -50,7 +50,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
-/*
+
             scope.$watch(function () {
                     return attrs.videoUrl;
                 }, function (value) {
@@ -62,7 +62,39 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  aspectratio:"16:9"
                       }]);
                        jwplayer(id).stop();
-                });*/
+                });
+        }
+    };
+}]);*/
+
+
+angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
+    return {
+        restrict: 'EC',
+        scope: {
+            filmUrl: '=videoUrl'
+
+        },
+        link: function (scope, element, attrs) {
+            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
+                getTemplate = function (playerId) {
+                return '<div id="' + playerId + '"></div>';
+            };
+           var options = {
+                      file: scope.filmUrl,
+                      modestbranding:0,
+                      showinfo:1,
+                      width:"100%",
+                      aspectratio:"16:9",
+                      logo: {
+                                 file: '/theme/netforgod/img/favicon.png',
+                                 link: 'http://test.netforgod.org/'
+                      },
+                      displaytitle:true
+           };
+            element.html(getTemplate(id));
+            $compile(element.contents())(scope);
+            jwplayer(id).setup(options);
         }
     };
 }]);
