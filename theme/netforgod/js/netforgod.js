@@ -54,7 +54,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                     return attrs.videoUrl;
                 }, function (newValue, oldValue) {
                       if (!oldValue || oldValue==newValue) {
-                                 console.log(oldValue + ' '+newValue);
                       }
                       else {
                                  jwplayer(id).load([{
