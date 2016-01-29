@@ -263,6 +263,13 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
 
 
 .trapezoid {
-  font-size: 3em; color:@txt_light;
-  border:2px solid @txt_light;
+  font-size: 2em; color:@txt_slight;
+  border:2px solid @txt_slight;
+  padding: 24px 6px; margin-right: 6px
+}
+.trapezoid:before{
+  width: 0;
+  height: 0;
+  border-top: 100px solid @bg;
+  border-left: 100px solid transparent;
 }

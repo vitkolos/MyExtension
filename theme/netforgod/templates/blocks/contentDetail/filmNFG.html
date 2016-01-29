@@ -124,16 +124,22 @@
 			<p>Here you can download everything that you need</p>
 			<div class="col-sm-4" ng-if="fieldEntity['afficheImpression'] || fieldEntity['AfficheNoirEtBlanc']">
 				<span class="icon-imagelost pull-left trapezoid"></span>
-				<h3>Poster</h3>
+				<h3 style="margin-top:0">Poster</h3>
 				<a ng-if="fieldEntity['afficheImpression']" href="/dam?media-id={{fieldEntity['afficheImpression']}}" target="_blank">JPG</a>
 				<a ng-if="fieldEntity['AfficheNoirEtBlanc']" href="/dam?media-id={{fieldEntity['AfficheNoirEtBlanc']}}" target="_blank">Black&White</a>
 			</div>
 			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')">
-				<div ng-controller="RECFieldFilmController as recCtrl" >
+				<div ng-controller="RECFieldFilmController as recCtrl" class="pull-left">
 					<rubedo-field field = "{{recCtrl.getFieldByName('lettre_fr')}}" ></rubedo-field>
 				</div>
+				<h3 style="margin-top:0">Letter</h3>
 			</div>
-			
+			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')">
+				<div ng-controller="RECFieldFilmController as recCtrl" class="pull-left">
+					<rubedo-field field = "{{recCtrl.getFieldByName('fr')}}" ></rubedo-field>
+				</div>
+				<h3 style="margin-top:0">Video</h3>
+			</div>			
 			
 			
 			
