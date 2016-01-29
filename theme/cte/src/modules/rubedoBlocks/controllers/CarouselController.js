@@ -30,6 +30,16 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             }
         );
     };
+    me.getContentLink= function(content) {
+        var link="";
+        if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
+            link = content.fields.propositionReferencee;
+        }
+        else {
+            link = content.detailPageUrl;
+        }
+        return link;
+    }
     
     me.initCarousel=function(){
         var targetElSelector="#block"+$scope.block.id;
