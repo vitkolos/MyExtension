@@ -132,7 +132,7 @@
 						  <span class="caret"></span>
 						</span>
 						<div class="dropdown-menu" aria-labelledby="dLabel" style="-webkit-columns: 2;-moz-columns: 2; columns:2">
-						  <p ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
+						  <p ng-repeat="field in fields track by $index" ng-if="field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
 						</div>
 					</div>
 				</div>
