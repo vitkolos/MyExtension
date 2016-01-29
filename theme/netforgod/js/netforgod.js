@@ -55,6 +55,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                     return attrs.videoUrl;
                 }, function (value) {
                       if (scope.first) {
+                                 console.log('first time');
                       }
                       else {
                                  jwplayer(id).load([{
@@ -65,7 +66,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             aspectratio:"16:9",
                                             image:image
                                  }]);
-                                  jwplayer(id).stop();
                                   scope.first=false;
                       }
                 });
