@@ -1,1 +1,4 @@
-<a ng-href="{{mediaFieldCtrl.media.url}}" target="_blank"><img title="{{mediaFieldCtrl.media.title}}" alt="{{mediaFieldCtrl.media.title}}" ng-src="{{rubedo.imageUrl.getThumbnailUrlByMediaId(mediaFieldCtrl.media.id)}}"/></a>
+<a ng-href="{{mediaFieldCtrl.media.url}}" target="_blank">
+    <img title="{{mediaFieldCtrl.media.title}}" alt="{{mediaFieldCtrl.media.title}}" class="img-responsive pull-left" ng-src="{{rubedo.imageUrl.getThumbnailUrlByMediaId(mediaFieldCtrl.media.id)}}"/>
+    <h3>Lettre</h3>
+</a>

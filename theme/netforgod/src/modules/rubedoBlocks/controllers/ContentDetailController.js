@@ -169,7 +169,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                     else if ($scope.fieldEntity['trailer']) {
                         me.watch = 'trailer';
-                        console.log("trailer");
                     }
                     else me.watch='no';
                     

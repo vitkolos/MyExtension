@@ -25,8 +25,10 @@ p{font-family: 'Roboto'}
 h1,h2,h3{font-family: 'Roboto Slab'}
 .padding-large{padding-top:24px; padding-bottom: 24px}
 
+
 @media screen and (max-width: @min_xs){
     [class*="col-xs-"].col-xxs-12{width:100%}
+    .hidden-xxs{display: none;}
 }
 /*overrides*/
 span.glyphicon{margin-right: 5px}
@@ -176,7 +178,7 @@ a.link{border: 1px solid;padding: 6px 12px}a.link:hover{text-decoration: none}
 .input-group-btn .btn-default{background-color: transparent;color:@main}
 .show-more{span{color:@main; margin-right: 12px}background-color: @txt_slight; color: @txt_light; text-transform: uppercase; padding: 12px; margin: 24px 0; font-size: 1.5em}
 /////////FILM DETAIL////////////
-.film-title h1{margin-top:0}
+@media screen and (min-width:@min_sm) {.film-title h1{margin-top:0}}
 .tags{color:@link}
 span.tags + span.tags:before{content:', '; color:@txt; margin-right:5px}
 .buy-dvd{margin:30px auto; text-align:center; border-radius: 25px; background: white; width:200px; height:60px; line-height: 60px; box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.2);i{color:@main_light; font-size: 2em; position: relative;top:5px; line-height: 40px; margin-right: 10px}}
@@ -194,8 +196,8 @@ span.tags + span.tags:before{content:', '; color:@txt; margin-right:5px}
 }
 .lang-selection div{padding: 10px 25px;}
 h3.tab {
-  margin: 0;
-  span{color:@txt_light; cursor: pointer; padding: 10px 15px;}
+  margin: 0; margin-bottom: -12px;
+  span{color:@txt_light; cursor: pointer; padding: 10px 15px;display: inline-block;}
   span+span{border-left:1px solid @bg}
   span.active,span:hover{color:@txt; background-color: @bg; font-size: 1.4em;}
 }

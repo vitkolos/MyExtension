@@ -3,8 +3,11 @@
 		<div class="row padding-large">
 			<div class="col-sm-4" >
 				<rubedo-field ng-if="!fieldEntity['affiche'] " field = "{{contentDetailCtrl.getFieldByName('affiche')}}" ></rubedo-field><!--Texte-->
-				<img ng-if="fieldEntity['affiche']" class="img-responsive"
+				<img ng-if="fieldEntity['affiche']" class="img-responsive hidden-xs"
 						 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['affiche'],{width:'360px',mode:'boxed'}) }}"
+						 alt="{{ fieldEntity['text'] }}"/>
+				<img ng-if="fieldEntity['bandeau']" class="img-responsive visible-xs"
+						 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['bandeau'],{width:'768px',mode:'boxed'}) }}"
 						 alt="{{ fieldEntity['text'] }}"/>
 			</div>
 			<div class="col-sm-8">
@@ -22,7 +25,7 @@
 		<div class="row padding-large" ng-if="contentDetailCtrl.watch !='no' ">
 			<div class="col-sm-12">
 				<div class="film-controls" >
-					<p>{{rubedo.translate('NFG.Watch','Watch')}} <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
+					<p><span class="hidden-xxs">{{rubedo.translate('NFG.Watch','Watch')}}</span><span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
 						<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 				</div>
 				<div ng-if="contentDetailCtrl.watch =='film'">
@@ -42,7 +45,6 @@
 						</div>
 					</div>
 		
-						
 				</div>
 				<div ng-if="contentDetailCtrl.watch =='trailer'">
 					<jwplayer video-url="{{fieldEntity['trailer'].url}}" ></jwplayer>
@@ -120,9 +122,8 @@
 		</div>
 	</div>
 	<div class="row" ng-if="contentDetailCtrl.tab==3">
+		<p class="text-center">Here you can download everything that you need</p>
 		<div class="col-xs-12">
-			<p class="text-center">Here you can download everything that you need</p>
-			
 			<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
 				<div ng-controller="RECFieldFilmController as recCtrl" >
 					<div class="dropdown pull-right lang-selection">
@@ -136,21 +137,21 @@
 						</div>
 					</div>
 				</div>
-			</div>			
-			
+			</div>
+		</div>
+		<div class="col-xs-12">
 			<div class="col-sm-4" ng-if="fieldEntity['afficheImpression'] || fieldEntity['AfficheNoirEtBlanc']">
 				<span class="icon-imagelost pull-left trapezoid"></span>
 				<h3 style="margin-top:0">Poster</h3>
 				<a ng-if="fieldEntity['afficheImpression']" href="/dam?media-id={{fieldEntity['afficheImpression']}}" target="_blank">JPG</a>
 				<a ng-if="fieldEntity['AfficheNoirEtBlanc']" href="/dam?media-id={{fieldEntity['AfficheNoirEtBlanc']}}" target="_blank">Black&White</a>
 			</div>
-			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')">
+			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')" ng-if="fieldEntity['downloadLinks']">
 				<div ng-controller="RECFieldFilmController as recCtrl" class="pull-left">
 					<rubedo-field field = "{{recCtrl.getFieldByName('lettre_'+contentDetailCtrl.lang)}}" ></rubedo-field>
 				</div>
-				<h3 style="margin-top:0">Letter</h3>
 			</div>
-			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')">
+			<div class="col-sm-4" ng-init = "field = contentDetailCtrl.getFieldByName('downloadLinks')" ng-if="fieldEntity['downloadLinks']">
 				<div ng-controller="RECFieldFilmController as recCtrl" class="pull-left">
 					<rubedo-field field = "{{recCtrl.getFieldByName(contentDetailCtrl.lang)}}" ></rubedo-field>
 				</div>
