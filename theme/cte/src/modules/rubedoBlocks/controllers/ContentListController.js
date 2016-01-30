@@ -82,16 +82,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
          });
         return(term);
     }
-    me.getContentLink= function(content) {
-        var link="";
-        if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
-            link = content.fields.propositionReferencee;
-        }
-        else {
-            link = content.detailPageUrl;
-        }
-        return link;
-    }
 
     me.getContents = function (queryId, pageId, siteId, options, add){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
@@ -265,6 +255,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
     me.revertChanges = function(){
       $scope.fieldEntity = angular.copy(me.content.fields);
     };
+    me.getContentLink= function(content) {
+        var link="";
+        if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
+            link = content.fields.propositionReferencee;
+        }
+        else {
+            link = content.detailPageUrl;
+        }
+        return link;
+    }
     $scope.content.type = {
         title:
         {
