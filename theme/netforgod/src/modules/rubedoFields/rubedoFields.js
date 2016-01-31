@@ -206,7 +206,7 @@
             { name: 'clipboard', groups: [ 'undo' ], items: [ 'Undo', 'Redo' ] },
            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic','-', 'RemoveFormat' ] },
             { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo',"Source"  ] },
-           { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote','-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+           { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote','-', 'JustifyLeft', 'JustifyRight', 'JustifyBlock']},
             { name: 'styles', items: [ 'Format' ] },
             { name: 'insert', items: [ 'Image', 'Youtube', '-', 'HorizontalRule'] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink'] },
