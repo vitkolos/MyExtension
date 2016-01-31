@@ -205,13 +205,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         function(response){
                             if(response.data.success){
                                 me.userDetails = response.data.user;
-                                console.log(me.userDetails);
                                 $scope.rubedo.current.page.metaAuthor = response.data.user.fields.name;
                                 $scope.rubedo.current.page.fbPage = response.data.user.fields.facebook ? "http://www.facebook.com/"+response.data.user.fields.facebook:"";
 
                             }
                         }
                     );
+                    console.log($scope.rubedo);
                     
                     
                     if(me.customLayout){
