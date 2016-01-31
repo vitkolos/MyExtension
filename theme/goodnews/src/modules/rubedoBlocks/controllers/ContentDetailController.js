@@ -207,7 +207,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 me.userDetails = response.data.user;
                                 console.log(me.userDetails);
                                 $scope.rubedo.current.page.metaAuthor = response.data.user.fields.name;
-                                $scope.rubedo.current.page.fbPage = response.data.user.fields.facebook ? response.data.user.fields.facebook:"Good News";
+                                $scope.rubedo.current.page.fbPage = response.data.user.fields.facebook ? "http://www.facebook.com/"+response.data.user.fields.facebook:"";
 
                             }
                         }
