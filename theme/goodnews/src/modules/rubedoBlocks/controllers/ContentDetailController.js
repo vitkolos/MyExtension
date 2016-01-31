@@ -93,7 +93,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if(response.data.content.fields.video) {
                             $scope.rubedo.current.page.video = response.data.content.fields.video.url;
                         }
-                       
                     }
                 
                     
@@ -138,18 +137,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
-                    //Propositions : déterminer si les inscriptions sont possibles
-                    if (me.content.type.code=="proposition") {
-                        var today = new Date();
-                       if (me.content.fields.inscriptionState.inscriptionState == 'close') {
-                            me.isInscription=false;
-                        }
-                        else if (me.content.fields.dateDebut*1000 < today.getTime()) {
-                            me.propDate = "passee";
-                        }
-                        else me.propDate="ouverte";
-                        
-                    }
+
 
                     
 /*GET CONTENT TAXONOMIES*/
@@ -218,6 +206,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             if(response.data.success){
                                 me.userDetails = response.data.user;
                                 console.log(me.userDetails);
+                                $scope.rubedo.current.page.metaAuthor = response.data.user.fields.name;
+                                $scope.rubedo.current.page.fbPage = response.data.user.fields.facebook ? response.data.user.fields.facebook:"Good News";
+
                             }
                         }
                     );
