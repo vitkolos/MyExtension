@@ -16,7 +16,6 @@ CKEDITOR.editorConfig = function( config ) {
 
 CKEDITOR.stylesSet.add( 'my_styles', [
     { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} }
-    { name: 'Texte avec espace', element: 'p', attributes: { 'class': 'space'} }
 ] );
 
 
