@@ -255,11 +255,13 @@ input:focus {
 }
 ::selection {
   background: #c1573c;
-  color: white /* WebKit/Blink Browsers */;
+  color: #ffffff /* WebKit/Blink Browsers */
+;
 }
 ::selection {
   background: #c1573c;
-  color: white /* Gecko Browsers */;
+  color: #ffffff /* Gecko Browsers */
+;
 }
 span.glyphicon {
   margin: 0 5px;
@@ -291,7 +293,7 @@ a.txt-beige {
   color: #f96847;
 }
 .bg-white {
-  background-color: white;
+  background-color: #ffffff;
 }
 .desaturate {
   filter: grayscale(100%);
@@ -311,6 +313,9 @@ a.txt-beige {
 .navbar-fixed-top.displayed {
   width: 100%;
   left: 0;
+}
+@media screen and (min-width: 500px) and (max-width: 768px) {
+  
 }
 ul.navbar-right {
   height: 40px;
@@ -337,7 +342,7 @@ nav.navbar-fixed-top li {
   padding: 0 5px;
 }
 nav.navbar-fixed-top li a {
-  color: white;
+  color: #ffffff;
 }
 nav.navbar-fixed-top li span {
   line-height: 1.2em;
@@ -642,8 +647,7 @@ a.subpage {
     margin-left: 20%;
   }
 }
-/*HAMBURGER MENU*/
-* {
+/*HAMBURGER MENU*/* {
   margin: 0;
   padding: 0;
 }
@@ -784,10 +788,10 @@ a.subpage {
   text-align: center;
   padding: 12px 0;
   background: #c1573c;
-  color: white;
+  color: #ffffff;
 }
 .footer a.dons:first-of-type {
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid #ffffff;
 }
 .footer a:last-of-type {
   margin-bottom: 24px;
@@ -1014,6 +1018,7 @@ blockquote {
     display: block;
     padding-top: 50%;
     /* initial ratio of 3:1*/
+  
   }
   .ratio_321 > img {
     position: absolute;
@@ -1026,13 +1031,14 @@ blockquote {
   }
   .ratio_321 ~ div {
     padding: 12px;
-    background: white;
+    background: #ffffff;
   }
   .summary {
     overflow: hidden;
     position: relative;
     max-height: 7em;
     /*display ellipsis after 5 lines*/
+  
   }
   .summary:before {
     bottom: 0;
@@ -1075,6 +1081,7 @@ blockquote {
   display: block;
   padding-top: 50%;
   /* initial ratio of 2:1*/
+
 }
 .ratio_21 > img {
   position: absolute;
@@ -1134,7 +1141,7 @@ blockquote {
   margin-top: 0;
 }
 .carousel-caption p {
-  color: white;
+  color: #ffffff;
 }
 .carousel-caption {
   padding: 24px;
@@ -1145,6 +1152,7 @@ blockquote {
     position: relative;
     max-height: 7em;
     /*display ellipsis after 5 lines*/
+  
   }
   .carousel-caption p:before {
     bottom: 0;
@@ -1282,7 +1290,7 @@ blockquote {
 .search-tags .search-result:hover,
 .search-tags .search-result a:hover {
   background-color: #d5c5b5;
-  color: white;
+  color: #ffffff;
 }
 @media screen and (min-width: 768px) {
   .search-result {
@@ -1333,7 +1341,7 @@ blockquote {
   transition: box-shadow 0.3s ease;
 }
 .tags:hover {
-  box-shadow: inset 0 -5px 0 white;
+  box-shadow: inset 0 -5px 0 #ffffff;
 }
 .search-video {
   float: right;
@@ -1640,7 +1648,7 @@ p.red-sub {
 .button.rouge {
   background: #c1573c;
   box-shadow: 0px 2px #9e4232;
-  color: white;
+  color: #ffffff;
 }
 .button.submit {
   border: 2px solid #c1573c;
@@ -1715,7 +1723,7 @@ header.content h3,
 header.content h4,
 header.content h5,
 header.content p {
-  color: white;
+  color: #ffffff;
 }
 header.content > div {
   line-height: normal;
@@ -1811,6 +1819,7 @@ header.content.prop > div {
   display: block;
   padding-top: 50%;
   /* initial ratio of 2:1*/
+
 }
 .list-item-img > img {
   position: absolute;
@@ -1948,6 +1957,7 @@ select:-webkit-autofill {
 input:-webkit-autofill {
   -webkit-box-shadow: 0 0 0 50px #f3eeea inset;
   /* Change the color to your own background color */
+
   -webkit-text-fill-color: #2e2c29;
 }
 input[type=checkbox]:disabled + label,
@@ -1992,7 +2002,7 @@ form[name="inscription_form"] .panel {
   box-shadow: none;
 }
 form[name="inscription_form"] h2.displayed {
-  background-color: white;
+  background-color: #ffffff;
 }
 form[name="inscription_form"] ng-form .row {
   margin: 0 15px;

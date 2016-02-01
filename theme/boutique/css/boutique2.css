@@ -1,0 +1,125 @@
+body {
+  font-size: 16px;
+  min-height: 100%;
+  line-height: 1.4em;
+}
+html,
+body {
+  font-family: 'Merriweather', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  height: 100%;
+  overflow: auto;
+  background-color: #f3eeea;
+}
+.container-fluid {
+  overflow-x: hidden;
+}
+.container-fluid {
+  padding: 0;
+}
+.container-fluid > .row:nth-of-type(n+3) {
+  margin-right: 0;
+  margin-left: 0;
+}
+.container-fluid > .row.no-margin {
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.container.page {
+  min-height: 80vh;
+  margin-top: 50px;
+}
+.glyphicon-list-alt {
+  z-index: 9999;
+}
+h1 {
+  font-weight: bold;
+  font-size: 24px;
+}
+@media screen and (min-width: 500px) and (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+}
+@media screen and (min-width: 768px) {
+  h1 {
+    font-size: 48px;
+  }
+}
+h2 {
+  font-weight: bold;
+}
+h3 {
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1.25em;
+}
+h4 {
+  font-weight: bold;
+  font-size: 20px;
+  margin: 0;
+  margin-bottom: 5px;
+  line-height: 1.4em;
+}
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  h3 {
+    font-size: 24px;
+  }
+}
+p {
+  color: #2e2c29;
+  font-size: 16px;
+}
+label {
+  font-weight: normal;
+}
+a,
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+a,
+a:visited,
+a:hover,
+a:active {
+  color: #2e2c29;
+}
+p a {
+  box-shadow: inset 0 -2px 0 #d5c5b5;
+  transition: background 0.3s ease;
+}
+p a:hover,
+p a:active {
+  background-color: #d5c5b5;
+}
+input:focus {
+  outline: 0;
+  border-color: transparent;
+  box-shadow: 0;
+}
+.media-body {
+  min-width: 200px;
+}
+.contentList .media-body {
+  margin-bottom: 24px;
+}
+.col-sm-6:after:before,
+.col-sm-6:after:after {
+  content: " ";
+  display: table;
+}
+.col-sm-6:after:after {
+  clear: both;
+}
+@media screen and (max-width: 500px) {
+  [class*="col-xs-"] {
+    width: 100%;
+  }
+  [class*="col-xs-pull-"] {
+    right: 0;
+  }
+  [class*="col-xs-push-"] {
+    left: 0;
+  }
+}
