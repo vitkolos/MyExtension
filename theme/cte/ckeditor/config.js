@@ -8,7 +8,15 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
         config.colorButton_colors = 'Rouge Brique/c1573c,Texte noir/2e2c29,Marron/d5c5b5';
+        config.colorButton_enableMore = false;
+
 
 
 };
+
+CKEDITOR.stylesSet.add( 'my_styles', [
+    { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} }
+] );
+
+
 CKEDITOR.plugins.addExternal( 'youtube', '/theme/goodnews/ckeditor/plugins/youtube/','plugin.js' );

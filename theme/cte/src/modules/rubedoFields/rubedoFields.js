@@ -224,9 +224,6 @@
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
-            stylesSet: [
-                 { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} }
-            ],
             contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             templates_replaceContent : false,
