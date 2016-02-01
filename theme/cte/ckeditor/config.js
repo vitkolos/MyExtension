@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-        config.colorButton_colors = 'c1573c,2e2c29,d5c5b5';
+        config.colorButton_colors = 'c1573c,2e2c29,d5c5b5,ffffff';
         config.colorButton_enableMore = false;
 
 
@@ -16,6 +16,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 CKEDITOR.stylesSet.add( 'my_styles', [
     { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} }
+    { name: 'Texte avec espace', element: 'p', attributes: { 'class': 'space'} }
 ] );
 
 
