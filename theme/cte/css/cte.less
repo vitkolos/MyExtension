@@ -152,17 +152,20 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 .beige{background-color: @beigeCCN}
 
 
-.linkbox{display:block;margin-top:5px}
+.linkbox{display:inline-block;margin-top:5px}
 .linkbox a{
     letter-spacing: 0.2em;
     text-align: center;
     display: inline-block;
+    vertical-align: middle;
     color:#898989;
     border: 2px solid rgba(137,137,137,0.5);
     padding:10px 15px;
     border-radius: 3px;
     transition:all 0.4s ease 0s;
     text-transform: uppercase;
+    min-width: 210px; max-width: 300px;
+    box-shadow: none;
 }
 .linkbox a:hover{border-color: rgb(137,137,137)}
 
