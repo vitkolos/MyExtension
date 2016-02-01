@@ -151,6 +151,22 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 .desaturate{filter:grayscale(100%); -webkit-filter:grayscale(100%)}
 .beige{background-color: @beigeCCN}
 
+
+.linkbox{display:block;margin-top:5px}
+.linkbox a{
+    letter-spacing: 0.2em;
+    text-align: center;
+    display: inline-block;
+    color:#898989;
+    border: 2px solid rgba(137,137,137,0.5);
+    padding:10px 15px;
+    border-radius: 3px;
+    transition:all 0.4s ease 0s;
+    text-transform: uppercase;
+}
+.linkbox a:hover{border-color: rgb(137,137,137)}
+
+
 ////////////////////////////////////////////////////
     ///////////MENU///////////////////
 ///////////////////////////////////////////////////
@@ -435,7 +451,7 @@ span#close:after {
 ///////////////////////////////////////////////////
 .secondary-nav{
   ul{list-style: none}
-  li{display: inline-block; max-width: 200px; vertical-align: middle; line-height: 1.5em; padding: 6px 8px}
+  li{display: inline-block; max-width: 200px; vertical-align: middle; line-height: 1.5em; padding: 6px 16px}
 }
 @media screen and (max-width: @min_sm) {
   .secondary-nav li{max-width: 100%; width:100%}

@@ -225,7 +225,7 @@
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
             stylesSet: [
-               // { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} }
+                 { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} }
             ],
             contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
