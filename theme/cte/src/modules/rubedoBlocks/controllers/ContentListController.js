@@ -257,8 +257,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
     };
     me.getContentLink= function(content) {
         var link="";
-        if (content.fields.unautrenomdetest && content.fields.unautrenomdetest !="") {
-            link = content.fields.unautrenomdetest;
+        if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
+            link = content.fields.propositionReferencee;
         }
         else {
             link = content.detailPageUrl;
