@@ -8,8 +8,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
     var options={
         includeTaxonomy:true
     };
-    me.updateMode=false;
     me.showForm =  angular.copy(me.updateMode);
+
     me.submitStatus=null;
     me.loadContentType=function(ctId){
         RubedoContentTypesService.findById(ctId,options).then(
@@ -43,15 +43,31 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
         RubedoContentsService.getContentById($location.search()["content-edit"],{useDraftMode:true}).then(
             function(ecResponse){
                 if (ecResponse.data.success){
-                    me.existingContent=ecResponse.data.content;
-                    var initialValues=angular.copy(me.existingContent.fields);
-                    initialValues.taxonomy=angular.copy(me.existingContent.taxonomy);
-                    if(angular.element.isEmptyObject(initialValues.taxonomy)){
-                        initialValues.taxonomy={};
+                    // edit seulement les contenus du bon type si un type de contenu est configurŽ
+                    if(config.contentType&&config.contentType!=""){
+                        if(ecResponse.data.content.type.id==config.contentType) {
+                            me.existingContent=ecResponse.data.content;
+                            var initialValues=angular.copy(me.existingContent.fields);
+                            initialValues.taxonomy=angular.copy(me.existingContent.taxonomy);
+                            if(angular.element.isEmptyObject(initialValues.taxonomy)){
+                                initialValues.taxonomy={};
+                            }
+                            $scope.fieldEntity=angular.copy(initialValues);
+                            me.updateMode=true;
+                            me.loadContentType(me.existingContent.type.id);
+                        }
                     }
-                    $scope.fieldEntity=angular.copy(initialValues);
-                    me.updateMode=true;
-                    me.loadContentType(me.existingContent.type.id);
+                    else {
+                        me.existingContent=ecResponse.data.content;
+                        var initialValues=angular.copy(me.existingContent.fields);
+                        initialValues.taxonomy=angular.copy(me.existingContent.taxonomy);
+                        if(angular.element.isEmptyObject(initialValues.taxonomy)){
+                            initialValues.taxonomy={};
+                        }
+                        $scope.fieldEntity=angular.copy(initialValues);
+                        me.updateMode=true;
+                        me.loadContentType(me.existingContent.type.id);
+                    }
                 }
             }
         );
@@ -75,9 +91,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                             me.existingContent.version = response.data.version;
                             $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success", "Success !"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated", "Content updated"));
                             if (config.listPageId){
-                                RubedoPagesService.getPageById(config.listPageId).then(function(response2){
-                                    if (response2.data.success){
-                                        $location.url(response2.data.url);
+                                RubedoPagesService.getPageById(config.listPageId).then(function(response){
+                                    if (response.data.success){
+                                        $location.url(response.data.url);
+                                    }
+                                });
+                            }
+                            else {
+                                RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+                                    if (response.data.success){
+                                        $location.url(response.data.url);
                                     }
                                 });
                             }
@@ -99,6 +122,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 };
                 delete (formData.taxonomy);
                 payLoad.fields=formData;
+                if (me.imagesForAlbum && me.imagesForAlbum.length>0) {
+                    payLoad.fields.images=angular.copy(me.imagesForAlbum);
+                }
                 payLoad.taxonomy.navigation = [];
                 payLoad.taxonomy.navigation[0] = config.listPageId ? config.listPageId : $scope.rubedo.current.page.id;
                 RubedoContentsService.createNewContent(payLoad).then(
@@ -109,9 +135,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                 taxonomy:{}
                             };
                             if (config.listPageId){
-                                RubedoPagesService.getPageById(config.listPageId).then(function(response2){
-                                    if (response2.data.success){
-                                        $location.url(response2.data.url);
+                                RubedoPagesService.getPageById(config.listPageId).then(function(response){
+                                    if (response.data.success){
+                                        $location.url(response.data.url);
+                                    }
+                                });
+                            }
+                            else {
+                                RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+                                    if (response.data.success){
+                                        $location.url(response.data.url);
                                     }
                                 });
                             }
@@ -135,4 +168,80 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
             }
         }
     };
+}]);
+
+
+
+angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
+    var me=this;
+    me.workspace="";
+    me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
+    $scope.ccCtrl.imagesForAlbum=[];
+        if (me.pageId&&mongoIdRegex.test(me.pageId)) {
+            RubedoPagesService.getPageById(me.pageId).then(function(response){
+                if (response.data.success){
+                    me.pageUrl=response.data.url;
+                    $http.get("/api/v1/pages",{
+                        params:{
+                            site:$location.host(),
+                            route:(me.pageUrl).substr(4)
+                        }
+                    }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; }});
+                };
+            });
+        };
+    
+    me.newFiles=null;
+    var nbOfImages = 0;
+    me.progress = 0;
+    me.uploadNewFiles=function(){
+       me.notification=null;
+       me.progress=1;
+       nbOfImages = me.newFiles.length;
+       if ($scope.fieldInputMode&&me.newFiles){
+           var uploadOptions={
+               typeId:"545cd95245205e91168b45b1",
+                target:me.workspace
+           };
+            angular.forEach(me.newFiles, function(file, index) {
+                var options = angular.copy(uploadOptions);
+                if (me.title && me.title!="") {
+                    options.fields={title : me.title+'_'+index};
+                }
+                else {
+                    options.fields={title : file.name};
+                }
+                RubedoMediaService.uploadMedia(file,options).then(
+                    function(response){
+                        if (response.data.success){
+                            var id=response.data.media.id;
+                            ($scope.ccCtrl.imagesForAlbum).push(id);
+                            me.progress += 100* 1/nbOfImages;
+                        } else {
+                            console.log(response);
+                            me.notification={
+                                type:"error",
+                                text:response.data.message
+                            };
+                        }
+                    },
+                    function(response){
+                        console.log(response);
+                        me.notification={
+                            type:"error",
+                            text:response.data.message
+                        };
+                    }
+                );
+            });
+       }
+
+    };
+    if ($scope.fieldInputMode){
+        $element.find('.form-control').on('change', function(){
+            setTimeout(function(){
+                me.uploadNewFiles();
+            }, 200);
+        });
+    }
 }]);
