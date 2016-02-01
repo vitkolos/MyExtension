@@ -699,21 +699,27 @@
         }
     }]);
 
-    module.directive('fileModel', ['$parse', function ($parse) {
+    module.directive('fileModel', ['$parse','$sce', function ($parse,$sce) {
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
                 var model = $parse(attrs.fileModel);
                 var modelSetter = model.assign;
-
+                var isMultiple = attrs.multiple;
                 element.bind('change', function(){
+
                     scope.$apply(function(){
-                        modelSetter(scope, element[0].files[0]);
+                        if (isMultiple) {
+                            modelSetter(scope, element[0].files);
+                        } else {
+                            modelSetter(scope, element[0].files[0]);
+                        }
                     });
                 });
             }
         };
     }]);
+    
 
     module.controller("UserPhotoFieldController",["$scope","RubedoUsersService",function($scope,RubedoUsersService){
         var me=this;
