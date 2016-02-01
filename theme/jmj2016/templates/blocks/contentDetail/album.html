@@ -1,21 +1,210 @@
-<div class="bg-photos padding-tb"><div class="container">
-	<div class="col-sm-6">
-		<h3 class="album-title">{{contentDetailCtrl.content.fields.text | uppercase}}</h3><!--Titre-->
-		<p class="album-desc">{{contentDetailCtrl.content.fields.date* 1000 | date:'d MMM'}} | {{contentDetailCtrl.content.fields.position.address}}</p>
-		<div class="gallery-left" ng-click="contentDetailCtrl.changePage('left')"><span>e</span></div>
-		<div ng-if="contentDetailCtrl.content.images" ng-repeat="image in contentDetailCtrl.content.images | limitTo:contentDetailCtrl.gallery.start+contentDetailCtrl.gallery.nbImages | limitTo:-contentDetailCtrl.gallery.nbImages" class="pull-left gallery-img">
-			<img class="img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id,{width:'150px',height:'100px',mode:'crop'})}}" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"
-			     ng-click="contentDetailCtrl.gallery.currentIndex=contentDetailCtrl.gallery.start+$index"/>
-		</div>
-		<div class="gallery-right" ng-click="contentDetailCtrl.changePage('right')"><span>d</span></div>
 
-	</div>
-	<div class="col-sm-6">
-		<img class="img-responsive img-rounded" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].id)}}"
-		     ng-attr-alt="{{contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].title}}" ng-attr-title="{{contentDetailCtrl.content.images[contentDetailCtrl.gallery.currentIndex].title}}"/>
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<style>
+.modal#rubedoGalleryDetailModal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal#rubedoGalleryDetailModal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal#rubedoGalleryDetailModal .modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.modal#rubedoGalleryDetailModal .prev,
+.modal#rubedoGalleryDetailModal .next {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  margin-top: -23px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 30px;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 0 2px #000;
+  text-align: center;
+  background: #222;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+  border: 3px solid #fff;
+  -webkit-border-radius: 23px;
+     -moz-border-radius: 23px;
+          border-radius: 23px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.modal#rubedoGalleryDetailModal  .next {
+  left: auto;
+  right: 15px;
+}
+
+.modal#rubedoGalleryDetailModal .prev:hover,
+.modal#rubedoGalleryDetailModal .next:hover,
+.modal#rubedoGalleryDetailModal .close{padding: 20px; color:white; font-size: 50px; font-weight: 400;}
+.modal#rubedoGalleryDetailModal .close:hover{opacity: 1; color:white}
+
+.modal#rubedoGalleryDetailModal .modal-body {
+	position: relative;
+	text-align: center;
+	padding: 0 0 60% 0;
+	overflow: hidden;
+	cursor: pointer;
+}
+.modal#rubedoGalleryDetailModal .modal-footer {
+	margin: 0;
+}
+.modal#rubedoGalleryDetailModal .modal-body img {
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.modal#rubedoGalleryDetailModal .modal-dialog{min-width:300px}
+.modal#rubedoGalleryDetailModal{background-color:black}
+@media screen and (min-width: 768px) {
+  .modal#rubedoGalleryDetailModal .modal-dialog {
+    max-width: 1200px;
+  }
+}
+.modal.in#rubedoGalleryDetailModal{z-index:1056}
+.grid{max-width:1200px; margin: 0 auto; display: block}
+/* fluid 5 columns */
+.masonry-brick { width: 99%;margin-bottom: 5px; cursor: pointer}
+@media screen and (min-width: 400px) {.masonry-brick { width: 49%; }}
+@media screen and (min-width: 768px) {.masonry-brick { width: 32%; }}
+@media screen and (min-width: 1200px) {.masonry-brick { width: 23%; }}
+.gutter-sizer{width:5px}
+.img-description {
+    background: #fff;
+    background: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    text-align: center;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    -webkit-transition: opacity 0.4s ease-in-out;
+    -moz-transition: opacity 0.4s ease-in-out;
+    -ms-transition: opacity 0.4s ease-in-out;
+    -o-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
+}
+.img-description:before, .img-description i {
+    display: inline-block;
+    vertical-align: middle;
+}
+.img-description:before {
+    content: '';
+    height: 100%;
+}
+.masonry-brick:hover .img-description{opacity:1}
+.masonry-brick:not(.loaded) .img-description{display: none}
+
+</style>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 ">
+			<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+				<ol class="breadcrumb hidden-xs">
+				    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+				</ol>
+				<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
+			</div>
+		</div>
 	</div>
 </div>
-<div class="clearfix"></div>
+
+<header class="container-fluid" style="margin-bottom: 48px">
+	<div class="text-article container">
+		<p class='capital txt-red' style="text-shadow: none" ng-if="fieldEntity['date']">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}} - {{fieldEntity['lieu']}}</p>
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('date')}}" ng-if="fieldEditMode"></rubedo-field>
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('lieus')}}" ng-if="fieldEditMode"></rubedo-field>
+		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+			<h1 class="text-left" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
+			<h1 ng-if="fieldEditMode"
+			   ng-controller="RTEFieldController as rteFieldCtrl"
+			   ckeditor="editorOptions"
+			   contenteditable="true"
+			   ready="setCKEIsReady()"
+			   ng-model="fieldEntity['text']"
+			   output-plain-text="true"
+			   ng-bind-html="rteFieldCtrl.html">
+			</h1>
+		</div>
+
+	</div>
+</header>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="text-article">
+
+			<div class=" col-xs-12 ">
+
+				<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}"  class="addthis_toolbox socials pull-right" >
+					<!--<a class="addthis_button_facebook_like txt-red" fb:like:layout="button_count"><img class="hidden"><i class="fa fa-thumbs-up" ></i> </a> -->
+					<a class="addthis_button_facebook txt-red"><img class="hidden"><i class="fa fa-facebook-official" data-toggle="tooltip" title="Partager sur Facebook"></i> </a>
+					<a class="addthis_button_twitter txt-red"><img  class="hidden"><i class="fa fa-twitter-square" data-toggle="tooltip" title="Partager sur Twitter"></i> </a>
+					<a class="addthis_button_email txt-red"><img class="hidden"><i class="fa fa-share-square" data-toggle="tooltip" title="Envoyer par mail"></i></a>
+					<a class="addthis_button_expanded txt-red"><img class="hidden"><i class="fa fa-plus-square" data-toggle="tooltip" title="Plus d'options"></i></a>
+					<span class="txt-red capital" style="display: inline-block" ng-if="nbOfLikes>0">{{nbOfLikes}} partages</span>
+				</div>
+				{{contentDetailCtrl.tooltips()}}
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field>
+
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+<div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
+	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.fields.images"  >
+	    <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900px',height:'600px',mode:'boxed'})}}" style="width:100%"/>
+	    <div class="img-description hidden-xs" data-toggle="modal" data-target="#rubedoGalleryDetailModal" ng-click="contentDetailCtrl.loadModal($index)">
+		<i class="fa fa-expand"></i>
+	    </div>
+	</div>
+	<div class="gutter-sizer"></div>
+</div>
+
+
+
+
+<!-- The modal dialog, which will be used to wrap the lightbox content -->
+<div class="modal fade hidden-xs" id="rubedoGalleryDetailModal">
+    <a class="prev" ng-click="contentDetailCtrl.changeImage('left')">‹</a>
+    <a class="next" ng-click="contentDetailCtrl.changeImage('right')">›</a>
+    <a class="close" data-dismiss="modal">×</a>
+    <div class="modal-dialog modal-lg">
+	    <div class="modal-body">
+		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage,{width:'900px',height:'600px',mode:'boxed'})}}"></div>
+
+    </div>
 </div>
 
 
