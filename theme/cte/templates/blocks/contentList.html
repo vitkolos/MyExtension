@@ -28,7 +28,9 @@
                     </div>
                     <div class="col-sm-4 col-xs-12">
                         <h3>
-                            {{content.fields.text}}
+                            <!--{{content.fields.text}}-->
+                            {{content.fields}}
+
                             <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                         </h3>
                        <p  ng-if="!contentListCtrl.titleOnly">
