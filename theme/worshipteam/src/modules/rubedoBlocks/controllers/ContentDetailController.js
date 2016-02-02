@@ -232,6 +232,23 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                         //$http.get(themePath+'/templates/blocks/contentDetail/)
                     }
+                    var allContentTerms=[];
+                    if (me.content.taxonomy){
+                        angular.forEach(me.content.taxonomy,function(value){
+                            if (angular.isString(value)&&value!=""){
+                                allContentTerms.push(value);
+                            } else if (angular.isArray(value)){
+                                allContentTerms=allContentTerms.concat(value);
+                            }
+                        });
+                    }
+                    $rootScope.$broadcast("ClickStreamEvent",{csEvent:"contentDetailView",csEventArgs:{
+                        contentId:me.content.id,
+                        siteId:options.pageId,
+                        pageId:options.siteId,
+                        typeId:me.content.typeId,
+                        taxonomyTerms:allContentTerms
+                    }});
                 }
             }
         );

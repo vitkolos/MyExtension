@@ -222,55 +222,7 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
 .searchbar.displayed{opacity:1;margin-top:0}
  .displayed>.menu .container{opacity:1;margin-top:0;}
   .menu +div{width:100%;top:0;left:0;position:relative;z-index:2;-webkit-transform: translate3d(0, 0, 0);}
-  
-   .retour, .nav-suivant{
-    position:absolute;
-    cursor: pointer;
-    line-height: 100px;
-  }
-  .retour{right:0; top:10%;height: 100px;}
-  .nav-suivant{top:0; right:45%; width:200px}
-  .retour:after{
-    width:50px;
-    height: 100px;
-    border:solid white 5px;
-    border-radius: 100px 0 0 100px;
-    border-right:none;
-    content: '\f061';
-    font-family: 'FontAwesome';
-    display: block;
-    position:absolute;
-    top:0;
-    right:0px;
-    padding-left: 12px;
-    font-size: 25px
-  }
-    .nav-suivant:after{
-    width:100px;
-    height: 50px;
-    border:solid white 5px;
-    border-radius: 0 0 100px 100px;
-    border-top:none;
-    content: '';
-    display: block;
-    position:absolute;
-    top:0;
-    right:50px;
-    padding-bottom: 12px;
-  }
-  .nav-suivant:before{
-    content: '\f062';
-    position: absolute;
-    text-align: center;
-    font-family: 'FontAwesome';
-    font-size: 25px;
-    top:-25px;
-    width:200px;
-  }
-  .nav-suivant.down:before{content: '\f063';}
-  .retour p, .nav-suivant p{.capital;  line-height: 20px; border-top: none !important; vertical-align: middle}
-   .nav-suivant p{text-align: center;padding-top:55px !important;width:200px !important;}
-   .retour p{padding-right:55px;text-align: right; width:150px !important; }
+
    nav.footer a, nav.footer span{font-size: 18px !important; padding: 5px 0; top:5px}
    .menuToggle:before{content:"\2212"}
    .menuToggle.collapsed:before{content:"\2b"}
@@ -499,7 +451,7 @@ span#close:after {
 .text-article span+span.tags:after{content:','; margin-right:5px} // virgule après un tag
 header .text-article h1,header .text-article h3, header .text-article p{text-shadow: 2.5px 2.5px 2.5px rgba(0,0,0,0.33);}
 .text-article p img {max-width:100%; height:auto !important; margin:20px auto; display: block}
-  .text-article iframe{margin-left:auto; margin-right: auto; display: block; }
+.text-article iframe{margin-left:auto; margin-right: auto; display: block; }
 
 blockquote {
  .capital;
