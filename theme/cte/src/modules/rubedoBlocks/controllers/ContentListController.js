@@ -265,7 +265,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
             });
     }
     else if ($scope.content.fields.propositionReferencee && $scope.content.fields.propositionReferencee !="") {
-            $scope.content.contentLinkUrl = content.fields.propositionReferencee;
+            $scope.content.contentLinkUrl = $scope.content.fields.propositionReferencee;
     }
     else $scope.content.contentLinkUrl = $scope.content.detailPageUrl;
     
