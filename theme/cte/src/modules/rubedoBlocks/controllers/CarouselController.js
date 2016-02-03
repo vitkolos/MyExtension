@@ -25,30 +25,23 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
                     setTimeout(function(){me.initCarousel();},100);
                     /*définir l"image de la page (balise meta)*/
                     $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(me.contents[0].fields[blockConfig.imageField],{width:'800px'});
-                    
+                    angular.forEach(me.contents, function(content){
+                        if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !=""){
+                            RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
+                                    if (response.data.success){
+                                        content.contentLinkUrl = response.data.url;;
+                                    }
+                                });
+                        }
+                        else if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
+                                content.contentLinkUrl = content.fields.propositionReferencee;
+                        }
+                        else content.contentLinkUrl = content.detailPageUrl;                        
+                    });
                 }
             }
         );
     };
-    me.getContentLink= function(content) {
-        var link="";
-        if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
-            link = content.fields.propositionReferencee;
-        }
-        else if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !="") {
-            RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
-                if (response.data.success){
-                    link = response.data.url;
-                }
-            });
-            
-        }
-        else {
-            link = content.detailPageUrl;
-        }
-        
-        return link;
-    }
     
     me.initCarousel=function(){
         var targetElSelector="#block"+$scope.block.id;
