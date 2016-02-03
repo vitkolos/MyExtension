@@ -264,9 +264,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
         else if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !="") {
             RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
                 if (response.data.success){
-                    link = response.data.url;
                     console.log(link);
-                    return link;
+                    return response.data.url;
                 }
             });
             
