@@ -259,19 +259,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
         var link="";
         if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
             link = angular.copy(content.fields.propositionReferencee);
+            return link;
         }
         else if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !="") {
             RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
                 if (response.data.success){
                     link = response.data.url;
+                    return link;
                 }
             });
             
         }
         else {
             link =  angular.copy(content.detailPageUrl);
+            return link;
         }
-        return link;
+        
     }
     $scope.content.type = {
         title:

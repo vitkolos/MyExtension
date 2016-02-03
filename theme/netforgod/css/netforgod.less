@@ -284,8 +284,9 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
   position: absolute;
   color: white;
   top: 20%;
-  left: 50%; width: 30%;
+  left: 50%; min-width: 30%;
   background-color: rgba(255,255,255,0.2);
   padding: 24px;
-  a{padding: 6px 12px; border: 2px white solid; border-radius: 6px;color: white; margin-top:12px; }
+  a{padding: 6px 12px; border: 2px white solid; border-radius: 20px; -webkit-border-radius: 20px;color: white; margin-top:12px; }
 }
+@media screen and (max-width:@min_sm){.error-page{left:5%;}}
