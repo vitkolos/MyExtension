@@ -29,6 +29,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
         ),
+         'richText' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/richText.json'
+        ),
         'geoSearchResults' => array(
                'maxlifeTime' => 60,
                'definitionFile' => realpath(__DIR__ . "/blocks/")  . '/geoSearchResults.json'
