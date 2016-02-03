@@ -233,7 +233,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
     }
 }]);
-angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService',function($scope,$compile,RubedoContentsService){
+angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService','RubedoPagesService',function($scope,$compile,RubedoContentsService,RubedoPagesService){
     var me = this;
     me.index = $scope.$index;
     me.parentIndex = $scope.columnIndex;
@@ -259,6 +259,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
         var link="";
         if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
             link = content.fields.propositionReferencee;
+        }
+        else if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !="") {
+            RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
+                if (response.data.success){
+                    link = response.data.url;
+                }
+            });
+            
         }
         else {
             link = content.detailPageUrl;

@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
+angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","RubedoContentsService","RubedoPagesService",function($scope,RubedoContentsService,RubedoPagesService){
     var me=this;
     me.contents=[];
     var blockConfig=$scope.blockConfig;
@@ -35,9 +35,18 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
         if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
             link = content.fields.propositionReferencee;
         }
+        else if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !="") {
+            RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
+                if (response.data.success){
+                    link = response.data.url;
+                }
+            });
+            
+        }
         else {
             link = content.detailPageUrl;
         }
+        
         return link;
     }
     
