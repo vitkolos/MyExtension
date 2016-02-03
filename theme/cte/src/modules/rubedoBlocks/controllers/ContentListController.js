@@ -258,7 +258,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
     me.getContentLink= function(content) {
         var link="";
         if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
-            link = content.fields.propositionReferencee;
+            link = angular.copy(content.fields.propositionReferencee);
         }
         else if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !="") {
             RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
@@ -269,7 +269,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
             
         }
         else {
-            link = content.detailPageUrl;
+            link =  angular.copy(content.detailPageUrl);
         }
         return link;
     }
