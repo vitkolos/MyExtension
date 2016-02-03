@@ -277,6 +277,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
         
     }
     $scope.content.contentLinkUrl = me.getContentLink($scope.content);
+    console.log($scope.content);
     $scope.content.type = {
         title:
         {
