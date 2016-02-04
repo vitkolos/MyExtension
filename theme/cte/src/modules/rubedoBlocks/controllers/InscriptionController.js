@@ -41,10 +41,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     }
     $scope.personneConnue = angular.copy(me.form.personneConnue);//vrai si formulaire pour personnes connues -> seulement nom, prénom et mail
     
-    // s'il y a des questions complémentaires, les récupérer
-    if (me.content.fields.questions && (me.content.fields.questions).length>0) {
-        me.getQuestions();
-    }
+    
     // questions complémentaires ?
     if ( me.form.jai_connu) {me.isComplement = true;}
     if (((me.content.fields.paimentOption)&&(me.content.fields.paimentOption.paimentOption) && ((me.content.fields.paimentOption.paimentOption).length>0)) || me.content.fields.accompte>0) {me.isPaiement = true}
@@ -214,7 +211,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             return  !($scope.inscription.tel1 || $scope.inscription.tel2); // au moins téléphone fixe ou portable
     };
 
-
+// s'il y a des questions complémentaires, les récupérer
+    if (me.content.fields.questions && (me.content.fields.questions).length>0) {
+        me.getQuestions();
+    }
+    
+    
     me.currentStage = 1;
  // affichage des sections du formulaire
     me.toggleStage = function(newStage){
