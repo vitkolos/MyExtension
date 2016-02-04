@@ -16,7 +16,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var propositionDate = "du "+$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate') + " à " + me.content.fields.heureDebut + " au " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate') + " à " + me.content.fields.heureFin;
 
     
-    var formId = me.content.fields.formulaire;
     //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
         $scope.inscription.public_type=newValue;
@@ -25,7 +24,37 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         $scope.inscription.serviteur=newValue;
     });
     me.form={};
-    me.fields={};
+    
+    
+    
+    // check infos complémentaires
+    if ((me.content.fields.questions1) && me.content.fields.questions1.questions1 && ((me.form.content.questions1.questions1).length>0)) {
+        if(typeof me.content.fields.questions1.questions1 =='string') {
+            me.form[me.form.fields.questions1.questions1] = true;
+        }
+        else {
+            angular.forEach(me.content.fields.questions1.questions1, function(option, key){
+                me.form[option] = true;
+            });
+        }
+    }
+    $scope.personneConnue = angular.copy(me.form.personneConnue);//vrai si formulaire pour personnes connues -> seulement nom, prénom et mail
+    // s'il y a des questions complémentaires, les récupérer
+    if ((me.content.fields.questions).length>0) {
+        me.getQuestions();
+    }
+    // questions complémentaires ?
+    if ( me.form.jai_connu) {me.isComplement = true;}
+    if ( (me.form.fields.transport) && (me.form.fields.transport.transport) &&((me.form.fields.transport.transport).length>1) && (typeof me.form.fields.transport.transport != 'string') ) {me.isTransport = true;}
+    if (((me.content.fields.paimentOption)&&(me.content.fields.paimentOption.paimentOption) && ((me.content.fields.paimentOption.paimentOption).length>0)) || me.content.fields.accompte>0) {me.isPaiement = true}
+    if (( typeof me.content.fields.paimentOption.paimentOption =='string')) {
+        me.content.fields.paimentOption.paimentOption = {0 : me.content.fields.paimentOption.paimentOption};
+    }          
+    
+    
+    
+    
+    
     var options = {
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id
@@ -39,7 +68,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.removeChild = function(index){
         $scope.inscription.enfants.splice(index, 1);
     };
-    console.log($scope.rubedo.current.user);
     if ($scope.rubedo.current.user) {
         $scope.inscription=angular.copy($scope.rubedo.current.user.fields);
         $scope.inscription.email = $scope.rubedo.current.user.email;
@@ -48,55 +76,17 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         $scope.inscription.birthdateF = $filter('date')( $scope.inscription.birthdate,'dd/MM/yyyy')
     }
     
-    $scope.personneConnue = false;
-    //pour récupérer les champs du formulaire
-    me.getFormulaire = function (contentId){
-        RubedoContentsService.getContentById(contentId, options).then(function(response){
-            if (response.data.success){
-                me.form = response.data.content;
-                $scope.fieldEntity=angular.copy(me.form.fields);
-                $scope.personneConnue= me.form.fields.personneConnue; //vrai si formulaire pour personnes connues -> seulement nom, prénom et mail
+    
 
-                //get fields infos
-                angular.forEach(me.form.type.fields, function(field){
-                    me.fields[field.config.name] = field;
-                });
-
-                // check infos complémentaires
-                if ((me.form.fields.questions1) && me.form.fields.questions1.questions1 && ((me.form.fields.questions1.questions1).length>0)) {
-                    if(typeof me.form.fields.questions1.questions1 =='string') {
-                        me.form[me.form.fields.questions1.questions1] = true;
-                    }
-                    else {
-                        angular.forEach(me.form.fields.questions1.questions1, function(option, key){
-                            me.form[option] = true;
-                        });
-                    }
-                }
-                // s'il y a des questions complémentaires, les récupérer
-                if ((me.form.fields.questions).length>0) {
-                    me.getQuestions();
-                }
-                // questions complémentaires ?
-                if ( me.form.jai_connu) {me.isComplement = true;}
-                if ( (me.form.fields.transport) && (me.form.fields.transport.transport) &&((me.form.fields.transport.transport).length>1) && (typeof me.form.fields.transport.transport != 'string') ) {me.isTransport = true;}
-                if (((me.content.fields.paimentOption)&&(me.content.fields.paimentOption.paimentOption) && ((me.content.fields.paimentOption.paimentOption).length>0)) || me.content.fields.accompte>0) {me.isPaiement = true}
-                if (( typeof me.content.fields.paimentOption.paimentOption =='string')) {
-                    me.content.fields.paimentOption.paimentOption = {0 : me.content.fields.paimentOption.paimentOption};
-                }                
-            }
-        });
-    };
     /*get fields for inscription*/
     me.getFieldByName=function(name){
         var field=null;
-        if (me.form && me.form.type) {
-            angular.forEach(me.form.type.fields,function(candidate){
-                if (candidate.config.name==name){
-                    field=candidate;
-                }
-            });
-        }
+
+        angular.forEach(me.content.type.fields,function(candidate){
+            if (candidate.config.name==name){
+                field=candidate;
+            }
+        });
         
         return field;
     };
@@ -128,7 +118,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             "logement":[],
             "generale":[]
         };
-        angular.forEach(me.form.fields.questions, function(questionId){
+        angular.forEach(me.content.fields.questions, function(questionId){
             RubedoContentsService.getContentById(questionId, options).then(function(response){
                 if (response.data.success){
                     var questionReponse= response.data.content;
