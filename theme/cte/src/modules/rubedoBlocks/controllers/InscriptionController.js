@@ -42,7 +42,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.personneConnue = angular.copy(me.form.personneConnue);//vrai si formulaire pour personnes connues -> seulement nom, prénom et mail
     
     // s'il y a des questions complémentaires, les récupérer
-    if ((me.content.fields.questions).length>0) {
+    if (me.content.fields.questions && (me.content.fields.questions).length>0) {
         me.getQuestions();
     }
     // questions complémentaires ?
@@ -120,8 +120,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         me.form.questions={
             "complementaires":[],
             "transport":[],
-            "logement":[],
-            "generale":[]
+            "logement":[]/*,
+            "generale":[]*/
         };
         angular.forEach(me.content.fields.questions, function(questionId){
             RubedoContentsService.getContentById(questionId, options).then(function(response){
@@ -131,7 +131,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         case "complementaire": me.form.questions.complementaires.push({"text":questionReponse.text, "fields":questionReponse.fields}); me.isComplement = true; break;
                         case "transport": me.form.questions.transport.push({"text":questionReponse.text, "fields":questionReponse.fields}); me.isTransport = true; break;
                         case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields});me.isLogement = true;  break;
-                        case "generale": me.form.questions.generale.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
+                        //case "generale": me.form.questions.generale.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                     };
                   
 
