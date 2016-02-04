@@ -74,8 +74,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         $scope.inscription=angular.copy($scope.rubedo.current.user.fields);
         $scope.inscription.email = $scope.rubedo.current.user.email;
         $scope.inscription.email_verif = $scope.rubedo.current.user.email;
-        $scope.inscription.birthdate=new Date($scope.rubedo.current.user.fields.birthdate * 1000).toISOString();
-        $scope.inscription.birthdateF = $filter('date')( $scope.inscription.birthdate,'dd/MM/yyyy')
+        if ($scope.rubedo.current.user.fields.birthdate) {
+            $scope.inscription.birthdate=new Date($scope.rubedo.current.user.fields.birthdate * 1000).toISOString();
+            $scope.inscription.birthdateF = $filter('date')( $scope.inscription.birthdate,'dd/MM/yyyy');
+        }
+        
     }
     
     
