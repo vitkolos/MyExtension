@@ -15,8 +15,7 @@ CKEDITOR.editorConfig = function( config ) {
 };
 
 CKEDITOR.stylesSet.add( 'my_styles', [
-    { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} },
-    { name: 'Texte capitales', element: 'p', attributes: { 'style': 'text-transform: uppercase'} }
+    { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} }
 ] );
 
 
