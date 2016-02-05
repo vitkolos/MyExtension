@@ -14,6 +14,7 @@
  * @copyright  Copyright (c) 2012-2014 WebTales (http://www.webtales.fr)
  * @license    http://www.gnu.org/licenses/gpl.html Open Source GPL 3.0 license
  */
+
 namespace RubedoAPI\Rest\V1;
 use Rubedo\Collection\AbstractLocalizableCollection;
 use Rubedo\Services\Manager;
@@ -196,15 +197,16 @@ class AcnproductResource extends AbstractResource
      */
     public function getEntityAction($id, $params)
     {
-        $filter = Filter::factory('Value')->setName('id')->setValue($id);
+        $filter = Filter::factory('Value')->setName('productProperties.sku')->setValue("1155022489");
 
         $contentsService = Manager::getService("Contents");
         //$content = $contentsService->getContentList($filter);
         
-        $contentArray = $this->getContentsCollection()->getOnlineList($filter);
+        //$contentArray = $contentsService->getList($filter);
         
         
         //$content = $this->getContentsCollection()->findById($id, $getLive, false);
+        $content = $this->getContentsCollection()->getOnlineList($filter,null, null, null);
         //$content = Manager::getService('Contents')->findOne($filter,false);
         return [
             'success' => true,
