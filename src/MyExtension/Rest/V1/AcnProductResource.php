@@ -72,7 +72,7 @@ class AcnproductResource extends AbstractResource
     {
         $codeBarre=$params['codeBarre'];
         $filters = Filter::factory();
-        $filters->addFilter(Filter::factory('Value')->setName('fields.codeBarre')->setValue($codeBarre));
+        $filters->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
         $content = $this->contentsService->getList($filters);
 
         
