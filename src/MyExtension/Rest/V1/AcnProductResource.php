@@ -200,8 +200,10 @@ class AcnproductResource extends AbstractResource
         if (isset($params['useDraftMode'])){
             $getLive=false;
         }
+        $filter = Filter::factory('Value');
+        $filter->setValue($id)->setName('productProperties.sku');
         //$content = $this->getContentsCollection()->findById($id, $getLive, false);
-        $content = $this->getContentsCollection()->findOne(array('productProperties.sku' => $id));
+        $content = $this->getContentsCollection()->findOne($filter);
         if (empty($content)) {
             throw new APIEntityException('Content not found', 404);
         }
