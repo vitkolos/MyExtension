@@ -21,7 +21,7 @@ use RubedoAPI\Exceptions\APIRequestException;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
 /**
- * Class TaxonomiesResource
+ * Class AcnproductResource
  * @package RubedoAPI\Rest\V1
  */
 class AcnproductResource extends AbstractResource
