@@ -206,7 +206,7 @@ class AcnproductResource extends AbstractResource
         
         
         //$content = $this->getContentsCollection()->findById($id, $getLive, false);
-        $content = $this->getContentsCollection()->getOnlineList($filter,null, null, null);
+        $content = $this->getContentsCollection()->getOnlineList($filter);
         //$content = Manager::getService('Contents')->findOne($filter,false);
         return [
             'success' => true,
