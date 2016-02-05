@@ -24,7 +24,6 @@ use RubedoAPI\Exceptions\APIEntityException;
 use RubedoAPI\Exceptions\APIRequestException;
 use WebTales\MongoFilters\Filter;
 use Rubedo\Content\Context;
-use WebTales\MongoFilters\IFilter;
 /**
  * Class ContentsResource
  * @package RubedoAPI\Rest\V1
@@ -200,7 +199,11 @@ class AcnproductResource extends AbstractResource
         $filter = Filter::factory('Value')->setName('id')->setValue($id);
 
         $contentsService = Manager::getService("Contents");
-        $content = $contentsService->findOne($filter);
+        //$content = $contentsService->getContentList($filter);
+        
+        $contentArray = $this->getContentsCollection()->getOnlineList($filter);
+        
+        
         //$content = $this->getContentsCollection()->findById($id, $getLive, false);
         //$content = Manager::getService('Contents')->findOne($filter,false);
         return [
