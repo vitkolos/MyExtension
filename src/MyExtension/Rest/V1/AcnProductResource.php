@@ -25,7 +25,7 @@ use RubedoAPI\Exceptions\APIRequestException;
 use WebTales\MongoFilters\Filter;
 use Rubedo\Content\Context;
 /**
- * Class ContentsResource
+ * Class AcnproductResource
  * @package RubedoAPI\Rest\V1
  */
 class AcnproductResource extends AbstractResource
