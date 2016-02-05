@@ -196,7 +196,7 @@ class AcnproductResource extends AbstractResource
      */
     public function getEntityAction($id, $params)
     {
-        $filter = Filter::factory('Value')->setName('productProperties.sku')->setValue($id);
+        $filter = Filter::factory('Value')->setName('id')->setValue($id);
 
        
         //$content = $this->getContentsCollection()->findById($id, $getLive, false);
