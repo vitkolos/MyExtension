@@ -14,7 +14,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 };
 
-CKEDITOR.stylesSet.add( 'my_styles', [
+CKEDITOR.stylesSet.add( 'default', [
     { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} }
 ] );
 
