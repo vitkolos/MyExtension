@@ -201,7 +201,7 @@ class AcnproductResource extends AbstractResource
             $getLive=false;
         }
         //$content = $this->getContentsCollection()->findById($id, $getLive, false);
-        $content = $this->getContentsCollection()->find({ 'productProperties.sku': $id });
+        $content = $this->getContentsCollection()->find(array('productProperties.sku' => $id));
         if (empty($content)) {
             throw new APIEntityException('Content not found', 404);
         }
