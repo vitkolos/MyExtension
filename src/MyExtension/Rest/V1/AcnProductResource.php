@@ -203,7 +203,7 @@ class AcnproductResource extends AbstractResource
         //$content = Manager::getService('Contents')->findOne($filter,false);
         return [
             'success' => true,
-            'content' => Manager::getService('Contents')->findOne($filter)
+            'content' => Manager::getService('Products')->findOne($filter)
         ];
     }
     /**
