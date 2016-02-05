@@ -46,17 +46,17 @@ class AcnproductResource extends AbstractResource
             ->setDescription('Deal with taxonomy')
             ->editVerb('get', function (VerbDefinitionEntity &$entity) {
                 $entity
-                    ->setDescription('Get taxonomy terms')
+                    ->setDescription('Get produit de la boutique par code barre')
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('codeBarre')
                             ->setRequired()
-                            ->setDescription('Taxonomy vocabularies to use')
+                            ->setDescription('Code barre / sku')
                     )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('content')
-                            ->setDescription('Taxonomy terms array for selected vocabularies')
+                            ->setDescription('Produit de la boutique')
                     );
             });
             $this->contentsService = Manager::getService('Contents');
@@ -71,9 +71,16 @@ class AcnproductResource extends AbstractResource
     public function getAction($params)
     {
         $codeBarre=$params['codeBarre'];
-        $filters = Filter::factory();
-        $filters->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
-        $content = $this->contentsService->getList($filters);
+        $findFilter = Filter::Factory();
+        //
+        $filter =
+        Filter::factory('Value')->setName('typeId')->setValue("55c87ae245205e8019c62e08");       // type de contenus boutique
+   	$findFilter->addFilter($filter);
+        
+        $filter = Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre);
+        $findFilter->addFilter($filter);	   
+
+        $content = $this->contentsService->findOne($findFilter,true,false);
 
         
         
