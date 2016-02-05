@@ -201,10 +201,10 @@ class AcnproductResource extends AbstractResource
        
         //$content = $this->getContentsCollection()->findById($id, $getLive, false);
         $content = Manager::getService('Contents')->findOne($filter,false);
-        
+        var_dump($content);
         return [
             'success' => true,
-            'content' => $content,
+            'content' => $content
         ];
     }
     /**
