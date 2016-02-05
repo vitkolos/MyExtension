@@ -28,7 +28,7 @@ use Rubedo\Content\Context;
  * Class ContentsResource
  * @package RubedoAPI\Rest\V1
  */
-class AcnProductResource extends AbstractResource
+class AcnproductResource extends AbstractResource
 {
     /**
      * Cache lifetime for api cache (only for get and getEntity)
