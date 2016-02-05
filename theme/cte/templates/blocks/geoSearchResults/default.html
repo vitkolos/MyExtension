@@ -13,7 +13,7 @@
     </div>
 </nav>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-3" ng-if="blockConfig.activateSearch">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <form ng-submit="geoSearchResultsCtrl.onSubmit()" role="form">
