@@ -196,16 +196,13 @@ class AcnproductResource extends AbstractResource
      */
     public function getEntityAction($id, $params)
     {
-        $filter = Filter::factory('Value')->setName('id')->setValue($id);
+ 
+        $filter = Filter::factory('Uid');
+        $filter->setValue($id);
+        return Manager::getService('Contents')->findOne($filter);
+                //$content = $this->getContentsCollection()->findById($id, $getLive, false);
+        //$content = Manager::getService('Contents')->findOne($filter,false);
 
-       
-        //$content = $this->getContentsCollection()->findById($id, $getLive, false);
-        $content = Manager::getService('Contents')->findOne($filter,false);
-        var_dump($content);
-        return [
-            'success' => true,
-            'content' => $content
-        ];
     }
     /**
      * Define the resource
