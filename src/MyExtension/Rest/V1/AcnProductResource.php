@@ -199,10 +199,12 @@ class AcnproductResource extends AbstractResource
  
         $filter = Filter::factory('Uid');
         $filter->setValue($id);
-        return Manager::getService('Contents')->findOne($filter);
                 //$content = $this->getContentsCollection()->findById($id, $getLive, false);
         //$content = Manager::getService('Contents')->findOne($filter,false);
-
+        return [
+            'success' => true,
+            'content' => Manager::getService('Contents')->findOne($filter)
+        ];
     }
     /**
      * Define the resource
