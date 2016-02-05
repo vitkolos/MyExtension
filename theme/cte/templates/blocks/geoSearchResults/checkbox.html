@@ -1,19 +1,6 @@
-<!--<nav class="navbar navbar-default">
-    <div class="navbar-header">
-            <span class="navbar-brand">Search criteria :
-                <span ng-repeat-start="term in geoSearchResultsCtrl.notRemovableTerms">{{term.operator}}</span><span
-                        class="badge" ng-repeat-end>
-                    {{term.label}}
-                </span><span ng-repeat-start="term in geoSearchResultsCtrl.activeTerms">{{term.operator}}</span>
-                <span class="badge cursor-as-pointer" ng-repeat-end
-                      ng-click="geoSearchResultsCtrl.clickOnFacets(term.facetId, term.term)">
-                    {{term.label}}&nbsp;&times;
-                </span>
-            </span>
-    </div>
-</nav>-->
+
 <div class="row full_page">
-    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map.html'">
+    <div class="col-xs-12 col-sm-7 col-md-6 col-lg-5" ng-include="rubedo.themePath+'/templates/blocks/geoSearchResults/map_all.html'">
     </div>
     <div class="col-xs-12 col-sm-5 col-md-6 col-lg-7 " style="padding-right:0">
         <div class="row">
@@ -36,16 +23,7 @@
                         <div class="panel-heading actus"  ng-class="{'panel-hidden' :!propDisplayed }" ng-click="propDisplayed = !propDisplayed">Evénements</div>
                         <div class="panel-body">
                             <ul class="search-tags">
-                                <!--
-                                <li class="cursor-as-pointer" ng-if="facet.terms" ng-repeat="term in facet.terms" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
-                                    <input ng-class="{'disabled':searchResultsCtrl.disabled(term.term)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.term)"/>
-                                    {{term.label}}&nbsp;({{term.count}})
-                                </li>
-                                <li class="cursor-as-pointer" ng-if="facet.ranges && term.count > 0" ng-repeat="term in facet.ranges" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.from)">
-                                    <input ng-class="{'disabled':searchResultsCtrl.disabled(term.from)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.from)"/>
-                                    {{term.label}}&nbsp;({{term.count}})
-                                </li>
-                        -->
+                                
                                  <li class="tags" >
                                     couples, familles
                                 </li>
@@ -72,16 +50,7 @@
                         <div class="panel-heading actus "  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">Lieux</div>
                         <div class="panel-body">
                             <ul class="search-tags">
-                                <!--
-                                <li class="cursor-as-pointer" ng-if="facet.terms" ng-repeat="term in facet.terms" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
-                                    <input ng-class="{'disabled':searchResultsCtrl.disabled(term.term)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.term)"/>
-                                    {{term.label}}&nbsp;({{term.count}})
-                                </li>
-                                <li class="cursor-as-pointer" ng-if="facet.ranges && term.count > 0" ng-repeat="term in facet.ranges" ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.from)">
-                                    <input ng-class="{'disabled':searchResultsCtrl.disabled(term.from)}" type="checkbox" ng-checked="searchResultsCtrl.checked(term.from)"/>
-                                    {{term.label}}&nbsp;({{term.count}})
-                                </li>
-                        -->
+                                
                                  <li class="cursor-as-pointer resultData"  ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', '555a166145205e6f0b7e6891')">
                                     <input  type="checkbox" ng-checked="geoSearchResultsCtrl.checkedRadio('555a166145205e6f0b7e6891')"><span>Abbayes</span>
                                 </li>
