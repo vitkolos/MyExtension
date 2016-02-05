@@ -23,25 +23,13 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             me.activatePlacesSearch=true;
             me.placesSearchTemplate=themePath+"/templates/blocks/geoSearchResults/placesSearch.html";
         }
-        var clusterStyles = [
-          {
-            textColor: 'white',
-            url: '/theme/cte/img/icons/cluster-02.png',
-            height: 60,
-            width: 60
-          },
-        ];
         //clustering options
         me.clusterOptions={
             batchSize : 20000,
             averageCenter : false,
-            gridSize : 40,
+            gridSize : 60,
             zoomOnClick:false,
-            batchSizeIE : 20000,
-            /*maxZoom : 15,*/
-            enableRetinaIcons :true,
-            styles : clusterStyles
-           
+            batchSizeIE : 20000
         };
         //api clustering options
         me.apiClusterOptions={
@@ -49,8 +37,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             averageCenter : false,
             minimumClusterSize:1,
             zoomOnClick:false,
-            maxZoom : 15,
-            styles : clusterStyles,
             calculator:function (markers, numStyles) {
                 var index = 0;
                 var count = 0;
@@ -70,7 +56,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     index: index
                 };
             },
-            gridSize : 40,
+            gridSize : 60,
             batchSizeIE : 20000
         };
         //set initial map center
@@ -80,8 +66,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     latitude:position.coords.latitude,
                     longitude:position.coords.longitude
                 };
-                me.getLocationCenter();
-
             }, function() {
                 //handle geoloc error
             });
@@ -94,8 +78,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         latitude:results[0].geometry.location.lat(),
                         longitude:results[0].geometry.location.lng()
                     };
-                    me.getLocationCenter();
-
                 }
             });
 
@@ -104,40 +86,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 latitude:config.centerLatitude,
                 longitude:config.centerLongitude
             };
-            me.getLocationCenter();
-
         }
-        me.getLocationCenter = function(){
-            me.geocoder.geocode(
-                            {
-                                'latLng' : new google.maps.LatLng(me.map.center.latitude, me.map.center.longitude)
-                            },
-                            function(results, status) {
-                                if (status == google.maps.GeocoderStatus.OK) {
-                                    if (results[1]) {
-        
-                                        var arrAddress = results;
-                                        // iterate through address_component array
-                                        $
-                                                .each(
-                                                        arrAddress,
-                                                        function(i, address_component) {
-        
-                                                            if (address_component.types[0] == "locality") {
-                                                                me.city =address_component.address_components[0].long_name;
-                                                            }
-                                                            if (address_component.types[0] == "country") {me.city +=", "+address_component.address_components[0].long_name}
-                                                        });
-        
-                                    } else {
-                                        /*alert("No results found");*/
-                                    }
-                                } else {
-                                   /* alert("Geocoder failed due to: " + status);*/
-                                }
-                            });
-        }
-        
         //map control object recieves several control methods upon map render
         me.mapControl={ };
         //map events
@@ -146,7 +95,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             "bounds_changed": function (map) {
                 clearTimeout(me.mapTimer);
                 me.mapTimer = setTimeout(function() {
-                    me.searchByQuery(me.options);
+                    me.searchByQuery(options);
                 }, 300);
             }
         };
@@ -176,12 +125,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             click: function(cluster){
                 var map=cluster.getMap();
                 map.setCenter(cluster.getCenter());
-                map.setZoom(map.getZoom()+3); // zoom +3 if big clusters
+                map.setZoom(map.getZoom()+2);
             }
         };
         me.smallClusterEvents= {
             click: function(cluster,markers){
-                if (cluster.getMap().getZoom()>15){
+                if (cluster.getMap().getZoom()>19){
                     var targetId=markers[0].id;
                     var markerHolder=cluster.getMarkerClusterer().getMarkers().get(targetId);
 
@@ -206,7 +155,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 } else {
                     var map=cluster.getMap();
                     map.setCenter(cluster.getCenter());
-                    map.setZoom(map.getZoom()+5);  // zoom +5 if small clusters
+                    map.setZoom(map.getZoom()+2);
                 }
             }
         };
@@ -219,11 +168,11 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             me.template = themePath+"/templates/blocks/geoSearchResults/map.html";
         }
         var predefinedFacets = config.predefinedFacets==""?{}:JSON.parse(config.predefinedFacets);
-        var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','query'];
+        var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
         if (config.displayedFacets=="all"){
             config.displayedFacets="['all']";
         }
-        me.options = {
+        var defaultOptions = {
             start: me.start,
             limit: me.limit,
             constrainToSite: config.constrainToSite,
@@ -231,52 +180,44 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             displayMode: config.displayMode,
             displayedFacets: config.displayedFacets,
             pageId: $scope.rubedo.current.page.id,
-            siteId: $scope.rubedo.current.site.id,
-            taxonomies:{}
+            siteId: $scope.rubedo.current.site.id
         };
         if (config.singlePage){
-            me.options.detailPageId = config.singlePage;
+            defaultOptions.detailPageId = config.singlePage;
         }
-        /*var options = angular.copy(defaultOptions);*/
+        var options = angular.copy(defaultOptions);
         var parseQueryParamsToOptions = function(){
             angular.forEach($location.search(), function(queryParam, key){
                 if(typeof queryParam !== "boolean"){
                     if(key == 'taxonomies'){
-                        me.options[key] = JSON.parse(queryParam);
+                        options[key] = JSON.parse(queryParam);
                     } else {
                         if(key == 'query'){
-                            me.options.query = queryParam;
+                            me.query = queryParam;
                         }
-                        me.options[key] = queryParam;
+                        options[key] = queryParam;
                     }
                 }
             });
         };
         if(predefinedFacets.query) {
-            me.options.query  = predefinedFacets.query;
+            me.query = options.query = predefinedFacets.query;
             $location.search('query',me.query);
         }
         $scope.$on('$routeUpdate', function(scope, next, current) {
-            me.options.start = me.start;
-            me.options.limit = me.limit;
+            options = angular.copy(defaultOptions);
+            options.start = me.start;
+            options.limit = me.limit;
             parseQueryParamsToOptions();
-            me.searchByQuery(me.options, true);
+            me.searchByQuery(options, true);
         });
         me.checked = function(term){
             var checked = false;
             angular.forEach(me.activeTerms,function(activeTerm){
-                checked = activeTerm.term==term;
-            });
-            return checked;
-        };
-        me.checkedRadio = function(term){
-            var checked = false;
-           angular.forEach(me.options.taxonomies,function(taxonomy){
-                for (var i = 0; i < taxonomy.length; i++) {
-
-                    if (taxonomy[i] == term) { checked=true;}
+                if (!checked){
+                    checked = activeTerm.term==term;
                 }
-            });            
+            });
             return checked;
         };
         me.disabled = function(term){
@@ -287,73 +228,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         me.onSubmit = function(){
             me.start = 0;
-            me.options.start = me.start;
-            me.options.limit = me.limit;
-            me.options.query = me.query;
-            me.searchByQuery(me.options, true);
+            options = angular.copy(defaultOptions);
+            options.start = me.start;
+            options.limit = me.limit;
+            options.query = me.query;
+            $location.search('query',me.query);
         };
-        
-        me.clickOnFacetsRadio = function(facetId,term){
-            // si la taxonomie est déjà présente
-            if (me.options.taxonomies[facetId]) {
-                var del=false;
-                //vérifier si la facette demandée est déjà présente
-                for (var i = 0; i < me.options.taxonomies[facetId].length; i++) {
-                    if (me.options.taxonomies[facetId][i] == term) {
-                        del=true;
-                    }
-                }
-                // si présente, alors supprimer la taxonomie
-                if (del) {
-                   me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
-                }
-                // si nouvelle facette, supprimer l'ancienne valeur et l'ajouter
-                else {
-                    me.options.taxonomies[facetId]=[];
-                     me.options.taxonomies[facetId].push(term);
-                }
-            }
-
-            // si la taxonomie n'est pas présente
-            else {
-                //reset taxonomies : supprimer toutes les autres taxos présentes
-                me.options.taxonomies={};
-                me.options.taxonomies[facetId] = [];//créer taxonomie
-                me.options.taxonomies[facetId].push(term);// ajouter facette
-           }
-            me.searchByQuery(me.options, true);
-        }        
-        me.clickOnFacetsCheckbox = function(facetId,term){
-            // si la taxonomie est déjà présente
-            if (me.options.taxonomies[facetId]) {
-                var del=false;
-                //vérifier si la facette demandée est déjà présente
-                for (var i = 0; i < me.options.taxonomies[facetId].length; i++) {
-                    if (me.options.taxonomies[facetId][i] == term) {
-                        del=true;
-                    }
-                }
-                // si présente, alors supprimer la taxonomie
-                if (del) {
-                   me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
-                }
-                // si nouvelle facette de la même taxonomie, l'ajouter
-                else {
-                     me.options.taxonomies[facetId].push(term);
-                }
-            }
-
-            // si la taxonomie n'est pas présente
-            else {
-                //reset taxonomies : supprimer toutes les autres taxos présentes
-                me.options.taxonomies={};
-                me.options.taxonomies[facetId] = [];//créer taxonomie
-                me.options.taxonomies[facetId].push(term);// ajouter facette
-           }
-            me.searchByQuery(me.options, true);
-        }        
-        
-        
         me.clickOnFacets =  function(facetId,term){
             var del = false;
             angular.forEach(me.activeTerms,function(activeTerm){
@@ -363,28 +243,28 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             });
             if(del){
                 if(facetsId.indexOf(facetId)==-1){
-                    me.options.taxonomies[facetId].splice(me.options.taxonomies[facetId].indexOf(term),1);
+                    options.taxonomies[facetId].splice(options.taxonomies[facetId].indexOf(term),1);
                     if(options.taxonomies[facetId].length == 0){
                         delete options.taxonomies[facetId];
                     }
-                    if(Object.keys(me.options['taxonomies']).length == 0){
+                    if(Object.keys(options['taxonomies']).length == 0){
                         $location.search('taxonomies',null);
                     } else {
-                        $location.search('taxonomies',JSON.stringify(me.options.taxonomies));
+                        $location.search('taxonomies',JSON.stringify(options.taxonomies));
                     }
                 } else if (facetId == 'query') {
                     $location.search('query',null);
-                    delete me.options.query;
-                } else if(facetId == 'lastupdatetime') {
-                    delete me.options[facetId];
+                    delete options.query;
+                } else if(facetId == 'lastupdatetime'||facetId == 'price'||facetId == 'inStock') {
+                    delete options[facetId];
                     $location.search(facetId,null);
                 } else {
-                    if(angular.isArray(me.options[facetId+'[]'])){
-                        me.options[facetId+'[]'].splice(me.options[facetId+'[]'].indexOf(term),1);
+                    if(angular.isArray(options[facetId+'[]'])){
+                        options[facetId+'[]'].splice(options[facetId+'[]'].indexOf(term),1);
                     } else {
-                        delete me.options[facetId+'[]'];
+                        delete options[facetId+'[]'];
                     }
-                    if(!me.options[facetId+'[]'] || me.options[facetId+'[]'].length == 0){
+                    if(!options[facetId+'[]'] || options[facetId+'[]'].length == 0){
                         $location.search(facetId+'[]',null)
                     } else {
                         $location.search(facetId+'[]',options[facetId+'[]']);
@@ -392,27 +272,27 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 }
             } else {
                 if(facetsId.indexOf(facetId)==-1){
-                    if(!me.options.taxonomies){
-                        me.options.taxonomies = {};
+                    if(!options.taxonomies){
+                        options.taxonomies = {};
                     }
-                    if(!me.options.taxonomies[facetId]){
-                        me.options.taxonomies[facetId] = [];
+                    if(!options.taxonomies[facetId]){
+                        options.taxonomies[facetId] = [];
                     }
-                    me.options.taxonomies[facetId].push(term);
-                    $location.search('taxonomies',JSON.stringify(me.options.taxonomies));
-                } else if(facetId == 'lastupdatetime') {
-                    me.options[facetId] = term;
-                    $location.search(facetId,me.options[facetId]);
+                    options.taxonomies[facetId].push(term);
+                    $location.search('taxonomies',JSON.stringify(options.taxonomies));
+                } else if(facetId == 'lastupdatetime'||facetId == 'price'||facetId == 'inStock') {
+                    options[facetId] = term;
+                    $location.search(facetId,options[facetId]);
                 } else {
-                    if(!me.options[facetId+'[]']){
-                        me.options[facetId+'[]'] = [];
+                    if(!options[facetId+'[]']){
+                        options[facetId+'[]'] = [];
                     }
-                    me.options[facetId+'[]'].push(term);
-                    $location.search(facetId+'[]',me.options[facetId+'[]']);
+                    options[facetId+'[]'].push(term);
+                    $location.search(facetId+'[]',options[facetId+'[]']);
                 }
             }
             me.start = 0;
-            me.options.start = me.start;
+            options.start = me.start;
         };
         me.preprocessData=function(data){
             var refinedData=[];
@@ -433,33 +313,20 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             } else {
                 me.apiClusterMode=false;
                 angular.forEach(data.results.data,function(item){
-                    switch(item['typeId']) {
-                        case "Point Net":
-                            item['groupe']="rencontre"; break;
-                        case "54632c1545205e7c38b0c6b7": // lieux communautaires
-                            item['groupe']="lieux"; break;
-                        case "54dc614245205e1d4a8b456b": //propositions
-                            item['groupe']="evenement"; break;
-                        default:
-                            item['groupe']="";
-                    }
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
                         var coords=item['fields.position.location.coordinates'][0].split(",");
-                        var icon = new google.maps.MarkerImage("/theme/cte/img/icons/gmaps-"+item.groupe+".png", null, null, null, new google.maps.Size(50, 50));
                         if (coords[0]&&coords[1]){
                             refinedData.push({
                                 coordinates:{
                                     latitude:coords[0],
                                     longitude:coords[1]
                                 },
-                                distance:me.distance(coords[0],coords[1]),
                                 id:item.id,
                                 objectType:item.objectType,
                                 title:item.title,
                                 itemData:item,
                                 markerOptions:{
-                                    title:item.title,
-                                    icon: icon
+                                    title:item.title
                                 }
                             });
                         }
@@ -468,28 +335,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             }
             return refinedData;
         };
-
-        me.distance = function(lat2, lon2){
-            var lat1=me.map.center.latitude;
-            var lon1=me.map.center.longitude;
-            var R = 6371000; // metres
-            var φ1 = lat1 * Math.PI / 180;
-            var φ2 = lat2 * Math.PI / 180;
-            var Δφ = (lat2-lat1) * Math.PI / 180;
-            var Δλ = (lon2-lon1)* Math.PI / 180;
-               
-            var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-                       Math.cos(φ1) * Math.cos(φ2) *
-                       Math.sin(Δλ/2) * Math.sin(Δλ/2);
-            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-               
-            var d = R * c;
-            return d;
-        };
-        
-        
-        me.searchByQuery = function(options, adjustZoom){
-            if (typeof adjustZoom === 'undefined') { adjustZoom = false; }
+        me.searchByQuery = function(options){
             var bounds=me.mapControl.getGMap().getBounds();
             options.inflat=bounds.getSouthWest().lat();
             options.suplat=bounds.getNorthEast().lat();
@@ -499,12 +345,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if(response.data.success){
                     me.query = response.data.results.query;
                     me.count = response.data.count;
-                    if (adjustZoom) {
-                        if (me.count==0 && me.mapControl.getGMap().getZoom()>5) {
-                            me.mapControl.getGMap().setZoom(me.mapControl.getGMap().getZoom()-1);
-                            me.searchByQuery(me.options, true);
-                        }
-                    }
                     me.data =  me.preprocessData(response.data);
                     me.facets = response.data.results.facets;
                     me.notRemovableTerms = [];
@@ -547,7 +387,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     } else {
                         me.mapControl.getGMap().setZoom(14);
                     }
-                    me.getLocationCenter();
 
                 });
             },4000);
@@ -559,11 +398,46 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
              * With this hack, the map will be added to the dom after the HTML rendering
              */
             return true;
-        }
+        };
         if (config.height&&config.height!=500){
             setTimeout(function(){
                 $element.find(".angular-google-map-container").height(config.height);
             },190);
         }
-    }]);
+        setTimeout(function(){
+            if(!me.count||me.count==0){
+                google.maps.event.trigger(me.mapControl.getGMap(), 'resize');
+                if (config.useLocation&&navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        me.mapControl.getGMap().setCenter(new google.maps.LatLng({
+                            lat:position.coords.latitude,
+                            lng:position.coords.longitude
+                        }));
 
+
+                    }, function() {
+                        //handle geoloc error
+                    });
+                } else if (config.centerAddress){
+                    me.geocoder.geocode({
+                        'address' : config.centerAddress
+                    }, function(results, status) {
+                        if (status == google.maps.GeocoderStatus.OK) {
+                            me.mapControl.getGMap().setCenter(new google.maps.LatLng({
+                                lat:results[0].geometry.location.lat(),
+                                lng:results[0].geometry.location.lng()
+                            }));
+
+                        }
+                    });
+
+                } else if (config.centerLatitude && config.centerLongitude){
+                    me.mapControl.getGMap().setCenter(new google.maps.LatLng({
+                        lat:config.centerLatitude,
+                        lng:config.centerLongitude
+                    }));
+
+                }
+            }
+        },3200);
+    }]);
