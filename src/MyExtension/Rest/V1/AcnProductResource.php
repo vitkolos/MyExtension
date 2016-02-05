@@ -932,7 +932,7 @@ class AcnproductResource extends AbstractResource
     protected function defineEntityGet(VerbDefinitionEntity &$definition)
     {
         $definition
-            ->setDescription('Get a content')
+            ->setDescription('Get a product')
             ->addInputFilter(
                 (new FilterDefinitionEntity())
                     ->setDescription('Fields to return')
