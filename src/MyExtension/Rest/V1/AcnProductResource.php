@@ -186,7 +186,7 @@ class AcnProductResource extends AbstractResource
     }
 
     /**
-     * Get to contents/{id}
+     * Get to acnproduct/{id}
      *
      * @param $id
      * @param $params
@@ -341,8 +341,8 @@ class AcnProductResource extends AbstractResource
 
         $this
             ->entityDefinition
-            ->setName('Content')
-            ->setDescription('Works on single content')
+            ->setName('Acn product')
+            ->setDescription('Works on single product')
             ->editVerb('get', function (VerbDefinitionEntity &$definition) {
                 $this->defineEntityGet($definition);
             });
