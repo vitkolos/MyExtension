@@ -1,0 +1,58 @@
+<nav class="navbar navbar-default" role="navigation" ng-controller="MegaMenuController as megaMenuCtrl">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">{{rubedo.translate("Blocks.Navigation.Label.ToggleNavigation", "Toggle navigation")}}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a ng-if="blockConfig.displayRootPage" class="navbar-brand" ng-href="{{megaMenuCtrl.menu.url}}">{{megaMenuCtrl.menu.text}}</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li ng-repeat="page in megaMenuCtrl.menu.pages track by $index" class="dropdown" ng-class="{'dropdown-large':megaMenuCtrl.hasSubPages(page)}">
+                    <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
+                    <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&megaMenuCtrl.hasSubPages(page)" class="dropdown-menu dropdown-menu-large row" role="menu">
+                        <li class='col-sm-{{blockConfig.menuWidth}} pull-{{blockConfig.menuAlign}}'>
+                            <ul ng-repeat="subpage in page.pages track by $index" class="{{ 'col-sm-' + 12 / page.pages.length }}">
+                                <li ng-if="!blockConfig.disableLevelTwo">
+                                    <a class="dropdown-header" ng-href="{{subpage.url}}">{{subpage.text}}</a>
+                                </li>
+                                <li ng-if="blockConfig.disableLevelTwo" class="dropdown-header">
+                                    {{subpage.text}}
+                                </li>
+                                <li ng-repeat="subsubpage in subpage.pages track by $index"><a ng-href="{{subsubpage.url}}">{{ subsubpage.text }}</a></li>
+                            </ul>
+                        </li>
+                        <li ng-if="page.includedRichText.fields.body" class='col-sm-{{12 - blockConfig.menuWidth}}'>
+                            <ul>
+                                <li>
+                                    <rubedo-custom-template template="{{page.includedRichText.fields.body}}"></rubedo-custom-template>
+                                    <div class="clearfix"></div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&!megaMenuCtrl.hasSubPages(page)" class="dropdown-menu" role="menu">
+                        <li ng-if="!blockConfig.disableLevelOne" ng-class="{active:rubedo.current.page.id==page.id}"><a ng-href="{{page.url}}">{{page.text}}</a></li>
+                        <li ng-if="!blockConfig.disableLevelOne" class="divider"></li>
+                        <li ng-repeat="subpage in page.pages track by $index" ng-class="{active:menuCtrl.currentRouteline.indexOf(subpage.url) > -1}">
+                            <a ng-href="{{subpage.url}}">{{subpage.text}}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <form class="navbar-form" ng-if="megaMenuCtrl.searchEnabled" ng-submit="megaMenuCtrl.onSubmit()" role="form">
+                    <div class="input-group">
+                        <input class="form-control" type="text" ng-model="megaMenuCtrl.query" ng-attr-placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
+                            <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                                <span class="glyphicon glyphicon-search"></span></button></span>
+                    </div>
+                </form>
+            </ul>
+        </div>
+    </div>
+</nav>
