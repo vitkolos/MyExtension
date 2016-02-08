@@ -170,10 +170,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
     };
     
     /*Watch lieuCommunautaire */
-    $scope.$watch("$scope.fieldEntity['lieuCommunautaire']", function(newValue, oldValue) {
-        //$scope.fieldEntity['position'].address=newValue;
-        console.log($scope.contentLinkCtrl.contents);
-    });
+    me.updatePosition = function(content){
+        $scope.fieldEntity['position'] = content['fields.position.address'].address;
+        console.log(content['fields.position.address'].address);
+    };
     
 }]);
 
