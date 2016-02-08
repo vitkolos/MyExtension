@@ -177,6 +177,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                         $scope.fieldEntity['position'].address = content['fields.position.address'][0];
                 }
                 else $scope.fieldEntity['position']={'address' :  content['fields.position.address'][0]};
+
+                $scope.fieldEntity['positionName'] = content['text'][0];
                 
             }
         });
