@@ -5,7 +5,7 @@
                 class="form-control"
                 id="{{fieldIdPrefix+'_'+field.config.name}}"
                 ng-required="!field.config.allowBlank"
-                ng-options="content.id as content.title for content in contentLinkCtrl.contents| orderBy:'content.title' "
+                ng-options="content.id as content.title for content in contentLinkCtrl.contents| orderBy:'title' "
                 ng-model="fieldEntity[field.config.name]"
                 >
             <option value=""></option>
@@ -14,9 +14,9 @@
                 class="form-control"
                 id="{{fieldIdPrefix+'_'+field.config.name}}"
                 ng-required="!field.config.allowBlank"
-                ng-options="content.id as content.title for content in contentLinkCtrl.contents| orderBy:'content.title' "
+                ng-options="content.id as content.title for content in contentLinkCtrl.contents| orderBy:'title' "
                 ng-model="fieldEntity[field.config.name]"
-                ng-change="ccCtrl.updatePosition(content)"
+                ng-change="contentLinkCtrl.updatePosition(content)"
                 >
             <option value=""></option>
         </select>        
@@ -25,7 +25,7 @@
                 class="form-control"
                 id="{{fieldIdPrefix+'_'+field.config.name}}"
                 ng-required="!field.config.allowBlank"
-                ng-options="content.id as content.title for content in contentLinkCtrl.contents | orderBy:'content.title' "
+                ng-options="content.id as content.title for content in contentLinkCtrl.contents | orderBy:'title' "
                 ng-model="fieldEntity[field.config.name]"
                 multiple="multiple"
                 ></select>
