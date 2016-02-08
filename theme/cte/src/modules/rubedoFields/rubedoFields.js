@@ -540,7 +540,7 @@
             angular.forEach(me.contents, function(content){
                 if (content.id==$scope.fieldEntity['lieuCommunautaire']) {
                     console.log(content);
-                    $scope.fieldEntity['position'] = content['fields.position.address'].address;
+                    $scope.fieldEntity['position'] = content['fields.position.address'].address[0];
                 }
             });
             
