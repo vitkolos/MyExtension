@@ -68,6 +68,15 @@
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
 				</div>
 			</div>
+			<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
+				</div>
+				<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
+			</div>
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
 			<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['555a164d45205eea0a7e689b']" class="capital tags pull-right">{{contentDetailCtrl.getTermInTaxo("555a164d45205eea0a7e689b",taxonomy)}}</span>
 		</div>
