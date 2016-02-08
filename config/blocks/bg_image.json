@@ -75,7 +75,7 @@
                         {
                             "type": "Ext.form.field.Number",
                             "config": {
-                                "fieldLabel": "#ext-gen1461#",
+                                "fieldLabel": "#ext-gen1461# (%)",
                                 "name": "imageHeight",
                                 "allowDecimals": false,
                                 "minValue": 0,
