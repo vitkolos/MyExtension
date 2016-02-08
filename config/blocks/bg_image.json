@@ -71,16 +71,6 @@
                                 "forceSelection": true,
                                 "queryMode": "local"
                             }
-                        },
-                        {
-                            "type": "Ext.form.field.Number",
-                            "config": {
-                                "fieldLabel": "#ext-gen1461# (%)",
-                                "name": "imageHeight",
-                                "allowDecimals": false,
-                                "minValue": -50,
-                                "maxValue":50
-                            }
                         }
                     ]
                 }                
