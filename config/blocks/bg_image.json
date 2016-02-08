@@ -78,7 +78,7 @@
                                 "fieldLabel": "#ext-gen1461# (%)",
                                 "name": "imageHeight",
                                 "allowDecimals": false,
-                                "minValue": 0,
+                                "minValue": -50,
                                 "maxValue":50
                             }
                         }
