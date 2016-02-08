@@ -28,23 +28,30 @@
 	<div class="row" >
 		<div class="text-article">
 			<h3>Informations pratiques</h3>
-			<div class="row" ng-if="fieldEntity['rencontres']">
+			<div ng-if="fieldEntity['annonces']" class="col-xs-12">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Rencontres</p>
-				</div>
-				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('rencontres')}}"></rubedo-field><!--Description-->
+					<p class="capital">{{contentDetailCtrl.getLabelByName('annonces')}}</p>
 				</div>
 			</div>
-			<div class="row" ng-if="fieldEntity['horaires']">
+			<div ng-if="fieldEntity['position']" class="col-xs-12">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital">Horaires</p>
+					<p class="capital">{{contentDetailCtrl.getLabelByName('lieuCommunautaire')}}</p>
 				</div>
 				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
+					<p>{{contentDetailCtrl.content.fields.position.address}}</p><!--Description-->
 				</div>
 			</div>
-			<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['555a164d45205eea0a7e689b']" class="capital tags pull-right">{{contentDetailCtrl.getTermInTaxo("555a164d45205eea0a7e689b",taxonomy)}}</span>
+			<div ng-if="fieldEntity['website']" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital"><a ng-href="{{contentDetailCtrl.getLabelByName('website')}}">{{contentDetailCtrl.getLabelByName('website')}}</a></p>
+				</div>
+			</div>
+			<div ng-if="fieldEntity['facebook']" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital"><a ng-href="{{contentDetailCtrl.getLabelByName('facebook')}}">{{contentDetailCtrl.getLabelByName('facebook')}}</a></p>
+				</div>
+			</div>			
+			
 		</div>
 		
 	</div>
