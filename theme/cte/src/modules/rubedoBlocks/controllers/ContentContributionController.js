@@ -171,6 +171,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
     
     /*Watch lieuCommunautaire */
     me.updatePosition = function(content){
+        console.log(content);
         $scope.fieldEntity['position'] = content['fields.position.address'].address;
         console.log(content['fields.position.address'].address);
     };
