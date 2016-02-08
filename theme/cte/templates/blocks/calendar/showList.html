@@ -13,13 +13,11 @@
         </thead>
         <tbody>
             <tr ng-repeat="content in calendarCtrl.contents track by $index">
-                <a ng-href="{{ content.detailPageUrl }}">
-                    <th class="cal-date" data-th="Date">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</th>
-                    <th class="cal-prop" data-th="Proposition">
-                            {{ content.fields.text }}
-                    </th>
-                    <th class="cal-date" data-th="Lieu">{{content.fields.positionName}}</th>
-                </a>
+                <th class="cal-date" data-th="Date"><a ng-href="{{ content.detailPageUrl }}">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</a></th>
+                <th class="cal-prop" data-th="Proposition"><a ng-href="{{ content.detailPageUrl }}">
+                        {{ content.fields.text }}</a>
+                </th>
+                <th class="cal-date" data-th="Lieu"><a ng-href="{{ content.detailPageUrl }}">{{content.fields.positionName}}</a></th>
             </tr>
         </tbody>
     </table>
