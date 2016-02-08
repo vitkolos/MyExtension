@@ -168,6 +168,23 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
             }
         }
     };
+    
+/*Watch lieuCommunautaire */
+    me.updatePosition = function(contents){
+        angular.forEach(contents, function(content){
+            if (content.id==$scope.fieldEntity['lieuCommunautaire']) {
+                if ($scope.fieldEntity['position']) {
+                        $scope.fieldEntity['position'].address = content['fields.position.address'][0];
+                }
+                else $scope.fieldEntity['position']={'address' :  content['fields.position.address'][0]};
+
+                $scope.fieldEntity['positionName'] = content['text'][0];
+                
+            }
+        });
+        
+    };      
+    
 }]);
 
 

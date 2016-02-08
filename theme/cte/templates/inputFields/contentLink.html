@@ -1,18 +1,31 @@
 <div class="form-group" ng-controller="ContentChoiceController as contentLinkCtrl">
     <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="control-label">{{field.config.fieldLabel}}</label>
     <div>
-        <select ng-if="!field.config.multivalued"
+        <select ng-if="!field.config.multivalued && field.config.name!='lieuCommunautaire'"
                 class="form-control"
                 id="{{fieldIdPrefix+'_'+field.config.name}}"
                 ng-required="!field.config.allowBlank"
-                ng-options="content.id as content.title for content in contentLinkCtrl.contents| orderBy:'content.title' "
+                ng-options="content.id as content.title for content in contentLinkCtrl.contents| orderBy:'title' "
                 ng-model="fieldEntity[field.config.name]"
-                ><option value=""></option></select>
+                >
+            <option value=""></option>
+        </select>
+        <select ng-if="!field.config.multivalued && field.config.name=='lieuCommunautaire' "
+                class="form-control"
+                id="{{fieldIdPrefix+'_'+field.config.name}}"
+                ng-required="!field.config.allowBlank"
+                ng-options="content.id as content.title for content in contentLinkCtrl.contents| orderBy:'title' "
+                ng-model="fieldEntity[field.config.name]"
+                ng-change="ccCtrl.updatePosition(contentLinkCtrl.contents)"
+                >
+            <option value=""></option>
+        </select>        
+        
         <select ng-if="field.config.multivalued"
                 class="form-control"
                 id="{{fieldIdPrefix+'_'+field.config.name}}"
                 ng-required="!field.config.allowBlank"
-                ng-options="content.id as content.title for content in contentLinkCtrl.contents | orderBy:'content.title' "
+                ng-options="content.id as content.title for content in contentLinkCtrl.contents | orderBy:'title' "
                 ng-model="fieldEntity[field.config.name]"
                 multiple="multiple"
                 ></select>

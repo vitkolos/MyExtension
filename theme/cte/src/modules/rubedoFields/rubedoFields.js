@@ -347,9 +347,6 @@
         if (!$scope.fieldEntity[$scope.field.config.name]) {
             $scope.fieldEntity[$scope.field.config.name]={};
         }
-        if (!angular.isArray($scope.fieldEntity[$scope.field.config.name][$scope.field.config.name])) {
-            $scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]=[];
-        }
         if (!angular.isArray($scope.fieldEntity[$scope.field.config.name][$scope.field.config.name])){
             $scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]=[$scope.fieldEntity[$scope.field.config.name][$scope.field.config.name]];
             $scope.$watch('fieldEntity.'+$scope.field.config.name+'.'+$scope.field.config.name,function(changedValue){
@@ -534,7 +531,8 @@
                      me.contents=response.data.results.data;
                  }
              }
-         );     
+         );
+          
     }]);
 
 
