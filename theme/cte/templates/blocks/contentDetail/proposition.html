@@ -151,7 +151,7 @@
 						|| contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription'
 						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente')">
 						<!--si un seul public accueilli-->
-						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1">
+						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true">
 								S'inscrire
 							</div>
@@ -166,7 +166,7 @@
 								</div>
 						</div>						
 						<!--si un seul public au service-->
-						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.public_service).length==1">
+						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.public_service).length==1 && contentDetailCtrl.content.fields.public_service[0]">
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.public_service[0];contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = true" >
 								S'inscrire au service
 							</div>
