@@ -16,7 +16,7 @@
                 ng-required="!field.config.allowBlank"
                 ng-options="content.id as content.title for content in contentLinkCtrl.contents| orderBy:'title' "
                 ng-model="fieldEntity[field.config.name]"
-                ng-change="contentLinkCtrl.updatePosition(content)"
+                ng-change="ccCtrl.updatePosition(contentLinkCtrl.contents)"
                 >
             <option value=""></option>
         </select>        
