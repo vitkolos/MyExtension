@@ -13,7 +13,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="content in calendarCtrl.contents track by $index">
-                <th class="cal-date" data-th="Date">{{content.fields.dateDebut | date:'shortDate'}}</th>
+                <th class="cal-date" data-th="Date">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</th>
                 <th class="cal-prop" data-th="Proposition">
                     <a ng-href="{{ content.detailPageUrl }}">
                         {{ content.fields.text }}
