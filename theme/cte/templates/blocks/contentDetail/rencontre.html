@@ -1,0 +1,55 @@
+<div class=" content_border">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 ">
+				<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+					<ol class="breadcrumb hidden-xs">
+					    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+					</ol>
+					<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<header class="container-fluid content prop" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
+
+</header>
+
+<div class="container">
+	<div class="row">
+		<div class="text-article" >
+			<rubedo-field class="txt-light" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Description-->
+			<p>{{contentDetailCtrl.content.fields.position.address}}</p>
+			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+
+		</div>
+	</div>
+	<div class="row" >
+		<div class="text-article">
+			<h3>Informations pratiques</h3>
+			<div class="row" ng-if="fieldEntity['rencontres']">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">Rencontres</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('rencontres')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>
+			<div class="row" ng-if="fieldEntity['horaires']">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">Horaires</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>
+			<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['555a164d45205eea0a7e689b']" class="capital tags pull-right">{{contentDetailCtrl.getTermInTaxo("555a164d45205eea0a7e689b",taxonomy)}}</span>
+		</div>
+		
+	</div>
+</div>
+
+<div style="margin-top:24px"></div>
+</div>
+
