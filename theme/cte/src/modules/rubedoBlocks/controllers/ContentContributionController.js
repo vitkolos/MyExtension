@@ -173,7 +173,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
     me.updatePosition = function(contents){
         angular.forEach(contents, function(content){
             if (content.id==$scope.fieldEntity['lieuCommunautaire']) {
-                $scope.fieldEntity['position'] = content['fields.position.address'][0];
+                $scope.fieldEntity['position'].address = content['fields.position.address'][0];
                 console.log($scope.fieldEntity['position']);
             }
         });
