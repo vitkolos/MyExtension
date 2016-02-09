@@ -90,10 +90,7 @@ class PayboxIpnResource extends AbstractResource {
         //code d'erreur
         if($params['erreur'] == "00000") $erreurStatus = false;
         else $erreurMessage = $this->getErrorMessage($params['erreur']);
-        //adresse d'appel du service
-        //if(!($_SERVER['REMOTE_ADDR'] == "195.101.99.76" || $_SERVER['REMOTE_ADDR'] =="194.2.122.158"|| $_SERVER['REMOTE_ADDR'] =="195.25.7.166"  ||$_SERVER['HTTP_X_FORWARDED_FOR'] == "195.101.99.76" || $_SERVER['HTTP_X_FORWARDED_FOR'] =="194.2.122.158"|| $_SERVER['HTTP_X_FORWARDED_FOR'] =="195.25.7.166")) 
-        //    {$securite = false; $erreurMessage .= " Retour Paybox provenant d'une adresse inconnue. ";}
-            
+          
         //autorisation
        if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
         else $erreurMessage .= " Pas d'autorisation de Paybox. ";
