@@ -14,7 +14,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
     me.query="";
     me.taxoFilter="";
-    
+    me.filter = function(taxoTerm){
+        me.taxoFilter = taxoTerm;
+        options['start'] += options['limit'];
+        options['limit'] = 200;
+        me.getContents(config.query, pageId, siteId, options, true);
+    }
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
         me.start=(urlCurrentPage-1)*me.limit;
