@@ -112,7 +112,23 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $contentsService = Manager::getService("Contents");
             $inscription = $contentsService->findById($contentId,false,false);
             AbstractCollection::disableUserFilter(false);
-            
+            if($inscription['success']) {
+                $inscription = $inscription['content'];
+                //vérifier si le montant payé est le même que celui indiqué lors de l'inscription
+                //if( $montant == (int)$inscription['fields']['montantAPayerMaintenant']) {
+                //    $inscription['fields']['statut'] = "paiement-carte-valide" ;
+                //}
+                //else $erreurMessage .="Le montant du paiement est différent de celui envoyé à Paybox.";
+                $mailSecretariat = $inscription['fields']['mailSecretariat'];
+                
+                $payload = json_encode( array( "content" => $inscription ) );
+               //authentication comme admin inscriptions
+               //$auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
+                //$output['token'] = $this->subTokenFilter($auth['token']);
+                //$token = $output['token']['access_token'];
+                 //$resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
+             }
+            else $erreurMessage .="Le payement ".$idInscription." n'a pas été retrouvé";
  
         }    
 
