@@ -43,7 +43,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
         RubedoContentsService.getContentById($location.search()["content-edit"],{useDraftMode:true}).then(
             function(ecResponse){
                 if (ecResponse.data.success){
-                    // edit seulement les contenus du bon type si un type de contenu est configuré
+                    // edit seulement les contenus du bon type si un type de contenu est configuréÈ
                     if(config.contentType&&config.contentType!=""){
                         if(ecResponse.data.content.type.id==config.contentType) {
                             me.existingContent=ecResponse.data.content;
