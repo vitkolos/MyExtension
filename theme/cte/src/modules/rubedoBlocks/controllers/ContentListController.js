@@ -296,7 +296,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
     $scope.registerFieldEditChanges = me.registerEditChanges;
 
 }]);
-angular.module('rubedoBlocks').filter('selectedTags', function() {
+
+angular.module('rubedoBlocks').filter('selectedTags', function($filter) {
     return function(contents, tag) {
         return contents.filter(function(content) {
             if (content.taxonomy['5524db6945205e627a8d8c4e'].indexOf(tag) != -1) {
