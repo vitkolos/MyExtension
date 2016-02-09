@@ -13,18 +13,18 @@ angular.module('rubedo').filter('ligneNonVide', function () {
                       var filtered = [];
 		      var contentDisplay = false;
                       angular.forEach(input, function(row, index) {
-				// si la 1ère colonne est terminale et non vide
+				// si la 1¬ère colonne est terminale et non vide
                                  if (row.columns[0].isTerminal&&row.columns[0].blocks) {
-				    // toujours afficher la 1ère ligne (menu) et les 2 dernières (footer)
+				    // toujours afficher la 1¬ère ligne (menu) et les 2 derni¬ères (footer)
 				    if (index ==0 || index >= input.length-2) {
 					filtered.push(row);
 				    }
-				    // si la page sert à afficher un contenu (en 2ème ligne) on n'affiche pas les autres lignes
+				    // si la page sert ÀÜ afficher un contenu (en 2¬ème ligne) on n'affiche pas les autres lignes
 				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
 					filtered.push(row);
 					contentDisplay = true;
 				    }
-				    //si la ligne a un bloc de détail en premier, on affiche seulement le bloc détail dans la ligne
+				    //si la ligne a un bloc de d≈Ωtail en premier, on affiche seulement le bloc d≈Ωtail dans la ligne
 				    else if (row.columns[0].blocks[0].bType=="contentDetail") {
 					row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
 					filtered.push(row);
@@ -54,7 +54,7 @@ angular.module('rubedoBlocks').filter('tags', function() {
     };
 });
 
-/*filtre pour renvoyer le format de la date de dÈbut d'une proposition bien formatÈe*/
+/*filtre pour renvoyer le format de la date de d√©but d'une proposition bien format√©e*/
 angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     return function(startDate, endDate, rangeFormat){
 	var format = rangeFormat || 'long';
@@ -74,7 +74,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	    formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
 	}
 	else {
-	    formattedDate= "du "+$filter('date')(start,formatOfDate) + " au "+$filter('date')(end,'d MMM yyyy');	    
+	    formattedDate= "du "+$filter('date')(start,formatOfDate) + " au "+$filter('date')(end,'d MMMM yyyy');	    
 	}
 	return formattedDate;
     }
