@@ -12,7 +12,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.ismagic = config.magicQuery ? config.magicQuery : false;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
-
+    me.query="";
+    me.taxoFilter={};
     
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
