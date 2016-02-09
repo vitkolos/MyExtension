@@ -113,7 +113,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $contentsService = Manager::getService("Contents");
             $inscription = $contentsService->findById($contentId,false,false);
             AbstractCollection::disableUserFilter(false);
-
+            var_dump($inscription);
 
         }    
 
