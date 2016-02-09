@@ -94,45 +94,7 @@ class PayboxIpnResource extends AbstractResource {
         //autorisation
        if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
         else $erreurMessage .= " Pas d'autorisation de Paybox. ";
-        if(!($erreurStatus) && $securite && $autorisation) {
-            //authentication comme admin inscriptions
-            $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
-            $output['token'] = $this->subTokenFilter($auth['token']);
-            $token = $output['token']['access_token'];
-            // ENREGISTRER LE PAIEMENT DANS LA BASE DE DONNEES
-            
-            //pour inscription, on récupère le contenu inscription et on change le statut
-            $commande = explode("|", $params['commande']); // $idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
-            $idInscription = $commande[0];
-            $proposition = $commande[1];
-            $prenom = $commande[2];
-            $nom = $commande[3];
-            $montant = (int)$params['montant']/100;
-            // récupérer l'id du contenu "inscription"
-            $contentId = $this->getContentIdByName($idInscription);
-            
-            
-            $wasFiltered = AbstractCollection::disableUserFilter(true);
-            $contentsService = Manager::getService("Contents");
-            $inscription = $contentsService->findById($contentId,false,false);
-            AbstractCollection::disableUserFilter(false);
-            
-            
-            if($inscription['success']) {
-                $inscription = $inscription['content'];
-                //vérifier si le montant payé est le même que celui indiqué lors de l'inscription
-                if( $montant == (int)$inscription['fields']['montantAPayerMaintenant']) {
-                    $inscription['fields']['statut'] = "paiement-carte-valide" ;
-                }
-                else $erreurMessage .="Le montant du paiement est différent de celui envoyé à Paybox.";
-                $mailSecretariat = $inscription['fields']['mailSecretariat'];
-                
-                $payload = json_encode( array( "content" => $inscription ) );
-                //$resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
-            }
-            else $erreurMessage .="Le payement ".$idInscription." n'a pas été retrouvé";
-
-        }
+        
         
         $mailCompta = $this->getMailCompta();
         $mailerService = Manager::getService('Mailer');
