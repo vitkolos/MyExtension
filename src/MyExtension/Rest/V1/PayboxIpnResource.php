@@ -194,7 +194,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
     protected function getMailCompta(){
         switch($_SERVER['HTTP_HOST']) {
             case "ccn.chemin-neuf.fr" : 
-                return "nicolas.rhone@wanadoo.fr"; break;
+                return "intendance.generale@chemin-neuf.org"; break;
         }
     }
      
