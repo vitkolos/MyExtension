@@ -137,7 +137,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
         }
         if ($erreur == "00000") {
             $body = "Montant payé : " . $params['montant']/100 . " euros.\n" ;
-            $body.=$inscription['success'];
+            $body.=$inscription['content']['fields']['propositionTitre'];
             $body .= "Proposition : " . $inscription['fields']['propositionTitre']."\n";
             $body .= "Code Onesime : " . $inscription['fields']['codeOnesime']."\n";
             $body .= "Code Compta : " . $inscription['fields']['codeCompta']."\n";
