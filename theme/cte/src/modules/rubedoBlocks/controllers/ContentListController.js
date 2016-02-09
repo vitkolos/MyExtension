@@ -297,7 +297,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
 
 }]);
 
-angular.module('rubedoBlocks').filter('selectedTags', function() {
+angular.module('rubedoBlocks').filter('tags', function() {
     return function(contents, tag) {
         var contentList=[];
         angular.forEach(contents, function(content){
