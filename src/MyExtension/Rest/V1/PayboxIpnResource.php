@@ -110,7 +110,14 @@ class PayboxIpnResource extends AbstractResource {
             $montant = (int)$params['montant']/100;
             // récupérer l'id du contenu "inscription"
             $contentId = $this->getContentIdByName($idInscription);
-            $inscription = $this->callAPI("GET", $token, $contentId);
+            
+            
+            $wasFiltered = AbstractCollection::disableUserFilter(true);
+            $contentsService = Manager::getService("Contents");
+            $inscription = $contentsService->findById($contentId,false,false);
+            AbstractCollection::disableUserFilter(false);
+            
+            
             if($inscription['success']) {
                 $inscription = $inscription['content'];
                 //vérifier si le montant payé est le même que celui indiqué lors de l'inscription
@@ -121,7 +128,7 @@ class PayboxIpnResource extends AbstractResource {
                 $mailSecretariat = $inscription['fields']['mailSecretariat'];
                 
                 $payload = json_encode( array( "content" => $inscription ) );
-                $resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
+                //$resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
             }
             else $erreurMessage .="Le payement ".$idInscription." n'a pas été retrouvé";
 
