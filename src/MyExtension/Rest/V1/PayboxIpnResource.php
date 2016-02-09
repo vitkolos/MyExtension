@@ -123,10 +123,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
  -                
  -                $payload = json_encode( array( "content" => $inscription ) );
  -               //authentication comme admin inscriptions
- -               $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
- -               $output['token'] = $this->subTokenFilter($auth['token']);
- -               $token = $output['token']['access_token'];
- -               $resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
+ -               
 -             }
 -            else $erreurMessage .="Le payement ".$idInscription." n'a pas été retrouvé";
  - 
