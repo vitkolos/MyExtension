@@ -13,7 +13,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
     me.query="";
-    me.taxoFilter={};
+    me.taxoFilter="";
     
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
