@@ -107,7 +107,7 @@ class InscriptionResource extends AbstractResource
        
        
 
-        return array('success' => $result['success'], 'id' =>$content);
+        return array('success' => $result['success'], 'id' =>$inscriptionNumber);
         
    }
    
