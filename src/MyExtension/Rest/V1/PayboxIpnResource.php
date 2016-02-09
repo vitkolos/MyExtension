@@ -1,5 +1,6 @@
 <?php
 namespace MyExtension\Rest\V1;
+use Rubedo\Collection\AbstractCollection;
 use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
