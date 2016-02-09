@@ -114,7 +114,7 @@ class ContentsController extends DataAccessController
         if (!is_null($data)) {
             $insertData = Json::decode($data, Json::TYPE_ARRAY);
             if (is_array($insertData)) {
-                if ($insertData["fields"]["lieuCommunautaire"] && $insertData["fields"]["lieuCommunautaire"]!="")  {
+                if ($insertData["fields"]["lieuCommunautaire"] && $insertData["fields"]["lieuCommunautaire"]!="" && $insertData["fields"]["lieuCommunautaire"]!=null)  {
                     $contentId = $insertData["fields"]["lieuCommunautaire"]; // get place content Id and find it
                     $lieu = $this->_dataService->findById($contentId, false, false);
                     $insertData["fields"]["position"] = $lieu["fields"]["position"]; // get its position field
@@ -152,7 +152,7 @@ class ContentsController extends DataAccessController
         if (!is_null($data)) {
             $updateData = Json::decode($data, Json::TYPE_ARRAY);
             if (is_array($updateData)) {
-                if ($updateData["fields"]["lieuCommunautaire"] && $updateData["fields"]["lieuCommunautaire"]!="" )  {
+                if ($updateData["fields"]["lieuCommunautaire"] && $updateData["fields"]["lieuCommunautaire"]!="" && $updateData["fields"]["lieuCommunautaire"]!=null )  {
                     $contentId = $updateData["fields"]["lieuCommunautaire"];
                     $lieu = $this->_dataService->findById($contentId, false, false);
                     $updateData["fields"]["position"] = $lieu["fields"]["position"];
