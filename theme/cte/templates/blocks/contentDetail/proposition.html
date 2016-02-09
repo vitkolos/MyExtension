@@ -21,7 +21,7 @@
 					   ckeditor="editorOptions"
 					   contenteditable="true"
 					   ready="setCKEIsReady()"
-					   ng-model="fieldEntity[field.config.name]"
+					   ng-model="fieldEntity['text']"
 					   output-plain-text="true"
 					   ng-bind-html="rteFieldCtrl.html">
 					</h1>
@@ -54,7 +54,7 @@
 						<p class="capital">Date</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
-						<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'fullDate'}} à  {{contentDetailCtrl.content.fields.heureDebut}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'fullDate'}} à  {{contentDetailCtrl.content.fields.heureFin}}</p><!--Description-->
+						<p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'fullDate'}} <span ng-if="fieldEntity['heureDebut']">à  {{contentDetailCtrl.content.fields.heureDebut}} </span>au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'fullDate'}}<span ng-if="fieldEntity['heureFin']"> à  {{contentDetailCtrl.content.fields.heureFin}}</span></p><!--Description-->
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('complement_date')}}"></rubedo-field>
 					</div>
 				</div>
