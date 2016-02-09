@@ -114,10 +114,10 @@ class PayboxIpnResource extends AbstractResource {
             if($inscription['success']) {
                 $inscription = $inscription['content'];
                 //vérifier si le montant payé est le même que celui indiqué lors de l'inscription
-                if( $montant == (int)$inscription['fields']['montantAPayerMaintenant']) {
-                    $inscription['fields']['statut'] = "paiement-carte-valide" ;
-                }
-                else $erreurMessage .="Le montant du paiement est différent de celui envoyé à Paybox.";
+                //if( $montant == (int)$inscription['fields']['montantAPayerMaintenant']) {
+                //    $inscription['fields']['statut'] = "paiement-carte-valide" ;
+                //}
+                //else $erreurMessage .="Le montant du paiement est différent de celui envoyé à Paybox.";
                 $mailSecretariat = $inscription['fields']['mailSecretariat'];
                 
                 $payload = json_encode( array( "content" => $inscription ) );
