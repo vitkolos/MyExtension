@@ -348,7 +348,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             }
                             else {
                                 $scope.processForm=false;
-                                //$scope.finInscription=true;      
+                                $scope.finInscription=true;  
+                                $scope.inscription={};
                                 $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
                             }
                             
@@ -358,7 +359,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     // pas de paiement par carte
                     else {
                         $scope.processForm=false;
-                        //$scope.finInscription=true; 
+                        $scope.finInscription=true; 
+                        $scope.inscription={};
                         $scope.message += "Votre inscription a bien été prise en compte. Merci et à bientôt !";
                     }
                     
@@ -367,7 +369,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 else {
                     
                     $scope.processForm=false;
-                    //$scope.finInscription=true; 
+                    $scope.finInscription=true; 
                     $scope.message +="Il y a eu une erreur lors de la prise en compte de votre inscription. Merci de réessayer plus tard ou de contacter le secrétariat.";
                 }
             })
