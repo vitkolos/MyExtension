@@ -66,7 +66,7 @@
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle">
                 <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
-                    <div class="resultData search-result" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents  | filter:contentListCtrl.query |filter: contentListCtrl.taxoFilter track by $index">
+                    <div class="resultData search-result" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents  | filter:contentListCtrl.query |selectedTags: contentListCtrl.taxoFilter track by $index">
                         <!--tout sauf video-->
                         <div ng-if="!content.fields.video">
                             <div class="ratio_321" ng-if="content.fields.image">
