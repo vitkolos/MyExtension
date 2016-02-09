@@ -94,8 +94,25 @@ class PayboxIpnResource extends AbstractResource {
         //autorisation
        if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
         else $erreurMessage .= " Pas d'autorisation de Paybox. ";
+
+
+if(!($erreurStatus) && $securite && $autorisation) {
+            // ENREGISTRER LE PAIEMENT DANS LA BASE DE DONNEES
+            
+            //pour inscription, on récupère le contenu inscription et on change le statut
+            $commande = explode("|", $params['commande']); // $idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
+            $idInscription = $commande[0];
+            $proposition = $commande[1];
+            $prenom = $commande[2];
+            $nom = $commande[3];
+            $montant = (int)$params['montant']/100;
+            
+ 
+        }    
+
+
         
-                $mailCompta = $this->getMailCompta();
+        $mailCompta = $this->getMailCompta();
         $mailerService = Manager::getService('Mailer');
 
         $mailerObject = $mailerService->getNewMessage();
