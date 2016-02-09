@@ -106,6 +106,12 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $prenom = $commande[2];
             $nom = $commande[3];
             $montant = (int)$params['montant']/100;
+            // récupérer l'id du contenu "inscription"
+            $contentId = $this->getContentIdByName($idInscription);
+            $wasFiltered = AbstractCollection::disableUserFilter(true);
+            $contentsService = Manager::getService("Contents");
+            $inscription = $contentsService->findById($contentId,false,false);
+            AbstractCollection::disableUserFilter(false);
             
  
         }    
