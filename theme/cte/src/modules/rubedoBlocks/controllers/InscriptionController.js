@@ -329,7 +329,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     // si paiement par Paybox
                     if ($scope.inscription.modePaiement=='carte') { 
                         var payload = {
-                            nom:$scope.inscription.name,
+                            nom:$scope.inscription.nom,
                             prenom: $scope.inscription.surname,
                             email:$scope.inscription.email,
                             montant:$scope.inscription.montantAPayerMaintenant,
