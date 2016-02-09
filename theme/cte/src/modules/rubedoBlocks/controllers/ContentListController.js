@@ -10,6 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
     me.ismagic = config.magicQuery ? config.magicQuery : false;
+    var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
 
     
