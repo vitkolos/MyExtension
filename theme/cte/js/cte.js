@@ -41,9 +41,9 @@ angular.module('rubedo').filter('tags', function() {
     return function(contents, tag) {
         var contentList=[];
         angular.forEach(contents, function(content){
-            if (content.taxonomy['5524db6945205e627a8d8c4e'].indexOf(tag) != -1) {
-                contentList.push(content);
-            }            
+           if(content.taxonomy['5524db6945205e627a8d8c4e'] && content.taxonomy['5524db6945205e627a8d8c4e'].indexOf(tag) != -1){
+                      contentList.push(content);
+           }
         })
         return contentList;
     };
