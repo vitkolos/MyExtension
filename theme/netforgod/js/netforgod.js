@@ -130,4 +130,6 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 	    }
 	};
 }]);
-
+   $http.get('/theme/wtp15/elements/tarifs.json').then(function(res){
+          console.log(res.data);                     
+        });
