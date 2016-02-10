@@ -32,6 +32,7 @@
           });	
         }
       $scope.rubedo.getCustomTranslations(); 
+      console.log($scope.rubedo);
     }]);
 
 
