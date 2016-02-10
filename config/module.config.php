@@ -181,8 +181,7 @@ return array(
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/GeneralFields.json',
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Share.json',
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Inscription.json',
-         'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Emails.json',
-         'extensions/nicolasrhone/myextension/localization/languagekey/NetForGod/Texts.json'
+         'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Emails.json'
     ),
     
 
