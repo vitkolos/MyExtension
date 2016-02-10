@@ -25,7 +25,7 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 					contentDisplay = true;
 				    }
 				    //si la ligne a un bloc de dŽtail en premier, on affiche seulement le bloc dŽtail dans la ligne
-				    else if (row.columns[0].blocks[0].bType=="contentDetail") {
+				    else if (row.columns[0].blocks[0].bType=="contentDetail" && !contentDisplay) {
 					row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
 					filtered.push(row);
 				    }
