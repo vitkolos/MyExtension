@@ -157,7 +157,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $body .= "Code Onesime : " . $inscription['fields']['codeOnesime']."\n";
             $body .= "Code Compta : " . $inscription['fields']['codeCompta']."\n";
             $body .= "Id Inscription : " . $inscription['fields']['text']."\n";
-            $body .= "Nom : " . $inscription['fields']['name']."\n";
+            $body .= "Nom : " . $inscription['fields']['nom']."\n";
             $body .= "Prénom : " . $inscription['fields']['surname']."\n";
              $body .= "Email : " . $inscription['fields']['email']."\n";
             if($erreurMessage!="") $body.="\n\n Message : " . $erreurMessage;
