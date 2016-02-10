@@ -130,9 +130,4 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 	    }
 	};
 }]);
-$scope.rubedo.getCustomTranslations = function(){
-	$http.get('/theme/wtp15/elements/tarifs.json').then(function(res){
-          console.log(res.data);                     
-        });	
-}
-  $scope.rubedo.getCustomTranslations(); 
+
