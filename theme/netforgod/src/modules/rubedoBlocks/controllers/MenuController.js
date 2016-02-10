@@ -1,8 +1,9 @@
- angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http',function($scope,$location,RubedoMenuService,RubedoPagesService,$http){
+ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','$route',function($scope,$location,RubedoMenuService,RubedoPagesService,$http,$route){
         var me=this;
         me.menu={};
         me.currentRouteline=$location.path();
         var config=$scope.blockConfig;
+        var lang = $route.current.params.lang;
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
         if (config.rootPage){
             var pageId=config.rootPage;
@@ -28,11 +29,11 @@
         });
         $scope.rubedo.getCustomTranslations = function(){
 	        $http.get('/theme/wtp15/elements/tarifs.json').then(function(res){
-            console.log(res.data);                     
+            	$scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
+		console.log($scope.rubedo.translations);
           });	
         }
       $scope.rubedo.getCustomTranslations(); 
-      console.log($scope.rubedo);
     }]);
 
 
