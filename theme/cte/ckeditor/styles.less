@@ -7,5 +7,30 @@
 }
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 @import url(https://fonts.googleapis.com/css?family=Merriweather);
+@rouge:#c1573c;//rouge brique
+@rouge_shadow:#9e4232; // rouge brique sombre
+@txt_dark:#2e2c29;// couleur texte
+@txt_light:#898989; // texte gris clair
+@marron:#d5c5b5 ; // beige plus sombre
+.txt-red{color:@rouge !important}
 
 
+.capital{font-family: 'Montserrat','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:14px; font-weight: normal}
+p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
+.linkbox{text-align:center; font-family: 'Montserrat'}
+.button{
+    min-width:200px;
+    padding:12px 24px;
+    text-align: center;
+    .capital;
+    margin:12px 3px 0;
+    transition: 0.3s ease opacity;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+ }
+ .button:hover{opacity:0.8;}
+.button.rouge{background: @rouge;box-shadow: 0px 2px @rouge_shadow; color:white}
+  .button.submit{border: 2px solid @rouge; color:@rouge;}
+  .button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}

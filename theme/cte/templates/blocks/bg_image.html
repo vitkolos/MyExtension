@@ -2,6 +2,6 @@
         <header class="content prop" style="margin-bottom:0;width:105%;" ng-class="{'parallax':blockConfig.displayMode=='parallax', 'no-filter':!blockConfig.pageTitle}"
                 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1500px',mode:'boxed'})}} 1500w"
                 afkl-lazy-image-options='{"background": true}'>
-            <div ng-if="blockConfig.pageTitle" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.pageTitle}" class="text-article" style="max-width:500px">
+            <div ng-if="blockConfig.pageTitle" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.pageTitle}" class="text-article">
         </header>
 </div>
