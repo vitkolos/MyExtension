@@ -12,6 +12,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.ismagic = config.magicQuery ? config.magicQuery : false;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
+    me.template_foi = themePath+"/templates/blocks/contentList/foi.html";
     me.query="";
     me.taxoFilter="";
     me.filter = function(taxoTerm){
