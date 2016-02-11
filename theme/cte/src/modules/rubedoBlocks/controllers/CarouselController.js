@@ -54,7 +54,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             stopOnHover: blockConfig.stopOnHover,
             paginationNumbers:blockConfig.showPagingNumbers,
             navigationText: ['<span class="glyphicon glyphicon-chevron-left"></span>','<span class="glyphicon glyphicon-chevron-right"></span>'],
-            lazyLoad:true
+            lazyLoad:false
         };
         angular.element(targetElSelector).owlCarousel(owlOptions);
     };
