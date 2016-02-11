@@ -123,18 +123,7 @@
 .masonry-brick:not(.loaded) .img-description{display: none}
 
 </style>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-xs-12 ">
-			<div ng-controller="BreadcrumbController as breadcrumbCtrl">
-				<ol class="breadcrumb hidden-xs">
-				    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
-				</ol>
-				<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
-			</div>
-		</div>
-	</div>
-</div>
+
 
 <header class="container-fluid" style="margin-bottom: 48px">
 	<div class="text-article container">
@@ -191,7 +180,22 @@
 	</div>
 	<div class="gutter-sizer"></div>
 </div>
-
+<div class="row">
+	<div class=" col-xs-12">
+		<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}"  class="addthis_toolbox socials-share" >
+			<div class="col-xs-6 col-sm-4">
+				<a class="addthis_button_facebook" href=""><img class="hidden"><span class="font-jmj fb"></span>{{rubedo.translate("Block.Share.Facebook", "Share on Facebook")}}</a>
+			</div>
+			<div class="col-xs-6 col-sm-4">
+				<a class="addthis_button_twitter"><img  class="hidden"><span class="font-jmj twitter"></span>{{rubedo.translate("Block.Share.Twitter", "Share on Twitter")}}</a>
+			</div>
+			<div class="col-xs-6 col-sm-4">
+				<a class="addthis_button_email"><img class="hidden"><span class="font-jmj mail"></span>{{rubedo.translate("Block.Share.Mail", "Share by email")}}</a>
+			</div>
+			
+		</div>
+	</div>	
+</div>
 
 
 
