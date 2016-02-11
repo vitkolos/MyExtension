@@ -109,25 +109,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                     //Albums photos
                     if (me.content.type.code=="album") {
-                        me.content.images={};
-                        var options2 = {
-                            siteId: $scope.rubedo.current.site.id,
-                            pageId: $scope.rubedo.current.page.id,
-                            start:0,
-                            limit:200,
-                            query:me.content.fields.titrePhoto+"*"
+                        me.currentIndex=0;
+                        me.loadModal = function(index){
+                            me.currentIndex = index;
+                            me.currentImage = me.content.fields.images[me.currentIndex];
                         };
-                        me.getMedia = function(options){
-                            RubedoSearchService.getMediaById(options).then(function(response){
-                                if(response.data.success){
-                                    me.content.images = $filter('orderBy')(response.data.results.data, 'title') ;
-                                    me.gallery.count = response.data.count;
-                                    me.gallery.nbPages = Math.ceil(me.gallery.count/me.gallery.limit);
-                                }
-                            });
+                        me.changeImage = function(side){
+                            if(side == 'left' && me.currentIndex > 0){
+                                me.currentIndex -= 1;
+                            } else if(side == 'right' && me.currentIndex < me.content.fields.images.length - 1) {
+                                me.currentIndex += 1;
+                            }
+                            me.currentImage = me.content.fields.images[me.currentIndex];
                         };
-                        me.getMedia(options2);
+
                     }
+                    
                      
 
                     
