@@ -773,14 +773,15 @@ header.content{
     background-size: cover;
     h1,h2,h3,h4,h5,p{color:white};
     height:320px;
-    box-shadow:inset 0 0 0 1000px rgba(84,84,84,.33);
+    box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
     margin-bottom:24px;
     line-height: 320px;
     text-align: center;
     background-color: @beigeCCN;
 }
 header.content.parallax{background-attachment: fixed;}
-header.content.no-filter, .no-filter header.content{box-shadow: none;}
+header.content.no-filter,{box-shadow: none;}
+ .no-filter header.content{box-shadow:inset 0 0 0 1000px rgba(84,84,84,.1);}
 header.content>div{line-height: normal;display: inline-block;text-align:center; vertical-align: middle;}
 @media screen and (min-width: @min_sm) {
     header.content{line-height: 400px; height:400px}
