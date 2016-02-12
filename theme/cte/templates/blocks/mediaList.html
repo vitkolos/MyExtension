@@ -8,7 +8,7 @@
 				<h4 class="list-item-title capital"><span>{{ media.title }}</span></h4>
 				<div class="list-item-img">
 					<img class="media-object pull-left" 
-                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(media['fields.image'][0],{width:'400px',height:'266px',mode:'crop'}) }}"
+                                                 ng-src="{{'/file?file-id='+media['fields.image'][0] }}"
                                                  alt="{{ media.title }}"/>
                                     
                                 </div>
@@ -16,7 +16,7 @@
 				
 		</div>
 		<!--- autres -->
-		<div  class="media" ng-if="!media.fields.image">
+		<div  class="media" ng-if="!media['fields.image']">
 			<a  class="pull-left" ng-href="{{ media.url }}" target="_blank">
 				<img ng-src="{{ rubedo.imageUrl.getThumbnailUrlByMediaId(media.id) }}" ng-attr-alt="{{media.title}}" class="media-object pull-left" ng-attr-title="{{media.title}}" />
 			</a>
