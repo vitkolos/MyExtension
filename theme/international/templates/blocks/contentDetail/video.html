@@ -1,0 +1,55 @@
+<div class=" content_border">
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12">
+			<!--<a class="header_link" rubedo-page-link="551666f845205e8141869be0">Retour aux actualités</a>-->
+		</div>
+	</div>
+</div>
+
+<header class="container-fluid" ng-if="!fieldEntity['image']">
+	<div class="text-article container">
+		<p class='capital txt-red' style="text-shadow: none">{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
+		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+			<h1 class="text-left" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
+			<h1 ng-if="fieldEditMode"
+			   ng-controller="RTEFieldController as rteFieldCtrl"
+			   ckeditor="editorOptions"
+			   contenteditable="true"
+			   ready="setCKEIsReady()"
+			   ng-model="fieldEntity['text']"
+			   output-plain-text="true"
+			   ng-bind-html="rteFieldCtrl.html">
+			</h1>
+		</div>
+
+	</div>
+</header>
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12">
+			<div class="text-article">
+				<div class=" col-xs-12 col-sm-3 col-sm-push-9">
+					<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}"  class="addthis_toolbox socials" >
+						<a class="addthis_button_facebook txt-red" href=""><img class="hidden"><i class="fa fa-facebook-official" data-toggle="tooltip" title="Partager sur Facebook"></i> </a>
+						<a class="addthis_button_twitter txt-red"><img  class="hidden"><i class="fa fa-twitter-square" data-toggle="tooltip" title="Partager sur Twitter"></i> </a>
+						<a class="addthis_button_email txt-red"><img class="hidden"><i class="fa fa-share-square" data-toggle="tooltip" title="Envoyer par mail"></i></a>
+						<a class="addthis_button_expanded txt-red"><img class="hidden"><i class="fa fa-plus-square" data-toggle="tooltip" title="Plus d'options"></i></a>
+						<span class="txt-red capital" style="display: inline-block" ng-if="nbOfLikes>0">{{nbOfLikes}} partages</span>
+					</div>
+					{{contentDetailCtrl.tooltips()}}
+				</div>
+
+			</div>
+		</div>
+		<div class="col-xs-12 " ng-if="fieldEntity['video']">
+			<div class="text-article">
+				<jwplayer video-url="{{contentDetailCtrl.content.fields.video.url}}"></jwplayer>
+			</div>
+		</div>
+</div>
+
+<div style="margin-top:24px"></div>
+</div>
+

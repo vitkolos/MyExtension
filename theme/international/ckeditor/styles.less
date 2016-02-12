@@ -1,0 +1,35 @@
+@font-face {
+  font-family: 'FontAwesome';
+  src: url('/theme/cte/fonts/fontawesome-webfont.eot?v=4.3.0');
+  src: url('/theme/cte/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype'), url('/theme/cte/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2'), url('/theme/cte/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff'), url('/theme/cte/fonts/fontawesome-webfont.ttf?v=4.3.0') format('truetype'), url('/assets/fonts/fontawesome-webfont.svg?v=4.3.0#fontawesomeregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+@import url(https://fonts.googleapis.com/css?family=Merriweather);
+@rouge:#c1573c;//rouge brique
+@rouge_shadow:#9e4232; // rouge brique sombre
+@txt_dark:#2e2c29;// couleur texte
+@txt_light:#898989; // texte gris clair
+@marron:#d5c5b5 ; // beige plus sombre
+.txt-red{color:@rouge !important}
+
+
+.capital{font-family: 'Montserrat','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:14px; font-weight: normal}
+p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
+.linkbox{text-align:center; font-family: 'Montserrat'}
+.button{
+    padding:12px 24px;
+    text-align: center;
+    .capital;
+    margin:12px 3px 0;
+    transition: 0.3s ease opacity;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+ }
+ .button:hover{opacity:0.8;}
+.button.rouge{background: @rouge;box-shadow: 0px 2px @rouge_shadow; color:white}
+  .button.submit{border: 2px solid @rouge; color:@rouge;}
+  .button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}
