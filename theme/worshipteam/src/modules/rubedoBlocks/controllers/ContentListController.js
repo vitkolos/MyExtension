@@ -6,7 +6,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
     var alreadyPersist = false;
-    me.showPastConcerts=false;
+    me.showPastConcerts=1;
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
@@ -92,9 +92,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                             var today = new Date();
     
                             if (newContent.fields.date*1000 < today.getTime()) {
-                                newContent.concert = "passe";
+                                newContent.concert = 0;
                             }
-                            else newContent.concert="ouverte";
+                            else newContent.concert=1;
                             
                         }
                         columnContentList.push(newContent);
