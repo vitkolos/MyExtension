@@ -3,12 +3,12 @@
     <div ng-if="mediaListCtrl.display">
         <div ng-repeat="media in mediaListCtrl.media track by $index" class="col-md-3 col-sm-4 col-xs-6">
 		<!-- si thumbnail image est fournie -->
-		<div ng-if="media.fields.image" class="media-body">
+		<div ng-if="media['fields.image']" class="media-body">
 			<a ng-href="{{ media.url }}" target="_blank">
 				<h4 class="list-item-title capital"><span>{{ media.title }}</span></h4>
 				<div class="list-item-img">
 					<img class="media-object pull-left" 
-                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(media.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
+                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(media['fields.image'][0],{width:'400px',height:'266px',mode:'crop'}) }}"
                                                  alt="{{ media.title }}"/>
                                     
                                 </div>
