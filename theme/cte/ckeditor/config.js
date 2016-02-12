@@ -15,9 +15,10 @@ CKEDITOR.editorConfig = function( config ) {
 };
 
 CKEDITOR.stylesSet.add( 'default', [
-    { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} },
-    { name: 'Sous-titre FOI', element: 'p', attributes: { 'class': 'red-sub'} },
     { name: 'button', element: 'a', attributes: { 'class': 'button rouge'} }
+    { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} },
+    { name: 'Sous-titre FOI', element: 'p', attributes: { 'class': 'red-sub'} }
+    
 ] );
 
 
