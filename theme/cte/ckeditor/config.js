@@ -15,10 +15,15 @@ CKEDITOR.editorConfig = function( config ) {
 };
 
 CKEDITOR.stylesSet.add( 'default', [
-    { name: 'button', element: 'a', attributes: { 'class': 'button rouge'} },
     { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} },
-    { name: 'Sous-titre FOI', element: 'p', attributes: { 'class': 'red-sub'} }
-    
+    { name: 'Sous-titre FOI', element: 'p', attributes: { 'class': 'red-sub'} },
+    {
+		name: 'Centered image',
+		element: 'img',
+		attributes: { 'style': 'margin:0 auto' }
+    },
+        { name: 'button', element: 'a', attributes: { 'class': 'button rouge'} },
+
 ] );
 
 
