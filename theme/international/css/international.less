@@ -139,3 +139,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 div#bs-example-navbar-collapse-1{background-color: inherit; color:white}
 .navbar-default .navbar-nav>li>a{color:white}
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{color: @rouge; background-color: white}
+@media screen and (min-width: @min_sm) {
+    .navbar-nav {float:none}
+    .navbar-nav>li{display: inline-block; float: none}
+}
