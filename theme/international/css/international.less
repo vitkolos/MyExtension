@@ -138,10 +138,12 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 .navbar.navbar-default{background-color: @rouge_shadow; border: none;}
 div#bs-example-navbar-collapse-1{background-color: inherit; color:white}
 .navbar-default .navbar-nav>li>a{color:white}
+.navbar-nav>li:hover .dropdown-menu{display: block}
 .navbar-default .navbar-nav> a, .navbar-default .navbar-nav> a:hover, .navbar-default .navbar-nav a:focus{color: @rouge; background-color: white}
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{color: @rouge; background-color: white}
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{color: @rouge; background-color: white}
 .dropdown-menu>li>a{background: @rouge_shadow; color: white; padding: 8px 20px}
+.dropdown-menu{background: @rouge_shadow}
 @media screen and (min-width: @min_sm) {
     .navbar-nav {float:none}
     .navbar-nav>li{display: inline-block; float: none}
