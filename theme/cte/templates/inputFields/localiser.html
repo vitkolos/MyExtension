@@ -3,7 +3,7 @@
     <div ng-init="showMap=false" >
         <p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
 
-        <div class="rubedo-map-field" ng-if="showMap">
+        <div class="rubedo-map-field" ng-show="showMap">
             <google-map center="localiserFieldCtrl.map.center" zoom="localiserFieldCtrl.map.zoom" draggable="true">
                 <marker ng-if="localiserFieldCtrl.positionMarker" idKey="'positionMarker'" coords="localiserFieldCtrl.positionMarker.coords">
                     <marker-label ng-if="localiserFieldCtrl.positionMarker.label" content="localiserFieldCtrl.positionMarker.label" anchor="2 0" class="badge"></marker-label>
