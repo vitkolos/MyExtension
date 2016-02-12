@@ -14,7 +14,7 @@
                 <li ng-repeat="page in megaMenuCtrl.menu.pages track by $index" class="dropdown" ng-class="{'dropdown-large':megaMenuCtrl.hasSubPages(page)}">
                     <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
                     <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
-                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&megaMenuCtrl.hasSubPages(page)" class="dropdown-menu dropdown-menu-large row" role="menu">
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&megaMenuCtrl.hasSubPages(page)" class="dropdown-menu dropdown-menu-large row col-lg-6" role="menu">
                         <li class='col-sm-{{blockConfig.menuWidth}} pull-{{blockConfig.menuAlign}}'>
                             <ul ng-repeat="subpage in page.pages track by $index" class="{{ 'col-sm-' + 12 / page.pages.length }}">
                                 <li ng-if="!blockConfig.disableLevelTwo">
@@ -56,3 +56,10 @@
         </div>
     </div>
 </nav>
+<!--<li>-->
+    <!--<div ng-init="blockConfig={displayMode:'button' , cartDetailPage:'55c8777145205ef317c62e2d' , checkoutPage:'55c8ac3545205e972cc62e12'}" ng-include="rubedo.blockTemplateResolver.getTemplate('shoppingCart',blockConfig)" ></div>-->
+<!--</li>-->
+<!--<li>-->
+    <!--<div ng-init="blockConfig2={displayMode:'pop-in' , redirectOnConnection:false , signUpPage:'56a79674c445eccb008b464c'}" ng-include="rubedo.blockTemplateResolver.getTemplate('authentication',blockConfig2)" ></div>-->
+<!--</li>-->
+<!--<li>-->

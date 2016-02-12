@@ -1,6 +1,20 @@
 angular.module("rubedoBlocks").lazy.controller("ShoppingCartController",["$scope","RubedoPagesService","$rootScope","RubedoShoppingCartService", function($scope,RubedoPagesService,$rootScope,RubedoShoppingCartService){
     var me = this;
     var config = $scope.blockConfig;
+    //alert (config.toSource());
+    //console.log(config);
+
+    // si ca charge mal:
+    //if (config.displayMode!='detail'){
+    //    config.displayMode='button';
+    //}
+    //if (config.cartDetailPage){
+    //    config.cartDetailPage='55c8777145205ef317c62e2d';
+    //}
+    //if (config.checkoutPage){
+    //    config.checkoutPage='55c8ac3545205e972cc62e12';
+    //}
+
     if (config.cartDetailPage){
         RubedoPagesService.getPageById(config.cartDetailPage).then(function(response){
             if (response.data.success){
