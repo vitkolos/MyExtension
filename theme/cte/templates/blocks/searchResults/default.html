@@ -42,7 +42,7 @@
     <div class="col-md-9">
         <div class="resultData" ng-repeat="datum in searchResultsCtrl.data track by $index">
             <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
-            <div class="clearfix">
+            <div class="clearfix"></div>
 
             <p>{{datum.summary}}</p>
             <div>{{rubedo.translate('Contents.PublishedBy','Published by')}} <a href ng-click="searchResultsCtrl.clickOnFacets('author', datum.author)">{{datum.authorName}}</a> {{rubedo.translate("Contents.The",'the')}} {{datum.lastUpdateTime * 1000 | date: 'fullDate'}}</div>
