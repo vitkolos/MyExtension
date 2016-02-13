@@ -128,13 +128,12 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 .beige{background-color: @beigeCCN}
 .texte{max-width: 860px; margin: 24px auto; }
 .button{
-    min-width:200px;
+    min-width:200px; max-width: 240px;
     padding:12px 24px;
     text-align: center;
     .capital;
-    margin:12px 3px 0;
+    margin:24px auto;
     transition: 0.3s ease opacity;
-    display: inline-block;
     border-radius: 5px;
     cursor: pointer;
     border: none;
@@ -211,4 +210,44 @@ div#bs-example-navbar-collapse-1{background-color: inherit; color:white}
 @media screen and (min-width: @min_lg) {.carousel-caption{width:26.5%;height:100%;margin-left:73.5%; padding:48px }.owl-item img{width:73.5%}}
 
 ///////////CLASSES///////////
-.panel-heading.actus{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; }
+.panel-heading.actus{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; display: inline-block; min-width: 250px}
+
+
+////////////////////////////////////////////////////
+    ///////////ACTUS///////////////////
+///////////////////////////////////////////////////
+.content_border{border:solid 8px @rouge;min-height: 90vh}
+.header_link, a.header_link{color:@rouge; padding:15px;.capital; display: block; text-align: center}
+.header_link:hover{color:@rouge}
+.header_link:before{
+    content:'\2190'; 
+ }
+ .text-article.infos{max-width: 860px;}
+.text-article{margin:0 auto; margin-top:12px; max-width:640px; padding-left:10px; padding-right:10px; p{font-size:16px; line-height: 1.6em; margin-bottom:20px} text-align: justify}
+.text-article span+span.tags:after{content:','; margin-right:5px} // virgule après un tag
+header .text-article h1,header .text-article h3, header .text-article p{text-shadow: 2.5px 2.5px 2.5px rgba(0,0,0,0.33);}
+.text-article p img {max-width:100%; height:auto !important; margin:20px auto; display: block}
+.text-article iframe{margin-left:auto; margin-right: auto; display: block; }
+
+blockquote {
+ .capital;
+ color: @rouge;
+ width:70%;
+ border-top:5px solid white;
+ border-bottom:5px solid white;
+ border-left:none;
+ margin: 30px auto;
+}
+
+blockquote p{.capital;.txt-red; text-align: center}
+@media screen and (max-width:@min_xs){
+  .text-article{text-align:left; }
+}
+@media screen and (min-width:@min_xs){.content_border{margin-top:0px}}
+@media screen and (min-width:@min_sm){
+  .text-article p, .text-article li{font-size:18px; line-height: 1.7em}
+  .header_link{float:left}
+  }
+@media screen and (min-width:@min_md){.text-article{max-width:680px}}
+@media screen and (min-width:@min_lg){blockquote{width:60%; float:right; position: relative; left:30%; margin-left:-17.5%; margin-top:0; margin-bottom: 18px;p{font-size: 16px !important; line-height: 1.6em !important}}}
+@media screen and (min-width:@min_xs) and (max-width:@min_sm){.header_link{margin-top:33px}}
