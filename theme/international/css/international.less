@@ -138,9 +138,10 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
     border-radius: 5px;
     cursor: pointer;
     border: none;
+    background: @rouge;box-shadow: 0px 2px @rouge_shadow; color:white
  }
 .button:hover{opacity:0.8;}
-.button.rouge{background: @rouge;box-shadow: 0px 2px @rouge_shadow; color:white}
+
 
 .linkbox{text-align:center; font-family: 'Montserrat'}
 
@@ -208,3 +209,6 @@ div#bs-example-navbar-collapse-1{background-color: inherit; color:white}
 @media screen and (min-width:1275px) {.owl-item{max-height: 600px; overflow: hidden} }
 @media screen and (min-width: @min_md) { .carousel-caption{width:32%;height:100%;margin-left:68%}.owl-item img{width:68%}}
 @media screen and (min-width: @min_lg) {.carousel-caption{width:26.5%;height:100%;margin-left:73.5%; padding:48px }.owl-item img{width:73.5%}}
+
+///////////CLASSES///////////
+.panel-heading.actus{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; }
