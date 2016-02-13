@@ -251,3 +251,42 @@ blockquote p{.capital;.txt-red; text-align: center}
 @media screen and (min-width:@min_md){.text-article{max-width:680px}}
 @media screen and (min-width:@min_lg){blockquote{width:60%; float:right; position: relative; left:30%; margin-left:-17.5%; margin-top:0; margin-bottom: 18px;p{font-size: 16px !important; line-height: 1.6em !important}}}
 @media screen and (min-width:@min_xs) and (max-width:@min_sm){.header_link{margin-top:33px}}
+
+////////////////////////////////////////////////////
+    ///////////CONTENUS///////////////////
+///////////////////////////////////////////////////
+.contentDetail{min-height: 90vh}
+header.content{
+  background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover;
+    h1,h2,h3,h4,h5,p{color:white};
+    height:320px;
+    box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
+    margin-bottom:24px;
+    line-height: 320px;
+    text-align: center;
+    background-color: @beigeCCN;
+}
+header.content.parallax{background-attachment: fixed;}
+header.content.no-filter,{box-shadow: none;}
+ .no-filter header.content{box-shadow:inset 0 0 0 1000px rgba(84,84,84,.1);}
+header.content>div{line-height: normal;display: inline-block;text-align:center; vertical-align: middle;}
+@media screen and (min-width: @min_sm) {
+    header.content{line-height: 400px; height:400px}
+    header.content>div{text-align: left; vertical-align: bottom; padding-bottom: 24px}
+}
+@media screen and (min-width: 1500px) {header.content{line-height: 500px; height:500px}}
+header.content.prop>div{text-align: center; vertical-align: middle; padding-bottom: 0}
+.socials {font-size:30px; width: 100%;text-align: center; margin-bottom:12px}
+@media  screen and(min-width:@min_sm) {.socials:not(.center){text-align:right; width:auto}}
+.addthis_counter a.atc_s{display:none !important}
+.socials .addthis_counter .addthis_button_expanded, .socials .addthis_counter .addthis_button_expanded a {
+  .txt-red; .capital;
+  background: none;
+  font-family: Montserrat,Arimo,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  width:auto
+  }
+  .socials .addthis_counter {.txt-red; .capital; width: auto; margin-right: 3px;
+  }
