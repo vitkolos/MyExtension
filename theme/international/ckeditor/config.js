@@ -16,13 +16,13 @@ CKEDITOR.editorConfig = function( config ) {
 
 CKEDITOR.stylesSet.add( 'default', [
     { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} },
-    { name: 'Sous-titre FOI', element: 'p', attributes: { 'class': 'red-sub'} },
     {
 		name: 'Centered image',
 		element: 'img',
 		attributes: { 'style': 'margin:0 auto' }
     },
-        { name: 'button', element: 'div', attributes: { 'class': 'button'} },
+{ name: 'button', element: 'div', attributes: { 'class': 'button'} },
+{ name:'titre', element:'div', attributes:{'class':'panel-heading actus'}}
 
 ] );
 
