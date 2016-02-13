@@ -127,7 +127,20 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 .desaturate{filter:grayscale(100%); -webkit-filter:grayscale(100%)}
 .beige{background-color: @beigeCCN}
 .texte{max-width: 860px; margin: 24px auto; }
-
+.button{
+    min-width:200px;
+    padding:12px 24px;
+    text-align: center;
+    .capital;
+    margin:12px 3px 0;
+    transition: 0.3s ease opacity;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+ }
+.button:hover{opacity:0.8;}
+.button.rouge{background: @rouge;box-shadow: 0px 2px @rouge_shadow; color:white}
 
 .linkbox{text-align:center; font-family: 'Montserrat'}
 
