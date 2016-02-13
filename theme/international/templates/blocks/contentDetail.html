@@ -1,11 +1,6 @@
 <div ng-controller="ContentDetailController as contentDetailCtrl" >
-    <button ng-if="fieldEditMode"
-            title="Edit full content"
-            class="btn btn-default"
-            ng-click="contentDetailCtrl.launchFullEditor()">
-        <span class="glyphicon glyphicon-list-alt"></span>
-    </button>
+
     
-    <div ng-include="contentDetailCtrl.detailTemplate" class="contentDetail">
+    <div ng-include="contentDetailCtrl.detailTemplate" class="padding-">
     </div>
 </div>
