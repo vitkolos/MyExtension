@@ -22,7 +22,7 @@ CKEDITOR.stylesSet.add( 'default', [
 		element: 'img',
 		attributes: { 'style': 'margin:0 auto' }
     },
-        { name: 'button', element: 'a', attributes: { 'class': 'button'} },
+        { name: 'button', element: 'div', attributes: { 'class': 'button'} },
 
 ] );
 
