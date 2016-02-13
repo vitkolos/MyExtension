@@ -291,3 +291,50 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   }
   .socials .addthis_counter {.txt-red; .capital; width: auto; margin-right: 3px;
   }
+  
+  ////////////////////////////////////////////////////
+    ///////////CONTENT LIST///////////////////
+///////////////////////////////////////////////////
+.list-item-title{
+  padding:0 12px;
+  color:white;
+  margin-bottom: 0;
+  min-height: 54px;
+  line-height: 54px;
+  span{line-height: 1em; display: inline-block; vertical-align: middle}
+}
+.list-item-title.date-lieu{ position: relative; z-index: 1; text-align: center; border: 2px solid; border-top: 0px;}
+.list-item-img{position:relative; width:100%; overflow:hidden; }
+.list-item-img:before{
+  content: "";
+  display: block;
+  padding-top: 50%; 	/* initial ratio of 2:1*/
+}
+.list-item-img>img{
+  position:  absolute;
+  top: -20%;
+  left: 0;
+  bottom: -50%;
+  right: 0;
+  width:100%;
+  padding-right: 0;
+}
+.list-tags{position: absolute; top:-3em; color: white; opacity: 0.9; right: 5px;}
+@media screen and (min-width:@min_sm){
+  .equal-height-cols{
+    display: table;
+    div[class^="col"]{display: table-cell; vertical-align: middle; float: none; height:200px}
+  }
+}
+
+@media screen and (min-width:@min_xs) {.list-item-img:before{padding-top:33.333%;}.list-item-img>img{top:-50%}}
+@media screen and (min-width:@min_sm) {.list-item-img:before{padding-top:60%;}.list-item-img>img{top:-5%} .list-item-title.date-lieu{margin-top:-54px;}}
+.secondary-nav{
+  margin-top:50px;
+  .capital;
+  line-height: 1em;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 12px;
+  a{padding:12px 0; display: inline-block}}
+
