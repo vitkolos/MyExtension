@@ -17,7 +17,7 @@
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Sexe")}}</label>
         <input type="text" value="{{inscription.enfants[$index].sexe}}" readonly>
     </div>
-    <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.removeChild($index)">
+    <p class="txt-red pull-right cursor-as-pointer" ng-click="contentDetailCtrl.removeChild($index)">
         <span class="glyphicon glyphicon-minus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.Enfant.Supprimer")}}
     </p>
     
@@ -47,12 +47,12 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <label class="label_style left col-xs-12">{{rubedo.translate("Block.Inscription.Sexe")}}</label>
-        <input type="radio"  name="sexe" id="H" value='{{rubedo.translate("Block.Inscription.Enfant.Garçon")}}' ng-model="enfant.sexe">
+        <input type="radio"  name="sexe_enfant" id="H" value='{{rubedo.translate("Block.Inscription.Enfant.Garçon")}}' ng-model="enfant.sexe">
                         <label for="H" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.H")}}</label>	
-            <input type="radio"  name="sexe" id="F" value='{{rubedo.translate("Block.Inscription.Enfant.Fille")}}' ng-model="enfant.sexe">
+            <input type="radio"  name="sexe_enfant" id="F" value='{{rubedo.translate("Block.Inscription.Enfant.Fille")}}' ng-model="enfant.sexe">
                         <label for="F" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.F")}}</label>
     </div>
-    <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.addChild(enfant);enfant={}">
+    <p class="txt-red pull-right cursor-as-pointer" ng-click="contentDetailCtrl.addChild(enfant);enfant={}">
         <span class="glyphicon glyphicon-plus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.Enfant.Ajouter")}}
     </p>
 </div>
