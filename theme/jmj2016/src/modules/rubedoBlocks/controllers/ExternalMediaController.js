@@ -12,4 +12,5 @@ angular.module("rubedoBlocks").lazy.controller("ExternalMediaController",['$scop
             me.html=$sce.trustAsHtml(response.html);
         });
     }
+    console.log(me.config);
 }]);
