@@ -67,7 +67,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.addChild = function(enfant){
         console.log($scope);
         console.log(enfant);
-        $scope.inscription.enfants.push(angular.copy(enfant));
+        if ($scope.inscription.enfants) {
+            $scope.inscription.enfants.push(angular.copy(enfant));
+        }
+        else $scope.inscription.enfants=array(enfant);
     }
     // supprimer enfant
     me.removeChild = function(index){
