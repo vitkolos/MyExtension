@@ -151,7 +151,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 .bg-white{background-color: white !important}
 .desaturate{filter:grayscale(100%); -webkit-filter:grayscale(100%)}
 .beige{background-color: @beigeCCN}
-.texte{max-width: 860px; margin: 24px auto; }
+.texte{max-width: 860px; margin: 24px auto; padding: 6px 0}
 
 
 .linkbox{text-align:center; font-family: 'Montserrat'}
@@ -420,7 +420,6 @@ span#close:after {
     ///////////FOOTER///////////////////
 ///////////////////////////////////////////////////
 .footer{background-color:@txt_dark; color:white; a,p{color:white; display: inline-block};font-size:14px}
-.footer.jeunes{background-color: #663399}
 .footer div.container{padding:24px}
 .footer {
     a{transition: color 0.3s ease}
@@ -436,9 +435,6 @@ span#close:after {
 .footer.links .container{border-top:1px solid white; padding-top:12px; .capital{border:none; text-align: center; font-size:10px !important}}
 .footer a:hover{color:@rouge}
 @media screen and (max-width: @min_xs){.footer, .footer #menuCCN, .footer #menuBis{text-align: center} .footer a{padding:3px 0}}
-@media screen and (min-width: @min_sm) {/*.carousel-caption{width:41.68%;height:100%;margin-left:58.33%}.owl-item img{width:58.33%}*/}
-@media screen and (min-width: @min_md) { .carousel-caption{width:32%;height:100%;margin-left:68%}.owl-item img{width:68%}}
-@media screen and (min-width: @min_lg) {.carousel-caption{width:26.5%;height:100%;margin-left:73.5%; padding:48px }.owl-item img{width:73.5%}}
 ////////////////////////////////////////////////////
     ///////////ACTUS///////////////////
 ///////////////////////////////////////////////////
@@ -554,17 +550,20 @@ blockquote p{.capital;.txt-red; text-align: center}
 .owl-theme .owl-controls{position:absolute;right:0;margin-top:-30px !important;margin-right:10px;}
 .owl-theme .owl-controls .owl-page span{background:white;opacity:0.75}
 .owl-theme .owl-controls .owl-page.active span{background:@rouge}
-@media screen and (max-width:500px){.img-responsive.carousel-img{max-width:none; height: 200px; width:auto}}
+@media screen and (max-width:500px){.img-responsive.carousel-img{max-width:none; height: 200px !important; width:auto}}
 @media screen and (max-width: @min_md) {.carousel-caption h3{font-size:24px} .owl-pagination{display: none}}
 @media screen and (max-width: @min_sm) {.carousel-caption{position:relative; height:auto; h3{font-size:20px}}  }
 
 @media screen and (min-width:1275px) {.owl-item{max-height: 600px; overflow: hidden} }
+@media screen and (min-width: @min_md) { .carousel-caption{width:32%;height:100%;margin-left:68%}.owl-item img{width:68%}}
+@media screen and (min-width: @min_lg) {.carousel-caption{width:26.5%;height:100%;margin-left:73.5%; padding:48px }.owl-item img{width:73.5%}}
+
 ////////////////////////////////////////////////////
     ///////////SEARCH RESULTS///////////////////
 ///////////////////////////////////////////////////
 .media{padding:24px 0;}
 .panel-heading.actus.no-arrow{background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; }
-.panel-heading.actus:not(.no-arrow){background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; .uparrow()}
+.panel-heading.actus:not(.no-arrow){background-color:@rouge; color:white;border-radius: 0;text-align: center;.capital; .uparrow();cursor: pointer}
 .panel-heading.actus.panel-hidden{.downarrow()}
 .panel-heading.actus.panel-hidden + .panel-body{display:block; padding:0}
 .panel-heading.actus + .panel-body{display:none; padding:0}
@@ -773,14 +772,15 @@ header.content{
     background-size: cover;
     h1,h2,h3,h4,h5,p{color:white};
     height:320px;
-    box-shadow:inset 0 0 0 1000px rgba(84,84,84,.33);
+    box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
     margin-bottom:24px;
     line-height: 320px;
     text-align: center;
     background-color: @beigeCCN;
 }
 header.content.parallax{background-attachment: fixed;}
-header.content.no-filter{box-shadow: none;}
+header.content.no-filter,{box-shadow: none;}
+ .no-filter header.content{box-shadow:inset 0 0 0 1000px rgba(84,84,84,.1);}
 header.content>div{line-height: normal;display: inline-block;text-align:center; vertical-align: middle;}
 @media screen and (min-width: @min_sm) {
     header.content{line-height: 400px; height:400px}

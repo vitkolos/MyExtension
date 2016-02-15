@@ -137,25 +137,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
-                    //Albums photos
-                    if (me.content.type.code=="album") {
-                        me.content.images={};
-                        var options2 = {
-                            siteId: $scope.rubedo.current.site.id,
-                            pageId: $scope.rubedo.current.page.id,
-                            start:0,
-                            limit:200,
-                            query:me.content.fields.titrePhoto
-                        };
-                        me.getMedia = function(options){
-                            RubedoSearchService.getMediaById(options).then(function(response){
-                                if(response.data.success){
-                                    me.content.images = response.data.results.data;
-                                }
-                            });
-                        };
-                        me.getMedia(options2);
-                    }
+                   
                      
 /*GET CONTENT TAXONOMIES*/
 
@@ -220,6 +202,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
+                                    $scope.fields=me.transformForFront(me.content.type.fields);
                                 },
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';

@@ -150,6 +150,18 @@ return array(
                     '/js/boutique.js'
                 ),
            ),
+           'international' => array(
+                'label' => 'Cana International',
+                'basePath' => realpath(__DIR__ . '/../theme/international'),
+                'css' => array(
+                    '/css/international.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '../js/lazy-image.js',
+                    '/js/international.js'
+                ),
+           ),
         ),
     ),
     

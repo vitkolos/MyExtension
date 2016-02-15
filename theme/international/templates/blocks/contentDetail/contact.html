@@ -1,0 +1,88 @@
+<div class=" content_border">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 ">
+				<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+					<ol class="breadcrumb hidden-xs">
+					    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+					</ol>
+					<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="overflow-y: hidden">
+		<header ng-if="fieldEntity['image']" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})}} 1650w" 
+    class="afkl-lazy-wrapper container-fluid content prop" afkl-lazy-image-options='{"background": true}'>
+			<div class="text-article container" >
+				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+					<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+					<h1 ng-if="fieldEditMode"
+					   ng-controller="RTEFieldController as rteFieldCtrl"
+					   ckeditor="editorOptions"
+					   contenteditable="true"
+					   ready="setCKEIsReady()"
+					   ng-model="fieldEntity[field.config.name]"
+					   output-plain-text="true"
+					   ng-bind-html="rteFieldCtrl.html">
+					</h1>
+					<h3>{{contentDetailCtrl.content.fields.prenom}} {{contentDetailCtrl.content.fields.nom}}</h3>
+				</div>
+			</div>
+		</header>
+		
+		<header ng-if="!fieldEntity['image']" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId('5627b1f345205eaf17832547' ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId('5627b1f345205eaf17832547' ,{width:'768px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId('5627b1f345205eaf17832547' ,{width:'1650px',mode:'boxed'})}} 1650w" 
+    class="afkl-lazy-wrapper container-fluid content prop" afkl-lazy-image-options='{"background": true}'>
+			<div class="text-article container" >
+				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+					<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+					<h1 ng-if="fieldEditMode"
+					   ng-controller="RTEFieldController as rteFieldCtrl"
+					   ckeditor="editorOptions"
+					   contenteditable="true"
+					   ready="setCKEIsReady()"
+					   ng-model="fieldEntity[field.config.name]"
+					   output-plain-text="true"
+					   ng-bind-html="rteFieldCtrl.html">
+					</h1>
+					<h3>{{contentDetailCtrl.content.fields.prenom}} {{contentDetailCtrl.content.fields.nom}}</h3>
+				</div>
+			</div>
+		</header>
+	</div>
+
+
+	<div class="container">
+		<div class="row padding-large text-center">
+			<div class="col-xs-12 text-center">
+				
+			</div>
+		</div>
+		<div class="row padding-large text-center">
+			<div class="col-xs-4 " ng-if="fieldEntity['telephone']">
+				<p><i class="fa fa-phone icon"></i></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Telephone")}}</b></p>
+				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
+				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></p>
+			</div>
+			<div class="col-xs-4" ng-if="fieldEntity['position']">
+				<p><i class="fa fa-map-marker icon"></i></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Adresse")}}</b></p>
+				<p>{{contentDetailCtrl.content.fields.position.address}}</p>
+			</div>
+			<div class="col-xs-4"  ng-if="fieldEntity['email']">
+				<p><i class="fa fa-envelope icon"></i></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Email")}}</b></p>
+				<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':'Envoyer un mail'}">
+					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
+				</div>
+				<rubedo-field  ng-if="rubedo.current.user" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user">(visible car vous êtes connectés)</span>
+			</div>
+		</div>
+
+		<div style="padding-top:24px" class=""></div>
+	</div>
+		
+	
+</div>
+

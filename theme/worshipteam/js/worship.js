@@ -7,11 +7,7 @@ blocksConfig.simpleContact={
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 
-blocksConfig.d3Script= {
-            "template": "/templates/blocks/d3Script.html",
-            "internalDependencies":["/src/modules/rubedoBlocks/controllers/D3ScriptController.js"],
-            "externalDependencies":['/components/mbostock/d3/d3.min.js','//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js']
-},
+
 blocksConfig.bg_image={
            "template": "/templates/blocks/bg_image.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
@@ -21,8 +17,8 @@ blocksConfig.footer={
 };
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
-            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js','//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js'],
-            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/InscriptionController.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
+            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 blocksConfig.sectionPresentation={
            "template": "/templates/blocks/sectionPresentation.html",
