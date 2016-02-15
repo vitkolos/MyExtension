@@ -9,6 +9,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// config.uiColor = '#AADC6E';
         config.colorButton_colors = 'c1573c,2e2c29,d5c5b5,898989,ffffff';
         config.colorButton_enableMore = false;
+        config.youtube_responsive = true;
 
 
 
