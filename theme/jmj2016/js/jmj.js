@@ -45,7 +45,7 @@ angular.module('rubedoBlocks').directive('scrollToAnchor', function ($location, 
     
 });
 
- angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
+ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', '$timeout',function ($compile,$timeout) {
     return {
         restrict: 'EC',
         link: function (scope, element, attrs) {
@@ -63,7 +63,9 @@ angular.module('rubedoBlocks').directive('scrollToAnchor', function ($location, 
                       aspectratio:"16:9"};
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
-            jwplayer(id).setup(options);
+            timer(jwplayer(id).setup(options), 100);
+
+            
             
         }
     };
