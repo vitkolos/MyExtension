@@ -47,9 +47,9 @@
     </div>
     <div class="col-md-3 col-sm-6">
         <label class="label_style left col-xs-12">{{rubedo.translate("Block.Inscription.Sexe")}}</label>
-        <input type="radio"  name="sexe_enfant" id="H" value='{{rubedo.translate("Block.Inscription.Enfant.Garçon")}}' ng-model="inscription.enfant.sexe">
+        <input type="radio"  id="H" value='{{rubedo.translate("Block.Inscription.Enfant.Garçon")}}' ng-model="inscription.enfant.sexe">
                         <label for="H" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.H")}}</label>	
-            <input type="radio"  name="sexe_enfant" id="F" value='{{rubedo.translate("Block.Inscription.Enfant.Fille")}}' ng-model="inscription.enfant.sexe">
+            <input type="radio" id="F" value='{{rubedo.translate("Block.Inscription.Enfant.Fille")}}' ng-model="inscription.enfant.sexe">
                         <label for="F" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.F")}}</label>
     </div>
     <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.addChild(inscription.enfant);inscription.enfant={}">
