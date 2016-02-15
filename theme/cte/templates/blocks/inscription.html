@@ -22,7 +22,7 @@
             <div id="inscriptionStage1" class="collapse in">
                 <ng-form name="infos_personnelles">
                 
-                    <div ng-if="inscription.public_type =='adolescent' || inscription.public_type=='jeune-adulte' || inscription.public_type=='personne-avec-enfants' " >
+                    <div ng-if="inscription.public_type =='adolescent' || inscription.public_type=='jeune-adulte' || inscription.public_type=='personne-avec-enfants' || inscription.public_type=='adulte' " >
                         <div  ng-include="formCtrl.infos_individuel"></div>
                     </div>
                     <div ng-if="inscription.public_type =='couple' || inscription.public_type=='fiances' || inscription.public_type=='famille' " >

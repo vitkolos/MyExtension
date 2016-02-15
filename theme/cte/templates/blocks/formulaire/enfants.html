@@ -27,32 +27,32 @@
 <div class="row">
     <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Nom.Different")}}</label>
-        <input type="text" ng-model="enfant.nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' >
+        <input type="text" ng-model="inscription.enfant.nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' >
     </div>
     <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Prenom")}}</label>
-        <input type="text" ng-model="enfant.prenom" placeholder='{{rubedo.translate("Block.Inscription.Prenom")}}'>
+        <input type="text" ng-model="inscription.enfant.prenom" placeholder='{{rubedo.translate("Block.Inscription.Prenom")}}'>
     </div>
     <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.DateNaiss")}}</label>
         <div class="dropdown">
                 <a showtab class="dropdown-toggle" id="dropdowndateNaissEnf" role="button" data-toggle="dropdown" data-target="#" href="#">
-                    <div class="input-group"><input readonly id="dateNaissEnf" ng-model="enfant.birthdateF" type="text" class="form-control" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    <div class="input-group"><input readonly id="dateNaissEnf" ng-model="inscription.enfant.birthdateF" type="text" class="form-control" ><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <datetimepicker data-ng-model="enfant.birthdate"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateNaissEnf', startView: 'year', minView:'day'}" data-on-set-time="enfant.birthdateF = (enfant.birthdate |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    <datetimepicker data-ng-model="inscription.enfant.birthdate"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateNaissEnf', startView: 'year', minView:'day'}" data-on-set-time="inscription.enfant.birthdateF = (inscription.enfant.birthdate |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                 </ul>
             </div>
     </div>
     <div class="col-md-3 col-sm-6">
         <label class="label_style left col-xs-12">{{rubedo.translate("Block.Inscription.Sexe")}}</label>
-        <input type="radio"  name="sexe_enfant" id="H" value='{{rubedo.translate("Block.Inscription.Enfant.Garçon")}}' ng-model="enfant.sexe">
+        <input type="radio"  name="sexe_enfant" id="H" value='{{rubedo.translate("Block.Inscription.Enfant.Garçon")}}' ng-model="inscription.enfant.sexe">
                         <label for="H" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.H")}}</label>	
-            <input type="radio"  name="sexe_enfant" id="F" value='{{rubedo.translate("Block.Inscription.Enfant.Fille")}}' ng-model="enfant.sexe">
+            <input type="radio"  name="sexe_enfant" id="F" value='{{rubedo.translate("Block.Inscription.Enfant.Fille")}}' ng-model="inscription.enfant.sexe">
                         <label for="F" class="sexe_label">{{rubedo.translate("Block.Inscription.Sexe.F")}}</label>
     </div>
-    <p class="txt-red pull-right cursor-as-pointer" ng-click="contentDetailCtrl.addChild(enfant);enfant={}">
+    <p class="txt-red pull-right cursor-as-pointer" ng-click="contentDetailCtrl.addChild(inscription.enfant);inscription.enfant={}">
         <span class="glyphicon glyphicon-plus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.Enfant.Ajouter")}}
     </p>
 </div>
