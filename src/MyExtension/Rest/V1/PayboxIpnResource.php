@@ -139,7 +139,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
 
         $mailerObject = $mailerService->getNewMessage();
 
-        $destinataires=array($mailCompta); // set $mailSecretariat
+        $destinataires=array($mailCompta,$mailSecretariat); 
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
         
