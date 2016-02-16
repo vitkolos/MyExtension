@@ -19,10 +19,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
         $scope.inscription.public_type=newValue;
+        $scope.$apply();
     });
     $scope.$watch("contentDetailCtrl.content.service", function(newValue, oldValue) {
         $scope.inscription.serviteur=newValue;
-    });
+         $scope.$apply();
+   });
     $scope.$watch("$scope.inscription", function(newValue, oldValue) {
         console.log(newValue);
     });
