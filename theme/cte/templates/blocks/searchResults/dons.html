@@ -42,8 +42,8 @@
     <div class="col-md-9">
         <div class="media-body col-sm-4 col-xs-6 col-xxs-12" ng-repeat="datum in searchResultsCtrl.data track by $index" >
             <a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">
-                <img class="media-object pull-left" ng-if="datum['fields.image]"
-                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image],{width:'400px',height:'266px',mode:'crop'}) }}"
+                <img class="media-object pull-left" ng-if="datum['fields.image']"
+                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'],{width:'400px',height:'266px',mode:'crop'}) }}"
                                                      alt="{{ datum.title }}"/>
                 <p class="text-center">{{datum.title}}<br/>{{datum.summary}}</p>
                 <p>{{datum['fields.budget']}} {{datum['fields.monnaie']}}</p>
