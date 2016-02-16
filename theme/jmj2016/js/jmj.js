@@ -59,7 +59,7 @@ angular.module('rubedoBlocks').directive('scrollToAnchor', function ($location, 
                       file: filmUrl,
                       modestbranding:0,
                       showinfo:1,
-                      width:"10%",
+                      width:"100%",
                       aspectratio:"16:9"};
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
