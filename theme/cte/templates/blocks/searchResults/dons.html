@@ -40,14 +40,18 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div class="media-body col-sm-4 col-xs-6 col-xxs-12" ng-repeat="datum in searchResultsCtrl.data track by $index" >
+        <div class="col-sm-4 col-xs-6 col-xxs-12" ng-repeat="datum in searchResultsCtrl.data track by $index" >
             <a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">
-                <img class="media-object pull-left" ng-if="datum['fields.image']"
+                <img class="img-responsive" ng-if="datum['fields.image']"
                                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'],{width:'400px',height:'266px',mode:'crop'}) }}"
                                                      alt="{{ datum.title }}"/>
-                <p class="text-center">{{datum.title}}<br/>{{datum.summary}}</p>
-                <p>{{datum['fields.budget']}} {{datum['fields.monnaie']}}</p>
-                <p class="capital">Projet financé à {{datum['fields.cumul']*100/datum['fields.budget']}} %</p>
+                <div class="padding bg-white">
+                    <p class="text-center" style="height: 80px; overflow-y: hidden">{{datum.title}}</p>
+                    <p>{{datum['fields.budget'][0]}} {{datum['fields.monnaie'][0]}}</p>
+                    <p class="capital">Projet financé à {{datum['fields.cumul'][0]*100/datum['fields.budget'][0]}} %</p>
+                </div>
+                
+                
             </a>
             <div class="clearfix"></div>
 
@@ -59,30 +63,3 @@
     </div>
 </div>
 
-
-
-<a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" >
-                            <div class="media-body" >
-                                
-                                <h4 class="list-item-title capital"><span>{{content.fields.text}}</span></h4>
-                                <div class="list-item-img">
-                                    <img class="media-object pull-left" ng-if="content.fields.image"
-                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
-                                                 alt="{{ content.fields.text }}"/>
-                                    
-                                </div>
-                                <p  class="text-center" style="margin-top:10px;" ng-if="!contentListCtrl.titleOnly">
-                                    <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                                </p>
-                                <h4 class="list-item-title date-lieu capital" ng-if="content.fields.positionName">
-                                    <p class="list-tags" ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
-                                    <span>
-                                        {{content.fields.positionName}}
-                                        <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
-                                    </span>
-                                </h4>
-                                <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                        <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
-                                </a>
-                            </div>
-                        </a>
