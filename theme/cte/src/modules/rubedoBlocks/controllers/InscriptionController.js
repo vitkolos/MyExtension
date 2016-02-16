@@ -24,7 +24,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         $scope.inscription.serviteur=newValue;
    });
     $scope.$watch("inscription", function(newValue, oldValue) {
-        console.log(newValue);
     });
     me.form={};
     

@@ -33,6 +33,7 @@
                     </div>
                     <div class="row text-center">
                         <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                        <p ng-if="infos_personnelles.$invalid && infos_personnelles.$dirty" class="txt-marron">Merci de bien remplir tous les champs obligatoires</p>
                     </div>
                 </ng-form>
             </div>
