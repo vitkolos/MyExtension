@@ -53,7 +53,7 @@ angular.module('rubedoBlocks').directive('scrollToAnchor', function ($location, 
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
-                return '<div id=" ' + playerId +' " style="width:80%; margin:0 10%"></div>';
+                return '<div id="' + playerId +'" style="width:80%; margin:0 10%"></div>';
             };
            var options = {
                       file: filmUrl,
