@@ -1,3 +1,8 @@
+blocksConfig.d3Script= {
+            "template": "/templates/blocks/d3Script.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/D3ScriptController.js"],
+            "externalDependencies":['/components/mbostock/d3/d3.min.js','//cdnjs.cloudflare.com/ajax/libs/topojson/1.6.9/topojson.min.js']
+};
 blocksConfig.simpleContact={
            "template": "/templates/blocks/simpleContact.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
