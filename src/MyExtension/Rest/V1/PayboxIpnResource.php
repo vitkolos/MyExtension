@@ -138,8 +138,8 @@ if(!($erreurStatus) && $securite && $autorisation) {
         $mailerService = Manager::getService('Mailer');
 
         $mailerObject = $mailerService->getNewMessage();
-
-        $destinataires=array($mailCompta,$mailSecretariat); 
+        if($mailSecretariat) $destinataires=array($mailCompta,$mailSecretariat);
+        else $destinataires=array($mailCompta,"nicolas.rhone@chemin-neuf.org");
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
         

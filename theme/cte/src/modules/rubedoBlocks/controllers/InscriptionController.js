@@ -23,6 +23,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.$watch("contentDetailCtrl.content.service", function(newValue, oldValue) {
         $scope.inscription.serviteur=newValue;
     });
+    $scope.$watch("$scope.inscription", function(newValue, oldValue) {
+        console.log(newValue);
+    });
     me.form={};
     
     $scope.inscription.personneConnue = false;
