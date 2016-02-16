@@ -14,7 +14,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
     var propositionDate = "du "+$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate') + " à " + me.content.fields.heureDebut + " au " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate') + " à " + me.content.fields.heureFin;
-
+    $scope.inscription.public_type=me.content.public;
+    $scope.inscription.serviteur=me.content.service;
     
     //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
@@ -30,7 +31,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.inscription.personneConnue = false;
     $scope.inscription.entretien = false;
     $scope.inscription.motivation = false;
-        $scope.inscription.enfants=[];
+    $scope.inscription.enfants=[];
     $scope.inscription.enfant={};
     // vérifier les infos complémentaires pour le formulaire
     if ((me.content.fields.questions1) && me.content.fields.questions1.questions1 && ((me.form.content.questions1.questions1).length>0)) {
