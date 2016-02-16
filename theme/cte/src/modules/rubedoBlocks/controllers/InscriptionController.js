@@ -27,7 +27,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     $scope.inscription.personneConnue = false;
     $scope.inscription.entretien = false;
-    $scope.inscription.motivation = false;                    
+    $scope.inscription.motivation = false;
+        $scope.inscription.enfants=[];
+    $scope.inscription.enfant={};
     // vérifier les infos complémentaires pour le formulaire
     if ((me.content.fields.questions1) && me.content.fields.questions1.questions1 && ((me.form.content.questions1.questions1).length>0)) {
         if(typeof me.content.fields.questions1.questions1 =='string') {
@@ -62,10 +64,13 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             pageId: $scope.rubedo.current.page.id
     };
     // ajouter enfants
-    $scope.inscription.enfants=[];
-    $scope.inscription.enfant={};
+
     me.addChild = function(enfant){
-        $scope.$parent.inscription.enfants.push(angular.copy(enfant));
+
+        if (!$scope.inscription.enfants) {
+            $scope.inscription.enfants=[];
+        }
+        $scope.inscription.enfants.push(angular.copy(enfant));
     }
     // supprimer enfant
     me.removeChild = function(index){

@@ -63,22 +63,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
         return fraisExp;
     }
     
-    
-    /*me.copy_address = function(){
-        if (me.copy_adress) {
-            $scope.formulaire.expedition = angular.copy($scope.formulaire.facture);
-        }
-        else {
-           $scope.formulaire.expedition.name = "";
-            $scope.formulaire.expedition.surname = "";
-            $scope.formulaire.expedition.address = "";
-            $scope.formulaire.expedition.city = "";
-            $scope.formulaire.expedition.cp = "";
-            $scope.formulaire.expedition.telephone = "";
-            $scope.formulaire.expedition.email = "";            
-        }
- 
-    };*/
+
     me.payment = function(valide){
         me.contents['MUS250T'].quantite = me.small_trad;
         me.contents['MUS250O'].quantite = me.small_or;
@@ -95,7 +80,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
             me.loading=true;
              var payLoad={
                     status:"published",
-                    typeId:"5603f8b245205e0e2a6e1271",
+                    typeId:"56c33483c445ecff008b6409",
                     writeWorkspace:"552d2a2845205eb02d8a64e9",
                     fields: {
                         "text":"Commande "+me.facture.surname+" "+me.facture.name,
