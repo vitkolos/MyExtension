@@ -1,0 +1,250 @@
+<div class="input-group">
+
+    <form ng-init="blockConfig={displayMode:'button' , cartDetailPage:'55c8777145205ef317c62e2d' , checkoutPage:'55c8ac3545205e972cc62e12'}" ng-controller="SearchFormController as searchFormCtrl" ng-if="searchFormCtrl.show" ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group">
+            <input class="form-control" type="text" ng-model="searchFormCtrl.query" placeholder="{{searchFormCtrl.placeholder}}"/>
+            <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-search"></span></button></span>
+    </form>
+
+
+
+    <span ng-controller="AuthenticationController as authCtrl">
+        <span ng-if="rubedo.current.user" class="btn-group">
+            <button class="btn btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{rubedo.current.user.name}}</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" >
+                <span class="caret"></span>
+                <span class="sr-only">{{rubedo.translate("Block.Auth.ToggleDropdown","Toggle dropdown")}}</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li ng-if="rubedo.current.user.rights.boAccess" ><a href="/backoffice" target="_blank"><span class="glyphicon glyphicon-cog"></span> Back Office</a></li>
+                <li ng-if="authCtrl.profilePageUrl" ><a ng-href="{{authCtrl.profilePageUrl}}" ><span class="glyphicon glyphicon-user"></span> {{rubedo.translate("Block.Auth.Profile","Profile")}}</a></li>
+                <li><a class="cursor-as-pointer" ng-click="authCtrl.logOut()"><span class="glyphicon glyphicon-log-out"></span> {{rubedo.translate("Block.Auth.LogOut","Log out")}}</a></li>
+            </ul>
+        </span>
+        <div>
+            <button ng-if="!rubedo.current.user" class="btn btn-primary" ng-click="authCtrl.showModal()"><span class="glyphicon glyphicon-log-in"></span> {{rubedo.translate("Blocks.Auth.Label.LogIn","Log in")}}</button>
+            <div class="modal fade" id="rubedoAuthModal" tabindex="-1" role="dialog" aria-labelledby="rubedoAuthModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close","Close")}}</span></button>
+                            <h4 class="modal-title" id="rubedoAuthModalLabel">{{rubedo.translate("Blocks.Auth.Label.LogIn","Log in")}}</h4>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form" role="form" name="rubedoAuthForm" ng-submit="authCtrl.authenticate()">
+                                <div class="form-group" ng-class="{'has-error':rubedoAuthForm.login.$error.required}">
+                                    <label class="sr-only" for="rubedoAuthLoginInput">{{rubedo.translate("Blocks.Auth.Label.Login","Login")}}</label>
+                                    <input type="text" name="login" class="form-control" id="rubedoAuthLoginInput" placeholder="{{rubedo.translate('Blocks.Auth.Label.Login','Login')}}" ng-model="authCtrl.credentials.login" required>
+                                </div>
+                                <div class="form-group" ng-class="{'has-error':rubedoAuthForm.password.$error.required}">
+                                    <label class="sr-only" for="rubedoAuthPasswordInput">{{rubedo.translate("Blocks.Auth.Label.Password","Password")}}</label>
+                                    <input type="password" name="password" class="form-control" id="rubedoAuthPasswordInput" placeholder="{{rubedo.translate('Blocks.Auth.Label.Password','Password')}}" ng-model="authCtrl.credentials.password" required>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" ng-model="authCtrl.rememberMe"> {{rubedo.translate("Blocks.Auth.Label.RememberMe","Remember me")}}
+                                    </label>
+                                </div>
+                                <input type="submit" class="hidden">
+                            </form>
+                            <p ng-if="authCtrl.signUpPageUrl">
+                                <a  ng-href="{{authCtrl.signUpPageUrl}}">{{rubedo.translate("Blocks.Auth.Register", "Registration")}}</a>
+                            </p>
+                            <a href ng-click="authCtrl.recoverPwdModal()">{{rubedo.translate("Blocks.Auth.ForgotPassword", "I lost my password")}}</a>
+
+                            <div ng-show="authCtrl.authError" class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close","Close")}}</span></button>
+                                <strong>Error !</strong> {{authCtrl.authError}}
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> {{rubedo.translate("Label.Cancel", "Cancel")}}</button>
+                            <button type="button" class="btn btn-primary" ng-click="authCtrl.authenticate()"><span class="glyphicon glyphicon-ok"></span> {{rubedo.translate("Label.Submit", "Submit")}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="rubedoRecoverPwdModal" tabindex="-1" role="dialog" aria-labelledby="rubedoRecoverPwdModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close","Close")}}</span></button>
+                        <h4 class="modal-title" id="rubedoRecoverPwdModalLabel">{{rubedo.translate("Blocks.Auth.Title.RecoverPassword","Recover my password")}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" ng-submit="authCtrl.recoverPassword()">
+                            <div class="form-group">
+                                <label for="inputEmailRecoverPwd" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Auth.Label.Email", "Email")}}</label>
+                                <div class="col-sm-10">
+                                    <input required ng-model="authCtrl.recoverUserEmail" type="email" class="form-control" id="inputEmailRecoverPwd" placeholder="{{rubedo.translate('Blocks.Auth.Label.Email', 'Email')}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-2 col-sm-10">
+                                    <button type="submit" class="btn btn-primary">{{rubedo.translate("Blocks.Auth.Title.RecoverPassword","Recover my password")}}</button>
+                                </div>
+                            </div>
+                        </form>
+                        <rubedo-notification ng-if="notification"></rubedo-notification>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="rubedoChangePwdModal" tabindex="-1" role="dialog" aria-labelledby="rubedoChangePwdModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close", "Close")}}</span></button>
+                        <h4 class="modal-title" id="rubedoChangePwdModalLabel">{{rubedo.translate("Blocks.Auth.Title.ChangePassword", "Change your password")}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal" role="form" ng-submit="authCtrl.changePassword()">
+                            <div class="form-group">
+                                <label for="inputPwdRecoverPwd" class="col-sm-3 control-label">{{rubedo.translate("Blocks.Auth.Label.Password","Password")}}</label>
+                                <div class="col-sm-9">
+                                    <input required ng-model="authCtrl.newPassword" type="password" class="form-control" id="inputPwdRecoverPwd" placeholder="{{rubedo.translate('Blocks.Auth.Label.Password','Password')}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputConfirmPwdRecoverPwd" class="col-sm-3 control-label">{{rubedo.translate("Blocks.Auth.Label.PasswordConfirm", "Confirm password")}}</label>
+                                <div class="col-sm-9">
+                                    <input required ng-model="authCtrl.newConfirmPassword" type="password"
+                                           class="form-control" id="inputConfirmPwdRecoverPwd"
+                                           placeholder="{{rubedo.translate('Blocks.Auth.Label.PasswordConfirm', 'Confirm password')}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="submit" class="btn btn-primary">{{rubedo.translate("Blocks.Auth.Title.ChangePassword", "Change your password")}}</button>
+                                </div>
+                            </div>
+                        </form>
+                        <rubedo-notification ng-if="notification"></rubedo-notification>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </span>
+
+    <div ng-controller="ShoppingCartController as shoppingCartCtrl">
+        <div class="btn-group" ng-if="blockConfig.displayMode=='button'">
+            <button ng-if="shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                {{ rubedo.translate('Label.Empty')}}
+            </button>
+            <button ng-if="!shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                <span class="badge">{{shoppingCartCtrl.detailedCart.totalItems}} </span>
+                <span ng-show="shoppingCartCtrl.detailedCart.totalItems>1"> {{ rubedo.translate('Label.Items')}}</span>
+                <span ng-show="shoppingCartCtrl.detailedCart.totalItems==1"> {{ rubedo.translate('Label.Item')}}</span>
+            </button>
+            <button ng-if="!shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">{{ rubedo.translate('Block.Auth.ToggleDropdown')}}</span>
+            </button>
+            <ul ng-if="!shoppingCartCtrl.cartIsEmpty" class="dropdown-menu" role="menu">
+                <table class="table">
+                    <tr ng-repeat="row in shoppingCartCtrl.detailedCart.cart track by $index">
+                        <td>{{row.title}}&nbsp;<small>{{row.subtitle}}</small></td>
+                        <td>x&nbsp;{{row.amount}}</td>
+                        <td><span
+                                class="glyphicon glyphicon-plus cursor-as-pointer"
+                                aria-hidden="true"
+                                ng-click="shoppingCartCtrl.addToCart(row.productId.$id,row.variationId.$id,1); $event.stopPropagation();"></span></td>
+                        <td><span
+                                class="glyphicon glyphicon-minus cursor-as-pointer"
+                                aria-hidden="true"
+                                ng-click="shoppingCartCtrl.removeFromCart(row.productId.$id,row.variationId.$id,1); $event.stopPropagation();"></span></td>
+                        <td>{{row.taxedPrice | number : 2}}&nbsp;€</td>
+                        <td><span
+                                class="glyphicon glyphicon-remove cursor-as-pointer"
+                                aria-hidden="true"
+                                ng-click="shoppingCartCtrl.removeFromCart(row.productId.$id,row.variationId.$id,row.amount); $event.stopPropagation();"></span></td>
+                    </tr>
+                </table>
+                <h5><strong>{{ rubedo.translate('Blocks.ShoppingCart.Total')}}</strong> : {{shoppingCartCtrl.detailedCart.totalTaxedPrice | number :2}} €</h5>
+                <a ng-if="shoppingCartCtrl.checkoutPageUrl"
+                   ng-href="{{shoppingCartCtrl.checkoutPageUrl}}">
+                    <button class="btn btn-primary">{{ rubedo.translate('Label.Checkout')}}</button>
+                </a>
+                <a ng-if="shoppingCartCtrl.cartDetailPageUrl"
+                   ng-href="{{shoppingCartCtrl.cartDetailPageUrl}}">
+                    <button class="btn btn-primary">{{ rubedo.translate('Blocks.ShoppingCart.ViewCart')}}</button>
+                </a>
+            </ul>
+        </div>
+        <div class="panel panel-default" ng-if="blockConfig.displayMode=='detail'">
+            <div class="panel-heading"><strong>{{ rubedo.translate('Label.ShoppingCart')}}</strong>
+                <span ng-if="!shoppingCartCtrl.cartIsEmpty" class="badge"> {{shoppingCartCtrl.detailedCart.totalItems}} </span>
+                <span ng-if="!shoppingCartCtrl.cartIsEmpty" ng-show="shoppingCartCtrl.detailedCart.totalItems>1"> {{ rubedo.translate('Label.Items')}}</span>
+                <span ng-if="!shoppingCartCtrl.cartIsEmpty" ng-show="shoppingCartCtrl.detailedCart.totalItems==1"> {{ rubedo.translate('Label.Item')}}</span>
+            </div>
+            <div ng-if="shoppingCartCtrl.cartIsEmpty" class="panel-body" >
+                <div class="alert alert-warning" role="alert">{{ rubedo.translate('Blocks.ShoppingCart.CartIsEmpty')}}</div>
+            </div>
+            <table ng-if="!shoppingCartCtrl.cartIsEmpty" class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>{{ rubedo.translate('Blocks.ShoppingCart.Label.Name')}}</th>
+                    <th>{{ rubedo.translate('Blocks.ShoppingCart.Label.UnitPrice')}}</th>
+                    <th>{{ rubedo.translate('Blocks.ShoppingCart.Label.Number')}}</th>
+                    <th>{{ rubedo.translate('Blocks.ShoppingCart.Label.AddRemove')}}</th>
+                    <th>{{ rubedo.translate('Blocks.ShoppingCart.Label.Price')}}</th>
+                    <th>{{ rubedo.translate('Blocks.ShoppingCart.Label.Delete')}}</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="row in shoppingCartCtrl.detailedCart.cart track by $index">
+                    <td>
+                        <img class="img-responsive" ng-if="row.image"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(row.image,{size:'thumbnail'}) }}"
+                             alt="{{ row.title }}"
+                        />
+                    </td>
+                    <td>
+                        {{row.title}}&nbsp;<small>{{row.subtitle}}</small>
+                    </td>
+                    <td>{{row.unitTaxedPrice | number : 2}} €</td>
+                    <td>x&nbsp;{{row.amount}}</td>
+                    <td><span
+                            class="glyphicon glyphicon-plus cursor-as-pointer"
+                            aria-hidden="true"
+                            ng-click="shoppingCartCtrl.addToCart(row.productId.$id,row.variationId.$id,1); $event.stopPropagation();"></span>&nbsp;
+                <span
+                        class="glyphicon glyphicon-minus cursor-as-pointer"
+                        aria-hidden="true"
+                        ng-click="shoppingCartCtrl.removeFromCart(row.productId.$id,row.variationId.$id,1); $event.stopPropagation();"></span></td>
+                    <td>{{row.taxedPrice | number : 2}}&nbsp;€</td>
+                    <td><span
+                            class="glyphicon glyphicon-remove cursor-as-pointer"
+                            aria-hidden="true"
+                            ng-click="shoppingCartCtrl.removeFromCart(row.productId.$id,row.variationId.$id,row.amount); $event.stopPropagation();"></span></td>
+                </tr>
+            </table>
+            <div ng-if="!shoppingCartCtrl.cartIsEmpty" class="panel-body text-right">
+                <h5><strong>{{ rubedo.translate('Blocks.ShoppingCart.Total')}}</strong> : {{shoppingCartCtrl.detailedCart.totalTaxedPrice | number :2}} €</h5>
+                <a ng-if="shoppingCartCtrl.checkoutPageUrl"
+                   ng-href="{{shoppingCartCtrl.checkoutPageUrl}}">
+                    <button class="btn btn-primary">{{ rubedo.translate('Label.Checkout')}}</button>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+<div class="input-group">
+
+    <form submit="searchFormCtrl.onSubmit()" role="form" class="input-group">
+            <input class="form-control" type="text"  placeholder="{{searchFormCtrl.placeholder}}"/>
+            <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                <span class="glyphicon glyphicon-search"></span></button></span>
+    </form>
+
+
+
+</div>
+
