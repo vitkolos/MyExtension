@@ -12,7 +12,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
             displayedFacets: "['all']",
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id,
-            searchMode:"aggregate"
+            searchMode:params.searchMode ? params.searchMode : "aggregate"
         };
         angular.forEach(params, function(value, key){
             options[key]=value;
