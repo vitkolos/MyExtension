@@ -26,10 +26,9 @@
 					   ng-bind-html="rteFieldCtrl.html">
 					</h1>
 				</div>
-				<p>{{contentDetailCtrl.content.fields.positionName}}</p>
-				<p>{{contentDetailCtrl.content.fields.dateDebut | dateRange:contentDetailCtrl.content.fields.dateFin:true }}</p>
-				<a href="#infos_pratiques" class="button rouge">Informations pratiques</a>
-				<a href="#inscription" class="button rouge" ng-if="contentDetailCtrl.isInscription">S'inscrire</a>
+				<p><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('subTitle')}}"></rubedo-field></p>
+				<a href="#infos_pratiques" class="button rouge">{{rubedo.translate("InfosPratiques", "Infos pratiques")}}</a>
+				<a href="#donner" class="button rouge" ng-if="contentDetailCtrl.isInscription">{{rubedo.translate("FaireUnDon", "Faire un don")}}</a>
 		
 		
 			</div>
@@ -128,7 +127,7 @@
 			</div>
 			
 		</div>
-		<a name="inscription"></a>
+		<a name="donner"></a>
 		<div class="row  bg-white" ng-if="contentDetailCtrl.isInscription">
 			<div class="text-article">
 				<div class="col-xs-12"><h3>Inscriptions</h3></div>
