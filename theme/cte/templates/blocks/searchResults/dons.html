@@ -48,10 +48,13 @@
                 <div class="padding bg-white text-center">
                     <p  style="height: 80px; overflow-y: hidden">{{datum.title}}</p>
                     <p class="capital">{{datum['fields.budget'][0]}} {{datum['fields.monnaie'][0]}}</p>
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{datum['fields.cumul'][0]*100/datum['fields.budget'][0] }}"  ng-style="{ width : datum['fields.cumul'][0]*100/datum['fields.budget'][0] +'%' }">
-                        <span class="sr-only">
-                        </span>
+                    <div class="col-sm-12 no-padding dons-progress">
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{datum['fields.cumul'][0]*100/datum['fields.budget'][0] }}"  ng-style="{ width : datum['fields.cumul'][0]*100/datum['fields.budget'][0] +'%' }">
+                            <span class="sr-only">
+                            </span>
+                        </div>
                     </div>
+                    
                     <p class="capital">Projet financé à {{datum['fields.cumul'][0]*100/datum['fields.budget'][0] | number :0 }} %</p>
                 </div>
                 
