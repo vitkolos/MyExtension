@@ -8,7 +8,7 @@ blocksConfig.footer_links={
 //  "template":  "/templates/blocks/navigation.html",
 //  "internalDependencies":["/src/modules/rubedoBlocks/controllers/MenuController.js","/src/modules/rubedoBlocks/controllers/ShoppingCartController.js"],
 //};
-blocksConfig.boutique_top={
+blocksConfig.boutiqueTop={
   "template":  "/templates/blocks/boutiqueTop.html",
   "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchFormController.js",
       "/src/modules/rubedoBlocks/controllers/ShoppingCartController.js",
