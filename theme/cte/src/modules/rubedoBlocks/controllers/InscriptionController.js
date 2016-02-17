@@ -1,7 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout','$filter',function($scope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout,$filter) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
-    $scope.inscription={};
+    me.form={};
     //templates
     me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
     me.couple = themePath+'/templates/blocks/formulaire/couple.html';
@@ -9,17 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
     me.infosFin = themePath+'/templates/blocks/formulaire/infosFin.html';
     me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
-    
-
-//get proposition
     me.content = angular.copy($scope.proposition);
-    var propositionId = me.content.id;
-    var propositionTitle = me.content.text;
-    var propositionDate = "du "+$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate') + " à " + me.content.fields.heureDebut + " au " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate') + " à " + me.content.fields.heureFin;
-    
-    $scope.inscription.public_type=me.content.public;
-    $scope.inscription.serviteur=me.content.service;
-
     switch(me.content.public) {
         case 'adolescent':
             me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
@@ -48,8 +38,20 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         case 'famille':
             me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
             me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
-            break;  
+            break;
+        default:me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
     }
+    
+    $scope.inscription={};
+
+//get proposition
+    var propositionId = me.content.id;
+    var propositionTitle = me.content.text;
+    var propositionDate = "du "+$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate') + " à " + me.content.fields.heureDebut + " au " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate') + " à " + me.content.fields.heureFin;
+    
+    $scope.inscription.public_type=angular.copy(me.content.public);
+    $scope.inscription.serviteur=angular.copy(me.content.service);
+
 
     //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
@@ -60,7 +62,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
    });
 
 
-    me.form={};
     
     $scope.inscription.personneConnue = false;
     $scope.inscription.entretien = false;
@@ -424,7 +425,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 
         }
     }
-    $scope.$apply();
+    
 
     
 }]);
