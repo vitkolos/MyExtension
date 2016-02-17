@@ -18,8 +18,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $timeout(function() {
         $scope.inscription.public_type=me.content.public;
         $scope.inscription.serviteur=me.content.service;
-        console.log($scope.inscription.public_type+' '+$scope.inscription.serviteur+' timeout');
-    }, 200);
+        console.log($scope.inscription.public_type+' '+$scope.inscription.serviteur+' timeout 2');
+    }, 300);
     
     
     //surveiller si le type de formulaire est changé pour changer le template
