@@ -214,6 +214,13 @@
     <!--base href for angular routing-->
     <base href="/">
 
+<!-- Disable addThis Share thrackers in URL -->
+    ​<script type="text/javascript">
+        var addthis_config = addthis_config||{};
+        addthis_config.data_track_addressbar = false;
+        addthis_config.data_track_clickback = false;
+    </script>
+
     <!-- Script for google analytics -->
     <?php if ($this->googleAnalyticsKey): ?>
         <script type="text/javascript">
@@ -225,6 +232,21 @@
                 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
             })();
+        </script>
+    <?php endif; ?>
+    <!-- Script for sitelinks search box -->
+    <?php if ($this->defaultSearchUrl): ?>
+        <script type="application/ld+json">
+        {
+          "@context": "http://schema.org",
+          "@type": "WebSite",
+          "url": "<?php echo $this->defaultSiteUrl; ?>",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "<?php echo $this->defaultSearchUrl; ?>?query={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        }
         </script>
     <?php endif; ?>
 </head>
