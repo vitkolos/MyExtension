@@ -273,7 +273,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     }
  
     me.setCurrentStage = function(step, valide) {
-
+        if (!valide && step==0) {
+            me.toggleStage(1);
+        }
         if (valide && (me.currentStage >= step)) {
             
             if (step==0) {me.toggleStage(1);}
