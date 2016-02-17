@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout','$filter',function($scope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout,$filter) {
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout','$filter',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout,$filter) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     me.form={};
@@ -426,7 +426,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         }
     }
     setTimeout(function () {
-        $scope.$apply(function () {
+        $rootScope.$apply(function () {
             $scope.contentDetailCtrl.test="OK";
             console.log($scope);
             $scope.inscription.nom=" ";
