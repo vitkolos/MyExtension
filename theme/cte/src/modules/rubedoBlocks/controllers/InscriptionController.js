@@ -346,7 +346,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             /*STATUS DE L'INSCRIPTION*/
             switch(me.content.fields.inscriptionState.inscriptionState) {
                 case "attente":
-                    $scope.inscription.statut = "liste-attente";
+                    $scope.inscription.statut = "liste_attente";
                     break;
                 case 'preinscription':
                     $scope.inscription.statut = "preinscrit";
@@ -355,10 +355,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     if (me.isPaiement) {
                         /*pas de paiement maintenant*/
                         if ($scope.inscription.paiement_maintenant =="rien") {
-                            $scope.inscription.statut = 'inscrit-sans-acompte';
+                            $scope.inscription.statut = 'inscrit_sans_accompte';
                         }
                         else{
-                            $scope.inscription.statut = "attente-paiement-"+$scope.inscription.modePaiement;
+                            $scope.inscription.statut = "attente_paiement_"+$scope.inscription.modePaiement;
                         }
                         $scope.inscription.montantAPayerMaintenantAvecMonnaie = ($scope.inscription.montantAPayerMaintenant).toString() + "€";
                         if($scope.inscription.montantTotalAPayer && $scope.inscription.montantTotalAPayer>0) $scope.inscription.montantTotalAPayerAvecMonnaie=($scope.inscription.montantTotalAPayer).toString() + "€";
