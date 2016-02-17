@@ -30,7 +30,6 @@
         $scope.rubedo.getCustomTranslations = function(){
 	        $http.get('/theme/'+window.rubedoConfig.siteTheme+'/localization/'+lang+'/Texts.json').then(function(res){
             	$scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
-		console.log($scope.rubedo.translations);
           });	
         }
       $scope.rubedo.getCustomTranslations(); 

@@ -3,7 +3,7 @@
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
         me.currentRouteline=$location.path();
-         var lang = $route.current.params.lang;
+        var lang = $route.current.params.lang;
        var config=$scope.blockConfig;
 	me.menuTab = false; 
 	if ($scope.block.code == '1418') {
@@ -54,7 +54,6 @@
 	$scope.rubedo.getCustomTranslations = function(){
 	        $http.get('/theme/'+window.rubedoConfig.siteTheme+'/localization/'+lang+'/Texts.json').then(function(res){
             	$scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
-		console.log($scope.rubedo.translations);
           });	
         }
       $scope.rubedo.getCustomTranslations(); 
