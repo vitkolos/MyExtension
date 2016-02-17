@@ -424,6 +424,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 
         }
     }
+    $scope.$apply();
 
     
 }]);
