@@ -425,7 +425,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 
         }
     }
-    
+    setTimeout(function () {
+        $scope.$apply(function () {
+            $scope.test="OK";
+            console.log($scope.test)
+        });
+    }, 500);
 
     
 }]);
