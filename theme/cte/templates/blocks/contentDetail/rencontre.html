@@ -60,12 +60,18 @@
 			</div>			
 			<div ng-if="fieldEntity['website']" class="col-xs-12">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital"><a ng-href="{{contentDetailCtrl.getLabelByName('website')}}">{{contentDetailCtrl.getLabelByName('website')}}</a></p>
+					<p class="capital">{{contentDetailCtrl.getLabelByName('website')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<p><a ng-href="{{contentDetailCtrl.content.fields.website}}" >{{contentDetailCtrl.content.fields.website}}</a></p>
 				</div>
 			</div>
 			<div ng-if="fieldEntity['facebook']" class="col-xs-12">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital"><a ng-href="{{contentDetailCtrl.getLabelByName('facebook')}}">{{contentDetailCtrl.getLabelByName('facebook')}}</a></p>
+					<p class="capital">{{contentDetailCtrl.getLabelByName('facebook')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<p><a ng-href="{{contentDetailCtrl.content.fields.facebook}}" >{{contentDetailCtrl.content.fields.facebook}}</a></p>
 				</div>
 			</div>			
 			
