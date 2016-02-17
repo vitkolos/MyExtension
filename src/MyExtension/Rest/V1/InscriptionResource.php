@@ -405,10 +405,9 @@ protected function sendInscriptionMail($inscription,$lang){
         $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'] );
         if($inscription['tel1']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] );
         if($inscription['tel2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] );
-        if($inscription['public_type'] == 'adolescent') {
-            if($inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] );
-            if($inscription['emailPers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] );
-        }
+        if($inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] );
+        if($inscription['emailPers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] );
+
    }
     /*pour couple / fiances / familles*/
     if($nbInscrits == 2){
