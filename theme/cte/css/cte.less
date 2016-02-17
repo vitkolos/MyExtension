@@ -1004,9 +1004,22 @@ label.label_style.left{text-align:left; float:left}
 }
 
 .cruche {
-  float: left;
-  
+  float: left;  
 }
+.cruche:before {
+    border-radius: inherit;
+    background-image: linear-gradient(to top, rgb(158, 66, 50) 0%, transparent 0%);
+    content: '';    
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 1;
+    width: 100%;
+    z-index: 100;
+    transition: opacity 0.45s;
+  }
+  .cruche:hover:before{opacity: 0}
 .loader-container{text-align: center; margin: 64px auto}
 ////////////////////////////////////////////////////
     ///////////MISSIONS///////////////////
