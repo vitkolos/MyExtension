@@ -75,10 +75,10 @@
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('budget')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
+						<img src="/theme/cte/img/cruche.png" height="100" class="cruche" ng-style="{'background' : 'linear-gradient(to top, #9e4232 '+contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget+'%, transparent '+contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget+'%)'}">
 						<p>{{contentDetailCtrl.content.fields.budget}} {{contentDetailCtrl.content.fields.monnaie}}</p>
 						<p><i>{{rubedo.translate("Dons.Finance", "Projet financé à")}} {{contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget | number :0}} %</i></p>
 						<p><rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('budget')}}"></rubedo-field></p><!--Budget du projet-->
-						<img src="/theme/cte/img/cruche.png" height="150" ng-style="{'background' : 'linear-gradient(to top, #9e4232 '+contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget+'%, transparent '+contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget+'%)'}">
 					</div>
 				</div>
 				<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">

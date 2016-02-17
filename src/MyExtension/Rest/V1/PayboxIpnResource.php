@@ -145,7 +145,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
         
         $erreur = $params['erreur'];
         if ($erreur == "00000") {
-            $sujet = "Réception d'un paiement en ligne";
+            $sujet = "Réception d'un paiement en ligne - ".$prenom.' '. $nom;
         }
         else {
             $sujet = "Échec paiement en ligne";
