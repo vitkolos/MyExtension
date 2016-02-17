@@ -1,6 +1,6 @@
 angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout','$filter',function($scope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout,$filter) {
     var me = this;
-    var themePath="/theme/"+window.rubedoConfig.siteTheme;
+    var themePath='/theme/'+window.rubedoConfig.siteTheme;
     $scope.inscription={};
     //templates
     me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
