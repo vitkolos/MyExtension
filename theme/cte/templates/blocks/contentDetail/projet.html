@@ -78,6 +78,7 @@
 						<p>{{contentDetailCtrl.content.fields.budget}} {{contentDetailCtrl.content.fields.monnaie}}</p>
 						<p><i>{{rubedo.translate("Dons.Finance", "Projet financé à")}} {{contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget | number :0}} %</i></p>
 						<p><rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('budget')}}"></rubedo-field></p><!--Budget du projet-->
+						<img src="/theme/cte/img/cruche.svg" height="150">
 					</div>
 				</div>
 				<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
@@ -104,73 +105,17 @@
 			
 		</div>
 		<a name="donner"></a>
-		<div class="row  bg-white" ng-if="contentDetailCtrl.isInscription">
+		<div class="row  bg-white" >
 			<div class="text-article">
-				<div class="col-xs-12"><h3>Inscriptions</h3></div>
-				<div ng-if="fieldEntity['inscriptionState']">
-					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital">État des inscriptions</p>
-					</div>
-					<div class="col-xs-12 col-sm-8 "  ng-if="contentDetailCtrl.propDate!='passee' ">
-						<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('inscriptionState')}}"></rubedo-field>
-						<div ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente' ">
-							<p>{{rubedo.translate("Block.Inscription.Attente.Ligne1", "La proposition choisie est complète.")}}</p>
-							<p>{{rubedo.translate("Block.Inscription.Attente.Ligne2", "Vous pouvez vous inscrire sur liste d'attente.")}}</p>
-							<p>{{rubedo.translate("Block.Inscription.Attente.Ligne3", "Les frais d'inscription vous seront demandés à la confirmation de votre inscription.")}}</p>
-						</div>
-					</div>
-					<div class="col-xs-12" ng-if="contentDetailCtrl.propDate=='passee'">
-						<p>{{rubedo.translate("Block.Inscription.Passee", "La proposition est passée, les inscriptions ne sont plus possibles")}}</p>
-					</div>
-					<div class="col-sm-12" ng-if="contentDetailCtrl.propDate!='passee'
-						&& (contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'
-						|| contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription'
-						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente')">
-						<!--si un seul public accueilli-->
-						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">
-							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true">
-								S'inscrire
-							</div>
-						</div>
-						<!--si un plusieurs types de public accueillis-->
-						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1" class="col-sm-6 text-center">
-							<div class="button rouge cursor-as-pointer"   style="margin-bottom:12px" >S'inscrire comme :</div>
-							        <!--Type de public -->
-								<div ng-repeat="public in contentDetailCtrl.content.fields.publics track by $index" class="text-center">
-	
-									<p><a href="" ng-click="contentDetailCtrl.content.public = public; contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription =true">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[19], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
-								</div>
-						</div>						
-						<!--si un seul public au service-->
-						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.public_service).length==1 && contentDetailCtrl.content.fields.public_service[0]">
-							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.public_service[0];contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = true" >
-								S'inscrire au service
-							</div>
-						</div>
-						<!--si un plusieurs types de public au service-->
-						<div ng-if="(contentDetailCtrl.content.fields.public_service).length>1" class="col-sm-6">
-							<div class="button rouge cursor-as-pointer"  style="margin-bottom:12px">S'inscrire  au service :</div>
-							        <!--Type de public -->
-								<div ng-repeat="public in contentDetailCtrl.content.fields.public_service track by $index" class="text-center">
-
-									<p><a href="" ng-click="contentDetailCtrl.content.public = public;contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription =true">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[20], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
-								</div>
-						</div>						
-					</div>
-				</div>
+				<div class="col-xs-12"><h3>{{rubedo.translate("FaireUnDon", "Faire un don")}}</h3></div>
+				
 			</div>
 		</div>
 		<div style="padding-top:24px" class="bg-white"></div>
 	</div>
 		
 		
-	<div class="container-fluid" ng-if="contentDetailCtrl.showInscription" >
-		<div ng-init="proposition = contentDetailCtrl.content" class="row padding-large" ng-include="contentDetailCtrl.inscriptionTemplate">
-		</div>
-		
-		<div style="margin-top:24px"></div>
-		
-	</div>
+	
 	
 </div>
 
