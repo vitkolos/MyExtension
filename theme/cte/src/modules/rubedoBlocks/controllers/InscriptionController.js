@@ -16,6 +16,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var propositionDate = "du "+$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate') + " à " + me.content.fields.heureDebut + " au " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate') + " à " + me.content.fields.heureFin;
     $scope.inscription.public_type=me.content.public;
     $scope.inscription.serviteur=me.content.service;
+    console.log($scope.inscription.public_type+' '+$scope.inscription.serviteur);
     
     //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
