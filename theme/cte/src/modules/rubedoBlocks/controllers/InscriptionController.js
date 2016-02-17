@@ -9,6 +9,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
     me.infosFin = themePath+'/templates/blocks/formulaire/infosFin.html';
     me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
+    
+
 //get proposition
     me.content = angular.copy($scope.proposition);
     var propositionId = me.content.id;
@@ -17,8 +19,38 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     $scope.inscription.public_type=me.content.public;
     $scope.inscription.serviteur=me.content.service;
-q    
-    
+
+    switch(me.content.public) {
+        case 'adolescent':
+            me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+            me.additional_infos = null;
+            break;
+        case 'jeune-adulte':
+            me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+            me.additional_infos = null;
+            break;
+        case 'personne-avec-enfants':
+            me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+            me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
+            break;
+        case 'adulte':
+            me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+            me.additional_infos = null;
+            break;
+        case 'couple':
+            me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
+            me.additional_infos = null;
+            break;            
+        case 'fiances':
+            me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
+            me.additional_infos = null;
+            break;   
+        case 'famille':
+            me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
+            me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
+            break;  
+    }
+
     //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
         $scope.inscription.public_type=newValue;

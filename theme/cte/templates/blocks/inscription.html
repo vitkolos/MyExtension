@@ -21,15 +21,8 @@
             </h2>
             <div id="inscriptionStage1" class="collapse in">
                 <ng-form name="infos_personnelles">
-                    <div ng-if="inscription.public_type =='adolescent' || inscription.public_type=='jeune-adulte' || inscription.public_type=='personne-avec-enfants' || inscription.public_type=='adulte' " >
-                        <div ng-include="formCtrl.infos_individuel"></div>
-                    </div>
-                    <div ng-if="inscription.public_type =='couple' || inscription.public_type=='fiances' || inscription.public_type=='famille' " >
-                        <div  ng-include="formCtrl.couple"></div>
-                    </div>                    
-                    <div ng-if="inscription.public_type=='personne-avec-enfants' || inscription.public_type=='famille' " >
-                        <div  ng-include="formCtrl.enfants"></div>
-                    </div>
+                        <div  ng-include="formCtrl.general_infos"></div>
+                        <div  ng-include="formCtrl.additional_infos"></div>
                     <div class="row text-center">
                         <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                         <p ng-if="infos_personnelles.$invalid && infos_personnelles.$dirty" class="txt-marron">Merci de bien remplir tous les champs obligatoires</p>
