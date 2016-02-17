@@ -428,9 +428,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     setTimeout(function () {
         $scope.$apply(function () {
             $scope.test="OK";
-            console.log($scope.test)
+            console.log($scope.test);
+            console.log($scope.inscription);
         });
-    }, 500);
+    }, 1000);
 
     
 }]);
