@@ -1,9 +1,10 @@
-    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService',function($scope,$location,RubedoMenuService,RubedoPagesService){
+    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','$route',function($scope,$location,RubedoMenuService,RubedoPagesService,$http,$route){
         var me=this;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
         me.currentRouteline=$location.path();
-        var config=$scope.blockConfig;
+         var lang = $route.current.params.lang;
+       var config=$scope.blockConfig;
 	me.menuTab = false; 
 	if ($scope.block.code == '1418') {
 	    me.menuClass="menu1418";
