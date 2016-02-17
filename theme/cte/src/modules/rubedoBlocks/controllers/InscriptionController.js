@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $timeout(function() {
         $scope.inscription.public_type=me.content.public;
         $scope.inscription.serviteur=me.content.service;
-        console.log($scope.inscription.public_type+' '+$scope.inscription.serviteur);
+        console.log($scope.inscription.public_type+' '+$scope.inscription.serviteur+' timeout');
     }, 100);
     
     
