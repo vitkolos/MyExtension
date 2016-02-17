@@ -21,7 +21,7 @@
             </h2>
             <div id="inscriptionStage1" class="collapse in">
                 <ng-form name="infos_personnelles">
-                        <div  ng-include="formCtrl.general_infos"></div>
+                        <div  ng-include="formCtrl.general_infos" style="display:block"></div>
                         <div  ng-include="formCtrl.additional_infos"></div>
                     <div class="row text-center">
                         <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
