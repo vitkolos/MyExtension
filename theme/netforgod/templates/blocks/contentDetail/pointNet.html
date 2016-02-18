@@ -16,7 +16,7 @@
 			<rubedo-field ng-show="showMap" field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field>
 		</div>
 		<div class="col-xs-4 col-xxs-12">
-			<p>next meeting</p>
+			<p>{{rubedo.translate("NFG.NextMeeting",'next meeting')}}</p>
 			<p class="next-meeting" ng-if="contentDetailCtrl.content.nextDate">
 				<span>{{contentDetailCtrl.content.nextDate*1000 |date:'MMMM' |firstUpper}}</span>
 				<span>{{contentDetailCtrl.content.nextDate*1000 |date:'d'}}</span>
@@ -33,8 +33,8 @@
 
 			<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
 			<p ng-if="!fieldEntity['hideAddress']">{{contentDetailCtrl.content.fields.position.address}}</p>
-			<p ng-if="!fieldEntity['hideAddress']" class="cursor-as-pointer" ng-click="$parent.showMap=!$parent.showMap"><span class="icon-route"></span><a>Show route</a></p>
-			<p ng-if="fieldEntity['hideAddress']">Pour participer à la rencontre, merci de contacter le responsable (contact ci-dessus).</p>
+			<p ng-if="!fieldEntity['hideAddress']" class="cursor-as-pointer" ng-click="$parent.showMap=!$parent.showMap"><span class="icon-route"></span><a>{{rubedo.translate('NFG.ShowRoute','Show route')}}</a></p>
+			<p ng-if="fieldEntity['hideAddress']">{{rubedo.translate('NFG.Participate','To participate, please contact the responsible of the Point Net')}}</p>
 		</div>
 	</div>
 	<div class="row" >

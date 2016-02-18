@@ -1005,21 +1005,46 @@ label.label_style.left{text-align:left; float:left}
 
 .cruche {
   float: left;  
-}
-.cruche:before {
-    border-radius: inherit;
-    background-image: linear-gradient(to top, rgb(158, 66, 50) 0%, transparent 0%);
-    content: '';    
-    display: block;
-    height: 100%;
-    position: absolute;
-    top: 0; left: 0;
-    opacity: 1;
-    width: 100%;
-    z-index: 100;
-    transition: opacity 0.45s;
+   -moz-animation-name: fillCruche;
+    -moz-animation-iteration-count: 1;
+    -moz-animation-timing-function: ease-in;
+    -moz-animation-duration: 0.5s;
+
+    -webkit-animation-name: fillCruche;
+    -webkit-animation-iteration-count: 1;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-duration: 0.5s;
+
+    animation-name: fillCruche;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 0.5s;
   }
-  .cruche:hover:before{opacity: 0}
+
+@-moz-keyframes fillCruche {
+    0% {
+        background-size: 100% 300%;
+    }
+    100% {
+        background-size: 100% 100%;
+    }
+}
+@-webkit-keyframes fillCruche {
+    0% {
+        background-size: 100% 300%;
+    }
+    100% {
+        background-size: 100% 100%;
+    }
+}
+@keyframes fillCruche {
+    0% {
+        background-size: 100% 300%;
+    }
+    100% {
+        background-size: 100% 100%;
+    }
+}
 .loader-container{text-align: center; margin: 64px auto}
 ////////////////////////////////////////////////////
     ///////////MISSIONS///////////////////

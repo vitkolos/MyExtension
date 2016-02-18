@@ -17,6 +17,8 @@
     "Map.Mois":"month",
     "Map.Mois2":"months",
     "Map.Plus":"more than 2 months",
-    "Map.Compris":"got it"
-
+    "Map.Compris":"got it",
+    "NFG.NextMeeting":"next meeting",
+    "NFG.Participate":"To participate, please contact the responsible of the Point Net (contact above)",
+    "NFG.ShowRoute":"Show route"
 }
