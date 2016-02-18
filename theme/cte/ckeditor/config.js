@@ -11,8 +11,6 @@ CKEDITOR.editorConfig = function( config ) {
         config.colorButton_enableMore = false;
         config.youtube_responsive = true;
 
-
-
 };
 
 CKEDITOR.stylesSet.add( 'default', [
@@ -23,7 +21,9 @@ CKEDITOR.stylesSet.add( 'default', [
 		element: 'img',
 		attributes: { 'style': 'margin:0 auto' }
     },
-        { name: 'button', element: 'a', attributes: { 'class': 'button rouge'} },
+    { name: 'button', element: 'a', attributes: { 'class': 'button rouge'} },
+    { name: 'icones', element: 'span', attributes: { 'class': 'font_icon' } },
+
 
 ] );
 

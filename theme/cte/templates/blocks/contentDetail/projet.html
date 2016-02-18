@@ -37,13 +37,6 @@
 
 
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-xs-12 bg-white" >
-				<div class="text-article">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
-				</div>
-			</div>		
-		</div>
 		<a name="infos_pratiques"></a>
 		<div class="row" >
 			<div class="text-article infos">
@@ -104,14 +97,21 @@
 			</div>
 			
 		</div>
+		<div class="row">
+			<div class="col-xs-12 bg-white" >
+				<div class="text-article">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+				</div>
+			</div>		
+		</div>		
 		<a name="donner"></a>
-		<div class="row  bg-white" >
+		<div class="row" >
 			<div class="text-article">
 				<div class="col-xs-12"><h3>{{rubedo.translate("FaireUnDon", "Faire un don")}}</h3></div>
 				
 			</div>
 		</div>
-		<div style="padding-top:24px" class="bg-white"></div>
+		<div style="padding-top:24px"></div>
 	</div>
 		
 		
