@@ -246,6 +246,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
                                     $scope.fields=me.transformForFront(me.content.type.fields);
+                                    console.log($scope.fields);
                                 },
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';

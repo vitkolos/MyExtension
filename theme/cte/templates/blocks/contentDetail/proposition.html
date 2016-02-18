@@ -125,7 +125,10 @@
 					</div>
 				</div>
 				<div class="col-sm-12" ng-if="fieldEditMode">
+					<p>{{contentDetailCtrl.getLabelByName('publics')}}</p>
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('publics')}}"></rubedo-field>
+					<p>{{contentDetailCtrl.getLabelByName('public_service')}}</p>
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('public_service')}}"></rubedo-field>
 				</div>
 				
 			</div>
