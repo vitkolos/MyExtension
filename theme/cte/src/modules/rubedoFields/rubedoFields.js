@@ -383,7 +383,8 @@
                 console.log($scope.fieldEntity[$scope.field.config.name]);
             });
         }
-        angular.forEach(items,function(item){
+        console.log($scope.fieldEntity[$scope.field.config.name]);
+       angular.forEach(items,function(item){
             itemsObj[item.valeur]=item.nom;
         });
         me.displayValue=function(value){
