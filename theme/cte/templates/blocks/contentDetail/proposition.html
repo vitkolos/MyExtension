@@ -124,7 +124,10 @@
 						<p><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('infoInscription')}}"></rubedo-field></p><!--Contact-->
 					</div>
 				</div>
-				<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('public')}}"></rubedo-field>
+				<div class="col-sm-12" ng-if="fieldEditMode">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('publics')}}"></rubedo-field>
+				</div>
+				
 			</div>
 			
 		</div>
