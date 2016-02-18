@@ -18,6 +18,9 @@
 	    me.menuTab = true;
 	}
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
+	
+
+	
         if (config.rootPage){
             var pageId=config.rootPage;
         } else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
