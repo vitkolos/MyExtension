@@ -330,7 +330,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         angular.forEach(me.content.fields, function(field, fieldKey){
             if(angular.isArray(field)){
                 angular.forEach(field, function(fld, fldKey){
-                    if (fieldKey!='image') {
+                    var fieldType=me.getFieldByName(fldKey).cType;
+                    console.log(fieldType);
+                    if (fieldKey!='image' && fieldType!='combobox') {
                         if(fldKey === 0){
                             returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
                         } else {
