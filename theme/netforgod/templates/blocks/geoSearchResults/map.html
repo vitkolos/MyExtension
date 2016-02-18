@@ -35,15 +35,17 @@
         </markers>
 
     </google-map>
+    <!---pre load markers-->
     <img style="display:none" src="/theme/netforgod/img/maps/date1sel.png">
     <img style="display:none" src="/theme/netforgod/img/maps/date2sel.png">
     <img style="display:none" src="/theme/netforgod/img/maps/date3sel.png">
     <img style="display:none" src="/theme/netforgod/img/maps/date4sel.png">
     <img style="display:none" src="/theme/netforgod/img/maps/date5sel.png">
     <div class="colors">
-        <p ng-if="!geoSearchResultsCtrl.showColors" ng-click="geoSearchResultsCtrl.showColors= !geoSearchResultsCtrl.showColors">Understanding <a>colors</a></p>
-        <p ng-if="geoSearchResultsCtrl.showColors">Date of the next Point Net meeting</p>
-        <p ng-if="geoSearchResultsCtrl.showColors"><span class="icon-geotag"></span>1 week<span class="icon-geotag"></span>1 month<span class="icon-geotag"></span>longer<br/>
-            <span class="icon-geotag"></span>2 weeks<span class="icon-geotag"></span>2 months</p>
+        <p ng-if="!geoSearchResultsCtrl.showColors" ng-click="geoSearchResultsCtrl.showColors= !geoSearchResultsCtrl.showColors">{{rubedo.translate('Map.Comprendre','Understanding')}} <a>{{rubedo.translate('Map.CodeCouleur','colors')}}</a></p>
+        <p ng-if="geoSearchResultsCtrl.showColors" ng-click="geoSearchResultsCtrl.showColors= !geoSearchResultsCtrl.showColors" class="txt-light">x got it!</p>
+        <p ng-if="geoSearchResultsCtrl.showColors">{{rubedo.translate("Map.NextMeetingDate",'Date of the next Point Net meeting')}}</p>
+        <p ng-if="geoSearchResultsCtrl.showColors"><span class="icon-geotag txt-rouge"></span>1 {{rubedo.translate('Map.Semaine','week')}}<span class="icon-geotag txt-main"></span>1 {{rubedo.translate('Map.Mois','month')}}<span class="icon-geotag txt-light"></span>{{rubedo.translate('Map.Plus','longer')}}<br/>
+            <span class="icon-geotag txt-orange"></span>2 {{rubedo.translate('Map.Semaines','weeks')}}<span class="icon-geotag txt-link"></span>2 {{rubedo.translate('Map.Mois2','months')}}</p>
     </div>
 </div>

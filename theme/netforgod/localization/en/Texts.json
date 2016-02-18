@@ -8,5 +8,13 @@
     "NFG.FilmsSameSubject":"Films with the same subject",
     "NFG.GoToFilm":"Film page",
     "NFG.GoToPoint":"Point Net page",
-    "NFG.Find":"Find a Point Net close to you"
+    "NFG.Find":"Find a Point Net close to you",
+    "Map.Comprendre":"Undestanding",
+    "Map.CodeCouleur":"colors",
+    "Map.NextMeetingDate":"Date of the next Point Net meeting",
+    "Map.Semaine":"week",
+    "Map.Semaines":"weeks",
+    "Map.Mois":"month",
+    "Map.Mois2":"months",
+    "Map.Plus":"more than 2 months"    
 }
