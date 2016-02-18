@@ -492,7 +492,7 @@ protected function sendInscriptionMail($inscription,$lang){
     
     
     $mailSecretariat = $mailerService->getNewMessage();
-    $mailSecretariat->setTo(array($inscription['contact']['email'],"nicolas.rhone@chemin-neuf.org")); 
+    $mailSecretariat->setTo($inscription['contact']['email']); 
     $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['nom']))); 
     $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['nom']))); 
     $mailSecretariat->setCharset('utf-8');

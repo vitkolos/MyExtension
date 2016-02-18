@@ -51,7 +51,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     $scope.inscription.public_type=angular.copy(me.content.public);
     $scope.inscription.serviteur=angular.copy(me.content.service);
-
+    $scope.inscription.positionName = me.content.fields.positionName;
 
     //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
@@ -251,7 +251,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     //telephones
     $scope.isTelephoneRequired = function () {
         if($scope.inscription.public_type == 'adolescent')
-            return !($scope.inscription.tel1 || $scope.inscription.tel2 || $scope.inscription.tel2Pers2); // au moins téléphone fixe / portable / parent
+            return !($scope.inscription.tel1  || $scope.inscription.tel2Pers2); // au moins téléphone fixe / portable / parent
         else if ($scope.inscription.public_type == 'couple' || $scope.inscription.public_type=='famille') {
             return !($scope.inscription.tel2 || $scope.inscription.tel2Pers2 || $scope.inscription.tel1); // au moins portable de lui / elle / téléphone fixe
         }
