@@ -16,5 +16,7 @@
     "Map.Semaines":"weeks",
     "Map.Mois":"month",
     "Map.Mois2":"months",
-    "Map.Plus":"more than 2 months"    
+    "Map.Plus":"more than 2 months",
+    "Map.Compris":"got it"
+
 }

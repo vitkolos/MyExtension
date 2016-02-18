@@ -25,7 +25,7 @@ p{font-family: 'Roboto'}
 h1,h2,h3{font-family: 'Roboto Slab'}
 .padding-large{padding-top:24px; padding-bottom: 24px}
 .img-responsive{height:auto !important}
-
+a{cursor: pointer}
 
 @media screen and (max-width: @min_xs){
     [class*="col-xs-"].col-xxs-12{width:100%}
@@ -60,7 +60,7 @@ span.glyphicon{margin-right: 5px}
   .navbar-nav > li:not(:last-of-type).active, .navbar-nav > li:not(:last-of-type):hover{border-bottom: 5px solid @main; border-right: none; padding-bottom: 25px; margin-bottom: 10px;}
   .navbar-nav > li.active + li, .navbar-nav > li:hover + li{border-left: 1px solid @txt_light;}
   .nav > li > a:hover, .nav > li > a:focus{background-color: white;}
-  a{ color:@txt; transition: color 0.3s ease}
+  a{ color:@txt; transition: color 0.3s ease; }
   a:hover{color:@main}
   }
 .languageMenu{
@@ -69,6 +69,12 @@ span.glyphicon{margin-right: 5px}
 }
 .navbar-fixed-top .navbar-collapse, .navbar-fixed-bottom .navbar-collapse{max-height: none;}
 .navbar-toggle .icon-bar{background-color: @txt;}
+.navbar-fixed-top.menu-carte{right:auto; }
+.navbar-fixed-top.menu-carte.displayed{position: relative }
+div.menu-toggle.navbar-toggle{padding:30px 15px; margin:0; display: inline-block}
+.menu-toggle.navbar-toggle .icon-bar{background-color: @txt_light; width:30px; height: 5px; border-radius: 2px}
+
+
 @media screen and (min-width: @min_sm) and (max-width: @min_lg){
   .navbar-fixed-top{
     .navbar-nav>li>a{ font-size: 16px;}
@@ -78,6 +84,7 @@ span.glyphicon{margin-right: 5px}
     .navbar-brand{padding: 8px 10px}
   }
   div.first{margin-top:66px}
+  div.menu-toggle.navbar-toggle{padding:20px 15px;}
 }
 @media screen and (min-width: @min_sm) and (max-width: @min_md){
   .navbar-fixed-top .navbar-nav > li {padding:5px 10px; }
@@ -87,11 +94,6 @@ span.glyphicon{margin-right: 5px}
 @media screen and (max-width: @min_sm) {
   div.first{margin-top:50px}
 }
-
-.navbar-fixed-top.menu-carte{right:auto; }
-.navbar-fixed-top.menu-carte.displayed{position: relative }
-div.menu-toggle.navbar-toggle{padding:30px 15px; margin:0; display: inline-block}
-.menu-toggle.navbar-toggle .icon-bar{background-color: @txt_light; width:30px; height: 5px; border-radius: 2px}
 
 ///////////LISTE DES FILMS////////////////////
 .filmList {
@@ -233,8 +235,9 @@ h3.tab {
 div.logo{font-size:5em}
 
 ////////////////MAP//////////////////////
-.full_page{height:auto }
-@media screen and (min-width:@min_sm){.full_page{height: 100%; height:100vh;}.map-container{height:100%}}
+.full_page{height:50vh }
+.map-container{height:100%}
+@media screen and (min-width:@min_sm){.full_page{height: 100%; height:100vh;}}
 .full_page > div{height:100%; }
 .full_page >div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
 .full_page .container-fluid{overflow-x: visible}
@@ -272,7 +275,7 @@ div.logo{font-size:5em}
     color:@main;
 }
 input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0; padding-left: 30px}
-.colors{position: absolute; bottom: 10px; left: 20px; background: white; p{margin-bottom: 0; font-size: 1.1em;} padding:6px; span{margin-left:10px;}}
+.colors{position: absolute; bottom: 10px; left: 20px; background: white; p{font-size: 1.1em;} padding:10px 12px 0px; span{margin-left:10px;}}
 
 
 .trapezoid {
