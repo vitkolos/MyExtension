@@ -380,6 +380,7 @@
                 if (!angular.isArray($scope.fieldEntity[$scope.field.config.name])){
                     $scope.fieldEntity[$scope.field.config.name]=[$scope.fieldEntity[$scope.field.config.name]];
                 }
+                console.log($scope.fieldEntity[$scope.field.config.name]);
             });
         }
         angular.forEach(items,function(item){

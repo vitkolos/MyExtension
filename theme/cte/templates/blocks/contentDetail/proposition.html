@@ -169,7 +169,7 @@
 							        <!--Type de public -->
 								<div ng-repeat="public in contentDetailCtrl.content.fields.publics track by $index" class="text-center">
 	
-									<p><a href="" ng-click="contentDetailCtrl.content.public = public; contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription =true">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[19], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
+									<p><a href="" ng-click="contentDetailCtrl.content.public = public; contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription =true">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[20], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
 								</div>
 						</div>						
 						<!--si un seul public au service-->
@@ -184,7 +184,7 @@
 							        <!--Type de public -->
 								<div ng-repeat="public in contentDetailCtrl.content.fields.public_service track by $index" class="text-center">
 
-									<p><a href="" ng-click="contentDetailCtrl.content.public = public;contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription =true">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[20], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
+									<p><a href="" ng-click="contentDetailCtrl.content.public = public;contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription =true">- {{contentDetailCtrl.getLabel(contentDetailCtrl.content.type.fields[21], public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
 								</div>
 						</div>						
 					</div>
