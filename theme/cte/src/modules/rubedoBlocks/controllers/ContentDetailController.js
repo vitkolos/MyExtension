@@ -328,9 +328,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var transformForPersist = function(){
         var returnFields = angular.copy(me.content.fields);
         angular.forEach(me.content.fields, function(field, fieldKey){
-            if(angular.isArray(field)){
+            var fieldType="";
+            if (me.getFieldByName(fieldKey)) {
+                fieldType=me.getFieldByName(fieldKey).cType;
+            }
+            if(angular.isArray(field) && fieldType!='combobox'){
                 angular.forEach(field, function(fld, fldKey){
-
                     if (fieldKey!='image' ) {
                         if(fldKey === 0){
                             returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
