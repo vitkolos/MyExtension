@@ -21,6 +21,16 @@ a{
 .links{
   font-family: 'Montserrat', sans-serif;
 }
+
+a:hover, a:focus {
+  color: @txt_dark;
+
+}
+a {
+  color:lighten(@txt_dark,20%);
+
+}
+
 html,body {
   font-family: 'Merriweather', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   height: 100%;
@@ -53,24 +63,43 @@ html,body {
     color: #ffffff;
   }
 }
-.top-tabs{
-  >*>div{
- }
-  //display: inline-block;
-  //background-color: #B4DB37;
-}
+//.top-tabs{
+//  >*>div{
+// }
+//  //display: inline-block;
+//  //background-color: #B4DB37;
+//}
 .hidden{
   visibility: hidden;
 }
 
 
 .head-btq{
-  .navbar{
+  background-color: @marron;
+  color: @txt_dark;
+
+  .navbar,button,input{
     border: none;
+    background-color: @marron;
+    color: @txt_dark;
   }
-  background-color: @menu;
-  *{
-    background-color: @menu;
-    color: white;
+  input{
+    background-color: lighten(@marron,10%);
+    border-radius: 0;
+  }
+  .dropdown-menu{
+    background-color: @beigeCCN;
+    *{
+      background-color: @beigeCCN;
+    }
+    :hover,:focus{
+      background-color: @beigeCCN;
+    }
+  }
+  .dropdown-menu-large, .dropdown-header {
+    color: @rouge;
+    :hover{
+      color: darken(@rouge,10%);
+    }
   }
 }

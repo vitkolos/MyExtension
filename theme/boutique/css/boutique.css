@@ -4,6 +4,13 @@ a {
 .links {
   font-family: 'Montserrat', sans-serif;
 }
+a:hover,
+a:focus {
+  color: #2e2c29;
+}
+a {
+  color: #646059;
+}
 html,
 body {
   font-family: 'Merriweather', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -40,12 +47,35 @@ body {
   visibility: hidden;
 }
 .head-btq {
-  background-color: #2e2c29;
+  background-color: #d5c5b5;
+  color: #2e2c29;
 }
-.head-btq .navbar {
+.head-btq .navbar,
+.head-btq button,
+.head-btq input {
   border: none;
+  background-color: #d5c5b5;
+  color: #2e2c29;
 }
-.head-btq * {
-  background-color: #2e2c29;
-  color: white;
+.head-btq input {
+  background-color: #e7dfd6;
+  border-radius: 0;
+}
+.head-btq .dropdown-menu {
+  background-color: #f3eeea;
+}
+.head-btq .dropdown-menu * {
+  background-color: #f3eeea;
+}
+.head-btq .dropdown-menu :hover,
+.head-btq .dropdown-menu :focus {
+  background-color: #f3eeea;
+}
+.head-btq .dropdown-menu-large,
+.head-btq .dropdown-header {
+  color: #c1573c;
+}
+.head-btq .dropdown-menu-large :hover,
+.head-btq .dropdown-header :hover {
+  color: #9a4530;
 }
