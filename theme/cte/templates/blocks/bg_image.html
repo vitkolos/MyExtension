@@ -1,4 +1,4 @@
-<div ng-controller="BgImageController as imageCtrl" class="padding- no-margin" style="overflow-x:hidden" ng-class="{'padding-':blockConfig.displayMode=='title', 'padding-large':blockConfig.displayMode=='parallax'}">
+<div ng-controller="BgImageController as imageCtrl" class="padding- no-margin" style="overflow-x:hidden" ng-class="{'padding-':blockConfig.displayMode=='title'}">
         <header class="content prop" style="margin-bottom:0;width:105%;" ng-class="{'parallax':blockConfig.displayMode=='parallax', 'no-filter':!blockConfig.pageTitle}"
                 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1500px',mode:'boxed'})}} 1500w"
                 afkl-lazy-image-options='{"background": true}'>
