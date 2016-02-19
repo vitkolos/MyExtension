@@ -18,15 +18,47 @@
 	    me.menuTab = true;
 	}
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
+	me.getMenu = function(){
+	    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
+		if (response.data.success){
+		    me.menu=response.data.menu;
+		} else {
+		    me.menu={};
+		}
+	    });
+	};
+	if ($scope.block.code=='lvl3') {
+	    if (($scope.rubedo.current.breadcrumb).length==3) {
+		var pageId=$scope.rubedo.current.page.id; me.getMenu();
+	    }
+	    else if (($scope.rubedo.current.breadcrumb).length==4) {
+		var pageId=$scope.rubedo.current.page.parentId;me.getMenu();
+	    }
+	    else if (($scope.rubedo.current.breadcrumb).length==5) {
+		
+		var route = $route.current.params.routeline;
+		var path = route.substring(0,route.lastIndexOf('/')); // parent page
+		$http.get("/api/v1/pages",{
+		    params:{
+			site:$location.host(),
+			route:path
+		    }
+		}).then(function(response){
+		    if (response.data.success) {
+			pageId = response.data.page.parentId;
+		    }
+		    else pageId=$scope.rubedo.current.page.parentId;
+		    me.getMenu();
+		});
+	    }
+	}		
 	
-
-	
-        if (config.rootPage){
-            var pageId=config.rootPage;
+        else if (config.rootPage){
+            var pageId=config.rootPage;me.getMenu();
         } else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
-            var pageId=$scope.rubedo.current.page.parentId;
+            var pageId=$scope.rubedo.current.page.parentId;me.getMenu();
         } else {
-            var pageId=$scope.rubedo.current.page.id;
+            var pageId=$scope.rubedo.current.page.id;me.getMenu();
         }
         me.onSubmit = function(){
             var paramQuery = me.query?'?query='+me.query:'';
@@ -36,13 +68,8 @@
                 }
             });
         };
-        RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
-            if (response.data.success){
-                me.menu=response.data.menu;
-            } else {
-                me.menu={};
-            }
-        });
+	
+        
 	me.showMenu =function(){
 	    $scope.menu = !$scope.menu;
 	    if($scope.menu) angular.element('#menuModal').modal('show');
