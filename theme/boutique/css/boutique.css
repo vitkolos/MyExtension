@@ -46,6 +46,25 @@ body {
 .hidden {
   visibility: hidden;
 }
+.btn-default {
+  background-color: #c1573c;
+  border: none;
+}
+.btn-default .badge {
+  color: #c1573c;
+}
+.btn-default :hover,
+.btn-default :focus,
+.btn-default :active,
+.btn-default .active {
+  background-color: #9e4232;
+}
+.btn-default :hover .badge,
+.btn-default :focus .badge,
+.btn-default :active .badge,
+.btn-default .active .badge {
+  color: #f3eeea;
+}
 .head-btq {
   background-color: #d5c5b5;
   color: #2e2c29;
