@@ -289,7 +289,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         pageId: $scope.rubedo.current.page.id,
         predefinedFacets:{"type":"54dc614245205e1d4a8b456b","lieuCommunautaire":me.content.id},
         start:0,
-        limit:5000
+        limit:5000,
+        orderby:'fields.dateDebut'
       };
       RubedoSearchService.searchByQuery(optionsCalendar).then(function(response){
         if(response.data.success){
