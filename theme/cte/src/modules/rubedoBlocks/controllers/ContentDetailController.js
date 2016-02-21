@@ -291,7 +291,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         start:0,
         limit:5000
       };
-      RubedoSearchService.searchByQuery(options).then(function(response){
+      RubedoSearchService.searchByQuery(optionsCalendar).then(function(response){
         if(response.data.success){
           me.calendarContents = response.data.results.data;
           console.log(me.calendarContents);
