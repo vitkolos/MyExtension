@@ -69,7 +69,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.inscription.enfants=[];
     $scope.inscription.enfant={};
     // vérifier les infos complémentaires pour le formulaire
-    if ((me.content.fields.questions1) && me.content.fields.questions1.questions1 && ((me.form.content.questions1.questions1).length>0)) {
+    if ((me.content.fields.questions1) && me.content.fields.questions1.questions1 && ((me.content.questions1.questions1).length>0)) {
         if(typeof me.content.fields.questions1.questions1 =='string') {
             me.form[me.content.fields.questions1.questions1] = true;
         }
