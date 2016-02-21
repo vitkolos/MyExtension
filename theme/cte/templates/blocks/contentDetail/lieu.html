@@ -97,11 +97,11 @@
 			        </thead>
 			        <tbody>
 			            <tr ng-repeat="content in contentDetailCtrl.calendarContents track by $index">
-			                <th class="cal-date" data-th="Date"><a ng-href="{{ content.detailPageUrl }}">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</a></th>
+			                <th class="cal-date" data-th="Date"><a ng-href="{{ content.url }}">{{content['fields.dateDebut'][0]|dateRange:content['fields.dateFin'][0]:'short'}}</a></th>
 			                <th class="cal-prop" data-th="Proposition"><a ng-href="{{ content.detailPageUrl }}">
-			                        {{ content.fields.text }}</a>
+			                        {{ content.text[0] }}</a>
 			                </th>
-			                <th class="cal-date" data-th="Lieu"><a ng-href="{{ content.detailPageUrl }}">{{content.fields.positionName}}</a></th>
+			                <th class="cal-date" data-th="Lieu"><a ng-href="{{ content.url }}">{{content.fields.positionName}}</a></th>
 			            </tr>
 			        </tbody>
 			</table>
