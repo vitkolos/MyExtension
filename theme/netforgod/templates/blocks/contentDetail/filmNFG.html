@@ -169,13 +169,13 @@
 					 alt="{{ contentDetailCtrl.relatedFOI.text }}"/>
 		</div>
 		<div class="col-xs-7 col-xxs-12">
-			<a ng-href="{{contentDetailCtrl.relatedFOI.canonicalUrl}}"><h3 class="media-heading">{{contentDetailCtrl.relatedFOI.text}}</h3></a>
+			<a ng-href="{{'http://ccn.chemin-neuf.fr'+contentDetailCtrl.relatedFOI.canonicalUrl}}"><h3 class="media-heading">{{contentDetailCtrl.relatedFOI.text}}</h3></a>
 			<h4 class="media-heading" style="font-size: 0.8em">
 				<span class="icon-issuedate"></span>{{contentDetailCtrl.relatedFOI.fields.date*1000 | date :'MMMM yyyy' |uppercase}}
 			</h4>
 			<p>La revue FOI (pour Fraternité Oecuménique Internationale) est une revue trimestrielle éditée par la communauté du Chemin Neuf.
 			Elle donne la parole à des acteurs de l'Eglise et à des membres de la communauté qui partagent leur passion pour l'Unité.</p>
-			<h3><a class="link pull-right" ng-href="{{contentDetailCtrl.relatedFOI.canonicalUrl}}" class="pull-right">{{rubedo.translate("Block.ContentList.Label.ReadMore", "En savoir plus")}} →</a></h3>
+			<h3><a class="link pull-right" ng-href="{{'http://ccn.chemin-neuf.fr'+contentDetailCtrl.relatedFOI.canonicalUrl}}" class="pull-right">{{rubedo.translate("Block.ContentList.Label.ReadMore", "En savoir plus")}} →</a></h3>
 
 		</div>
 	</div>
