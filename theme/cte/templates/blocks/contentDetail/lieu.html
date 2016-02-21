@@ -83,7 +83,7 @@
 		
 	</div>
 	<div class="row">
-		<div class="col-sm-12">
+		<div class="col-sm-12 text-center">
 			<div class="button rouge" ng-click="contentDetailCtrl.showCalendar()">calendrier</div>
 		</div>
 		<div class="col-sm-12 padding-large" ng-if="contentDetailCtrl.calendarContents.length>0">
@@ -98,10 +98,10 @@
 			        <tbody>
 			            <tr ng-repeat="content in contentDetailCtrl.calendarContents track by $index">
 			                <th class="cal-date" data-th="Date"><a ng-href="{{ content.url }}">{{content['fields.dateDebut'][0]|dateRange:content['fields.dateFin'][0]:'short'}}</a></th>
-			                <th class="cal-prop" data-th="Proposition"><a ng-href="{{ content.detailPageUrl }}">
+			                <th class="cal-prop" data-th="Proposition"><a ng-href="{{ content.url }}">
 			                        {{ content.text[0] }}</a>
 			                </th>
-			                <th class="cal-date" data-th="Lieu"><a ng-href="{{ content.url }}">{{content.fields.positionName}}</a></th>
+			                <th class="cal-date" data-th="Lieu"><a ng-href="{{ content.url }}">{{content['fields.positionName'][0]}}</a></th>
 			            </tr>
 			        </tbody>
 			</table>
