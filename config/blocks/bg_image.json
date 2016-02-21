@@ -71,6 +71,14 @@
                                 "forceSelection": true,
                                 "queryMode": "local"
                             }
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "Sans filtre",
+                                "name": "noFilter",
+                                "inputValue": true
+                            }
                         }
                     ]
                 }                
