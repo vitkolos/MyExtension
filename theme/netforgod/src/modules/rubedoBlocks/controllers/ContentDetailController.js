@@ -121,8 +121,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     /*si FOI lié, récupérer le contenu*/
                     var options = {
-                      siteId: $scope.rubedo.current.site.id,
-                      pageId: $scope.rubedo.current.page.id
+                      siteId: "555c4cf445205e71447e68d3",
+                      pageId: "555c4cf445205e71447e68db"
                     };
                     if (me.content.fields.linkedFOI) {
                         RubedoContentsService.getContentById(me.content.fields.linkedFOI, options).then(
