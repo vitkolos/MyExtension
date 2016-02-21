@@ -332,7 +332,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.personneConnue = me.form.personneConnue;
             $scope.inscription.entretien = me.form.entretien;
             $scope.inscription.motivation = me.form.motivation;
-            if (me.content.fields.formulaire_pdf && me.form.content.formulaire_pdf!="") {
+            if (me.content.fields.formulaire_pdf && me.content.formulaire_pdf!="") {
                 RubedoMediaService.getMediaById(me.content.fields.formulaire_pdf).then(
                     function(response){
                         if (response.data.success){
