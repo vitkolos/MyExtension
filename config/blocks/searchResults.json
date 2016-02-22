@@ -79,7 +79,7 @@
                             "config": {
                                 "fieldLabel": "#ext-gen1470#",
                                 "name": "contentType",
-                                "multiSelect": false
+                                "multiSelect": true
 
                             }
                         }                      
