@@ -75,13 +75,14 @@
                             }
                         },
                         {
-			    "type":"Ext.form.field.Text",
-			    "config":{
-				    "fieldLabel":"Taxonomies",
-				    "name": "taxonomies",
-				    "value": ""
-				}
-			}                        
+                            "type": "Rubedo.view.CTCField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1470#",
+                                "name": "contentType",
+                                "multiSelect": false
+
+                            }
+                        }                      
                     ]
                 },
                 {
