@@ -1,0 +1,47 @@
+<div ng-controller="ProductSearchController as searchResultsCtrl">
+    <span class="pull-right">{{rubedo.translate('Blocks.Search.Label.ViewAs')}} &nbsp;
+        <div class="btn-group" role="group">
+            <button type="button"
+                    class="btn btn-default btn-lg"
+                    ng-click="searchResultsCtrl.productDisplayMode='grid';"
+                    title="{{rubedo.translate('Blocks.Search.Label.Grid')}}"
+                    ng-class="{'btn-primary':searchResultsCtrl.productDisplayMode=='grid'}">
+                <span class="glyphicon glyphicon-th"></span>
+            </button>
+            <button type="button"
+                    class="btn btn-default btn-lg"
+                    ng-click="searchResultsCtrl.productDisplayMode='list';"
+                    title="{{rubedo.translate('Blocks.Search.Label.List')}}"
+                    ng-class="{'btn-primary':searchResultsCtrl.productDisplayMode=='list'}">
+                <span class="glyphicon glyphicon-th-list"></span>
+            </button>
+        </div>
+    </span>
+    <h1 ng-if="rubedo.current.page.eCTitle">{{rubedo.current.page.eCTitle}}</h1>
+    <nav class="navbar navbar-default optional">
+        <div class="navbar-header">
+            <span class="navbar-brand" ng-if="searchResultsCtrl.count > 1">{{rubedo.translate('Search.ThereAre','There are')}} <span class="badge">{{searchResultsCtrl.count}}</span> {{rubedo.translate('Search.Results','results')}}</span>
+            <span class="navbar-brand" ng-if="searchResultsCtrl.count <= 1">{{rubedo.translate('Search.ThereIs','There is')}} <span class="badge">{{searchResultsCtrl.count}}</span> {{rubedo.translate('Search.Result','result')}}</span>
+        </div>
+        <div class="collapse navbar-collapse ">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href class="dropdown-toggle" data-toggle="dropdown">{{searchResultsCtrl.displayOrderBy}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href ng-click="searchResultsCtrl.changeOrderBy('_score')">{{rubedo.translate("Search.Label.OrderByRelevance", "Order by relevance")}}</a></li>
+                        <li><a href ng-click="searchResultsCtrl.changeOrderBy('lastUpdateTime')">{{rubedo.translate("Search.Label.OrderByNewest", "Order by newest")}}</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href class="dropdown-toggle" data-toggle="dropdown">{{rubedo.translate("Blocks.Search.Label.ByPage", "by page")}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a ng-click="searchResultsCtrl.changeLimit(10)" href>10 {{rubedo.translate("Blocks.Search.Label.ByPage", "by page")}}</a></li>
+                        <li><a ng-click="searchResultsCtrl.changeLimit(20)" href>20 {{rubedo.translate("Blocks.Search.Label.ByPage", "by page")}}</a></li>
+                        <li><a ng-click="searchResultsCtrl.changeLimit(50)" href>50 {{rubedo.translate("Blocks.Search.Label.ByPage", "by page")}}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <ng-include src="searchResultsCtrl.template"></ng-include>
+</div>

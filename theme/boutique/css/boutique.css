@@ -46,23 +46,30 @@ body {
 .hidden {
   visibility: hidden;
 }
-.btn-default {
+.optional {
+  visibility: hidden;
+}
+.true-search .optional {
+  visibility: visible;
+}
+.inner-body .btn-default {
   background-color: #c1573c;
   border: none;
+  margin-bottom: 1px;
 }
-.btn-default .badge {
+.inner-body .btn-default .badge {
   color: #c1573c;
 }
-.btn-default :hover,
-.btn-default :focus,
-.btn-default :active,
-.btn-default .active {
+.inner-body .btn-default :hover,
+.inner-body .btn-default :focus,
+.inner-body .btn-default :active,
+.inner-body .btn-default .active {
   background-color: #9e4232;
 }
-.btn-default :hover .badge,
-.btn-default :focus .badge,
-.btn-default :active .badge,
-.btn-default .active .badge {
+.inner-body .btn-default :hover .badge,
+.inner-body .btn-default :focus .badge,
+.inner-body .btn-default :active .badge,
+.inner-body .btn-default .active .badge {
   color: #f3eeea;
 }
 .head-btq {

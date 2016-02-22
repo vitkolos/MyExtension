@@ -50,7 +50,6 @@
 
                     <div ng-style="searchResultsCtrl.imageStyle"
                          ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
-
                         <a ng-href="{{ content.url }}">
                             <img class="img-responsive center-block" ng-if="content['fields.'+searchResultsCtrl.imageField] && !searchResultsCtrl.titleOnly"
                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.'+searchResultsCtrl.imageField],{mode:searchResultsCtrl.imageResizeMode,height:searchResultsCtrl.imageHeight,width:searchResultsCtrl.imageWidth}) }}"
@@ -64,9 +63,9 @@
                                 {{content.title}}
                             </a>
                         </h4>
-                        <p class="text-justify" ng-style="searchResultsCtrl.summaryStyle">
-                            {{content.summary}}
-                        </p>
+                        <!--<p class="text-justify" ng-style="searchResultsCtrl.summaryStyle">-->
+                            <!--{{content.summary}}-->
+                        <!--</p>-->
                     </div>
                     <div class="text-center" ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
                         <h4>

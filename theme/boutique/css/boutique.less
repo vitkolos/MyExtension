@@ -72,12 +72,20 @@ html,body {
 .hidden{
   visibility: hidden;
 }
-.btn-default{background-color:@rouge; border:none;
-  .badge{color:@rouge}
-  :hover, :focus, :active, .active {background-color: @rouge_shadow; .badge{color:@beigeCCN}}
-  //.open>.dropdown-toggle.btn-primary
+.optional{
+  visibility: hidden;
 }
-
+.true-search .optional{visibility: visible}
+.inner-body{
+  .btn-default{
+    background-color:@rouge;
+    border:none;
+    margin-bottom:1px;
+    .badge{color:@rouge}
+    :hover, :focus, :active, .active {background-color: @rouge_shadow; .badge{color:@beigeCCN}}
+    //.open>.dropdown-toggle.btn-primary
+  }
+}
 
 .head-btq{
   background-color: @marron;
