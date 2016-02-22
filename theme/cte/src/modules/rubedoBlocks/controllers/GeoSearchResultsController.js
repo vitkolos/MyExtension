@@ -23,6 +23,14 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             me.activatePlacesSearch=true;
             me.placesSearchTemplate=themePath+"/templates/blocks/geoSearchResults/placesSearch.html";
         }
+        var clusterStyles = [
+          {
+            textColor: 'white',
+            url: '/theme/cte/img/icons/cluster-02.png',
+            height: 60,
+            width: 60
+          },
+        ];
         //clustering options
         me.clusterOptions={
             batchSize : 20000,
@@ -182,6 +190,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id
         };
+        defaultOptions["type[]"] = config.contentType ? config.contentType:[];
         if (config.singlePage){
             defaultOptions.detailPageId = config.singlePage;
         }
