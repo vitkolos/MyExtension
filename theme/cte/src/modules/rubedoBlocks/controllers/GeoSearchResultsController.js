@@ -26,7 +26,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         var clusterStyles = [
           {
             textColor: 'white',
-            url: '/theme/cte/img/icons/cluster-02.png',
+            url: '/theme/cte/img/icons/cluster-03.png',
             height: 60,
             width: 60
           },
