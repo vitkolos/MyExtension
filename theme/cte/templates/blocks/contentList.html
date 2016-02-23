@@ -45,8 +45,8 @@
 
         <!--AUTRES-->
         <div ng-style="contentListCtrl.blockStyle" ng-switch-default>
-            <div ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" class="col-xs-6 col-xxs-12" ng-class="contentListCtrl.columns" >
-                <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" ng-switch="content.typeId">                
+            <div ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
+                <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" ng-switch="content.typeId"  class="col-xs-6 col-xxs-12" ng-class="contentListCtrl.columns">                
                     <!---VIDEOS-->
                     <div ng-switch-when="56094a2245205e0e2541ea77">
                     
