@@ -94,6 +94,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     }
                     else {
                         var columnContentList = angular.copy(me.contentList[me.contentList.length-1]);
+                        var columnContentListSpecial = [];
                         delete me.contentList[me.contentList.length-1];
                     }
                     
@@ -116,7 +117,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                             columnContentList.push(newContent);
                             currentSeason = newContent.fields.annee;
                         }
-                        console.log(columnContentList);
                     });
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
