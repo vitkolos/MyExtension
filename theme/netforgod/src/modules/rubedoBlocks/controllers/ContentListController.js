@@ -116,6 +116,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                             columnContentList.push(newContent);
                             currentSeason = newContent.fields.annee;
                         }
+                        console.log(columnContentList);
                     });
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
