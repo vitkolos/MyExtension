@@ -658,7 +658,8 @@ blockquote p{.capital;.txt-red; text-align: center}
 .panel-geo{
   border:none;
   background: none;
-  .panel-heading{background: @rouge_shadow; border: none} }
+  .panel-heading.actus:not(.no-arrow){background: @rouge_shadow;border: none; margin-bottom: 6px}
+}
   li.tags{
     display: inline-block;
     width:auto;
@@ -669,6 +670,7 @@ blockquote p{.capital;.txt-red; text-align: center}
     padding:0 5px;
     cursor: pointer;
     margin-bottom:4px;
+    margin-right:4px; 
   }
   li.tags.checked{background: white; color:@txt_dark}
   li.tags:after{display: inline-block; content:"+"; font-weight: bold; font-size: 1.5em; line-height: 0.8em;vertical-align: middle}
