@@ -907,38 +907,12 @@ input[type=text]:focus, textarea:focus, input[type=email]:focus, input[type=numb
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary{background-color: @rouge_shadow}
 
 h2.capital{text-align: center; padding:12px 0; border-bottom: 2px solid; margin-top:12px; margin-bottom:24px}
-ng-form[name="inscription_form"]{
-  .panel{background-color: transparent; border: none;-webkit-box-shadow: none; box-shadow:none}
-  h2.displayed{background-color: white}
-  //h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
-ng-form .row{margin: 0 15px;margin-bottom:12px; }
-  //ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
-  .capital.txt-red{font-size:16px !important}
-input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
-	display: inline-block;
-	cursor: pointer;
-	position: relative;
-	padding-left: 25px;
-	margin-right: 15px;
-	font-weight: normal;
-}
-label.sexe_label{
-  background-color:transparent;
-  height: 36px; width:36px;
-  color:@marron;
-  border: 2px white solid;
-  border-radius: 18px;
-  line-height: 32px;
-  font-family: Montserrat;
-  text-align: center;
-  cursor: pointer;
-  margin-right:25px;
-}
-input[type=radio],
-input[type=checkbox] {
-	display: none;
-}
-input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:before {
+/*Checkboxes and radio buttons*/
+  input[type=radio],
+  input[type=checkbox] {
+	  display: none;
+  }
+  input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:before {
 	content: "";
 	display: inline-block;
 	width: 20px;
@@ -949,41 +923,76 @@ input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:be
 	vertical-align: middle;
 	background-color: white;
 	border: 1px solid @marron;
-}
+  }
 
- input[type=radio] +label:not(.sexe_label):before {
-	border-radius: 10px;
-}
-input[type=checkbox] + label {
-	margin-bottom: 10px;
-}
-input[type=checkbox] + label:before {
-    border-radius: 3px;
-}
+  input[type=radio] +label:not(.sexe_label):before {
+	 border-radius: 10px;
+ }
+  input[type=checkbox] + label {
+	  margin-bottom: 10px;
+  }
+  input[type=checkbox] + label:before {
+      border-radius: 3px;
+  }
 
-input[type=radio]:checked + label:not(.sexe_label):after {
-    content: "\2022";
-    color: @rouge;
-    font-size: 48px;
+  input[type=radio]:checked + label:not(.sexe_label):after {
+      content: "\2022";
+      color: @rouge;
+      font-size: 48px;
+      text-align: center;
+      line-height: 28px;
+      position:absolute;
+      left:0.5px; top: -5px;
+  }
+
+
+
+
+
+
+
+ng-form[name="inscription_form"]{
+  .panel{background-color: transparent; border: none;-webkit-box-shadow: none; box-shadow:none}
+  h2.displayed{background-color: white}
+  //h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
+  ng-form .row{margin: 0 15px;margin-bottom:12px; }
+  //ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
+  .capital.txt-red{font-size:16px !important}
+  input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	padding-left: 25px;
+	margin-right: 15px;
+	font-weight: normal;
+  }
+  label.sexe_label{
+    background-color:transparent;
+    height: 36px; width:36px;
+    color:@marron;
+    border: 2px white solid;
+    border-radius: 18px;
+    line-height: 32px;
+    font-family: Montserrat;
     text-align: center;
-    line-height: 28px;
-    position:absolute;
-    left:0.5px; top: -5px;
-}
-input[type=radio]:checked + label.sexe_label {
-  color:white; background-color: @txt_dark; border: none; line-height: 36px;
-}
-input[type=checkbox]:checked + label:before {
-	content: "\f00c"; font-family: 'FontAwesome';
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
-	font-size: 20px;
-	text-align: center;
-      line-height: 19px;
-      color:@rouge;
-}
+    cursor: pointer;
+    margin-right:25px;
+  }
+
+  input[type=radio]:checked + label.sexe_label {
+    color:white; background-color: @txt_dark; border: none; line-height: 36px;
+  }
+  input[type=checkbox]:checked + label:before {
+	  content: "\f00c"; font-family: 'FontAwesome';
+	  text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+	  font-size: 20px;
+	  text-align: center;
+	line-height: 19px;
+	color:@rouge;
+  }
 
 
-.enfant{border-bottom: 3px solid white; margin-bottom:12px}
+  .enfant{border-bottom: 3px solid white; margin-bottom:12px}
 }
 input[type=text].complement_text{max-width:100%; width:auto !important; margin-bottom:12px}
 .infos_validation{margin-top:6px}
