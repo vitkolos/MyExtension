@@ -65,8 +65,6 @@
                         </div>
                         <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
                         <h4>{{data.itemData.title}}</h4>
-                        <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
-                        <p ng-if="data.itemData.groupe == 'evenement' "><span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span><time ng-if="data.itemData['fields.dateDebut'][0]">{{data.itemData['fields.dateDebut'][0]|dateRange:data.itemData['fields.dateFin'][0]:'short'}}</time>
                     </a>
                     <a rubedo-page-link="{{data.itemData['fields.propositionReferenceeInterne'][0]}}" ng-if="data.itemData['fields.propositionReferenceeInterne']" >
                         <div style="line-height: 60px; float:left" >
@@ -74,9 +72,9 @@
                         </div>
                         <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
                         <h4>{{data.itemData.title}}</h4>
-                        <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
-                        <p ng-if="data.itemData.groupe == 'evenement' "><span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span><time ng-if="data.itemData['fields.dateDebut'][0]">{{data.itemData['fields.dateDebut'][0]|dateRange:data.itemData['fields.dateFin'][0]:'short'}}</time>
                     </a>
+                    <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
+                    <p ng-if="data.itemData.groupe == 'evenement' "><span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span><time ng-if="data.itemData['fields.dateDebut'][0]">{{data.itemData['fields.dateDebut'][0]|dateRange:data.itemData['fields.dateFin'][0]:'short'}}</time>
                 </div>
                            
             </div>
