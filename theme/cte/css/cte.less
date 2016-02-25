@@ -593,6 +593,7 @@ blockquote p{.capital;.txt-red; text-align: center}
   .search-result{border-bottom:solid 1px @marron;padding:24px 0;}
 }
 @media screen and (max-width: @min_sm) {
+  .panel-heading.actus.panel-hidden{background: @rouge; border:solid @rouge_shadow; border-width: 1px 0px}
     .panel-heading.actus.panel-hidden + .panel-body{display:none; padding:0}
     .panel-heading.actus + .panel-body{display:block; padding:0}
     
@@ -658,7 +659,7 @@ blockquote p{.capital;.txt-red; text-align: center}
 .panel-geo{
   border:none;
   background: none;
-  .panel-heading.actus:not(.no-arrow){background: @rouge_shadow;border: none; margin-bottom: 6px}
+  .panel-heading.actus:not(.no-arrow){background: @rouge_shadow;border: none; margin-bottom: 6px; text-align: left;}
 }
   li.tags{
     display: inline-block;
