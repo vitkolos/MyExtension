@@ -17,7 +17,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field;
     };
-    
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
