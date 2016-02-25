@@ -58,8 +58,8 @@
             </div>
             
             <div class="col-lg-6 col-md-12 col-lg-pull-6 geo-search">
-                <a  ng-href="{{data.itemData.url}}" ng-if="!data.itemData['fields.propositionReferenceeInterne']"ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'">
-                    <div class="row search-result " >
+                <div  ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'" class="row search-result ">
+                    <a ng-href="{{data.itemData.url}}" ng-if="!data.itemData['fields.propositionReferenceeInterne']">
                         <div style="line-height: 60px; float:left" >
                             <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
                         </div>
@@ -67,10 +67,8 @@
                         <h4>{{data.itemData.title}}</h4>
                         <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
                         <p ng-if="data.itemData.groupe == 'evenement' "><span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span><time ng-if="data.itemData['fields.dateDebut'][0]">{{data.itemData['fields.dateDebut'][0]|dateRange:data.itemData['fields.dateFin'][0]:'short'}}</time>
-                    </div>
-                </a>
-                <a  rubedo-page-link="{{data.itemData['fields.propositionReferenceeInterne'][0]}}" ng-if="data.itemData['fields.propositionReferenceeInterne']"ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'">
-                    <div class="row search-result " >
+                    </a>
+                    <a rubedo-page-link="{{data.itemData['fields.propositionReferenceeInterne'][0]}}" ng-if="data.itemData['fields.propositionReferenceeInterne']" >
                         <div style="line-height: 60px; float:left" >
                             <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
                         </div>
@@ -78,8 +76,9 @@
                         <h4>{{data.itemData.title}}</h4>
                         <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
                         <p ng-if="data.itemData.groupe == 'evenement' "><span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span><time ng-if="data.itemData['fields.dateDebut'][0]">{{data.itemData['fields.dateDebut'][0]|dateRange:data.itemData['fields.dateFin'][0]:'short'}}</time>
-                    </div>
-                </a>                
+                    </a>
+                </div>
+                           
             </div>
             
         </div>
