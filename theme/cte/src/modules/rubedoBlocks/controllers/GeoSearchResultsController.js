@@ -31,7 +31,9 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             width: 60
           },
         ];
-        //clustering options
+        me.mapOptions={
+            maxZoom:18
+        };        //clustering options
         me.clusterOptions={
             batchSize : 20000,
             averageCenter : false,
