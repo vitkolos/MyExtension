@@ -116,7 +116,3 @@ h6 {
 .head-btq .dropdown-header :hover {
   color: #9a4530;
 }
-.content_border {
-  border: solid 8px #c1573c;
-  min-height: 90vh;
-}
