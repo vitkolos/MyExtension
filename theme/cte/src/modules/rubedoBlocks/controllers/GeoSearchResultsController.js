@@ -39,7 +39,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             zoomOnClick:false,
             batchSizeIE : 20000,
             enableRetinaIcons :true,
-            styles : clusterStyles
+            styles : clusterStyles,
+            draggable:false
         };
         //api clustering options
         me.apiClusterOptions={

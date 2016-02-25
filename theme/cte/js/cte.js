@@ -197,7 +197,7 @@ angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($
     return serviceInstance;
 }]);
 
-
+/*pour page "autour de vous*/
   angular.module('rubedoBlocks').directive('focusOnClick', function ($timeout) {
     return {
          link: function ( scope, element, attrs ) {
