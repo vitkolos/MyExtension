@@ -21,7 +21,7 @@
 			   ckeditor="editorOptions"
 			   contenteditable="true"
 			   ready="setCKEIsReady()"
-			   ng-model="fieldEntity[field.config.name]"
+			   ng-model="fieldEntity['text']"
 			   output-plain-text="true"
 			   ng-bind-html="rteFieldCtrl.html">
 			</h1>
@@ -32,18 +32,10 @@
 </header>
 <header class="container-fluid" ng-if="!fieldEntity['image']">
 	<div class="text-article container">
-		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
-			<h1 class="text-left" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
-			<h1 ng-if="fieldEditMode"
-			   ng-controller="RTEFieldController as rteFieldCtrl"
-			   ckeditor="editorOptions"
-			   contenteditable="true"
-			   ready="setCKEIsReady()"
-			   ng-model="fieldEntity[field.config.name]"
-			   output-plain-text="true"
-			   ng-bind-html="rteFieldCtrl.html">
-			</h1>
+		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="!fieldEditMode">
+			<h1 class="text-left"  style="text-shadow: none">{{fieldEntity['text']}}</h1>
 		</div>
+		<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Description-->
 
 	</div>
 </header>
@@ -68,7 +60,7 @@
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
 				</div>
 			</div>
-			<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
+			<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="row">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 					<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
 				</div>

@@ -94,6 +94,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     }
                     else {
                         var columnContentList = angular.copy(me.contentList[me.contentList.length-1]);
+                        var columnContentListSpecial = [];
                         delete me.contentList[me.contentList.length-1];
                     }
                     

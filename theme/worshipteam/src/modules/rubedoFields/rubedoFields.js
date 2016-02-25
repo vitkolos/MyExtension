@@ -178,7 +178,7 @@
             { name: 'colors', items: [ 'TextColor', '-','BGColor' ] },
             { name: 'tools', items: [ 'Maximize', '-','ShowBlocks' ] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink','-','Anchor' ] },
-            { name: 'insert', items: [ 'Image',  '-', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak' ] }
+            { name: 'insert', items: [ 'Image',  'Youtube',  '-', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak' ] }
         ];
         if (CKEMode=="Standard"){
             myTBConfig=[
@@ -218,6 +218,8 @@
                 { name: 'Texte centré', element: 'p', attributes: { 'class': 'text-center titre'} }
             ],
             templates_files: [ '/theme/worshipteam/js/default.js' ],
+            templates_replaceContent : false,
+            customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';

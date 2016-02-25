@@ -141,6 +141,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 ////////////////////////////////////////////////
     ///////classes utiles////////////////
 ////////////////////////////////////////////////
+.txt-white{color:white !important}
 .txt-red{color:@rouge !important}
 .txt-marron{color:@marron}
 .txt-beige, a.txt-beige{color:@beigeCCN}
@@ -431,7 +432,7 @@ span#close:after {
 ////////////////////////////////////////////////////
     ///////////FOOTER///////////////////
 ///////////////////////////////////////////////////
-.footer{background-color:@txt_dark; color:white; a,p{color:white; display: inline-block};font-size:14px}
+.footer{background-color:@txt_dark; color:white; a,p{color:white; display: inline-block};font-size:14px; .modal-content{color: @txt_dark}}
 .footer div.container{padding:24px}
 .footer {
     a{transition: color 0.3s ease}
@@ -593,6 +594,7 @@ blockquote p{.capital;.txt-red; text-align: center}
   .search-result{border-bottom:solid 1px @marron;padding:24px 0;}
 }
 @media screen and (max-width: @min_sm) {
+  .panel-geo .panel-heading.actus.panel-hidden:not(.no-arrow){background: @rouge; border:solid @rouge_shadow; border-width: 1px 0px; margin-bottom: 0}
     .panel-heading.actus.panel-hidden + .panel-body{display:none; padding:0}
     .panel-heading.actus + .panel-body{display:block; padding:0}
     
@@ -658,7 +660,8 @@ blockquote p{.capital;.txt-red; text-align: center}
 .panel-geo{
   border:none;
   background: none;
-  .panel-heading{background: @rouge_shadow; border: none} }
+  .panel-heading.actus:not(.no-arrow){background: @rouge_shadow;border: none; margin-bottom: 6px; text-align: left;}
+}
   li.tags{
     display: inline-block;
     width:auto;
@@ -669,6 +672,7 @@ blockquote p{.capital;.txt-red; text-align: center}
     padding:0 5px;
     cursor: pointer;
     margin-bottom:4px;
+    margin-right:4px; 
   }
   li.tags.checked{background: white; color:@txt_dark}
   li.tags:after{display: inline-block; content:"+"; font-weight: bold; font-size: 1.5em; line-height: 0.8em;vertical-align: middle}
@@ -789,6 +793,7 @@ header.content{
     line-height: 320px;
     text-align: center;
     background-color: @beigeCCN;
+    background-image: url('/theme/cte/img/logo_ccn.jpg');
 }
 header.content.parallax{background-attachment: fixed;}
 header.content.no-filter,{box-shadow: none;}
@@ -903,38 +908,12 @@ input[type=text]:focus, textarea:focus, input[type=email]:focus, input[type=numb
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary{background-color: @rouge_shadow}
 
 h2.capital{text-align: center; padding:12px 0; border-bottom: 2px solid; margin-top:12px; margin-bottom:24px}
-ng-form[name="inscription_form"]{
-  .panel{background-color: transparent; border: none;-webkit-box-shadow: none; box-shadow:none}
-  h2.displayed{background-color: white}
-  //h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
-ng-form .row{margin: 0 15px;margin-bottom:12px; }
-  //ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
-  .capital.txt-red{font-size:16px !important}
-input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
-	display: inline-block;
-	cursor: pointer;
-	position: relative;
-	padding-left: 25px;
-	margin-right: 15px;
-	font-weight: normal;
-}
-label.sexe_label{
-  background-color:transparent;
-  height: 36px; width:36px;
-  color:@marron;
-  border: 2px white solid;
-  border-radius: 18px;
-  line-height: 32px;
-  font-family: Montserrat;
-  text-align: center;
-  cursor: pointer;
-  margin-right:25px;
-}
-input[type=radio],
-input[type=checkbox] {
-	display: none;
-}
-input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:before {
+/*Checkboxes and radio buttons*/
+  input[type=radio],
+  input[type=checkbox] {
+	  display: none;
+  }
+  input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:before {
 	content: "";
 	display: inline-block;
 	width: 20px;
@@ -945,41 +924,76 @@ input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:be
 	vertical-align: middle;
 	background-color: white;
 	border: 1px solid @marron;
-}
+  }
 
- input[type=radio] +label:not(.sexe_label):before {
-	border-radius: 10px;
-}
-input[type=checkbox] + label {
-	margin-bottom: 10px;
-}
-input[type=checkbox] + label:before {
-    border-radius: 3px;
-}
+  input[type=radio] +label:not(.sexe_label):before {
+	 border-radius: 10px;
+ }
+  input[type=checkbox] + label {
+	  margin-bottom: 10px;
+  }
+  input[type=checkbox] + label:before {
+      border-radius: 3px;
+  }
 
-input[type=radio]:checked + label:not(.sexe_label):after {
-    content: "\2022";
-    color: @rouge;
-    font-size: 48px;
+  input[type=radio]:checked + label:not(.sexe_label):after {
+      content: "\2022";
+      color: @rouge;
+      font-size: 48px;
+      text-align: center;
+      line-height: 28px;
+      position:absolute;
+      left:0.5px; top: -5px;
+  }
+  input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	padding-left: 25px;
+	margin-right: 15px;
+	font-weight: normal;
+  }
+
+  input[type=checkbox]:checked + label:before {
+	  content: "\f00c"; font-family: 'FontAwesome';
+	  text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+	  font-size: 20px;
+	  text-align: center;
+	line-height: 19px;
+	color:@rouge;
+  }
+
+
+
+
+ng-form[name="inscription_form"]{
+  .panel{background-color: transparent; border: none;-webkit-box-shadow: none; box-shadow:none}
+  h2.displayed{background-color: white}
+  //h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
+  ng-form .row{margin: 0 15px;margin-bottom:12px; }
+  //ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
+  .capital.txt-red{font-size:16px !important}
+
+  label.sexe_label{
+    background-color:transparent;
+    height: 36px; width:36px;
+    color:@marron;
+    border: 2px white solid;
+    border-radius: 18px;
+    line-height: 32px;
+    font-family: Montserrat;
     text-align: center;
-    line-height: 28px;
-    position:absolute;
-    left:0.5px; top: -5px;
-}
-input[type=radio]:checked + label.sexe_label {
-  color:white; background-color: @txt_dark; border: none; line-height: 36px;
-}
-input[type=checkbox]:checked + label:before {
-	content: "\f00c"; font-family: 'FontAwesome';
-	text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
-	font-size: 20px;
-	text-align: center;
-      line-height: 19px;
-      color:@rouge;
-}
+    cursor: pointer;
+    margin-right:25px;
+  }
+
+  input[type=radio]:checked + label.sexe_label {
+    color:white; background-color: @txt_dark; border: none; line-height: 36px;
+  }
 
 
-.enfant{border-bottom: 3px solid white; margin-bottom:12px}
+
+  .enfant{border-bottom: 3px solid white; margin-bottom:12px}
 }
 input[type=text].complement_text{max-width:100%; width:auto !important; margin-bottom:12px}
 .infos_validation{margin-top:6px}

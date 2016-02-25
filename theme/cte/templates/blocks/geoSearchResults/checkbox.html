@@ -5,10 +5,10 @@
     <div class="col-xs-12 col-sm-5 col-md-6 col-lg-7 " style="padding-right:0">
         <div class="row">
             <div class="col-lg-6 col-md-12 col-lg-push-6 geo-tags">
-                <h3>Autour de vous</h3>
-                <p>Toutes nos propositions autour de : <input type="text" class="rubedo-places-search " focus-on-click="focus" placeholder="{{geoSearchResultsCtrl.city}}" ng-focus="focus">
+                <h3>{{rubedo.translate("PresDeChezToi.Titre", "Autour de vous")}}</h3>
+                <p>{{rubedo.translate("PresDeChezToi.Propositions", "Toutes nos propositions autour de")}} : <input type="text" class="rubedo-places-search " focus-on-click="focus" placeholder="{{geoSearchResultsCtrl.city}}" ng-focus="focus">
                 <span ng-click="focus=!focus" ng-init="focus==false" class="capital2" style="color:white">changer</span></p>
-                <div class="panel-heading actus visible-xs-block" ng-click="searchDisplayed=!searchDisplayed" style="margin-bottom:12px">Recherche avancée</div>
+                <div class="panel-heading actus visible-xs-block" ng-click="searchDisplayed=!searchDisplayed" style="margin-bottom:12px">{{rubedo.translate("PresDeChezToi.Recherche", "Recherche avancée")}}</div>
                 <div id="advanced-search" ng-class="{'displayed': searchDisplayed}" ng-init="searchDisplayed=false">
                     <div class="panel">
                         <form ng-submit="geoSearchResultsCtrl.onSubmit()" role="form">
@@ -20,57 +20,35 @@
                         </form>
                     </div>
                     <div class="panel panel-default panel-geo">
-                        <div class="panel-heading actus"  ng-class="{'panel-hidden' :!propDisplayed }" ng-click="propDisplayed = !propDisplayed">Evénements</div>
+                        <div class="panel-heading actus"  ng-class="{'panel-hidden' :!propDisplayed }" ng-click="propDisplayed = !propDisplayed">{{geoSearchResultsCtrl.taxo['555f3bc445205edc117e689b'].name}}</div>
                         <div class="panel-body">
-                            <ul class="search-tags">
-                                
-                                 <li class="tags" >
-                                    couples, familles
-                                </li>
-                                 <li class="tags" >
-                                    séparés, divorcés
-                                </li>
-                                 <li class="tags"  ng-click="geoSearchResultsCtrl.clickOnFacetsCheckbox('555f3bc445205edc117e689b', '555f3bd445205ec5117e6899')" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio('555f3bd445205ec5117e6899')}">
-                                    jeunes 14-18 ans
-                                </li>
-                                 <li class="tags"  ng-click="geoSearchResultsCtrl.clickOnFacetsCheckbox('555f3bc445205edc117e689b', '555f3bcd45205e63127e688f')" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio('555f3bcd45205e63127e688f')}">
-                                    jeunes 18-30 ans
-                                </li>
-                                 <li class="tags" >
-                                    jeunes pros
-                                </li>
-                                 <li class="tags" >
-                                    week-end
-                                </li>
-                                 <li class="tags"  >
-                                   retraite
+                            <ul class="search-tags" >
+                                <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['555f3bc445205edc117e689b'].terms" ng-if="term.parentId=='root' "ng-click="geoSearchResultsCtrl.clickOnFacetsCheckbox('555f3bc445205edc117e689b', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
+                                    {{term.text}}
                                 </li>
                             </ul>
+                            <input type="checkbox"  id="showProps" ng-model="geoSearchResultsCtrl.showPropositions" ng-change="geoSearchResultsCtrl.showAll('propositions')">
+                            <label class="txt-white" for="showProps" >{{rubedo.translate("PresDeChezToi.Tous.Prop", "Toutes les propositions")}}</label>
                         </div>
-                        <div class="panel-heading actus "  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">Lieux</div>
+                        <div class="panel-heading actus"  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">{{geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].name}}</div>
                         <div class="panel-body">
                             <ul class="search-tags">
-                                
-                                 <li class="cursor-as-pointer resultData"  ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', '555a166145205e6f0b7e6891')">
-                                    <input  type="checkbox" ng-checked="geoSearchResultsCtrl.checkedRadio('555a166145205e6f0b7e6891')"><span>Abbayes</span>
-                                </li>
-                                 <li class="cursor-as-pointer resultData"  ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', '555a165c45205e6f0b7e688f')">
-                                    <input type="checkbox" ng-checked="geoSearchResultsCtrl.checkedRadio('555a165c45205e6f0b7e688f')"><span>Foyers d'étudiants</span>
-                                </li>
-                                 <li class="cursor-as-pointer resultData"  ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', '555a165345205e8d0b7e688f')">
-                                    <input  type="checkbox" ng-checked="geoSearchResultsCtrl.checkedRadio('555a165345205e8d0b7e688f')"><span>Paroisses</span>
-                                </li>
-                                 <li class="cursor-as-pointer resultData"  ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', '555b636345205e120d7e688f')">
-                                    <input  type="checkbox" ng-checked="geoSearchResultsCtrl.checkedRadio('555b636345205e120d7e688f')"><span>Maisons d'accueil</span>
-                                </li>
-                                 <li class="cursor-as-pointer resultData"  ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', '555b635345205e650c7e68a5')">
-                                    <input  type="checkbox" ng-checked="geoSearchResultsCtrl.checkedRadio('555b635345205e650c7e68a5')"><span>Boutiques</span>
-                                </li>
-                                 
-                                 
-                                 
-                                 
+                                <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].terms" ng-if="term.parentId=='root' "ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
+                                    {{term.text}}
+                                </li>                                 
                             </ul>
+                            <input type="checkbox"  id="showLieux" ng-model="geoSearchResultsCtrl.showLieux" ng-change="geoSearchResultsCtrl.showAll('lieux')">
+                            <label class="txt-white" for="showLieux">{{rubedo.translate("PresDeChezToi.Tous.Lieux", "Tous les lieux")}}</label>
+                        </div>
+                        <div class="panel-heading actus "  ng-class="{'panel-hidden' :!rencontreDisplayed }" ng-click="rencontreDisplayed = !rencontreDisplayed">{{geoSearchResultsCtrl.taxo['56af638bc445ecdc008b5bec'].name}}</div>
+                        <div class="panel-body">
+                            <ul class="search-tags">
+                                <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['56af638bc445ecdc008b5bec'].terms" ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('56af638bc445ecdc008b5bec', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
+                                    {{term.text}}
+                                </li>                                 
+                            </ul>
+                            <input type="checkbox" id="showRencontres" ng-model="geoSearchResultsCtrl.showRencontres" ng-change="geoSearchResultsCtrl.showAll('rencontres')">
+                            <label class="txt-white" for="showRencontres">{{rubedo.translate("PresDeChezToi.Tous.Rencontres", "Toutes les rencontres")}}</label>
                         </div>
                     </div>
                             

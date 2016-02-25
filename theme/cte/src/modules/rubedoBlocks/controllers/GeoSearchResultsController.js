@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element){
+angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element","TaxonomyService",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,TaxonomyService){
         var me = this;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -16,6 +16,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 longitude:2.3508
             },
             zoom:config.zoom ? config.zoom : 14
+        };
+        // pour limiter le zoom lors de clusters
+        me.mapOptions={
+            maxZoom:18
         };
         me.geocoder = new google.maps.Geocoder();
         //places search
@@ -174,6 +178,23 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 config.displayMode="default";
             }
             me.template = themePath+"/templates/blocks/geoSearchResults/"+config.displayMode+".html";
+            /*get taxonomies*/
+            var taxonomiesArray ={};
+            taxonomiesArray[0]="555f3bc445205edc117e689b";// taxonomie de propositions
+            taxonomiesArray[1]="555a164d45205eea0a7e689b";// taxonomie de lieux co'
+            taxonomiesArray[2]="56af638bc445ecdc008b5bec";// taxonomie de rencontres         
+            TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+                if(response.data.success){
+                   var tax = response.data.taxo;
+                   me.taxo={};
+                   angular.forEach(tax, function(taxonomie){
+                        me.taxo[taxonomie.vocabulary.id]= {};
+                        me.taxo[taxonomie.vocabulary.id].terms = taxonomie.terms;
+                        me.taxo[taxonomie.vocabulary.id].name = taxonomie.vocabulary.name;
+                   });
+                }
+                
+            });
         } else {
             me.template = themePath+"/templates/blocks/geoSearchResults/map.html";
         }
@@ -190,7 +211,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             displayMode: config.displayMode,
             displayedFacets: config.displayedFacets,
             pageId: $scope.rubedo.current.page.id,
-            siteId: $scope.rubedo.current.site.id
+            siteId: $scope.rubedo.current.site.id,
+            taxonomies:{}
         };
         defaultOptions["type[]"] = config.contentType ? config.contentType:[];
         if (config.singlePage){
@@ -231,6 +253,34 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             });
             return checked;
         };
+        
+        me.checkedRadio = function(term){
+            var checked = false;
+           angular.forEach(options.taxonomies,function(taxonomy){
+                for (var i = 0; i < taxonomy.length; i++) {
+                    if (taxonomy[i] == term) { checked=true;}
+                }
+            });            
+            return checked;
+        };        
+        me.showAll = function(type){
+            if (type=="propositions") {
+                me.showRencontres=false;me.showLieux=false;
+                if(me.showPropositions) options["type[]"] = ["54dc614245205e1d4a8b456b"];
+                else options["type[]"] = defaultOptions["type[]"];
+            }
+            else if (type=="lieux") {
+                me.showRencontres=false;me.showPropositions=false;
+                if(me.showLieux) options["type[]"] = ["54632c1545205e7c38b0c6b7"];
+                else options["type[]"] = defaultOptions["type[]"];
+            }
+            else if (type=="rencontres") {
+                me.showLieux=false;me.showPropositions=false;
+                if(me.showRencontres) options["type[]"] =  ["56af6230c445ecd7008b5d68","54edd57845205e5110ca11b8"];
+                else options["type[]"] = defaultOptions["type[]"];
+            }
+            me.searchByQuery(options, true);
+       };
         me.disabled = function(term){
             var disabled = false;
             angular.forEach(me.notRemovableTerms,function(notRemovableTerm){
@@ -245,6 +295,79 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             options.query = me.query;
             $location.search('query',me.query);
         };
+        
+        /*pour plusieurs taxo possibles à la fois : propositions*/
+        me.clickOnFacetsCheckbox = function(facetId,term){
+            // si la taxonomie est déjà présente
+            if (options.taxonomies[facetId]) {
+                var del=false;
+                //vérifier si la facette demandée est déjà présente
+                for (var i = 0; i < options.taxonomies[facetId].length; i++) {
+                    if (options.taxonomies[facetId][i] == term) {
+                        del=true;
+                    }
+                }
+                // si présente, alors supprimer la taxonomie
+                if (del) {
+                   options.taxonomies[facetId].splice(options.taxonomies[facetId].indexOf(term),1);
+                }
+                // si nouvelle facette de la même taxonomie, l'ajouter
+                else {
+                    options.taxonomies[facetId].push(term);
+                }
+            }
+
+            // si la taxonomie n'est pas présente
+            else {
+                //reset taxonomies : supprimer toutes les autres taxos présentes
+                options.taxonomies={};
+                options.taxonomies[facetId] = [];//créer taxonomie
+                options.taxonomies[facetId].push(term);// ajouter facette
+           }
+            me.searchByQuery(options, true);
+        }               
+        
+         /*pour une seule taxo  à la fois : lieux et événements*/       
+         me.clickOnFacetsRadio = function(facetId,term){
+            // si la taxonomie est déjà présente
+            if (options.taxonomies[facetId]) {
+                var del=false;
+                //vérifier si la facette demandée est déjà présente
+                for (var i = 0; i < options.taxonomies[facetId].length; i++) {
+                    if (options.taxonomies[facetId][i] == term) {
+                        del=true;
+                    }
+                }
+                // si présente, alors supprimer la taxonomie
+                if (del) {
+                   options.taxonomies[facetId].splice(options.taxonomies[facetId].indexOf(term),1);
+                }
+                // si nouvelle facette, supprimer l'ancienne valeur et l'ajouter
+                else {
+                    options.taxonomies[facetId]=[];
+                    options.taxonomies[facetId].push(term);
+                }
+            }
+
+            // si la taxonomie n'est pas présente
+            else {
+                //reset taxonomies : supprimer toutes les autres taxos présentes
+                options.taxonomies={};
+                options.taxonomies[facetId] = [];//créer taxonomie
+                options.taxonomies[facetId].push(term);// ajouter facette
+           }
+            me.searchByQuery(options, true);
+        }            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         me.clickOnFacets =  function(facetId,term){
             var del = false;
             angular.forEach(me.activeTerms,function(activeTerm){
