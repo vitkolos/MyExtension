@@ -2,11 +2,51 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-                <a class="header_link" rubedo-page-link="{{rubedo.current.page.id}}">Retour </a>
+                <a href="" onClick="window.history.go(-1)">Retour</a>
+                <!--<a class="header_link" rubedo-page-link="{{rubedo.current.page.id}}">Retour </a>-->
             </div>
         </div>
     </div>
 
 
-
+        <div class="titre-article container">
+            <div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
+                <h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+                <h1 ng-if="fieldEditMode"
+                    ng-controller="RTEFieldController as rteFieldCtrl"
+                    ckeditor="editorOptions"
+                    contenteditable="true"
+                    ready="setCKEIsReady()"
+                    ng-model="fieldEntity['text']"
+                    output-plain-text="true"
+                    ng-bind-html="rteFieldCtrl.html">
+                </h1>
+            </div>
+        </div>
+        <div class="text-article container">
+            <div field = "{{contentDetailCtrl.getFieldByName('summary')}}" >
+                <p class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['summary']}}</p>
+                <p ng-if="fieldEditMode"
+                    ng-controller="RTEFieldController as rteFieldCtrl"
+                    ckeditor="editorOptions"
+                    contenteditable="true"
+                    ready="setCKEIsReady()"
+                    ng-model="fieldEntity['summary']"
+                    output-plain-text="true"
+                    ng-bind-html="rteFieldCtrl.html">
+                </p>
+            </div>
+        </div>
+    <div class="text-center col-md-12">
+        <h4>
+            <del ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small>{{content.productProperties.lowestNoSoPrice|number:2}} €</small></del>
+            <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span></h4>
+        <button ng-if="content.productProperties.variations.length==1"
+                ng-click="contentDetailCtrl.addToCart(content)"
+                ng-disabled="!contentDetailCtrl.canOrder(content)"
+                class="btn btn-default">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}
+        </button>
     </div>
+
+</div>
