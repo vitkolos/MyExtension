@@ -14,18 +14,10 @@
 
 <header class="container-fluid content prop" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
 	<div class="text-article container" >
-		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
-			<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
-			<h1 ng-if="fieldEditMode"
-			   ng-controller="RTEFieldController as rteFieldCtrl"
-			   ckeditor="editorOptions"
-			   contenteditable="true"
-			   ready="setCKEIsReady()"
-			   ng-model="fieldEntity['text']"
-			   output-plain-text="true"
-			   ng-bind-html="rteFieldCtrl.html">
-			</h1>
+		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="!fieldEditMode">
+			<h1 class="balance-text" >{{fieldEntity['text']}}</h1>
 		</div>
+		<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 		<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 
 	</div>
