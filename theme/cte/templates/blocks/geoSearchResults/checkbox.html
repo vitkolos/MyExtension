@@ -27,10 +27,10 @@
                                     {{term.text}}
                                 </li>
                             </ul>
-                            <input type="checkbox" ng-change="" id="showProps">
+                            <input type="checkbox" ng-change="" id="showProps" ng-model="showPropositions">
                                 <label for="showProps">{{rubedo.translate("PresDeChezToi.Tous.Prop", "Toutes les propositions ")}}</label>
                         </div>
-                        <div class="panel-heading actus "  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">{{geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].name}}</div>
+                        <div class="panel-heading actus"  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">{{geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].name}}</div>
                         <div class="panel-body">
                             <ul class="search-tags">
                                 <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].terms" ng-if="term.parentId=='root' "ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
