@@ -26,8 +26,9 @@
                                 <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['555f3bc445205edc117e689b'].terms" ng-if="term.parentId=='root' "ng-click="geoSearchResultsCtrl.clickOnFacetsCheckbox('555f3bc445205edc117e689b', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
                                     {{term.text}}
                                 </li>
-                                
                             </ul>
+                            <input type="checkbox" ng-change="" id="showProps">
+                                <label for="showProps">{{rubedo.translate("PresDeChezToi.Tous.Prop", "Toutes les propositions ")}}</label>
                         </div>
                         <div class="panel-heading actus "  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">{{geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].name}}</div>
                         <div class="panel-body">
