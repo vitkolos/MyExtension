@@ -169,7 +169,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 } else {
                     var map=cluster.getMap();
                     map.setCenter(cluster.getCenter());
-                    map.setZoom(map.getZoom()+2);
+                    map.setZoom(map.getZoom()+4);
                 }
             }
         };
