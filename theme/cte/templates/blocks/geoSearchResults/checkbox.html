@@ -27,7 +27,7 @@
                                     {{term.text}}
                                 </li>
                             </ul>
-                            <input type="checkbox"  id="showProps" ng-model="geoSearchResultsCtrl.showPropositions" ng-change="geoSearchResultsCtrl.showAll()">
+                            <input type="checkbox"  id="showProps" ng-model="geoSearchResultsCtrl.showPropositions" ng-change="geoSearchResultsCtrl.showAll('propositions')">
                             <label class="txt-white" for="showProps" >{{rubedo.translate("PresDeChezToi.Tous.Prop", "Toutes les propositions")}}</label>
                         </div>
                         <div class="panel-heading actus"  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">{{geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].name}}</div>
@@ -37,7 +37,7 @@
                                     {{term.text}}
                                 </li>                                 
                             </ul>
-                            <input type="checkbox"  id="showLieux" ng-model="geoSearchResultsCtrl.showLieux" ng-change="geoSearchResultsCtrl.showAll()">
+                            <input type="checkbox"  id="showLieux" ng-model="geoSearchResultsCtrl.showLieux" ng-change="geoSearchResultsCtrl.showAll('lieux')">
                             <label class="txt-white" for="showLieux">{{rubedo.translate("PresDeChezToi.Tous.Lieux", "Tous les lieux")}}</label>
                         </div>
                         <div class="panel-heading actus "  ng-class="{'panel-hidden' :!rencontreDisplayed }" ng-click="rencontreDisplayed = !rencontreDisplayed">{{geoSearchResultsCtrl.taxo['56af638bc445ecdc008b5bec'].name}}</div>
@@ -47,7 +47,7 @@
                                     {{term.text}}
                                 </li>                                 
                             </ul>
-                            <input type="checkbox" id="showRencontres" ng-model="geoSearchResultsCtrl.showRencontres" ng-change="geoSearchResultsCtrl.showAll()">
+                            <input type="checkbox" id="showRencontres" ng-model="geoSearchResultsCtrl.showRencontres" ng-change="geoSearchResultsCtrl.showAll('rencontres')">
                             <label class="txt-white" for="showRencontres">{{rubedo.translate("PresDeChezToi.Tous.Rencontres", "Toutes les rencontres")}}</label>
                         </div>
                     </div>

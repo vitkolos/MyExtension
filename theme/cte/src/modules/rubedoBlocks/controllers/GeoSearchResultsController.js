@@ -263,17 +263,22 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             });            
             return checked;
         };        
-        me.showAll = function(){
-            if (me.showPropositions) {
-                options["type[]"] = ["54dc614245205e1d4a8b456b"];me.showRencontres=false;me.showLieux=false;
+        me.showAll = function(type){
+            if (type=="propositions") {
+                me.showRencontres=false;me.showLieux=false;
+                if(me.showPropositions) options["type[]"] = ["54dc614245205e1d4a8b456b"];
+                else options["type[]"] = defaultOptions["type[]"];
             }
-            else if (me.showLieux) {
-                options["type[]"] = ["54632c1545205e7c38b0c6b7"];me.showRencontres=false;me.showPropositions=false;
+            else if (type=="lieux") {
+                me.showRencontres=false;me.showPropositions=false;
+                if(me.showLieux) options["type[]"] = ["54632c1545205e7c38b0c6b7"];
+                else options["type[]"] = defaultOptions["type[]"];
             }
-            else if (me.showRencontres) {
-                options["type[]"] = ["56af6230c445ecd7008b5d68","54edd57845205e5110ca11b8"];me.showLieux=false;me.showPropositions=false;
+            else if (type=="rencontres") {
+                me.showLieux=false;me.showPropositions=false;
+                if(me.showRencontres) options["type[]"] =  ["56af6230c445ecd7008b5d68","54edd57845205e5110ca11b8"];
+                else options["type[]"] = defaultOptions["type[]"];
             }
-            else options["type[]"] = defaultOptions["type[]"];
             me.searchByQuery(options, true);
        };
         me.disabled = function(term){
