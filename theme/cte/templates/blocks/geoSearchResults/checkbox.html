@@ -32,13 +32,17 @@
                         <div class="panel-heading actus "  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">{{geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].name}}</div>
                         <div class="panel-body">
                             <ul class="search-tags">
-                                
                                 <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].terms" ng-if="term.parentId=='root' "ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
                                     {{term.text}}
                                 </li>                                 
-                                 
-                                 
-                                 
+                            </ul>
+                        </div>
+                        <div class="panel-heading actus "  ng-class="{'panel-hidden' :!rencontreDisplayed }" ng-click="rencontreDisplayed = !rencontreDisplayed">{{geoSearchResultsCtrl.taxo['56af638bc445ecdc008b5bec'].name}}</div>
+                        <div class="panel-body">
+                            <ul class="search-tags">
+                                <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['56af638bc445ecdc008b5bec'].terms" ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('56af638bc445ecdc008b5bec', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
+                                    {{term.text}}
+                                </li>                                 
                             </ul>
                         </div>
                     </div>
