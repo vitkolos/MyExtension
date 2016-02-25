@@ -58,7 +58,7 @@
             </div>
             
             <div class="col-lg-6 col-md-12 col-lg-pull-6 geo-search">
-                <a  ng-href="{{data.itemData.url}}"  rubedo-page-link="{{data.itemData['fields.propositionReferenceeInterne'][0] ?data.itemData['fields.propositionReferenceeInterne'][0]}} ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'">
+                <a  ng-href="{{data.itemData.url}}"  rubedo-page-link="{{data.itemData['fields.propositionReferenceeInterne'][0] ? data.itemData['fields.propositionReferenceeInterne'][0]:''}} ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'">
                     <div class="row search-result " >
                         <div style="line-height: 60px; float:left" >
                             <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
