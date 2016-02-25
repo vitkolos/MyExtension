@@ -274,6 +274,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 options["type[]"] = ["56af6230c445ecd7008b5d68","54edd57845205e5110ca11b8"];me.showLieux=false;me.showPropositions=false;
             }
             else options["type[]"] = defaultOptions["type[]"];
+            $scope.$apply();
             me.searchByQuery(options, true);
        };
         me.disabled = function(term){
