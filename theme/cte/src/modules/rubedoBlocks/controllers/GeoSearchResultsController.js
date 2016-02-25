@@ -19,7 +19,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         // pour limiter le zoom lors de clusters
         me.mapOptions={
-            maxZoom:18
+            maxZoom:17
         };
         me.geocoder = new google.maps.Geocoder();
         //places search
