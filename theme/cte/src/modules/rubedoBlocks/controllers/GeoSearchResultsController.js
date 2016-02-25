@@ -265,13 +265,13 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };        
         me.showAll = function(){
             if (me.showPropositions) {
-                options["type[]"] = ["54dc614245205e1d4a8b456b"];
+                options["type[]"] = ["54dc614245205e1d4a8b456b"];me.showRencontres=false;me.showLieux=false;
             }
             else if (me.showLieux) {
-                options["type[]"] = ["54632c1545205e7c38b0c6b7"];
+                options["type[]"] = ["54632c1545205e7c38b0c6b7"];me.showRencontres=false;me.showPropositions=false;
             }
             else if (me.showRencontres) {
-                options["type[]"] = ["56af6230c445ecd7008b5d68","54edd57845205e5110ca11b8"];
+                options["type[]"] = ["56af6230c445ecd7008b5d68","54edd57845205e5110ca11b8"];me.showLieux=false;me.showPropositions=false;
             }
             else options["type[]"] = defaultOptions["type[]"];
             me.searchByQuery(options, true);

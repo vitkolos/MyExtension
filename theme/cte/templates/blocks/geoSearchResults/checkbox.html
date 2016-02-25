@@ -27,8 +27,8 @@
                                     {{term.text}}
                                 </li>
                             </ul>
-                            <input type="checkbox" ng-change="geoSearchResultsCtrl.showAll()" id="showProps" ng-model="geoSearchResultsCtrl.showPropositions">
-                            <label class="txt-white" for="showProps">{{rubedo.translate("PresDeChezToi.Tous.Prop", "Toutes les propositions")}}</label>
+                            <input type="checkbox"  id="showProps" ng-model="geoSearchResultsCtrl.showPropositions">
+                            <label class="txt-white" for="showProps" ng-click="geoSearchResultsCtrl.showAll()">{{rubedo.translate("PresDeChezToi.Tous.Prop", "Toutes les propositions")}}</label>
                         </div>
                         <div class="panel-heading actus"  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">{{geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].name}}</div>
                         <div class="panel-body">
@@ -37,8 +37,8 @@
                                     {{term.text}}
                                 </li>                                 
                             </ul>
-                            <input type="checkbox" ng-change="geoSearchResultsCtrl.showAll()" id="showLieux" ng-model="geoSearchResultsCtrl.showLieux">
-                            <label class="txt-white" for="showLieux">{{rubedo.translate("PresDeChezToi.Tous.Lieux", "Tous les lieux")}}</label>
+                            <input type="checkbox"  id="showLieux" ng-model="geoSearchResultsCtrl.showLieux">
+                            <label class="txt-white" ng-click="geoSearchResultsCtrl.showAll()" for="showLieux">{{rubedo.translate("PresDeChezToi.Tous.Lieux", "Tous les lieux")}}</label>
                         </div>
                         <div class="panel-heading actus "  ng-class="{'panel-hidden' :!rencontreDisplayed }" ng-click="rencontreDisplayed = !rencontreDisplayed">{{geoSearchResultsCtrl.taxo['56af638bc445ecdc008b5bec'].name}}</div>
                         <div class="panel-body">
@@ -47,8 +47,8 @@
                                     {{term.text}}
                                 </li>                                 
                             </ul>
-                            <input type="checkbox" ng-change="geoSearchResultsCtrl.showAll()" id="showRencontres" ng-model="geoSearchResultsCtrl.showRencontres">
-                            <label class="txt-white" for="showRencontres">{{rubedo.translate("PresDeChezToi.Tous.Rencontres", "Toutes les rencontres")}}</label>
+                            <input type="checkbox" id="showRencontres" ng-model="geoSearchResultsCtrl.showRencontres">
+                            <label class="txt-white" ng-click="geoSearchResultsCtrl.showAll()" for="showRencontres">{{rubedo.translate("PresDeChezToi.Tous.Rencontres", "Toutes les rencontres")}}</label>
                         </div>
                     </div>
                             
