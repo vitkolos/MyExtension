@@ -1,3 +1,15 @@
+angular.module("rubedoBlocks").directive('onKeypress', function() {
+    return {
+        scope: {
+            handler: '&onKeypress'
+        },
+        link: function(scope, element) {
+            element.bind('keypress', function(e) {
+                scope.handler({$event: e});
+            });
+        }
+    };
+});
 angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope",
                                                                           function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope){
     var me = this;
