@@ -52,16 +52,16 @@ body {
 .inner-body .btn-default .badge {
   color: #c1573c;
 }
-.inner-body .btn-default :hover,
-.inner-body .btn-default :focus,
-.inner-body .btn-default .active,
-.inner-body .btn-default :active {
+.inner-body .btn-default:hover,
+.inner-body .btn-default:focus,
+.inner-body .btn-default.active,
+.inner-body .btn-default:active {
   background-colorbackground-color: #9e4232;
 }
-.inner-body .btn-default :hover .badge,
-.inner-body .btn-default :focus .badge,
-.inner-body .btn-default .active .badge,
-.inner-body .btn-default :active .badge {
+.inner-body .btn-default:hover .badge,
+.inner-body .btn-default:focus .badge,
+.inner-body .btn-default.active .badge,
+.inner-body .btn-default:active .badge {
   color: #f3eeea;
 }
 .inner-body img {
@@ -113,16 +113,16 @@ h6 {
 .head-btq .dropdown-menu * {
   background-color: #f3eeea;
 }
-.head-btq .dropdown-menu :hover,
-.head-btq .dropdown-menu :focus {
+.head-btq .dropdown-menu:hover,
+.head-btq .dropdown-menu:focus {
   background-color: #f3eeea;
 }
 .head-btq .dropdown-menu-large,
 .head-btq .dropdown-header {
   color: #c1573c;
 }
-.head-btq .dropdown-menu-large :hover,
-.head-btq .dropdown-header :hover {
+.head-btq .dropdown-menu-large:hover,
+.head-btq .dropdown-header:hover {
   color: #9a4530;
 }
 .progress-bar {
@@ -151,24 +151,24 @@ panel-default .btn-primary {
 panel-default .btn-primary .badge {
   color: #c1573c;
 }
-.panel-primary .btn-primary :hover,
-panel-default .btn-primary :hover,
-.panel-primary .btn-primary :focus,
-panel-default .btn-primary :focus,
-.panel-primary .btn-primary .active,
-panel-default .btn-primary .active,
-.panel-primary .btn-primary :active,
-panel-default .btn-primary :active {
+.panel-primary .btn-primary:hover,
+panel-default .btn-primary:hover,
+.panel-primary .btn-primary:focus,
+panel-default .btn-primary:focus,
+.panel-primary .btn-primary.active,
+panel-default .btn-primary.active,
+.panel-primary .btn-primary:active,
+panel-default .btn-primary:active {
   background-colorbackground-color: #9e4232;
 }
-.panel-primary .btn-primary :hover .badge,
-panel-default .btn-primary :hover .badge,
-.panel-primary .btn-primary :focus .badge,
-panel-default .btn-primary :focus .badge,
-.panel-primary .btn-primary .active .badge,
-panel-default .btn-primary .active .badge,
-.panel-primary .btn-primary :active .badge,
-panel-default .btn-primary :active .badge {
+.panel-primary .btn-primary:hover .badge,
+panel-default .btn-primary:hover .badge,
+.panel-primary .btn-primary:focus .badge,
+panel-default .btn-primary:focus .badge,
+.panel-primary .btn-primary.active .badge,
+panel-default .btn-primary.active .badge,
+.panel-primary .btn-primary:active .badge,
+panel-default .btn-primary:active .badge {
   color: #f3eeea;
 }
 .panel-primary {

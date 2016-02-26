@@ -71,7 +71,7 @@ html,body {
     border:none;
     margin-bottom:1px;
     .badge{color:@rouge}
-    :hover, :focus, .active, :active  {background-colorbackground-color: @rouge_shadow; .badge{color:@beigeCCN}}
+    &:hover, &:focus, &.active, &:active  {background-colorbackground-color: @rouge_shadow; .badge{color:@beigeCCN}}
 
     //.open>.dropdown-toggle.btn-primary
   }
@@ -120,13 +120,13 @@ text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
     *{
       background-color: @beigeCCN;
     }
-    :hover,:focus{
+    &:hover,&:focus{
       background-color: @beigeCCN;
     }
   }
   .dropdown-menu-large, .dropdown-header {
     color: @rouge;
-    :hover{
+    &:hover{
       color: darken(@rouge,10%);
     }
   }
@@ -154,7 +154,7 @@ text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
   border:none;
   margin-bottom:1px;
   .badge{color:@rouge}
-  :hover, :focus, .active, :active  {background-colorbackground-color: @rouge_shadow; .badge{color:@beigeCCN}}
+  &:hover, &:focus, &.active, &:active  {background-colorbackground-color: @rouge_shadow; .badge{color:@beigeCCN}}
 
   }
 }
