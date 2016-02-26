@@ -17,10 +17,10 @@
 		</div>
 	</div>
 	<div class="row padding-large">
-		<div class="col-sm-8">
+		<div class="col-md-8 sm-12">
 			<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.fields.image,{width:'800px',mode:'boxed'})}}" style="width:100%">
 		</div>
-		<div class="col-sm-4 blogTexte">
+		<div class="col-md-4 sm-12 blogTexte">
 			<p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user">{{contentDetailCtrl.content.createUser.fullName |uppercase}}</span>
 			<p class="thin"><span class="glyphicon glyphicon-time"></span>{{contentDetailCtrl.content.createTime*1000|date:'longDate'}}</p>
 			<p class="thin" ng-if="contentDetailCtrl.content.taxonomy['5666a87c3bc325fc368b4568']"><span class="glyphicon glyphicon-folder-open"></span>
