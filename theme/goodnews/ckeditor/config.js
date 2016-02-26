@@ -13,7 +13,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 
 CKEDITOR.stylesSet.add( 'default', [
-    { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} },
+    { name: 'Titre section', element: 'h3', attributes: { 'class': 'block-title'} },
     {
 		name: 'Image 100%',
 		element: 'img',
