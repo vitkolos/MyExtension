@@ -238,13 +238,17 @@ blockquote {
 }
 .text-article {
   blockquote {
- .capital;
- color: @main_color;
- width:70%;
- border-top:5px solid white;
- border-bottom:5px solid white;
- margin: 30px auto;
- position: relative;
+    .capital;
+    color: @main_color;
+    width:70%;
+    border-top:2px solid ;
+    border-bottom:2px solid ;
+    margin: 30px auto;
+    padding:24px 0;
+    position: relative;
+    p{color: @main_color;}
+    &:before{content:'';}
+    &:after{content:'';}
 }
 }
 blockquote:before{
