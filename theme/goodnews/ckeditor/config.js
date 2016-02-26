@@ -7,6 +7,22 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
+    config.colorButton_colors = "ffd600,c5c5c5,2e2c29";
 
 };
+
+
+CKEDITOR.stylesSet.add( 'default', [
+    { name: 'Titre section', element: 'h3', attributes: { 'class': 'block-title'} },
+    {
+		name: 'Image 100%',
+		element: 'img',
+		attributes: { 'class': 'full-width' }
+    },
+
+
+] );
+
+
+
 CKEDITOR.plugins.addExternal( 'youtube', '/theme/goodnews/ckeditor/plugins/youtube/','plugin.js' );

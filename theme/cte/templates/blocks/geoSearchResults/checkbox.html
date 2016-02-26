@@ -13,7 +13,7 @@
                     <div class="panel">
                         <form ng-submit="geoSearchResultsCtrl.onSubmit()" role="form">
                             <div class="input-group">
-                                <input class="form-control" type="text" ng-model="geoSearchResultsCtrl.query" placeholder="Search"/>
+                                <input class="form-control" type="text" ng-model="geoSearchResultsCtrl.query" placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
                                     <span class="input-group-btn"><button class="btn btn-default" type="submit">
                                         <span class="glyphicon glyphicon-search"></span></button></span>
                             </div>
@@ -23,7 +23,7 @@
                         <div class="panel-heading actus"  ng-class="{'panel-hidden' :!propDisplayed }" ng-click="propDisplayed = !propDisplayed">{{geoSearchResultsCtrl.taxo['555f3bc445205edc117e689b'].name}}</div>
                         <div class="panel-body">
                             <ul class="search-tags" >
-                                <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['555f3bc445205edc117e689b'].terms" ng-if="term.parentId=='root' "ng-click="geoSearchResultsCtrl.clickOnFacetsCheckbox('555f3bc445205edc117e689b', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
+                                <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['555f3bc445205edc117e689b'].terms" ng-if="term.parentId=='root' " ng-click="geoSearchResultsCtrl.clickOnFacetsCheckbox('555f3bc445205edc117e689b', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
                                     {{term.text}}
                                 </li>
                             </ul>
@@ -33,7 +33,7 @@
                         <div class="panel-heading actus"  ng-class="{'panel-hidden' :!lieuxDisplayed }" ng-click="lieuxDisplayed = !lieuxDisplayed">{{geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].name}}</div>
                         <div class="panel-body">
                             <ul class="search-tags">
-                                <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].terms" ng-if="term.parentId=='root' "ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
+                                <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['555a164d45205eea0a7e689b'].terms" ng-if="term.parentId=='root' " ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('555a164d45205eea0a7e689b', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
                                     {{term.text}}
                                 </li>                                 
                             </ul>
@@ -45,7 +45,8 @@
                             <ul class="search-tags">
                                 <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['56af638bc445ecdc008b5bec'].terms" ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('56af638bc445ecdc008b5bec', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
                                     {{term.text}}
-                                </li>                                 
+                                </li>
+                                <li class="tags" ng-click="geoSearchResultsCtrl.showAll('pointNet')">Point Net</li>
                             </ul>
                             <input type="checkbox" id="showRencontres" ng-model="geoSearchResultsCtrl.showRencontres" ng-change="geoSearchResultsCtrl.showAll('rencontres')">
                             <label class="txt-white" for="showRencontres">{{rubedo.translate("PresDeChezToi.Tous.Rencontres", "Toutes les rencontres")}}</label>
@@ -58,15 +59,25 @@
             </div>
             
             <div class="col-lg-6 col-md-12 col-lg-pull-6 geo-search">
-                <a  ng-href="{{data.itemData.url}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'"><div class="row search-result " >
-                    <div style="line-height: 60px; float:left" >
-                        <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
-                    </div>
-                    <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
-                    <h4>{{data.itemData.title}}</h4>
+                <div  ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'" class="row search-result ">
+                    <a ng-href="{{data.itemData.url}}" ng-if="!data.itemData['fields.propositionReferenceeInterne']">
+                        <div style="line-height: 60px; float:left" >
+                            <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
+                        </div>
+                        <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
+                        <h4>{{data.itemData.title}}</h4>
+                    </a>
+                    <a rubedo-page-link="{{data.itemData['fields.propositionReferenceeInterne'][0]}}" ng-if="data.itemData['fields.propositionReferenceeInterne']" >
+                        <div style="line-height: 60px; float:left" >
+                            <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
+                        </div>
+                        <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
+                        <h4>{{data.itemData.title}}</h4>
+                    </a>
                     <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
-                    <p ng-if="data.itemData.groupe == 'evenement' ">du {{data.itemData['fields.dateDebut'][0]* 1000 | date:'d MMM'}} au {{data.itemData['fields.dateFin'][0]* 1000 | date:'d MMM yyyy'}}</p>
-                </div></a>
+                    <p ng-if="data.itemData.groupe == 'evenement' "><span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span><time ng-if="data.itemData['fields.dateDebut'][0]">{{data.itemData['fields.dateDebut'][0]|dateRange:data.itemData['fields.dateFin'][0]:'short'}}</time>
+                </div>
+                           
             </div>
             
         </div>

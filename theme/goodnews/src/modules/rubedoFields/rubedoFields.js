@@ -206,7 +206,7 @@
            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic','-', 'RemoveFormat' ] },
             { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo',"Source"  ] },
            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote']},
-            { name: 'styles', items: [ 'Format' ] },
+            { name: 'styles', items: [  'Styles','Format' ] },
             { name: 'insert', items: [ 'Image', 'Youtube', '-', 'HorizontalRule'] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink'] },
             { name: 'colors', items: [ 'Scayt'] }
@@ -222,10 +222,6 @@
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
-            stylesSet: [
-               { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} }
-            ],
-            colorButton_colors : "ffd600,c5c5c5,2e2c29",
             contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             templates_replaceContent : false,
@@ -589,6 +585,7 @@
         };            
     }]);
 
+        /*Modifié pour ajouter l'espace de travail de la page ou de la page liée au bloc de contribution*/
     module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
         var me=this;
         var mediaId=$scope.fieldEntity[$scope.field.config.name];
@@ -668,12 +665,30 @@
         me.newFile=null;
         me.uploadNewFile=function(){
            me.notification=null;
+           me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
+            if (me.pageId&&mongoIdRegex.test(me.pageId)) {
+                RubedoPagesService.getPageById(me.pageId).then(function(response){
+                    if (response.data.success){
+                        me.pageUrl=response.data.url;
+                        $http.get("/api/v1/pages",{
+                            params:{
+                                site:$location.host(),
+                                route:(me.pageUrl).substr(4)
+                            }
+                        }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; me.uploadNewFileWithWorkspace()}});
+                    };
+                });
+            };
+
+
+        };
+        me.uploadNewFileWithWorkspace=function(){
            if ($scope.fieldInputMode&&me.newFile&&$scope.field.config.allowedDAMTypes){
                var uploadOptions={
                    typeId:$scope.field.config.allowedDAMTypes,
+                   target:me.workspace,
                    fields:{
-                       title:me.newFile.name,
-                       target:me.workspace
+                       title:me.newFile.name
                    }
                };
                RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
@@ -703,25 +718,9 @@
                        };
                    }
                );
-           }
-
+           }            
         };
-        if ($scope.fieldInputMode) {
-            me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
-            if (me.pageId&&mongoIdRegex.test(me.pageId)) {
-                RubedoPagesService.getPageById(me.pageId).then(function(response){
-                    if (response.data.success){
-                        me.pageUrl=response.data.url;
-                        $http.get("/api/v1/pages",{
-                            params:{
-                                site:$location.host(),
-                                route:(me.pageUrl).substr(4)
-                            }
-                        }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; }});
-                    };
-                });
-            };
-        }
+
         if ($scope.fieldInputMode){
             $element.find('.form-control').on('change', function(){
                 setTimeout(function(){
@@ -730,7 +729,6 @@
             });
         }
     }]);
-
     module.directive('fileModel', ['$parse','$sce', function ($parse,$sce) {
         return {
             restrict: 'A',

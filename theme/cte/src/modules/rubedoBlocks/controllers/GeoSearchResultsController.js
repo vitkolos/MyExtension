@@ -19,7 +19,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         // pour limiter le zoom lors de clusters
         me.mapOptions={
-            maxZoom:18
+            maxZoom:17
         };
         me.geocoder = new google.maps.Geocoder();
         //places search
@@ -169,7 +169,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 } else {
                     var map=cluster.getMap();
                     map.setCenter(cluster.getCenter());
-                    map.setZoom(map.getZoom()+2);
+                    map.setZoom(map.getZoom()+4);
                 }
             }
         };
@@ -279,6 +279,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if(me.showRencontres) options["type[]"] =  ["56af6230c445ecd7008b5d68","54edd57845205e5110ca11b8"];
                 else options["type[]"] = defaultOptions["type[]"];
             }
+            else if (type=="pointNet") {
+                if (options["type[]"] == defaultOptions["type[]"])  options["type[]"] = ["54edd57845205e5110ca11b8"];
+                else options["type[]"] = defaultOptions["type[]"];
+            }
             me.searchByQuery(options, true);
        };
         me.disabled = function(term){
@@ -358,15 +362,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
            }
             me.searchByQuery(options, true);
         }            
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         me.clickOnFacets =  function(facetId,term){
             var del = false;
@@ -449,9 +444,17 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 angular.forEach(data.results.data,function(item){
                     /*calculer le type d'événement*/
                     switch(item['typeId']) {
-                        case "54edd57845205e5110ca11b8":
-                            item['groupe']="rencontre"; break;
-                        case "56af6230c445ecd7008b5d68" :
+                        case "54edd57845205e5110ca11b8":// points net
+                            item['groupe']="rencontre";
+                            var routeArray = item['url'] .split("/");
+                            var contentUrl= routeArray[routeArray.length-2]+"/"+routeArray[routeArray.length-1];
+                            item['url'] = 'http://test.netforgod.org/fr/home/le-reseau/points-net/'+contentUrl;
+                            
+                            
+                            
+                            "/fr/pres-de-chez-toi/56a73b1dc445ec1a238b470b/lyon-4---croix-rousse"
+                            break;
+                        case "56af6230c445ecd7008b5d68" :// rencontres
                             item['groupe']="rencontre"; break;
                         case "54632c1545205e7c38b0c6b7": // lieux communautaires
                             item['groupe']="lieux"; break;
