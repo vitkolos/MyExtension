@@ -446,13 +446,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     switch(item['typeId']) {
                         case "54edd57845205e5110ca11b8":// points net
                             item['groupe']="rencontre";
+                            //get content page on NFG website
                             var routeArray = item['url'] .split("/");
                             var contentUrl= routeArray[routeArray.length-2]+"/"+routeArray[routeArray.length-1];
                             item['url'] = 'http://test.netforgod.org/fr/home/le-reseau/points-net/'+contentUrl;
-                            
-                            
-                            
-                            "/fr/pres-de-chez-toi/56a73b1dc445ec1a238b470b/lyon-4---croix-rousse"
                             break;
                         case "56af6230c445ecd7008b5d68" :// rencontres
                             item['groupe']="rencontre"; break;
