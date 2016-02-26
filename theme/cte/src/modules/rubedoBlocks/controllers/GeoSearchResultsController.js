@@ -279,6 +279,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if(me.showRencontres) options["type[]"] =  ["56af6230c445ecd7008b5d68","54edd57845205e5110ca11b8"];
                 else options["type[]"] = defaultOptions["type[]"];
             }
+            else if (type=="pointNet") {
+                if (options["type[]"] == defaultOptions["type[]"])  options["type[]"] = ["54edd57845205e5110ca11b8"];
+                else options["type[]"] = defaultOptions["type[]"];
+            }
             me.searchByQuery(options, true);
        };
         me.disabled = function(term){
@@ -358,15 +362,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
            }
             me.searchByQuery(options, true);
         }            
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         me.clickOnFacets =  function(facetId,term){
             var del = false;
