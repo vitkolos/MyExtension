@@ -1,4 +1,5 @@
-    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService',function($scope,$location,RubedoMenuService,RubedoPagesService){
+    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','$route',
+								     function($scope,$location,RubedoMenuService,RubedoPagesService,$http,$route){
         var me=this;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
@@ -48,6 +49,14 @@
 	$scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
 	    angular.element('body .modal-backdrop ').remove();
 	});
+	/*Ajouter les traductions*/
+	$scope.rubedo.getCustomTranslations = function(){
+	        $http.get('/theme/cte/localization/'+lang+'/Texts.json').then(function(res){
+            	$scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
+          });	
+        }
+      $scope.rubedo.getCustomTranslations(); 
+	
 }]);
     
     
