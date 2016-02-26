@@ -46,7 +46,7 @@
                                 <li class="tags" ng-repeat="term in geoSearchResultsCtrl.taxo['56af638bc445ecdc008b5bec'].terms" ng-click="geoSearchResultsCtrl.clickOnFacetsRadio('56af638bc445ecdc008b5bec', term.id)" ng-class=" {'checked' : geoSearchResultsCtrl.checkedRadio(term.id)}">
                                     {{term.text}}
                                 </li>
-                                <li class="tags" ng-click="geoSearchResultsCtrl.showAll('pointNet')">Point Net</li>
+                                <li class="tags" ng-class=" {'checked' : geoSearchResultsCtrl.isPointNetSearch}" ng-click="geoSearchResultsCtrl.showAll('pointNet')">Point Net</li>
                             </ul>
                             <input type="checkbox" id="showRencontres" ng-model="geoSearchResultsCtrl.showRencontres" ng-change="geoSearchResultsCtrl.showAll('rencontres')">
                             <label class="txt-white" for="showRencontres">{{rubedo.translate("PresDeChezToi.Tous.Rencontres", "Toutes les rencontres")}}</label>
