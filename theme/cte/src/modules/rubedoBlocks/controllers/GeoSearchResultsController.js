@@ -280,9 +280,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 else options["type[]"] = defaultOptions["type[]"];
             }
             else if (type=="pointNet") {
-                if (options["type[]"] == defaultOptions["type[]"])  {options["type[]"] = ["54edd57845205e5110ca11b8"];me.isPointNetSearch = true;}
+                if (options["type[]"] != defaultOptions["type[]"])  {options["type[]"] = ["54edd57845205e5110ca11b8"];me.isPointNetSearch = true;}
                 else {options["type[]"] = defaultOptions["type[]"];me.isPointNetSearch =false;}
-                console.log(options["type[]"]);
             }
             me.searchByQuery(options, true);
        };
