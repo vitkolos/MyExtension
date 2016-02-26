@@ -5,18 +5,7 @@
         me.menu={};
         me.currentRouteline=$location.path();
         var config=$scope.blockConfig;
-	me.menuTab = false; 
-	if ($scope.block.code == '1418') {
-	    me.menuClass="menu1418";
-	    me.menuTab = true;
-	}
-	else if ($scope.block.code == 'cana'){
-	    me.menuClass="menucana";
-	    me.menuTab = true;
-	}
-	else if ($scope.block.code && $scope.block.code!="") {
-	    me.menuTab = true;
-	}
+
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
         if (config.rootPage){
             var pageId=config.rootPage;
@@ -40,15 +29,8 @@
                 me.menu={};
             }
         });
-	me.showMenu =function(){
-	    $scope.menu = !$scope.menu;
-	    if($scope.menu) angular.element('#menuModal').modal('show');
-	    else angular.element('#menuModal').modal('hide');
-	};
-	// pour fermer le modal quand on clique sur un lien
-	$scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
-	    angular.element('body .modal-backdrop ').remove();
-	});
+	
+	
 	/*Ajouter les traductions*/
 	$scope.rubedo.getCustomTranslations = function(){
 	        $http.get('/theme/cte/localization/'+lang+'/Texts.json').then(function(res){
