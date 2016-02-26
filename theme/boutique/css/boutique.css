@@ -56,7 +56,7 @@ body {
 .inner-body .btn-default:focus,
 .inner-body .btn-default.active,
 .inner-body .btn-default:active {
-  background-colorbackground-color: #9e4232;
+  background-color: #9e4232;
 }
 .inner-body .btn-default:hover .badge,
 .inner-body .btn-default:focus .badge,
@@ -141,34 +141,34 @@ h6 {
   transition: width .6s ease;
 }
 .panel-primary .btn-primary,
-panel-default .btn-primary {
+.panel-default .btn-primary {
   color: #f3eeea;
   background-color: #c1573c;
   border: none;
   margin-bottom: 1px;
 }
 .panel-primary .btn-primary .badge,
-panel-default .btn-primary .badge {
+.panel-default .btn-primary .badge {
   color: #c1573c;
 }
 .panel-primary .btn-primary:hover,
-panel-default .btn-primary:hover,
+.panel-default .btn-primary:hover,
 .panel-primary .btn-primary:focus,
-panel-default .btn-primary:focus,
+.panel-default .btn-primary:focus,
 .panel-primary .btn-primary.active,
-panel-default .btn-primary.active,
+.panel-default .btn-primary.active,
 .panel-primary .btn-primary:active,
-panel-default .btn-primary:active {
-  background-colorbackground-color: #9e4232;
+.panel-default .btn-primary:active {
+  background-color: #9e4232;
 }
 .panel-primary .btn-primary:hover .badge,
-panel-default .btn-primary:hover .badge,
+.panel-default .btn-primary:hover .badge,
 .panel-primary .btn-primary:focus .badge,
-panel-default .btn-primary:focus .badge,
+.panel-default .btn-primary:focus .badge,
 .panel-primary .btn-primary.active .badge,
-panel-default .btn-primary.active .badge,
+.panel-default .btn-primary.active .badge,
 .panel-primary .btn-primary:active .badge,
-panel-default .btn-primary:active .badge {
+.panel-default .btn-primary:active .badge {
   color: #f3eeea;
 }
 .panel-primary {
