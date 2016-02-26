@@ -164,6 +164,9 @@ h6 {
 .panel-primary .btn-primary :active .badge {
   color: #f3eeea;
 }
+.panel-primary > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: #c1573c;
+}
 .panel-primary > .panel-heading {
   color: #fff;
   background-color: #c1573c;
