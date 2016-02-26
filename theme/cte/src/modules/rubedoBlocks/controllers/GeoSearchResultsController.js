@@ -444,9 +444,9 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 angular.forEach(data.results.data,function(item){
                     /*calculer le type d'événement*/
                     switch(item['typeId']) {
-                        case "54edd57845205e5110ca11b8":
+                        case "54edd57845205e5110ca11b8":// points net
                             item['groupe']="rencontre"; break;
-                        case "56af6230c445ecd7008b5d68" :
+                        case "56af6230c445ecd7008b5d68" :// rencontres
                             item['groupe']="rencontre"; break;
                         case "54632c1545205e7c38b0c6b7": // lieux communautaires
                             item['groupe']="lieux"; break;

@@ -206,7 +206,7 @@
            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic','-', 'RemoveFormat' ] },
             { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo',"Source"  ] },
            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote']},
-            { name: 'styles', items: [ 'Format' ] },
+            { name: 'styles', items: [  'Styles','Format' ] },
             { name: 'insert', items: [ 'Image', 'Youtube', '-', 'HorizontalRule'] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink'] },
             { name: 'colors', items: [ 'Scayt'] }
@@ -222,10 +222,6 @@
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
-            stylesSet: [
-               { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} }
-            ],
-            colorButton_colors : "ffd600,c5c5c5,2e2c29",
             contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             templates_replaceContent : false,
