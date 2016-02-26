@@ -146,19 +146,21 @@ text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
    -o-transition: width .6s ease;
    transition: width .6s ease;
  }
-.panel-primary {
-  border-color: @rouge;
-  .btn-primary{
-    color:@beigeCCN;
-    background-color:@rouge;
-    border:none;
-    margin-bottom:1px;
-    .badge{color:@rouge}
-    :hover, :focus, .active, :active  {background-colorbackground-color: @rouge_shadow; .badge{color:@beigeCCN}}
 
-    //.open>.dropdown-toggle.btn-primary
+.panel-primary, panel-default{
+  .btn-primary{
+  color:@beigeCCN;
+  background-color:@rouge;
+  border:none;
+  margin-bottom:1px;
+  .badge{color:@rouge}
+  :hover, :focus, .active, :active  {background-colorbackground-color: @rouge_shadow; .badge{color:@beigeCCN}}
+
   }
 }
+.panel-primary {
+      border-color: @rouge;
+    }
 .panel-primary>.panel-heading+.panel-collapse>.panel-body {
    border-top-color: @rouge;
  }
@@ -167,4 +169,4 @@ text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
   background-color: @rouge;
   border-color: @rouge;
 }
-//.content_border{border:solid 8px @rouge;min-height: 90vh}
+
