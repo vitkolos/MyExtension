@@ -182,3 +182,8 @@ h6 {
   background-color: #c1573c;
   border-color: #c1573c;
 }
+.btn:focus,
+.btn:active:focus,
+.btn .active:focus {
+  outline: none;
+}
