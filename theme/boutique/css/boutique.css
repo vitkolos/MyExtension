@@ -52,13 +52,19 @@ body {
 .inner-body .btn-default .badge {
   color: #c1573c;
 }
-.inner-body .btn-default .active {
+.inner-body .btn-default :hover,
+.inner-body .btn-default :focus,
+.inner-body .btn-default .active,
+.inner-body .btn-default :active {
   background-colorbackground-color: #9e4232;
 }
-.inner-body .btn-default .active .badge {
-  color: #2e2c29;
+.inner-body .btn-default :hover .badge,
+.inner-body .btn-default :focus .badge,
+.inner-body .btn-default .active .badge,
+.inner-body .btn-default :active .badge {
+  color: #f3eeea;
 }
-img {
+.inner-body img {
   margin-left: auto;
   margin-right: auto;
   border: 1px solid #898989;
