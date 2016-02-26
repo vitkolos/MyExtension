@@ -7,18 +7,7 @@ angular.module('rubedoBlocks').filter('cleanUrl', function () {
         return input.replace("//","/");
      };
   });
-angular.module("rubedoBlocks").directive('onKeypress', function() {
-    return {
-        scope: {
-            handler: '&onKeypress'
-        },
-        link: function(scope, element) {
-            element.bind('keypress', function(e) {
-                scope.handler({$event: e});
-            });
-        }
-    };
-});
+
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
