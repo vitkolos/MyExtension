@@ -3,10 +3,10 @@
     "Block.Futurs": "Forthcoming",
     "Block.Saison": "Season",
     "Block.VoirPlus" : "See also",
-    "cana":"Cana - serving couples and families",
-    "netforgod":"Net for God - The International Ecumenical Fraternity",
-    "1418":"Youth Mission 14-18s",
-    "1830":"Young Adults Mission 18-30s",
-    "foyers":"Student residences",
-    "jet":"JET - Volunteers abroad"
+    "Missions.cana":"Cana - serving couples and families",
+    "Missions.netforgod":"Net for God - The International Ecumenical Fraternity",
+    "Missions.ados":"Youth Mission 14-18s",
+    "Missions.jeunes":"Young Adults Mission 18-30s",
+    "Missions.foyers":"Student residences",
+    "Missions.jet":"JET - Volunteers abroad"
 }

@@ -3,10 +3,10 @@
     "Block.Futurs": "En préparation",
     "Block.Saison": "Saison",
     "Block.VoirPlus" : "À voir aussi",
-    "cana":"Cana : au service du couple et de la famille",
-    "netforgod":"Net for God - Fraternité Oecuménique Internationale",
-    "1418":"Mission Jeunes 14-18 ans",
-    "1830":"Mission Jeunes 18-30 ans",
-    "foyers":"Foyers d'étudiants",
-    "jet":"JET - Volontariat International"
+    "Missions.cana":"Cana : au service du couple et de la famille",
+    "Missions.netforgod":"Net for God - Fraternité Oecuménique Internationale",
+    "Missions.ados":"Mission Jeunes 14-18 ans",
+    "Missions.jeunes":"Mission Jeunes 18-30 ans",
+    "Missions.foyers":"Foyers d'étudiants",
+    "Missions.jet":"JET - Volontariat International"
 }
