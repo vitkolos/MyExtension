@@ -175,3 +175,10 @@ h6 {
 .btn .active:focus {
   outline: none;
 }
+.btq-panel {
+  border-radius: 0;
+  border-color: #DDDDDD;
+}
+.btq-panel .panel-heading {
+  border-radius: 0;
+}
