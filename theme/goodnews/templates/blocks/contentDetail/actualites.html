@@ -6,6 +6,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
+
 				<div class="text-article">
 					<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
 						<h1 ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
@@ -34,10 +35,9 @@
 				</div>
 			</div>
 			<div class="col-xs-12">
-				<div class="text-article">
-					<rubedo-field field = "{{contentDetailCtrl.getFieldByName('externalMedia')}}"  ng-if="fieldEntity['externalMedia']" ></rubedo-field><!--Video-->
-					<rubedo-field field = "{{contentDetailCtrl.getFieldByName('audio')}}"   ng-if="fieldEntity['audio']"></rubedo-field><!--Audio-->							
-				</div>
+				<p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user">{{contentDetailCtrl.content.createUser.fullName |uppercase}}</span>
+					<span class="glyphicon glyphicon-time" style="margin-left:24px;"></span>{{contentDetailCtrl.content.createTime*1000|date:'longDate'}}
+				</p>
 			</div>
 		</div>
 	
