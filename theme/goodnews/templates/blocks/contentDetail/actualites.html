@@ -35,9 +35,13 @@
 				</div>
 			</div>
 			<div class="col-xs-12">
-				<p class="thin"><span class="glyphicon glyphicon-user"></span><span class="user">{{contentDetailCtrl.content.createUser.fullName |uppercase}}</span>
-					<span class="glyphicon glyphicon-time" style="margin-left:24px;"></span>{{contentDetailCtrl.content.createTime*1000|date:'longDate'}}
-				</p>
+				<div class="text-article">
+					<p class="thin pull-right">
+						<span class="glyphicon glyphicon-user"></span><span class="user">{{rubedo.translate("Contents.PublishedBy", "publié par") | lowercase}} {{contentDetailCtrl.content.createUser.fullName |uppercase}}</span>
+						<span class="glyphicon glyphicon-time" style="margin-left:24px;"></span>{{contentDetailCtrl.content.createTime*1000|date:'longDate'}}
+					</p>
+				</div>
+				
 			</div>
 		</div>
 	
