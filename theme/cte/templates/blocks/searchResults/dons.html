@@ -1,11 +1,11 @@
 <nav class="navbar navbar-default">
     <div class="navbar-header">
             <span class="navbar-brand">{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} :
-                <span ng-repeat-start="term in searchResultsCtrl.activeTerms track by $index">{{term.operator}}</span>
-                <span class="badge cursor-as-pointer" ng-repeat-end
+                <span ng-repeat-start="term in searchResultsCtrl.activeTerms track by $index" ng-if="!$first">{{term.operator}}</span>
+                <li class="tags cursor-as-pointer" ng-repeat-end
                       ng-click="searchResultsCtrl.clickOnFacets(term.facetId, term.term)">
-                    {{term.label}}&nbsp;&times;
-                </span>
+                    {{term.label}}
+                </li>
             </span>
     </div>
 </nav>
