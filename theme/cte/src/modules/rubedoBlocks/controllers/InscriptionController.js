@@ -10,7 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.infosFin = themePath+'/templates/blocks/formulaire/infosFin.html';
     me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
     me.content = angular.copy($scope.proposition);
-    switch(contentDetailCtrl.content.public) {
+    switch($scope.contentDetailCtrl.content.public) {
         case 'adolescent':
             me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
             me.additional_infos = null;
