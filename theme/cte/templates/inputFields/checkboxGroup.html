@@ -2,7 +2,7 @@
     <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="control-label">{{field.config.fieldLabel}} <span ng-if="!field.config.allowBlank&&!field.config.fieldLabel.includes('*')">*</span></label>
     <div  id="{{fieldIdPrefix+'_'+field.config.name}}">
         <label class="checkbox-inline" ng-repeat="item in field.config.items track by $index">
-            <input type="checkbox" name="{{field.config.name}}" checklist-value="item.inputValue" checklist-model="fieldEntity[field.config.name][field.config.name]"> {{item.boxLabel}}
+            <input type="checkbox" name="{{field.config.name}}" checklist-value="item.inputValue" checklist-model="fieldEntity[field.config.name]"> {{item.boxLabel}}
         </label>
         <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
     </div>
