@@ -42,6 +42,7 @@
 					<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
 				</div>
 				<div class="col-xs-12 col-sm-8 ">
+					<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 					<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
 				</div>
 				<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
