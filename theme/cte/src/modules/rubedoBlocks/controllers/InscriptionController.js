@@ -41,7 +41,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
             default:me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
-        
+        }
     }
     getForms($scope.contentDetailCtrl.content.public);
     $scope.inscription={};
