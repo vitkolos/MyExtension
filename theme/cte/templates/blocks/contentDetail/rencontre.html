@@ -20,7 +20,7 @@
 <div class="container-fluid">
 	<div class="row bg-white">
 		<div class="text-article" >
-			<rubedo-field class="txt-light" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Description-->
+			<rubedo-field class="txt-light text-left" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Description-->
 			<rubedo-field class="txt-light capital" field =  "{{contentDetailCtrl.getFieldByName('subTitle')}}"></rubedo-field><!--Description-->
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
 
@@ -28,7 +28,7 @@
 	</div>
 	<div class="row" >
 		<div class="text-article infos">
-			<h3>Informations pratiques</h3>
+			<div class="co-sm-12"><h3>Informations pratiques</h3></div>
 			<div ng-if="fieldEntity['annonces']" class="col-xs-12">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 					<p class="capital">{{contentDetailCtrl.getLabelByName('annonces')}}</p>
@@ -42,6 +42,7 @@
 					<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
 				</div>
 				<div class="col-xs-12 col-sm-8 ">
+					<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 					<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
 				</div>
 				<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->

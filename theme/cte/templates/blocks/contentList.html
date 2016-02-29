@@ -1,13 +1,4 @@
 <div ng-controller="ContentListController as contentListCtrl">
-    <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
-            ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
-            ng-model="contentListCtrl.selectedManualType"></select>
-    <button ng-if="contentListCtrl.canAddToList()"
-            title="Add content"
-            class="btn btn-default"
-            ng-click="contentListCtrl.launchContribute()">
-        <span class="glyphicon glyphicon-plus"></span>
-    </button>
     <button ng-if="!contentListCtrl.canAddToList()&&contentListCtrl.isFOContributeMode&&contentListCtrl.editorPageUrl"
             title="Add content"
             class="btn btn-default"
@@ -67,7 +58,10 @@
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" >
                             <div class="media-body" >
                                 
-                                <h4 class="list-item-title capital"><span>{{content.fields.text}}</span></h4>
+                                <h4 class="list-item-title capital"><span>{{content.fields.text}}</span>
+                                    <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span>
+                                </h4>
+
                                 <div class="list-item-img">
                                     <img class="media-object pull-left" ng-if="content.fields.image"
                                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"

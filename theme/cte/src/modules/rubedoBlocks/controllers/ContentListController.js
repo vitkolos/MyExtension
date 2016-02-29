@@ -36,6 +36,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     }
     if(config.enableFOContrib&&$scope.rubedo.current.user){
         //options.foContributeMode = true;   ENABLE to filter contents by user
+        options.useDraftMode=true;
         me.isFOContributeMode=true;
         if (config.editorPageId){
             RubedoPagesService.getPageById(config.editorPageId).then(function(response){

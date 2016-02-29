@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContentContributionController",["$scope","RubedoContentsService","RubedoContentTypesService","$location","RubedoPagesService",function($scope,RubedoContentsService,RubedoContentTypesService,$location,RubedoPagesService){
+angular.module("rubedoBlocks").lazy.controller("ContentContributionController",["$scope","RubedoContentsService","RubedoContentTypesService","$location","$route","RubedoPagesService",function($scope,RubedoContentsService,RubedoContentTypesService,$location,$route,RubedoPagesService){
     var me=this;
     var config = $scope.blockConfig;
     $scope.fieldInputMode=true;
@@ -43,7 +43,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
         RubedoContentsService.getContentById($location.search()["content-edit"],{useDraftMode:true}).then(
             function(ecResponse){
                 if (ecResponse.data.success){
-                    // edit seulement les contenus du bon type si un type de contenu est configuréÈ
+                    // edit seulement les contenus du bon type si un type de contenu est configur≈Ω√©
                     if(config.contentType&&config.contentType!=""){
                         if(ecResponse.data.content.type.id==config.contentType) {
                             me.existingContent=ecResponse.data.content;
@@ -98,11 +98,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                 });
                             }
                             else {
-                                RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
-                                    if (response.data.success){
-                                        $location.url(response.data.url);
-                                    }
-                                });
+                                $route.reload();
                             }
                         } else {
                             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
@@ -142,11 +138,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                 });
                             }
                             else {
-                                RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
-                                    if (response.data.success){
-                                        $location.url(response.data.url);
-                                    }
-                                });
+                                $route.reload();
                             }
 
                         }else{
