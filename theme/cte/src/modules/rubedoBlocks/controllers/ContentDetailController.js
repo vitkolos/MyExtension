@@ -83,6 +83,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
+                    me.content.editorPageUrl = $rubedo.current.breadcrumb[$rubedo.current.breadcrumb.lenght-1];
+                    console.log(me.content.editorPageUrl);
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
                             $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
