@@ -1,4 +1,3 @@
-<div class="container" >
     <span class="col-md-8" ng-init="blockConfig={searchPage:'55c8777145205ef317c62e31'}">
 
 
@@ -13,8 +12,8 @@
                 <!--</span>-->
             <!--</span>-->
 
-        <span  ng-controller="SearchFormController as searchFormCtrl">
-            <form  ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group col-md-11">
+        <span  ng-controller="SearchFormController as searchFormCtrl" class="input-group-btn">
+            <form  ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group">
                 <span  ng-if="searchFormCtrl.show">
                     <input class="form-control" type="text" ng-model="searchFormCtrl.query" placeholder="{{searchFormCtrl.placeholder}}"/>
                     <button class="btn btn-default" type="submit">
@@ -189,39 +188,3 @@
             </span>
         </span>
     </span>
-</div>
-
-<!--<div class="input-group">-->
-    <!--<div class = "row">-->
-        <!--<div class = "col-lg-6">-->
-            <!--<div class="input-group-btn">-->
-                <!--<form submit="searchFormCtrl.onSubmit()" role="form" class="input-group">-->
-                    <!--<input class="form-control" type="text"  placeholder="{{searchFormCtrl.placeholder}}"/>-->
-                    <!--<button class="btn btn-default" type="submit">-->
-                        <!--<span class="glyphicon glyphicon-search"></span></button>-->
-                <!--</form>-->
-                <!--<button class="btn btn-default">-->
-                    <!--aaa-->
-                <!--</button>-->
-                <!--<button class="btn btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{rubedo.current.user.name}}-->
-                    <!--&lt;!&ndash;<span class="caret"></span>&ndash;&gt;-->
-                    <!--<span class="sr-only">{{rubedo.translate("Block.Auth.ToggleDropdown","Toggle dropdown")}}</span>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu" role="menu">-->
-                    <!--<li ><a href="/backoffice" target="_blank"><span class="glyphicon glyphicon-cog"></span> Back Office</a></li>-->
-                    <!--<li  ><a  ><span class="glyphicon glyphicon-user"></span> {{rubedo.translate("Block.Auth.Profile","Profile")}}</a></li>-->
-                    <!--<li><a class="cursor-as-pointer" ng-click="authCtrl.logOut()">-->
-                        <!--<span class="glyphicon glyphicon-log-out"></span> {{rubedo.translate("Block.Auth.LogOut","Log out")}}</a></li>-->
-                <!--</ul>-->
-                <!--<button class="btn btn-default">-->
-                    <!--aaa-->
-                <!--</button>-->
-
-
-            <!--</div>-->
-        <!--</div>-->
-
-    <!--</div>-->
-<!--</div>-->
-
-
