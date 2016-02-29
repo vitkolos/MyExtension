@@ -11,6 +11,9 @@ a:focus {
 a {
   color: #646059;
 }
+.shadowed-image {
+  box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1);
+}
 html,
 body {
   font-family: 'Merriweather', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
