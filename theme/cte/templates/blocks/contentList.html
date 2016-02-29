@@ -58,8 +58,8 @@
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" >
                             <div class="media-body" >
                                 
-                                <h4 class="list-item-title capital"><span>{{content.fields.text}}</span>
-                                    <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span>
+                                <h4 class="list-item-title capital"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
+                                    
                                 </h4>
 
                                 <div class="list-item-img">
