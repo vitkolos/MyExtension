@@ -599,7 +599,9 @@
                 window.saveRubedoMediaChange=function(id){
                     $scope.fieldEntity[$scope.field.config.name]=id;
                     mediaId=id;
-                    $scope.registerFieldEditChanges();
+                    if ($scope.registerFieldEditChanges){
+                        $scope.registerFieldEditChanges();
+                    }
                     RubedoMediaService.getMediaById(mediaId).then(
                         function(response){
                             if (response.data.success){
