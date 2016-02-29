@@ -1,4 +1,4 @@
-<span style="margin-top: 35px">
+<span >
     <span class="col-md-8"  ng-init="blockConfig={searchPage:'55c8777145205ef317c62e31'}">
         <span  ng-controller="SearchFormController as searchFormCtrl" class="input-group-btn">
             <form  ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group col-md-10">
@@ -26,7 +26,7 @@
                     <li><a class="cursor-as-pointer" ng-click="authCtrl.logOut()"><span class="glyphicon glyphicon-log-out"></span> {{rubedo.translate("Block.Auth.LogOut","Log out")}}</a></li>
                 </ul>
             </span>
-            <button ng-if="!rubedo.current.user" class="btn btn-primary" ng-click="authCtrl.showModal()"><span class="glyphicon glyphicon-log-in"></span> {{rubedo.translate("Blocks.Auth.Label.LogIn","Log in")}}</button>
+            <button ng-if="!rubedo.current.user" class="btn btn-default" ng-click="authCtrl.showModal()"><span class="glyphicon glyphicon-log-in"></span> {{rubedo.translate("Blocks.Auth.Label.LogIn","Log in")}}</button>
             <div class="modal fade" id="rubedoAuthModal" tabindex="-1" role="dialog" aria-labelledby="rubedoAuthModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-sm">
                     <div class="modal-content">
