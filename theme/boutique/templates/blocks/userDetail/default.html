@@ -1,5 +1,5 @@
 <div ng-if="!fieldInputMode" class="form form-horizontal">
-    <div class="flex" ng-repeat="field in userProfileCtrl.user.type.fields track by $index">
+    <div class="flex col-md-6 col-md-offset-3" ng-repeat="field in userProfileCtrl.user.type.fields track by $index">
         <label class="control-label">{{field.config.fieldLabel}} :</label>
         <rubedo-field></rubedo-field>
     </div>

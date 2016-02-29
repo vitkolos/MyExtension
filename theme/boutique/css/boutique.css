@@ -190,4 +190,5 @@ h6 {
 }
 .flex {
   display: flex;
+  justify-content: space-around;
 }
