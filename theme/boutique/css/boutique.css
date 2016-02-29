@@ -185,10 +185,8 @@ h6 {
 .btq-panel .panel-heading {
   border-radius: 0;
 }
-.profil-block {
-  text-align: left;
-}
 .flex {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-top: 15px;
 }
