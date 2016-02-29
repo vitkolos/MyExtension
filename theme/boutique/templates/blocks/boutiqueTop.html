@@ -1,5 +1,5 @@
-<div class="input-group">
-    <span class="input-group-btn">
+<div class="input-group flex" >
+    <span class="input-group-btn" style="flex:1;">
         <span ng-init="blockConfig={searchPage:'55c8777145205ef317c62e31'}">
 
             <!--<span  ng-controller="SearchFormController as searchFormCtrl">-->
@@ -13,7 +13,7 @@
                 <!--</span>-->
             <!--</span>-->
         </span><span  ng-controller="SearchFormController as searchFormCtrl">
-                <form  ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group">
+                <form  ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group col-md-11">
                     <span  ng-if="searchFormCtrl.show">
                         <input class="form-control" type="text" ng-model="searchFormCtrl.query" placeholder="{{searchFormCtrl.placeholder}}"/>
                         <button class="btn btn-default" type="submit">
