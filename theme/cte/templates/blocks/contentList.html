@@ -67,9 +67,9 @@
                                                  alt="{{ content.fields.text }}"/>
                                     
                                 </div>
-                                <h4  class="list-item-title date-lieu capital" style="margin-top:10px; height: 85px; overflow-y: hidden" ng-if="!contentListCtrl.titleOnly">
+                                <p  class="text-center" style="margin-top:10px; height: 85px; overflow-y: hidden" ng-if="!contentListCtrl.titleOnly">
                                     <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                                </h4>
+                                </p>
                                 <h4 class="list-item-title date-lieu capital" ng-if="content.fields.positionName">
                                     <p class="list-tags" ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
                                     <span>
