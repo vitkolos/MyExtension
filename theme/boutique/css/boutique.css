@@ -190,3 +190,7 @@ h6 {
   justify-content: space-between;
   margin-top: 15px;
 }
+.mega-menu-dropdown-categories {
+  border-bottom: 1px solid;
+  border-color: #DDDDDD;
+}
