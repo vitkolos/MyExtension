@@ -1,0 +1,32 @@
+
+<div ng-controller="MediaListController as mediaListCtrl">
+    <div ng-if="mediaListCtrl.display">
+        <div ng-repeat="media in mediaListCtrl.media track by $index" class="col-md-3 col-sm-4 col-xs-6">
+		<!-- si thumbnail image est fournie -->
+		<div ng-if="media['fields.image']" class="media-body">
+			<a ng-href="{{ media.url }}" target="_blank">
+				<h4 class="list-item-title capital"><span>{{ media.title }}</span></h4>
+				<div class="list-item-img">
+					<img class="media-object pull-left" 
+                                                 ng-src="{{'/file?file-id='+media['fields.image'][0] }}"
+                                                 alt="{{ media.title }}"/>
+                                    
+                                </div>
+			</a>
+				
+		</div>
+		<!--- autres -->
+		<div  class="media" ng-if="!media['fields.image']">
+			<a  class="pull-left" ng-href="{{ media.url }}" target="_blank">
+			    <h4 class="media-heading">
+				{{ media.title }}
+			    </h4>
+			</a>
+						
+		</div>
+            
+        </div>
+        <paginator start="mediaListCtrl.start" limit="mediaListCtrl.limit"
+                   count="mediaListCtrl.count" change-page-action="mediaListCtrl.changePageAction()"></paginator>
+    </div>
+</div>
