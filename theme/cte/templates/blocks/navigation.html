@@ -1,46 +1,3 @@
-<!--<nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  ng-class="{'displayed':menu}" ng-if="!block.code || block.code=='' ">
-   <div class="container-fluid footer menu">
-        <div class="container" style="padding-bottom: 0">
-                <div class="row text-center">
-                    <a href="http://www.chemin-neuf.fr" style="font-size:16px; margin-bottom:0"><b>Communauté du Chemin Neuf</b></a>
-                    <div class="pull-right" style="padding:0px 24px">
-                        <span id="close" ng-click="menu=!menu"></span>
-                    </div>
-                </div>
-        </div>
-        <div class="container" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })">
-           
-       </div>       
-    </div>
-    <div class="container-fluid" ng-init="search=false;menu=false">
-            <ul class="nav navbar-nav navbar-right">
-                <li ng-click="search=!search" class="cursor-as-pointer">
-                    <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
-                </li>
-                <li ng-click="menu=!menu" class="cursor-as-pointer" >
-                    menu
-                </li>
-                <li>
-                    <span style="line-height:1em"><a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">Faire un don</a></span>
-                </li>
-
-            </ul>
-    </div>
-    <div class="container-fluid searchbar"ng-class="{'displayed':search}">
-        <div class="navbar-nav navbar-right" >
-            <form ng-if="menuCtrl.searchEnabled" ng-submit="menuCtrl.onSubmit()"role="form">
-                <div class="input-group">
-                    <input class="form-control" type="text" ng-model="menuCtrl.query" ng-attr-placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
-                        <span class="input-group-btn"><button class="btn btn-default" type="submit">
-                            <span class="glyphicon glyphicon-search"></span></button></span>
-                </div>
-            </form>
-        </div>
-    </div>
- </nav>-->
-
-
-
 <div  role="navigation" ng-controller="MenuController as menuCtrl"    ng-init="search=false;menu=false;menu2=false">
 <!--[if IE]>
 <style>
@@ -53,25 +10,44 @@
                 <div class="modal-dialog">
                         <nav class="navbar footer navbar-modal" >
                                 <div class="container-fluid menu">
-                                    <div style="width:90%; margin-top:50px" id="accordion">
-                                       <div class="menuTab">
+                                    <div style="width:90%; margin-top:50px" >
+                                       <div class="menuTab" ng-if="!menuCtrl.menuTab">
                                           <a href="http://www.chemin-neuf.fr" class="menu_header"><h4>Communauté du Chemin Neuf</h4></a>
-                                          <span data-toggle="collapse"  href="#menuCCN" class="menuToggle glyphicon" ng-class="{'collapsed':menuCtrl.menuTab}" ng-if="menuCtrl.menuTab"></span>
                                        </div>
-                                       <div id="menuCCN" class="collapse" ng-class="{'in':!menuCtrl.menuTab}" ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })"></div>
+                                       <div class="menuTab cursor-as-pointer" ng-if="menuCtrl.menuTab" data-toggle="collapse"  href="#menuCCN">
+                                          <span class="menu_header">
+                                                <a><h4>Communauté du Chemin Neuf</h4></a>
+                                                <span class="menuToggle glyphicon collapsed" ></span>
+                                          </span>
+                                          
+                                        </div>
+
+                                       <div id="menuCCN" class="collapse" ng-class="{'in':!menuCtrl.menuTab}" >
+                                            <div class="row" ng-if="menuCtrl.menuTab">
+                                                 <div class="col-sm-12 text-center">
+                                                     <a href="http://www.chemin-neuf.fr" class="capital" style="border: 0">Accueil</a>
+                                                 </div>
+                                            </div>
+                                            <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })"></div>
+                                       </div>
                                        
-                                       <div class="menuTab" ng-if="menuCtrl.menuTab">
-                                          <a ng-href="{{menuCtrl.menu.url}}" class="menu_header">
-                                             <h4>{{menuCtrl.menu.text}}</h4>
-                                          </a>
-                                          <span data-toggle="collapse" href="#menuBis" class="menuToggle glyphicon"></span>
+                                       <div class="menuTab cursor-as-pointer" ng-if="menuCtrl.menuTab" data-toggle="collapse" href="#menuBis">
+                                          <span class="menu_header" >
+                                                <a><h4>{{menuCtrl.menu.text}}</h4></a>
+                                                  <span  class="menuToggle glyphicon" style="top:7px"></span>
+                                          </span>
                                        </div>
                                        <div ng-if="menuCtrl.menuTab" class="collapse in" id="menuBis">
+                                            <div class="row" ng-if="menuCtrl.menuTab">
+                                                 <div class="col-sm-12 text-center">
+                                                     <a ng-href="{{menuCtrl.menu.url}}" class="capital" style="border: 0">Accueil</a>
+                                                 </div>
+                                            </div>
                                           <div class="row">
                                              <div class="col-md-3 col-xs-6" ng-repeat="page in menuCtrl.menu.pages track by $index">
                                                 <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
                                                 <a ng-if="page.pages&&blockConfig.menuLevel>1 && !blockConfig.disableLevelOne" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
-                                                <a ng-if="page.pages&&blockConfig.menuLevel>1&& blockConfig.disableLevelOne" class="capital">{{page.text}}</a>
+                                                <span ng-if="page.pages&&blockConfig.menuLevel>1&& blockConfig.disableLevelOne" class="capital">{{page.text}}</span>
                                                 <a ng-repeat="subpage in page.pages track by $index" class="subpage" ng-href="{{subpage.blocks[0].bType=='redirect' ? subpage.blocks[0].configBloc.url : subpage.url}}">{{subpage.text}}</a>
                                              </div>
                                           </div>
