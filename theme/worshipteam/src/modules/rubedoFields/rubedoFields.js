@@ -578,7 +578,8 @@
         };            
     }]);
 
-    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",function($scope,RubedoMediaService,$element){
+       /*Modifié pour ajouter l'espace de travail de la page ou de la page liée au bloc de contribution*/
+    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
         var me=this;
         var mediaId=$scope.fieldEntity[$scope.field.config.name];
         me.launchEditor=function(){
@@ -590,7 +591,9 @@
                 window.saveRubedoMediaChange=function(id){
                     $scope.fieldEntity[$scope.field.config.name]=id;
                     mediaId=id;
-                    $scope.registerFieldEditChanges();
+                    if ($scope.registerFieldEditChanges){
+                        $scope.registerFieldEditChanges();
+                    }
                     RubedoMediaService.getMediaById(mediaId).then(
                         function(response){
                             if (response.data.success){
@@ -657,9 +660,28 @@
         me.newFile=null;
         me.uploadNewFile=function(){
            me.notification=null;
+           me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
+            if (me.pageId&&mongoIdRegex.test(me.pageId)) {
+                RubedoPagesService.getPageById(me.pageId).then(function(response){
+                    if (response.data.success){
+                        me.pageUrl=response.data.url;
+                        $http.get("/api/v1/pages",{
+                            params:{
+                                site:$location.host(),
+                                route:(me.pageUrl).substr(4)
+                            }
+                        }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; me.uploadNewFileWithWorkspace()}});
+                    };
+                });
+            };
+
+
+        };
+        me.uploadNewFileWithWorkspace=function(){
            if ($scope.fieldInputMode&&me.newFile&&$scope.field.config.allowedDAMTypes){
                var uploadOptions={
                    typeId:$scope.field.config.allowedDAMTypes,
+                   target:me.workspace,
                    fields:{
                        title:me.newFile.name
                    }
@@ -691,9 +713,9 @@
                        };
                    }
                );
-           }
-
+           }            
         };
+
         if ($scope.fieldInputMode){
             $element.find('.form-control').on('change', function(){
                 setTimeout(function(){
@@ -702,6 +724,7 @@
             });
         }
     }]);
+
 
     module.directive('fileModel', ['$parse', function ($parse) {
         return {
