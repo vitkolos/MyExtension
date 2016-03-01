@@ -98,7 +98,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                 });
                             }
                             else {
-                                $route.reload();
+                                RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+                                    if (response.data.success){
+                                        $location.url(response.data.url);
+                                    }
+                                });
                             }
                         } else {
                             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
