@@ -14,7 +14,7 @@
                 <li ng-repeat="page in megaMenuCtrl.menu.pages track by $index" class="dropdown" ng-class="{'dropdown-large':megaMenuCtrl.hasSubPages(page)}">
                     <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
                     <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
-                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&megaMenuCtrl.hasSubPages(page)" class="dropdown-menu  row " role="menu">
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&megaMenuCtrl.hasSubPages(page)" class="dropdown-menu  row col-sm-4 " role="menu">
                         <li class='col-sm-{{blockConfig.menuWidth}} pull-{{blockConfig.menuAlign}} 'class=" categories" >
                             <ul ng-repeat="subpage in page.pages track by $index" >
                                 <div ng-if="!blockConfig.disableLevelTwo">
@@ -27,12 +27,10 @@
                             </ul>
                         </li>
                         <li ng-if="page.includedRichText.fields.body" class='col-sm-{{12 - blockConfig.menuWidth}} shadowed-image'>
-                                <ul>
-                                <li>
+                                <div>
                                     <rubedo-custom-template template="{{page.includedRichText.fields.body}}"></rubedo-custom-template>
                                     <div class="clearfix"></div>
-                                </li>
-                            </ul>
+                            </div>
                         </li>
                     </ul>
                     <ul ng-if="page.pages&&blockConfig.menuLevel>1&&!megaMenuCtrl.hasSubPages(page)" class="dropdown-menu" role="menu">
