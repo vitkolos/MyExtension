@@ -26,6 +26,7 @@
 
 a{
   font-family: 'Montserrat', sans-serif;
+  color:lighten(@txt_dark,20%);
 }
 .links{
   font-family: 'Montserrat', sans-serif;
@@ -34,9 +35,6 @@ a{
 a:hover, a:focus {
   color: @txt_dark;
 
-}
-a {
-  color:lighten(@txt_dark,20%);
 }
 html,body {
   font-family: 'Merriweather', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -121,11 +119,18 @@ text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
     background-color: lighten(@marron,10%);
     border-radius: 0;
   }
+  .img-responsive{
+    height: auto !important;
+  }
   .categories{
      *{text-align: left;  }
     display: flex;
     overflow: visible;
     flex-wrap: wrap;
+    font-size:14px ;
+    a{
+      font-size: 15px;
+    }
   }
   .dropdown-menu{
     background-color: @beigeCCN;

@@ -1,5 +1,6 @@
 a {
   font-family: 'Montserrat', sans-serif;
+  color: #646059;
 }
 .links {
   font-family: 'Montserrat', sans-serif;
@@ -7,9 +8,6 @@ a {
 a:hover,
 a:focus {
   color: #2e2c29;
-}
-a {
-  color: #646059;
 }
 html,
 body {
@@ -118,13 +116,20 @@ h6 {
   background-color: #e7dfd6;
   border-radius: 0;
 }
+.head-btq .img-responsive {
+  height: auto !important;
+}
 .head-btq .categories {
   display: flex;
   overflow: visible;
   flex-wrap: wrap;
+  font-size: 14px ;
 }
 .head-btq .categories * {
   text-align: left;
+}
+.head-btq .categories a {
+  font-size: 15px;
 }
 .head-btq .dropdown-menu {
   background-color: #f3eeea;
