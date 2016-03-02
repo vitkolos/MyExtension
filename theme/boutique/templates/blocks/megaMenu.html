@@ -14,8 +14,8 @@
                 <li ng-repeat="page in megaMenuCtrl.menu.pages track by $index" class="dropdown" ng-class="{'dropdown-large':megaMenuCtrl.hasSubPages(page)}">
                     <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
                     <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
-                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&megaMenuCtrl.hasSubPages(page)" class="dropdown-menu  row col-sm-4 " role="menu">
-                        <li class='col-sm-{{blockConfig.menuWidth}} pull-{{blockConfig.menuAlign}} 'class=" categories" >
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&megaMenuCtrl.hasSubPages(page)" class="dropdown-menu " role="menu">
+                        <li class='col-sm-{{blockConfig.menuWidth}} pull-{{blockConfig.menuAlign}} 'class=" categories   row col-sm-4" >
                             <ul ng-repeat="subpage in page.pages track by $index" >
                                 <div ng-if="!blockConfig.disableLevelTwo">
                                     <a class="dropdown-header" ng-href="{{subpage.url}}">{{subpage.text}}</a>
