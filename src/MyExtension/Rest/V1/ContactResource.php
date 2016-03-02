@@ -97,7 +97,14 @@ class ContactResource extends AbstractResource
         $mailingListsService = Manager::getService('MailingList');
         /** @var \Rubedo\Interfaces\Mail\IMailer $mailerService */
         $mailerService = Manager::getService('Mailer');
-
+        $config = Manager::getService('config');
+        $senderOfNotif = $config["rubedo_config"]["fromEmailNotification"];
+        if(empty($senderOfNotif)) {
+            return [
+                'success' => false,
+                'message' => 'The "Sender of notifications" property must be set in the install tool'
+            ];
+        }
         $mailingList = $mailingListsService->findById($params['mailingListId']);
         if (empty($mailingList) || empty($mailingList['replyToAddress']))
             throw new APIControllerException('Can\'t find recipient', 404);
