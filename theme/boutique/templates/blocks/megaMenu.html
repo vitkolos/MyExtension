@@ -17,13 +17,13 @@
                     <span ng-if="page.pages&&blockConfig.menuLevel>1&&megaMenuCtrl.hasSubPages(page)" class="dropdown-menu " role="menu">
                         <span class='col-sm-{{blockConfig.menuWidth}} col-xs-12 pull-{{blockConfig.menuAlign}} categories ' >
                             <span ng-repeat="subpage in page.pages track by $index" class="row col-lg-4" >
-                                <span ng-if="!blockConfig.disableLevelTwo">
+                                <div ng-if="!blockConfig.disableLevelTwo">
                                     <a class="dropdown-header" ng-href="{{subpage.url}}">{{subpage.text}}</a>
-                                </span>
-                                <span ng-if="blockConfig.disableLevelTwo" class="dropdown-header">
+                                </div>
+                                <div ng-if="blockConfig.disableLevelTwo" class="dropdown-header">
                                     {{subpage.text}}
-                                </span>
-                                <span ng-repeat="subsubpage in subpage.pages track by $index"><a ng-href="{{subsubpage.url}}">{{ subsubpage.text }}</a></span>
+                                </div>
+                                <div ng-repeat="subsubpage in subpage.pages track by $index"><a ng-href="{{subsubpage.url}}">{{ subsubpage.text }}</a></div>
                             </span>
                         </span>
                         <li ng-if="page.includedRichText.fields.body" class='col-sm-{{12 - blockConfig.menuWidth}} shadowed-image hidden-xs'>
