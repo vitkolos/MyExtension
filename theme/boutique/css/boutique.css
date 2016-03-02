@@ -123,6 +123,8 @@ h6 {
   display: flex;
   overflow: visible;
   flex-wrap: wrap;
+  word-wrap: break-word;
+  max-width: 100%;
   font-size: 14px ;
 }
 .head-btq .categories * {
