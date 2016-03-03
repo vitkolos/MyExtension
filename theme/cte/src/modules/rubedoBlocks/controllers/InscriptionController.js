@@ -45,6 +45,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     }
     getForms($scope.contentDetailCtrl.content.public);
     $scope.inscription={};
+    $scope.inscription.optionsPayantes={};
 
 //get proposition
     var propositionId = me.content.id;
@@ -128,7 +129,19 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         
     }
     
-    
+    // prix pour les questions
+    me.setPrice = function(questionType,title,index,question){
+        if(!$scope.inscription.optionsPayantes) $scope.inscription.optionsPayantes={};
+        
+        if($scope.inscription[questionType][title][index]!=false) {
+            if(question.prix!=null) {
+                $scope.inscription.optionsPayantes[question.titre] =question.prix;
+            }
+            else $scope.inscription.optionsPayantes[question.titre] = 0;
+        }
+        else {delete($scope.inscription.optionsPayantes[question.titre]);}
+       
+    }
 
     /*get fields for inscription*/
     me.getFieldByName=function(name){
