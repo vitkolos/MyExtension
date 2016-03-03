@@ -40,23 +40,23 @@
                                 <rubedo-field field="{{content.type.summary}}"></rubedo-field>
                             </p>
                         </div>
-                        <!--<div class="text-center" ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">-->
-                            <!--<h4>-->
-                                <!--<del ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small>{{content.productProperties.lowestNoSoPrice|number:2}} €</small></del>-->
-                                <!--<span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span></h4>-->
-                            <!--<a ng-if="!contentListCtrl.isFOContributeMode"  ng-href="{{ content.detailPageUrl }}">-->
-                                <!--<button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button>-->
-                            <!--</a>-->
-                            <!--<a ng-if="contentListCtrl.isFOContributeMode"  ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">-->
-                                <!--<button class="btn btn-default">Preview detail</button>-->
-                            <!--</a>-->
-                            <!--<button ng-if="content.productProperties.variations.length==1"-->
-                                    <!--ng-click="contentListDetailCtrl.addToCart()"-->
-                                    <!--ng-disabled="!contentListDetailCtrl.canOrder()"-->
-                                    <!--class="btn btn-default">-->
-                                <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
-                            <!--</button>-->
-                        <!--</div>-->
+                        <div ng-if="!contentListCtrl.titleOnly" class="text-center" ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
+                            <h4>
+                                <del ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small>{{content.productProperties.lowestNoSoPrice|number:2}} €</small></del>
+                                <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span></h4>
+                            <a ng-if="!contentListCtrl.isFOContributeMode"  ng-href="{{ content.detailPageUrl }}">
+                                <button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button>
+                            </a>
+                            <a ng-if="contentListCtrl.isFOContributeMode"  ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                                <button class="btn btn-default">Preview detail</button>
+                            </a>
+                            <button ng-if="content.productProperties.variations.length==1"
+                                    ng-click="contentListDetailCtrl.addToCart()"
+                                    ng-disabled="!contentListDetailCtrl.canOrder()"
+                                    class="btn btn-default">
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
