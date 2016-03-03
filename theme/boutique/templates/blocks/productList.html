@@ -9,11 +9,11 @@
         <span class="glyphicon glyphicon-plus"></span>
     </button>
     <div class="row">
-        <div ng-attr-lr-infinite-scroll="loadMoreContents"
+        <div id="owl-id" class="owl-carousel" ng-attr-lr-infinite-scroll="loadMoreContents"
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle">
             <!--<div id="infiniteScrollCtrl">-->
-            <div  id="owl-id" class="owl-carousel" ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
+            <div   ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="rubedo-product-in-list" ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <div class="row">
 
@@ -68,19 +68,19 @@
 </div>
 
 
-<!--<div id="{{'block'+block.id}}" class="owl-carousel" ng-controller="CarouselController as carouselCtrl">-->
-    <!--<div ng-repeat="content in carouselCtrl.contents track by $index" ng-if="content.fields[blockConfig.imageField]">-->
-        <!--<a ng-href="{{content.detailPageUrl}}" >-->
-            <!--<img ng-if="!isArray(content.fields[blockConfig.imageField])" class="lazyOwl" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"-->
-                 <!--alt="{{content.fields.text}}"-->
-                 <!--title="{{content.fields.text}}">-->
-            <!--<img ng-if="isArray(content.fields[blockConfig.imageField])" class="lazyOwl" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField][0],carouselCtrl.getImageOptions())}}"-->
-                 <!--alt="{{content.fields.text}}"-->
-                 <!--title="{{content.fields.text}}">-->
-            <!--<div ng-if="blockConfig.showCaption" class="rubedo-caption">-->
-                <!--<h3>{{content.fields.text}}</h3>-->
-                <!--<p ng-if="blockConfig.showSummary">{{content.fields.summary}}</p>-->
-            <!--</div>-->
-        <!--</a>-->
-    <!--</div>-->
-<!--</div>-->
+<div id="{{'block'+block.id}}" class="owl-carousel" ng-controller="CarouselController as carouselCtrl">
+    <div ng-repeat="content in carouselCtrl.contents track by $index" ng-if="content.fields[blockConfig.imageField]">
+        <a ng-href="{{content.detailPageUrl}}" >
+            <img ng-if="!isArray(content.fields[blockConfig.imageField])" class="lazyOwl" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"
+                 alt="{{content.fields.text}}"
+                 title="{{content.fields.text}}">
+            <img ng-if="isArray(content.fields[blockConfig.imageField])" class="lazyOwl" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField][0],carouselCtrl.getImageOptions())}}"
+                 alt="{{content.fields.text}}"
+                 title="{{content.fields.text}}">
+            <div ng-if="blockConfig.showCaption" class="rubedo-caption">
+                <h3>{{content.fields.text}}</h3>
+                <p ng-if="blockConfig.showSummary">{{content.fields.summary}}</p>
+            </div>
+        </a>
+    </div>
+</div>
