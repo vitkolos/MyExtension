@@ -15,6 +15,13 @@ angular.module("rubedoBlocks").lazy.controller("AuthenticationController",["$sco
             }
         });
     }
+    if (mongoIdRegex.test("56bdb7adc445ec56018b532e")){
+        RubedoPagesService.getPageById("56bdb7adc445ec56018b532e").then(function(response){
+            if (response.data.success){
+                me.commandPageUrl=response.data.url;
+            }
+        });
+    }
     var requestParams = $location.search();
     if (requestParams.recoverEmail && requestParams.token){
         setTimeout(function(){angular.element('#rubedoChangePwdModal').appendTo('body').modal('show')},200);

@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("MegaMenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','RubedoContentsService',function($scope,$location,RubedoMenuService,RubedoPagesService,RubedoContentsService){
+angular.module("rubedoBlocks").lazy.controller("MegaMenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','RubedoContentsService',function($scope,$location,RubedoMenuService,RubedoPagesService,RubedoContentsService,$http){
     var me=this;
     me.menu={};
     me.currentRouteline=$location.path();
@@ -52,5 +52,11 @@ angular.module("rubedoBlocks").lazy.controller("MegaMenuController",['$scope','$
             me.menu={};
         }
     });
+    $scope.rubedo.getCustomTranslations = function(){
+        $http.get('/theme/cte/localization/'+lang+'/Texts.json').then(function(res){
+            $scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
+        });
+    }
+    $scope.rubedo.getCustomTranslations();
 
 }]);
