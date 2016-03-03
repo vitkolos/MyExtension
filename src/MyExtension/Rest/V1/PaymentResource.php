@@ -103,7 +103,7 @@ class PaymentResource extends AbstractResource {
         switch ($paymentType) {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
             case "paf":
-                $commande = $idInscription . "|" . urlencode($proposition) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
+                $commande = $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
                 break;
         
         
