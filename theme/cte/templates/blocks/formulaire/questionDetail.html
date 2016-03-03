@@ -10,7 +10,7 @@
                 <input type="radio" required name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-value=' "{{questionField.titre}}"' ng-model="inscription[question.fields.categorie.categorie][question.text].value">
                         <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label><label ng-if="questionField.prix>0">{{questionField.prix}} €</label>
                         <label>{{questionField.libelleApresPrix}}</label>
-                        <input type="text" ng-if="questionField.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement" ng-model="inscription[question.fields.categorie.categorie][question.text].complement" class="complement_text" />
+                        <input type="text" ng-if="questionField.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement" ng-model="inscription[question.fields.categorie.categorie][question.text]['complement'+$parent.$index]" class="complement_text" />
 
             </div>
         </div>
