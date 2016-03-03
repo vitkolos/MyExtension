@@ -23,7 +23,7 @@
                 <ul class="dropdown-menu" role="menu">
                     <li ng-if="rubedo.current.user.rights.boAccess" ><a href="/backoffice" target="_blank"><span class="glyphicon glyphicon-cog"></span> Back Office</a></li>
                     <li ng-if="authCtrl.profilePageUrl" ><a ng-href="{{authCtrl.profilePageUrl}}" ><span class="glyphicon glyphicon-user"></span> {{rubedo.translate("Block.Auth.Profile","Profile")}}</a></li>
-                    <li ng-if="authCtrl.commandPageUrl" ><a ng-href="{{authCtrl.commandPageUrl}}" ><i class="fa fa-truck"></i>{{blabla)}}</a></li>
+                    <!--<li ng-if="authCtrl.commandPageUrl" ><a ng-href="{{authCtrl.commandPageUrl}}" ><i class="fa fa-truck"></i>{{blabla)}}</a></li>-->
                     <li><a class="cursor-as-pointer" ng-click="authCtrl.logOut()"><span class="glyphicon glyphicon-log-out"></span> {{rubedo.translate("Block.Auth.LogOut","Log out")}}</a></li>
                 </ul>
             </span>
