@@ -13,14 +13,14 @@
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle">
             <!--<div id="infiniteScrollCtrl">-->
-            <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
+            <div  id="owl-id" class="owl-carousel" ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="rubedo-product-in-list" ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <div class="row">
 
                         <div ng-style="contentListCtrl.imageStyle"
                              ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
-                            <a  ng-href="{{ content.detailPageUrl }}">
-                                <img class="img-responsive center-block" ng-if="content.fields[contentListCtrl.imageField] "
+                            <a  ng-href="{{ content.detailPageUrl }}" class="shadowed-image">
+                                <img class="img-responsive center-block " ng-if="content.fields[contentListCtrl.imageField] "
                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[contentListCtrl.imageField],{mode:contentListCtrl.imageResizeMode,height:contentListCtrl.imageHeight,width:contentListCtrl.imageWidth}) }}"
                                      alt="{{ content.fields.text }}"
                                 />
@@ -66,6 +66,8 @@
     <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit"
                count="contentListCtrl.count" change-page-action="contentListCtrl.changePageAction()"></paginator>
 </div>
+
+
 <!--<div id="{{'block'+block.id}}" class="owl-carousel" ng-controller="CarouselController as carouselCtrl">-->
     <!--<div ng-repeat="content in carouselCtrl.contents track by $index" ng-if="content.fields[blockConfig.imageField]">-->
         <!--<a ng-href="{{content.detailPageUrl}}" >-->
