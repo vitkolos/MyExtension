@@ -15,8 +15,8 @@ angular.module("rubedoBlocks").lazy.controller("AuthenticationController",["$sco
             }
         });
     }
-    if (mongoIdRegex.test("56bdb7adc445ec56018b532e")){
-        RubedoPagesService.getPageById("56bdb7adc445ec56018b532e").then(function(response){
+    if (me.blockConfig&&me.blockConfig.commandPage&&mongoIdRegex.test(me.blockConfig.commandPage)){
+        RubedoPagesService.getPageById(me.blockConfig.commandPage).then(function(response){
             if (response.data.success){
                 me.commandPageUrl=response.data.url;
             }
