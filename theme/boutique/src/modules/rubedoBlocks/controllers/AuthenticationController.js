@@ -15,13 +15,7 @@ angular.module("rubedoBlocks").lazy.controller("AuthenticationController",["$sco
             }
         });
     }
-    if (me.blockConfig&&me.blockConfig.signUpPage&&mongoIdRegex.test(me.blockConfig.signUpPage)){
-        RubedoPagesService.getPageById(me.blockConfig.signUpPage).then(function(response){
-            if (response.data.success){
-                me.commandPageUrl=response.data.url;
-            }
-        });
-    }
+
     //if (me.blockConfig&&me.blockConfig.commandPage&&mongoIdRegex.test(me.blockConfig.commandPage)){
     //    RubedoPagesService.getPageById(me.blockConfig.commandPage).then(function(response){
     //        if (response.data.success){
