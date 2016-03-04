@@ -53,7 +53,31 @@
 		});
 	    }
 	}		
-	
+	else if ($scope.block.code=='lvl2') {
+	    if (($scope.rubedo.current.breadcrumb).length==2) {
+		var pageId=$scope.rubedo.current.page.id; me.getMenu();
+	    }
+	    else if (($scope.rubedo.current.breadcrumb).length==3) {
+		var pageId=$scope.rubedo.current.page.parentId;me.getMenu();
+	    }
+	    else if (($scope.rubedo.current.breadcrumb).length==4) {
+		
+		var route = $route.current.params.routeline;
+		var path = route.substring(0,route.lastIndexOf('/')); // parent page
+		$http.get("/api/v1/pages",{
+		    params:{
+			site:$location.host(),
+			route:path
+		    }
+		}).then(function(response){
+		    if (response.data.success) {
+			pageId = response.data.page.parentId;
+		    }
+		    else pageId=$scope.rubedo.current.page.parentId;
+		    me.getMenu();
+		});
+	    }
+	}		
         else if (config.rootPage){
             var pageId=config.rootPage;me.getMenu();
         } else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
