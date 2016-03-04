@@ -106,7 +106,7 @@
                         <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
                                 <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
                         </a>
-                        <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                        <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ contentListCtrl.editorPageUrl+'?preview=true&preview_draft=true' }}">
                             {{rubedo.translate('Block.ContentList.Label.Preview','Preview detail')}}
                         </a>
                     </div>
