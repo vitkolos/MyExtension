@@ -1,4 +1,4 @@
-    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http',function($scope,$location,RubedoMenuService,RubedoPagesService,$http){
+    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','$route',function($scope,$location,RubedoMenuService,RubedoPagesService,$http,$route){
         var me=this;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
@@ -37,6 +37,7 @@
 
 	
 	/*Ajouter les traductions*/
+        var lang = $route.current.params.lang;
 	$scope.rubedo.getCustomTranslations = function(){
 	        $http.get('/theme/worshipteam/localization/'+lang+'/Texts.json').then(function(res){
             	$scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
