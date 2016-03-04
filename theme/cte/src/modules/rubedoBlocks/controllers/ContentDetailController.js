@@ -213,7 +213,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         
                         var actusTaxonomy ={};
                         actusTaxonomy['5524db6945205e627a8d8c4e'] = me.content.taxonomy['5524db6945205e627a8d8c4e'];
-                        actusTaxonomy['navigation'] = $scope.rubedo.current.page.id;
+                        actusTaxonomy['navigation'] = [$scope.rubedo.current.page.id];
                        var displayedFacets = [];
                        displayedFacets.push({"name":"5524db6945205e627a8d8c4e","operator":"OR"});
                         var options3 = {
