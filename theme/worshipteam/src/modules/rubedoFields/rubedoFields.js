@@ -213,6 +213,7 @@
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
+            contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
             stylesSet: [
                 { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} },
                 { name: 'Texte centré', element: 'p', attributes: { 'class': 'text-center titre'} }
