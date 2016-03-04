@@ -38,7 +38,7 @@
                                           </span>
                                        </div>
                                        <div ng-if="menuCtrl.menuTab" class="collapse in" id="menuBis">
-                                            <div class="row" ng-if="menuCtrl.menuTab">
+                                            <div class="row" ng-if="menuCtrl.menuTab && blockConfig.displayRootPage">
                                                  <div class="col-sm-12 text-center">
                                                      <a ng-href="{{menuCtrl.menu.url}}" class="capital" style="border: 0">Accueil</a>
                                                  </div>
