@@ -92,7 +92,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
                         columnContentList.push(newContent);
                     });
                     me.contentList.push(columnContentList);
-                    setTimeout(function(){me.initCarousel();},100);
+                    //setTimeout(function(){me.initCarousel();},100);
                 } else {
                     me.contentList=[];
                     angular.forEach(response.data.contents,function(newContent, key){
@@ -102,14 +102,15 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
                             columnContentList = [];
                         }
                     });
-                    setTimeout(function(){me.initCarousel();},100);
+                    //setTimeout(function(){me.initCarousel();},100);
 
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
-                        setTimeout(function(){me.initCarousel();},100);
+                        //setTimeout(function(){me.initCarousel();},100);
 
                     }
                 }
+                setTimeout(function(){me.initCarousel();},100);
             }
         });
     };
