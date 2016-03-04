@@ -1,4 +1,4 @@
-    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService',function($scope,$location,RubedoMenuService,RubedoPagesService){
+    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http',function($scope,$location,RubedoMenuService,RubedoPagesService,$http){
         var me=this;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
@@ -34,16 +34,15 @@
                 me.menu={};
             }
         });
-	me.showMenu =function(){
-	    $scope.menu = !$scope.menu;
-	    if($scope.menu) angular.element('#menuModal').modal('show');
-	    else angular.element('#menuModal').modal('hide');
-	};
-	// pour fermer le modal quand on clique sur un lien
-	$scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
-	    angular.element('body .modal-backdrop ').remove();
-	    console.log('test');
-	});
+
+	
+	/*Ajouter les traductions*/
+	$scope.rubedo.getCustomTranslations = function(){
+	        $http.get('/theme/worshipteam/localization/'+lang+'/Texts.json').then(function(res){
+            	$scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
+          });	
+        }
+      $scope.rubedo.getCustomTranslations(); 
 }]);
     
     
