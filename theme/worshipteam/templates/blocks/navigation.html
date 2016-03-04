@@ -20,6 +20,17 @@
                         <li ng-repeat="subpage in page.pages track by $index" ng-class="{active:menuCtrl.currentRouteline.indexOf(subpage.url) > -1}">
                             <a ng-href="{{subpage.url}}">{{subpage.text}}</a>
                         </li>
+                        <li ng-controller="LanguageMenuController as languageMenuCtrl" class="languageMenu">
+                                <a  class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{languageMenuCtrl.currentLang.lang |uppercase}} <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li ng-repeat="lang in languageMenuCtrl.languages track by $index">
+                                        <a ng-click="languageMenuCtrl.changeLang(lang.lang)" href>
+                                            <i ng-if="languageMenuCtrl.showFlags"><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></i>
+                                            {{lang.lang |uppercase}}
+                                        </a>
+                                    </li>
+                                </ul>
+                        </li>
                     </ul>
                 </li>
             </ul>
