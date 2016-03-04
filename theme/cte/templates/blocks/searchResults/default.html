@@ -41,7 +41,7 @@
     </div>
     <div class="col-md-9">
         <div class="resultData search-result" ng-repeat="content in searchResultsCtrl.data track by $index">
-            <div ng-if="!content['fields.video'] ||  (content['fields.video'] &&content['fields.video'][0]=!'') ">
+            <div ng-if="!content['fields.video'] ||  (content['fields.video'] && content['fields.video'][0]=='') ">
                 <div class="ratio_321" ng-if="content['fields.image']">
                     <img class="media-object pull-left padding-right"
                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'390px',height:'390px',mode:'crop'})}}"
@@ -51,7 +51,7 @@
                 <a ng-href="{{content.url }}"><h3>{{content.title }}</h3>
                 <p class="summary">{{content.summary}}</p></a>
             </div>
-           <div ng-if="content['fields.video'] && content['fields.video'][0]=!'' ">
+           <div ng-if="content['fields.video'] && content['fields.video'][0]!='' ">
                 <div class="col-sm-4">
                     <p class="capital tags">vidéo</p>
                     <h3><a  ng-href="{{content.url }}">{{content.title}}</a></h3>
