@@ -1,3 +1,6 @@
 {
-    "PastDates":"See past dates"
+    "PastDates":"See past dates",
+    "HideDates":"Hide past dates",
+    "Contact.Organisateur":"Organiser",
+    "Contact.Description":"Description of the event"
 } 
