@@ -2,5 +2,9 @@
     "PastDates":"See past dates",
     "HideDates":"Hide past dates",
     "Contact.Organisateur":"Organiser",
-    "Contact.Description":"Description of the event"
+    "Contact.Description":"Description of the event",
+    "Horaire":"Time",
+    "Lieu":"Place",
+    "Website":"Organiser's website"
+
 } 
