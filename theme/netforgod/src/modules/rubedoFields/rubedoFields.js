@@ -219,7 +219,7 @@
             language:$scope.fieldLanguage,
             entities:false,
             entities_latin:false,
-            extraPlugins:'rubedolink,stylesheetparser',
+            extraPlugins:'rubedolink,youtube',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
