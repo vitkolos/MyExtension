@@ -310,15 +310,21 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
   height: 70vh;
   .owl-pagination{display:none}
 }
-.school-films>.owl-wrapper-outer, .school-films>.owl-controls{
-  position: absolute;
-  transform:translateY(-50%);
-  margin-top: 35vh;
-}
 .school-films  .item-video{
-    width: 70%;
-    margin-left: 15%;    
-
+    width: 90%;
+    margin-left: 5%;    
+}  
+@media screen and (min-width:600px){
+  .school-films>.owl-wrapper-outer, .school-films>.owl-controls{
+    position: absolute;
+    transform:translateY(-50%);
+    margin-top: 35vh;
+    width:100%;
+  }
+  .school-films  .item-video{
+      width: 70%;
+      margin-left: 15%;    
+  }
 }
 .owl-theme .owl-controls .owl-buttons div{
   color:@main;
@@ -327,3 +333,5 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
 }
 .owl-prev{float: left}
 .owl-next{float: right}
+
+
