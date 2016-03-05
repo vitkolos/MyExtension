@@ -1,7 +1,7 @@
 <div ng-controller="PresentationController as presentationCtrl"  ng-switch="blockConfig.columns" >
 	<div ng-switch-when="1" class="padding- contentList row">
 		<div class="equal-height-cols">
-			<a ng-if="!fieldEditMode" ng-href="{{ presentationCtrl.pageLink }}">
+			<a ng-if="!rubedo.fieldEditMode" ng-href="{{ presentationCtrl.pageLink }}">
 				<div class="col-sm-8 col-xs-12">
 					<img class="img-responsive no-margin" ng-if="blockConfig.imageFile"
                                                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'400px'}) }}"
@@ -12,7 +12,7 @@
 					</div>						
 				</div>      
 			</a>
-			<div ng-if="fieldEditMode">
+			<div ng-if="rubedo.fieldEditMode">
 				<div class="col-sm-8 col-xs-12">
 					<img class="img-responsive no-margin" ng-if="blockConfig.imageFile"
                                                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'400px'}) }}"
