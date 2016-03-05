@@ -37,7 +37,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             autoPlay: blockConfig.autoPlay,
             stopOnHover: blockConfig.stopOnHover,
             paginationNumbers:blockConfig.showPagingNumbers,
-            navigationText: ['<span class="glyphicon glyphicon-chevron-left"></span>','<span class="glyphicon glyphicon-chevron-right"></span>'],
+            navigationText: ['<span class="icon-previousarrow"></span>','<span class="icon-nextarrow"></span>'],
             lazyLoad:true,
 	    video:true
         };
