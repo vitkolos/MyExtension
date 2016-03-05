@@ -3,14 +3,12 @@
 		<div class="equal-height-cols">
 			<a ng-if="!rubedo.fieldEditMode" ng-href="{{ presentationCtrl.pageLink }}">
 				<div class="col-sm-8 col-xs-12">
-					<header class="content prop"
+					<header class="content prop no-margin"
 					afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1800px',mode:'boxed'})}} 1500w"
-                afkl-lazy-image-options='{"background": true}' style="margin-bottom:0"><!--
-					<img class="img-responsive no-margin" ng-if="blockConfig.imageFile"
-                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'400px'}) }}"
-                                                                     alt="{{ blockConfig.title }}"/> -->                                                  
+                afkl-lazy-image-options='{"background": true}' style="margin-bottom:0">
+                                                 
 				</div>
-				<div class="col-sm-4 col-xs-12">
+				<div class="col-sm-4 col-xs-12" style="padding-left: 34px;">
 					<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 					</div>						
 				</div>      
