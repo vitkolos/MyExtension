@@ -13,8 +13,11 @@
                 </div>
         </a>
     </div>
-    <div ng-repeat="content in carouselCtrl.contents track by $index" ng-if="content.fields.video" class="item-video">
-            <a class="owl-video" href="{{content.fields.video.url}}"></a>
-
+    <div class="school-films">
+        <div ng-repeat="content in carouselCtrl.contents track by $index" ng-if="content.fields.video" class="item-video">
+            
+                <jwplayer video-url="{{content.fields.video.url}}"></jwplayer>
+    
+        </div>
     </div>
 </div>
