@@ -17,13 +17,9 @@
 	</div>
 	<!--more than 1 per line-->
 	<div ng-switch-default class="col-sm-12" ng-class="presentationCtrl.columns">
-		<div class="col-sm-6 col-md-12 col-lg-6 text-right">
-			<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
-			</div>
-		</div>
-		<div class="col-sm-6 col-md-12 col-lg-6">
+		<div class="col-sm-6 col-md-12 col-lg-6 col-lg-push-6 ">
 			<a ng-href="{{presentationCtrl.pageLink}}">
-				<div class="list-item-img hidden-lg">
+				<div class="list-item-img hidden-lg" style="margin-bottom: 12px">
 					<img alt="{{blockConfig.title}}" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'400px'})}}" />
 				</div>
 				<div class="ratio_21 visible-lg-block">
@@ -31,6 +27,9 @@
 				</div>
 			</a>			
 		</div>
-		
+		<div class="col-sm-6 col-md-12 col-lg-6 col-lg-pull-6 ">
+			<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
+			</div>
+		</div>		
 	</div>
 </div>
