@@ -38,8 +38,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             stopOnHover: blockConfig.stopOnHover,
             paginationNumbers:blockConfig.showPagingNumbers,
             navigationText: ['<span class="icon-previousarrow"></span>','<span class="icon-nextarrow"></span>'],
-            lazyLoad:true,
-	    video:true
+            lazyLoad:true
         };
         angular.element(targetElSelector).owlCarousel(owlOptions);
     };
