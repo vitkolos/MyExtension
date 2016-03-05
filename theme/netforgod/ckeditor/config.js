@@ -14,7 +14,7 @@ CKEDITOR.editorConfig = function( config ) {
 };
 
 CKEDITOR.stylesSet.add( 'default', [
-
+{ name: 'center img', element: 'img', styles: { 'margin': '0 auto'} },
 
 ] );
 
