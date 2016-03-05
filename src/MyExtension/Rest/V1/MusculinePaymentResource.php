@@ -98,7 +98,7 @@ class MusculinepaymentResource extends AbstractResource {
     $query['shipping_1'] = $fraisExp;
     $query['return'] = 'http://musculine.fr';
 
-    $query['notify_url'] = 'http://jackeyes.com/ipn';
+    $query['notify_url'] = 'http://musculine.fr';
     $query['cmd'] = '_cart';
     $query['upload'] = '1';
     $query['business'] ='ateliers.dombes@chemin-neuf.org';
