@@ -19,7 +19,7 @@
                 <button class="btn btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{rubedo.current.user.name}}
                     <!--<span class="caret"></span>-->
                     <span class="sr-only">{{rubedo.translate("Block.Auth.ToggleDropdown","Toggle dropdown")}}</span>
-            </button>
+                </button>
                 <ul class="dropdown-menu" role="menu">
                     <li ng-if="rubedo.current.user.rights.boAccess" ><a href="/backoffice" target="_blank"><span class="glyphicon glyphicon-cog"></span> Back Office</a></li>
                     <li ng-if="authCtrl.profilePageUrl" ><a ng-href="{{authCtrl.profilePageUrl}}" ><span class="glyphicon glyphicon-user"></span> {{rubedo.translate("Block.Auth.Profile","Profile")}}</a></li>
