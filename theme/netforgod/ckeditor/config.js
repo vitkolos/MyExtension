@@ -7,12 +7,16 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-
-        config.youtube_responsive = true;
-        config.colorButton_colors = '74c6de,c5c5c5,ffffff';
+        config.colorButton_colors = '00a0ae,1d8f9e,0073b3,f19942,e71623,e3dfd7,807f7d,333333';
         config.colorButton_enableMore = false;
+        config.youtube_responsive = true;
+
 };
 
+CKEDITOR.stylesSet.add( 'default', [
+{ name: 'center img', element: 'img', styles: { 'margin': '0 auto'} },
+
+] );
 
 
 CKEDITOR.plugins.addExternal( 'youtube', '/theme/goodnews/ckeditor/plugins/youtube/','plugin.js' );

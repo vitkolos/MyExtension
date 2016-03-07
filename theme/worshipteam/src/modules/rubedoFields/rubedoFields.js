@@ -213,11 +213,12 @@
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
+            contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
             stylesSet: [
                 { name: 'Titre section', element: 'h4', attributes: { 'class': 'text-center titre-block'} },
                 { name: 'Texte centré', element: 'p', attributes: { 'class': 'text-center titre'} }
             ],
-            templates_files: [ '/theme/worshipteam/js/default.js' ],
+            templates_files: [ '/theme/worshipteam/ckeditor/default.js' ],
             templates_replaceContent : false,
             customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
         };

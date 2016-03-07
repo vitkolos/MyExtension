@@ -20,7 +20,7 @@ html,body{font-family: 'Roboto', serif; height: 100%; overflow: auto;background-
 
 /*responsive classes*/
 .container-fluid{padding:0;overflow-x: hidden}
-div.first{margin-top:80px}
+div.first{margin-top:95px}
 p{font-family: 'Roboto'}
 h1,h2,h3{font-family: 'Roboto Slab'}
 .padding-large{padding-top:24px; padding-bottom: 24px}
@@ -301,3 +301,39 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
   a{padding: 6px 12px; border: 2px white solid; border-radius: 20px; -webkit-border-radius: 20px;color: white; margin-top:12px; }
 }
 @media screen and (max-width:@min_sm){.error-page{left:5%;}}
+
+
+///////mediaschool/////////
+.school-films {
+  background: url('/theme/netforgod/img/films.jpg') no-repeat center center;
+  background-size: cover;
+  height: 70vh;
+  .owl-pagination{display:none}
+}
+.school-films  .item-video{
+    width: 90%;
+    margin-left: 5%;    
+}  
+@media screen and (min-width:600px){
+  .school-films>.owl-wrapper-outer, .school-films>.owl-controls{
+    position: absolute;
+    transform:translateY(-50%);
+    margin-top: 35vh;
+    width:100%;
+
+  }
+  .school-films  .item-video{
+      width: 70%;
+      margin-left: 15%;    
+    max-height: 60vh;
+    }
+}
+.owl-theme .owl-controls .owl-buttons div{
+  color:@main;
+  background: transparent;
+  font-size: 3em;
+}
+.owl-prev{float: left}
+.owl-next{float: right}
+
+

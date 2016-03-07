@@ -154,6 +154,13 @@ nav.navbar{background-color: rgba(17,17,17,0.85);}
 .nav>li>a:hover, .nav>li>a:focus{color:rgb(17,17,17);}
 .navbar-nav>li.active{background:white; a{color:rgb(17,17,17)}}
 .nav>li>a:hover, .nav>li>a:focus{background:white;}
+.dropdown-menu{min-width: auto;}
+@media (min-width: 768px) {
+.navbar-nav li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+}
 ///////////SLIDER///////////
 .carousel-indicators li,.carousel-indicators li.active{margin:1px 10px}
 .owl-theme .owl-controls .owl-buttons div {
@@ -529,18 +536,6 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   font-size: 12px;
   a{padding:12px 0; display: inline-block}}
 
-#ados .list-item-title{  background-color:@14-18;}
-.regions-list{
-  ul{  list-style-type: none;margin:6px 0; padding-left: 0}
-  li{ a{.capital; display: inline-block; width:100%}; border-top:2px solid white; padding:6px 24px 6px 12px; }
-  li:last-of-type{border-bottom: 2px solid white}
-  li a:after{
-    position:absolute;
-    right:30px;
-     content: "\f0da";
-     font-family: 'FontAwesome'
-  }
-}
 
 ////////////////////////////////////////////////////
     ///////////MODAL///////////////////
@@ -656,9 +651,3 @@ label.label_style{
 }
 @media screen and (max-width:@min_sm) {label.label_style{text-align:left; float:left}}
 
-////////////////////////////////////////////////////
-    ///////////MISSIONS///////////////////
-///////////////////////////////////////////////////
-#ados{
-    .fc-event{background-color:@14-18;}
-}

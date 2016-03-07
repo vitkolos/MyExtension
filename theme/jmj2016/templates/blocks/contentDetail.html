@@ -54,11 +54,11 @@
             <div class="row text-center text-bg tiroir" ng-class="{'bg1' : fieldEntity['listBox'] == 1 ,
                                                                                     'bg2' : fieldEntity['listBox'] == 2,
                                                                                     'bg3' : fieldEntity['listBox'] == 3 }"
-                                                                            ng-init="showTab=false">
+                                                                              data-toggle="collapse" href="#tiroir_{{contentDetailCtrl.content.id}}">
 
 		<div class="col-xs-6 tiroir-header">
 		    <div field = "{{contentDetailCtrl.getFieldByName('text')}}"   class="titre_tiroir" >
-			    <h1 ng-if="!fieldEditMode" data-toggle="collapse" href="#tiroir_{{contentDetailCtrl.content.id}}">{{fieldEntity['text']}}
+			    <h1 ng-if="!fieldEditMode">{{fieldEntity['text']}}
 				    <rubedo-field  class="icon_tiroir" field = "{{contentDetailCtrl.getFieldByName('icon')}}"  ></rubedo-field>
 			    </h1>
 			    <h1 data-toggle="collapse" href="#tiroir_{{contentDetailCtrl.content.id}}"
@@ -77,7 +77,7 @@
 			
 			
 		</div>
-                <div class="col-xs-6 text-left">
+                <div class="col-xs-6 text-left cursor-as-pointer">
                         <rubedo-field  field= "{{contentDetailCtrl.getFieldByName('intro')}}"></rubedo-field><!--description-->
                 </div>
         

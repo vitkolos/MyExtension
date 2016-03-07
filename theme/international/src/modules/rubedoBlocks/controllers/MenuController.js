@@ -31,6 +31,7 @@
             }
         });
 	
+        var lang = $route.current.params.lang;
 	/*Ajouter les traductions*/
 	$scope.rubedo.getCustomTranslations = function(){
 	        $http.get('/theme/cte/localization/'+lang+'/Texts.json').then(function(res){

@@ -40,13 +40,28 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div class="resultData" ng-repeat="datum in searchResultsCtrl.data track by $index">
-            <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
-            <div class="clearfix"></div>
-
-            <p>{{datum.summary}}</p>
-            <div>{{rubedo.translate('Contents.PublishedBy','Published by')}} <a href ng-click="searchResultsCtrl.clickOnFacets('author', datum.author)">{{datum.authorName}}</a> {{rubedo.translate("Contents.The",'the')}} {{datum.lastUpdateTime * 1000 | date: 'fullDate'}}</div>
-            <hr/>
+        <div class="resultData search-result" ng-repeat="content in searchResultsCtrl.data track by $index">
+            <div ng-if="!content['fields.video'] ||  (content['fields.video'] && content['fields.video'][0]=='') ">
+                <div class="ratio_321" ng-if="content['fields.image']">
+                    <img class="media-object pull-left padding-right"
+                            ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'390px',height:'390px',mode:'crop'})}}"
+                            alt="{{ content.title }}"/>
+                </div>
+                <p class="capital">{{content.lastUpdateTime * 1000 | date}}</p>
+                <a ng-href="{{content.url }}"><h3>{{content.title }}</h3>
+                <p class="summary">{{content.summary}}</p></a>
+            </div>
+           <div ng-if="content['fields.video'] && content['fields.video'][0]!='' ">
+                <div class="col-sm-4">
+                    <p class="capital tags">vidéo</p>
+                    <h3><a  ng-href="{{content.url }}">{{content.title}}</a></h3>
+                    <p class="summary">{{content.summary}}</p>
+                    <p class="capital">{{content.lastUpdateTime * 1000 | date}} </p>
+                </div>
+                <div class="col-sm-8">
+                    <jwplayer video-url="{{content['fields.video'][0]}}"></jwplayer>
+                </div>
+           </div>
         </div>
 
         <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"
