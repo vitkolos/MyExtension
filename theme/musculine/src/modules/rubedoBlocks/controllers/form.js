@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
             me.contents = {};
             angular.forEach(response.data.contents,function(content){
                         me.contents[content.productProperties.sku]= {
-                                    'prix': content.productProperties.lowestFinalPrice,
+                                    'prix': content.productProperties.lowestFinalPrice * 1.055,
                                     'titre' : content.text,
                                     'id' : content.id,
                                     'quantite':0,
