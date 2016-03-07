@@ -384,27 +384,28 @@ protected function sendInscriptionMail($inscription,$lang){
     $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
     /*pour individuels*/
     if($nbInscrits == 1){
-        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['nom'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) );
-        if($inscription['birthdate']) {
-            $messageSecretariat .= $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"]);
-        }
         if($inscription['sexe']) {
             $sexe = ($inscription['sexe']['sexe'] =='H') ? $trad["ccn_form_homme"] : $trad["ccn_form_femme"];
             $messageSecretariat .= $this->addLine($trad["ccn_label_sexe"], $sexe );
         }
+        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['nom'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
         $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) );
+        if($inscription['birthdate']) {
+            $messageSecretariat .= $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"]);
+        }
+
         if($inscription['profession']) $messageSecretariat .= $this->addLine($trad["ccn_form_profession"], $inscription['profession'] );
         if($inscription['classeEtudes']) $messageSecretariat .= $this->addLine($trad["ccn_label_classeEtudes"], $inscription['classeEtudes'] );
         if($inscription['facebook']) $messageSecretariat .= $this->addLine("Facebook", $inscription['facebook'] );
         if($inscription['situation']) $messageSecretariat .= $this->addLine($trad["ccn_label_situation"], $inscription['situation'] );
+        if($inscription['tel2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'] );
         if($inscription['address']) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] );
         if($inscription['cp'] || $inscription['city']) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'] );
-        if($inscription['country']) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'] );
         if($inscription['tel1']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] );
-        if($inscription['tel2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] );
+        if($inscription['country']) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] );
         if($inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] );
         if($inscription['emailPers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] );
 
@@ -416,11 +417,11 @@ protected function sendInscriptionMail($inscription,$lang){
         $messageSecretariat .= "<tr><td width=100% colspan=3>&nbsp;</td></tr>";
         $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['nom'],$inscription['nomPers2'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'], $inscription['prenomPers2'] );
+        $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'], $inscription['nationalitePers2'] );
         if($inscription['birthdate']) $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']), date("d/m/Y",$inscription['dateNaissPers2']) );
         if($inscription['birthdate'] || $inscription['dateNaissPers2']) {
             $messageSecretariat .= $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"], $this->getAge($inscription['dateNaissPers2'], $inscription['dateDebut'])." ". $trad["ccn_ans"]);
         }        
-        $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'], $inscription['nationalitePers2'] );
         if($inscription['profession']) $messageSecretariat .= $this->addLine($trad["ccn_form_profession"], $inscription['profession'], $inscription['professionPers2'] );
         $messageSecretariat .= "<tr><td width=100% colspan=3>&nbsp;</td></tr>";
         if($inscription['tel2']||$inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] , $inscription['tel2Pers2'] );

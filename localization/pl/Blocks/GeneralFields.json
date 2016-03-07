@@ -1,0 +1,7 @@
+{
+  "Blocks.Contact.Input.Name.Label":"Imię i nazwisko *",
+  "Blocks.Contact.Input.Email.Label":"Email *",
+  "Blocks.Contact.Input.Subject.Label":"Temat *",
+  "Blocks.Contact.Input.Message.Label":"Wiadomość *",
+  "Blocks.Contact.Input.Submit.Label":"Wyślij"
+}
