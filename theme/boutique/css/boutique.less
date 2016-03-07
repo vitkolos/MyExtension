@@ -76,11 +76,14 @@ text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
   border-color: @rouge;
 }
 .btn {
+  border-radius: 0;
   &:focus,&:active:focus,.active:focus{
     outline: none;
   }
 }
-
+.pagination>li:first-child>a, .pagination>li:first-child>span,.pagination>li:last-child>a, .pagination>li:last-child>span {
+     border-radius: 0px;
+}
                               //--------------------------//
                               //quelques classes générales//
                               //--------------------------//
@@ -104,6 +107,23 @@ text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1);
  }
 .true-search .optional{visibility: visible}
+.logo img{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  width: auto;
+}
+@media (min-width: 768px) {
+  .navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+    vertical-align: top;
+  }
+  .navbar .navbar-collapse {
+    text-align: center;
+  }
+}
                               //-------------------//
                               //les énormes classes//
                               //-------------------//

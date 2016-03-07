@@ -13,20 +13,17 @@
     </span>
 
     <span class="col-md-2" ng-init="blockConfig={displayMode:'pop-in' , redirectOnConnection:false , profilePage:'56bdb65dc445ec56018b531c',signUpPage:'56a79674c445eccb008b464c',commandPage:'56bdb7adc445ec56018b532e'}">
-    <!--<span class="col-md-2" ng-init="blockConfig={displayMode:'pop-in' , redirectOnConnection:false , profilePage:'56bdb65dc445ec56018b531c',signUpPage:'56a79674c445eccb008b464c'}">-->
         <span ng-controller="AuthenticationController as authCtrl">
             <!--<span ng-if="rubedo.current.user" class="btn-group">-->
             <span ng-if="rubedo.current.user">
                 <button class="btn btn-default" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> {{rubedo.current.user.name}}
                     <!--<span class="caret"></span>-->
                     <span class="sr-only">{{rubedo.translate("Block.Auth.ToggleDropdown","Toggle dropdown")}}</span>
-                </button>
+            </button>
                 <ul class="dropdown-menu" role="menu">
                     <li ng-if="rubedo.current.user.rights.boAccess" ><a href="/backoffice" target="_blank"><span class="glyphicon glyphicon-cog"></span> Back Office</a></li>
                     <li ng-if="authCtrl.profilePageUrl" ><a ng-href="{{authCtrl.profilePageUrl}}" ><span class="glyphicon glyphicon-user"></span> {{rubedo.translate("Block.Auth.Profile","Profile")}}</a></li>
                     <li ng-if="authCtrl.commandPageUrl" ><a ng-href="{{authCtrl.commandPageUrl}}"  ><i class="fa fa-truck"></i> Mes Commandes</a></li>
-                    <!--<li ng-if="authCtrl.commandPageUrl" ><a ng-href="{{authCtrl.commandPageUrl}}" ><i class="fa fa-truck"></i> Blabla</a></li>-->
-
                     <li><a class="cursor-as-pointer" ng-click="authCtrl.logOut()"><span class="glyphicon glyphicon-log-out"></span> {{rubedo.translate("Block.Auth.LogOut","Log out")}}</a></li>
                 </ul>
             </span>

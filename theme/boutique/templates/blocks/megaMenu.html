@@ -9,7 +9,7 @@
             </button>
             <a ng-if="blockConfig.displayRootPage" class="navbar-brand" ng-href="{{megaMenuCtrl.menu.url}}">{{megaMenuCtrl.menu.text}}</a>
         </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"  >
             <ul class="nav navbar-nav">
                 <li ng-repeat="page in megaMenuCtrl.menu.pages track by $index" class="dropdown" ng-class="{'dropdown-large':megaMenuCtrl.hasSubPages(page)}">
                     <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}">{{page.text}}</a>
