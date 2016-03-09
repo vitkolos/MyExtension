@@ -127,6 +127,10 @@ h6 {
     text-align: center;
   }
 }
+.mega-picture img {
+  position: absolute;
+  z-index: -1;
+}
 .head-btq {
   background-color: #d5c5b5;
   color: #2e2c29;
@@ -205,6 +209,10 @@ h6 {
 .inner-body.row {
   margin-left: auto;
   margin-right: auto;
+}
+.inner-body .column {
+  margin-right: auto;
+  margin-left: auto;
 }
 .inner-body .btn-default {
   color: #f3eeea;
