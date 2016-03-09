@@ -230,7 +230,7 @@
             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
             })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
             ga('create', '<?php echo $this->googleAnalyticsKey; ?>', 'auto', {'allowAnchor': true});
-            ga('send', 'pageview', location.pathname + location.search + location.hash);
+//            ga('send', 'pageview', location.pathname + location.search + location.hash);
             ga('require', 'linkid', 'linkid.js');
         </script>
     <?php endif; ?>
@@ -249,6 +249,7 @@
         }
         </script>
     <?php endif; ?>
+    
 </head>
 <body ng-class="rubedo.current.page.pageProperties.bodyClass">
 <snap-drawer ng-if="rubedo.current.user.rights.canEdit" class="rubedo-admin-drawer" style="display: none;">
