@@ -181,6 +181,14 @@ h6 {
 .head-btq .dropdown-header:hover {
   color: #9a4530;
 }
+.welcome-carousel .welcome-button {
+  color: #f3eeea;
+  padding: 10px;
+  border: 2px solid #f3eeea;
+}
+.welcome-carousel .welcome-button:hover {
+  background-color: rgba(141, 108, 81, 0.5);
+}
 .welcome-carousel .owl-controls {
   visibility: hidden;
 }
