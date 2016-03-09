@@ -43,7 +43,9 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             navigationText: ['<span class="glyphicon glyphicon-chevron-left"></span>','<span class="glyphicon glyphicon-chevron-right"></span>'],
             lazyLoad:true
         };
-        //if ($scope.block.code!=undefined && $scope)
+        if ($scope.block.code!=undefined && $scope.block.code=='welcome-carousel'){
+            owlOptions.setAttribute("transitionStyle" , "fade;");
+        }
         angular.element(targetElSelector).owlCarousel(owlOptions);
     };
     me.getImageOptions=function(){
