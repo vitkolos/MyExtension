@@ -43,6 +43,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             navigationText: ['<span class="glyphicon glyphicon-chevron-left"></span>','<span class="glyphicon glyphicon-chevron-right"></span>'],
             lazyLoad:true
         };
+        //if ($scope.block.code!=undefined && $scope)
         angular.element(targetElSelector).owlCarousel(owlOptions);
     };
     me.getImageOptions=function(){
@@ -55,5 +56,5 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
     if (blockConfig.query){
         me.getContents();
     }
-    alert($scope.block.code);
+
 }]);
