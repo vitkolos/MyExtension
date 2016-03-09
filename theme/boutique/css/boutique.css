@@ -181,6 +181,9 @@ h6 {
 .head-btq .dropdown-header:hover {
   color: #9a4530;
 }
+.head-btq .owl-controls {
+  visibility: hidden;
+}
 .footer {
   background-color: #2e2c29;
   color: #fff;
