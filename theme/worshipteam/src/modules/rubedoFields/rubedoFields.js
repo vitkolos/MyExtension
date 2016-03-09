@@ -579,7 +579,7 @@
         };            
     }]);
 
-       /*Modifié pour ajouter l'espace de travail de la page ou de la page liée au bloc de contribution*/
+        /*Modifié pour ajouter l'espace de travail de la page ou de la page liée au bloc de contribution*/
     module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
         var me=this;
         var mediaId=$scope.fieldEntity[$scope.field.config.name];
@@ -725,7 +725,6 @@
             });
         }
     }]);
-
 
     module.directive('fileModel', ['$parse', function ($parse) {
         return {
