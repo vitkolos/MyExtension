@@ -523,7 +523,8 @@
             pageId: $scope.rubedo.current.page.id,
             type: $scope.field.config.allowedCT,
             constrainToSite: false,
-            orderby:'title'
+            orderby:'title',
+            limit:200
         };
         RubedoSearchService.searchByQuery(options).then(
              function(response){
