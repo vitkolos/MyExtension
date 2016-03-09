@@ -1,7 +1,7 @@
 <div ng-controller="PresentationController as presentationCtrl"  ng-switch="blockConfig.columns" >
 	<div ng-switch-when="1" class="padding- contentList row">
 		<div class="equal-height-cols">
-			<a ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" ng-href="{{ presentationCtrl.pageLink }}">
+			<a ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" ng-href="{{ presentationCtrl.pageLink }}" style="display:block; width:100%">
 				<div class="col-sm-8 col-xs-12">
 					<header class="content prop no-margin"
 					afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1800px',mode:'boxed'})}} 1500w"
