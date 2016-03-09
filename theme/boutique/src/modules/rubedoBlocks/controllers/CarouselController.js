@@ -59,5 +59,15 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
     if (blockConfig.query){
         me.getContents();
     }
+    if ($scope.block.code!=undefined && $scope.block.code=='welcome-carousel'){
+        var acc_id='55c8777145205ef317c62e2a';
+        if (mongoIdRegex.test(acc_id)){
+            RubedoPagesService.getPageById(acc_id).then(function(response){
+                if (response.data.success){
+                    me.accueil=response.data.url;
+                }
+            });
+        }
+    }
 
 }]);
