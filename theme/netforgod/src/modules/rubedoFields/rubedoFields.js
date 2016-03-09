@@ -251,7 +251,7 @@
                         newValue="<div>"+newValue+"</div>";
                     }
                     me.html=jQuery.htmlClean(newValue, {
-                        allowedAttributes:[["style"],["rubedo-page-link"],["target"],["border"]],
+                        allowedAttributes:[["style"],["rubedo-page-link"],["target"],["border"]["data-toggle"]["data-target"]],
                         replace: [[["b", "big"], "strong"]],
                         format: true
                     });
