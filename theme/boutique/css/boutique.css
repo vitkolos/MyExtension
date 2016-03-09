@@ -202,6 +202,10 @@ h6 {
   font-size: 18px;
   color: #ffffff;
 }
+.inner-body.row {
+  margin-left: auto;
+  margin-right: auto;
+}
 .inner-body .btn-default {
   color: #f3eeea;
   background-color: #c1573c;
