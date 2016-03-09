@@ -1,7 +1,4 @@
-/**
- * Created by Etienne on 09/03/2016.
- */
-angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
+    angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","RubedoContentsService","RubedoPagesService",function($scope,RubedoContentsService,RubedoPagesService){
     var me=this;
     me.contents=[];
     var blockConfig=$scope.blockConfig;
