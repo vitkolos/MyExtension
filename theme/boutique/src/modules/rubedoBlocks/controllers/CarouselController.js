@@ -44,7 +44,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             lazyLoad:true
         };
         if ($scope.block.code!=undefined && $scope.block.code=='welcome-carousel'){
-            owlOptions.setAttribute("transitionStyle" , "fade;");
+            owlOptions.transitionStyle="fade" ;
         }
         angular.element(targetElSelector).owlCarousel(owlOptions);
     };
