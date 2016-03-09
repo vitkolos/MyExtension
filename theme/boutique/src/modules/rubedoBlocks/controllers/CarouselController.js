@@ -55,5 +55,5 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
     if (blockConfig.query){
         me.getContents();
     }
-    alert('hello world');
+    alert(block.code);
 }]);
