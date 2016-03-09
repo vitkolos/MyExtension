@@ -12,6 +12,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.limit = config.pageSize?config.pageSize:12;
     me.ismagic = config.magicQuery ? config.magicQuery : false;
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
+    me.lang = $route.current.params.lang;
     if (urlCurrentPage){
         me.start=(urlCurrentPage-1)*me.limit;
     }
