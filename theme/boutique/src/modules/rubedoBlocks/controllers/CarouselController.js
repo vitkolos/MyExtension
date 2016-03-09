@@ -45,6 +45,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
         };
         if ($scope.block.code!=undefined && $scope.block.code=='welcome-carousel'){
             owlOptions.transitionStyle="fade" ;
+            owlOptions.rewindNav=true ;
         }
         angular.element(targetElSelector).owlCarousel(owlOptions);
     };
