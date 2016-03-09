@@ -30,6 +30,10 @@ h6 {
 .progress-bar {
   background-color: #c1573c;
 }
+.container-fluid {
+  padding-right: 0;
+  padding-left: 0;
+}
 .panel-primary .btn-primary,
 .panel-default .btn-primary {
   color: #f3eeea;
@@ -126,10 +130,6 @@ h6 {
   .navbar .navbar-collapse {
     text-align: center;
   }
-}
-.mega-picture img {
-  position: absolute;
-  z-index: -1;
 }
 .head-btq {
   background-color: #d5c5b5;
