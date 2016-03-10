@@ -68,15 +68,17 @@
                         <!--</p>-->
                     </div>
                     <div class="text-center" ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
-                        <h4>
+                        <h4 class="col-md-8">
                             <del ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small>{{content.productProperties.lowestNoSoPrice|number:2}} €</small></del>
-                            <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span></h4>
-                        <a ng-href="{{ content.url }}"><button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button></a>
+                            <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span>
+                        </h4>
+                        <!--<a ng-href="{{ content.url }}"><button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button></a>-->
                         <button ng-if="content.productProperties.variations.length==1"
                                 ng-click="searchResultsCtrl.addToCart(content)"
                                 ng-disabled="!searchResultsCtrl.canOrder(content)"
-                                class="btn btn-default">
-                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}
+                                class="btn btn-default col-md-4">
+                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                            <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
                         </button>
                     </div>
                 </div>
