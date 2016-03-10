@@ -401,13 +401,13 @@ protected function sendInscriptionMail($inscription,$lang){
         if($inscription['facebook']) $messageSecretariat .= $this->addLine("Facebook", $inscription['facebook'] );
         if($inscription['situation']) $messageSecretariat .= $this->addLine($trad["ccn_label_situation"], $inscription['situation'] );
         if($inscription['tel2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] );
+        if($inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] );
         $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'] );
+        if($inscription['emailPers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] );
         if($inscription['address']) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] );
         if($inscription['cp'] || $inscription['city']) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'] );
         if($inscription['tel1']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] );
         if($inscription['country']) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] );
-        if($inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] );
-        if($inscription['emailPers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] );
 
    }
     /*pour couple / fiances / familles*/
