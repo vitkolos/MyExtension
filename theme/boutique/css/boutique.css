@@ -131,6 +131,16 @@ h6 {
     text-align: center;
   }
 }
+.detail {
+  text-align: left;
+}
+.detail h1 {
+  text-align: center;
+}
+.detail img {
+  margin: 0;
+  height: 100%;
+}
 .head-btq {
   background-color: #d5c5b5;
   color: #2e2c29;
