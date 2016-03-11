@@ -93,9 +93,6 @@ h6 {
 .hidden {
   visibility: hidden;
 }
-.optional {
-  visibility: hidden;
-}
 .btq-panel {
   border-radius: 0;
   border-color: #DDDDDD;
@@ -110,9 +107,6 @@ h6 {
 }
 .shadowed-image img {
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1);
-}
-.true-search .optional {
-  visibility: visible;
 }
 .logo img {
   display: block;
