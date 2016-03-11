@@ -43,6 +43,8 @@
         if ($scope.block.code!=undefined && $scope.block.code=='welcome-carousel'){
             owlOptions.transitionStyle="fade" ;
             owlOptions.rewindNav=true ;
+            owlOptions.mouseDrag=false ;
+            owlOptions.touchDrag=false ;
         }
         angular.element(targetElSelector).owlCarousel(owlOptions);
     };

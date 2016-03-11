@@ -1,13 +1,13 @@
 a {
   font-family: 'Montserrat', sans-serif;
-  color: #646059;
+  color: #868484;
 }
 .links {
   font-family: 'Montserrat', sans-serif;
 }
 a:hover,
 a:focus {
-  color: #2e2c29;
+  color: #535151;
 }
 html,
 body {
@@ -144,14 +144,14 @@ h6 {
 }
 .head-btq {
   background-color: #d5c5b5;
-  color: #2e2c29;
+  color: #535151;
 }
 .head-btq .navbar,
 .head-btq button,
 .head-btq input {
   border: none;
   background-color: #d5c5b5;
-  color: #2e2c29;
+  color: #535151;
 }
 .head-btq input {
   background-color: #e7dfd6;
