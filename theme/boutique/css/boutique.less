@@ -135,6 +135,7 @@ padding-left: 0;}
     width:100%;
   }
 }
+
 //-------------------//
 //les énormes classes//
 //-------------------//
@@ -162,6 +163,7 @@ padding-left: 0;}
     max-width:100%;
     font-size:14px ;
     a{
+      padding: 3px 0px;
       font-size: 15px;
     }
   }
@@ -183,11 +185,24 @@ padding-left: 0;}
 
 }
 .welcome-carousel{
-  .welcome-button{
-    color: @beigeCCN;
-    padding: 10px;
-    border:2px solid @beigeCCN;
-    &:hover{background-color:fadeout(darken(@beigeCCN,50%),50%); }
+  .welcome-linkbox {
+    a {
+      margin: 12px 6px 0;
+      letter-spacing: .2em;
+      text-align: center;
+      display: inline-block;
+      vertical-align: middle;
+      color: @beigeCCN;
+      border: 2px solid @beigeCCN;
+      padding: 10px 15px;
+      border-radius: 3px;
+      transition: all .4s ease 0s;
+      text-transform: uppercase;
+      box-shadow: none;
+      font-size: large;
+      &:hover{background-color:fadeout(darken(@beigeCCN,75%),50%); }
+    }
+    z-index: 10;
   }
   .owl-controls{visibility: hidden;}
 }

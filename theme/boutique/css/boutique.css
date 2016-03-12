@@ -166,6 +166,7 @@ h6 {
   text-align: left;
 }
 .head-btq .categories a {
+  padding: 3px 0px;
   font-size: 15px;
 }
 .head-btq .dropdown-menu {
@@ -186,13 +187,26 @@ h6 {
 .head-btq .dropdown-header:hover {
   color: #9a4530;
 }
-.welcome-carousel .welcome-button {
-  color: #f3eeea;
-  padding: 10px;
-  border: 2px solid #f3eeea;
+.welcome-carousel .welcome-linkbox {
+  z-index: 10;
 }
-.welcome-carousel .welcome-button:hover {
-  background-color: rgba(141, 108, 81, 0.5);
+.welcome-carousel .welcome-linkbox a {
+  margin: 12px 6px 0;
+  letter-spacing: .2em;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  color: #f3eeea;
+  border: 2px solid #f3eeea;
+  padding: 10px 15px;
+  border-radius: 3px;
+  transition: all .4s ease 0s;
+  text-transform: uppercase;
+  box-shadow: none;
+  font-size: large;
+}
+.welcome-carousel .welcome-linkbox a:hover {
+  background-color: rgba(60, 46, 34, 0.5);
 }
 .welcome-carousel .owl-controls {
   visibility: hidden;
