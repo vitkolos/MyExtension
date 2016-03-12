@@ -136,6 +136,27 @@ h6 {
   height: 100%;
   width: 100%;
 }
+.welcome-linkbox {
+  z-index: 10;
+}
+.welcome-linkbox a {
+  margin: 12px 6px 0;
+  letter-spacing: .2em;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+  color: #f3eeea;
+  border: 2px solid #f3eeea;
+  padding: 10px 15px;
+  border-radius: 3px;
+  transition: all .4s ease 0s;
+  text-transform: uppercase;
+  box-shadow: none;
+  font-size: large;
+}
+.welcome-linkbox a:hover {
+  background-color: rgba(60, 46, 34, 0.5);
+}
 .head-btq {
   background-color: #d5c5b5;
   color: #535151;
@@ -186,30 +207,6 @@ h6 {
 .head-btq .dropdown-menu:hover,
 .head-btq .dropdown-header:hover {
   color: #9a4530;
-}
-.welcome-carousel .welcome-linkbox {
-  z-index: 10;
-}
-.welcome-carousel .welcome-linkbox a {
-  margin: 12px 6px 0;
-  letter-spacing: .2em;
-  text-align: center;
-  display: inline-block;
-  vertical-align: middle;
-  color: #f3eeea;
-  border: 2px solid #f3eeea;
-  padding: 10px 15px;
-  border-radius: 3px;
-  transition: all .4s ease 0s;
-  text-transform: uppercase;
-  box-shadow: none;
-  font-size: large;
-}
-.welcome-carousel .welcome-linkbox a:hover {
-  background-color: rgba(60, 46, 34, 0.5);
-}
-.welcome-carousel .owl-controls {
-  visibility: hidden;
 }
 .footer {
   background-color: #2e2c29;
