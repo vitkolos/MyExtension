@@ -1,6 +1,6 @@
 <div class="container">
         <ng-form name="inscription_form">
-                <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==1}" ng-click="donsCtrl.setCurrentStage(0,infos_personnelles.$valid)">Mon don
+                <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==1}" ng-click="donsCtrl.setCurrentStage(1,infos_personnelles.$valid)">Mon don
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>1"></span>
                 </h2>
                 <div id="inscriptionStage1" class="collapse in">
@@ -42,7 +42,7 @@
                                         </div>
                                 </div>
                                 <div class="row text-center">
-                                    <div class="button submit" ng-class="{'disabled' : infos_dons.$invalid}" ng-click="donsCtrl.setCurrentStage(1,infos_dons.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                                    <div class="button submit" ng-class="{'disabled' : infos_dons.$invalid}" ng-click="donsCtrl.setCurrentStage(2,infos_dons.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                                     <p ng-if="infos_dons.$invalid && infos_dons.$dirty" class="txt-marron">Merci de bien remplir tous les champs obligatoires</p>
                                 </div>
                         </ng-form>
@@ -50,9 +50,9 @@
                         {{don}}
                 </div>
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==2}" >Mon don
-                        <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>1" ng-click="donsCtrl.setCurrentStage(1,infos_personnelles.$valid)"></span>
+                        <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>1" ng-click="donsCtrl.setCurrentStage(2,infos_personnelles.$valid)"></span>
                 </h2>
-                <div id="inscriptionStage1" class="collapse">
+                <div id="inscriptionStage2" class="collapse">
                                 <ng-form name="infos_personnelles">
                                         vsef
                                 </ng-form>
