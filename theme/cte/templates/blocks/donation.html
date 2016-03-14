@@ -25,6 +25,9 @@
                                                             <label for="montant2" class="sexe_label dons">50€</label>
                                                 <input type="radio"  name="montant" id="montant3" value="100" ng-model="don.montant">
                                                             <label for="montant3" class="sexe_label dons">100€</label>
+                                                <input type="radio"  name="montant" id="montant4" value="200" ng-model="don.montant">
+                                                            <label for="montant4" class="sexe_label dons">200€</label>
+                                                <input type="number" class="montant-dons" ng-model="don.montant"placeholder="Autre">
                                         </div>
                                 </div>
                                 <div class="row">
@@ -49,15 +52,22 @@
                         
                         {{don}}
                 </div>
-                <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==2}" >Mon don
-                        <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>1" ng-click="donsCtrl.setCurrentStage(2,infos_personnelles.$valid)"></span>
+                <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==2}" >Mon identité
+                        <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>2" ng-click="donsCtrl.setCurrentStage(2,true)"></span>
                 </h2>
                 <div id="inscriptionStage2" class="collapse">
                                 <ng-form name="infos_personnelles">
                                         vsef
                                 </ng-form>
                 </div>
-                        
+                <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==3}" >Mon paiement
+                        <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>3" ng-click="donsCtrl.setCurrentStage(3,true)"></span>
+                </h2>
+                <div id="inscriptionStage3" class="collapse">
+                                <ng-form name="paiement">
+                                        vsef
+                                </ng-form>
+                </div>                        
         </ng-form>
         
         
