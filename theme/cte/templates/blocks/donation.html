@@ -5,13 +5,13 @@
                 </h2>
                 <div id="inscriptionStage1" class="collapse in">
                         <ng-form name="infos_personnelles">
-                                <div class="row">
+                                <div class="row" ng-if="contentDetailCtrl.content.taxonomy['56d319bcc445ec56018b9176'].length>1">
                                         <div class="col-sm-4"><label for="nom" class="label_style">Condition de mon don *</label></div>
                                         <div class="col-sm-8">
-                                                <div class="col-xs-12" ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['56d319bcc445ec56018b9176']">
+                                                <div class="col-xs-12" ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['56d319bcc445ec56018b9176']" >
                                                         <input type="radio" required name="condition" id="{{'condition_'+$index}}"
-                                                               ng-value=' "{{taxonomy}}"' ng-model="don.condition" >
-                                                                <label for="{{'condition_'+$index}}">{{taxonomy}}</label>
+                                                               ng-value=' "{{contentDetailCtrl.content.termLabels[taxonomy]}}"' ng-model="don.condition" >
+                                                                <label for="{{'condition_'+$index}}">{{contentDetailCtrl.content.termLabels[taxonomy]}}</label>
                                         
                                                 </div>
                                         </div>
