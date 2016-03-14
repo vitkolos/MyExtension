@@ -1001,8 +1001,27 @@ ng-form[name="inscription_form"]{
     margin-right:25px;
   }
   label.sexe_label.dons,input.montant-dons{
-    width: 75px;
+    width: auto;
+    min-width: 75px; 
   }
+  input.montant-dons{
+    min-width:100px;
+    ::-webkit-input-placeholder {
+       color: @marron;
+    }
+    
+    :-moz-placeholder { /* Firefox 18- */
+       color: @marron;  
+    }
+    
+    ::-moz-placeholder {  /* Firefox 19+ */
+       color: @marron;  
+    }
+    
+    :-ms-input-placeholder {  
+       color: @marron;  
+    }
+}
 
   input[type=radio]:checked + label.sexe_label,input[type=radio] + label.sexe_label:hover {
     color:white; background-color: @txt_dark; border: none; line-height: 36px;
