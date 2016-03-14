@@ -59,7 +59,7 @@
                 </h2>
                 <div id="inscriptionStage2" class="collapse">
                                 <ng-form name="infos_personnelles">
-                                        vsef
+                                        <rubedo-field ng-repeat="field in donsCtrl.inputFields track by $index" class="col-sm-6 col-xs-12 label_style"></rubedo-field>
                                 </ng-form>
                 </div>
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==3}" >Mon paiement
