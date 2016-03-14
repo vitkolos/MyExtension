@@ -2,7 +2,9 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope',fu
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     //templates
-    me.inscriptionTemplate = themePath+'/templates/blocks/donation.html';
+    me.donationTemplate = themePath+'/templates/blocks/donation.html';
+    me.currentStage=0;
+    $scope.don= {};
     
 }]);
 
