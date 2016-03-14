@@ -2,8 +2,8 @@
     {
         "type": "Ext.form.field.Text",
         "config": {
-            "fieldLabel": "Endpoint URI",
-            "name": "endpoint",
+            "fieldLabel": "Numéro du site",
+            "name": "site",
             "allowBlank": false,
             "allowOnlyWhitespace": false
         }
@@ -11,8 +11,8 @@
     {
         "type": "Ext.form.field.Text",
         "config": {
-            "fieldLabel": "Customer redirect URI",
-            "name": "customerRedirect",
+            "fieldLabel": "Numéro du rang",
+            "name": "rang",
             "allowBlank": false,
             "allowOnlyWhitespace": false
         }
@@ -20,8 +20,8 @@
     {
         "type": "Ext.form.field.Text",
         "config": {
-            "fieldLabel": "User ID",
-            "name": "userID",
+            "fieldLabel": "Identifiant interne",
+            "name": "identifiant",
             "allowBlank": false,
             "allowOnlyWhitespace": false
         }
@@ -29,35 +29,8 @@
     {
         "type": "Ext.form.field.Text",
         "config": {
-            "fieldLabel": "User password",
-            "name": "userPassword",
-            "allowBlank": false,
-            "allowOnlyWhitespace": false
-        }
-    },
-    {
-        "type": "Ext.form.field.Text",
-        "config": {
-            "fieldLabel": "User signature",
-            "name": "userSignature",
-            "allowBlank": false,
-            "allowOnlyWhitespace": false
-        }
-    },
-    {
-        "type": "Ext.form.field.Text",
-        "config": {
-            "fieldLabel": "Application ID",
-            "name": "applicationID",
-            "allowBlank": false,
-            "allowOnlyWhitespace": false
-        }
-    },
-    {
-        "type": "Ext.form.field.Text",
-        "config": {
-            "fieldLabel": "User email",
-            "name": "userEmail",
+            "fieldLabel": "Clé privée",
+            "name": "clef",
             "allowBlank": false,
             "allowOnlyWhitespace": false
         }
