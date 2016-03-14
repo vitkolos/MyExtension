@@ -988,7 +988,7 @@ ng-form[name="inscription_form"]{
   //ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
   .capital.txt-red{font-size:16px !important}
 
-  label.sexe_label{
+  label.sexe_label, input.montant-dons{
     background-color:transparent;
     height: 36px; width:36px;
     color:@marron;
@@ -1000,14 +1000,13 @@ ng-form[name="inscription_form"]{
     cursor: pointer;
     margin-right:25px;
   }
-  label.sexe_label.dons{
+  label.sexe_label.dons,input.montant-dons{
     width: 75px;
   }
 
-  input[type=radio]:checked + label.sexe_label,input[type=radio]:checked + label.sexe_label:hover {
+  input[type=radio]:checked + label.sexe_label,input[type=radio] + label.sexe_label:hover {
     color:white; background-color: @txt_dark; border: none; line-height: 36px;
   }
-
 
 
   .enfant{border-bottom: 3px solid white; margin-bottom:12px}
