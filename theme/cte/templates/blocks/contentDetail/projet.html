@@ -1,3 +1,4 @@
+<script async src="/theme/cte/src/modules/rubedoBlocks/controllers/DonationController.js"
 <div class=" content_border">
 	<div class="container-fluid">
 		<div class="row">
@@ -110,8 +111,14 @@
 				<div class="col-xs-12"><h3>{{rubedo.translate("FaireUnDon", "Faire un don")}}</h3></div>
 				
 			</div>
+			
+		</div>
+		<div class="row padding-large" ng-controller="DonationController as donsCtrl">
+			<div ng-include="donsCtrl.inscriptionTemplate"></div>
 		</div>
 		<div style="padding-top:24px"></div>
+		
+
 	</div>
 		
 		
