@@ -27,7 +27,9 @@
                                                             <label for="montant3" class="sexe_label dons">100€</label>
                                                 <input type="radio"  name="montant" id="montant4" value="200" ng-model="don.montant">
                                                             <label for="montant4" class="sexe_label dons">200€</label>
-                                                <input type="text" class="montant-dons" ng-model="don.montant" placeholder="Autre" ng-pattern="/^\d+$/">
+                                                <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
+                                                            <label for="autre" class="sexe_label dons">autre</label>
+                                                <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder="Autre" ng-pattern="/^\d+$/">
                                         </div>
                                 </div>
                                 <div class="row">

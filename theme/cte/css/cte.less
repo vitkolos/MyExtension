@@ -1000,28 +1000,32 @@ ng-form[name="inscription_form"]{
     cursor: pointer;
     margin-right:25px;
   }
-  label.sexe_label.dons,input.montant-dons{
+  label.sexe_label.dons{
     width: auto;
     min-width: 75px; 
   }
   input.montant-dons{
-    min-width:100px;
-    ::-webkit-input-placeholder {
+    width:0; transition: width ease-out 0.3s;
+  }
+  input.montant-dons.displayed{
+    width:auto; min-width: 100px; transition: width ease-out 0.3s;
+  }
+  input.montant-dons::-webkit-input-placeholder {
        color: @marron;
-    }
+  }
     
-    :-moz-placeholder { /* Firefox 18- */
+  input.montant-dons:-moz-placeholder { /* Firefox 18- */
        color: @marron;  
-    }
+  }
+   
+  input.montant-dons::-moz-placeholder {  /* Firefox 19+ */
+       color: @marron;  
+  }
     
-    ::-moz-placeholder {  /* Firefox 19+ */
+  input.montant-dons:-ms-input-placeholder {  
        color: @marron;  
-    }
-    
-    :-ms-input-placeholder {  
-       color: @marron;  
-    }
-}
+  }
+
 
   input[type=radio]:checked + label.sexe_label,input[type=radio] + label.sexe_label:hover {
     color:white; background-color: @txt_dark; border: none; line-height: 36px;
