@@ -76,16 +76,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
-            pageId: $scope.rubedo.current.page.id
+            pageId: $scope.rubedo.current.page.id,
+            includeTermLabels:true
         };
         RubedoContentsService.getContentById(contentId, options).then(
             function(response){
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
-                    me.content.editorPageUrl =
+                    
                     // seulement pour propositions - qui peuvent être éditées directement dans la page
-                    $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url+"?content-edit="+me.content.id;
+                    me.content.editorPageUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url+"?content-edit="+me.content.id;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
                             $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
