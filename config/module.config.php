@@ -1,9 +1,16 @@
 <?php
 return array(
+    'paymentMeans' => array(
+            'paybox' => array(
+            'name' => "PayBox",
+            'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paybox.json'
+        )
+    ),
 
     /**
      * Your block definition : back-office json configuration file
-     */
+     */    
     'blocksDefinition' => array(
        'buttonToPage' => array(
             'maxlifeTime' => 60,
