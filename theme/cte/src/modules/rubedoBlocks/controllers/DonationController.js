@@ -12,7 +12,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope',fu
     }
     me.setCurrentStage = function(step, valide) {
         if(valide){
-            me.toggleStage(step+1);
+            me.toggleStage(step);
         }  
     };    
 }]);
