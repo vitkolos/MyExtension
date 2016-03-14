@@ -1000,8 +1000,11 @@ ng-form[name="inscription_form"]{
     cursor: pointer;
     margin-right:25px;
   }
+  label.sexe_label.dons{
+    width: 75px;
+  }
 
-  input[type=radio]:checked + label.sexe_label {
+  input[type=radio]:checked + label.sexe_label,input[type=radio]:checked + label.sexe_label:hover {
     color:white; background-color: @txt_dark; border: none; line-height: 36px;
   }
 
