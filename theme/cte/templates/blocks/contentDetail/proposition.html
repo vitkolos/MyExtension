@@ -58,6 +58,15 @@
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('complement_date')}}"></rubedo-field>
 					</div>
 				</div>
+				<div ng-if="fieldEntity['complement_date'] || fieldEntity['dates_cycle'] " class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital text-left">Date</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('complement_date')}}"></rubedo-field>
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('dates_cycle')}}"></rubedo-field>
+					</div>
+				</div>
 				<div ng-if="fieldEntity['position']" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('lieuCommunautaire')}}</p>
