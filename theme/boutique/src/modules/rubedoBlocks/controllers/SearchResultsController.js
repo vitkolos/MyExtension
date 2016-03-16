@@ -14,6 +14,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             'lastUpdateTime': $scope.rubedo.translate('Search.Label.OrderByDate'),
             'authorName': $scope.rubedo.translate('Search.Label.OrderByAuthor'),
             'text': $scope.rubedo.translate('Blocks.Search.Label.OrderByTitle'),
+            'productProperties.lowestFinalPrice':'prix',
         };
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
         me.template = themePath+"/templates/blocks/searchResults/"+config.displayMode+".html";
