@@ -59,7 +59,15 @@
                 </h2>
                 <div id="inscriptionStage2" class="collapse">
                                 <ng-form name="infos_personnelles" class="row">
-                                        <rubedo-field ng-repeat="field in donsCtrl.inputFields track by $index" class="col-sm-6 col-xs-12 label_style"></rubedo-field>
+                                        <div ng-repeat="field in donsCtrl.inputFields track by $index">
+                                                <div ng-if="$even" class="clearfix"></div>
+                                                <rubedo-field class="col-sm-6 col-xs-12 label_style left"></rubedo-field>
+                                        </div>
+                                        <div class="col-sm-4 col-xs-12"><label for="message" class="label_style left" >Je souhaite joindre un message à mon don : </label></div>
+                                        <div class="col-sm-8">
+                                                <textarea rows="2" ng-model="don.message" name="message" placeholder="Message...">
+
+                                        </div>
                                 </ng-form>
                 </div>
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==3}" >Mon paiement

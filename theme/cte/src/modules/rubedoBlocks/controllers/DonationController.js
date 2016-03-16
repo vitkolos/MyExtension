@@ -61,7 +61,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         me.inputFields=me.userType.fields;
     };
     me.initializeCheckout=function(){
-        $scope.fieldIdPrefix="checkout";
+        $scope.fieldIdPrefix="donation";
 
         $scope.fieldInputMode=true;
         if (!$scope.rubedo.current.user){
@@ -83,7 +83,6 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                         
                         $scope.fieldEntity=existingData;
                         me.parseUserType(me.currentUser.type);
-                        me.setCurrentStage(2,true);
                     }
                 }
             );
