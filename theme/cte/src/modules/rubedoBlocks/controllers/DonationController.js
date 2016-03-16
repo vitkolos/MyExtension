@@ -22,8 +22,9 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     } else {
                         me.persistUserChanges(me.stage2Error);
                     }
+
             }
-            me.toggleStage(step);
+            else me.toggleStage(step);
         }  
     };
     me.parseUserType=function(userType){
@@ -110,25 +111,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 if (response.data.success){
                     RubedoAuthService.generateToken({login:newUserFields.login,password:newUserFields.password},me.rememberMe).then(
                         function(authResponse){
-                            var mailingListsSuscribe=[];
-                            angular.forEach(me.mailingLists, function(mailingList){
-                                if(mailingList.checked){
-                                    mailingListsSuscribe.push(mailingList.id);
-                                }
-                            });
-                            if (mailingListsSuscribe.length>0){
-                                var mloptions = {
-                                    mailingLists: mailingListsSuscribe,
-                                    email: newUserFields.email
-                                };
-                                RubedoMailingListService.subscribeToMailingLists(mloptions).then(function(mlresponse){
-                                    window.location.reload();
-                                },function(mlresponse){
-                                    window.location.reload();
-                                });
-                            } else{
-                                window.location.reload();
-                            }
+                            me.toggleStage(3);
                         }
                     );
                 }
@@ -144,7 +127,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         delete (payload.type);
         RubedoUsersService.updateUser(payload).then(
             function(response){
-
+                me.toggleStage(3);
             },
             function(response){
                 me.errorHolder=response.data.message;
