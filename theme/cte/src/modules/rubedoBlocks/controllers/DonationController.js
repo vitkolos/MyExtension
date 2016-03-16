@@ -106,7 +106,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         delete (newUserFields.confirmPassword);
         newUserFields.login=newUserFields.email;
 
-        RubedoUsersService.createUser(newUserFields,me.userType.id).then(
+        RubedoUsersService.createUser(newUserFields,"56e6edeac445eccc038b5b8e").then(
             function(response){
                 if (response.data.success){
                     RubedoAuthService.generateToken({login:newUserFields.login,password:newUserFields.password},me.rememberMe).then(

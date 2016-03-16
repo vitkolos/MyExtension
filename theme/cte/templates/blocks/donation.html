@@ -64,6 +64,18 @@
                                                 <div class="col-sm-8"><input type="text" id="nom" ng-model="don.user.name" name="name" required></div>
                                         </div>
                                         <div class="row">
+                                                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
+                                                <div class="col-sm-8"><input type="email" id="email" name="email"  ng-model="don.user.email" placeholder="user@mydomain.com" required></div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Blocks.SignUp.label.password")}}*</label></div>
+                                                <div class="col-sm-8"><input type="password" id="password" name="password"  ng-model="don.user.password" required></div>
+                                        </div>                                        
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Blocks.SignUp.label.confirmPassword")}}*</label></div>
+                                                <div class="col-sm-8"><input type="password" id="confirmPassword" name="confirmPassword"  ng-model="don.user.confirmPassword" required></div>
+                                        </div>                                         
+                                        <div class="row">
                                                 <div class="col-sm-4"><label for="prenom" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}*</label></div>
                                                 <div class="col-sm-8"><input type="text" id="prenom" ng-model="don.user.surname" name="surname" required></div>
                                         </div>
@@ -97,19 +109,7 @@
                                                 <div class="col-sm-4"><label for="pays" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
                                                 <div class="col-sm-8"><input type="text" id="pays" ng-model="don.user.country" name="country"></div>
                                        </div>
-                                        <div class="row">
-                                                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
-                                                <div class="col-sm-8"><input type="email" id="email" name="email"  ng-model="don.user.email" placeholder="user@mydomain.com" required></div>
-                                        </div>
-                                        <div class="row">
-                                                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Blocks.SignUp.label.password")}}*</label></div>
-                                                <div class="col-sm-8"><input type="password" id="password" name="password"  ng-model="don.user.password" required></div>
-                                        </div>                                        
-                                        <div class="row">
-                                                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Blocks.SignUp.label.confirmPassword")}}*</label></div>
-                                                <div class="col-sm-8"><input type="password" id="confirmPassword" name="confirmPassword"  ng-model="don.user.confirmPassword" required></div>
-                                        </div>                                         
-                                        
+                       
                                         {{don.user}}
                                         
                                         
