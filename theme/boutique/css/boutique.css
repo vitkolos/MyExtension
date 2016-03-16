@@ -207,6 +207,8 @@ h6 {
 }
 .head-btq .dropdown-menu {
   background-color: #f3eeea;
+  border: none;
+  border-radius: 0;
 }
 .head-btq .dropdown-menu * {
   background-color: #f3eeea;
