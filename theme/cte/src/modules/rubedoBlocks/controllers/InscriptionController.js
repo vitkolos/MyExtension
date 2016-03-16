@@ -332,6 +332,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         if (valide && step==6) {
             // validations préliminaires
             $scope.processForm=true;
+            
             $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
             $scope.inscription.propositionDate = propositionDate;
@@ -385,7 +386,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     
             }
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace, $scope.rubedo.translations).then(function(response){
-                $scope.message="";          
+                $scope.message="";
+                
                 if (response.data.success) {
                     // si paiement par Paybox
                     if ($scope.inscription.modePaiement=='carte') { 
@@ -397,6 +399,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             proposition:propositionTitle,
                             idInscription: response.data.id
                         };
+                        $scope.rubedo.sendGaEvent('/inscription/', 'payement carte');
                         payload.paymentType= 'paf';
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
@@ -419,6 +422,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     }
                     // pas de paiement par carte
                     else {
+                        $scope.rubedo.sendGaEvent('/inscription/', 'pas de payment');                        
                         $scope.processForm=false;
                         $scope.finInscription=true; 
                         $scope.inscription={};
@@ -428,7 +432,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     
                 }
                 else {
-                    
+                    $scope.rubedo.sendGaEvent('/inscription/', 'erreur');
+                   
                     $scope.processForm=false;
                     $scope.finInscription=true; 
                     $scope.message +="Il y a eu une erreur lors de la prise en compte de votre inscription. Merci de réessayer plus tard ou de contacter le secrétariat.";

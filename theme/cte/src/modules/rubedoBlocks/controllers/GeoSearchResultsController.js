@@ -18,9 +18,15 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             zoom:config.zoom ? config.zoom : 14
         };
         // pour limiter le zoom lors de clusters
-        me.mapOptions={
+        me.mapSearchOptions={
             maxZoom:17
         };
+        me.mapOptions={
+        };
+        /*si le drag est désactivé (cartes sur la largeur de l'écran)*/
+        if (config.noDrag) {
+            me.mapOptions={draggable:false, scrollwheel: false}
+        }
         me.geocoder = new google.maps.Geocoder();
         //places search
         if (config.showPlacesSearch){
