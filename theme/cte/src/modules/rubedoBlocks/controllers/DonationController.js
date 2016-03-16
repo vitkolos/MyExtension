@@ -90,7 +90,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                         me.currentUser=response.data.user;
                         var existingData=angular.copy(me.currentUser.fields);
                         
-                        $scope.fieldEntity=existingData;
+                        $scope.fieldEntityUser=existingData;
                         me.parseUserType(me.currentUser.type);
                     }
                 }
@@ -98,11 +98,11 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         }
     };
     me.createUser=function(){
-        if ($scope.fieldEntity.confirmPassword!=$scope.fieldEntity.password){
+        if ($scope.fieldEntityUser.confirmPassword!=$scope.fieldEntityUser.password){
             me.stage2Error="Passwords do not match.";
             return;
         }
-        var newUserFields=angular.copy($scope.fieldEntity);
+        var newUserFields=angular.copy($scope.fieldEntityUser);
         delete (newUserFields.confirmPassword);
         newUserFields.login=newUserFields.email;
 
@@ -123,7 +123,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     };    
     me.persistUserChanges=function(errorHolder,refreshShippers){
         var payload=angular.copy(me.currentUser);
-        payload.fields=angular.copy($scope.fieldEntity);
+        payload.fields=angular.copy($scope.fieldEntityUser);
         delete (payload.type);
         RubedoUsersService.updateUser(payload).then(
             function(response){
