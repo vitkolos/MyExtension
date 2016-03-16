@@ -20,13 +20,6 @@
 //@14-18:#59d3b6;
 @bleu:#3CA6C1;
 
-@media (max-width: 768px){
-  .btq-top{
-    margin-left: auto;
-    margin-right: auto;
-    width: 200px;
-  }
-}
 //-------------------//
 //generalités du html//
 //-------------------//
@@ -188,7 +181,19 @@ padding-left: 0;}
 .head-btq{
   background-color: @marron;
   color: @txt_dark;
-  .navbar-default {
+
+  @media (max-width: 768px){
+    .btq-top{
+      margin-left: auto;
+      margin-right: auto;
+      width: 200px;
+    }
+  }
+  @media (min-width: 768px) {
+    .btq-top{margin-top: 35px;}
+
+  }
+    .navbar-default {
     box-shadow: 0px 8px 10px -10px rgba(0, 0, 0, 0.5) inset;
   }
   .navbar{
