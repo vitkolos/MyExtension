@@ -2,7 +2,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
     function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,TaxonomyService){
         var me = this;
         var config = $scope.blockConfig;
-        me.noDrag = config.noDrag;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.data = [];
         me.facets = [];
@@ -19,9 +18,14 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             zoom:config.zoom ? config.zoom : 14
         };
         // pour limiter le zoom lors de clusters
-        me.mapOptions={
+        me.mapSearchOptions={
             maxZoom:17
         };
+        me.mapOptions={
+        };
+        if (config.noDrag) {
+            me.mapOptions={draggable:false}
+        }
         me.geocoder = new google.maps.Geocoder();
         //places search
         if (config.showPlacesSearch){

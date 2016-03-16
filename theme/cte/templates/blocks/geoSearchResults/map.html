@@ -3,14 +3,8 @@
                 center="geoSearchResultsCtrl.map.center"
                 zoom="geoSearchResultsCtrl.map.zoom"
                 events="geoSearchResultsCtrl.mapEvents"
-                control="geoSearchResultsCtrl.mapControl"
-                draggable="true">
-    <google-map ng-if="geoSearchResultsCtrl.display() && geoSearchResultsCtrl.noDrag"
-                center="geoSearchResultsCtrl.map.center"
-                zoom="geoSearchResultsCtrl.map.zoom"
-                events="geoSearchResultsCtrl.mapEvents"
-                control="geoSearchResultsCtrl.mapControl"
-                draggable="false">
+                control="geoSearchResultsCtrl.mapControl">
+
         <map-control ng-if="geoSearchResultsCtrl.activatePlacesSearch"
                      template="{{geoSearchResultsCtrl.placesSearchTemplate}}"
                 >
