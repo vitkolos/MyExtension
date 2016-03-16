@@ -15,6 +15,14 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     }
     me.setCurrentStage = function(step, valide) {
         if(valide){
+            if (step==3) {
+                    me.stage2Error=null;
+                    if (!$scope.rubedo.current.user){
+                        me.createUser();
+                    } else {
+                        me.persistUserChanges(me.stage2Error);
+                    }
+            }
             me.toggleStage(step);
         }  
     };
@@ -130,7 +138,19 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             }
         );
     };    
-    
+    me.persistUserChanges=function(errorHolder,refreshShippers){
+        var payload=angular.copy(me.currentUser);
+        payload.fields=angular.copy($scope.fieldEntity);
+        delete (payload.type);
+        RubedoUsersService.updateUser(payload).then(
+            function(response){
+
+            },
+            function(response){
+                me.errorHolder=response.data.message;
+            }
+        );
+    };    
     
         me.initializeCheckout();
 

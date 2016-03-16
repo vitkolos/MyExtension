@@ -63,11 +63,22 @@
                                                 <div ng-if="$even" class="clearfix"></div>
                                                 <rubedo-field class="col-sm-6 col-xs-12 label_style left"></rubedo-field>
                                         </div>
-                                        <div class="col-sm-4 col-xs-12"><label for="message" class="label_style left" >Je souhaite joindre un message à mon don : </label></div>
-                                        <div class="col-sm-8">
-                                                <textarea rows="2" ng-model="don.message" name="message" placeholder="Message...">
-
+                                        <div class="col-sm-12 text-center" ng-if="!rubedo.current.user">
+                                                <div class="button submit"  ng-click="donsCtrl.setCurrentStage(3,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.SignUp.label.signUp")}}</div>
                                         </div>
+                                        <div class="col-sm-12 text-center" ng-if="rubedo.current.user">
+                                                <div class="button submit"  ng-click="donsCtrl.setCurrentStage(3,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.Checkout.Label.Continue")}}</div>
+                                        </div>
+                                        
+                                        
+
+                                    <div ng-if="donsCtrl.stage2Error" ng-init="notification = {type:'error',text:donsCtrl.stage2Error}">
+                                        <rubedo-notification></rubedo-notification>
+                                    </div>                                        
+                                        
+                                        
+                                        
+                                        
                                 </ng-form>
                 </div>
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==3}" >Mon paiement
@@ -75,7 +86,27 @@
                 </h2>
                 <div id="inscriptionStage3" class="collapse">
                                 <ng-form name="paiement">
-                                        vsef
+                                        
+                                        <!--Récapitulatif-->
+                                        <div class="row">
+                                                <div class="col-xs-12 text-center">
+                                                    <p>{{rubedo.translate("Block.Inscription.Paf")}} </p>
+                                                    <p>{{contentDetailCtrl.content.fields.paf_text}}</p>
+                                                    <p ng-repeat="(option, prix) in inscription.optionsPayantes" ng-if="prix">
+                                                            + {{option}} : {{prix}}€
+                                                    </p>
+                            
+                                                    <div class="row"><label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label></div>
+                                                    <p><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[1-9][0-9]{1,3}$/"><b>€</b></p>
+                                                </div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-sm-4 col-xs-12"><label for="message" class="label_style left" >Je souhaite joindre un message à mon don : </label></div>
+                                        <div class="col-sm-8">
+                                                <textarea rows="2" ng-model="don.message" name="message" placeholder="Message..."></textarea>
+
+                                        </div>
+                                        </div>
                                 </ng-form>
                 </div>                        
         </ng-form>
