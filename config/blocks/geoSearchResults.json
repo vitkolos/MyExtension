@@ -80,6 +80,14 @@
                                 "name": "showCenterMarker",
                                 "inputValue": true
                             }
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "Désactiver curseur",
+                                "name": "noDrag",
+                                "inputValue": true
+                            }
                         }
                     ]
                 },
@@ -206,7 +214,8 @@
             "showPlacesSearch": true,
             "displayedFacets": "['all']",
             "displayMode": "default",
-            "autoComplete": false
+            "autoComplete": false,
+            "noDrag": false
         }
     },
     "category": "#ext-gen1425#",
