@@ -63,6 +63,7 @@
                                                 <div ng-if="$even" class="clearfix"></div>
                                                 <rubedo-field class="col-sm-6 col-xs-12 label_style left"></rubedo-field>
                                         </div>
+                                        {{infos_personnelles.fieldEntity}}
                                         <div class="col-sm-12 text-center" ng-if="!rubedo.current.user">
                                                 <div class="button submit"  ng-click="donsCtrl.setCurrentStage(3,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.SignUp.label.signUp")}}</div>
                                         </div>
