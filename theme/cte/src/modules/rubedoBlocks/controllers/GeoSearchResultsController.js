@@ -2,6 +2,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
     function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,TaxonomyService){
         var me = this;
         var config = $scope.blockConfig;
+        me.noDrag = config.noDrag;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.data = [];
         me.facets = [];
