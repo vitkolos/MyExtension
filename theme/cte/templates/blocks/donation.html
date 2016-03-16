@@ -58,12 +58,62 @@
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>2" ng-click="donsCtrl.setCurrentStage(2,true)"></span>
                 </h2>
                 <div id="inscriptionStage2" class="collapse">
-                                <ng-form name="infos_personnelles" class="row">
-                                        <div ng-repeat="field in donsCtrl.inputFields track by $index">
-                                                <div ng-if="$even" class="clearfix"></div>
-                                                <rubedo-field class="col-sm-6 col-xs-12 label_style left"></rubedo-field>
+                                <ng-form name="infos_personnelles">
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="nom" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}*</label></div>
+                                                <div class="col-sm-8"><input type="text" id="nom" ng-model="don.user.name" name="name" required></div>
                                         </div>
-                                        {{infos_personnelles}}
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="prenom" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}*</label></div>
+                                                <div class="col-sm-8"><input type="text" id="prenom" ng-model="don.user.surname" name="surname" required></div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="dateNaiss" class="label_style">{{rubedo.translate("Block.Inscription.DateNaiss")}}*</label></div>
+                                                <div class="col-sm-8">
+                                                    <div class="dropdown">
+                                                        <a showtab class="dropdown-toggle" id="dropdowndateNaiss" role="button" data-toggle="dropdown" data-target="#" href="#">
+                                                            <div class="input-group"><input readonly id="dateNaiss" ng-model="don.birthdateF" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                                                            </div>
+                                                        </a>
+                                                        <ul class="dropdown-menu" role="menu">
+                                                            <datetimepicker data-ng-model="don.user.birthdate"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateNaiss', startView: 'year', minView:'day'}" data-on-set-time="don.birthdateF = (don.user.birthdate |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                        </div>    
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="adresse" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
+                                                <div class="col-sm-8"><textarea rows="3" id="adresse" ng-model="don.user.address" name="address" placeholder="" required></textarea></div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="cp" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
+                                                <div class="col-sm-8"><input type="text" id="cp" ng-model="don.user.cp" name="cp"></div>
+                                       </div>
+                                       <div class="row">
+                                                <div class="col-sm-4"><label for="city" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
+                                                <div class="col-sm-8"><input type="text" id="city" ng-model="don.user.city" name="city" required></div>
+                                       </div>
+                                       <div class="row">
+                                                <div class="col-sm-4"><label for="pays" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
+                                                <div class="col-sm-8"><input type="text" id="pays" ng-model="don.user.country" name="country"></div>
+                                       </div>
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
+                                                <div class="col-sm-8"><input type="email" id="email" name="email"  ng-model="don.user.email" placeholder="user@mydomain.com" required></div>
+                                        </div>
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Blocks.SignUp.label.password")}}*</label></div>
+                                                <div class="col-sm-8"><input type="password" id="password" name="password"  ng-model="don.user.password" required></div>
+                                        </div>                                        
+                                        <div class="row">
+                                                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Blocks.SignUp.label.confirmPassword")}}*</label></div>
+                                                <div class="col-sm-8"><input type="password" id="confirmPassword" name="confirmPassword"  ng-model="don.user.confirmPassword" required></div>
+                                        </div>                                         
+                                        
+                                        {{don.user}}
+                                        
+                                        
+                                        
                                         <div class="col-sm-12 text-center" ng-if="!rubedo.current.user">
                                                 <div class="button submit"  ng-click="donsCtrl.setCurrentStage(3,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.SignUp.label.signUp")}}</div>
                                         </div>
