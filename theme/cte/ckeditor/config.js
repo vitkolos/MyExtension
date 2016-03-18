@@ -22,6 +22,7 @@ CKEDITOR.stylesSet.add( 'default', [
 		attributes: { 'style': 'margin:0 auto' }
     },
     { name: 'button', element: 'a', attributes: { 'class': 'button rouge'} },
+    { name: 'quote centrée', element: 'blockquote', attributes: { 'class': 'center'} },
     { name: 'icones', element: 'span', attributes: { 'class': 'font_icon' } },
 
 
