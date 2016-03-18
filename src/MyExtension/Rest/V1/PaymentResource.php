@@ -3,8 +3,8 @@ namespace MyExtension\Rest\V1;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use RubedoAPI\Rest\V1\AbstractResource;
-use Zend\View\Model\JsonModel;
-use Rubedo\Collection\AbstractLocalizableCollection;
+use Rubedo\Collection\AbstractCollection;
+
 use Rubedo\Services\Manager;
 use RubedoAPI\Exceptions\APIAuthException;
 use RubedoAPI\Exceptions\APIEntityException;
@@ -78,6 +78,12 @@ class PaymentResource extends AbstractResource {
                             ->setKey('proposition')
                             ->setFilter('string')
                     )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('ID du lieu (pour compta)')
+                            ->setKey('placeID')
+                            ->setFilter('string')
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Parametres pour bouton Paybox ou infos de payement par chèque')
@@ -93,8 +99,8 @@ class PaymentResource extends AbstractResource {
         $email = $params['email'];
         $proposition = $params['proposition']; // titre de la proposition si inscription
         $paymentType=$params['paymentType']; // mode de paiement
-        
-        
+        $place = $params['placeID']; // lieu communautaire pour compta
+        $codeCompta="";
     // récupérer l'id du compte de paiement
         $id = $this->getAccountId();
     // récupérer les infos du compte
@@ -103,7 +109,12 @@ class PaymentResource extends AbstractResource {
         switch ($paymentType) {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
             case "paf":
-                $commande = $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
+                if($place && $place!="") {
+                    $wasFiltered = AbstractCollection::disableUserFilter(true);
+                    $lieuCommunautaire = Manager::getService("Contents")->findById($place,false,false);
+                    $codeCompta = "[" . $lieuCommunautaire["fields"]["codeCompta"] . "]";
+                }
+                $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
                 break;
         
         

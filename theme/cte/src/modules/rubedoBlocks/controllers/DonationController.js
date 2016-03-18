@@ -7,6 +7,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     me.currentStage=1;
     me.userType="56e6edeac445eccc038b5b8e"; // type d'utilisateurs = donateurs
     $scope.don= {};
+    $scope.don.user={};
 
     me.toggleStage = function(newStage){
        angular.element("#inscriptionStage"+me.currentStage).collapse("hide");
@@ -15,7 +16,16 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     }
     me.setCurrentStage = function(step, valide) {
         if(valide){
-            me.toggleStage(step);
+            if (step==3) {
+                    me.stage2Error=null;
+                    if (!$scope.rubedo.current.user){
+                        me.createUser();
+                    } else {
+                        me.persistUserChanges(me.stage2Error);
+                    }
+
+            }
+            else me.toggleStage(step);
         }  
     };
     me.parseUserType=function(userType){
@@ -80,47 +90,28 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     if (response.data.success){
                         me.currentUser=response.data.user;
                         var existingData=angular.copy(me.currentUser.fields);
-                        
-                        $scope.fieldEntity=existingData;
-                        me.parseUserType(me.currentUser.type);
+                        $scope.don.user = angular.copy(me.currentUser.fields);
+                        //me.parseUserType(me.currentUser.type);
                     }
                 }
             );
         }
     };
     me.createUser=function(){
-        if ($scope.fieldEntity.confirmPassword!=$scope.fieldEntity.password){
+        if ($scope.don.user.confirmPassword!=$scope.don.user.password){
             me.stage2Error="Passwords do not match.";
             return;
         }
-        var newUserFields=angular.copy($scope.fieldEntity);
+        var newUserFields=angular.copy($scope.don.user);
         delete (newUserFields.confirmPassword);
         newUserFields.login=newUserFields.email;
 
-        RubedoUsersService.createUser(newUserFields,me.userType.id).then(
+        RubedoUsersService.createUser(newUserFields,"56e6edeac445eccc038b5b8e").then(
             function(response){
                 if (response.data.success){
                     RubedoAuthService.generateToken({login:newUserFields.login,password:newUserFields.password},me.rememberMe).then(
                         function(authResponse){
-                            var mailingListsSuscribe=[];
-                            angular.forEach(me.mailingLists, function(mailingList){
-                                if(mailingList.checked){
-                                    mailingListsSuscribe.push(mailingList.id);
-                                }
-                            });
-                            if (mailingListsSuscribe.length>0){
-                                var mloptions = {
-                                    mailingLists: mailingListsSuscribe,
-                                    email: newUserFields.email
-                                };
-                                RubedoMailingListService.subscribeToMailingLists(mloptions).then(function(mlresponse){
-                                    window.location.reload();
-                                },function(mlresponse){
-                                    window.location.reload();
-                                });
-                            } else{
-                                window.location.reload();
-                            }
+                            me.toggleStage(3);
                         }
                     );
                 }
@@ -130,7 +121,19 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             }
         );
     };    
-    
+    me.persistUserChanges=function(errorHolder,refreshShippers){
+        var payload=angular.copy(me.currentUser);
+        payload.fields=angular.copy($scope.don.user);
+        delete (payload.type);
+        RubedoUsersService.updateUser(payload).then(
+            function(response){
+                me.toggleStage(3);
+            },
+            function(response){
+                me.errorHolder=response.data.message;
+            }
+        );
+    };    
     
         me.initializeCheckout();
 

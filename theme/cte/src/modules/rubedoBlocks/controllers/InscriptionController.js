@@ -399,6 +399,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             proposition:propositionTitle,
                             idInscription: response.data.id
                         };
+                        if (me.content.fields.lieuCommunautaire) {
+                            payload.placeID=me.content.fields.lieuCommunautaire;
+                        }
                         $scope.rubedo.sendGaEvent('/inscription/', 'payement carte');
                         payload.paymentType= 'paf';
                         PaymentService.payment(payload).then(function(response){
