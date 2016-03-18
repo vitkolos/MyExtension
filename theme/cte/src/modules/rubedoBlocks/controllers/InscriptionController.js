@@ -402,7 +402,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         if (me.content.fields.lieuCommunautaire) {
                             payload.placeID=me.content.fields.lieuCommunautaire;
                         }
-                        $scope.rubedo.sendGaEvent('/inscription/', 'payement carte');
+                        if(window.ga) {
+                            window.ga('send', 'event', 'inscription', 'payement carte');
+                        }
                         payload.paymentType= 'paf';
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
@@ -425,7 +427,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     }
                     // pas de paiement par carte
                     else {
-                        $scope.rubedo.sendGaEvent('/inscription/', 'pas de payment');                        
+                        if(window.ga) {
+                            window.ga('send', 'event', 'inscription', 'pas de payment');
+                        }
                         $scope.processForm=false;
                         $scope.finInscription=true; 
                         $scope.inscription={};
@@ -435,7 +439,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     
                 }
                 else {
-                    $scope.rubedo.sendGaEvent('/inscription/', 'erreur');
+                    if(window.ga) {
+                        window.ga('send', 'event', 'inscription', 'erreur');
+                    }
                    
                     $scope.processForm=false;
                     $scope.finInscription=true; 
