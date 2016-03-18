@@ -158,7 +158,9 @@ padding-left: 0;}
     box-shadow: none;
     font-size: x-large;
     background-color:fadeout(darken(@beigeCCN,75%),50%);
-    &:hover{background-color:darken(@beigeCCN,75%); }
+    &:hover{background-color:darken(@beigeCCN,75%);
+      text-decoration: none;
+    }
   }
   z-index: 10;
   position: absolute;
@@ -181,6 +183,11 @@ padding-left: 0;}
 .head-btq{
   background-color: @marron;
   color: @txt_dark;
+  .btq-top>span,.btn-default,.navbar-nav>.open>a{
+    &:hover{
+      background-color: @beigeCCN;
+    }
+  }
 
   @media (max-width: 768px){
     .btq-top{
@@ -208,7 +215,7 @@ padding-left: 0;}
     color: @txt_dark;
   }
   input{
-    background-color: lighten(@marron,10%);
+    background-color: @beigeCCN;
     border-radius: 0;
   }
   .img-responsive{
