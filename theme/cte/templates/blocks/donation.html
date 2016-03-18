@@ -115,6 +115,7 @@
                                         
                                         <div class="col-sm-12 text-center" ng-if="!rubedo.current.user">
                                                 <div class="button submit"  ng-click="donsCtrl.setCurrentStage(3,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.SignUp.label.signUp")}}</div>
+                                                <div class="button submit"  ng-click="donsCtrl.setCurrentStage(3,infos_personnelles.$valid)" >continuer sans compte</div>
                                         </div>
                                         <div class="col-sm-12 text-center" ng-if="rubedo.current.user">
                                                 <div class="button submit"  ng-click="donsCtrl.setCurrentStage(3,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.Checkout.Label.Continue")}}</div>

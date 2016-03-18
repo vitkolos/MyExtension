@@ -875,9 +875,12 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 
 .regions-list{
   ul{  list-style-type: none;margin:6px 0; padding-left: 0}
-  li{ a{.capital; display: inline-block; width:100%}; border-top:2px solid @marron; padding:6px 24px 6px 12px; }
+  li{ a{.capital; display: inline-block; width:100%};
+    border-top:2px solid @marron; padding:6px 24px 6px 12px;
+    .capital;
+  }
   li:last-of-type{border-bottom: 2px solid @marron}
-  li a:after{
+  li:after{
     position:absolute;
     right:30px;
      content: "\f0da";
