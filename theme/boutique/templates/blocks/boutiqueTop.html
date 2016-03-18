@@ -4,15 +4,14 @@
             <form  ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group col-md-10">
                 <span  ng-if="searchFormCtrl.show">
                     <input style="padding-left: 0;" class="form-control" type="text" ng-model="searchFormCtrl.query" placeholder="{{searchFormCtrl.placeholder}}"/>
-                    <button class="btn btn-default" style="padding-bottom: 8px;"type="submit">
+                    <button class="btn btn-default top-hover" style="padding-bottom: 8px;"type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
                 </span>
             </form>
         </span>
     </span>
-
-    <span class="col-sm-12 " ng-init="blockConfig={displayMode:'pop-in' , redirectOnConnection:false , profilePage:'56bdb65dc445ec56018b531c',signUpPage:'56a79674c445eccb008b464c',commandPage:'56bdb7adc445ec56018b532e'}">
+    <span class="col-sm-12 top-hover" ng-init="blockConfig={displayMode:'pop-in' , redirectOnConnection:false , profilePage:'56bdb65dc445ec56018b531c',signUpPage:'56a79674c445eccb008b464c',commandPage:'56bdb7adc445ec56018b532e'}">
         <span ng-controller="AuthenticationController as authCtrl">
             <!--<span ng-if="rubedo.current.user" class="btn-group">-->
             <span ng-if="rubedo.current.user">
@@ -130,7 +129,7 @@
             </div>
         </span>
     </span>
-    <span class="col-sm-12 " ng-init="blockConfig={displayMode:'button' , cartDetailPage:'55c8ac0a45205e6a2cc62e23' , checkoutPage:'55c8ac3545205e972cc62e12'}">
+    <span class="col-sm-12 top-hover" ng-init="blockConfig={displayMode:'button' , cartDetailPage:'55c8ac0a45205e6a2cc62e23' , checkoutPage:'55c8ac3545205e972cc62e12'}">
         <span ng-controller="ShoppingCartController as shoppingCartCtrl">
             <span  ng-if="blockConfig.displayMode=='button'">
                 <button ng-if="shoppingCartCtrl.cartIsEmpty" type="button" class="btn btn-default">
