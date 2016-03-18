@@ -164,10 +164,16 @@ h6 {
 }
 .welcome-linkbox a:hover {
   background-color: #3c2e22;
+  text-decoration: none;
 }
 .head-btq {
   background-color: #d5c5b5;
   color: #535151;
+}
+.head-btq .btq-top > span:hover,
+.head-btq .btn-default:hover,
+.head-btq .navbar-nav > .open > a:hover {
+  background-color: #f3eeea;
 }
 @media (max-width: 768px) {
   .head-btq .btq-top {
@@ -199,7 +205,7 @@ h6 {
   color: #535151;
 }
 .head-btq input {
-  background-color: #e7dfd6;
+  background-color: #f3eeea;
   border-radius: 0;
 }
 .head-btq .categories {
