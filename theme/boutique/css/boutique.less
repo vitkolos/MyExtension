@@ -183,11 +183,21 @@ padding-left: 0;}
 .head-btq{
   background-color: @marron;
   color: @txt_dark;
-  .btq-top>span,.btn-default,.navbar-nav>.open>a{
+  .btn-default{
+     background-color: transparent;
+    &:active{box-shadow: none;}
+   }
+  .top-hover,.navbar-nav>.open>a{
     &:hover{
+      transition: all .2s ease 0s;
       background-color: @beigeCCN;
     }
+    &:active{box-shadow: inset 0 3px 5px rgba(0,0,0,.125);}
   }
+  .navbar-nav>.open>a{
+    background-color: @beigeCCN;
+  }
+
 
   @media (max-width: 768px){
     .btq-top{

@@ -170,9 +170,22 @@ h6 {
   background-color: #d5c5b5;
   color: #535151;
 }
-.head-btq .btq-top > span:hover,
-.head-btq .btn-default:hover,
+.head-btq .btn-default {
+  background-color: transparent;
+}
+.head-btq .btn-default:active {
+  box-shadow: none;
+}
+.head-btq .top-hover:hover,
 .head-btq .navbar-nav > .open > a:hover {
+  transition: all .2s ease 0s;
+  background-color: #f3eeea;
+}
+.head-btq .top-hover:active,
+.head-btq .navbar-nav > .open > a:active {
+  box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+}
+.head-btq .navbar-nav > .open > a {
   background-color: #f3eeea;
 }
 @media (max-width: 768px) {
