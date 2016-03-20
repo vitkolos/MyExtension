@@ -62,7 +62,7 @@ class HtmlPurifier extends HtmlCleaner
 
             $def = $config->getHTMLDefinition(true);
             $def->addAttribute('a', 'rubedo-page-link', 'CDATA');
-	    $def->addAttribute('a', 'data-collapse', 'Text');
+	    $def->addAttribute('a', 'data-toggle', 'Text');
 	    $def->addAttribute('a', 'data-target', 'Text');
             self::$_purifier = new \HTMLPurifier($config);
         }
