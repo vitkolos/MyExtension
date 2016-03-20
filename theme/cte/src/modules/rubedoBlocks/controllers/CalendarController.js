@@ -23,7 +23,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
         dateFieldName: config['date'],
         endDateFieldName: config['endDate'],
         limit: 1000,
-        'fields[]':['text',config['date'],config['endDate'],'summary','image']
+        'fields[]':['text',config['date'],config['endDate'],'summary','image','positionName']
     };
     if(config.singlePage){
         options.detailPageId = config.singlePage;
