@@ -340,3 +340,15 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
 .panel-default{border: none;}
 .panel-default>.panel-heading{background-color: transparent}
 .panel{background: transparent}
+.panel-title>a{
+    color:@link;
+    font-size: 2em;
+}
+.panel-title>a:before{
+    content:"\e250";
+    font-family: 'Glyphicons Halflings';
+    margin-right: 12px;
+}
+.panel-title>a.collapsed:before{
+    content:"\e252";
+}
