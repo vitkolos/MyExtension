@@ -14,7 +14,6 @@ CKEDITOR.editorConfig = function( config ) {
 };
 
 CKEDITOR.stylesSet.add( 'default', [
-    { name: 'quote centrée', element: 'blockquote', attributes: { 'class': 'center'} },
     { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} },
     { name: 'Sous-titre FOI', element: 'p', attributes: { 'class': 'red-sub'} },
     {
