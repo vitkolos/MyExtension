@@ -222,7 +222,7 @@
             extraPlugins:'rubedolink,youtube,widget,lineutils,bootstrapCollapse',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
-            contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
+            contentsCss:"/components/components/bootstrap/css/bootstrap.css",
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             templates_replaceContent : false,
             customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
