@@ -21,5 +21,6 @@ CKEDITOR.stylesSet.add( 'default', [
 
 
 CKEDITOR.plugins.addExternal( 'widget', '/theme/netforgod/ckeditor/plugins/widget/','plugin.js' );
+CKEDITOR.plugins.addExternal( 'lineutils', '/theme/netforgod/ckeditor/plugins/lineutils/','plugin.js' );
 CKEDITOR.plugins.addExternal( 'youtube', '/theme/goodnews/ckeditor/plugins/youtube/','plugin.js' );
 CKEDITOR.plugins.addExternal( 'bootstrapCollapse', '/theme/netforgod/ckeditor/plugins/bootstrapCollapse/','plugin.js' );
