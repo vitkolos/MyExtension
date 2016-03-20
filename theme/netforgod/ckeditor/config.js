@@ -10,7 +10,7 @@ CKEDITOR.editorConfig = function( config ) {
         config.colorButton_colors = '00a0ae,1d8f9e,0073b3,f19942,e71623,e3dfd7,807f7d,333333';
         config.colorButton_enableMore = false;
         config.youtube_responsive = true;
-	config.bootstrapCollapse_managePopupContent = true;
+	config.bootstrapCollapse_managePopupContent = false;
 
 };
 
