@@ -21,4 +21,4 @@ CKEDITOR.stylesSet.add( 'default', [
 
 
 CKEDITOR.plugins.addExternal( 'youtube', '/theme/goodnews/ckeditor/plugins/youtube/','plugin.js' );
-CKEDITOR.plugins.addExternal( 'mtcollapsed', '/theme/netforgod/ckeditor/plugins/bootstrapCollapse/','plugin.js' );
+CKEDITOR.plugins.addExternal( 'bootstrapCollapse', '/theme/netforgod/ckeditor/plugins/bootstrapCollapse/','plugin.js' );
