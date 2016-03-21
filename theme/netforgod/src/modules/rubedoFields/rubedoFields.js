@@ -183,7 +183,7 @@
             { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
             { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
             '/',
-            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote','BootstrapCollapse', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
             { name: 'styles', items: [ 'Styles', 'Format', 'Font', 'FontSize' ] },
             '/',
             { name: 'colors', items: [ 'TextColor', '-','BGColor' ] },
@@ -219,10 +219,10 @@
             language:$scope.fieldLanguage,
             entities:false,
             entities_latin:false,
-            extraPlugins:'rubedolink,youtube',
+            extraPlugins:'rubedolink,youtube,widget,lineutils,bootstrapCollapse',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
-            contentsCss:"/theme/"+rubedoConfig.siteTheme+"/ckeditor/styles.css",
+            contentsCss:"/components/components/bootstrap/css/bootstrap.css",
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             templates_replaceContent : false,
             customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
@@ -251,7 +251,7 @@
                         newValue="<div>"+newValue+"</div>";
                     }
                     me.html=jQuery.htmlClean(newValue, {
-                        allowedAttributes:[["style"],["rubedo-page-link"],["target"],["border"]["data-toggle"]["data-target"]],
+                        allowedAttributes:[["style"],["id"],["rubedo-page-link"],["target"],["border"],["data-toggle"],["data-target"]],
                         replace: [[["b", "big"], "strong"]],
                         format: true
                     });

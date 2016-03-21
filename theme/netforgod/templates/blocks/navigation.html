@@ -9,14 +9,15 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="visible-xs-block">
-                    <ul class="nav navbar-nav">
+                    <a ng-if="blockConfig.displayRootPage" class="navbar-brand" style="margin-right:15px; margin-left:-15px" ng-href="{{menuCtrl.menu.url}}"><img class="img-responsive " ng-src="{{rubedo.imageUrl.getUrlByMediaId('566ad4f73bc32544678b456c', {height:'50px',mode:'boxed'})}}"/></a>
+                    <ul class="nav navbar-nav" style="margin: 0px -15px; display: inline-block" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <li ng-repeat="page in menuCtrl.menu.pages track by $index" class="active" ng-if="rubedo.current.page.id==page.id">
                             <a ng-href="{{page.url}}">{{page.text}}</a>
                         </li>
                     </ul>
                 </div>
                 <a ng-if="blockConfig.displayRootPage" class="navbar-brand visible-lg-block" ng-href="{{menuCtrl.menu.url}}"><img class="img-responsive " ng-src="{{rubedo.imageUrl.getUrlByMediaId('566a98173bc325af638b4569', {height:'60px',mode:'boxed'})}}"/></a>
-                <a ng-if="blockConfig.displayRootPage" class="navbar-brand visible-sm-block visible-md-block" ng-href="{{menuCtrl.menu.url}}"><img class="img-responsive " ng-src="{{rubedo.imageUrl.getUrlByMediaId('566ad4f73bc32544678b456c', {height:'50px',mode:'boxed'})}}"/></a>
+                <a ng-if="blockConfig.displayRootPage" class="navbar-brand  visible-sm-block visible-md-block" ng-href="{{menuCtrl.menu.url}}"><img class="img-responsive " ng-src="{{rubedo.imageUrl.getUrlByMediaId('566ad4f73bc32544678b456c', {height:'50px',mode:'boxed'})}}"/></a>
             </div>
             
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

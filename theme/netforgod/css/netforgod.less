@@ -1,6 +1,6 @@
 /*VARIABLES GLOBALES*/
 //largeurs
-@min_xs:500px;
+@min_xs:350px;
 @min_sm:768px;
 @min_md:992px;
 @min_lg:1200px;
@@ -46,6 +46,8 @@ span.glyphicon{margin-right: 5px}
 .txt-rouge{color: @rouge}
 .txt-orange{color: @orange}
 .txt-link{color: @link}
+.img-circle{border:2px solid white}
+.texte{max-width: 860px; margin: 24px auto; padding: 6px 0}
 
 ///////MENU/////
 .navbar-brand{background-color: @main_light; height: auto; padding: 15px 10px}
@@ -305,8 +307,8 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
 
 ///////mediaschool/////////
 .school-films {
-  background: url('/theme/netforgod/img/films.jpg') no-repeat center center;
-  background-size: cover;
+  background: url('/theme/netforgod/img/cinema.svg') no-repeat center center;
+  background-size: 250% auto;
   height: 70vh;
   .owl-pagination{display:none}
 }
@@ -318,15 +320,16 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
   .school-films>.owl-wrapper-outer, .school-films>.owl-controls{
     position: absolute;
     transform:translateY(-50%);
-    margin-top: 35vh;
+    margin-top: 31vh;
     width:100%;
 
   }
   .school-films  .item-video{
-      width: 70%;
-      margin-left: 15%;    
-    max-height: 60vh;
+      width: 500px;
+      margin-left: auto; margin-right:auto;    
+        max-height: 60vh;
     }
+    .school-films{background-size: 2000px auto;}
 }
 .owl-theme .owl-controls .owl-buttons div{
   color:@main;
@@ -336,4 +339,25 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
 .owl-prev{float: left}
 .owl-next{float: right}
 
-
+///////////////COLLAPSE/////////////////
+.panel-default{border: none;}
+.panel-body{border: none}
+.panel-group .panel{margin-bottom: 24px;}
+.panel-default>.panel-heading{background-color: transparent}
+.panel{background: transparent}
+.panel-title>a{
+    color:@link;
+    font-size: 1.5em;
+    vertical-align: middle;
+    text-decoration: none;
+}
+.panel-title>a:before{
+    content:"R";
+    font-family: 'netforgod';
+    margin-right: 12px;
+    font-size: 0.75em;
+}
+.panel-title>a.collapsed:before{
+    content:"T";
+}
+.panel-body td:first-of-type{padding-right: 12px; text-align: right}

@@ -447,6 +447,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 });
             } else {
                 me.apiClusterMode=false;
+                var today = new Date();
                 angular.forEach(data.results.data,function(item){
                     /*calculer le type d'événement*/
                     switch(item['typeId']) {
@@ -462,11 +463,14 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         case "54632c1545205e7c38b0c6b7": // lieux communautaires
                             item['groupe']="lieux"; break;
                         case "54dc614245205e1d4a8b456b": //propositions
-                            item['groupe']="evenement"; break;
+                            item['groupe']="evenement";
+                            if(item['fields.dateDebut'][0] && item['fields.dateDebut'][0]*1000 < today.getTime()){var isPast = true}
+                            //do not display if past date
+                            break;
                         default:
                             item['groupe']="";
                     }
-                    if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
+                    if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0] && !isPast){
                         var coords=item['fields.position.location.coordinates'][0].split(",");
                         var icon = new google.maps.MarkerImage("/theme/cte/img/icons/gmaps-"+item.groupe+".png", null, null, null, new google.maps.Size(50, 50));// add custom icon
                         if (coords[0]&&coords[1]){

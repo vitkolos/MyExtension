@@ -16,6 +16,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     }
     me.setCurrentStage = function(step, valide) {
         if(valide){
+            /*
             if (step==3) {
                     me.stage2Error=null;
                     if (!$scope.rubedo.current.user){
@@ -25,7 +26,8 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     }
 
             }
-            else me.toggleStage(step);
+            else */
+            me.toggleStage(step);
         }  
     };
     me.parseUserType=function(userType){
