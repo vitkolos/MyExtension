@@ -162,6 +162,14 @@
                                                 <textarea rows="2" ng-model="don.message" name="message" placeholder="Message..."></textarea>
                                         </div>
                                 </div>
+                                <div class="row text-center">
+                                        <div class="col-sm-12">
+                                                <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="donsCtrl.setCurrentStage(4,inscription_form.$valid" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Dons.Donner","Donner")}}</div><!----inscription_form.$valid)-->
+                                                <img src="/theme/cte/img/loader.gif" ng-if="processForm">
+                                                <p ng-if="finInscription">{{message}}</p>
+                                        </div>
+                                        
+                                    </div>
                         </ng-form>
                 </div>                        
         </ng-form>
