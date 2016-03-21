@@ -34,11 +34,15 @@
                         </li>
                     </ul>
                     <ul ng-if="page.pages&&blockConfig.menuLevel>1&&!megaMenuCtrl.hasSubPages(page)" class="dropdown-menu" role="menu">
-                        <li ng-if="!blockConfig.disableLevelOne" ng-class="{active:rubedo.current.page.id==page.id}"><a ng-href="{{page.url}}">{{page.text}}</a></li>
-                        <li ng-if="!blockConfig.disableLevelOne" class="divider"></li>
-                        <li ng-repeat="subpage in page.pages track by $index" ng-class="{active:menuCtrl.currentRouteline.indexOf(subpage.url) > -1}">
-                            <a ng-href="{{subpage.url}}">{{subpage.text}}</a>
-                        </li>
+                        <div class="categories" style="display:block; padding-left:5px;">
+                            <span ng-if="!blockConfig.disableLevelOne " ng-class="{active:rubedo.current.page.id==page.id}" >
+                                <a class="dropdown-header" ng-href="{{page.url}}">{{page.text}}</a>
+                            </span>
+                            <!--<li ng-if="!blockConfig.disableLevelOne " class="divider"></li>-->
+                            <span ng-repeat="subpage in page.pages track by $index" ng-class="{active:menuCtrl.currentRouteline.indexOf(subpage.url) > -1}">
+                                <a ng-href="{{subpage.url}}">{{subpage.text}}</a><br>
+                            </span>
+                        </div>
                     </ul>
                 </li>
             </ul>
