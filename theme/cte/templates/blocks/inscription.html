@@ -41,7 +41,7 @@
             <ng-form name="paiement">
                <div class="row">
                     <div class="col-xs-12 text-center">
-                        <p>{{rubedo.translate("Block.Inscription.Paf")}} </p>
+                        <p>{{rubedo.translate("Block.Inscription.Paf","La participation aux frais est de :")}} </p>
                         <p>{{contentDetailCtrl.content.fields.paf_text}}</p>
                         <p ng-repeat="(option, prix) in inscription.optionsPayantes" ng-if="prix">
                                 + {{option}} : {{prix}}€
