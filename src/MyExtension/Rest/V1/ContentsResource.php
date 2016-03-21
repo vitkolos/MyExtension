@@ -886,7 +886,7 @@ class ContentsResource extends AbstractResource
                 (new FilterDefinitionEntity())
                 ->setKey('includetl')
                 ->setDescription('Retrieve terms labels')
-            ) >addOutputFilter(
+            ) ->addOutputFilter(
                 (new FilterDefinitionEntity())
                     ->setKey('contents')
                     ->setDescription('List of contents')
