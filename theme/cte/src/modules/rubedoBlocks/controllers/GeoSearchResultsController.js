@@ -27,6 +27,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         if (config.noDrag) {
             me.mapOptions={draggable:false, scrollwheel: false}
         }
+        else me.mapOptions={draggable:true, scrollwheel: true}
         me.geocoder = new google.maps.Geocoder();
         //places search
         if (config.showPlacesSearch){
