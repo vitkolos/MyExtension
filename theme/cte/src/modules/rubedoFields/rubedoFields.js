@@ -184,7 +184,7 @@
             { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
             { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
             '/',
-            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'BootstrapCollapse','-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
             { name: 'styles', items: [ 'Styles', 'Format', 'Font' ] },
             '/',
             { name: 'colors', items: ['TextColor', '-','BGColor' ] },
@@ -220,7 +220,7 @@
             language:$scope.fieldLanguage,
             entities:false,
             entities_latin:false,
-            extraPlugins:'rubedolink,youtube',
+            extraPlugins:'rubedolink,youtube,widget,lineutils,bootstrapCollapse',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
@@ -254,7 +254,7 @@
                         newValue="<div>"+newValue+"</div>";
                     }
                     me.html=jQuery.htmlClean(newValue, {
-                        allowedAttributes:[["style"],["rubedo-page-link"],["target"],["align"],["width"],["height"]],
+                        allowedAttributes:[["style"],["rubedo-page-link"],["target"],["align"],["width"],["height"],["data-toggle"],["data-target"]],
                         allowedTags: ['table','tbody','tr','td','iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br'],
                         removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],                        
                         replace: [[["b", "big"], "strong"]],
