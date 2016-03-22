@@ -537,7 +537,24 @@ blockquote p{.capital;.txt-red; text-align: center}
 
 @media screen and (min-width:@min_xs) and (max-width:@min_sm) {.ratio_321:before{padding-top:33.333%;} .ratio_321>img{top:-85%}}
 @media screen and (min-width:@min_sm){.ratio_321>img{width:160px}}
+.text-article{
+  .panel-default{border: none;}
+  .panel-body{border: none}
 
+  .panel{background: transparent;}
+  .panel-default>.panel-heading{
+    background-color: transparent;
+    color:@txt_dark;
+    border-top:2px solid @marron;
+    
+  }
+  .panel-title>a{
+    font-size: 1.2em;
+    vertical-align: middle;
+    font-weight: bold;
+    text-decoration: none;
+  }
+}
 
 
 .ratio_21{position:relative; width:100%; overflow:hidden; max-height: 400px}
