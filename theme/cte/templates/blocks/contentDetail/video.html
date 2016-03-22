@@ -48,6 +48,11 @@
 				<jwplayer video-url="{{contentDetailCtrl.content.fields.video.url}}"></jwplayer>
 			</div>
 		</div>
+		<div class="col-xs-12 col-sm-12 padding-large" ng-if="fieldEntity['description']">
+			<div class="text-article">
+				<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+			</div>
+		</div>
 </div>
 
 <div style="margin-top:24px"></div>
