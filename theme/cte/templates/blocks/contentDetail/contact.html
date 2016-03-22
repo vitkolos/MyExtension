@@ -1,4 +1,36 @@
-<div class=" content_border">
+<div ng-if="block.code=='contact' "
+<div class="container">
+		<div class="row padding-large text-center">
+			<div class="col-xs-12 text-center">
+				
+			</div>
+		</div>
+		<div class="row padding-large text-center">
+			<div class="col-xs-4 " ng-if="fieldEntity['telephone']">
+				<p><i class="fa fa-phone icon"></i></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Telephone")}}</b></p>
+				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
+				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></p>
+			</div>
+			<div class="col-xs-4" ng-if="fieldEntity['position']">
+				<p><i class="fa fa-map-marker icon"></i></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Adresse")}}</b></p>
+				<p>{{contentDetailCtrl.content.fields.position.address}}</p>
+			</div>
+			<div class="col-xs-4"  ng-if="fieldEntity['email']">
+				<p><i class="fa fa-envelope icon"></i></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Email")}}</b></p>
+				<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':'Envoyer un mail'}">
+					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
+				</div>
+				<rubedo-field  ng-if="rubedo.current.user" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user">(visible car vous êtes connectés)</span>
+			</div>
+		</div>
+
+		<div style="padding-top:24px" class=""></div>
+	</div>
+</div>
+<div class=" content_border" ng-if="block.code != 'contact' ">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 ">
