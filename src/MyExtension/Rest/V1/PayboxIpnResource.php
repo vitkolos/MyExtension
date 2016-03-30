@@ -101,11 +101,12 @@ if(!($erreurStatus) && $securite && $autorisation) {
             // ENREGISTRER LE PAIEMENT DANS LA BASE DE DONNEES
             
             //pour inscription, on récupère le contenu inscription et on change le statut
-            $commande = explode("|", $params['commande']); // $idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
-            $idInscription = $commande[0];
-            $proposition = $commande[1];
-            $prenom = $commande[2];
-            $nom = $commande[3];
+            $commande = explode("|", $params['commande']); // $codeCompta . "|" .$idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
+            $codeCompta = $commande[0];
+            $idInscription = $commande[1];
+            $proposition = $commande[2];
+            $prenom = $commande[3];
+            $nom = $commande[4];
             $montant = (int)$params['montant']/100;
             // récupérer l'id du contenu "inscription"
             $contentId = $this->getContentIdByName($idInscription);
@@ -155,7 +156,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $body.=$inscription['content']['fields']['propositionTitre'];
             $body .= "Proposition : " . $inscription['fields']['propositionTitre']."\n";
             $body .= "Code Onesime : " . $inscription['fields']['codeOnesime']."\n";
-            $body .= "Code Compta : " . $inscription['fields']['codeCompta']."\n";
+            $body .= "Code Compta : " . $codeCompta."\n";
             $body .= "Id Inscription : " . $inscription['fields']['text']."\n";
             $body .= "Nom : " . $inscription['fields']['nom']."\n";
             $body .= "Prénom : " . $inscription['fields']['surname']."\n";
