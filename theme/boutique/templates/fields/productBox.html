@@ -1,0 +1,23 @@
+<div ng-controller="ProductBoxController as productBoxCtrl" class="panel panel-default">
+    <div class="panel-body">
+        <h5 ng-if="productBoxCtrl.hasSpecialOffer"><del>{{productBoxCtrl.oldPrice| number : 2}} €</del></h5>
+        <h3 ng-class="{'text-danger':productBoxCtrl.hasSpecialOffer}" >{{productBoxCtrl.currentPrice| number : 2}} €</h3>
+        <form ng-if="productBoxCtrl.productProperties.variations.length>1">
+            <div  class="form-group" ng-repeat="field in productBoxCtrl.variationFields track by $index">
+                <label for="{{field}}">{{contentDetailCtrl.getFieldByName(field).config.fieldLabel}}</label>
+                <!--<span ng-if="productBoxCtrl.productProperties.variations.length==1"> {{productBoxCtrl.selectionValues[field]}}</span>-->
+                <select ng-if="productBoxCtrl.productProperties.variations.length>1"
+                        class="form-control"
+                        id="{{field}}"
+                        ng-model="productBoxCtrl.selectionValues[field]"
+                        ng-change="productBoxCtrl.handleFieldChange()"
+                        ng-options="item for item in productBoxCtrl.possibleSelectValues[field]">
+                </select>
+            </div>
+        </form>
+        <button class="btn btn-default" ng-disabled="!productBoxCtrl.canOrder()" ng-click="productBoxCtrl.addToCart()">
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}
+        </button>
+    </div>
+    <div ng-if="manageStock" class="panel-footer">{{productBoxCtrl.getProductAvailabilityText()}}</div>
+</div>

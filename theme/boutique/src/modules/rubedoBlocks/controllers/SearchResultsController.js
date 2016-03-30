@@ -9,12 +9,13 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.start = 0;
         me.limit = $routeParams.limit?$routeParams.limit:10;
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"_score";
+        me.orderByDirection='asc';
         var resolveOrderBy = {
             '_score': $scope.rubedo.translate('Search.Label.OrderByRelevance'),
             'lastUpdateTime': $scope.rubedo.translate('Search.Label.OrderByDate'),
             'authorName': $scope.rubedo.translate('Search.Label.OrderByAuthor'),
             'text': $scope.rubedo.translate('Blocks.Search.Label.OrderByTitle'),
-            'productProperties.lowestFinalPrice':'prix',
+            'price':'prix',
         };
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
         me.template = themePath+"/templates/blocks/searchResults/"+config.displayMode+".html";
@@ -27,6 +28,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             predefinedFacets: config.predefinedFacets,
             displayMode: config.displayMode,
             displayedFacets: config.displayedFacets,
+            orderbyDirection:me.orderByDirection,
             orderby: me.orderBy,
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id
@@ -61,7 +63,9 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             options.start = me.start;
             options.limit = me.limit;
             options.orderBy = me.orderBy;
-            parseQueryParamsToOptions();
+            options.orderbyDirection = me.orderByDirection,
+
+                parseQueryParamsToOptions();
             me.searchByQuery(options, true);
         });
         me.checked = function(term){
@@ -100,6 +104,18 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                 $location.search('orderby',me.orderBy);
             }
         };
+        me.changeOrderByDirection= function(direction){
+            if (direction=='asc'&& me.orderByDirection!='asc'){
+                me.orderByDirection='asc';
+                me.start=0;
+                $location.search('orderbyDirection',direction);
+            }
+            if (direction=='desc'&& me.orderByDirection!='desc'){
+                me.orderByDirection='desc';
+                me.start=0;
+                $location.search('orderbyDirection',direction);
+            }
+        }
         me.changeLimit = function(limit){
             if(me.limit != limit){
                 me.limit = limit;
