@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
             me.contents = {};
             angular.forEach(response.data.contents,function(content){
                         me.contents[content.productProperties.sku]= {
-                                    'prix': content.productProperties.lowestFinalPrice*1.055,
+                                    'prix': content.productProperties.lowestFinalPrice,
                                     'titre' : content.text,
                                     'id' : content.id,
                                     'quantite':0,
@@ -40,7 +40,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
     me.exp = 0;
     me.total = me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.exp;
     me.totalPrice = function(){
-        return $filter('number')(me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice + me.fraisExp(), 2);
+        return $filter('number')((me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice)*1.055 + me.fraisExp(), 2);
     };
     me.fraisExp = function(){
         var poids = 340 * (me.small_trad + me.small_or) + 850 * (me.big_or + me.big_trad);
@@ -61,6 +61,9 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
             fraisExp =10.93;
         }
         return fraisExp;
+    }
+    me.tva = function(){
+        return (me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice)*0.055;
     }
     
 
