@@ -1,8 +1,38 @@
-angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService){
+angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scope","$location","$routeParams","$compile","RubedoSearchService","RubedoShoppingCartService","$rootScope",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,RubedoShoppingCartService,$rootScope){
         var me = this;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
+        me.contentHeight = config.summaryHeight ? config.summaryHeight : null;
+        me.summaryStyle={};
+        if (me.contentHeight){
+            me.summaryStyle['height']=me.contentHeight+"px";
+            me.summaryStyle['overflow']="hidden";
+        }
+        me.imageField= config.imageField ? config.imageField : "image";
+        me.imageHeight= config.imageHeight ? config.imageHeight : null;
+        me.imageWidth= config.imageWidth ? config.imageWidth : null;
+        me.imageStyle={};
+        if (me.imageHeight){
+            me.imageStyle['height']=me.imageHeight+"px";
+            me.imageStyle['overflow']="hidden";
+        }
+        me.imageResizeMode= config.imageResizeMode ? config.imageResizeMode : "boxed";
+        me.canOrder=function(content){
+            return !(content.productProperties.manageStock&&(content.productProperties.canOrderNotInStock=="false")&&(content.productProperties.variations[0].stock < content.productProperties.outOfStockLimit)) ;
+        };
+        me.addToCart=function(content){
+            var options={
+                productId:content.id,
+                variationId:content.productProperties.variations[0].id,
+                amount:1
+            };
+            RubedoShoppingCartService.addToCart(options).then(
+                function(response){
+                    $rootScope.$broadcast("shoppingCartUpdated",{emitter:"searchProductBox"});
+                }
+            );
+        };
         me.data = [];
         me.facets = [];
         me.activeFacets = [];
@@ -11,15 +41,14 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"_score";
         me.orderByDirection=$routeParams.orderbyDirection?$routeParams.orderbyDirection:"asc";
         var resolveOrderBy = {
-            '_score': $scope.rubedo.translate('Search.Label.OrderByRelevance'),
-            'lastUpdateTime': $scope.rubedo.translate('Search.Label.OrderByDate'),
-            'authorName': $scope.rubedo.translate('Search.Label.OrderByAuthor'),
-            'text': $scope.rubedo.translate('Blocks.Search.Label.OrderByTitle'),
-            'price':'prix',
+            '_score': 'relevance',
+            'lastUpdateTime': 'date'
         };
+        me.displayMode=config.displayMode ? config.displayMode : "default";
+        me.productDisplayMode=config.productDisplayMode ? config.productDisplayMode : "grid";
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
         me.displayOrderByDirection = $routeParams.orderbyDirection?$routeParams.orderbyDirection:$scope.rubedo.translate('Search.Label.OrderByPrice');
-        me.template = themePath+"/templates/blocks/searchResults/"+config.displayMode+".html";
+        me.template = themePath+"/templates/blocks/productSearch/"+me.displayMode+".html";
         var predefinedFacets = !config.predefinedFacets?{}:JSON.parse(config.predefinedFacets);
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
         var defaultOptions = {
@@ -29,8 +58,8 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             predefinedFacets: config.predefinedFacets,
             displayMode: config.displayMode,
             displayedFacets: config.displayedFacets,
-            orderbyDirection:me.orderByDirection,
             orderby: me.orderBy,
+            orderbyDirection:me.orderByDirection,
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id
         };
@@ -65,7 +94,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             options.limit = me.limit;
             options.orderBy = me.orderBy;
             options.orderbyDirection = me.orderByDirection;
-                parseQueryParamsToOptions();
+            parseQueryParamsToOptions();
             me.searchByQuery(options, true);
         });
         me.checked = function(term){
@@ -189,7 +218,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         };
 
         me.searchByQuery = function(options){
-            RubedoSearchService.searchByQuery(options).then(function(response){
+            RubedoSearchService.searchProducts(options).then(function(response){
                 if(response.data.success){
                     me.query = response.data.results.query;
                     me.count = response.data.count;
@@ -220,7 +249,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                         }
                     });
                 }
-            })
+            });
         };
         parseQueryParamsToOptions();
         me.searchByQuery(options);
