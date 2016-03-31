@@ -114,6 +114,7 @@ class PaymentResource extends AbstractResource {
                     $lieuCommunautaire = Manager::getService("Contents")->findById($place,false,false);
                     $codeCompta = "[" . $lieuCommunautaire["fields"]["codeCompta"] . "]";
                 }
+                else $codeCompta = "[no]";
                 $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
                 break;
         
