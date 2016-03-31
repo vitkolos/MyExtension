@@ -34,7 +34,11 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             siteId: $scope.rubedo.current.site.id,
             taxonomies:{}
         };
-        me.options["type[]"] = config.contentType ? config.contentType:[];
+        if (config.contentType) {
+            angular.forEach(config.contentType, function(value, key) {
+                me.options.predefinedFacets.push({"type":value});
+            })
+        };
         me.options.taxonomies = config.taxonomies? JSON.parse(config.taxonomies):{};
         var taxonomiesReset =config.taxonomies? JSON.parse(config.taxonomies):{};
         if (config.singlePage){
