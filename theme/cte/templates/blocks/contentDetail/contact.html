@@ -6,15 +6,16 @@
 			</div>
 		</div>
 		<div class="row padding-large text-center">
+			<div class="col-sm-2" ng-if="!fieldEntity['telephone'] || !fieldEntity['position']">
+				<p></p>
+			</div>
 			<div class="col-xs-4 col-sm-4" ng-if="fieldEntity['telephone']">
 				<p><i class="fa fa-phone icon"></i></p>
 				<p><b>{{rubedo.translate("Block.Inscription.Telephone")}}</b></p>
 				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></p>
 			</div>
-			<div class="col-sm-2" ng-if="!fieldEntity['telephone'] || !fieldEntity['position']">
-				<p></p>
-			</div>
+
 			<div class="col-xs-4 col-sm-4" ng-if="fieldEntity['position']">
 				<p><i class="fa fa-map-marker icon"></i></p>
 				<p><b>{{rubedo.translate("Block.Inscription.Adresse")}}</b></p>
@@ -94,15 +95,16 @@
 			</div>
 		</div>
 		<div class="row padding-large text-center">
+			<div class="col-sm-2" ng-if="!fieldEntity['telephone'] || !fieldEntity['position']">
+				<p></p>
+			</div>
 			<div class="col-xs-4 " ng-if="fieldEntity['telephone']">
 				<p><i class="fa fa-phone icon"></i></p>
 				<p><b>{{rubedo.translate("Block.Inscription.Telephone")}}</b></p>
 				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></p>
 			</div>
-			<div class="col-sm-2" ng-if="!fieldEntity['telephone'] || !fieldEntity['position']">
-				<p></p>
-			</div>
+
 			<div class="col-xs-4" ng-if="fieldEntity['position']">
 				<p><i class="fa fa-map-marker icon"></i></p>
 				<p><b>{{rubedo.translate("Block.Inscription.Adresse")}}</b></p>
