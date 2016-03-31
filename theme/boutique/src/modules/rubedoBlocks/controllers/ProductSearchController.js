@@ -39,6 +39,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         me.start = 0;
         me.limit = $routeParams.limit?$routeParams.limit:10;
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"_score";
+        me.orderByDirection=$routeParams.orderbyDirection?$routeParams.orderbyDirection:"asc";
         var resolveOrderBy = {
             '_score': 'relevance',
             'lastUpdateTime': 'date'
@@ -46,6 +47,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         me.displayMode=config.displayMode ? config.displayMode : "default";
         me.productDisplayMode=config.productDisplayMode ? config.productDisplayMode : "grid";
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
+        me.displayOrderByDirection = $routeParams.orderbyDirection?$routeParams.orderbyDirection:$scope.rubedo.translate('Search.Label.OrderByPrice');
         me.template = themePath+"/templates/blocks/productSearch/"+me.displayMode+".html";
         var predefinedFacets = !config.predefinedFacets?{}:JSON.parse(config.predefinedFacets);
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
@@ -57,6 +59,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             displayMode: config.displayMode,
             displayedFacets: config.displayedFacets,
             orderby: me.orderBy,
+            orderbyDirection:me.orderByDirection,
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id
         };
@@ -90,6 +93,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             options.start = me.start;
             options.limit = me.limit;
             options.orderBy = me.orderBy;
+            options.orderbyDirection = me.orderByDirection;
             parseQueryParamsToOptions();
             me.searchByQuery(options, true);
         });
@@ -119,6 +123,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             options.limit = me.limit;
             options.query = me.query;
             options.orderBy = me.orderBy;
+            options.orderbyDirection = me.orderByDirection;
             $location.search('query',me.query);
         };
         me.changeOrderBy = function(orderBy){
@@ -129,6 +134,14 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
                 $location.search('orderby',me.orderBy);
             }
         };
+        me.changeOrderByDirection= function(direction){
+            if (me.orderByDirection!=direction){
+                me.orderByDirection=direction;
+                me.displayOrderByDirection=direction
+                me.start=0;
+                $location.search('orderbyDirection',direction);
+            }
+        }
         me.changeLimit = function(limit){
             if(me.limit != limit){
                 me.limit = limit;

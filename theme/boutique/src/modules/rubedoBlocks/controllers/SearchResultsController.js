@@ -9,7 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.start = 0;
         me.limit = $routeParams.limit?$routeParams.limit:10;
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"_score";
-        me.orderByDirection='asc';
+        me.orderByDirection=$routeParams.orderbyDirection?$routeParams.orderbyDirection:"asc";
         var resolveOrderBy = {
             '_score': $scope.rubedo.translate('Search.Label.OrderByRelevance'),
             'lastUpdateTime': $scope.rubedo.translate('Search.Label.OrderByDate'),
@@ -64,7 +64,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             options.start = me.start;
             options.limit = me.limit;
             options.orderBy = me.orderBy;
-            options.orderbyDirection = me.orderByDirection,
+            options.orderbyDirection = me.orderByDirection;
                 parseQueryParamsToOptions();
             me.searchByQuery(options, true);
         });
@@ -94,6 +94,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             options.limit = me.limit;
             options.query = me.query;
             options.orderBy = me.orderBy;
+            options.orderbyDirection = me.orderByDirection;
             $location.search('query',me.query);
         };
         me.changeOrderBy = function(orderBy){
@@ -104,7 +105,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                 $location.search('orderby',me.orderBy);
             }
         };
-        me.changeOrderBy= function(direction){
+        me.changeOrderByDirection= function(direction){
             if (me.orderByDirection!=direction){
                 me.orderByDirection=direction;
                 me.displayOrderByDirection=direction
