@@ -102,6 +102,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
+                me.contents = response.data.contents;
                 var columnContentList = [];
                 if (add){
                     angular.forEach(response.data.contents,function(newContent){
