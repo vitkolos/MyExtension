@@ -241,12 +241,13 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                                 } else if (previousFacetId && me.notRemovableTerms.length != 0){
                                     newTerm.operator = ', ';
                                 }
-                                if(predefinedFacets.hasOwnProperty(activeFacet.id) && predefinedFacets[activeFacet.id]==term.term){
+                                if(predefinedFacets.hasOwnProperty(activeFacet.id) && (predefinedFacets[activeFacet.id]==term.term || predefinedFacets[activeFacet.id].indexOf(term.term)>-1)){
                                     me.notRemovableTerms.push(newTerm);
                                 } else {
                                     me.activeTerms.push(newTerm);
                                 }
                                 previousFacetId = activeFacet.id;
+                                console.log()
                             });
                         }
                     });
