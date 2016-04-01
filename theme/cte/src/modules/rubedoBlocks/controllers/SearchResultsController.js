@@ -38,6 +38,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         
         if (config.contentType) {
             me.options.predefinedFacets["type"] = config.contentType;
+            console.log(me.options.predefinedFacets);
         };
         console.log(config.contentType);
         
