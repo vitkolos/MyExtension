@@ -1,8 +1,8 @@
 <nav class="navbar navbar-default">
     <div class="navbar-header">
             <span class="navbar-brand">{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} :
-                <span ng-repeat-start="term in searchResultsCtrl.activeTerms track by $index" ng-if="term.id!='type' ">{{term.operator}}</span>
-                <li class="tags cursor-as-pointer" ng-repeat-end
+                <span ng-repeat-start="term in searchResultsCtrl.activeTerms track by $index">{{term.operator}}</span>
+                <li class="tags cursor-as-pointer" ng-if="term.id!='type' " ng-repeat-end
                       ng-click="searchResultsCtrl.clickOnFacets(term.facetId, term.term)">
                     {{term.label}}
                 </li>
