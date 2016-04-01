@@ -27,6 +27,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
 
             }
             else */
+            
             me.toggleStage(step);
         }  
     };
