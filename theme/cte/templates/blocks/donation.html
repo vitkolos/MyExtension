@@ -162,31 +162,31 @@
                                         </div>
                                         <div class="col-sm-8 col-xs-12">
                                                 <div class="col-xs-12">
-                                                    <input type="radio"  name="modePaiement" id="carte" ng-model="don.modePaiement" value="carte" required>
+                                                    <input type="radio"  name="modePaiement" id="carte" ng-model="don.modePaiement" value="carte" ng-if="!don.mensuel && !don.trimestriel" required>
                                                     <label for="carte">{{rubedo.translate("Block.Inscription.Paf.Carte")}}</label>    
                                                 </div>
                                                 <div class="col-xs-12">
-                                                    <input type="radio"  name="modePaiement" id="paypal" ng-model="don.modePaiement" value="paypal" required>
+                                                    <input type="radio"  name="modePaiement" id="paypal" ng-model="don.modePaiement" value="paypal" ng-if="!don.mensuel && !don.trimestriel" required>
                                                     <label for="paypal">{{rubedo.translate("Block.Inscription.Paf.Paypal","Paypal")}}</label> 
                                                 </div>                            
                                                 <div class="col-xs-12">
-                                                    <input type="radio"  name="modePaiement" id="cheque" ng-model="don.modePaiement" value="cheque" required>
+                                                    <input type="radio"  name="modePaiement" id="cheque" ng-model="don.modePaiement" value="cheque" ng-if="!don.mensuel && !don.trimestriel" required>
                                                     <label for="cheque">{{rubedo.translate("Block.Inscription.Paf.Cheque")}}</label> 
                                                 </div>
                                                 <div class="col-xs-12">
-                                                    <input type="radio"  name="modePaiement" id="virement" ng-model="don.modePaiement" value="virement" required>
+                                                    <input type="radio"  name="modePaiement" id="virement" ng-model="don.modePaiement" value="virement" ng-if="!don.mensuel && !don.trimestriel" required>
                                                     <label for="virement">{{rubedo.translate("Block.Inscription.Paf.Virement","Virement")}}</label> 
                                                 </div>
                                                 <div class="col-xs-12">
-                                                    <input type="radio"  name="modePaiement" id="liquide" ng-model="don.modePaiement" value="liquide" required>
+                                                    <input type="radio"  name="modePaiement" id="liquide" ng-model="don.modePaiement" value="liquide" ng-if="!don.mensuel && !don.trimestriel" required>
                                                     <label for="liquide">{{rubedo.translate("Block.Inscription.Paf.Liquide","Dépôt d'argent liquide")}}</label> 
                                                 </div>
                                                 <div class="col-xs-12">
-                                                    <input type="radio"  name="modePaiement" id="prelevement" ng-model="don.modePaiement" value="prelevement" required>
+                                                    <input type="radio"  name="modePaiement" id="prelevement" ng-model="don.modePaiement" value="prelevement" ng-if="don.mensuel || don.trimestriel" required>
                                                     <label for="prelevement">{{rubedo.translate("Block.Inscription.Paf.Prelevement","Prélèvement automatique")}}</label> 
                                                 </div>
                                                 <div class="col-xs-12">
-                                                    <input type="radio"  name="modePaiement" id="virementPeriod" ng-model="don.modePaiement" value="virementPeriod" required>
+                                                    <input type="radio"  name="modePaiement" id="virementPeriod" ng-model="don.modePaiement" value="virementPeriod" ng-if="don.mensuel || don.trimestriel" required>
                                                     <label for="virementPeriod">{{rubedo.translate("Block.Inscription.Paf.Virement.Period","Virement périodique")}}</label> 
                                                 </div>
                                         </div>  
