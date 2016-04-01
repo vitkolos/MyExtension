@@ -8,6 +8,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     me.userType="56e6edeac445eccc038b5b8e"; // type d'utilisateurs = donateurs
     $scope.don= {};
     $scope.don.user={};
+    $scope.don.user.country = "FRANCE";
 
     me.toggleStage = function(newStage){
        angular.element("#inscriptionStage"+me.currentStage).collapse("hide");
