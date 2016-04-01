@@ -1,10 +1,12 @@
-angular.module("rubedoBlocks").lazy.controller("MegaMenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','RubedoContentsService',function($scope,$location,RubedoMenuService,RubedoPagesService,RubedoContentsService,$http){
+angular.module("rubedoBlocks").lazy.controller("MegaMenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','RubedoContentsService','$http','$route',
+                                    function($scope,$location,RubedoMenuService,RubedoPagesService,RubedoContentsService,$http,$route){
     var me=this;
     me.menu={};
     me.currentRouteline=$location.path();
     var config=$scope.blockConfig;
     me.searchEnabled = (config.useSearchEngine && config.searchPage);
     me.contentWidth = config.contentWidth;
+    var lang = $route.current.params.lang;
     if (config.rootPage&&config.rootPage!=""){
         var pageId=config.rootPage;
     } else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
@@ -52,6 +54,14 @@ angular.module("rubedoBlocks").lazy.controller("MegaMenuController",['$scope','$
             me.menu={};
         }
     });
+    /*Ajouter les traductions*/
+    $scope.rubedo.getCustomTranslations = function(){
+        $http.get('/theme/'+window.rubedoConfig.siteTheme+'/localization/'+lang+'/Texts.json').then(function(res){
+            $scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
+        });
+    }
+    //alert(lang);
+    $scope.rubedo.getCustomTranslations();
     //$scope.rubedo.getCustomTranslations = function(){
     //    $http.get('/theme/cte/localization/'+lang+'/Texts.json').then(function(res){
     //        $scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
