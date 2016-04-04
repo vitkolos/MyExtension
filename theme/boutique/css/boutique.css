@@ -121,6 +121,21 @@ h6 {
   background-color: white;
   border-color: #dddddd;
 }
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #c1573c;
+  border-color: #c1573c;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #c1573c;
+}
 .hidden {
   visibility: hidden;
 }
