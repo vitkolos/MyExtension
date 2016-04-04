@@ -149,6 +149,10 @@ h6 {
     text-align: center;
   }
 }
+.detail {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
 .detail * {
   text-align: left;
 }
@@ -156,13 +160,8 @@ h6 {
   text-align: center;
 }
 .detail img {
-  margin: 0!important;
   max-height: 400px;
   max-width: 400px;
-}
-.detail > div {
-  margin-top: 25px;
-  margin-bottom: 25px;
 }
 .welcome-linkbox {
   z-index: 10;
