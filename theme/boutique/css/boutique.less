@@ -1,6 +1,6 @@
-﻿//-------------//
-//des couleurs //
-//-------------//
+﻿                                                //-------------//
+                                                //des couleurs //
+                                                //-------------//
 
 @width_xxs:420px;
 @min_xs:500px;
@@ -20,10 +20,10 @@
 //@14-18:#59d3b6;
 @bleu:#3CA6C1;
 
-//-------------------//
-//generalités du html//
-//-------------------//
-
+                                                //-------------------//
+                                                //generalités du html//
+                                                //-------------------//
+*{transition: all .2s ease 0s;}
 a{
   font-family: 'Montserrat', sans-serif;
   color:lighten(@txt_dark,20%);
@@ -31,7 +31,6 @@ a{
 .links{
   font-family: 'Montserrat', sans-serif;
 }
-
 a:hover, a:focus {
   color: @txt_dark;
 
@@ -44,9 +43,10 @@ html,body {
 }
 text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
 
-//-------------------//
-//surcharge bootstrap//
-//-------------------//
+
+                                                //-------------------//
+                                                //surcharge bootstrap//
+                                                //-------------------//
 
 .navbar{border-radius:0}
 .progress-bar {
@@ -105,12 +105,32 @@ padding-left: 0;}
   font-size: small;
   color: @txt_light;
   text-decoration: line-through}
-//--------------------------//
-//quelques classes générales//
-//--------------------------//
+.panel-default,.panel-heading,.navbar-default,.panel-default>.panel-heading{
+  background-color: white;
+  border-color: #DDDDDD
+}
+.pagination>.active{
+  >a,>span{background-color: @rouge;
+    border-color: @rouge;
+    &:hover,&:focus{
+      background-color: @rouge_shadow;
+      border-color: @rouge_shadow;
+    }
+  }
+}
+.pagination>li>{
+  >a,>span{ color: @rouge;
+    &:hover,&:focus{
+      color: @rouge;
+    }
+  }
+
+}
+                                                //--------------------------//
+                                                //quelques classes générales//
+                                                //--------------------------//
 
 .hidden{  visibility: hidden;}
-//.optional{  visibility: hidden;}
 .btq-panel{
   border-radius: 0;
   border-color: #DDDDDD;
@@ -124,6 +144,10 @@ padding-left: 0;}
   margin-top: 15px;
 }
 .product-mini{
+  padding-bottom: 20px;
+
+}
+.product-mini-grid{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -131,7 +155,6 @@ padding-left: 0;}
 .shadowed-image img{
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
-//.true-search .optional{visibility: visible}
 .logo img{
   display: block;
   margin-left: auto;
@@ -184,19 +207,17 @@ padding-left: 0;}
   top: 30%;
 
 }
-//hover navbar
+.search-prod-search{
+  margin-bottom: 20px;
+  .btn{line-height: 1.6}
+  .form-control{border-radius: 0px;
+    border-color: #DDDDDD}
 
-//dropdown
-//add  container class
-//right 0 et left 0
-//margin left et right auto
+}
 
-
-
-
-//-------------------//
-//les énormes classes//
-//-------------------//
+                                                //-------------------//
+                                                //les énormes classes//
+                                                //-------------------//
 .head-btq{
   background-color: @marron;
   color: @txt_dark;
@@ -335,6 +356,9 @@ padding-left: 0;}
   }
   .row {
     padding-top: 5px;
+  }
+  .glyphicon{
+    color: white;
   }
 }
 

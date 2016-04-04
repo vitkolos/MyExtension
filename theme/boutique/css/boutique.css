@@ -1,3 +1,6 @@
+* {
+  transition: all .2s ease 0s;
+}
 a {
   font-family: 'Montserrat', sans-serif;
   color: #868484;
@@ -114,6 +117,35 @@ h6 {
   color: #898989;
   text-decoration: line-through;
 }
+.panel-default,
+.panel-heading,
+.navbar-default,
+.panel-default > .panel-heading {
+  background-color: white;
+  border-color: #dddddd;
+}
+.pagination > .active > a,
+.pagination > .active > span {
+  background-color: #c1573c;
+  border-color: #c1573c;
+}
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #9e4232;
+  border-color: #9e4232;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: #c1573c;
+}
+.pagination > li > a:hover,
+.pagination > li > span:hover,
+.pagination > li > a:focus,
+.pagination > li > span:focus {
+  color: #c1573c;
+}
 .hidden {
   visibility: hidden;
 }
@@ -130,6 +162,9 @@ h6 {
   margin-top: 15px;
 }
 .product-mini {
+  padding-bottom: 20px;
+}
+.product-mini-grid {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -191,6 +226,16 @@ h6 {
 .welcome-linkbox a:hover {
   background-color: #3c2e22;
   text-decoration: none;
+}
+.search-prod-search {
+  margin-bottom: 20px;
+}
+.search-prod-search .btn {
+  line-height: 1.6;
+}
+.search-prod-search .form-control {
+  border-radius: 0px;
+  border-color: #dddddd;
 }
 .head-btq {
   background-color: #d5c5b5;
@@ -346,4 +391,7 @@ h6 {
 }
 .inner-body .row {
   padding-top: 5px;
+}
+.inner-body .glyphicon {
+  color: white;
 }
