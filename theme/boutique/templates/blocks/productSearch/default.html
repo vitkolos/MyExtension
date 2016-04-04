@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div class="row">
+        <div class="row" style="display: flex;flex-wrap: wrap;">
             <div ng-class="{'col-md-6 col-lg-4':searchResultsCtrl.productDisplayMode=='grid','col-md-12':searchResultsCtrl.productDisplayMode=='list'}" ng-repeat="content in searchResultsCtrl.data track by $index">
                 <!--<h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>-->
                 <div class="row rubedo-product-in-list">
@@ -68,8 +68,8 @@
                         <!--</p>-->
                     </div>
                     <div class="text-center" ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
-                        <h4 class="col-md-8">
-                            <del ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small>{{content.productProperties.lowestNoSoPrice|number:2}} €</small></del>
+                        <h4 class="col-md-8" style="padding: 0">
+                            <span class="del" ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small>{{content.productProperties.lowestNoSoPrice|number:2}} €</small></span>
                             <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span>
                         </h4>
                         <!--<a ng-href="{{ content.url }}"><button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button></a>-->
