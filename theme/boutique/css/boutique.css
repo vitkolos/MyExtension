@@ -129,7 +129,7 @@ h6 {
   justify-content: space-between;
   margin-top: 15px;
 }
-.two-last-elements-of-product {
+.product-mini {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
