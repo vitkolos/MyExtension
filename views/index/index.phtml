@@ -155,7 +155,13 @@
         <script type="text/javascript" src='/components/lemonde/angular-ckeditor/angular-ckeditor.min.js'></script>
         <script type="text/javascript" src='/components/angular-ui/angular-google-maps/dist/angular-google-maps.min.js'></script>
         <script type="text/javascript" src="/components/ivpusic/angular-cookie/angular-cookie.min.js"></script>
-        <script type="text/javascript"  src="/components/dalelotts/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
+        <?php if ($this->angularLocale): ?>
+            <script type="text/javascript"
+                    src="/components/angular/angular.js/i18n/angular-locale_<?php echo $this->angularLocale; ?>.js"></script>
+            <script type="text/javascript"
+                    src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.12.0/locale/<?php echo $this->angularLocale; ?>.js"></script>
+        <?php endif; ?>
+       <script type="text/javascript"  src="/components/dalelotts/angular-bootstrap-datetimepicker/src/js/datetimepicker.js"></script>
         <?php if ($this->activateMagic): ?>
             <script type="text/javascript" src="/components/Valve/fingerprintjs2/dist/fingerprint2.min.js"></script>
         <?php endif; ?>
@@ -163,10 +169,7 @@
 
 
 
-    <?php if ($this->angularLocale): ?>
-        <script type="text/javascript"
-                src="/components/angular/angular.js/i18n/angular-locale_<?php echo $this->angularLocale; ?>.js"></script>
-    <?php endif; ?>
+
     <!--internal angular modules scripts-->
     <?php if (isset($this->siteResources['angularModulesPaths'])) {
         foreach ($this->siteResources['angularModulesPaths'] as $angularModulePath): ?>
