@@ -114,6 +114,13 @@ h6 {
   color: #898989;
   text-decoration: line-through;
 }
+.panel-default,
+.panel-heading,
+.navbar-default,
+.panel-default > .panel-heading {
+  background-color: white;
+  border-color: #dddddd;
+}
 .hidden {
   visibility: hidden;
 }
@@ -194,6 +201,16 @@ h6 {
 .welcome-linkbox a:hover {
   background-color: #3c2e22;
   text-decoration: none;
+}
+.search-prod-search {
+  margin-bottom: 20px;
+}
+.search-prod-search .btn {
+  line-height: 1.6;
+}
+.search-prod-search .form-control {
+  border-radius: 0px;
+  border-color: #dddddd;
 }
 .head-btq {
   background-color: #d5c5b5;
@@ -349,4 +366,7 @@ h6 {
 }
 .inner-body .row {
   padding-top: 5px;
+}
+.inner-body .glyphicon {
+  color: white;
 }
