@@ -106,6 +106,14 @@ h6 {
   min-height: 150px;
   background: url(/theme/boutique/img/loader.gif) no-repeat center center;
 }
+.text-danger {
+  color: #c1573c;
+}
+.del {
+  font-size: large;
+  color: #898989;
+  text-decoration: line-through;
+}
 .hidden {
   visibility: hidden;
 }
@@ -151,6 +159,10 @@ h6 {
   margin: 0!important;
   height: 100%;
   width: 100%;
+}
+.detail > div {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 .welcome-linkbox {
   z-index: 10;
