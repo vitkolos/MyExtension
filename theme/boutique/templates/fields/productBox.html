@@ -1,6 +1,6 @@
 <div ng-controller="ProductBoxController as productBoxCtrl" class="panel panel-default">
     <div class="panel-body">
-        <h5 ng-if="productBoxCtrl.hasSpecialOffer"><del>{{productBoxCtrl.oldPrice| number : 2}} €</del></h5>
+        <h5 ng-if="productBoxCtrl.hasSpecialOffer"><span class="del">{{productBoxCtrl.oldPrice| number : 2}} €</span></h5>
         <h3 ng-class="{'text-danger':productBoxCtrl.hasSpecialOffer}" >{{productBoxCtrl.currentPrice| number : 2}} €</h3>
         <form ng-if="productBoxCtrl.productProperties.variations.length>1">
             <div  class="form-group" ng-repeat="field in productBoxCtrl.variationFields track by $index">
