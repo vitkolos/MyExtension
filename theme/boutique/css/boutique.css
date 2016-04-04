@@ -110,7 +110,7 @@ h6 {
   color: #c1573c;
 }
 .del {
-  font-size: large;
+  font-size: small;
   color: #898989;
   text-decoration: line-through;
 }
