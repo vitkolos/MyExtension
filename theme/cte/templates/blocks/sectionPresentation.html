@@ -3,7 +3,7 @@
 		<div class="equal-height-cols">
 			<a ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" ng-href="{{ presentationCtrl.pageLink }}" style="display:block; width:100%">
 				<div class="col-sm-8 col-xs-12">
-					<header class="content prop no-margin"
+					<header class="content prop no-margin no-filter"
 					afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1800px',mode:'boxed'})}} 1500w"
                 afkl-lazy-image-options='{"background": true}' style="margin-bottom:0">
                                                  
