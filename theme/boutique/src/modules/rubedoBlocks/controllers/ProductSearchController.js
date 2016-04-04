@@ -1,10 +1,11 @@
-angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scope","$location","$routeParams","$compile","RubedoSearchService","RubedoShoppingCartService","$rootScope",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,RubedoShoppingCartService,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scope","$location","$routeParams","$compile","RubedoSearchService","RubedoShoppingCartService","$rootScope","$route",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,RubedoShoppingCartService,$rootScope,$route){
         var me = this;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.contentHeight = config.summaryHeight ? config.summaryHeight : null;
         me.summaryStyle={};
+        var lang = $route.current.params.lang;
         if (me.contentHeight){
             me.summaryStyle['height']=me.contentHeight+"px";
             me.summaryStyle['overflow']="hidden";
@@ -41,9 +42,15 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"_score";
         me.orderByDirection=$routeParams.orderbyDirection?$routeParams.orderbyDirection:"asc";
         var resolveOrderBy = {
-            '_score': 'relevance',
+            '_score': "Relevance",
+            'price':  "Price",
             'lastUpdateTime': 'date'
         };
+        if(lang=='fr'){ resolveOrderBy={
+            '_score': "Pertinence",
+            'price':  "Prix",
+            'lastUpdateTime': 'date'
+        }   };
         me.displayMode=config.displayMode ? config.displayMode : "default";
         me.productDisplayMode=config.productDisplayMode ? config.productDisplayMode : "grid";
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');

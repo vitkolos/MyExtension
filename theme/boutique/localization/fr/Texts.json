@@ -1,4 +1,6 @@
 {
     "Search.Label.OrderByPriceUp": "Trier par prix croissant",
-    "Search.Label.OrderByPriceDown": "Trier par prix décroissant"
+    "Search.Label.OrderByPriceDown": "Trier par prix décroissant",
+    "Search.Label.Relevance":"Pertinence",
+    "Search.Label.Price":"Prix"
 } 
