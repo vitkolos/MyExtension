@@ -32,7 +32,6 @@
         <div class="row" style="display: flex;flex-wrap: wrap;">
             <div class="product-mini" ng-class="{'col-md-6 col-lg-4':searchResultsCtrl.productDisplayMode=='grid','col-md-12':searchResultsCtrl.productDisplayMode=='list'}" ng-repeat="content in searchResultsCtrl.data track by $index">
                 <!--<h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>-->
-                <div class="row rubedo-product-in-list">
 
                     <div ng-style="searchResultsCtrl.imageStyle"
                          ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
@@ -68,7 +67,7 @@
                             <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
                         </button>
                     </div>
-                </div>
+
             </div>
         </div>
         <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"
