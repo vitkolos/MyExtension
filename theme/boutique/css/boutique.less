@@ -109,12 +109,22 @@ padding-left: 0;}
   background-color: white;
   border-color: #DDDDDD
 }
-.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{
-  background-color: @rouge;
-  border-color: @rouge;
+.pagination>.active{
+  >a,>span{background-color: @rouge;
+    border-color: @rouge;
+    &:hover,&:focus{
+      background-color: @rouge;
+      border-color: @rouge;
+    }
+  }
 }
-.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus{
-  color: @rouge;
+.pagination>li>{
+  >a,>span{ color: @rouge;
+    &:hover,&:focus{
+      color: @rouge;
+    }
+  }
+
 }
 //--------------------------//
 //quelques classes générales//
