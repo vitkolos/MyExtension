@@ -1,3 +1,3 @@
         <a ng-href="{{itemData.url}}" ng-if="!itemData['fields.propositionReferenceeInterne']"><h4>{{itemData.title}}</h4></a>
         <a rubedo-page-link="{{itemData['fields.propositionReferenceeInterne'][0]}}" ng-if="itemData['fields.propositionReferenceeInterne']"><h4>{{itemData.title}}</h4></a>
-        <p class="capital2" ng-class=" 'txt-'+itemData.groupe">{{itemData.groupe}}</p>
+        <p class="capital2" ng-class=" 'txt-'+itemData.groupe">{{rubedo.translate(itemData.groupe,itemData.groupe)}}</p>
