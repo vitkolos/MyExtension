@@ -8,8 +8,8 @@
 </div>
 <div ng-if="!formCtrl.showInscriptionResult">
     <div class="row padding text-center">
-        <p>Pour payer un complement par rapport à cette proposition, vous devez déjà être inscrit. </p>
-        <p>Saisissez l'adresse email utilisée lors de l'inscription :</p>
+        <p>{{rubedo.translate("Block.Inscription.PaimentComplementaire.Intro", "Pour payer un complement par rapport à cette proposition, vous devez déjà être inscrit.")}} </p>
+        <p>{{rubedo.translate("Block.Inscription.PaimentComplementaire.Email", "Saisissez l'adresse email utilisée lors de l'inscription :")}}</p>
     </div>
     <div class="row">
         <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
@@ -21,8 +21,8 @@
 </div>
 
 <div class="row padding-large" ng-if="formCtrl.showInscriptionResult">
-    <p  ng-if="formCtrl.inscriptionsCount==0">Nous n'avons trouvé aucune inscription à cette proposition avec le email suivant : {{inscription.email}}<br/>
-    Merci d'essayer avec un autre mail</p>
+    <p  ng-if="formCtrl.inscriptionsCount==0">{{rubedo.translate("Block.Inscription.PaimentComplementaire.Email.Aucun", "Nous n'avons trouvé aucune inscription à cette proposition avec le email suivant :")}} {{inscription.email}}<br/>
+    {{rubedo.translate("Block.Inscription.PaimentComplementaire.Email.Autre", "Merci d'essayer avec un autre mail")}};</p>
     
     <div  ng-if="formCtrl.inscriptionsCount>0">
         <div class="col-sm-12 padding">
@@ -39,7 +39,7 @@
         </div>
         <p></p>
     </div>
-    <p>Lors de votre inscription en ligne, vous aviez payé
+    <p>{{rubedo.translate("Block.PaimentComplementaire.MontantPaye", "Lors de votre inscription en ligne, vous aviez payé")}}
     <!--si paiement cheque ou paiement carte valide-->
         <span ng-if="formCtrl.lastInscription.fields.modePaiement=='cheque' || (formCtrl.lastInscription.fields.modePaiement=='carte' && formCtrl.lastInscription.fields.statut=='paiement-carte-valide') ">{{formCtrl.lastInscription.fields.montantAPayerMaintenant}}€</span>
      <!--si paiement carte non valide-->
@@ -47,8 +47,8 @@
         <span ng-if="formCtrl.lastInscription.fields.modePaiement=='carte' ">{{rubedo.translate("Block.Inscription.Paf.Carte")}}</span>
         <span ng-if="formCtrl.lastInscription.fields.modePaiement=='cheque' ">{{rubedo.translate("Block.Inscription.Paf.Cheque")}}</span>
     </p>
-    <p ngf-if="formCtrl.lastInscription.fields.montantTotalAPayer">Lors de votre inscription, vous aviez indiquer vouloir payer {{formCtrl.lastInscription.fields.montantTotalAPayer}}€</p>
-    <p ng-if="!formCtrl.lastInscription.fields.montantTotalAPayer && contentDetailCtrl.content.fields.paf_text !='' ">La participation aux frais demandé pour cette proposition : {{contentDetailCtrl.content.fields.paf_text}}</p>
+    <p ngf-if="formCtrl.lastInscription.fields.montantTotalAPayer">{{rubedo.translate("Block.PaimentComplementaire.MontantAPayer", "Lors de votre inscription, vous aviez indiqué vouloir payer")}} {{formCtrl.lastInscription.fields.montantTotalAPayer}}€</p>
+    <p ng-if="!formCtrl.lastInscription.fields.montantTotalAPayer && contentDetailCtrl.content.fields.paf_text !='' ">{{rubedo.translate("Block.PaimentComplementaire.Paf", "La participation aux frais demandée pour cette proposition est :")}} {{contentDetailCtrl.content.fields.paf_text}}</p>
     
     
     <div class="row">
@@ -64,7 +64,7 @@
     <!---CHOIX DU MODE DE PAIEMENT-->
     <div class="row " >
         <div class="col-xs-6 col-sm-6">
-            <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.ModePaiment")}}</label>
+            <label class="label_style">{{rubedo.translate("Block.Inscription.PaimentComplementaire", "Paiement complémentaire")}}</label>
         </div>
         <div class="col-xs-6 col-sm-6" ng-init="inscription.modePaiement='carte' ">
             <div class="col-xs-12">
