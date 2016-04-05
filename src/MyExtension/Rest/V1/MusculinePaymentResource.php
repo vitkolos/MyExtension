@@ -69,7 +69,7 @@ class MusculinepaymentResource extends AbstractResource {
             $query['quantity_'.$counter] =$product["quantite"];
             $query['amount_'.$counter] = round($product["prix"],2);
             $poids+= $product["quantite"] * $product["poids"];
-            $query['tax_rate_'.$counter] = 55;
+            $query['tax_rate_'.$counter] = 5.5;
             $counter++;
         };
 
