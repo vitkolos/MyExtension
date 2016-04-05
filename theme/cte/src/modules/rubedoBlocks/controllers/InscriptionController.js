@@ -439,7 +439,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         var payload = {
             nom:me.lastInscription.fields.nom,
             prenom: me.lastInscription.fields.surname,
-            email:$scope.inscription.email,
+            email:'"'+$scope.inscription.email+'"',
             montant:$scope.inscription.montantAPayerMaintenant,
             proposition:propositionTitle,
             idInscription: me.lastInscription.fields.text,
