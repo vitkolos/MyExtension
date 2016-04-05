@@ -1,0 +1,110 @@
+<div class="text-center">
+                <p class="capital">{{rubedo.translate("Block.Inscription.PaimentComplementaire", "Paiement complémentaire")}}</p>
+                <h3>{{contentDetailCtrl.content.fields.text}}</h3>
+                <p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMMM yyyy'}}<br/><!--Description-->
+                {{contentDetailCtrl.content.fields.positionName}}
+                {{contentDetailCtrl.content.fields.position.address}}</p>
+
+</div>
+<div ng-if="!formCtrl.showInscriptionResult">
+    <div class="row padding text-center">
+        <p>Pour payer un complement par rapport à cette proposition, vous devez déjà être inscrit. </p>
+        <p>Saisissez l'adresse email utilisée lors de l'inscription :</p>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
+        <div class="col-sm-8"><input type="email" id="email" name="email"  ng-model="inscription.email" placeholder="user@mydomain.com" required></div>
+    </div>
+    <div class="row text-center">
+        <div class="button submit" ng-class="{'disabled' : !inscription.email}" ng-click="formCtrl.getInscription(inscription.email)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+    </div>    
+</div>
+
+<div class="row padding-large" ng-if="formCtrl.showInscriptionResult">
+    <p  ng-if="formCtrl.inscriptionsCount==0">Nous n'avons trouvé aucune inscription à cette proposition avec le email suivant : {{inscription.email}}<br/>
+    Merci d'essayer avec un autre mail</p>
+    
+    <div  ng-if="formCtrl.inscriptionsCount>0">
+        <div class="col-sm-12 padding">
+            <div class="col-sm-4"><label for="inscriptionNumber" class="label_style">{{rubedo.translate("Block.Inscription.Numero", "Numéro d'inscription")}}</label></div>
+            <div class="col-sm-8"><input type="text" id="inscriptionNumber" ng-value="formCtrl.lastInscription.fields.text" name="inscriptionNumber" readonly></div>
+        </div>
+        <div ng-if="formCtrl.inscriptionsCount>0" class="col-sm-12 padding">
+            <div class="col-sm-4"><label for="nom" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}</label></div>
+            <div class="col-sm-8"><input type="text" id="nom" ng-value="formCtrl.lastInscription.fields.nom" name="name" readonly></div>
+        </div>
+        <div ng-if="formCtrl.inscriptionsCount>0" class="col-sm-12 padding">
+            <div class="col-sm-4"><label for="prenom" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}</label></div>
+            <div class="col-sm-8"><input type="text" id="prenom" ng-model="formCtrl.lastInscription.fields.surname" name="surname" readonly></div>
+        </div>
+        <p></p>
+    </div>
+    <p>Lors de votre inscription en ligne, vous aviez payé
+    <!--si paiement cheque ou paiement carte valide-->
+        <span ng-if="formCtrl.lastInscription.fields.modePaiement=='cheque' || (formCtrl.lastInscription.fields.modePaiement=='carte' && formCtrl.lastInscription.fields.statut=='paiement-carte-valide') ">{{formCtrl.lastInscription.fields.montantAPayerMaintenant}}€</span>
+     <!--si paiement carte non valide-->
+       <span ng-if="formCtrl.lastInscription.fields.modePaiement=='carte' && formCtrl.lastInscription.fields.statut!='paiement-carte-valide' ">0€</span>
+        <span ng-if="formCtrl.lastInscription.fields.modePaiement=='carte' ">{{rubedo.translate("Block.Inscription.Paf.Carte")}}</span>
+        <span ng-if="formCtrl.lastInscription.fields.modePaiement=='cheque' ">{{rubedo.translate("Block.Inscription.Paf.Cheque")}}</span>
+    </p>
+    <p ngf-if="formCtrl.lastInscription.fields.montantTotalAPayer">Lors de votre inscription, vous aviez indiquer vouloir payer {{formCtrl.lastInscription.fields.montantTotalAPayer}}€</p>
+    <p ng-if="!formCtrl.lastInscription.fields.montantTotalAPayer && contentDetailCtrl.content.fields.paf_text !='' ">La participation aux frais demandé pour cette proposition : {{contentDetailCtrl.content.fields.paf_text}}</p>
+    
+    
+    <div class="row">
+        <div class="col-xs-6 col-sm-6">
+            <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.Maintenant")}}</label>
+        </div>
+        <div class="col-xs-6 col-sm-6">
+            <label>{{rubedo.translate("Block.Inscription.Paf.Complement", "Paiement complémentaire")}} :
+                <input type="text" class="complement_text" name="montantAPayerMaintenant" ng-model="inscription.montantAPayerMaintenant" required ng-pattern="/^[1-9][0-9]{0,3}$/">
+            </label>                 
+        </div>
+    </div>
+    <!---CHOIX DU MODE DE PAIEMENT-->
+    <div class="row " >
+        <div class="col-xs-6 col-sm-6">
+            <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.ModePaiment")}}</label>
+        </div>
+        <div class="col-xs-6 col-sm-6" ng-init="inscription.modePaiement='carte' ">
+            <div class="col-xs-12">
+                <input type="radio"  name="modePaiement" id="carte" ng-model="inscription.modePaiement" value="carte"  required>
+                <label for="carte">{{rubedo.translate("Block.Inscription.Paf.Carte")}}</label>    
+            </div>                       
+        </div>  
+                   
+    </div>
+    
+    <div class="row text-center">
+        <div class="button submit" ng-click="formCtrl.payementComplementaire()" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Paiment","Payer")}}</div><!----inscription_form.$valid)-->
+        <img src="/theme/cte/img/loader.gif" ng-if="processForm">
+            <p ng-if="finInscription">{{message}}</p>
+    </div>    
+    
+    <form ng-if="formCtrl.inscriptionsCount>0" id="payment" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
+            <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
+            <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
+            <input type="hidden" name="PBX_SITE" value="{{parametres.payboxSite}}">
+            <input type="hidden" name="PBX_RANG" value="{{parametres.payboxRang}}">
+            <input type="hidden" name="PBX_IDENTIFIANT" value="{{parametres.payboxIdentifiant}}">
+            <input type="hidden" name="PBX_TOTAL" value="{{parametres.montantEnCentimes}}">
+            <input type="hidden" name="PBX_DEVISE" value="{{parametres.codeMonnaieNumerique}}">
+            <input type="hidden" name="PBX_CMD" value="{{parametres.commande}}">
+            <input type="hidden" name="PBX_PORTEUR" value="{{parametres.email}}">
+            <input type="hidden" name="PBX_RETOUR" value="{{parametres.payboxRetour}}">
+            <input type="hidden" name="PBX_HASH" value="SHA512">
+            <input type="hidden" name="PBX_TIME" value="{{parametres.dateTime}}">
+            <input type="hidden" name="PBX_EFFECTUE" value="{{parametres.urlRetourNormal}}">
+            <input type="hidden" name="PBX_REFUSE" value="{{parametres.urlRetourEchec}}">
+            <input type="hidden" name="PBX_ANNULE" value="{{parametres.urlRetourEchec}}">
+            <input type="hidden" name="PBX_REPONDRE_A" value="{{parametres.urlCallback}}">
+            <input type="hidden" name="PBX_HMAC" value="{{parametres.empreinteHasheeHex}}">
+        <input type="submit" value="Envoyer">
+    </form>
+    
+    
+</div>
+    <!--NOM-->
+    
+    
+

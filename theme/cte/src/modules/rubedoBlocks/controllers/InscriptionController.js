@@ -1,4 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','$timeout','$filter',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,$timeout,$filter) {
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter',
+                                                                        function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     me.form={};
@@ -9,6 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
     me.infosFin = themePath+'/templates/blocks/formulaire/infosFin.html';
     me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
+    me.paiment_complementaire= themePath+'/templates/blocks/formulaire/paiment_complementaire.html';
     me.content = angular.copy($scope.proposition);
     getForms = function(public) {
         switch(public) {
@@ -202,7 +204,66 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             
         });
     };
-
+    //locale pour les champs date
+    moment.locale('fr', {
+        months : "janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre".split("_"),
+        monthsShort : "janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.".split("_"),
+        weekdays : "dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi".split("_"),
+        weekdaysShort : "dim._lun._mar._mer._jeu._ven._sam.".split("_"),
+        weekdaysMin : "Di_Lu_Ma_Me_Je_Ve_Sa".split("_"),
+        longDateFormat : {
+            LT : "HH:mm",
+            LTS : "HH:mm:ss",
+            L : "DD/MM/YYYY",
+            LL : "D MMMM YYYY",
+            LLL : "D MMMM YYYY LT",
+            LLLL : "dddd D MMMM YYYY LT"
+        },
+        calendar : {
+            sameDay: "[Aujourd'hui à] LT",
+            nextDay: '[Demain à] LT',
+            nextWeek: 'dddd [à] LT',
+            lastDay: '[Hier à] LT',
+            lastWeek: 'dddd [dernier à] LT',
+            sameElse: 'L'
+        },
+        relativeTime : {
+            future : "dans %s",
+            past : "il y a %s",
+            s : "quelques secondes",
+            m : "une minute",
+            mm : "%d minutes",
+            h : "une heure",
+            hh : "%d heures",
+            d : "un jour",
+            dd : "%d jours",
+            M : "un mois",
+            MM : "%d mois",
+            y : "une année",
+            yy : "%d années"
+        },
+        ordinalParse : /\d{1,2}(er|ème)/,
+        ordinal : function (number) {
+            return number + (number === 1 ? 'er' : 'ème');
+        },
+        meridiemParse: /PD|MD/,
+        isPM: function (input) {
+            return input.charAt(0) === 'M';
+        },
+        // in case the meridiem units are not separated around 12, then implement
+        // this function (look at locale/id.js for an example)
+        // meridiemHour : function (hour, meridiem) {
+        //     return /* 0-23 hour, given meridiem token and hour 1-12 */
+        // },
+        meridiem : function (hours, minutes, isLower) {
+            return hours < 12 ? 'PD' : 'MD';
+        },
+        week : {
+            dow : 1, // Monday is the first day of the week.
+            doy : 4  // The week that contains Jan 4th is the first week of the year.
+        }
+    });
+    
 
     // VALIDATIONS ANGULAR
     
@@ -396,6 +457,76 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 
                 
         }
+    }
+    
+    //paiements complémentaires
+    me.getInscription = function(email){
+        var options = {
+            start: 0,
+            limit: 100,
+            constrainToSite: false,
+            //predefinedFacets: config.predefinedFacets,
+            //displayedFacets: config.displayedFacets,
+            orderby: 'lastUpdateTime',
+            orderbyDirection:'desc',
+            query:email,
+            type:"561627c945205e41208b4581",
+            taxonomies:{
+                "proposition":[propositionId]
+            },
+            pageId: $scope.rubedo.current.page.id,
+            siteId: $scope.rubedo.current.site.id           
+        };
+        RubedoSearchService.searchByQuery(options).then(function(response){
+            if(response.data.success){
+                me.inscriptionsCount = response.data.count;
+                me.showInscriptionResult = true;
+                if (response.data.count>0) {
+                    RubedoContentsService.getContentById(response.data.results.data[0].id).then(
+                        function(response){
+                            if(response.data.success){
+                                me.lastInscription = response.data.content;
+                            }
+                        }
+                    );
+                }
+            }
+        });
+    }
+    me.payementComplementaire = function(){
+        $scope.processForm=true;
+        var payload = {
+            nom:me.lastInscription.fields.nom,
+            prenom: me.lastInscription.fields.surname,
+            email:$scope.inscription.email,
+            montant:$scope.inscription.montantAPayerMaintenant,
+            proposition:propositionTitle,
+            idInscription: me.lastInscription.fields.text,
+            paymentType:'paf'
+        };
+        if (me.content.fields.lieuCommunautaire) {
+            payload.placeID=me.content.fields.lieuCommunautaire;
+        }
+        if(window.ga) {
+            window.ga('send', 'event', 'inscription', 'payement carte', 'paiement complementaire', $scope.inscription.montantAPayerMaintenant);
+        }
+        PaymentService.payment(payload).then(function(response){
+            if (response.data.success) {
+                $scope.parametres = response.data.parametres;
+                /*délai pour laisser le formulaire se remplir*/
+                $timeout(function() {
+                    $scope.processForm=false;
+                    document.getElementById('payment').submit();
+                }, 100);
+            }
+            else {
+                $scope.processForm=false;
+                $scope.finInscription=true;  
+                $scope.inscription={};
+                $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
+            }
+            
+        });        
     }
 
 
