@@ -410,7 +410,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             //displayedFacets: config.displayedFacets,
             orderby: 'lastUpdateTime',
             orderbyDirection:'desc',
-            query:email,
+            query:'"'+email+'"',
             type:"561627c945205e41208b4581",
             taxonomies:{
                 "proposition":[propositionId]
@@ -439,7 +439,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         var payload = {
             nom:me.lastInscription.fields.nom,
             prenom: me.lastInscription.fields.surname,
-            email:'"'+$scope.inscription.email+'"',
+            email:$scope.inscription.email,
             montant:$scope.inscription.montantAPayerMaintenant,
             proposition:propositionTitle,
             idInscription: me.lastInscription.fields.text,
