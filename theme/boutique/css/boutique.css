@@ -161,14 +161,6 @@ h6 {
   justify-content: space-between;
   margin-top: 15px;
 }
-.product-mini {
-  padding-bottom: 20px;
-}
-.product-mini-grid {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
 .shadowed-image img {
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.1);
 }
@@ -227,13 +219,21 @@ h6 {
   background-color: #3c2e22;
   text-decoration: none;
 }
-.search-prod-search {
+.product-mini {
+  padding-bottom: 20px;
+}
+.product-mini-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.searchbar-prod-search {
   margin-bottom: 20px;
 }
-.search-prod-search .btn {
+.searchbar-prod-search .btn {
   line-height: 1.6;
 }
-.search-prod-search .form-control {
+.searchbar-prod-search .form-control {
   border-radius: 0px;
   border-color: #dddddd;
 }

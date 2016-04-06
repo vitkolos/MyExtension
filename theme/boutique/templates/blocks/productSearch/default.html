@@ -14,7 +14,7 @@
 </nav>
 <div class="row">
     <div class="col-md-3">
-                <form class="search-prod-search" ng-submit="searchResultsCtrl.onSubmit()" role="form">
+                <form class="searchbar-prod-search" ng-submit="searchResultsCtrl.onSubmit()" role="form">
                     <div class="input-group">
                         <input class="form-control" type="text" ng-model="searchResultsCtrl.query" placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
                             <span class="input-group-btn"><button class="btn btn-default" type="submit">
@@ -42,7 +42,7 @@
         <div class="row" style="display: flex;flex-wrap: wrap;">
             <div class="product-mini" ng-class="{'product-mini-grid col-md-6 col-lg-4':searchResultsCtrl.productDisplayMode=='grid','col-md-12':searchResultsCtrl.productDisplayMode=='list'}" ng-repeat="content in searchResultsCtrl.data track by $index">
                 <!--<h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>-->
-                <div class="row rubedo-product-in-list">
+                <!--<div class="row rubedo-product-in-list">-->
 
                     <div ng-style="searchResultsCtrl.imageStyle"
                          ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
@@ -77,7 +77,7 @@
                             <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
                         </button>
                     </div>
-                </div>
+                <!--</div>-->
             </div>
         </div>
         <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"
