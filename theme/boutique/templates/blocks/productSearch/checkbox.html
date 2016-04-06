@@ -47,9 +47,9 @@
                                 {{content.title}}
                             </a>
                         </h4>
-                        <!--<p class="text-justify" ng-style="searchResultsCtrl.summaryStyle">-->
-                            <!--{{content.summary}}-->
-                        <!--</p>-->
+                        <p ng-if="searchResultsCtrl.productDisplayMode=='list'"  class="text-justify cut-if-too-long" ng-style="searchResultsCtrl.summaryStyle">
+                            {{content.summary}}
+                        </p>
                     </div>
                     <div class="text-center" ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
                         <h4 class="col-md-8" style="padding: 0">

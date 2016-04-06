@@ -146,6 +146,12 @@ h6 {
 .pagination > li > span:focus {
   color: #c1573c;
 }
+.cut-if-too-long {
+  max-height: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 .hidden {
   visibility: hidden;
 }
