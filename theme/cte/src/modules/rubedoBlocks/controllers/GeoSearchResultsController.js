@@ -453,7 +453,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     /*calculer le type d'événement*/
                     switch(item['typeId']) {
                         case "54edd57845205e5110ca11b8":// points net
-                            item['groupe']="rencontre";
+                            item['groupe']="pointNet";
                             //get content page on NFG website
                             var routeArray = item['url'] .split("/");
                             var contentUrl= routeArray[routeArray.length-2]+"/"+routeArray[routeArray.length-1];

@@ -69,6 +69,7 @@ class MusculinepaymentResource extends AbstractResource {
             $query['quantity_'.$counter] =$product["quantite"];
             $query['amount_'.$counter] = round($product["prix"],2);
             $poids+= $product["quantite"] * $product["poids"];
+            $query['tax_rate_'.$counter] = 5.5;
             $counter++;
         };
 
@@ -108,6 +109,7 @@ class MusculinepaymentResource extends AbstractResource {
     $query['email'] =$params['facturation']['email'];
     $query['address1'] = $params['facturation']['address'];
     $query['city'] = $params['facturation']['city'];
+    //$query['tax_cart']= 55;
     /*$query['state'] = $params['facturation']['state'];*/
     $query['zip'] = $params['facturation']['cp'];
     if($params['facturation']['telephone'][0] == 0) {

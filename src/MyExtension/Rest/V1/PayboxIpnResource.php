@@ -115,11 +115,20 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $inscription = $contentsService->findById($contentId,false,false);
             AbstractCollection::disableUserFilter(false);
             if($inscription) {
-                //vérifier si le montant payé est le même que celui indiqué lors de l'inscription
-                if( $montant == (int)$inscription['fields']['montantAPayerMaintenant']) {
+                //si on est sur un premier paiement par carte
+                if($inscription['fields']['statut']=='attente_paiement_carte') {
+                    $inscription['fields']['montantAPayerMaintenant'] = $montant;
+                    $inscription['fields']['statut'] = "paiement-carte-valide" ;
+                }                
+                //si on est en paiement complémentaire après un premier paiement par carte :
+                else if($inscription['fields']['statut']=='paiement-carte-valide') {
+                    $inscription['fields']['montantAPayerMaintenant'] = $montant + (int)$inscription['fields']['montantAPayerMaintenant'];
+                }
+                //dans les autres cas
+                else {
+                    $inscription['fields']['montantAPayerMaintenant'] = $montant + (int)$inscription['fields']['montantAPayerMaintenant'];
                     $inscription['fields']['statut'] = "paiement-carte-valide" ;
                 }
-                 else $erreurMessage .="Le montant du paiement est différent de celui envoyé à Paybox.";
                  $mailSecretariat = $inscription['fields']['mailSecretariat'];
                  
                  $payload = json_encode( array( "content" => $inscription ) );

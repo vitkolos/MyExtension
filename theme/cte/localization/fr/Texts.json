@@ -93,6 +93,15 @@
     "Block.Inscription.Entretien": "Un entretien sera nécessaire pour confirmer votre inscription.",
     "Block.Inscription.Motivation": "Pour que votre inscription soit complète, merci d'envoyer une lettre de motivation à l'adresse du secrétariat indiquée ci-dessus.",
     "Block.Inscription.Formulaire": "Pour que votre inscription soit complète, merci d'imprimer et de remplir à la main le formulaire complementaire suivant et de l'envoyer à l'adresse du secrétariat indiquée ci-dessus.",
-    "Block.Inscription.FormulaireEtMotiv":"Pour que votre inscription soit complète, merci d'écrire une lettre de motivation, d'imprimer le formulaire complémentaire suivant, de le remplir à la main et d'envoyer ces deux documents à l'adresse du secrétariat indiquée ci-dessus."
+    "Block.Inscription.FormulaireEtMotiv":"Pour que votre inscription soit complète, merci d'écrire une lettre de motivation, d'imprimer le formulaire complémentaire suivant, de le remplir à la main et d'envoyer ces deux documents à l'adresse du secrétariat indiquée ci-dessus.",
+    "Block.Inscription.PaimentComplementaire":"Paiement complémentaire",
+    "Block.Inscription.PaimentComplementaire.Intro": "Pour payer un complement par rapport à cette proposition, vous devez déjà être inscrit.",
+    "Block.Inscription.PaimentComplementaire.Email": "Saisissez l'adresse email utilisée lors de l'inscription :",
+    "Block.Inscription.PaimentComplementaire.Email.Aucun": "Nous n'avons trouvé aucune inscription à cette proposition avec le email suivant :",
+    "Block.Inscription.PaimentComplementaire.Email.Autre": "Merci d'essayer avec un autre mail",
+    "Block.Inscription.Numero": "Numéro d'inscription",
+    "Block.PaimentComplementaire.MontantPaye": "Lors de votre inscription en ligne, vous aviez payé",
+    "Block.PaimentComplementaire.MontantAPayer": "Lors de votre inscription, vous aviez indiqué vouloir payer",
+    "Block.PaimentComplementaire.Paf": "La participation aux frais demandée pour cette proposition est :"
     
 } 
