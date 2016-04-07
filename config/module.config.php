@@ -73,7 +73,8 @@ return array(
                 'basePath' => realpath(__DIR__ . '/../theme/cte'),
                 'css' => array(
                     '/css/cte.css',
-                    '/css/font-awesome.css'
+                    '/css/font-awesome.css',
+                    '/css/cheminneuf.css'
                 ),
                 'js' => array(
                     '/js/cte.js',
