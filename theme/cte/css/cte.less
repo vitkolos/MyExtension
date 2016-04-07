@@ -1092,7 +1092,12 @@ label.label_style, .label_style label:not(.radio-inline){
 }
 label.label_style.left, .label_style.left label{text-align:left; float:left}
 @media screen and (max-width:@min_sm) {label.label_style{text-align:left; float:left}}
-
+//////////////COLLAPSE////////////////////////
+.panel-group[id^=collapse]{
+  .panel-default{border-color:@txt_dark}
+  .panel-default>.panel-heading{background-color: @txt_dark; color:white; .capital}
+  .panel-body ul{list-style-type: initial; padding-left: 12px;}
+}
 
 /////////DONS/////////////////
 .dons-progress{
