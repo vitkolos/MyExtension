@@ -371,6 +371,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         }
                         else item['class'] = "date5";
                      }
+                     else item['class'] = "date5";
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0]){
                         var coords=item['fields.position.location.coordinates'][0].split(",");
                         var icon = new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item['class']+".png", null, null, null, new google.maps.Size(50, 50));
