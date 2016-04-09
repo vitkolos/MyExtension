@@ -126,7 +126,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 $scope.$apply(function () {
                     me.displayedItemId = model.id;
                 });
-                var target=angular.element("[id='"+model.id+"']");
+                var target=angular.element(".search-result[id='"+model.id+"']");
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
                     console.log("scroll " + model.id);
