@@ -129,7 +129,9 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 var target=angular.element("[id='"+model.id+"']");
                 if (target&&target.length>0){
                     angular.element("body,html").animate({scrollTop: target.offset().top}, "slow");
+                    console.log("scroll " + model.id);
                 }
+                else console.log("no scroll "+model.id);
                 
             }
         };
