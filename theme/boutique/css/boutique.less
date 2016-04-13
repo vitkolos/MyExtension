@@ -226,6 +226,14 @@ padding-left: 0;}
   height: auto;
   max-height: 300px;
 }
+.set-of-product{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  img{
+max-width: 300px;
+  }
+}
 
                                                 //-------------------//
                                                 //les énormes classes//
@@ -269,7 +277,7 @@ padding-left: 0;}
     }
     .small-categories{
       width: 100%;
-      >span{margin-bottom: 5px;}
+      >span :last-child{margin-bottom: 5px;}
     }
   }
   @media (min-width: 768px) {

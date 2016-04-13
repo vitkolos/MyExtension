@@ -256,6 +256,14 @@ h6 {
   height: auto;
   max-height: 300px;
 }
+.set-of-product {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.set-of-product img {
+  max-width: 300px;
+}
 .head-btq {
   background-color: #d5c5b5;
   color: #535151;
@@ -298,7 +306,7 @@ h6 {
   .head-btq .small-categories {
     width: 100%;
   }
-  .head-btq .small-categories > span {
+  .head-btq .small-categories > span :last-child {
     margin-bottom: 5px;
   }
 }
