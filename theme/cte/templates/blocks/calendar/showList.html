@@ -9,6 +9,7 @@
                 <th>Date</th>
                 <th>Proposition</th>
                 <th>Lieu</th>
+                <th> </th>
             </tr>
         </thead>
         <tbody>
@@ -18,6 +19,7 @@
                         {{ content.fields.text }}</a>
                 </th>
                 <th class="cal-date" data-th="Lieu"><a ng-href="{{ content.detailPageUrl }}">{{content.fields.positionName}}</a></th>
+                <th>{{rubedo.translate("Inscription", "S'inscrire")}}</th>
             </tr>
         </tbody>
     </table>
