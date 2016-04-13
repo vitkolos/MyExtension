@@ -63,6 +63,7 @@
 	    else if (($scope.rubedo.current.breadcrumb).length==4) {
 		
 		var route = $route.current.params.routeline;
+		console.log(route);
 		var path = route.substring(0,route.lastIndexOf('/')); // parent page
 		$http.get("/api/v1/pages",{
 		    params:{
