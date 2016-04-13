@@ -35,18 +35,17 @@
 	    else if (($scope.rubedo.current.breadcrumb).length==4) {
 		var pageId=$scope.rubedo.current.page.parentId;me.getMenu();
 	    }
-	    else if (($scope.rubedo.current.breadcrumb).length==5) {
-		
-		var route = $route.current.params.routeline;
-		var path = route.substring(0,route.lastIndexOf('/')); // parent page
+	    else if (($scope.rubedo.current.breadcrumb).length>=5) {
+		var routeArray = $route.current.params.routeline.split("/");
+		var rootPageRoute = routeArray[0]+"/"+routeArray[1]+"/"+routeArray[2]+"/";
 		$http.get("/api/v1/pages",{
 		    params:{
 			site:$location.host(),
-			route:path
+			route:rootPageRoute
 		    }
 		}).then(function(response){
 		    if (response.data.success) {
-			pageId = response.data.page.parentId;
+			pageId = response.data.page.id;
 		    }
 		    else pageId=$scope.rubedo.current.page.parentId;
 		    me.getMenu();
@@ -63,9 +62,6 @@
 	    else if (($scope.rubedo.current.breadcrumb).length>=4) {
 		var routeArray = $route.current.params.routeline.split("/");
 		var rootPageRoute = routeArray[0]+"/"+routeArray[1]+"/";
-		var route = $route.current.params.routeline;
-		//propositions/se-ressourcer/retraites/
-		var path = route.substring(0,route.lastIndexOf('/')); // parent page
 		$http.get("/api/v1/pages",{
 		    params:{
 			site:$location.host(),
