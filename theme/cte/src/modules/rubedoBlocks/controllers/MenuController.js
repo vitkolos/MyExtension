@@ -65,7 +65,6 @@
 		var rootPageRoute = routeArray[0]+"/"+routeArray[1]+"/";
 		var route = $route.current.params.routeline;
 		//propositions/se-ressourcer/retraites/
-		console.log(route);
 		var path = route.substring(0,route.lastIndexOf('/')); // parent page
 		$http.get("/api/v1/pages",{
 		    params:{
@@ -74,7 +73,7 @@
 		    }
 		}).then(function(response){
 		    if (response.data.success) {
-			pageId = response.data.page;
+			pageId = response.data.page.id;
 		    }
 		    else pageId=$scope.rubedo.current.page.parentId;
 		    me.getMenu();
