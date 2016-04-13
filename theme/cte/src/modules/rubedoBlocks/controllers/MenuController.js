@@ -62,7 +62,7 @@
 	    }
 	    else if (($scope.rubedo.current.breadcrumb).length>=4) {
 		var routeArray = $route.current.params.routeline.split("/");
-		var rootPageRoute = routeArray[0]+"/"+routeArray[1]+"/"
+		var rootPageRoute = routeArray[0]+"/"+routeArray[1]+"/";
 		var route = $route.current.params.routeline;
 		//propositions/se-ressourcer/retraites/
 		console.log(route);
