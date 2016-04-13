@@ -295,6 +295,12 @@ h6 {
   .head-btq .navbar-nav .open .dropdown-menu {
     background-color: #f3eeea;
   }
+  .head-btq .small-categories {
+    width: 100%;
+  }
+  .head-btq .small-categories > span {
+    margin-bottom: 5px;
+  }
 }
 @media (min-width: 768px) {
   .head-btq .btq-top {
