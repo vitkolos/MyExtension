@@ -254,6 +254,7 @@ h6 {
   margin-left: auto;
   margin-right: auto;
   height: auto;
+  max-height: 300px;
 }
 .head-btq {
   background-color: #d5c5b5;
@@ -285,10 +286,10 @@ h6 {
   }
   .head-btq .navbar-default .navbar-collapse,
   .head-btq .navbar-default .navbar-form {
-    border-color: #d5c5b5;
+    border: none;
   }
   .head-btq .head-btq .dropdown-menu {
-    background-color: #f3eeea;
+    background-color: #f3eeea !important;
   }
 }
 @media (min-width: 768px) {
