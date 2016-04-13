@@ -287,9 +287,13 @@ h6 {
   .head-btq .navbar-default .navbar-collapse,
   .head-btq .navbar-default .navbar-form {
     border: none;
+    box-shadow: none;
   }
   .head-btq .head-btq .dropdown-menu {
-    background-color: #f3eeea !important;
+    background-color: #f3eeea;
+  }
+  .head-btq .navbar-nav .open .dropdown-menu {
+    background-color: #f3eeea;
   }
 }
 @media (min-width: 768px) {
