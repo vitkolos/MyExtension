@@ -19,9 +19,11 @@
                         {{ content.fields.text }}</a>
                 </th>
                 <th class="cal-date" data-th="Lieu"><a ng-href="{{ content.detailPageUrl }}">{{content.fields.positionName}}</a></th>
-                <th class="capital" ng-if="content.fields.inscriptionState.inscriptionState=='ouverte' "><a class="txt-red"ng-href="{{ content.detailPageUrl }}">{{rubedo.translate("Inscription", "S'inscrire")}} <i class="fa fa-arrow-circle-right"></i></a></th>
-                <th class="capital" ng-if="content.fields.inscriptionState.inscriptionState=='close' "><a class="txt-marron"ng-href="{{ content.detailPageUrl }}">Inscriptions fermées </a></th>
-            </tr>
+                <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.fields.dateDebut) && content.fields.inscriptionState.inscriptionState=='ouverte' "><a class="txt-red"ng-href="{{ content.detailPageUrl }}">{{rubedo.translate("Inscription", "S'inscrire")}} <i class="fa fa-arrow-circle-right"></i></a></th>
+                <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.fields.dateDebut) && content.fields.inscriptionState.inscriptionState=='close' "><a class="txt-marron"ng-href="{{ content.detailPageUrl }}">Inscriptions fermées </a></th>
+                <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.fields.dateDebut) && content.fields.inscriptionState.inscriptionState=='attente' "><a class="txt-red"ng-href="{{ content.detailPageUrl }}">Inscriptions en liste d'attente<i class="fa fa-arrow-circle-right"></i></a></th>
+                 <th class="capital" ng-if="calendarCtrl.isPastProposition(content.fields.dateDebut)"><a class="txt-marron"ng-href="{{ content.detailPageUrl }}">Proposition passée</a></th>
+           </tr>
         </tbody>
     </table>
 </div>

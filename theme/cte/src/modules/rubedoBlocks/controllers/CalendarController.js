@@ -19,6 +19,8 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
         displayMode = 'showList';
     }
     me.template = themePath+"/templates/blocks/calendar/"+displayMode+".html";
+    var today = new Date();
+    today = today.getTime();
     var options = {
         dateFieldName: config['date'],
         endDateFieldName: config['endDate'],
@@ -27,6 +29,9 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
     };
     if(config.singlePage){
         options.detailPageId = config.singlePage;
+    }
+    me.isPastProposition = function(date) {
+        return (date*1000 < today);
     }
     me.getContents = function (queryId, pageId, siteId, options, cb){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
