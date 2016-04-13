@@ -30,6 +30,10 @@ h5,
 h6 {
   text-align: center;
 }
+.test {
+  color: green !important;
+  background-color: #990000 !important;
+}
 .navbar {
   border-radius: 0;
 }
