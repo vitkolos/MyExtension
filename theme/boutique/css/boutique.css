@@ -305,6 +305,10 @@ h6 {
   background-color: #f3eeea;
   border-radius: 0;
 }
+.head-btq .img-responsive {
+  margin-left: auto;
+  margin-right: auto;
+}
 .head-btq .categories {
   display: flex;
   overflow: visible;
