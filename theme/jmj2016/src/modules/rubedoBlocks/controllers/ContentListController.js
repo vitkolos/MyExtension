@@ -162,6 +162,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         columnContentList.push(newContent);
                     });
                     me.contentList.push(columnContentList);
+                    $scope.clearORPlaceholderHeight();
                 } else {
                     me.contentList=[];
                     angular.forEach(response.data.contents,function(newContent, key){
@@ -174,6 +175,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
                     }
+                    $scope.clearORPlaceholderHeight();
                 }
                 
                 if (me.usedContentTypes[0]=="552bda1945205e53368a64ea") {

@@ -28,6 +28,7 @@ angular.module("rubedoBlocks").lazy.controller("MediaListController",["$scope","
             if(response.data.success){
                 me.count = response.data.count;
                 me.media = response.data.results.data;
+                $scope.clearORPlaceholderHeight();
             }
         });
     };

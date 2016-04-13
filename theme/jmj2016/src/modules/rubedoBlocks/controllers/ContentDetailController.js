@@ -170,15 +170,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
                                     $scope.fields=me.transformForFront(me.content.type.fields);
+                                    $scope.clearORPlaceholderHeight();
                                 },
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                                     $scope.fields=me.transformForFront(me.content.type.fields);
+                                    $scope.clearORPlaceholderHeight();
                                 }
                             );
                         } else {
                             me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                             $scope.fields=me.transformForFront(me.content.type.fields);
+                            $scope.clearORPlaceholderHeight();
                         }
                     }
                     var allContentTerms=[];

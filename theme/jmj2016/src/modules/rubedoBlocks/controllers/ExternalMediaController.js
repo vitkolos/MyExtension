@@ -10,6 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("ExternalMediaController",['$scop
         url=url+"&callback=JSON_CALLBACK";
         $http.jsonp(url).success(function(response){
             me.html=$sce.trustAsHtml(response.html);
+            $scope.clearORPlaceholderHeight();
         });
     }
     console.log(me.config);
