@@ -24,6 +24,7 @@
         RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
+                
  
         angular.forEach(me.menu.pages, function(page, key) {
             me.pagesBlocks[key]={}
@@ -42,11 +43,13 @@
                })
      
      
-     })
+     });
+        $scope.clearORPlaceholderHeight();
 
  
              } else {
                 me.menu={};
+                $scope.clearORPlaceholderHeight();
             }
         });
  

@@ -42,7 +42,7 @@
                             "config": {
                                 "fieldLabel": "#ext-gen1076#",
                                 "name": "date",
-                                "value": "date"
+                                "value": "dateDebut"
                             }
                         },
                         {
@@ -50,7 +50,7 @@
                             "config": {
                                 "fieldLabel": "#ext-gen1077#",
                                 "name": "endDate",
-                                "value": null
+                                "value": "dateFin"
                             }
                         },
                         {

@@ -34,4 +34,5 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             }
         );
     };
+    $scope.clearORPlaceholderHeight();
 }]);
