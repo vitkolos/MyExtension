@@ -17,7 +17,7 @@
                     <ul ng-if="page.pages&&blockConfig.menuLevel>1&&megaMenuCtrl.hasSubPages(page)" class="dropdown-menu container " role="menu">
                         {{alert(page.includedRichText.fields.body);}}
                         <div class=' col-xs-12 pull-{{blockConfig.menuAlign}} categories ' ng-class="page.includedRichText.fields.body ? 'col-sm-{{blockConfig.menuWidth}}':'col-sm-12'" >
-                            <div ng-repeat="subpage in page.pages track by $index" ng-class="page.includedRichText.fields.body ? 'col-md-4':'col-lg-3'" >
+                            <div ng-repeat="subpage in page.pages track by $index" ng-class="page.includedRichText.fields.body ? 'col-md-4':'col-lg-3'" class="col-xs-6" >
                                 <span ng-if="!blockConfig.disableLevelTwo">
                                     <a class="dropdown-header" ng-href="{{subpage.url}}">{{subpage.text}}</a>
                                 </span>
@@ -35,7 +35,7 @@
                         </li>
                     </ul>
                     <ul ng-if="page.pages&&blockConfig.menuLevel>1&&!megaMenuCtrl.hasSubPages(page)" class="dropdown-menu" role="menu">
-                        <div class="pull-{{blockConfig.menuAlign}} categories " style="display:block; padding-left:5px;" ng-class="page.includedRichText.fields.body ? ' bigger-dropdown':''">
+                        <div class="pull-{{blockConfig.menuAlign}} categories small-categories " style="display:block; padding-left:5px;" ng-class="page.includedRichText.fields.body ? ' bigger-dropdown':''">
                             <span ng-class="page.includedRichText.fields.body ? 'col-sm-{{blockConfig.menuWidth}} ':''">
                                 <span ng-if="!blockConfig.disableLevelOne " ng-class="{active:rubedo.current.page.id==page.id}" >
                                     <a class="dropdown-header" ng-href="{{page.url}}">{{page.text}}</a>
