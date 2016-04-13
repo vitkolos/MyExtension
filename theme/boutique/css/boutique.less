@@ -224,6 +224,7 @@ padding-left: 0;}
   margin-left: auto;
   margin-right: auto;
   height: auto;
+  max-height: 300px;
 }
 
                                                 //-------------------//
@@ -257,15 +258,18 @@ padding-left: 0;}
       width: 200px;
     }
     .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-      border-color: @marron;
+      border:none;
+      box-shadow: none;
     }
     .head-btq .dropdown-menu{
-      background-color: @beigeCCN;
+      background-color: @beigeCCN ;
+    }
+    .navbar-nav .open .dropdown-menu{
+      background-color: @beigeCCN ;
     }
   }
   @media (min-width: 768px) {
     .btq-top{margin-top: 35px;}
-
   }
     .navbar-default {
     box-shadow: 0px 8px 10px -10px rgba(0, 0, 0, 0.5) inset;
