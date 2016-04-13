@@ -27,7 +27,7 @@
                                 <span ng-repeat="subsubpage in subpage.pages track by $index"><a ng-href="{{subsubpage.url}}">{{ subsubpage.text }}</a><br></span>
                             </div>
                         </div>
-                        <li ng-if="page.includedRichText.fields.body" class='col-sm-{{12 - blockConfig.menuWidth}} shadowed-image hidden-xs'>
+                        <li ng-if="page.includedRichText.fields.body" class='col-sm-{{12 - blockConfig.menuWidth}} shadowed-image hidden-xs img-categories'>
                             <div>
                                 <rubedo-custom-template template="{{page.includedRichText.fields.body}}"></rubedo-custom-template>
                                 <div class="clearfix"></div>
@@ -46,7 +46,7 @@
                                 </span>
                             </span>
 
-                            <li ng-if="page.includedRichText.fields.body" class='col-sm-{{12 - blockConfig.menuWidth}} shadowed-image hidden-xs'>
+                            <li ng-if="page.includedRichText.fields.body" class='col-sm-{{12 - blockConfig.menuWidth}} shadowed-image hidden-xs img-categories'>
                                 <div>
                                     <rubedo-custom-template template="{{page.includedRichText.fields.body}}"></rubedo-custom-template>
                                     <div class="clearfix"></div>
