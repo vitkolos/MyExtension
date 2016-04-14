@@ -250,7 +250,11 @@ padding-left: 0;}
 .head-btq{
   background-color: @marron;
   color: @txt_dark;
-
+  .btq-top{
+    .dropdown-menu{
+    padding-top: 0px;
+    }
+  }
             //le hovering de tous les boutons et autres onglets
   .btn-default{
      background-color: transparent;
@@ -273,6 +277,18 @@ padding-left: 0;}
       margin-left: auto;
       margin-right: auto;
       width: 200px;
+      .mid-button{
+        width: 100%;
+        &:hover,&:focus{
+          background-color: @marron;
+        }
+      }
+      .dropdown-menu{
+        left: -50px;
+        min-width: 300px;
+        top: 0px;
+        margin-top: 0px;
+      }
     }
     .navbar-default .navbar-collapse, .navbar-default .navbar-form {
       border:none;
@@ -284,16 +300,20 @@ padding-left: 0;}
     .navbar-nav .open .dropdown-menu{
       background-color: @beigeCCN ;
     }
-    .shopping-cart-top{
-       top: 0px;
-       margin-top: 0px;
-       padding-top: 0px;
-     }
+
   }
   @media (min-width: 768px) {
-    .btq-top{margin-top: 35px;}
+    .btq-top{
+      margin-top: 35px;
+      .dropdown-menu{
+        right:0px ;
+      }
+      .shopping-cart-top{
+        left: auto;
+        width: 400px;
+      }
+    }
     .small-categories{ max-width: 400px}
-
   }
     .navbar-default {
     box-shadow: 0px 8px 10px -10px rgba(0, 0, 0, 0.5) inset;
