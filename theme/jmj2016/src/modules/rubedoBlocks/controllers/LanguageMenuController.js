@@ -20,7 +20,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                 if ($scope.rubedo.current.site.locStrategy == 'fallback'){
                     RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
                 }
-                RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+                RubedoPagesService.getPageById($scope.rubedo.current.page.id,true).then(function(response){
                     if (response.data.success){
                         if($scope.rubedo.current.page.contentCanonicalUrl) {
                             // Get content id
