@@ -34,8 +34,8 @@
                             </div>
                         </li>
                     </ul>
-                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&!megaMenuCtrl.hasSubPages(page)" class="dropdown-menu" role="menu">
-                        <div class="pull-{{blockConfig.menuAlign}} categories small-categories " ng-class="page.includedRichText.fields.body ? ' bigger-dropdown':''">
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1&&!megaMenuCtrl.hasSubPages(page)" class="dropdown-menu small-categories" role="menu">
+                        <div class="pull-{{blockConfig.menuAlign}} categories  " ng-class="page.includedRichText.fields.body ? ' bigger-dropdown':''">
                             <span ng-class="page.includedRichText.fields.body ? 'col-sm-{{blockConfig.menuWidth}} ':''">
                                 <span ng-if="!blockConfig.disableLevelOne " ng-class="{active:rubedo.current.page.id==page.id}" >
                                     <a class="dropdown-header" ng-href="{{page.url}}">{{page.text}}</a>
