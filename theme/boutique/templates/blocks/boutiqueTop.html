@@ -143,10 +143,10 @@
                     <span ng-show="shoppingCartCtrl.detailedCart.totalItems==1"> {{ rubedo.translate('Label.Item')}}</span>
                     <span class="sr-only">{{ rubedo.translate('Block.Auth.ToggleDropdown')}}</span>
                 </button>
-                <ul ng-if="!shoppingCartCtrl.cartIsEmpty" class="dropdown-menu" role="menu">
+                <ul ng-if="!shoppingCartCtrl.cartIsEmpty" class="dropdown-menu shopping-cart-top montserrat" role="menu">
                     <table class="table">
                         <tr ng-repeat="row in shoppingCartCtrl.detailedCart.cart track by $index">
-                            <td>{{row.title}}&nbsp;<small>{{row.subtitle}}</small></td>
+                            <td>{{row.title}}&nbsp;<small>{{shoppingCartCtrl.noNone(row.subtitle)}}</small></td>
                             <td>x&nbsp;{{row.amount}}</td>
                             <td><span
                                     class="glyphicon glyphicon-plus cursor-as-pointer"
@@ -156,7 +156,7 @@
                                     class="glyphicon glyphicon-minus cursor-as-pointer"
                                     aria-hidden="true"
                                     ng-click="shoppingCartCtrl.removeFromCart(row.productId.$id,row.variationId.$id,1); $event.stopPropagation();"></span></td>
-                            <td>{{row.taxedPrice | number : 2}}&nbsp;€</td>
+                            <td class="merriweather">{{row.taxedPrice | number : 2}}&nbsp;€</td>
                             <td><span
                                     class="glyphicon glyphicon-remove cursor-as-pointer"
                                     aria-hidden="true"

@@ -32,6 +32,10 @@ angular.module("rubedoBlocks").lazy.controller("ShoppingCartController",["$scope
     me.blockId=($scope.block.id);
     me.cartIsEmpty=false;
     me.detailedCart={};
+    me.noNone=function(string){
+        if (string!=' none'){return string}
+
+    };
     me.displayCart=function(){
         RubedoShoppingCartService.getCart({includeDetail:true}).then(
             function(response){
