@@ -5,9 +5,6 @@ a {
   font-family: 'Montserrat', sans-serif;
   color: #868484;
 }
-.links {
-  font-family: 'Montserrat', sans-serif;
-}
 a:hover,
 a:focus {
   color: #535151;
@@ -18,6 +15,10 @@ body {
   height: 100%;
   overflow: auto;
   background-color: #f3eeea;
+}
+.links,
+p {
+  font-family: 'Montserrat', sans-serif;
 }
 text,
 p,
@@ -194,7 +195,7 @@ h6 {
     text-align: center;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   .set-of-product img {
     max-width: 300px;
   }
@@ -210,6 +211,7 @@ h6 {
   text-align: center;
 }
 .detail img {
+  width: 100%;
   max-height: 400px;
   max-width: 400px;
 }
@@ -265,6 +267,12 @@ h6 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+}
+.montserrat {
+  font-family: 'Montserrat', sans-serif;
+}
+.merriweather {
+  font-family: 'Merriweather', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .head-btq {
   background-color: #d5c5b5;
