@@ -57,6 +57,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             lazyLoad:true
         };
         angular.element(targetElSelector).owlCarousel(owlOptions);
+        $scope.clearORPlaceholderHeight();
     };
     me.getImageOptions=function(){
         return({

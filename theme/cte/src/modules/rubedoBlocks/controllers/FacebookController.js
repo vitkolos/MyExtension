@@ -28,6 +28,7 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope',fu
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
     };
-            me.loadFcb();
+    me.loadFcb();
+    $scope.clearORPlaceholderHeight();
 }]);
 
