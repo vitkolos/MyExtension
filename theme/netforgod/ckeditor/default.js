@@ -11,5 +11,8 @@ CKEDITOR.addTemplates("default",{imagesPath:"/theme/netforgod/ckeditor/img/",tem
 {title:"Texte sur deux colonnes",image:"w33w33.png",description:"Image à gauchet et texte à droite",
     html:'<div class="row"><div class="col-xs-12  col-sm-7 col-sm-push-5"><p>Texte</p></div><div class="col-xs-12  col-sm-5 col-sm-pull-7"><p>Image</p></div></div><p></p>'},
 {title:"Texte sur deux colonnes inversé",image:"w33w33.png",description:"Texte sur 2 colonnes de même largeur (qui passent l'une au dessus de l'autre sur tablettes / smartphones)",
-    html:'<div class="row"><div class="col-xs-12  col-sm-7"><p>Colonne 1 </p></div><div class="col-xs-12  col-sm-5"><p>Colonne 2 </p></div></div><p></p>'}
+    html:'<div class="row"><div class="col-xs-12  col-sm-7"><p>Colonne 1 </p></div><div class="col-xs-12  col-sm-5"><p>Colonne 2 </p></div></div><p></p>'},
+{title:"Texte sur deux colonnes 3/4 1/4",image:"w75w25.png",description:"Texte sur 2 colonnes",
+    html:'<div class="row"><div class="col-xs-12  col-sm-8"><p>Colonne 1 </p></div><div class="col-xs-12  col-sm-4"><p>Colonne 2 </p></div></div><p></p>'}
+
     ]});
