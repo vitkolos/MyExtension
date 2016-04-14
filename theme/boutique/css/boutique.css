@@ -193,6 +193,9 @@ h6 {
   .navbar .navbar-collapse {
     text-align: center;
   }
+  .set-of-product img {
+    max-width: 300px;
+  }
 }
 .detail {
   margin-top: 25px;
@@ -260,9 +263,6 @@ h6 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-.set-of-product img {
-  max-width: 300px;
 }
 .head-btq {
   background-color: #d5c5b5;
