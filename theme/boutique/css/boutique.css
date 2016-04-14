@@ -193,6 +193,8 @@ h6 {
   .navbar .navbar-collapse {
     text-align: center;
   }
+}
+@media (max-width: 768px) {
   .set-of-product img {
     max-width: 300px;
   }
