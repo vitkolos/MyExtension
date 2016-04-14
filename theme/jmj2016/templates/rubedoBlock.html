@@ -1,4 +1,9 @@
-<div ng-init="blockConfig=block.configBloc" ng-class="rubedo.componentsService.resolveResponsiveClass(block.responsive)" class="{{block.code}}">
+<div ng-if="!rubedo.current.UXParams.hiddenBlocks[block.code]"
+     ng-class="rubedo.componentsService.resolveResponsiveClass(block.responsive)+' rubedo-block-'+block.bType"
+     in-view="blockEnterFOV()"
+     ng-style="{'min-height':getBlockMinHeight()}">
+    <div ng-if="canDisplayBlock()" class="{{block.code}}">
+        <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)" ng-class="{'text-section' : block.bType=='simpleText'}"></div>
+    </div>
 
-    <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)" ng-class="{'text-section' : block.bType=='simpleText'}"></div>
 </div>
