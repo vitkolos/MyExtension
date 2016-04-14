@@ -14,6 +14,7 @@ angular.module("rubedoBlocks").lazy.controller("BgImageController",["$scope","Ru
     
     if(config.imageFile) {
         $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(config.imageFile,{width:'800px'});
-    }    
+    }
+    $scope.clearORPlaceholderHeight();
 
 }]);

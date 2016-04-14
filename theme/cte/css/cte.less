@@ -117,6 +117,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 .var-narrow .tweet{padding:12px !important}
 .fa.icon{font-size:24px}
 .form-control{height: auto}
+.rubedo-block-contentContribution, .rubedo-block-image{min-height: 0px !important} //for smartrender
 ////////////////////////////////////////////////
     ///////global variables////////////////
 ////////////////////////////////////////////////
@@ -1095,12 +1096,14 @@ label.label_style.left, .label_style.left label{text-align:left; float:left}
 //////////////COLLAPSE////////////////////////
 .panel-group[id^=collapse]{
   .panel-default{border-color:@txt_dark}
-  .panel-default>.panel-heading{background-color: @txt_dark; color:white; .capital; cursor: pointer;}
+  .panel-default>.panel-heading{background-color: @txt_dark; color:white; .capital; cursor: pointer; a{display: inline-block; width: 100%;}}
+  .panel-title{padding-right: 15px}
   .panel-body ul{list-style-type: initial; padding-left: 12px;}
   li{padding-bottom: 2px;}
   a:hover{color:white}
   .panel{border-radius:0px !important}
-  .panel-heading{border-top-left-radius:0px; border-top-right-radius:0px;}
+  .panel-heading{border-top-left-radius:0px; border-top-right-radius:0px;.downarrow();}
+  .panel-heading:after{margin-top: -1.5em}
 }
 
 /////////DONS/////////////////

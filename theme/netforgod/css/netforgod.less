@@ -20,7 +20,7 @@ html,body{font-family: 'Roboto', serif; height: 100%; overflow: auto;background-
 
 /*responsive classes*/
 .container-fluid{padding:0;overflow-x: hidden}
-div.first{margin-top:95px}
+div.first{margin-top:88px}
 p{font-family: 'Roboto'}
 h1,h2,h3{font-family: 'Roboto Slab'}
 .padding-large{padding-top:24px; padding-bottom: 24px}
@@ -48,7 +48,7 @@ span.glyphicon{margin-right: 5px}
 .txt-link{color: @link}
 .img-circle{border:2px solid white}
 .texte{max-width: 860px; margin: 24px auto; padding: 6px 0}
-
+.bigger{font-size:1.2em}
 ///////MENU/////
 .navbar-brand{background-color: @main_light; height: auto; padding: 15px 10px}
 .navbar-fixed-top{
@@ -65,6 +65,13 @@ span.glyphicon{margin-right: 5px}
   a{ color:@txt; transition: color 0.3s ease; }
   a:hover{color:@main}
   }
+.navbar-fixed-top.home{
+    background-color:rgba(0,0,0,0.1);
+    .navbar-brand{background-color: transparent}
+    a{color:white}
+    .nav>li>a:hover, .nav>li>a:focus{background-color: transparent}
+    .navbar-nav>li{border-right-color: white}
+}
 .languageMenu{
   div.dropdown-toggle{padding:10px 20px;margin: 20px 0; font-size: 20px; text-transform: uppercase}
   li > a{padding:10px 20px;margin: 5px 0; font-size: 20px; text-transform: uppercase}

@@ -251,6 +251,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                             });
                         }
                     });
+                    $scope.clearORPlaceholderHeight();
                 }
             })
         };

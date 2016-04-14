@@ -15,6 +15,6 @@ angular.module("rubedoBlocks").lazy.controller("ButtonToPageController",['$scope
 	    }
 	});
     };
-			
+    $scope.clearORPlaceholderHeight();	
 	
 }]);

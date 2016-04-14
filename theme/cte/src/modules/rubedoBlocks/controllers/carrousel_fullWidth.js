@@ -25,27 +25,17 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
     };
     me.initCarousel=function(){
         var targetElSelector="#block"+$scope.block.id;
-        /*var options={
-            responsiveBaseWidth:targetElSelector,
-            singleItem:true,
-            pagination: blockConfig.showPager,
-            navigation: blockConfig.showNavigation,
-            autoPlay: blockConfig.autoPlay,
-            stopOnHover: blockConfig.stopOnHover,
-            paginationNumbers:blockConfig.showPagingNumbers,
-            navigationText: ['<span class="glyphicon glyphicon-chevron-left"></span>','<span class="glyphicon glyphicon-chevron-right"></span>'],
-            lazyLoad:true
-        };
-        angular.element(targetElSelector).owlCarousel(options);*/
+
         angular.element(targetElSelector).carousel({
             interval: blockConfig.duration*1000, //changes the speed
             pause: blockConfig.stopOnHover?"hover":"false"
         });
-        console.log(blockConfig.stopOnHover);
+        $scope.clearORPlaceholderHeight();
     };
     me.slideTo=function(index){
         var targetElSelector="#block"+$scope.block.id;
         angular.element(targetElSelector).carousel(index);
+        
     }
     me.getImageOptions=function(){
         return({

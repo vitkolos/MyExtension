@@ -35,6 +35,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                     });
                     $scope.fields=me.contentType.fields;
                     $scope.vocabularies=me.contentType.completeVocabularies;
+                    $scope.clearORPlaceholderHeight();
                 }
             }
         );

@@ -14,7 +14,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                         site:$location.host(),
                         route:(me.pageUrl).substr(4)
                     }
-                }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; }});
+                }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace;$scope.clearORPlaceholderHeight(); }});
             };
         });
     };

@@ -43,6 +43,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
     if (displayMode=='showList') {
         me.getContents(config.query, pageId, siteId, options, function(data){
             me.contents = data.contents;
+            $scope.clearORPlaceholderHeight();
         })
     }
     me.init = function(){
@@ -71,6 +72,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
                         me.calendar.fullCalendar('removeEvents');
                         me.calendar.fullCalendar('addEventSource', newEvents);
                         me.calendar.fullCalendar('refetchEvents');
+                        $scope.clearORPlaceholderHeight();
                     });
                 }
             }
