@@ -313,17 +313,13 @@ h6 {
   .head-btq .navbar-nav .open .dropdown-menu {
     background-color: #f3eeea;
   }
-  .head-btq .small-categories {
-    right: 0;
-    left: 0;
-    padding: 5px 0;
-    margin-left: auto;
-    margin-right: auto;
-  }
 }
 @media (min-width: 768px) {
   .head-btq .btq-top {
     margin-top: 35px;
+  }
+  .head-btq .small-categories {
+    max-width: 400px;
   }
 }
 .head-btq .navbar-default {
