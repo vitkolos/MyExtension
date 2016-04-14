@@ -24,16 +24,17 @@ angular.module("rubedoBlocks").lazy.controller('RedirectController',['$scope','R
     else if (config.url) {
         me.redirectUrl = config.url;
         if(!isUser) window.location.href= me.redirectUrl;
+        else $scope.clearORPlaceholderHeight();
     }
     else if (config.linkedPage&&mongoIdRegex.test(config.linkedPage)) {
         RubedoPagesService.getPageById(config.linkedPage).then(function(response){
             if (response.data.success){
                 me.redirectUrl=response.data.url;
                 if(!isUser) window.location.href= me.redirectUrl;
+                else $scope.clearORPlaceholderHeight();
             }
         });
     }
-    else $scope.clearORPlaceholderHeight();
     
     
 
