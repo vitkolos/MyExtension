@@ -33,6 +33,7 @@ angular.module("rubedoBlocks").lazy.controller('RedirectController',['$scope','R
             }
         });
     }
+    else $scope.clearORPlaceholderHeight();
     
     
 
