@@ -29,6 +29,8 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                         };
                                     }
                                     else if (pmResponse.data.paymentInstructions.whatToDo=="submitForm"&&pmResponse.data.paymentInstructions.url) {
+                                        me.showPaymentForm=true;
+                                        $scope.parametres = pmResponse.data.paymentInstructions.url;
                                         console.log(pmResponse.data.paymentInstructions.url);
                                     }
                                 }

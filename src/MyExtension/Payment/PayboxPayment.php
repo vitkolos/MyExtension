@@ -41,21 +41,47 @@ class PayboxPayment extends AbstractPayment
         $parametres = [
             "typePaiement" => "CARTE",
             "typeCarte" => "CB",
-            "payboxSite" => "5138580",
-            "payboxRang" => "01",
-            "payboxIdentifiant" => "413840770",
+            "payboxSite" => $this->nativePMConfig['site'],
+            "payboxRang" => $this->nativePMConfig['rang'],
+            "payboxIdentifiant" => $this->nativePMConfig['identifiant'],
             "montantEnCentimes" => number_format($order['finalPrice'],2) *100,
             "codeMonnaieNumerique" =>978,
-            "commande" => "commande", 
-            "email" => "nicolas.rhone@gmail.com", 
+            "commande" => $order["orderNumber"], 
+            "email" => $order["userEmail"], 
             "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;signature:K",
             "dateTime" => $dateTime,
             "urlRetourNormal" => $urlNormal,
             "urlRetourEchec" => $urlEchec/*,
-            "urlCallback" => $urlCallback*/,
-            "order"=>$order,
-            "config" => $this->nativePMConfig
-        ];        
+            "urlCallback" => $urlCallback*/
+
+        ];
+        
+
+
+        $empreinteBrute  =
+            "PBX_TYPEPAIEMENT=". $parametres['typePaiement'] . 
+            "&PBX_TYPECARTE=" . $parametres['typeCarte']  .
+            "&PBX_SITE=" . $parametres['payboxSite']  .
+            "&PBX_RANG=" . $parametres['payboxRang']  .
+            "&PBX_IDENTIFIANT=" . $parametres['payboxIdentifiant']  .
+            "&PBX_TOTAL=" . $parametres['montantEnCentimes']  .
+            "&PBX_DEVISE=" . $parametres['codeMonnaieNumerique']  .
+            "&PBX_CMD=" . $parametres['commande'] . 
+            "&PBX_PORTEUR=" . $parametres['email']  .
+            "&PBX_RETOUR=" . $parametres['payboxRetour']  .
+            "&PBX_HASH=" . "SHA512"  .
+            "&PBX_TIME=" . $parametres['dateTime']  .
+            "&PBX_EFFECTUE=" . $parametres['urlRetourNormal']  .
+            "&PBX_REFUSE=" . $parametres['urlRetourEchec']  .
+            "&PBX_ANNULE=" . $parametres['urlRetourEchec']  ;
+            
+        $key = $this->nativePMConfig['clef'] ;
+        // On transforme la clé en binaire
+        $binKey = pack("H*", $key);
+        // on hashe
+        $empreinteHasheeHex = strtoupper(hash_hmac('sha512', $empreinteBrute, $binKey));
+        $parametres['empreinteHasheeHex'] = $empreinteHasheeHex;
+
         $output['url']=$parametres;
         $output['whatToDo']="submitForm";
         return $output;

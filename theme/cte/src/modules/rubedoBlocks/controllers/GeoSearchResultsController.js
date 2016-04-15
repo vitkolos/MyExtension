@@ -25,7 +25,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         };
         /*si le drag est désactivé (cartes sur la largeur de l'écran)*/
         if (config.noDrag) {
-            me.mapOptions={draggable:false, scrollwheel: false}
+            me.mapOptions={draggable:true, scrollwheel: false}
         }
         else me.mapOptions={draggable:true, scrollwheel: true}
         me.geocoder = new google.maps.Geocoder();
