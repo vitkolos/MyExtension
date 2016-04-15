@@ -11,7 +11,8 @@
             </ul>
             <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
             <button ng-if="orderDetailCtrl.showPaymentButton" class="btn btn-primary" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
-            
+        </div>
+        <div class="col-md-12" style="display: flex;justify-content: center;">
             <form ng-if="orderDetailCtrl.showPaymentForm" id="payment" name="payment"  method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
                 <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
                 <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
@@ -30,17 +31,9 @@
                 <input type="hidden" name="PBX_ANNULE" value="{{parametres.urlRetourEchec}}">
                 <!--<input type="hidden" name="PBX_REPONDRE_A" value="{{parametres.urlCallback}}">-->
                 <input type="hidden" name="PBX_HMAC" value="{{parametres.empreinteHasheeHex}}">
-                <input type="submit" value="Envoyer">
-            <form>            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+                <input type="submit" class="btn-default" style="padding: 5px 15px; font-size: large;" value="Payer">
+            </form>
+
         </div>
         <div class="col-md-4 text-right">
             <time>{{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</time>

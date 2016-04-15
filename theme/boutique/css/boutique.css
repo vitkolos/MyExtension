@@ -160,6 +160,13 @@ h6 {
 .hidden {
   visibility: hidden;
 }
+.validate .panel-default,
+.validate .panel-heading,
+.validate .navbar-default,
+.validate .panel-default > .panel-heading {
+  background-color: white;
+  border-color: #dddddd;
+}
 .btq-panel {
   border-radius: 0;
   border-color: #DDDDDD;
