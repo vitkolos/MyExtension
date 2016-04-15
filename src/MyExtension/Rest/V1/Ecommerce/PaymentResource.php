@@ -70,7 +70,7 @@ class PaymentResource extends AbstractResource
         }
         $myPaymentMeans = $pmConfig[$order['paymentMeans']];
         if($order['paymentMeans']=='paybox') {
-            var_dump($myPaymentMeans);
+            var_dump($pmConfig);
             $paymentInstructions = [];
         }
         else {
