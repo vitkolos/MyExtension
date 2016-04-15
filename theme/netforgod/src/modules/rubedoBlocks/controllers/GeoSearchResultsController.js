@@ -435,6 +435,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                             });
                         }
                     });
+                    $scope.clearORPlaceholderHeight();
                 }
             })
         };

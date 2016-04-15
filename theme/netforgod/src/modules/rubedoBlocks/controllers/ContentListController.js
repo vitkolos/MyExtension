@@ -86,6 +86,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
+                //for films
                 if (me.usedContentTypes[0]=="54cb447145205e7d09db0590" && me.limit>1) {
                     me.filmsList = true;
                     if (!add) {
@@ -124,6 +125,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                             me.contentList.push(columnContentListSpecial);
                         }
                     }
+                    $scope.clearORPlaceholderHeight();
                 }
                 else {
                     var columnContentList = [];
@@ -132,6 +134,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                             columnContentList.push(newContent);
                         });
                         me.contentList.push(columnContentList);
+                        $scope.clearORPlaceholderHeight();
                     } else {
                         me.contentList=[];
                         angular.forEach(response.data.contents,function(newContent, key){
@@ -144,6 +147,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         if (columnContentList.length > 0){
                             me.contentList.push(columnContentList);
                         }
+                        $scope.clearORPlaceholderHeight();
                     }                    
                 }
                 
