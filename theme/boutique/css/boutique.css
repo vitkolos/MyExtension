@@ -160,12 +160,14 @@ h6 {
 .hidden {
   visibility: hidden;
 }
-.validate .panel-default,
-.validate .panel-heading,
-.validate .navbar-default,
-.validate .panel-default > .panel-heading {
+.validate .row {
+  padding: 10px;
+}
+.prod-search .panel-default,
+.prod-search .panel-heading,
+.prod-search .navbar-default,
+.prod-search .panel-default > .panel-heading {
   background-color: white;
-  border-color: #dddddd;
 }
 .btq-panel {
   border-radius: 0;
