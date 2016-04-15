@@ -22,12 +22,12 @@
 
     </div>
 
-    <nav class="navbar navbar-default ">
+    <nav class="navbar navbar-default " style="background-color: white">
         <div class="navbar-header">
             <span class="navbar-brand" ng-if="searchResultsCtrl.count > 1">{{rubedo.translate('Search.ThereAre','There are')}} <span class="badge">{{searchResultsCtrl.count}}</span> {{rubedo.translate('Search.Results','results')}}</span>
             <span class="navbar-brand" ng-if="searchResultsCtrl.count <= 1">{{rubedo.translate('Search.ThereIs','There is')}} <span class="badge">{{searchResultsCtrl.count}}</span> {{rubedo.translate('Search.Result','result')}}</span>
         </div>
-        <div class="collapse navbar-collapse ">
+        <div class="collapse navbar-collapse " >
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href class="dropdown-toggle" data-toggle="dropdown">{{searchResultsCtrl.displayOrderBy}} <span class="caret"></span></a>
