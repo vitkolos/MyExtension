@@ -66,7 +66,13 @@
                     <div class="text-center" ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
                         <h4 class="col-md-8" style="padding: 0">
                             <span ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small class="del">{{content.productProperties.lowestNoSoPrice|number:2}} €</small></span>
-                            <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span>
+                            <!--<span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span>-->
+                            <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">
+                                <span ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice">
+                                    {{rubedo.translate('Blocks.UserOrders.From')}}&nbsp;
+                                </span>
+                                {{content.productProperties.lowestFinalPrice|number:2}} €
+                            </span>
                         </h4>
                         <!--<a ng-href="{{ content.url }}"><button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button></a>-->
                         <button ng-if="content.productProperties.variations.length==1"
