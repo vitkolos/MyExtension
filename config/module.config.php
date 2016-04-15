@@ -7,6 +7,7 @@ return array(
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paybox.json'
         )
     ),
+    
 
     /**
      * Your block definition : back-office json configuration file
@@ -190,6 +191,12 @@ return array(
             'error/404' =>  realpath(__DIR__) . '/../views/error/404.phtml',
             'rubedo/index/index' => realpath(__DIR__) . '/../views/index/index.phtml'
         ),
+    ),
+    /*ajout du service Paybox*/
+    'service_manager' => array(
+        'invokables' => array(
+            'PayboxPayment'=>'Rubedo\\Payment\\PayboxPayment'
+        )
     ),
     /*
     'controllers' => array(
