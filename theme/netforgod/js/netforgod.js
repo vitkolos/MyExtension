@@ -16,10 +16,7 @@ blocksConfig.contentDetail = {
             "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
-blocksConfig.carrousel2={
-           "template": "/templates/blocks/carrousel_fullWidth.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js","/lib/angular-video-bg/angular-video-bg.js"]
-};
+
 
 angular.module('rubedoBlocks').filter('firstUpper', function() {
     return function(input, scope) {
