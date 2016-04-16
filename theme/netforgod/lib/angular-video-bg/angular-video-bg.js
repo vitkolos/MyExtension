@@ -1,5 +1,4 @@
-(function (){
-    'use strict';
+
 
     /**
      * @ngdoc overview
@@ -8,7 +7,6 @@
      * any container on your site.
      */
 
-    angular.module('rubedoBlocks', []);
 
     /**
      * @ngdoc directive
@@ -525,4 +523,3 @@
         };
     }
 
-})();
