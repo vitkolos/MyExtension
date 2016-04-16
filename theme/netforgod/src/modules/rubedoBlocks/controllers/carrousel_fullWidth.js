@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope","RubedoContentsService","$window", "$q", "$timeout",function($scope,RubedoContentsService,$window, $q, $timeout){
+angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
     var me=this;
     me.contents=[];
     var blockConfig=$scope.blockConfig;
