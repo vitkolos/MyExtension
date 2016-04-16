@@ -30,9 +30,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         var clusterStyles = [
           {
             textColor: '#333333',
+            textSize: 16,
             url: '/theme/netforgod/img/maps/cluster.png',
-            height: 60,
-            width: 60
+            height: 50,
+            width: 50
           },
         ];
         //clustering options
