@@ -40,7 +40,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         me.clusterOptions={
             batchSize : 20000,
             averageCenter : false,
-            gridSize : 60,
+            gridSize : 80,
             zoomOnClick:false,
             batchSizeIE : 20000,
             enableRetinaIcons :true,
