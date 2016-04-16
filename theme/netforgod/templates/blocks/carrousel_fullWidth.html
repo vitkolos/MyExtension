@@ -72,7 +72,9 @@
 	  <!--
           <div class="fill" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],{width:'500px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],{width:'600px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}} 1650w"
                afkl-lazy-image-options='{"background": true, "nolazy": true}'></div>-->
-          <video-bg class="fill" video-id="{{content.fields.videoId}}"></video-bg>
+	       <div clas="fill">
+			<video-bg video-id="{{content.fields.videoId}}" allow-click-events="true"></video-bg>
+	       </div>
            
 		
           
