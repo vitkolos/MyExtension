@@ -10,6 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
+    me.contentsShowed = me.limit;
     me.ismagic = config.magicQuery ? config.magicQuery : false;
     $scope.rubedo.showSearchList = false;
     $scope.showFilters=false;
@@ -48,6 +49,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.changePageAction = function(){
         options.start += me.limit;
         options.limit += me.limit;
+        me.contentsShowed += me.limit;
         me.getContents(config.query, pageId, siteId, options, true);
     };
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
