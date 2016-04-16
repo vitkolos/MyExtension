@@ -10,5 +10,6 @@ angular.module("rubedoBlocks").lazy.controller("BgImageController",["$scope","Ru
             }
         });
     }
+    $scope.clearORPlaceholderHeight();
 
 }]);
