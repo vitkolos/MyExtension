@@ -9,14 +9,12 @@
         .carousel-inner .active.left,
         .carousel-inner .active.right {
             opacity: 0;
-	    height: 0;
         }
 
         .carousel-inner .active,
         .carousel-inner .next.left,
         .carousel-inner .prev.right {
             opacity: 1;
-	    height: 100%;
         }
 
         .carousel-inner .next,
@@ -45,7 +43,9 @@
     width: 100%;
     height: 100%;
     display: block;
-    position: relative;
+    position: absolute !important;
+    top: 0;
+    left:0;
     background-position: center;
     -webkit-background-size: cover;
     -moz-background-size: cover;
