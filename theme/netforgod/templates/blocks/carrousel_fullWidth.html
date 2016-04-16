@@ -53,17 +53,17 @@
     -o-background-size: cover;
 }
 .video-title{
-	position: absolute;
+	position: absolute !important;
 	bottom: 15px; right: 5%;
 	color: white;
-	padding: 12px;
-	border: 2px solid white;
+	padding: 6px 12px;
+	border: 1px solid white;
 	background-color: rgba(0,0,0,0.1)
 }
 </style>
 
 <div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" >
-  <ol class="carousel-indicators">
+  <ol class="carousel-indicators" ng-if="carouselCtrl.count>1">
     <li ng-repeat="content in carouselCtrl.contents" 
       ng-if="content.fields[blockConfig.imageField]" 
       data-target="{{'block'+block.id}}"

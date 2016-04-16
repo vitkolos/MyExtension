@@ -18,6 +18,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
             function(response){
                 if (response.data.success){
                     me.contents=response.data.contents;
+                    me.count = response.data.count;
                     setTimeout(function(){me.initCarousel();},100);
                 }
             }
