@@ -18,7 +18,7 @@ blocksConfig.contentDetail = {
 };
 blocksConfig.carrousel2={
            "template": "/templates/blocks/carrousel_fullWidth.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js","/lib/angular-video-bg/angular-video-bg.min.js"]
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js","/lib/angular-video-bg/angular-video-bg.js"]
 };
 
 angular.module('rubedoBlocks').filter('firstUpper', function() {
