@@ -333,7 +333,7 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
 
 ///////mediaschool/////////
 .mediaschool-films {
-        margin-bottom: -20em;
+        margin-bottom: -10em;
         position: relative;
         z-index: 1;
 }
@@ -346,12 +346,17 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
 .school-films  .item-video{
     width: 90%;
     margin-left: 5%;    
-}  
+}
+.school-films>.owl-wrapper-outer{
+    top: 20vh; 
+}
 @media screen and (min-width:600px){
+    .mediaschool-films{margin-bottom: -20em;}
     .school-films{background-size: 2000px 1300px;height: 1300px;}
   .school-films>.owl-wrapper-outer{
     position: absolute;
     margin-top: 460px;
+    top: 0;
     width:100%;
   }
   .school-films>.owl-controls{
