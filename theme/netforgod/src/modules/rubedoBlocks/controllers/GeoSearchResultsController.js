@@ -29,7 +29,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         //cluster icon
         var clusterStyles = [
           {
-            textColor: 'white',
+            textColor: '#333333',
             url: '/theme/netforgod/img/maps/cluster.png',
             height: 60,
             width: 60
@@ -42,6 +42,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             gridSize : 20,
             zoomOnClick:false,
             batchSizeIE : 20000,
+            enableRetinaIcons :true,
             styles : clusterStyles
 
         };
