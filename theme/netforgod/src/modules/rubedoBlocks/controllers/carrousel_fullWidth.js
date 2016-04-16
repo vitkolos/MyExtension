@@ -57,14 +57,14 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
     if (blockConfig.query){
         me.getContents();
     }
-}]);
+}])
 
 
 
 
 
 
-    angular.module('rubedoBlocks').directive('videoBg', ['$window', '$q', '$timeout', function($window, $q, $timeout){
+.directive('videoBg', ['$window', '$q', '$timeout', function($window, $q, $timeout){
         return {
             restrict: 'EA',
             replace: true,
