@@ -20,6 +20,12 @@ blocksConfig.carrousel2={
            "template": "/templates/blocks/carrousel_fullWidth.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
 };
+blocksConfig.footer_fr={
+           "template": "/templates/blocks/footer_fr.html"
+};
+blocksConfig.footer_en={
+           "template": "/templates/blocks/footer_en.html"
+};
 
 angular.module('rubedoBlocks').filter('firstUpper', function() {
     return function(input, scope) {
