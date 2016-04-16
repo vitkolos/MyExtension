@@ -52,6 +52,14 @@
     background-size: cover;
     -o-background-size: cover;
 }
+.video-title{
+	position: absolute;
+	bottom: 15px; right: 5%;
+	color: white;
+	padding: 12px;
+	border: 2px solid white;
+	background-color: rgba(0,0,0,0.1)
+}
 </style>
 
 <div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" >
@@ -75,18 +83,8 @@
                afkl-lazy-image-options='{"background": true, "nolazy": true}'></div>-->
 	       <div class="fill">
 			<video-bg video-id=" content.fields.videoId " start="83" end="95" allow-click-events="true"></video-bg>
+			<p class="video-title hidden-sm hidden-xs">{{content.fields.text}}</p>
 	       </div>
-           
-		
-          
-          
-          
-          <div class="homepage_txt">
-              <p>{{content.fields.text}}</p>
-              <p>{{content.fields.summary}}</p>
-              <p >{{content.fields.titre2}}</p>
-              <p ng-repeat="text in content.fields.subTitle">{{text}}</p>
-          </div>
       </div>
   </div>
        <!-- Controls -->
