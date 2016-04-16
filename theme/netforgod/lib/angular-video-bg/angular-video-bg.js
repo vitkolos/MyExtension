@@ -8,6 +8,7 @@
      * any container on your site.
      */
 
+    angular.module('rubedoBlocks', []);
 
     /**
      * @ngdoc directive
