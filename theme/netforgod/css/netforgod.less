@@ -332,6 +332,11 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
 
 
 ///////mediaschool/////////
+.mediaschool-films {
+        margin-bottom: -20em;
+        position: relative;
+        z-index: 1;
+}
 .school-films {
   background: url('/theme/netforgod/img/cinema.svg') no-repeat center center;
   background-size: 250% auto;
@@ -343,19 +348,17 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
     margin-left: 5%;    
 }  
 @media screen and (min-width:600px){
+    .school-films{background-size: 2000px 1300px;height: 1300px;}
   .school-films>.owl-wrapper-outer, .school-films>.owl-controls{
     position: absolute;
-    transform:translateY(-50%);
-    margin-top: 31vh;
+    margin-top: 460px;
     width:100%;
-
   }
   .school-films  .item-video{
       width: 500px;
       margin-left: auto; margin-right:auto;    
         max-height: 60vh;
     }
-    .school-films{background-size: 2000px auto;}
 }
 .owl-theme .owl-controls .owl-buttons div{
   color:@main;
