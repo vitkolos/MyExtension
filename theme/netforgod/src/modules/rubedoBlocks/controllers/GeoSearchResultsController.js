@@ -26,14 +26,24 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             me.placesSearchTemplate=themePath+"/templates/blocks/geoSearchResults/placesSearch.html";
         }
         
-        
+        //cluster icon
+        var clusterStyles = [
+          {
+            textColor: 'white',
+            url: '/theme/netforgod/img/maps/cluster.png',
+            height: 60,
+            width: 60
+          },
+        ];
         //clustering options
         me.clusterOptions={
             batchSize : 20000,
             averageCenter : false,
             gridSize : 20,
             zoomOnClick:false,
-            batchSizeIE : 20000
+            batchSizeIE : 20000,
+            styles : clusterStyles
+
         };
         //api clustering options
         me.apiClusterOptions={
