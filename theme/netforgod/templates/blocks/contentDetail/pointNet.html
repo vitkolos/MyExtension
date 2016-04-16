@@ -16,12 +16,12 @@
 			<rubedo-field ng-if="showMap" field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field>
 		</div>
 		<div class="col-xs-4 col-xxs-12">
-			<p>{{rubedo.translate("NFG.NextMeeting",'next meeting')}}</p>
+			<p ng-if="contentDetailCtrl.content.nextDate">{{rubedo.translate("NFG.NextMeeting",'next meeting')}}</p>
 			<p class="next-meeting" ng-if="contentDetailCtrl.content.nextDate">
 				<span>{{contentDetailCtrl.content.nextDate*1000 |date:'MMMM' |firstUpper}}</span>
 				<span>{{contentDetailCtrl.content.nextDate*1000 |date:'d'}}</span>
 			</p>
-			<p><span class="icon-watches"></span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
+			<p ng-if="contentDetailCtrl.content.nextDate"><span class="icon-watches"></span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
 			<rubedo-field ng-if="fieldEditMode" ng-repeat="field in fields|filter:'date' track by $index "></rubedo-field><!--Title-->
 			<h3>Contact</h3>
 			<rubedo-field ng-if="fieldEntity['nom']" field =  "{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field><!--Nom du contact-->
