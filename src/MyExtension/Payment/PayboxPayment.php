@@ -39,8 +39,8 @@ class PayboxPayment extends AbstractPayment
         //$urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
 
         $parametres = [
-            "typePaiement" => "CARTE",
-            "typeCarte" => "CB",
+            /*"typePaiement" => "CARTE",
+            "typeCarte" => "CB",*/
             "payboxSite" => $this->nativePMConfig['site'],
             "payboxRang" => $this->nativePMConfig['rang'],
             "payboxIdentifiant" => $this->nativePMConfig['identifiant'],
