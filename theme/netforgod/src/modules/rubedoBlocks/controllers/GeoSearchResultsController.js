@@ -120,35 +120,37 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         //marker events
         me.markerEvents = {
             click: function (gMarker, eventName, model) {
-                $scope.$apply(function () {
-                    me.displayedItemId = model.id;
-                });
-
-                $scope.$apply(function(){
-                    angular.forEach(me.data, function(item){
-                        if (item.id != model.id) {
-                            item.markerOptions = {
-                                title:item.title,
-                                icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+"sel.png", null, null, null, new google.maps.Size(50, 50))
-                            }
-                        }
-                        else
-                            item.markerOptions = {
-                                title:item.title,
-                                icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+"sel.png", null, null, null, new google.maps.Size(100, 100))
-                            }
+                var isFirst = (model.id==me.displayedId); // true si c'est la première fois qu'on clique
+                if (isFirst) {
+                    $scope.$apply(function () {
+                        me.displayedItemId = model.id;
                     });
-                })
-                $scope.$apply(function () {
-                    me.displayedItemId = model.id;
-                });
-                var target=angular.element(".search-result[id='"+model.id+"']");
-                var scrollEl = angular.element(".geo-search");
-                if (target&&target.length>0){
-                    scrollEl.animate({scrollTop: target.offset().top}, "fast");
+
+                    $scope.$apply(function(){
+                        angular.forEach(me.data, function(item){
+                            if (item.id != model.id) {
+                                item.markerOptions = {
+                                    title:item.title,
+                                    icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+"sel.png", null, null, null, new google.maps.Size(50, 50))
+                                }
+                            }
+                            else
+                                item.markerOptions = {
+                                    title:item.title,
+                                    icon: new google.maps.MarkerImage("/theme/netforgod/img/maps/"+item.itemData['class']+"sel.png", null, null, null, new google.maps.Size(100, 100))
+                                }
+                        });
+                    })
+                
+                    var target=angular.element(".search-result[id='"+model.id+"']");
+                    var scrollEl = angular.element(".geo-search");
+                    if (target&&target.length>0){
+                        scrollEl.animate({scrollTop: target.offset().top}, "fast");
+                    }
+
+                    console.log("displayedID :"+me.displayedItemId);
+                    console.log("target :"+target.offset().top);
                 }
-                console.log("displayedID :"+me.displayedItemId);
-                console.log("target :"+target.offset().top);
 
             }
         };
