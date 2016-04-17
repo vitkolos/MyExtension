@@ -40,7 +40,7 @@ class PayboxPayment extends AbstractPayment
 
         $parametres = [
             "typePaiement" => "CARTE",
-            "typeCarte" => "",
+            "typeCarte" => "CB",
             "payboxSite" => $this->nativePMConfig['site'],
             "payboxRang" => $this->nativePMConfig['rang'],
             "payboxIdentifiant" => $this->nativePMConfig['identifiant'],
