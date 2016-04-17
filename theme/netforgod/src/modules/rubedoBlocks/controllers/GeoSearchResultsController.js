@@ -20,7 +20,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             zoom:config.zoom ? config.zoom : 14
         };
         me.geocoder = new google.maps.Geocoder();
-        me.displayedId=0;
+        me.displayedItemId=0;
         //places search
         if (config.showPlacesSearch){
             me.activatePlacesSearch=true;
@@ -151,9 +151,9 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
 
 
                 }
-                    console.log("displayedID :"+me.displayedItemId);
-                    console.log("target :"+target.offset().top);
-                    console.log(isFirst);
+                console.log("displayedID :"+me.displayedItemId);
+                console.log("target :"+target.offset().top);
+                console.log(isFirst);
             }
         };
         me.setDisplayedId = function(currentId){
