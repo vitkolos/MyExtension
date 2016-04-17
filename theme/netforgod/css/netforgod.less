@@ -32,8 +32,12 @@ h1,h2,h3{font-family: 'Roboto Slab'}
 a{cursor: pointer}
 
 @media screen and (max-width: @min_xs){
-    [class*="col-xs-"].col-xxs-12{width:100%}
+    [class*="col-xs-"] {width:100%}
     .hidden-xxs{display: none;}
+}
+@media screen and (min-width: @min_xs) and (max-width: @min_sm){
+    .col-xs-6{width: 50%;}
+    
 }
 /*overrides*/
 span.glyphicon{margin-right: 5px}
