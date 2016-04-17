@@ -120,6 +120,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         //marker events
         me.markerEvents = {
             click: function (gMarker, eventName, model) {
+                $scope.$apply(function () {
+                    me.displayedItemId = model.id;
+                });
+
                 $scope.$apply(function(){
                     angular.forEach(me.data, function(item){
                         if (item.id != model.id) {
@@ -143,6 +147,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 if (target&&target.length>0){
                     scrollEl.animate({scrollTop: target.offset().top}, "fast");
                 }
+                console.log("displayedID :"+me.displayedItemId);
+                console.log("target :"+target);
 
             }
         };

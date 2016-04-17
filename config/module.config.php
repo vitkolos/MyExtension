@@ -2,7 +2,7 @@
 return array(
     'paymentMeans' => array(
             'paybox' => array(
-            'name' => "PayBox",
+            'name' => "PayBox ACN",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paybox.json'
         )
