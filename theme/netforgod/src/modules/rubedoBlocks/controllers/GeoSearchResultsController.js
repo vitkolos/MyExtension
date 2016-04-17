@@ -121,7 +121,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         //marker events
         me.markerEvents = {
             click: function (gMarker, eventName, model) {
-                var isFirst = (model.id==me.displayedId); // true si c'est la première fois qu'on clique
+                var isFirst = (model.id==me.displayedItemId); // true si c'est la première fois qu'on clique
                 if (isFirst) {
                     $scope.$apply(function () {
                         me.displayedItemId = model.id;
