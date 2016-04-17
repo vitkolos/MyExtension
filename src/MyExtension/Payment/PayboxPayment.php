@@ -39,8 +39,8 @@ class PayboxPayment extends AbstractPayment
         //$urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
 
         $parametres = [
-            /*"typePaiement" => "CARTE",
-            "typeCarte" => "CB",*/
+            "typePaiement" => "PAYPAL",
+            "typeCarte" => "PAYPAL",
             "payboxSite" => $this->nativePMConfig['site'],
             "payboxRang" => $this->nativePMConfig['rang'],
             "payboxIdentifiant" => $this->nativePMConfig['identifiant'],
@@ -59,9 +59,9 @@ class PayboxPayment extends AbstractPayment
 
 
         $empreinteBrute  =
-            //"PBX_TYPEPAIEMENT=". $parametres['typePaiement'] . 
-            //"&PBX_TYPECARTE=" . $parametres['typeCarte']  .
-            "PBX_SITE=" . $parametres['payboxSite']  .
+            "PBX_TYPEPAIEMENT=". $parametres['typePaiement'] . 
+            "&PBX_TYPECARTE=" . $parametres['typeCarte']  .
+            "&PBX_SITE=" . $parametres['payboxSite']  .
             "&PBX_RANG=" . $parametres['payboxRang']  .
             "&PBX_IDENTIFIANT=" . $parametres['payboxIdentifiant']  .
             "&PBX_TOTAL=" . $parametres['montantEnCentimes']  .
