@@ -73,7 +73,8 @@
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('lieuCommunautaire')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
-						<p>{{contentDetailCtrl.content.fields.position.address}}</p><!--Description-->
+						<p ng-if="contentDetailCtrl.content.fields.position.address!='' ">{{contentDetailCtrl.content.fields.position.address}}</p><!--Description-->
+						<rubedo-field  ng-if="contentDetailCtrl.content.fields.position.address=='' " field =  "{{contentDetailCtrl.getFieldByName('positionName')}}"></rubedo-field>
 					</div>
 				</div>
 				<div ng-if="fieldEntity['logement']" class="col-xs-12">
