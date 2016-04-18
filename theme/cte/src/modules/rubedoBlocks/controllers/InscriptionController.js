@@ -83,8 +83,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.form[option] = true;
             });
         }
-        console.log(me.form);
-        console.log(me.getFieldByName('formulaire_pdf'));
     }
     $scope.personneConnue = angular.copy(me.form.personneConnue);//vrai si formulaire pour personnes connues -> seulement nom, prénom et mail
     
