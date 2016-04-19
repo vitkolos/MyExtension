@@ -528,7 +528,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             }
         },3200);
         /*GEt Edition page*/
-        RubedoPagesService.getPageById("567124c73bc325c5308b4569").then(function(response){
+        RubedoPagesService.getPageById("571682f2c445ecf7148c3806").then(function(response){
             if (response.data.success){
                     me.editorPageUrl=response.data.url;
                 }
