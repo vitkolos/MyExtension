@@ -15,7 +15,7 @@
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
 			<p class="padding-large">Dates des rencontres : <br/>
 				<rubedo-field ng-if="fieldEntity['date']" field =  "{{contentDetailCtrl.getFieldByName('date')}}"></rubedo-field><!--Nom du contact-->
-				<rubedo-field ng-if="fieldEntity['date1']" field =  "{{contentDetailCtrl.getFieldByName('date1')}}"></rubedo-field><!--Nom du contact-->
+				<rubedo-field ng-if="fieldEntity['date1']" field =  "{{contentDetailCtrl.getFieldByName('date')[1]}}"></rubedo-field><!--Nom du contact-->
 				<rubedo-field ng-if="fieldEntity['date2']" field =  "{{contentDetailCtrl.getFieldByName('date2')}}"></rubedo-field><!--Nom du contact-->
 				<rubedo-field ng-if="fieldEntity['date3']" field =  "{{contentDetailCtrl.getFieldByName('date3')}}"></rubedo-field><!--Nom du contact-->
 				<rubedo-field ng-if="fieldEntity['date4']" field =  "{{contentDetailCtrl.getFieldByName('date4')}}"></rubedo-field><!--Nom du contact-->
