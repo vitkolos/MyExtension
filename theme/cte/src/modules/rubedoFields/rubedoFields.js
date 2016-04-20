@@ -600,9 +600,10 @@
                 window.saveRubedoMediaChange=function(id){
                     $scope.fieldEntity[$scope.field.config.name]=id;
                     mediaId=id;
+                    // pour ajouter recherche dans la meidathèque en FO
                     if ($scope.registerFieldEditChanges){
                         $scope.registerFieldEditChanges();
-                    }
+                    }//fin de la modif
                     RubedoMediaService.getMediaById(mediaId).then(
                         function(response){
                             if (response.data.success){
