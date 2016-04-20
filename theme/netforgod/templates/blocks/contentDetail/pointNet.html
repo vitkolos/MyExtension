@@ -15,12 +15,12 @@
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
 			<p class="padding-large">Dates des rencontres : <br/>
 				<span ng-if="fieldEntity['date']">{{fieldEntity['date']*1000| date: "shortDate"}}</span>
-				<span ng-if="fieldEntity['date1']">{{fieldEntity['date1']*1000| date: "shortDate"}}</span>
-				<span ng-if="fieldEntity['date2']">{{fieldEntity['date2']*1000| date: "shortDate"}}</span>
-				<span ng-if="fieldEntity['date3']">{{fieldEntity['date3']*1000| date: "shortDate"}}</span>
-				<span ng-if="fieldEntity['date4']">{{fieldEntity['date4']*1000| date: "shortDate"}}</span>
-				<span ng-if="fieldEntity['date5']">{{fieldEntity['date5']*1000| date: "shortDate"}}</span>
-				<span ng-if="fieldEntity['date6']">{{fieldEntity['date6']*1000| date: "shortDate"}}</span>
+				<span ng-if="fieldEntity['date1']">, {{fieldEntity['date1']*1000| date: "shortDate"}}</span>
+				<span ng-if="fieldEntity['date2']">, {{fieldEntity['date2']*1000| date: "shortDate"}}</span>
+				<span ng-if="fieldEntity['date3']">, {{fieldEntity['date3']*1000| date: "shortDate"}}</span>
+				<span ng-if="fieldEntity['date4']">, {{fieldEntity['date4']*1000| date: "shortDate"}}</span>
+				<span ng-if="fieldEntity['date5']">, {{fieldEntity['date5']*1000| date: "shortDate"}}</span>
+				<span ng-if="fieldEntity['date6']">, {{fieldEntity['date6']*1000| date: "shortDate"}}</span>
 				
 			<!--<rubedo-field ng-repeat="field in fields|filter:'date' track by $index "></rubedo-field><!--Title-->
 			</p>
