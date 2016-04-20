@@ -13,7 +13,10 @@
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Title-->		
 			<h4>{{contentDetailCtrl.content.fields.subTitle | uppercase}}</h4><!--Sous titre-->
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
+			<p class="padding-large">Dates des rencontres : <br/>
+			<rubedo-field ng-repeat="field in fields|filter:'date' track by $index "></rubedo-field><!--Title--></p>
 			<rubedo-field ng-if="showMap" field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field>
+			
 		</div>
 		<div class="col-xs-4 col-xxs-12">
 			<p ng-if="contentDetailCtrl.content.nextDate">{{rubedo.translate("NFG.NextMeeting",'next meeting')}}</p>
@@ -22,7 +25,7 @@
 				<span>{{contentDetailCtrl.content.nextDate*1000 |date:'d'}}</span>
 			</p>
 			<p ng-if="contentDetailCtrl.content.nextDate"><span class="icon-watches"></span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
-			<rubedo-field ng-if="fieldEditMode" ng-repeat="field in fields|filter:'date' track by $index "></rubedo-field><!--Title-->
+			
 			<h3>Contact</h3>
 			<rubedo-field ng-if="fieldEntity['nom']" field =  "{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field><!--Nom du contact-->
 			<rubedo-field ng-if="fieldEntity['telephone']" field =  "{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field><!--Téléphone du contact-->
