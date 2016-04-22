@@ -23,3 +23,13 @@
 .ccn-parents:before{content:'\0043';}
 .ccn-solo:before{content:'\0044';}
 .ccn-fiances:before{content:'\0045';}
+.ccn-abbaye:before{content:'\0046';}
+.ccn-agenda:before{content:'\0047';}
+.ccn-boutique:before{content:'\0048';}
+.ccn-croix:before{content:'\0049';}
+.ccn-groupe:before{content:'\004a';}
+.ccn-hebergement:before{content:'\004b';}
+.ccn-info:before{content:'\004c';}
+.ccn-sejour:before{content:'\004d';}
+.ccn-SPIRITUELE:before{content:'\004e';}
+.ccn-visite:before{content:'\004f';}
