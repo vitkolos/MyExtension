@@ -347,8 +347,8 @@ protected function sendInscriptionMail($inscription,$lang){
     
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////    
     /**************SUJET SECRETARIAT*****************/
-    if($inscription['serviteur']) $sujetSecretariat = $trad["ccn_inscription_serviteur"] . " - " . $inscription['text'] . " - " . $inscription['propositionTitre'];
-   else $sujetSecretariat = $trad["ccn_inscription"] . " - " . $inscription['text'] . " - " . $inscription['propositionTitre'];
+    if($inscription['serviteur']) $sujetSecretariat = $trad["ccn_inscription_serviteur"] . " - " . $inscription['text'] . " - " . $inscription['propositionTitre'] . " - " . $inscription['propositionLieu'];
+   else $sujetSecretariat = $trad["ccn_inscription"] . " - " . $inscription['text'] . " - " . $inscription['propositionTitre'] . " - " . $inscription['propositionLieu'];
    
     /**************MESSAGE SECRETARIAT*****************/
     //STATUT DE L'INSCRIPTION
