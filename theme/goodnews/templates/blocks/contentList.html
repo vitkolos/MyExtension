@@ -68,7 +68,7 @@
                     </div>
 
                     <div class="blog-title">
-                        <p>{{content.fields.text }}</p>
+                        <p ng-style="{'height':contentListCtrl.contentHeight}">{{content.fields.text }}</p>
                     </div>
                     <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
                         {{rubedo.translate("Label.Edit", "Edit")}}
