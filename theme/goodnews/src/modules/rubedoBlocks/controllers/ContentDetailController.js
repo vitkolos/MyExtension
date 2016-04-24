@@ -211,7 +211,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         }
                     );
-                    console.log($scope.rubedo);
                     
                     
                     if(me.customLayout){
@@ -224,6 +223,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                         me.detailTemplate=me.customLayout.customTemplate?themePath+'/templates/blocks/contentDetail/customTemplate.html':themePath+'/templates/blocks/contentDetail/customLayout.html';
+                        $scope.clearORPlaceholderHeight();
                     } else {
                         if(me.content.type.code&&me.content.type.code!=""){
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
@@ -233,17 +233,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                     }
                                     else me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
                                     $scope.fields=me.transformForFront(me.content.type.fields);
+                                    $scope.clearORPlaceholderHeight();
 
                                 },
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                                     $scope.fields=me.transformForFront(me.content.type.fields);
+                                    $scope.clearORPlaceholderHeight();
+
 
                                 }
                             );
                         } else {
                             me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                             $scope.fields=me.transformForFront(me.content.type.fields);
+                            $scope.clearORPlaceholderHeight();
+
                         }
                         //$http.get(themePath+'/templates/blocks/contentDetail/)
 

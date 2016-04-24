@@ -29,6 +29,7 @@ angular.module("rubedoBlocks").lazy.controller('FacebookController',['$scope','$
     };
     $timeout(function() {
             me.loadFcb();
+            $scope.clearORPlaceholderHeight();
         }, 1000);
 }]);
 

@@ -2,6 +2,7 @@ angular.module("rubedoBlocks").lazy.controller('RedirectController',['$scope','R
    var me = this;
     var config = $scope.blockConfig;
     me.redirectUrl = "";
+    $scope.clearORPlaceholderHeight();
    me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
