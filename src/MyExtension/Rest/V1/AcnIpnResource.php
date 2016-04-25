@@ -9,7 +9,7 @@ use RubedoAPI\Exceptions\APIControllerException;
 use WebTales\MongoFilters\Filter;
 
 
-class PayboxIpnResource extends AbstractResource {
+class AcnIpnResource extends AbstractResource {
     protected $returnedEntityFields = array(
         'fields'
     );
