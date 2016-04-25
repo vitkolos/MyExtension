@@ -1,9 +1,10 @@
 <div ng-style="{height:'{{geoSearchResultsCtrl.height}}',width:'100%'}">
-    <google-map ng-if="geoSearchResultsCtrl.display() && !geoSearchResultsCtrl.noDrag"
+    <google-map ng-if="geoSearchResultsCtrl.display()"
                 center="geoSearchResultsCtrl.map.center"
                 zoom="geoSearchResultsCtrl.map.zoom"
                 events="geoSearchResultsCtrl.mapEvents"
                 control="geoSearchResultsCtrl.mapControl"
+                options="geoSearchResultsCtrl.mapOptions"
                 draggable="true">
 
         <map-control ng-if="geoSearchResultsCtrl.activatePlacesSearch"
