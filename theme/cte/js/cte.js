@@ -80,6 +80,27 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     }
   });
 
+// pour filtrer les éléments avec une date passée
+angular.module('rubedoBlocks').filter('isAfter', function ($filter) {
+           return function(items, dateAfter){
+                      var nextEvents = [];
+                      if (dateAfter=='today' ) {
+                                 var today = new Date();
+                                 var limit = today.getTime();
+                      }
+                      else var limit = dateAfter*1000;
+                      angular.forEach(items, function(content, index) {
+                                 if (content.fields.dateDebut*1000 >=limit) {
+                                            nextEvents.push(content);
+                                 }
+                      });
+                      return nextEvents;
+                      
+           }
+});
+
+
+
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
         var me=this;
