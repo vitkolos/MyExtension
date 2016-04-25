@@ -86,7 +86,7 @@ class AcnIpnResource extends AbstractResource {
             });
     }
     function getAction($params) {
-        $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage="";
+        $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage=""; $paymentValide = false;
         //VERIFICATIONS PAYBOX
         //code d'erreur
         if($params['erreur'] == "00000") $erreurStatus = false;
@@ -104,8 +104,12 @@ class AcnIpnResource extends AbstractResource {
            //on récupère la commande
             $filter = Filter::factory()->addFilter(Filter::factory('Value')->setName('orderNumber')->setValue($orderNumber));
             $order=Manager::getService("Orders")->findOne($filter);
-
-           
+        // véfifier si le montant de la commande est bien le montant payé  et update order
+            if($order['finalPrice']*100 == $params['montant'] ) {
+                $paymentValide = true;
+                $order['status']="payed";
+                $updatedOrder=Manager::getService("Orders")->update($order);
+            }
 
             
         }    
@@ -130,6 +134,9 @@ class AcnIpnResource extends AbstractResource {
         }
         if ($erreur == "00000") {
             $body = "";
+            if(!$paymentValide) {
+                $body .= "Attention ! Le montant payé n'est pas le montant de la commande ! Vérifier si le payement a bien été reçu, il pourrait s'agir d'une escroquerie.";
+            }
             foreach ($order as $name => $content) {
                 $body .= $name . ' : ' . $content."\n";
             }
