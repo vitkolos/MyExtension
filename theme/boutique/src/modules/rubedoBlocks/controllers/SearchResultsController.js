@@ -224,4 +224,9 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         };
         parseQueryParamsToOptions();
         me.searchByQuery(options);
+        me.removeBtq=function(string){
+            if (string.charAt(0)=='B'&& string.charAt(1)=='t'&& string.charAt(2)=='q' ){
+                return string.slice(3);
+            }else{return string;}
+        }
     }]);
