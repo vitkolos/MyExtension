@@ -503,6 +503,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         latitude:config.centerLatitude,
                         longitude:config.centerLongitude
                     },
+                    id:'marker',
                     title:$scope.block.title,
                     markerOptions:{
                         title:$scope.block.title,
