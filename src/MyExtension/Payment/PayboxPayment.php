@@ -36,7 +36,7 @@ class PayboxPayment extends AbstractPayment
         $dateTime = date("c");
         $urlNormal="http://" . $_SERVER['HTTP_HOST'];//. "/payment/success";
         $urlEchec="http://" . $_SERVER['HTTP_HOST'];//. "/payment/cancel";
-        //$urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
+        $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/AcnIpn/";
 
         $parametres = [
             "typePaiement" => "CARTE",
@@ -51,8 +51,8 @@ class PayboxPayment extends AbstractPayment
             "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;signature:K",
             "dateTime" => $dateTime,
             "urlRetourNormal" => $urlNormal,
-            "urlRetourEchec" => $urlEchec/*,
-            "urlCallback" => $urlCallback*/
+            "urlRetourEchec" => $urlEchec,
+            "urlCallback" => $urlCallback
 
         ];
         
@@ -73,7 +73,8 @@ class PayboxPayment extends AbstractPayment
             "&PBX_TIME=" . $parametres['dateTime']  .
             "&PBX_EFFECTUE=" . $parametres['urlRetourNormal']  .
             "&PBX_REFUSE=" . $parametres['urlRetourEchec']  .
-            "&PBX_ANNULE=" . $parametres['urlRetourEchec']  ;
+            "&PBX_ANNULE=" . $parametres['urlRetourEchec'] .
+            "&PBX_REPONDRE_A=" . $parametres['urlCallback']  ;
             
         $key = $this->nativePMConfig['clef'] ;
         // On transforme la clé en binaire
