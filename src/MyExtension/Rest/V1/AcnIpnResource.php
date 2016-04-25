@@ -105,7 +105,6 @@ class AcnIpnResource extends AbstractResource {
             $filter = Filter::factory()->addFilter(Filter::factory('Value')->setName('orderNumber')->setValue($orderNumber));
             $order=Manager::getService("Orders")->findOne($filter);
         // véfifier si le montant de la commande est bien le montant payé  et update order
-        var_dump($order['finalPrice']*100);
             if((int)($order['finalPrice']*100) == (int)$params['montant'] ) {
                 $paymentValide = true;
                 $order['status']="payed";

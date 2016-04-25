@@ -34,5 +34,14 @@
             "allowBlank": false,
             "allowOnlyWhitespace": false
         }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Email",
+            "name": "email",
+            "allowBlank": false,
+            "allowOnlyWhitespace": false
+        }
     }
 ]
