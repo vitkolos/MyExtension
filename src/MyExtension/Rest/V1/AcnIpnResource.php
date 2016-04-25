@@ -72,7 +72,7 @@ class PayboxIpnResource extends AbstractResource {
                             ->setFilter('string')
                             ->setRequired()
                     )
-                    ->addOutputFilter(
+                   /* ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('message general')
                             ->setKey('message')
@@ -81,7 +81,7 @@ class PayboxIpnResource extends AbstractResource {
                         (new FilterDefinitionEntity())
                             ->setDescription("message d'erreur de l'envoi de mail")
                             ->setKey('errors')
-                    )
+                    )*/
                     ;
             });
     }
@@ -97,54 +97,22 @@ class PayboxIpnResource extends AbstractResource {
         else $erreurMessage .= " Pas d'autorisation de Paybox. ";
 
 
-if(!($erreurStatus) && $securite && $autorisation) {
+        if(!($erreurStatus) && $securite && $autorisation) {
             // ENREGISTRER LE PAIEMENT DANS LA BASE DE DONNEES
             
-            //pour inscription, on récupère le contenu inscription et on change le statut
-            $commande = explode("|", $params['commande']); // $codeCompta . "|" .$idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
-            $codeCompta = $commande[0];
-            $idInscription = $commande[1];
-            $proposition = $commande[2];
-            $prenom = $commande[3];
-            $nom = $commande[4];
-            $montant = (int)$params['montant']/100;
-            // récupérer l'id du contenu "inscription"
-            $contentId = $this->getContentIdByName($idInscription);
-            $wasFiltered = AbstractCollection::disableUserFilter(true);
-            $contentsService = Manager::getService("Contents");
-            $inscription = $contentsService->findById($contentId,false,false);
-            AbstractCollection::disableUserFilter(false);
-            if($inscription) {
-                //si on est sur un premier paiement par carte
-                if($inscription['fields']['statut']=='attente_paiement_carte') {
-                    $inscription['fields']['montantAPayerMaintenant'] = $montant;
-                    $inscription['fields']['statut'] = "paiement-carte-valide" ;
-                }                
-                //si on est en paiement complémentaire après un premier paiement par carte :
-                else if($inscription['fields']['statut']=='paiement-carte-valide') {
-                    $inscription['fields']['montantAPayerMaintenant'] = $montant + (int)$inscription['fields']['montantAPayerMaintenant'];
-                }
-                //dans les autres cas
-                else {
-                    $inscription['fields']['montantAPayerMaintenant'] = $montant + (int)$inscription['fields']['montantAPayerMaintenant'];
-                    $inscription['fields']['statut'] = "paiement-carte-valide" ;
-                }
-                 $mailSecretariat = $inscription['fields']['mailSecretariat'];
-                 
-                 $payload = json_encode( array( "content" => $inscription ) );
-                //authentication comme admin inscriptions
-                $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
-                $output['token'] = $this->subTokenFilter($auth['token']);
-                $token = $output['token']['access_token'];
-                $resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
-             }
-            else $erreurMessage .="Le payement ".$idInscription." n'a pas été retrouvé";
- 
+            $orderNumber = $params['commande']; // on récupère le numéro de commande
+           //on récupère la commande
+            $filter = Filter::factory()->addFilter(Filter::factory('Value')->setName('orderNumber')->setValue($orderNumber));
+            $order=Manager::getService("Orders")->findOne($filter);
+
+           
+
+            
         }    
 
 
         
-        $mailCompta = $this->getMailCompta();
+        $mailCompta ="nicolas.rhone@gmail.com";
         $mailerService = Manager::getService('Mailer');
 
         $mailerObject = $mailerService->getNewMessage();
@@ -161,15 +129,8 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $sujet = "Échec paiement en ligne";
         }
         if ($erreur == "00000") {
-            $body = "Montant payé : " . $params['montant']/100 . " euros.\n" ;
-            $body.=$inscription['content']['fields']['propositionTitre'];
-            $body .= "Proposition : " . $inscription['fields']['propositionTitre']."\n";
-            $body .= "Code Onesime : " . $inscription['fields']['codeOnesime']."\n";
-            $body .= "Code Compta : " . $codeCompta."\n";
-            $body .= "Id Inscription : " . $inscription['fields']['text']."\n";
-            $body .= "Nom : " . $inscription['fields']['nom']."\n";
-            $body .= "Prénom : " . $inscription['fields']['surname']."\n";
-             $body .= "Email : " . $inscription['fields']['email']."\n";
+            $body = $order ;
+            
             if($erreurMessage!="") $body.="\n\n Message : " . $erreurMessage;
         }
         else {
@@ -186,69 +147,16 @@ if(!($erreurStatus) && $securite && $autorisation) {
 
         // Send e-mail
         if ($mailerService->sendMessage($mailerObject, $errors)) {
-            return [
-                'success' => true,
-                'message' => $body,
-                'errors' =>$_SERVER
-            ];
+
         } else {
-            return [
-                'success' => false,
-                'message' => 'Error encountered, more details in "errors"',
-                'errors' => $erreurMessage
-            ];
+           
         }
     }
 
 
-    protected function getMailCompta(){
-        switch($_SERVER['HTTP_HOST']) {
-            case "ccn.chemin-neuf.fr" : 
-                return "ccn.comptabilite@gmail.com"; break;
-        }
-    }
-     
 
     
     
-        protected function callAPI($method, $token, $data = false, $id=false) {
-        $curl = curl_init();
-    
-        switch ($method)
-        {
-            case "POST": // pour créer un contenu
-                curl_setopt($curl, CURLOPT_POST, 1);
-                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$token.'&lang=fr';
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            case "PATCH": // pour modifier un contenu (numéro d'inscription)
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PATCH');
-                if($id)
-                    $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$id.'?access_token='.$token.'&lang=fr';
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            case "GET":
-                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$data.'?access_token='.$token.'&lang=fr';
-                break;
-            
-        }
-    
-    
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
-        curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
-        curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
-        $result = curl_exec($curl);
-    
-        curl_close($curl);
-        if($method == "GET") return json_decode($result, true);
-        else return json_decode($result, true);
-    }
-
 
     public function getErrorMessage($error) {
         $message="";
