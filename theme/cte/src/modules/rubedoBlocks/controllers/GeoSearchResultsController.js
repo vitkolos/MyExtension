@@ -496,44 +496,60 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             return refinedData;
         };
         me.searchByQuery = function(options){
-            var bounds=me.mapControl.getGMap().getBounds();
-            options.inflat=bounds.getSouthWest().lat();
-            options.suplat=bounds.getNorthEast().lat();
-            options.inflon=bounds.getSouthWest().lng();
-            options.suplon=bounds.getNorthEast().lng();
-            RubedoSearchService.searchGeo(options).then(function(response){
-                if(response.data.success){
-                    me.query = response.data.results.query;
-                    me.count = response.data.count;
-                    me.data =  me.preprocessData(response.data);
-                    me.facets = response.data.results.facets;
-                    me.notRemovableTerms = [];
-                    me.activeTerms = [];
-                    var previousFacetId;
-                    angular.forEach(response.data.results.activeFacets,function(activeFacet){
-                        if(activeFacet.id != 'navigation'){
-                            angular.forEach(activeFacet.terms,function(term){
-                                var newTerm = {};
-                                newTerm.term = term.term;
-                                newTerm.label = term.label;
-                                newTerm.facetId = activeFacet.id;
-                                if(previousFacetId == activeFacet.id){
-                                    newTerm.operator =' '+(activeFacet.operator)+' ';
-                                } else if (previousFacetId && me.notRemovableTerms.length != 0){
-                                    newTerm.operator = ', ';
-                                }
-                                if(predefinedFacets.hasOwnProperty(activeFacet.id) && predefinedFacets[activeFacet.id]==term.term){
-                                    me.notRemovableTerms.push(newTerm);
-                                } else {
-                                    me.activeTerms.push(newTerm);
-                                }
-                                previousFacetId = activeFacet.id;
-                            });
-                        }
-                    });
-                    $scope.clearORPlaceholderHeight();
-                }
-            })
+            //si on veut afficher le centre, alors seulement adresse du centre indiquée
+            if (config.showCenterMarker && !config.activateSearch) {
+                me.data.push({
+                    coordinates:{
+                        latitude:config.centerLatitude,
+                        longitude:config.centerLongitude
+                    },
+                    title:$scope.block.title,
+                    markerOptions:{
+                        title:$scope.block.title,
+                        icon: new google.maps.MarkerImage("/theme/cte/img/icons/gmaps-lieux.png", null, null, null, new google.maps.Size(50, 50))// add icon
+                    }
+                }); 
+            }
+            else {
+                var bounds=me.mapControl.getGMap().getBounds();
+                options.inflat=bounds.getSouthWest().lat();
+                options.suplat=bounds.getNorthEast().lat();
+                options.inflon=bounds.getSouthWest().lng();
+                options.suplon=bounds.getNorthEast().lng();
+                RubedoSearchService.searchGeo(options).then(function(response){
+                    if(response.data.success){
+                        me.query = response.data.results.query;
+                        me.count = response.data.count;
+                        me.data =  me.preprocessData(response.data);
+                        me.facets = response.data.results.facets;
+                        me.notRemovableTerms = [];
+                        me.activeTerms = [];
+                        var previousFacetId;
+                        angular.forEach(response.data.results.activeFacets,function(activeFacet){
+                            if(activeFacet.id != 'navigation'){
+                                angular.forEach(activeFacet.terms,function(term){
+                                    var newTerm = {};
+                                    newTerm.term = term.term;
+                                    newTerm.label = term.label;
+                                    newTerm.facetId = activeFacet.id;
+                                    if(previousFacetId == activeFacet.id){
+                                        newTerm.operator =' '+(activeFacet.operator)+' ';
+                                    } else if (previousFacetId && me.notRemovableTerms.length != 0){
+                                        newTerm.operator = ', ';
+                                    }
+                                    if(predefinedFacets.hasOwnProperty(activeFacet.id) && predefinedFacets[activeFacet.id]==term.term){
+                                        me.notRemovableTerms.push(newTerm);
+                                    } else {
+                                        me.activeTerms.push(newTerm);
+                                    }
+                                    previousFacetId = activeFacet.id;
+                                });
+                            }
+                        });
+                        $scope.clearORPlaceholderHeight();
+                    }
+                })
+            }   
         };
         parseQueryParamsToOptions();
         if (me.activatePlacesSearch){
