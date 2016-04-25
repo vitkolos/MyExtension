@@ -105,7 +105,7 @@ class AcnIpnResource extends AbstractResource {
             $filter = Filter::factory()->addFilter(Filter::factory('Value')->setName('orderNumber')->setValue($orderNumber));
             $order=Manager::getService("Orders")->findOne($filter);
         // véfifier si le montant de la commande est bien le montant payé  et update order
-            if($order['finalPrice']*100 == $params['montant'] ) {
+            if($order['finalPrice']*100 == (int)$params['montant'] ) {
                 $paymentValide = true;
                 $order['status']="payed";
                 $updatedOrder=Manager::getService("Orders")->update($order);
@@ -121,7 +121,7 @@ class AcnIpnResource extends AbstractResource {
 
         $mailerObject = $mailerService->getNewMessage();
         if($mailSecretariat) $destinataires=array($mailCompta,$mailSecretariat);
-        else $destinataires=array($mailCompta,"nicolas.rhone@chemin-neuf.org");
+        else $destinataires=array($mailCompta);
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
         
