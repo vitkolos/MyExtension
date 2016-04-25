@@ -508,7 +508,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         title:$scope.block.title,
                         icon: new google.maps.MarkerImage("/theme/cte/img/icons/gmaps-lieux.png", null, null, null, new google.maps.Size(50, 50))// add icon
                     }
-                }); 
+                });
+                console.log(me.data);
             }
             else {
                 var bounds=me.mapControl.getGMap().getBounds();
