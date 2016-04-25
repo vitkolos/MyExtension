@@ -136,6 +136,8 @@ class AcnIpnResource extends AbstractResource {
             $body = "";
             if(!$paymentValide) {
                 $body .= "Attention ! Le montant payé n'est pas le montant de la commande ! Vérifier si le payement a bien été reçu, il pourrait s'agir d'une escroquerie.";
+                $body.="Montant de la commande : " . $order['finalPrice']."\n";
+                $body.="Montant payé : " . number_format($params['montant']/100,2)  ."\n";
             }
             foreach ($order as $name => $content) {
                 $body .= $name . ' : ' . $content."\n";
