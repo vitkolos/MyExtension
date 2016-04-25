@@ -105,7 +105,7 @@ class AcnIpnResource extends AbstractResource {
             $filter = Filter::factory()->addFilter(Filter::factory('Value')->setName('orderNumber')->setValue($orderNumber));
             $order=Manager::getService("Orders")->findOne($filter);
         // véfifier si le montant de la commande est bien le montant payé  et update order
-            if($order['finalPrice']*100 == (int)$params['montant'] ) {
+            if((int)floatval($order['finalPrice'])*100 == (int)$params['montant'] ) {
                 $paymentValide = true;
                 $order['status']="payed";
                 $updatedOrder=Manager::getService("Orders")->update($order);
@@ -135,7 +135,7 @@ class AcnIpnResource extends AbstractResource {
         if ($erreur == "00000") {
             $body = "";
             if(!$paymentValide) {
-                $body .= "Attention ! Le montant payé n'est pas le montant de la commande ! Vérifier si le payement a bien été reçu, il pourrait s'agir d'une escroquerie.";
+                $body .= "Attention ! Le montant payé n'est pas le montant de la commande ! Vérifier si le payement a bien été reçu, il pourrait s'agir d'une escroquerie." . "\n";
                 $body.="Montant de la commande : " . $order['finalPrice']."\n";
                 $body.="Montant payé : " . number_format($params['montant']/100,2)  ."\n";
             }
