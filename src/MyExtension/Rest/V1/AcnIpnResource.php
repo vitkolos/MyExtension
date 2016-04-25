@@ -129,7 +129,10 @@ class AcnIpnResource extends AbstractResource {
             $sujet = "Échec paiement en ligne";
         }
         if ($erreur == "00000") {
-            $body = $order ;
+            $body = "";
+            foreach ($order as $name => $content) {
+                $body .= $name . ' : ' . $content."\n";
+            }
             
             if($erreurMessage!="") $body.="\n\n Message : " . $erreurMessage;
         }
