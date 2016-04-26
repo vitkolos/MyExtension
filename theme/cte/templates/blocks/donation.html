@@ -26,18 +26,20 @@
                                 </div>
                                 <div class="row">
                                         <div class="col-sm-4 col-xs-12"><label for="nom" class="label_style">{{rubedo.translate("Block.Dons.Montant", "Montant du don")}} *</label></div>
-                                        <div class="col-sm-8">
-                                                <input type="radio"  name="montant" id="montant1" value="20" ng-model="don.montant" required>
-                                                        <label for="montant1" class="sexe_label dons">20€</label>	
-                                                <input type="radio"  name="montant" id="montant2" value="50" ng-model="don.montant">
-                                                            <label for="montant2" class="sexe_label dons">50€</label>
-                                                <input type="radio"  name="montant" id="montant3" value="100" ng-model="don.montant">
-                                                            <label for="montant3" class="sexe_label dons">100€</label>
-                                                <input type="radio"  name="montant" id="montant4" value="200" ng-model="don.montant">
-                                                            <label for="montant4" class="sexe_label dons">200€</label>
+                                        <div class="col-sm-8">                                          
+                                                
+                                                <input type="radio"  name="montant" id="montant1" value="{{contentDetailCtrl.content.fields.montant_1}}" ng-model="don.montant" required>
+                                                        <label for="montant1" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_1}}€</label>	
+                                                <input type="radio"  name="montant" id="montant2" value="{{contentDetailCtrl.content.fields.montant_2}}" ng-model="don.montant">
+                                                            <label for="montant2" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_2}}€</label>
+                                                <input type="radio"  name="montant" id="montant3" value="{{contentDetailCtrl.content.fields.montant_3}}" ng-model="don.montant">
+                                                            <label for="montant3" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_3}}€</label>
+                                                <input type="radio"  name="montant" id="montant4" value="{{contentDetailCtrl.content.fields.montant_4}}" ng-model="don.montant">
+                                                            <label for="montant4" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_1}}€</label>
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
                                                             <label for="autre" class="sexe_label dons">autre</label>
                                                 <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder="Autre" ng-pattern="/^\d+$/">
+                                                        <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_1')}}"></rubedo-field>
                                         </div>
                                 </div>
                                 <div class="row">
