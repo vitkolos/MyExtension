@@ -73,7 +73,6 @@ class PaymentmeansResource extends AbstractResource
             else {
                 return array(
                     'success' => false,
-                    'msg' => "Payment means not installed",
                     'paymentMeans' =>"Payment means not installed"
                 );
             }

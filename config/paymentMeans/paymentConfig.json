@@ -1,0 +1,47 @@
+[
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Numéro du site",
+            "name": "site",
+            "allowBlank": false,
+            "allowOnlyWhitespace": false
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Numéro du rang",
+            "name": "rang",
+            "allowBlank": false,
+            "allowOnlyWhitespace": false
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Identifiant interne",
+            "name": "identifiant",
+            "allowBlank": false,
+            "allowOnlyWhitespace": false
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Clé privée",
+            "name": "clef",
+            "allowBlank": false,
+            "allowOnlyWhitespace": false
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Email",
+            "name": "email",
+            "allowBlank": false,
+            "allowOnlyWhitespace": false
+        }
+    }
+]
