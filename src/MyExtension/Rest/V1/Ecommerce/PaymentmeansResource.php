@@ -70,6 +70,12 @@ class PaymentmeansResource extends AbstractResource
                     'paymentMeans' => $paymentMeans['data'],
                 );
             }
+            else {
+                return array(
+                    'success' => false,
+                    'msg' => "Payment means not installed"
+                );
+            }
         }
         else {
             $paymentMeans=Manager::getService("PaymentConfigs")->getActivePMConfigs();
