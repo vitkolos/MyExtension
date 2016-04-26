@@ -194,12 +194,13 @@
         ];
         if (CKEMode=="Standard"){
             myTBConfig=[
+                { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [  'Templates' ] },
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
                 { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
                 { name: 'colors', items: [ 'TextColor','-', 'Scayt' ] },
                 '/',
                 { name: 'styles', items: [ 'Styles', 'Format', 'Font' ] },
-                { name: 'insert', items: [ 'Image',  '-', 'Table', 'SpecialChar', 'PageBreak', 'Link', "Rubedolink", 'Unlink'] },
+                { name: 'insert', items: [ 'Image',  'Youtube',  '-', 'SpecialChar', 'PageBreak', 'Link', "Rubedolink", 'Unlink'] },
                 { name: 'managing', items: [ 'Maximize','-','Undo', 'Redo', "Source"  ] }
             ];
         } else if (CKEMode=="Basic"){
