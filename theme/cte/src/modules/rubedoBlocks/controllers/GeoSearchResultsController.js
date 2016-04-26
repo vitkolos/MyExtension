@@ -506,6 +506,9 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     id:'marker',
                     title:$scope.block.title,
                     objectType:'content',
+                    itemData:{
+                        'title':$scope.block.title
+                    },
                     markerOptions:{
                         title:$scope.block.title,
                         icon: new google.maps.MarkerImage("/theme/cte/img/icons/gmaps-lieux.png", null, null, null, new google.maps.Size(50, 50))// add icon
