@@ -4,7 +4,7 @@
         "config": {
             "fieldLabel": "Numéro du site",
             "name": "site",
-            "allowBlank": false,
+            "allowBlank": true,
             "allowOnlyWhitespace": false
         }
     },
@@ -13,7 +13,7 @@
         "config": {
             "fieldLabel": "Numéro du rang",
             "name": "rang",
-            "allowBlank": false,
+            "allowBlank": true,
             "allowOnlyWhitespace": false
         }
     },
@@ -22,7 +22,7 @@
         "config": {
             "fieldLabel": "Identifiant interne",
             "name": "identifiant",
-            "allowBlank": false,
+            "allowBlank": true,
             "allowOnlyWhitespace": false
         }
     },
@@ -31,7 +31,7 @@
         "config": {
             "fieldLabel": "Clé privée",
             "name": "clef",
-            "allowBlank": false,
+            "allowBlank": true,
             "allowOnlyWhitespace": false
         }
     },
@@ -40,7 +40,7 @@
         "config": {
             "fieldLabel": "Email",
             "name": "email",
-            "allowBlank": false,
+            "allowBlank": true,
             "allowOnlyWhitespace": false
         }
     },
