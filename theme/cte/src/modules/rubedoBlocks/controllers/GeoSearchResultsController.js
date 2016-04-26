@@ -498,13 +498,14 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         me.searchByQuery = function(options){
             //si on veut afficher le centre, alors seulement adresse du centre indiquée
             if (config.showCenterMarker && !config.activateSearch) {
-                me.data.push({
+                me.data[0]=({
                     coordinates:{
                         latitude:config.centerLatitude,
                         longitude:config.centerLongitude
                     },
                     id:'marker',
                     title:$scope.block.title,
+                    objectType:'content',
                     markerOptions:{
                         title:$scope.block.title,
                         icon: new google.maps.MarkerImage("/theme/cte/img/icons/gmaps-lieux.png", null, null, null, new google.maps.Size(50, 50))// add icon
