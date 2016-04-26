@@ -1,10 +1,15 @@
 <?php
 return array(
     'paymentMeans' => array(
-            'paybox' => array(
+        'paybox' => array(
             'name' => "PayBox ACN",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paybox.json'
+        ),
+        'paf_fr' => array(
+            'name' => "PAF France",
+            'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         )
     ),
     

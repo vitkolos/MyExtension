@@ -20,6 +20,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         function(response){
             if(response.data.success){
                 console.log(response.data);
+                $scope.contentDetailCtrl.contactPourPays = response.data.user;
             }
         });
                 

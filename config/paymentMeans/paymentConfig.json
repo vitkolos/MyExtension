@@ -43,5 +43,13 @@
             "allowBlank": false,
             "allowOnlyWhitespace": false
         }
+    },
+    {
+        "type": "Rubedo.view.DCEField",
+        "config": {
+            "fieldLabel": "Contact pour les dons",
+            "name": "contactDonsId",
+            "chooseOnly": true
+        }
     }
 ]
