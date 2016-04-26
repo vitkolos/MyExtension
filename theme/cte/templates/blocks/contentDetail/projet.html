@@ -90,7 +90,11 @@
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('nom')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
-						<p><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contact')}}"></rubedo-field></p><!--Contact-->
+						<b><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field></b><!--Nom du contact-->
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactTitle')}}"></rubedo-field><!--Titre du contact-->
+						<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')">
+							<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -99,11 +103,7 @@
 		<div class="row">
 			<div class="col-xs-12 bg-white" >
 				<div class="text-article">
-					<b><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field></b><!--Nom du contact-->
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactTitle')}}"></rubedo-field><!--Titre du contact-->
-					<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom}">
-						<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
-					</div>
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
 				</div>
 			</div>		
 		</div>		
