@@ -26,7 +26,7 @@
                                 </div>
                                 <div class="row">
                                         <div class="col-sm-4 col-xs-12"><label for="nom" class="label_style">{{rubedo.translate("Block.Dons.Montant", "Montant du don")}} *</label></div>
-                                        <div class="col-sm-8">                                          
+                                        <div class="col-sm-8" ng-init="don.montant = contentDetailCtrl.content.fields.montant_1">                                          
                                                 
                                                 <input type="radio"  name="montant" id="montant1" value="{{contentDetailCtrl.content.fields.montant_1}}" ng-model="don.montant" required>
                                                         <label for="montant1" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_1}}€</label>	
@@ -35,11 +35,25 @@
                                                 <input type="radio"  name="montant" id="montant3" value="{{contentDetailCtrl.content.fields.montant_3}}" ng-model="don.montant">
                                                             <label for="montant3" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_3}}€</label>
                                                 <input type="radio"  name="montant" id="montant4" value="{{contentDetailCtrl.content.fields.montant_4}}" ng-model="don.montant">
-                                                            <label for="montant4" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_1}}€</label>
+                                                            <label for="montant4" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_4}}€</label>
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
                                                             <label for="autre" class="sexe_label dons">autre</label>
                                                 <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder="Autre" ng-pattern="/^\d+$/">
+                                                        
+                                                <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_1">
                                                         <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_1')}}" ng-init="fieldInputMode=false"></rubedo-field>
+                                                </div>
+                                                <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_2">
+                                                        <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_2')}}" ng-init="fieldInputMode=false"></rubedo-field>
+                                                </div>
+                                                <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_3">
+                                                        <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_3')}}" ng-init="fieldInputMode=false"></rubedo-field>
+                                                </div>
+                                                <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_4">
+                                                        <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_4')}}" ng-init="fieldInputMode=false"></rubedo-field>
+                                                </div>
+
+                                                
                                         </div>
                                 </div>
                                 <div class="row">

@@ -1093,6 +1093,10 @@ ng-form[name="inscription_form"]{
   input.montant-dons.displayed{
     width:100px;  transition: all ease-out 0.3s; border:3px solid #fff;
   }
+  input.montant-dons.displayed.ng-invalid {
+    border-color:@rouge;
+  }
+    
   input.montant-dons::-webkit-input-placeholder {
        color: @marron;
   }
