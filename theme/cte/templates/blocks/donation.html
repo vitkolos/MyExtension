@@ -39,7 +39,7 @@
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
                                                             <label for="autre" class="sexe_label dons">autre</label>
                                                 <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder="Autre" ng-pattern="/^\d+$/">
-                                                        <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_1')}}"></rubedo-field>
+                                                        <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_1')}}" ng-init="fieldInputMode=false"></rubedo-field>
                                         </div>
                                 </div>
                                 <div class="row">
