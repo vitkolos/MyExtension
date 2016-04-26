@@ -15,6 +15,15 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
        angular.element("#inscriptionStage"+newStage).collapse("show");
        me.currentStage = newStage;
     }
+    var contactPourPaysId = "571f9fbbc445ecda008c79b7"; // utilisateur marc hodara
+    RubedoUsersService.getUserById(contactPourPaysId).then(
+        function(response){
+            if(response.data.success){
+                console.log(response.data);
+            }
+        });
+                
+                    
     me.setCurrentStage = function(step, valide) {
         if(valide){
             /*
