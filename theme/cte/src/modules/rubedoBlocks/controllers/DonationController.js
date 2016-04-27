@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoMailingListService',
-                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoMailingListService) {
+angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoPaymentMeansService',
+                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoPaymentMeansService) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     //templates
@@ -22,8 +22,13 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 $scope.contentDetailCtrl.contactPourPays = response.data.user;
             }
         });
-                
-                    
+    
+    RubedoPaymentMeansService.getPaymentMeansById("paf_fr").then(
+        function(response){
+            if(response.data.success){
+                console.log(response.data);
+            }
+        });                
     me.setCurrentStage = function(step, valide) {
         if(valide){
             /*
