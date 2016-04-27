@@ -220,7 +220,7 @@ angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($
 angular.module('rubedoDataAccess').factory('RubedoPaymentMeansService',['$http',function($http){
            var serviceInstance = {};
            serviceInstance.getPaymentMeansById=function(accountName){
-               return ($http.get(config.baseUrl+"/ecommerce/paymentmeans",{
+               return ($http.get("/api/v1/ecommerce/paymentmeans",{
                 params:{
                     accountName:accountName
                       }
