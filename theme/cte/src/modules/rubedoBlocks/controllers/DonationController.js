@@ -19,7 +19,6 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     RubedoUsersService.getUserById(contactPourPaysId).then(
         function(response){
             if(response.data.success){
-                console.log(response.data);
                 $scope.contentDetailCtrl.contactPourPays = response.data.user;
             }
         });
