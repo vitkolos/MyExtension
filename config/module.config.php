@@ -10,6 +10,11 @@ return array(
             'name' => "PAF France",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+        ),
+         'paf_int' => array(
+            'name' => "PAF International",
+            'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         )
     ),
     
