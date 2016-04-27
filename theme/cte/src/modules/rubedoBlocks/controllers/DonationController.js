@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoPaymentMeansService',
-                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoPaymentMeansService) {
+angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoPaymentMeansService','RubedoContentsService',
+                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoPaymentMeansService,RubedoContentsService) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     //templates
@@ -26,8 +26,20 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     RubedoPaymentMeansService.getPaymentMeansById("paf_fr").then(
         function(response){
             if(response.data.success){
+                var options = {
+                    siteId: $scope.rubedo.current.site.id,
+                    pageId: $scope.rubedo.current.page.id
+                };
                 console.log(response.data);
+                RubedoContentsService.getContentById(response.data.paymentMeans.nativePMConfig.contactDonsId, options).then(
+                    function(response){
+                        if(response.data.success){
+                            $scope.contentDetailCtrl.contactNational=response.data.content;
+                        }
+                    }
+                );
             }
+               
         });                
     me.setCurrentStage = function(step, valide) {
         if(valide){
