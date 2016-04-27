@@ -217,6 +217,17 @@ angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($
     };
     return serviceInstance;
 }]);
+module.factory('RubedoPaymentMeansService',['$http',function($http){
+           var serviceInstance = {};
+           serviceInstance.getPaymentMeansById=function(accountName){
+               return ($http.get(config.baseUrl+"/ecommerce/paymentmeans",{
+                params:{
+                    accountName:accountName
+                      }
+                }));
+           };
+           return serviceInstance;
+}]);
 
 /*pour page "autour de vous*/
   angular.module('rubedoBlocks').directive('focusOnClick', function ($timeout) {
