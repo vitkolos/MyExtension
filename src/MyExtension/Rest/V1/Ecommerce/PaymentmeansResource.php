@@ -67,7 +67,7 @@ class PaymentmeansResource extends AbstractResource
             if($paymentMeans['success']) {
                 return array(
                     'success' => true,
-                    'paymentMeans' => array_intersect_key($paymentMeans['data'], array_flip(array("id","paymentMeans","displayName","logo","nativePMConfig")))
+                    'paymentMeans' => array_intersect_key($paymentMeans['data'], array("id"=>0, "paymentMeans"=>1,"displayName"=>2,"logo"=>3, "nativePMConfig"=>array("contactDonsId"=>0)))
                 );
             }
             else {
