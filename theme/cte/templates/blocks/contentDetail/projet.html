@@ -92,7 +92,7 @@
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('nom')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
-						<img ng-if="contentDetailCtrl.content.fields.photo" ng-src="{{contentDetailCtrl.content.fields.photo.imageCode}}" class="img-responsive">
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactPhoto')}}" style="float:left; margin-right:12px; max-width:100px"></rubedo-field>
 						<p style="margin-bottom:0"><b>{{contentDetailCtrl.content.fields.nom}}</b><br/><!--Nom du contact-->
 							{{contentDetailCtrl.content.fields.contactTitle}}<!--Titre du contact-->
 						</p>
@@ -106,8 +106,7 @@
 						<p class="capital text-left">Contact national</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
-						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactPhoto')}}" style="float:left; margin-right:12px; max-width:100px"></rubedo-field>
-
+						<img ng-if="contentDetailCtrl.contactNational.fields.photo" ng-src="{{contentDetailCtrl.contactNational.fields.photo.imageCode}}" class="img-responsive"  style="float:left; margin-right:12px; max-width:100px" />
 						<p style="margin-bottom:0"><b>{{contentDetailCtrl.contactNational.fields.prenom}} {{contentDetailCtrl.contactNational.fields.nom}}</b><br/><!--Nom du contact-->
 							{{contentDetailCtrl.contactNational.fields.contactTitle}}<!--Titre du contact-->
 						</p>
