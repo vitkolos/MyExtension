@@ -48,7 +48,7 @@ class DonationResource extends AbstractResource
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] = $content["fields"]["value"] +1;
         $inscriptionNumber= $content["fields"]["value"];
-        $result = $contentsService->update($content, true, true);
+        $result = $contentsService->update($content, true, false);
         AbstractCollection::disableUserFilter(false);
         var_dump($result);
     
