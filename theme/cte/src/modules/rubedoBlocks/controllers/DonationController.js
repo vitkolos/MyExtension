@@ -58,6 +58,13 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             me.toggleStage(step);
         }  
     };
+    //validation du don et inscription dans la base de données
+    me.submit = function(isValide){
+        if (isValide) {
+            
+        }
+    };
+    
     me.parseUserType=function(userType){
         me.userType=userType;
         $scope.fieldIdPrefix="checkout"+"_"+me.userType.type;
