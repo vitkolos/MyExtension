@@ -28,7 +28,7 @@
                         </div>
                         <div ng-class="{'col-md-8':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
                             <h4>
-                                <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}" style="height: 40px; text-overflow: ellipsis; " >
+                                <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}"  >
                                     {{content.fields.text }}
                                 </a>
                                 <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
@@ -37,7 +37,7 @@
                                 <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                             </h4>
                             <p class="text-justify" ng-style="contentListCtrl.summaryStyle" ng-if="!contentListCtrl.titleOnly">
-                                <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                                <rubedo-field field="{{content.type.summary}}" style="height: 40px; text-overflow: ellipsis; "></rubedo-field>
                             </p>
                         </div>
                         <div class="text-center" ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
