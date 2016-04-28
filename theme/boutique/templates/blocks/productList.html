@@ -28,7 +28,7 @@
                         </div>
                         <div ng-class="{'col-md-8':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
                             <h4>
-                                <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}" style="height: 40px; text-overflow: ellipsis " >
+                                <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}" style="height: 40px; text-overflow: ellipsis; " >
                                     {{content.fields.text }}
                                 </a>
                                 <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
