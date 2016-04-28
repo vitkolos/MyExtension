@@ -10,7 +10,7 @@
                 </form>
 
         <div class="panel panel-primary btq-panel" ng-repeat="facet in searchResultsCtrl.facets track by $index" ng-if="facet.terms || facet.ranges">
-            <div class="panel-heading">{{searchResultsCtrl.removeBtq(facet.label)}}&nbsp;<span
+            <div class="panel-heading">{{facet.label}}&nbsp;<span
                     ng-if="facet.total && (facet.total - facet.other) <= searchResultsCtrl.count" class="badge pull-right">{{facet.total - facet.other}}</span></div>
             <div class="panel-body" >
                 <ul>
