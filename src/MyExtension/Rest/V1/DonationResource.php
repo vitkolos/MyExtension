@@ -17,7 +17,7 @@ class DonationResource extends AbstractResource
         parent::__construct();
         $this
             ->definition
-            ->setName('Inscription')
+            ->setName('Dons')
             ->setDescription('Service de traitement des dons')
             ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
@@ -29,7 +29,7 @@ class DonationResource extends AbstractResource
                     )
                      ->addOutputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Numéro d\'inscription')
+                            ->setDescription('Numéro de dons')
                             ->setKey('id')
                     );
             });
@@ -41,62 +41,21 @@ class DonationResource extends AbstractResource
 
         
         //GET NUMERO D'INSCRIPTION ACTUEL
-        $id = "56a10fafc445ec692b8b4f3d"; // id du contenu "Numéro d'inscription"
+        $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("Contents");
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] = $content["fields"]["value"] +1;
         $inscriptionNumber= $content["fields"]["value"];
-        //$result = $contentsService->update($content);
+        $result = $contentsService->update($content);
         AbstractCollection::disableUserFilter(false);
-
+        var_dump($result);
     
-        //authentication comme admin inscriptions
-        
-        $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
-        $output['token'] = $this->subTokenFilter($auth['token']);
-        $token = $output['token']['access_token'];
-              
-        
-        //UPDATE NUMERO D'INSCRIPTION +1
-        $payload = json_encode( array( "content" => $content ) );
-        $result = $this->callAPI("PATCH", $token, $payload, $id);
-        
-        //PREPARE INSCRIPTION
-        $inscriptionForm=[];
-        $inscriptionForm['fields'] =  $params['inscription'];
-        $inscriptionForm['fields']['text'] = "". $this->getPays().(string)$inscriptionNumber;
-        $inscriptionForm['writeWorkspace'] = $params['workspace'];
-        $inscriptionForm['typeId'] = "561627c945205e41208b4581";
-        $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
-                //GET SECRETARIAT
-        if($inscriptionForm['fields']['contact']){
-            $mailSecretariat = $this->callAPI("GET", $token, $inscriptionForm['fields']['contact']);
-            if($mailSecretariat['success']) {
-                $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['content']['fields']['email'];
-                $inscriptionForm['fields']['contact'] = $mailSecretariat['content']['fields'];
-            }
-            else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";
-            
-        }
-        
-        //CREATE INSCRIPTION IN DATABASE
-        $payload2 = json_encode( array( "content" => $inscriptionForm ) );
-        $resultInscription = $this->callAPI("POST", $token, $payload2);
-        //GET PAYEMENT INFOS
-        if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
-            $paymentMeansId = $this->getAccountId();
-            $paymentMeans = $this->callAPI("GET", $token, $paymentMeansId);
-            $inscriptionForm['fields']['paymentInfos'] =$paymentMeans['content']['fields'];
-        }
-        
-        
-       if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $_GET["lang"]);}
        
        
 
-        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
+        return array('success' =>true, 'id' =>"ok");
         
    }
    

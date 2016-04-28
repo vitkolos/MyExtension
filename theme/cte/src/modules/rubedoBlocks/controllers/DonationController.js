@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoPaymentMeansService','RubedoContentsService',
-                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoPaymentMeansService,RubedoContentsService) {
+angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoPaymentMeansService','RubedoContentsService','DonationService',
+                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoPaymentMeansService,RubedoContentsService,DonationService) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     //templates
@@ -61,7 +61,11 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     //validation du don et inscription dans la base de données
     me.submit = function(isValide){
         if (isValide) {
-            
+            DonationService.donate($scope.don).then(function(response){
+                if (response.data.success) {
+                    console.log(response.data);
+                }
+            })
         }
     };
     
