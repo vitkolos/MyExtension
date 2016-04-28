@@ -13,7 +13,7 @@
                 </h2>
                 <div id="inscriptionStage1" class="collapse in">
                         <ng-form name="infos_dons">
-                                <div class="row" ng-if="contentDetailCtrl.content.taxonomy['56d319bcc445ec56018b9176'].length>1">
+                                <div class="row" ng-if="contentDetailCtrl.content.taxonomy['56d319bcc445ec56018b9176'] && contentDetailCtrl.content.taxonomy['56d319bcc445ec56018b9176'].length>1">
                                         <div class="col-sm-4 col-xs-12"><label for="nom" class="label_style">{{rubedo.translate("Block.Dons.Condition", "Mon don")}} *</label></div>
                                         <div class="col-sm-8">
                                                 <div class="col-xs-12" ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['56d319bcc445ec56018b9176']" >

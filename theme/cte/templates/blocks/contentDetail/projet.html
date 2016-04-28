@@ -70,7 +70,8 @@
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<img src="/theme/cte/img/cruche.png" height="100" class="cruche" ng-style="{'background' : 'linear-gradient(to top, #9e4232 '+contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget+'%, transparent '+contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget+'%)'}">
-						<p>{{contentDetailCtrl.content.fields.budget | currency:contentDetailCtrl.content.fields.monnaie:0}} <span ng-if="contentDetailCtrl.content.fields.budgetAnnuel">{{rubedo.translate("Dons.Annuel", " / année")}}</span><br/>
+						
+						<p>{{contentDetailCtrl.content.fields.budget |number:0}} {{contentDetailCtrl.content.fields.monnaie}} <span ng-if="contentDetailCtrl.content.fields.budgetAnnuel">{{rubedo.translate("Dons.Annuel", " / année")}}</span><br/>
 						<em><a ng-href="{{'http://www.xe.com/ecc/input.cgi?Template=se&Amount='+contentDetailCtrl.content.fields.budget+'&From='+contentDetailCtrl.content.fields.monnaie }}" target="_blank">Convertir dans une autre monnaie</a></em></p>
 						<p><i>{{rubedo.translate("Dons.Finance", "Projet financé à")}} {{contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget | number :0}} %</i></p>
 						<p><rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('budget')}}"></rubedo-field></p><!--Budget du projet-->
@@ -92,7 +93,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactPhoto')}}" style="float:left; margin-right:12px; max-width:100px"></rubedo-field>
-						<p><b>{{contentDetailCtrl.content.fields.nom}}</b><br/><!--Nom du contact-->
+						<p style="margin-bottom:0"><b>{{contentDetailCtrl.content.fields.nom}}</b><br/><!--Nom du contact-->
 							{{contentDetailCtrl.content.fields.contactTitle}}<!--Titre du contact-->
 						</p>
 						<div ng-init="blockConfig={'id':'contactProjet','email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
@@ -106,7 +107,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						
-						<p><b>{{contentDetailCtrl.contactNational.fields.prenom}} {{contentDetailCtrl.contactNational.fields.nom}}</b><br/><!--Nom du contact-->
+						<p style="margin-bottom:0"><b>{{contentDetailCtrl.contactNational.fields.prenom}} {{contentDetailCtrl.contactNational.fields.nom}}</b><br/><!--Nom du contact-->
 							{{contentDetailCtrl.contactNational.fields.contactTitle}}<!--Titre du contact-->
 						</p>
 						<div ng-init="blockConfig={'id':'contactNational', 'email':contentDetailCtrl.contactNational.fields.nom.fields.email, 'name':contentDetailCtrl.contactNational.fields.prenom+' '+contentDetailCtrl.contactNational.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
