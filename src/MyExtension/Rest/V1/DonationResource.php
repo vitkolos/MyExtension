@@ -36,26 +36,55 @@ class DonationResource extends AbstractResource
     }
     public function postAction($params)
     {
-        //$language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]); // langue du site
-        //var_dump($language);
-
-        
-        //GET NUMERO D'INSCRIPTION ACTUEL
         $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("Contents");
         $content = $contentsService->findById($id,false,false);
-        $content["fields"]["value"] = $content["fields"]["value"] +1;
-        $inscriptionNumber= $content["fields"]["value"];
-        $result = $contentsService->update($content, true, false);
+       $content['i18n'] = array(
+            $params['lang']->getLocale() =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            )
+        );
+       $content["fields"]["value"] += 1; //add 1
+        $result = $contentsService->update($content, array(),false); //update
+        
+        
+     // create don
+        $don=[];
+        $don['fields']['text'] = "DON";
+        $don['text'] = "DON";
+        $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
+        $don['target'] = "57237282c445ecf3008c7ddc";
+        $don['typeId'] = "5652dcb945205e0d726d6caf";
+        $don['i18n'] = array(
+            $params['lang']->getLocale() => array(
+                "fields" => array(
+                    "text"=>$don['text']
+                )
+            )
+        );
+        $don['status'] = 'published';
+        $don['online'] = true;
+        $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
+        $don['nativeLanguage'] = $params['lang']->getLocale();
+        $resultcreate =  $this->getContentsCollection()->create($don, array(), false);
+        //$don['fields'] = $this->processInscription($inscriptionForm['fields']);
+        
+        
+        
+        
+        
+        
+        
+        
         AbstractCollection::disableUserFilter(false);
-        var_dump($result);
-    
-       
-       
 
-        return array('success' =>true, 'id' =>"ok");
+        
+        
+        
+        
+        return array('success' =>true, 'id' =>$resultcreate);
         
    }
    
