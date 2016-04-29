@@ -483,6 +483,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                 id:item.id,
                                 objectType:item.objectType,
                                 title:item.title,
+                                distance:me.distance(coords[0],coords[1]),
                                 itemData:item,
                                 markerOptions:{
                                     title:item.title,
@@ -495,6 +496,24 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             }
             return refinedData;
         };
+        me.distance = function(lat2, lon2){
+            var lat1=me.map.center.latitude;
+            var lon1=me.map.center.longitude;
+            var R = 6371000; // metres
+            var φ1 = lat1 * Math.PI / 180;
+            var φ2 = lat2 * Math.PI / 180;
+            var Δφ = (lat2-lat1) * Math.PI / 180;
+            var Δλ = (lon2-lon1)* Math.PI / 180;
+               
+            var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                       Math.cos(φ1) * Math.cos(φ2) *
+                       Math.sin(Δλ/2) * Math.sin(Δλ/2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+               
+            var d = R * c;
+            return d;
+        };
+        
         me.searchByQuery = function(options){
             //si on veut afficher le centre, alors seulement adresse du centre indiquée
             if (config.showCenterMarker && !config.activateSearch) {
@@ -514,7 +533,6 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         icon: new google.maps.MarkerImage("/theme/cte/img/icons/gmaps-lieux.png", null, null, null, new google.maps.Size(50, 50))// add icon
                     }
                 });
-                console.log(me.data);
             }
             else {
                 var bounds=me.mapControl.getGMap().getBounds();

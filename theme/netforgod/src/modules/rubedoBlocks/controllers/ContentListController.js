@@ -51,7 +51,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         options.limit += me.limit;
         me.contentsShowed += me.limit;
         me.getContents(config.query, pageId, siteId, options, true);
-    };
+    }; 
+    
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         alreadyPersist = false;
         me.showPaginator = newValue ? false : config.showPager && !config.infiniteScroll;
