@@ -41,8 +41,7 @@ class DonationResource extends AbstractResource
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
         $content = $contentsService->findById($id,false,false);
-        var_dump($content);
-       $content['i18n'] = array(
+       /*$content['i18n'] = array(
             $params['lang']->getLocale() =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
             )
@@ -83,10 +82,10 @@ class DonationResource extends AbstractResource
         AbstractCollection::disableUserFilter(false);
 
         
+        */
         
         
-        
-        return array('success' =>true, 'id' =>$result);
+        return array('success' =>true, 'id' =>$content);
         
    }
    
