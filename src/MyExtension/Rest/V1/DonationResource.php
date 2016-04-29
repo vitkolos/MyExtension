@@ -40,7 +40,6 @@ class DonationResource extends AbstractResource
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
-    var_dump($contentsService);
         $content = $contentsService->findById($id,false,false);
        $content['i18n'] = array(
             $params['lang']->getLocale() =>array(
@@ -70,8 +69,7 @@ class DonationResource extends AbstractResource
         $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
         $don['nativeLanguage'] = $params['lang']->getLocale();
         $resultcreate = $this->getContentsCollection()->create($don, array(),false);
-        //$don['fields'] =
-        //$this->processInscription($inscriptionForm['fields']);
+
         
         
         
