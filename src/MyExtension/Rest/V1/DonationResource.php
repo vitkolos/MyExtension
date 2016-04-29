@@ -84,7 +84,7 @@ class DonationResource extends AbstractResource
         
         
         
-        return array('success' =>true, 'id' =>$resultcreate);
+        return array('success' =>true, 'id' =>$result);
         
    }
    
