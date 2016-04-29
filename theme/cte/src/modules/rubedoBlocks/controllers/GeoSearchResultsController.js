@@ -67,7 +67,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     }
                 });
                 var dv = count;
-                while (dv !== 0) {
+                while (dv !== 0) {distance:me.distance(coords[0],coords[1]),
                     dv = parseInt(dv / 10, 10);
                     index++;
                 }
@@ -475,21 +475,22 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         var coords=item['fields.position.location.coordinates'][0].split(",");
                         var icon = new google.maps.MarkerImage("/theme/cte/img/icons/gmaps-"+item.groupe+".png", null, null, null, new google.maps.Size(50, 50));// add custom icon
                         if (coords[0]&&coords[1]){
-                            refinedData.push({
-                                coordinates:{
-                                    latitude:coords[0],
-                                    longitude:coords[1]
-                                },
-                                id:item.id,
-                                objectType:item.objectType,
-                                title:item.title,
-                                distance:me.distance(coords[0],coords[1]),
-                                itemData:item,
-                                markerOptions:{
+                            var markerData =  {
+                                    coordinates:{
+                                        latitude:coords[0],
+                                        longitude:coords[1]
+                                    },
+                                    id:item.id,
+                                    objectType:item.objectType,
                                     title:item.title,
-                                    icon: icon // add icon
-                                }
-                            });
+                                    itemData:item,
+                                    markerOptions:{
+                                        title:item.title,
+                                        icon: icon // add icon
+                                    }
+                            };
+                            if (config.displayMode == "checkbox") markerData.distance=me.distance(coords[0],coords[1]);
+                            refinedData.push(markerData);
                         }
                     }
                 });
