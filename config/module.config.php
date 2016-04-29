@@ -205,8 +205,7 @@ return array(
     /*ajout du service Paybox*/
     'service_manager' => array(
         'invokables' => array(
-            'PayboxPayment'=>'Rubedo\\Payment\\PayboxPayment',
-            'ContentsCcn'=>'MyExtension\\Collection\\ContentsCcn'
+            'PayboxPayment'=>'Rubedo\\Payment\\PayboxPayment'
             )
     ),
     /*
