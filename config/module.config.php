@@ -206,7 +206,7 @@ return array(
     'service_manager' => array(
         'invokables' => array(
             'PayboxPayment'=>'Rubedo\\Payment\\PayboxPayment',
-            'ContentsCCN'=>'Rubedo\\Collection\\ContentsCcn'
+            'ContentsCcn'=>'Rubedo\\Collection\\ContentsCcn'
             )
     ),
     /*
