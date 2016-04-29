@@ -105,7 +105,12 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
     		'keys' => array(
     			'orderbyUserGroup' => 1
     		)
-    	)
+    	),
+        array(
+            'keys' => array(
+                'lastUpdateTime' => -1
+            )
+        ),
     );
     /**
      * Is the input obj is valid
@@ -231,12 +236,7 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
                 return $returnArray;
             }
         }
-        /*MODIFIED TO ALLOW CONTENT CREATION FROM API*/
-        if(!self::isUserFilterDisabled() || !isset($content['writeWorkspace'])) {
-            //$obj = $this->_setDefaultWorkspace($obj);
-            var_dump("filter");
-        }
-        else var_dump("no-filter");
+        //$obj = $this->_setDefaultWorkspace($obj);
         $obj = $this->_filterInputData($obj);
         if ($this->_isValidInput) {
             $returnArray = parent::create($obj, $options, $live, $ignoreIndex);
