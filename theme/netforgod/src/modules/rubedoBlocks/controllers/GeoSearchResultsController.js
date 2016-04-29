@@ -409,6 +409,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                 objectType:item.objectType,
                                 title:item.title,
                                 itemData:item,
+                                distance:me.distance(coords[0],coords[1]),
                                 markerOptions:{
                                     title:item.title,
                                     icon: me.displayedItemId==item['class'] ? icon2 : icon
@@ -421,6 +422,26 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             }
             return refinedData;
         };
+        
+    /*distance from center of map*/    
+    me.distance = function(lat2, lon2){
+            var lat1=me.map.center.latitude;
+            var lon1=me.map.center.longitude;
+            var R = 6371000; // metres
+            var φ1 = lat1 * Math.PI / 180;
+            var φ2 = lat2 * Math.PI / 180;
+            var Δφ = (lat2-lat1) * Math.PI / 180;
+            var Δλ = (lon2-lon1)* Math.PI / 180;
+               
+            var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
+                       Math.cos(φ1) * Math.cos(φ2) *
+                       Math.sin(Δλ/2) * Math.sin(Δλ/2);
+            var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+               
+            var d = R * c;
+            return d;
+        };
+
         me.searchByQuery = function(options){
             var bounds=me.mapControl.getGMap().getBounds();
             options.inflat=bounds.getSouthWest().lat();
