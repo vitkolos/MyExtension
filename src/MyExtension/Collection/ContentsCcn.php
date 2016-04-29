@@ -11,7 +11,7 @@
  * @copyright Copyright (c) 2012-2014 WebTales (http://www.webtales.fr)
  * @license http://www.gnu.org/licenses/gpl.html Open Source GPL 3.0 license
  */
-namespace Rubedo\Collection;
+namespace MyExtension\Collection;
 use Rubedo\Content\Context;
 use Rubedo\Exceptions\Access;
 use Rubedo\Exceptions\Server;
