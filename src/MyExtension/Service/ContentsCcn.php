@@ -145,7 +145,7 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
     protected static $isLocaleFiltered = true;
     public function __construct()
     {
-        $this->_collectionName = 'ContentsCcn';
+        $this->_collectionName = 'Contents';
         parent::__construct();
     }
     public function reInit()
