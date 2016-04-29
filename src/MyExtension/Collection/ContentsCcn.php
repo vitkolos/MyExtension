@@ -31,7 +31,7 @@ use Zend\Json\Json;
  * @category Rubedo
  * @package Rubedo
  */
-class Contents extends WorkflowAbstractCollection implements IContents
+class ContentsCcn extends WorkflowAbstractCollection implements IContents
 {
     protected $_indexes = array(
         array(
@@ -235,7 +235,6 @@ class Contents extends WorkflowAbstractCollection implements IContents
         if(!self::isUserFilterDisabled() || !isset($content['writeWorkspace'])) {
             $obj = $this->_setDefaultWorkspace($obj);
             var_dump("filter");
-            
         }
         else var_dump("no-filter");
         $obj = $this->_filterInputData($obj);
