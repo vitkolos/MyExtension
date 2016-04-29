@@ -68,8 +68,8 @@ class DonationResource extends AbstractResource
         $don['online'] = true;
         $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
         $don['nativeLanguage'] = $params['lang']->getLocale();
-        //$resultcreate = $this->getContentsCollection()->create($don, array(),
-        //false); $don['fields'] =
+        $resultcreate = $this->getContentsCollection()->create($don, array(),false);
+        //$don['fields'] =
         //$this->processInscription($inscriptionForm['fields']);
         
         
@@ -85,7 +85,7 @@ class DonationResource extends AbstractResource
         
         
         
-        return array('success' =>true, 'id' =>$result);
+        return array('success' =>true, 'id' =>$resultcreate);
         
    }
    
