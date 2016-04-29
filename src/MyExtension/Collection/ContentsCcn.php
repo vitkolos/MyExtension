@@ -233,7 +233,7 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
         }
         /*MODIFIED TO ALLOW CONTENT CREATION FROM API*/
         if(!self::isUserFilterDisabled() || !isset($content['writeWorkspace'])) {
-            $obj = $this->_setDefaultWorkspace($obj);
+            //$obj = $this->_setDefaultWorkspace($obj);
             var_dump("filter");
         }
         else var_dump("no-filter");
