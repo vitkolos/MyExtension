@@ -234,8 +234,10 @@ class Contents extends WorkflowAbstractCollection implements IContents
         /*MODIFIED TO ALLOW CONTENT CREATION FROM API*/
         if(!self::isUserFilterDisabled() || !isset($content['writeWorkspace'])) {
             $obj = $this->_setDefaultWorkspace($obj);
+            var_dump("filter");
             
         }
+        else var_dump("no-filter");
         $obj = $this->_filterInputData($obj);
         if ($this->_isValidInput) {
             $returnArray = parent::create($obj, $options, $live, $ignoreIndex);
