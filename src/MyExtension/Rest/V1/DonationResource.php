@@ -46,21 +46,22 @@ class DonationResource extends AbstractResource
                 "fields" => array("text"=>$content["fields"]["text"])
             )
         );
+        $donationNumber = $content["fields"]["text"];
        $content["fields"]["value"] += 1; //add 1
         $result = $contentsService->update($content, array(),false); //update
         
         
      // create don
         $don=[];
-        $don['fields']['text'] = "DON";
-        $don['text'] = "DON";
+        $don['fields']['text'] = "DN" . $this->getPays() . $donationNumber ;
+        $don['text'] =$don['fields']['text'] ;
         $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
         $don['target'] = "57237282c445ecf3008c7ddc";
         $don['typeId'] = "5652dcb945205e0d726d6caf";
         $don['i18n'] = array(
             $params['lang']->getLocale() => array(
                 "fields" => array(
-                    "text"=>$don['text']
+                    "text"=>$don['fields']['text'] 
                 )
             )
         );
