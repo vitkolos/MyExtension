@@ -239,7 +239,8 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
        /* if (!self::isUserFilterDisabled()) $obj = $this->_setDefaultWorkspace($obj);*/
         $obj = $this->_filterInputData($obj);
         if ($this->_isValidInput) {
-            $returnArray = parent::create($obj, $options, $live, $ignoreIndex);
+            //$returnArray = parent::create($obj, $options, $live, $ignoreIndex);
+            $$returnArray =this->_dataService->create($obj, $options);
         } else {
             $returnArray = array(
                 'success' => false,
