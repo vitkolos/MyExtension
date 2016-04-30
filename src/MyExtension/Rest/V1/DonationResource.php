@@ -69,7 +69,7 @@ class DonationResource extends AbstractResource
         $don['online'] = true;
         $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
         $don['nativeLanguage'] = $params['lang']->getLocale();
-        $resultcreate = $this->getContentsCollection()->create($don, array(),false);
+        $resultcreate = $contentsService->create($don, array(),false);
 
         
                 
