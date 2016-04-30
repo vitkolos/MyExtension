@@ -46,7 +46,7 @@ class DonationResource extends AbstractResource
                 "fields" => array("text"=>$content["fields"]["text"])
             )
         );
-        $donationNumber = $content["fields"]["text"];
+        $donationNumber = $content["fields"]["value"];
        $content["fields"]["value"] += 1; //add 1
         $result = $contentsService->update($content, array(),false); //update
         
