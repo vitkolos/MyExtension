@@ -98,7 +98,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
                         }
                         if(response.data.content.fields.video) {
-                            $scope.rubedo.current.page.video = response.data.content.fields.video.url;
+                          if(response.data.content.fields.video.url) $scope.rubedo.current.page.video = response.data.content.fields.video.url;
+                          else $scope.rubedo.current.page.video = response.data.content.fields.video;
                         }
                         $scope.rubedo.current.page.fbPage = "http://www.facebook.com/cheminneuf/";
                        
