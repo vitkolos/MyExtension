@@ -81,7 +81,7 @@
                 
                             <div>
                             <p class="capital">{{content.createTime * 1000 | date}} <span class="pull-right tags" ng-if="content.fields.audio">audio</span></p>
-                            <a ng-href="{{content.detailPageUrl }}"><h3>{{content.fields.text }}</h3>
+                            <a ng-href="{{content.detailPageUrl |cleanUrl}}"><h3>{{content.fields.text }}</h3>
                             <p class="summary">{{content.fields.summary}}</p></a>
                             <div ng-init="audioFileId = content.fields.audio" ng-if="content.fields.audio" style="display:inline-block">
                                 <div ng-controller="AudioFileController as audioCtrl">
@@ -95,7 +95,7 @@
                         <div ng-if="content.fields.video">
                             <div class="col-sm-4">
                                 <p class="capital tags">vidéo</p>
-                                <h3><a  ng-href="{{content.detailPageUrl }}">{{content.fields.text}}</a></h3>
+                                <h3><a  ng-href="{{content.detailPageUrl |cleanUrl}}">{{content.fields.text}}</a></h3>
                                 <p class="summary">{{content.fields.summary}}</p>
                                 <p class="capital">{{content.createTime * 1000 | date}} </p>
                             </div>
