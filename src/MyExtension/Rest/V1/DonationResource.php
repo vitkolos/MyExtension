@@ -71,7 +71,13 @@ class DonationResource extends AbstractResource
         $resultcreate = $this->getContentsCollection()->create($don, array(),false);
 
         
-                
+        
+        
+        
+        
+        
+        
+        
         AbstractCollection::disableUserFilter(false);
 
         
