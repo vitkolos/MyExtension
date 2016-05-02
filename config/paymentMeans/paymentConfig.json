@@ -38,12 +38,12 @@
     {  
         "type": "Ext.form.field.ComboBox",
         "config": {
-            "fieldLabel": "Monnaie",
+            "fieldLabel": "Code monnaie",
             "name": "monnaie",
             "editable": false,
             "forceSelection": true,
             "queryMode": "local",
-            "value": "Vertical",
+            "value": 978,
             "store": [
                 978,
                 840

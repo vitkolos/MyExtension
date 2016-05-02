@@ -66,6 +66,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
 
             DonationService.donate($scope.don).then(function(response){
                 if (response.data.success) {
+
                 }
             })
         }
@@ -178,8 +179,12 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         );
     };    
     
-        me.initializeCheckout();
-
+        /*me.initializeCheckout();*/
+        
+    /*VALIDATION*/
+        $scope.isTelephoneRequired = function () {
+            return  !($scope.don.user.tel1 || $scope.don.user.tel2); // au moins téléphone fixe ou portable
+    };
     
 }]);
 
