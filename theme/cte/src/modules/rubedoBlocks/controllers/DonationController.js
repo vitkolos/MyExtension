@@ -62,9 +62,10 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     //validation du don et inscription dans la base de données
     me.submit = function(isValide){
         if (isValide) {
+            $scope.don.etat ="attente_paiement_"+$scope.don.modePaiement;
+
             DonationService.donate($scope.don).then(function(response){
                 if (response.data.success) {
-                    console.log(response.data);
                 }
             })
         }

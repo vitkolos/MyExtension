@@ -90,6 +90,8 @@ class DonationResource extends AbstractResource
         foreach($donationInfo["user"] as $key => $value) {
             $donationInfo[$key] = $value;
         }
+        $donationInfo["birthdate"] = strtotime($donationInfo["birthdate"]);
+        
         return $donationInfo;
     }
    
