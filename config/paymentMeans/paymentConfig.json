@@ -35,32 +35,21 @@
             "allowOnlyWhitespace": false
         }
     },
-    {
+    {  
         "type": "Ext.form.field.ComboBox",
-        "isAutoStored": true,
-        "autoStoreData": [
-            {
-                "value": 978,
-                "label": "EURO"
-            },
-            {
-                "value": 840,
-                "label": "$ US"
-            },
-            {
-                "value":952,
-                "label":"CFA"
-            }
-        ],
         "config": {
             "fieldLabel": "Monnaie",
             "name": "monnaie",
             "editable": false,
             "forceSelection": true,
             "queryMode": "local",
-            "value": 978
+            "value": "Vertical",
+            "store": [
+                978,
+                840
+            ]
         }
-    },       
+    },
     {
         "type": "Ext.form.field.Text",
         "config": {
