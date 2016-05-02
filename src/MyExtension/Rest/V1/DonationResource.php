@@ -104,7 +104,7 @@ class DonationResource extends AbstractResource
    
    
    protected function envoyerMailsDon($don,$projectDetail,$lang,$responsableInternationalSeulement) {
-       $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
+       $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/fr.json'),true);
         //contact du projet
         $contactProjet = array("nom" => $projectDetail["fields"]["nom"],
                                "titre" => $projectDetail["fields"]["contactTitle"],
