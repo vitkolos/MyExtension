@@ -209,13 +209,13 @@ angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',functi
 angular.module('rubedoDataAccess').factory('DonationService', ['$http',function($http) {
     var serviceInstance={};
     serviceInstance.donate=function(don){
-        return($http({
-                url:"/api/v1/donation",
-                method:"POST",
-                data:{
+           return ($http.get("/api/v1/donation", {
+                params: {
                     don:don
                 }
             }));
+
+            
     };
     return serviceInstance;
 }]);

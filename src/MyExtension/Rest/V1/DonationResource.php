@@ -19,7 +19,7 @@ class DonationResource extends AbstractResource
             ->definition
             ->setName('Dons')
             ->setDescription('Service de traitement des dons')
-            ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
+            ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Inscrire le don en base de données')
                     ->addInputFilter(
@@ -34,7 +34,7 @@ class DonationResource extends AbstractResource
                     );
             });
     }
-    public function postAction($params)
+    public function getAction($params)
     {
         $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
 
