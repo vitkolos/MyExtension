@@ -84,7 +84,7 @@ class DonationResource extends AbstractResource
    
     protected function processDon($don) {
         // date du paiement
-        $donProcessed = array_merge($don,$don["user"]);
+        $donProcessed = $don["user"];
         $donProcessed["datePaiement"] = date("c");
         return $donProcessed;
     }
