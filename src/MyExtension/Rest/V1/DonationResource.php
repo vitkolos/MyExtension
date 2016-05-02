@@ -37,10 +37,11 @@ class DonationResource extends AbstractResource
     public function getAction($params)
     {
         $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
-
+        //get numero de dons
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
         $content = $contentsService->findById($id,false,false);
+        //update numero incrémenté
        $content['i18n'] = array(
             $params['lang']->getLocale() =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
@@ -48,10 +49,10 @@ class DonationResource extends AbstractResource
         );
         $donationNumber = $content["fields"]["value"];
        $content["fields"]["value"] += 1; //add 1
-        $result = $contentsService->update($content, array(),false); //update
+        $result = $contentsService->update($content, array(),false);
         
         
-     // create don
+        // create don
         $don=[];
         $donationInfo = json_decode($params["don"],true);
         $don['fields'] =  $donationInfo;
@@ -74,16 +75,21 @@ class DonationResource extends AbstractResource
         $don['nativeLanguage'] = $params['lang']->getLocale();
         $resultcreate = $contentsService->create($don, array(),false);                
         AbstractCollection::disableUserFilter(false);
+        
+        // on récupére les infos du compte
+        $accountInfos=Manager::getService("PaymentConfigs")->getConfigForPM($this->getAccountName());
 
         
-        
-        
+        //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
+        if($don["etat"] == "attente_paiement_carte") {
+            
+        }
         
         return array('success' =>true, 'id' =>$resultcreate);
         
    }
    
-   
+   /*fonction pour préparer l"inscription du don*/
     protected function processDon($donationInfo) {
         // date du paiement
         $donationInfo["datePaiement"] =  strtotime(date("c"));
@@ -96,7 +102,9 @@ class DonationResource extends AbstractResource
     }
    
    
-   
+   protected function sendDonationMail($don) {
+    
+   }
    
    
    
@@ -607,14 +615,16 @@ protected function sendInscriptionMail($inscription,$lang){
     
     protected function getPays(){
         switch($_SERVER['HTTP_HOST']) {
+            case "chemin-neuf.fr" : 
             case "ccn.chemin-neuf.fr" : 
                 return "FR"; break;
         }
      }
-    protected function getAccountId(){
+    protected function getAccountName(){
         switch($_SERVER['HTTP_HOST']) {
+            case "chemin-neuf.fr" : 
             case "ccn.chemin-neuf.fr" : 
-                return "55473e9745205e1d3ef1864d"; break;
+                return "paf_fr"; break;
         }
      }
      
