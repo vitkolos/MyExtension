@@ -148,7 +148,7 @@ class DonationResource extends AbstractResource
         $messageDonateur.=  $contactProjet["nom"]." - " . $contactProjet['email'] ;
         
         var_dump($messageDonateur);
- /*       
+      
         
         /////////envoi du mail au donateur
             //ENVOI DE MAIL AU JEUNE
@@ -168,7 +168,7 @@ class DonationResource extends AbstractResource
     $mailClient->setSubject($sujetDonateur);
     $mailClient->setBody($messageDonateur, 'text/html', 'utf-8');
     $mailerService->sendMessage($mailClient, $errors);
-  */
+  
         
    }
    
