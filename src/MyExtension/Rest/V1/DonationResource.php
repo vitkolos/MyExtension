@@ -53,6 +53,7 @@ class DonationResource extends AbstractResource
         
      // create don
         $don=[];
+        $don['fields'] = $this->processDon($params["don"]);
         $don['fields']['text'] = "DN" . $this->getPays() . $donationNumber ;
         $don['text'] =$don['fields']['text'] ;
         $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
@@ -69,10 +70,7 @@ class DonationResource extends AbstractResource
         $don['online'] = true;
         $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
         $don['nativeLanguage'] = $params['lang']->getLocale();
-        $resultcreate = $contentsService->create($don, array(),false);
-
-        
-                
+        $resultcreate = $contentsService->create($don, array(),false);                
         AbstractCollection::disableUserFilter(false);
 
         
@@ -82,6 +80,31 @@ class DonationResource extends AbstractResource
         return array('success' =>true, 'id' =>$resultcreate);
         
    }
+   
+   
+    protected function processDon($don) {
+        // date du paiement
+        $donProcessed = array_merge($don,$don["user"]);
+        $donProcessed["datePaiement"] = date("c");
+        return $donProcessed;
+    }
+
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    
    
 protected function sendInscriptionMail($inscription,$lang){
