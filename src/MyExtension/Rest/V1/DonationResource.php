@@ -111,7 +111,7 @@ class DonationResource extends AbstractResource
                                "email" =>$projectDetail["fields"]["email"]);
         
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
-        $sujetDonateur = $trad["ccn_don_7"] . $don["text"];
+        $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
         $messageDonateur = "";
         $messageDonateur .= "<p>".$don["civilite"] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
 
