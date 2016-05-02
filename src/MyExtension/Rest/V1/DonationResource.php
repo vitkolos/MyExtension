@@ -78,11 +78,10 @@ class DonationResource extends AbstractResource
         
         // on récupére les infos du compte
         $accountInfos=Manager::getService("PaymentConfigs")->getConfigForPM($this->getAccountName());
-
         
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         if($don["etat"] == "attente_paiement_carte") {
-            
+            $this->envoyerMailsDon($don,$params['lang'],true);
         }
         
         return array('success' =>true, 'id' =>$accountInfos);
@@ -102,7 +101,12 @@ class DonationResource extends AbstractResource
     }
    
    
-   protected function sendDonationMail($don) {
+   protected function envoyerMailsDon($don,$lang,$responsableInternationalSeulement) {
+       $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
+
+        //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
+        $sujetDonateur = $trad["ccn_don_7"] . $don["text"];
+        $messageDonateur = "";
     
    }
    

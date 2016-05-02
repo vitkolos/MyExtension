@@ -6,6 +6,16 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     me.donationTemplate = themePath+'/templates/blocks/donation.html';
     me.currentStage=1;
     me.userType="56e6edeac445eccc038b5b8e"; // type d'utilisateurs = donateurs
+    me.civilite = {
+        monsieur : "Monsieur",
+        madame : "Madame",
+        monsieur_ou_madame : "Monsieur ou Madame",
+        mademoiselle : "Mademoiselle",
+        pere: "Père",
+        soeur:"Soeur",
+        frere:""        
+    };
+    
     $scope.don= {};
     $scope.don.user={};
     $scope.don.user.country = "FRANCE";
