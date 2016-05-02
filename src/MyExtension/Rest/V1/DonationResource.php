@@ -82,7 +82,7 @@ class DonationResource extends AbstractResource
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
 
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
-            $this->envoyerMailsDon($don["fields"],$projectDetail,$params['lang'],true);
+        $this->envoyerMailsDon($don["fields"],$projectDetail,$params['lang'],true);
         if($don["etat"] == "attente_paiement_carte") {
         }
         
@@ -147,8 +147,8 @@ class DonationResource extends AbstractResource
         if($contactProjet["titre"] !="") $messageDonateur .= $contactProjet["titre"] . " - ";
         $messageDonateur.=  $contactProjet["nom"]." - " . $contactProjet['email'] ;
         
-        
-        
+        var_dump($messageDonateur);
+ /*       
         
         /////////envoi du mail au donateur
             //ENVOI DE MAIL AU JEUNE
@@ -168,7 +168,7 @@ class DonationResource extends AbstractResource
     $mailClient->setSubject($sujetDonateur);
     $mailClient->setBody($messageDonateur, 'text/html', 'utf-8');
     $mailerService->sendMessage($mailClient, $errors);
-  
+  */
         
    }
    
