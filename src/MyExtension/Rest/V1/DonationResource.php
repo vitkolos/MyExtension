@@ -53,7 +53,9 @@ class DonationResource extends AbstractResource
         
      // create don
         $don=[];
-        $don['fields'] = $this->processDon($params["don"]);
+        $donationInfo = json_decode($params["don"],true);
+        $don['fields'] =  $donationInfo;
+        $don['fields'] = $this->processDon($don['fields']);
         $don['fields']['text'] = "DN" . $this->getPays() . $donationNumber ;
         $don['text'] =$don['fields']['text'] ;
         $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
@@ -82,13 +84,14 @@ class DonationResource extends AbstractResource
    }
    
    
-    protected function processDon($don) {
+    protected function processDon($donationInfo) {
         // date du paiement
-        $donProcessed = $don["user"];
-        $donProcessed["datePaiement"] = date("c");
-        return $donProcessed;
+        $donationInfo["datePaiement"] =  strtotime(date("c"));
+        foreach($donationInfo["user"] as $key => $value) {
+            $donationInfo[$key] = $value;
+        }
+        return $donationInfo;
     }
-
    
    
    
