@@ -82,8 +82,8 @@ class DonationResource extends AbstractResource
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
 
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
-        if($don["etat"] == "attente_paiement_carte") {
             $this->envoyerMailsDon($don["fields"],$projectDetail,$params['lang'],true);
+        if($don["etat"] == "attente_paiement_carte") {
         }
         
         return array('success' =>true, 'id' =>$accountInfos);
@@ -154,7 +154,7 @@ class DonationResource extends AbstractResource
             //ENVOI DE MAIL AU JEUNE
     $mailerService = Manager::getService('Mailer');
     $mailClient = $mailerService->getNewMessage();
-    $mailClient->setTo($don['email']); // à changer en $inscription['email']
+    $mailClient->setTo($don['email']); 
     
     // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
     $senderMail = $contactProjet['email'] ;
