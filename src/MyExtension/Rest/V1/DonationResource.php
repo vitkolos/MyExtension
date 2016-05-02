@@ -78,10 +78,12 @@ class DonationResource extends AbstractResource
         
         // on récupére les infos du compte
         $accountInfos=Manager::getService("PaymentConfigs")->getConfigForPM($this->getAccountName());
-        
+        //récupérer les infos spécifique au projet : budget, montant payé, contact
+        $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
+
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         if($don["etat"] == "attente_paiement_carte") {
-            $this->envoyerMailsDon($don,$params['lang'],true);
+            $this->envoyerMailsDon($don["fields"],$projectDetail,$params['lang'],true);
         }
         
         return array('success' =>true, 'id' =>$accountInfos);
@@ -101,13 +103,73 @@ class DonationResource extends AbstractResource
     }
    
    
-   protected function envoyerMailsDon($don,$lang,$responsableInternationalSeulement) {
+   protected function envoyerMailsDon($don,$projectDetail,$lang,$responsableInternationalSeulement) {
        $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
-
+        //contact du projet
+        $contactProjet = array("nom" => $projectDetail["fields"]["nom"],
+                               "titre" => $projectDetail["fields"]["contactTitle"],
+                               "email" =>$projectDetail["fields"]["email"]);
+        
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . $don["text"];
         $messageDonateur = "";
+        $messageDonateur .= "<p>".$don["civilite"] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
+
+        //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
+        $messageDonateur .= $trad["ccn_don_1"] . $don["montant"] . $don["monnaie"] . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . "</em><br/><br/>";
+   
+        //paiement par chèque
+        if($don["modePaiement"]=="cheque") {
+            
+        }
+        else if($don["modePaiement"]=="virement") {
+            
+        }
+        else if($don["modePaiement"]=="virementPeriod") {
+            
+        }        
+        else if($don["modePaiement"]=="liquide") {
+            
+        }
+        else if($don["modePaiement"]=="prelevement") {
+            
+        }
+        else if($don["modePaiement"]=="carte") {
+            
+        }
+        //messageDonateur += "Votre contact pour ce projet est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
+        $messageDonateur.=  $trad["ccn_don_5"]  . "<br/>";
+        if($contactProjet["titre"] !="") $messageDonateur .= $contactProjet["titre"] . " - ";
+        $messageDonateur.=  $contactProjet["nom"]." - " . $contactProjet['email'] ."<br/><br/>";
+
+        //messageDonateur += "Votre contact pour les questions administratives et fiscales est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
+        $messageDonateur.=  $trad["ccn_don_6"]  . "<br/>";
+        if($contactProjet["titre"] !="") $messageDonateur .= $contactProjet["titre"] . " - ";
+        $messageDonateur.=  $contactProjet["nom"]." - " . $contactProjet['email'] ;
+        
+        
+        
+        
+        /////////envoi du mail au donateur
+            //ENVOI DE MAIL AU JEUNE
+    $mailerService = Manager::getService('Mailer');
+    $mailClient = $mailerService->getNewMessage();
+    $mailClient->setTo($don['email']); // à changer en $inscription['email']
     
+    // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
+    $senderMail = $contactProjet['email'] ;
+    $senderDomain = explode("@", $contactProjet['email'] );
+    if($senderDomain[1] != "chemin-neuf.org"){
+        $senderMail = "web@chemin-neuf.org";
+    }
+    $mailClient->setFrom(array( $senderMail => $contactProjet['nom'] )); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+    $mailClient->setReplyTo(array( $contactProjet['email'] => $contactProjet['nom'])); 
+    $mailClient->setCharset('utf-8');
+    $mailClient->setSubject($sujetDonateur);
+    $mailClient->setBody($messageDonateur, 'text/html', 'utf-8');
+    $mailerService->sendMessage($mailClient, $errors);
+  
+        
    }
    
    
