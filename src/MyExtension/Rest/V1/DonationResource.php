@@ -147,7 +147,6 @@ class DonationResource extends AbstractResource
         if($contactProjet["titre"] !="") $messageDonateur .= $contactProjet["titre"] . " - ";
         $messageDonateur.=  $contactProjet["nom"]." - " . $contactProjet['email'] ;
         
-        var_dump($messageDonateur);
       
         
         /////////envoi du mail au donateur
