@@ -19,7 +19,8 @@
 	<h3>Sommaire - {{fieldEntity['text']}}</h3>
 </div>
 <div class="row sommaire" style="border-bottom:4px solid white">
-	<rubedo-field ng-init="field =fieldEntity['richText'] " ng-if="fieldEntity['richText']" ></rubedo-field><!--Sommaire-->
+	<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
+
 </div>
 <div style="margin-top:24px"></div>
 </div>
