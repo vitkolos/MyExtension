@@ -11,8 +11,13 @@ return array(
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         ),
-         'paf_int' => array(
-            'name' => "PAF International",
+         'dons_int' => array(
+            'name' => "Dons International",
+            'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+        ),
+         'dons_fr' => array(
+            'name' => "Dons FR",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         )
