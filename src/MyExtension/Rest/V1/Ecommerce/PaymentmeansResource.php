@@ -66,7 +66,7 @@ class PaymentmeansResource extends AbstractResource
             switch($_SERVER['HTTP_HOST']) {
                 case "chemin-neuf.fr" : 
                 case "ccn.chemin-neuf.fr" : 
-                    $accountName="paf_fr"; break;
+                    $accountName="dons_fr"; break;
             }
             $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
             if($paymentMeans['success']) {
