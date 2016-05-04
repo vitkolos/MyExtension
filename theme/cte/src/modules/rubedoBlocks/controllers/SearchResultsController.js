@@ -236,7 +236,9 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                                 limit:10,
                                 type:"5728b703c445ec7e008b6aa5"
                             }
-                            RubedoSearchService.searchByQuery(options).then(function(response){});
+                            RubedoSearchService.searchByQuery(optionsFiscalite).then(function(response){
+                                console.log(response.data.results);
+                            });
                         }
                     });
                     /**/
