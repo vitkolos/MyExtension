@@ -3,14 +3,26 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     var config = $scope.blockConfig;
     me.contactData={ };
     me.contactError=null;
+    $scope.adressOfTopics=[
+        {adr:'etienne.laval.moi@gmail.com',
+            topic:'Service client'},
+        {adr:'etienne.m.laval@gmail.com',
+            topic:'Service expedition'},
+        {adr:'etienne.laval.moi@gmail.com',
+            topic:'Les ACN'},
+        {adr:'etienne.laval.moi@gmail.com',
+            topic:'Webmaster'}]    ;
+
+    $scope.selectedTopic= {adr:'etienne.laval.moi@gmail.com', topic:'Service client'};
+
     $scope.clearORPlaceholderHeight();
     me.submit=function(){
         me.contactError=null;
         var contactSnap=angular.copy(me.contactData);
         var payload={
-            to:config.email,
+            to: $scope.selectedTopic.adr,
             from:me.contactData.email,
-            subject:contactSnap.subject,
+            subject:$scope.selectedTopic.topic,
         };
         delete (contactSnap.subject);
         delete (contactSnap.to);
