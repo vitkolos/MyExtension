@@ -469,7 +469,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                             //do not display if past date
                             break;
                         default:
-                            item['groupe']="";
+                            item['groupe']="lieux";
                     }
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0] && !isPast){
                         var coords=item['fields.position.location.coordinates'][0].split(",");
