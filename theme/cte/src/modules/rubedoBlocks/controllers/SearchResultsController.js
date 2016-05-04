@@ -229,15 +229,13 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
 /*POUR DONS, pour régler le pb de taxonomie avec des contenus. A enlever dès que c'est réglé en v3.4?*/
                     angular.forEach(me.facets,function(facet){
                         if (facet.id=="fiscalite_fr") {
-                            optionsFiscalite = {
-                                constrainToSite:true,
-                                pageId:$scope.rubedo.current.page.id,
-                                siteId:$scope.rubedo.current.site.id,
-                                limit:10,
-                                type:"5728b703c445ec7e008b6aa5"
-                            }
-                            RubedoSearchService.searchByQuery(optionsFiscalite).then(function(response){
-                                console.log(response.data.results);
+                            angular.forEach(facet.terms, function(term){
+                                switch (term.term) {
+                                    case "5728bf10c445ec7e008b6adc" : term.label ="Reçu fiscal 75% ISF"; break;
+                                    case "5728bee9c445ec4b008b6afc" : term.label ="Reçu fiscal 66% I.R."; break;
+                                    case "5728bebfc445ecb0008b67f3" : term.label ="Sans reçu fiscal"; break;
+                                }
+
                             });
                         }
                     });
