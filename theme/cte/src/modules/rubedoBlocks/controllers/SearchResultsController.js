@@ -248,6 +248,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                             angular.forEach(activeFacet.terms,function(term){
                                 var newTerm = {};
                                 newTerm.term = term.term;
+                                /*Idem : fix pour les dons*/
                                 if (activeFacet.id=="fiscalite_fr") {
                                     switch (newTerm.term) {
                                         case "5728bf10c445ec7e008b6adc" : newTerm.label ="Reçu fiscal 75% ISF"; break;

@@ -34,7 +34,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             }
         });
     
-    RubedoPaymentMeansService.getPaymentMeansById("paf_fr").then(
+    RubedoPaymentMeansService.getPaymentMeansById("dons_fr").then(
         function(response){
             if(response.data.success){
                 var options = {
