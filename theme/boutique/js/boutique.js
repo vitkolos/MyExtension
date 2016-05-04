@@ -25,3 +25,14 @@ blocksConfig.simpleContact={
     "template": "/templates/blocks/simpleContact.html",
     "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
+angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
+    var serviceInstance={};
+    serviceInstance.sendMail=function(payload){
+        return ($http({
+            url:"api/v1/mail",
+            method:"POST",
+            data : payload
+        }));
+    };
+    return serviceInstance;
+}]);
