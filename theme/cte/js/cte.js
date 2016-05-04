@@ -234,7 +234,9 @@ angular.module('rubedoDataAccess').factory('RubedoPaymentMeansService',['$http',
            var serviceInstance = {};
            serviceInstance.getPaymentMeansSite=function(){
                return ($http.get("/api/v1/ecommerce/paymentmeans",{
-                      filter_by_site:true
+                      params: {
+                         filter_by_site:true
+                      }
                 }));
            };
            return serviceInstance;
