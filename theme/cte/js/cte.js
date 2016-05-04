@@ -232,10 +232,11 @@ angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($
 }]);
 angular.module('rubedoDataAccess').factory('RubedoPaymentMeansService',['$http',function($http){
            var serviceInstance = {};
-           serviceInstance.getPaymentMeansSite=function(){
+           serviceInstance.getPaymentMeansDons=function(){
                return ($http.get("/api/v1/ecommerce/paymentmeans",{
                       params: {
-                         filter_by_site:true
+                         filter_by_site:true,
+                         type:"dons"
                       }
                 }));
            };

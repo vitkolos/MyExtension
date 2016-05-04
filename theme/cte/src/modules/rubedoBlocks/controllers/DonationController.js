@@ -29,7 +29,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
 
 
     
-    RubedoPaymentMeansService.getPaymentMeansSite().then(
+    RubedoPaymentMeansService.getPaymentMeansDons().then(
         function(response){
             if(response.data.success){
                 var options = {

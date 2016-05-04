@@ -44,6 +44,11 @@ class PaymentmeansResource extends AbstractResource
                             ->setDescription('Filtrer par site')
                             ->setKey('filter_by_site')
                     )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Dons ou autre')
+                            ->setKey('type')
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Payment Means')
@@ -66,7 +71,7 @@ class PaymentmeansResource extends AbstractResource
             switch($_SERVER['HTTP_HOST']) {
                 case "chemin-neuf.fr" : 
                 case "ccn.chemin-neuf.fr" : 
-                    $accountName="dons_fr"; break;
+                    if($params['type']=="dons") $accountName="dons_fr"; break;
             }
             $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
             if($paymentMeans['success']) {
