@@ -41,9 +41,8 @@ class PaymentmeansResource extends AbstractResource
                     ->setDescription('Get a list of active Payment Means')
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setFilter('string')
-                            ->setDescription('Nom du compte')
-                            ->setKey('accountName')
+                            ->setDescription('Filtrer par site')
+                            ->setKey('filter_by_site')
                     )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
@@ -62,8 +61,14 @@ class PaymentmeansResource extends AbstractResource
      */
     public function getAction($params)
     {
-        if($params['accountName']) {
-            $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($params['accountName']);
+        if($params['filter_by_site']) {
+            $accountName="";
+            switch($_SERVER['HTTP_HOST']) {
+                case "chemin-neuf.fr" : 
+                case "ccn.chemin-neuf.fr" : 
+                    $accountName="paf_fr"; break;
+            }
+            $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
             if($paymentMeans['success']) {
                 $arrayToReturn = array_intersect_key($paymentMeans['data'], array_flip(array("id","paymentMeans","displayName","logo","nativePMConfig")));
                 $arrayToReturn["nativePMConfig"] = array("contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"]);
