@@ -21,3 +21,7 @@ blocksConfig.boutiqueTop={
       "/src/modules/rubedoBlocks/controllers/AuthenticationController.js",
   ],
 };
+blocksConfig.simpleContact={
+    "template": "/templates/blocks/simpleContact.html",
+    "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
+};
