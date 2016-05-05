@@ -46,7 +46,7 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div class="col-sm-4 col-xs-6 col-xxs-12" ng-repeat="datum in searchResultsCtrl.data track by $index" >
+        <div class="col-sm-4 col-xs-6 col-xxs-12" ng-repeat="datum in searchResultsCtrl.data track by $index" style="margin-bottom: 12px">
             <a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">
                 <img class="img-responsive" ng-if="datum['fields.image']"
                                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'],{width:'400px',height:'266px',mode:'crop'}) }}"
@@ -62,7 +62,7 @@
                     </div>
                     
                     <p class="capital">{{rubedo.translate("Dons.Finance", "Projet financé à")}}
-                        <span ng-if="datum['fields.cumul'][0]<=datum['fields.budget'][0]">{{datum['fields.cumul'][0]*100/datum['fields.budget'][0] | number :0 }} %</span>
+                        <span ng-if="datum['fields.cumul'][0]<=datum['fields.budget'][0]">{{datum['fields.cumul'][0]*100/datum['fields.budget'][0] | number :0 }}%</span>
                         <span ng-if="datum['fields.cumul'][0]>datum['fields.budget'][0]">100 %</span>
                     </p>
                 </div>
