@@ -430,7 +430,12 @@ span.circle{
   background-color: white;
   ul{list-style-type: none;font-size: 1.2em}
   i{font-size:2em;margin-right: 6px}
-  div.vertical{
-    position: absolute; top:50%; transform: translateY(-50%);
+  div:nth-of-type(2)::before {
+    content: " ";
+    display: inline-block;
+    height: 100%;
+    width: 1%;
+    vertical-align: middle;
   }
+  div:nth-of-type(2) p{vertical-align: middle; display: inline-block}
 }
