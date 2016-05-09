@@ -97,13 +97,14 @@ input:focus{outline: 0; border-color:transparent; box-shadow:0}
 .padding-large{padding-top:24px; padding-bottom: 24px}
 .padding-{margin-top:-12px; margin-bottom:-12px} // pour ne pas avoir le padding en hauteur des lignes normales
 .no-margin{margin-left:-15px; margin-right: -15px}// pour ne pas avoir le padding en largeur des lignes normales
-.padding-col{padding:0px 48px;}
+
 .padding-col >rubedo-block>div{padding:24px 0}
 @media screen and (max-width: @min_sm){
   .padding-col >rubedo-block>div{padding:12px	 0}
 }
 @media screen and (min-width: @min_xs){
     .no-padding{padding: 0}
+    .padding-col{padding:0px 48px;}
 }
 .texte{max-width: 860px; margin: 24px auto}
 ::selection {
@@ -446,7 +447,7 @@ blockquote {
   margin: 24px auto;
   padding-top: 24px;
   font-family: 'cheddar_jackregular';
-  font-size: 4em; font-weight: 400;
+  font-size: 4em; font-weight: 400; line-height: 1em;
 }
 
     ////////////////////////////////////////////////////
