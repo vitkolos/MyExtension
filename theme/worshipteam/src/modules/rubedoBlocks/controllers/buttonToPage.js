@@ -5,6 +5,7 @@ angular.module("rubedoBlocks").lazy.controller("ButtonToPageController",['$scope
     $scope.fieldEntity={ };
     $scope.fieldInputMode=true;
     me.columns = blockConfig.columns ? 'col-md-'+(12/blockConfig.columns):'col-md-12';
+    $scope.clearORPlaceholderHeight();
     var fields=angular.copy($scope.fieldEntity);
     
 	if (blockConfig.linkedPage&&mongoIdRegex.test(blockConfig.linkedPage)) 

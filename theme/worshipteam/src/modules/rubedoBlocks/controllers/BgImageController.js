@@ -1,6 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("BgImageController",["$scope","RubedoPagesService", function($scope,RubedoPagesService){
     var me = this;
     var config = $scope.blockConfig;
+    $scope.clearORPlaceholderHeight();
     if (config.externalURL){
         me.url=config.externalURL;
     } else if (config.imageLink&&mongoIdRegex.test(config.imageLink)){

@@ -9,7 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
         includeTaxonomy:true
     };
     me.showForm =  angular.copy(me.updateMode);
-
+$scope.clearORPlaceholderHeight();
     me.submitStatus=null;
     me.loadContentType=function(ctId){
         RubedoContentTypesService.findById(ctId,options).then(

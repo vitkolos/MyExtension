@@ -75,6 +75,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.getContents = function (queryId, pageId, siteId, options, add){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
             if (response.data.success){
+                $scope.clearORPlaceholderHeight();
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;

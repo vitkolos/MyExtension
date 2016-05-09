@@ -15,7 +15,7 @@ angular.module("rubedoBlocks").lazy.controller('RedirectController',['$scope','R
             }
         );
    }
-
+   $scope.clearORPlaceholderHeight();
     if (config.contentId){
         me.getContentById(config.contentId);
     }
