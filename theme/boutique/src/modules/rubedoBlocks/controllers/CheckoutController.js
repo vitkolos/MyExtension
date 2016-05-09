@@ -36,13 +36,13 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     );
     me.cartIsEmpty=false;
     me.detailedCart={};
-    me.isThereAnyGiftWrap=function(array){
-        var isHere = false;
-        for (var i= 0; i<array.length;i++){
-            if ((array[i].title=="Papier Cadeau")&&(array[i].price==2)){isHere=true}
-            //if ((array[i].title=="Papier Cadeau"||array[i].title==rubedo.translate('Label.GiftWrap','Gift Wrap'))&&(array[i].price==2)){isHere=true}
-        }
-    };
+    //me.isThereAnyGiftWrap=function(array){
+    //    var isHere = false;
+    //    for (var i= 0; i<array.length;i++){
+    //        if ((array[i].title=="Papier Cadeau")&&(array[i].price==2)){isHere=true}
+    // //       if ((array[i].title=="Papier Cadeau"||array[i].title==rubedo.translate('Label.GiftWrap','Gift Wrap'))&&(array[i].price==2)){isHere=true}
+        //}
+    //};
     me.getCart=function(){
         RubedoShoppingCartService.getCart({includeDetail:true}).then(
             function(response){
@@ -50,11 +50,13 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                     if (response.data.shoppingCart.detailedCart&&response.data.shoppingCart.detailedCart.totalItems>0){
                         var newCart=response.data.shoppingCart.detailedCart;
                         var justAGiftWrap=false;
-                        if (parseInt(detailedCart.totalItems)+1==newCart.totalItems && !me.isThereAnyGiftWrap(detailedCart.cart) && me.isThereAnyGiftWrap(newCart.cart)){ justAGiftWrap=true}
+                        //if (parseInt(detailedCart.totalItems)+1==newCart.totalItems && !me.isThereAnyGiftWrap(detailedCart.cart) && me.isThereAnyGiftWrap(newCart.cart)){ justAGiftWrap=true}
                         me.detailedCart=newCart;
                         me.cartIsEmpty=false;
-                        if (!justAGiftWrap)
-                            {me.initializeCheckout();}
+                        //if (!justAGiftWrap)
+                        //    {
+                                me.initializeCheckout();
+                            //}
 
                     } else  {
                         me.cartIsEmpty=true;
@@ -70,8 +72,8 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             me.getCart();
         }
     });
-    me.isThereAnyGiftWrapInTheCurrentCart=function(){return me.isThereAnyGiftWrap(me.detailedCart.cart)
-    }
+    //me.isThereAnyGiftWrapInTheCurrentCart=function(){return me.isThereAnyGiftWrap(me.detailedCart.cart)
+    //}
     me.addPaperToCart=function(){
         var content={"text":"Papier Cadeau",
             "typeId":"55c87ae245205e8019c62e08",
