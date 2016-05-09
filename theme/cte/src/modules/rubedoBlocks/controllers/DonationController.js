@@ -18,6 +18,16 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     
     $scope.don= {};
     $scope.don.user={};
+    // préremplir les champs si l'utilisateur est connecté
+    if ($scope.rubedo.current.user) {
+        $scope.don.user=angular.copy($scope.rubedo.current.user.fields);
+        $scope.don.user.email = $scope.rubedo.current.user.email;
+        if ($scope.rubedo.current.user.fields.birthdate) {
+            $scope.don.user.birthdate=new Date($scope.rubedo.current.user.fields.birthdate * 1000).toISOString();
+            $scope.don.user.birthdateF = $filter('date')( $scope.don.user.birthdate,'dd/MM/yyyy');
+        }
+        
+    }    
     $scope.don.user.country = "FRANCE";
     $scope.don.projet = $scope.contentDetailCtrl.content.fields.text;
     $scope.don.projetId = $scope.contentDetailCtrl.content.id;
@@ -200,8 +210,9 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 me.errorHolder=response.data.message;
             }
         );
-    };    
+    };
     
+
         /*me.initializeCheckout();*/
         
     /*VALIDATION*/
