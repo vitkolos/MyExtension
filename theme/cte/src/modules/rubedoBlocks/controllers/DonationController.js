@@ -37,6 +37,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     siteId: $scope.rubedo.current.site.id,
                     pageId: $scope.rubedo.current.page.id
                 };
+                /*get contact national défini dans la config de payement*/
                 RubedoContentsService.getContentById(response.data.paymentMeans.nativePMConfig.contactDonsId, options).then(
                     function(response){
                         if(response.data.success){
@@ -44,6 +45,22 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                         }
                     }
                 );
+                me.fiscalites = {};
+                /*get fiscalités*/
+                angular.forEach($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite], function(fiscalite){
+                    RubedoContentsService.getContentById(fiscalite, options).then(
+                        function (response) {
+                            if(response.data.success){
+                                me.fiscalites.push({
+                                    "label" : response.data.content.text,
+                                    "fields":response.data.content.fields
+                                });
+                            }
+                        }
+                    );
+                });
+                RubedoContentsService.get
+                
             }
                
         });                
