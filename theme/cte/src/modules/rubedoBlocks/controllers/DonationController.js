@@ -55,6 +55,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                                     "label" : response.data.content.text,
                                     "fields":response.data.content.fields
                                 });
+                                console.log(me.fiscalites);
                             }
                         }
                     );
