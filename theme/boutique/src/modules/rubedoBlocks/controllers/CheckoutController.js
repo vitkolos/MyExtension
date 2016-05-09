@@ -43,7 +43,9 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             if ((array[i].title=="Papier Cadeau")&&(array[i].price==2)){isHere=true}
     // //       if ((array[i].title=="Papier Cadeau"||array[i].title==rubedo.translate('Label.GiftWrap','Gift Wrap'))&&(array[i].price==2)){isHere=true}
         }
+        alert (isHere||$scope.itIsNowAGift);
         return isHere||$scope.itIsNowAGift;
+
     };
     me.getCart=function(){
         RubedoShoppingCartService.getCart({includeDetail:true}).then(
