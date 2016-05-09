@@ -58,7 +58,6 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                                 };
                                 me.fiscalitesCount++;
                             }
-                            console.log(me.fiscalites);
                         }
                     );
                 });
