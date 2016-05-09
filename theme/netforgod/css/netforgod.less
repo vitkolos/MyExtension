@@ -441,7 +441,13 @@ span.circle{
 h1.titre-dons {
     color: white;
     position: absolute;
-    bottom: 24px; left: 24px;
+    bottom: 24px; padding-left: 24px;
     width: 40%;
+}
+@media screen and (max-width:@min_sm){
+    h1.titre-dons{width: 80%}
+}
+@media screen and (min-width:@min_lg){
+    h1.titre-dons{font-size: 50px; padding-left: 48px; bottom: 48px}
 }
 
