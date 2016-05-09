@@ -46,6 +46,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     }
                 );
                 me.fiscalites = {};
+                me.fiscalitesCount=0;
                 /*get fiscalités*/
                 angular.forEach($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite], function(fiscalite){
                     RubedoContentsService.getContentById(fiscalite, options).then(
@@ -55,7 +56,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                                     "label" : response.data.content.text,
                                     "fields":response.data.content.fields
                                 };
-                                console.log(me.fiscalites);
+                                me.fiscalitesCount++;
                             }
                         }
                     );
