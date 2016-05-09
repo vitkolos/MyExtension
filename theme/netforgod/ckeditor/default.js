@@ -15,6 +15,6 @@ CKEDITOR.addTemplates("default",{imagesPath:"/theme/netforgod/ckeditor/img/",tem
 {title:"Texte sur deux colonnes 3/4 1/4",image:"w75w25.png",description:"Texte sur 2 colonnes",
     html:'<div class="row padding-large"><div class="col-xs-12  col-sm-8"><p>Colonne 1 </p></div><div class="col-xs-12  col-sm-4"><p>Colonne 2 </p></div></div><p></p>'},
 {title:"Ligne de tableau pour les dons",image:"w75w25.png",description:"Ligne de tableau pour les dons avec une bordure blanche",
-    html:'<div class="row border"><div class="col-xs-5  col-sm-5"><p>Colonne 1 </p></div><div class="col-xs-2  col-sm-2"><p>Colonne 2 </p></div><div class="col-xs-5 col-sm-5"><p>Colonne 2 </p></div></div><p></p>'}
+    html:'<div class="row border"><div class="col-xs-8  col-sm-5"><p>Colonne 1 </p></div><div class="col-xs-4  col-sm-2"><p>Colonne 2 </p></div><div class="col-xs-12 col-sm-5"><p>Colonne 2 </p></div></div><p></p>'}
 
     ]});
