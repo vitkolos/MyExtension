@@ -44,3 +44,33 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
     }
 
 }]);
+
+
+
+//config.store=RubedoExtendableSettings.orderStatusList;
+// page rubedo-backoffice-ui/www/app/view/ordersInterface.js
+
+
+
+
+
+
+//Ext.define('RubedoExtendableSettings', {",
+//"    singleton:true,",
+//    "    orderStatusList:[[\"pendingPayment\",Rubedo.RubedoAutomatedElementsLoc.pendingPaymentText],[\"payed\",Rubedo.RubedoAutomatedElementsLoc.payedText],[\"cancelled\",Rubedo.RubedoAutomatedElementsLoc.cancelledText]",
+//    "]});"
+//page   rubedo-backoffice-ui/www/metadata/controller/AppExtensionController
+
+//et
+
+//Ext.define('RubedoExtendableSettings', {
+//    singleton:true,
+//    orderStatusList:[["pendingPayment",Rubedo.RubedoAutomatedElementsLoc.pendingPaymentText],["payed",Rubedo.RubedoAutomatedElementsLoc.payedText],["cancelled",Rubedo.RubedoAutomatedElementsLoc.cancelledText]
+//    ]});
+//page   rubedo-backoffice-ui/www/app/controller/AppExtensionController.js
+
+
+
+
+
+//RubedoAutomatedElementsLoc
