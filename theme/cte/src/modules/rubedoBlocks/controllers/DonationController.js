@@ -32,11 +32,11 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     RubedoPaymentMeansService.getPaymentMeansDons().then(
         function(response){
             if(response.data.success){
+                me.paymentmeans = response.data.paymentMeans;
                 var options = {
                     siteId: $scope.rubedo.current.site.id,
                     pageId: $scope.rubedo.current.page.id
                 };
-                console.log(response.data);
                 RubedoContentsService.getContentById(response.data.paymentMeans.nativePMConfig.contactDonsId, options).then(
                     function(response){
                         if(response.data.success){
