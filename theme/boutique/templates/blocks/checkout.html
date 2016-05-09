@@ -451,7 +451,9 @@
                                     </div>
                                 </div>
                                 <div>
-                                    <button ng-click="checkoutCtrl.addPaperToCart()"
+                                    <!--<button ng-click="checkoutCtrl.addPaperToCart()"-->
+                                    <button ng-if="checkoutCtrl.isThereAnyGiftWrap"
+                                            ng-click="itIsNowAGift=true"
                                             class="btn btn-default">
                                         <i class="fa fa-gift"></i> add gift wrap : 2 €
                                         <!--<i class="fa fa-gift"></i> {{ rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "add a gift wrap")}} : 2 €-->
