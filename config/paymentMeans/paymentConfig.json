@@ -1,53 +1,10 @@
 [
     {
-        "type": "Ext.form.field.Text",
+        "type": "Rubedo.view.DCEField",
         "config": {
-            "fieldLabel": "Numéro du site",
-            "name": "site",
-            "allowBlank": true,
-            "allowOnlyWhitespace": false
-        }
-    },
-    {
-        "type": "Ext.form.field.Text",
-        "config": {
-            "fieldLabel": "Numéro du rang",
-            "name": "rang",
-            "allowBlank": true,
-            "allowOnlyWhitespace": false
-        }
-    },
-    {
-        "type": "Ext.form.field.Text",
-        "config": {
-            "fieldLabel": "Identifiant interne",
-            "name": "identifiant",
-            "allowBlank": true,
-            "allowOnlyWhitespace": false
-        }
-    },
-    {
-        "type": "Ext.form.field.Text",
-        "config": {
-            "fieldLabel": "Clé privée",
-            "name": "clef",
-            "allowBlank": true,
-            "allowOnlyWhitespace": false
-        }
-    },
-    {  
-        "type": "Ext.form.field.ComboBox",
-        "config": {
-            "fieldLabel": "Code monnaie",
-            "name": "monnaie",
-            "editable": false,
-            "forceSelection": true,
-            "queryMode": "local",
-            "value": 978,
-            "store": [
-                978,
-                840
-            ]
+            "fieldLabel": "Compte Paybox",
+            "name": "paybox",
+            "chooseOnly": true
         }
     },
     {
@@ -128,6 +85,15 @@
             "name": "form_prevelement",
             "allowedFileType": "PDF",
             "smallMode": true
+        }
+    },
+        {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Nom de la fiscalité",
+            "name": "fiscalite",
+            "allowBlank": true,
+            "allowOnlyWhitespace": false
         }
     }
     
