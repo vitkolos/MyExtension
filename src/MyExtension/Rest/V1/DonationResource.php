@@ -99,7 +99,7 @@ class DonationResource extends AbstractResource
                 //si le projet a la taxonomie de pays et qu'elle vaut le pays concerné, alors on prend la config du pays
                 if (array_key_exists($vocabulary, $projectDetail["taxonomy"])) {
                     if($projectDetail["taxonomy"][$vocabulary][0] == $taxonomy) {
-                        $isInternational = false
+                        $isInternational = false;
                     }
                 }
             }
