@@ -100,7 +100,7 @@ class DonationResource extends AbstractResource
         if($don["etat"] == "attente_paiement_carte") {
         }
         
-        return array('success' =>true, 'id' =>$paymentConfigPays);
+        return array('success' =>true, 'id' =>$taxoPays);
         
    }
    
