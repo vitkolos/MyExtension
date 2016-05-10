@@ -211,7 +211,8 @@ angular.module('rubedoDataAccess').factory('DonationService', ['$http',function(
     serviceInstance.donate=function(don){
            return ($http.get("/api/v1/donation", {
                 params: {
-                    don:don
+                    don:don,
+		    account : account
                 }
             }));
 

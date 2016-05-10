@@ -27,6 +27,11 @@ class DonationResource extends AbstractResource
                             ->setDescription('Don')
                             ->setKey('don')                            
                     )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Configuration de paiement')
+                            ->setKey('account')                            
+                    )
                      ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Numéro de dons')
@@ -48,14 +53,17 @@ class DonationResource extends AbstractResource
             )
         );
         $donationNumber = $content["fields"]["value"];
-       $content["fields"]["value"] += 1; //add 1
+        $content["fields"]["value"] += 1; //add 1
         $result = $contentsService->update($content, array(),false);
         
         
         // create don
         $don=[];
         $donationInfo = json_decode($params["don"],true);
+        $accountInfos = json_decode($params["account"],true);
         $don['fields'] =  $donationInfo;
+        $don['fields']["condition"] = $accountInfos["text"];
+        $don['fields']["justificatif"] = $accountInfos["recu"];
         $don['fields'] = $this->processDon($don['fields']);
         $don['fields']['text'] = "DN" . $this->getPays() . $donationNumber ;
         $don['text'] =$don['fields']['text'] ;
@@ -77,7 +85,7 @@ class DonationResource extends AbstractResource
         AbstractCollection::disableUserFilter(false);
         
         // on récupére les infos du compte
-        $accountInfos=Manager::getService("PaymentConfigs")->getConfigForPM($this->getAccountName());
+        //$accountInfos=Manager::getService("PaymentConfigs")->getConfigForPM($this->getAccountName());
         //récupérer les infos spécifique au projet : budget, montant payé, contact
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
 

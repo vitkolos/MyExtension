@@ -56,6 +56,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     }
                 );
                 me.fiscalites = {};
+                me.account = {};
                 me.fiscalitesCount=0;
                 /*get fiscalités*/
                 angular.forEach($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite], function(fiscalite){
@@ -66,6 +67,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                                     "label" : response.data.content.text,
                                     "fields":response.data.content.fields
                                 };
+                                me.account = response.data.content.fields;
                                 me.fiscalitesCount++;
                             }
                         }
@@ -96,8 +98,11 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     me.submit = function(isValide){
         if (isValide) {
             $scope.don.etat ="attente_paiement_"+$scope.don.modePaiement;
-
-            DonationService.donate($scope.don).then(function(response){
+            /*déterminer la config de dons choisie*/
+            if (me.fiscalitesCount>0) {
+                me.account = me.fiscalites[$scope.don.condition].fields;
+            }
+            DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
 
                 }
