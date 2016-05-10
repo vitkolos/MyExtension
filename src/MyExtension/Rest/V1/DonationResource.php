@@ -94,7 +94,8 @@ class DonationResource extends AbstractResource
         if($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"]){
             $taxoPays = (array) json_decode($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"], true);
             var_dump($taxoPays);
-            if($projectDetail["taxonomy"][key($taxoPays[0])]){}
+            var_dump($projectDetail["taxonomy"]);
+            //if($projectDetail["taxonomy"][key($taxoPays[0])]){}
         };
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         //$this->envoyerMailsDon($don["fields"],$projectDetail,$params['lang']->getLocale(),true);
