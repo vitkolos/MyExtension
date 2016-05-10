@@ -93,11 +93,11 @@ class DonationResource extends AbstractResource
         //déterminer si le projet est un projet national ou hors pays / international
         if($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"]){
             $taxoPays = (array) json_decode($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"], true);
-            var_dump($taxoPays);
-            var_dump($projectDetail["taxonomy"]);
+
             foreach ($taxoPays as $vocabulary => $taxonomy){
                 if (array_key_exists($vocabulary, $projectDetail["taxonomy"])) {
-                    var_dump("OK");
+                    var_dump($taxonomy);
+                    var_dump($projectDetail["taxonomy"][$vocabulary]);
                 }
             }
                         
