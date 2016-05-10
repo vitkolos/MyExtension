@@ -87,19 +87,17 @@ class DonationResource extends AbstractResource
         // on récupére les infos du compte
         $paymentConfigPays=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_pays"]);
         $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_hors_pays"]);
-        var_dump($paymentConfigPays);
-        var_dump($paymentConfigInt);
         
-        //$accountInfos=Manager::getService("PaymentConfigs")->getConfigForPM($this->getAccountName());
         //récupérer les infos spécifique au projet : budget, montant payé, contact
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
-
+        //déterminer si le projet est un projet national ou hors pays / international
+        
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         $this->envoyerMailsDon($don["fields"],$projectDetail,$params['lang']->getLocale(),true);
         if($don["etat"] == "attente_paiement_carte") {
         }
         
-        return array('success' =>true, 'id' =>$accountInfos);
+        return array('success' =>true, 'id' =>$projectDetail);
         
    }
    
