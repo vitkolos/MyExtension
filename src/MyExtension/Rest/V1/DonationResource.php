@@ -91,13 +91,15 @@ class DonationResource extends AbstractResource
         //récupérer les infos spécifique au projet : budget, montant payé, contact
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
         //déterminer si le projet est un projet national ou hors pays / international
-        
+        if($paymentConfigPays["nativePMConfig"]){
+            
+        };
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         $this->envoyerMailsDon($don["fields"],$projectDetail,$params['lang']->getLocale(),true);
         if($don["etat"] == "attente_paiement_carte") {
         }
         
-        return array('success' =>true, 'id' =>$projectDetail);
+        return array('success' =>true, 'id' =>$paymentConfigPays["nativePMConfig"]);
         
    }
    
