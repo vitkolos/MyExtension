@@ -85,6 +85,11 @@ class DonationResource extends AbstractResource
         AbstractCollection::disableUserFilter(false);
         
         // on récupére les infos du compte
+        $paymentConfigPays=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_pays"]);
+        $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_hors_pays"]);
+        var_dump($paymentConfigPays);
+        var_dump($paymentConfigInt);
+        
         //$accountInfos=Manager::getService("PaymentConfigs")->getConfigForPM($this->getAccountName());
         //récupérer les infos spécifique au projet : budget, montant payé, contact
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);

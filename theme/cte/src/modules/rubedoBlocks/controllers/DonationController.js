@@ -99,7 +99,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         if (isValide) {
             $scope.don.etat ="attente_paiement_"+$scope.don.modePaiement;
             /*déterminer la config de dons choisie*/
-            if (me.fiscalitesCount>0) {
+            if (me.fiscalitesCount>1) {
                 me.account = me.fiscalites[$scope.don.condition].fields;
             }
             DonationService.donate($scope.don, me.account).then(function(response){
