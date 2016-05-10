@@ -95,6 +95,12 @@ class DonationResource extends AbstractResource
             $taxoPays = (array) json_decode($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"], true);
             var_dump($taxoPays);
             var_dump($projectDetail["taxonomy"]);
+            foreach ($taxoPays as $vocabulary => $taxonomy){
+                if (array_key_exists($vocabulary, $projectDetail["taxonomy"])) {
+                    var_dump("OK");
+                }
+            }
+                        
             //if($projectDetail["taxonomy"][key($taxoPays[0])]){}
         };
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
