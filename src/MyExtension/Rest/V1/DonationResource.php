@@ -132,6 +132,7 @@ class DonationResource extends AbstractResource
    
    protected function envoyerMailsDon($don,$projectDetail,$configPayment,$lang,$responsableInternationalSeulement) {
        $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
+        $infoPaiementAdmin="";
         //contact du projet
         $contactProjet = array("nom" => $projectDetail["fields"]["nom"],
                                "titre" => $projectDetail["fields"]["contactTitle"],
@@ -148,15 +149,36 @@ class DonationResource extends AbstractResource
         //paiement par chèque
         if($don["modePaiement"]=="cheque") {
             //"Merci de nous faire parvenir votre chèque à l'ordre de ${ordre-cheque} à l'adresse suivante: ${adresse-cheque}."
-            $messageDonateur.=$trad["ccn_don_2"] . $configPayment["libelle_cheque"] . " " . $trad["ccn_don_2_bis"]. " : <br/>". $configPayment["adresse"] . "<br/><br/>";
+            $messageDonateur.=$trad["ccn_don_2"] . "<em>" . $configPayment["libelle_cheque"] . "</em> " . $trad["ccn_don_2_bis"]. " : <br/>". $configPayment["adresse"] . "<br/><br/>";
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
             //Merci de reporter ce numéro au dos de votre chèque.
             $messageDonateur .= $trad["ccn_don_8"] .".<br/><br/>";
-            if($don["justificatif"]) $messageDonateur .= $trad["ccn_don_4"] ."<br/><br/>";
+            //Après encaissement du chèque, nous vous enverrons un reçu fiscal.
+            if($don["justificatif"]) 
+                $messageDonateur .= $trad["ccn_don_4"] ."<br/><br/>";
+            
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_cheque"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_ordre_du_cheque"], $configPayment["libelle_cheque"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_adresse_cheque"], $configPayment["adresse"]);
         }
         else if($don["modePaiement"]=="virement") {
+            //Vous devez vous connecter à votre service en ligne de votre banque et effectuer un virement sur le compte '${compte} dont l'intitulé est '${intitule}.
+            $messageDonateur.=$trad["ccn_don_15"] . ":<br>" . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
+            if($configPayment["image_rib"])
+                $messageDonateur .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["image_rib"] . "&width=300px'></center><br/>";
+            //Votre don a été enregistré sous le numéro « FR2012/12539 ».
+            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            //Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre virement bancaire.
+            $messageDonateur .= $trad["ccn_don_16"] .".<br/><br/>";
+            //Après encaissement du versement, nous vous enverrons un reçu fiscal.
+            if($don["justificatif"]) 
+                $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
             
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_intitule_compte"], $configPayment["nom_compte"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_coordonnees_compte"], $configPayment["coordonnes_compte"]);
+
         }
         else if($don["modePaiement"]=="virementPeriod") {
             
