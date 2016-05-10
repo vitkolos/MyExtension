@@ -93,7 +93,9 @@ class DonationResource extends AbstractResource
         //déterminer si le projet est un projet national ou hors pays / international
         if($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"]){
             $taxoPays = json_decode($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"]);
-            
+            var_dump($taxoPays);
+            var_dump($projectDetail["taxonomy"][key($taxoPays[0])]);
+            if($projectDetail["taxonomy"][key($taxoPays[0])]){}
         };
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         $this->envoyerMailsDon($don["fields"],$projectDetail,$params['lang']->getLocale(),true);
