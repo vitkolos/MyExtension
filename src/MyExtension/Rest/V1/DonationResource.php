@@ -103,10 +103,12 @@ class DonationResource extends AbstractResource
                     }
                 }
             }
-            var_dump($isInternational);            
         };
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
-        //$this->envoyerMailsDon($don["fields"],$projectDetail,$params['lang']->getLocale(),true);
+        if($isInternational)
+            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"]["nativePMConfig"],$params['lang']->getLocale(),true);
+        else 
+            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"]["nativePMConfig"],$params['lang']->getLocale(),true);
         if($don["etat"] == "attente_paiement_carte") {
         }
         
@@ -128,7 +130,7 @@ class DonationResource extends AbstractResource
     }
    
    
-   protected function envoyerMailsDon($don,$projectDetail,$lang,$responsableInternationalSeulement) {
+   protected function envoyerMailsDon($don,$projectDetail,$configPayment,$lang,$responsableInternationalSeulement) {
        $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
         //contact du projet
         $contactProjet = array("nom" => $projectDetail["fields"]["nom"],
@@ -145,7 +147,12 @@ class DonationResource extends AbstractResource
    
         //paiement par chèque
         if($don["modePaiement"]=="cheque") {
-            
+            //"Merci de nous faire parvenir votre chèque à l'ordre de ${ordre-cheque} à l'adresse suivante: ${adresse-cheque}."
+            $messageDonateur.=$trad["ccn_don_2"] . $configPayment["libelle_cheque"] . " " . $trad["ccn_don_2_bis"]. " : <br/>". $configPayment["adresse"] . "<br/><br/>";
+            //Votre don a été enregistré sous le numéro « FR2012/12539 ».
+            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            //Merci de reporter ce numéro au dos de votre chèque.
+            $messageDonateur .= $trad["ccn_don_8"] .".<br/><br/>";
         }
         else if($don["modePaiement"]=="virement") {
             
