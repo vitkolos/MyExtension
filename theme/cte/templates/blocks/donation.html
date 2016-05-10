@@ -79,9 +79,7 @@
                                     <p ng-if="infos_dons.$invalid && infos_dons.$dirty" class="txt-marron">Merci de bien remplir tous les champs obligatoires</p>
                                 </div>
                         </ng-form>
-                        
-                        {{don}}
-                </div>
+                                        </div>
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==2}" >{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>2" ng-click="donsCtrl.setCurrentStage(2,true)"></span>
                 </h2>
