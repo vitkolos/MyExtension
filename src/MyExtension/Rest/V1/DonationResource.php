@@ -153,6 +153,7 @@ class DonationResource extends AbstractResource
             $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
             //Merci de reporter ce numéro au dos de votre chèque.
             $messageDonateur .= $trad["ccn_don_8"] .".<br/><br/>";
+            if($don["justificatif"]) $messageDonateur .= $trad["ccn_don_4"] ."<br/><br/>";
         }
         else if($don["modePaiement"]=="virement") {
             
