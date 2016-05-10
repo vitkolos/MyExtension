@@ -24,7 +24,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         $scope.don.user.email = $scope.rubedo.current.user.email;
         if ($scope.rubedo.current.user.fields.birthdate) {
             $scope.don.user.birthdate=new Date($scope.rubedo.current.user.fields.birthdate * 1000).toISOString();
-            $scope.don.user.birthdateF = $filter('date')( $scope.don.user.birthdate,'dd/MM/yyyy');
+            $scope.don.birthdateF = $filter('date')( $scope.don.user.birthdate,'dd/MM/yyyy');
         }
         
     }    

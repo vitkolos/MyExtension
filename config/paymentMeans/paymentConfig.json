@@ -87,11 +87,20 @@
             "smallMode": true
         }
     },
-        {
+    {
         "type": "Ext.form.field.Text",
         "config": {
             "fieldLabel": "Nom de la fiscalité",
             "name": "fiscalite",
+            "allowBlank": true,
+            "allowOnlyWhitespace": false
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Identifiant du pays (pour compte non international)",
+            "name": "taxo_pays",
             "allowBlank": true,
             "allowOnlyWhitespace": false
         }
