@@ -76,7 +76,7 @@ class PaymentmeansResource extends AbstractResource
             $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
             if($paymentMeans['success']) {
                 $arrayToReturn = array_intersect_key($paymentMeans['data'], array_flip(array("id","paymentMeans","displayName","logo","nativePMConfig")));
-                $arrayToReturn["nativePMConfig"] = array("contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"],"fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"]);
+                $arrayToReturn["nativePMConfig"] = array("contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"],"fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"], "taxo_pays"=>$arrayToReturn["nativePMConfig"]["taxo_pays"]);
                 return array(
                     'success' => true,
                     'paymentMeans' => $arrayToReturn
