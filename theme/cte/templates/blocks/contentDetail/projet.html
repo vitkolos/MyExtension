@@ -110,7 +110,7 @@
 						<p style="margin-bottom:0"><b>{{contentDetailCtrl.contactNational.fields.prenom}} {{contentDetailCtrl.contactNational.fields.nom}}</b><br/><!--Nom du contact-->
 							{{contentDetailCtrl.contactNational.fields.contactTitle}}<!--Titre du contact-->
 						</p>
-						<div ng-init="blockConfig={'id':'contactNational', 'email':contentDetailCtrl.contactNational.fields.nom.fields.email, 'name':contentDetailCtrl.contactNational.fields.prenom+' '+contentDetailCtrl.contactNational.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
+						<div ng-init="blockConfig={'id':'contactNational', 'email':contentDetailCtrl.contactNational.fields.email, 'name':contentDetailCtrl.contactNational.fields.prenom+' '+contentDetailCtrl.contactNational.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
 							<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
 						</div>
 					</div>

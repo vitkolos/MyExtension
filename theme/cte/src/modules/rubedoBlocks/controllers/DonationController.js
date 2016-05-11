@@ -47,11 +47,15 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     siteId: $scope.rubedo.current.site.id,
                     pageId: $scope.rubedo.current.page.id
                 };
+                /*définir la monnaie du site*/
+                $scope.don.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
+                $scope.don.monnaie = me.paymentmeans.nativePMConfig.monnaie;
                 /*get contact national défini dans la config de payement*/
                 RubedoContentsService.getContentById(response.data.paymentMeans.nativePMConfig.contactDonsId, options).then(
                     function(response){
                         if(response.data.success){
                             $scope.contentDetailCtrl.contactNational=response.data.content;
+                            $scope.don.contactNational = response.data.content;
                         }
                     }
                 );
@@ -98,6 +102,15 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     me.submit = function(isValide){
         if (isValide) {
             $scope.don.etat ="attente_paiement_"+$scope.don.modePaiement;
+            $scope.don.montantAvecFrequence ="";
+            if ($scope.don.montant !='autre')  $scope.don.montantAvecFrequence += $scope.don.montant + " " + $scope.don.monnaie;
+            else $scope.don.montantAvecFrequence += $scope.don.montant_autre + " " + $scope.don.monnaie;
+            if ($scope.don.mensuel) {
+                $scope.don.montantAvecFrequence += " "+$scope.rubedo.translate("Block.Dons.Mois","par mois");
+            }
+            else if ($scope.don.trimestriel) {
+                $scope.don.montantAvecFrequence += " "+$scope.rubedo.translate("Block.Dons.Trimestre","par trimestre");
+            }
             /*déterminer la config de dons choisie*/
             if (me.fiscalitesCount>1) {
                 me.account = me.fiscalites[$scope.don.condition].fields;

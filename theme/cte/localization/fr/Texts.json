@@ -8,6 +8,8 @@
     "Block.Dons.Condition":"Condition de mon don",
     "Block.Dons.Montant":"Montant du don",
     "Block.Dons.Mensuel": "Rendre ce don mensuel",
+    "Block.Dons.Mois":"par mois",
+    "Block.Dons.Trimestre":"par trimestre",
     "Block.Dons.Trimestriel": "Rendre ce don trimestriel",
     "Block.Dons.ContactNational":"Contact administratif et fiscal dans votre pays",
     "PresDeChezToi.Titre":"Autour de vous",

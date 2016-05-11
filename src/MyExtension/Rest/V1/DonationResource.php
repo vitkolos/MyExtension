@@ -106,9 +106,9 @@ class DonationResource extends AbstractResource
         };
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         if($isInternational)
-            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"]["nativePMConfig"],$params['lang']->getLocale(),true);
+            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
         else 
-            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"]["nativePMConfig"],$params['lang']->getLocale(),true);
+            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
         if($don["etat"] == "attente_paiement_carte") {
         }
         
@@ -130,13 +130,15 @@ class DonationResource extends AbstractResource
     }
    
    
-   protected function envoyerMailsDon($don,$projectDetail,$configPayment,$lang,$responsableInternationalSeulement) {
+   protected function envoyerMailsDon($don,$projectDetail,$configPaymentData,$lang,$responsableInternationalSeulement) {
+        $configPayment = $configPaymentData["nativePMConfig"];
        $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
         $infoPaiementAdmin="";
         //contact du projet
         $contactProjet = array("nom" => $projectDetail["fields"]["nom"],
                                "titre" => $projectDetail["fields"]["contactTitle"],
                                "email" =>$projectDetail["fields"]["email"]);
+        $contactNational = $don["contactNational"]["fields"];
         
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
@@ -144,7 +146,7 @@ class DonationResource extends AbstractResource
         $messageDonateur .= "<p>".$don["civilite"] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
 
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
-        $messageDonateur .= $trad["ccn_don_1"] . $don["montant"] . $don["monnaie"] . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . "</em><br/><br/>";
+        $messageDonateur .= $trad["ccn_don_1"] . $don["montantAvecFrequence"] . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . "</em><br/><br/>";
    
         //paiement par chèque
         if($don["modePaiement"]=="cheque") {
@@ -162,7 +164,7 @@ class DonationResource extends AbstractResource
             $infoPaiementAdmin .= $this->addLine($trad["ccn_ordre_du_cheque"], $configPayment["libelle_cheque"]);
             $infoPaiementAdmin .= $this->addLine($trad["ccn_adresse_cheque"], $configPayment["adresse"]);
         }
-        else if($don["modePaiement"]=="virement") {
+        else if($don["modePaiement"]=="virement" || $don["modePaiement"]=="virementPeriod") {
             //Vous devez vous connecter à votre service en ligne de votre banque et effectuer un virement sur le compte '${compte} dont l'intitulé est '${intitule}.
             $messageDonateur.=$trad["ccn_don_15"] . ":<br>" . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
             if($configPayment["image_rib"])
@@ -171,26 +173,58 @@ class DonationResource extends AbstractResource
             $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
             //Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre virement bancaire.
             $messageDonateur .= $trad["ccn_don_16"] .".<br/><br/>";
-            //Après encaissement du versement, nous vous enverrons un reçu fiscal.
-            if($don["justificatif"]) 
-                $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
             
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement"]);
+            if($don["modePaiement"]=="virement") {
+                if($don["justificatif"]) {
+                    //Après encaissement du versement, nous vous enverrons un reçu fiscal.
+                    $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
+                }   
+                $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement"]);
+            }
+            else if($don["modePaiement"]=="virementPeriod") {
+                 if($don["justificatif"]) {
+                    //Au début de chaque année, nous vous enverrons un reçu fiscal
+                    $messageDonateur .= $trad["ccn_don_20"] ."<br/><br/>";
+                }   
+                $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement_periodique"]);
+            }
             $infoPaiementAdmin .= $this->addLine($trad["ccn_intitule_compte"], $configPayment["nom_compte"]);
             $infoPaiementAdmin .= $this->addLine($trad["ccn_coordonnees_compte"], $configPayment["coordonnes_compte"]);
 
         }
-        else if($don["modePaiement"]=="virementPeriod") {
-            
-        }        
         else if($don["modePaiement"]=="liquide") {
             
         }
         else if($don["modePaiement"]=="prelevement") {
-            
+            //Vous devez télécharger et imprimer le formulaire de prélèvement
+            $messageDonateur .= $trad["ccn_don_18_part1"];
+            $messageDonateur .=  "<a href='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["form_prevelement"] . "' target='_blank'>" . $trad["ccn_don_18_part2"] ."</a>";
+            //, le remplir à la main et le renvoyé, accompagné d'un Relevé d'Identité Bancaire (RIB) à l'adresse suivante:
+            $messageDonateur .= $trad["ccn_don_18_part3"] . ":<br/>" . $configPayment["adresse"];
+            //Votre don a été enregistré sous le numéro « FR2012/12539 ».
+            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            //Merci de reporter ce numero dans le champ 'numéro du don' sur le formulaire de prélèvement.
+             $messageDonateur .= $trad["ccn_don_19"] ."<br><br> ";
+             if($don["justificatif"]) {
+                //Au début de chaque année, nous vous enverrons un reçu fiscal
+                $messageDonateur .= $trad["ccn_don_20"] ."<br/><br/>";
+            }
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_prelevement_auto"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_formulaire_de_prelevement"], "<a href='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["form_prevelement"] . "' target='_blank'>" . $trad["ccn_don_18_part2"] ."</a>");
+
         }
         else if($don["modePaiement"]=="carte") {
-            
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_carte"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_compte"], $configPaymentData["paymentMeans"]);
+            //Votre don a été enregistré sous le numéro « FR2012/12539 ».
+            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            //Merci de rappeler ce numéro dans vos correspondances.
+            $messageDonateur .= $trad["ccn_don_13"] ;
+            if($don["justificatif"]) {
+                //Après encaissement du versement, nous vous enverrons un reçu fiscal.
+                $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
+            }
+
         }
         //messageDonateur += "Votre contact pour ce projet est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
         $messageDonateur.=  $trad["ccn_don_5"]  . "<br/>";
@@ -199,10 +233,10 @@ class DonationResource extends AbstractResource
 
         //messageDonateur += "Votre contact pour les questions administratives et fiscales est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
         $messageDonateur.=  $trad["ccn_don_6"]  . "<br/>";
-        if($contactProjet["titre"] !="") $messageDonateur .= $contactProjet["titre"] . " - ";
-        $messageDonateur.=  $contactProjet["nom"]." - " . $contactProjet['email'] ;
+        $messageDonateur .= $contactNational["prenom"] . " " . $contactNational["nom"] .", " . $contactNational["text"] . " - " . $contactNational["telephone"] . " - <a href='mailto:" .$contactNational["email"]  . "'>" . $contactNational["email"] . "</a>" ;
         
-      
+        //Grace à votre don, le projet est maintenant financé à 56%.
+        $messageDonateur .= $trad["ccn_don_35"] . round($projectDetail["fields"]["cumul"] *100 / $projectDetail["fields"]["budget"]) . "%.<br/><br/>";
         
         /////////envoi du mail au donateur
             //ENVOI DE MAIL AU JEUNE
@@ -748,42 +782,4 @@ protected function sendInscriptionMail($inscription,$lang){
         }
      }
      
-    protected function callAPI($method, $token, $data = false, $id=false) {
-        $curl = curl_init();
-    
-        switch ($method)
-        {
-            case "POST": // pour créer un contenu
-                curl_setopt($curl, CURLOPT_POST, 1);
-                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$token.'&lang=fr';
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            case "PATCH": // pour modifier un contenu (numéro d'inscription)
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PATCH');
-                if($id)
-                    $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$id.'?access_token='.$token.'&lang=fr';
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            case "GET":
-                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$data.'?access_token='.$token.'&lang=fr';
-                break;
-            
-        }
-    
-    
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
-        curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
-        curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
-        $result = curl_exec($curl);
-    
-        curl_close($curl);
-        if($method == "GET") return json_decode($result, true);
-        else return json_decode($result, true);
-    }
-   
 }     
