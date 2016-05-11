@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoPaymentMeansService','RubedoContentsService','DonationService',
-                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoPaymentMeansService,RubedoContentsService,DonationService) {
+angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoPaymentMeansService','RubedoContentsService','DonationService','$filter',
+                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoPaymentMeansService,RubedoContentsService,DonationService,$filter) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     //templates
@@ -18,6 +18,16 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     
     $scope.don= {};
     $scope.don.user={};
+    // préremplir les champs si l'utilisateur est connecté
+    if ($scope.rubedo.current.user) {
+        $scope.don.user=angular.copy($scope.rubedo.current.user.fields);
+        $scope.don.user.email = $scope.rubedo.current.user.email;
+        if ($scope.rubedo.current.user.fields.birthdate) {
+            $scope.don.user.birthdate=new Date($scope.rubedo.current.user.fields.birthdate * 1000).toISOString();
+            $scope.don.birthdateF = $filter('date')( $scope.don.user.birthdate,'dd/MM/yyyy');
+        }
+        
+    }    
     $scope.don.user.country = "FRANCE";
     $scope.don.projet = $scope.contentDetailCtrl.content.fields.text;
     $scope.don.projetId = $scope.contentDetailCtrl.content.id;
@@ -32,11 +42,12 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     RubedoPaymentMeansService.getPaymentMeansDons().then(
         function(response){
             if(response.data.success){
+                me.paymentmeans = response.data.paymentMeans;
                 var options = {
                     siteId: $scope.rubedo.current.site.id,
                     pageId: $scope.rubedo.current.page.id
                 };
-                console.log(response.data);
+                /*get contact national défini dans la config de payement*/
                 RubedoContentsService.getContentById(response.data.paymentMeans.nativePMConfig.contactDonsId, options).then(
                     function(response){
                         if(response.data.success){
@@ -44,6 +55,25 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                         }
                     }
                 );
+                me.fiscalites = {};
+                me.account = {};
+                me.fiscalitesCount=0;
+                /*get fiscalités*/
+                angular.forEach($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite], function(fiscalite){
+                    RubedoContentsService.getContentById(fiscalite, options).then(
+                        function (response) {
+                            if(response.data.success){
+                                me.fiscalites[response.data.content.text] = {
+                                    "label" : response.data.content.text,
+                                    "fields":response.data.content.fields
+                                };
+                                me.account = response.data.content.fields;
+                                me.fiscalitesCount++;
+                            }
+                        }
+                    );
+                });
+                
             }
                
         });                
@@ -68,8 +98,11 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     me.submit = function(isValide){
         if (isValide) {
             $scope.don.etat ="attente_paiement_"+$scope.don.modePaiement;
-
-            DonationService.donate($scope.don).then(function(response){
+            /*déterminer la config de dons choisie*/
+            if (me.fiscalitesCount>1) {
+                me.account = me.fiscalites[$scope.don.condition].fields;
+            }
+            DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
 
                 }
@@ -182,8 +215,9 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 me.errorHolder=response.data.message;
             }
         );
-    };    
+    };
     
+
         /*me.initializeCheckout();*/
         
     /*VALIDATION*/

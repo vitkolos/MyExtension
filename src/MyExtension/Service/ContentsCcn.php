@@ -36,6 +36,13 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
     protected $_indexes = array(
         array(
             'keys' => array(
+                'live.status' => 1,
+                'online' => 1,
+                'typeId' => 1
+            )
+        ),
+        array(
+            'keys' => array(
                 'workspace.target' => 1,
                 'createTime' => -1
             )

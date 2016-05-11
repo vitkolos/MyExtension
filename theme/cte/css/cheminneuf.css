@@ -16,8 +16,9 @@
    font-weight: normal;
    line-height: 1;
    -webkit-font-smoothing: antialiased;
-   -moz-osx-font-smoothing: grayscale
+   -moz-osx-font-smoothing: grayscale;
 }
+[class*='ccn-']{vertical-align: middle;}
 .ccn-famille:before{content:'\0041';}
 .ccn-couple:before{content:'\0042';}
 .ccn-parents:before{content:'\0043';}

@@ -110,11 +110,28 @@
     "ccn_label_mode_paiement":"Mode de paiement",
     "ccn_label_montant_total_a_payer":"Montant total à payer",
     "ccn_label_montant_a_l_inscription":"Montant payé à l'inscription",
+    "ccn_paiement_par_cheque":"par chèque",
+    "ccn_paiement_par_virement":"par virement",
+    "ccn_paiement_par_carte":"par carte",
+    "ccn_paiement_par_prelevement_auto":"par prélèvement automatique",
+    "ccn_paiement_par_virement_periodique":"par virement périodique",
+    "ccn_ordre_du_cheque":"Ordre du chèque",
+    "ccn_adresse_cheque":"Adresse à laquelle envoyer le chèque",
+    "ccn_intitule_compte":"Intitulé du compte",
+    "ccn_coordonnees_compte":"Coordonnées du compte",
     "ccn_don_1":"Nous vous remercions pour votre don de ",
     "ccn_don_1_bis":"pour soutenir le projet ",
+    "ccn_don_2":"Merci de nous faire parvenir votre chèque à l'ordre de ",
+    "ccn_don_2_bis":"à l'adresse suivante",
+    "ccn_don_3":"Votre don a été enregistré sous le numéro ",
+    "ccn_don_4":"Après encaissement du chèque, nous vous enverrons un reçu fiscal.",
     "ccn_don_5":"Votre contact pour ce projet est :",
     "ccn_don_6":"Votre contact pour les questions administratives et fiscales est :",
-    "ccn_don_7":"Votre don à la Communauté du Chemin Neuf"
+    "ccn_don_7":"Votre don à la Communauté du Chemin Neuf",
+    "ccn_don_14":"Après encaissement du versement, nous vous enverrons un reçu fiscal.",
+    "ccn_don_15":"Vous devez vous connecter à votre banque (service de virement en ligne) et effectuer un virement sur notre compte ",
+    "ccn_don_15_bis":"dont l'intitulé est ",
+    "ccn_don_16":"Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre virement bancaire."
     
 
     

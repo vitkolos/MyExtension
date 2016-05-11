@@ -87,7 +87,7 @@
             "smallMode": true
         }
     },
-        {
+    {
         "type": "Ext.form.field.Text",
         "config": {
             "fieldLabel": "Nom de la fiscalité",
@@ -95,7 +95,16 @@
             "allowBlank": true,
             "allowOnlyWhitespace": false
         }
+    },
+    {
+        "type": "Rubedo.view.ESQfield",
+        "config": {
+            "fieldLabel": "Taxonomie du pays",
+            "name": "taxo_pays",
+            "queryMode": true
+        }
     }
+    
     
     
     
