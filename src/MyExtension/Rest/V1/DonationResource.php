@@ -231,7 +231,7 @@ class DonationResource extends AbstractResource
         //messageDonateur += "Votre contact pour ce projet est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
         $messageDonateur.=  $trad["ccn_don_5"]  . "<br/>";
         if($contactProjet["titre"] !="") $messageDonateur .= $contactProjet["titre"] . " - ";
-        $messageDonateur.=  $contactProjet["nom"]." - " . $contactProjet['email'] ."<br/><br/>";
+        $messageDonateur.=  $contactProjet["nom"]." - <a href='mailto:" .  $contactProjet['email'] . "'>" . $contactProjet['email'] ."</a><br/><br/>";
 
         //messageDonateur += "Votre contact pour les questions administratives et fiscales est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
         $messageDonateur.=  $trad["ccn_don_6"]  . "<br/>";
