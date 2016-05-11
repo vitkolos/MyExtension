@@ -152,7 +152,7 @@ class DonationResource extends AbstractResource
         $messageDonateur .= "<p>".$don["civilite"] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
 
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
-        $messageDonateur .= $trad["ccn_don_1"] . $don["montantAvecFrequence"] . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . "</em><br/><br/>";
+        $messageDonateur .= $trad["ccn_don_1"] . $don["montantAvecFrequence"] . " " . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . "</em><br/><br/>";
    
         //paiement par chèque
         if($don["modePaiement"]=="cheque") {
@@ -206,7 +206,7 @@ class DonationResource extends AbstractResource
             $messageDonateur .= $trad["ccn_don_18_part1"];
             $messageDonateur .=  "<a href='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["form_prevelement"] . "' target='_blank'>" . $trad["ccn_don_18_part2"] ."</a>";
             //, le remplir à la main et le renvoyé, accompagné d'un Relevé d'Identité Bancaire (RIB) à l'adresse suivante:
-            $messageDonateur .= $trad["ccn_don_18_part3"] . ":<br/>" . $configPayment["adresse"];
+            $messageDonateur .= $trad["ccn_don_18_part3"] . ":<br/>" . $configPayment["adresse"] . "<br/><br/>";
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
             //Merci de reporter ce numero dans le champ 'numéro du don' sur le formulaire de prélèvement.
