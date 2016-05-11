@@ -115,6 +115,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             if (me.fiscalitesCount>1) {
                 me.account = me.fiscalites[$scope.don.condition].fields;
             }
+            console.log($scope.don);
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
 
