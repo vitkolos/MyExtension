@@ -56,7 +56,9 @@
                                                 <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_4">
                                                         <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_4')}}" ng-init="fieldInputMode=false"></rubedo-field>
                                                 </div>
-
+                                                <div ng-if="don.condition && donsCtrl.fiscalites[don.condition].fields.taux>0 && don.montant>0">
+                                                        <p>Votre don vous coûtera : {{don.montant * (1-donsCtrl.fiscalites[don.condition].fields.taux /100) |number:2}}€</p>
+                                                </div>
                                                 
                                         </div>
                                 </div>
