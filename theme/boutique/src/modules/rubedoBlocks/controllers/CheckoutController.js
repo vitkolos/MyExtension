@@ -47,7 +47,6 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         return isHere||$scope.itIsNowAGift;
 
     };
-    me.isThereAnyGiftWrap();
     me.getCart=function(){
         RubedoShoppingCartService.getCart({includeDetail:true}).then(
             function(response){
@@ -57,7 +56,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                         //if (parseInt(detailedCart.totalItems)+1==newCart.totalItems && !me.isThereAnyGiftWrap(detailedCart.cart) && me.isThereAnyGiftWrap(newCart.cart)){ justAGiftWrap=true}
                         me.detailedCart=newCart;
                         me.cartIsEmpty=false;
-                        if (!$scope.itIsNowAGift){
+                        if (!me.isThereAnyGiftWrap()){
                                 me.initializeCheckout();
                             }else{$scope.itIsNowAGift=false}
 
