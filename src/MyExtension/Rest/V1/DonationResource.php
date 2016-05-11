@@ -104,13 +104,7 @@ class DonationResource extends AbstractResource
                 }
             }
         };
-        //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
-        if($isInternational) {
-            //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
-        }
-        else {
-            //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
-        }
+
         if($don["etat"] == "attente_paiement_carte") {
         }
         
@@ -131,7 +125,7 @@ class DonationResource extends AbstractResource
         return $donationInfo;
     }
    
-   /*
+   
    protected function envoyerMailsDon($don,$projectDetail,$configPaymentData,$lang,$responsableInternationalSeulement) {
         $configPayment = $configPaymentData["nativePMConfig"];
         $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
@@ -246,22 +240,22 @@ class DonationResource extends AbstractResource
         
         /////////envoi du mail au donateur
             //ENVOI DE MAIL AU JEUNE
-    $mailerService = Manager::getService('Mailer');
-    $mailClient = $mailerService->getNewMessage();
-    $mailClient->setTo($don['email']); 
+        $mailerService = Manager::getService('Mailer');
+        $mailClient = $mailerService->getNewMessage();
+        $mailClient->setTo($don['email']); 
     
-    // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
-    $senderMail = $contactProjet['email'] ;
-    $senderDomain = explode("@", $contactProjet['email'] );
-    if($senderDomain[1] != "chemin-neuf.org"){
-        $senderMail = "web@chemin-neuf.org";
-    }
-    $mailClient->setFrom(array( $senderMail => $contactProjet['nom'] )); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
-    $mailClient->setReplyTo(array( $contactProjet['email'] => $contactProjet['nom'])); 
-    $mailClient->setCharset('utf-8');
-    $mailClient->setSubject($sujetDonateur);
-    $mailClient->setBody($messageDonateur, 'text/html', 'utf-8');
-    $mailerService->sendMessage($mailClient, $errors);
+        // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
+        $senderMail = $contactProjet['email'] ;
+        $senderDomain = explode("@", $contactProjet['email'] );
+        if($senderDomain[1] != "chemin-neuf.org"){
+            $senderMail = "web@chemin-neuf.org";
+        }
+        $mailClient->setFrom(array( $senderMail => $contactProjet['nom'] )); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+        $mailClient->setReplyTo(array( $contactProjet['email'] => $contactProjet['nom'])); 
+        $mailClient->setCharset('utf-8');
+        $mailClient->setSubject($sujetDonateur);
+        $mailClient->setBody($messageDonateur, 'text/html', 'utf-8');
+        $mailerService->sendMessage($mailClient, $errors);
   
         
    }
@@ -279,7 +273,7 @@ class DonationResource extends AbstractResource
    
    
    
-   */
+   
 protected function sendInscriptionMail($inscription,$lang){
    $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
     //tutoyement pour ados ou jeunes ou personnes connues
