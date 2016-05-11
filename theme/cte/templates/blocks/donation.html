@@ -59,7 +59,7 @@
                                                 <div ng-if="don.condition && donsCtrl.fiscalites[don.condition].fields.taux>0 && don.montant>0">
                                                         <p><i class="ccn-info txt-red"  style="margin-right: 6px; font-size: 1.5em;"></i>Votre don vous coûtera : {{don.montant * (1-donsCtrl.fiscalites[don.condition].fields.taux /100) |number:2}}€</p>
                                                 </div>
-                                                <div ng-if="don.condition && donsCtrl.fiscalites[don.condition].fields.taux>0 && don.montant=='autre' ">
+                                                <div ng-if="don.condition && donsCtrl.fiscalites[don.condition].fields.taux>0 && don.montant=='autre' && don.montant_autre>0">
                                                         <p><i class="ccn-info txt-red"  style="margin-right: 6px; font-size: 1.5em;"></i>Votre don vous coûtera : {{don.montant_autre * (1-donsCtrl.fiscalites[don.condition].fields.taux /100) |number:2}}€</p>
                                                 </div>                                                
                                         </div>

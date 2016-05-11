@@ -68,15 +68,26 @@ class PaymentmeansResource extends AbstractResource
     {
         if($params['filter_by_site']) {
             $accountName="";
+            $codeMonnaie="";
+            $monnaie="";
+            
             switch($_SERVER['HTTP_HOST']) {
                 case "chemin-neuf.fr" : 
                 case "ccn.chemin-neuf.fr" : 
-                    if($params['type']=="dons") $accountName="dons_fr"; break;
+                    if($params['type']=="dons") $accountName="dons_fr";
+                    $codeMonnaie=978;
+                    $monnaie="€";
+                    break;
             }
             $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
             if($paymentMeans['success']) {
                 $arrayToReturn = array_intersect_key($paymentMeans['data'], array_flip(array("id","paymentMeans","displayName","logo","nativePMConfig")));
-                $arrayToReturn["nativePMConfig"] = array("contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"],"fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"]);
+                $arrayToReturn["nativePMConfig"] = array(
+                                                         "contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"],
+                                                         "fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"],
+                                                         "monnaie" => $monnaie,
+                                                         "codeMonnaie" => $codeMonnaie
+                                                         );
                 return array(
                     'success' => true,
                     'paymentMeans' => $arrayToReturn
