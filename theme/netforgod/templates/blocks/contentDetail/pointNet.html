@@ -11,9 +11,10 @@
 	<div class="row padding-large" ng-init="showMap=false">
 		<div class="col-xs-8 col-xxs-12">
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Title-->		
-			<h4 style="text-transform: uppercase"><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('subTitle')}}"></rubedo-field></h4><!--Sous titre-->
-			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
-			<p class="padding-large">Dates des rencontres : <br/>
+			<h4 ng-if="fieldEntity['subTitle']" style="text-transform: uppercase"><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('subTitle')}}"></rubedo-field></h4><!--Sous titre-->
+			<rubedo-field ng-if="fieldEntity['description']" field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
+			<rubedo-field ng-if="fieldEntity['annonces']" field =  "{{contentDetailCtrl.getFieldByName('annonces')}}"></rubedo-field><!--Title-->
+			<p class="padding-large" ng-if="fieldEntity['date']">Dates des rencontres : <br/>
 				<span ng-if="fieldEntity['date']">{{fieldEntity['date']*1000| date: "shortDate"}}</span>
 				<span ng-if="fieldEntity['date1']">, {{fieldEntity['date1']*1000| date: "shortDate"}}</span>
 				<span ng-if="fieldEntity['date2']">, {{fieldEntity['date2']*1000| date: "shortDate"}}</span>
