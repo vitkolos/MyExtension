@@ -102,6 +102,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     //validation du don et inscription dans la base de données
     me.submit = function(isValide){
         if (isValide) {
+            $scope.processForm=true;
             $scope.don.etat ="attente_paiement_"+$scope.don.modePaiement;
             $scope.don.montantAvecFrequence ="";
             if ($scope.don.montant !='autre')  $scope.don.montantAvecFrequence += $scope.don.montant + " " + $scope.don.monnaie;
@@ -116,11 +117,13 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             if (me.fiscalitesCount>1) {
                 me.account = me.fiscalites[$scope.don.condition].fields;
             }
-            console.log($scope.don);
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
+                    $scope.finInscription = true;
+                    $scope.processForm=false;
                     if (response.data.instructions.whatToDo=="displayRichText") {
                         $scope.message = "Votre don a bien été enregistré. Votre numéro de suivi est : "+response.data.instructions.id+". Un récapitulatif vous sera envoyé par mail.";
+                        
                     }
                 }
             })
