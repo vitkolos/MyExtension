@@ -92,7 +92,7 @@ class DonationResource extends AbstractResource
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
         //déterminer si le projet est un projet national ou hors pays / international
         $isInternational = true;
-        /*if($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"]){
+        if($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"]){
             //taxonomie du pays du site
             $taxoPays = (array) json_decode($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"], true);
             foreach ($taxoPays as $vocabulary => $taxonomy){
@@ -103,7 +103,7 @@ class DonationResource extends AbstractResource
                     }
                 }
             }
-        };*/
+        };
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         if($isInternational) {
             //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
@@ -131,7 +131,7 @@ class DonationResource extends AbstractResource
         return $donationInfo;
     }
    
-   
+   /*
    protected function envoyerMailsDon($don,$projectDetail,$configPaymentData,$lang,$responsableInternationalSeulement) {
         $configPayment = $configPaymentData["nativePMConfig"];
         $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
@@ -279,7 +279,7 @@ class DonationResource extends AbstractResource
    
    
    
-   
+   */
 protected function sendInscriptionMail($inscription,$lang){
    $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
     //tutoyement pour ados ou jeunes ou personnes connues
