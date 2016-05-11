@@ -35,12 +35,13 @@ class DonationResource extends AbstractResource
                      ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Numéro de dons')
-                            ->setKey('id')
+                            ->setKey('instructions')
                     );
             });
     }
     public function getAction($params)
     {
+        $arrayToReturn=[];
         $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
         //get numero de dons
         $wasFiltered = AbstractCollection::disableUserFilter(true);
@@ -113,8 +114,11 @@ class DonationResource extends AbstractResource
         }
         if($don["etat"] == "attente_paiement_carte") {
         }
+        else {
+            $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
+        }
         
-        return array('success' =>true, 'id' =>$taxoPays);
+        return array('success' =>true, 'instructions' =>$arrayToReturn);
         
    }
    
@@ -235,7 +239,7 @@ class DonationResource extends AbstractResource
 
         //messageDonateur += "Votre contact pour les questions administratives et fiscales est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
         $messageDonateur.=  $trad["ccn_don_6"]  . "<br/>";
-        $messageDonateur .= $contactNational["prenom"] . " " . $contactNational["nom"] .", " . $contactNational["text"] . " - " . $contactNational["telephone"] . " - <a href='mailto:" .$contactNational["email"]  . "'>" . $contactNational["email"] . "</a>" ;
+        $messageDonateur .= $contactNational["prenom"] . " " . $contactNational["nom"] .", " . $contactNational["text"] . " - " . $contactNational["telephone"] . " - <a href='mailto:" .$contactNational["email"]  . "'>" . $contactNational["email"] . "</a><br/><br/>" ;
         
         //Grace à votre don, le projet est maintenant financé à 56%.
         $messageDonateur .= $trad["ccn_don_35"] . round(($projectDetail["fields"]["cumul"]+$don["montant"]) *100 / $projectDetail["fields"]["budget"]) . "%.<br/><br/>";

@@ -119,7 +119,9 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             console.log($scope.don);
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
-
+                    if (response.data.instructions.whatToDo=="displayRichText") {
+                        $scope.message = "Votre don a bien été enregistré. Votre numéro de suivi est : "+response.data.instructions.id+". Un récapitulatif vous sera envoyé par mail.";
+                    }
                 }
             })
         }
