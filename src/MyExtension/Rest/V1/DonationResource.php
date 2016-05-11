@@ -238,6 +238,10 @@ class DonationResource extends AbstractResource
         //Grace à votre don, le projet est maintenant financé à 56%.
         $messageDonateur .= $trad["ccn_don_35"] . round($projectDetail["fields"]["cumul"] *100 / $projectDetail["fields"]["budget"]) . "%.<br/><br/>";
         
+        //"Cordialement" + ",<br><br>"
+        $messageDonateur .= $trad["ccn_mail_9_vous"] . ",<br><br/>";
+        $messageDonateur .= $contactProjet["nom"];
+        
         /////////envoi du mail au donateur
             //ENVOI DE MAIL AU JEUNE
     $mailerService = Manager::getService('Mailer');
