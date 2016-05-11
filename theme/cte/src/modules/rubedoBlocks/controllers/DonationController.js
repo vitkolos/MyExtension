@@ -7,13 +7,13 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     me.currentStage=1;
     me.userType="56e6edeac445eccc038b5b8e"; // type d'utilisateurs = donateurs
     me.civilite = {
-        monsieur : $scope.rubedo.translate("Block.Inscription.Civilite.Monsieur","Monsieur"),
-        madame : $scope.rubedo.translate("Block.Inscription.Civilite.Madame","Madame"),
-        monsieur_ou_madame : $scope.rubedo.translate("Block.Inscription.Civilite.MonsieurOuMadame","Monsieur ou Madame"),
-        mademoiselle : $scope.rubedo.translate("Block.Inscription.Civilite.Mademoiselle","Mademoiselle"),
-        pere:  $scope.rubedo.translate("Block.Inscription.Civilite.Pere","Père"),
-        soeur: $scope.rubedo.translate("Block.Inscription.Civilite.Soeur","Soeur"),
-        frere: $scope.rubedo.translate("Block.Inscription.Civilite.Frere","Frère"),     
+        $scope.rubedo.translate("Block.Inscription.Civilite.Monsieur","Monsieur") : $scope.rubedo.translate("Block.Inscription.Civilite.Monsieur","Monsieur"),
+        $scope.rubedo.translate("Block.Inscription.Civilite.Madame","Madame") : $scope.rubedo.translate("Block.Inscription.Civilite.Madame","Madame"),
+        $scope.rubedo.translate("Block.Inscription.Civilite.MonsieurOuMadame","Monsieur ou Madame") : $scope.rubedo.translate("Block.Inscription.Civilite.MonsieurOuMadame","Monsieur ou Madame"),
+        $scope.rubedo.translate("Block.Inscription.Civilite.Mademoiselle","Mademoiselle") : $scope.rubedo.translate("Block.Inscription.Civilite.Mademoiselle","Mademoiselle"),
+        $scope.rubedo.translate("Block.Inscription.Civilite.Pere","Père"):  $scope.rubedo.translate("Block.Inscription.Civilite.Pere","Père"),
+        $scope.rubedo.translate("Block.Inscription.Civilite.Soeur","Soeur"): $scope.rubedo.translate("Block.Inscription.Civilite.Soeur","Soeur"),
+        $scope.rubedo.translate("Block.Inscription.Civilite.Frere","Frère"): $scope.rubedo.translate("Block.Inscription.Civilite.Frere","Frère"),     
     };
     
     $scope.don= {};
