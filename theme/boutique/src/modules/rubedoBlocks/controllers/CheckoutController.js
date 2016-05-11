@@ -47,6 +47,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         return isHere||$scope.itIsNowAGift;
 
     };
+    me.isThereAnyGiftWrap();
     me.getCart=function(){
         RubedoShoppingCartService.getCart({includeDetail:true}).then(
             function(response){
