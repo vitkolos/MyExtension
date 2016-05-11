@@ -106,9 +106,9 @@ class DonationResource extends AbstractResource
         };
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         if($isInternational)
-            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
+            //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
         else 
-            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
+            //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
         if($don["etat"] == "attente_paiement_carte") {
         }
         
