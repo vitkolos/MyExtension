@@ -140,7 +140,7 @@ class DonationResource extends AbstractResource
         $contactProjet = array("nom" => $projectDetail["fields"]["nom"],
                                "titre" => $projectDetail["fields"]["contactTitle"],
                                "email" =>$projectDetail["fields"]["email"]);
-        $contactNational = $don["contactNational"]["fields"];
+        $contactNational = $don["contactNational"];
         
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
