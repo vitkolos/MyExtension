@@ -221,7 +221,7 @@ class DonationResource extends AbstractResource
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
             //Merci de rappeler ce numéro dans vos correspondances.
-            $messageDonateur .= $trad["ccn_don_13"] ;
+            $messageDonateur .= $trad["ccn_don_13"] . "<br/><br/>" ;
             if($don["justificatif"]) {
                 //Après encaissement du versement, nous vous enverrons un reçu fiscal.
                 $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
@@ -238,7 +238,7 @@ class DonationResource extends AbstractResource
         $messageDonateur .= $contactNational["prenom"] . " " . $contactNational["nom"] .", " . $contactNational["text"] . " - " . $contactNational["telephone"] . " - <a href='mailto:" .$contactNational["email"]  . "'>" . $contactNational["email"] . "</a>" ;
         
         //Grace à votre don, le projet est maintenant financé à 56%.
-        $messageDonateur .= $trad["ccn_don_35"] . round($projectDetail["fields"]["cumul"] *100 / $projectDetail["fields"]["budget"]) . "%.<br/><br/>";
+        $messageDonateur .= $trad["ccn_don_35"] . round(($projectDetail["fields"]["cumul"]+$don["montant"]) *100 / $projectDetail["fields"]["budget"]) . "%.<br/><br/>";
         
         //"Cordialement" + ",<br><br>"
         $messageDonateur .= $trad["ccn_mail_9_vous"] . ",<br><br/>";
