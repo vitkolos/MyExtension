@@ -56,6 +56,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                         if(response.data.success){
                             $scope.contentDetailCtrl.contactNational=response.data.content;
                             $scope.don.contactNational = response.data.content;
+                            $scope.don.contactNational.fields.photo="";
                         }
                     }
                 );

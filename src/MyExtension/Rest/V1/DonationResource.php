@@ -166,7 +166,84 @@ class DonationResource extends AbstractResource
             $infoPaiementAdmin .= $this->addLine($trad["ccn_ordre_du_cheque"], $configPayment["libelle_cheque"]);
             $infoPaiementAdmin .= $this->addLine($trad["ccn_adresse_cheque"], $configPayment["adresse"]);
         }
-         
+        else if($don["modePaiement"]=="virement" || $don["modePaiement"]=="virementPeriod") {
+            //Vous devez vous connecter à votre service en ligne de votre banque et effectuer un virement sur le compte '${compte} dont l'intitulé est '${intitule}.
+            $messageDonateur.=$trad["ccn_don_15"] . ":<br>" . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
+            if($configPayment["image_rib"])
+                $messageDonateur .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["image_rib"] . "&width=300px'></center><br/>";
+            //Votre don a été enregistré sous le numéro « FR2012/12539 ».
+            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            //Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre virement bancaire.
+            $messageDonateur .= $trad["ccn_don_16"] .".<br/><br/>";
+            
+            if($don["modePaiement"]=="virement") {
+                if($don["justificatif"]) {
+                    //Après encaissement du versement, nous vous enverrons un reçu fiscal.
+                    $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
+                }   
+                $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement"]);
+            }
+            else if($don["modePaiement"]=="virementPeriod") {
+                 if($don["justificatif"]) {
+                    //Au début de chaque année, nous vous enverrons un reçu fiscal
+                    $messageDonateur .= $trad["ccn_don_20"] ."<br/><br/>";
+                }   
+                $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement_periodique"]);
+            }
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_intitule_compte"], $configPayment["nom_compte"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_coordonnees_compte"], $configPayment["coordonnes_compte"]);
+
+        }
+        else if($don["modePaiement"]=="liquide") {
+            
+        }
+        else if($don["modePaiement"]=="prelevement") {
+            //Vous devez télécharger et imprimer le formulaire de prélèvement
+            $messageDonateur .= $trad["ccn_don_18_part1"];
+            $messageDonateur .=  "<a href='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["form_prevelement"] . "' target='_blank'>" . $trad["ccn_don_18_part2"] ."</a>";
+            //, le remplir à la main et le renvoyé, accompagné d'un Relevé d'Identité Bancaire (RIB) à l'adresse suivante:
+            $messageDonateur .= $trad["ccn_don_18_part3"] . ":<br/>" . $configPayment["adresse"];
+            //Votre don a été enregistré sous le numéro « FR2012/12539 ».
+            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            //Merci de reporter ce numero dans le champ 'numéro du don' sur le formulaire de prélèvement.
+             $messageDonateur .= $trad["ccn_don_19"] ."<br><br> ";
+             if($don["justificatif"]) {
+                //Au début de chaque année, nous vous enverrons un reçu fiscal
+                $messageDonateur .= $trad["ccn_don_20"] ."<br/><br/>";
+            }
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_prelevement_auto"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_formulaire_de_prelevement"], "<a href='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["form_prevelement"] . "' target='_blank'>" . $trad["ccn_don_18_part2"] ."</a>");
+
+        }
+        else if($don["modePaiement"]=="carte") {
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_carte"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_compte"], $configPaymentData["paymentMeans"]);
+            //Votre don a été enregistré sous le numéro « FR2012/12539 ».
+            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            //Merci de rappeler ce numéro dans vos correspondances.
+            $messageDonateur .= $trad["ccn_don_13"] ;
+            if($don["justificatif"]) {
+                //Après encaissement du versement, nous vous enverrons un reçu fiscal.
+                $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
+            }
+
+        }
+        //messageDonateur += "Votre contact pour ce projet est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
+        $messageDonateur.=  $trad["ccn_don_5"]  . "<br/>";
+        if($contactProjet["titre"] !="") $messageDonateur .= $contactProjet["titre"] . " - ";
+        $messageDonateur.=  $contactProjet["nom"]." - " . $contactProjet['email'] ."<br/><br/>";
+
+        //messageDonateur += "Votre contact pour les questions administratives et fiscales est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
+        $messageDonateur.=  $trad["ccn_don_6"]  . "<br/>";
+        $messageDonateur .= $contactNational["prenom"] . " " . $contactNational["nom"] .", " . $contactNational["text"] . " - " . $contactNational["telephone"] . " - <a href='mailto:" .$contactNational["email"]  . "'>" . $contactNational["email"] . "</a>" ;
+        
+        //Grace à votre don, le projet est maintenant financé à 56%.
+        $messageDonateur .= $trad["ccn_don_35"] . round($projectDetail["fields"]["cumul"] *100 / $projectDetail["fields"]["budget"]) . "%.<br/><br/>";
+        
+        //"Cordialement" + ",<br><br>"
+        $messageDonateur .= $trad["ccn_mail_9_vous"] . ",<br><br/>";
+        $messageDonateur .= $contactProjet["nom"];
+        
         /////////envoi du mail au donateur
             //ENVOI DE MAIL AU JEUNE
         $mailerService = Manager::getService('Mailer');
