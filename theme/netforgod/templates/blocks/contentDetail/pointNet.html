@@ -11,7 +11,7 @@
 	<div class="row padding-large" ng-init="showMap=false">
 		<div class="col-xs-8 col-xxs-12">
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Title-->		
-			<h4>{{contentDetailCtrl.content.fields.subTitle | uppercase}}<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('subTitle')}}"></rubedo-field></h4><!--Sous titre-->
+			<h4 style="text-transform: uppercase"><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('subTitle')}}"></rubedo-field></h4><!--Sous titre-->
 			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Title-->
 			<p class="padding-large">Dates des rencontres : <br/>
 				<span ng-if="fieldEntity['date']">{{fieldEntity['date']*1000| date: "shortDate"}}</span>
