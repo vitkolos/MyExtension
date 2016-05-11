@@ -42,7 +42,7 @@
                                                             <label for="montant4" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_4}}€</label>
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
                                                             <label for="autre" class="sexe_label dons">autre</label>
-                                                <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder="Autre" ng-pattern="/^\d+$/">
+                                                <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder="Autre" ng-pattern="/^[0-9]{1,7}$/">
                                                         
                                                 <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_1">
                                                         <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_1')}}" ng-init="fieldInputMode=false"></rubedo-field>
@@ -57,7 +57,7 @@
                                                         <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_4')}}" ng-init="fieldInputMode=false"></rubedo-field>
                                                 </div>
                                                 <div ng-if="don.condition && donsCtrl.fiscalites[don.condition].fields.taux>0 && don.montant>0">
-                                                        <p>Votre don vous coûtera : {{don.montant * (1-donsCtrl.fiscalites[don.condition].fields.taux /100) |number:2}}€</p>
+                                                        <p><i class="ccn-info txt-red"  style="margin-right: 6px"></i>Votre don vous coûtera : {{don.montant * (1-donsCtrl.fiscalites[don.condition].fields.taux /100) |number:2}}€</p>
                                                 </div>
                                                 
                                         </div>
