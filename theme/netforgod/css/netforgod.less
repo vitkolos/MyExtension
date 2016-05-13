@@ -76,12 +76,14 @@ span.glyphicon{margin-right: 5px}
   a{ color:@txt; transition: color 0.3s ease; }
   a:hover{color:@main}
   }
-.navbar-fixed-top.home{
-    background-color:rgba(0,0,0,0.1);
-    .navbar-brand{background-color: transparent}
-    a{color:white}
-    .nav>li>a:hover, .nav>li>a:focus{background-color: transparent}
-    .navbar-nav>li{border-right-color: white}
+@media screen and (min-width: @min_sm) {
+    .navbar-fixed-top.home{
+        background-color:rgba(0,0,0,0.1);
+        .navbar-brand{background-color: transparent}
+        a{color:white}
+        .nav>li>a:hover, .nav>li>a:focus{background-color: transparent}
+        .navbar-nav>li{border-right-color: white}
+    }
 }
 .languageMenu{
   div.dropdown-toggle{padding:10px 20px;margin: 20px 0; font-size: 20px; text-transform: uppercase}
@@ -128,10 +130,13 @@ div.menu-toggle.navbar-toggle{padding:30px 15px; margin:0; display: inline-block
     position: absolute;
     top: 100px;
     z-index: 10;
-    left: 5%
+    left: 5%;
     
 }
-
+@media screen and (max-width:@min_sm){
+    .title-quote h1 {font-size: 24px}
+    .title-quote{top:35px;}
+}
 
 ///////////LISTE DES FILMS////////////////////
 .filmList {
