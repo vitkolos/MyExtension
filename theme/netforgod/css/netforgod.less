@@ -247,7 +247,7 @@ span.tags + span.tags:before{content:', '; color:@txt; margin-right:5px}
 .buy-dvd,.donate{margin:30px auto; text-align:center; border-radius: 30px; background: white; width:200px; height:60px; line-height: 60px; box-shadow: 0px 2px 7px 0px rgba(0,0,0,0.2);i{color:@main_light; font-size: 2em; position: relative;top:5px; line-height: 40px; margin-right: 10px}}
 .donate{margin: 12px auto; background: @main; font-weight: 700; a{text-decoration: none; color: white}}
 .film-controls{background: @txt; color:white; width: 100%; height: 50px; line-height: 50px; padding: 0 15px; font-size: 1.2em; span{margin-right: 5px; cursor:pointer}}
-.film-controls span.active, .film-controls span:last-of-type:hover{border-bottom: 5px solid @main}
+.film-controls span.active, .film-controls span:not(:first-of-type):hover{border-bottom: 5px solid @main}
 .film-controls span+span+span:before{content:'| '; margin-right:5px}
 .film-socials{background: @txt_slight;  width: 100%; height:auto; line-height: 25px; float:left; padding: 10px 15px; margin-bottom: 24px; font-size: 1.2em;box-shadow:0 6px 12px rgba(0,0,0,.175); i{color:@main}; span{margin-left:5px}}
 .lang-selection{
@@ -279,7 +279,8 @@ h3.tab {
 .jwplayer .jw-preview, .jw-error .jw-preview, .jw-stretch-uniform .jw-preview, .jwplayer .jwuniform{background-size: cover!important}
 .jw-preview{background-color: transparent !important}
 .jwplayer{margin-bottom: -5px;}
-.ytp-large-play-button.ytp-button{display: none !important}
+.ytp-large-play-button{display: none !important}
+
 ////////FOOTER//////////////////
 .footer{background-color:@txt; color:@txt_slight; padding-top: 36px; padding-bottom: 36px;
   a{color:@txt_slight}
