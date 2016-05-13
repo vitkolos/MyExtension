@@ -534,7 +534,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                    angular.forEach(me.facets[0].terms, function(term){
                        if(me.taxo["54cb636245205e0110db058f"][term.term]) me.taxo["54cb636245205e0110db058f"][term.term].count = term.count;
                    });
-                   console.log(me.data);
                 }
             })
         };
