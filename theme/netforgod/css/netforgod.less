@@ -30,7 +30,8 @@ h1,h2,h3{font-family: 'Roboto Slab'}
 .margin-top{margin-top:60px}
 .img-responsive{height:auto !important}
 a{cursor: pointer}
-
+a.normal{color: inherit;}
+a.normal:hover{ text-decoration: none}
 @media screen and (max-width: @min_xs){
     [class*="col-xs-"] {width:100%}
     .hidden-xxs{display: none;}
@@ -279,7 +280,7 @@ h3.tab {
 .jwplayer .jw-preview, .jw-error .jw-preview, .jw-stretch-uniform .jw-preview, .jwplayer .jwuniform{background-size: cover!important}
 .jw-preview{background-color: transparent !important}
 .jwplayer{margin-bottom: -5px;}
-.ytp-large-play-button{display: none !important}
+button.ytp-button{display: none !important}
 
 ////////FOOTER//////////////////
 .footer{background-color:@txt; color:@txt_slight; padding-top: 36px; padding-bottom: 36px;
