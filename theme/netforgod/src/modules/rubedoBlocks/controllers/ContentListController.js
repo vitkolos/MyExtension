@@ -89,7 +89,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
-                //for films
+                //for films on page of films
                 if (me.usedContentTypes[0]=="54cb447145205e7d09db0590" && me.limit>10) {
                     me.filmsList = true;
                     if (!add) {
@@ -129,6 +129,30 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         }
                     }
                     $scope.clearORPlaceholderHeight();
+                }
+                else if (me.usedContentTypes[0]=="54cb447145205e7d09db0590") {
+                    //for films on home page
+                    var columnContentList = [];
+                    if (add){
+                        angular.forEach(response.data.contents,function(newContent){
+                            columnContentList.push(newContent);
+                        });
+                        me.contentList.push(columnContentList);
+                        $scope.clearORPlaceholderHeight();
+                    } else {
+                        me.contentList=[];
+                        angular.forEach(response.data.contents,function(newContent, key){
+                            if(!newContent.fields.horsSerie) columnContentList.push(newContent); //push seulement si ce n'est pas un hors série
+                            /*if(config.columns && (key+1) % (Math.ceil(response.data.contents.length/config.columns)) == 0){
+                                me.contentList.push(columnContentList);
+                                columnContentList = [];
+                            }*/
+                        });
+                        if (columnContentList.length > 0){
+                            me.contentList.push(columnContentList);
+                        }
+                        $scope.clearORPlaceholderHeight();
+                    }                     
                 }
                 else {
                     var columnContentList = [];
