@@ -150,7 +150,8 @@ class DonationResource extends AbstractResource
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
         $messageDonateur = "";
         $messageDonateur .= "<p>".$don["civilite"] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
-
+        //sujet admininistrateur
+        $sujetAdmin=
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
         $messageDonateur .= $trad["ccn_don_1"] . $don["montantAvecFrequence"] . " " . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . "</em><br/><br/>";
    
@@ -247,6 +248,13 @@ class DonationResource extends AbstractResource
         //"Cordialement" + ",<br><br>"
         $messageDonateur .= $trad["ccn_mail_9_vous"] . ",<br><br/>";
         $messageDonateur .= $contactProjet["nom"];
+        
+        
+        
+        ///////////////////MESSAGE ADMINISTRATIF////////////////////////////////
+        
+        
+        
         
         /////////envoi du mail au donateur
             //ENVOI DE MAIL AU JEUNE
