@@ -59,6 +59,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
+            angular.element('.ytp-button').css('display','none');
 
             scope.$watch(function () {
                     return attrs.videoUrl;
