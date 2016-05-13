@@ -177,8 +177,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         $scope.clearORPlaceholderHeight();
                     }                    
                 }
-                console.log(me.contentList);
-                
             }
         });
     };

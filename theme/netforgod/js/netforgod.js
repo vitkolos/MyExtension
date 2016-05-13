@@ -50,11 +50,11 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                       width:"100%",
                       aspectratio:"16:9",
                       logo: {
-                                 file: '/theme/netforgod/img/favicon.png',
+                                 file: '/theme/netforgod/img/logo.png',
                                  link: 'http://test.netforgod.org/'
                       },
-                      displaytitle:true,
-                      image:image
+                      displaytitle:true/*,
+                      image:image*/
            };
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
@@ -71,8 +71,8 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             modestbranding:0,
                                             showinfo:1,
                                             width:"100%",
-                                            aspectratio:"16:9",
-                                            image:image
+                                            aspectratio:"16:9"/*,
+                                            image:image*/
                                  }]);
                       }
                 });
