@@ -45,6 +45,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             };
            var options = {
                       file: filmUrl,
+                      ga: {},
                       modestbranding:0,
                       showinfo:1,
                       width:"100%",
