@@ -46,7 +46,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
            var options = {
                       file: filmUrl,
                       ga: {},
-                      controls:false,
                       modestbranding:0,
                       showinfo:1,
                       width:"100%",
@@ -71,7 +70,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             file: attrs.videoUrl,
                                             ga: {},
                                             modestbranding:0,
-                                            controls:false,
                                             showinfo:1,
                                             width:"100%",
                                             aspectratio:"16:9"
