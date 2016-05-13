@@ -90,7 +90,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
                 //for films
-                if (me.usedContentTypes[0]=="54cb447145205e7d09db0590" && me.limit>1) {
+                if (me.usedContentTypes[0]=="54cb447145205e7d09db0590" && me.limit>10) {
                     me.filmsList = true;
                     if (!add) {
                         var columnContentList = [];
@@ -153,6 +153,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         $scope.clearORPlaceholderHeight();
                     }                    
                 }
+                console.log(me.contentList);
                 
             }
         });
