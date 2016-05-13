@@ -526,7 +526,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchFilmsController",["$scope"
                     me.count = response.data.count;
                     me.data =  response.data.results.data;
                     me.facets = response.data.results.facets;
-                   if (!firstTime) {
+                   if (!firstTime && me.taxo["54cb636245205e0110db058f"]) {
                         angular.forEach(me.taxo["54cb636245205e0110db058f"], function(term){
                             if(term.count) delete(term.count);
                         });
