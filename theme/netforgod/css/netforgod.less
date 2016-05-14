@@ -299,6 +299,7 @@ div.logo{font-size:5em}
 .full_page > div{height:100%; }
 .full_page >div[class*="col-"]{overflow-y: scroll; overflow-x: hidden}
 .full_page .container-fluid{overflow-x: visible}
+@media screen and (max-width:@min_sm){.geo-search{padding:12px 30px}}
 .search-result{margin: 0 -15px; border-bottom: solid 1px @txt_slight; padding:24px 0; h3,h4{margin-top:0}; h4{font-weight: 400; line-height: 1.25em}}
 .search-result .container-fluid:not(.image){padding:0 12px}
 .search-result .image{margin-top: -24px; margin-bottom: 12px}
@@ -389,6 +390,7 @@ input.rubedo-places-search{background-color:@bg; color:@txt_light; margin-top:0;
     width:100%;
   }
   .school-films>.owl-controls{
+    z-index: -1;
     position: absolute;
     margin-top: 550px;
     width:100%;
