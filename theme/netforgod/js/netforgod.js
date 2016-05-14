@@ -38,6 +38,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
+           var title = attrs.title;
            var image = attrs.videoImage;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
             getTemplate = function (playerId) {
