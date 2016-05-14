@@ -199,8 +199,7 @@ angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',functi
                 method:"POST",
                 data:{
                     inscription:inscription,
-                    workspace: workspace,
-		    traductions: traductions
+                    workspace: workspace
                 }
             }));
     };

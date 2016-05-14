@@ -330,7 +330,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     }
                     
             }
-            InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace, $scope.rubedo.translations).then(function(response){
+            InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
                 $scope.message="";
                 if (response.data.success) {
                     // si paiement par Paybox

@@ -33,11 +33,6 @@ class InscriptionResource extends AbstractResource
                             ->setRequired()
                             ->setDescription('Workspace')
                     )
-                     ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('traductions')
-                            ->setDescription('Traductions')
-                    )
                      ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Numéro d\'inscription')
