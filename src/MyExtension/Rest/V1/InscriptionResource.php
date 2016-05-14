@@ -483,10 +483,9 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     /*RECAP FINAL*/
     $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
-    $messageSecretariat .= $this->addLine($trad["ccn_label_proposition"], $inscription['propositionTitre'] );          
+    $messageSecretariat .= $this->addLine($trad["ccn_label_proposition"],  "<a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a>");          
     $messageSecretariat .= $this->addLine($trad["ccn_label_date"], $inscription['propositionDate'] );          
     $messageSecretariat .= $this->addLine($trad["ccn_label_lieu"], $inscription['propositionLieu'] );
-    $messageSecretariat .= $this->addLine($trad["ccn_label_page_web"], "<a href='" . $url . "'>" . $url . "</a>" );          
     $messageSecretariat .= $this->addLine($trad["ccn_contact"], $contactSecretariat );          
     $messageSecretariat .= "</table><br/>";
    
