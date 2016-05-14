@@ -41,7 +41,7 @@
 								  <p ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
 								</div>
 							</div>
-							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" title="{{fieldEntity['text'] + '_'+contentDetailCtrl.lang}}"></jwplayer>
+							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" title="{{contentDetailCtrl.content.title + '_'+contentDetailCtrl.lang}}"></jwplayer>
 						</div>
 					</div>
 		
