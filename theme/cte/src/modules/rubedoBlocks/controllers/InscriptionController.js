@@ -204,7 +204,16 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             
         });
     };
-    
+    /*récupérer le formulaire pour l'inscriptino*/
+    if (me.content.fields.formulaire_pdf && me.content.fields.formulaire_pdf!="") {
+        RubedoMediaService.getMediaById(me.content.fields.formulaire_pdf).then(
+            function(response){
+                if (response.data.success){
+                    $scope.inscription.formulaire_pdf=response.data.media;
+                }
+            }
+        );
+    }
 
     // VALIDATIONS ANGULAR
     
@@ -232,7 +241,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
        angular.element("#inscriptionStage"+newStage).collapse("show");
        me.currentStage = newStage;
     }
- 
+    
     me.setCurrentStage = function(step, valide) {
         if (!valide && step==0) {
             me.toggleStage(1);
@@ -293,15 +302,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.personneConnue = me.form.personneConnue;
             $scope.inscription.entretien = me.form.entretien;
             $scope.inscription.motivation = me.form.motivation;
-            if (me.content.fields.formulaire_pdf && me.content.fields.formulaire_pdf!="") {
-                RubedoMediaService.getMediaById(me.content.fields.formulaire_pdf).then(
-                    function(response){
-                        if (response.data.success){
-                            $scope.inscription.formulaire_pdf=response.data.media;
-                        }
-                    }
-                );
-            }
+            
 
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
