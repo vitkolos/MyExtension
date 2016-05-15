@@ -151,7 +151,8 @@ class DonationResource extends AbstractResource
         $messageDonateur = "";
         $messageDonateur .= "<p>".$don["civilite"] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
         //sujet admininistrateur
-        $sujetAdmin=
+        $sujetAdmin= $trad["ccn_don"] . " " $don["text"] . " - " . $don["montantAvecFrequence"] ." - " . $don["nom"] . " - " . $don["modePaiement"] . " - " . $don["projet"];
+
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
         $messageDonateur .= $trad["ccn_don_1"] . $don["montantAvecFrequence"] . " " . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . "</em><br/><br/>";
    
@@ -252,8 +253,13 @@ class DonationResource extends AbstractResource
         
         
         ///////////////////MESSAGE ADMINISTRATIF////////////////////////////////
-        
-        
+        //Don {{n° de don}}
+        $messageAdmin = "<h1>" + $trad["ccn_don"] . " " . $don["text"] . "</h1>"
+        $messageAdmin .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+
+        $dateDonation = date("d/m/Y");
+        $messageAdmin .= $this->addLine($trad["ccn_label_date"],$dateDonation);
+
         
         
         /////////envoi du mail au donateur
@@ -494,7 +500,6 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     if($inscription['situation'] && !$inscription['autreSituation']) {
         $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['situation'] . "</td></tr>";
-    }
     if($inscription['autreSituation']){
        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['autreSituation'] . "</td></tr>";
     }
