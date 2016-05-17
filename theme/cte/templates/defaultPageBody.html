@@ -3,3 +3,9 @@
          ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
          ng-class="rubedo.componentsService.resolveResponsiveClass(row.responsive)" class="row"></div>
 </div>
+<div class="container-fluid">
+    <a name="{{$index}}" ng-repeat-start="row in rubedo.current.page.rows"></a>
+    <div ng-repeat-end 
+        ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
+         ng-class="{'bg-white' : $even, 'padding-large': ( $index>1 && $index < (rubedo.current.page.rows).length-2)}" class="row"></div>
+</div>
