@@ -145,7 +145,7 @@ class DonationResource extends AbstractResource
                                "titre" => $projectDetail["fields"]["contactTitle"],
                                "email" =>$projectDetail["fields"]["email"]);
         $contactNational = $don["contactNational"];
-        
+        $emailResponsableInternationalDons = "nicolas.rhone@chemin-neuf.org";
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
         $messageDonateur = "";
@@ -271,6 +271,7 @@ class DonationResource extends AbstractResource
         }
         $messageAdmin .= $this->addLine($trad["ccn_label_codeComptable"],$projectDetail["fields"]["codeCompta"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_codeAna"],$projectDetail["fields"]["codeAna"]  );
+        $messageAdmin .= $infoPaiementAdmin;
         $messageAdmin .="</table><br/><br/><br/>";
         
         // infos sur le donateur
@@ -305,6 +306,30 @@ class DonationResource extends AbstractResource
         $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM("dons_int");
         $emailComptableInt = $paymentConfigInt["data"]["nativePMConfig"]["email_compta"];
         $emailIntendantInt = $paymentConfigInt["data"]["nativePMConfig"]["email_intendance"];
+        
+        // si mail seulement au resp. International : dans le cas d'un payement en ligne, avant la validation du payement par IPN
+        if($responsableInternationalSeulement) {
+            $mailerService = Manager::getService('Mailer');
+            $mailRespInt = $mailerService->getNewMessage();
+            $mailRespInt->setTo($emailResponsableNationalDons); 
+            $mailRespInt->setFrom($emailResponsableNationalDons); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+            $mailRespInt->setSubject($sujetAdmin);
+            $mailRespInt->setCharset('utf-8');
+            $mailRespInt->setBody($messageAdmin, 'text/html', 'utf-8');
+            $mailerService->sendMessage($mailRespInt, $errors);
+        }
+        else {
+            $mailerService = Manager::getService('Mailer');
+            $mailDonateur = $mailerService->getNewMessage();
+            $mailDonateur->setTo($emailResponsableNationalDons); 
+            $mailDonateur->setFrom($emailResponsableNationalDons); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+            $mailDonateur->setSubject($sujetAdmin);
+            $mailDonateur->setCharset('utf-8');
+            $mailDonateur->setBody($messageAdmin, 'text/html', 'utf-8');
+            $mailerService->sendMessage($mailDonateur, $errors);
+            
+            
+        }
         
         
         /////////envoi du mail au donateur
