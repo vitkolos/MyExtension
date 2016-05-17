@@ -90,6 +90,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
+                if (me.limit==1) {
+                    if (response.data.contents[0].fields.bandeau) {
+                        $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.contents[0].fields.bandeau,{width:'1200px'});
+                    }
+                }
                 //for films on page of films
                 if (me.usedContentTypes[0]=="54cb447145205e7d09db0590" && me.limit>10) {
                     me.filmsList = true;
