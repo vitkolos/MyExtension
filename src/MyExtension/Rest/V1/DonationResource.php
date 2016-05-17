@@ -289,12 +289,23 @@ class DonationResource extends AbstractResource
         $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] );
         if($don["message"] && $don["message"]!="") $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] );
         $messageAdmin .= "</table><br/><br/>";
+        
+        ///message pour le responsable du projet
         $messageContactProjet = $messageAdmin;
+        //Cette information vous est transmise car vous êtes le contact pour le projet ${projet}. A vous de transmettre cette information à qui de droit. Ce don est versé dans la caisse commune de la communauté.
+        $messageContactProjet .= "<br/><br/>" . $trad["ccn_don_28"] . " " .$don["projet"] . ". " . $trad["ccn_don_28_bis"]  ;
         
         ///mails
         $emailDonateur = $don["email"];
         $emailComptableNational = $configPayment["email_compta"];
+        $emailIntendantNational = $configPayment["email_intendance"];
         $emailResponsableNationalDons = $contactNational["email"];
+        
+        //mails international
+        $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM("dons_int");
+        $emailComptableInt = $paymentConfigInt["data"]["nativePMConfig"]["email_compta"];
+        $emailIntendantInt = $paymentConfigInt["data"]["nativePMConfig"]["email_intendance"];
+        
         
         /////////envoi du mail au donateur
             //ENVOI DE MAIL AU JEUNE
