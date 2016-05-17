@@ -151,7 +151,7 @@ class DonationResource extends AbstractResource
         $messageDonateur = "";
         $messageDonateur .= "<p>".$don["civilite"] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
         //sujet admininistrateur
-        $sujetAdmin= $trad["ccn_don"] . " " $don["text"] . " - " . $don["montantAvecFrequence"] ." - " . $don["nom"] . " - " . $don["modePaiement"] . " - " . $don["projet"];
+        $sujetAdmin= $trad["ccn_don"] . " " . $don["text"] . " - " . $don["montantAvecFrequence"] ." - " . $don["nom"] . " - " . $don["modePaiement"] . " - " . $don["projet"];
 
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
         $messageDonateur .= $trad["ccn_don_1"] . $don["montantAvecFrequence"] . " " . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . "</em><br/><br/>";
@@ -254,12 +254,41 @@ class DonationResource extends AbstractResource
         
         ///////////////////MESSAGE ADMINISTRATIF////////////////////////////////
         //Don {{n° de don}}
-        $messageAdmin = "<h1>" + $trad["ccn_don"] . " " . $don["text"] . "</h1>"
+        $messageAdmin = "<h1>" + $trad["ccn_don"] . " " . $don["text"] . "</h1>";
         $messageAdmin .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
-
+            ///infos sur le don
         $dateDonation = date("d/m/Y");
         $messageAdmin .= $this->addLine($trad["ccn_label_date"],$dateDonation);
-
+        $messageAdmin .= $this->addLine($trad["ccn_label_montant"],$don["montantAvecFrequence"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_projet"],$don["projet"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_mode_paiement"],$don["modePaiement"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_statut"],$don["etat"] );
+        if($don["justificatif"]) {
+            $messageAdmin .= $this->addLine($trad["ccn_label_justificatif_fiscal"],$trad["ccn_oui"] );
+        }
+        else {
+            $messageAdmin .= $this->addLine($trad["ccn_label_justificatif_fiscal"],$trad["ccn_non"] );
+        }
+        $messageAdmin .= $this->addLine($trad["ccn_label_codeComptable"],$projectDetail["fields"]["codeCompta"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_codeAna"],$projectDetail["fields"]["codeAna"]  );
+        $messageAdmin .="</table><br/><br/><br/>";
+        
+        // infos sur le donateur
+        $messageAdmin .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+        $messageAdmin .= $this->addLine($trad["ccn_label_societe_ou_organisme"],$don["societe"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_civilite"],$don["civilite"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_nom"],$don["nom"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_prenom"],$don["surname"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$don["birthdate"]) );
+        $messageAdmin .= $this->addLine($trad["ccn_label_adresse"], $don["adresse"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_codepostal"], $don["cp"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_ville"], $don["city"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_pays"], $don["country"] );
+        if($don["tel1"]) $messageAdmin .= $this->addLine($trad["ccn_label_telephone_fixe"], $don["tel1"] );
+        if($don["tel2"])  $messageAdmin .= $this->addLine($trad["ccn_label_telephone_portable"], $don["tel2"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] );
+        $messageAdmin .= "</table><br/><br/>";
         
         
         /////////envoi du mail au donateur
