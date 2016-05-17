@@ -7,6 +7,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
     var alreadyPersist = false;
+    me.showLoader = false;
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
@@ -50,6 +51,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         options.start += me.limit;
         options.limit += me.limit;
         me.contentsShowed += me.limit;
+        me.showLoader=true;
         me.getContents(config.query, pageId, siteId, options, true);
     }; 
     
@@ -129,6 +131,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         }
                     }
                     $scope.clearORPlaceholderHeight();
+                    me.showLoader = false;
                 }
                 else if (me.usedContentTypes[0]=="54cb447145205e7d09db0590") {
                     //for films on home page
