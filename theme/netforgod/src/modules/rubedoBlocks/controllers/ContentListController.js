@@ -49,7 +49,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.showPaginator = config.showPager && !config.infiniteScroll;
     me.changePageAction = function(){
         options.start += me.limit;
-        options.limit += me.limit;
         me.contentsShowed += me.limit;
         me.showLoader=true;
         me.getContents(config.query, pageId, siteId, options, true);
