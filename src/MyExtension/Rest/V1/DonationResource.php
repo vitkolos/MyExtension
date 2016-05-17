@@ -345,6 +345,22 @@ class DonationResource extends AbstractResource
             $mailDonateur->setCharset('utf-8');
             $mailDonateur->setBody($messageDonateur, 'text/html', 'utf-8');
             $mailerService->sendMessage($mailDonateur, $errors);
+            
+            /*COPIE DU MESSAGE au resp. international des dons*/
+            $mailDonateur -> setTo($emailResponsableInternationalDons);
+            $mailerService->sendMessage($mailDonateur, $errors);
+            
+            /*ENVOI DU MAIL AUX ADMINISTRATEURS ET COMPTA*/
+            $mailAdmin = $mailerService->getNewMessage();
+            $mailAdmin->setFrom(array( $senderMail => $contactNational["prenom"] . " " . $contactNational["nom"] )); 
+            $mailAdmin->setSubject($sujetAdmin);
+            $mailDonateur->setCharset('utf-8');
+            $mailDonateur->setBody($messageContactProjet, 'text/html', 'utf-8');
+            
+            /*mail au contact du projet*/
+            $mailDonateur->setTo($contactProjet["email"]);
+           
+            
         }
         
         
