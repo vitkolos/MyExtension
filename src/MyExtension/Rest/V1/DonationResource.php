@@ -165,7 +165,7 @@ class DonationResource extends AbstractResource
         $sujetAdmin= $trad["ccn_don"] . " " . $don["text"] . " - " . $don["montantAvecFrequence"] ." - " . $don["nom"] . " - " . $don["modePaiement"] . " - " . $don["projet"];
 
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
-        $messageDonateur .= $trad["ccn_don_1"] . $don["montantAvecFrequence"] . " " . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . "</em><br/><br/>";
+        $messageDonateur .= $trad["ccn_don_1"] . $don["montantAvecFrequence"] . " " . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . ".</em><br/><br/>";
    
         //paiement par chèque
         if($don["modePaiement"]=="cheque") {
@@ -174,7 +174,7 @@ class DonationResource extends AbstractResource
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
             //Merci de reporter ce numéro au dos de votre chèque.
-            $messageDonateur .= $trad["ccn_don_8"] .".<br/><br/>";
+            $messageDonateur .= $trad["ccn_don_8"] ."<br/><br/>";
             //Après encaissement du chèque, nous vous enverrons un reçu fiscal.
             if($don["justificatif"]) 
                 $messageDonateur .= $trad["ccn_don_4"] ."<br/><br/>";
@@ -265,7 +265,7 @@ class DonationResource extends AbstractResource
         
         ///////////////////MESSAGE ADMINISTRATIF////////////////////////////////
         //Don {{n° de don}}
-        $messageAdmin = "<h1>" + $trad["ccn_don"] . " " . $don["text"] . "</h1>";
+        $messageAdmin = "<h1>" . $trad["ccn_don"] . " " . $don["text"] . "</h1>";
         $messageAdmin .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
             ///infos sur le don
         $dateDonation = date("d/m/Y");
@@ -296,8 +296,8 @@ class DonationResource extends AbstractResource
         $messageAdmin .= $this->addLine($trad["ccn_label_codepostal"], $don["cp"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_ville"], $don["city"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_pays"], $don["country"] );
-        if($don["tel1"]) $messageAdmin .= $this->addLine($trad["ccn_label_telephone_fixe"], $don["tel1"] );
-        if($don["tel2"])  $messageAdmin .= $this->addLine($trad["ccn_label_telephone_portable"], $don["tel2"] );
+        if($don["tel1"]) $messageAdmin .= $this->addLine($trad["ccn_form_telephone_fixe"], $don["tel1"] );
+        if($don["tel2"])  $messageAdmin .= $this->addLine($trad["ccn_form_telephone_portable"], $don["tel2"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] );
         if($don["message"] && $don["message"]!="") $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] );
         $messageAdmin .= "</table><br/><br/>";

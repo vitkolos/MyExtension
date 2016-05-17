@@ -141,6 +141,7 @@
     "ccn_don_5":"Votre contact pour ce projet est :",
     "ccn_don_6":"Votre contact pour les questions administratives et fiscales est :",
     "ccn_don_7":"Votre don à la Communauté du Chemin Neuf",
+    "ccn_don_8":"Merci de reporter ce numéro au dos de votre chèque et de le rappeler dans vos correspondances.",
     "ccn_don_13":"Merci de rappeler ce numéro dans vos correspondances.",
     "ccn_don_14":"Après encaissement du versement, nous vous enverrons un reçu fiscal.",
     "ccn_don_15":"Vous devez vous connecter à votre banque (service de virement en ligne) et effectuer un virement sur notre compte ",
@@ -153,10 +154,7 @@
     "ccn_don_20":"Au début de chaque année, nous vous enverrons un reçu fiscal.",
     "ccn_don_28":"Cette information vous est transmise car vous êtes le contact pour le projet",
     "ccn_don_28_bis":"A vous de transmettre cette information à qui de droit. Ce don est versé dans la caisse commune de la communauté.",
-    "ccn_don_35":"Grâce à votre don, le projet est maintenant financé à "
-    
-
-    
+    "ccn_don_35":"Grâce à votre don, le projet est maintenant financé à "  
 
 
 }
