@@ -92,7 +92,7 @@ class DonationResource extends AbstractResource
         //récupérer les infos spécifique au projet : budget, montant payé, contact
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
         //déterminer si le projet est un projet national ou hors pays / international
-        $isInternational = true;
+        $isProjetInternational = true;
         if($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"]){
             //taxonomie du pays du site
             $taxoPays = (array) json_decode($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"], true);
@@ -100,23 +100,34 @@ class DonationResource extends AbstractResource
                 //si le projet a la taxonomie de pays et qu'elle vaut le pays concerné, alors on prend la config du pays
                 if (array_key_exists($vocabulary, $projectDetail["taxonomy"])) {
                     if($projectDetail["taxonomy"][$vocabulary][0] == $taxonomy) {
-                        $isInternational = false;
+                        $isProjetInternational = false;
                     }
                 }
             }
         };
+        
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
-        if($isInternational) {
-            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
+        if($don["fields"]["modePaiement"]=="carte") {
+            if($isProjetInternational) {
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
+            }
+            else {
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
+            }
+            $arrayToReturn = array("whatToDo" =>"redirect", "id" =>$don['fields']['text'] );
+            
         }
         else {
-            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
-        }
-        if($don["etat"] == "attente_paiement_carte") {
-        }
-        else {
+            if($isProjetInternational) {
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale());
+            }
+            else {
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
+            }
             $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
         }
+        
+
         
         return array('success' =>true, 'instructions' =>$arrayToReturn);
         
