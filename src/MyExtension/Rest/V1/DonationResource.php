@@ -322,46 +322,33 @@ class DonationResource extends AbstractResource
         if($responsableInternationalSeulement) {
             $mailerService = Manager::getService('Mailer');
             $mailRespInt = $mailerService->getNewMessage();
-            $mailRespInt->setTo($emailResponsableNationalDons); 
-            $mailRespInt->setFrom($emailResponsableNationalDons); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+            $mailRespInt->setTo($emailResponsableInternationalDons); 
+            $mailRespInt->setFrom($emailResponsableInternationalDons);
             $mailRespInt->setSubject($sujetAdmin);
             $mailRespInt->setCharset('utf-8');
             $mailRespInt->setBody($messageAdmin, 'text/html', 'utf-8');
             $mailerService->sendMessage($mailRespInt, $errors);
         }
         else {
+            /*ENVOI DU MAIL AU DONATEUR*/
             $mailerService = Manager::getService('Mailer');
             $mailDonateur = $mailerService->getNewMessage();
-            $mailDonateur->setTo($emailResponsableNationalDons); 
-            $mailDonateur->setFrom($emailResponsableNationalDons); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
-            $mailDonateur->setSubject($sujetAdmin);
+            $mailDonateur->setTo($emailDonateur);
+            //vérifier nom de domaine du mail
+            $senderMail = $contactNational['email'];
+            $senderDomain = explode("@", $contactNational['email'] );
+            if($senderDomain[1] != "chemin-neuf.org"){
+                $senderMail = "web@chemin-neuf.org";
+            }
+            $mailDonateur->setFrom(array( $senderMail => $contactNational["prenom"] . " " . $contactNational["nom"] )); 
+            $mailDonateur->setSubject($sujetDonateur);
             $mailDonateur->setCharset('utf-8');
-            $mailDonateur->setBody($messageAdmin, 'text/html', 'utf-8');
+            $mailDonateur->setBody($messageDonateur, 'text/html', 'utf-8');
             $mailerService->sendMessage($mailDonateur, $errors);
-            
-            
         }
         
         
-        /////////envoi du mail au donateur
-            //ENVOI DE MAIL AU JEUNE
-        $mailerService = Manager::getService('Mailer');
-        $mailClient = $mailerService->getNewMessage();
-        $mailClient->setTo($don['email']); 
-    
-        // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
-        $senderMail = $contactProjet['email'] ;
-        $senderDomain = explode("@", $contactProjet['email'] );
-        if($senderDomain[1] != "chemin-neuf.org"){
-            $senderMail = "web@chemin-neuf.org";
-        }
-        $mailClient->setFrom(array( $senderMail => $contactProjet['nom'] )); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
-        $mailClient->setReplyTo(array( $contactProjet['email'] => $contactProjet['nom'])); 
-        $mailClient->setCharset('utf-8');
-        $mailClient->setSubject($sujetDonateur);
-        $mailClient->setBody($messageDonateur, 'text/html', 'utf-8');
-        $mailerService->sendMessage($mailClient, $errors);
-  
+   
         
    }
    
@@ -767,13 +754,10 @@ protected function sendInscriptionMail($inscription,$lang){
     $mailSecretariat->setBody($messageSecretariat, 'text/html', 'utf-8');
     $mailerService->sendMessage($mailSecretariat,$errors);    
     
-}
+}}
     
     
-    protected function subTokenFilter(&$token)
-    {
-        return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
-    }
+
     
     protected function processInscription($inscription) {
         //dates
