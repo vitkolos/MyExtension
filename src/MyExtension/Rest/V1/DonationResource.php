@@ -304,10 +304,12 @@ class DonationResource extends AbstractResource
         
         ///message pour le responsable du projet
         $messageContactProjet = $messageAdmin;
+        ///message pour la compta
         //Cette information vous est transmise car vous êtes le contact pour le projet ${projet}. A vous de transmettre cette information à qui de droit. Ce don est versé dans la caisse commune de la communauté.
         $messageContactProjet .= "<br/><br/>" . $trad["ccn_don_28"] . " " .$don["projet"] . ". " . $trad["ccn_don_28_bis"]  ;
+        $messageCompta = $messageAdmin;
         
-        ///mails
+        ///adresses mails
         $emailDonateur = $don["email"];
         $emailComptableNational = $configPayment["email_compta"];
         $emailIntendantNational = $configPayment["email_intendance"];
@@ -348,18 +350,50 @@ class DonationResource extends AbstractResource
             
             /*COPIE DU MESSAGE au resp. international des dons*/
             $mailDonateur -> setTo($emailResponsableInternationalDons);
-            $mailerService->sendMessage($mailDonateur, $errors);
+            $mailerService->sendMessage($mailDonateur);
             
             /*ENVOI DU MAIL AUX ADMINISTRATEURS ET COMPTA*/
             $mailAdmin = $mailerService->getNewMessage();
             $mailAdmin->setFrom(array( $senderMail => $contactNational["prenom"] . " " . $contactNational["nom"] )); 
             $mailAdmin->setSubject($sujetAdmin);
-            $mailDonateur->setCharset('utf-8');
-            $mailDonateur->setBody($messageContactProjet, 'text/html', 'utf-8');
+            $mailAdmin->setCharset('utf-8');
+            $mailAdmin->setBody($messageContactProjet, 'text/html', 'utf-8');
             
-            /*mail au contact du projet*/
-            $mailDonateur->setTo($contactProjet["email"]);
+            /*MAIL AU CONTACT DU PROJET*/
+            $mailAdmin->setTo($contactProjet["email"]);
+            $mailerService->sendMessage($mailAdmin, $errors);
            
+           /*signaler les erreurs d'envoi : adresses rejetées*/
+            if(sizeof($errors)>0 ) {
+                if (in_array($emailDonateur, $errors)) {
+                    /*si le mail au donateur a échoué*/
+                    $messageAdmin .= "<font color='red'>" + $trad["ccn_don_38"] + "</font>" + "<br><br>";
+                    $mailDonateurEchoue = true;
+                }
+                if (in_array($contactProjet["email"], $errors)) {
+                    /*si le mail au contact du projet a échoué*/
+                    $messageAdmin .= "<font color='red'>" + $trad["ccn_don_38"] + "</font>" + "<br><br>";
+                    $mailContactProjetEchoue = true;
+                }
+            }
+            
+            /*MAILS AUX CONTACTS NATIONAUX*/
+            /*si le responsable national n'a pas reçu déjà le mail (ie n'est pas responsable du projet, ou que le mail a échoué*/ 
+            if($emailResponsableNationalDons !=$contactProjet["email"] || $mailContactProjetEchoue || $mailDonateurEchoue) {
+                $mailAdmin->setTo($emailResponsableNationalDons);
+                $mailAdmin->setBody($messageAdmin, 'text/html', 'utf-8');
+                $mailerService->sendMessage($mailAdmin);
+            }
+            if($emailComptableNational && ($emailComptableNational != $emailResponsableNationalDons) && ($emailComptableNational != $contactProjet["email"])){
+                $mailAdmin->setTo($emailComptableNational);
+                $mailAdmin->setBody($messageCompta, 'text/html', 'utf-8');
+                $mailerService->sendMessage($mailAdmin);
+            }
+            if($emailIntendantNational && ($emailIntendantNational != $emailResponsableNationalDons) && ($emailIntendantNational != $emailComptableNational) &&($emailIntendantNational != $contactProjet["email"])){
+                $mailAdmin->setTo($emailIntendantNational);
+                $mailerService->sendMessage($mailAdmin);
+            }
+            /*RESPONSABLES INTERNATIONAUX*/
             
         }
         
