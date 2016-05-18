@@ -317,8 +317,8 @@ class DonationResource extends AbstractResource
         
         //mails international
         $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM("dons_int");
-        $emailComptableInt = $paymentConfigInt["data"]["nativePMConfig"]["email_compta"];
-        $emailIntendantInt = $paymentConfigInt["data"]["nativePMConfig"]["email_intendance"];
+        $emailComptableInternational = $paymentConfigInt["data"]["nativePMConfig"]["email_compta"];
+        $emailIntendantGeneral = $paymentConfigInt["data"]["nativePMConfig"]["email_intendance"];
         
         // si mail seulement au resp. International : dans le cas d'un payement en ligne, avant la validation du payement par IPN
         if($responsableInternationalSeulement) {
@@ -377,13 +377,18 @@ class DonationResource extends AbstractResource
                 }
             }
             
-            /*MAILS AUX CONTACTS NATIONAUX*/
+            /*MAILS ADMINS*/
             /*si le responsable national n'a pas reçu déjà le mail (ie n'est pas responsable du projet, ou que le mail a échoué*/ 
             if($emailResponsableNationalDons !=$contactProjet["email"] || $mailContactProjetEchoue || $mailDonateurEchoue) {
                 $mailAdmin->setTo($emailResponsableNationalDons);
                 $mailAdmin->setBody($messageAdmin, 'text/html', 'utf-8');
                 $mailerService->sendMessage($mailAdmin);
             }
+            /*Responsable international*/
+            if( ($emailResponsableInternationalDons != $emailComptableNational) && ($emailResponsableInternationalDons != $emailResponsableNationalDons) && ($emailResponsableInternationalDons != $emailIntendantNational) ) {
+                $mailAdmin->setTo($emailResponsableInternationalDons);
+            }
+            /*MAILS COMPTA*/
             if($emailComptableNational && ($emailComptableNational != $emailResponsableNationalDons) && ($emailComptableNational != $contactProjet["email"])){
                 $mailAdmin->setTo($emailComptableNational);
                 $mailAdmin->setBody($messageCompta, 'text/html', 'utf-8');
@@ -393,7 +398,11 @@ class DonationResource extends AbstractResource
                 $mailAdmin->setTo($emailIntendantNational);
                 $mailerService->sendMessage($mailAdmin);
             }
-            /*RESPONSABLES INTERNATIONAUX*/
+            if (($emailIntendantGeneral != $emailComptableNational) && ($emailIntendantGeneral != $emailResponsableNationalDons) && ($emailIntendantGeneral != $emailIntendantNational) && ($emailIntendantGeneral != $emailResponsableInternationalDons)){
+                $mailAdmin->setTo($emailIntendantGeneral);
+                $mailerService->sendMessage($mailAdmin);                
+            }
+
             
         }
         
