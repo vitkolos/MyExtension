@@ -25,7 +25,7 @@
                 <span></span>
             </div>
             <div class="pull-right cursor-as-pointer" ng-click="contentListCtrl.showFilters()">
-                <p><span class="icon-subjectfilter main"></span>{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} </p>
+                <p>{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} </p>
             </div>
         </div>
     </div>
@@ -39,65 +39,37 @@
         </div>
         <div class="col-sm-4">
             <form ng-submit="filmSearchCtrl.onSubmit()" role="form">
-                    <div class="input-group">
-                        <input class="form-control" type="text" ng-model="filmSearchCtrl.query" placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
-                            <span class="input-group-btn"><button class="btn btn-default" type="submit">
-                                <span class="glyphicon glyphicon-search"></span></button></span>
-                    </div>
-                </form>
+                <div class="input-group">
+                    <input class="form-control" type="text" ng-model="filmSearchCtrl.query" placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
+                        <span class="input-group-btn"><button class="btn btn-default" type="submit">
+                            <span class="glyphicon glyphicon-search"></span></button></span>
+                </div>
+            </form>
         </div>
 
-        <div class="col-sm-12" ng-if="rubedo.showSearchList">
-            <div ng-repeat="datum in filmSearchCtrl.data track by $index"  ng-if="!datum['fields.horsSerie'][0]" class="col-md-3 col-sm-6 col-xs-6 filmList" ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewFilms">
-                <div class="affiche">
-                    <h3 class="media-heading"  ng-if="!datum['i18n.'+locale+'.fields.affiche'][0]">
-                        {{datum.title}}
-                    </h3>
-                    <img ng-if="datum['i18n.'+locale+'.fields.affiche'][0]"
-                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['i18n.'+locale+'.fields.affiche'][0],{height:'400px',width:'284px',mode:'crop'}) }}"
-                    alt="{{ datum.title }}"/>
-                   <img class="default-vignette" ng-if="!datum['i18n.'+locale+'.fields.affiche'][0]"
-                   ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
-                    alt="{{ datum.title }}"/>
-                   <h4 class="media-heading txt-link">
-                           {{datum['fields.date'][0]*1000 | date :'MMMM yyyy'}}
-                   </h4>
-                </div>
-                
-            </div>
-            
-            <div class="modal fade" id="previewFilms" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog">
-                    <div class="container  film-preview">
-                        <div class="close" data-dismiss="modal" aria-label="Close"><span></span><span></span></div>
-                        <div class="prev" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex -1)" ng-if="contentListCtrl.previewIndex>0"><span></span><span></span></div>
-                        <div class="col-sm-5 text-center">
-                            <img ng-if="filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0]"
-                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0],{height:'400px',width:'284px',mode:'crop'}) }}"
-                                alt="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].title }}"
-                                class="img-responsive"/>
-                            <img ng-if="!filmSearchCtrl.data[contentListCtrl.previewIndex]['i18n.'+locale+'.fields.affiche'][0]"
-                             ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
-                             alt="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].title }}"
-                             class="img-responsive"/>
-                        </div>
-                        <div class="col-sm-7">
-                            <h1>{{filmSearchCtrl.data[contentListCtrl.previewIndex].title}}</h1>
-                            <h4 class="media-heading" style="font-size: 0.8em">
-                                    <span class="glyphicon glyphicon-calendar"></span>{{filmSearchCtrl.data[contentListCtrl.previewIndex]['fields.date'][0]*1000 | date :'MMMM yyyy' |uppercase}}
+        <div class="col-sm-12" ng-show="rubedo.showSearchList">
+            <div ng-repeat="datum in filmSearchCtrl.data track by $index"  ng-if="datum['fields.horsSerie'][0]=='false'" class="col-md-3 col-sm-6 col-xs-6 filmList home">
+               
+                <a ng-href='{{datum.url}}'>
+                    <div class="affiche">
+                        <p class="media-heading txt-light">
+                            {{datum['fields.date'][0]*1000 | date :'MMMM yyyy'|uppercase}}
+                        </p>
+                        <img ng-if="datum['i18n.'+locale+'.fields.affiche'][0]"
+                        ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['i18n.'+locale+'.fields.affiche'][0],{height:'400px',width:'284px',mode:'crop'}) }}"
+                        alt="{{ datum.title }}"/>
+                       <img class="default-vignette" ng-if="!datum['i18n.'+locale+'.fields.affiche'][0]"
+                       ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
+                        alt="{{ datum.title }}"/>
+                        <div style="height:80px;overflow-y:hidden">
+                            <h4 class="media-heading" >
+                            {{datum.title}}
                             </h4>
-                            <p>{{filmSearchCtrl.data[contentListCtrl.previewIndex].summary}}</p>
-                            <h3><a  ng-href="{{ filmSearchCtrl.data[contentListCtrl.previewIndex].url }}" class="link pull-right">{{rubedo.translate("NFG.GoToFilm", "Voir le film")}} →</a></h3>
-                            <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+filmSearchCtrl.data[contentListCtrl.previewIndex].id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
-                                <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
-                            </a>
-                        </div>                       
-                        <div class="next" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex +1)" ng-if="contentListCtrl.previewIndex < filmSearchCtrl.data.length -1"><span></span><span></span></div>
+                            <p class="txt" ng-if="datum['i18n.'+locale+'.fields.subTitle'][0]">{{datum['i18n.'+locale+'.fields.subTitle'][0]}}</p>
+                        </div>
                     </div>
-                </div>
-                    
-                
-            </div>        
+                </a>
+            </div>
         </div>
     </div>
     <div class="row" ng-show="!rubedo.showSearchList">
@@ -106,36 +78,52 @@
             <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index">
                 <div class="col-xs-12" >
                     <h1 class="titre-saison" ng-if="!columnContents[0].fields.horsSerie && columnContents[0].fields.annee >0">{{rubedo.translate('Block.Saison', 'Season')}} {{columnContents[0].fields.annee}} <span>({{columnContents[0].anneeFormatted -1}}-{{columnContents[0].anneeFormatted}})</span></h1>
-                    <h1 class="titre-saison" ng-if="!columnContents[0].fields.horsSerie && columnContents[0].fields.annee ==0">{{rubedo.translate('Block.Futurs', 'En préparation')}}</h1>
+                    <h3 class="titre-saison hidden-xs" ng-if="!columnContents[0].fields.horsSerie && columnContents[0].fields.annee ==0">{{rubedo.translate('Block.Futurs', 'En préparation')}}</h1>
                     <h3 class="titre-saison" ng-if="columnContents[0].fields.horsSerie">Hors-séries {{rubedo.translate('Block.Saison', 'Season')}} {{columnContents[0].fields.annee}}</h3>
                 </div>
                 
-                <div ng-if="!content.fields.horsSerie" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index"  class="col-md-3 col-sm-6 col-xs-6 filmList"
-                      ng-click="contentListCtrl.setIndex($index)" data-toggle="modal" data-target="#previewSeason{{$parent.$parent.$parent.$index}}">
+                <div ng-if="!content.fields.horsSerie" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index"  class="col-md-3 col-sm-6 col-xs-6 filmList home">
+                    <a ng-href="{{content.detailPageUrl}}" ng-if="content.fields.annee>0">
                         <div class="affiche">
-                            <h3 class="media-heading"  ng-if="!content.fields.affiche">
-                                {{content.fields.text}}
-                            </h3>
-                            <img ng-if="content.fields.affiche "
+                             <p class="media-heading txt-light">
+                                {{content.fields.date*1000 | date :'MMMM yyyy' | uppercase}}
+                            </p>
+                            <img ng-if="content.fields.affiche"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
                              alt="{{ content.fields.text }}"/>
-                            <img class="default-vignette" ng-if="!content.fields.affiche "
+                            <img class="default-vignette" ng-if="!content.fields.affiche"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
-                             alt="{{ content.fields.text }}"/>                            
-                        </div>
-                        <h4 class="media-heading txt-link">
-                                {{content.fields.date*1000 | date :'MMMM yyyy'}}
-                        </h4>
+                             alt="{{ content.fields.text }}"/>    
+                            <div style="height:80px; overflow-y:hidden">
+                                <h4 class="media-heading" >
+                                    {{content.fields.text}}
+                                </h4> 
+                                <p class="txt" ng-if="content.fields.subTitle">{{content.fields.subTitle}}</p>
+                            </div>
+                        </div>                        
+                    </a>
+                    <div class="affiche hidden-xs" ng-if="content.fields.annee==0">
+                         <p class="media-heading txt-light">
+                            {{content.fields.date*1000 | date :'MMMM yyyy' | uppercase}}
+                        </p>
                         
+                        <div>
+                            <h4 class="media-heading" >
+                                {{content.fields.text}}
+                            </h4> 
+                            <p class="txt" ng-if="content.fields.subTitle">{{content.fields.subTitle}}</p>
+                        </div>
+                    </div>
+                    <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
+                        <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
+                    </a>                        
                 </div>
-                <div ng-if="content.fields.horsSerie" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index"  class="col-lg-4 col-sm-6 col-xs-6 filmList">
+                <div ng-if="content.fields.horsSerie && content.fields.affiche" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index"  class="col-lg-4 col-sm-6 col-xs-6 filmList">
                         <a ng-href="{{ content.detailPageUrl }}">
                             <div class="affiche">
-                                <h3 class="media-heading"  ng-if="!content.fields.affiche">
-                                    {{content.fields.text}}
-                                </h3>
+
                                 <img ng-if="content.fields.affiche "
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{width:'400px',mode:'boxed'}) }}"
+                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{width:'400px',height:'225px',mode:'crop'}) }}"
                                  alt="{{ content.fields.text }}"/>
                             </div>
                             <h4 class="media-heading">
@@ -147,44 +135,10 @@
                         </a>
                         
                 </div>
-                <div class="modal fade" id="previewSeason{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                    <div class="modal-dialog">
-                        <div class="container  film-preview">
-                            <div class="close" data-dismiss="modal" aria-label="Close"><span></span><span></span></div>
-                            <div class="prev" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex -1)" ng-if="contentListCtrl.previewIndex>0"><span></span><span></span></div>
-                            <div class="col-sm-5 text-center">
-                                <img ng-if="columnContents[contentListCtrl.previewIndex].fields.affiche "
-                                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(columnContents[contentListCtrl.previewIndex].fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
-                                    alt="{{ columnContents[contentListCtrl.previewIndex].fields.text }}"
-                                    class="img-responsive"/>
-                                <img ng-if="!columnContents[contentListCtrl.previewIndex].fields.affiche "
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId('566affec3bc325ee6b8b4582',{height:'400px',width:'284px',mode:'crop'}) }}"
-                                 alt="{{ columnContents[contentListCtrl.previewIndex].fields.text }}"
-                                 class="img-responsive"/>
-                            </div>
-                            <div class="col-sm-7">
-                                <h1>{{columnContents[contentListCtrl.previewIndex].fields.text}}</h1>
-                                <h4 class="media-heading" style="font-size: 0.8em">
-                                        <span class="icon-issuedate"></span>{{columnContents[contentListCtrl.previewIndex].fields.date*1000 | date :'MMMM yyyy' |uppercase}}
-                                </h4>
-                                <p>{{columnContents[contentListCtrl.previewIndex].fields.summary}}</p>
-                                <h3><a class="link pull-right" ng-href="{{ columnContents[contentListCtrl.previewIndex].detailPageUrl }}" class="pull-right">{{rubedo.translate("NFG.GoToFilm", "Voir le film")}} →</a></h3>
-
-                                <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+columnContents[contentListCtrl.previewIndex].id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
-                                    <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
-                                </a>
-                                
-                            </div>                       
-                            <div class="next" ng-click="contentListCtrl.setIndex(contentListCtrl.previewIndex +1)" ng-if="contentListCtrl.previewIndex < columnContents.length -1"><span></span><span></span></div>
-                        </div>
-                    </div>
-                    
-                  </div>
-                
-            </div>
+            </div>    
         </div>
     </div>
     <div class="show-more cursor-as-pointer text-center" ng-click = "contentListCtrl.changePageAction()" ng-if="contentListCtrl.contentsShowed<contentListCtrl.count">
-        <span class="icon-morefilms"></span> {{rubedo.translate("NFG.ShowMoreFilms", "Plus de films")}}
+        <span ng-if="!contentListCtrl.showLoader" class="icon-morefilms"></span><img src="/theme/netforgod/img/loader.gif" ng-if="contentListCtrl.showLoader" style="height:35px; margin-right:12px;"> {{rubedo.translate("NFG.ShowMoreFilms", "Plus de films")}}
     </div>
 </div>
