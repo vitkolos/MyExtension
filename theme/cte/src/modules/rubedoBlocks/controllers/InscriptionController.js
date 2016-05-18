@@ -201,9 +201,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
                 }
             });
-            console.log(me.form.questions);
             
         });
+        console.log(me.form.questions);
     };
     /*récupérer le formulaire pour l'inscriptino*/
     if (me.content.fields.formulaire_pdf && me.content.fields.formulaire_pdf!="") {
