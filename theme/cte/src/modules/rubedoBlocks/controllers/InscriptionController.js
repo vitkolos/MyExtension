@@ -187,14 +187,14 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             "logement":[]/*,
             "generale":[]*/
         };
-        angular.forEach(me.content.fields.questions, function(questionId){
+        angular.forEach(me.content.fields.questions, function(questionId, questionOrder){
             RubedoContentsService.getContentById(questionId, options).then(function(response){
                 if (response.data.success){
                     var questionReponse= response.data.content;
                     switch (questionReponse.fields.categorie.categorie) {
-                        case "complementaire": me.form.questions.complementaires.push({"text":questionReponse.text, "fields":questionReponse.fields}); me.isComplement = true; break;
-                        case "transport": me.form.questions.transport.push({"text":questionReponse.text, "fields":questionReponse.fields}); me.isTransport = true; break;
-                        case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields});me.isLogement = true;  break;
+                        case "complementaire": me.form.questions.complementaires.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isComplement = true; break;
+                        case "transport": me.form.questions.transport.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isTransport = true; break;
+                        case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder});me.isLogement = true;  break;
                         //case "generale": me.form.questions.generale.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                     };
                   
