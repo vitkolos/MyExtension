@@ -37,7 +37,7 @@ class InscriptionResource extends AbstractResource
                         (new FilterDefinitionEntity())
                             ->setDescription('Numéro d\'inscription')
                             ->setKey('id')
-                    );
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('résultat')
