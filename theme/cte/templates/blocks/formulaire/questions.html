@@ -29,7 +29,7 @@
                 </div>
             </div>
         </div>
-       <div class="row" ng-repeat="question in formCtrl.form.questions.complementaires track by $index">
+       <div class="row" ng-repeat="question in formCtrl.form.questions.complementaires | orderBy:'order' track by $index">
             <ng-include src="formCtrl.questionDetail"></ng-include>
        </div>
         <div class="row text-center">
@@ -52,7 +52,7 @@
                 </div>
             </div>
         </div>
-       <div class="row" ng-repeat="question in formCtrl.form.questions.transport">
+       <div class="row" ng-repeat="question in formCtrl.form.questions.transport | orderBy:'order' ">
             <ng-include src="formCtrl.questionDetail"></ng-include>
        </div>
         <div class="row text-center">
@@ -75,7 +75,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" ng-repeat="question in formCtrl.form.questions.logement">
+        <div class="row" ng-repeat="question in formCtrl.form.questions.logement | orderBy:'order' ">
             <ng-include src="formCtrl.questionDetail"></ng-include>
        </div>
         <div class="row text-center">
