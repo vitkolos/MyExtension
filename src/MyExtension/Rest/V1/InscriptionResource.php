@@ -38,6 +38,11 @@ class InscriptionResource extends AbstractResource
                             ->setDescription('Numéro d\'inscription')
                             ->setKey('id')
                     );
+                    ->addOutputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('résultat')
+                            ->setKey('result')
+                    );
             });
     }
     public function postAction($params)
@@ -102,7 +107,7 @@ class InscriptionResource extends AbstractResource
        
        
 
-        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text']);
+        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
         
    }
    
