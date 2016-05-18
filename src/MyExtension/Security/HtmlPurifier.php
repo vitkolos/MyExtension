@@ -15,7 +15,7 @@
  * @copyright  Copyright (c) 2012-2014 WebTales (http://www.webtales.fr)
  * @license    http://www.gnu.org/licenses/gpl.html Open Source GPL 3.0 license
  */
-namespace MyExtension\Security;
+namespace Rubedo\Security;
 
 /**
  * Service to handle allowed and disallowed HTML contents
@@ -25,7 +25,7 @@ namespace MyExtension\Security;
  * @category Rubedo
  * @package Rubedo
  */
-class HtmlPurifier extends HtmlCleaner
+class CcnHtmlPurifier extends HtmlCleaner
 {
 
     protected static $_purifier;
