@@ -201,6 +201,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
                 }
             });
+            console.log(me.form.questions);
             
         });
     };
