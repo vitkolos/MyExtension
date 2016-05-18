@@ -98,7 +98,7 @@ class PaymentResource extends AbstractResource {
         $prenom = $params['prenom'];
         $email = $params['email'];
         $proposition = $params['proposition']; // titre de la proposition si inscription
-        $paymentType=$params['paymentType']; // mode de paiement
+        $paymentType=$params['paymentType']; // type de paiement (paf ou dons)
         $place = $params['placeID']; // lieu communautaire pour compta
         $codeCompta="";
     // récupérer l'id du compte de paiement
