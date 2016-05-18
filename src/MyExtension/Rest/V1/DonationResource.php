@@ -120,6 +120,8 @@ class DonationResource extends AbstractResource
             /*GET PAYBOX PROPERTIES */
             $wasFiltered = AbstractCollection::disableUserFilter(true);
             $payboxAccount = $contentsService->findById($payboxAccountId,false,false);
+            AbstractCollection::disableUserFilter(false);
+            /*PROCESS INFOS FOR PAYMENT*/
             $arrayToReturn = array("whatToDo" =>"redirect", "params" =>$payboxAccount );
             
         }

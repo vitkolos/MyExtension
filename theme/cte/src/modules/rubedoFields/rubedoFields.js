@@ -976,7 +976,10 @@
                 newField.config.multivalued=false;
                 fieldsArray.push(newField);
             }
-            $scope.fields=fieldsArray;
+            $scope.$apply(function() {
+                $scope.fields=fieldsArray;
+            });
+            
         };
         me.addField=function(){
             me.fieldIterations=me.fieldIterations+1;
