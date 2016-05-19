@@ -89,13 +89,18 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     // questions complémentaires ?
     if ( me.form.jai_connu) {me.isComplement = true;}
-    if (((me.content.fields.paimentOption)
+    if ((me.content.fields.paimentOption)
             &&(me.content.fields.paimentOption.paimentOption) 
             && ((me.content.fields.paimentOption.paimentOption).length>0)
-            && me.content.fields.paimentOption.paimentOption[0]!=null)
-        || me.content.fields.accompte>0
-            &&me.content.fields.inscriptionState.inscriptionState!='preinscription') 
-                {me.isPaiement = true}
+            && me.content.fields.paimentOption.paimentOption[0]!=null) {
+        me.isPaiement = true;
+    }
+    else if (me.content.fields.accompte>0  &&me.content.fields.inscriptionState.inscriptionState!='preinscription') {
+        me.isPaiement = true;
+        me.isPaimentAccompteSeulement = true;
+    }
+       
+                
     if (( typeof me.content.fields.paimentOption.paimentOption =='string')) {
         me.content.fields.paimentOption.paimentOption = {0 : me.content.fields.paimentOption.paimentOption};
     }          
