@@ -85,6 +85,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         }
     }
     $scope.personneConnue = angular.copy(me.form.personneConnue);//vrai si formulaire pour personnes connues -> seulement nom, prénom et mail
+    $scope.allowOneParentOnly = angular.copy(me.form.parent_seul);//vrai si formulaire pour personnes connues -> seulement nom, prénom et mail
     
     
     // questions complémentaires ?
