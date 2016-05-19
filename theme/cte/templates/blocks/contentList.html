@@ -8,30 +8,30 @@
     <div class="row contentList" ng-switch="blockConfig.columns">
        <!--POUR 1 COLONNE-->
         <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1" class="padding-">
-            <!--<div id="infiniteScrollCtrl">-->
+            <!--<div id="infiniteScrollCtrl">-->            
             <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="equal-height-cols">
-                   <a ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}">
-                    <div class="col-sm-8 col-xs-12">
-                    <img class="img-responsive no-margin" ng-if="content.fields.image"
-                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'700px',height:'350px',mode:'crop'}) }}"
-                                                                     alt="{{ content.fields.text }}"/>                                                   
-                    </div>
-                    <div class="col-sm-4 col-xs-12">
-                        <h3>
-                            {{content.fields.text}}
-
-                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                        </h3>
-                       <p  ng-if="!contentListCtrl.titleOnly">
-                            <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                       </p>
-                    </div>                    
+                   <a ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}"  style="display:block; width:100%">
+                        <div class="col-lg-7 col-sm-8 col-xs-12">
+                            <header class="content prop no-margin no-filter"
+					afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'1800px',mode:'boxed'})}} 1500w"
+                afkl-lazy-image-options='{"background": true}' style="margin-bottom:0">
+                        </div>
+                        <div class="col-lg-5 col-sm-4 col-xs-12">
+                            <h3>
+    
+                                <rubedo-field  field="{{content.type.title}}"></rubedo-field>
+                            </h3>
+                            <p>
+                                 <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                            </p>
+                        </div>                    
                    </a>
 
                 </div>
             </div>
         </div>
+
 
 
         <!--AUTRES-->
