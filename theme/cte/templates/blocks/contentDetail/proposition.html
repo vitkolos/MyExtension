@@ -1,5 +1,5 @@
 <script async src="/theme/cte/src/modules/rubedoBlocks/controllers/InscriptionController.js"></script>
-<a ng-if="fieldEditMode" ng-href="{{ contentDetailCtrl.content.editorPageUrl}}">
+<a ng-if="rubedo.user.rights.canEdit" ng-href="{{ contentDetailCtrl.content.editorPageUrl}}">
 	<button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
 </a>
 <div class=" content_border">
@@ -101,7 +101,9 @@
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field><!--Description-->
+						<span class="help-block">{{rubedo.translate( "Block.Inscription.Paf.Problemes","L'argent ne doit pas être un obstacle, contactez-nous en cas de difficulté")}}</span>
 					</div>
+					
 				</div>
 				<div ng-if="fieldEntity['position'] && contentDetailCtrl.content.fields.position.address!='' " ng-init="showMap=false" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">

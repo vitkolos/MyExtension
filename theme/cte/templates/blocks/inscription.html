@@ -46,7 +46,7 @@
                         <p ng-repeat="(option, prix) in inscription.optionsPayantes" ng-if="prix">
                                 + {{option}} : {{prix}}€
                         </p>
-
+                        <!---on demande le montant à payer seulement si on peut payer pour la session - pas seulement l'accompte-->
                         <div class="row" ng-if="!formCtrl.isPaimentAccompteSeulement">
                                 <label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label>
                         </div>
