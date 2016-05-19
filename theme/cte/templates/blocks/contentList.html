@@ -12,20 +12,17 @@
             <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="equal-height-cols">
                    <a  ng-href="{{!fieldEditMode? content.contentLinkUrl : ''}}"  style="display:block; width:100%">
-
-                        <div class="col-lg-7 col-sm-8 col-xs-12">
+                        <div ng-class="{contentListCtrl.titleOnly ? 'col-lg-5 col-sm-4 col-xs-12' : 'col-lg-7 col-sm-8 col-xs-12' }">
                             <header class="content prop no-margin no-filter"
 					afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'1800px',mode:'boxed'})}} 1500w"
                 afkl-lazy-image-options='{"background": true}' style="margin-bottom:0"></header>
                         </div>
-                        <div class="col-lg-5 col-sm-4 col-xs-12" style="padding-left: 34px;">
-                            <h3>
+                        <div class="col-lg-5 col-sm-4 col-xs-12" ng-class="{contentListCtrl.titleOnly ? 'col-lg-7 col-sm-8 col-xs-12' : 'col-lg-5 col-sm-4 col-xs-12' }" style="padding-left: 34px;">
+                            <h3 ng-if="!fieldEditMode">
                                 {{content.fields.text}}
-                                <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                             </h3>
-                            <p>
-                                 <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                            </p>
+                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                            <rubedo-field field="{{content.type.summary}}"></rubedo-field>
                         </div>                    
                    </a>
 
