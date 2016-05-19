@@ -116,6 +116,7 @@ class PaymentResource extends AbstractResource {
                 }
                 else $codeCompta = "[no]";
                 $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
+                $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
                 break;
         
         
@@ -134,7 +135,6 @@ class PaymentResource extends AbstractResource {
         $dateTime = date("c");
         $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
         $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
-        $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
         $payboxSite = $paymentInfos['site'];
         $payboxRang = $paymentInfos['rang'];
         $payboxID = $paymentInfos['identifiant'];

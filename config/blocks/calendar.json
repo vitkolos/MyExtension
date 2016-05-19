@@ -111,8 +111,8 @@
             ]
         },
         "configBloc": {
-            "date": "date",
-            "endDate": null,
+            "date": "dateDebut",
+            "endDate": "dateFin",
             "display": [
                 "showList"
             ]
