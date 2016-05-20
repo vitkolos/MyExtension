@@ -34,7 +34,7 @@ use Zend\View\Model\JsonModel;
  * @package Rubedo
  *
  */
-class ContentsController extends DataAccessController
+class CcnContentsController extends DataAccessController
 {
 
     public function __construct()

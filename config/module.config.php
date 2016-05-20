@@ -215,13 +215,11 @@ return array(
             'HtmlCleaner' => 'Rubedo\\Security\\CcnHtmlPurifier'
         )
     ),
-    /*
     'controllers' => array(
         'invokables' => array(
-            'Rubedo\\Backoffice\\Controller\\Contents' => 'Rubedo\\Backoffice\\Controller\\ContentsController',
-        ),
+            'Rubedo\\Backoffice\\Controller\\Contents' => 'Rubedo\\Backoffice\\Controller\\CcnContentsController'
+        )
     ),
-        */
     /* Surcharge des traductions
        */
     'localisationfiles' => array(
