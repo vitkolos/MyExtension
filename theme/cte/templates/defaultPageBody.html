@@ -1,8 +1,3 @@
-<div class="container">
-    <div ng-repeat="row in rubedo.current.page.rows"
-         ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
-         ng-class="rubedo.componentsService.resolveResponsiveClass(row.responsive)" class="row"></div>
-</div>
 <div class="container-fluid">
     <a name="{{$index}}" ng-repeat-start="row in rubedo.current.page.rows"></a>
     <div ng-repeat-end 
