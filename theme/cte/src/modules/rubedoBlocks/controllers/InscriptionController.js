@@ -52,8 +52,14 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 //get proposition
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
-    var propositionDate = "du "+$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate') + " à " + me.content.fields.heureDebut + " au " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate') + " à " + me.content.fields.heureFin;
-    
+    var propositionDate = "du "+$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate');
+    if (me.content.fields.heureDebut) {
+        propositionDate += " à " + me.content.fields.heureDebut ;
+    }
+    propositionDate +=  " au " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate');
+    if (me.content.fields.heureFin) {
+        propositionDate +=  " à " + me.content.fields.heureFin;
+    }    
     $scope.inscription.public_type=angular.copy(me.content.public);
     $scope.inscription.serviteur=angular.copy(me.content.service);
     $scope.inscription.positionName = me.content.fields.positionName;

@@ -276,7 +276,7 @@ class DonationResource extends AbstractResource
         $messageAdmin = "<h1>" . $trad["ccn_don"] . " " . $don["text"] . "</h1>";
         $messageAdmin .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
             ///infos sur le don
-        $dateDonation = date("d/m/Y");
+        $dateDonation = date("d/m/Y, H:i");
         $messageAdmin .= $this->addLine($trad["ccn_label_date"],$dateDonation);
         $messageAdmin .= $this->addLine($trad["ccn_label_montant"],$don["montantAvecFrequence"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_projet"],$don["projet"] );
