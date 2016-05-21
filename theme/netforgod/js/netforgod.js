@@ -46,7 +46,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             };
            var options = {
                       file: filmUrl,
-                      ga: {idstring: title,label:title},
+                      ga: {idstring: attrs.title,label:attrs.title},
                       modestbranding:0,
                       showinfo:1,
                       width:"100%",
@@ -69,7 +69,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                       else {
                                  jwplayer(id).load([{
                                             file: attrs.videoUrl,
-                                            ga: {idstring: title,label:title},
+                                            ga: {idstring: attrs.title,label:attrs.title},
                                             modestbranding:0,
                                             showinfo:1,
                                             width:"100%",
