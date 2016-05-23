@@ -241,8 +241,7 @@
 
         };
         if (!$scope.fieldInputMode){
-            $scope.$watch("fieldEntity."+$scope.field.config.name, function(newValue) {
-                if(!$scope.fieldEditMode){
+	    $scope.$watch(function() { return $scope.fieldEntity[$scope.field.config.name]; }, function(newValue) {                if(!$scope.fieldEditMode){
                     if (!newValue){
                         newValue="<div></div>";
                     }
