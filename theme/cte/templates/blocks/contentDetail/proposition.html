@@ -187,7 +187,7 @@
 						</div>
 						<!--si un plusieurs types de public au service-->
 						<div ng-if="(contentDetailCtrl.content.fields.public_service).length>1" class="col-sm-6" ng-init="showTypeServiteurs=false">
-							<div class="button rouge cursor-as-pointer" ng-click="" style="margin-bottom:12px" ng-click="showTypeServiteurs= !showTypeServiteurs">S'inscrire  au service :</div>
+							<div class="button rouge cursor-as-pointer" ng-click="showTypeServiteurs= !showTypeServiteurs" style="margin-bottom:12px" >S'inscrire  au service :</div>
 							        <!--Type de public -->
 							<div ng-if="showTypeServiteurs" ng-repeat="public in contentDetailCtrl.content.fields.public_service track by $index" class="text-center">
 
