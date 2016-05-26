@@ -228,6 +228,5 @@ return array(
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Share.json',
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Emails.json'
     ),
-    
 
 );
