@@ -13,9 +13,9 @@
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle">
             <!--<div id="infiniteScrollCtrl">-->
-            <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
-                <div class="rubedo-product-in-list" ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
-                    <div class="row">
+            <div ng-class="contentListCtrl.columns rubedo-product-in-list" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
+                <!--<div class="rubedo-product-in-list" ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">-->
+                    <div class="row " ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
 
                         <div ng-style="contentListCtrl.imageStyle"
                              ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
@@ -58,7 +58,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                <!--</div>-->
             </div>
         </div>
     </div>
