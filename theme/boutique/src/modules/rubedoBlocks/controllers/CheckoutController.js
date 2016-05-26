@@ -9,8 +9,6 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         RubedoPagesService.getPageById(config.tCPage).then(function(response){
             if (response.data.success){
                 me.tCPageUrl=response.data.url;
-                $scope.tCPageUrl=me.tCPageUrl;
-                console.log(me.tCPageUrl);
             }
         });
     }
