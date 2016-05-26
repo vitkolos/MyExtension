@@ -3,6 +3,7 @@
     "Search.Label.OrderByPriceDown": "Trier par prix décroissant",
     "Search.Label.Relevance":"Pertinence",
     "Search.Label.Price":"Prix",
-    "Blocks.Checkout.Label.AddGiftWrap":"Ajouter un papier cadeau"
-    "Label.GiftWrap":"Papier Cadeau"
+    "Blocks.Checkout.Label.AddGiftWrap":"Ajouter un papier cadeau",
+    "Label.GiftWrap":"Papier Cadeau",
+    "Blocks.OrderDetails.Payment.Means":"Moyen de paiement"
 }
