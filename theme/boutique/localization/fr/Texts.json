@@ -5,5 +5,6 @@
     "Search.Label.Price":"Prix",
     "Blocks.Checkout.Label.AddGiftWrap":"Ajouter un papier cadeau",
     "Label.GiftWrap":"Papier Cadeau",
-    "Blocks.OrderDetails.Payment.Means":"Moyen de paiement"
+    "Blocks.OrderDetails.Payment.Means":"Moyen de paiement",
+    "Label.Edit":"Modifier"
 }
