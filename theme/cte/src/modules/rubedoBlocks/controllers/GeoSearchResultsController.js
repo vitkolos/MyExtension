@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         $scope.lang=$route.current.params.lang;
-console.log($scope.lang);        me.data = [];
+        me.data = [];
         me.facets = [];
         me.activeFacets = [];
         me.activateSearch=config.activateSearch;
