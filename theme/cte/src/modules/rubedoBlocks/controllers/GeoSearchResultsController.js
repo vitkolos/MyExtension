@@ -3,7 +3,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         var me = this;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
-        $scope.lang=$route.current.params.lang;
+        me.lang=$route.current.params.lang;
         me.data = [];
         me.facets = [];
         me.activeFacets = [];
