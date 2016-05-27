@@ -1,8 +1,9 @@
-angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element","TaxonomyService",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,TaxonomyService){
+angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element","TaxonomyService","$route",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,TaxonomyService,$route){
         var me = this;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
+        $scope.lang=$route.current.params.lang;
         me.data = [];
         me.facets = [];
         me.activeFacets = [];
