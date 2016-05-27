@@ -472,6 +472,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         default:
                             item['groupe']="lieux";
                     }
+                    item['lang']=me.lang;
                     if (item['fields.position.location.coordinates']&&item['fields.position.location.coordinates'][0] && !isPast){
                         var coords=item['fields.position.location.coordinates'][0].split(",");
                         var icon = new google.maps.MarkerImage("/theme/cte/img/icons/gmaps-"+item.groupe+".png", null, null, null, new google.maps.Size(50, 50));// add custom icon
