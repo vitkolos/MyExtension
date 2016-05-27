@@ -3,7 +3,7 @@
         <p class="capital2" ng-class=" 'txt-'+itemData.groupe">{{rubedo.translate(itemData.groupe,itemData.groupe)}}</p>
         <!--pour contacts, afficher nom, mail, téléphone et résumé (cf siloé pro)-->
         <div ng-if="itemData.typeId=='560d2bf445205e816041ea7f'">
-            <p>{{data.itemData['i18n.'+lang+'.fields.prenom'][0]}} {{data.itemData['i18n.'+lang+'.fields.nom'][0]}}</p>
-            <p>{{data.itemData['i18n.'+lang+'.fields.email'][0]}}<span ng-if="data.itemData['i18n.'+lang+'.fields.telephone'][0]">, {{data.itemData['i18n.'+lang+'.fields.telephone'][0]}}</span></p>
-            <p><b>data.itemData['i18n.'+lang+'.fields.summary'][0]</b></p>
+            <p>{{itemData['i18n.'+lang+'.fields.prenom'][0]}} {{itemData['i18n.'+lang+'.fields.nom'][0]}}</p>
+            <p>{{itemData['i18n.'+lang+'.fields.email'][0]}}<span ng-if="itemData['i18n.'+lang+'.fields.telephone'][0]">, {{itemData['i18n.'+lang+'.fields.telephone'][0]}}</span></p>
+            <p><b>{{itemData['i18n.'+lang+'.fields.summary'][0]}}</b></p>
         </div>
