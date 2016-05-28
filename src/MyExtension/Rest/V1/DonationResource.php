@@ -92,11 +92,11 @@ class DonationResource extends AbstractResource
         if($don["fields"]["modePaiement"]=="carte") {
             $payboxAccountId ="";
             if($isProjetInternational) {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],locale_get_primary_language($params['lang']->getLocale()),true);
                 $payboxAccountId = $paymentConfigInt["data"]["nativePMConfig"]["paybox"];
             }
             else {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],locale_get_primary_language($params['lang']->getLocale()),true);
                 $payboxAccountId = $paymentConfigPays["data"]["nativePMConfig"]["paybox"];
             }
             /*GET PAYBOX PROPERTIES pas besoin ?
