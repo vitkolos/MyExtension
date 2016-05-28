@@ -42,7 +42,8 @@ class DonationResource extends AbstractResource
         
         // create don
         $don=[];
-        var_dump($donationInfo);
+                var_dump($params);
+
         $donationInfo = json_decode($params["don"],true);
         $accountInfos = json_decode($params["account"],true);
         $don['fields'] =  $donationInfo;
