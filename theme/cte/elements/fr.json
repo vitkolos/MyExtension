@@ -127,6 +127,7 @@
     "ccn_compte":"Compte",
     "ccn_label_codeComptable":"Code comptabilité",
     "ccn_label_codeAna":"Code analytique",
+    "ccn_label_codeOnesime":"Code Onésime",
     "ccn_don":"Don",
     "ccn_label_projet":"Projet",
     "ccn_label_justificatif_fiscal":"Justificatif fiscal demandé",
