@@ -109,10 +109,10 @@ class DonationResource extends AbstractResource
         }
         else {
             if($isProjetInternational) {
-                //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale());
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale());
             }
             else {
-                //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
             }
             $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
         }
@@ -138,11 +138,19 @@ class DonationResource extends AbstractResource
         
         
         if(!($erreurStatus) && $securite && $autorisation) {
- 
- 
+            $commande = explode("|", $params['commande']); // $codeAna . "|" .$idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
+            $codeAna = $commande[0];
+            $idDonation = $commande[1];
  
             
-        }    
+        }
+        $wasFiltered = AbstractCollection::disableUserFilter(true);
+        $contentsService = Manager::getService("Contents");
+        $content = $contentsService->findByName($idDonation);
+
+        $contentId = $content['id'];        
+        AbstractCollection::disableUserFilter(false);
+
         
         $mailCompta = "nicolas.rhone@gmail.com";
         $mailerService = Manager::getService('Mailer');
@@ -161,15 +169,7 @@ class DonationResource extends AbstractResource
         }
         if ($erreur == "00000") {
             $body = "Montant payé : " . $params['montant']/100 . " euros.\n" ;
-            /*$body.=$inscription['content']['fields']['propositionTitre'];
-            $body .= "Proposition : " . $inscription['fields']['propositionTitre']."\n";
-            $body .= "Code Onesime : " . $inscription['fields']['codeOnesime']."\n";
-            $body .= "Code Compta : " . $codeCompta."\n";
-            $body .= "Id Inscription : " . $inscription['fields']['text']."\n";
-            $body .= "Nom : " . $inscription['fields']['nom']."\n";
-            $body .= "Prénom : " . $inscription['fields']['surname']."\n";
-             $body .= "Email : " . $inscription['fields']['email']."\n";
-            if($erreurMessage!="") $body.="\n\n Message : " . $erreurMessage;*/
+            $body.="\n\n ID de l'inscription : ".$contentId;
         }
         else {
             $body = "Montant non payé : " . $params['montant']/100  . " euros." ;
@@ -201,120 +201,7 @@ class DonationResource extends AbstractResource
         
     }
        
-        
-       
-/**
-     * Define the resource
-     */
-    protected function define()
-    {
-        $this
-            ->definition
-            ->setName('Dons')
-            ->setDescription('Service de traitement des dons')
-            ->editVerb('get', function (VerbDefinitionEntity &$definition) {
-                $this->defineGet($definition);
-            })
-            ->editVerb('post', function (VerbDefinitionEntity &$definition) {
-                $this->definePost($definition);
-            });
-    }       
-       
-   /**
-     * Define get action
-     *
-     * @param VerbDefinitionEntity $definition
-     */
-    protected function definePost(VerbDefinitionEntity &$definition)
-    {
-        $definition
-            ->setDescription('Inscrire le don en base de données')
-            ->addInputFilter(
-                    (new FilterDefinitionEntity())
-                        ->setDescription('Don')
-                        ->setKey('don')                            
-            )
-            ->addInputFilter(
-                (new FilterDefinitionEntity())
-                    ->setDescription('Configuration de paiement')
-                    ->setKey('account')                            
-            )
-             ->addOutputFilter(
-                (new FilterDefinitionEntity())
-                    ->setDescription('Instructions')
-                    ->setKey('instructions')
-            );
-    }
-       
-    /**
-     * Define post
-     *
-     * @param VerbDefinitionEntity $verbDef
-     */
-    protected function defineGet(VerbDefinitionEntity &$verbDef)
-    {
-        $verbDef
-            ->setDescription('Retour IPN de Paybox')
-            ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('referencePaybox')
-                            ->setKey('referencePaybox')
-                            ->setFilter('string')
-                            ->setRequired()
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('montant')
-                            ->setKey('montant')
-                            ->setFilter('string')
-                            ->setRequired()
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('commande')
-                            ->setKey('commande')
-                            ->setFilter('string')
-                            ->setRequired()
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Autorisation')
-                            ->setKey('autorisation')
-                            ->setFilter('string')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Pays')
-                            ->setKey('pays')
-                            ->setFilter('string')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('erreur')
-                            ->setKey('erreur')
-                            ->setFilter('string')
-                            ->setRequired()
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Signature')
-                            ->setKey('signature')
-                            ->setFilter('string')
-                            ->setRequired()
-                    )
-                    ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('message general')
-                            ->setKey('message')
-                    )
-                    ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription("message d'erreur de l'envoi de mail")
-                            ->setKey('errors')
-                    );
-    }
-
-   
+ 
    /*fonction pour préparer l"inscription du don*/
     protected function processDon($donationInfo) {
         // date du paiement
@@ -594,19 +481,6 @@ class DonationResource extends AbstractResource
    }
    
    
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
-   
     protected function addLine($titre, $reponse, $reponse2){
         if($reponse2) return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=33%>" . $reponse . "</td><td width=33%>".$reponse2 ."</td></tr>";
         else return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67% colspan=2>" . $reponse . "</td></tr>";
@@ -637,5 +511,126 @@ class DonationResource extends AbstractResource
         }
      }
     
-     
+    public function getContentIdByName($name){
+        $this->_dataService = Manager::getService('MongoDataAccess');
+        $this->_dataService->init("Contents");
+        $content = $this->_dataService->findByName($name);
+        if (empty($content)) {
+            throw new APIEntityException('Content not found', 404);
+        }
+        return $content['id'];
+    }      
+       
+/**
+     * Define the resource
+     */
+    protected function define()
+    {
+        $this
+            ->definition
+            ->setName('Dons')
+            ->setDescription('Service de traitement des dons')
+            ->editVerb('get', function (VerbDefinitionEntity &$definition) {
+                $this->defineGet($definition);
+            })
+            ->editVerb('post', function (VerbDefinitionEntity &$definition) {
+                $this->definePost($definition);
+            });
+    }       
+       
+   /**
+     * Define get action
+     *
+     * @param VerbDefinitionEntity $definition
+     */
+    protected function definePost(VerbDefinitionEntity &$definition)
+    {
+        $definition
+            ->setDescription('Inscrire le don en base de données')
+            ->addInputFilter(
+                    (new FilterDefinitionEntity())
+                        ->setDescription('Don')
+                        ->setKey('don')                            
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Configuration de paiement')
+                    ->setKey('account')                            
+            )
+             ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Instructions')
+                    ->setKey('instructions')
+            );
+    }
+       
+    /**
+     * Define post
+     *
+     * @param VerbDefinitionEntity $verbDef
+     */
+    protected function defineGet(VerbDefinitionEntity &$verbDef)
+    {
+        $verbDef
+            ->setDescription('Retour IPN de Paybox')
+            ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('referencePaybox')
+                            ->setKey('referencePaybox')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('montant')
+                            ->setKey('montant')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('commande')
+                            ->setKey('commande')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Autorisation')
+                            ->setKey('autorisation')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Pays')
+                            ->setKey('pays')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('erreur')
+                            ->setKey('erreur')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Signature')
+                            ->setKey('signature')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addOutputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('message general')
+                            ->setKey('message')
+                    )
+                    ->addOutputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription("message d'erreur de l'envoi de mail")
+                            ->setKey('errors')
+                    );
+    }
+
+        
 }     
