@@ -66,7 +66,7 @@ class DonationResource extends AbstractResource
         $don['fields']["condition"] = $accountInfos["text"];
         $don['fields']["justificatif"] = $accountInfos["recu"];
         $don['fields'] = $this->processDon($don['fields']);
-        $don['fields']['text'] = $this->getPays() . "_" . date("Y") . str_pad($donationNumber, 6, '0', STR_PAD_LEFT); ;
+        $don['fields']['text'] = $this->getPays() . "_" . date("Y") . "_" . str_pad($donationNumber, 6, '0', STR_PAD_LEFT); ;
         $don['text'] =$don['fields']['text'] ;
         $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
         $don['target'] = "57237282c445ecf3008c7ddc";
