@@ -39,34 +39,6 @@ class DonationResource extends AbstractResource
         $content["fields"]["value"] += 1; //add 1
         $result = $contentsService->update($content, array(),false);
         
-        
-        // create don
-        $don=[];
-        $donationInfo =$params["don"];
-        $accountInfos = $params["account"];
-        $don['fields'] =  $donationInfo;
-        $don['fields']["condition"] = $accountInfos["text"];
-        $don['fields']["justificatif"] = $accountInfos["recu"];
-        $don['fields'] = $this->processDon($don['fields']);
-        $don['fields']['text'] = $this->getPays() . "_" . date("Y") . "_" . str_pad($donationNumber, 6, '0', STR_PAD_LEFT); ;
-        $don['text'] =$don['fields']['text'] ;
-        $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
-        $don['target'] = "57237282c445ecf3008c7ddc";
-        $don['typeId'] = "5652dcb945205e0d726d6caf";
-        $don['i18n'] = array(
-            $params['lang']->getLocale() => array(
-                "fields" => array(
-                    "text"=>$don['fields']['text'] 
-                )
-            )
-        );
-        $don['status'] = 'published';
-        $don['online'] = true;
-        $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
-        $don['nativeLanguage'] = $params['lang']->getLocale();
-        $resultcreate = $contentsService->create($don, array(),false);                
-        AbstractCollection::disableUserFilter(false);
-        
         // on récupére les infos du compte
         $paymentConfigPays=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_pays"]);
         $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_hors_pays"]);
@@ -87,6 +59,39 @@ class DonationResource extends AbstractResource
                 }
             }
         };
+        
+        
+        
+        
+        // create don
+        $don=[];
+        $donationInfo =$params["don"];
+        $accountInfos = $params["account"];
+        $don['fields'] =  $donationInfo;
+        $don['fields']["condition"] = $accountInfos["text"];
+        $don['fields']["justificatif"] = $accountInfos["recu"];
+        $don['fields']['isInternational'] = $isProjetInternational; 
+        $don['fields'] = $this->processDon($don['fields']);
+        $don['fields']['text'] = $this->getPays() . "_" . date("Y") . "_" . str_pad($donationNumber, 6, '0', STR_PAD_LEFT); ;
+        $don['text'] =$don['fields']['text'] ;
+        $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
+        $don['target'] = "57237282c445ecf3008c7ddc";
+        $don['typeId'] = "5652dcb945205e0d726d6caf";
+        $don['i18n'] = array(
+            $params['lang']->getLocale() => array(
+                "fields" => array(
+                    "text"=>$don['fields']['text'] 
+                )
+            )
+        );
+        $don['status'] = 'published';
+        $don['online'] = true;
+        $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
+        $don['nativeLanguage'] = $params['lang']->getLocale();
+        $resultcreate = $contentsService->create($don, array(),false);                
+        AbstractCollection::disableUserFilter(false);
+        
+        
         
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         if($don["fields"]["modePaiement"]=="carte") {
@@ -123,6 +128,7 @@ class DonationResource extends AbstractResource
         
    }
    
+
    
    
     public function getAction($params) {
