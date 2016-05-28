@@ -125,9 +125,81 @@ class DonationResource extends AbstractResource
    
    
    
-       public function getAction($params) {
+    public function getAction($params) {
+        $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage="";
+        //VERIFICATIONS PAYBOX
+        //code d'erreur
+        if($params['erreur'] == "00000") $erreurStatus = false;
+        else $erreurMessage = $this->getErrorMessage($params['erreur']);
+          
+        //autorisation
+        if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
+        else $erreurMessage .= " Pas d'autorisation de Paybox. ";
         
-       }
+        
+        if(!($erreurStatus) && $securite && $autorisation) {
+ 
+ 
+ 
+            
+        }    
+        
+        $mailCompta = "nicolas.rhone@gmail.com";
+        $mailerService = Manager::getService('Mailer');
+
+        $mailerObject = $mailerService->getNewMessage();
+        $destinataires=array($mailCompta);
+        $replyTo="web@chemin-neuf.org";
+        $from="web@chemin-neuf.org";
+        
+        $erreur = $params['erreur'];
+        if ($erreur == "00000") {
+            $sujet = "Réception d'un paiement en ligne - ".$prenom.' '. $nom;
+        }
+        else {
+            $sujet = "Échec paiement en ligne";
+        }
+        if ($erreur == "00000") {
+            $body = "Montant payé : " . $params['montant']/100 . " euros.\n" ;
+            /*$body.=$inscription['content']['fields']['propositionTitre'];
+            $body .= "Proposition : " . $inscription['fields']['propositionTitre']."\n";
+            $body .= "Code Onesime : " . $inscription['fields']['codeOnesime']."\n";
+            $body .= "Code Compta : " . $codeCompta."\n";
+            $body .= "Id Inscription : " . $inscription['fields']['text']."\n";
+            $body .= "Nom : " . $inscription['fields']['nom']."\n";
+            $body .= "Prénom : " . $inscription['fields']['surname']."\n";
+             $body .= "Email : " . $inscription['fields']['email']."\n";
+            if($erreurMessage!="") $body.="\n\n Message : " . $erreurMessage;*/
+        }
+        else {
+            $body = "Montant non payé : " . $params['montant']/100  . " euros." ;
+            $body.="\n\n Raisons de l'échec : ".$erreurMessage;
+        }
+        $body = $body . " \n\n " . $params['commande'];
+        
+        $mailerObject->setTo($destinataires);
+        $mailerObject->setFrom($from);
+        $mailerObject->setSubject($sujet);
+        $mailerObject->setReplyTo($replyTo);
+        $mailerObject->setBody($body);
+
+        // Send e-mail
+        if ($mailerService->sendMessage($mailerObject, $errors)) {
+            return [
+                'success' => true,
+                'message' => $body,
+                'errors' =>$_SERVER
+            ];
+        } else {
+            return [
+                'success' => false,
+                'message' => 'Error encountered, more details in "errors"',
+                'errors' => $erreurMessage
+            ];
+        }
+           
+        
+    }
        
         
        
@@ -184,29 +256,62 @@ class DonationResource extends AbstractResource
         $verbDef
             ->setDescription('Retour IPN de Paybox')
             ->addInputFilter(
-                (new FilterDefinitionEntity())
-                    ->setDescription('Current URL')
-                    ->setKey('currentUrl')
-                    ->setFilter('validate_url')
-            )
-            ->addInputFilter(
-                (new FilterDefinitionEntity())
-                    ->setDescription('UserType id')
-                    ->setKey('usertype')
-                    ->setFilter('\MongoId')
-                    ->setRequired()
-            )
-            ->addInputFilter(
-                (new FilterDefinitionEntity())
-                    ->setDescription('Fields names returned with user')
-                    ->setKey('fields')
-            )
-            ->addOutputFilter(
-                (new FilterDefinitionEntity())
-                    ->setDescription('The user')
-                    ->setKey('user')
-                    ->setRequired()
-            );
+                        (new FilterDefinitionEntity())
+                            ->setDescription('referencePaybox')
+                            ->setKey('referencePaybox')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('montant')
+                            ->setKey('montant')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('commande')
+                            ->setKey('commande')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Autorisation')
+                            ->setKey('autorisation')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Pays')
+                            ->setKey('pays')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('erreur')
+                            ->setKey('erreur')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Signature')
+                            ->setKey('signature')
+                            ->setFilter('string')
+                            ->setRequired()
+                    )
+                    ->addOutputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('message general')
+                            ->setKey('message')
+                    )
+                    ->addOutputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription("message d'erreur de l'envoi de mail")
+                            ->setKey('errors')
+                    );
     }
 
    

@@ -81,8 +81,7 @@ class PayboxIpnResource extends AbstractResource {
                         (new FilterDefinitionEntity())
                             ->setDescription("message d'erreur de l'envoi de mail")
                             ->setKey('errors')
-                    )
-                    ;
+                    );
             });
     }
     function getAction($params) {
