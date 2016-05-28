@@ -161,7 +161,7 @@ class DonationResource extends AbstractResource
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
         /*Récupérer le contenu config de dons correspondant*/
         $conditionFiscale = $contentsService->findById($don["fields"]["conditionId"],false,false);
-        var_dump($projectDetail);
+        var_dump($don["fields"]["projetId"]);
         AbstractCollection::disableUserFilter(false);
         /*récupérer les infos du compte*/
         if($don["fields"]["isInternational"]) {
