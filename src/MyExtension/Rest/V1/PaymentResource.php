@@ -61,10 +61,16 @@ class PaymentResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Type de paiement (paf / dons')
+                            ->setDescription('Type de paiement (paf / dons)')
                             ->setKey('paymentType')
                             ->setFilter('string')
                             ->setRequired()
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Numéro de compte (pour les dons)')
+                            ->setKey('accountId')
+                            ->setFilter('string')
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
@@ -101,14 +107,15 @@ class PaymentResource extends AbstractResource {
         $paymentType=$params['paymentType']; // type de paiement (paf ou dons)
         $place = $params['placeID']; // lieu communautaire pour compta
         $codeCompta="";
-    // récupérer l'id du compte de paiement
-        $id = $this->getAccountId();
-    // récupérer les infos du compte
-        $paymentInfos = $this->getPaymentInfos($id);
 
         switch ($paymentType) {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
             case "paf":
+            // récupérer l'id du compte de paiement
+                $id = $this->getAccountId();
+            // récupérer les infos du compte
+                $paymentInfos = $this->getPaymentInfos($id);
+                
                 if($place && $place!="") {
                     $wasFiltered = AbstractCollection::disableUserFilter(true);
                     $lieuCommunautaire = Manager::getService("Contents")->findById($place,false,false);
@@ -124,6 +131,10 @@ class PaymentResource extends AbstractResource {
          /*DONS */           
             case "dons":
                 
+            // récupérer l'id du compte de paiement
+                $id = $params['accountId'];
+            // récupérer les infos du compte
+                $paymentInfos = $this->getPaymentInfos($id);
                 
                 
                 $commande = $idInscription . "|dons|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 

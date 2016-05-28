@@ -122,7 +122,7 @@ class DonationResource extends AbstractResource
             $payboxAccount = $contentsService->findById($payboxAccountId,false,false);
             AbstractCollection::disableUserFilter(false);*/
             /*PROCESS INFOS FOR PAYMENT*/
-            $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'] );
+            $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "accountId" => $payboxAccountId );
             
         }
         else {
