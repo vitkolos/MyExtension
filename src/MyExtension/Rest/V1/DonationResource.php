@@ -147,7 +147,7 @@ class DonationResource extends AbstractResource
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("Contents");
         $content = $contentsService->findByName($idDonation);
-var_dump($content);
+var_dump($idDonation);
         $contentId = $content['id'];        
         AbstractCollection::disableUserFilter(false);
 
