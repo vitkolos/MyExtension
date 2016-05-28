@@ -17,13 +17,12 @@ CKEDITOR.stylesSet.add( 'default', [
     { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} },
     { name: 'Sous-titre FOI', element: 'p', attributes: { 'class': 'red-sub'} },
     {
-		name: 'Centered image',
+		name: 'Centrer image',
 		element: 'img',
 		attributes: { 'style': 'margin:0 auto' }
     },
-    { name: 'Centrer quote', element: 'blockquote', attributes: { 'class': 'center'} },
-    { name: 'button', element: 'a', attributes: { 'class': 'button rouge'} },
-    { name: 'icones', element: 'span', attributes: { 'class': 'font_icon' } },
+    { name: 'Citation', element: 'blockquote', attributes: { 'class': 'center'} },
+    { name: 'Bouton rouge', element: 'a', attributes: { 'class': 'button rouge'} }
 
 
 ] );

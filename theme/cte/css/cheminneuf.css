@@ -29,8 +29,16 @@
 .ccn-boutique:before{content:'\0048';}
 .ccn-photo:before{content:'\0049';}
 .ccn-groupe:before{content:'\004a';}
-.ccn-hebergement:before{content:'\004b';}
+.ccn-hebergement:before{content:'\004b';} /*K*/
 .ccn-info:before{content:'\004c';}
 .ccn-sejour:before{content:'\004d';}
 .ccn-spirituelle:before{content:'\004e';}
 .ccn-visite:before{content:'\004f';}
+.font-ccn{
+    display: inline-block;
+   font-family: 'cheminneuf';
+   font-style: normal;
+   font-weight: normal;
+   line-height: 1;
+   vertical-align: middle;
+}
