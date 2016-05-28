@@ -136,7 +136,7 @@ class PaymentResource extends AbstractResource {
                 $paymentInfos = $this->getPaymentInfos($id);
                 
                 
-                $commande = $place . "|" . $idInscription . "|dons|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
+                $commande = $place . "|" . $idInscription . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
                 $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/donation/";
                 break;
             default:
