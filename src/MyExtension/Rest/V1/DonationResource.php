@@ -155,10 +155,30 @@ class DonationResource extends AbstractResource
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $this->_dataService = Manager::getService('MongoDataAccess');
         $this->_dataService->init("Contents");
-        $content = $this->_dataService->findByName($idDonation);
-        $contentId = $content['id'];        
+        $don = $this->_dataService->findByName($idDonation);
+        /*Récupérer le contenu projet correspondant*/
+        $contentsService = Manager::getService("ContentsCcn");
+        $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
+        /*Récupérer le contenu config de dons correspondant*/
+        $conditionFiscale = $contentsService->findById($don["fields"]["conditionId"],false,false);
         AbstractCollection::disableUserFilter(false);
+        /*récupérer les infos du compte*/
+        if($don["fields"]["isInternational"]) {
+            $paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_hors_pays"]);
+        }
+        else {
+            $paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_pays"]);
+            
+        }
+        
+        /*récupérer les infos nécessaires aux mails*/
+        
+        
+        $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfig["data"],$don['nativeLanguage'], true);
 
+        
+        
+        
         
         $mailCompta = "nicolas.rhone@gmail.com";
         $mailerService = Manager::getService('Mailer');
