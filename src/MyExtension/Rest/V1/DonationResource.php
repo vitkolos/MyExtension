@@ -26,6 +26,8 @@ class DonationResource extends AbstractResource
         $arrayToReturn=[];
         $donationInfo =$params["don"];
         $accountInfos = $params["account"];
+        $don=[];
+        $don['fields'] =  $donationInfo;
         
         $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
         //get numero de dons
@@ -67,8 +69,6 @@ class DonationResource extends AbstractResource
         
         
         // create don
-        $don=[];
-        $don['fields'] =  $donationInfo;
         $don['fields']["condition"] = $accountInfos["text"];
         $don['fields']["justificatif"] = $accountInfos["recu"];
         $don['fields']['isInternational'] = $isProjetInternational; 
