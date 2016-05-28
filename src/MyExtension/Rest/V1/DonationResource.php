@@ -24,6 +24,9 @@ class DonationResource extends AbstractResource
     public function postAction($params)
     {
         $arrayToReturn=[];
+        $donationInfo =$params["don"];
+        $accountInfos = $params["account"];
+        
         $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
         //get numero de dons
         $wasFiltered = AbstractCollection::disableUserFilter(true);
@@ -65,8 +68,6 @@ class DonationResource extends AbstractResource
         
         // create don
         $don=[];
-        $donationInfo =$params["don"];
-        $accountInfos = $params["account"];
         $don['fields'] =  $donationInfo;
         $don['fields']["condition"] = $accountInfos["text"];
         $don['fields']["justificatif"] = $accountInfos["recu"];
