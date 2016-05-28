@@ -486,7 +486,8 @@ protected function sendInscriptionMail($inscription,$lang){
     $messageSecretariat .= $this->addLine($trad["ccn_label_proposition"],  "<a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a>");          
     $messageSecretariat .= $this->addLine($trad["ccn_label_date"], $inscription['propositionDate'] );          
     $messageSecretariat .= $this->addLine($trad["ccn_label_lieu"], $inscription['propositionLieu'] );
-    $messageSecretariat .= $this->addLine($trad["ccn_contact"], $contactSecretariat );          
+    $messageSecretariat .= $this->addLine($trad["ccn_label_proposition"],  "<a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a>");          
+    if($inscription['codeOnesime']) $messageSecretariat .= $this->addLine($trad["ccn_label_codeOnesime"], $inscription['codeOnesime'] );          
     $messageSecretariat .= "</table><br/>";
    
     
