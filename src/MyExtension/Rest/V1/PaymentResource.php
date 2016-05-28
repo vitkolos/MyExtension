@@ -107,7 +107,6 @@ class PaymentResource extends AbstractResource {
         $paymentType=$params['paymentType']; // type de paiement (paf ou dons)
         $place = $params['placeID']; // lieu communautaire pour compta
         $codeCompta="";
-
         switch ($paymentType) {
          /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
             case "paf":
@@ -137,7 +136,8 @@ class PaymentResource extends AbstractResource {
                 $paymentInfos = $this->getPaymentInfos($id);
                 
                 
-                $commande = $idInscription . "|dons|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
+                $commande = $place . "|" . $idInscription . "|dons|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
+                $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/donation/";
                 break;
             default:
                 $parametres = "Pas de mode de paiement indiqué";

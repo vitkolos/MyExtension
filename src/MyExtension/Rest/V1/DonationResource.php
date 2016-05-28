@@ -15,31 +15,13 @@ class DonationResource extends AbstractResource
     public function __construct()
     {
         parent::__construct();
-        $this
-            ->definition
-            ->setName('Dons')
-            ->setDescription('Service de traitement des dons')
-            ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
-                $verbDefinitionEntity
-                    ->setDescription('Inscrire le don en base de données')
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Don')
-                            ->setKey('don')                            
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Configuration de paiement')
-                            ->setKey('account')                            
-                    )
-                     ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Numéro de dons')
-                            ->setKey('instructions')
-                    );
-            });
-    }
-    public function getAction($params)
+        $this->define();
+    }    
+    
+    
+    
+    
+    public function postAction($params)
     {
         $arrayToReturn=[];
         $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
@@ -140,6 +122,93 @@ class DonationResource extends AbstractResource
         return array('success' =>true, 'instructions' =>$arrayToReturn);
         
    }
+   
+   
+   
+       public function getAction($params) {
+        
+       }
+       
+        
+       
+/**
+     * Define the resource
+     */
+    protected function define()
+    {
+        $this
+            ->definition
+            ->setName('Dons')
+            ->setDescription('Service de traitement des dons')
+            ->editVerb('get', function (VerbDefinitionEntity &$definition) {
+                $this->defineGet($definition);
+            })
+            ->editVerb('post', function (VerbDefinitionEntity &$definition) {
+                $this->definePost($definition);
+            });
+    }       
+       
+   /**
+     * Define get action
+     *
+     * @param VerbDefinitionEntity $definition
+     */
+    protected function definePost(VerbDefinitionEntity &$definition)
+    {
+        $definition
+            ->setDescription('Inscrire le don en base de données')
+            ->addInputFilter(
+                    (new FilterDefinitionEntity())
+                        ->setDescription('Don')
+                        ->setKey('don')                            
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Configuration de paiement')
+                    ->setKey('account')                            
+            )
+             ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Numéro de dons')
+                    ->setKey('instructions')
+            );
+    }
+       
+    /**
+     * Define post
+     *
+     * @param VerbDefinitionEntity $verbDef
+     */
+    protected function defineGet(VerbDefinitionEntity &$verbDef)
+    {
+        $verbDef
+            ->setDescription('Retour IPN de Paybox')
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Current URL')
+                    ->setKey('currentUrl')
+                    ->setFilter('validate_url')
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('UserType id')
+                    ->setKey('usertype')
+                    ->setFilter('\MongoId')
+                    ->setRequired()
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Fields names returned with user')
+                    ->setKey('fields')
+            )
+            ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('The user')
+                    ->setKey('user')
+                    ->setRequired()
+            );
+    }
+
    
    /*fonction pour préparer l"inscription du don*/
     protected function processDon($donationInfo) {

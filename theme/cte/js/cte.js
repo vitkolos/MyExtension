@@ -206,19 +206,20 @@ angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',functi
     return serviceInstance;
 }]);
 angular.module('rubedoDataAccess').factory('DonationService', ['$http',function($http) {
-    var serviceInstance={};
-    serviceInstance.donate=function(don, account){
-           return ($http.get("/api/v1/donation", {
-                params: {
+           var serviceInstance={};
+           serviceInstance.donate=function(don, account){
+            return ($http({
+                url:"api/v1/donation",
+                method:"POST",
+                data : {
                     don:don,
-		    account : account
+                    account : account
                 }
             }));
-
-            
-    };
+        };
     return serviceInstance;
 }]);
+
 angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($http) {
     var serviceInstance={};
     serviceInstance.payment=function(payload){
