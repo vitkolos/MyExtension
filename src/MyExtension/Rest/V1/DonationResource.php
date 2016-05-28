@@ -145,9 +145,11 @@ class DonationResource extends AbstractResource
             
         }
         $wasFiltered = AbstractCollection::disableUserFilter(true);
-        $contentsService = Manager::getService("Contents");
-        $content = $contentsService->findByName($idDonation);
-var_dump($idDonation);
+        $this->_dataService = Manager::getService('MongoDataAccess');
+        $this->_dataService->init("Contents");
+        $content = $this->_dataService->findByName($idDonation);
+        
+        var_dump($content);
         $contentId = $content['id'];        
         AbstractCollection::disableUserFilter(false);
 
