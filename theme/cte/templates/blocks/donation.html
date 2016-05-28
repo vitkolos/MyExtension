@@ -244,7 +244,7 @@
                                                 <p ng-if="finInscription">{{message}}</p>
                                         </div>
                                         <!---proceed to payement-->
-                                        <form ng-if="don.modePaiement=='carte' "id="payment" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
+                                        <form ng-if="don.modePaiement=='carte' "id="payment" name="payment"  method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
                                             <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
                                             <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
                                             <input type="hidden" name="PBX_SITE" value="{{parametres.payboxSite}}">
