@@ -175,7 +175,7 @@ class DonationResource extends AbstractResource
         /*récupérer les infos nécessaires aux mails*/
         
         
-        $this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['nativeLanguage'], true);
+        $this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage'], true);
 
         
         
