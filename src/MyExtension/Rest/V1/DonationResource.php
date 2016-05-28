@@ -158,9 +158,9 @@ class DonationResource extends AbstractResource
         $don = $this->_dataService->findByName($idDonation);
         /*Récupérer le contenu projet correspondant*/
         $contentsService = Manager::getService("ContentsCcn");
-        $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
+        $projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
         /*Récupérer le contenu config de dons correspondant*/
-        $conditionFiscale = $contentsService->findById($don["fields"]["conditionId"],false,false);
+        $conditionFiscale = $contentsService->findById($don["live"]["fields"]["conditionId"],false,false);
         var_dump($don);
         AbstractCollection::disableUserFilter(false);
         /*récupérer les infos du compte*/
@@ -175,7 +175,7 @@ class DonationResource extends AbstractResource
         /*récupérer les infos nécessaires aux mails*/
         
         
-        //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfig["data"],$don['nativeLanguage'], true);
+        //$this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['nativeLanguage'], true);
 
         
         
