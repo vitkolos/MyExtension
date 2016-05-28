@@ -229,7 +229,7 @@
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             templates_replaceContent : false,
             customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
-            font_names : 'Merriweather;Montserrat;FontAwesome',
+            font_names : 'Merriweather;Montserrat;FontAwesome, cheminneuf',
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
