@@ -70,9 +70,11 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                             if(response.data.success){
                                 me.fiscalites[response.data.content.text] = {
                                     "label" : response.data.content.text,
-                                    "fields":response.data.content.fields
+                                    "fields":response.data.content.fields,
+                                    "id":response.data.content.id
                                 };
                                 me.account = response.data.content.fields;
+                                $scope.don.conditionId = response.data.content.id;
                                 me.fiscalitesCount++;
                             }
                         }
@@ -116,6 +118,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             /*déterminer la config de dons choisie*/
             if (me.fiscalitesCount>1) {
                 me.account = me.fiscalites[$scope.don.condition].fields;
+                $scope.don.conditionId = me.fiscalites[$scope.don.condition].id;
             }
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {

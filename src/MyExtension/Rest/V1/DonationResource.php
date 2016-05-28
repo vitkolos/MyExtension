@@ -144,12 +144,11 @@ class DonationResource extends AbstractResource
  
             
         }
+        /*Récupérer le contenu dons correspondant*/
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $this->_dataService = Manager::getService('MongoDataAccess');
         $this->_dataService->init("Contents");
         $content = $this->_dataService->findByName($idDonation);
-        
-        var_dump($content);
         $contentId = $content['id'];        
         AbstractCollection::disableUserFilter(false);
 
