@@ -175,7 +175,7 @@ class DonationResource extends AbstractResource
         /*récupérer les infos nécessaires aux mails*/
         
         
-        //$this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['nativeLanguage'], true);
+        $this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['nativeLanguage'], true);
 
         
         
@@ -213,7 +213,7 @@ class DonationResource extends AbstractResource
         $mailerObject->setBody($body);
 
         // Send e-mail
-        /*if ($mailerService->sendMessage($mailerObject, $errors)) {
+        if ($mailerService->sendMessage($mailerObject, $errors)) {
             return [
                 'success' => true,
                 'message' => $body,
@@ -225,7 +225,7 @@ class DonationResource extends AbstractResource
                 'message' => 'Error encountered, more details in "errors"',
                 'errors' => $erreurMessage
             ];
-        }*/
+        }
            
         
     }
