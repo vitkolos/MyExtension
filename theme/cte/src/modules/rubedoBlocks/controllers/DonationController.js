@@ -134,7 +134,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                             proposition:$scope.don.projet,
                             idInscription: response.data.instructions.id,
                             paymentType: 'dons',
-                            placeId:codeAna
+                            placeId:$scope.contentDetailCtrl.content.fields.codeAna
                         };            
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
