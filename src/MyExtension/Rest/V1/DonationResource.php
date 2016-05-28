@@ -168,7 +168,7 @@ class DonationResource extends AbstractResource
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
         $messageDonateur = "";
-        $messageDonateur .= "<p>".$don["civilite"] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
+        $messageDonateur .= "<p>".$trad["ccn_label_". $don["civilite"]] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
         //sujet admininistrateur
         $sujetAdmin= $trad["ccn_don"] . " " . $don["text"] . " - " . $don["montantAvecFrequence"] ." - " . $don["nom"] . " - " . $don["modePaiement"] . " - " . $don["projet"];
 
@@ -296,7 +296,7 @@ class DonationResource extends AbstractResource
         // infos sur le donateur
         $messageAdmin .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
         $messageAdmin .= $this->addLine($trad["ccn_label_societe_ou_organisme"],$don["societe"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_civilite"],$don["civilite"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_civilite"],$trad["ccn_label_". $don["civilite"]] );
         $messageAdmin .= $this->addLine($trad["ccn_label_nom"],$don["nom"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_prenom"],$don["surname"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$don["birthdate"]) );
