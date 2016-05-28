@@ -42,8 +42,8 @@ class DonationResource extends AbstractResource
         
         // create don
         $don=[];
-        $donationInfo = json_decode($params["don"],true);
         var_dump($donationInfo);
+        $donationInfo = json_decode($params["don"],true);
         $accountInfos = json_decode($params["account"],true);
         $don['fields'] =  $donationInfo;
         $don['fields']["condition"] = $accountInfos["text"];
@@ -170,7 +170,7 @@ class DonationResource extends AbstractResource
             )
              ->addOutputFilter(
                 (new FilterDefinitionEntity())
-                    ->setDescription('Numéro de dons')
+                    ->setDescription('Instructions')
                     ->setKey('instructions')
             );
     }
