@@ -110,10 +110,10 @@ class DonationResource extends AbstractResource
         }
         else {
             if($isProjetInternational) {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale());
+                //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale());
             }
             else {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
+                //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
             }
             $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
         }
