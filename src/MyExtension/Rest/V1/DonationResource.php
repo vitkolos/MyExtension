@@ -130,7 +130,7 @@ class DonationResource extends AbstractResource
         //VERIFICATIONS PAYBOX
         //code d'erreur
         if($params['erreur'] == "00000") $erreurStatus = false;
-        else $erreurMessage = $this->getErrorMessage($params['erreur']);
+        //else $erreurMessage = $this->getErrorMessage($params['erreur']);
           
         //autorisation
         if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
