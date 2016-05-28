@@ -211,12 +211,11 @@ class PaymentResource extends AbstractResource {
     }
     protected function getAccountId(){
         switch($_SERVER['HTTP_HOST']) {
+            case "chemin-neuf.fr" : 
             case "ccn.chemin-neuf.fr" : 
                 return "55473e9745205e1d3ef1864d"; break;
         }
      }
-     protected function createPayment(){
-        
-     }
+
      
 } 

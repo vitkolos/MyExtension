@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoPaymentMeansService','RubedoContentsService','DonationService','$filter',
-                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoPaymentMeansService,RubedoContentsService,DonationService,$filter) {
+angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','RubedoUserTypesService','RubedoUsersService','RubedoAuthService','RubedoPaymentMeansService','RubedoContentsService','DonationService','$filter','PaymentService',
+                                                                     function($scope,RubedoUserTypesService,RubedoUsersService,RubedoAuthService,RubedoPaymentMeansService,RubedoContentsService,DonationService,$filter,PaymentService) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     //templates
@@ -119,11 +119,40 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             }
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
-                    $scope.finInscription = true;
-                    $scope.processForm=false;
+
                     if (response.data.instructions.whatToDo=="displayRichText") {
                         $scope.message = "Votre don a bien été enregistré. Votre numéro de suivi est : "+response.data.instructions.id+". Un récapitulatif vous sera envoyé par mail.";
-                        
+                        $scope.finInscription = true;
+                        $scope.processForm=false;                        
+                    }
+                    else if (response.data.instructions.whatToDo=="proceedToPayment") {
+                        var payload = {
+                            nom:$scope.don.user.nom,
+                            prenom: $scope.don.user.surname,
+                            email:$scope.don.user.email,
+                            montant:$scope.don.montant,
+                            proposition:$scope.don.projet,
+                            idInscription: response.data.instructions.id,
+                            paymentType: 'dons',
+                            placeId:codeAna
+                        };            
+                        PaymentService.payment(payload).then(function(response){
+                            if (response.data.success) {
+                                $scope.parametres = response.data.parametres;
+                                /*délai pour laisser le formulaire se remplir*/
+                                $timeout(function() {
+                                    $scope.processForm=false;
+                                    document.getElementById('payment').submit();
+                                }, 100);
+                            }
+                            else {
+                                $scope.processForm=false;
+                                $scope.finInscription=true;  
+                                $scope.inscription={};
+                                $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
+                            }
+                            
+                        });
                     }
                 }
             })

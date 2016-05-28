@@ -243,6 +243,27 @@
                                                 <img src="/theme/cte/img/loader.gif" ng-if="processForm">
                                                 <p ng-if="finInscription">{{message}}</p>
                                         </div>
+                                        <!---proceed to payement-->
+                                        <form ng-if="don.modePaiement=='carte' "id="payment" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
+                                            <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
+                                            <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
+                                            <input type="hidden" name="PBX_SITE" value="{{parametres.payboxSite}}">
+                                            <input type="hidden" name="PBX_RANG" value="{{parametres.payboxRang}}">
+                                            <input type="hidden" name="PBX_IDENTIFIANT" value="{{parametres.payboxIdentifiant}}">
+                                            <input type="hidden" name="PBX_TOTAL" value="{{parametres.montantEnCentimes}}">
+                                            <input type="hidden" name="PBX_DEVISE" value="{{parametres.codeMonnaieNumerique}}">
+                                            <input type="hidden" name="PBX_CMD" value="{{parametres.commande}}">
+                                            <input type="hidden" name="PBX_PORTEUR" value="{{parametres.email}}">
+                                            <input type="hidden" name="PBX_RETOUR" value="{{parametres.payboxRetour}}">
+                                            <input type="hidden" name="PBX_HASH" value="SHA512">
+                                            <input type="hidden" name="PBX_TIME" value="{{parametres.dateTime}}">
+                                            <input type="hidden" name="PBX_EFFECTUE" value="{{parametres.urlRetourNormal}}">
+                                            <input type="hidden" name="PBX_REFUSE" value="{{parametres.urlRetourEchec}}">
+                                            <input type="hidden" name="PBX_ANNULE" value="{{parametres.urlRetourEchec}}">
+                                            <input type="hidden" name="PBX_REPONDRE_A" value="{{parametres.urlCallback}}">
+                                            <input type="hidden" name="PBX_HMAC" value="{{parametres.empreinteHasheeHex}}">
+                                        <input type="submit" value="Envoyer">
+                                    <form>
                                         
                                     </div>
                         </ng-form>
