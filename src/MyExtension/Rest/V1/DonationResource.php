@@ -192,7 +192,7 @@ class DonationResource extends AbstractResource
             //ajouter un message d'erreur ?
         }
 
-        $this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage']);
+        $this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage']);
         return [
                 'success' => true,
                 'result' => $result
@@ -232,7 +232,7 @@ class DonationResource extends AbstractResource
         $contentsService = Manager::getService("ContentsCcn");
         $contentContactNational = $contentsService->findById($contactNationalDonsId,false,false);
         AbstractCollection::disableUserFilter(false);
-        /*$contactNational = $contentContactNational["fields"];*/
+        $contactNational = $contentContactNational["fields"];
         $emailResponsableInternationalDons = "nicolas.rhone@chemin-neuf.org";
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
