@@ -180,7 +180,6 @@ class DonationResource extends AbstractResource
             $wasFiltered = AbstractCollection::disableUserFilter(true);
             //récupérer le contenu don avec le bon format :-)
             $contentToUpdate = $contentsService->findById($don["id"],false,false);
-            var_dump($contentToUpdate);
             $contentToUpdate["i18n"] = $don["live"]["i18n"];
             $contentToUpdate["fields"]["etat"]="paiement_carte_valide";
             //$contentToUpdate["version"] = 2;
@@ -223,7 +222,16 @@ class DonationResource extends AbstractResource
         $contactProjet = array("nom" => $projectDetail["fields"]["nom"],
                                "titre" => $projectDetail["fields"]["contactTitle"],
                                "email" =>$projectDetail["fields"]["email"]);
-        $contactNational = $don["contactNational"];
+        //contact national défini dans la configuration de payement du pays (et pas forcément celle choisie par le donateur!)
+        //$contactNational = $don["contactNational"];
+        $paymentMeansPays=Manager::getService("PaymentConfigs")->getConfigForPM($this->getConfigPays());
+        $contactNationalDonsId = $paymentMeansPays["data"]["nativePMConfig"]["contactDonsId"];
+        $wasFiltered = AbstractCollection::disableUserFilter(true);
+        //récupérer le contenu contact national
+        $contentContactNational = $contentsService->findById($contactNationalDonsId,false,false);
+        AbstractCollection::disableUserFilter(false);
+        $contactNational = $contentContactNational["fields"];
+        
         $emailResponsableInternationalDons = "partage@chemin-neuf.org";
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
@@ -507,6 +515,13 @@ class DonationResource extends AbstractResource
             case "chemin-neuf.fr" : 
             case "ccn.chemin-neuf.fr" : 
                 return "FR"; break;
+        }
+     }
+     protected function getConfigPays(){
+        switch($_SERVER['HTTP_HOST']) {
+            case "chemin-neuf.fr" : 
+            case "ccn.chemin-neuf.fr" : 
+                return "paf_fr"; break;
         }
      }
     
