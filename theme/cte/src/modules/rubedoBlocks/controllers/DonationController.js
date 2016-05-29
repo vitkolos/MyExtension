@@ -111,9 +111,11 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             else $scope.don.montantAvecFrequence += $scope.don.montant_autre + " " + $scope.don.monnaie;
             if ($scope.don.mensuel) {
                 $scope.don.montantAvecFrequence += " "+$scope.rubedo.translate("Block.Dons.Mois","par mois");
+                $scope.don.frequence="mensuel";
             }
             else if ($scope.don.trimestriel) {
                 $scope.don.montantAvecFrequence += " "+$scope.rubedo.translate("Block.Dons.Trimestre","par trimestre");
+                $scope.don.frequence="trimestriel";
             }
             /*déterminer la config de dons choisie*/
             if (me.fiscalitesCount>1) {
