@@ -179,13 +179,19 @@ class DonationResource extends AbstractResource
             $don["live"]["fields"]["etat"] = "paiement_carte_valide";
             $don["live"]["version"] = 2;
             $wasFiltered = AbstractCollection::disableUserFilter(true);
+            //récupérer le contenu don avec le bon format :-)
+            $contentToUpdate = $contentsService->findById($id,false,false);
+            $contentToUpdate["i18n"] = $don["live"]["i18n"];
+            $contentToUpdate["fields"]["etat"]="paiement_carte_valide";
         //update numero incrémenté
-            $result = $contentsService->update($don["live"], array(),false);            
+            $result = $contentsService->update($contentToUpdate, array(),false);            
             AbstractCollection::disableUserFilter(false);
             var_dump($result);
 
         }
         else var_dump("ERREUR");
+
+
         
         /*
         $mailCompta = "nicolas.rhone@gmail.com";
