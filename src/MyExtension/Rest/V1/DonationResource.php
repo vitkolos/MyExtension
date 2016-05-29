@@ -229,9 +229,9 @@ class DonationResource extends AbstractResource
         $contactNationalDonsId = $paymentMeansPays["data"]["nativePMConfig"]["contactDonsId"];
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         //récupérer le contenu contact national
+        $contentsService = Manager::getService("ContentsCcn");
         $contentContactNational = $contentsService->findById($contactNationalDonsId,false,false);
         AbstractCollection::disableUserFilter(false);
-        var_dump($contentContactNational);
         /*$contactNational = $contentContactNational["fields"];*/
         $emailResponsableInternationalDons = "nicolas.rhone@chemin-neuf.org";
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
