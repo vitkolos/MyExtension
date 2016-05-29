@@ -224,7 +224,7 @@ class DonationResource extends AbstractResource
                                "titre" => $projectDetail["fields"]["contactTitle"],
                                "email" =>$projectDetail["fields"]["email"]);
         $contactNational = $don["contactNational"];
-        $emailResponsableInternationalDons = "nicolas.rhone@chemin-neuf.org";
+        $emailResponsableInternationalDons = "partage@chemin-neuf.org";
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
         $messageDonateur = "";
