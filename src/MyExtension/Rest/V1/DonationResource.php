@@ -180,7 +180,8 @@ class DonationResource extends AbstractResource
             $don["live"]["version"] = 2;
             $wasFiltered = AbstractCollection::disableUserFilter(true);
             //récupérer le contenu don avec le bon format :-)
-            $contentToUpdate = $contentsService->findById($id,false,false);
+            $contentToUpdate = $contentsService->findById($don["id"],false,false);
+            var_dump($contentToUpdate);
             $contentToUpdate["i18n"] = $don["live"]["i18n"];
             $contentToUpdate["fields"]["etat"]="paiement_carte_valide";
             $contentToUpdate["version"] = 2;
