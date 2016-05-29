@@ -161,7 +161,6 @@ class DonationResource extends AbstractResource
         $projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
         /*Récupérer le contenu config de dons correspondant*/
         $conditionFiscale = $contentsService->findById($don["live"]["fields"]["conditionId"],false,false);
-        var_dump($don);
         AbstractCollection::disableUserFilter(false);
         /*récupérer les infos du compte*/
         if($don["fields"]["isInternational"]) {
@@ -169,17 +168,25 @@ class DonationResource extends AbstractResource
         }
         else {
             $paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_pays"]);
-            
         }
         
-    /*ajouter le titre du don*/        
+        /*ajouter le titre du don*/        
         $don["live"]["fields"]["text"] = $don["text"];
         $this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage'], true);
 
+        /*mettre à jour le statut de payement dans le contenu don*/
+        if($don["live"]["fields"]["montant"]*100 == $params['montant']) {
+            $don["live"]["fields"]["etat"] = "paiement_carte_valide";
+            $wasFiltered = AbstractCollection::disableUserFilter(true);
+        //update numero incrémenté
+            $result = $contentsService->update($don["live"], array(),false);            
+            AbstractCollection::disableUserFilter(false);
+            var_dump($result);
+
+        }
+        else var_dump("ERREUR");
         
-        
-        
-        
+        /*
         $mailCompta = "nicolas.rhone@gmail.com";
         $mailerService = Manager::getService('Mailer');
 
@@ -225,8 +232,12 @@ class DonationResource extends AbstractResource
                 'errors' => $erreurMessage
             ];
         }
+           */
            
-        
+        return [
+                'success' => true
+                
+            ];
     }
        
  
