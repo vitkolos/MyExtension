@@ -176,9 +176,8 @@ class DonationResource extends AbstractResource
 
         /*mettre à jour le statut de payement dans le contenu don*/
         if($don["live"]["fields"]["montant"]*100 == $params['montant']) {
-            var_dump($don);
             $don["live"]["fields"]["etat"] = "paiement_carte_valide";
-            $don["live"]["version"] = $don["version"] +1;
+            $don["live"]["version"] = 2;
             $wasFiltered = AbstractCollection::disableUserFilter(true);
         //update numero incrémenté
             $result = $contentsService->update($don["live"], array(),false);            
