@@ -13,7 +13,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         mademoiselle : $scope.rubedo.translate("Block.Inscription.Civilite.Mademoiselle","Mademoiselle"),
         pere:  $scope.rubedo.translate("Block.Inscription.Civilite.Pere","Père"),
         soeur: $scope.rubedo.translate("Block.Inscription.Civilite.Soeur","Soeur"),
-        frere: $scope.rubedo.translate("Block.Inscription.Civilite.Frere","Frère"),     
+        frere: $scope.rubedo.translate("Block.Inscription.Civilite.Frere","Frère")     
     };
     
     $scope.don= {};
