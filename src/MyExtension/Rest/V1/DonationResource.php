@@ -231,6 +231,7 @@ class DonationResource extends AbstractResource
         //récupérer le contenu contact national
         $contentContactNational = $contentsService->findById($contactNationalDonsId,false,false);
         AbstractCollection::disableUserFilter(false);
+        var_dump($contentContactNational);
         $contactNational = $contentContactNational["fields"];
         $emailResponsableInternationalDons = "nicolas.rhone@chemin-neuf.org";
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
