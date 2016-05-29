@@ -184,7 +184,7 @@ class DonationResource extends AbstractResource
             var_dump($contentToUpdate);
             $contentToUpdate["i18n"] = $don["live"]["i18n"];
             $contentToUpdate["fields"]["etat"]="paiement_carte_valide";
-            $contentToUpdate["version"] = 2;
+            //$contentToUpdate["version"] = 2;
         //update numero incrémenté
             $result = $contentsService->update($contentToUpdate, array(),false);            
             AbstractCollection::disableUserFilter(false);
