@@ -232,7 +232,7 @@ class DonationResource extends AbstractResource
         AbstractCollection::disableUserFilter(false);
         $contactNational = $contentContactNational["fields"];
         
-        $emailResponsableInternationalDons = "partage@chemin-neuf.org";
+        $emailResponsableInternationalDons = "nicolas.rhone@chemin-neuf.org";
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
         $messageDonateur = "";
