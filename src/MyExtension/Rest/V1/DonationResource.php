@@ -172,7 +172,6 @@ class DonationResource extends AbstractResource
         
         /*ajouter le titre du don*/        
         $don["live"]["fields"]["text"] = $don["text"];
-        $this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage'], true);
 
         /*mettre à jour le statut de payement dans le contenu don*/
         if($don["live"]["fields"]["montant"]*100 == $params['montant']) {
@@ -188,64 +187,16 @@ class DonationResource extends AbstractResource
         //update numero incrémenté
             $result = $contentsService->update($contentToUpdate, array(),false);            
             AbstractCollection::disableUserFilter(false);
-            var_dump($result);
 
-        }
-        else var_dump("ERREUR");
-
-
-        
-        /*
-        $mailCompta = "nicolas.rhone@gmail.com";
-        $mailerService = Manager::getService('Mailer');
-
-        $mailerObject = $mailerService->getNewMessage();
-        $destinataires=array($mailCompta);
-        $replyTo="web@chemin-neuf.org";
-        $from="web@chemin-neuf.org";
-        
-        $erreur = $params['erreur'];
-        if ($erreur == "00000") {
-            $sujet = "Réception d'un paiement en ligne - ".$prenom.' '. $nom;
         }
         else {
-            $sujet = "Échec paiement en ligne";
+            //ajouter un message d'erreur ?
         }
-        if ($erreur == "00000") {
-            $body = "Montant payé : " . $params['montant']/100 . " euros.\n" ;
-            $body.="\n\n ID de l'inscription : ".$contentId;
-        }
-        else {
-            $body = "Montant non payé : " . $params['montant']/100  . " euros." ;
-            $body.="\n\n Raisons de l'échec : ".$erreurMessage;
-        }
-        $body = $body . " \n\n " . $params['commande'];
-        
-        $mailerObject->setTo($destinataires);
-        $mailerObject->setFrom($from);
-        $mailerObject->setSubject($sujet);
-        $mailerObject->setReplyTo($replyTo);
-        $mailerObject->setBody($body);
 
-        // Send e-mail
-        if ($mailerService->sendMessage($mailerObject, $errors)) {
-            return [
-                'success' => true,
-                'message' => $body,
-                'errors' =>$_SERVER
-            ];
-        } else {
-            return [
-                'success' => false,
-                'message' => 'Error encountered, more details in "errors"',
-                'errors' => $erreurMessage
-            ];
-        }
-           */
-           
+        $this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage']);
         return [
-                'success' => true
-                
+                'success' => true,
+                'result' => $result
             ];
     }
        
