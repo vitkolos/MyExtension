@@ -225,15 +225,13 @@ class DonationResource extends AbstractResource
         //contact national défini dans la configuration de payement du pays (et pas forcément celle choisie par le donateur!)
         //$contactNational = $don["contactNational"];
         $paymentMeansPays=Manager::getService("PaymentConfigs")->getConfigForPM($this->getConfigPays());
-        var_dump($paymentMeansPays);
-        
+
         $contactNationalDonsId = $paymentMeansPays["data"]["nativePMConfig"]["contactDonsId"];
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         //récupérer le contenu contact national
         $contentContactNational = $contentsService->findById($contactNationalDonsId,false,false);
         AbstractCollection::disableUserFilter(false);
         $contactNational = $contentContactNational["fields"];
-        var_dump($contentContactNational);
         $emailResponsableInternationalDons = "nicolas.rhone@chemin-neuf.org";
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
