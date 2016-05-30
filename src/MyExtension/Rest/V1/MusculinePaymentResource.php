@@ -123,6 +123,7 @@ class MusculinepaymentResource extends AbstractResource {
     $query_string = http_build_query($query);
 
     $data = $params['content'];
+    var_dump($data);
     $data['online'] = false;
     $data['text'] = $data['fields']['text'];
     $data['nativeLanguage'] = $params['lang']->getLocale();
