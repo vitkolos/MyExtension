@@ -11,6 +11,8 @@
     "Block.Dons.Mois":"par mois",
     "Block.Dons.Trimestre":"par trimestre",
     "Block.Dons.Trimestriel":"Rendre ce don trimestriel",
+    "Block.Dons.Cout":"Votre don vous coûtera",
+    "Block.Dons.Message":"Je souhaite joindre un message à mon don",
     "Block.Dons.ContactNational":"Contact administratif et fiscal dans votre pays",
     "PresDeChezToi.Titre":"Autour de vous",
     "PresDeChezToi.Propositions":"Toutes nos propositions autour de",
@@ -96,8 +98,12 @@
     "Block.Inscription.Paf.Maintenant.Totalite":"La totalité des frais",
     "Block.Inscription.Paf.Maintenant.Partie":"Une partie des frais.",
     "Block.Inscription.Paf.ModePaiment":"Méthode de paiement",
-    "Block.Inscription.Paf.Carte":"par carte (cartes bancaires françaises uniquement)",
+    "Block.Inscription.Paf.Carte":"par carte",
     "Block.Inscription.Paf.Cheque":"par chèque",
+    "Block.Inscription.Paf.Virement":"par virement",
+    "Block.Inscription.Paf.Virement.Period":"par virement périodique",
+    "Block.Inscription.Paf.Prelevement":"par prélèvement automatique",
+    "Block.Inscription.Paf.Liquide":"par dépôt d'argent liquide",
     "Block.Inscription.Entretien": "Un entretien sera nécessaire pour confirmer votre inscription.",
     "Block.Inscription.Motivation": "Pour que votre inscription soit complète, merci d'envoyer une lettre de motivation à l'adresse du secrétariat indiquée ci-dessus.",
     "Block.Inscription.Formulaire": "Pour que votre inscription soit complète, merci d'imprimer et de remplir à la main le formulaire complementaire suivant et de l'envoyer à l'adresse du secrétariat indiquée ci-dessus.",
@@ -110,6 +116,7 @@
     "Block.Inscription.Numero": "Numéro d'inscription",
     "Block.PaimentComplementaire.MontantPaye": "Lors de votre inscription en ligne, vous aviez payé",
     "Block.PaimentComplementaire.MontantAPayer": "Lors de votre inscription, vous aviez indiqué vouloir payer",
-    "Block.PaimentComplementaire.Paf": "La participation aux frais demandée pour cette proposition est :"
+    "Block.PaimentComplementaire.Paf": "La participation aux frais demandée pour cette proposition est :",
+    "Block.Paiment": "Mon paiement"
     
 } 
