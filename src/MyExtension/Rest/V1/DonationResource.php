@@ -161,7 +161,6 @@ class DonationResource extends AbstractResource
         $projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
         /*Récupérer le contenu config de dons correspondant*/
         $conditionFiscale = $contentsService->findById($don["live"]["fields"]["conditionId"],false,false);
-        var_dump($don);
         AbstractCollection::disableUserFilter(false);
         /*récupérer les infos du compte*/
         if($don["fields"]["isInternational"]) {
@@ -169,64 +168,35 @@ class DonationResource extends AbstractResource
         }
         else {
             $paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_pays"]);
-            
         }
         
-    /*ajouter le titre du don*/        
+        /*ajouter le titre du don*/        
         $don["live"]["fields"]["text"] = $don["text"];
-        $this->envoyerMailsDon($don["live"]["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage'], true);
 
-        
-        
-        
-        
-        $mailCompta = "nicolas.rhone@gmail.com";
-        $mailerService = Manager::getService('Mailer');
+        /*mettre à jour le statut de payement dans le contenu don*/
+        if($don["live"]["fields"]["montant"]*100 == $params['montant']) {
+            $don["live"]["fields"]["etat"] = "paiement_carte_valide";
+            $don["live"]["version"] = 2;
+            $wasFiltered = AbstractCollection::disableUserFilter(true);
+            //récupérer le contenu don avec le bon format :-)
+            $contentToUpdate = $contentsService->findById($don["id"],false,false);
+            $contentToUpdate["i18n"] = $don["live"]["i18n"];
+            $contentToUpdate["fields"]["etat"]="paiement_carte_valide";
+            //$contentToUpdate["version"] = 2;
+        //update numero incrémenté
+            $result = $contentsService->update($contentToUpdate, array(),false);            
+            AbstractCollection::disableUserFilter(false);
 
-        $mailerObject = $mailerService->getNewMessage();
-        $destinataires=array($mailCompta);
-        $replyTo="web@chemin-neuf.org";
-        $from="web@chemin-neuf.org";
-        
-        $erreur = $params['erreur'];
-        if ($erreur == "00000") {
-            $sujet = "Réception d'un paiement en ligne - ".$prenom.' '. $nom;
         }
         else {
-            $sujet = "Échec paiement en ligne";
+            //ajouter un message d'erreur ?
         }
-        if ($erreur == "00000") {
-            $body = "Montant payé : " . $params['montant']/100 . " euros.\n" ;
-            $body.="\n\n ID de l'inscription : ".$contentId;
-        }
-        else {
-            $body = "Montant non payé : " . $params['montant']/100  . " euros." ;
-            $body.="\n\n Raisons de l'échec : ".$erreurMessage;
-        }
-        $body = $body . " \n\n " . $params['commande'];
-        
-        $mailerObject->setTo($destinataires);
-        $mailerObject->setFrom($from);
-        $mailerObject->setSubject($sujet);
-        $mailerObject->setReplyTo($replyTo);
-        $mailerObject->setBody($body);
 
-        // Send e-mail
-        if ($mailerService->sendMessage($mailerObject, $errors)) {
-            return [
+        $this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage']);
+        return [
                 'success' => true,
-                'message' => $body,
-                'errors' =>$_SERVER
+                'result' => $result
             ];
-        } else {
-            return [
-                'success' => false,
-                'message' => 'Error encountered, more details in "errors"',
-                'errors' => $erreurMessage
-            ];
-        }
-           
-        
     }
        
  
@@ -252,8 +222,18 @@ class DonationResource extends AbstractResource
         $contactProjet = array("nom" => $projectDetail["fields"]["nom"],
                                "titre" => $projectDetail["fields"]["contactTitle"],
                                "email" =>$projectDetail["fields"]["email"]);
-        $contactNational = $don["contactNational"];
-        $emailResponsableInternationalDons = "nicolas.rhone@chemin-neuf.org";
+        //contact national défini dans la configuration de payement du pays (et pas forcément celle choisie par le donateur!)
+        //$contactNational = $don["contactNational"];
+        $paymentMeansPays=Manager::getService("PaymentConfigs")->getConfigForPM($this->getConfigPays());
+
+        $contactNationalDonsId = $paymentMeansPays["data"]["nativePMConfig"]["contactDonsId"];
+        $wasFiltered = AbstractCollection::disableUserFilter(true);
+        //récupérer le contenu contact national
+        $contentsService = Manager::getService("ContentsCcn");
+        $contentContactNational = $contentsService->findById($contactNationalDonsId,false,false);
+        AbstractCollection::disableUserFilter(false);
+        $contactNational = $contentContactNational["fields"];
+        $emailResponsableInternationalDons = "partage@chemin-neuf.org";
         //sujetDonateur = "Votre don à la Communauté du Chemin Neuf - " + idDonation
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
         $messageDonateur = "";
@@ -536,6 +516,13 @@ class DonationResource extends AbstractResource
             case "chemin-neuf.fr" : 
             case "ccn.chemin-neuf.fr" : 
                 return "FR"; break;
+        }
+     }
+     protected function getConfigPays(){
+        switch($_SERVER['HTTP_HOST']) {
+            case "chemin-neuf.fr" : 
+            case "ccn.chemin-neuf.fr" : 
+                return "dons_fr"; break;
         }
      }
     
