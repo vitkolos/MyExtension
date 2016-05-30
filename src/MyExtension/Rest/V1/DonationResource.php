@@ -105,11 +105,7 @@ class DonationResource extends AbstractResource
                 $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
                 $payboxAccountId = $paymentConfigPays["data"]["nativePMConfig"]["paybox"];
             }
-            /*GET PAYBOX PROPERTIES pas besoin ?
-            $wasFiltered = AbstractCollection::disableUserFilter(true);
-            $payboxAccount = $contentsService->findById($payboxAccountId,false,false);
-            AbstractCollection::disableUserFilter(false);*/
-            /*PROCESS INFOS FOR PAYMENT*/
+
             $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "accountId" => $payboxAccountId );
             
         }

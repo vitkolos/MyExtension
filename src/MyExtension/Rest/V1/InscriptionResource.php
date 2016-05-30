@@ -47,20 +47,23 @@ class InscriptionResource extends AbstractResource
     }
     public function postAction($params)
     {
-        //$language = preg_replace('%^/(\w+?)/.*$%', '$1', $_SERVER["REQUEST_URI"]); // langue du site
-        //var_dump($language);
-
         
         //GET NUMERO D'INSCRIPTION ACTUEL
         $id = "56a10fafc445ec692b8b4f3d"; // id du contenu "Numéro d'inscription"
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
-        $contentsService = Manager::getService("Contents");
+        $contentsService = Manager::getService("ContentsCcn");
         $content = $contentsService->findById($id,false,false);
-        $content["fields"]["value"] = $content["fields"]["value"] +1;
-        $inscriptionNumber= $content["fields"]["value"];
+        $content["fields"]["value"] +=1;
+        $content['i18n'] = array(
+            $params['lang']->getLocale() =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            )
+        );
+        $result = $contentsService->update($content, array(),false);
         //$result = $contentsService->update($content);
         AbstractCollection::disableUserFilter(false);
+        $inscriptionNumber= $content["fields"]["value"];
 
     
         //authentication comme admin inscriptions
@@ -71,8 +74,8 @@ class InscriptionResource extends AbstractResource
               
         
         //UPDATE NUMERO D'INSCRIPTION +1
-        $payload = json_encode( array( "content" => $content ) );
-        $result = $this->callAPI("PATCH", $token, $payload, $id);
+        //$payload = json_encode( array( "content" => $content ) );
+        //$result = $this->callAPI("PATCH", $token, $payload, $id);
         
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
