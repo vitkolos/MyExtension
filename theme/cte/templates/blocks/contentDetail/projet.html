@@ -99,7 +99,7 @@
 								<p class="capital text-left">{{rubedo.translate("Block.Dons.ContactNational", "Contact administratif et fiscal dans votre pays")}}</p>
 							</div>
 							<div class="col-xs-12 ">
-								<img ng-if="contentDetailCtrl.contactNational.fields.photo" ng-src="{{contentDetailCtrl.contactNational.fields.photo.imageCode}}" class="img-responsive"  style="float:left; margin-right:12px; max-width:100px" />
+								<img ng-if="contentDetailCtrl.contactNationalPhoto" ng-src="{{contentDetailCtrl.contactNationalPhoto}}" class="img-responsive"  style="float:left; margin-right:12px; max-width:100px" />
 								<p style="margin-bottom:0"><b>{{contentDetailCtrl.contactNational.fields.prenom}} {{contentDetailCtrl.contactNational.fields.nom}}</b><!--Nom du contact-->
 									<span ng-if="contentDetailCtrl.contactNational.fields.contactTitle"> ({{contentDetailCtrl.contactNational.fields.contactTitle}})</span><!--Titre du contact-->
 								</p>
