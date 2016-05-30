@@ -85,6 +85,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
                     status:"published",
                     typeId:"56c33483c445ecff008b6409",
                     writeWorkspace:"552d2a2845205eb02d8a64e9",
+                    target:"552d2a2845205eb02d8a64e9",
                     fields: {
                         "text":"Commande "+me.facture.surname+" "+me.facture.name,
                         "summary":"",

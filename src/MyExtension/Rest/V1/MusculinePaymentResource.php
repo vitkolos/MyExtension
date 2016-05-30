@@ -72,7 +72,6 @@ class MusculinepaymentResource extends AbstractResource {
             $query['tax_rate_'.$counter] = 5.5;
             $counter++;
         };
-
     };
     
     /*frais d'expédition*/
@@ -123,38 +122,26 @@ class MusculinepaymentResource extends AbstractResource {
     // Prepare query string
     $query_string = http_build_query($query);
 
-    //authentification
-    //$response = $this->getAuthAPIService()->APIAuth('musculine', 'Musc2015');
-    $response = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
-    $output['token'] = $this->subTokenFilter($response['token']);
-    $route['access_token'] = $output['token']['access_token'];
-
-    //create order
     $data = $params['content'];
-    //$data["fields"]["commande"] = $params['products'];
-    $payload = json_encode( array( "content" => $data ) );
-
-    $curl = curl_init();
-    // Set some options - we are passing in a useragent too here
-    curl_setopt_array($curl, array(
-        CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL =>'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$route['access_token'].'&lang=fr',
-        CURLOPT_POST => 1
-    ));
-    curl_setopt($curly, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
-    curl_setopt($curly, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
-    curl_setopt( $curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-    curl_setopt($curl, CURLOPT_POSTFIELDS, $payload );
-    curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
-    $result = curl_exec($curl);
-// Close request to clear up some resources
-    curl_close($curl);
-    
-    
+    $data['online'] = false;
+    $data['text'] = $data['fields']['text'];
+    $data['nativeLanguage'] = $params['lang']->getLocale();
+    $data['i18n'] =  array(
+        $params['lang']->getLocale() => array(
+            "fields" => array(
+                "text"=>$data['text'] 
+            )
+        )
+    );
+    $wasFiltered = AbstractCollection::disableUserFilter(true);
+    $contentsService = Manager::getService("ContentsCcn");
+    $resultcreate = $contentsService->create($don, array(),false);                
+    $wasFiltered = AbstractCollection::disableUserFilter(false);
+     
     return array(
             'success' => true,
             'url' =>'https://www.paypal.com/cgi-bin/webscr?' . $query_string,
-            'message' => $result
+            'message' => $resultcreate
         );
 
     }
