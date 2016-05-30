@@ -134,7 +134,6 @@ class MusculinepaymentResource extends AbstractResource {
     $wasFiltered = AbstractCollection::disableUserFilter(true);
     $contentsService = Manager::getService("ContentsCcn");
     $resultcreate = $contentsService->create($data, array(),false);
-        var_dump($resultcreate);
 
     $wasFiltered = AbstractCollection::disableUserFilter(false);
      
