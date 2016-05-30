@@ -442,5 +442,13 @@ padding-left: 0;}
     color: #2e2c29;
   }
 }
-.btn-primary{background-color: @rouge}
+.btn-primary{
+background-color: @rouge;
+border: none;
+  & :active,& :focus,& :hover{
+    background-color: @rouge_shadow;
+    border: none;
+  }
+  margin-bottom: 1px;
+}
 .profile-page{padding-top: 20px !important;}
