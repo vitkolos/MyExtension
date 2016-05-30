@@ -35,29 +35,27 @@
 		<div class="row" >
 			<div class="text-article infos">
 				<div class="col-xs-12"><h3>{{rubedo.translate("InfosPratiques", "Infos pratiques")}}</h3></div>
-				<!--Pays-->
-				<div  class="col-xs-12">
+				
+				<div  class="col-xs-6">
+					<!--Pays-->
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital text-left">{{rubedo.translate("Dons.projet", "Type de projet")}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<p><span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['56be135cc445ece5018b552e']">
 								{{contentDetailCtrl.getTermInTaxo("56be135cc445ece5018b552e",taxonomy)}}</span>
-						</p><!--Taxonomie de projets-->
+						</p>
 					</div>
-				</div>
-				<!--Type de projet-->
-				<div  class="col-xs-12">
+					<!--Type de projet-->
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital text-left">{{rubedo.translate("Block.Inscription.Pays", "Pays")}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<p><span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']">
 								{{contentDetailCtrl.getTermInTaxo("54d6299445205e7877a6b28e",taxonomy)}}</span>
-						</p><!--Taxonomie de pays-->
+						</p>
 					</div>
-				</div>
-				<div  class="col-xs-12">
+					<!--Budget-->
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('budget')}}</p>
 					</div>
@@ -70,44 +68,49 @@
 						<p><rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('budget')}}"></rubedo-field></p><!--Budget du projet-->
 					</div>
 				</div>
-				<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
-					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('position')}}</p>
+				<div class="col-xs-6">
+					<div ng-if="fieldEntity['nom']" class="col-xs-12">
+						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('nom')}}</p>
+						</div>
+						<div class="col-xs-12 col-sm-8 ">
+							<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactPhoto')}}" style="float:left; margin-right:12px; max-width:100px"></rubedo-field>
+							<p style="margin-bottom:0"><b>{{contentDetailCtrl.content.fields.nom}}</b><br/><!--Nom du contact-->
+								{{contentDetailCtrl.content.fields.contactTitle}}<!--Titre du contact-->
+							</p>
+							<div ng-init="blockConfig={'id':'contactProjet','email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
+								<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
+							</div>
+						</div>
 					</div>
-					<div class="col-xs-12 col-sm-8 ">
-						<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
+					<div ng-if="contentDetailCtrl.contactNational" class="col-xs-12">
+						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+							<p class="capital text-left">{{rubedo.translate("Block.Dons.ContactNational", "Contact administratif et fiscal dans votre pays")}}</p>
+						</div>
+						<div class="col-xs-12 col-sm-8 ">
+							<img ng-if="contentDetailCtrl.contactNational.fields.photo" ng-src="{{contentDetailCtrl.contactNational.fields.photo.imageCode}}" class="img-responsive"  style="float:left; margin-right:12px; max-width:100px" />
+							<p style="margin-bottom:0"><b>{{contentDetailCtrl.contactNational.fields.prenom}} {{contentDetailCtrl.contactNational.fields.nom}}</b><br/><!--Nom du contact-->
+								{{contentDetailCtrl.contactNational.fields.contactTitle}}<!--Titre du contact-->
+							</p>
+							<div ng-init="blockConfig={'id':'contactNational', 'email':contentDetailCtrl.contactNational.fields.email, 'name':contentDetailCtrl.contactNational.fields.prenom+' '+contentDetailCtrl.contactNational.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
+								<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
+							</div>
+						</div>
 					</div>
-					<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
+					<!---plan-->
+					<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
+						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('position')}}</p>
+						</div>
+						<div class="col-xs-12 col-sm-8 ">
+							<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
+						</div>
+						<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
+					</div>	
 				</div>
 				
-				<div ng-if="fieldEntity['nom']" class="col-xs-12">
-					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('nom')}}</p>
-					</div>
-					<div class="col-xs-12 col-sm-8 ">
-						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactPhoto')}}" style="float:left; margin-right:12px; max-width:100px"></rubedo-field>
-						<p style="margin-bottom:0"><b>{{contentDetailCtrl.content.fields.nom}}</b><br/><!--Nom du contact-->
-							{{contentDetailCtrl.content.fields.contactTitle}}<!--Titre du contact-->
-						</p>
-						<div ng-init="blockConfig={'id':'contactProjet','email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
-							<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
-						</div>
-					</div>
-				</div>
-				<div ng-if="contentDetailCtrl.contactNational" class="col-xs-12">
-					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital text-left">{{rubedo.translate("Block.Dons.ContactNational", "Contact administratif et fiscal dans votre pays")}}</p>
-					</div>
-					<div class="col-xs-12 col-sm-8 ">
-						<img ng-if="contentDetailCtrl.contactNational.fields.photo" ng-src="{{contentDetailCtrl.contactNational.fields.photo.imageCode}}" class="img-responsive"  style="float:left; margin-right:12px; max-width:100px" />
-						<p style="margin-bottom:0"><b>{{contentDetailCtrl.contactNational.fields.prenom}} {{contentDetailCtrl.contactNational.fields.nom}}</b><br/><!--Nom du contact-->
-							{{contentDetailCtrl.contactNational.fields.contactTitle}}<!--Titre du contact-->
-						</p>
-						<div ng-init="blockConfig={'id':'contactNational', 'email':contentDetailCtrl.contactNational.fields.email, 'name':contentDetailCtrl.contactNational.fields.prenom+' '+contentDetailCtrl.contactNational.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
-							<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
-						</div>
-					</div>
-				</div>
+				
+				
 			</div>
 			
 		</div>
