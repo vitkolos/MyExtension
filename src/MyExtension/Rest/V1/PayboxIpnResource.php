@@ -107,37 +107,44 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $prenom = $commande[3];
             $nom = $commande[4];
             $montant = (int)$params['montant']/100;
-            // récupérer l'id du contenu "inscription"
-            $contentId = $this->getContentIdByName($idInscription);
+
             $wasFiltered = AbstractCollection::disableUserFilter(true);
-            $contentsService = Manager::getService("Contents");
+            // récupérer l'id du contenu "inscription"
+            //$contentId = $this->getContentIdByName($idInscription);
+            $this->_dataService = Manager::getService('MongoDataAccess');
+            $this->_dataService->init("Contents");
+            $content = $this->_dataService->findByName($name);
+            $contentId = $content['id'];
+            
+            $contentsService = Manager::getService("ContentsCcn");
             $inscription = $contentsService->findById($contentId,false,false);
-            AbstractCollection::disableUserFilter(false);
             if($inscription) {
                 //si on est sur un premier paiement par carte
                 if($inscription['fields']['statut']=='attente_paiement_carte') {
                     $inscription['fields']['montantAPayerMaintenant'] = $montant;
-                    $inscription['fields']['statut'] = "paiement-carte-valide" ;
+                    $inscription['fields']['statut'] = "paiement_carte_valide" ;
                 }                
                 //si on est en paiement complémentaire après un premier paiement par carte :
-                else if($inscription['fields']['statut']=='paiement-carte-valide') {
+                else if($inscription['fields']['statut']=='paiement_carte_valide') {
                     $inscription['fields']['montantAPayerMaintenant'] = $montant + (int)$inscription['fields']['montantAPayerMaintenant'];
                 }
                 //dans les autres cas
                 else {
                     $inscription['fields']['montantAPayerMaintenant'] = $montant + (int)$inscription['fields']['montantAPayerMaintenant'];
-                    $inscription['fields']['statut'] = "paiement-carte-valide" ;
+                    $inscription['fields']['statut'] = "paiement_carte_valide" ;
                 }
                  $mailSecretariat = $inscription['fields']['mailSecretariat'];
                  
-                 $payload = json_encode( array( "content" => $inscription ) );
-                //authentication comme admin inscriptions
-                $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
-                $output['token'] = $this->subTokenFilter($auth['token']);
-                $token = $output['token']['access_token'];
-                $resultUpdate = $this->callAPI("PATCH", $token, $payload, $contentId);
+                $inscription['i18n'] = array(
+                    $inscription['locale'] =>array(
+                        "fields" => array("text"=>$inscription["text"])
+                    )
+                );
+                $result = $contentsService->update($inscription, array(),false);
+
              }
             else $erreurMessage .="Le payement ".$idInscription." n'a pas été retrouvé";
+            AbstractCollection::disableUserFilter(false);
  
         }    
 
@@ -203,6 +210,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
     protected function getMailCompta(){
         switch($_SERVER['HTTP_HOST']) {
             case "ccn.chemin-neuf.fr" : 
+            case "chemin-neuf.fr" : 
                 return "ccn.comptabilite@gmail.com"; break;
         }
     }
@@ -210,43 +218,6 @@ if(!($erreurStatus) && $securite && $autorisation) {
 
     
     
-        protected function callAPI($method, $token, $data = false, $id=false) {
-        $curl = curl_init();
-    
-        switch ($method)
-        {
-            case "POST": // pour créer un contenu
-                curl_setopt($curl, CURLOPT_POST, 1);
-                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$token.'&lang=fr';
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            case "PATCH": // pour modifier un contenu (numéro d'inscription)
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PATCH');
-                if($id)
-                    $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$id.'?access_token='.$token.'&lang=fr';
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            case "GET":
-                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$data.'?access_token='.$token.'&lang=fr';
-                break;
-            
-        }
-    
-    
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
-        curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
-        curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
-        $result = curl_exec($curl);
-    
-        curl_close($curl);
-        if($method == "GET") return json_decode($result, true);
-        else return json_decode($result, true);
-    }
 
 
     public function getErrorMessage($error) {
@@ -323,10 +294,6 @@ if(!($erreurStatus) && $securite && $autorisation) {
         return $message;
     }
     
-    protected function subTokenFilter(&$token)
-    {
-        return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
-    }
     
     public function getContentIdByName($name){
         $contentId = (string)$id;
