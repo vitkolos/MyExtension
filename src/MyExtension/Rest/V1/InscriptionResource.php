@@ -103,7 +103,7 @@ class InscriptionResource extends AbstractResource
         }
         
         
-       if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], "fr");}
+       if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());}
        
        
 
