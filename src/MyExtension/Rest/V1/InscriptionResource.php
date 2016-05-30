@@ -61,56 +61,41 @@ class InscriptionResource extends AbstractResource
             )
         );
         $result = $contentsService->update($content, array(),false);
+        //$result = $contentsService->update($content);
+        AbstractCollection::disableUserFilter(false);
         $inscriptionNumber= $content["fields"]["value"];
 
     
         //authentication comme admin inscriptions
         
-        
+        $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
+        $output['token'] = $this->subTokenFilter($auth['token']);
+        $token = $output['token']['access_token'];
+              
         
         
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
         $inscriptionForm['fields'] =  $params['inscription'];
         $inscriptionForm['fields']['text'] = "". $this->getPays().(string)$inscriptionNumber;
-        $inscriptionForm['text'] = $inscriptionForm['fields']['text'] ;
-        $inscriptionForm['target'] = $params['workspace'];
+        $inscriptionForm['fields']['text'] = "". $this->getPays().(string)$inscriptionNumber;
         $inscriptionForm['writeWorkspace'] = $params['workspace'];
         $inscriptionForm['typeId'] = "561627c945205e41208b4581";
         $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
                 //GET SECRETARIAT
         if($inscriptionForm['fields']['contact']){
-            /*
             $mailSecretariat = $this->callAPI("GET", $token, $inscriptionForm['fields']['contact']);
             if($mailSecretariat['success']) {
                 $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['content']['fields']['email'];
                 $inscriptionForm['fields']['contact'] = $mailSecretariat['content']['fields'];
             }
-            else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";*/
-            $mailSecretariat = $contentsService->findById($inscriptionForm['fields']['contact'],false,false);
-            $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['fields']['email'];
+            else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";
+            
         }
-        $inscriptionForm['i18n'] = array(
-            $params['lang']->getLocale() => array(
-                "fields" => array(
-                    "text"=>$inscriptionForm['fields']['text'] 
-                )
-            )
-        );
-        $inscriptionForm['status'] = 'published';
-        $inscriptionForm['online'] = true;
-        $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
-        $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
-        $resultInscription = $contentsService->create($inscriptionForm, array(),false);    
-        //CREATE INSCRIPTION IN DATABASE
-        //$payload2 = json_encode( array( "content" => $inscriptionForm ) );
-        //$resultInscription = $this->callAPI("POST", $token, $payload2);
         
-        AbstractCollection::disableUserFilter(false);
-        $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
-        $output['token'] = $this->subTokenFilter($auth['token']);
-        $token = $output['token']['access_token'];
-              
+        //CREATE INSCRIPTION IN DATABASE
+        $payload2 = json_encode( array( "content" => $inscriptionForm ) );
+        $resultInscription = $this->callAPI("POST", $token, $payload2);
         //GET PAYEMENT INFOS
         if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
             $paymentMeansId = $this->getAccountId();
