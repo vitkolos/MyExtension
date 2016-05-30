@@ -163,9 +163,6 @@ class MusculinepaymentResource extends AbstractResource {
             throw new APIEntityException('Content not found', 404);
         }
 
-
-
- 
         return $content['live']['fields'];
     }
 } 
