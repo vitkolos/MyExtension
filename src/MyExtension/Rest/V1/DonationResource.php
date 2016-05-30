@@ -289,7 +289,26 @@ class DonationResource extends AbstractResource
 
         }
         else if($don["modePaiement"]=="liquide") {
+            //messageDonateur += "Merci de déposer ce montant sur le compte '${compte} dont l'intitulé est '${intitule}."
+             $messageDonateur.=$trad["ccn_don_36"] . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
+
+            if($configPayment["image_rib"])
+                $messageDonateur .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["image_rib"] . "&width=300px'></center><br/>";
             
+            //Votre don a été enregistré sous le numéro « FR2012/12539 ».
+            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            //messageDonateur += "Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre depot bancaire."
+            $messageDonateur .= $trad["ccn_don_37"] . "<br/><br/>";
+            
+            if($don["justificatif"]) {
+                //Après encaissement du versement, nous vous enverrons un reçu fiscal.
+                $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
+            }              
+
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_liquide"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_intitule_compte"], $configPayment["nom_compte"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_coordonnees_compte"], $configPayment["coordonnes_compte"]);
+                       
         }
         else if($don["modePaiement"]=="prelevement") {
             //Vous devez télécharger et imprimer le formulaire de prélèvement

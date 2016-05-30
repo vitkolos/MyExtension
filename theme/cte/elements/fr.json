@@ -126,6 +126,7 @@
     "ccn_paiement_par_carte":"par carte",
     "ccn_paiement_par_prelevement_auto":"par prélèvement automatique",
     "ccn_paiement_par_virement_periodique":"par virement périodique",
+    "ccn_paiement_par_liquide":"par dépôt d'argent liquide",
     "ccn_ordre_du_cheque":"Ordre du chèque",
     "ccn_adresse_cheque":"Adresse à laquelle envoyer le chèque",
     "ccn_intitule_compte":"Intitulé du compte",
@@ -163,6 +164,8 @@
     "ccn_don_28":"Cette information vous est transmise car vous êtes le contact pour le projet",
     "ccn_don_28_bis":"A vous de transmettre cette information à qui de droit. Ce don est versé dans la caisse commune de la communauté.",
     "ccn_don_35":"Grâce à votre don, le projet est maintenant financé à ",
+    "ccn_don_36":"Merci de déposer ce montant sur le compte ",
+    "ccn_don_37":"Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre depot bancaire.",
     "ccn_don_38":"ATTENTION, l'envoi du mail au donateur a échoué! Essayer de contacter cette personne par téléphone...",
     "ccn_don_39":"ATTENTION, l'envoi du mail à la personne qui est le contact pour ce projet a échoué! Essayer de contacter cette personne par téléphone..."
 }
