@@ -1,14 +1,12 @@
 <?php
 namespace MyExtension\Rest\V1;
+use Rubedo\Collection\AbstractCollection;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use RubedoAPI\Rest\V1\AbstractResource;
 use Zend\View\Model\JsonModel;
 use Rubedo\Collection\AbstractLocalizableCollection;
 use Rubedo\Services\Manager;
-use RubedoAPI\Exceptions\APIAuthException;
-use RubedoAPI\Exceptions\APIEntityException;
-use RubedoAPI\Exceptions\APIRequestException;
 use WebTales\MongoFilters\Filter;
 
 
@@ -55,7 +53,7 @@ class MusculinepaymentResource extends AbstractResource {
     public function postAction($params) {
 
     
-  $query = array();
+    $query = array();
     $query['currency_code'] = 'EUR'; //devise
     $query['lc'] = 'FR'; // langue
     
