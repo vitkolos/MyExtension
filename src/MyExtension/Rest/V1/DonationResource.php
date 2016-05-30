@@ -106,7 +106,7 @@ class DonationResource extends AbstractResource
                 $payboxAccountId = $paymentConfigPays["data"]["nativePMConfig"]["paybox"];
             }
 
-            $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "accountId" => $resultcreate );
+            $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'], "accountId" => $resultcreate );//proceedToPayment
             
         }
         else {
