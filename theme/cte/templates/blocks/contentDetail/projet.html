@@ -38,7 +38,7 @@
 				
 				<div  class="col-xs-6">
 					<!--Pays-->
-					<div class="row">
+					<div class="container-fluid">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 							<p class="capital text-left">{{rubedo.translate("Dons.projet", "Type de projet")}}</p>
 						</div>
@@ -49,7 +49,7 @@
 						</div>
 					</div>
 					<!--Type de projet-->
-					<div class="row">
+					<div class="container-fluid">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 							<p class="capital text-left">{{rubedo.translate("Block.Inscription.Pays", "Pays")}}</p>
 						</div>
@@ -60,7 +60,7 @@
 						</div>
 					</div>
 					<!--Budget-->
-					<div class="row">
+					<div class="container-fluid">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('budget')}}</p>
 						</div>
@@ -68,22 +68,22 @@
 							<img src="/theme/cte/img/cruche.png" height="100" class="cruche" ng-style="{'background' : 'linear-gradient(to top, #9e4232 '+contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget+'%, transparent '+contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget+'%)'}">
 							
 							<p>{{contentDetailCtrl.content.fields.budget |number:0}} {{contentDetailCtrl.content.fields.monnaie}} <span ng-if="contentDetailCtrl.content.fields.budgetAnnuel">{{rubedo.translate("Dons.Annuel", " / année")}}</span><br/>
-							<em><a ng-href="{{'http://www.xe.com/ecc/input.cgi?Template=se&Amount='+contentDetailCtrl.content.fields.budget+'&From='+contentDetailCtrl.content.fields.monnaie }}" target="_blank">Convertir dans une autre monnaie</a></em></p>
 							<p><i>{{rubedo.translate("Dons.Finance", "Projet financé à")}} {{contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget | number :0}} %</i></p>
+							<em><a ng-href="{{'http://www.xe.com/ecc/input.cgi?Template=se&Amount='+contentDetailCtrl.content.fields.budget+'&From='+contentDetailCtrl.content.fields.monnaie }}" target="_blank" style="font-size: 0.8em;">Convertir dans une autre monnaie</a></em></p>
 							<p><rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('budget')}}"></rubedo-field></p><!--Budget du projet-->
 						</div>
 					</div>
 				</div>
 				<div class="col-xs-6">
-					<div class="row">
+					<div class="container-fluid">
 						<div ng-if="fieldEntity['nom']" class="col-xs-12">
 							<div class="col-xs-12 border-top-red no-padding">
 								<p class="capital text-left">{{contentDetailCtrl.getLabelByName('nom')}}</p>
 							</div>
 							<div class="col-xs-12 ">
 								<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactPhoto')}}" style="float:left; margin-right:12px; max-width:100px"></rubedo-field>
-								<p style="margin-bottom:0"><b>{{contentDetailCtrl.content.fields.nom}}</b><br/><!--Nom du contact-->
-									{{contentDetailCtrl.content.fields.contactTitle}}<!--Titre du contact-->
+								<p style="margin-bottom:0"><b>{{contentDetailCtrl.content.fields.nom}}</b><!--Nom du contact-->
+									<span ng-if="contentDetailCtrl.content.fields.contactTitle"> ({{contentDetailCtrl.content.fields.contactTitle}})</span><!--Titre du contact-->
 								</p>
 								<div ng-init="blockConfig={'id':'contactProjet','email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
 									<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
@@ -91,15 +91,15 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<div class="container-fluid">
 						<div ng-if="contentDetailCtrl.contactNational" class="col-xs-12">
 							<div class="col-xs-12  border-top-red no-padding">
 								<p class="capital text-left">{{rubedo.translate("Block.Dons.ContactNational", "Contact administratif et fiscal dans votre pays")}}</p>
 							</div>
 							<div class="col-xs-12 ">
 								<img ng-if="contentDetailCtrl.contactNational.fields.photo" ng-src="{{contentDetailCtrl.contactNational.fields.photo.imageCode}}" class="img-responsive"  style="float:left; margin-right:12px; max-width:100px" />
-								<p style="margin-bottom:0"><b>{{contentDetailCtrl.contactNational.fields.prenom}} {{contentDetailCtrl.contactNational.fields.nom}}</b><br/><!--Nom du contact-->
-									{{contentDetailCtrl.contactNational.fields.contactTitle}}<!--Titre du contact-->
+								<p style="margin-bottom:0"><b>{{contentDetailCtrl.contactNational.fields.prenom}} {{contentDetailCtrl.contactNational.fields.nom}}</b><!--Nom du contact-->
+									<span ng-if="contentDetailCtrl.contactNational.fields.contactTitle"> ({{contentDetailCtrl.contactNational.fields.contactTitle}})</span><!--Titre du contact-->
 								</p>
 								<div ng-init="blockConfig={'id':'contactNational', 'email':contentDetailCtrl.contactNational.fields.email, 'name':contentDetailCtrl.contactNational.fields.prenom+' '+contentDetailCtrl.contactNational.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
 									<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
@@ -107,17 +107,18 @@
 							</div>
 						</div>
 					</div>
-					<!---plan-->
-					<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
-						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('position')}}</p>
-						</div>
-						<div class="col-xs-12 col-sm-8 ">
-							<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
-						</div>
-						<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
-					</div>	
 				</div>
+					<!---plan-->
+				<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
+					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('position')}}</p>
+					</div>
+					<div class="col-xs-12 col-sm-8 ">
+						<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
+					</div>
+					<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
+				</div>						
+					
 				
 				
 				
