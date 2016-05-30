@@ -61,8 +61,6 @@ class InscriptionResource extends AbstractResource
             )
         );
         $result = $contentsService->update($content, array(),false);
-        //$result = $contentsService->update($content);
-        AbstractCollection::disableUserFilter(false);
         $inscriptionNumber= $content["fields"]["value"];
 
     
@@ -101,6 +99,7 @@ class InscriptionResource extends AbstractResource
             $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['fields']['email'];
         }
         $resultInscription = $contentsService->create($inscriptionForm, array(),false);                
+        AbstractCollection::disableUserFilter(false);
 
         $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
         $output['token'] = $this->subTokenFilter($auth['token']);
