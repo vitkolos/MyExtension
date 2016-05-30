@@ -89,6 +89,8 @@ class InscriptionResource extends AbstractResource
             else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";*/
             $mailSecretariat = $contentsService->findById($inscriptionForm['fields']['contact'],false,false);
             $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['fields']['email'];
+            $inscriptionForm['fields']['contact'] = $mailSecretariat['fields'];
+
         }
         $inscriptionForm['i18n'] = array(
             $params['lang']->getLocale() => array(
@@ -354,7 +356,7 @@ protected function sendInscriptionMail($inscription,$lang){
     if($senderDomain[1] != "chemin-neuf.org"){
         $senderMail = "web@chemin-neuf.org";
     }
-    $mailClient->setFrom(array( $senderMail => $inscription['contact']['text'])); // à changer en  $inscription['contact']['email'] => $inscription['contact']['text']
+    $mailClient->setFrom(array( $senderMail => $inscription['contact']['text'])); 
     $mailClient->setReplyTo(array( $inscription['contact']['email'] => $inscription['contact']['text'])); 
     $mailClient->setCharset('utf-8');
     $mailClient->setSubject($sujetClient);
