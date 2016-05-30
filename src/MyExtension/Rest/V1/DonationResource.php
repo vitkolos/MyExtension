@@ -102,11 +102,11 @@ class DonationResource extends AbstractResource
                 $payboxAccountId = $paymentConfigInt["data"]["nativePMConfig"]["paybox"];
             }
             else {
-                //$this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
                 $payboxAccountId = $paymentConfigPays["data"]["nativePMConfig"]["paybox"];
             }
 
-            $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'], "accountId" => $content );//proceedToPayment
+            $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "accountId" => $payboxAccountId );
             
         }
         else {
