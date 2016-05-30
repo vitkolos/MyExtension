@@ -123,7 +123,6 @@ class MusculinepaymentResource extends AbstractResource {
     $query_string = http_build_query($query);
 
     $data = $params['content'];
-    var_dump($data);
     $data['online'] = false;
     $data['text'] = $data['fields']['text'];
     $data['nativeLanguage'] = $params['lang']->getLocale();
@@ -136,7 +135,9 @@ class MusculinepaymentResource extends AbstractResource {
     );
     $wasFiltered = AbstractCollection::disableUserFilter(true);
     $contentsService = Manager::getService("ContentsCcn");
-    $resultcreate = $contentsService->create($data, array(),false);                
+    $resultcreate = $contentsService->create($data, array(),false);
+        var_dump($resultcreate);
+
     $wasFiltered = AbstractCollection::disableUserFilter(false);
      
     return array(
