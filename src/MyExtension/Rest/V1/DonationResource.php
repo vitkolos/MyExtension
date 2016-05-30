@@ -330,7 +330,13 @@ class DonationResource extends AbstractResource
         }
         else if($don["modePaiement"]=="carte") {
             $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_carte"]);
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_compte"], $configPayment["paybox"]);
+            /*get paybox account identifiant*/
+            $wasFiltered = AbstractCollection::disableUserFilter(true);
+            //récupérer le contenu configuration de payment paybox 
+            $payboxInfos = $contentsService->findById($configPayment["paybox"],false,false);
+            AbstractCollection::disableUserFilter(false);
+            
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_compte_paybox"], $payboxInfos["fields"]["site"]);
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
             //Merci de rappeler ce numéro dans vos correspondances.
