@@ -104,22 +104,16 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
         $resultInscription = $contentsService->create($inscriptionForm, array(),false);    
-        //CREATE INSCRIPTION IN DATABASE
-        //$payload2 = json_encode( array( "content" => $inscriptionForm ) );
-        //$resultInscription = $this->callAPI("POST", $token, $payload2);
-        
-        AbstractCollection::disableUserFilter(false);
-        $auth = $this->getAuthAPIService()->APIAuth('admin_inscriptions', '2qs5F7jHf8KD');
-        $output['token'] = $this->subTokenFilter($auth['token']);
-        $token = $output['token']['access_token'];
-              
+
+
         //GET PAYEMENT INFOS
         if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
             $paymentMeansId = $this->getAccountId();
-            $paymentMeans = $this->callAPI("GET", $token, $paymentMeansId);
-            $inscriptionForm['fields']['paymentInfos'] =$paymentMeans['content']['fields'];
+            $paymentMeans = $contentsService->findById($paymentMeansId,false,false);
+            $inscriptionForm['fields']['paymentInfos'] =$paymentMeans['fields'];
         }
-        
+         AbstractCollection::disableUserFilter(false);
+       
         
        if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());}
        
