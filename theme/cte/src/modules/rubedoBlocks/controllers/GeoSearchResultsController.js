@@ -284,13 +284,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             }
             else if (type=="rencontres") {
                 me.showLieux=false;me.showPropositions=false;
-                if(me.showRencontres) options["type[]"] =  ["56af6230c445ecd7008b5d68","54edd57845205e5110ca11b8"];
+                if(me.showRencontres) options["type[]"] =  ["56af6230c445ecd7008b5d68"];
                 else options["type[]"] = defaultOptions["type[]"];
             }
-            else if (type=="pointNet") {
-                if (options["type[]"] == config.contentType)  {options["type[]"] = ["54edd57845205e5110ca11b8"];me.isPointNetSearch = true;}
-                else {options["type[]"] = defaultOptions["type[]"];me.isPointNetSearch =false;}
-            }
+
             me.searchByQuery(options, true);
        };
         me.disabled = function(term){
