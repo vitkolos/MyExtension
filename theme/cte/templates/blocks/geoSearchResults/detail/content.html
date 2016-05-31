@@ -1,6 +1,6 @@
         <a ng-href="{{itemData.url}}" ng-if="!itemData['fields.propositionReferenceeInterne']">
                 <!--pour les lieux, afficher un preview de l'image du lieu-->
-                <img class="media-object pull-left" ng-if="itemData.typeId=='54632c1545205e7c38b0c6b7'"
+                <img class="media-object pull-left" ng-if="itemData.typeId=='54632c1545205e7c38b0c6b7' && itemData.image"
                                      ng-src=" {{'/dam?media-id='+itemData.image+'&width=400px&height=150px&mode=crop'}}"
                                      alt="{{ itemData.title }}"/>
                 <h4>{{itemData.title}}</h4>
