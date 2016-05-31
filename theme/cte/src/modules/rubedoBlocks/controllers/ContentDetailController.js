@@ -78,7 +78,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         constrainToSite:true,
         siteId: $scope.rubedo.current.site.id,
         pageId: $scope.rubedo.current.page.id,
-        predefinedFacets:{"type":"54dc614245205e1d4a8b456b","lieuCommunautaire":contentId},
+        predefinedFacets:{"type":"54dc614245205e1d4a8b456b","lieuCommunautaire":config.contentId},
         start:0,
         limit:50,
         orderby:'fields.dateDebut',
