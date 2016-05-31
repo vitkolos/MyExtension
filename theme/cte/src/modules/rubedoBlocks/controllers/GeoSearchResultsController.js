@@ -463,7 +463,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                             item['groupe']="lieux"; break;
                         case "54dc614245205e1d4a8b456b": //propositions
                             item['groupe']="evenement";
-                            if(item['fields.dateDebut'][0] && item['fields.dateDebut'][0]*1000 < today.getTime()){var isPast = true}
+                            if(item['dateDebut'] && item['dateDebut'] < today.getTime()){var isPast = true}
                             //do not display if past date
                             break;
                         default:
