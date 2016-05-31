@@ -75,12 +75,25 @@
                             </span>
                         </h4>
                         <!--<a ng-href="{{ content.url }}"><button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button></a>-->
-                        <button ng-if="content.productProperties.variations.length==1"
+
+                        <button ng-if="content.productProperties.variations.length==1 && (content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock)"
                                 ng-click="searchResultsCtrl.addToCart(content)"
                                 ng-disabled="!searchResultsCtrl.canOrder(content)"
                                 class="btn btn-default col-md-4">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                            <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
+                        </button>
+                        <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
+
+                        <button ng-if="content.productProperties.variations.length==1 && !(content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock)"
+                                ng-href="{{ content.url }}"
+                            class="btn btn-default col-md-4">
+                            <i class="fa fa-close">{{rubedo.translate('Blocks.UserOrders.SoldOut')}}</i>
+                        </button>
+
+                        <button ng-if="content.productProperties.variations.length>1"
+                                ng-href="{{ content.url }}"
+                                class="btn btn-default col-md-4">
+                            <i class="fa fa-list-ul">{{rubedo.translate('Blocks.UserOrders.ThereAreVariations')}}</i>
                         </button>
                     </div>
                 <!--</div>-->

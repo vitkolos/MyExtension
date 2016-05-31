@@ -7,5 +7,7 @@
     "Label.GiftWrap":"Papier Cadeau",
     "Blocks.OrderDetails.Payment.Means":"Moyen de paiement",
     "Label.Edit":"Modifier",
-    "Blocks.Checkout.Label.AddGiftComments":"Un petit mot pour le cadeau ?"
+    "Blocks.Checkout.Label.AddGiftComments":"Un petit mot pour le cadeau ?",
+    "Blocks.UserOrders.SoldOut":"Rupture",
+    "Blocks.UserOrders.ThereAreVariations":"Variantes"
 }
