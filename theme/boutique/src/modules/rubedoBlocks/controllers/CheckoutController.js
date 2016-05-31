@@ -36,30 +36,22 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     );
     me.cartIsEmpty=false;
     me.detailedCart={};
-    me.isThereAnyGiftWrap=function(){
-    array=me.detailedCart.cart;
-        var isHere = false;
-        for (var i= 0; i<array.length;i++){
-            if ((array[i].title=="Papier Cadeau")&&(array[i].price==2)){isHere=true}
-    // //       if ((array[i].title=="Papier Cadeau"||array[i].title==rubedo.translate('Label.GiftWrap','Gift Wrap'))&&(array[i].price==2)){isHere=true}
-        }
-        //alert (isHere||(typeof ($scope.itIsNowAGift)=="boolean" && $scope.itIsNowAGift));
-        //return isHere||(typeof ($scope.itIsNowAGift)=="boolean" && $scope.itIsNowAGift);
-
-    };
+    me.itIsAGift=false
     me.getCart=function(){
         RubedoShoppingCartService.getCart({includeDetail:true}).then(
             function(response){
                 if (response.data.success){
                     if (response.data.shoppingCart.detailedCart&&response.data.shoppingCart.detailedCart.totalItems>0){
-                        var newCart=response.data.shoppingCart.detailedCart;
-                        //if (parseInt(detailedCart.totalItems)+1==newCart.totalItems && !me.isThereAnyGiftWrap(detailedCart.cart) && me.isThereAnyGiftWrap(newCart.cart)){ justAGiftWrap=true}
-                        me.detailedCart=newCart;
+                        me.detailedCart=response.data.shoppingCart.detailedCart;
+                        var Mycart=response.data.shoppingCart.detailedCart.cart;
                         me.cartIsEmpty=false;
-                        if (!me.isThereAnyGiftWrap()){
-                                me.initializeCheckout();
-                            }else{$scope.itIsNowAGift=false}
-
+                        var i= 0
+                        while (typeof Mycart[i]!= 'undefined' && i<1000){
+                            if (Mycart[i]["productId"]['$id']=="57304df3c445eca2008b7b0f"){
+                                me.itIsAGift
+                            }
+                        }
+                        me.initializeCheckout();
                     } else  {
                         me.cartIsEmpty=true;
                         me.detailedCart={};
@@ -74,66 +66,23 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             me.getCart();
         }
     });
-    me.itWillBeAGift=function(){
-        $scope.itIsNowAGift=true;
-    };
     me.addPaperToCart=function(){
-        var content={"text":"Papier Cadeau",
-            "typeId":"55c87ae245205e8019c62e08",
-            "version":2,
-            "online":true,
-            "lastUpdateTime":1462784813,
-            "createTime":1462783475,
-            "productProperties":{"sku":"545848",
-                "basePrice":2,
-                "preparationDelay":1,
-                "canOrderNotInStock":"true",
-                "outOfStockLimit":1,
-                "notifyForQuantityBelow":1,
-                "resupplyDelay":1,
-                "variations":[{"price":2,
-                    "stock":10000,
-                    "sku":"545848",
-                    "id":"57304cf5c445ec58008b7a4a",
-                    "specialOffers":[],
-                    "Couleur":"none",
-                    "noSoTPrice":2,
-                    "finalPrice":2}],
-                "lowestNoSoPrice":2,
-                "lowestFinalPrice":2},
-            "lastUpdateUser":{"id":"568fbed93bc32513318b458a",
-                "login":"elaval",
-                "fullName":"Etienne Laval"},
-            "createUser":{"id":"568fbed93bc32513318b458a",
-                "login":"elaval",
-                "fullName":"Etienne Laval"},
-            "id":"57304df3c445eca2008b7b0f",
-            "fields":{"image":"",
-                "text":"Papier Cadeau",
-                "summary":"Emballage cadeau pour votre commande"},
-            "status":"published",
-            "taxonomy":{"navigation":["55c8777145205ef317c62e09"],
-                "56961076c445ecd5008b5113":["56961113c445ec75018b5153"],
-                "56bcbb07c445ecc31a8b4bc3":""},
-            "startPublicationDate":null,
-            "endPublicationDate":null,
-            "target":["5693b19bc445ecba018b4cb7"],
-            "writeWorkspace":"5693b19bc445ecba018b4cb7",
-            "nativeLanguage":"fr",
-            "readOnly":true,
-            "locale":"fr",
-            "detailPageUrl":"#"}
-        var options={
-
-            productId:content.id,
-            variationId:content.productProperties.variations[0].id,
-            amount:1
-        };
-        RubedoShoppingCartService.addToCart(options).then(
-            function(response){
-                $rootScope.$broadcast("shoppingCartUpdated",{emitter:"searchProductBox"});
-            }
-        );
+        if (me.itIsAGift){console.log('it is already a gift')}
+        else{
+            //var content={"text":"Papier Cadeau","typeId":"55c87ae245205e8019c62e08","version":2,"online":true,"lastUpdateTime":1462784813,"createTime":1462783475,"productProperties":{"sku":"545848","basePrice":2,"preparationDelay":1,"canOrderNotInStock":"true","outOfStockLimit":1,"notifyForQuantityBelow":1,"resupplyDelay":1,"variations":[{"price":2,"stock":10000,"sku":"545848","id":"57304cf5c445ec58008b7a4a","specialOffers":[],"Couleur":"none","noSoTPrice":2,"finalPrice":2}],"lowestNoSoPrice":2,"lowestFinalPrice":2},"lastUpdateUser":{"id":"568fbed93bc32513318b458a","login":"elaval","fullName":"Etienne Laval"},"createUser":{"id":"568fbed93bc32513318b458a","login":"elaval","fullName":"Etienne Laval"},"id":"57304df3c445eca2008b7b0f","fields":{"image":"","text":"Papier Cadeau","summary":"Emballage cadeau pour votre commande"},"status":"published","taxonomy":{"navigation":["55c8777145205ef317c62e09"],"56961076c445ecd5008b5113":["56961113c445ec75018b5153"],"56bcbb07c445ecc31a8b4bc3":""},"startPublicationDate":null,"endPublicationDate":null,"target":["5693b19bc445ecba018b4cb7"],"writeWorkspace":"5693b19bc445ecba018b4cb7","nativeLanguage":"fr","readOnly":true,"locale":"fr","detailPageUrl":"#"}
+            var options={
+                productId:"57304df3c445eca2008b7b0f",
+                variationId:"57304cf5c445ec58008b7a4a",
+                // productId:content.id,
+                //variationId:content.productProperties.variations[0].id,
+                amount:1
+            };
+            RubedoShoppingCartService.addToCart(options).then(
+                function(response){
+                    $rootScope.$broadcast("shoppingCartUpdated",{emitter:"searchProductBox"});
+                }
+            );
+        }
     }
     me.currentStage=1;
     me.maxStages=6;
@@ -327,7 +276,6 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     };
 
     me.handleStage5Submit=function(){
-        if($scope.itIsNowAGift){addPaperToCart()}
         me.stage5Error=null;
         if (!me.currentShipper){
             me.stage5Error="Please choose a shipper"
