@@ -462,6 +462,17 @@
                                     <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddComments')}} </label>
                                     <div class="col-sm-8">
                                         <textarea
+                                                class="form-control appearable"
+                                                rows="4"
+                                                id="gift-comment"
+                                                ng-model="checkoutCtrl.GiftComments"
+                                                ng-show="checkoutCtrl.itIsAGift"
+                                        ></textarea>
+                                        </div>
+                                    <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddComments')}} </label>
+                                    <div class="col-sm-8">
+
+                                        <textarea
                                                 class="form-control"
                                                 rows="4"
                                                 id="{{fieldIdPrefix+'_shippingComments'}}"
