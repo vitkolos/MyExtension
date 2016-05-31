@@ -1,4 +1,10 @@
-        <a ng-href="{{itemData.url}}" ng-if="!itemData['fields.propositionReferenceeInterne']"><h4>{{itemData.title}}</h4></a>
+        <a ng-href="{{itemData.url}}" ng-if="!itemData['fields.propositionReferenceeInterne']">
+                <!--pour les lieux, afficher un preview de l'image du lieu-->
+                <img class="media-object pull-left" ng-if="itemData.typeId=='54632c1545205e7c38b0c6b7'"
+                                     ng-src=" {{'/dam?media-id='+itemData.image+'&width=400px&height=150px&mode=crop'}}"
+                                     alt="{{ itemData.title }}"/>
+                <h4>{{itemData.title}}</h4>
+        </a>
         <a rubedo-page-link="{{itemData['fields.propositionReferenceeInterne'][0]}}" ng-if="itemData['fields.propositionReferenceeInterne']"><h4>{{itemData.title}}</h4></a>
         <p class="capital2" ng-class=" 'txt-'+itemData.groupe">{{rubedo.translate(itemData.groupe,itemData.groupe)}}</p>
         <!--pour contacts, afficher nom, mail, téléphone et résumé (cf siloé pro)-->
@@ -7,7 +13,4 @@
             <p><a ng-href="{{itemData['i18n.'+itemData.lang+'.fields.email'][0]}}">{{itemData['i18n.'+itemData.lang+'.fields.email'][0]}}</a><span ng-if="itemData['i18n.'+itemData.lang+'.fields.telephone'][0]">, {{itemData['i18n.'+itemData.lang+'.fields.telephone'][0]}}</span></p>
             <p><b>{{itemData['i18n.'+itemData.lang+'.fields.summary'][0]}}</b></p>
         </div>
-        <!--pour les lieux, afficher un preview de l'image du lieu-->
-        <img class="media-object pull-left" ng-if="itemData.typeId=='54632c1545205e7c38b0c6b7'"
-                             ng-src=" {{'/dam?media-id='+itemData.image+'&width=400px&height=150px&mode=crop'}}"
-                             alt="{{ itemData.title }}"/>
+        
