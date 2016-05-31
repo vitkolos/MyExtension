@@ -458,17 +458,19 @@
                                         <!--<i class="fa fa-gift"></i> {{ rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "add a gift wrap")}} : 2 €-->
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddComments')}} </label>
+                                <div class="form-group" style="margin-bottom: 10px">
+                                    <span class="appearable" ng-show="checkoutCtrl.itIsAGift">
+                                    <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddGiftComments')}} </label>
                                     <div class="col-sm-8">
                                         <textarea
-                                                class="form-control appearable"
+                                                class="form-control"
                                                 rows="4"
                                                 id="gift-comment"
                                                 ng-model="checkoutCtrl.GiftComments"
-                                                ng-show="checkoutCtrl.itIsAGift"
+
                                         ></textarea>
                                         </div>
+                                    </span>
                                     <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddComments')}} </label>
                                     <div class="col-sm-8">
 
