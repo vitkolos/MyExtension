@@ -105,7 +105,7 @@
 			        </thead>
 			        <tbody>
 			            <tr ng-repeat="content in contentDetailCtrl.calendarContents track by $index">
-			                <th class="cal-date" data-th="Date"><a ng-href="{{ content.url }}">{{content.dateDebut|dateRange:content.dateFin:'short'}}</a></th>
+			                <th class="cal-date" data-th="Date"><a ng-href="{{ content.url }}">{{(content.dateDebut/1000)|dateRange:(content.dateFin/1000):'short'}}</a></th>
 			                <th class="cal-prop" data-th="Proposition"><a ng-href="{{ content.url }}">
 			                        {{ content.text[0] }}</a>
 			                </th>
