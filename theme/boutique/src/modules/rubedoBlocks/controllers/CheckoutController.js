@@ -297,10 +297,14 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             me.orderCreateError="Please choose a payment means";
             return;
         }
+        if (typeof me.GiftComments != 'undefined'){
+            me.CommentsSumm='Commentaire : "'+me.shippingComments+ '" Petit Mot du Cadeau : "'+me.GiftComments+'"'
+        }
+        else{me.CommentsSumm=me.shippingComments}
         var options={
             paymentMeans:me.currentPaymentMeans.paymentMeans,
             shipperId:me.currentShipper.shipperId,
-            shippingComments:me.shippingComments
+            shippingComments:me.CommentsSumm
         };
         RubedoOrdersService.createOrder(options).then(
             function(response){
