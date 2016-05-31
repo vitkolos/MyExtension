@@ -7,3 +7,7 @@
             <p><a ng-href="{{itemData['i18n.'+itemData.lang+'.fields.email'][0]}}">{{itemData['i18n.'+itemData.lang+'.fields.email'][0]}}</a><span ng-if="itemData['i18n.'+itemData.lang+'.fields.telephone'][0]">, {{itemData['i18n.'+itemData.lang+'.fields.telephone'][0]}}</span></p>
             <p><b>{{itemData['i18n.'+itemData.lang+'.fields.summary'][0]}}</b></p>
         </div>
+        <!--pour les lieux, afficher un preview de l'image du lieu-->
+        <img class="media-object pull-left" ng-if="itemData.typeId=='54632c1545205e7c38b0c6b7'"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(itemData.image,{width:'400px',height:'150px',mode:'crop'})}}"
+                             alt="{{ itemData.title }}"/>
