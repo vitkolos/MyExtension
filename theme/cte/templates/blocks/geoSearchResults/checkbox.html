@@ -77,7 +77,7 @@
                     <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
                     <p ng-if="data.itemData.groupe == 'evenement' ">
                         <span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span>
-                        <time ng-if="data.itemData['fields.dateDebut'][0]">{{data.itemData.dateDebut|dateRange:data.itemData.dateFin:'short'}}</time>
+                        <time ng-if="data.itemData['fields.dateDebut'][0]">{{(data.itemData.dateDebut/1000)|dateRange:(data.itemData.dateFin/1000):'short'}}</time>
                 </div>
                            
             </div>
