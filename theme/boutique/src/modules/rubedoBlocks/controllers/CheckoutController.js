@@ -67,7 +67,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             me.getCart();
         }
     });
-    me.addPaperToCart=function(){
+    $scope.addPaperToCart=function(){
         if (me.itIsAGift){console.log('it is already a gift')}
         else{
             //var content={"text":"Papier Cadeau","typeId":"55c87ae245205e8019c62e08","version":2,"online":true,"lastUpdateTime":1462784813,"createTime":1462783475,"productProperties":{"sku":"545848","basePrice":2,"preparationDelay":1,"canOrderNotInStock":"true","outOfStockLimit":1,"notifyForQuantityBelow":1,"resupplyDelay":1,"variations":[{"price":2,"stock":10000,"sku":"545848","id":"57304cf5c445ec58008b7a4a","specialOffers":[],"Couleur":"none","noSoTPrice":2,"finalPrice":2}],"lowestNoSoPrice":2,"lowestFinalPrice":2},"lastUpdateUser":{"id":"568fbed93bc32513318b458a","login":"elaval","fullName":"Etienne Laval"},"createUser":{"id":"568fbed93bc32513318b458a","login":"elaval","fullName":"Etienne Laval"},"id":"57304df3c445eca2008b7b0f","fields":{"image":"","text":"Papier Cadeau","summary":"Emballage cadeau pour votre commande"},"status":"published","taxonomy":{"navigation":["55c8777145205ef317c62e09"],"56961076c445ecd5008b5113":["56961113c445ec75018b5153"],"56bcbb07c445ecc31a8b4bc3":""},"startPublicationDate":null,"endPublicationDate":null,"target":["5693b19bc445ecba018b4cb7"],"writeWorkspace":"5693b19bc445ecba018b4cb7","nativeLanguage":"fr","readOnly":true,"locale":"fr","detailPageUrl":"#"}

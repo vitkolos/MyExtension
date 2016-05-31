@@ -452,12 +452,11 @@
                                 </div>
                                 <div>
                                     <!--<button ng-click="checkoutCtrl.addPaperToCart()"-->
-                                    <button
-                                            ng-click="checkoutCtrl.addPaperToCart()"
-                                            class="btn btn-default">
+                                    <div ng-click="addPaperToCart()">
+                                            <!--class="btn btn-default"-->
                                         <i class="fa fa-gift"></i> Papier cadeau : 2 €
                                         <!--<i class="fa fa-gift"></i> {{ rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "add a gift wrap")}} : 2 €-->
-                                    </button>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddComments')}} </label>
