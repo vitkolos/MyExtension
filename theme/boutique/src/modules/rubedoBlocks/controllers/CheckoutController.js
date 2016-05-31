@@ -43,12 +43,12 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                 if (response.data.success){
                     if (response.data.shoppingCart.detailedCart&&response.data.shoppingCart.detailedCart.totalItems>0){
                         me.detailedCart=response.data.shoppingCart.detailedCart;
-                        var Mycart=response.data.shoppingCart.detailedCart.cart;
                         me.cartIsEmpty=false;
+                        var Mycart=response.data.shoppingCart.detailedCart.cart;
                         var i= 0
                         while (typeof Mycart[i]!= 'undefined' && i<1000){
                             if (Mycart[i]["productId"]['$id']=="57304df3c445eca2008b7b0f"){
-                                me.itIsAGift
+                                me.itIsAGift=true;
                             }
                             i++
                         }
