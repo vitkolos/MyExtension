@@ -52,7 +52,7 @@
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('horaires')}}"></rubedo-field><!--Description-->
 				</div>
 			</div>
-			<div ng-if="fieldEntity['email']" class="row">
+			<div ng-if="fieldEntity['email'] || fieldEntity['telephone']" class="row">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 					<p class="capital">{{contentDetailCtrl.getLabelByName('nom')}}</p>
 				</div>
