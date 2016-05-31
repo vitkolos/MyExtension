@@ -34,6 +34,7 @@
 .ccn-sejour:before{content:'\004d';}
 .ccn-spirituelle:before{content:'\004e';}
 .ccn-visite:before{content:'\004f';}
+.ccn-nodogs:before{content:'\0050';}
 .font-ccn{
     display: inline-block;
    font-family: 'cheminneuf';
