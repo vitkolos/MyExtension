@@ -46,6 +46,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                         me.cartIsEmpty=false;
                         var Mycart=response.data.shoppingCart.detailedCart.cart;
                         var i= 0
+                        me.itIsAGift=false;
                         while (typeof Mycart[i]!= 'undefined' && i<1000){
                             if (Mycart[i]["productId"]['$id']=="57304df3c445eca2008b7b0f"){
                                 me.itIsAGift=true;
