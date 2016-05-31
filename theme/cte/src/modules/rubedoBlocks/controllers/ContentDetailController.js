@@ -73,6 +73,23 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             }
         });        
     };
+    me.showCalendar = function(){
+      var optionsCalendar = {
+        constrainToSite:true,
+        siteId: $scope.rubedo.current.site.id,
+        pageId: $scope.rubedo.current.page.id,
+        predefinedFacets:{"type":"54dc614245205e1d4a8b456b","lieuCommunautaire":contentId},
+        start:0,
+        limit:50,
+        orderby:'fields.dateDebut',
+        orderbyDirection:'asc'
+      };
+      RubedoSearchService.searchByQuery(optionsCalendar).then(function(response){
+        if(response.data.success){
+          me.calendarContents = response.data.results.data;
+        } 
+      });
+    }
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
@@ -184,6 +201,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         };
 
+                    }
+                    if(me.content.type.code=="lieu"){
+                      me.showCalendar();
                     }
                     
                     
@@ -301,24 +321,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         me.getContentById(config.contentId);
     }
     
-    me.showCalendar = function(){
-      var optionsCalendar = {
-        constrainToSite:true,
-        siteId: $scope.rubedo.current.site.id,
-        pageId: $scope.rubedo.current.page.id,
-        predefinedFacets:{"type":"54dc614245205e1d4a8b456b","lieuCommunautaire":me.content.id},
-        start:0,
-        limit:5000,
-        orderby:'fields.dateDebut',
-        orderbyDirection:'asc'
-      };
-      RubedoSearchService.searchByQuery(optionsCalendar).then(function(response){
-        if(response.data.success){
-          me.calendarContents = response.data.results.data;
-          console.log(me.calendarContents);
-        } 
-      });
-    }
+    
     me.revertChanges=function(){
         $scope.fieldEntity=angular.copy(previousFields);
     };
