@@ -50,6 +50,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                             if (Mycart[i]["productId"]['$id']=="57304df3c445eca2008b7b0f"){
                                 me.itIsAGift
                             }
+                            i++
                         }
                         me.initializeCheckout();
                     } else  {
