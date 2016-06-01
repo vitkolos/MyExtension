@@ -68,7 +68,7 @@
                                 <h4 class="list-item-title date-lieu capital" ng-if="content.fields.positionName">
                                     <p class="list-tags" ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
                                     <span>
-                                        {{content.fields.positionName}}
+                                        <span ng-if="!hidePlace">{{content.fields.positionName}}</span>
                                         <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
                                     </span>
                                 </h4>
