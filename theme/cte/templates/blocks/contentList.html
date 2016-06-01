@@ -70,6 +70,7 @@
                                     <span>
                                         <span ng-if="!blockConfig.hidePlace">{{content.fields.positionName}}</span><span ng-if="!blockConfig.hidePlace && content.fields.dateDebut"> - </span>
                                         <time ng-if="content.fields.dateDebut">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
+                                        <time ng-if="!content.fields.dateDebut && content.fields.complement_date">{{content.fields.complement_date}}</time>
                                     </span>
                                 </h4>
                                 <p  class="text-center" style="margin-top:10px; height: 85px; overflow-y: hidden" ng-if="!contentListCtrl.titleOnly">
