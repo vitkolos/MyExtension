@@ -259,6 +259,7 @@
                         allowedAttributes:[["style"],["id"],["rubedo-page-link"],["target"],["align"],["width"],["height"],["data-toggle"],["data-target"]],
                         allowedTags: ['table','tbody','tr','td','iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br','u','sup'],
                         removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike"],                        
+                        allowEmpty :["p","i","span"],
                         replace: [[["b", "big"], "strong"]],
                         format: true
                     });
@@ -270,7 +271,8 @@
                     me.html=$sce.trustAsHtml(jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"],["align"],["width"],["height"]],
                         allowedTags: ['iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br'],
-                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],                        
+                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],
+                        allowEmpty :["p","i","span"],
                         format: true
                     }));
                 }
