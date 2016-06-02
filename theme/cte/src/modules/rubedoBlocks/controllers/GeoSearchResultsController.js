@@ -30,7 +30,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
         }
         else me.mapOptions={draggable:true, scrollwheel: true}
         if (config.satelliteView) {
-            me.mapOptions.mapTypeId=google.maps.MapTypeId.SATELLITE;
+            me.mapOptions.mapTypeId=google.maps.MapTypeId.HYBRID;
         }
         me.geocoder = new google.maps.Geocoder();
         //places search
