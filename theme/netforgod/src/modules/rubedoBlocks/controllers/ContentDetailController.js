@@ -223,9 +223,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             detailPageId: $scope.rubedo.current.page.id,
                             start:0,
                             limit:4,
-                            constrainToSite: false,
+                            constrainToSite: true,
                             orderby:'fields.date',
                             taxonomies: taxonomy,
+                            type:me.content.type.id,
                             displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
                         };
                         
