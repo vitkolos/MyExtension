@@ -187,6 +187,19 @@
                     ]
                 },
                 {
+                    "categorie": "#ext-gen1072#",
+                    "champs": [
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "Mode d'affichage satellite",
+                                "name": "satelliteView",
+                                "inputValue": true
+                            }
+                        }
+                    ]
+                },
+                {
                     "categorie": "Template",
                     "champs": [
                         {
@@ -215,7 +228,8 @@
             "displayedFacets": "['all']",
             "displayMode": "default",
             "autoComplete": false,
-            "noDrag": false
+            "noDrag": false,
+            "satelliteView":false
         }
     },
     "category": "#ext-gen1425#",
