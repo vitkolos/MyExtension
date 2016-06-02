@@ -246,6 +246,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             constrainToSite: true,
                             orderby:'lastUpdateTime',
                             taxonomies: actusTaxonomy,
+                            type:me.content.type.id,
                             displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
                         };
                         
