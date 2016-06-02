@@ -14,15 +14,15 @@ CKEDITOR.editorConfig = function( config ) {
 };
 
 CKEDITOR.stylesSet.add( 'default', [
-    { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} },
-    { name: 'Sous-titre FOI', element: 'p', attributes: { 'class': 'red-sub'} },
-    {
+	{ name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox'} },
+	{ name: 'Texte petit', element: 'p', attributes: { 'class': 'small'} },
+	    {
 		name: 'Centrer image',
 		element: 'img',
 		attributes: { 'style': 'margin:0 auto' }
-    },
-    { name: 'Citation', element: 'blockquote', attributes: { 'class': 'center'} },
-    { name: 'Bouton rouge', element: 'a', attributes: { 'class': 'button rouge'} }
+	},
+	{ name: 'Citation', element: 'blockquote', attributes: { 'class': 'center'} },
+	{ name: 'Bouton rouge', element: 'a', attributes: { 'class': 'button rouge'} }
 
 
 ] );

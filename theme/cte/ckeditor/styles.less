@@ -23,11 +23,23 @@
 @txt_light:#898989; // texte gris clair
 @marron:#d5c5b5 ; // beige plus sombre
 .txt-red{color:@rouge !important}
-
+blockquote.center{
+  color: @rouge;
+  .capital;
+}
 
 .capital{font-family: 'Montserrat','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:14px; font-weight: normal}
-p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
-.linkbox{text-align:center; font-family: 'Montserrat'}
+p.red-sub{.capital; font-size:11px !important; .txt-red; }
+.linkbox{
+  text-align:center;
+  font-family: 'Montserrat';
+  color:#898989;
+  border: 2px solid rgba(137,137,137,0.5);
+ // padding:10px 15px;
+  //border-radius: 3px;
+   // transition:all 0.4s ease 0s;
+    text-transform: uppercase;
+}
 .button{
     padding:12px 24px;
     text-align: center;
@@ -39,7 +51,7 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
     cursor: pointer;
     border: none;
  }
- .button:hover{opacity:0.8;}
 .button.rouge{background: @rouge;box-shadow: 0px 2px @rouge_shadow; color:white}
-  .button.submit{border: 2px solid @rouge; color:@rouge;}
-  .button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}
+.button.submit{border: 2px solid @rouge; color:@rouge;}
+.button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}
+p.small{font-size: 12px !important}
