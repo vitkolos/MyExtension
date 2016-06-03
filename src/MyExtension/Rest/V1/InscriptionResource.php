@@ -208,7 +208,12 @@ protected function sendInscriptionMail($inscription,$lang){
     if($inscription['isPayment'] && $inscription['montantAPayerMaintenant'] > 0) {
         if($inscription['modePaiement'] == 'cheque') {
             //Comme convenu, nous attendons ton cheque de 60€
-            $messageClient .= $trad["ccn_mail_23_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . ". ";
+            $messageClient .= $trad["ccn_mail_23_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] ;
+            //qui permettra de valider votre inscription (si accompte)
+            if($inscription["accompte"] && $inscription["accompte"]>0) {
+                $messageClient .=  $trad["ccn_mail_23_1_".$tuOuVous]  ;
+            }
+            $messageClient .=". ";
             //Ce chèque doit être à l'ordre de ${ordre_cheque} et envoyé à l'adresse suivante
             $messageClient .= $trad["ccn_mail_24"] . "<i>" . $inscription['paymentInfos']['libelleCheque'] . "</i>" . $trad["ccn_mail_24_1"] ."<br/>";
             $messageClient .= $inscription['contact']['text'] . "<br/>" . $inscription['contact']['position']['address'] . "<br/><br/>";

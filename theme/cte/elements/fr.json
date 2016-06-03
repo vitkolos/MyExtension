@@ -39,6 +39,8 @@
     "ccn_mail_22_vous":"Nous avons bien reçu votre préinscription à une des propositions de la Communauté du Chemin Neuf.",
     "ccn_mail_23_tu":"Comme convenu, nous attendons ton chèque de ",
     "ccn_mail_23_vous":"Comme convenu, nous attendons votre chèque de ",
+    "ccn_mail_23_1_tu":"qui permettra de valider ton inscription",
+    "ccn_mail_23_1_vous":"qui permettra de valider votre inscription",
     "ccn_mail_24":"Ce chèque doit être libellé à l'ordre de ",
     "ccn_mail_24_1":" et envoyé à l'adresse suivante : ",
     "ccn_mail_25_tu":"Comme convenu, nous attendons ton virement de ",
