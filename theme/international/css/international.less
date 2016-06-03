@@ -66,6 +66,39 @@ input:focus{outline: 0; border-color:transparent; box-shadow:0}
 @media screen and (min-width: @min_xs) and (max-width: @min_sm){
     .container{width:@width_xxs}
 }
+/*20% column*/
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+    position: relative;
+    min-height: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.col-xs-15 {
+    width: 20%;
+    float: left;
+}
+@media (min-width: @min_sm) {
+.col-sm-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: @min_md) {
+    .col-md-15 {
+        width: 20%;
+        float: left;
+    }
+}
+@media (min-width: @min_lg) {
+    .col-lg-15 {
+        width: 20%;
+        float: left;
+    }
+}
+
 .img_full img{width:100%}
 .img-responsive{height:auto !important}
 .padding-right{padding-right:24px}
