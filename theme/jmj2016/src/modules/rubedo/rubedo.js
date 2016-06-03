@@ -234,8 +234,8 @@
         return serviceInstance;
     }]);
  
-    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope','$routeParams','RubedoClickStreamService','$rootScope','UXUserService','UXPageService','UXSessionService',
-        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope,$routeParams,RubedoClickStreamService,$rootScope,UXUserService,UXPageService,UXSessionService){
+    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope','$routeParams','RubedoClickStreamService','$rootScope','UXUserService','UXPageService','UXSessionService','$route',
+        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope,$routeParams,RubedoClickStreamService,$rootScope,UXUserService,UXPageService,UXSessionService,$route){
         var me=this;
         //break nav on non-page routes
         $scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
@@ -409,7 +409,7 @@
             };
             me.sendGaEvent = function(cat, label) {
                 if(window.ga) {
-                    window.ga('send', 'pageview', cat+label);
+                    window.ga('send', 'pageview', '/'+$route.current.params.lang+cat+label);
                 }
             };
             $scope.$on("ClickStreamEvent",function(event,args){
