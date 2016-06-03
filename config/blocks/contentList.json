@@ -136,6 +136,14 @@
                                 "name": "hidePlace",
                                 "inputValue": true
                             }
+                        },
+			{
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "Limiter la largeur de la liste de contenus",
+                                "name": "container",
+                                "inputValue": true
+                            }
                         }
                     ]
                 },
@@ -241,7 +249,8 @@
             "timeThreshold": 200,
             "scrollThreshold": 300,
             "infiniteScroll": false,
-	    "hidePlace":false
+	    "hidePlace":false,
+	    "container":true
         }
     },
     "category": "#ext-gen1068#",
