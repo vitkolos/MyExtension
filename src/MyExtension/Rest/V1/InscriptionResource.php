@@ -211,7 +211,7 @@ protected function sendInscriptionMail($inscription,$lang){
             $messageClient .= $trad["ccn_mail_23_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] ;
             //qui permettra de valider votre inscription (si accompte)
             if($inscription["accompte"] && $inscription["accompte"]>0) {
-                $messageClient .=  $trad["ccn_mail_23_1_".$tuOuVous]  ;
+                $messageClient .=  " " .$trad["ccn_mail_23_1_".$tuOuVous]  ;
             }
             $messageClient .=". ";
             //Ce chèque doit être à l'ordre de ${ordre_cheque} et envoyé à l'adresse suivante
