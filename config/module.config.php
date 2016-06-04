@@ -228,11 +228,5 @@ return array(
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Share.json',
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Emails.json'
     ),
-    /*Enxtension du BO pour E-Commerce*/
-    'appExtension' => array(
-        'acn' => array(
-            'basePath' => realpath(__DIR__ . '/../app-extension') . '/acn',
-            'definitionFile' => realpath(__DIR__ . '/../app-extension') . '/acn.json'
-        )
-    ),
+   
 );
