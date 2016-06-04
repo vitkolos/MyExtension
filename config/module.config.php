@@ -56,10 +56,6 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/calendar.json'
         ),
-          'contentList' => array(
-            'maxlifeTime' => 60,
-            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/contentList.json'
-        ),
          'richText' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/richText.json'
@@ -232,5 +228,11 @@ return array(
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Share.json',
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Emails.json'
     ),
-
+    /*Enxtension du BO pour E-Commerce*/
+    'appExtension' => array(
+        'acn' => array(
+            'basePath' => realpath(__DIR__ . '/../app-extension') . '/acn',
+            'definitionFile' => realpath(__DIR__ . '/../app-extension') . '/acn.json'
+        )
+    ),
 );
