@@ -109,11 +109,10 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $montant = (int)$params['montant']/100;
 
             $wasFiltered = AbstractCollection::disableUserFilter(true);
-            // récupérer l'id du contenu "inscription"
-            //$contentId = $this->getContentIdByName($idInscription);
+
             $this->_dataService = Manager::getService('MongoDataAccess');
             $this->_dataService->init("Contents");
-            $content = $this->_dataService->findByName($name);
+            $content = $this->_dataService->findByName($idInscription);
             $contentId = $content['id'];
             
             $contentsService = Manager::getService("ContentsCcn");
