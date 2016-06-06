@@ -527,10 +527,10 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     
     protected function processInscription($inscription) {
-        //dates
-        $inscription['birthdate'] = strtotime($inscription['birthdate']);
-        if($inscription['dateNaissPers2']) $inscription['dateNaissPers2'] = strtotime($inscription['dateNaissPers2']);
-        if($inscription['dateMariage']) $inscription['dateMariage'] = strtotime($inscription['dateMariage']);
+        //dates avec +12h pour éviter problèmes
+        $inscription['birthdate'] = strtotime($inscription['birthdate']) + 3600*12;
+        if($inscription['dateNaissPers2']) $inscription['dateNaissPers2'] = strtotime($inscription['dateNaissPers2'])+ 3600*12;
+        if($inscription['dateMariage']) $inscription['dateMariage'] = strtotime($inscription['dateMariage'])+ 3600*12;
         //telephones formatés pour la France
         if($this->getPays() == "FR"){
             if($inscription['tel1']) $inscription['tel1'] = $this->formatTelephone($inscription['tel1']);
@@ -637,42 +637,5 @@ protected function sendInscriptionMail($inscription,$lang){
         }
      }
      
-    protected function callAPI($method, $token, $data = false, $id=false) {
-        $curl = curl_init();
-    
-        switch ($method)
-        {
-            case "POST": // pour créer un contenu
-                curl_setopt($curl, CURLOPT_POST, 1);
-                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents?access_token='.$token.'&lang=fr';
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            case "PATCH": // pour modifier un contenu (numéro d'inscription)
-                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'PATCH');
-                if($id)
-                    $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$id.'?access_token='.$token.'&lang=fr';
-                if ($data)
-                    curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
-                break;
-            case "GET":
-                $url = 'http://' . $_SERVER['HTTP_HOST'] . '/api/v1/contents/'.$data.'?access_token='.$token.'&lang=fr';
-                break;
-            
-        }
-    
-    
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
-        curl_setopt($curl, CURLOPT_FRESH_CONNECT, true);   // Always ensure the connection is fresh
-        curl_setopt( $curly, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        curl_setopt($curl, CURLOPT_ENCODING, 'windows-1252');
-        $result = curl_exec($curl);
-    
-        curl_close($curl);
-        if($method == "GET") return json_decode($result, true);
-        else return json_decode($result, true);
-    }
-   
+
 }     
