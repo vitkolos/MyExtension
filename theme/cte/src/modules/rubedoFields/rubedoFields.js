@@ -909,7 +909,8 @@
             me.date=new Date();
         }
         me.setTime=function(newDate){
-            $scope.fieldEntity[$scope.field.config.name]=newDate.getTime()/1000;
+             /*format date to be around 12h*/
+           $scope.fieldEntity[$scope.field.config.name]=newDate.getTime()/1000;
             me.formattedDate=$filter('date')(newDate, "shortDate");
             if ($scope.registerFieldEditChanges){
                 $scope.registerFieldEditChanges();
