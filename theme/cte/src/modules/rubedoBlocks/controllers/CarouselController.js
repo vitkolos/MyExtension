@@ -16,6 +16,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
     }
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
+    
     $scope.isArray = angular.isArray;
     me.getContents=function(){
         RubedoContentsService.getContents(blockConfig.query,pageId,siteId, queryOptions).then(
@@ -27,11 +28,16 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
                     $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(me.contents[0].fields[blockConfig.imageField],{width:'800px'});
                     angular.forEach(me.contents, function(content){
                         if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !=""){
+			    if (content.fields.propositionReferenceeInterne == pageId) {
+				me.isSamePage= true;
+			    }
+			    else {
                             RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
                                     if (response.data.success){
                                         content.contentLinkUrl = $filter('cleanUrl')(response.data.url);
                                     }
                                 });
+			    }
                         }
                         else if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
                                 content.contentLinkUrl = content.fields.propositionReferencee;
