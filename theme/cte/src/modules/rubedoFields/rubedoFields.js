@@ -907,7 +907,6 @@
             var dateForHours=new Date(originalDate*1000);
             if(dateForHours.getHours()<=6) {
                 me.date=new Date(($scope.fieldEntity[$scope.field.config.name])*1000+3600*12000);
-                console.log(me.date);
             }
             else {
                 me.date=new Date($scope.fieldEntity[$scope.field.config.name]*1000);
