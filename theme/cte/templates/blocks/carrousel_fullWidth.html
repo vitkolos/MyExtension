@@ -48,10 +48,34 @@
     background-size: cover;
     -o-background-size: cover;
 }
-@media screen and (max-width:500px){.carousel-inner{height:50vh}}
+.homepage_txt {
+    position: absolute;
+    bottom: 20%;
+    width:100%;
+    margin:0 ;
+    text-align: center;
+    color:white;
+}
+.homepage_txt p{line-height: 0.9em;}
+.homepage_txt p:first-of-type{text-transform: uppercase; font-size:40px}
+.homepage_txt p:nth-of-type(2){text-transform: uppercase; font-size:60px; font-weight:bold;}
+.homepage_txt p:nth-of-type(3), p:nth-of-type(4){font-size:25px; }
+
+
+
+@media screen and (max-width:500px){
+        .carousel-inner{height:50vh}
+        .homepage_txt p{line-height: 0.9em;}
+        .homepage_txt p:first-of-type{text-transform: uppercase; font-size:25px}
+        .homepage_txt p:nth-of-type(2){text-transform: uppercase; font-size:30px; font-weight:bold;}
+        .homepage_txt p:nth-of-type(3), p:nth-of-type(4){font-size:18px; }
+}
+
+
+
 </style>
 
-<div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" style="margin-top:50px">
+<div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl">
   <ol class="carousel-indicators">
     <li ng-repeat="content in carouselCtrl.contents" 
       ng-if="content.fields[blockConfig.imageField]" 
