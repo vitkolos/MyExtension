@@ -18,7 +18,7 @@
 			<div class="col-sm-12">
 				<div class="film-controls" >
 					<p>{{rubedo.translate('NFG.Watch','Watch')}} <span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
-						<span ng-if="fieldEntity['trailer']" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
+						<span ng-if="fieldEntity['trailer'] && fieldEntity['trailer'].url!=''" ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 				</div>
 				<div ng-if="contentDetailCtrl.watch =='film'">
 					<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
