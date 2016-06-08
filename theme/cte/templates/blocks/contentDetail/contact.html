@@ -1,4 +1,4 @@
-<div ng-if="block.code=='contact' || !blockConfig.contentOnly">
+<div ng-if="block.code=='contact' || blockConfig.contentOnly">
 <div class="container">
 		<div class="row padding-large text-center">
 			<div class="col-xs-12 text-center">
@@ -34,7 +34,7 @@
 		<div style="padding-top:24px" class=""></div>
 	</div>
 </div>
-<div class=" content_border" ng-if="block.code != 'contact' ">
+<div class=" content_border" ng-if="block.code != 'contact' && !contentOnly">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 ">
