@@ -242,10 +242,10 @@
             ]
         },
         "configBloc": {
-            "columns": 1,
-            "showOnlyTitle": false,
+            "columns": 3,
+            "showOnlyTitle": true,
             "summaryHeight": 80,
-            "showPager": true,
+            "showPager": false,
             "timeThreshold": 200,
             "scrollThreshold": 300,
             "infiniteScroll": false,
