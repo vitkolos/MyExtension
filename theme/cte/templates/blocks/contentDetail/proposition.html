@@ -25,7 +25,7 @@
 				<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 				<p>{{contentDetailCtrl.content.fields.positionName}}</p>
 				<p ng-if="contentDetailCtrl.content.fields.dateDebut && contentDetailCtrl.content.fields.dateFin">{{contentDetailCtrl.content.fields.dateDebut | dateRange:contentDetailCtrl.content.fields.dateFin:true }}</p>
-				<p ng-if="contentDetailCtrl.content.fields.dateDebut && !contentDetailCtrl.content.fields.dateFin">{{contentDetailCtrl.content.fields.dateDebut |date : 'd MMM yyyy' }}</p>
+				<p ng-if="contentDetailCtrl.content.fields.dateDebut && !contentDetailCtrl.content.fields.dateFin">{{contentDetailCtrl.content.fields.dateDebut*1000 |date : 'd MMM yyyy' }}</p>
 				<p ng-if="!contentDetailCtrl.content.fields.dateDebut && contentDetailCtrl.content.fields.complement_date">{{contentDetailCtrl.content.fields.complement_date}}</p>
 				<a href="#infos_pratiques" class="button rouge">{{rubedo.translate("InfosPratiques", "Infos pratiques")}}</a>
 				<a href="#inscription" class="button rouge" ng-if="contentDetailCtrl.isInscription">{{rubedo.translate("Inscription", "S'inscrire")}}</a>
@@ -53,7 +53,7 @@
 						<p class="capital text-left">Date</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
-						<p ng-if="fieldEntity['dateDebut'] ">du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'fullDate'}} <span ng-if="fieldEntity['heureDebut']">à  {{contentDetailCtrl.content.fields.heureDebut}} </span><span ng-if="fieldEntity['dateFin']">au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'fullDate'}}<span ng-if="fieldEntity['heureFin']"> à  {{contentDetailCtrl.content.fields.heureFin}}</span></span></p><!--Description-->
+						<p ng-if="fieldEntity['dateDebut'] "><span ng-if="fieldEntity['dateFin']">du</span> {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'fullDate'}} <span ng-if="fieldEntity['heureDebut']">à  {{contentDetailCtrl.content.fields.heureDebut}} </span><span ng-if="fieldEntity['dateFin']">au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'fullDate'}}<span ng-if="fieldEntity['heureFin']"> à  {{contentDetailCtrl.content.fields.heureFin}}</span></span></p><!--Description-->
 						<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('dateDebut')}}"></rubedo-field>
 						<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('heureDebut')}}"></rubedo-field>
 						<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('dateFin')}}"></rubedo-field>
