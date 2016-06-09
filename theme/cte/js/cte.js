@@ -59,6 +59,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     return function(startDate, endDate, rangeFormat){
 	var format = rangeFormat || 'long';
 	var formatOfDate =  'd MMM yyyy';
+	var isSameDay = false;
 	var start = new Date(startDate*1000);
 	var end = new Date(endDate*1000);
 	if (start.getFullYear() != end.getFullYear()) {
@@ -67,11 +68,16 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	else if (start.getMonth() != end.getMonth()) {
 	    formatOfDate = 'd MMM';
 	}
-	else  {
+	else  if(start.getDay() == end.getDay()){
+	    formatOfDate = 'd';
+	    isSameDay=true;
+	}
+	else {
 	    formatOfDate = 'd';
 	}
 	if (format == 'short') {
-	    formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
+		if(isSameDay) formattedDate= $filter('date')(end,'d MMM yyyy');	  
+	    	else formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
 	}
 	else {
 	    formattedDate= "du "+$filter('date')(start,formatOfDate) + " au "+$filter('date')(end,'d MMMM yyyy');	    
