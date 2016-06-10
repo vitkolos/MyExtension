@@ -223,7 +223,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             pageId: $scope.rubedo.current.page.id,
                             detailPageId: $scope.rubedo.current.page.id,
                             start:0,
-                            limit:4,
+                            limit:6,
                             constrainToSite: true,
                             orderby:'fields.date',
                             taxonomies: taxonomy,
@@ -237,7 +237,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 var counter=0;
                                 me.linkedContents={};
                                 angular.forEach(results, function(content, key){
-                                    if (content.id != me.content.id && counter <3) {
+                                    if (content.id != me.content.id && !me.content.horsSerie && counter <3 ) {
                                         me.linkedContents[counter] = content;
                                         counter++;
                                     }
