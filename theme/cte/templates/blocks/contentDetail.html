@@ -1,5 +1,5 @@
 <div ng-controller="ContentDetailController as contentDetailCtrl" >
     
-    <div ng-include="contentDetailCtrl.detailTemplate" ng-class="{'contentDetail':block.code!='contact'}">
+    <div ng-include="contentDetailCtrl.detailTemplate" ng-class="{'contentDetail':(block.code!='contact' && !blockConfig.contentOnly)}">
     </div>
 </div>
