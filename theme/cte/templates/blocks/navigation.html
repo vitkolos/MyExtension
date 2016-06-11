@@ -28,7 +28,7 @@
                                                      <a href="http://www.chemin-neuf.fr" class="capital" style="border: 0">{{rubedo.translate("Accueil" , "Home")}}</a>
                                                  </div>
                                             </div>
-                                            <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" ></div>
+                                            <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" ng-if="menuCtrl.isFrance"></div>
                                             <!--<div class="row" ng-if="!menuCtrl.isFrance">
                                                 <div class="col-md-3 col-xs-6" ng-repeat="page in menuCtrl.menu.pages track by $index">
                                                     <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
