@@ -18,6 +18,11 @@
 	else if ($scope.block.code && $scope.block.code!="") {
 	    me.menuTab = true;
 	}
+	me.isFrance = false;
+	if ($scope.rubedo.current.site.id == "555c4cf445205e71447e68d3") {
+	    me.isFrance = true;
+	}
+	console.log(me.isFrance);
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
 	me.getMenu = function(){
 	    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
@@ -30,6 +35,7 @@
 		}
 	    });
 	};
+
 	if ($scope.block.code=='lvl3') {
 	    if (($scope.rubedo.current.breadcrumb).length==3) {
 		var pageId=$scope.rubedo.current.page.id; me.getMenu();
