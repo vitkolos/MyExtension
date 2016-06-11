@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$route","RubedoContentsService","$element","RubedoSearchService",function($scope,$route,RubedoContentsService, $element, RubedoContentsService){
+angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$route","RubedoContentsService","$element","RubedoSearchService",function($scope,$route,RubedoContentsService, $element, RubedoSearchService){
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var config = $scope.blockConfig;
