@@ -4,6 +4,7 @@
         "config": {
             "fieldLabel": "Compte Paybox",
             "name": "paybox",
+	    "allowedCT":"55473bf845205e413cf1864d",
             "chooseOnly": true
         }
     },

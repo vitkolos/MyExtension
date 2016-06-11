@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$route","RubedoContentsService","$element",function($scope,$route,RubedoContentsService, $element){
+angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$route","RubedoContentsService","$element","RubedoSearchService",function($scope,$route,RubedoContentsService, $element, RubedoContentsService){
     var me = this;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var config = $scope.blockConfig;
@@ -41,10 +41,26 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
         })
     };
     if (displayMode=='showList') {
-        me.getContents(config.query, pageId, siteId, options, function(data){
-            me.contents = data.contents;
-            $scope.clearORPlaceholderHeight();
-        })
+        if (config.predefinedFacets) {
+            var searchOptions = {
+                start: 0,
+                limit:50,
+                pageId:pageId,
+                siteId:siteId,
+                predefinedFacets: config.predefinedFacets,
+                searchMode:"default"
+            }
+            RubedoSearchService.searchByQuery(options).then(function(response){
+                console.log(response);
+            });
+        }
+        else {
+            me.getContents(config.query, pageId, siteId, options, function(data){
+                me.contents = data.contents;
+                $scope.clearORPlaceholderHeight();
+            });
+        }
+        
     }
     me.init = function(){
         me.calendar = $element.find('#'+me.calendarId);
