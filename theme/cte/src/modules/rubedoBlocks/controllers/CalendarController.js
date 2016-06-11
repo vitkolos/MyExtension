@@ -51,7 +51,9 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
                 searchMode:"default"
             }
             RubedoSearchService.searchByQuery(searchOptions).then(function(response){
-                console.log(response);
+                if(response.data.success) {
+                    me.contents = response.data.results.data
+                }
             });
         }
         else {
