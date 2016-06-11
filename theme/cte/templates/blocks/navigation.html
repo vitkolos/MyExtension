@@ -12,11 +12,11 @@
                                 <div class="container-fluid menu">
                                     <div style="width:90%; margin-top:50px" >
                                        <div class="menuTab noTab" ng-if="!menuCtrl.menuTab">
-                                          <a href="http://www.chemin-neuf.fr" class="menu_header"><h4>Communauté du Chemin Neuf</h4></a>
+                                          <a href="http://www.chemin-neuf.fr" class="menu_header"><h4>{{rubedo.current.site.author}}</h4></a>
                                        </div>
                                        <div class="menuTab cursor-as-pointer" ng-if="menuCtrl.menuTab" data-toggle="collapse"  href="#menuCCN">
                                           <span class="menu_header">
-                                                <a><h4>Communauté du Chemin Neuf</h4></a>
+                                                <a><h4>{{rubedo.current.site.author}}</h4></a>
                                                 <span class="menuToggle glyphicon collapsed" ></span>
                                           </span>
                                           
@@ -25,7 +25,7 @@
                                        <div id="menuCCN" class="collapse" ng-class="{'in':!menuCtrl.menuTab}" >
                                             <div class="row" ng-if="menuCtrl.menuTab">
                                                  <div class="col-sm-12 text-center">
-                                                     <a href="http://www.chemin-neuf.fr" class="capital" style="border: 0">Accueil</a>
+                                                     <a href="http://www.chemin-neuf.fr" class="capital" style="border: 0">{{rubedo.translate("Accueil" , "Home")}}</a>
                                                  </div>
                                             </div>
                                             <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })"></div>
@@ -40,7 +40,7 @@
                                        <div ng-if="menuCtrl.menuTab" class="collapse in" id="menuBis">
                                             <div class="row" ng-if="menuCtrl.menuTab && blockConfig.displayRootPage">
                                                  <div class="col-sm-12 text-center">
-                                                     <a ng-href="{{menuCtrl.menu.url}}" class="capital" style="border: 0">Accueil</a>
+                                                     <a ng-href="{{menuCtrl.menu.url}}" class="capital" style="border: 0">{{rubedo.translate("Accueil" , "Home")}}</a>
                                                  </div>
                                             </div>
                                           <div class="row">
@@ -70,7 +70,7 @@
                                 <span class="glyphicon glyphicon-search" style="font-size:1.2em"></span>
                             </li>
                             <li class="cursor-as-pointer" ng-click="menuCtrl.showMenu()">
-                                menu
+                                {{rubedo.translate("Menu" , "menu")}}
                                 <div id="nav-icon4">
                                     <span></span>
                                     <span></span>
@@ -79,7 +79,7 @@
                             </li>
 
                             <li>
-                                <span style="line-height:1em"><a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">Faire un don</a></span>
+                                <span style="line-height:1em"><a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">{{rubedo.translate("FaireUnDon" , "Faire un don")}}</a></span>
                             </li>
             
                         </ul>
