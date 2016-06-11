@@ -56,6 +56,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
             RubedoSearchService.searchByQuery(searchOptions).then(function(response){
                 if(response.data.success) {
                     me.contents = response.data.results.data
+                    $scope.clearORPlaceholderHeight();
                 }
             });
         }
