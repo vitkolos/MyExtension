@@ -22,7 +22,6 @@
 	if ($scope.rubedo.current.site.id == "555c4cf445205e71447e68d3") {
 	    me.isFrance = true;
 	}
-	console.log(me.isFrance);
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
 	me.getMenu = function(){
 	    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
