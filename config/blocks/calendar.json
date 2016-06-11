@@ -78,6 +78,15 @@
                                     "showList"
                                 ]
                             }
+                        },
+                        {
+                            "type": "Rubedo.view.DCEField",
+                            "config": {
+                                "fieldLabel": "Calendrier de lieux",
+                                "name": "lieu",
+                                "allowedCT": "54632c1545205e7c38b0c6b7",
+                                "chooseOnly": true
+                            }
                         }
                     ]
                 }
