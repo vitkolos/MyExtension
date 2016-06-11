@@ -48,6 +48,8 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
                 limit:50,
                 pageId:pageId,
                 siteId:siteId,
+                orderby:dateDebut,
+                orderbyDirection:"asc",
                 predefinedFacets: config.predefinedFacets,
                 searchMode:"default"
             }
