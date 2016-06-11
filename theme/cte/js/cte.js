@@ -68,7 +68,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	else if (start.getMonth() != end.getMonth()) {
 	    formatOfDate = 'd MMM';
 	}
-	else  if(start.getDay() == end.getDay()){
+	else  if(start.getDate() == end.getDate()){
 	    formatOfDate = 'd';
 	    isSameDay=true;
 	}
