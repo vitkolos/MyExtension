@@ -2,5 +2,6 @@
    ng-click="siteMapCtrl.setPageDisplay(menu.id)" ng-if="menu.pages" class="glyphicon glyphicon-chevron-right"></span>-->
 
     <a ng-href="{{menu.url}}" class="capital">{{menu.text}}</a>
-    <a ng-repeat="page in menu.pages track by $index" ng-href="{{page.url}}">{{page.text}}<br/></a>
+    <a ng-repeat-start="page in menu.pages track by $index" ng-href="{{page.url}}">{{page.text}}</a>
+    <br ng-repeat-end>
 
