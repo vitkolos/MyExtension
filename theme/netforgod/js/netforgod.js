@@ -38,6 +38,12 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
+           var delay = 0
+           filmInfos = filmUrl.split("?t=");
+           if (filmInfos.length>1) {
+                      filmUrl = filmInfos[0];
+                      delay = filmInfos[1].substr(-3, 2);
+           }
            var title = attrs.title;
            var image = attrs.videoImage;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
@@ -60,6 +66,9 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
+            jwplayer(id).on('firstFrame', function() { 
+                      jwplayer().seek(delay);
+           });
 
             scope.$watch(function () {
                     return attrs.videoUrl;
