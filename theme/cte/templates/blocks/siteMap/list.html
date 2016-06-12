@@ -1,7 +1,6 @@
 <!--<span ng-class="{'glyphicon glyphicon-chevron-right': siteMapCtrl.getPageDisplay(menu.id), 'glyphicon glyphicon-chevron-down': !siteMapCtrl.getPageDisplay(menu.id)}"
    ng-click="siteMapCtrl.setPageDisplay(menu.id)" ng-if="menu.pages" class="glyphicon glyphicon-chevron-right"></span>-->
-<div class="col-md-3 col-xs-6">
+
     <a ng-href="{{menu.url}}" class="capital">{{menu.text}}</a>
-    <a ng-repeat="page in menu.pages track by $index" ng-href="{{page.url}}">{{page.text}}</a>
-</div>
+    <a ng-repeat="page in menu.pages track by $index" ng-href="{{page.url}}">{{page.text}}<br/></a>
 
