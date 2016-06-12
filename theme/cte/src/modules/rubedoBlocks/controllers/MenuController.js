@@ -90,6 +90,16 @@
         } else {
             var pageId=$scope.rubedo.current.page.id;me.getMenu();
         }
+	/*si ce n'est pas la France (avec un menu principal "à la main", on détermine le menu principal*/
+	if (!me.isFrance) {
+	    RubedoMenuService.getMenu(config.rootPage, config.menuLevel).then(function(response){
+		if (response.data.success){
+		    me.menuPrincipal=response.data.menu;
+		} else {
+		    me.menu={};
+		}
+	    });
+	}
         me.onSubmit = function(){
             var paramQuery = me.query?'?query='+me.query:'';
             RubedoPagesService.getPageById(config.searchPage).then(function(response){

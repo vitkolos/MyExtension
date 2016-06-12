@@ -14,6 +14,10 @@
  * @copyright  Copyright (c) 2012-2014 WebTales (http://www.webtales.fr)
  * @license    http://www.gnu.org/licenses/gpl.html Open Source GPL 3.0 license
  */
+
+         /**
+         *pour CCN : modifié pour ajouter un tableau avec les labels des taxonomies
+        **/
 namespace RubedoAPI\Rest\V1;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
