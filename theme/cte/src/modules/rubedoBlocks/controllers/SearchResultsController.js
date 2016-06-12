@@ -269,7 +269,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                                     me.activeTerms.push(newTerm);
                                 }
                                 previousFacetId = activeFacet.id;
-                                console.log()
                             });
                         }
                     });

@@ -64,10 +64,6 @@
                                 {
                                     "value": "checkbox",
                                     "label": "#ext-gen1376#"
-                                },
-                                {
-                                    "value": "propList",
-                                    "label": "Vignettes"
                                 }
                             ],
                             "config": {
