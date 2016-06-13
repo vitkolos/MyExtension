@@ -10,7 +10,7 @@
               <div ng-if="!content.fields.video">
                   <div class="ratio_321" ng-if="content.fields.image">
                   <img class="media-object pull-left padding-right"
-                               ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'390px',height:'390px',mode:'crop'})}}"
+                               ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'200px',height:'150px',mode:'crop'})}}"
                                alt="{{ content.fields.text }}"/>
                   </div>
                   <img class="media-object pull-left padding-right" ng-if="content.fields.audio"
@@ -19,8 +19,8 @@
        
       
                   <div>
-                  <p class="capital">{{content.createTime * 1000 | date}} <span class="pull-right tags" ng-if="content.fields.audio">audio</span></p>
-                  <a ng-href="{{content.detailPageUrl |cleanUrl}}"><h3>{{content.fields.text }}</h3>
+                  <!--<p class="capital">{{content.createTime * 1000 | date}} <span class="pull-right tags" ng-if="content.fields.audio">audio</span></p>-->
+                  <a ng-href="{{content.detailPageUrl |cleanUrl}}"><h4>{{content.fields.text }}</h4>
                   <p class="summary">{{content.fields.summary}}</p></a>
                   <div ng-init="audioFileId = content.fields.audio" ng-if="content.fields.audio" style="display:inline-block">
                       <div ng-controller="AudioFileController as audioCtrl">
