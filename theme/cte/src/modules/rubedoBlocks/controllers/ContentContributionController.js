@@ -102,6 +102,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                 RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
                                     if (response.data.success){
                                         $location.url(response.data.url);
+                                        $route.reload();
                                     }
                                 });
                             }
