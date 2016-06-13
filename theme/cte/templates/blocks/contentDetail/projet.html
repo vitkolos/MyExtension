@@ -11,6 +11,9 @@
 				</div>
 			</div>
 		</div>
+		<a ng-if="rubedo.current.user.rights.canEdit" ng-href="{{ contentDetailCtrl.content.editorPageUrl}}">
+			<button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
+		</a>
 	</div>
 	<div class="bg-white" style="overflow-y: hidden">
 		<header class="container-fluid content prop " ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
