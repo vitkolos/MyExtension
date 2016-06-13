@@ -34,9 +34,9 @@
               <div ng-if="content.fields.video">
                   <div class="col-sm-4">
                       <p class="capital tags">vidéo</p>
-                      <h3><a  ng-href="{{content.detailPageUrl |cleanUrl}}">{{content.fields.text}}</a></h3>
-                      <p class="summary">{{content.fields.summary}}</p>
-                      <p class="capital">{{content.createTime * 1000 | date}} </p>
+                      <h4><a  ng-href="{{content.detailPageUrl |cleanUrl}}">{{content.fields.text}}</a></h4>
+                      <!--<p class="summary">{{content.fields.summary}}</p>
+                      <p class="capital">{{content.createTime * 1000 | date}} </p>-->
                   </div>
                   <div class="col-sm-8">
                       <jwplayer video-url="{{content.fields.video}}"></jwplayer>
