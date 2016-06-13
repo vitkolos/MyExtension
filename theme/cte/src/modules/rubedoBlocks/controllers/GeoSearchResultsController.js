@@ -18,6 +18,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             },
             zoom:config.zoom ? config.zoom : 14
         };
+        me.city = "Lieu";
         // pour limiter le zoom lors de clusters
         me.mapSearchOptions={
             maxZoom:17
