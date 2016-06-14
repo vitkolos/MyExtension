@@ -1,11 +1,9 @@
 <?php
 namespace MyExtension\Rest\V1;
-use Rubedo\Collection\AbstractCollection;
+use RubedoAPI\Rest\V1\AbstractResource;
 use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
-use RubedoAPI\Rest\V1\AbstractResource;
-use RubedoAPI\Exceptions\APIControllerException;
 use WebTales\MongoFilters\Filter;
 
 
@@ -24,7 +22,7 @@ class AcnIpnResource extends AbstractResource {
             ->setDescription('Paybox IPN')
             ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
-                    ->setDescription('Get info de paiement Paybox')
+                    ->setDescription('Get info de paiement Paybox pour les ACN')
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('referencePaybox')
@@ -86,7 +84,7 @@ class AcnIpnResource extends AbstractResource {
             });
     }
     function getAction($params) {
-        $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage=""; $paymentValide = false;
+        $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage=""; 
         //VERIFICATIONS PAYBOX
         //code d'erreur
         if($params['erreur'] == "00000") $erreurStatus = false;

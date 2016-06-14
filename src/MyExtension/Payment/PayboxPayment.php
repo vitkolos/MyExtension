@@ -82,7 +82,11 @@ class PayboxPayment extends AbstractPayment
         // on hashe
         $empreinteHasheeHex = strtoupper(hash_hmac('sha512', $empreinteBrute, $binKey));
         $parametres['empreinteHasheeHex'] = $empreinteHasheeHex;
-
+        /*$order['payboxPayKey'] = $order['id'] ;
+        $updatedOrder = Manager::getService("Orders")->update($order);
+        if (!$updatedOrder['success']) {
+            throw new \Rubedo\Exceptions\Server("Error updating order");
+        }*/
         $output['url']=$parametres;
         $output['whatToDo']="submitForm";
         return $output;
