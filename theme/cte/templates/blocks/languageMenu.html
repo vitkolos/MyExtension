@@ -3,13 +3,13 @@
     <div ng-if="languageMenuCtrl.mode" class="btn-group">
         <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
             <i><img ng-if="languageMenuCtrl.showFlags" ng-src="{{languageMenuCtrl.getFlagUrl(languageMenuCtrl.currentLang.flagCode)}}" alt="{{languageMenuCtrl.currentLang.flagCode}}"/></i>
-            {{languageMenuCtrl.currentLang.flagCode}} <span class="caret"></span>
+            {{languageMenuCtrl.currentLang.lang}} <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
             <li ng-repeat="lang in languageMenuCtrl.languages track by $index">
                 <a ng-click="languageMenuCtrl.changeLang(lang.lang)" href>
                     <i ng-if="languageMenuCtrl.showFlags"><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></i>
-                    {{lang.flagCode}}
+                    {{lang.lang}}
                 </a>
             </li>
         </ul>
@@ -18,7 +18,7 @@
         <a ng-repeat="lang in languageMenuCtrl.languages track by $index" ng-class="{'disabled':languageMenuCtrl.isDisabled(lang.lang)}"
            class="btn btn-default" ng-click="languageMenuCtrl.changeLang(lang.lang)" href>
             <i ng-if="languageMenuCtrl.showFlags"><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></i>
-            {{lang.flagCode}}
+            {{lang.lang}}
         </a>
     </div>
 
