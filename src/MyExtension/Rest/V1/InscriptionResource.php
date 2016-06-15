@@ -181,12 +181,12 @@ protected function sendInscriptionMail($inscription,$lang){
         if($inscription['statut'] =='liste_attente') {
             $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_14_".$tuOuVous];
             //Nous te contacterons si des places se libèrent.
-            $messageClient .= $trad["ccn_mail_15_".$tuOuVous];
+            $messageClient .= " " . $trad["ccn_mail_15_".$tuOuVous];
         }
         if($inscription['statut'] =='preinscrit') {
             $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_22_".$tuOuVous];
             //Nous te contacterons pour te confirmer ton inscription.
-            $messageClient .= $trad["ccn_mail_21_".$tuOuVous];
+            $messageClient .= " " .  $trad["ccn_mail_21_".$tuOuVous];
         }
         else $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_20_".$tuOuVous];
     }
@@ -194,12 +194,12 @@ protected function sendInscriptionMail($inscription,$lang){
         if($inscription['statut'] =='liste_attente') {
             $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_14_".$tuOuVous];
             //Nous te contacterons si des places se libèrent.
-            $messageClient .= $trad["ccn_mail_15_".$tuOuVous];
+            $messageClient .= " " . $trad["ccn_mail_15_".$tuOuVous];
         }
         if($inscription['statut'] =='preinscrit') {
             $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_22_".$tuOuVous];
             //Nous te contacterons pour te confirmer ton inscription.
-            $messageClient .= $trad["ccn_mail_21_".$tuOuVous];
+            $messageClient .= " " . $trad["ccn_mail_21_".$tuOuVous];
         }
         else $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_10_".$tuOuVous];
     }
