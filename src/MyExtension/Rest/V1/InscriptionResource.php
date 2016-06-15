@@ -154,15 +154,15 @@ protected function sendInscriptionMail($inscription,$lang){
         /**************SUJET CLIENT*****************/
     $sujetClient = "";
     /*Si inscriptions ouvertes*/
-    if($inscription['etat'] !='liste_attente' && $inscription['etat'] !='preinscrit') {
+    if($inscription['statut'] !='liste_attente' && $inscription['statut'] !='preinscrit') {
         if($inscription['serviteur']) $sujetClient.= $trad["ccn_mail_sujet2b_serviteur"] . " - " . $inscription['propositionTitre'] ;
         else $sujetClient.= $trad["ccn_mail_sujet2b"] . " - " . $inscription['propositionTitre'];
     }
-    else if($inscription['etat'] =='liste_attente') {
+    else if($inscription['statut'] =='liste_attente') {
         if($inscription['serviteur']) $sujetClient.= $trad["ccn_mail_sujet3_serviteur"] . " - " . $inscription['propositionTitre'] ;
         else $sujetClient.= $trad["ccn_mail_sujet3"] . " - " . $inscription['propositionTitre'];        
     }
-    else if($inscription['etat'] =='preinscrit') {
+    else if($inscription['statut'] =='preinscrit') {
         if($inscription['serviteur']) $sujetClient.= $trad["ccn_mail_sujet9_serviteur"] . " - " . $inscription['propositionTitre'] ;
         else $sujetClient.= $trad["ccn_mail_sujet9"] . " - " . $inscription['propositionTitre'];        
     }
@@ -178,12 +178,12 @@ protected function sendInscriptionMail($inscription,$lang){
     //RECEPTION INSCRIPTION
     //Nous avons bien reçu ton inscription
     if($inscription['serviteur']) {
-        if($inscription['etat'] =='liste_attente') {
+        if($inscription['statut'] =='liste_attente') {
             $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_14_".$tuOuVous];
             //Nous te contacterons si des places se libèrent.
             $messageClient .= $trad["ccn_mail_15_".$tuOuVous];
         }
-        if($inscription['etat'] =='preinscrit') {
+        if($inscription['statut'] =='preinscrit') {
             $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_22_".$tuOuVous];
             //Nous te contacterons pour te confirmer ton inscription.
             $messageClient .= $trad["ccn_mail_21_".$tuOuVous];
@@ -191,12 +191,12 @@ protected function sendInscriptionMail($inscription,$lang){
         else $messageClient .= ($inscription['mailInscriptionService']) ? $inscription['mailInscriptionService'] : $trad["ccn_mail_20_".$tuOuVous];
     }
     else {
-        if($inscription['etat'] =='liste_attente') {
+        if($inscription['statut'] =='liste_attente') {
             $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_14_".$tuOuVous];
             //Nous te contacterons si des places se libèrent.
             $messageClient .= $trad["ccn_mail_15_".$tuOuVous];
         }
-        if($inscription['etat'] =='preinscrit') {
+        if($inscription['statut'] =='preinscrit') {
             $messageClient .= ($inscription['mailInscription']) ? $inscription['mailInscription'] : $trad["ccn_mail_22_".$tuOuVous];
             //Nous te contacterons pour te confirmer ton inscription.
             $messageClient .= $trad["ccn_mail_21_".$tuOuVous];
@@ -371,7 +371,7 @@ protected function sendInscriptionMail($inscription,$lang){
     //STATUT DE L'INSCRIPTION
     $statut="";
     /*Si inscriptions ouvertes*/
-    if($inscription['etat'] !='liste_attente' && $inscription['etat'] !='preinscrit') {
+    if($inscription['statut'] !='liste_attente' && $inscription['statut'] !='preinscrit') {
         if($inscription['accompte'] == 0) { //pas de frais d'inscription
             //Inscription ferme (pas de frais d'inscription)
             if($inscription['serviteur']) $statut = $trad["ccn_mail_sujet4_serviteur"];
@@ -383,12 +383,12 @@ protected function sendInscriptionMail($inscription,$lang){
             else $statut = $trad["ccn_mail_sujet5"] . $inscription['accompteAvecMonnaie'] . ")";            
         }
     }
-    else if($inscription['etat'] =='liste_attente') {
+    else if($inscription['statut'] =='liste_attente') {
         //Inscription en liste d'attente
         if($inscription['serviteur']) $statut = $trad["ccn_mail_sujet6_serviteur"];
         else $statut = $trad["ccn_mail_sujet6"];
     }
-    else if($inscription['etat'] =='preinscrit') {
+    else if($inscription['statut'] =='preinscrit') {
         //Preinscription
         if($inscription['serviteur']) $statut = $trad["ccn_mail_sujet8_serviteur"];
         else $statut = $trad["ccn_mail_sujet8"];

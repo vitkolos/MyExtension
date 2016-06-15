@@ -72,9 +72,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         $scope.inscription.serviteur=newValue;
    });
 
-    $scope.$watch("inscription.birthdate", function(newValue, oldValue) {
-        console.log(newValue);
-    });
+
     
     $scope.inscription.personneConnue = false;
     $scope.inscription.entretien = false;
