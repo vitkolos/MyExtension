@@ -104,7 +104,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             && me.content.fields.paimentOption.paimentOption[0]!=null) {
         me.isPaiement = true;
     }
-    else if (me.content.fields.accompte>0  &&me.content.fields.inscriptionState.inscriptionState!='preinscription') {
+    else if (me.content.fields.accompte>0  && me.content.fields.inscriptionState.inscriptionState!='preinscription' && me.content.fields.inscriptionState.inscriptionState!='attente') {
         me.isPaiement = true;
         me.isPaimentAccompteSeulement = true;
     }
