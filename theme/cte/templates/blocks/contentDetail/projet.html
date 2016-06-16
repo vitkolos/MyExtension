@@ -97,8 +97,8 @@
 								<p class="capital text-left">{{contentDetailCtrl.getLabelByName('nom')}}</p>
 							</div>
 							<div class="col-xs-12 ">
-								<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactPhoto')}}" style="float:left; margin-right:12px; max-width:100px"></rubedo-field>
-								<p style="margin-bottom:0"><b>{{contentDetailCtrl.content.fields.nom}}</b><!--Nom du contact-->
+								<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('contactPhoto')}}" style="float:left; margin-right:12px; max-width:65px"></rubedo-field>
+								<p style="margin-bottom:0" class="text-left"><b>{{contentDetailCtrl.content.fields.nom}}</b><!--Nom du contact-->
 									<span ng-if="contentDetailCtrl.content.fields.contactTitle"> ({{contentDetailCtrl.content.fields.contactTitle}})</span><!--Titre du contact-->
 								</p>
 								<div ng-init="blockConfig={'id':'contactProjet','email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom, 'email_txt': rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
