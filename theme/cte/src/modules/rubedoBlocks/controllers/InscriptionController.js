@@ -357,6 +357,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             proposition:propositionTitle,
                             idInscription: response.data.id
                         };
+                        /*si ados, le mail indiqué pour le payement est celui du parent*/
+                        if($scope.inscription.public_type == 'adolescent' && $scope.inscription.emailPers2 && $scope.inscription.emailPers2!=''){
+                            payload.email = $scope.inscription.emailPers2;
+                        }
                         if (me.content.fields.lieuCommunautaire) {
                             payload.placeID=me.content.fields.lieuCommunautaire;
                         }

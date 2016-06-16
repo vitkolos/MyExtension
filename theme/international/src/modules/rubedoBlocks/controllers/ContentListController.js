@@ -267,7 +267,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
       $scope.fieldEntity = angular.copy(me.content.fields);
     };
 
-    if ($scope.content.fields.propositionReferenceeInterne && $scope.content.fields.propositionReferenceeInterne !=""){
+   if ($scope.content.fields.propositionReferenceeInterne && $scope.content.fields.propositionReferenceeInterne !=""){
         RubedoPagesService.getPageById($scope.content.fields.propositionReferenceeInterne).then(function(response){
                 if (response.data.success){
                     $scope.content.contentLinkUrl = response.data.url;;
@@ -278,7 +278,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
             $scope.content.contentLinkUrl = $scope.content.fields.propositionReferencee;
     }
     else $scope.content.contentLinkUrl = $scope.content.detailPageUrl;
-    
+     
     $scope.content.type = {
         title:
         {

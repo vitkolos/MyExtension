@@ -1,13 +1,4 @@
 <div ng-controller="ContentListController as contentListCtrl">
-    <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
-            ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
-            ng-model="contentListCtrl.selectedManualType"></select>
-    <button ng-if="contentListCtrl.canAddToList()"
-            title="Add content"
-            class="btn btn-default"
-            ng-click="contentListCtrl.launchContribute()">
-        <span class="glyphicon glyphicon-plus"></span>
-    </button>
     <button ng-if="!contentListCtrl.canAddToList()&&contentListCtrl.isFOContributeMode&&contentListCtrl.editorPageUrl"
             title="Add content"
             class="btn btn-default"
@@ -17,25 +8,22 @@
     <div class="row contentList" ng-switch="blockConfig.columns">
        <!--POUR 1 COLONNE-->
         <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1" class="padding-">
-            <!--<div id="infiniteScrollCtrl">-->
-            <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
+            <!--<div id="infiniteScrollCtrl">-->            
+            <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" style="display: block" >
                 <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="equal-height-cols">
-                   <a ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}">
-                    <div class="col-sm-8 col-xs-12">
-                    <img class="img-responsive no-margin" ng-if="content.fields.image"
-                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'700px',height:'350px',mode:'crop'}) }}"
-                                                                     alt="{{ content.fields.text }}"/>                                                   
-                    </div>
-                    <div class="col-sm-4 col-xs-12">
-                        <h3>
-                            {{content.fields.text}}
-
+                   <a  ng-href="{{!fieldEditMode? content.contentLinkUrl : ''}}"  style="display:block; width:100%">
+                        <div class="col-lg-7 col-sm-8 col-xs-12" >
+                            <header class="content prop no-margin no-filter"
+					afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(content.fields.image ,{width:'1800px',mode:'boxed'})}} 1500w"
+                afkl-lazy-image-options='{"background": true}' style="margin-bottom:0"></header>
+                        </div>
+                        <div class="col-lg-5 col-sm-4 col-xs-12"  style="padding-left: 34px;">
+                            <h3 ng-if="!fieldEditMode">
+                                {{content.fields.text}}
+                            </h3>
                             <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                        </h3>
-                       <p  ng-if="!contentListCtrl.titleOnly">
                             <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                       </p>
-                    </div>                    
+                        </div>                    
                    </a>
 
                 </div>
@@ -43,10 +31,10 @@
         </div>
 
 
+
         <!--AUTRES-->
-        <div ng-style="contentListCtrl.blockStyle" ng-switch-default>
-            <div ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
-                <div class="col-sm-6 col-xs-12" ng-class="contentListCtrl.columns" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" ng-switch="content.typeId">                
+        <div ng-style="contentListCtrl.blockStyle" ng-switch-default ng-class="{'container' : blockConfig.container}">
+                <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents" ng-switch="content.typeId"  class="col-xs-6 col-xxs-12" ng-class="contentListCtrl.columns">                
                     <!---VIDEOS-->
                     <div ng-switch-when="56094a2245205e0e2541ea77">
                     
@@ -67,23 +55,27 @@
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" >
                             <div class="media-body" >
                                 
-                                <h4 class="list-item-title capital"><span>{{content.fields.text}}</span></h4>
+                                <h4 class="list-item-title capital"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
+                                </h4>
+
                                 <div class="list-item-img">
                                     <img class="media-object pull-left" ng-if="content.fields.image"
                                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>
                                     
                                 </div>
-                                <p  class="text-center" style="margin-top:10px;" ng-if="!contentListCtrl.titleOnly">
-                                    <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                                </p>
+
                                 <h4 class="list-item-title date-lieu capital" ng-if="content.fields.positionName">
                                     <p class="list-tags" ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
                                     <span>
-                                        {{content.fields.positionName}}
-                                        <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
+                                        <span ng-if="!blockConfig.hidePlace">{{content.fields.positionName}}</span><span ng-if="!blockConfig.hidePlace && content.fields.dateDebut"> - </span>
+                                        <time ng-if="content.fields.dateDebut">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}} <span ng-if="content.fields.complement_date">{{content.fields.complement_date}}</span></time>
+                                        <time ng-if="!content.fields.dateDebut && content.fields.complement_date">{{content.fields.complement_date}}</time>
                                     </span>
                                 </h4>
+                                <p  class="text-center" style="margin-top:10px; height: 85px; overflow-y: hidden" ng-if="!contentListCtrl.titleOnly">
+                                    <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                                </p>
                                 <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
                                         <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
                                 </a>
@@ -99,15 +91,16 @@
                                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>
                             </div>
-                            <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
-                                <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                            </p>
+
                             <h4 class="list-item-title date-lieu capital" ng-if="content.fields.positionName">
                                 <span>
                                     {{content.fields.positionName}}
                                     <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
                                 </span>
                             </h4>
+                            <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
+                                <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                            </p>
                         </div>
 
                     </div>
@@ -115,7 +108,6 @@
                     
                   
                 </div>
-            </div>
         </div>
  
         
