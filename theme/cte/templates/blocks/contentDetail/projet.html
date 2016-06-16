@@ -15,7 +15,7 @@
 			<button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
 		</a>
 	</div>
-	<div class="bg-white" style="overflow-y: hidden">
+	<div class="" style="overflow-y: hidden">
 		<header class="container-fluid content prop " ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
 			<div class="text-article container" >
 				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="!fieldEditMode">
@@ -69,7 +69,7 @@
 							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('website')}}</p>
 						</div>
 						<div class="col-xs-12 col-sm-8 ">
-							<p><a ng-href="{{contentDetailCtrl.content.fields.website}}" target="_blank">{{contentDetailCtrl.content.fields.website}}</a></p>
+							<p class="small"><a ng-href="{{contentDetailCtrl.content.fields.website}}" target="_blank">{{contentDetailCtrl.content.fields.website}}</a></p>
 
 						</div>
 					</div>
