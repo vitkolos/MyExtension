@@ -41,7 +41,7 @@
 				
 				<div  class="col-xs-6">
 					<!--Pays-->
-					<div class="container-fluid">
+					<div class="container-fluid" ng-if="contentDetailCtrl.content.taxonomy['56be135cc445ece5018b552e'].length>0">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 							<p class="capital text-left">{{rubedo.translate("Dons.projet", "Type de projet")}}</p>
 						</div>
@@ -144,7 +144,7 @@
 		</div>
 		<div class="row">
 			<div class="col-xs-12 bg-white" >
-				<div class="texte">
+				<div class="text-article">
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
 				</div>
 			</div>		
