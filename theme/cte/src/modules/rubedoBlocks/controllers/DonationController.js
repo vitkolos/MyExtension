@@ -88,6 +88,10 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         });                
     me.setCurrentStage = function(step, valide) {
         if(valide){
+            if (step==2) {
+                /*déterminer les conditions de payement*/
+               updatePaymentStatus();
+            }
             /*
             if (step==3) {
                     me.stage2Error=null;
@@ -168,19 +172,18 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     };
     
     /*vérifier les conditions de payement*/
-    me.isOnlinePayment = function(){
-        var isCarte = false;
+    me.isCarte = false;
+    updatePaymentStatus = function(){
         if (me.fiscalitesCount>0) {
             if (me.fiscalitesCount>1) {
-                isCarte = me.fiscalites[$scope.don.condition].fields.isCarte;
+                me.isCarte = me.fiscalites[$scope.don.condition].fields.isCarte;
             }
             else {
-                isCarte = me.account.isCarte;
+                me.isCarte = me.account.isCarte;
             }
         }
             /*déterminer la config de dons choisie*/
         
-        return isCarte;
         
     }
     
