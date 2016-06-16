@@ -62,15 +62,18 @@
 							</p>
 						</div>
 					</div>
+					
 					<!--Site web-->
-					<div ng-if="fieldEntity['website']" class="col-xs-12">
+					<div class="container-fluid" ng-if="fieldEntity['website']">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-							<p class="capital">{{contentDetailCtrl.getLabelByName('website')}}</p>
+							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('website')}}</p>
 						</div>
 						<div class="col-xs-12 col-sm-8 ">
-							<p><a ng-href="{{contentDetailCtrl.content.fields.website}}" >{{contentDetailCtrl.content.fields.website}}</a></p>
+							<p><a ng-href="{{contentDetailCtrl.content.fields.website}}" target="_blank">{{contentDetailCtrl.content.fields.website}}</a></p>
+
 						</div>
 					</div>
+
 					<!--Budget-->
 					<div class="container-fluid">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
