@@ -46,8 +46,8 @@
 							<p class="capital text-left">{{rubedo.translate("Dons.projet", "Type de projet")}}</p>
 						</div>
 						<div class="col-xs-12 col-sm-8 ">
-							<p><span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['56be135cc445ece5018b552e']">
-									{{contentDetailCtrl.getTermInTaxo("56be135cc445ece5018b552e",taxonomy)}}</span>
+							<p class="text-left"><span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['56be135cc445ece5018b552e']">
+									<span ng-if="$index>0">, </span>{{contentDetailCtrl.getTermInTaxo("56be135cc445ece5018b552e",taxonomy)}}</span>
 							</p>
 						</div>
 					</div>
@@ -58,7 +58,7 @@
 						</div>
 						<div class="col-xs-12 col-sm-8 ">
 							<p><span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']">
-									{{contentDetailCtrl.getTermInTaxo("54d6299445205e7877a6b28e",taxonomy)}}</span>
+								{{contentDetailCtrl.getTermInTaxo("54d6299445205e7877a6b28e",taxonomy)}}</span>
 							</p>
 						</div>
 					</div>
