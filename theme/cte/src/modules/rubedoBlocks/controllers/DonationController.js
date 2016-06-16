@@ -167,6 +167,20 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         }
     };
     
+    /*vérifier les conditions de payement*/
+    me.isOnlinePayment = function(){
+        var isCarte = false;
+            /*déterminer la config de dons choisie*/
+        if (me.fiscalitesCount>1) {
+            isCarte = me.fiscalites[$scope.don.condition].fields.isCarte;
+        }
+        else {
+            isCarte = me.account.isCarte;
+        }
+        return isCarte;
+        
+    }
+    
     me.parseUserType=function(userType){
         me.userType=userType;
         $scope.fieldIdPrefix="checkout"+"_"+me.userType.type;
@@ -281,6 +295,8 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         $scope.isTelephoneRequired = function () {
             return  !($scope.don.user.tel1 || $scope.don.user.tel2); // au moins téléphone fixe ou portable
     };
+    
+
     
 }]);
 
