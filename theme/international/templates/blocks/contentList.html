@@ -20,7 +20,7 @@
             <!--<div id="infiniteScrollCtrl">-->
             <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" >
                 <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="equal-height-cols">
-                   <a ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}">
+                   <a ng-if="!fieldEditMode"  ng-href="{{!fieldEditMode? content.contentLinkUrl : ''}}">
                     <div class="col-sm-8 col-xs-12">
                     <img class="img-responsive no-margin" ng-if="content.fields.image"
                                                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'700px',height:'350px',mode:'crop'}) }}"
