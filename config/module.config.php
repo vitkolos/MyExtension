@@ -20,7 +20,13 @@ return array(
             'name' => "Dons FR",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+        ),
+         'dons_hautecombe' => array(
+            'name' => "Fondation d'Hautecombe",
+            'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         )
+         
     ),
     
 
