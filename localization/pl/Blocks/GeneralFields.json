@@ -3,5 +3,21 @@
   "Blocks.Contact.Input.Email.Label":"Email *",
   "Blocks.Contact.Input.Subject.Label":"Temat *",
   "Blocks.Contact.Input.Message.Label":"Wiadomość *",
-  "Blocks.Contact.Input.Submit.Label":"Wyślij"
+  "Blocks.Contact.Input.Submit.Label":"Wyślij",
+  "Block.VoirPlus" : "À voir aussi",
+  "Missions.cana":"Kana - dla małżeństw i rodzin",
+  "Missions.netforgod":"Net for God",
+  "Missions.ados":"Młodzi 14-18 lat",
+  "Missions.jeunes":"Młodzi 18-30 lat",
+  "Missions.foyers":"Foyers d'étudiants",
+  "Missions.jet":"JET - Volontariat International",
+  "Block.Mail.SendMail":"Envoyer un mail",
+  "Block.Inscription.Telephone":"Téléphone",
+  "InfosPratiques":"Informacje praktyczne",
+  "Inscription":"Zapisy",
+  "FaireUnDon":"Faire un don",
+  "Menu" : "menu",
+  "Accueil" : "Home"
 }
+
+
