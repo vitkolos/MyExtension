@@ -227,7 +227,7 @@
                                                     <input type="radio"  name="modePaiement" id="liquide" ng-model="don.modePaiement" value="liquide" required>
                                                     <label for="liquide">{{rubedo.translate("Block.Inscription.Paf.Liquide","par dépôt d'argent liquide")}}</label> 
                                                 </div>
-                                                <div class="col-xs-12" ng-if="don.mensuel || don.trimestriel">
+                                                <div class="col-xs-12" ng-if="(don.mensuel || don.trimestriel) && donsCtrl.isPrelevement">
                                                     <input type="radio"  name="modePaiement" id="prelevement" ng-model="don.modePaiement" value="prelevement" required>
                                                     <label for="prelevement">{{rubedo.translate("Block.Inscription.Paf.Prelevement","par prélèvement automatique")}}</label> 
                                                 </div>

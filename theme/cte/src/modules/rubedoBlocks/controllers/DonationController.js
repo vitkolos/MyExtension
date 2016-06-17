@@ -171,15 +171,18 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         }
     };
     
-    /*vérifier les conditions de payement*/
+    /*vérifier les conditions possibles de payement*/
     me.isCarte = false;
+    me.isPrelevement = false;
     updatePaymentStatus = function(){
         if (me.fiscalitesCount>0) {
             if (me.fiscalitesCount>1) {
                 me.isCarte = me.fiscalites[$scope.don.condition].fields.isCarte;
+                me.isPrelevement = me.fiscalites[$scope.don.condition].fields.isPrelevement;
             }
             else {
                 me.isCarte = me.account.isCarte;
+                me.isPrelevement = me.account.isPrelevement;
             }
         }
             /*déterminer la config de dons choisie*/
