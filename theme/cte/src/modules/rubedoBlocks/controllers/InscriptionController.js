@@ -315,7 +315,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.personneConnue = me.form.personneConnue;
             $scope.inscription.entretien = me.form.entretien;
             $scope.inscription.motivation = me.form.motivation;
-            
+            /*enfant*/
+            if($scope.inscription.enfant !={}) {
+              me.addChild($scope.inscription.enfant);
+            }
 
             if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
             else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
