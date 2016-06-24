@@ -316,7 +316,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.entretien = me.form.entretien;
             $scope.inscription.motivation = me.form.motivation;
             /*enfant*/
-            if($scope.inscription.enfant !={}) {
+            if($scope.inscription.enfant !={} && $scope.inscription.enfant.prenom && $scope.inscription.enfant.prenom!='') {
               me.addChild($scope.inscription.enfant);
             }
 
