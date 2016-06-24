@@ -103,7 +103,7 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['online'] = true;
         $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
-        $resultInscription = $contentsService->create($inscriptionForm, array(),false);    
+        $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);    
 
 
         //GET PAYEMENT INFOS
