@@ -61,6 +61,7 @@ class ContentsResource extends AbstractResource
         'readOnly',
         'createTime',
         'lastUpdateTime',
+        'clickStreamEvent',
         'isProduct',
         'productProperties'
     );
