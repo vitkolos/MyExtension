@@ -38,7 +38,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
-           var delay = 0
+           var delay = 0;
            filmInfos = filmUrl.split("?t=");
            if (filmInfos.length>1) {
                       filmUrl = filmInfos[0];
@@ -76,14 +76,23 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                       if (!oldValue || oldValue==newValue) {
                       }
                       else {
+                      	delay = 0;
+           		filmInfos = newValue.split("?t=");
+		        if (filmInfos.length>1) {
+		                      filmUrl = filmInfos[0];
+		                      delay = filmInfos[1].substr(-3, 2);
+		        }
                                  jwplayer(id).load([{
-                                            file: attrs.videoUrl,
+                                            file: filmUrl,
                                             ga: {label:attrs.title},
                                             modestbranding:0,
                                             showinfo:1,
                                             width:"100%",
                                             aspectratio:"16:9"
                                  }]);
+                                 jwplayer(id).on('firstFrame', function() { 
+			                 jwplayer().seek(delay);
+			          });
                       }
                 });
         }
