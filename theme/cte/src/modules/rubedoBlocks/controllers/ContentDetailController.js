@@ -2,7 +2,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                                                           function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
-    console.log(config);
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.inscriptionTemplate = themePath+'/templates/blocks/inscription.html';
     var previousFields;
