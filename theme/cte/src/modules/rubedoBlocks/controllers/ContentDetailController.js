@@ -146,6 +146,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             allowBlank:false
                         }
                     });
+                    //si le contenu est affiché "à la main" par un bloc détail de contenu, on enlève la page du breadcrumb
+                    if(!config.isAutoInjected) $scope.rubedo.current.breadcrumb.pop(); 
                     $scope.rubedo.current.breadcrumb.push({title:response.data.content.text});
                     if (me.content.type.activateDisqus&&$scope.rubedo.current.site.disqusKey){
                         me.activateDisqus=true;
