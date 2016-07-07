@@ -80,7 +80,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	    	else formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
 	}
 	else {
-	    formattedDate= "du "+$filter('date')(start,formatOfDate) + " au "+$filter('date')(end,'d MMMM yyyy');	    
+	    formattedDate= $scope.rubedo.translate("date.from", "od")+" "+ $filter('date')(start,formatOfDate) + " "+ $scope.rubedo.translate("date.to", "do")+ " " +$filter('date')(end,'d MMMM yyyy');	    
 	}
 	return formattedDate;
     }
