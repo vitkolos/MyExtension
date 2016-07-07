@@ -85,6 +85,31 @@ label {
   font-size: 14px;
   font-weight: normal;
 }
+:lang(pl) .capital,
+:lang(pl) .text-article .capital,
+:lang(pl) .capital p,
+:lang(pl) .text-article .capital p {
+  font-family: 'Lato', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: normal;
+}
+:lang(pl) .capital2 {
+  font-family: 'Lato', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 10px !important;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+:lang(pl) .linkbox {
+  text-align: center;
+  font-family: 'Lato';
+}
+:lang(pl) body .container-fluid#jeunes {
+  font-family: 'Lato', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .text-article div.pull-right {
   float: none !important;
 }
