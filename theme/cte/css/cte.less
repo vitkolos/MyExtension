@@ -90,7 +90,7 @@ p a{box-shadow: inset 0 -2px 0 @marron; transition: background 0.3s ease }
 p a:hover, p a:active{background-color:@marron}
 input:focus{outline: 0; border-color:transparent; box-shadow:0}
 .media-body{min-width:200px;}
-.contentList .media-body{margin-bottom: 24px; min-width:none}
+.contentList .media-body{margin-bottom: 24px; min-width:0}
 .col-sm-6:after{.clearfix}
 @media screen and (max-width: @min_xs){
     [class*="col-xs-"]{width:100%;}
@@ -949,6 +949,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   display: block;
   padding-top: 50%; 	/* initial ratio of 2:1*/
 }
+.list-item-img.no-img:before{padding-top: 0;}
 .list-item-img>img{
   position:  absolute;
   top: -20%;
@@ -967,7 +968,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   }
 }
 
-@media screen and (min-width:@min_xs) {.list-item-img:before{padding-top:33.333%;}.list-item-img>img{top:-50%}}
+@media screen and (min-width:@min_xs) {/*.list-item-img:before{padding-top:33.333%;}*/.list-item-img>img{top:-25%}}
 @media screen and (min-width:@min_sm) {
   .list-item-img:before{padding-top:60%;}
   .list-item-img>img{top:-5%}
