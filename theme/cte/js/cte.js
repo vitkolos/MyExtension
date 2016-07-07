@@ -55,7 +55,7 @@ angular.module('rubedoBlocks').filter('tags', function() {
 });
 
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
-angular.module('rubedoBlocks').filter('dateRange', function ($filter,$scope) {
+angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     return function(startDate, endDate, rangeFormat){
 	var format = rangeFormat || 'long';
 	var formatOfDate =  'd MMM yyyy';
@@ -80,7 +80,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter,$scope) {
 	    	else formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
 	}
 	else {
-	    formattedDate= $scope.rubedo.translate("date.from", "od")+" "+ $filter('date')(start,formatOfDate) + " "+ $scope.rubedo.translate("date.to", "do")+ " " +$filter('date')(end,'d MMMM yyyy');	    
+	    formattedDate= "du "+$filter('date')(start,formatOfDate) + " au "+$filter('date')(end,'d MMMM yyyy');	    
 	}
 	return formattedDate;
     }
@@ -468,7 +468,6 @@ angular.module('rubedoBlocks').controller('MasonryCtrl', [
       }
     };
   });
-
 
 
 
