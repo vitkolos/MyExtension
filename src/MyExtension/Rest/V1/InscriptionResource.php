@@ -627,12 +627,17 @@ protected function sendInscriptionMail($inscription,$lang){
             case "chemin-neuf.fr" : 
             case "ccn.chemin-neuf.fr" : 
                 return "FR"; break;
+            case "chemin-neuf.pl" : 
+            case "pl.chemin-neuf.org" : 
+                return "PL"; break;
         }
      }
     protected function getAccountId(){
         switch($_SERVER['HTTP_HOST']) {
             case "chemin-neuf.fr" : 
-            case "ccn.chemin-neuf.fr" : 
+            case "ccn.chemin-neuf.fr" :
+            case "chemin-neuf.pl" : 
+            case "pl.chemin-neuf.org" : 
                 return "55473e9745205e1d3ef1864d"; break;
         }
      }
