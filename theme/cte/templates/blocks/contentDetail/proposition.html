@@ -97,7 +97,7 @@
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('accompte')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
-						{{contentDetailCtrl.content.fields.accompte | currency}}
+						{{contentDetailCtrl.content.fields.accompte | currency| 0}}
 						<rubedo-field  ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('accompte')}}"></rubedo-field><!--Description-->
 					</div>
 				</div>
@@ -149,10 +149,10 @@
 		<a name="inscription"></a>
 		<div class="row  bg-white" ng-if="contentDetailCtrl.isInscription">
 			<div class="text-article">
-				<div class="col-xs-12"><h3>Inscriptions</h3></div>
+				<div class="col-xs-12"><h3>{{rubedo.translate("Inscriptions", "Inscriptions")}}</h3></div>
 				<div ng-if="fieldEntity['inscriptionState']">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-						<p class="capital text-left">État des inscriptions</p>
+						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('inscriptionState')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 "  ng-if="contentDetailCtrl.propDate!='passee' ">
 						<rubedo-field ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState != 'attente'" field =  "{{contentDetailCtrl.getFieldByName('inscriptionState')}}"></rubedo-field>
@@ -172,7 +172,7 @@
 						<!--si un seul public accueilli-->
 						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true">
-								S'inscrire
+								{{rubedo.translate("Inscription", "S'inscrire")}}
 							</div>
 						</div>
 						<!--si un plusieurs types de public accueillis-->
@@ -187,12 +187,12 @@
 						<!--si un seul public au service-->
 						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.public_service).length==1 && contentDetailCtrl.content.fields.public_service[0]">
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.public_service[0];contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = true" >
-								S'inscrire au service
+								{{rubedo.translate("Block.Inscription.Inscrire.Service", "S'inscrire au service")}}
 							</div>
 						</div>
 						<!--si un plusieurs types de public au service-->
 						<div ng-if="(contentDetailCtrl.content.fields.public_service).length>1" class="col-sm-6" ng-init="showTypeServiteurs=false">
-							<div class="button rouge cursor-as-pointer" ng-click="showTypeServiteurs= !showTypeServiteurs" style="margin-bottom:12px" >S'inscrire  au service :</div>
+							<div class="button rouge cursor-as-pointer" ng-click="showTypeServiteurs= !showTypeServiteurs" style="margin-bottom:12px" >{{rubedo.translate("Block.Inscription.Inscrire.Service", "S'inscrire au service")}} :</div>
 							        <!--Type de public -->
 							<div ng-if="showTypeServiteurs" ng-repeat="public in contentDetailCtrl.content.fields.public_service track by $index" class="text-center">
 
