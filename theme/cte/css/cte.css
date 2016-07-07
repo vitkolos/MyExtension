@@ -75,6 +75,9 @@ p {
 label {
   font-weight: normal;
 }
+.sans-serif {
+  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
 .capital,
 .text-article .capital,
 .capital p,
@@ -85,29 +88,7 @@ label {
   font-size: 14px;
   font-weight: normal;
 }
-:lang(pl) .capital,
-:lang(pl) .text-article .capital,
-:lang(pl) .capital p,
-:lang(pl) .text-article .capital p {
-  font-family: 'Lato', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 14px;
-  font-weight: normal;
-}
-:lang(pl) .capital2 {
-  font-family: 'Lato', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 10px !important;
-  font-weight: normal;
-  margin-bottom: 0;
-}
-:lang(pl) .linkbox {
-  text-align: center;
-  font-family: 'Lato';
-}
-:lang(pl) body .container-fluid#jeunes {
+:lang(pl) .sans-serif {
   font-family: 'Lato', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .text-article div.pull-right {
@@ -442,7 +423,7 @@ span.font_icon:hover a {
 }
 .linkbox {
   text-align: center;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .linkbox a {
   margin: 12px 6px 0;
@@ -476,7 +457,7 @@ span.font_icon:hover a {
   text-align: right;
 }
 .navbar-fixed-top.language .btn {
-  font-family: "Montserrat";
+  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   color: #c1573c;
   padding: 9px 12px;
@@ -1913,7 +1894,7 @@ p.red-sub {
 }
 .rwd-table .cal-date {
   text-transform: uppercase;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 .contentDetail {
   min-height: 90vh;
@@ -2001,13 +1982,12 @@ header.content.prop > div {
 .socials .addthis_counter .addthis_button_expanded,
 .socials .addthis_counter .addthis_button_expanded a {
   color: #c1573c !important;
-  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 14px;
   font-weight: normal;
   background: none;
-  font-family: Montserrat, Arimo, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: auto;
 }
 .socials .addthis_counter {
@@ -2340,7 +2320,7 @@ ng-form[name="inscription_form"] input.montant-dons {
   border: 2px white solid;
   border-radius: 18px;
   line-height: 32px;
-  font-family: Montserrat;
+  font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-align: center;
   cursor: pointer;
   margin-right: 25px;

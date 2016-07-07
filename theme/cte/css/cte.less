@@ -67,13 +67,10 @@ h4{font-weight: bold;font-size: 20px; margin:0; margin-bottom: 5px; line-height:
 @media screen and (min-width: @min_md) and (max-width: @min_lg){h3{font-size:24px}}
 p{color:@txt_dark; font-size:16px}
 label{font-weight: normal}
-.capital, .text-article .capital, .capital p, .text-article .capital p{font-family: 'Montserrat','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:14px; font-weight: normal; }
+.sans-serif{font-family: 'Montserrat','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif}
+.capital, .text-article .capital, .capital p, .text-article .capital p{.sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:14px; font-weight: normal; }
 :lang(pl) {
-  .capital, .text-article .capital, .capital p, .text-article .capital p{font-family: 'Lato','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:14px; font-weight: normal; }
-  .capital2{font-family: 'Lato','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:10px !important; font-weight: normal; margin-bottom: 0}
-  .linkbox{text-align:center; font-family: 'Lato'}
-  body .container-fluid#jeunes {font-family: 'Lato','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif;}
-
+  .sans-serif{font-family: 'Lato','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif}
 }
 .text-article div.pull-right{
   float: none !important;
@@ -85,7 +82,7 @@ label{font-weight: normal}
   .text-article div.pull-right{margin-right: -200px;}
 }
 
-.capital2{font-family: 'Montserrat','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:10px !important; font-weight: normal; margin-bottom: 0}
+.capital2{.sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:10px !important; font-weight: normal; margin-bottom: 0}
 /*code Nicolas*/
 /*site communauté*/
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{min-height:0.1px}
@@ -228,7 +225,7 @@ span.font_icon{
   font-size: 20px; width: 25px; height: 25px; border-radius: 12.5px; background: white; font-weight: 400;
 }
 
-.linkbox{text-align:center; font-family: 'Montserrat'}
+.linkbox{text-align:center; .sans-serif}
 
 .linkbox a{
     margin:12px 6px 0;
@@ -255,7 +252,7 @@ span.font_icon{
 .navbar-fixed-top.language{
   right: 300px; text-align: right;
   //.btn-default{ border-width: 0px 2px;}
-  .btn{font-family: "Montserrat";text-transform: uppercase; color:@rouge; padding:9px 12px; background-color: transparent; border-color:transparent; border-radius: 0;opacity: 0.65}
+  .btn{.sans-serif;text-transform: uppercase; color:@rouge; padding:9px 12px; background-color: transparent; border-color:transparent; border-radius: 0;opacity: 0.65}
   .btn:hover{opacity: 1;border-color:@rouge; }
   .btn.disabled{border-color:@rouge;border-radius: 0; opacity: 1}
 }
@@ -892,7 +889,7 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
 .rwd-table{
   th{padding: 6px 12px}
   tr,th{font-weight: normal}
-  .cal-date{text-transform: uppercase; font-family: 'Montserrat';}
+  .cal-date{text-transform: uppercase; .sans-serif;}
 }
 ////////////////////////////////////////////////////
     ///////////CONTENUS///////////////////
@@ -932,7 +929,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 .socials .addthis_counter .addthis_button_expanded, .socials .addthis_counter .addthis_button_expanded a {
   .txt-red; .capital;
   background: none;
-  font-family: Montserrat,Arimo,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  .sans-serif !important;
   width:auto
   }
   .socials .addthis_counter {.txt-red; .capital; width: auto; margin-right: 3px;
@@ -1123,7 +1120,7 @@ ng-form[name="inscription_form"]{
     border: 2px white solid;
     border-radius: 18px;
     line-height: 32px;
-    font-family: Montserrat;
+    .sans-serif;
     text-align: center;
     cursor: pointer;
     margin-right:25px;
@@ -1281,7 +1278,7 @@ label.label_style.left, .label_style.left label{text-align:left; float:left}
   .menu1418.modal{background-color: @14-18}
 }
 
-body .container-fluid#jeunes {font-family: 'Montserrat','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif;}
+body .container-fluid#jeunes {.sans-serif;}
 
 /*
 #cana{
