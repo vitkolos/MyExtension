@@ -55,7 +55,7 @@ angular.module('rubedoBlocks').filter('tags', function() {
 });
 
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
-angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
+angular.module('rubedoBlocks').filter('dateRange', function ($filter,$scope) {
     return function(startDate, endDate, rangeFormat){
 	var format = rangeFormat || 'long';
 	var formatOfDate =  'd MMM yyyy';
