@@ -24,7 +24,7 @@
 				</div>
 				<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 				<p>{{contentDetailCtrl.content.fields.positionName}}</p>
-				<p ng-if="contentDetailCtrl.content.fields.dateDebut && contentDetailCtrl.content.fields.dateFin">{{contentDetailCtrl.content.fields.dateDebut | dateRange:contentDetailCtrl.content.fields.dateFin:'long':rubedo.translate("date.from", "du"):rubedo.translate("date.to", "au") }}</p>
+				<p ng-if="contentDetailCtrl.content.fields.dateDebut && contentDetailCtrl.content.fields.dateFin">{{contentDetailCtrl.content.fields.dateDebut | dateRange:contentDetailCtrl.content.fields.dateFin:'long':rubedo.translate("date.from", "od"):rubedo.translate("date.to", "do") }}</p>
 				<p ng-if="contentDetailCtrl.content.fields.dateDebut && !contentDetailCtrl.content.fields.dateFin">{{contentDetailCtrl.content.fields.dateDebut*1000 |date : 'd MMM yyyy' }}</p>
 				<p ng-if="!contentDetailCtrl.content.fields.dateDebut && contentDetailCtrl.content.fields.complement_date">{{contentDetailCtrl.content.fields.complement_date}}</p>
 				<a href="#infos_pratiques" class="button rouge">{{rubedo.translate("InfosPratiques", "Infos pratiques")}}</a>
