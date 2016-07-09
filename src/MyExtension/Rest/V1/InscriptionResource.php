@@ -56,7 +56,10 @@ class InscriptionResource extends AbstractResource
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] +=1;
         $content['i18n'] = array(
-            $params['lang']->getLocale() =>array(
+            "fr" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "pl" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
             )
         );
