@@ -430,7 +430,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             //displayedFacets: config.displayedFacets,
             orderby: 'lastUpdateTime',
             orderbyDirection:'desc',
-            query:'"'+email+'"',
+            //query:'"'+email+'"',
             type:"561627c945205e41208b4581",
             taxonomies:{
                 "proposition":[propositionId],
