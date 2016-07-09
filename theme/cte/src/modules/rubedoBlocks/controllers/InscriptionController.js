@@ -433,7 +433,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             query:'"'+email+'"',
             type:"561627c945205e41208b4581",
             taxonomies:{
-                "proposition":[propositionId]
+                "proposition":[propositionId],
+                "email":[email]
             },
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id           
