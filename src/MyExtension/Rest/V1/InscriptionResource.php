@@ -531,7 +531,7 @@ protected function sendInscriptionMail($inscription,$lang){
     
     protected function processInscription($inscription) {
         //dates avec +12h pour éviter problèmes
-        $inscription['birthdate'] = strtotime($inscription['birthdate']) + 3600*12;
+        if($inscription['birthdate']) $inscription['birthdate'] = strtotime($inscription['birthdate']) + 3600*12;
         if($inscription['dateNaissPers2']) $inscription['dateNaissPers2'] = strtotime($inscription['dateNaissPers2'])+ 3600*12;
         if($inscription['dateMariage']) $inscription['dateMariage'] = strtotime($inscription['dateMariage'])+ 3600*12;
         //telephones formatés pour la France
