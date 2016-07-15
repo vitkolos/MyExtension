@@ -38,6 +38,12 @@
     "Block.Inscription.Enfant.Garçon":"Garçon",
     "Block.Inscription.Couple":"Le couple",
     "Block.Inscription.VoirPlan":"Voir le plan",
+    "Block.Inscription.Statut.Libre":"Accès libre, pas d'inscription nécessaire",
+    "Block.Inscription.Statut.Close":"Inscriptions fermées",
+    "Block.Inscription.Statut.Ouvertes":"Inscriptions ouvertes",
+    "Block.Inscription.Statut.Preinscription":"Préinscriptions",
+    "Block.Inscription.Statut.Non":"Pas d'inscription",
+    "Block.Inscription.Statut.Septembre":"Inscriptions ouvertes à partir de mi-septembre",
     "adolescent":"Jeune 14-18 ans",
     "jeune-adulte":"Jeune 18-30 ans",
     "couple":"Couple",
@@ -117,6 +123,7 @@
     "Block.Inscription.Motivation": "Pour que votre inscription soit complète, merci d'envoyer une lettre de motivation à l'adresse du secrétariat indiquée ci-dessus.",
     "Block.Inscription.Formulaire": "Pour que votre inscription soit complète, merci d'imprimer et de remplir à la main le formulaire complementaire suivant et de l'envoyer à l'adresse du secrétariat indiquée ci-dessus.",
     "Block.Inscription.FormulaireEtMotiv":"Pour que votre inscription soit complète, merci d'écrire une lettre de motivation, d'imprimer le formulaire complémentaire suivant, de le remplir à la main et d'envoyer ces deux documents à l'adresse du secrétariat indiquée ci-dessus.",
+    "Block.Inscription.Succes":"Votre inscription a bien été prise en compte. Merci et à bientôt !",
     "Block.Inscription.PaimentComplementaire":"Paiement complémentaire",
     "Block.Inscription.PaimentComplementaire.Intro": "Pour payer un complement par rapport à cette proposition, vous devez déjà être inscrit.",
     "Block.Inscription.PaimentComplementaire.Email": "Saisissez l'adresse email utilisée lors de l'inscription :",
@@ -127,6 +134,7 @@
     "Block.PaimentComplementaire.MontantAPayer": "Lors de votre inscription, vous aviez indiqué vouloir payer",
     "Block.PaimentComplementaire.Paf": "La participation aux frais demandée pour cette proposition est :",
     "Block.Paiment": "Mon paiement",
-    "Calendrier":"Calendrier"
-    
+    "Calendrier":"Calendrier",
+    "Date":"Date",
+    "Proposition":"Proposition"    
 } 
