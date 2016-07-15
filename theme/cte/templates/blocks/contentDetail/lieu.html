@@ -35,7 +35,7 @@
 	
 	<div class="row" >
 		<div class="text-article infos">
-			<div class="col-sm-12"><h3>Informations pratiques</h3></div>
+			<div class="col-sm-12"><h3>{{rubedo.translate("InfosPratiques", "Infos pratiques")}}</h3></div>
 			<div class="row" ng-if="fieldEntity['rencontres']">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 					<p class="capital">{{contentDetailCtrl.getLabelByName('rencontres')}}</p>
@@ -59,7 +59,7 @@
 				<div class="col-xs-12 col-sm-8 ">
 					<rubedo-field ng-if="fieldEntity['nom']" field =  "{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field>
 					<rubedo-field ng-if="fieldEntity['telephone']"  field =  "{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
-					<div nf-if="fieldEntity['email']" ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'email_txt':'Envoyer un mail'}">
+					<div nf-if="fieldEntity['email']" ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'email_txt':rubedo.translate('Block.Mail.SendMail':'Envoyer un mail'}">
 						<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
 					</div>
 					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user">(visible car vous êtes connectés)</span>
@@ -96,7 +96,7 @@
 	</div>
 	<div class="row" ng-if="contentDetailCtrl.calendarContents.length>0">
 		<div class="col-sm-12 text-center">
-			<div class="button rouge">calendrier</div>
+			<div class="button rouge">{{rubedo.translate('Calendrier','Calendrier')}}</div>
 		</div>
 		<div class="col-sm-12 padding-large">
 			<table class="rwd-table">
