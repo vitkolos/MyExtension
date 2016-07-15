@@ -11,14 +11,14 @@
 			</div>
 			<div class="col-xs-4 col-sm-4" ng-if="fieldEntity['telephone']">
 				<p><i class="fa fa-phone icon"></i></p>
-				<p><b>{{rubedo.translate("Block.Inscription.Telephone")}}</b></p>
+				<p><b>{{contentDetailCtrl.getLabelByName('telephone')}}</b></p>
 				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></p>
 			</div>
 
 			<div class="col-xs-4 col-sm-4" ng-if="fieldEntity['position']">
 				<p><i class="fa fa-map-marker icon"></i></p>
-				<p><b>{{rubedo.translate("Block.Inscription.Adresse")}}</b></p>
+				<p><b>{{contentDetailCtrl.getLabelByName('position')}}</b></p>
 				<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 			</div>
 			<div class="col-xs-4 col-sm-4"  ng-if="fieldEntity['email']">
