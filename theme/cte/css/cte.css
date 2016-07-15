@@ -112,6 +112,12 @@ label {
 :lang(pl) nav.navbar-fixed-top li {
   font-family: 'Lato', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+:lang(pl) input[type=radio]:checked + label:not(.sexe_label):after {
+  font-size: 28px;
+  line-height: 16px;
+  left: 2px;
+  top: 0px;
+}
 .text-article div.pull-right {
   float: none !important;
 }
