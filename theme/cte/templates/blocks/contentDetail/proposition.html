@@ -37,7 +37,7 @@
 
 
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row" ng-if="fieldEntity['description']">
 			<div class="col-xs-12 bg-white" >
 				<div class="text-article">
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
