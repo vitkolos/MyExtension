@@ -155,7 +155,6 @@
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('inscriptionState')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 "  ng-if="contentDetailCtrl.propDate!='passee' ">
-						<rubedo-field ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState != 'attente'" field =  "{{contentDetailCtrl.getFieldByName('inscriptionState')}}"></rubedo-field>
 						<p ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState=='libre'">{{rubedo.translate("Block.Inscription.Statut.Libre","Accès libre, pas d'inscription nécessaire")}}</p>
 						<p ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState=='ouverte'">{{rubedo.translate("Block.Inscription.Statut.Ouvertes","Inscriptions ouvertes")}}</p>
 						<p ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState=='close'">{{rubedo.translate("Block.Inscription.Statut.Close","Inscriptions fermées")}}</p>
