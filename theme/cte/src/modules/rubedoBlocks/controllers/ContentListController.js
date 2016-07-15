@@ -30,7 +30,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         start: me.start,
         limit: me.limit,
         ismagic: me.ismagic,
-        'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","dateDebut","dateFin","positionName","complement_date"]
+        'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","dateDebut","dateFin","positionName","complement_date","video"]
     };
     if(config.singlePage){
         options.detailPageId = config.singlePage;
