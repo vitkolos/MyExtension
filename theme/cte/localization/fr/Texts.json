@@ -86,6 +86,7 @@
     "Block.Inscription.Email.Parent":"Email d'un des parents",
     "Block.Inscription.Email.Parent.Verification":"Email d'un des parents (vérification)",
     "Block.Inscription.Telephone":"Téléphone",
+    "Block.Inscription.Telephone.Placeholder":"+33/x xx xx xx xx",
     "Block.Inscription.Telephone.Fixe":"Téléphone fixe",
     "Block.Inscription.Telephone.Portable":"Téléphone portable",
     "Block.Inscription.Telephone.Portable.Parents":"Téléphone portable d'un des parents",

@@ -83,6 +83,7 @@
     "Block.Inscription.Email.Parent":"Email d'un des parents",
     "Block.Inscription.Email.Parent.Verification":"Email d'un des parents (vérification)",
     "Block.Inscription.Telephone":"Telefon",
+    "Block.Inscription.Telephone.Placeholder":"+48/ xxx xxx xxx",
     "Block.Inscription.Telephone.Fixe":"Telefon stacjionarny",
     "Block.Inscription.Telephone.Portable":"Telefon komórkowy",
     "Block.Inscription.Telephone.Portable.Parents":"Téléphone portable d'un des parents",
