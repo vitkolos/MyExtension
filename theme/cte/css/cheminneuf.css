@@ -10,7 +10,7 @@
     font-style: normal;
 }
 [class*='ccn-']:before{
-	display: inline-block;
+    display: inline-block;
    font-family: 'cheminneuf';
    font-style: normal;
    font-weight: normal;
