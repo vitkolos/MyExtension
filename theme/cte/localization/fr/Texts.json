@@ -126,6 +126,7 @@
     "Block.PaimentComplementaire.MontantPaye": "Lors de votre inscription en ligne, vous aviez payé",
     "Block.PaimentComplementaire.MontantAPayer": "Lors de votre inscription, vous aviez indiqué vouloir payer",
     "Block.PaimentComplementaire.Paf": "La participation aux frais demandée pour cette proposition est :",
-    "Block.Paiment": "Mon paiement"
+    "Block.Paiment": "Mon paiement",
+    "Calendrier":"Calendrier"
     
 } 
