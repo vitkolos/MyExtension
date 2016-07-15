@@ -197,8 +197,8 @@
 
 <!-- The modal dialog, which will be used to wrap the lightbox content -->
 <div class="modal fade hidden-xs" id="rubedoGalleryDetailModal" tabindex="1" ng-keydown="contentDetailCtrl.changeImageKey($event)">
-    <a class="prev" ng-click="contentDetailCtrl.changeImage('left')">‹</a>
-    <a class="next" ng-click="contentDetailCtrl.changeImage('right')">›</a>
+    <a class="prev" ng-click="contentDetailCtrl.changeImage('left')" ng-if="contentDetailCtrl.currentImage>0">‹</a>
+    <a class="next" ng-click="contentDetailCtrl.changeImage('right')" ng-if="contentDetailCtrl.currentImage<(contentDetailCtrl.content.fields.images).length-1">›</a>
     <a class="close" data-dismiss="modal">×</a>
     <div class="modal-dialog modal-lg">
 	    <div class="modal-body">
