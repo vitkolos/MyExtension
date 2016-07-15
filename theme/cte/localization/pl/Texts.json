@@ -45,7 +45,7 @@
     "Block.Inscription.Enfant.Fille":"Fille",
     "Block.Inscription.Enfant.Garçon":"Garçon",
     "Block.Inscription.Couple":"Le couple",
-    "Block.Inscription.VoirPlan":"Voir le plan",
+    "Block.Inscription.VoirPlan":"Zobacz na mapie",
     "Block.Inscription.Attente.Ligne1":"La proposition choisie est complète.",
     "Block.Inscription.Attente.Ligne2":"Vous pouvez vous inscrire sur liste d'attente.",
     "Block.Inscription.Attente.Ligne3":"Les frais d'inscription vous seront demandés à la confirmation de votre inscription.",
@@ -127,6 +127,6 @@
     "Block.PaimentComplementaire.MontantAPayer": "Lors de votre inscription, vous aviez indiqué vouloir payer",
     "Block.PaimentComplementaire.Paf": "La participation aux frais demandée pour cette proposition est :",
     "Block.Paiment": "Mon paiement",
-    "Calendrier":"Calendrier"
+    "Calendrier":"Kalendarz wydarzeń"
     
 } 
