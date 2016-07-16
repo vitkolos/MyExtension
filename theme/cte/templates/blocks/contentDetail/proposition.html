@@ -182,7 +182,7 @@
 						</div>
 						<!--si un plusieurs types de public accueillis-->
 						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1" class="col-sm-6 text-center">
-							<div class="button rouge cursor-as-pointer"   style="margin-bottom:12px" >S'inscrire comme :</div>
+							<div class="button rouge cursor-as-pointer"   style="margin-bottom:12px" >{{rubedo.translate("Block.Inscription.Inscrire.Comme","S'inscrire comme")}}:</div>
 							        <!--Type de public -->
 								<div ng-repeat="public in contentDetailCtrl.content.fields.publics track by $index" class="text-center">
 	
