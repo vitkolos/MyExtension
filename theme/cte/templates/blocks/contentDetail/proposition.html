@@ -97,7 +97,7 @@
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('accompte')}}</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
-						{{contentDetailCtrl.content.fields.accompte | currency: 0}}
+						{{contentDetailCtrl.content.fields.accompte | currency:undefined:0}}
 						<rubedo-field  ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('accompte')}}"></rubedo-field><!--Description-->
 					</div>
 				</div>
