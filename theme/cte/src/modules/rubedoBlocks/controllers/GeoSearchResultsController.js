@@ -456,11 +456,12 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     switch(item['typeId']) {
                         case "54edd57845205e5110ca11b8":// points net
                             item['groupe']="pointNet";
-                            //get content page on NFG website
-                            console.log($scope.rubedo);
-                            var routeArray = item['url'] .split("/");
-                            var contentUrl= routeArray[routeArray.length-2]+"/"+routeArray[routeArray.length-1];
-                            item['url'] = 'http://test.netforgod.org/fr/home/le-reseau/points-net/'+contentUrl;
+                            //get content page on NFG website if on the french website
+                            if($scope.rubedo.current.site.id=="555c4cf445205e71447e68d3") {
+                                var routeArray = item['url'] .split("/");
+                                var contentUrl= routeArray[routeArray.length-2]+"/"+routeArray[routeArray.length-1];
+                                item['url'] = 'http://test.netforgod.org/fr/home/le-reseau/points-net/'+contentUrl;
+                            }
                             break;
                         case "56af6230c445ecd7008b5d68" :// rencontres
                             item['groupe']="rencontre"; break;
