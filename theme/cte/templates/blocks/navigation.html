@@ -89,7 +89,10 @@
                             </li>
 
                             <li>
-                                <span style="line-height:1em"><a href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">{{rubedo.translate("FaireUnDon" , "Faire un don")}}</a></span>
+                                <span style="line-height:1em">
+                                    <a ng-if="!blockConfig.donationPage" href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don">{{rubedo.translate("FaireUnDon" , "Faire un don")}}</a>
+                                    <a ng-if="blockConfig.donationPage" rubedo-page-link="{{blockConfig.donationPage}}">{{rubedo.translate("FaireUnDon" , "Faire un don")}}</a>
+                                    </span>
                             </li>
             
                         </ul>
