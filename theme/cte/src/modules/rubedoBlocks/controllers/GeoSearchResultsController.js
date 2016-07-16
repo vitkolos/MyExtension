@@ -457,6 +457,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         case "54edd57845205e5110ca11b8":// points net
                             item['groupe']="pointNet";
                             //get content page on NFG website
+                            console.log($scope.rubedo);
                             var routeArray = item['url'] .split("/");
                             var contentUrl= routeArray[routeArray.length-2]+"/"+routeArray[routeArray.length-1];
                             item['url'] = 'http://test.netforgod.org/fr/home/le-reseau/points-net/'+contentUrl;
