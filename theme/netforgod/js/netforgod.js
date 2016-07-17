@@ -75,7 +75,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                 }, function (newValue, oldValue) {
                       if (!oldValue || oldValue==newValue) {
                       }
-                      else filmUrl=newValue;
+                      else {
                       	delay = 0;
            		filmInfos = newValue.split("?t=");
 		        if (filmInfos.length>1) {
