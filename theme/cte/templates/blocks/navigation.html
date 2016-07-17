@@ -13,6 +13,7 @@
                                     <div style="width:90%; margin-top:50px" >
                                        <div class="menuTab noTab" ng-if="!menuCtrl.menuTab">
                                           <a href="http://www.chemin-neuf.fr" class="menu_header"><h4>{{rubedo.current.site.author}}</h4></a>
+                                            <a ng-if="rubedo.current.site.id!='555c4cf445205e71447e68d3'"  ng-href="{{menuCtrl.menu.url}}" class="menu_header"><h4>{{rubedo.current.site.author}}</h4></a>
                                        </div>
                                        <div class="menuTab cursor-as-pointer" ng-if="menuCtrl.menuTab" data-toggle="collapse"  href="#menuCCN">
                                           <span class="menu_header">
