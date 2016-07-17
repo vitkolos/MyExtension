@@ -61,6 +61,10 @@ angular.module('rubedoBlocks').directive('scrollToAnchor', function ($location, 
                       showinfo:1,
                       width:"80%",
                       aspectratio:"16:9"};
+                      //to adress rmtp streaming
+           if(filmUrl.slice(0,4) =='rtmp'){
+           	options.primary= "flash";
+           }
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             setTimeout(function(){
