@@ -75,15 +75,14 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                 }, function (newValue, oldValue) {
                       if (!oldValue || oldValue==newValue) {
                       }
-                      else {
-                      	console.log(newValue);
+                      else filmUrl=newValue;
                       	delay = 0;
            		filmInfos = newValue.split("?t=");
 		        if (filmInfos.length>1) {
 		                      filmUrl = filmInfos[0];
 		                      delay = filmInfos[1].substr(-3, 2);
 		        }
-		        console.log(filmUrl);
+		        else filmUrl=newValue;
                                  jwplayer(id).load([{
                                             file: filmUrl,
                                             ga: {label:attrs.title},
