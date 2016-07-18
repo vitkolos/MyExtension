@@ -22,6 +22,7 @@ angular.module('rubedoBlocks').filter('cleanHour', function () {
     	}
     	else if(input.split('PM').length>1){
     		hour=input.split('PM')[0];
+    		hour= parseInt(input)+12;
     	}  
     	else hour = input;
         return hour;
