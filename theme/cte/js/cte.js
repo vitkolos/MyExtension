@@ -14,6 +14,19 @@ angular.module('rubedoBlocks').filter('nfcurrency', [ '$filter', '$locale', func
             return value.replace(new RegExp('\\' + formats.DECIMAL_SEP + '\\d{2}'), '')
         }
 }])
+angular.module('rubedoBlocks').filter('cleanHour', function () {
+    return function (input) {
+    	var hour="";
+    	if(input.split('AM').length>1){
+    		hour=input.split('AM')[0];
+    	}
+    	else if(input.split('PM').length>1){
+    		hour=input.split('PM')[0];
+    	}  
+    	else hour = input;
+        return hour;
+     };
+  });
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
