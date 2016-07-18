@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContentContributionController",["$scope","RubedoContentsService","RubedoContentTypesService","$location","RubedoPagesService",function($scope,RubedoContentsService,RubedoContentTypesService,$location,RubedoPagesService){
+angular.module("rubedoBlocks").lazy.controller("ContentContributionController",["$scope","RubedoContentsService","RubedoContentTypesService","$location","$route","RubedoPagesService",function($scope,RubedoContentsService,RubedoContentTypesService,$location,$route,RubedoPagesService){
     var me=this;
     var config = $scope.blockConfig;
     $scope.fieldInputMode=true;
@@ -44,7 +44,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
         RubedoContentsService.getContentById($location.search()["content-edit"],{useDraftMode:true}).then(
             function(ecResponse){
                 if (ecResponse.data.success){
-                    // edit seulement les contenus du bon type si un type de contenu est configuré
+                    // edit seulement les contenus du bon type si un type de contenu est configur√©
                     if(config.contentType&&config.contentType!=""){
                         if(ecResponse.data.content.type.id==config.contentType) {
                             me.existingContent=ecResponse.data.content;
@@ -95,6 +95,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                 RubedoPagesService.getPageById(config.listPageId).then(function(response){
                                     if (response.data.success){
                                         $location.url(response.data.url);
+                                        $route.reload();
                                     }
                                 });
                             }
@@ -102,6 +103,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                 RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
                                     if (response.data.success){
                                         $location.url(response.data.url);
+                                        $route.reload();
                                     }
                                 });
                             }
@@ -143,11 +145,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                                 });
                             }
                             else {
-                                RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
-                                    if (response.data.success){
-                                        $location.url(response.data.url);
-                                    }
-                                });
+                                $route.reload();
                             }
 
                         }else{
@@ -169,6 +167,23 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
             }
         }
     };
+    
+/*Watch lieuCommunautaire */
+    me.updatePosition = function(contents){
+        angular.forEach(contents, function(content){
+            if (content.id==$scope.fieldEntity['lieuCommunautaire']) {
+                if ($scope.fieldEntity['position']) {
+                        $scope.fieldEntity['position'].address = content['fields.position.address'][0];
+                }
+                else $scope.fieldEntity['position']={'address' :  content['fields.position.address'][0]};
+
+                $scope.fieldEntity['positionName'] = content['text'][0];
+                
+            }
+        });
+        
+    };      
+    
 }]);
 
 
