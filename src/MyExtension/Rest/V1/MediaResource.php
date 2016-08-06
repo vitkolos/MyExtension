@@ -16,7 +16,6 @@
  */
 namespace RubedoAPI\Rest\V1;
 use Rubedo\Collection\AbstractLocalizableCollection;
-use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use RubedoAPI\Exceptions\APIEntityException;
@@ -94,7 +93,7 @@ class MediaResource extends AbstractResource
             $media["writeWorkspace"]=$params['target'];
         }
         $media['Content-Type'] = null;
-        $media['originalFileId'] = $this->uploadFile($params['file'], $media['Content-Type'],$type['mainFileType']);
+        $media['originalFileId'] = $this->uploadFile($params['file'], $media['Content-Type']);
         AbstractLocalizableCollection::setIncludeI18n(true);
         $returnArray = $this->getDamCollection()->create($media);
         if (!$returnArray['success']) {
@@ -220,33 +219,21 @@ class MediaResource extends AbstractResource
      * @return mixed
      * @throws \RubedoAPI\Exceptions\APIEntityException
      */
-    protected function uploadFile($file, &$mimeType,$fileType=null)
+    protected function uploadFile($file, &$mimeType)
     {
         $mimeType = mime_content_type($file['tmp_name']);
-//        $fileToCreate = array(
-//            'serverFilename' => $file['tmp_name'],
-//            'text' => $file['name'],
-//            'filename' => $file['name'],
-//            'Content-Type' => isset($mimeType) ? $mimeType : $file['type'],
-//            'mainFileType' => $file
-//        );
-//        $result = $this->getFilesCollection()->create($fileToCreate);
-        $fService=Manager::getService("FSManager");
-        $complianceResult=$fService->testTypeCompliance($fileType,$mimeType);
-        if(!$complianceResult["success"]){
-            throw new APIEntityException($complianceResult["msg"], 500);
-        }
-        $fs=$fService->getFS();
-        $newPathId=(string) new \MongoId();
-        $newPath=$newPathId.$file['name'];
-        $stream = fopen($file['tmp_name'], 'r+');
-        $result=$fs->writeStream($newPath,$stream,[
-            'mimetype'=>$mimeType
-        ]);
-        if (!$result) {
+        $fileToCreate = array(
+            'serverFilename' => $file['tmp_name'],
+            'text' => $file['name'],
+            'filename' => $file['name'],
+            'Content-Type' => isset($mimeType) ? $mimeType : $file['type'],
+            'mainFileType' => $file
+        );
+        $result = $this->getFilesCollection()->create($fileToCreate);
+        if (!$result['success']) {
             throw new APIEntityException('Failed to create file', 500);
         }
-        return $newPath;
+        return $result['data']['id'];
     }
     /**
      * Get media from extracted fields
@@ -344,7 +331,7 @@ class MediaResource extends AbstractResource
         }
         if (isset($params['file'])) {
             $media['Content-Type'] = null;
-            $media['originalFileId'] = $this->uploadFile($params['file'], $media['Content-Type'],$type['mainFileType']);
+            $media['originalFileId'] = $this->uploadFile($params['file'], $media['Content-Type']);
         }
         if (isset($params['directory'])) {
             $media['directory'] = empty($params['directory']) ? 'notFiled' : $params['directory'];
