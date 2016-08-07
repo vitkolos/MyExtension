@@ -25,7 +25,7 @@
                                        <div id="menuCCN" class="collapse" ng-class="{'in':!menuCtrl.menuTab}" >
                                             <div class="row" ng-if="menuCtrl.menuTab">
                                                  <div class="col-sm-12 text-center">
-                                                     <a ng-href="/{{rubedo.current.site.locale}}" class="capital" style="border: 0">{{rubedo.translate("Accueil" , "Home")}}</a>
+                                                     <a ng-href="/{{rubedo.current.site.locale}}/" class="capital" style="border: 0">{{rubedo.translate("Accueil" , "Home")}}</a>
                                                  </div>
                                             </div>
                                             <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" ng-if="menuCtrl.isFrance"></div>
