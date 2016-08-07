@@ -1964,6 +1964,10 @@ header.content > div {
   vertical-align: middle;
 }
 @media screen and (min-width: 768px) {
+  .large header.content {
+    line-height: 600px;
+    height: 600px;
+  }
   header.content {
     line-height: 400px;
     height: 400px;
