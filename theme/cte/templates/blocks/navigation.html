@@ -12,8 +12,7 @@
                                 <div class="container-fluid menu">
                                     <div style="width:90%; margin-top:50px" >
                                        <div class="menuTab noTab" ng-if="!menuCtrl.menuTab">
-                                          <a href="http://www.chemin-neuf.fr" class="menu_header" ng-if="rubedo.current.site.id=='555c4cf445205e71447e68d3'"><h4>{{rubedo.current.site.author}}</h4></a>
-                                            <a ng-if="rubedo.current.site.id!='555c4cf445205e71447e68d3'"  ng-href="{{menuCtrl.menu.url}}" class="menu_header"><h4>{{rubedo.current.site.author}}</h4></a>
+                                            <a ng-href="{{menuCtrl.menu.url}}" class="menu_header"><h4>{{rubedo.current.site.author}}</h4></a>
                                        </div>
                                        <div class="menuTab cursor-as-pointer" ng-if="menuCtrl.menuTab" data-toggle="collapse"  href="#menuCCN">
                                           <span class="menu_header">
@@ -26,7 +25,7 @@
                                        <div id="menuCCN" class="collapse" ng-class="{'in':!menuCtrl.menuTab}" >
                                             <div class="row" ng-if="menuCtrl.menuTab">
                                                  <div class="col-sm-12 text-center">
-                                                     <a href="http://www.chemin-neuf.fr" class="capital" style="border: 0">{{rubedo.translate("Accueil" , "Home")}}</a>
+                                                     <a href="/" class="capital" style="border: 0">{{rubedo.translate("Accueil" , "Home")}}</a>
                                                  </div>
                                             </div>
                                             <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" ng-if="menuCtrl.isFrance"></div>
