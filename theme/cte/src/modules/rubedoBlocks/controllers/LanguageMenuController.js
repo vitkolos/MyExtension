@@ -23,6 +23,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         };
         me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
+                console.log(lang);
                 RubedoModuleConfigService.changeLang(lang);
                 if ($scope.rubedo.current.site.locStrategy == 'fallback'){
                     RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
