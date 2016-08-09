@@ -14,7 +14,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         if(!config.showCurrentLanguage){
             delete me.languages[$route.current.params.lang];
         }
-        angular.forEach(me.siteLanguages, function(value, locale){
+        angular.forEach($scope.rubedo.current.site.languages, function(value, locale){
             if(($scope.rubedo.current.page.i18n).hasOwnProperty(locale)) delete me.languages[locale];
         })
         me.getFlagUrl = function(flagCode){
