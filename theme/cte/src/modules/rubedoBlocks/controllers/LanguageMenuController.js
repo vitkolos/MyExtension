@@ -57,7 +57,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                         } else {
                             var currentParams = angular.element.param($location.search());
                             var url = response.data.url;
-                            console.log(url));
+                            console.log(url);
                             if(currentParams != "") {
                                 if(response.data.url.indexOf("?") > -1) {
                                     url = response.data.url + currentParams;
