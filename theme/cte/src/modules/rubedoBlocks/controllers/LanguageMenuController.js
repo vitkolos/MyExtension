@@ -9,8 +9,6 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         angular.forEach(me.siteLanguages, function(value, locale){
             if(($scope.rubedo.current.page.i18n).hasOwnProperty(locale)) me.languages[locale]=value;
         })
-        console.log(me.languages);
-        console.log($scope.rubedo.current);
         me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
         me.mode = config.displayAs == "select";
         me.showFlags = config.showFlags;
