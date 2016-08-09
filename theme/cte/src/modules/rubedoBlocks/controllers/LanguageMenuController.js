@@ -16,7 +16,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         }
         /*ne pas afficher les langues pour lesquelle la page n'est pas traduite*/
         me.isTranslated = function(lang){
-            return $scope.rubedo.current.page.i18n).hasOwnProperty(lang);
+            return ($scope.rubedo.current.page.i18n).hasOwnProperty(lang);
         }
 
         me.getFlagUrl = function(flagCode){
