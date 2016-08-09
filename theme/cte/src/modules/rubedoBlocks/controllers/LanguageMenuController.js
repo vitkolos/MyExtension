@@ -15,9 +15,10 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
             delete me.languages[$route.current.params.lang];
         }
         /*ne pas afficher les langues pour lesquelle la page n'est pas traduite*/
-        angular.forEach($scope.rubedo.current.site.languages, function(value, locale){
-            if(!($scope.rubedo.current.page.i18n).hasOwnProperty(locale)) delete me.languages[locale];
-        })
+        me.isTranslated = function(lang){
+            return $scope.rubedo.current.page.i18n).hasOwnProperty(lang);
+        }
+
         me.getFlagUrl = function(flagCode){
             return '/assets/flags/16/'+flagCode+'.png';
         };
