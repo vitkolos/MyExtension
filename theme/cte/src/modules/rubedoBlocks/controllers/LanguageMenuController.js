@@ -31,6 +31,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                     if (response.data.success){
                         if($scope.rubedo.current.page.contentCanonicalUrl) {
                             // Get content id
+                            console.log("canonical");
                             urlArray = $route.current.params.routeline.split("/");
                             contentId = urlArray[urlArray.length-2];
 
@@ -56,7 +57,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                         } else {
                             var currentParams = angular.element.param($location.search());
                             var url = response.data.url;
-
+                            console.log(url));
                             if(currentParams != "") {
                                 if(response.data.url.indexOf("?") > -1) {
                                     url = response.data.url + currentParams;
