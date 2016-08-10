@@ -24,7 +24,7 @@
             if (response.data.success){
                 me.menu=response.data.menu;
 		angular.forEach(me.menu.pages, function(page, key) {
-		    me.pagesBlocks[key]={}
+		    me.pagesBlocks[key]={};
 		    me.pagesBlocks[key]["title"] = page.title;
 		    me.pagesBlocks[key]["url"] = page.url;
 		    me.pagesBlocks[key].blocks=[]; 
@@ -43,7 +43,7 @@
                 me.menu={};
             }
 	    console.log(me.menu);
-	    console.log(me.pageBlocks);
+	    console.log(me.pagesBlocks);
         });
 	
 	$rootScope.toggleNav = "false";
