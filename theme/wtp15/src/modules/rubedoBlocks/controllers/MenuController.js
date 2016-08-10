@@ -43,6 +43,7 @@
                 me.menu={};
             }
 	    console.log(me.menu);
+	    console.log(me.pageBlocks);
         });
 	
 	$rootScope.toggleNav = "false";
