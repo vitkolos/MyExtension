@@ -41,6 +41,7 @@
             } else {
                 me.menu={};
             }
+	    console.log(me.menu);
         });
 	
 	$rootScope.toggleNav = "false";
