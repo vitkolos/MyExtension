@@ -1,4 +1,4 @@
-    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$rootScope','$location','RubedoMenuService','RubedoPagesService',function($scope,$rootScope,$location,RubedoMenuService,RubedoPagesService){
+    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$rootScope','$location','$route','RubedoMenuService','RubedoPagesService',function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService){
         var me=this;
         me.menu={};
         me.pagesBlocks={};
