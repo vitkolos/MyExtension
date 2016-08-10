@@ -22,6 +22,22 @@
         RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
+		angular.forEach(me.menu.pages, function(page, key) {
+		    me.pagesBlocks[key]={}
+		    me.pagesBlocks[key]["title"] = page.title;
+		    me.pagesBlocks[key]["url"] = page.url;
+		    me.pagesBlocks[key].blocks=[]; 
+		    var lang = $route.current.params.lang;
+		    angular.forEach(page.blocks, function(block, key2){
+			if (block.bType=="contentDetail" && block.orderValue<=1) {
+			    if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title});
+			    else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
+			}
+			else {}
+		    })
+     
+     
+		});
             } else {
                 me.menu={};
             }
@@ -30,3 +46,4 @@
 	$rootScope.toggleNav = "false";
 	$rootScope.ToggleNav = function(){$rootScope.toggleNav = !$rootScope.toggleNav};   
     }]);
+
