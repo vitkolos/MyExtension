@@ -29,7 +29,7 @@
             <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[4]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[4].config.name]" class="text-bg"></rubedo-field>
         </div>
             <div class="col-sm-12 col-md-6">
-            <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[6]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[6].config.name]" class="hidden-xs"></rubedo-field>
+            <jwplayer ng-if="fieldEntity['video']" video-url="{{contentDetailCtrl.content.fields.video.url}}"></jwplayer>
             <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[8]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[8].config.name]" ></rubedo-field>
             <rubedo-field ng-init="field = contentDetailCtrl.content.type.fields[7]" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[7].config.name]"></rubedo-field>
         </div>
