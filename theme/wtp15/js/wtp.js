@@ -55,15 +55,14 @@ angular.module('rubedoBlocks').filter('homepage', function() {
 
 
  angular.module('rubedoFields').filter('split', function() {
-        return function(input, splitChar) {
+        return function(input, splitChar, splitIndex) {
             // do some bounds checking here to ensure it has that index
             if (!splitChar) {
                      splitChar = "_";
             }
-            return input.split(splitChar);
+            return input.split(splitChar)[splitIndex];
         }
-    });
-    
+    });  
     
 angular.module('rubedoBlocks').directive('toggleclass', function() {
             return {
