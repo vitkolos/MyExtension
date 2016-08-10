@@ -76,14 +76,7 @@ angular.module('rubedoBlocks').directive('toggleclass', function() {
            }
  });
  
- /*
-angular.module('rubedo').run(["$rootScope", "$anchorScroll" , function ($rootScope, $anchorScroll) {
-    $rootScope.$on("$viewContentLoaded", function() {
-                $anchorScroll();
-    });
-}]); 
- */
- 
+
 
 $(document).ready(function(){
 dot_kill= '';
