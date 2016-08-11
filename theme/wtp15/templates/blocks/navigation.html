@@ -41,31 +41,3 @@
         </div>
     </div>
 </nav>
-<!--
-<div id='push-menu-container'>
-    <div id='push-menu-02'>
-	<div class="visible-xs">
-                <div ng-repeat="page in menuCtrl.menu.pages" ng-class="{active:menuCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}" class="push-menu-title  page-title">
-                    <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" >{{page.text}}</a>
-                 </div>
-	    </div>
-
-
-
-	
-    <div ng-repeat="(rowIndex, row) in rubedo.current.page.rows  |limitTo : -4 |limitTo :3">
-	<input type="checkbox" ng-model="section" ng-attr-id="{{'section-'+rowIndex}}" ng-init="section=true">
-	<label class='push-menu-title' for="{{'section-'+rowIndex}}" >{{row.eTitle}}</label>
-			<div ng-repeat="row in row.columns[0].rows" ng-if="row.columns[0].blocks[0].bType=='contentDetail'" ng-class="{'displayed' : $parent.section}">
-			    <a scroll-to-anchor="#{{row.columns[0].blocks[0].code}}" >
-				<div class='push-menu-button'>
-				    <div ng-attr-id="{{'dots-'+row.columns[0].blocks[0].code}}" class="dots" ></div>
-				    <p>{{row.columns[0].blocks[0].title | title}} </p>
-				</div>
-			    </a>
-			</div>
-		    
-    </div>
-</div>
-
-</div>-->
