@@ -101,6 +101,43 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
+                    //si contenu référence une autre page (interne ou externe)
+                    if (me.content.fields.propositionReferencee && me.content.fields.propositionReferencee !="") {
+                        window.location.href =  me.content.fields.propositionReferencee;
+                    }
+                    else if (me.content.fields.propositionReferenceeInterne && me.content.fields.propositionReferenceeInterne) {
+                        if (content.fields.propositionReferenceeInterne == pageId) {
+                        }
+                        else {
+                            RubedoPagesService.getPageById(me.content.fields.propositionReferenceeInterne).then(function(response){
+                                    if (response.data.success){
+                                        console.log(response.data.url);
+                                        console.log($scope.rubedo.current.site);
+                                     //   window.location.href =  = $filter('cleanUrl')(response.data.url);
+                                    }
+                                });                            
+                        }
+                    }
+                    
+if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !=""){
+			    if (content.fields.propositionReferenceeInterne == pageId) {
+				content.isSamePage= true;
+			    }
+			    else {
+                            RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
+                                    if (response.data.success){
+                                        content.contentLinkUrl = $filter('cleanUrl')(response.data.url);
+                                    }
+                                });
+			    }
+                        }                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                     
                     // seulement pour propositions - qui peuvent être éditées directement dans la page
                     me.content.editorPageUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url+"?content-edit="+me.content.id;
