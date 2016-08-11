@@ -106,7 +106,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         window.location.href =  me.content.fields.propositionReferencee;
                     }
                     else if (me.content.fields.propositionReferenceeInterne && me.content.fields.propositionReferenceeInterne) {
-                        if (me.content.fields.propositionReferenceeInterne == pageId) {
+                        if (me.content.fields.propositionReferenceeInterne == options.pageId) {
                         }
                         else {
                             RubedoPagesService.getPageById(me.content.fields.propositionReferenceeInterne).then(function(response){
