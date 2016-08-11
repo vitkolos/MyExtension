@@ -111,7 +111,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         else {
                             RubedoPagesService.getPageById(me.content.fields.propositionReferenceeInterne).then(function(response){
                                     if (response.data.success){
-                                        window.location.href = $scope.rubedo.current.site.host+response.data.url;
+                                        window.location.href = response.data.url;
                                         //console.log(response.data.url);
                                         //console.log($scope.rubedo.current.site);
                                     }
