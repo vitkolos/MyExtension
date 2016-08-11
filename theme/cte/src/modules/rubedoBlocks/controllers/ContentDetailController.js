@@ -111,34 +111,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         else {
                             RubedoPagesService.getPageById(me.content.fields.propositionReferenceeInterne).then(function(response){
                                     if (response.data.success){
-                                        console.log(response.data.url);
-                                        console.log($scope.rubedo.current.site);
-                                     //   window.location.href =  = $filter('cleanUrl')(response.data.url);
+                                        window.location.href = $scope.rubedo.current.site.host+response.data.url;
+                                        //console.log(response.data.url);
+                                        //console.log($scope.rubedo.current.site);
                                     }
                                 });                            
                         }
                     }
-                    
-if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !=""){
-			    if (content.fields.propositionReferenceeInterne == pageId) {
-				content.isSamePage= true;
-			    }
-			    else {
-                            RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
-                                    if (response.data.success){
-                                        content.contentLinkUrl = $filter('cleanUrl')(response.data.url);
-                                    }
-                                });
-			    }
-                        }                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
+                  
                     // seulement pour propositions - qui peuvent être éditées directement dans la page
                     me.content.editorPageUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url+"?content-edit="+me.content.id;
                     if (config.isAutoInjected){
