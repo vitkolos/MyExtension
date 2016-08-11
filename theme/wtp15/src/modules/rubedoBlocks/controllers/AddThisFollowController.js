@@ -26,4 +26,6 @@ angular.module("rubedoBlocks").lazy.controller('AddThisFollowController',['$scop
         }
     });
     addthis.toolbox('.addthis_toolbox');
+        $scope.clearORPlaceholderHeight();
+
 }]);

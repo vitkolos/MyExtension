@@ -6,6 +6,8 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     if (config.mailingListId){
         me.showForm=true;
     }
+        $scope.clearORPlaceholderHeight();
+
     me.submit=function(){
         me.contactError=null;
         var contactSnap=angular.copy(me.contactData);
