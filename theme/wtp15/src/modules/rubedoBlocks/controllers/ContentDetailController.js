@@ -1,13 +1,21 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","$http","$route",function($scope, RubedoContentsService,$http,$route){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
+    me.taxonomy=[];
+    me.gallery={}; // for album photo
+
+
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
 
     });
+    me.tooltips=function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    }
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
@@ -17,7 +25,23 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field;
     };
-
+    me.getTermInTaxo=function(taxoKey,termId){
+        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
+        var term=null;
+        angular.forEach(me.taxo[taxoKey].terms,function(candidate, id){ // chercher l'id dans les taxonomies de ce type de contenu si 
+            if(!term){if(id==termId){term=candidate;}}
+         });
+         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherchŽ
+    return(term);
+    }
+    
+    me.search = function(taxoKey,termId){
+        RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+            if (response.data.success){
+                $location.url(response.data.url+'?taxonomies={"'+taxoKey+'":["'+termId+'"]}');
+            }
+        });        
+    };
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
@@ -28,7 +52,25 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
+                    if (config.isAutoInjected){
+                        if (me.content.fields.text){
+                            $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
+                        }
+                        if (me.content.fields.summary){
+                            $scope.rubedo.setPageDescription(angular.copy(me.content.fields.summary));
+                        }
+                        if(response.data.content.fields.image) {
+                            $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
+                        }
+                       
+                    }
+                
+                    
+                    
+                    
                     $scope.fieldEntity=angular.copy(me.content.fields);
+                    
+
                     $scope.fieldLanguage=me.content.locale;
                     if (me.content.isProduct){
                         me.content.type.fields.unshift({
@@ -65,6 +107,53 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
+                    //Albums photos
+                    if (me.content.type.code=="album") {
+                        me.currentIndex=0;
+                        me.loadModal = function(index){
+                            me.currentIndex = index;
+                            me.currentImage = me.content.fields.images[me.currentIndex];
+                        };
+                        me.changeImage = function(side){
+                            if(side == 'left' && me.currentIndex > 0){
+                                me.currentIndex -= 1;
+                            } else if(side == 'right' && me.currentIndex < me.content.fields.images.length - 1) {
+                                me.currentIndex += 1;
+                            }
+                            me.currentImage = me.content.fields.images[me.currentIndex];
+                        };
+                        me.changeImageKey = function($event){
+                          console.log($event);
+                            if ($event.keyCode == 39) { 
+                               me.changeImage('right');
+                            }
+                        
+                            else if ($event.keyCode == 37) {
+                               me.changeImage('left');
+                            }
+                        };                        
+
+                    }
+                    
+                     
+
+                    
+                    if (me.content.fields.author_jmj) {
+                        me.auteur_jmj ={};
+                        var options_auteur = {
+                            siteId: $scope.rubedo.current.site.id,
+                            pageId: $scope.rubedo.current.page.id
+                        };
+                        RubedoContentsService.getContentById(me.content.fields.author_jmj, options_auteur).then(
+                            function(response){
+                                if(response.data.success){
+                                    me.auteur_jmj = response.data.content;
+                                }
+                            });
+                    };
+                    
+                    
+                    
                     if(me.customLayout){
                         me.content.type.fields.unshift({
                             cType:"textarea",
@@ -74,7 +163,44 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 allowBlank:false
                             }
                         });
-                    } 
+                        me.detailTemplate=me.customLayout.customTemplate?themePath+'/templates/blocks/contentDetail/customTemplate.html':themePath+'/templates/blocks/contentDetail/customLayout.html';
+                    } else {
+                        if(me.content.type.code&&me.content.type.code!=""){
+                            $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
+                                function (response){
+                                    me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
+                                    $scope.fields=me.transformForFront(me.content.type.fields);
+                                    $scope.clearORPlaceholderHeight();
+                                },
+                                function (response){
+                                    me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
+                                    $scope.fields=me.transformForFront(me.content.type.fields);
+                                    $scope.clearORPlaceholderHeight();
+                                }
+                            );
+                        } else {
+                            me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
+                            $scope.fields=me.transformForFront(me.content.type.fields);
+                            $scope.clearORPlaceholderHeight();
+                        }
+                    }
+                    var allContentTerms=[];
+                    if (me.content.taxonomy){
+                        angular.forEach(me.content.taxonomy,function(value){
+                            if (angular.isString(value)&&value!=""){
+                                allContentTerms.push(value);
+                            } else if (angular.isArray(value)){
+                                allContentTerms=allContentTerms.concat(value);
+                            }
+                        });
+                    }
+                    $rootScope.$broadcast("ClickStreamEvent",{csEvent:"contentDetailView",csEventArgs:{
+                        contentId:me.content.id,
+                        siteId:options.pageId,
+                        pageId:options.siteId,
+                        typeId:me.content.typeId,
+                        taxonomyTerms:allContentTerms
+                    }});
                 }
             }
         );
@@ -82,6 +208,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     if (config.contentId){
         me.getContentById(config.contentId);
     }
+    
     me.revertChanges=function(){
         $scope.fieldEntity=angular.copy(previousFields);
     };
@@ -178,4 +305,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
+    /*pour albums photos*/
+    me.gallery.start = 0;
+    me.gallery.limit = config.pageSize?config.pageSize:9;
+    me.gallery.currentIndex = 0;
+    me.gallery.actualPage = 1;
+    me.gallery.nbImages = angular.copy(me.gallery.limit);
+    me.changePage = function(side){
+        if(side == 'left' && (me.gallery.start - me.gallery.limit  >= 0) ){
+            me.gallery.currentIndex= me.gallery.start-1;
+            me.gallery.start -= me.gallery.limit;
+        } else if(side == 'right' && (me.gallery.start + me.gallery.nbImages < me.gallery.count) ) {
+            me.gallery.start += me.gallery.nbImages;
+            me.gallery.currentIndex= me.gallery.start;
+        }
+        if (me.gallery.start + me.gallery.nbImages>=me.gallery.count) {
+            me.gallery.nbImages = me.gallery.count- me.gallery.start;
+        }
+        else{me.gallery.nbImages =me.gallery.limit ;}
+    };
+
 }]);
