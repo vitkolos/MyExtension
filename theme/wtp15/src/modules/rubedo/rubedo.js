@@ -40,7 +40,6 @@
 
     });
 
-
     app.factory('UXUserService',["RubedoModuleConfigService",function(RubedoModuleConfigService){
         var serviceInstance = {};
         serviceInstance.ISCONNECTED=function(){
@@ -234,9 +233,9 @@
         };
         return serviceInstance;
     }]);
-
-    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope','RubedoClickStreamService','$rootScope','UXUserService','UXPageService','UXSessionService','$route',
-        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope,RubedoClickStreamService,$rootScope,UXUserService,UXPageService,UXSessionService,$route){
+ 
+    app.controller("RubedoController",['RubedoBlockTemplateResolver','RubedoImageUrlService','RubedoAuthService','RubedoFieldTemplateResolver','snapRemote','RubedoPageComponents','RubedoTranslationsService','$scope','$routeParams','RubedoClickStreamService','$rootScope','UXUserService','UXPageService','UXSessionService','$route',
+        function(RubedoBlockTemplateResolver,RubedoImageUrlService,RubedoAuthService,RubedoFieldTemplateResolver,snapRemote, RubedoPageComponents, RubedoTranslationsService,$scope,$routeParams,RubedoClickStreamService,$rootScope,UXUserService,UXPageService,UXSessionService,$route){
         var me=this;
         //break nav on non-page routes
         $scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
@@ -253,7 +252,9 @@
                 }
             } else {
                 if (window.ga) {
-                    window.ga('send', 'pageview', newLoc);
+                    var a = document.createElement('a');
+                   a.href = newLoc;
+                   window.ga('send', 'pageview', a.pathname);
                 }
                 if (currentLoc&&currentLoc!=""&&currentLoc!=newLoc){
                     UXPageService.setAngReferrer(currentLoc);
@@ -262,13 +263,43 @@
 
             }
         });
+        $scope.$on("$locationChangeSuccess",function(scope, newLoc,currentLoc){
+            if(newLoc.indexOf("?") > -1){
+// if change of page -> wait for load
+                if (currentLoc.split("?")[0] != newLoc.split("?")[0]) {
+                    setTimeout(function(){
+                        var target=angular.element("[name='"+$routeParams.page+"']");
+                        if (target){
+                                angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
+                        }
+                    },3000);
+               }
+               else{
+// if first page with anchor (direct access) -> wait for load
+                    if ( currentLoc.split("?")[1] == newLoc.split("?")[1]) {
+                        setTimeout(function(){
+                            var target=angular.element("[name='"+$routeParams.page+"']");
+                            if (target){
+                                    angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
+                            }
+                        },3000);
+                    }
+// if same page and different anchor -> scroll
+                    else {
+                        var target=angular.element("[name='"+$routeParams.page+"']");
+                        if (target){
+                                angular.element("body,html").animate({scrollTop: target.offset().top-50}, "slow");
+                        }
+                    }
+                    
+               }}
+              });
         //set context and page-wide services
         me.adminBtnIconClass="glyphicon glyphicon-arrow-right";
         me.snapOpts={
           disable:'right',
           tapToClose:false
         };
-
 
         snapRemote.getSnapper().then(function(snapper) {
             snapper.disable();
@@ -370,36 +401,35 @@
                 me.registeredEditCtrls.push(ctrlRef);
             }
         };
-        me.setPageTitle=function(newTitle){
-            me.current.page.title=newTitle;
-        };
-        me.setPageDescription=function(newDescription){
-            me.current.page.description=newDescription;
-        };
-        me.sendGaEvent = function(cat, label) {
-            if(window.ga) {
-                window.ga('send', 'pageview', '/'+$route.current.params.lang+cat+label);
-            }
-        };
+            me.setPageTitle=function(newTitle){
+                me.current.page.title=newTitle;
+            };
+            me.setPageDescription=function(newDescription){
+                me.current.page.description=newDescription;
+            };
+            me.sendGaEvent = function(cat, label) {
+                if(window.ga) {
+                    window.ga('send', 'pageview', '/'+$route.current.params.lang+cat+label);
+                }
+            };
+            $scope.$on("ClickStreamEvent",function(event,args){
+                if (typeof(Fingerprint2)!="undefined"&&args&&args.csEvent){
+                    RubedoClickStreamService.logEvent(args.csEvent,args.csEventArgs);
+                }
+            });
 
-        $scope.$on("ClickStreamEvent",function(event,args){
-            if (typeof(Fingerprint2)!="undefined"&&args&&args.csEvent){
-                RubedoClickStreamService.logEvent(args.csEvent,args.csEventArgs);
-            }
-        });
+            me.fireCSEvent=function(event,args){
+                $rootScope.$broadcast("ClickStreamEvent",{csEvent:event,csEventArgs:args});
+            };
 
-        me.fireCSEvent=function(event,args){
-            $rootScope.$broadcast("ClickStreamEvent",{csEvent:event,csEventArgs:args});
-        };
+            USER=UXUserService;
+            $scope.USER=USER;
 
-        USER=UXUserService;
-        $scope.USER=USER;
+            PAGE=UXPageService;
+            $scope.PAGE=PAGE;
 
-        PAGE=UXPageService;
-        $scope.PAGE=PAGE;
-
-        SESSION=UXSessionService;
-        $scope.SESSION=SESSION;
+            SESSION=UXSessionService;
+            $scope.SESSION=SESSION;
 
     }]);
 
@@ -436,19 +466,11 @@
                         newPage.metaKeywords = newPage.metaKeywords?newPage.metaKeywords+','+keyword:keyword;
                     });
                 }
-                var routeString="";
-                if(response.data.breadcrumb&&response.data.breadcrumb.length>1){
-                    angular.forEach(response.data.breadcrumb,function(bcItem,bcKey){
-                        if(bcKey>=1){
-                            routeString=routeString+bcItem.title+" ";
-                        }
-                    });
+                if (!newPage.description&&response.data.site.description){
+                    newPage.description=response.data.site.description;
                 }
-                if (!newPage.description||newPage.description==""){
-                    newPage.description=routeString.length>0 ? response.data.site.host+" : "+routeString  : response.data.site.host;
-                }
-                if (!newPage.title||newPage.title==""){
-                    newPage.title=routeString.length>0 ? routeString+"- "+response.data.site.host  : response.data.site.host;
+                if (!newPage.title&&response.data.site.title){
+                    newPage.title=response.data.site.title;
                 }
                 if(newPage.noIndex || newPage.noFollow){
                     newPage.metaRobots = (newPage.noIndex?'noindex':'') + (newPage.noFollow?',nofollow':'');
@@ -460,7 +482,6 @@
                 if (response.data.site.locStrategy == 'fallback'){
                     RubedoModuleConfigService.addFallbackLang(response.data.site.defaultLanguage);
                 }
-
                 var usedblockTypes=angular.copy(response.data.blockTypes);
                 var dependencies=RubedoBlockDependencyResolver.getDependencies(usedblockTypes);
                 if (dependencies.length>0){
@@ -507,20 +528,10 @@
 
                 }
                 //Page load
-                var allContentTerms=[];
-                if (newPage.taxonomy){
-                    angular.forEach(newPage.taxonomy,function(value){
-                        if (angular.isString(value)&&value!=""){
-                            allContentTerms.push(value);
-                        } else if (angular.isArray(value)){
-                            allContentTerms=allContentTerms.concat(value);
-                        }
-                    });
-                }
                 $rootScope.$broadcast("ClickStreamEvent",{csEvent:"pageView",csEventArgs:{
                     pageId:newPage.id,
                     siteId:response.data.site.id,
-                    taxonomyTerms:allContentTerms
+                    pageTaxo:newPage.taxonomy
                 }});
 
             }
