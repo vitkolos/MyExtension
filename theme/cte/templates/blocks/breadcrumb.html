@@ -1,5 +1,8 @@
 <div ng-controller="BreadcrumbController as breadcrumbCtrl">
     <ol class="breadcrumb">
-        <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+        <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index">
+            <a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a>
+            <span ng-if="!page.url || (page.url && page.id==rubedo.current.page.id)">{{page.title}}</span>
+        </li>
     </ol>
 </div>
