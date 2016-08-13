@@ -99,7 +99,7 @@ class DonationResource extends AbstractResource
             $payboxAccountName ="";
             if($isProjetInternational) {
                 $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
-                $payboxAccountId = $accountInfos["config_hors_pays"];
+                $payboxAccountName = $accountInfos["config_hors_pays"];
             }
             else {
                 $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
