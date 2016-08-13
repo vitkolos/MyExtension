@@ -203,7 +203,7 @@ class DonationResource extends AbstractResource
         foreach($donationInfo["user"] as $key => $value) {
             $donationInfo[$key] = $value;
         }
-        $donationInfo["birthdate"] = strtotime($donationInfo["birthdate"]);
+        if($donationInfo["birthdate"]) $donationInfo["birthdate"] = strtotime($donationInfo["birthdate"]);
         if($donationInfo["trimestriel"]) $donationInfo["frequence"] = "Trimestriel";
         if($donationInfo["mensuel"]) $donationInfo["frequence"] = "Mensuel";
         return $donationInfo;
@@ -389,7 +389,7 @@ class DonationResource extends AbstractResource
         $messageAdmin .= $this->addLine($trad["ccn_label_civilite"],$trad["ccn_label_". $don["civilite"]] );
         $messageAdmin .= $this->addLine($trad["ccn_label_nom"],$don["nom"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_prenom"],$don["surname"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$don["birthdate"]) );
+        if ($don["birthdate"]) $messageAdmin .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$don["birthdate"]) );
         $messageAdmin .= $this->addLine($trad["ccn_label_adresse"], $don["adresse"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_codepostal"], $don["cp"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_ville"], $don["city"] );
