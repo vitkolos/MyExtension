@@ -81,7 +81,7 @@ class PaymentmeansResource extends AbstractResource
                     $codeMonnaie=978;
                     $monnaie="€";
                     break;
-                case "chemin-neuf.pl" :
+                case "www.chemin-neuf.pl" :
                     $accountName="paf_pl";
                     $codeMonnaie=985;
                     $monnaie="zł";
