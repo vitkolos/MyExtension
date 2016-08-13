@@ -1,0 +1,87 @@
+[
+    {
+        "type": "Rubedo.view.DCEField",
+        "config": {
+            "fieldLabel": "Compte Paybox",
+            "name": "paybox",
+	    "allowedCT":"55473bf845205e413cf1864d",
+            "chooseOnly": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Dotpay ID",
+            "name": "dotpay_id",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Libellé pour les chèques",
+            "name": "libelle_cheque",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Rubedo.view.ImagePickerField",
+        "config": {
+            "fieldLabel": "RIB",
+            "name": "image_rib",
+            "allowedFileType": "Image",
+            "smallMode": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Intitulé du compte pour les virements",
+            "name": "nom_compte",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.TextArea",
+        "config": {
+            "fieldLabel": "Coordonnées du compte pour les virements",
+            "name": "coordonnes_compte",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Email comptabilité",
+            "name": "email_compta",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Email Intendance",
+            "name": "email_intendance",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.TextArea",
+        "config": {
+            "fieldLabel": "Adresse postale à laquelle envoyer les paiements",
+            "name": "adresse",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    }
+    
+    
+    
+    
+]
