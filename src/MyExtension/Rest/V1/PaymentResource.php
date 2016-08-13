@@ -114,15 +114,27 @@ class PaymentResource extends AbstractResource {
         $place = $params['placeID']; // lieu communautaire pour compta
         $onlinePaymentMeans=$params['onlinePaymentMeans'];  //moyen de payment en ligne du site
         $codeCompta="";
+
+        //get account properties
+        $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($params['accountName']);
         
         /*PAIEMENT PAR CARTE -> COMPTE DOTPAY*/
         if($onlinePaymentMeans == "dotpay") {
-                   
+            $parametres = [
+                "id" => $paymentConfig["data"]["nativePMConfig"]["dotpay_id"],
+                "amount" => $params['montant'],
+                "currency" => "PLN",
+                "lang" => $params['lang'],
+                "URL" => "http://www.chemin-neuf.pl",
+                "type" => 3,
+                "firstname" => $prenom,
+                "lastname" => $nom,
+                "email" => $email
+
+            ];
         }
         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
         else {
-            //get account properties
-            $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($params['accountName']);
             // récupérer l'id du compte de paiement
             $id = $paymentConfig["data"]["nativePMConfig"]["paybox"];
             switch ($paymentType) {
@@ -244,13 +256,7 @@ class PaymentResource extends AbstractResource {
         }
         return $content['live']['fields'];
     }
-    protected function getAccountId(){
-        switch($_SERVER['HTTP_HOST']) {
-            case "chemin-neuf.fr" : 
-            case "ccn.chemin-neuf.fr" : 
-                return "55473e9745205e1d3ef1864d"; break;
-        }
-     }
+    
 
      
 } 

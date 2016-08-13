@@ -120,7 +120,7 @@
             </div>
             <!---submit inscription-->
         </form>
-        <form ng-if="inscription.modePaiement=='carte' "id="payment" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
+        <form ng-if="inscription.modePaiement=='carte' && formCtrl.paymentmeans.onlinePaymentMeans=='paybox' "id="payment" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
             <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
             <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
             <input type="hidden" name="PBX_SITE" value="{{parametres.payboxSite}}">
@@ -139,6 +139,24 @@
             <input type="hidden" name="PBX_REPONDRE_A" value="{{parametres.urlCallback}}">
             <input type="hidden" name="PBX_HMAC" value="{{parametres.empreinteHasheeHex}}">
         <input type="submit" value="Envoyer">
+                
+                
+    <form>
+        <form ng-if="inscription.modePaiement=='carte' && formCtrl.paymentmeans.onlinePaymentMeans=='dotpay' "id="payment" name="payment"  method="POST" action="https://ssl.dotpay.pl/test_payment/" style="visibility:hidden">
+            <input type="hidden" name="id" value="{{parametres.id}}">
+            <input type="hidden" name="amount" value="{{parametres.amount}}">
+            <input type="hidden" name="currency" value="{{parametres.currency}}">
+            <input type="hidden" name="lang" value="{{parametres.lang}}">
+            <input type="hidden" name="URL" value="{{parametres.URL}}">
+            <input type="hidden" name="type" value="{{parametres.type}}">
+            <input type="hidden" name="firstname" value="{{parametres.firstname}}">
+            <input type="hidden" name="lastname" value="{{parametres.lastname}}">
+            <input type="hidden" name="email" value="{{parametres.email}}">
+            
+        <input type="submit" value="Envoyer">
+                
+                
+                
     <form>
 
 
