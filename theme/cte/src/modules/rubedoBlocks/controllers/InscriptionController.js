@@ -56,7 +56,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     if (me.content.fields.heureDebut) {
         propositionDate += " "+$scope.rubedo.translate("Time.At", "à")+" " + me.content.fields.heureDebut ;
     }
-    propositionDate +=  " "+rubedo.translate("date.to", "au")+" " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate');
+    propositionDate +=  " "+$scope.rubedo.translate("date.to", "au")+" " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate');
     if (me.content.fields.heureFin) {
         propositionDate +=  " "+$scope.rubedo.translate("Time.At", "à")+" " + me.content.fields.heureFin;
     }
