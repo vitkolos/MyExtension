@@ -44,13 +44,13 @@
                         <p>{{rubedo.translate("Block.Inscription.Paf","La participation aux frais est de :")}} </p>
                         <p>{{contentDetailCtrl.content.fields.paf_text}}</p>
                         <p ng-repeat="(option, prix) in inscription.optionsPayantes" ng-if="prix">
-                                + {{option}} : {{prix}}€
+                                + {{option}} : {{prix}}{{formCtrl.paymentmeans.nativePMConfig.monnaie}}
                         </p>
                         <!---on demande le montant à payer seulement si on peut payer pour la session - pas seulement l'accompte-->
                         <div class="row" ng-if="!formCtrl.isPaimentAccompteSeulement">
                                 <label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label>
                         </div>
-                        <p ng-if="!formCtrl.isPaimentAccompteSeulement"><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[1-9][0-9]{1,3}$/"><b>€</b></p>
+                        <p ng-if="!formCtrl.isPaimentAccompteSeulement"><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[1-9][0-9]{1,3}$/"><b>formCtrl.paymentmeans.nativePMConfig.monnaie</b></p>
                     </div>
                 </div>
                <!---CHOIX DU PAIEMENT-->
@@ -65,7 +65,7 @@
                         </div>
                         <div class="col-xs-12" ng-if="formCtrl.content.fields.accompte > 0">
                             <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement_maintenant" checked="checked" value="accompte" required>
-                            <label for="accompte">{{contentDetailCtrl.getLabelByName('accompte')}} : {{formCtrl.content.fields.accompte}}€</label> 
+                            <label for="accompte">{{contentDetailCtrl.getLabelByName('accompte')}} : {{formCtrl.content.fields.accompte}}{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</label> 
                         </div>                            
                         <div class="col-xs-12" ng-repeat="option in formCtrl.content.fields.paimentOption.paimentOption">
                             <input type="radio"  name="paiement_maintenant" ng-attr-id="{{option}}" ng-model="inscription.paiement_maintenant" value="{{option}}" required ng-disabled="!inscription.montantTotalAPayer || (inscription.montantTotalAPayer==0)">

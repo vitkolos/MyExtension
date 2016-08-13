@@ -81,6 +81,11 @@ class PaymentmeansResource extends AbstractResource
                     $codeMonnaie=978;
                     $monnaie="€";
                     break;
+                case "www.chemin-neuf.pl" :
+                    $accountName="dons_pl";
+                    $codeMonnaie=985;
+                    $monnaie="zł";
+                    break;
             }
             $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
             if($paymentMeans['success']) {
