@@ -70,10 +70,14 @@ class PaymentmeansResource extends AbstractResource
             $accountName="";
             $codeMonnaie="";
             $monnaie="";
-            
+            $paymentModes=array(
+                "carte"=>false,
+                "cheque"=>false
+            );
             switch($_SERVER['HTTP_HOST']) {
                 case "chemin-neuf.fr" : 
                     if($params['type']=="dons") $accountName="dons_fr";
+                    else if($params['type']=="paf") $accountName="paf_fr";
                     $codeMonnaie=978;
                     $monnaie="€";
                     break;
@@ -81,6 +85,17 @@ class PaymentmeansResource extends AbstractResource
             $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
             if($paymentMeans['success']) {
                 $arrayToReturn = array_intersect_key($paymentMeans['data'], array_flip(array("id","paymentMeans","displayName","logo","nativePMConfig")));
+                //determiner les types de payement possibles
+                if($arrayToReturn["nativePMConfig"]["paybox"] && $arrayToReturn["nativePMConfig"]["paybox"] !="") {
+                    $paymentModes["carte"] = true;
+                }
+                else if($arrayToReturn["nativePMConfig"]["dotpay"] && $arrayToReturn["nativePMConfig"]["dotpay"] !="") {
+                    $paymentModes["carte"] = true;
+                }
+                if($arrayToReturn["nativePMConfig"]["libelle_cheque"] && $arrayToReturn["nativePMConfig"]["libelle_cheque"] !="") {
+                    $paymentModes["cheque"] = true;
+                }
+                $arrayToReturn["paymentModes"] = $paymentModes;
                 $arrayToReturn["nativePMConfig"] = array(
                                                          "contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"],
                                                          "fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"],
