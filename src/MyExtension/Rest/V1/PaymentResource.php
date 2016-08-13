@@ -68,6 +68,12 @@ class PaymentResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
+                            ->setDescription('Moyen de payement en ligne (paybox/dotpay)')
+                            ->setKey('onlinePaymentMeans')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
                             ->setDescription('Numéro de compte (pour les dons)')
                             ->setKey('accountId')
                             ->setFilter('string')
@@ -106,104 +112,119 @@ class PaymentResource extends AbstractResource {
         $proposition = $params['proposition']; // titre de la proposition si inscription
         $paymentType=$params['paymentType']; // type de paiement (paf ou dons)
         $place = $params['placeID']; // lieu communautaire pour compta
+        $onlinePaymentMeans=$params['onlinePaymentMeans'];  //moyen de payment en ligne du site
         $codeCompta="";
-        switch ($paymentType) {
-         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/   
-            case "paf":
-            // récupérer l'id du compte de paiement
-                $id = $this->getAccountId();
-            // récupérer les infos du compte
-                $paymentInfos = $this->getPaymentInfos($id);
+        
+        /*PAIEMENT PAR CARTE -> COMPTE DOTPAY*/
+        if($onlinePaymentMeans == "dotpay") {
+                   
+        }
+        /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
+        else {
+            switch ($paymentType) {
                 
-                if($place && $place!="") {
-                    $wasFiltered = AbstractCollection::disableUserFilter(true);
-                    $lieuCommunautaire = Manager::getService("Contents")->findById($place,false,false);
-                    $codeCompta = "[" . $lieuCommunautaire["fields"]["codeCompta"] . "]";
-                }
-                else $codeCompta = "[no]";
-                $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
-                $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
-                break;
-        
-        
-        
-         /*DONS */           
-            case "dons":
-                
-            // récupérer l'id du compte de paiement
-                $id = $params['accountId'];
-            // récupérer les infos du compte
-                $paymentInfos = $this->getPaymentInfos($id);
-                if($place && $place!="") {
-                    $codeCompta = "[" . $place . "]";
-                }
-                else $codeCompta = "[no]";
-                $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
-                $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/donation/";
-                break;
-            default:
-                $parametres = "Pas de mode de paiement indiqué";
+                case "paf":
+                    //payement par Dotpay
+                    
+                // récupérer l'id du compte de paiement
+                    $id = $this->getAccountId();
+                // récupérer les infos du compte
+                    $paymentInfos = $this->getPaymentInfos($id);
+                    
+                    if($place && $place!="") {
+                        $wasFiltered = AbstractCollection::disableUserFilter(true);
+                        $lieuCommunautaire = Manager::getService("Contents")->findById($place,false,false);
+                        $codeCompta = "[" . $lieuCommunautaire["fields"]["codeCompta"] . "]";
+                    }
+                    else $codeCompta = "[no]";
+                    $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
+                    $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
+                    break;
+            
+            
+            
+             /*DONS */           
+                case "dons":
+                    
+                // récupérer l'id du compte de paiement
+                    $id = $params['accountId'];
+                // récupérer les infos du compte
+                    $paymentInfos = $this->getPaymentInfos($id);
+                    if($place && $place!="") {
+                        $codeCompta = "[" . $place . "]";
+                    }
+                    else $codeCompta = "[no]";
+                    $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
+                    $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/donation/";
+                    break;
+                default:
+                    $parametres = "Pas de mode de paiement indiqué";
+            }            
+            $dateTime = date("c");
+            $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
+            $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
+            $payboxSite = $paymentInfos['site'];
+            $payboxRang = $paymentInfos['rang'];
+            $payboxID = $paymentInfos['identifiant'];
+            $payboxDevise = $paymentInfos['devise'];
+            $parametres = [
+                "typePaiement" => "CARTE",
+                "typeCarte" => "CB",
+                "payboxSite" => $payboxSite,
+                "payboxRang" => $payboxRang,
+                "payboxIdentifiant" => $payboxID,
+                "montantEnCentimes" => $params['montant'] *100,
+                "codeMonnaieNumerique" =>$payboxDevise,
+                "commande" => $commande, 
+                "email" => $email, 
+                "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;signature:K",
+                "dateTime" => $dateTime,
+                "urlRetourNormal" => $urlNormal,
+                "urlRetourEchec" => $urlEchec,
+                "urlCallback" => $urlCallback
+            ];
+    
+            $empreinteBrute  =
+                "PBX_TYPEPAIEMENT=". $parametres['typePaiement'] . 
+                "&PBX_TYPECARTE=" . $parametres['typeCarte']  .
+                "&PBX_SITE=" . $parametres['payboxSite']  .
+                "&PBX_RANG=" . $parametres['payboxRang']  .
+                "&PBX_IDENTIFIANT=" . $parametres['payboxIdentifiant']  .
+                "&PBX_TOTAL=" . $parametres['montantEnCentimes']  .
+                "&PBX_DEVISE=" . $parametres['codeMonnaieNumerique']  .
+                "&PBX_CMD=" . $parametres['commande'] . 
+                "&PBX_PORTEUR=" . $parametres['email']  .
+                "&PBX_RETOUR=" . $parametres['payboxRetour']  .
+                "&PBX_HASH=" . "SHA512"  .
+                "&PBX_TIME=" . $parametres['dateTime']  .
+                "&PBX_EFFECTUE=" . $parametres['urlRetourNormal']  .
+                "&PBX_REFUSE=" . $parametres['urlRetourEchec']  .
+                "&PBX_ANNULE=" . $parametres['urlRetourEchec']  .
+                "&PBX_REPONDRE_A=" . $parametres['urlCallback']  ;
+    
+            //$key = "0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF";
+            $key = $paymentInfos['clef'];
+            // On transforme la clé en binaire
+            $binKey = pack("H*", $key);
+    
+            // On calcule l’empreinte (à renseigner dans le paramètre PBX_HMAC) grâce à la fonction hash_hmac et 
+            // la clé binaire
+            // On envoie via la variable PBX_HASH l'algorithme de hachage qui a été utilisé (SHA512 dans ce cas)
+            
+            // Pour afficher la liste des algorithmes disponibles sur votre environnement, décommentez la ligne 
+            // suivante
+            // print_r(hash_algos());
+    
+            $empreinteHasheeHex = strtoupper(hash_hmac('sha512', $empreinteBrute, $binKey));
+            // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
+            $parametres['empreinteHasheeHex'] = $empreinteHasheeHex;
+     
+
+
         }
         
-        $dateTime = date("c");
-        $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
-        $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
-        $payboxSite = $paymentInfos['site'];
-        $payboxRang = $paymentInfos['rang'];
-        $payboxID = $paymentInfos['identifiant'];
-        $payboxDevise = $paymentInfos['devise'];
-        $parametres = [
-            "typePaiement" => "CARTE",
-            "typeCarte" => "CB",
-            "payboxSite" => $payboxSite,
-            "payboxRang" => $payboxRang,
-            "payboxIdentifiant" => $payboxID,
-            "montantEnCentimes" => $params['montant'] *100,
-            "codeMonnaieNumerique" =>$payboxDevise,
-            "commande" => $commande, 
-            "email" => $email, 
-            "payboxRetour" => "referencePaybox:S;montant:M;commande:R;autorisation:A;pays:I;erreur:E;signature:K",
-            "dateTime" => $dateTime,
-            "urlRetourNormal" => $urlNormal,
-            "urlRetourEchec" => $urlEchec,
-            "urlCallback" => $urlCallback
-        ];
-
-        $empreinteBrute  =
-            "PBX_TYPEPAIEMENT=". $parametres['typePaiement'] . 
-            "&PBX_TYPECARTE=" . $parametres['typeCarte']  .
-            "&PBX_SITE=" . $parametres['payboxSite']  .
-            "&PBX_RANG=" . $parametres['payboxRang']  .
-            "&PBX_IDENTIFIANT=" . $parametres['payboxIdentifiant']  .
-            "&PBX_TOTAL=" . $parametres['montantEnCentimes']  .
-            "&PBX_DEVISE=" . $parametres['codeMonnaieNumerique']  .
-            "&PBX_CMD=" . $parametres['commande'] . 
-            "&PBX_PORTEUR=" . $parametres['email']  .
-            "&PBX_RETOUR=" . $parametres['payboxRetour']  .
-            "&PBX_HASH=" . "SHA512"  .
-            "&PBX_TIME=" . $parametres['dateTime']  .
-            "&PBX_EFFECTUE=" . $parametres['urlRetourNormal']  .
-            "&PBX_REFUSE=" . $parametres['urlRetourEchec']  .
-            "&PBX_ANNULE=" . $parametres['urlRetourEchec']  .
-            "&PBX_REPONDRE_A=" . $parametres['urlCallback']  ;
-
-        //$key = "0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF0123456789ABCDEF";
-        $key = $paymentInfos['clef'];
-        // On transforme la clé en binaire
-        $binKey = pack("H*", $key);
-
-        // On calcule l’empreinte (à renseigner dans le paramètre PBX_HMAC) grâce à la fonction hash_hmac et 
-        // la clé binaire
-        // On envoie via la variable PBX_HASH l'algorithme de hachage qui a été utilisé (SHA512 dans ce cas)
         
-        // Pour afficher la liste des algorithmes disponibles sur votre environnement, décommentez la ligne 
-        // suivante
-        // print_r(hash_algos());
-
-        $empreinteHasheeHex = strtoupper(hash_hmac('sha512', $empreinteBrute, $binKey));
-        // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
-        $parametres['empreinteHasheeHex'] = $empreinteHasheeHex;
-        
+       
         return array(
             'success' => true,
             'parametres' => $parametres

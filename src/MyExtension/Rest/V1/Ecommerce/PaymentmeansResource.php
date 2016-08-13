@@ -81,7 +81,7 @@ class PaymentmeansResource extends AbstractResource
                     $codeMonnaie=978;
                     $monnaie="€";
                     break;
-                case "www.chemin-neuf.pl" :
+                case "chemin-neuf.pl" :
                     $accountName="dons_pl";
                     $codeMonnaie=985;
                     $monnaie="zł";
@@ -93,9 +93,11 @@ class PaymentmeansResource extends AbstractResource
                 //determiner les types de payement possibles
                 if($arrayToReturn["nativePMConfig"]["paybox"] && $arrayToReturn["nativePMConfig"]["paybox"] !="") {
                     $paymentModes["carte"] = true;
+                    $arrayToReturn["onlinePaymentMeans"]="paybox";
                 }
                 else if($arrayToReturn["nativePMConfig"]["dotpay"] && $arrayToReturn["nativePMConfig"]["dotpay"] !="") {
                     $paymentModes["carte"] = true;
+                    $arrayToReturn["onlinePaymentMeans"]="dotpay";
                 }
                 if($arrayToReturn["nativePMConfig"]["libelle_cheque"] && $arrayToReturn["nativePMConfig"]["libelle_cheque"] !="") {
                     $paymentModes["cheque"] = true;

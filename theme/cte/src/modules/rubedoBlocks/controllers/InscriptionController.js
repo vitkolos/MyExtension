@@ -385,6 +385,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
                         }
                         payload.paymentType= 'paf';
+                        payload.onlinePaymentMeans=me.paymentmeans.onlinePaymentMeans;
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
                                 $scope.parametres = response.data.parametres;
