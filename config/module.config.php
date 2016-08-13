@@ -25,7 +25,12 @@ return array(
             'name' => "Fondation d'Hautecombe",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
-        )
+        ),
+        'paf_pl' => array(
+            'name' => "PAF Pologne",
+            'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+        ),
          
     ),
     
