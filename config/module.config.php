@@ -9,7 +9,7 @@ return array(
         'paf_fr' => array(
             'name' => "PAF France",
             'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
         ),
          'dons_int' => array(
             'name' => "Dons International",

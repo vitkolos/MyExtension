@@ -70,15 +70,6 @@
             "allowBlank": true,
             "allowOnlyWhitespace": true
         }
-    },
-    {
-        "type": "Ext.form.field.TextArea",
-        "config": {
-            "fieldLabel": "Adresse postale à laquelle envoyer les paiements",
-            "name": "adresse",
-            "allowBlank": true,
-            "allowOnlyWhitespace": true
-        }
     }
     
     
