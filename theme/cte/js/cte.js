@@ -269,6 +269,14 @@ angular.module('rubedoDataAccess').factory('RubedoPaymentMeansService',['$http',
                       }
                 }));
            };
+           serviceInstance.getPaymentMeansPaf=function(){
+               return ($http.get("/api/v1/ecommerce/paymentmeans",{
+                      params: {
+                         filter_by_site:true,
+                         type:"paf"
+                      }
+                }));
+           };
            return serviceInstance;
 }]);
 

@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter',
-                                                                        function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter) {
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPaymentMeansService',
+                                                                        function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPaymentMeansService) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     me.form={};
@@ -247,6 +247,17 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     if (me.content.fields.questions && (me.content.fields.questions).length>0) {
         me.getQuestions();
     }
+    
+    //informations sur les moyens de payement
+    RubedoPaymentMeansService.getPaymentMeansPaf().then(
+        function(response){
+            if(response.data.success){
+                me.paymentmeans = response.data.paymentMeans;
+            }
+        }
+    );
+    
+    
     
     
     me.currentStage = 1;
