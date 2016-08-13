@@ -11,6 +11,15 @@
     {
         "type": "Ext.form.field.Text",
         "config": {
+            "fieldLabel": "Dotpay ID",
+            "name": "dotpay_id",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
             "fieldLabel": "Libellé pour les chèques",
             "name": "libelle_cheque",
             "allowBlank": true,

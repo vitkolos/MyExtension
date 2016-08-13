@@ -73,7 +73,6 @@ class PaymentmeansResource extends AbstractResource
             
             switch($_SERVER['HTTP_HOST']) {
                 case "chemin-neuf.fr" : 
-                case "ccn.chemin-neuf.fr" : 
                     if($params['type']=="dons") $accountName="dons_fr";
                     $codeMonnaie=978;
                     $monnaie="€";
