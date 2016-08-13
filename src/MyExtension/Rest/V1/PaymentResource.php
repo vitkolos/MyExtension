@@ -74,8 +74,8 @@ class PaymentResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Numéro de compte (pour les dons)')
-                            ->setKey('accountId')
+                            ->setDescription('Nom du compte (pour récupérer les infos de payement)')
+                            ->setKey('accountName')
                             ->setFilter('string')
                     )
                     ->addInputFilter(
@@ -121,13 +121,15 @@ class PaymentResource extends AbstractResource {
         }
         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
         else {
+            //get account properties
+            $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($params['accountName']);
+            // récupérer l'id du compte de paiement
+            $id = $paymentConfig["data"]["nativePMConfig"]["paybox"];
             switch ($paymentType) {
                 
                 case "paf":
-                    //payement par Dotpay
                     
-                // récupérer l'id du compte de paiement
-                    $id = $this->getAccountId();
+                
                 // récupérer les infos du compte
                     $paymentInfos = $this->getPaymentInfos($id);
                     
@@ -146,8 +148,7 @@ class PaymentResource extends AbstractResource {
              /*DONS */           
                 case "dons":
                     
-                // récupérer l'id du compte de paiement
-                    $id = $params['accountId'];
+
                 // récupérer les infos du compte
                     $paymentInfos = $this->getPaymentInfos($id);
                     if($place && $place!="") {

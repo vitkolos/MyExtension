@@ -95,7 +95,7 @@ class PaymentmeansResource extends AbstractResource
                     $paymentModes["carte"] = true;
                     $arrayToReturn["onlinePaymentMeans"]="paybox";
                 }
-                else if($arrayToReturn["nativePMConfig"]["dotpay"] && $arrayToReturn["nativePMConfig"]["dotpay"] !="") {
+                else if($arrayToReturn["nativePMConfig"]["dotpay_id"] && $arrayToReturn["nativePMConfig"]["dotpay_id"] !="") {
                     $paymentModes["carte"] = true;
                     $arrayToReturn["onlinePaymentMeans"]="dotpay";
                 }
