@@ -61,6 +61,11 @@ class PaymentResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
+                            ->setDescription('Toutes les infos de l\'inscription')
+                            ->setKey('infos')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
                             ->setDescription('Type de paiement (paf / dons)')
                             ->setKey('paymentType')
                             ->setFilter('string')
@@ -120,16 +125,22 @@ class PaymentResource extends AbstractResource {
         
         /*PAIEMENT PAR CARTE -> COMPTE DOTPAY*/
         if($onlinePaymentMeans == "dotpay") {
+            $infos = $params['infos'];
             $parametres = [
                 "id" => $paymentConfig["data"]["nativePMConfig"]["dotpay_id"],
                 "amount" => $params['montant'],
                 "currency" => "PLN",
-                "lang" => $params['lang'],
+                "lang" => $params['lang']->getLocale(),
                 "URL" => "http://www.chemin-neuf.pl",
                 "type" => 3,
                 "firstname" => $prenom,
                 "lastname" => $nom,
-                "email" => $email
+                "email" => $email,
+                "street" => $infos["address"],
+                "country" => "PL",
+                "city" => $infos["city"],
+                "postcode" => $infos["cp"],
+                "phone" => $infos["tel1"]
 
             ];
         }

@@ -387,6 +387,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         }
                         payload.paymentType= 'paf';
                         payload.onlinePaymentMeans=me.paymentmeans.onlinePaymentMeans;
+                        if (me.paymentmeans.onlinePaymentMeans=='dotpay') {
+                            payload.infos=$scope.inscription;
+
+                        }
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
                                 $scope.parametres = response.data.parametres;
