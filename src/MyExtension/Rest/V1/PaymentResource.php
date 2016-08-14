@@ -133,7 +133,7 @@ class PaymentResource extends AbstractResource {
                 "currency" => "PLN",
                 "lang" => $params['lang']->getLocale(),
                 "URL" => "http://www.chemin-neuf.pl",
-                "type" => 3,
+                "type" => "3",
                 "firstname" => $prenom,
                 "lastname" => $nom,
                 "email" => $email,
@@ -145,6 +145,7 @@ class PaymentResource extends AbstractResource {
             ];
             /*SECURITY : HASH CHAIN*/
             $chk=$paymentConfig["data"]["nativePMConfig"]["dotpay_pin"]
+                    .$parametres["api_version"]
                     .$parametres["lang"]
                     .$parametres["id"]
                     .$parametres["amount"]
