@@ -127,6 +127,7 @@ class PaymentResource extends AbstractResource {
         if($onlinePaymentMeans == "dotpay") {
             $infos = $params['infos'];
             $parametres = [
+                "api_version"  => "dev",
                 "id" => $paymentConfig["data"]["nativePMConfig"]["dotpay_id"],
                 "amount" => $params['montant'],
                 "currency" => "PLN",

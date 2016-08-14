@@ -143,6 +143,7 @@
                 
         </form>
         <form ng-if="inscription.modePaiement=='carte' && formCtrl.paymentmeans.onlinePaymentMeans=='dotpay' "id="payment" name="payment"  method="POST" action="https://ssl.dotpay.pl/test_payment/" style="visibility:hidden">
+            <input type="hidden" name="api_version" value="{{parametres.api_version}}">
             <input type="hidden" name="id" value="{{parametres.id}}">
             <input type="hidden" name="lang" value="{{parametres.lang}}">
             <input type="hidden" name="amount" value="{{parametres.amount}}">
