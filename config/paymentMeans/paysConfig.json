@@ -20,6 +20,15 @@
     {
         "type": "Ext.form.field.Text",
         "config": {
+            "fieldLabel": "Dotpay PIN",
+            "name": "dotpay_pin",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
             "fieldLabel": "Libellé pour les chèques",
             "name": "libelle_cheque",
             "allowBlank": true,
