@@ -129,7 +129,7 @@ class PaymentResource extends AbstractResource {
             $parametres = [
                 "api_version"  => "dev",
                 "id" => $paymentConfig["data"]["nativePMConfig"]["dotpay_id"],
-                "amount" => $params['montant'],
+                "amount" => number_format($params['montant'],2),
                 "currency" => "PLN",
                 "lang" => $params['lang']->getLocale(),
                 "URL" => "http://www.chemin-neuf.pl",
