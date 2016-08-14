@@ -141,9 +141,27 @@ class PaymentResource extends AbstractResource {
                 "city" => $infos["city"],
                 "postcode" => $infos["cp"],
                 "phone" => $infos["tel1"]
-
             ];
+            /*SECURITY : HASH CHAIN*/
+            $chk=$paymentConfig["data"]["nativePMConfig"]["dotpay_pin"]
+                    .$parametres["id"]
+                    .$parametres["lang"]
+                    .$parametres["amount"]
+                    .$parametres["currency"]
+                    //.$parametres["description"]
+                    .$parametres["URL"]
+                    .$parametres["type"]
+                    .$parametres["firstname"]
+                    .$parametres["lastname"]
+                    .$parametres["email"]
+                    .$parametres["street"]
+                    .$parametres["city"]
+                    .$parametres["postcode"]
+                    .$parametres["phone"]
+                    .$parametres["country"];
+            $parametres["chk"] = hash('sha256',$chk);
         }
+        
         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
         else {
             // récupérer l'id du compte de paiement
