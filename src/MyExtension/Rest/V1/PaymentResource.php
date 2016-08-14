@@ -145,8 +145,8 @@ class PaymentResource extends AbstractResource {
             ];
             /*SECURITY : HASH CHAIN*/
             $chk=$paymentConfig["data"]["nativePMConfig"]["dotpay_pin"]
-                    .$parametres["id"]
                     .$parametres["lang"]
+                    .$parametres["id"]
                     .$parametres["amount"]
                     .$parametres["currency"]
                     //.$parametres["description"]
@@ -160,7 +160,7 @@ class PaymentResource extends AbstractResource {
                     .$parametres["postcode"]
                     .$parametres["phone"]
                     .$parametres["country"];
-           // $parametres["chk"] = hash('sha256',$chk);
+            $parametres["chk"] = hash('sha256',$chk);
         }
         
         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
