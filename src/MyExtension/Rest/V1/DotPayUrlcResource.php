@@ -89,8 +89,8 @@ class DotPayUrlcResource extends AbstractResource {
             $commande = explode("|",$params["$description"]); //$codeCompta . "|" . $idInscription . "|" . urlencode($prenom) . "|" . urlencode($nom)
             $codeCompta = $commande[0];
             $idInscription = $commande[1];
-            $prenom = $commande[3];
-            $nom = $commande[4];
+            $prenom = $commande[2];
+            $nom = $commande[3];
             $montant = $params["operation_amount"];
             $wasFiltered = AbstractCollection::disableUserFilter(true);
 
