@@ -113,7 +113,9 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             $scope.processForm=true;
             $scope.don.etat ="attente_paiement_"+$scope.don.modePaiement;
             $scope.don.montantAvecFrequence ="";
-            if ($scope.don.montant =='autre') $scope.don.montantAvecFrequence += $scope.don.montant_autre + " " + $scope.don.monnaie;
+            if ($scope.don.montant =='autre') {
+                $scope.don.montantAvecFrequence += $scope.don.montant_autre + " " + $scope.don.monnaie;
+            }
             else $scope.don.montantAvecFrequence += $scope.don.montant + " " + $scope.don.monnaie;
             if ($scope.don.mensuel) {
                 $scope.don.montantAvecFrequence += " "+$scope.rubedo.translate("Block.Dons.Mois","par mois");

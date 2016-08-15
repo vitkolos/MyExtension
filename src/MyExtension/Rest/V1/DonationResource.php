@@ -206,6 +206,7 @@ class DonationResource extends AbstractResource
         if($donationInfo["birthdate"]) $donationInfo["birthdate"] = strtotime($donationInfo["birthdate"]);
         if($donationInfo["trimestriel"]) $donationInfo["frequence"] = "Trimestriel";
         if($donationInfo["mensuel"]) $donationInfo["frequence"] = "Mensuel";
+        if($donationInfo["montant"]=='autre') $donationInfo["montant"] = $donationInfo["montant_autre"];
         return $donationInfo;
     }
    
