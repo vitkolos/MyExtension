@@ -22,7 +22,7 @@ class DotPayUrlcResource extends AbstractResource {
             ->definition
             ->setName('DotPayUrlc')
             ->setDescription('Retour de DotPay')
-            ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
+            ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Get info de paiement Dotpay')
                     ->addInputFilter(
@@ -80,7 +80,7 @@ class DotPayUrlcResource extends AbstractResource {
                     );
             });
     }
-    function getAction($params) {
+    function postAction($params) {
         //vérifier si le payement est réussi
         $erreur = true;
         if($params[operation_status]=='completed') $erreur=false;
@@ -101,10 +101,34 @@ class DotPayUrlcResource extends AbstractResource {
             
             $contentsService = Manager::getService("ContentsCcn");
             $inscription = $contentsService->findById($contentId,false,false);
-            var_dump($inscription);
+            //var_dump($inscription);
+            
+            $mailSecretariat="";
+            foreach($inscription["fields"] as $key => $value) {
+                $mailSecretariat .= $key . " : " . $value ."\n";
+            }
+            
+        $mailerService = Manager::getService('Mailer');
+
+        $mailerObject = $mailerService->getNewMessage();
+        $destinataires=array("nicolas.rhone@gmail.com");
+        $replyTo="web@chemin-neuf.org";
+        $from="web@chemin-neuf.org";
+        
+        $sujet ="Payement PL";
+        
+        
+        
+        $mailerObject->setTo($destinataires);
+        $mailerObject->setFrom($from);
+        $mailerObject->setSubject($sujet);
+        $mailerObject->setReplyTo($replyTo);
+        $mailerObject->setBody($mailSecretariat);
+
+        // Send e-mail
+        $mailerService->sendMessage($mailerObject, $errors);
+        
         }
-        
-        
         
         /*
         $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage="";
@@ -225,6 +249,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
                 'errors' => $erreurMessage
             ];
         }*/
+        
         return [
                 'success' => true,
                 'message' => 'OK',
