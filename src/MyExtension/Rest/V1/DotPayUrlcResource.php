@@ -72,12 +72,12 @@ class DotPayUrlcResource extends AbstractResource {
                             ->setFilter('string')
                             //->setRequired()
                     )
-                    /*
+                    
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('message general')
                             ->setKey('message')
-                    )*/;
+                    );
             });
     }
     function getAction($params) {
@@ -210,7 +210,10 @@ if(!($erreurStatus) && $securite && $autorisation) {
                 'errors' => $erreurMessage
             ];
         }*/
-        return "OK";
+        return [
+                'success' => true,
+                'message' => 'OK',
+            ];
     }
 
 
