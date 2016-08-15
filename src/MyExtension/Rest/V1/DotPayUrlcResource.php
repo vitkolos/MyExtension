@@ -84,9 +84,24 @@ class DotPayUrlcResource extends AbstractResource {
         //vérifier si le payement est réussi
         $erreur = true;
         if($params[operation_status]=='completed') $erreur=false;
-        
+
         if(!$erreur) {
-            var_dump($params['operation_amount']." ".$params['description']);   
+            $commande = explode("|",$params["$description"]); //$codeCompta . "|" . $idInscription . "|" . urlencode($prenom) . "|" . urlencode($nom)
+            $codeCompta = $commande[0];
+            $idInscription = $commande[1];
+            $prenom = $commande[3];
+            $nom = $commande[4];
+            $montant = $params["operation_amount"];
+            $wasFiltered = AbstractCollection::disableUserFilter(true);
+
+            $this->_dataService = Manager::getService('MongoDataAccess');
+            $this->_dataService->init("Contents");
+            $content = $this->_dataService->findByName($idInscription);
+            $contentId = $content['id'];
+            
+            $contentsService = Manager::getService("ContentsCcn");
+            $inscription = $contentsService->findById($contentId,false,false);
+            var_dump($inscription);
         }
         
         

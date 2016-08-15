@@ -123,6 +123,24 @@ class PaymentResource extends AbstractResource {
         //get account properties
         $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($params['accountName']);
         
+        //get code comptabilité (par maison /pays)
+        if($paymentType=="paf"){
+            /*le paramètre placeId est l'id du lieu communautaire, dans lequel est stocké le code compta*/
+            if($place && $place!="") {
+                $wasFiltered = AbstractCollection::disableUserFilter(true);
+                $lieuCommunautaire = Manager::getService("Contents")->findById($place,false,false);
+                $codeCompta = "[" . $lieuCommunautaire["fields"]["codeCompta"] . "]";
+            }
+            else $codeCompta = "[no]";
+        }
+        else if($paymentType=="dons") {
+            /*le code compta est envoyé dans le paramètre placeId*/
+            if($place && $place!="") {
+                $codeCompta = "[" . $place . "]";
+            }
+            else $codeCompta = "[no]";           
+        }
+        
         /*PAIEMENT PAR CARTE -> COMPTE DOTPAY*/
         if($onlinePaymentMeans == "dotpay") {
             $infos = $params['infos'];
@@ -132,7 +150,7 @@ class PaymentResource extends AbstractResource {
                 "amount" => number_format($params['montant'],2),
                 "currency" => "PLN",
                 "lang" => $params['lang']->getLocale(),
-                "description" => $idInscription,
+                "description" => $codeCompta . "|" . $idInscription . "|" . urlencode($prenom) . "|" . urlencode($nom),
                 "URL" => "http://www.chemin-neuf.pl",
                 "type" => "3",
                 "firstname" => $prenom,
@@ -171,18 +189,11 @@ class PaymentResource extends AbstractResource {
             $id = $paymentConfig["data"]["nativePMConfig"]["paybox"];
             switch ($paymentType) {
                 
-                case "paf":
-                    
-                
-                // récupérer les infos du compte
+                case "paf":                
+                    // récupérer les infos du compte
                     $paymentInfos = $this->getPaymentInfos($id);
                     
-                    if($place && $place!="") {
-                        $wasFiltered = AbstractCollection::disableUserFilter(true);
-                        $lieuCommunautaire = Manager::getService("Contents")->findById($place,false,false);
-                        $codeCompta = "[" . $lieuCommunautaire["fields"]["codeCompta"] . "]";
-                    }
-                    else $codeCompta = "[no]";
+                    
                     $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
                     $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
                     break;
@@ -195,10 +206,7 @@ class PaymentResource extends AbstractResource {
 
                 // récupérer les infos du compte
                     $paymentInfos = $this->getPaymentInfos($id);
-                    if($place && $place!="") {
-                        $codeCompta = "[" . $place . "]";
-                    }
-                    else $codeCompta = "[no]";
+                    
                     $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
                     $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/donation/";
                     break;
