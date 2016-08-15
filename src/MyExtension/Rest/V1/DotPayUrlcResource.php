@@ -195,7 +195,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
         $mailerObject->setSubject($sujet);
         $mailerObject->setReplyTo($replyTo);
         $mailerObject->setBody($body);
-*/
+
         // Send e-mail
         if ($mailerService->sendMessage($mailerObject, $errors)) {
             return [
@@ -209,7 +209,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
                 'message' => 'Error encountered, more details in "errors"',
                 'errors' => $erreurMessage
             ];
-        }
+        }*/
     }
 
 
