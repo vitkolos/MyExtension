@@ -83,10 +83,11 @@ class DotPayUrlcResource extends AbstractResource {
     function getAction($params) {
         //vérifier si le payement est réussi
         $erreur = true;
-        if($params[operation_status]=='completed') $erreur=false;
+        if($params["operation_status"]=='completed') $erreur=false;
 
         if(!$erreur) {
-            $commande = explode("|",$params["$description"]); //$codeCompta . "|" . $idInscription . "|" . urlencode($prenom) . "|" . urlencode($nom)
+            $commande = explode("|",$params["description"]); //$codeCompta . "|" . $idInscription . "|" . urlencode($prenom) . "|" . urlencode($nom)
+            var_dump($commande);
             $codeCompta = $commande[0];
             $idInscription = $commande[1];
             $prenom = $commande[2];
@@ -98,10 +99,10 @@ class DotPayUrlcResource extends AbstractResource {
             $this->_dataService->init("Contents");
             $content = $this->_dataService->findByName($idInscription);
             $contentId = $content['id'];
-            
+            var_dump($content);
             $contentsService = Manager::getService("ContentsCcn");
             $inscription = $contentsService->findById($contentId,false,false);
-            //var_dump($inscription);
+            var_dump($inscription);
             
             $mailSecretariat="";
             foreach($inscription["fields"] as $key => $value) {
@@ -252,7 +253,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
         
         return [
                 'success' => true,
-                'message' => 'OK',
+                'message' => 'OK'
             ];
     }
 
