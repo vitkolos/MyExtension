@@ -210,6 +210,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
                 'errors' => $erreurMessage
             ];
         }*/
+        return "OK";
     }
 
 
