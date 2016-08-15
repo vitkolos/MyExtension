@@ -150,7 +150,7 @@ class PaymentResource extends AbstractResource {
                 "amount" => number_format($params['montant'],2),
                 "currency" => "PLN",
                 "lang" => $params['lang']->getLocale(),
-                "description" => $codeCompta . "|" . $idInscription . "|" . urlencode($prenom) . "|" . urlencode($nom),
+                "description" => $codeCompta . "|" . $idInscription . "|" . $prenom . "|" . $nom,
                 "URL" => "http://www.chemin-neuf.pl",
                 "type" => "3",
                 "firstname" => $prenom,
