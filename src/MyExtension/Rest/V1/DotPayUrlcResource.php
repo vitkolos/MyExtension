@@ -81,7 +81,16 @@ class DotPayUrlcResource extends AbstractResource {
             });
     }
     function getAction($params) {
-        var_dump($_SERVER);
+        //vérifier si le payement est réussi
+        $erreur = true;
+        if($params[operation_status]=='completed') $erreur=false;
+        
+        if(!$erreur) {
+            var_dump($params['operation_amount']." ".$params['description']);   
+        }
+        
+        
+        
         /*
         $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage="";
         //VERIFICATIONS PAYBOX
