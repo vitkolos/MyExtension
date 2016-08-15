@@ -22,7 +22,7 @@ class DotPayUrlcResource extends AbstractResource {
             ->definition
             ->setName('DotPayUrlc')
             ->setDescription('Retour de DotPay')
-            ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
+            ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Get info de paiement Dotpay')
                     ->addInputFilter(
@@ -80,7 +80,7 @@ class DotPayUrlcResource extends AbstractResource {
                     );
             });
     }
-    function postAction($params) {
+    function getAction($params) {
         //vérifier si le payement est réussi
         $erreur = true;
         if($params[operation_status]=='completed') $erreur=false;
