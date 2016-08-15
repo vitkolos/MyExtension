@@ -22,69 +22,67 @@ class DotPayUrlcResource extends AbstractResource {
             ->definition
             ->setName('DotPayUrlc')
             ->setDescription('Retour de DotPay')
-            ->editVerb('get', function (VerbDefinitionEntity &$verbDefinitionEntity) {
+            ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
                 $verbDefinitionEntity
                     ->setDescription('Get info de paiement Dotpay')
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('referencePaybox')
-                            ->setKey('referencePaybox')
+                            ->setDescription('ID du compte dotpay')
+                            ->setKey('id')
                             ->setFilter('string')
-                            ->setRequired()
+                            //->setRequired()
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('montant')
-                            ->setKey('montant')
+                            ->setDescription('Transaction status')
+                            ->setKey('operation_status')
                             ->setFilter('string')
-                            ->setRequired()
+                            //->setRequired()
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('commande')
-                            ->setKey('commande')
+                            ->setDescription('Transaction amount')
+                            ->setKey('operation_amount')
                             ->setFilter('string')
-                            ->setRequired()
+                            //->setRequired()
                     )
+                    
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Autorisation')
-                            ->setKey('autorisation')
-                            ->setFilter('string')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Pays')
-                            ->setKey('pays')
+                            ->setDescription('Currency of transaction')
+                            ->setKey('operation_currency')
                             ->setFilter('string')
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('erreur')
-                            ->setKey('erreur')
+                            ->setDescription('Description of transaction  = inscription number')
+                            ->setKey('description')
                             ->setFilter('string')
-                            ->setRequired()
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Signature')
+                            ->setDescription('Email of the person making the payment')
+                            ->setKey('email')
+                            ->setFilter('string')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Signature (for security)')
                             ->setKey('signature')
                             ->setFilter('string')
-                            ->setRequired()
+                            //->setRequired()
                     )
+                    /*
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('message general')
                             ->setKey('message')
-                    )
-                    ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription("message d'erreur de l'envoi de mail")
-                            ->setKey('errors')
-                    );
+                    )*/;
             });
     }
-    function getAction($params) {
+    function postAction($params) {
+        var_dump($_SERVER);
+        /*
         $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage="";
         //VERIFICATIONS PAYBOX
         //code d'erreur
@@ -188,7 +186,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
         $mailerObject->setSubject($sujet);
         $mailerObject->setReplyTo($replyTo);
         $mailerObject->setBody($body);
-
+*/
         // Send e-mail
         if ($mailerService->sendMessage($mailerObject, $errors)) {
             return [
