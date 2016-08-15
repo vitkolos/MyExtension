@@ -536,14 +536,12 @@ class DonationResource extends AbstractResource
     protected function getPays(){
         switch($_SERVER['HTTP_HOST']) {
             case "chemin-neuf.fr" : 
-            case "ccn.chemin-neuf.fr" : 
                 return "FR"; break;
         }
      }
      protected function getConfigPays(){
         switch($_SERVER['HTTP_HOST']) {
             case "chemin-neuf.fr" : 
-            case "ccn.chemin-neuf.fr" : 
                 return "dons_fr"; break;
         }
      }
