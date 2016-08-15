@@ -132,6 +132,7 @@ class PaymentResource extends AbstractResource {
                 "amount" => number_format($params['montant'],2),
                 "currency" => "PLN",
                 "lang" => $params['lang']->getLocale(),
+                "description" => $idInscription,
                 "URL" => "http://www.chemin-neuf.pl",
                 "type" => "3",
                 "firstname" => $prenom,
@@ -141,7 +142,7 @@ class PaymentResource extends AbstractResource {
                 "country" => "PL",
                 "city" => $infos["city"],
                 "postcode" => $infos["cp"],
-                "phone" => $infos["tel1"]
+                "phone" => $infos["tel1"] ? $infos["tel1"] : $infos["tel2"]
             ];
             /*SECURITY : HASH CHAIN*/
             $chk=$paymentConfig["data"]["nativePMConfig"]["dotpay_pin"]
@@ -150,7 +151,7 @@ class PaymentResource extends AbstractResource {
                     .$parametres["id"]
                     .$parametres["amount"]
                     .$parametres["currency"]
-                    //.$parametres["description"]
+                    .$parametres["description"]
                     .$parametres["URL"]
                     .$parametres["type"]
                     .$parametres["firstname"]
