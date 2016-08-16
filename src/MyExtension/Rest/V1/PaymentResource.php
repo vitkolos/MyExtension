@@ -153,7 +153,7 @@ class PaymentResource extends AbstractResource {
                 "description" => $codeCompta . "|" . $idInscription . "|" . $prenom . "|" . $nom,
                 "URL" => "http://www.chemin-neuf.pl",
                 "type" => "3",
-                "URLC" => "http://" . $_SERVER['HTTP_HOST'] . "/api/v1/DotPayUrlc/",
+                "URLC" => "http://" . $_SERVER['HTTP_HOST'] . "/api/v1/DotPayUrlc",
                 "firstname" => $prenom,
                 "lastname" => $nom,
                 "email" => $email,
