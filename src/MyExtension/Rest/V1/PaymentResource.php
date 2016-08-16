@@ -147,7 +147,7 @@ class PaymentResource extends AbstractResource {
             $parametres = [
                 "api_version"  => "dev",
                 "id" => $paymentConfig["data"]["nativePMConfig"]["dotpay_id"],
-                "amount" => number_format($params['montant'],2,"."," "),
+                "amount" => number_format($params['montant'],2,".",""),
                 "currency" => "PLN",
                 "lang" => $params['lang']->getLocale(),
                 "description" => $codeCompta . "|" . $idInscription . "|" . $prenom . "|" . $nom,
