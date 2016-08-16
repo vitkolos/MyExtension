@@ -169,7 +169,7 @@ class DotPayUrlcResource extends AbstractResource {
             
             if (!$erreur) {
                 $body = "Montant payé : " . $montant . " zl.\n" ;
-                $body.=$inscription['content']['fields']['propositionTitre'];
+                $body = "Identifiant de la transaction : " . $inscription['fields']['transactionId'] . " zl.\n" ;
                 $body .= "Proposition : " . $inscription['fields']['propositionTitre']."\n";
                 $body .= "Code Onesime : " . $inscription['fields']['codeOnesime']."\n";
                 $body .= "Code Compta : " . $codeCompta."\n";
