@@ -72,6 +72,13 @@ class DotPayUrlcResource extends AbstractResource {
                             ->setFilter('string')
                             //->setRequired()
                     )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Numéro d\opération donné par DotPay')
+                            ->setKey('operation_number')
+                            ->setFilter('string')
+                            //->setRequired()
+                    )
                     
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
@@ -81,8 +88,8 @@ class DotPayUrlcResource extends AbstractResource {
             });
     }
     function postAction($params) {
-        $sujet = "Réception d'un paiement en ligne - ".$prenom.' '. $nom;
-        $sujet = "Échec paiement en ligne";
+
+
         $sujet="";
         $erreurMessage="";
         $commande = explode("|",$params["description"]); //$codeCompta . "|" . $idInscription . "|" . urlencode($prenom) . "|" . urlencode($nom)
@@ -112,7 +119,7 @@ class DotPayUrlcResource extends AbstractResource {
             
             
             /*arrondir le montant sans virgule*/
-            $montant = number_format($params['operation_amount'],0);
+            $montant = (int)$params['operation_amount'];
 
             
             if($inscription) {
