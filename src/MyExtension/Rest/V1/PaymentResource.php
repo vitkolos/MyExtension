@@ -147,7 +147,7 @@ class PaymentResource extends AbstractResource {
             $parametres = [
                 "api_version"  => "dev",
                 "id" => $paymentConfig["data"]["nativePMConfig"]["dotpay_id"],
-                "amount" => number_format($params['montant'],2),
+                "amount" => number_format($params['montant'],2,".",","),
                 "currency" => "PLN",
                 "lang" => $params['lang']->getLocale(),
                 "description" => $codeCompta . "|" . $idInscription . "|" . $prenom . "|" . $nom,
@@ -182,7 +182,7 @@ class PaymentResource extends AbstractResource {
                     .$parametres["postcode"]
                     .$parametres["phone"]
                     .$parametres["country"];
-            //$parametres["chk"] = hash('sha256',$chk);
+            $parametres["chk"] = hash('sha256',$chk);
         }
         
         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
