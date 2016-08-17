@@ -208,7 +208,6 @@ if(!($erreurStatus) && $securite && $autorisation) {
 
     protected function getMailCompta(){
         switch($_SERVER['HTTP_HOST']) {
-            case "ccn.chemin-neuf.fr" : 
             case "chemin-neuf.fr" : 
                 return "ccn.comptabilite@gmail.com"; break;
         }

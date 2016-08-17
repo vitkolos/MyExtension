@@ -203,12 +203,21 @@ class DotPayUrlcResource extends AbstractResource {
 
 
     protected function getMailCompta(){
+        $mailCompta="nicolas.rhone@chemin-neuf.org";
+        $accountName = "";
         switch($_SERVER['HTTP_HOST']) {
-            case "chemin-neuf.fr" : 
-                return "ccn.comptabilite@gmail.com"; break;
+            case "chemin-neuf.fr" :
+                $accountName = "paf_fr";
+                break;
             case "www.chemin-neuf.pl" : 
-                return "nicolas.rhone@gmail.com"; break;
+                $accountName="paf_pl"; break;
         }
+        $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
+        if($paymentMeans['success']) {
+            $mailCompta = $paymentMeans["data"]["nativePMConfig"]["email_compta"];
+        }
+        return $mailCompta;
+
     }
      
 
