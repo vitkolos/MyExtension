@@ -36,7 +36,7 @@ class ShippersCcn extends AbstractCollection implements IShippers
     /**
      * @see \Rubedo\Interfaces\Collection\IShippers::getApplicableShippers
      */
-    public function getApplicableShippers($country, $items)
+    public function getApplicableShippers($country, $myCart)
     {
         $pipeline = array();
         $pipeline[] = array(
@@ -60,6 +60,10 @@ class ShippersCcn extends AbstractCollection implements IShippers
         );
         $response = $this->_dataService->aggregate($pipeline);
         if ($response['ok']) {
+            $items=0;
+            foreach ($myCart as $value) {
+                $items = $items + $value['amount'];
+            }
             foreach ($response['result'] as &$value) {
                 $value['shipperId'] = (string)$value['shipperId'];
                 $value = array_merge($value, $value['rates']);
