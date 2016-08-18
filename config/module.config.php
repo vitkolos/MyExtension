@@ -239,7 +239,9 @@ return array(
         'invokables' => array(
             'PayboxPayment'=>'Rubedo\\Payment\\PayboxPayment',
             'ContentsCcn' => 'Rubedo\\Collection\\ContentsCcn',
-            'HtmlCleaner' => 'Rubedo\\Security\\CcnHtmlPurifier'
+            'HtmlCleaner' => 'Rubedo\\Security\\CcnHtmlPurifier',
+            'ShippersCcn' => 'Rubedo\\Collection\\ShippersCcn',
+
         )
     ),
     'controllers' => array(

@@ -87,7 +87,7 @@ class ShippersResource extends AbstractResource
             $items = $items + $value['amount'];
         }
 
-        $myShippers = Manager::getService("Shippers")->getApplicableShippers($user['shippingAddress']['country'], $items);
+        $myShippers = Manager::getService("ShippersCcn")->getApplicableShippers($user['shippingAddress']['country'], $items);
         if (empty($myShippers))
             throw new APIEntityException('No shippers', 404);
 
