@@ -30,6 +30,11 @@ return array(
             'name' => "PAF Pologne",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+        'paf_it' => array(
+            'name' => "PAF ITalie",
+            'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
         )
          
     ),
