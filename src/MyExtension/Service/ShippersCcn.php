@@ -75,6 +75,7 @@ class ShippersCcn extends AbstractCollection implements IShippers
                     /*flatperitem -> calculer la taxe au poids !*/
                     foreach($myCart as $item) {
                         $content = $contentsService->findById($item['productId'], true, false);
+                        var_dump($content);
                         if($content['fields']['weight']) $cartWeight += $content['fields']['number'];
                     }
                     $value['rate'] = $value['rate'] * $cartWeight;
