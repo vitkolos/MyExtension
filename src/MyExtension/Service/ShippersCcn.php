@@ -17,6 +17,7 @@
 namespace Rubedo\Collection;
 
 use Rubedo\Interfaces\Collection\IShippers;
+use Rubedo\Services\Manager;
 
 /**
  * Service to handle Shippers
@@ -60,16 +61,23 @@ class ShippersCcn extends AbstractCollection implements IShippers
         );
         $response = $this->_dataService->aggregate($pipeline);
         if ($response['ok']) {
-            $items=0;
+            $itemNumber=0;
+            $cartWeight = 0;
             foreach ($myCart as $value) {
-                $items = $items + $value['amount'];
+                $itemNumber = $itemNumber + $value['amount'];
             }
             foreach ($response['result'] as &$value) {
                 $value['shipperId'] = (string)$value['shipperId'];
                 $value = array_merge($value, $value['rates']);
                 unset ($value['rates']);
                 if ($value['rateType'] == 'flatPerItem') {
-                    $value['rate'] = $value['rate'] * $items;
+                    $contentsService = Manager::getService("Contents");
+                    /*flatperitem -> calculer la taxe au poids !*/
+                    foreach($myCart as $value) {
+                        $content = $contentsService->findById($value['productId']['$id'], true, false);
+                        if($content['fields']['number']) $cartWeight += $content['fields']['number'];
+                    }
+                    $value['rate'] = $value['rate'] * $cartWeight;
                 }
             }
             return array(
