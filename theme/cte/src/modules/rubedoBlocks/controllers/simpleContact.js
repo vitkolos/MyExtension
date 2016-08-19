@@ -1,7 +1,6 @@
 angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','RubedoMailService',function($scope,$location,RubedoMailService){
     var me = this;
     var config = $scope.blockConfig;
-    console.log($scope);
     me.contactData={ };
     me.contactError=null;
     $scope.clearORPlaceholderHeight();
