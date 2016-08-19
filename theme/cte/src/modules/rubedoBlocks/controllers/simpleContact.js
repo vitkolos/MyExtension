@@ -5,7 +5,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.contactData={ };
     me.contactError=null;
     $scope.clearORPlaceholderHeight();
-    me.submit=function($scope){
+    me.submit=function(){
         me.contactError=null;
         var contactSnap=angular.copy(me.contactData);
         var payload={
@@ -18,7 +18,6 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         delete (contactSnap.to);
         payload.fields=contactSnap;
         angular.element('#myModal'+$scope.block.id+$scope.blockConfig.id).modal('hide');
-        angular.element('#myModalsingle').modal('hide');
         payload.fields["website"] = $location.absUrl();
         RubedoMailService.sendMail(payload).then(
             function(response){
