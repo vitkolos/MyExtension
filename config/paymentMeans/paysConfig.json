@@ -79,6 +79,15 @@
             "allowBlank": true,
             "allowOnlyWhitespace": true
         }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Monnaie",
+            "name": "monnaie",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
     }
     
     
