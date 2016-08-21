@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPaymentMeansService',
-                                                                        function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPaymentMeansService) {
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter',
+                                                                        function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter) {
     var me = this;
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     me.form={};
@@ -12,6 +12,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
     me.paiment_complementaire= themePath+'/templates/blocks/formulaire/paiment_complementaire.html';
     me.content = angular.copy($scope.proposition);
+    
     getForms = function(public) {
         switch(public) {
             case 'adolescent':
@@ -249,13 +250,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     }
     
     //informations sur les moyens de payement
-    RubedoPaymentMeansService.getPaymentMeansPaf().then(
-        function(response){
-            if(response.data.success){
-                me.paymentmeans = response.data.paymentMeans;
-            }
-        }
-    );
+    me.paymentmeans = $scope.contentDetailCtrl.paymentmeans;
+
     
     
     

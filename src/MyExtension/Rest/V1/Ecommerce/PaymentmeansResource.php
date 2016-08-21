@@ -79,12 +79,12 @@ class PaymentmeansResource extends AbstractResource
                     if($params['type']=="dons") $accountName="dons_fr";
                     else if($params['type']=="paf") $accountName="paf_fr";
                     $codeMonnaie=978;
-                    $monnaie="€";
+                    //$monnaie="€";
                     break;
                 case "www.chemin-neuf.pl" :
                     $accountName="paf_pl";
                     $codeMonnaie=985;
-                    $monnaie="zł";
+                    //$monnaie="zł";
                     break;
             }
             $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
@@ -106,7 +106,7 @@ class PaymentmeansResource extends AbstractResource
                 $arrayToReturn["nativePMConfig"] = array(
                                                          "contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"],
                                                          "fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"],
-                                                         "monnaie" => $monnaie,
+                                                         "monnaie" => $arrayToReturn["nativePMConfig"]["monnaie"],
                                                          "codeMonnaie" => $codeMonnaie
                                                          );
                 return array(

@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope","RubedoPaymentMeansService",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope,RubedoPaymentMeansService){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -179,8 +179,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
-                    //Propositions : déterminer si les inscriptions sont possibles
+                    
                     if (me.content.type.code=="proposition") {
+                        //Propositions : déterminer si les inscriptions sont possibles
                         var today = new Date();
                         if (!me.content.fields.inscriptionState
                             || (me.content.fields.inscriptionState &&(me.content.fields.inscriptionState.inscriptionState == 'close' || me.content.fields.inscriptionState.inscriptionState == 'non'))) {
@@ -191,7 +192,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.propDate = "passee";
                         }
                         else me.propDate="ouverte";
-                        
+                        // déterminer la monnaie du site
+                        RubedoPaymentMeansService.getPaymentMeansPaf().then(
+                            function(response){
+                                if(response.data.success){
+                                    me.paymentmeans = response.data.paymentMeans;
+                                }
+                            }
+                        );
                     }
 
                     //Albums photos
