@@ -1,19 +1,15 @@
 blocksConfig.imageBatchUpload={
            "template": "/templates/blocks/imageBatchUpload.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js","/lib/ng-file-upload.min.js"]
 };
+
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
      };
   });
-angular.module('rubedoBlocks').filter('nfcurrency', [ '$filter', '$locale', function ($filter, $locale) {
-        var currency = $filter('currency'), formats = $locale.NUMBER_FORMATS;
-        return function (amount, symbol) {
-            var value = currency(amount, symbol);
-            return value.replace(new RegExp('\\' + formats.DECIMAL_SEP + '\\d{2}'), '')
-        }
-}])
+
+
 angular.module('rubedoBlocks').filter('cleanHour', function () {
     return function (input) {
     	var hour="";
