@@ -134,7 +134,7 @@ return array(
                     '../js/blocks.js'
                 ),
                 'angularModules' => array(
-                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                    //'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
             ),
             'wtp15' => array(
