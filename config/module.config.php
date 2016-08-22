@@ -132,10 +132,10 @@ return array(
                     '/js/cte.js',
                     '../js/lazy-image.js',
                     '../js/blocks.js'
-                ),
+                ),/*
                 'angularModules' => array(
-                    //'ngFileUpload' => '/lib/ngFileUpload.js'
-                ),
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),*/
             ),
             'wtp15' => array(
                 'label' => 'WTP15',
