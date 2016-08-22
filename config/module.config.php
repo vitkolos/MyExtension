@@ -133,6 +133,9 @@ return array(
                     '../js/lazy-image.js',
                     '../js/blocks.js'
                 ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
             ),
             'wtp15' => array(
                 'label' => 'WTP15',
