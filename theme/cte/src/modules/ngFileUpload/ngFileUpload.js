@@ -21,7 +21,7 @@ if (window.XMLHttpRequest && !(window.FileAPI && FileAPI.shouldLoad)) {
   })(window.XMLHttpRequest.prototype.setRequestHeader);
 }
 
-var ngFileUpload = angular.module('rubedoBlocks', []);
+var ngFileUpload = angular.module('ngFileUpload', []);
 
 ngFileUpload.version = '12.0.4';
 
