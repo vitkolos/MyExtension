@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$scope','RubedoMediaService','RubedoPagesService','$http','$location','Upload',function($scope,RubedoMediaService,RubedoPagesService,$http,$location,Upload){
+angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$scope','RubedoMediaService','RubedoPagesService','$http','$location','ngFileUpload',function($scope,RubedoMediaService,RubedoPagesService,$http,$location,ngFileUpload){
     var me = this;
     var config = $scope.blockConfig;    
     me.files=[];
