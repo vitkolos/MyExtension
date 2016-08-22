@@ -1,8 +1,8 @@
-/*blocksConfig.imageBatchUpload={
+blocksConfig.imageBatchUpload={
            "template": "/templates/blocks/imageBatchUpload.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js","/lib/ng-file-upload.min.js"]
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
 };
-*/
+
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
