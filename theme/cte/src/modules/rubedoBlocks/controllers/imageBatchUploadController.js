@@ -70,7 +70,8 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
         }
         //var nbOfImages = files.length;
         if (files && files.length) {
-            for (var i = 0; i < files.length; i++) {
+            var nbOfImages = files.length;
+            for (var i = 0; i < nbOfImages; i++) {
                 var imgTitle="";
                 if (!batch) {
                     imgTitle=files[i].name;
