@@ -67,7 +67,32 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
         if (me.batchTitle && me.batchTitle!="") {
             batch = true;
         }
-        var nbOfImages = files.length;
+        //var nbOfImages = files.length;
+        if (files && files.length) {
+            for (var i = 0; i < files.length; i++) {
+                Upload.upload({
+                    url: '/api/v1/media',
+                    data:{
+                        file: files[i],
+                        params:{typeId:"545cd95245205e91168b45b1",target:me.workspace}
+                    },
+                    headers: {'Content-Type': undefined}
+                });
+            }
+        }
+        /*
+        serviceInstance.uploadMedia=function(file,options){
+            var fd = new FormData();
+            fd.append('file', file);
+            return($http.post("/api/v1/media", fd, {
+                transformRequest: angular.identity,
+                params:options,
+                headers: {'Content-Type': undefined}
+            }));
+        };
+         */
+        
+        /*
         angular.forEach(files, function(file, index) {
             var options = angular.copy(uploadOptions);
             if (!batch) {
@@ -87,7 +112,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                    }
                }
            );
-        });        
+        }); */       
     };
 
 }]);
