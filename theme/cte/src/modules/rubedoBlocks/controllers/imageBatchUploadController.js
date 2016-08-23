@@ -88,20 +88,15 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                     },
                     file: files[i],
                     headers: {'Content-Type': undefined}
+                }).then(function (resp) {
+                    me.progress += 100* 1/nbOfImages;
+                    console.log(resp.data);
+                }, function (resp) {
+                    console.log('Error status: ' + resp.status);
                 });
             }
         }
-        /*
-        serviceInstance.uploadMedia=function(file,options){
-            var fd = new FormData();
-            fd.append('file', file);
-            return($http.post("/api/v1/media", fd, {
-                transformRequest: angular.identity,
-                params:options,
-                headers: {'Content-Type': undefined}
-            }));
-        };
-         */
+        
         
         /*
         angular.forEach(files, function(file, index) {
