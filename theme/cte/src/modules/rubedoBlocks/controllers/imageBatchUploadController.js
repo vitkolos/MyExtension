@@ -74,7 +74,9 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                 Upload.upload({
                     url: '/api/v1/media',
                     data:{
-                        file: files[i],
+                        file: files[i]
+                    },
+                    objectKey:{
                         params:{typeId:"545cd95245205e91168b45b1",target:me.workspace}
                     },
                     headers: {'Content-Type': undefined}
