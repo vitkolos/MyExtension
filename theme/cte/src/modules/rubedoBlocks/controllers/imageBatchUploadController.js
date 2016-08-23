@@ -73,7 +73,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
             for (var i = 0; i < files.length; i++) {
                 var imgTitle="";
                 if (!batch) {
-                    imgTitle=file[i].name;
+                    imgTitle=files[i].name;
                 }
                 else {
                     imgTitle=me.batchTitle + '_'+i;
