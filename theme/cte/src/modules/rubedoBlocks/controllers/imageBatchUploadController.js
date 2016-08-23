@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
             };
         });
     };
-    console.log($scope.current.user);
+    console.log($scope.rubedo.current.user);
 /*
     me.submitNewFiles=function(){
         var batch = false;
