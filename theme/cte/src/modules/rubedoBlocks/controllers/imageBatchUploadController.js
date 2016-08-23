@@ -18,7 +18,6 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
             };
         });
     };
-    console.log($scope.rubedo.current.user);
     RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
         function(response){
             if(response.data.success){
