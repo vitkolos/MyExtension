@@ -91,7 +91,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                     headers: {'Content-Type': undefined}
                 }).then(function (resp) {
                     me.progress += 100* 1/nbOfImages;
-                    console.log(resp.data);
+                    files[i].success=true;
                 }, function (resp) {
                     console.log('Error status: ' + resp.status);
                 });
