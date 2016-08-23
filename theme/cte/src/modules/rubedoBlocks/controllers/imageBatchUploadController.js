@@ -76,12 +76,12 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                 //ngf-resize-if="$width > 2000"
                 Upload.resize(files[i], 1920, .7).then(function(resizedFile){
                     RubedoMediaService.uploadMedia(resizedFile,options).then(
-                        console.log("resized");
                         function(response){
                             if (response.data.success){
                                 console.log("OK");
                                 me.progress += 100* 1/files.length;
                             } else {
+                        console.log("resized");
          
          
                             }
