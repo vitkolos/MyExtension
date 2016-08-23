@@ -18,13 +18,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
             };
         });
     };
-    RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
-        function(response){
-            if(response.data.success){
-                console.log(response.data.user);
-            }
-        }
-    );
+
 /*
     me.submitNewFiles=function(){
         var batch = false;
