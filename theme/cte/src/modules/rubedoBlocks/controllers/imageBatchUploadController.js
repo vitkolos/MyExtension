@@ -71,34 +71,15 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
         //var nbOfImages = files.length;
         if (files && files.length) {
             for (var i = 0; i < files.length; i++) {
-                var options = angular.copy(uploadOptions);
-                //ngf-resize="{width: 1920, quality: .7}"
-                //ngf-resize-if="$width > 2000"
-                Upload.resize(files[i], 1920, .7).then(function(resizedFile){
-                    RubedoMediaService.uploadMedia(resizedFile,options).then(
-                        function(response){
-                            if (response.data.success){
-                                console.log("OK");
-                                me.progress += 100* 1/files.length;
-                            } else {
-                        console.log("resized");
-         
-         
-                            }
-                        }
-                    );
-                });
-/*
                 Upload.upload({
                     url: '/api/v1/media',
                     method: 'POST',
-                    data:{
+                    params:{
                         typeId:"545cd95245205e91168b45b1",target:me.workspace
                     },
                     file: files[i],
                     headers: {'Content-Type': undefined}
                 });
-                */
             }
         }
         /*
