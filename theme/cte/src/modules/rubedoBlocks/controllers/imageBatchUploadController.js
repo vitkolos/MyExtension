@@ -43,11 +43,13 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                     files[i].success=true;
                     if (i==nbOfImages-1) {
                         $scope.processing=false;
+                        me.progress=0;
                     }
                 }, function (resp) {
                     console.log('Error status: ' + resp.status);
                     if (i==nbOfImages-1) {
                         $scope.processing=false;
+                        me.progress=0;
                     }
                 });
             }
