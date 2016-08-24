@@ -10,27 +10,30 @@
 }
 </style>
 <div ng-controller="ImageBatchUploadController as imgCtrl" ng-if="rubedo.current.user" class="row">
-        <form class="form form-horizontal">
+        <form>
                 <div class="form-group">
                         <label class="col-sm-4 control-label">Renommer les photos ?</label>
-                        <div class="col-sm-8">
-                                <input type="text" ng-model="imgCtrl.batchTitle">
-                        </div>
+                        <input type="text" ng-model="imgCtrl.batchTitle">
+                </div>
+                <div class="form-group">
+                        <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1920" ng-model="imgCtrl.format">Bandeau
+                        </label>
+                        <label class="radio-inline">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1000" ng-model="imgCtrl.format">Texte / Albums
+                        </label>
                 </div>
                 <div class="form-group" ng-show="files.length">
-                        <div class="col-sm-8 col-md-offset-4">
-                                <div ng-repeat="file in files">
-                                        <span>{{file.name}}</span>
-                                        (<span ng-switch="file.size > 1024*1024">
-                                            <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
-                                            <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
-                                        </span>)
-                                        <span class="glyphicon glyphicon-ok label-success" ng-if="file.success"></span>
-                                </div>
+                        <div ng-repeat="file in files">
+                                <span>{{file.name}}</span>
+                                (<span ng-switch="file.size > 1024*1024">
+                                    <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                                    <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+                                </span>)
+                                <span class="glyphicon glyphicon-ok label-success" ng-if="file.success"></span>
                         </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-8 col-md-offset-4">
                         <button type="submit" class="btn btn-primary">
                             <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Publish", "Publish")}}
                         </button>
@@ -39,7 +42,6 @@
                                         <span class="sr-only">{{imgCtrl.progress}}% Complete </span>
                                 </div>
                         </div>
-                    </div>
                 </div>
         </form>
         
@@ -47,7 +49,7 @@
                 ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
                 accept="image/*" 
                 ngf-pattern="'image/*'"
-                ngf-resize="{width: 1920, quality: .7}"
+                ngf-resize="{width: imgCtrl.format, quality: .7}"
                 ngf-resize-if="$width > 1920">Drop images here or click to upload
         </div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
