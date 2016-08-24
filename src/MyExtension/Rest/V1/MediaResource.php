@@ -90,9 +90,8 @@ class MediaResource extends AbstractResource
         if($params['userWorkspace']) {
             //on utilise le main workspace de l'utilisateur
             $mainWorkspace = Manager::getService('CurrentUser')->getMainWorkspace();
-            $media['target'] = array($mainWorkspace);
-            $media["writeWorkspace"]=$mainWorkspace;
-            var_dump($mainWorkspace);
+            $media['target'] = array($mainWorkspace['id']);
+            $media["writeWorkspace"]=$mainWorkspace['id'];
         }
         else if (!isset($params['target'])) {
             $media['target'] = array("global");
