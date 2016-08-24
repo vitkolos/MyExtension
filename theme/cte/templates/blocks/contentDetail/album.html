@@ -140,7 +140,7 @@
 	<div class="text-article container">
 		<p class='capital txt-red' style="text-shadow: none" ng-if="fieldEntity['date']">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}} - {{fieldEntity['lieu']}}</p>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('date')}}" ng-if="fieldEditMode"></rubedo-field>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('lieus')}}" ng-if="fieldEditMode"></rubedo-field>
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('lieu')}}" ng-if="fieldEditMode"></rubedo-field>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
 			<h1 class="text-left" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
 			<h1 ng-if="fieldEditMode"
@@ -171,7 +171,7 @@
 					<span class="txt-red capital" style="display: inline-block" ng-if="nbOfLikes>0">{{nbOfLikes}} partages</span>
 				</div>
 				{{contentDetailCtrl.tooltips()}}
-				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ></rubedo-field>
+				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field>
 
 			</div>
 
