@@ -13,10 +13,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     $scope.upload = function(files) {
         var batch = false;
 
-        var uploadOptions={
-               typeId:"545cd95245205e91168b45b1",//pour des images
-               userWorkspace:true //on utilise le main workspace de l'utilisateur
-        };
+
         if (me.batchTitle && me.batchTitle!="") {
             batch = true;
         }
@@ -36,7 +33,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                     method: 'POST',
                     params:{
                         typeId:"545cd95245205e91168b45b1",
-                        target:me.workspace,
+                        userWorkspace:true, //on utilise le main workspace de l'utilisateur
                         fields:{title:imgTitle}
                     },
                     file: files[i],

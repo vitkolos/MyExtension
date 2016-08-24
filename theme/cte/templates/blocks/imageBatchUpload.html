@@ -10,13 +10,7 @@
 }
 </style>
 <div ng-controller="ImageBatchUploadController as imgCtrl" ng-if="rubedo.current.user" class="row">
-        <form class="form form-horizontal" ng-submit="imgCtrl.submitNewFiles()">
-                <div class="form-group" ng-if="rubedo.current.user">
-                    <label for="files" class="col-sm-4 control-label">{{block.title}} *</label>
-                    <div  class="col-sm-8">        
-                               <input type="file" file-model="imgCtrl.files" multiple accept="image/gif, image/jpeg, image/png"/>
-                    </div>
-                </div>
+        <form class="form form-horizontal">
                 <div class="form-group">
                         <label class="col-sm-4 control-label">Renommer les photos ?</label>
                         <div class="col-sm-8">
