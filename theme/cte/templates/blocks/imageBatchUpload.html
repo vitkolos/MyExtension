@@ -12,17 +12,18 @@
 <div ng-controller="ImageBatchUploadController as imgCtrl" ng-if="rubedo.current.user" class="texte">
         <form class="row">
                 <div class="form-group">
-                        <label class="col-sm-4 control-label">Renommer les photos ?</label>
+                        <label class="control-label">Renommer les photos ?</label>
+                        <label class="control-label txt-red capital">Titre</label>
                         <input type="text" ng-model="imgCtrl.batchTitle">
                 </div>
-                <div class="" ng-init="imgCtrl.format=1000">
+                <div class="col-sm-8 col-sm-offset-2" ng-init="imgCtrl.format=1000">
                         <div class="col-sm-6">
-                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1920" ng-model="imgCtrl.format">Bandeau
-                                <label  for="inlineRadio1"></label>
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1920" ng-model="imgCtrl.format">
+                                <label  for="inlineRadio1">Bandeau</label>
                         </div>
                         <div class="col-sm-6">
-                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1000" ng-model="imgCtrl.format">Texte / Albums
-                                <label  for="inlineRadio2"></label>
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1000" ng-model="imgCtrl.format">
+                                <label  for="inlineRadio2">Texte / Albums</label>
                         </div>
                 </div>
                 <div class="form-group" ng-show="files.length">
@@ -36,9 +37,7 @@
                         </div>
                 </div>
                 <div class="form-group">
-                        <button type="submit" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-floppy-saved" aria-hidden="true"></span> {{rubedo.translate("Blocks.Contrib.Label.Publish", "Publish")}}
-                        </button>
+                        
                         <div class="progress" ng-show="imgCtrl.progress>0">
                                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{imgCtrl.progress}}"  ng-style="{ width : imgCtrl.progress+'%' }">
                                         <span class="sr-only">{{imgCtrl.progress}}% Complete </span>
@@ -52,7 +51,10 @@
                 accept="image/*" 
                 ngf-pattern="'image/*'"
                 ngf-resize="{width: imgCtrl.format, quality: .7}"
-                ngf-resize-if="$width > 1920">Drop images here or click to upload
+                ngf-resize-if="$width > 1920"
+                ng-disabled="processing">
+                <span>Drop images here or click to upload</span>
+                <img src="/theme/cte/img/loader.gif" ng-if="processing">
         </div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 </div>

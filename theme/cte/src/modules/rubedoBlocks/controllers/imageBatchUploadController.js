@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     me.files=[];
     me.progress = 0;
     me.pageUrl="";
-    
+    $scope.processing=false;
 
     
     $scope.$watch('files', function () {
@@ -12,7 +12,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     });
     $scope.upload = function(files) {
         var batch = false;
-
+        $scope.processing=true;
 
         if (me.batchTitle && me.batchTitle!="") {
             batch = true;
@@ -41,8 +41,14 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                 }).then(function (resp) {
                     me.progress += 100* 1/nbOfImages;
                     files[i].success=true;
+                    if (i==nbOfImages-1) {
+                        $scope.processing=false;
+                    }
                 }, function (resp) {
                     console.log('Error status: ' + resp.status);
+                    if (i==nbOfImages-1) {
+                        $scope.processing=false;
+                    }
                 });
             }
         }
