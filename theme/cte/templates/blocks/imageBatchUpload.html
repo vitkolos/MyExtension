@@ -52,9 +52,9 @@
                 ngf-pattern="'image/*'"
                 ngf-resize="{width: imgCtrl.format, quality: .7}"
                 ngf-resize-if="$width > 1920"
-                ng-disabled="processing">
-                <span>Drop images here or click to upload</span>
-                <img src="/theme/cte/img/loader.gif" ng-if="processing">
+                ng-disabled="imgCtrl.processing">
+                <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
+                <img src="/theme/cte/img/loader.gif" ng-if="imgCtrl.processing">
         </div>
         <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
 </div>
