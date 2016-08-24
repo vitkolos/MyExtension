@@ -21,7 +21,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
             me.processing=true;
             var nbOfImages = files.length;
             for (var i = 0; i < nbOfImages; i++) {
-                var imgTitle="";
+                var imgTitle=""; var counter=0;
                 if (!batch) {
                     imgTitle=files[i].name;
                 }
@@ -40,13 +40,15 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                     headers: {'Content-Type': undefined}
                 }).then(function (resp) {
                     me.progress += 100* 1/nbOfImages;
-                    files[i].success=true;
-                    if (i==nbOfImages-1) {
+                    files[counter].success=true;
+                    if (counter==nbOfImages-1) {
                         me.processing=false;
                         me.progress=0;
                     }
+                    counter++;
                 }, function (resp) {
                     console.log('Error status: ' + resp.status);
+                    counter++;
                     if (i==nbOfImages-1) {
                         me.processing=false;
                         me.progress=0;
