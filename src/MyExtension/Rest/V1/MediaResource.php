@@ -22,6 +22,8 @@ use RubedoAPI\Exceptions\APIEntityException;
 use RubedoAPI\Exceptions\APIRequestException;
 use WebTales\MongoFilters\Filter;
 use Zend\Json\Json;
+use Rubedo\Services\Manager;
+
 /**
  * Class MediaResource
  *
@@ -85,10 +87,17 @@ class MediaResource extends AbstractResource
         $media['i18n'] = array();
         $media['i18n'][$nativeLanguage] = array();
         $media['i18n'][$nativeLanguage]['fields'] = $media['fields'];
-        if (!isset($params['target'])) {
+        if($params['userWorkspace']) {
+            //on utilise le main workspace de l'utilisateur
+            $mainWorkspace = Manager::getService('CurrentUser')->getMainWorkspace();
+            $media['target'] = array($mainWorkspace);
+            $media["writeWorkspace"]=$mainWorkspace;
+        }
+        else if (!isset($params['target'])) {
             $media['target'] = array("global");
             $media["writeWorkspace"]="global";
-        } else {
+        }
+        else {
             $media["target"]=array($params['target']);
             $media["writeWorkspace"]=$params['target'];
         }
@@ -430,6 +439,11 @@ class MediaResource extends AbstractResource
                     ->setDescription('Workspace')
                     ->setKey('target')
                     ->setFilter('string')
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('True pour utiliser le main workspace de l\'utilisateur')
+                    ->setKey('userWorkspace')
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
