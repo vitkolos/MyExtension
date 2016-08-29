@@ -85,7 +85,8 @@
             ]
         },
         "configBloc": {
-            "displayMode": "title"
+            "displayMode": "title",
+            "noFilter":true
         }
     },
     "category": "#ext-gen1068#",
