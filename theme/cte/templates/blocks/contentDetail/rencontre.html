@@ -52,8 +52,8 @@
 					<p class="capital">{{contentDetailCtrl.getLabelByName('nom')}}</p>
 				</div>
 				<div class="col-xs-12 col-sm-8 ">
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field>
-					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('nom')}}" ng-if="fieldEntity['nom']"></rubedo-field>
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('telephone')}}" ng-if="fieldEntity['telephone']"></rubedo-field>
 					<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'email_txt':'Envoyer un mail'}">
 						<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
 					</div>
