@@ -82,7 +82,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         start:0,
         limit:50,
         orderby:'fields.dateDebut',
-        orderbyDirection:'asc'
+        orderbyDirection:'asc',
+        displayedFacets:"['all']"
       };
       RubedoSearchService.searchByQuery(optionsCalendar).then(function(response){
         if(response.data.success){
