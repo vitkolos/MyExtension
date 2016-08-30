@@ -19,7 +19,8 @@ angular.module("rubedoBlocks").lazy.controller("MediaListController",["$scope","
         constrainToSite: config.constrainToSite,
         siteId: $scope.rubedo.current.site.id,
         pageId: $scope.rubedo.current.page.id,
-        predefinedFacets: config.facets
+        predefinedFacets: config.facets,
+        displayedFacets:['all']
     };
     me.changePageAction = function(){
         options.start = me.start;
