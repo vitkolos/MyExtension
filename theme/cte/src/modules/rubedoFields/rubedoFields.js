@@ -529,7 +529,7 @@
             constrainToSite: false,
             orderby:'title',
             limit:200,
-            displayedFacets="['all']"
+            displayedFacets:"['all']"
         };
         RubedoSearchService.searchByQuery(options).then(
              function(response){
