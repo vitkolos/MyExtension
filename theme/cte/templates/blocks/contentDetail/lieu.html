@@ -104,13 +104,21 @@
 			            <tr>
 			                <th>{{rubedo.translate("Date","Date")}}</th>
 			                <th>{{rubedo.translate("Proposition","Proposition")}}</th>
+			                <th></th>
 			            </tr>
 			        </thead>
 			        <tbody>
-			            <tr ng-repeat="content in contentDetailCtrl.calendarContents track by $index">
+			            <tr ng-repeat="content in contentDetailCtrl.calendarContents.data track by $index">
 			                <th class="cal-date" data-th="Date"><a ng-href="{{ content.url }}">{{(content.dateDebut/1000)|dateRange:(content.dateFin/1000):'short'}}</a></th>
 			                <th class="cal-prop" data-th="Proposition"><a ng-href="{{ content.url }}">
 			                        {{ content.text[0] }}</a>
+			                </th>
+			                <th ng-if="rubedo.current.user">
+			                	<ul>
+			                		<li ng-repeat="taxo in content['taxonomy.555f3bc445205edc117e689b']">
+			                			{{contentDetailCtrl.calendarContents.facetsLabels[taxo]}}
+			                		</li>
+			                	</ul>
 			                </th>
 			            </tr>
 			        </tbody>
