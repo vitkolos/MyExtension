@@ -114,11 +114,9 @@
 			                        {{ content.text[0] }}</a>
 			                </th>
 			                <th ng-if="rubedo.current.user">
-			                	<ul>
-			                		<li ng-repeat="taxo in content['taxonomy.555f3bc445205edc117e689b']">
+			                		<span ng-repeat="taxo in content['taxonomy.555f3bc445205edc117e689b']" class="public">
 			                			{{contentDetailCtrl.calendarContents.facetsLabels[taxo]}}
-			                		</li>
-			                	</ul>
+			                		</span>
 			                </th>
 			            </tr>
 			        </tbody>
