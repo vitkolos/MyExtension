@@ -14,7 +14,10 @@
                 <div class="form-group">
                         <label class="col-sm-12">Renommer les photos ?</label>
                         <label class="control-label txt-red capital">Titre</label>
-                        <input type="text" ng-model="imgCtrl.batchTitle">
+                        <div  class="col-sm-8 col-sm-offset-2">
+                                <input type="text" ng-model="imgCtrl.batchTitle">
+                        </div>
+                        
                 </div>
                 <div class="col-sm-8 col-sm-offset-2" ng-init="imgCtrl.format=1000">
                         <div class="col-sm-6">
@@ -26,7 +29,7 @@
                                 <label  for="inlineRadio2">Texte / Albums</label>
                         </div>
                 </div>
-                <div class="form-group" ng-show="files.length">
+                <div class="col-sm-12" ng-show="files.length">
                         <div ng-repeat="file in files">
                                 <span>{{file.name}}</span>
                                 (<span ng-switch="file.size > 1024*1024">
@@ -51,7 +54,7 @@
                 accept="image/*" 
                 ngf-pattern="'image/*'"
                 ngf-resize="{width: imgCtrl.format, quality: .7}"
-                ngf-resize-if="$width > 1920"
+                ngf-resize-if="$width > imgCtrl.format"
                 ng-disabled="imgCtrl.processing">
                 <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
                 <img src="/theme/cte/img/loader.gif" ng-if="imgCtrl.processing">
