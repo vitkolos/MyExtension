@@ -66,20 +66,24 @@ class ShippersCcn extends AbstractCollection implements IShippers
             foreach ($myCart as $value) {
                 $itemNumber = $itemNumber + $value['amount'];
             }
+            $contentsService = Manager::getService("Contents");
+            /*calculer le poids du colis !*/
+            foreach($myCart as $item) {
+                $content = $contentsService->findById($item['productId'], true, false);
+                if($content['fields']['weight']) $cartWeight += $content['fields']['weight'] * $item['amount'];
+            }
             foreach ($response['result'] as $key => &$value) {
                 $value['shipperId'] = (string)$value['shipperId'];
+                //si le poids est 0 => seulement téléchargement
+                if($cartWeight == 0 && $value['shipperId'] !="57c68a39245640e52b8c02c0") unset($response['result'][$key])
+                
                 $value = array_merge($value, $value['rates']);
                 unset ($value['rates']);
                 if ($value['rateType'] == 'flatPerItem') {
                     $value['rate'] = $value['rate'] * $items;
                 }
                 if ($value['rateType'] == 'flatPerWeight') {
-                    $contentsService = Manager::getService("Contents");
-                    /*flatperitem -> calculer la taxe au poids !*/
-                    foreach($myCart as $item) {
-                        $content = $contentsService->findById($item['productId'], true, false);
-                        if($content['fields']['weight']) $cartWeight += $content['fields']['weight'] * $item['amount'];
-                    }
+                    //si prix fixe par tranche de poids, renvoyer seulement le shipper avec les bonnes limites de poids
                     if($cartWeight<=$value['limitMin'] || $cartWeight>$value['limitMax']) unset($response['result'][$key]);
                 }
             }
