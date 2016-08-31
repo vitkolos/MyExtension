@@ -19,6 +19,7 @@ angular.module("rubedoBlocks").lazy.controller("ShoppingCartController",["$scope
         RubedoPagesService.getPageById(config.cartDetailPage).then(function(response){
             if (response.data.success){
                 me.cartDetailPageUrl=response.data.url;
+                $scope.rubedo.current.site.cartDetailPageUrl=response.data.url;
             }
         });
     }
