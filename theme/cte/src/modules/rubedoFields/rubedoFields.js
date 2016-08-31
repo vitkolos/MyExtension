@@ -528,7 +528,8 @@
             type: $scope.field.config.allowedCT,
             constrainToSite: false,
             orderby:'title',
-            limit:200
+            limit:200,
+            displayedFacets:"['all']"
         };
         RubedoSearchService.searchByQuery(options).then(
              function(response){
