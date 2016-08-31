@@ -49,8 +49,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             if ( config.contentType && config.contentType.length==0 ) return true;
             else if(facetType!="type") return true;
             else {
-                console.log(me.facetsLabels[facetId]);
-                console.log(facetLabel);
+                
                 return (me.facetsLabels[facetId]==facetLabel);
                 
             }
@@ -261,6 +260,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                         me.activeTerms = [];
                         console.log("First");
                     }
+                    else console.log("secon");
                     
                     var previousFacetId;
                     angular.forEach(response.data.results.activeFacets,function(activeFacet){
