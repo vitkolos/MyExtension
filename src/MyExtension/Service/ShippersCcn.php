@@ -66,7 +66,7 @@ class ShippersCcn extends AbstractCollection implements IShippers
             foreach ($myCart as $value) {
                 $itemNumber = $itemNumber + $value['amount'];
             }
-            foreach ($response['result'] as &$value) {
+            foreach ($response['result'] as $key => &$value) {
                 $value['shipperId'] = (string)$value['shipperId'];
                 $value = array_merge($value, $value['rates']);
                 unset ($value['rates']);
@@ -80,6 +80,7 @@ class ShippersCcn extends AbstractCollection implements IShippers
                         $content = $contentsService->findById($item['productId'], true, false);
                         if($content['fields']['weight']) $cartWeight += $content['fields']['weight'] * $item['amount'];
                     }
+                    if($cartWeight<=$value['limitMin'] || $cartWeight>$value['limitMax']) unset($response['result'][$key])
                     $value['rate'] = $value['rate'] * $cartWeight;
                 }
             }
