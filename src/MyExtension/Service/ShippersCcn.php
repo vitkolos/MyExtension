@@ -71,6 +71,9 @@ class ShippersCcn extends AbstractCollection implements IShippers
                 $value = array_merge($value, $value['rates']);
                 unset ($value['rates']);
                 if ($value['rateType'] == 'flatPerItem') {
+                    $value['rate'] = $value['rate'] * $items;
+                }
+                if ($value['rateType'] == 'flatPerWeight') {
                     $contentsService = Manager::getService("Contents");
                     /*flatperitem -> calculer la taxe au poids !*/
                     foreach($myCart as $item) {
