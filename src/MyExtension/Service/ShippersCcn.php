@@ -80,7 +80,7 @@ class ShippersCcn extends AbstractCollection implements IShippers
                         $content = $contentsService->findById($item['productId'], true, false);
                         if($content['fields']['weight']) $cartWeight += $content['fields']['weight'] * $item['amount'];
                     }
-                    if($cartWeight<=$value['limitMin'] || $cartWeight>$value['limitMax']) unset($response['result'][$key])
+                    if($cartWeight<=$value['limitMin'] || $cartWeight>$value['limitMax']) unset($response['result'][$key]);
                 }
             }
             return array(
