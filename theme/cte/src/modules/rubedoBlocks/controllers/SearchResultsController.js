@@ -41,13 +41,13 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             facets.type=config.contentType;
             me.options.predefinedFacets = JSON.stringify(facets);
         };
-        $scope.isType = function(facetType, type) {
+        $scope.isType = function(facetType, facetId, facetLabel) {
             if ( config.contentType && config.contentType.length==0 ) return true;
             else if(facetType!="type") return true;
             else {
                 console.log(config.contentType);
                 console.log(type);
-                return (config.contentType.indexOf(type)>0);
+                return (me.facetsLabels[facetId]==facetLabel);
                 
             }
             };
