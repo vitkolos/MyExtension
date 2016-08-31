@@ -57,7 +57,7 @@
 					<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'email_txt':'Envoyer un mail'}">
 						<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
 					</div>
-					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user">(visible car vous êtes connectés)</span>
+					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user.rights.canEdit">(visible car vous êtes connectés)</span>
 				</div>
 			</div>			
 			<div ng-if="fieldEntity['website']" class="col-xs-12">
@@ -66,6 +66,8 @@
 				</div>
 				<div class="col-xs-12 col-sm-8 ">
 					<p><a ng-href="{{contentDetailCtrl.content.fields.website}}" >{{contentDetailCtrl.content.fields.website}}</a></p>
+					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('website')}}"></rubedo-field>
+
 				</div>
 			</div>
 			<div ng-if="fieldEntity['facebook']" class="col-xs-12">
