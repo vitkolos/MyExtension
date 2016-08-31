@@ -833,6 +833,8 @@
             RubedoShoppingCartService.addToCart(options).then(
                 function(response){
                     $rootScope.$broadcast("shoppingCartUpdated",{emitter:"productBox"});
+                    window.location.href= $scope.rubedo.current.site.cartDetailPageUrl;
+                    
                 }
             );
         };
