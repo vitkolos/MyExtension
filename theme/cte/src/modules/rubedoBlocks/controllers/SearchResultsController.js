@@ -46,14 +46,17 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             me.options["type[]"]=config.contentType;
         };
         $scope.isType = function(facetType, facetId, facetLabel) {
-            if ( config.contentType && config.contentType.length==0 ) return true;
-            else if(facetType!="type") return true;
+            var returnValue=false;
+            if ( config.contentType && config.contentType.length==0 ) returnValue = true;
+            else if(facetType!="type") returnValue = true;
             else {
-                
-                return (me.facetsLabels[facetId]==facetLabel);
-                
+                angular.forEach(me.activeTypeTerms, function(value, key){
+                    if(value.term==facetId) returnValue = true;
+                })
             }
-            };
+            return returnValue;
+
+        };
         me.options.taxonomies = config.taxonomies? JSON.parse(config.taxonomies):{};
         var taxonomiesReset =config.taxonomies? JSON.parse(config.taxonomies):{};
         if (config.singlePage){
