@@ -38,7 +38,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         
         if (config.contentType) {
             //var facets = JSON.parse(me.options.predefinedFacets);
-            facets.type=config.contentType;
+            //facets.type=config.contentType;
             angular.forEach(config.contentType, function(value, key) {
               
             });
