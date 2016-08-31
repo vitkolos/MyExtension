@@ -272,6 +272,8 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                             });
                         }
                     });
+                    console.log(me.notRemovableTerms);
+                    console.log(me.activeTerms);
                     $scope.clearORPlaceholderHeight();
                 }
             })
