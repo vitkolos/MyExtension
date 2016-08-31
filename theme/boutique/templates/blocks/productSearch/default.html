@@ -48,7 +48,7 @@
                          ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
                         <a ng-href="{{ content.url }}">
                             <img class="img-responsive center-block" ng-if="content['fields.'+searchResultsCtrl.imageField] && !searchResultsCtrl.titleOnly"
-                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.'+searchResultsCtrl.imageField],{mode:'boxed',height:'300px',width:searchResultsCtrl.imageWidth}) }}"
+                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.'+searchResultsCtrl.imageField],{mode:'boxed',height:'200px',width:searchResultsCtrl.imageWidth}) }}"
                                  alt="{{ content.title }}"
                             />
                         </a>
