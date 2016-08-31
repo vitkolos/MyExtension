@@ -45,8 +45,8 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             if ( config.contentType && config.contentType.length==0 ) return true;
             else if(facetType!="type") return true;
             else {
-                console.log(config.contentType);
-                console.log(type);
+                console.log(me.facetsLabels[facetId]);
+                console.log(facetLabel);
                 return (me.facetsLabels[facetId]==facetLabel);
                 
             }
