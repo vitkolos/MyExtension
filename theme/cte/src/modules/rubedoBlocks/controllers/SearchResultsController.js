@@ -45,15 +45,13 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
             //me.options.predefinedFacets = JSON.stringify(facets);
             me.options["type[]"]=config.contentType;
         };
-        $scope.isType = function(facetType, facetId, facetLabel) {
+        $scope.isType = function(facetType, facetId) {
             var returnValue=false;
             if ( config.contentType && config.contentType.length==0 ) returnValue = true;
             else if(facetType!="type") returnValue = true;
             else {
-                console.log(facetId);
                 angular.forEach(me.activeTypeTerms, function(value, key){
                     if(value.term==facetId) returnValue = true;
-                    console.log(value.term);
                 })
             }
             return returnValue;
