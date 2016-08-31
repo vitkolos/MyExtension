@@ -58,6 +58,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             allowBlank:false
                         }
                     });
+                    me.content.type.fields.unshift({
+                        cType:"textarea",
+                        config:{
+                            name:"summary",
+                            fieldLabel:"Summary",
+                            allowBlank:false
+                        }
+                    });
                     $scope.rubedo.current.breadcrumb.push({title:response.data.content.text});
                     if (me.content.type.activateDisqus&&$scope.rubedo.current.site.disqusKey){
                         me.activateDisqus=true;
@@ -75,14 +83,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     if(me.customLayout){
-                        me.content.type.fields.unshift({
-                            cType:"textarea",
-                            config:{
-                                name:"summary",
-                                fieldLabel:"Summary",
-                                allowBlank:false
-                            }
-                        });
+                        
                         me.detailTemplate=me.customLayout.customTemplate?themePath+'/templates/blocks/contentDetail/customTemplate.html':themePath+'/templates/blocks/contentDetail/customLayout.html';
                     } else {
                         if(me.content.type.code&&me.content.type.code!=""){
