@@ -255,7 +255,13 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                     });
                     /**/
                     me.notRemovableTerms = [];
-                    me.activeTerms = [];
+                    var isFirstTime=false;
+                    if(!me.activeTerms) {
+                        isFirstTime=true;
+                        me.activeTerms = [];
+                        console.log("First");
+                    }
+                    
                     var previousFacetId;
                     angular.forEach(response.data.results.activeFacets,function(activeFacet){
                         if(activeFacet.id != 'navigation'){
@@ -284,6 +290,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                                 }
                                 previousFacetId = activeFacet.id;
                             });
+                            if(isFirstTime) {me.activeTypeTerms = me.activeTerms; console.log(me.activeTypeTerms);}
                         }
                     });
                     $scope.clearORPlaceholderHeight();
