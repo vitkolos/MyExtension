@@ -75,7 +75,7 @@ class ShippersCcn extends AbstractCollection implements IShippers
             foreach ($response['result'] as $key => &$value) {
                 $value['shipperId'] = (string)$value['shipperId'];
                 //si le poids est 0 => seulement téléchargement
-                if($cartWeight == 0 && $value['shipperId'] !="57c68a39245640e52b8c02c0") unset($response['result'][$key])
+                if($cartWeight == 0 && $value['shipperId'] !="57c68a39245640e52b8c02c0") unset($response['result'][$key]);
                 
                 $value = array_merge($value, $value['rates']);
                 unset ($value['rates']);
