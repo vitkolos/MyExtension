@@ -235,6 +235,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                     me.count = response.data.count;
                     me.data =  response.data.results.data;
                     me.facets = response.data.results.facets;
+                    me.facetsLabels = response.data.results.facetsLabels;
 /*POUR DONS, pour régler le pb de taxonomie avec des contenus. A enlever dès que c'est réglé en v3.4?*/
                     angular.forEach(me.facets,function(facet){
                         if (facet.id=="fiscalite_fr") {
@@ -281,8 +282,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                             });
                         }
                     });
-                    console.log(me.notRemovableTerms);
-                    console.log(me.activeTerms);
                     $scope.clearORPlaceholderHeight();
                 }
             })
