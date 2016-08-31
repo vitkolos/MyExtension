@@ -257,10 +257,8 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                     var isFirstTime=false;
                     if(!me.activeTerms) {
                         isFirstTime=true;
-                        me.activeTerms = [];
-                        console.log("First");
                     }
-                    else console.log("secon");
+                    me.activeTerms = [];
                     
                     var previousFacetId;
                     angular.forEach(response.data.results.activeFacets,function(activeFacet){
