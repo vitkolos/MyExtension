@@ -76,6 +76,7 @@
 				</div>
 				<div class="col-xs-12 col-sm-8 ">
 					<p><a ng-href="{{contentDetailCtrl.content.fields.facebook}}" >{{contentDetailCtrl.content.fields.facebook}}</a></p>
+					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('facebook')}}"></rubedo-field>
 				</div>
 			</div>			
 			
