@@ -703,7 +703,6 @@
                         file: me.newFile,
                         headers: {'Content-Type': undefined}
                     }).then(function (response) {
-                        console.log("with upload");
                             var id=response.data.media.id;
                             $scope.fieldEntity[$scope.field.config.name]=id;
                             mediaId=id;
