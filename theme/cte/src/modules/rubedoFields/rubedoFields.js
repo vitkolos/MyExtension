@@ -754,7 +754,7 @@
                         },
                         file: me.newFile,
                         headers: {'Content-Type': undefined}
-                    }).then(function (resp) {
+                    }).then(function (response) {
                             var id=response.data.media.id;
                             $scope.fieldEntity[$scope.field.config.name]=id;
                             mediaId=id;
@@ -763,7 +763,7 @@
                             }
                             me.media=response.data.media;
                             me.displayMedia();
-                    }, function (resp) {
+                    }, function (response) {
                     }
                     );
                }
