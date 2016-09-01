@@ -777,9 +777,9 @@
                     params:{
                         typeId:"545cd95245205e91168b45b1",
                         userWorkspace:true, //on utilise le main workspace de l'utilisateur
-                        fields:{title:file.name}
+                        fields:{title:$scope.file.name}
                     },
-                    file: file,
+                    file: $scopefile,
                     headers: {'Content-Type': undefined}
                 }).then(function (resp) {
                     console.log("OK");
