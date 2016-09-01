@@ -15,14 +15,12 @@
     <div class="form-control">
         <rubedo-notification ng-if="mediaFieldCtrl.notification" ng-init="notification=mediaFieldCtrl.notification"></rubedo-notification>
         <p>Uploader un fichier</p>
-        <input type="file"  ngf-select 
-               id="{{fieldIdPrefix+'_'+field.config.name}}"
-               ng-required="!field.config.allowBlank"
-               file-model="mediaFieldCtrl.newFile"
-               accept="image/*" 
+        
+            <input  ngf-select ng-model="file"  ng-if="field.config.allowedDAMTypes=='545cd95245205e91168b45b1' "
+                accept="image/*" 
                 ngf-pattern="'image/*'"
                 ngf-resize="{width: 1900, quality: .7}"
-                >
+                ngf-resize-if="$width >1900">
 
                 
                 

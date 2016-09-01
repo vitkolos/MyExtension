@@ -759,6 +759,34 @@
                 }, 200);
             });
         }
+        $scope.$watch('file', function () {
+            $scope.upload($scope.file);
+        });
+        $scope.upload = function(file) {
+
+
+        //var nbOfImages = files.length;
+            if (file && file.length) {
+
+                Upload.upload({
+                    url: '/api/v1/media',
+                    method: 'POST',
+                    params:{
+                        typeId:"545cd95245205e91168b45b1",
+                        userWorkspace:true, //on utilise le main workspace de l'utilisateur
+                        fields:{title:file.name}
+                    },
+                    file: file,
+                    headers: {'Content-Type': undefined}
+                }).then(function (resp) {
+                    console.log("OK");
+                }, function (resp) {
+                    console.log('Error status: ' + resp.status);
+                    
+                });
+            }
+   
+    };
         
     }]);
 
