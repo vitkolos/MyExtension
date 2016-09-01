@@ -754,6 +754,8 @@
         
         if ($scope.fieldInputMode){
             $element.find('.form-control').on('change', function(){
+                            console.log("upload old way");
+
                 setTimeout(function(){
                     me.uploadNewFile();
                 }, 200);
@@ -761,6 +763,7 @@
         }
         $scope.$watch('file', function () {
             $scope.upload($scope.file);
+            console.log("upload");
         });
         $scope.upload = function(file) {
 
