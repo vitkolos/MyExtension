@@ -752,14 +752,14 @@
                }
            }            
         };
-        /*
+        
         if ($scope.fieldInputMode){
             $element.find('.form-control').on('change', function(){
                 setTimeout(function(){
                     me.uploadNewFile();
                 }, 200);
             });
-        }*/
+        }
     }]);
 
     module.directive('fileModel', ['$parse','$sce', function ($parse,$sce) {
