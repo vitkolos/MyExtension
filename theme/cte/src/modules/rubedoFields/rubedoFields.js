@@ -683,16 +683,15 @@
         $scope.upload=function(file){
             me.notification=null;
             me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
-            console.log("go to function");
-            console.log(file);
            if ($scope.fieldInputMode&&file&&$scope.field.config.allowedDAMTypes){
+               /*
                var uploadOptions={
                    typeId:$scope.field.config.allowedDAMTypes,
                    target:me.workspace,
                    fields:{
                        title:file.name
                    }
-               };
+               };*/
                /*pour images, redimensionner*/
                if (uploadOptions.typeId=="545cd95245205e91168b45b1") {
                     Upload.upload({
