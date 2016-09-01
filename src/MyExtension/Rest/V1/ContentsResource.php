@@ -197,12 +197,6 @@ class ContentsResource extends AbstractResource
             $contentArray['data'] = array_slice($contentArray['data'], $paging["start"], $paging["limit"]);
             $nbItems = $unorderedContentArray['count'];
         } else {
-            if (!empty($params['fingerprint'])) {
-                $this->getSessionService()->set('fingerprint', $params['fingerprint']);
-            }
-            if (isset($params['ismagic']) && $params['ismagic'] == "true") {
-                $ismagic = true;
-            }
             $contentArray = $this->getContentList($filters, $this->setPaginationValues($params), $ismagic);
             $nbItems = $contentArray['count'];
         }
@@ -841,11 +835,6 @@ class ContentsResource extends AbstractResource
             )
             ->addInputFilter(
                 (new FilterDefinitionEntity())
-                    ->setKey('fingerprint')
-                    ->setDescription('Fingerprint')
-            )
-            ->addInputFilter(
-                (new FilterDefinitionEntity())
                     ->setKey('start')
                     ->setDescription('Item\'s index number to start')
                     ->setFilter('int')
@@ -857,10 +846,6 @@ class ContentsResource extends AbstractResource
                     ->setFilter('int')
             )
             ->addInputFilter(
-                (new FilterDefinitionEntity())
-                    ->setKey('ismagic')
-                    ->setDescription('Enable magic queries')
-            )->addInputFilter(
                 (new FilterDefinitionEntity())
                     ->setKey('contextContentId')
                     ->setDescription('Context content id')
