@@ -680,15 +680,17 @@
             me.uploadNewFileWithWorkspace();
         };
         
-        me.uploadNewFileWithWorkspace=function(){
+        $scope.upload=function(file){
+            me.notification=null;
+            me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
             console.log("go to function");
-            console.log(me.newFile);
-           if ($scope.fieldInputMode&&me.newFile&&$scope.field.config.allowedDAMTypes){
+            console.log(file);
+           if ($scope.fieldInputMode&&file&&$scope.field.config.allowedDAMTypes){
                var uploadOptions={
                    typeId:$scope.field.config.allowedDAMTypes,
                    target:me.workspace,
                    fields:{
-                       title:me.newFile.name
+                       title:file.name
                    }
                };
                /*pour images, redimensionner*/
@@ -699,10 +701,10 @@
                         params:{
                             typeId:"545cd95245205e91168b45b1",
                             userWorkspace:true, //on utilise le main workspace de l'utilisateur
-                            fields:{title:me.newFile.name},
+                            fields:{title:file.name},
                             taxonomy:{navigation:[me.pageId]}
                         },
-                        file: me.newFile,
+                        file:file,
                         headers: {'Content-Type': undefined}
                     }).then(function (response) {
                             var id=response.data.media.id;
@@ -753,7 +755,7 @@
                }
            }            
         };
-        
+        /*
         if ($scope.fieldInputMode){
             $element.find('.form-control').on('change', function(){
                             console.log("upload old way");
@@ -762,7 +764,7 @@
                     me.uploadNewFile();
                 }, 200);
             });
-        }
+        }*/
        
         
     }]);
