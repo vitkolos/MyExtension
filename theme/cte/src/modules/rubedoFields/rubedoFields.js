@@ -703,6 +703,7 @@
                         file: me.newFile,
                         headers: {'Content-Type': undefined}
                     }).then(function (response) {
+                        console.log("with upload");
                             var id=response.data.media.id;
                             $scope.fieldEntity[$scope.field.config.name]=id;
                             mediaId=id;
@@ -751,13 +752,14 @@
                }
            }            
         };
+        /*
         if ($scope.fieldInputMode){
             $element.find('.form-control').on('change', function(){
                 setTimeout(function(){
                     me.uploadNewFile();
                 }, 200);
             });
-        }
+        }*/
     }]);
 
     module.directive('fileModel', ['$parse','$sce', function ($parse,$sce) {
