@@ -18,7 +18,7 @@
         <input type="file"  ngf-select 
                id="{{fieldIdPrefix+'_'+field.config.name}}"
                ng-required="!field.config.allowBlank"
-               ng-model="mediaFieldCtrl.newFile"
+               file-model="mediaFieldCtrl.newFile"
                accept="image/*" 
                 ngf-pattern="'image/*'"
                 ngf-resize="{width: 1900, quality: .7}"
