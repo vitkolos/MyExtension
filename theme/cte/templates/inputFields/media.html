@@ -22,7 +22,7 @@
                accept="image/*" 
                 ngf-pattern="'image/*'"
                 ngf-resize="{width: 1900, quality: .7}"
-                ngf-resize-if="$width >1900"
+                ngf-resize-if="$width >800"
                 >
             <input type="file" ng-if="field.config.allowedDAMTypes!='545cd95245205e91168b45b1' "
                id="{{fieldIdPrefix+'_'+field.config.name}}"
