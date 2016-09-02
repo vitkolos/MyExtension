@@ -20,8 +20,10 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         }
         me.imageResizeMode= config.imageResizeMode ? config.imageResizeMode : "boxed";
         me.canOrder=function(content){
+             console.log(content.productProperties.manageStock);
             return !(content.productProperties.manageStock&&(content.productProperties.canOrderNotInStock=="false")&&(content.productProperties.variations[0].stock < content.productProperties.outOfStockLimit)) ;
         };
+       
         me.addToCart=function(content){
             var options={
                 productId:content.id,
