@@ -80,8 +80,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             };
             RubedoShoppingCartService.removeFromCart(options).then(
                 function(response){
-                    me.itIsAGift =false;
-                    me.GiftWrapJustAdded=false;
+
                     $rootScope.$broadcast("shoppingCartUpdated",{emitter:"searchProductBox"});
                 }
             );
