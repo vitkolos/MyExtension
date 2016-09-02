@@ -291,7 +291,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                                 }
                                 previousFacetId = activeFacet.id;
                             });
-                            if(isFirstTime) {me.activeTypeTerms = me.activeTerms; console.log(me.activeTypeTerms);}
+                            if(isFirstTime) {me.activeTypeTerms = me.activeTerms; }
                         }
                     });
                     $scope.clearORPlaceholderHeight();
