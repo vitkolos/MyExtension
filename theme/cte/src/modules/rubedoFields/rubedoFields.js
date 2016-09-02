@@ -693,7 +693,7 @@
                    }
                };*/
                /*pour images, redimensionner*/
-               if (uploadOptions.typeId=="545cd95245205e91168b45b1") {
+               if ($scope.field.config.allowedDAMTypes=="545cd95245205e91168b45b1") {
                     Upload.upload({
                         url: '/api/v1/media',
                         method: 'POST',
