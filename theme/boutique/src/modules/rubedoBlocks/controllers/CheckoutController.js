@@ -71,6 +71,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     });
     $scope.addPaperToCart=function(){
         if (me.itIsAGift){
+            me.GiftWrapJustAdded=true;
             var options={
                 productId:"57304df3c445eca2008b7b0f",
                 variationId:"57304cf5c445ec58008b7a4a",
