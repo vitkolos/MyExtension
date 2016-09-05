@@ -10,5 +10,11 @@
     "Missions.foyers":"Student residences",
     "Missions.jet":"JET - Volunteers abroad",
     "Block.Mail.SendMail":"Send a mail",
-    "Block.Inscription.Telephone":"Telephone"
+    "Block.Inscription.Telephone":"Telephone",
+    "InfosPratiques":"General info",
+    "Inscription":"Register",
+    "FaireUnDon":"Make a donation",
+    "Menu" : "menu",
+    "Accueil" : "Home",
+    "Time.At":"at"
 }
