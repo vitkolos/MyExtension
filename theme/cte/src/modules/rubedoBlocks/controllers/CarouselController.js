@@ -24,7 +24,8 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
                     me.contents=response.data.contents;
                     setTimeout(function(){me.initCarousel();},100);
                     /*définir l"image de la page (balise meta)*/
-                    $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(me.contents[0].fields[blockConfig.imageField],{width:'800px'});
+                    //$scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(me.contents[0].fields[blockConfig.imageField],{width:'800px'});
+		    $scope.rubedo.setPageMetaImage(me.contents[0].fields[blockConfig.imageField]);
                     angular.forEach(me.contents, function(content){
                         if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !=""){
 			    if (content.fields.propositionReferenceeInterne == pageId) {
