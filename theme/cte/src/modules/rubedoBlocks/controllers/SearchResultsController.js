@@ -242,20 +242,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                     me.data =  response.data.results.data;
                     me.facets = response.data.results.facets;
                     me.facetsLabels = response.data.results.facetsLabels;
-/*POUR DONS, pour régler le pb de taxonomie avec des contenus. A enlever dès que c'est réglé en v3.4?*/
-                    angular.forEach(me.facets,function(facet){
-                        if (facet.id=="fiscalite_fr") {
-                            angular.forEach(facet.terms, function(term){
-                                switch (term.term) {
-                                    case "5728bf10c445ec7e008b6adc" : term.label ="Reçu fiscal 75% ISF"; break;
-                                    case "5728bee9c445ec4b008b6afc" : term.label ="Reçu fiscal 66% I.R."; break;
-                                    case "5728bebfc445ecb0008b67f3" : term.label ="Sans reçu fiscal"; break;
-                                }
-
-                            });
-                        }
-                    });
-                    /**/
                     me.notRemovableTerms = [];
                     var isFirstTime=false;
                     if(!me.activeTerms) {
@@ -269,15 +255,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
                             angular.forEach(activeFacet.terms,function(term){
                                 var newTerm = {};
                                 newTerm.term = term.term;
-                                /*Idem : fix pour les dons*/
-                                if (activeFacet.id=="fiscalite_fr") {
-                                    switch (newTerm.term) {
-                                        case "5728bf10c445ec7e008b6adc" : newTerm.label ="Reçu fiscal 75% ISF"; break;
-                                        case "5728bee9c445ec4b008b6afc" : newTerm.label ="Reçu fiscal 66% I.R."; break;
-                                        case "5728bebfc445ecb0008b67f3" : newTerm.label ="Sans reçu fiscal"; break;
-                                    }
-                                }
-                                else newTerm.label = term.label;
+                                newTerm.label = term.label;
                                 newTerm.facetId = activeFacet.id;
                                 if(previousFacetId == activeFacet.id){
                                     newTerm.operator =' '+(activeFacet.operator)+' ';
