@@ -86,9 +86,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if (me.content.fields.summary){
                             $scope.rubedo.setPageDescription(angular.copy(me.content.fields.summary));
                         }
-                        if(response.data.content.fields.image) {
-                            $scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
-                        }
+                        if(me.content.fields.image) {
+                            //$scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
+                            $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields['image']));
+                        }/*
+                        var foundMeta=false;
+                        angular.forEach(me.content.type.fields,function(field){
+                            if(!foundMeta&&field.config&&field.config.useAsMetadata&&me.content.fields[field.config.name]&&me.content.fields[field.config.name]!=""){
+                                $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields[field.config.name]));
+                                foundMeta=true;
+                            }
+                        });*/
                         if(response.data.content.fields.video) {
                             $scope.rubedo.current.page.video = response.data.content.fields.video.url;
                         }
