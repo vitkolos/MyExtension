@@ -1,4 +1,4 @@
-<div class=" content_border">
+<div class=" content_border" itemscope itemtype="http://schema.org/NewsArticle">
 	<!--<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12">
@@ -27,7 +27,7 @@
 	<div class="text-article container">
 		<p class='capital'>{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
-			<h1 class="balance-text" ng-if="!fieldEditMode">{{fieldEntity['text']}}</h1>
+			<h1 class="balance-text" ng-if="!fieldEditMode" itemprop="headline">{{fieldEntity['text']}}</h1>
 			<h1 ng-if="fieldEditMode"
 			   ng-controller="RTEFieldController as rteFieldCtrl"
 			   ckeditor="editorOptions"
