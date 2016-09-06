@@ -48,6 +48,14 @@
             <div ng-if="!content['fields.video'] ||  (content['fields.video'] && content['fields.video'][0]=='') ">
                 <!--<p class="capital">{{content.lastUpdateTime * 1000 | date}}</p>-->
                 <a ng-href="{{content.url }}" ng-if="!content.propositionReferenceeInterne || content.propositionReferenceeInterne=='' ">
+                    <div class="ratio_321 rect" ng-if="content['fields.image']">
+                        <img class="media-object pull-left padding-right"
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'400px',height:'240px',mode:'crop'})}}"
+                                alt="{{ content.title }}"/>
+                        </div>
+                    <h3>{{content.title }}</h3>
+                    <p class="summary">{{content.summary}}</p>
+                </a>
                 <a rubedo-page-link="{{content.propositionReferenceeInterne}}" ng-if="content.propositionReferenceeInterne && content.propositionReferenceeInterne!='' ">
                     <div class="ratio_321 rect" ng-if="content['fields.image']">
                         <img class="media-object pull-left padding-right"
