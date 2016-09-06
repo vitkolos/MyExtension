@@ -613,8 +613,8 @@ blockquote p{.capital;.txt-red; text-align: center; font-size: 14px !important}
 
 }
 
-@media screen and (min-width:@min_xs) and (max-width:@min_sm) {.ratio_321:before{padding-top:33.333%;} .ratio_321>img{top:-85%}}
-@media screen and (min-width:@min_sm){.ratio_321>img{width:160px}}
+@media screen and (min-width:@min_xs) and (max-width:@min_sm) {.ratio_321:before{padding-top:33.333%;} .ratio_321>img{top:-85%} .ratio_321.rect>img{top:-35%}}
+@media screen and (min-width:@min_sm){.ratio_321:not(.rect)>img{width:160px}}
 .text-article{
   .panel-default{border: none;}
   .panel-body{border: none}
