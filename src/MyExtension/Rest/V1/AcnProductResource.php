@@ -53,6 +53,12 @@ class AcnproductResource extends AbstractResource
                             ->setRequired()
                             ->setDescription('Code barre / sku')
                     )
+		    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setKey('stock')
+                            ->setRequired()
+                            ->setDescription('Stock dans Zachee')
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('content')
@@ -73,7 +79,6 @@ class AcnproductResource extends AbstractResource
         $codeBarre=$params['codeBarre'];
         $findFilter = Filter::Factory();
         //
-        $filter =
         Filter::factory('Value')->setName('typeId')->setValue("55c87ae245205e8019c62e08");       // type de contenus boutique
    	$findFilter->addFilter($filter);
         
