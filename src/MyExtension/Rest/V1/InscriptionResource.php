@@ -625,6 +625,11 @@ protected function sendInscriptionMail($inscription,$lang){
         return $telephoneFormat;
     }
     
+    private function translate($string,$toReplaceArray,$toReplaceWithArray)
+    {
+	return str_replace($toReplaceArray,$toReplaceWithArray,$string);
+    
+    }
     protected function getPays(){
         switch($_SERVER['HTTP_HOST']) {
             case "chemin-neuf.fr" : 
