@@ -239,7 +239,7 @@ class DonationResource extends AbstractResource
         $sujetAdmin= $trad["ccn_don"] . " " . $don["text"] . " - " . $don["montantAvecFrequence"] ." - " . $don["nom"] . " - " . $don["modePaiement"] . " - " . $don["projet"];
 
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
-        $messageDonateur .= $trad["ccn_don_1"] . $don["montantAvecFrequence"] . " " . $trad["ccn_don_1_bis"] . "<em>" . $don["projet"] . ".</em><br/><br/>";
+        $messageDonateur .= $this->translate($trad["ccn_don_1"],['%montantAvecMonnaieEtFrequence%','%projet%'],[$don["montantAvecFrequence"],$don["projet"]]) . ".<br/><br/>";
    
         //paiement par chèque
         if($don["modePaiement"]=="cheque") {
@@ -545,7 +545,11 @@ class DonationResource extends AbstractResource
                 return "dons_fr"; break;
         }
      }
+    private function translate($string,$toReplaceArray,$toReplaceWithArray)
+    {
+	return str_replace($toReplaceArray,$toReplaceWithArray,$string);
     
+    }    
     public function getContentIdByName($name){
         $this->_dataService = Manager::getService('MongoDataAccess');
         $this->_dataService->init("Contents");
