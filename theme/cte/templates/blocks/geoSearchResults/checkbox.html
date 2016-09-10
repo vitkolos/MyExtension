@@ -80,7 +80,7 @@
                         <time ng-if="data.itemData['fields.dateDebut'][0]">{{(data.itemData.dateDebut/1000)|dateRange:(data.itemData.dateFin/1000):'short'}}</time>
                     </p>
                     <span ng-repeat="taxo in data.itemData['taxonomy.555f3bc445205edc117e689b'] track by $index" class="public">
-                            {{geoSearchResultsCtrl.facetsLabels[taxo]}}
+                            {{geoSearchResultsCtrl.facetsLabels[taxo]}}{{taxo}}
                     </span>
                 </div>
                            
