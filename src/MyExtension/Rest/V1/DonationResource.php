@@ -354,7 +354,7 @@ class DonationResource extends AbstractResource
         $messageDonateur .= $contactNational["prenom"] . " " . $contactNational["nom"] .", " . $contactNational["text"] . " - " . $contactNational["telephone"] . " - <a href='mailto:" .$contactNational["email"]  . "'>" . $contactNational["email"] . "</a><br/><br/>" ;
         
         //Grace à votre don, le projet est maintenant financé à 56%.
-        $messageDonateur .= $trad["ccn_don_35"] . round(($projectDetail["fields"]["cumul"]+$don["montant"]) *100 / $projectDetail["fields"]["budget"]) . "%.<br/><br/>";
+        $messageDonateur .= $this->translate($trad["ccn_don_35"],'%percentage%',round(($projectDetail["fields"]["cumul"]+$don["montant"]) *100 / $projectDetail["fields"]["budget"]))  . ".<br/><br/>";
         
         //"Cordialement" + ",<br><br>"
         $messageDonateur .= $trad["ccn_mail_9_vous"] . ",<br><br/>";
