@@ -79,9 +79,17 @@
                         <span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span>
                         <time ng-if="data.itemData['fields.dateDebut'][0]">{{(data.itemData.dateDebut/1000)|dateRange:(data.itemData.dateFin/1000):'short'}}</time>
                     </p>
-                    <span ng-repeat="taxo in data.itemData['taxonomy.555f3bc445205edc117e689b'] track by $index" class="public">
+                    <span ng-repeat="taxo in data.itemData['taxonomy.555f3bc445205edc117e689b'] track by $index" ng-if="data.itemData['taxonomy.555f3bc445205edc117e689b']" class="public">
                             {{geoSearchResultsCtrl.facetsLabels[taxo]}}
                     </span>
+                    <span ng-repeat="taxo in data.itemData['taxonomy.555a164d45205eea0a7e689b'] track by $index" ng-if="data.itemData['taxonomy.555a164d45205eea0a7e689b']" class="public">
+                            {{geoSearchResultsCtrl.facetsLabels[taxo]}}
+                    </span>
+                    <span ng-repeat="taxo in data.itemData['taxonomy.56af638bc445ecdc008b5bec'] track by $index" ng-if="data.itemData['taxonomy.56af638bc445ecdc008b5bec']" class="public">
+                            {{geoSearchResultsCtrl.facetsLabels[taxo]}}
+                    </span>
+                    
+                    
                 </div>
                            
             </div>
