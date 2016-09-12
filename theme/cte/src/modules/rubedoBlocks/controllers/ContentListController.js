@@ -35,6 +35,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     if(config.singlePage){
         options.detailPageId = config.singlePage;
     }
+    if(config.showPastDates) {
+        options.date=(new Date()).getTime() * 1000;
+        options.endDate = ((new Date()).getTime() + 2*(3600000*24*365) ) *1000; //ajouter 2 ans pour la date de fin
+    }
     if(config.enableFOContrib&&$scope.rubedo.current.user){
         //options.foContributeMode = true;   ENABLE to filter contents by user
         options.useDraftMode=true;
