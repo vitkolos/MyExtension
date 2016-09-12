@@ -136,9 +136,15 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     if (response.data.instructions.whatToDo=="displayRichText") {
                         $scope.message = "Votre don a bien été enregistré. Votre numéro de suivi est : "+response.data.instructions.id+". Un récapitulatif vous sera envoyé par mail.";
                         $scope.finInscription = true;
-                        $scope.processForm=false;                        
+                        $scope.processForm=false;   
+                        if(window.ga) {
+                            window.ga('send', 'event', 'donation', 'payement autre moyen', 'donations', $scope.don.montant);
+                        }
                     }
                     else if (response.data.instructions.whatToDo=="proceedToPayment") {
+                      if(window.ga) {
+                            window.ga('send', 'event', 'donation', 'payement carte', 'donations', $scope.don.montant);
+                        }
                         var payload = {
                             nom:$scope.don.user.nom,
                             prenom: $scope.don.user.surname,
