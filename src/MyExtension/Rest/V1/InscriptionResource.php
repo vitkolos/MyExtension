@@ -251,7 +251,7 @@ protected function sendInscriptionMail($inscription,$lang){
         # si le montant total à payer n'a pas été défini, il a été mis à 0 et alors, on n'affiche pas la ligne suivante
         if ($inscription['montantTotalAPayer'] && ($inscription['montantTotalAPayer'] >0) ) {
             //Nous te rappelons que d'après le choix que tu as fais, ta participation totale est de 120€. 
-            $messageClient .= $trad["ccn_mail_28_".$tuOuVous] . $inscription['montantTotalAPayerAvecMonnaie'] . ".<br/><br/>";
+            $messageClient .= $this->translate($trad["ccn_mail_28_".$tuOuVous],'%montantAvecMonnaie%',$inscription['montantTotalAPayerAvecMonnaie']) . ".<br/><br/>";
         }
             
     }
@@ -625,6 +625,11 @@ protected function sendInscriptionMail($inscription,$lang){
         return $telephoneFormat;
     }
     
+    private function translate($string,$toReplaceArray,$toReplaceWithArray)
+    {
+	return str_replace($toReplaceArray,$toReplaceWithArray,$string);
+    
+    }
     protected function getPays(){
         switch($_SERVER['HTTP_HOST']) {
             case "chemin-neuf.fr" : 

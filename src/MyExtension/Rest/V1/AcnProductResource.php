@@ -16,6 +16,7 @@
  */
 namespace RubedoAPI\Rest\V1;
 use Rubedo\Services\Manager;
+use Rubedo\Collection\AbstractCollection;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Exceptions\APIRequestException;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
@@ -40,29 +41,10 @@ class AcnproductResource extends AbstractResource
     public function __construct()
     {
         parent::__construct();
-        $this
-            ->definition
-            ->setName('Products')
-            ->setDescription('Deal with taxonomy')
-            ->editVerb('get', function (VerbDefinitionEntity &$entity) {
-                $entity
-                    ->setDescription('Get produit de la boutique par code barre')
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('codeBarre')
-                            ->setRequired()
-                            ->setDescription('Code barre / sku')
-                    )
-                    ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('content')
-                            ->setDescription('Produit de la boutique')
-                    );
-            });
-            $this->contentsService = Manager::getService('Contents');
-
+        $this->define();
     }
-    /**
+    
+     /**
      * Get from /taxonomy
      *
      * @param $params
@@ -70,17 +52,15 @@ class AcnproductResource extends AbstractResource
      */
     public function getAction($params)
     {
-        $codeBarre=$params['codeBarre'];
-        $findFilter = Filter::Factory();
-        //
-        $filter =
-        Filter::factory('Value')->setName('typeId')->setValue("55c87ae245205e8019c62e08");       // type de contenus boutique
-   	$findFilter->addFilter($filter);
-        
-        $filter = Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre);
-        $findFilter->addFilter($filter);	   
+	
+	$contentsService = Manager::getService('Contents');
 
-        $content = $this->contentsService->findOne($findFilter,true,false);
+        $codeBarre=$params['codeBarre'];
+        $findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
+						->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
+
+        
+        $content = $contentsService->findOne($findFilter,true,false);
 
         
         
@@ -89,7 +69,91 @@ class AcnproductResource extends AbstractResource
             'content' => $content,
         ];
     }
+ 
+    public function postAction($params)
+    {
+	$contentsService = Manager::getService('ContentsCcn');
+
+        $codeBarre=$params['codeBarre'];
+        $findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
+						->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
+
+        
+        $content = $contentsService->findOne($findFilter,true,false);
+	$content['productProperties']['variations'][0]['stock'] = $params['stock'];
+        AbstractCollection::disableUserFilter(true);
+
+        $result = $contentsService->update($content, array(),false);
+        AbstractCollection::disableUserFilter(false);
+
+        return [
+            'success' => true,
+            'content' => $content,
+        ];
+    }
+   
     
+    
+    protected function define()
+    {
+        $this
+            ->definition
+            ->setName('Products ACN')
+            ->setDescription('Link with Zachee - ACN')
+            ->editVerb('get', function (VerbDefinitionEntity &$entity) {
+                $this->defineGet($entity);
+            })
+            ->editVerb('post', function (VerbDefinitionEntity &$entity) {
+                $this->definePost($entity);
+            });
+
+    }
+    /**
+     * Define get action
+     *
+     * @param VerbDefinitionEntity $definition
+     */
+    protected function defineGet(VerbDefinitionEntity &$entity)
+    {
+        $entity
+            ->setDescription('Get produit de la boutique par code barre')
+            ->addInputFilter(
+		    (new FilterDefinitionEntity())
+			->setKey('codeBarre')
+			->setRequired()
+			->setDescription('Code barre / sku')
+		)
+	    ->addOutputFilter(
+		    (new FilterDefinitionEntity())
+			->setKey('content')
+			->setDescription('Produit de la boutique')
+		);
+    }
+    
+    protected function definePost(VerbDefinitionEntity &$entity)
+    {
+        $entity
+	    ->setDescription('Patch product stock')
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                ->setDescription('Code barre / sku')
+                ->setKey('codeBarre')
+		->setRequired()
+            )
+	    ->addInputFilter(
+                (new FilterDefinitionEntity())
+                ->setDescription('Nouveau stock du produit')
+                ->setKey('stock')
+		->setFilter('int')
+		->setRequired()
+            )
+            ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Nouvelle version du produit')
+                    ->setKey('content')
+                    ->setRequired()
+            );
+    }
 
 
 }

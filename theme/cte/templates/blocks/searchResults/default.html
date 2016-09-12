@@ -1,8 +1,8 @@
 <nav class="navbar navbar-default">
     <div class="navbar-header">
             <span class="navbar-brand">{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} :
-                <span ng-repeat-start="term in searchResultsCtrl.activeTerms track by $index" >{{term.operator}}</span>
-                <li class="tags cursor-as-pointer" ng-repeat-end 
+                <span ng-repeat-start="term in searchResultsCtrl.activeTerms track by $index" ng-if="term.facetId!='type' ">{{term.operator}}</span>
+                <li class="tags cursor-as-pointer" ng-repeat-end   ng-if="term.facetId!='type' "
                       ng-click="searchResultsCtrl.clickOnFacets(term.facetId, term.term)">
                     {{term.label}}
                 </li>
@@ -22,14 +22,18 @@
                 </form>
             </div>
         </div>
-        <div class="panel panel-default" ng-repeat="facet in searchResultsCtrl.facets track by $index" ng-if="(facet.terms || facet.ranges)&& facet.id!='type'  " ng-init="searchDisplayed=false">
+        <div class="panel panel-default" ng-repeat="facet in searchResultsCtrl.facets  track by $index" ng-if="(facet.terms || facet.ranges)  " ng-init="searchDisplayed=false">
             <div class="panel-heading actus" ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">{{facet.label}}&nbsp;<span
                     ng-if="facet.total && (facet.total - facet.other) <= searchResultsCtrl.count" class="badge pull-right">{{facet.total - facet.other}}</span></div>
             <div class="panel-body">
                 <ul class="search-tags">
-                    <li ng-if="facet.terms" class="cursor-as-pointer resultData search-result" ng-repeat="term in facet.terms track by $index"
+                    <li ng-if="facet.terms && isType(facet.id,term.term)" class="cursor-as-pointer resultData search-result" ng-repeat="term in facet.terms track by $index" 
                         ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
                         {{term.label}}&nbsp;({{term.count}})
+                    </li>
+                    <li ng-if="term.facetId=='type' && facet.id=='type'" class="cursor-as-pointer resultData checked search-result" ng-repeat="term in searchResultsCtrl.activeTerms track by $index"
+                    ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
+                        {{term.label}}
                     </li>
                     <li ng-if="facet.ranges" class="cursor-as-pointer resultData search-result" ng-repeat="term in facet.ranges track by $index"
                         ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.key)">
@@ -42,21 +46,38 @@
     <div class="col-md-9">
         <div class="resultData search-result" ng-repeat="content in searchResultsCtrl.data track by $index">
             <div ng-if="!content['fields.video'] ||  (content['fields.video'] && content['fields.video'][0]=='') ">
-                <div class="ratio_321" ng-if="content['fields.image']">
-                    <img class="media-object pull-left padding-right"
-                            ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'390px',height:'390px',mode:'crop'})}}"
-                            alt="{{ content.title }}"/>
-                </div>
-                <p class="capital">{{content.lastUpdateTime * 1000 | date}}</p>
-                <a ng-href="{{content.url }}"><h3>{{content.title }}</h3>
-                <p class="summary">{{content.summary}}</p></a>
+                <!--<p class="capital">{{content.lastUpdateTime * 1000 | date}}</p>-->
+                <a ng-href="{{content.url }}" ng-if="!content.propositionReferenceeInterne || content.propositionReferenceeInterne=='' ">
+                    <div class="ratio_321 rect" ng-if="content['fields.image']">
+                        <img class="media-object pull-left padding-right"
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'400px',height:'240px',mode:'crop'})}}"
+                                alt="{{ content.title }}"/>
+                        </div>
+                    <h3>{{content.title }}</h3>
+                    <p class="summary">{{content.summary}}</p>
+                </a>
+                <a rubedo-page-link="{{content.propositionReferenceeInterne}}" ng-if="content.propositionReferenceeInterne && content.propositionReferenceeInterne!='' ">
+                    <div class="ratio_321 rect" ng-if="content['fields.image']">
+                        <img class="media-object pull-left padding-right"
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'400px',height:'240px',mode:'crop'})}}"
+                                alt="{{ content.title }}"/>
+                        </div>
+                    <h3>{{content.title }}</h3>
+                    <p class="summary">{{content.summary}}</p>
+                </a>
+                <p class="text-article">
+                    <i class="fa fa-tags txt-marron" aria-hidden="true"></i>
+                    <span class="tags capital2">{{content.type}}</span>
+                    <span class="tags capital2" ng-repeat="tag in content['taxonomy.555a164d45205eea0a7e689b']">{{searchResultsCtrl.facetsLabels[tag]}}</span>
+                    <span class="tags capital2" ng-repeat="tag in content['taxonomy.5524db6945205e627a8d8c4e']">{{searchResultsCtrl.facetsLabels[tag]}}</span>
+                </p>
             </div>
            <div ng-if="content['fields.video'] && content['fields.video'][0]!='' ">
                 <div class="col-sm-4">
                     <p class="capital tags">vidéo</p>
                     <h3><a  ng-href="{{content.url }}">{{content.title}}</a></h3>
                     <p class="summary">{{content.summary}}</p>
-                    <p class="capital">{{content.lastUpdateTime * 1000 | date}} </p>
+                    <!--<p class="capital">{{content.lastUpdateTime * 1000 | date}} </p>-->
                 </div>
                 <div class="col-sm-8">
                     <jwplayer video-url="{{content['fields.video'][0]}}"></jwplayer>

@@ -403,15 +403,26 @@ padding-left: 0;}
     margin-left: auto;
   }
   .btn-default{
-    color:@beigeCCN;
+    color:white;
     background-color:@rouge;
     border:none;
     margin-bottom:1px;
     .badge{color:@rouge}
-    &:hover, &:focus, &.active, &:active  {background-color: @rouge_shadow; .badge{color:@beigeCCN}}
+    &:hover, &:focus, &.active, &:active  {background-color: @rouge_shadow; .badge{color:white}}
 
     //.open>.dropdown-toggle.btn-primary
   }
+  .btn-inv{
+    color:@rouge;
+    background-color:white;
+    border:1px solid @rouge;
+    margin-bottom:1px;
+    .badge{color:@rouge}
+    &:hover, &:focus, &.active, &:active  {background-color: @rouge; color:white; .badge{color:white}}
+
+    //.open>.dropdown-toggle.btn-primary
+  }
+
   img{
     margin-left: auto;
     margin-right: auto;

@@ -30,9 +30,9 @@
           ng-href="{{ rubedo.current.page.contentCanonicalUrl }}" />
     <link rel="alternate" ng-repeat="alternate in rubedo.current.page.i18n track by $index" ng-href="{{alternate.fullUrl}}" hreflang="{{alternate.locale}}" />
     
-    <meta property="og:image" ng-if="!rubedo.current.page.image" content="http://<?php echo $_SERVER['HTTP_HOST'] . "/theme/".$this->siteTheme; ?>/img/image.jpg" />
-    <meta property="og:image"  content="http://<?php echo $_SERVER['HTTP_HOST']; ?>{{rubedo.current.page.image}}" />
-    <meta name="twitter:image" content="http://<?php echo $_SERVER['HTTP_HOST']; ?>{{rubedo.current.page.image}}" />
+    <meta property="og:image" ng-if="!rubedo.current.page.metaImage || rubedo.current.page.metaImage==''" content="http://<?php echo $_SERVER['HTTP_HOST'] . "/theme/".$this->siteTheme; ?>/img/image.jpg" />
+    <meta property="og:image" ng-if="rubedo.current.page.metaImage&&rubedo.current.page.metaImage!=''" ng-attr-content="{{rubedo.getMetaImageURL()}}" />
+    <meta name="twitter:image" ng-if="rubedo.current.page.metaImage&&rubedo.current.page.metaImage!=''" ng-attr-content="{{rubedo.getMetaImageURL()}}" />
     <meta property="og:url" ng-if="rubedo.current.page.video" content="{{rubedo.current.page.video}}">
     <link rel="shortcut icon" href="/theme/<?php echo $this->siteTheme; ?>/img/favicon.ico" type="image/x-icon" />
     
@@ -144,7 +144,7 @@
         <script type="text/javascript" src="/components/jquery/fullCalendar/lib/moment.min.js"></script>
         <script type="text/javascript" src="/components/ded/script.js/dist/script.min.js"></script>
         <script  type="text/javascript" src="http://content.jwplatform.com/libraries/B5vNto39.js"></script>
-        <script type="text/javascript" src="/components/jquery/htmlClean/jquery.htmlClean.min.js"></script>
+        <script type="text/javascript" src="/components/components/jquery-htmlclean/jquery.htmlClean.min.js"></script>
         <script type="text/javascript" src='/components/jtrussell/angular-snap.js-bower/angular-snap.min.js'></script>
         <script type="text/javascript" src='/components/vitalets/angular-xeditable/dist/js/xeditable.min.js'></script>
         <script type="text/javascript" src='/components/vitalets/angular-xeditable/libs/checklist-model.js'></script>

@@ -552,6 +552,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                         me.count = response.data.count;
                         me.data =  me.preprocessData(response.data);
                         me.facets = response.data.results.facets;
+                        me.facetsLabels = response.data.results.facetsLabels;
                         me.notRemovableTerms = [];
                         me.activeTerms = [];
                         var previousFacetId;

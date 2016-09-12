@@ -407,6 +407,12 @@
             me.setPageDescription=function(newDescription){
                 me.current.page.description=newDescription;
             };
+            me.setPageMetaImage=function(newImage){
+                 me.current.page.metaImage=newImage;
+             };
+             me.getMetaImageURL=function(){
+                 return window.location.protocol+"//"+window.location.host+"/dam?media-id="+me.current.page.metaImage;
+             };
             me.sendGaEvent = function(cat, label) {
                 if(window.ga) {
                     window.ga('send', 'pageview', '/'+$route.current.params.lang+cat+label);

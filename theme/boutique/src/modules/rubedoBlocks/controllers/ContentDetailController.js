@@ -36,6 +36,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if (me.content.fields.summary){
                             $scope.rubedo.setPageDescription(angular.copy(me.content.fields.summary));
                         }
+                        var foundMeta=false;
+                        angular.forEach(me.content.type.fields,function(field){
+                            if(!foundMeta&&field.config&&field.config.useAsMetadata&&me.content.fields[field.config.name]&&me.content.fields[field.config.name]!=""){
+                                $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields[field.config.name]));
+                                foundMeta=true;
+                            }
+                        });
                     }
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     $scope.fieldLanguage=me.content.locale;
