@@ -34,9 +34,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         options.detailPageId = config.singlePage;
     }
     if(config.showPastDates) {
-        options.date=(new Date()).getTime();
+        options.date=Math.round(new Date().getTime()/1000);
         options.dateFieldName="dateDebut";
-        options.endDate = (new Date()).getTime() + 2*(3600000*24*365); //ajouter 2 ans pour la date de fin
+        options.endDate = Math.round( (new Date().getTime() + 2*(3600000*24*365))/1000); //ajouter 2 ans pour la date de fin
         options.endDateFieldName="dateFin";
     }
     if(config.enableFOContrib&&$scope.rubedo.current.user){
