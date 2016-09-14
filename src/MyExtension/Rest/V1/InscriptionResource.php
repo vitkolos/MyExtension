@@ -551,7 +551,7 @@ protected function sendInscriptionMail($inscription,$lang){
         }
         if($inscription['complementaire']) {
             $inscription['complementaire_org'] = $inscription['complementaire'];
-            $inscription['complementaire'] = $this->questionToAnswer($inscription['complementaire']);
+            $inscription['questionsComplementaires'] = $this->questionToAnswer($inscription['complementaire']);
         }        
         if($inscription['jai_connu']){
             $inscription['jai_connu_org'] = $inscription['jai_connu'];
