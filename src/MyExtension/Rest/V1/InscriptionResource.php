@@ -580,7 +580,11 @@ protected function sendInscriptionMail($inscription,$lang){
                 if($printTitre) $answer .= $titre." = ";
                 if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
                 else {
-                    foreach($reponse as $value) $answer .= $value.", ";
+                    foreach($reponse as $value) {
+                        $answer .= $value['value'];
+                        if($answer['complement'] && $answer['complement'] != "" ) $answer .= " : " .$value['complement'];
+                        $answer .=", ";
+                    }
                 }
                 if($printTitre) $answer.="; ";
                 
