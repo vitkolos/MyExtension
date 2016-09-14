@@ -40,7 +40,9 @@
                                 ng-model="inscription[question.fields.categorie.categorie][question.fields.questionLabel][$index]['value']" ng-change="formCtrl.setPrice(question.fields.categorie.categorie,question.text,$index,questionField)">
                         <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label><label ng-if="questionField.prix>0">{{questionField.prix}} €</label>
                         <label>{{questionField.libelleApresPrix}}</label>
-                        <input type="text" ng-if="questionField.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement" ng-model="inscription[question.fields.categorie.categorie][question.fields.questionLabel][$index]['complement']" class="complement_text" />
+                        <input type="text" ng-if="questionField.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement"
+                               ng-model="inscription[question.fields.categorie.categorie][question.fields.questionLabel][$index]['complement']" class="complement_text"
+                               ng-disabled="inscription[question.fields.categorie.categorie][question.fields.questionLabel][$index]['value'] !=questionField.titre"/>
             </div>
         </div>
     </div>
