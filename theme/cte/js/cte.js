@@ -98,7 +98,8 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	    	else formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
 	}
 	else {
-	    formattedDate= from +" "+$filter('date')(start,formatOfDate) + " "+to+" "+$filter('date')(end,'d MMMM yyyy');	    
+           if(isSameDay) formattedDate= $filter('date')(end,'d MMM yyyy');	  
+	   else formattedDate= from +" "+$filter('date')(start,formatOfDate) + " "+to+" "+$filter('date')(end,'d MMMM yyyy');	    
 	}
 	return formattedDate;
     }
