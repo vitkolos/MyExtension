@@ -124,7 +124,7 @@
                     	{
                             "type": "Ext.form.field.Checkbox",
                             "config": {
-                                "fieldLabel": "Masquer dates passées",
+                                "fieldLabel": "#ext-gen2052#",
                                 "name": "showPastDates",
                                 "inputValue": true
                             }
@@ -140,7 +140,7 @@
 			{
                             "type": "Ext.form.field.Checkbox",
                             "config": {
-                                "fieldLabel": "Limiter la largeur de la liste de contenus",
+                                "fieldLabel": "#ext-gen2053#",
                                 "name": "container",
                                 "inputValue": true
                             }

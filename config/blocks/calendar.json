@@ -20,7 +20,7 @@
                         {
                             "type": "Ext.form.field.Checkbox",
                             "config": {
-                                "fieldLabel": "Masquer dates passées",
+                                "fieldLabel": "#ext-gen2052#",
                                 "name": "showPastDates",
                                 "inputValue": true
                             }
