@@ -597,7 +597,12 @@ protected function sendInscriptionMail($inscription,$lang){
             $answer = "";
             if(is_string($reponse)) $answer= $reponse; // pour texte ou radio
             else {
-                foreach($reponse as $value) $answer .= $value.", ";//pour checkbox
+                foreach($reponse as $value) {//pour checkbox
+                    $answer .= $value['value'];
+                    if($answer['complement'] && $answer['complement'] != "" ) $answer .= " : " .$value['complement'];
+                    $answer .=", ";
+                }
+                   
             }
             $stringToAdd .= "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>";
         }
