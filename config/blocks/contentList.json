@@ -132,7 +132,7 @@
                         {
                             "type": "Ext.form.field.Checkbox",
                             "config": {
-                                "fieldLabel": "Ne pas afficher le nom du lieu",
+                                "fieldLabel": "#ext-gen2051#",
                                 "name": "hidePlace",
                                 "inputValue": true
                             }
