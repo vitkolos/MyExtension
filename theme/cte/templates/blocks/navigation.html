@@ -8,12 +8,11 @@
 </style>
 <![endif]-->
 <style>
- :lang(it){
-        .navbar-fixed-top{width:330px}
-        @media screen and (min-width: @min_xs) {
-            nav.navbar-fixed-top li:last-of-type{width:120px}
-        }
-    }   
+ :lang(it) .navbar-fixed-top{width:330px}
+        
+@media screen and (min-width: @min_xs) {
+    :lang(it) nav.navbar-fixed-top li:last-of-type{width:120px}
+}
 </style>
        <div class="modal fade right {{menuCtrl.menuClass}}" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
                 <div class="modal-dialog">
