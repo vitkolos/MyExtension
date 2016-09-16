@@ -76,23 +76,23 @@
 .ccn-danse:before { content: '\3a'; } /* ':' */
 .ccn-cheque:before { content: '\3b'; } /* ';' */
 .ccn-bible:before { content: '\3d'; } /* '=' */
-.ccn-famille:before { content: '\41'; } /* 'A' */
-.ccn-couple:before { content: '\42'; } /* 'B' */
-.ccn-parents:before { content: '\43'; } /* 'C' */
-.ccn-solo:before { content: '\44'; } /* 'D' */
-.ccn-fiances:before { content: '\45'; } /* 'E' */
-.ccn-abbaye:before { content: '\46'; } /* 'F' */
-.ccn-agenda:before { content: '\47'; } /* 'G' */
-.ccn-boutique:before { content: '\48'; } /* 'H' */
-.ccn-photo:before { content: '\49'; } /* 'I' */
-.ccn-groupe:before { content: '\4a'; } /* 'J' */
-.ccn-hebergement:before { content: '\4b'; } /* 'K' */
-.ccn-info:before { content: '\4c'; } /* 'L' */
-.ccn-sejour:before { content: '\4d'; } /* 'M' */
-.ccn-spirituelle:before { content: '\4e'; } /* 'N' */
-.ccn-visite:before { content: '\4f'; } /* 'O' */
-.ccn-nodogs:before { content: '\50'; } /* 'P' */
-.ccn-hautecombe:before { content: '\51'; } /* 'Q' */
+.ccn-famille:before { content: '\41'; right: 0.5em;position: relative } /* 'A' */
+.ccn-couple:before { content: '\42';  right: 0.5em;position: relative} /* 'B' */
+.ccn-parents:before { content: '\43'; right: 0.5em;position: relative } /* 'C' */
+.ccn-solo:before { content: '\44';  right: 0.5em;position: relative} /* 'D' */
+.ccn-fiances:before { content: '\45'; right: 0.5em;position: relative } /* 'E' */
+.ccn-abbaye:before { content: '\46'; right: 0.5em;position: relative} /* 'F' */
+.ccn-agenda:before { content: '\47'; right: 0.5em;position: relative } /* 'G' */
+.ccn-boutique:before { content: '\48'; right: 0.5em;position: relative } /* 'H' */
+.ccn-photo:before { content: '\49';  right: 0.5em;position: relative} /* 'I' */
+.ccn-groupe:before { content: '\4a';  right: 0.5em;position: relative} /* 'J' */
+.ccn-hebergement:before { content: '\4b';  right: 0.5em;position: relative} /* 'K' */
+.ccn-info:before { content: '\4c';  right: 0.5em;position: relative} /* 'L' */
+.ccn-sejour:before { content: '\4d';  right: 0.5em;position: relative} /* 'M' */
+.ccn-spirituelle:before { content: '\4e';  right: 0.5em;position: relative} /* 'N' */
+.ccn-visite:before { content: '\4f'; right: 0.5em;position: relative } /* 'O' */
+.ccn-nodogs:before { content: '\50';  right: 0.5em;position: relative} /* 'P' */
+.ccn-hautecombe:before { content: '\51';  right: 0.5em;position: relative} /* 'Q' */
 .ccn-home:before { content: '\52'; } /* 'R' */
 .ccn-hand:before { content: '\53'; } /* 'S' */
 .ccn-gym:before { content: '\54'; } /* 'T' */
