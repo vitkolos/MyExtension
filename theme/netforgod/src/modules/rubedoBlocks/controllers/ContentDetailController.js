@@ -103,7 +103,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 foundMeta=true;
                             }
                         });
-                        }/*
+                        /*
                         var foundMeta=false;
                         angular.forEach(me.content.type.fields,function(field){
                             if(!foundMeta&&field.config&&field.config.useAsMetadata&&me.content.fields[field.config.name]&&me.content.fields[field.config.name]!=""){
