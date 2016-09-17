@@ -190,7 +190,7 @@
             { name: 'colors', items: ['TextColor', '-','BGColor' ] },
             { name: 'tools', items: [ 'Maximize', '-','ShowBlocks' ] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink','-','Anchor' ] },
-            { name: 'insert', items: [ 'Image', 'Youtube',  '-', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak' ] }
+            { name: 'insert', items: [ 'Image', 'Youtube'] }
         ];
         if (CKEMode=="Standard"){
             myTBConfig=[
@@ -200,7 +200,7 @@
                 { name: 'colors', items: [ 'TextColor','-', 'Scayt' ] },
                 '/',
                 { name: 'styles', items: [ 'Styles', 'Format', 'Font' ] },
-                { name: 'insert', items: [ 'Image',  'Youtube',  '-', 'SpecialChar', 'PageBreak', 'Link', "Rubedolink", 'Unlink'] },
+                { name: 'insert', items: [ 'Image',  'Youtube',  '-',  'Link', "Rubedolink", 'Unlink'] },
                 { name: 'managing', items: [ 'Maximize','-','Undo', 'Redo', "Source"  ] }
             ];
         } else if (CKEMode=="Basic"){
