@@ -999,8 +999,8 @@
     module.controller("EmbeddedImageController",["$scope","$element",function($scope,$element){
         var me=this;
         $scope.previewFile = function () {
-            var preview = document.querySelector('img');
-            var file    = document.querySelector('input[type=file]').files[0];
+            var preview = angular.element($element.querySelector('img'));
+            var file    = angular.element($element.querySelector('input[type=file]')).files[0];
             var reader  = new FileReader();
             
             reader.addEventListener("load", function () {
