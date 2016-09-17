@@ -1,3 +1,17 @@
 {
-    "Block.Page": "Página"
-}
+    "Block.Page": "Página",
+    "Missions.cana":"Caná : al servicio del matrimonio y de la familia",
+    "Missions.netforgod":"Net for God - Fraternité Oecuménique Internationale",
+    "Missions.ados":"Misión Jóvenes 14-18 años",
+    "Missions.jeunes":"Misión Jóvenes 18-30 años",
+    "Missions.foyers":"Foyers d'étudiants",
+    "Missions.jet":"JET - Volontariat International",
+    "Block.Mail.SendMail":"Enviar un Correo electrónico",
+    "Block.Inscription.Telephone":"Téléfono",
+    "InfosPratiques":"Informaciones prácticas",
+    "Inscription":"Inscribirse",
+    "FaireUnDon":"Hacer un donativo",
+    "Menu" : "menu",
+    "Accueil" : "Accueil",
+    "Time.At":"à"
+    }
