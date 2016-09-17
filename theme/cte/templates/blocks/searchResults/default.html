@@ -55,6 +55,7 @@
                         </div>
                     <h3>{{content.title }}</h3>
                     <p class="summary">{{content.summary}}</p>
+                    
                 </a>
                 <a rubedo-page-link="{{content.propositionReferenceeInterne}}" ng-if="content.propositionReferenceeInterne && content.propositionReferenceeInterne!='' ">
                     <div class="ratio_321 rect" ng-if="content['fields.image']">
@@ -65,6 +66,8 @@
                     <h3>{{content.title }}</h3>
                     <p class="summary">{{content.summary}}</p>
                 </a>
+                <span ng-if="content['i18n.'+lang+'.fields.positionName'][0]">{{content['i18n.'+lang+'.fields.positionName'][0]}} - </span>
+                <time ng-if="content.dateDebut">{{(content.dateDebut/1000)|dateRange:(content.dateFin/1000):'short'}}</time>
                 <p class="text-article">
                     <i class="fa fa-tags txt-marron" aria-hidden="true"></i>
                     <span class="tags capital2">{{content.type}}</span>
