@@ -108,6 +108,8 @@
         "externalMediaField":"/templates/inputFields/externalMedia.html",
         "Rubedo.view.externalMediaField":"/templates/inputFields/externalMedia.html",
         "ratingField":"/templates/inputFields/rating.html",
+        "embeddedImageField":"/templates/inputFields/embeddedImage.html",
+        "Rubedo.view.embeddedImageField":"/templates/inputFields/embeddedImage.html",
         "DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.urlField":"/templates/inputFields/url.html",
@@ -994,6 +996,23 @@
         );
     }]);
 
+    module.controller("EmbeddedImageController",["$scope","$element",function($scope,$element){
+        var me=this;
+        $scope.previewFile = function () {
+            var preview = document.querySelector('img');
+            var file    = document.querySelector('input[type=file]').files[0];
+            var reader  = new FileReader();
+            
+            reader.addEventListener("load", function () {
+              preview.src = reader.result;
+            }, false);
+          
+            if (file) {
+              reader.readAsDataURL(file);
+              console.log(reader.readAsDataURL(file));
+            }
+          }
+    }]);
     module.controller("RepeatedFieldController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
         var me=this;
         $scope.fields=[];
