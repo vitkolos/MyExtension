@@ -1,5 +1,8 @@
 <div ng-controller="EmbeddedImageController as imgCtrl">
-    <input type="file" onchange="previewFile()"><br>
+    <input type="file"
+               id="img"
+               file-model="imgCtrl.newFile"
+                ><br>
     <img src="" height="200" alt="Image preview...">
     <!--
     <div ng-if="fieldEntity[field.config.name].imageCode">

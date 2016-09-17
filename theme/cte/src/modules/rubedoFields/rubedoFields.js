@@ -999,17 +999,19 @@
     module.controller("EmbeddedImageController",["$scope","$element",function($scope,$element){
         var me=this;
         $scope.previewFile = function () {
-            var preview = angular.element($element.querySelector('img'));
+            //var preview = angular.element($element.querySelector('img'));
             var file    = angular.element($element.querySelector('input[type=file]')).files[0];
             var reader  = new FileReader();
             
             reader.addEventListener("load", function () {
-              preview.src = reader.result;
+              //preview.src = reader.result;
             }, false);
           
+            $scope.upload = function(file) {
             if (file) {
-              reader.readAsDataURL(file);
-              console.log(reader.readAsDataURL(file));
+                reader.readAsDataURL(file);
+                console.log(reader.readAsDataURL(file));            }
+              
             }
           }
     }]);
