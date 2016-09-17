@@ -347,10 +347,13 @@ protected function sendInscriptionMail($inscription,$lang){
     /*Cordialement / à bientôt*/
     $messageClient .= $trad["ccn_mail_9_".$tuOuVous] . ",<br/><br/>";
     $messageClient .= $contactSecretariat;
-    //ENVOI DE MAIL AU JEUNE
+    //ENVOI DE MAIL AUX INSCRITS
     $mailerService = Manager::getService('Mailer');
     $mailClient = $mailerService->getNewMessage();
-    $mailClient->setTo($inscription['email']); // à changer en $inscription['email']
+    if($nbInscrits == 2 && $inscription['emailPers2'] && $inscription['emailPers2'] != "") {
+        $mailClient->setTo(array($inscription['email'],$inscription['emailPers2']));
+    }
+    else  $mailClient->setTo($inscription['email']);
     
     // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
     $senderMail = $inscription['contact']['email'];
