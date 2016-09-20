@@ -49,7 +49,7 @@ class InscriptionResource extends AbstractResource
     {
         
         //GET NUMERO D'INSCRIPTION ACTUEL
-        $id = "56a10fafc445ec692b8b4f3d"; // id du contenu "Numéro d'inscription"
+        $id = "57e1a814245640fc008ba8a8"; // id du contenu "Numéro d'inscription"
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
