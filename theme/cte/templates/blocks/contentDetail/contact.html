@@ -1,6 +1,6 @@
 <div ng-if="block.code=='contact' || blockConfig.contentOnly">
 <div class="container">
-		<div class="row padding-large text-center">
+		<div class="row padding-large text-center" ng-if="fieldEntity['prenom'] || fieldEntity['nom']">
 			<div class="col-xs-12 text-center">
 				<h3>{{contentDetailCtrl.content.fields.prenom}} {{contentDetailCtrl.content.fields.nom}}</h3>
 			</div>
