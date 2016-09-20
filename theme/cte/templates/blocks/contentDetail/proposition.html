@@ -59,6 +59,7 @@
 								<span ng-if="fieldEntity['dateFin'] !=fieldEntity['dateDebut'] ">{{rubedo.translate("Time.At", "à")}} </span>
 								<span ng-if="fieldEntity['dateFin'] ==fieldEntity['dateDebut'] ">, </span>
 								{{contentDetailCtrl.content.fields.heureDebut|cleanHour}} 
+							</span>
 							<span ng-if="fieldEntity['dateFin'] && fieldEntity['dateFin'] !=fieldEntity['dateDebut'] ">{{rubedo.translate("date.to", "do")}} {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'fullDate'}}
 								<span ng-if="fieldEntity['heureFin']">{{rubedo.translate("Time.At", "à")}} {{contentDetailCtrl.content.fields.heureFin|cleanHour}}</span>
 							</span>

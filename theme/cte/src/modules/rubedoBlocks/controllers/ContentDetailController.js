@@ -9,7 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.showInscription = false; // pour les inscriptions, masquer le formulaire
     me.isInscription = true; // pour les propositions, ne pas afficher les inscriptions si closes
 
-    $scope.fieldInputMode=false;
+    $scope.fieldInputMode=false;is
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
     });
@@ -191,7 +191,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         //Propositions : déterminer si les inscriptions sont possibles
                         var today = new Date();
                         if (!me.content.fields.inscriptionState
-                            || (me.content.fields.inscriptionState &&(me.content.fields.inscriptionState.inscriptionState == 'close' || me.content.fields.inscriptionState.inscriptionState == 'non'))) {
+                            || (me.content.fields.inscriptionState &&(me.content.fields.inscriptionState.inscriptionState == 'close' || me.content.fields.inscriptionState.inscriptionState == 'non' || me.content.fields.inscriptionState.inscriptionState == 'libre'))) {
                             me.isInscription=false;
                         }
 
