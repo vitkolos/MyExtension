@@ -9,7 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.showInscription = false; // pour les inscriptions, masquer le formulaire
     me.isInscription = true; // pour les propositions, ne pas afficher les inscriptions si closes
 
-    $scope.fieldInputMode=false;is
+    $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
     });
