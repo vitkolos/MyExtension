@@ -103,7 +103,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     if ((me.content.fields.paimentOption)
             &&(me.content.fields.paimentOption.paimentOption) 
             && ((me.content.fields.paimentOption.paimentOption).length>0)
-            && (me.content.fields.paimentOption.paimentOption[0]!=null || me.content.fields.paimentOption.paimentOption[1]!=null) {
+            && (me.content.fields.paimentOption.paimentOption[0]!=null || me.content.fields.paimentOption.paimentOption[1]!=null)) {
         me.isPaiement = true;
     }
     else if (me.content.fields.accompte>0  && me.content.fields.inscriptionState.inscriptionState!='preinscription' && me.content.fields.inscriptionState.inscriptionState!='attente') {
