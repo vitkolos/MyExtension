@@ -61,6 +61,9 @@ class InscriptionResource extends AbstractResource
             ),
             "pl" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "es" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
             )
         );
         $result = $contentsService->update($content, array(),false);
