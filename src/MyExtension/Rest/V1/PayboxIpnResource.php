@@ -174,7 +174,12 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $body .= "Id Inscription : " . $inscription['fields']['text']."\n";
             $body .= "Nom : " . $inscription['fields']['nom']."\n";
             $body .= "Prénom : " . $inscription['fields']['surname']."\n";
-             $body .= "Email : " . $inscription['fields']['email']."\n";
+            $body .= "Email : " . $inscription['fields']['email']."\n";
+             if($inscription['fields']['public_type'] == "couple" || $inscription['fields']['public_type'] == "fiances" || $inscription['fields']['public_type'] == "famille") {
+                if($inscription['fields']['nomPers2']) $body .= "Nom 2e personne : " . $inscription['fields']['nomPers2']."\n";
+                if($inscription['fields']['prenomPers2']) $body .= "Prénom 2e personne : " . $inscription['fields']['prenomPers2']."\n";
+                if($inscription['fields']['emailPers2']) $body .= "Email 2e personne: " . $inscription['fields']['emailPers2']."\n";
+             }
             if($erreurMessage!="") $body.="\n\n Message : " . $erreurMessage;
         }
         else {
