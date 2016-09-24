@@ -69,12 +69,6 @@ class InscriptionResource extends AbstractResource
         $result = $contentsService->update($content, array(),false);
         $inscriptionNumber= $content["fields"]["value"];
 
-    
-        //authentication comme admin inscriptions
-        
-        
-        
-        
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
         $inscriptionForm['fields'] =  $params['inscription'];
@@ -86,13 +80,6 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
                 //GET SECRETARIAT
         if($inscriptionForm['fields']['contact']){
-            /*
-            $mailSecretariat = $this->callAPI("GET", $token, $inscriptionForm['fields']['contact']);
-            if($mailSecretariat['success']) {
-                $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['content']['fields']['email'];
-                $inscriptionForm['fields']['contact'] = $mailSecretariat['content']['fields'];
-            }
-            else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";*/
             $mailSecretariat = $contentsService->findById($inscriptionForm['fields']['contact'],false,false);
             $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['fields']['email'];
             $inscriptionForm['fields']['contact'] = $mailSecretariat['fields'];
@@ -519,6 +506,13 @@ protected function sendInscriptionMail($inscription,$lang){
     
     
     $mailSecretariat = $mailerService->getNewMessage();
+    $mailSecretariatCopy = array();
+    if($inscription['mails_secretariat']) {
+        foreach ($inscription['mails_secretariat'] as $mail){
+            array_push($mailSecretariatCopy,$mail);
+        }
+        $mailSecretariat->setCc($mailSecretariatCopy); 
+    }
     $mailSecretariat->setTo($inscription['contact']['email']); 
     $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['nom']))); 
     $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['nom']))); 
