@@ -258,6 +258,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                 /*get images dimensions*/
                 Upload.imageDimensions(files[i]).then(function(dimensions){
                     /*RESIZE*/
+                    console.log(i);
                     console.log(files);
                     if (files[i].size>1024*150 || dimensions.width>1000 || dimensions.height>1000) {
                         
