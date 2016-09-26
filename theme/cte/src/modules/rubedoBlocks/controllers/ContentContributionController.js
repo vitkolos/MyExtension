@@ -207,32 +207,57 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
             });
         };
     
-    me.newFiles=null;
     var nbOfImages = 0;
     me.progress = 0;
-    me.uploadNewFiles=function(){
-       me.notification=null;
-       me.progress=1;
-       nbOfImages = me.newFiles.length;
-       if ($scope.fieldInputMode&&me.newFiles){
-           var uploadOptions={
-               typeId:"545cd95245205e91168b45b1",
-                target:me.workspace
-           };
-            angular.forEach(me.newFiles, function(file, index) {
-                var options = angular.copy(uploadOptions);
-                if (me.title && me.title!="") {
-                    options.fields={title : me.title+'_'+index};
-                }
-                else {
-                    options.fields={title : file.name};
-                }
-                RubedoMediaService.uploadMedia(file,options).then(
+    
+        $scope.upload=function(file){
+            me.notification=null;
+            me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
+           if ($scope.fieldInputMode&&file&&$scope.field.config.allowedDAMTypes){
+
+               /*pour images, redimensionner*/
+               if ($scope.field.config.allowedDAMTypes=="545cd95245205e91168b45b1") {
+                    Upload.upload({
+                        url: '/api/v1/media',
+                        method: 'POST',
+                        params:{
+                            typeId:"545cd95245205e91168b45b1",
+                            userWorkspace:true, //on utilise le main workspace de l'utilisateur
+                            fields:{title:file.name},
+                            taxonomy:{navigation:[me.pageId]}
+                        },
+                        file:file,
+                        headers: {'Content-Type': undefined}
+                    }).then(function (response) {
+                            var id=response.data.media.id;
+                            $scope.fieldEntity[$scope.field.config.name]=id;
+                            mediaId=id;
+                            if ($scope.registerFieldEditChanges){
+                                $scope.registerFieldEditChanges();
+                            }
+                            me.media=response.data.media;
+                            me.displayMedia();
+                    }, function (response) {
+                        console.log(response);
+                        me.notification={
+                            type:"error",
+                            text:response.data.message
+                        };
+                    }
+                    );
+               }
+               else {
+                RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
                     function(response){
                         if (response.data.success){
                             var id=response.data.media.id;
-                            ($scope.ccCtrl.imagesForAlbum).push(id);
-                            me.progress += 100* 1/nbOfImages;
+                            $scope.fieldEntity[$scope.field.config.name]=id;
+                            mediaId=id;
+                            if ($scope.registerFieldEditChanges){
+                                $scope.registerFieldEditChanges();
+                            }
+                             me.media=response.data.media;
+                             me.displayMedia();
                         } else {
                             console.log(response);
                             me.notification={
@@ -249,15 +274,15 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                         };
                     }
                 );
-            });
-       }
-
-    };
+               }
+           }            
+        };
+        /*
     if ($scope.fieldInputMode){
         $element.find('.form-control').on('change', function(){
             setTimeout(function(){
                 me.uploadNewFiles();
             }, 200);
         });
-    }
+    }*/
 }]);
