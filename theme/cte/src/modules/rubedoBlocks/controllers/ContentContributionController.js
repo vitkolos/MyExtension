@@ -196,7 +196,6 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     me.progress = 0;
     
     var resizeOptions = function (width,height){
-        console.log(width + " "+height);
         var options = {
             quality: 0.7
         }
@@ -206,13 +205,41 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
         else options.height = 1000;
         return options;
     };
+    var uploadFile = function(file){
+        Upload.upload({
+            url: '/api/v1/media',
+            method: 'POST',
+            params:{
+                typeId:"545cd95245205e91168b45b1",
+                userWorkspace:true, //on utilise le main workspace de l'utilisateur
+                fields:{title:imgTitle}
+            },
+            file: file,
+            headers: {'Content-Type': undefined}
+        }).then(function (resp) {
+            me.progress += 100* 1/nbOfImages;
+            files[counter].success=true;
+            if (counter==nbOfImages-1) {
+                me.processing=false;
+                me.progress=0;
+            }
+            counter++;
+        }, function (resp) {
+            console.log('Error status: ' + resp.status);
+            counter++;
+            if (i==nbOfImages-1) {
+                me.processing=false;
+                me.progress=0;
+            }
+        });         
+    }
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
     });
     
     $scope.upload = function(files) {
         var batch = false;
-
+        var counter=0;
         if (me.batchTitle && me.batchTitle!="") {
             batch = true;
         }
@@ -221,49 +248,33 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
             me.processing=true;
             var nbOfImages = files.length;
             for (var i = 0; i < nbOfImages; i++) {
-                var imgTitle=""; var counter=0;
+                var imgTitle=""; 
                 if (!batch) {
                     imgTitle=files[i].name;
                 }
                 else {
                     imgTitle=me.batchTitle + '_'+i;
                 }
-                Upload.imageDimensions(files[i]).then(function(dimensions){console.log(dimensions.width, dimensions.height);});
-
-                /*RESIZE*/
-                if (files[i].size>1024*150) {
-                    
-                   // Upload.resize(files[i], resizeOptions()).then(function(resizedFile){});
-                }
-                
-                
-                
-                Upload.upload({
-                    url: '/api/v1/media',
-                    method: 'POST',
-                    params:{
-                        typeId:"545cd95245205e91168b45b1",
-                        userWorkspace:true, //on utilise le main workspace de l'utilisateur
-                        fields:{title:imgTitle}
-                    },
-                    file: files[i],
-                    headers: {'Content-Type': undefined}
-                }).then(function (resp) {
-                    me.progress += 100* 1/nbOfImages;
-                    files[counter].success=true;
-                    if (counter==nbOfImages-1) {
-                        me.processing=false;
-                        me.progress=0;
+                /*get images dimensions*/
+                Upload.imageDimensions(files[i]).then(function(dimensions){
+                    /*RESIZE*/
+                    if (files[i].size>1024*150 || dimensions.width>1000 || dimensions.height>1000) {
+                        
+                        Upload.resize(files[i], resizeOptions(dimensions.width,dimensions.height)).then(function(resizedFile){
+                             uploadFile(resizedFile)   ;                   
+                        });
                     }
-                    counter++;
-                }, function (resp) {
-                    console.log('Error status: ' + resp.status);
-                    counter++;
-                    if (i==nbOfImages-1) {
-                        me.processing=false;
-                        me.progress=0;
+                    /*NO RESIZE*/
+                    else {
+                         uploadFile(files[i]);
                     }
                 });
+
+                
+                
+                
+                
+                
             }
         }
     
