@@ -227,7 +227,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                 else {
                     imgTitle=me.batchTitle + '_'+i;
                 }
-                console.log(files[i]);
+                console.log(files[i].size);
                 
                 
                 
