@@ -228,10 +228,12 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                 else {
                     imgTitle=me.batchTitle + '_'+i;
                 }
-                console.log(files[i]);
+                Upload.imageDimensions(files[i]).then(function(dimensions){console.log(dimensions.width, dimensions.height);});
+
                 /*RESIZE*/
                 if (files[i].size>1024*150) {
-                    Upload.resize(files[i], resizeOptions()).then(function(resizedFile){});
+                    
+                   // Upload.resize(files[i], resizeOptions()).then(function(resizedFile){});
                 }
                 
                 
