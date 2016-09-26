@@ -228,6 +228,11 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                 else {
                     imgTitle=me.batchTitle + '_'+i;
                 }
+                console.log(files[i]);
+                
+                
+                
+                
                 Upload.upload({
                     url: '/api/v1/media',
                     method: 'POST',
