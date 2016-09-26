@@ -188,7 +188,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
 
 
 
-angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
+angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'Upload',function($scope,RubedoMediaService,$element,Upload){
     var me=this;
     me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
     me.files=[];
