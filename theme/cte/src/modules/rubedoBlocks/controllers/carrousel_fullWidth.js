@@ -49,7 +49,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         }
         else {
         return({
-            height:height,
+            height:height==600? height : 450,
             //width:blockConfig.imageWidth ,
             mode:blockConfig.imageResizeMode
         });    
