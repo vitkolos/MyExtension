@@ -196,7 +196,6 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     me.progress = 0;
     
     $scope.resizeOptions = function (width,height){
-        console.log(width + " "+height);
         var options = {
             quality: 0.7
         }

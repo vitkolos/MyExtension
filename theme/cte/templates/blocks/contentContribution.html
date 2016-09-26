@@ -17,8 +17,7 @@
                             ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
                             accept="image/*" 
                             ngf-pattern="'image/*'"
-                            ngf-resize="resizeOptions($width,$height)"
-                            ngf-resize-if="$width > 1000 || $height > 1000"
+                            
                             ng-disabled="imgCtrl.processing">
                             <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
                             <img src="/theme/cte/img/loader.gif" ng-if="imgCtrl.processing">
