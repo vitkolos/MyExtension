@@ -108,6 +108,8 @@
         "externalMediaField":"/templates/inputFields/externalMedia.html",
         "Rubedo.view.externalMediaField":"/templates/inputFields/externalMedia.html",
         "ratingField":"/templates/inputFields/rating.html",
+        //"embeddedImageField":"/templates/inputFields/embeddedImage.html",
+        //"Rubedo.view.embeddedImageField":"/templates/inputFields/embeddedImage.html",
         "DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.urlField":"/templates/inputFields/url.html",
@@ -190,7 +192,7 @@
             { name: 'colors', items: ['TextColor', '-','BGColor' ] },
             { name: 'tools', items: [ 'Maximize', '-','ShowBlocks' ] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink','-','Anchor' ] },
-            { name: 'insert', items: [ 'Image', 'Youtube',  '-', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak' ] }
+            { name: 'insert', items: [ 'Image', 'Youtube'] }
         ];
         if (CKEMode=="Standard"){
             myTBConfig=[
@@ -200,7 +202,7 @@
                 { name: 'colors', items: [ 'TextColor','-', 'Scayt' ] },
                 '/',
                 { name: 'styles', items: [ 'Styles', 'Format', 'Font' ] },
-                { name: 'insert', items: [ 'Image',  'Youtube',  '-', 'SpecialChar', 'PageBreak', 'Link', "Rubedolink", 'Unlink'] },
+                { name: 'insert', items: [ 'Image',  'Youtube',  '-',  'Link', "Rubedolink", 'Unlink'] },
                 { name: 'managing', items: [ 'Maximize','-','Undo', 'Redo', "Source"  ] }
             ];
         } else if (CKEMode=="Basic"){
@@ -684,14 +686,7 @@
             me.notification=null;
             me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
            if ($scope.fieldInputMode&&file&&$scope.field.config.allowedDAMTypes){
-               /*
-               var uploadOptions={
-                   typeId:$scope.field.config.allowedDAMTypes,
-                   target:me.workspace,
-                   fields:{
-                       title:file.name
-                   }
-               };*/
+
                /*pour images, redimensionner*/
                if ($scope.field.config.allowedDAMTypes=="545cd95245205e91168b45b1") {
                     Upload.upload({
@@ -994,6 +989,25 @@
         );
     }]);
 
+    module.controller("EmbeddedImageController",["$scope","$element",function($scope,$element){
+        var me=this;
+        $scope.previewFile = function () {
+            //var preview = angular.element($element.querySelector('img'));
+            var file    = angular.element($element.querySelector('input[type=file]')).files[0];
+            var reader  = new FileReader();
+            
+            reader.addEventListener("load", function () {
+              //preview.src = reader.result;
+            }, false);
+          
+            $scope.upload = function(file) {
+            if (file) {
+                reader.readAsDataURL(file);
+                console.log(reader.readAsDataURL(file));            }
+              
+            }
+          }
+    }]);
     module.controller("RepeatedFieldController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
         var me=this;
         $scope.fields=[];

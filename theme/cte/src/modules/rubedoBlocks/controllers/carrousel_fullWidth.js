@@ -38,11 +38,23 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         
     }
     me.getImageOptions=function(){
-        return({
-            height:blockConfig.imageHeight,
-            width:blockConfig.imageWidth ? blockConfig.imageWidth : angular.element("#block"+$scope.block.id).width(),
+        var height = angular.element("#block"+$scope.block.id).height();
+        var width = angular.element("#block"+$scope.block.id).width();
+        if(width>1.6*height){
+            return({
+            //height:blockConfig.imageHeight? blockConfig.imageHeight : angular.element("#block"+$scope.block.id).height(),
+            width:Math.ceil(width/300)*300 ,
             mode:blockConfig.imageResizeMode
-        });
+            });
+        }
+        else {
+        return({
+            height:Math.ceil(height/200)*200,
+            //width:blockConfig.imageWidth ,
+            mode:blockConfig.imageResizeMode
+        });    
+        }
+        
     };
     if (blockConfig.query){
         me.getContents();

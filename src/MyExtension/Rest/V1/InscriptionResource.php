@@ -49,7 +49,7 @@ class InscriptionResource extends AbstractResource
     {
         
         //GET NUMERO D'INSCRIPTION ACTUEL
-        $id = "56a10fafc445ec692b8b4f3d"; // id du contenu "Numéro d'inscription"
+        $id = "57e1a814245640fc008ba8a8"; // id du contenu "Numéro d'inscription"
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
@@ -61,17 +61,14 @@ class InscriptionResource extends AbstractResource
             ),
             "pl" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "es" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
             )
         );
         $result = $contentsService->update($content, array(),false);
         $inscriptionNumber= $content["fields"]["value"];
 
-    
-        //authentication comme admin inscriptions
-        
-        
-        
-        
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
         $inscriptionForm['fields'] =  $params['inscription'];
@@ -83,13 +80,6 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
                 //GET SECRETARIAT
         if($inscriptionForm['fields']['contact']){
-            /*
-            $mailSecretariat = $this->callAPI("GET", $token, $inscriptionForm['fields']['contact']);
-            if($mailSecretariat['success']) {
-                $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['content']['fields']['email'];
-                $inscriptionForm['fields']['contact'] = $mailSecretariat['content']['fields'];
-            }
-            else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";*/
             $mailSecretariat = $contentsService->findById($inscriptionForm['fields']['contact'],false,false);
             $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['fields']['email'];
             $inscriptionForm['fields']['contact'] = $mailSecretariat['fields'];
@@ -347,10 +337,13 @@ protected function sendInscriptionMail($inscription,$lang){
     /*Cordialement / à bientôt*/
     $messageClient .= $trad["ccn_mail_9_".$tuOuVous] . ",<br/><br/>";
     $messageClient .= $contactSecretariat;
-    //ENVOI DE MAIL AU JEUNE
+    //ENVOI DE MAIL AUX INSCRITS
     $mailerService = Manager::getService('Mailer');
     $mailClient = $mailerService->getNewMessage();
-    $mailClient->setTo($inscription['email']); // à changer en $inscription['email']
+    if($nbInscrits == 2 && $inscription['emailPers2'] && $inscription['emailPers2'] != "") {
+        $mailClient->setTo(array($inscription['email'],$inscription['emailPers2']));
+    }
+    else  $mailClient->setTo($inscription['email']);
     
     // vérifier si le mail de secrétariat est en chemin-neuf.org ;  sinon envoyer depuis l'adresse web
     $senderMail = $inscription['contact']['email'];
@@ -513,6 +506,13 @@ protected function sendInscriptionMail($inscription,$lang){
     
     
     $mailSecretariat = $mailerService->getNewMessage();
+    $mailSecretariatCopy = array();
+    if($inscription['mails_secretariat']) {
+        foreach ($inscription['mails_secretariat'] as $mail){
+            array_push($mailSecretariatCopy,$mail);
+        }
+        $mailSecretariat->setCc($mailSecretariatCopy); 
+    }
     $mailSecretariat->setTo($inscription['contact']['email']); 
     $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['nom']))); 
     $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['nom']))); 
@@ -551,7 +551,7 @@ protected function sendInscriptionMail($inscription,$lang){
         }
         if($inscription['complementaire']) {
             $inscription['complementaire_org'] = $inscription['complementaire'];
-            $inscription['complementaire'] = $this->questionToAnswer($inscription['complementaire']);
+            $inscription['questionsComplementaires'] = $this->questionToAnswer($inscription['complementaire']);
         }        
         if($inscription['jai_connu']){
             $inscription['jai_connu_org'] = $inscription['jai_connu'];
@@ -580,7 +580,11 @@ protected function sendInscriptionMail($inscription,$lang){
                 if($printTitre) $answer .= $titre." = ";
                 if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
                 else {
-                    foreach($reponse as $value) $answer .= $value.", ";
+                    foreach($reponse as $value) {
+                        $answer .= $value['value'];
+                        if($answer['complement'] && $answer['complement'] != "" ) $answer .= " : " .$value['complement'];
+                        $answer .=", ";
+                    }
                 }
                 if($printTitre) $answer.="; ";
                 
@@ -593,7 +597,12 @@ protected function sendInscriptionMail($inscription,$lang){
             $answer = "";
             if(is_string($reponse)) $answer= $reponse; // pour texte ou radio
             else {
-                foreach($reponse as $value) $answer .= $value.", ";//pour checkbox
+                foreach($reponse as $value) {//pour checkbox
+                    $answer .= $value['value'];
+                    if($answer['complement'] && $answer['complement'] != "" ) $answer .= " : " .$value['complement'];
+                    $answer .=", ";
+                }
+                   
             }
             $stringToAdd .= "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67%>" . $answer . "</td></tr>";
         }

@@ -9,7 +9,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
-    me.ismagic = config.magicQuery ? config.magicQuery : false;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
     me.template_foi = themePath+"/templates/blocks/contentList/foi.html";
@@ -29,11 +28,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var options = {
         start: me.start,
         limit: me.limit,
-        ismagic: me.ismagic,
         'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","dateDebut","dateFin","positionName","complement_date","video","subTitle"]
     };
     if(config.singlePage){
         options.detailPageId = config.singlePage;
+    }
+    if(config.showPastDates) {
+        options.date=Math.round(new Date().getTime()/1000);
+        options.dateFieldName="dateDebut";
+        options.endDate = Math.round( (new Date().getTime() + 2*(3600000*24*365))/1000); //ajouter 2 ans pour la date de fin
+        options.endDateFieldName="dateFin";
     }
     if(config.enableFOContrib&&$scope.rubedo.current.user){
         //options.foContributeMode = true;   ENABLE to filter contents by user

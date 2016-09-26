@@ -4,8 +4,16 @@
     .navbar.footer.navbar-modal {
          width: 80%; margin-left: 20%;
     }
+    
 </style>
-<![endif]-->        
+<![endif]-->
+<style>
+ :lang(it) .navbar-fixed-top{width:330px}
+        
+@media screen and (min-width: 500px) {
+    :lang(it) nav.navbar-fixed-top li:last-of-type{width:120px}
+}
+</style>
        <div class="modal fade right {{menuCtrl.menuClass}}" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
                 <div class="modal-dialog">
                         <nav class="navbar footer navbar-modal" >

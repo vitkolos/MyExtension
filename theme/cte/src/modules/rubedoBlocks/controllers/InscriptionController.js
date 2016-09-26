@@ -103,7 +103,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     if ((me.content.fields.paimentOption)
             &&(me.content.fields.paimentOption.paimentOption) 
             && ((me.content.fields.paimentOption.paimentOption).length>0)
-            && me.content.fields.paimentOption.paimentOption[0]!=null) {
+            && (me.content.fields.paimentOption.paimentOption[0]!=null || me.content.fields.paimentOption.paimentOption[1]!=null)) {
         me.isPaiement = true;
     }
     else if (me.content.fields.accompte>0  && me.content.fields.inscriptionState.inscriptionState!='preinscription' && me.content.fields.inscriptionState.inscriptionState!='attente') {
@@ -318,6 +318,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
             $scope.inscription.contact = me.content.fields.contact;
+            if (me.content.fields.mails_secretariat && me.content.fields.mails_secretariat.length>0) {
+                $scope.inscription.mails_secretariat = me.content.fields.mails_secretariat;
+            }
             if(me.content.fields.codeOnesime) $scope.inscription.codeOnesime = me.content.fields.codeOnesime;
             $scope.inscription.mailInscription = me.content.fields.mailInscription;
             $scope.inscription.mailInscriptionService = me.content.fields.mailInscriptionService;

@@ -9,6 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.start = 0;
         me.limit = $routeParams.limit?$routeParams.limit:20; // nombre de résultats affichés par défaut
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"lastUpdateTime";
+        $scope.lang = $scope.rubedo.current.site.locale;
        var resolveOrderBy = {
             '_score': $scope.rubedo.translate('Search.Label.OrderByRelevance'),
             'lastUpdateTime': $scope.rubedo.translate('Search.Label.OrderByDate'),

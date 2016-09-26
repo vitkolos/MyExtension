@@ -58,14 +58,6 @@
                                 "fieldLabel": "#ext-gen1075#",
                                 "name": "query"
                             }
-                        },
-                        {
-                            "type": "Ext.form.field.Checkbox",
-                            "config": {
-                                "fieldLabel": "#ext-gen1447#",
-                                "name": "magicQuery",
-                                "inputValue": true
-                            }
                         }
                     ]
                 },
@@ -129,10 +121,18 @@
 		{
                     "categorie": "#ext-gen1072#",
                     "champs": [
+                    	{
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "#ext-gen2052#",
+                                "name": "showPastDates",
+                                "inputValue": true
+                            }
+                        },
                         {
                             "type": "Ext.form.field.Checkbox",
                             "config": {
-                                "fieldLabel": "Ne pas afficher le nom du lieu",
+                                "fieldLabel": "#ext-gen2051#",
                                 "name": "hidePlace",
                                 "inputValue": true
                             }
@@ -140,7 +140,7 @@
 			{
                             "type": "Ext.form.field.Checkbox",
                             "config": {
-                                "fieldLabel": "Limiter la largeur de la liste de contenus",
+                                "fieldLabel": "#ext-gen2053#",
                                 "name": "container",
                                 "inputValue": true
                             }
@@ -239,7 +239,10 @@
                       }
                     ]
                 }
-            ]
+            ],
+          "csEvents":{
+            "changePage":null
+          }
         },
         "configBloc": {
             "columns": 3,
