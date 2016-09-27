@@ -220,14 +220,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         me.changeImage = function(side,embedded){
                             if(side == 'left' && me.currentIndex > 0){
                                 me.currentIndex -= 1;
-                            } else if(side == 'right' && me.currentIndex < me.content.fields.images.length - 1) {
+                            } else if(side == 'right'){
                                 me.currentIndex += 1;
                             }
-                            if(embedded) {me.currentImage = me.content.fields.embeddedImages[me.currentIndex]; console.log(me.currentImage);}
+                            if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex]; 
                             else me.currentImage = me.content.fields.images[me.currentIndex];
                         };
                         me.changeImageKey = function($event){
-                          console.log($event);
                             if ($event.keyCode == 39) { 
                                me.changeImage('right');
                             }
