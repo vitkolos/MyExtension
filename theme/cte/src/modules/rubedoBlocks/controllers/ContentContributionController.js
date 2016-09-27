@@ -218,8 +218,14 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                 else {
                     imgTitle=me.batchTitle + '_'+i;
                 }
-    
-
+                Upload.base64DataUrl(file[i]).then(
+                    function(response){
+                        console.log(response);
+                    },
+                    function(response){
+                    }
+                );
+/*
                 Upload.upload({
                     url: '/api/v1/media',
                     method: 'POST',
@@ -245,7 +251,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                         me.processing=false;
                         me.progress=0;
                     }
-                });                    
+                });      */              
                 
             }
         }
