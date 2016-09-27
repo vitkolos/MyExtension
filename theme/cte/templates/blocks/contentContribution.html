@@ -1,3 +1,14 @@
+<style>
+        .drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 400px;
+    height: 150px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px auto;
+}
+</style>
 <div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl" >
     <form ng-if="ccCtrl.contentType" class="form form-horizontal" ng-submit="ccCtrl.submitNewContent()">
         <h3 ng-if="!ccCtrl.updateMode" class="text-left" ng-click="ccCtrl.showForm= !ccCtrl.showForm">
