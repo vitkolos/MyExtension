@@ -227,12 +227,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             else me.currentImage = me.content.fields.images[me.currentIndex];
                         };
                         me.changeImageKey = function($event){
+                            var embedded = me.content.fields.embeddedImages && me.content.fields.embeddedImages.length>0;
                             if ($event.keyCode == 39) { 
-                               me.changeImage('right');
+                               me.changeImage('right',embedded);
                             }
                         
                             else if ($event.keyCode == 37) {
-                               me.changeImage('left');
+                               me.changeImage('left',embedded);
                             }
                         };
 
