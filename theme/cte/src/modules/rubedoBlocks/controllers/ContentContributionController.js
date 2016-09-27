@@ -228,6 +228,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                         ($scope.ccCtrl.embeddedImages).push(
                                                             {code:response,
                                                             imageCode:response.replace("data:image/jpeg","data:image/tmp")});
+                        files[counter].imageCode = response;
                         me.progress += 100* 1/nbOfImages;
                         files[counter].success=true;
                         counter++;
