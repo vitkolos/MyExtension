@@ -212,17 +212,19 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     //Albums photos
                     if (me.content.type.code=="album") {
                         me.currentIndex=0;
-                        me.loadModal = function(index){
+                        me.loadModal = function(index,embedded){
                             me.currentIndex = index;
-                            me.currentImage = me.content.fields.images[me.currentIndex];
+                            if(embedded) me.currentImage = me.content.fields.images[me.currentIndex];
+                            else me.currentImage = me.content.fields.embeddedImages[me.currentIndex];
                         };
-                        me.changeImage = function(side){
+                        me.changeImage = function(side,embedded){
                             if(side == 'left' && me.currentIndex > 0){
                                 me.currentIndex -= 1;
                             } else if(side == 'right' && me.currentIndex < me.content.fields.images.length - 1) {
                                 me.currentIndex += 1;
                             }
-                            me.currentImage = me.content.fields.images[me.currentIndex];
+                            if(embedded) me.currentImage = me.content.fields.images[me.currentIndex];
+                            else me.currentImage = me.content.fields.embeddedImages[me.currentIndex];
                         };
                         me.changeImageKey = function($event){
                           console.log($event);
