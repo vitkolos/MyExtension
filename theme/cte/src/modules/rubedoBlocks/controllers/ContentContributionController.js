@@ -199,7 +199,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
         var options = {
             quality: 0.7
         }
-        if (width>heigth) {
+        if (width>height) {
             options.width = 1000;
         }
         else options.height = 1000;
