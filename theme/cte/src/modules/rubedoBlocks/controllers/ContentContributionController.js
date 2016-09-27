@@ -194,7 +194,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
 
 angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'Upload',function($scope,RubedoMediaService,$element,Upload){
     var me=this;
-    me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
     me.files=[];
     me.processing=false;
     me.progress = 0;
@@ -205,29 +204,19 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     });
     
     $scope.upload = function(files) {
-        var batch = false;
         var counter=0;
-        if (me.batchTitle && me.batchTitle!="") {
-            batch = true;
-        }
+
         //var nbOfImages = files.length;
         if (files && files.length) {
             me.processing=true;
             var nbOfImages = files.length;
-            for (var i = 0; i < nbOfImages; i++) {
-                var imgTitle=""; 
-                if (!batch) {
-                    imgTitle=files[i].name;
-                }
-                else {
-                    imgTitle=me.batchTitle + '_'+i;
-                }
-                
+            for (var i = 0; i < nbOfImages; i++) {                
                 Upload.base64DataUrl(files[i]).then(
                     function(response){
                         ($scope.ccCtrl.embeddedImages).push(
                                                             {code:response,
                                                             imageCode:response.replace("data:image/jpeg","data:image/tmp")});
+                        files[counter].imageCode = response;
                         me.progress += 100* 1/nbOfImages;
                         files[counter].success=true;
                         counter++;

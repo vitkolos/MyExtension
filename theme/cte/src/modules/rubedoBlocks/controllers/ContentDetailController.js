@@ -119,7 +119,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                   
                     // seulement pour propositions - qui peuvent être éditées directement dans la page
-                    me.content.editorPageUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url+"?content-edit="+me.content.id;
+                    if($scope.rubedo.current.breadcrumb.length>0) me.content.editorPageUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url+"?content-edit="+me.content.id;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
                             $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
