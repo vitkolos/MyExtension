@@ -128,6 +128,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 if (me.imagesForAlbum && me.imagesForAlbum.length>0) {
                     payLoad.fields.images=angular.copy(me.imagesForAlbum);
                 }
+                if (me.embeddedImages && me.embeddedImages.length>0) {
+                    payLoad.fields.embeddedImages=angular.copy(me.embeddedImages);
+                }
+                
                 payLoad.taxonomy.navigation = [];
                 payLoad.taxonomy.navigation[0] = config.listPageId ? config.listPageId : $scope.rubedo.current.page.id;
                 RubedoContentsService.createNewContent(payLoad).then(
@@ -195,7 +199,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     me.processing=false;
     me.progress = 0;
     $scope.ccCtrl.imagesForAlbum=[];
-
+    $scope.ccCtrl.embeddedImages=[];
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
     });
@@ -218,16 +222,16 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                 else {
                     imgTitle=me.batchTitle + '_'+i;
                 }
-                /*
+                
                 Upload.base64DataUrl(files[i]).then(
                     function(response){
                         //console.log(base64img);
-                        embeddedImages
+                        ($scope.ccCtrl.embeddedImages).push({code:response});
                     },
                     function(response){
                     }
-                );*/
-
+                );
+/*
                 Upload.upload({
                     url: '/api/v1/media',
                     method: 'POST',
@@ -255,7 +259,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                         me.processing=false;
                         me.progress=0;
                     }
-                });                  
+                });    */              
                 
             }
         }
