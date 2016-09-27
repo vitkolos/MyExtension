@@ -199,7 +199,7 @@
     <a class="close" data-dismiss="modal">×</a>
     <div class="modal-dialog modal-lg">
 	    <div class="modal-body">
-		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage,{width:'900',height:'600',mode:'boxed'})}}">
+		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.content.fields.images[contentDetailCtrl.currentIndex],{width:'900',height:'600',mode:'boxed'})}}">
 	    </div>
   
     </div>
@@ -224,7 +224,7 @@
     <a class="close" data-dismiss="modal">×</a>
     <div class="modal-dialog modal-lg">
 	    <div class="modal-body">
-		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage,{width:'900px',height:'600px',mode:'boxed'})}}">
+		<img class="img-responsive" ng-src="{{ontentDetailCtrl.content.fields.embeddedImages[contentDetailCtrl.currentIndex].imageCode)}}">
 	    </div>
   
     </div>
