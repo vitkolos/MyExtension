@@ -206,7 +206,7 @@
   </div>
 </div>
 
-<!---NOUVEAUX ALBUMS (embedded images)-->
+<!---NOUVEAUX ALBUMS (embedded images)
 <div ng-if="contentDetailCtrl.content.fields.embeddedImages && contentDetailCtrl.content.fields.embeddedImages.length>0">
   <div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
 	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.fields.embeddedImages"  >
@@ -216,8 +216,8 @@
 	    </div>
 	</div>
 	<div class="gutter-sizer"></div>
-  </div>
-  <!-- The modal dialog, which will be used to wrap the lightbox content -->
+  </div>-->
+  <!-- The modal dialog, which will be used to wrap the lightbox content 
   <div class="modal fade hidden-xs" id="rubedoGalleryDetailModal" tabindex="1" ng-keydown="contentDetailCtrl.changeImageKey($event)">
     <a class="prev" ng-click="contentDetailCtrl.changeImage('left')" ng-if="contentDetailCtrl.currentImage>0">‹</a>
     <a class="next" ng-click="contentDetailCtrl.changeImage('right')" ng-if="contentDetailCtrl.currentImage<(contentDetailCtrl.content.fields.images).length-1">›</a>
@@ -230,5 +230,5 @@
     </div>
   </div>
 </div>
-
+-->
 
