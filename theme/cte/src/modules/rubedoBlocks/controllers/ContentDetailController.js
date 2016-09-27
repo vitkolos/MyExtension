@@ -226,8 +226,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex]; 
                             else me.currentImage = me.content.fields.images[me.currentIndex];
                         };
-                        me.changeImageKey = function($event){
-                            var embedded = me.content.fields.embeddedImages && me.content.fields.embeddedImages.length>0;
+                        me.changeImageKey = function($event,embedded){
                             if ($event.keyCode == 39) { 
                                me.changeImage('right',embedded);
                             }
