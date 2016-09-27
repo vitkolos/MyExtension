@@ -205,14 +205,14 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
         else options.height = 1000;
         return options;
     };
-    var uploadFile = function(file){
+    var uploadFile = function(file,title){
         Upload.upload({
             url: '/api/v1/media',
             method: 'POST',
             params:{
                 typeId:"545cd95245205e91168b45b1",
                 userWorkspace:true, //on utilise le main workspace de l'utilisateur
-                fields:{title:imgTitle}
+                fields:{title:title}
             },
             file: file,
             headers: {'Content-Type': undefined}
@@ -267,7 +267,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                     });
                 }*/
 
-                    uploadFile(files[i])   ;
+                    uploadFile(files[i],imgTitle)   ;
                 
 
                 
