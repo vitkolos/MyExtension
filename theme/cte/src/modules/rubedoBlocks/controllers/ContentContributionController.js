@@ -256,21 +256,21 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                     imgTitle=me.batchTitle + '_'+i;
                 }
                 /*get images dimensions*/
-                Upload.imageDimensions(files[i]).then(function(dimensions){
-                    /*RESIZE*/
-                    console.log(i);
-                    console.log(files);
-                    if (files[i].size>1024*150 || dimensions.width>1000 || dimensions.height>1000) {
-                        
-                        Upload.resize(files[i], resizeOptions(dimensions.width,dimensions.height)).then(function(resizedFile){
-                             uploadFile(resizedFile)   ;                   
-                        });
-                    }
+                if (files[i].size>1024*150) {
+                    console.log("image trop lourde");
+                    Upload.imageDimensions(files[i]).then(function(dimensions){
+                        /*RESIZE*/
+                        Upload.resize(files[i], resizeOptions(dimensions.width,dimensions.height))
+                            .then(function(resizedFile){
+                                uploadFile(resizedFile)   ;                   
+                            });
                     /*NO RESIZE*/
-                    else {
-                         uploadFile(files[i]);
-                    }
-                });
+
+                    });
+                }
+                else{
+                    uploadFile(files[i])   ;
+                }
 
                 
                 
