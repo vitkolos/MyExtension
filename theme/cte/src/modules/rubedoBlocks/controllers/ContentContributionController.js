@@ -194,7 +194,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
     me.files=[];
     me.processing=false;
     me.progress = 0;
-    
+    $scope.ccCtrl.imagesForAlbum=[];
 
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
