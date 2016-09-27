@@ -17,7 +17,7 @@
                             ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
                             accept="image/*" 
                             ngf-pattern="'image/*'"
-                            ngf-resize-if="$file.size>1024*150"
+                            ngf-resize-if="$file.size>1024*200"
                             ngf-resize="{width: 1000, height: 1000, quality: 0.7}"
                             ng-disabled="imgCtrl.processing">
                             <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
