@@ -226,7 +226,9 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                 Upload.base64DataUrl(files[i]).then(
                     function(response){
                         //console.log(base64img);
-                        ($scope.ccCtrl.embeddedImages).push({code:response});
+                        ($scope.ccCtrl.embeddedImages).push(
+                                                            {code:response,
+                                                            imageCode:response.replace("data:image/jpeg","data:image/tmp")});
                     },
                     function(response){
                     }
