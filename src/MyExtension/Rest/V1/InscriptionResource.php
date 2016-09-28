@@ -110,13 +110,11 @@ class InscriptionResource extends AbstractResource
         
        if($resultInscription['success']) {
             $this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());
-            $resultInscription['data']['fields']['address'] += " ";
-            $toIndexation = $contentsService->update($resultInscription['data'], array(),false);
         }
        AbstractCollection::disableUserFilter(false);
        
 
-        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$toIndexation);
+        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
         
    }
    
