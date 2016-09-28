@@ -216,14 +216,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 pageId: $scope.rubedo.current.page.id,
                                 predefinedFacets:{"type":"561627c945205e41208b4581","proposition":config.contentId},
                                 start:0,
-                                limit:50,
+                                limit:500,
                                 orderby:'lastUpdateTime',
                                 orderbyDirection:'desc',
                                 displayedFacets:"['all']"
                             };
                             RubedoSearchService.searchByQuery(optionsInscriptionsList).then(function(response){
                               if(response.data.success){
-                                console.log(response.data.results);
+                                //console.log(response.data.results);
                               } 
                             });
                         }
