@@ -105,14 +105,14 @@ class InscriptionResource extends AbstractResource
             $paymentMeans = $contentsService->findById($paymentMeansId,false,false);
             $inscriptionForm['fields']['paymentInfos'] =$paymentMeans['fields'];
         }
-         AbstractCollection::disableUserFilter(false);
+         
        
         
        if($resultInscription['success']) {
             $this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());
             $toIndexation = $contentsService->update($resultInscription['data'], array(),false);
         }
-       
+       AbstractCollection::disableUserFilter(false);
        
 
         return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
