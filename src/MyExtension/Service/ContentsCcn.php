@@ -248,7 +248,8 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
         if ($this->_isValidInput) {
             $returnArray = parent::create($obj, $options, $live, $ignoreIndex);
             if($returnArray['success']) {
-                $this->_indexContent($returnArray['data']);
+                $content = $this->findById($returnArray['data']['id'], true, false);
+                $this->_indexContent($content);
             }
             //$content = $this->findById($data['id'], true, false);
             
