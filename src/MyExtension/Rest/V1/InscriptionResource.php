@@ -115,7 +115,7 @@ class InscriptionResource extends AbstractResource
        AbstractCollection::disableUserFilter(false);
        
 
-        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
+        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$toIndexation);
         
    }
    
