@@ -209,7 +209,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         );
                         
                         //add list of inscriptions
-                        if ($scope.rubedo.current.user.rights.canEdit) {
+                        if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
                             var optionsInscriptionsList = {
                                 constrainToSite:false,
                                 siteId: $scope.rubedo.current.site.id,
