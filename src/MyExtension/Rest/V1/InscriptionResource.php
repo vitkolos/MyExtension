@@ -108,7 +108,10 @@ class InscriptionResource extends AbstractResource
          AbstractCollection::disableUserFilter(false);
        
         
-       if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());}
+       if($resultInscription['success']) {
+            $this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());
+            $toIndexation = $contentsService->update($resultInscription['data'], array(),false);
+        }
        
        
 
