@@ -98,7 +98,7 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
         $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);
         if($resultInscription['success']) {
-            usleep(500000);
+            usleep(1000000);
             $content = $contentsService->findById($resultInscription['data']['id'], true, false);
             $contentType = Manager::getService('ContentTypes')->findById($content['typeId']);
             if (!$contentType || (isset($contentType['system']) && $contentType['system'] == true)) {
