@@ -245,8 +245,8 @@
 				<h3>{{rubedo.translate("Inscriptions.Liste", "Liste des inscriptions")}}</h3>
 			</div>
 		</div>
-		<div class="col-xs-12">
-			<table style="width:100%">
+		<div class="col-xs-12" style="overflow-y: scroll">
+			<table style="font-size:0.8em;">
 				<tr>
 					<th>Numéro</th>
 					<th>Statut</th>
@@ -257,8 +257,8 @@
 					<th>Date de naissance</th>
 					<th>Nom 2</th>
 					<th>Prénom 2</th>
-					<th>Date de naissance 2</th>
 					<th>Email 2</th>
+					<th>Date de naissance 2</th>
 				</tr>
 				<tr ng-repeat="inscription in contentDetailCtrl.inscriptions track by $index" ng-class="{'bg-white':$even}">
 					<th class="padding">{{inscription.title}}</th>
