@@ -96,8 +96,17 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['online'] = true;
         $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
-        $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);    
-
+        $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);
+        if($resultInscription['success']) {
+            usleep(500000);
+            $content = $contentsService->findById($resultInscription['data']['id'], true, false);
+            $contentType = Manager::getService('ContentTypes')->findById($content['typeId']);
+            if (!$contentType || (isset($contentType['system']) && $contentType['system'] == true)) {
+                return;
+            }
+            Manager::getService('ElasticContents')->index($content);
+        }
+        
 
         //GET PAYEMENT INFOS
         if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
