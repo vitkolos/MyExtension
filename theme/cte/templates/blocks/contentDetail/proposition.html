@@ -255,13 +255,13 @@
 					<th>Prénom</th>
 					<th>Date de naissance</th>
 				</tr>
-				<tr ng-repeat="inscription in contentDetailCtrl.inscriptions">
-					<th>{{inscription.title}}</th>
+				<tr ng-repeat="inscription in contentDetailCtrl.inscriptions track by $index" ng-class="{'bg-white':$even}">
+					<th class="padding">{{inscription.title}}</th>
 					<th>{{inscription.statut}}</th>
 					<th>{{inscription.serviteur}}</th>
 					<th>{{inscription.nom}}</th>
 					<th>{{inscription.surname}}</th>
-					<th>{{inscription.birthdate | date :'shortdate'}}</th>
+					<th>{{inscription.birthdate | date :'shortDate'}}</th>
 				</tr>
 			</table>
  
