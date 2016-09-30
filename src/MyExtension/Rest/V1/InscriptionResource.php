@@ -122,10 +122,11 @@ class InscriptionResource extends AbstractResource
                     )
                 );
             $result = $contentsService->update($content, array(),false);
+            Manager::getService('ElasticContents')->index($content);
         }
        AbstractCollection::disableUserFilter(false);
 
-        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$result);
+        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
         
    }
    
