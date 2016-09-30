@@ -113,7 +113,7 @@ class InscriptionResource extends AbstractResource
             $this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());
         }
        if($resultInscription['success']) {
-            usleep(500000);
+            //usleep(500000);
             $content = $contentsService->findById($resultInscription['data']['id'], false, false);
             $content['fields']['statut'] = $content['fields']['statut'] . " ";
             $content['i18n'] = array(
