@@ -1,0 +1,34 @@
+<nav class="navbar navbar-default horizontal" role="navigation" ng-controller="MenuController as menuCtrl" >
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">{{rubedo.translate("Blocks.Navigation.Label.ToggleNavigation", "Toggle navigation")}}</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+        </div>
+        <div class="collapse navbar-collapse text-center" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a ng-if="blockConfig.displayRootPage" class="visible-md-block visible-lg-block" ng-href="{{menuCtrl.menu.url}}">{{menuCtrl.menu.text}}</a></li>
+                <li ng-repeat="page in menuCtrl.menu.pages track by $index"
+                    ng-class="{active:menuCtrl.currentRouteline.indexOf(page.url+'/') > -1 ||  menuCtrl.currentRouteline.indexOf(page.url,menuCtrl.currentRouteline.length-page.url.length) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}">
+                    <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}"> {{page.text}}</a>
+                    <a ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{page.text}} <span class="caret"></span></a>
+                    <ul ng-if="page.pages&&blockConfig.menuLevel>1" class="dropdown-menu" role="menu">
+                        <li ng-if="!blockConfig.disableLevelOne" ng-class="{active:rubedo.current.page.id==page.id}"><a ng-href="{{page.url}}">{{page.text}}</a></li>
+                        <li ng-if="!blockConfig.disableLevelOne" class="divider"></li>
+                        <li ng-repeat="subpage in page.pages track by $index" ng-class="{active:menuCtrl.currentRouteline.indexOf(subpage.url+'/') > -1 ||  menuCtrl.currentRouteline.indexOf(subpage.url,menuCtrl.currentRouteline.length-subpage.url.length) > -1}">
+                            <a ng-href="{{subpage.url}}">{{subpage.text}}</a>
+                        </li>
+                    </ul>
+
+                </li>
+                
+            </ul>
+           
+            
+        </div>
+    </div>
+</nav>
