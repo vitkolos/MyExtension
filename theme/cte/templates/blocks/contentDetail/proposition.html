@@ -239,7 +239,7 @@
 		<div style="margin-top:24px"></div>
 		
 	</div>
-	<div class="row" ng-if="contentDetailCtrl.isInscription">
+	<div class="row" ng-if="rubedo.current.user && rubedo.current.user.rights.canEdit && contentDetailCtrl.inscriptions">
 		<div class="text-article">
 			<div class="col-xs-12">
 				<h3>{{rubedo.translate("Inscriptions.Liste", "Liste des inscriptions")}}</h3>
