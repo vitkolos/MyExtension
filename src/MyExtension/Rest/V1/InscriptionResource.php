@@ -98,13 +98,9 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
         $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);
         if($resultInscription['success']) {
-            usleep(1000000);
-            $content = $contentsService->findById($resultInscription['data']['id'], true, false);
-            $contentType = Manager::getService('ContentTypes')->findById($content['typeId']);
-            if (!$contentType || (isset($contentType['system']) && $contentType['system'] == true)) {
-                return;
-            }
-            Manager::getService('ElasticContents')->index($content);
+            usleep(500000);
+            $content = $contentsService->findById($resultInscription['data']['id'], false, false);
+            $result = $contentsService->update($content, array(),false);
         }
         
 
@@ -123,7 +119,7 @@ class InscriptionResource extends AbstractResource
        AbstractCollection::disableUserFilter(false);
        
 
-        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$contentType);
+        return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$result);
         
    }
    
