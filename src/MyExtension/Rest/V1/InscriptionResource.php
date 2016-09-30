@@ -100,6 +100,12 @@ class InscriptionResource extends AbstractResource
         if($resultInscription['success']) {
             usleep(500000);
             $content = $contentsService->findById($resultInscription['data']['id'], false, false);
+            $content['fields']['statut'] = $content['fields']['statut'] . " ";
+            $content['i18n'] = array(
+                    $content['locale'] =>array(
+                        "fields" => array("text"=>$content["text"])
+                    )
+                );
             $result = $contentsService->update($content, array(),false);
         }
         
