@@ -245,12 +245,16 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
             }
         }
         $obj = $this->_filterInputData($obj);
+        
         if ($this->_isValidInput) {
             $returnArray = parent::create($obj, $options, $live, $ignoreIndex);
            if($returnArray['success']) {
                 $content = $this->findById($returnArray['data']['id'], true, false);
+                $contentType = Manager::getService('ContentTypes')->findById($content['typeId']);
+                if (!$contentType || (isset($contentType['system']) && $contentType['system'] == true)) {
+                    return;
+                }
                 Manager::getService('ElasticContents')->index($content);
-
             }
             
         } else {
