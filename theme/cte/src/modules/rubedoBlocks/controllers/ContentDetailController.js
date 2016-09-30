@@ -223,7 +223,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             };
                             RubedoSearchService.searchByQuery(optionsInscriptionsList).then(function(response){
                               if(response.data.success){
-                                console.log(response.data.results);
+                                me.inscriptions = response.data.results.data;
                               } 
                             });
                         }

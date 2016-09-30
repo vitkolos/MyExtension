@@ -250,10 +250,19 @@
 				<tr>
 					<th>Numéro</th>
 					<th>Statut</th>
+					<th>Serviteur ?</th>
 					<th>Nom</th>
 					<th>Prénom</th>
+					<th>Date de naissance</th>
 				</tr>
-				<tr></tr>
+				<tr ng-repeat="inscription in contentDetailCtrl.inscriptions">
+					<th>{{inscription.title}}</th>
+					<th>{{inscription.statut}}</th>
+					<th>{{inscription.serviteur}}</th>
+					<th>{{inscription.nom}}</th>
+					<th>{{inscription.surname}}</th>
+					<th>{{inscription.birthdate | date :'shortdate'}}</th>
+				</tr>
 			</table>
  
 		</div>
