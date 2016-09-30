@@ -113,7 +113,7 @@ class InscriptionResource extends AbstractResource
             $this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());
         }
        if($resultInscription['success']) {
-            /*usleep(500000);
+            usleep(500000);
             $content = $contentsService->findById($resultInscription['data']['id'], false, false);
             $content['fields']['statut'] = $content['fields']['statut'] . " ";
             $content['i18n'] = array(
@@ -121,12 +121,10 @@ class InscriptionResource extends AbstractResource
                         "fields" => array("text"=>$content["text"])
                     )
                 );
-            $result = $contentsService->update($content, array(),false);*/
-            usleep(500000);
-            $content = $contentsService->findById($resultInscription['data']['id'], false, false);
+            $result = $contentsService->update($content, array(),false);
             Manager::getService('ElasticContents')->index($content);
         }
-       AbstractCollection::disableUserFilter(false);
+        AbstractCollection::disableUserFilter(false);
 
         return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
         
