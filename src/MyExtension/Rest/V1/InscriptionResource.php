@@ -97,17 +97,7 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
         $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);
-        if($resultInscription['success']) {
-            usleep(500000);
-            $content = $contentsService->findById($resultInscription['data']['id'], false, false);
-            $content['fields']['statut'] = $content['fields']['statut'] . " ";
-            $content['i18n'] = array(
-                    $content['locale'] =>array(
-                        "fields" => array("text"=>$content["text"])
-                    )
-                );
-            $result = $contentsService->update($content, array(),false);
-        }
+        
         
 
         //GET PAYEMENT INFOS
@@ -122,8 +112,18 @@ class InscriptionResource extends AbstractResource
        if($resultInscription['success']) {
             $this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());
         }
+       if($resultInscription['success']) {
+            usleep(500000);
+            $content = $contentsService->findById($resultInscription['data']['id'], false, false);
+            $content['fields']['statut'] = $content['fields']['statut'] . " ";
+            $content['i18n'] = array(
+                    $content['locale'] =>array(
+                        "fields" => array("text"=>$content["text"])
+                    )
+                );
+            $result = $contentsService->update($content, array(),false);
+        }
        AbstractCollection::disableUserFilter(false);
-       
 
         return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$result);
         
