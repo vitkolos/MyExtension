@@ -15,8 +15,8 @@
                     <a ng-if="blockConfig.displayRootPage && !blockConfig.imageFile" class="visible-md-block visible-lg-block" ng-href="{{menuCtrl.menu.url}}">
                         {{menuCtrl.menu.text}}
                     </a>
-                    <a ng-if="blockConfig.displayRootPage && blockConfig.imageFile" class="visible-md-block visible-lg-block" ng-href="{{menuCtrl.menu.url}}">
-                        <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'40px',mode:'boxed'})}}"/>
+                    <a ng-if="blockConfig.displayRootPage && blockConfig.imageFile" class="visible-md-block visible-lg-block" ng-href="{{menuCtrl.menu.url}}" style="padding-top:0;padding-bottom:0">
+                        <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'50px',mode:'boxed'})}}" />
                     </a>
                     
                 </li>
