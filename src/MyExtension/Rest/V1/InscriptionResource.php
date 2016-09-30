@@ -122,6 +122,7 @@ class InscriptionResource extends AbstractResource
                     )
                 );
             $result = $contentsService->update($content, array(),false);*/
+            usleep(500000);
             $content = $contentsService->findById($resultInscription['data']['id'], false, false);
             Manager::getService('ElasticContents')->index($content);
         }
