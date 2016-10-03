@@ -47,7 +47,7 @@
         <div class="resultData search-result" ng-repeat="content in searchResultsCtrl.data track by $index">
             <div ng-if="!content['fields.video'] ||  (content['fields.video'] && content['fields.video'][0]=='') ">
                 <a ng-href="{{content.url }}" ng-if="!content.propositionReferenceeInterne || content.propositionReferenceeInterne=='' ">
-                    <div class="ratio_321 rect" ng-if="content['fields.image']">
+                    <div class="ratio_321 rect" ng-if="content['fields.image'] && content['fields.image']!='' ">
                         <img class="media-object pull-left padding-right"
                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'400px',height:'240px',mode:'crop'})}}"
                                 alt="{{ content.title }}"/>
@@ -61,7 +61,7 @@
                    
                 </a>
                 <a rubedo-page-link="{{content.propositionReferenceeInterne}}" ng-if="content.propositionReferenceeInterne && content.propositionReferenceeInterne!='' ">
-                    <div class="ratio_321 rect" ng-if="content['fields.image']">
+                    <div class="ratio_321 rect" ng-if="content['fields.image'] && content['fields.image']!='' ">
                         <img class="media-object pull-left padding-right"
                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'400px',height:'240px',mode:'crop'})}}"
                                 alt="{{ content.title }}"/>
