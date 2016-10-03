@@ -120,7 +120,7 @@
 	    angular.element('body .modal-backdrop ').remove();
 	});
 	angular.element('#menuModal').on('shown.bs.modal', function() {
-	    (window.document).off('focusin.modal');
+	    document.off('focusin.modal');
 	});
 	/*Ajouter les traductions*/
 	$scope.rubedo.getCustomTranslations = function(){
