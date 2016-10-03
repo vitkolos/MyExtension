@@ -119,7 +119,7 @@
 	$scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
 	    angular.element('body .modal-backdrop ').remove();
 	});
-	angular.element('body .modal-backdrop ').on('shown', function() {
+	angular.element('#menuModal').on('shown.bs.modal', function() {
 	    (window.document).off('focusin.modal');
 	});
 	/*Ajouter les traductions*/
