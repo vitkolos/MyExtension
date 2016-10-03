@@ -119,7 +119,9 @@
 	$scope.$on("$locationChangeStart",function(event, newLoc,currentLoc){
 	    angular.element('body .modal-backdrop ').remove();
 	});
-	
+	angular.element('body .modal-backdrop ').on('shown', function() {
+	    (window.document).off('focusin.modal');
+	});
 	/*Ajouter les traductions*/
 	$scope.rubedo.getCustomTranslations = function(){
 	        $http.get('/theme/'+window.rubedoConfig.siteTheme+'/localization/'+lang+'/Texts.json').then(function(res){
