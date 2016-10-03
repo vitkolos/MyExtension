@@ -1,5 +1,5 @@
-    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','$route','$document',
-								     function($scope,$location,RubedoMenuService,RubedoPagesService,$http,$route,$document){
+    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','$route',
+								     function($scope,$location,RubedoMenuService,RubedoPagesService,$http,$route){
         var me=this;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
@@ -120,7 +120,7 @@
 	    angular.element('body .modal-backdrop ').remove();
 	});
 	angular.element('#menuModal').on('shown.bs.modal', function() {
-	    $document.off('focusin.modal');
+	     angular.element(document).off('focusin.modal');
 	});
 	/*Ajouter les traductions*/
 	$scope.rubedo.getCustomTranslations = function(){
