@@ -150,7 +150,7 @@ class PaymentResource extends AbstractResource {
                 "amount" => number_format($params['montant'],2,".",""),
                 "currency" => "PLN",
                 "lang" => $params['lang']->getLocale(),
-                "description" => $codeCompta . "|" . $idInscription . "|" . $prenom . "|" . $nom,
+                "description" => $codeCompta . "|" . $idInscription . "|" . $prenom . "|" . $nom . "|" . $proposition ,
                 "URL" => "http://www.chemin-neuf.pl",
                 "type" => "3",
                 "URLC" => "http://" . $_SERVER['HTTP_HOST'] . "/api/v1/DotPayUrlc",
