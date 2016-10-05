@@ -53,7 +53,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
                 predefinedFacets: config.predefinedFacets,
                 searchMode:"default",
                 constrainToSite:false,
-                displayedFacets:["all"]
+                displayedFacets:"['all']"
             }
             RubedoSearchService.searchByQuery(searchOptions).then(function(response){
                 if(response.data.success) {
