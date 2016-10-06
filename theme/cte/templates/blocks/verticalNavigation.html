@@ -1,3 +1,4 @@
+
 <nav class="navbar navbar-default horizontal" role="navigation" ng-controller="MenuController as menuCtrl" >
     <div class="container">
         <div class="navbar-header">
@@ -16,7 +17,7 @@
                         {{menuCtrl.menu.text}}
                     </a>
                     <a ng-if="blockConfig.displayRootPage && blockConfig.imageFile" class="visible-md-block visible-lg-block" ng-href="{{menuCtrl.menu.url}}" style="padding-top:0;padding-bottom:0">
-                        <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'50px',mode:'boxed'})}}" />
+                        <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'60px',mode:'boxed'})}}" />
                     </a>
                     
                 </li>
