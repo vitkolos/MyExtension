@@ -706,7 +706,7 @@ class DataImportCcn extends DataAccess
 	            	'status' => 'published',
 	            	'online' => true,
                         /*FIX CCN*/
-	            	'writeWorkspace' => $this->_target,
+	            	'writeWorkspace' => $this->_target[0],
 	            	'target' => $this->_target,
 	            	'startPublicationDate' => '',
 	            	'endPublicationDate' => '',
