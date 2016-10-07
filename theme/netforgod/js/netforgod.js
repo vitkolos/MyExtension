@@ -52,11 +52,17 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                 return '<div id="' + playerId + '"></div>';
             };
            var options = {
-                      
-
-                      
-                      playlist: [{
-                                 file: filmUrl,
+                      file: filmUrl,
+                      ga: {label:attrs.title},
+                      modestbranding:0,
+                      showinfo:1,
+                      width:"100%",
+                      aspectratio:"16:9",
+                      logo: {
+                                 file: '/theme/netforgod/img/logo.png',
+                                 link: 'http://test.netforgod.org/'
+                      },
+                      displaytitle:true/*,
                       tracks: [{ 
                                  file: "/dam?media-id"+subTitles, 
                                  label: "FR",
@@ -67,19 +73,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  file: "/dam?media-id"+"57f7c4282456407d078b6cfd", 
                                  label: "EN",
                                  kind: "captions"
-                      }]
-                      }],
-                      ga: {label:attrs.title},
-                      modestbranding:0,
-                      showinfo:1,
-                      width:"100%",
-                      aspectratio:"16:9",
-                      logo: {
-                                 file: '/theme/netforgod/img/logo.png',
-                                 link: 'http://test.netforgod.org/'
-                      },
-                      displaytitle:true,
-                      
+                      }]*/
                       
            };
             element.html(getTemplate(id));
