@@ -337,9 +337,9 @@ padding-left: 0;}
   }
   .categories{
     *{text-align: left;  }
-    display: flex;
+    //display: flex;
     overflow: visible;
-    flex-wrap: wrap;
+    //flex-wrap: wrap;
     word-wrap: break-word;
     max-width:100%;
     font-size:14px ;
@@ -360,7 +360,8 @@ padding-left: 0;}
     }
   }
   .dropdown-menu, .dropdown-header {
-    word-wrap: normal;
+    white-space: normal;
+    margin-top:12px;
     color: @rouge;
     &:hover{
       color: darken(@rouge,10%);
