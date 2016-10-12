@@ -27,7 +27,7 @@
                 me.menu=response.data.menu;
 		angular.forEach(me.menu.pages, function(page, key) {
 		    me.pagesBlocks[key]={};
-		    me.pagesBlocks[key]["title"] = page.title;
+		    me.pagesBlocks[key]["title"] = page.text;
 		    me.pagesBlocks[key]["url"] = page.url;
 		    me.pagesBlocks[key].blocks=[]; 
 		    var lang = $route.current.params.lang;
