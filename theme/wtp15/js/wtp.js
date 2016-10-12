@@ -120,7 +120,7 @@ angular.module('rubedoBlocks').directive('toggleclass', function() {
         };
         return serviceInstance;
     }]);
-    
+    /*
 $(document).ready(function(){
 dot_kill= '';
 dot = '';
@@ -242,4 +242,4 @@ $(window).bind("scroll", function(){
 
 
 
-})
+})*/
