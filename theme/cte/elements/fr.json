@@ -157,7 +157,7 @@
     "ccn_don_18_part3":", le remplir à la main et le renvoyer, accompagné d'un Relevé d'Identité Bancaire (RIB) à l'adresse suivante",
     "ccn_don_19":"Merci de reporter ce numero dans le champ 'code' sur le formulaire de prélèvement.",
     "ccn_don_20":"Au début de chaque année, nous vous enverrons un reçu fiscal.",
-    "ccn_don_28":"Cette information vous est transmise car vous êtes le contact pour le projet",
+    "ccn_don_28":"Cette information vous est transmise car vous êtes le contact pour le projet %projet%",
     "ccn_don_28_bis":"A vous de transmettre cette information à qui de droit. Ce don est versé dans la caisse commune de la communauté.",
     "ccn_don_35":"Grâce à votre don, le projet est maintenant financé à %percentage%%",
     "ccn_don_36":"Merci de déposer ce montant sur le compte :<br> %coordonnes_compte% </br> dont l'intitulé est <em>%nom_compte%</em>.",

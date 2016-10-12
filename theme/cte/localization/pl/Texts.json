@@ -1,6 +1,6 @@
 {
     "Dons.Projet":"Type de projet",
-    "Dons.Finance":"Projet financé à",
+    "Dons.Finance":"Projet financé à %pourcentage%%",
     "Dons.Soutien":"Je soutiens le projet",
     "Dons.Recap":"Je fais un don de",
     "Block.Dons.Donner":"Donner",

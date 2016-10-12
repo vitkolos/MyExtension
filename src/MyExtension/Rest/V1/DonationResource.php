@@ -411,7 +411,7 @@ class DonationResource extends AbstractResource
         $messageContactProjet = $messageAdmin;
         ///message pour la compta
         //Cette information vous est transmise car vous êtes le contact pour le projet ${projet}. A vous de transmettre cette information à qui de droit. Ce don est versé dans la caisse commune de la communauté.
-        $messageContactProjet .= "<br/><br/>" . $trad["ccn_don_28"] . " " .$don["projet"] . ". " . $trad["ccn_don_28_bis"]  ;
+        $messageContactProjet .= "<br/><br/>" . $this->translate($trad["ccn_don_28"],'%projet%', $don["projet"]) .  ". " . $trad["ccn_don_28_bis"]  ;
         $messageCompta = $messageAdmin;
         
         ///adresses mails
