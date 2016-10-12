@@ -246,7 +246,7 @@ class DonationResource extends AbstractResource
             //"Merci de nous faire parvenir votre chèque à l'ordre de ${ordre-cheque} à l'adresse suivante: ${adresse-cheque}."
             $messageDonateur.=$trad["ccn_don_2"] . "<em>" . $configPayment["libelle_cheque"] . "</em> " . $trad["ccn_don_2_bis"]. " : <br/>". $configPayment["adresse"] . "<br/><br/>";
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
-            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
             //Merci de reporter ce numéro au dos de votre chèque.
             $messageDonateur .= $trad["ccn_don_8"] ."<br/><br/>";
             //Après encaissement du chèque, nous vous enverrons un reçu fiscal.
