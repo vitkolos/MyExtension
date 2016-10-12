@@ -259,11 +259,14 @@ class DonationResource extends AbstractResource
         }
         else if($don["modePaiement"]=="virement" || $don["modePaiement"]=="virementPeriod") {
             //Vous devez vous connecter à votre service en ligne de votre banque et effectuer un virement sur le compte '${compte} dont l'intitulé est '${intitule}.
-            $messageDonateur.=$trad["ccn_don_15"] . ":<br>" . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
+            //$messageDonateur.=$trad["ccn_don_15"] . ":<br>" . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
+            
+            $messageDonateur.= $this->translate($trad["ccn_don_15"],['%coordonnes_compte%','%nom_compte%'],[$configPayment["coordonnes_compte"], $configPayment["nom_compte"]]). "<br/><br/>";
+            
             if($configPayment["image_rib"])
                 $messageDonateur .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["image_rib"] . "&width=300px'></center><br/>";
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
-            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
             //Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre virement bancaire.
             $messageDonateur .= $trad["ccn_don_16"] .".<br/><br/>";
             
@@ -287,13 +290,16 @@ class DonationResource extends AbstractResource
         }
         else if($don["modePaiement"]=="liquide") {
             //messageDonateur += "Merci de déposer ce montant sur le compte '${compte} dont l'intitulé est '${intitule}."
-             $messageDonateur.=$trad["ccn_don_36"] . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
+             //$messageDonateur.=$trad["ccn_don_36"] . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
+             
+            $messageDonateur.= $this->translate($trad["ccn_don_36"],['%coordonnes_compte%','%nom_compte%'],[$configPayment["coordonnes_compte"], $configPayment["nom_compte"]]). "<br/><br/>";
 
+        
             if($configPayment["image_rib"])
                 $messageDonateur .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["image_rib"] . "&width=300px'></center><br/>";
             
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
-            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
             //messageDonateur += "Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre depot bancaire."
             $messageDonateur .= $trad["ccn_don_37"] . "<br/><br/>";
             
@@ -314,7 +320,7 @@ class DonationResource extends AbstractResource
             //, le remplir à la main et le renvoyé, accompagné d'un Relevé d'Identité Bancaire (RIB) à l'adresse suivante:
             $messageDonateur .= $trad["ccn_don_18_part3"] . ":<br/>" . $configPayment["adresse"] . "<br/><br/>";
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
-            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
             //Merci de reporter ce numero dans le champ 'numéro du don' sur le formulaire de prélèvement.
              $messageDonateur .= $trad["ccn_don_19"] ."<br><br> ";
              if($don["justificatif"]) {
@@ -335,7 +341,7 @@ class DonationResource extends AbstractResource
             
             $infoPaiementAdmin .= $this->addLine($trad["ccn_compte_paybox"], $payboxInfos["fields"]["site"]);
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
-            $messageDonateur .= $trad["ccn_don_3"] . $don["text"] .". ";
+            $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
             //Merci de rappeler ce numéro dans vos correspondances.
             $messageDonateur .= $trad["ccn_don_13"] . "<br/><br/>" ;
             if($don["justificatif"]) {

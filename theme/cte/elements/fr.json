@@ -150,8 +150,7 @@
     "ccn_don_8":"Merci de reporter ce numéro au dos de votre chèque et de le rappeler dans vos correspondances.",
     "ccn_don_13":"Merci de rappeler ce numéro dans vos correspondances.",
     "ccn_don_14":"Après encaissement du versement, nous vous enverrons un reçu fiscal.",
-    "ccn_don_15":"Vous devez vous connecter à votre banque (service de virement en ligne) et effectuer un virement sur notre compte ",
-    "ccn_don_15_bis":"dont l'intitulé est ",
+    "ccn_don_15":"Vous devez vous connecter à votre banque (service de virement en ligne) et effectuer un virement sur notre compte :<br> %coordonnes_compte% </br> dont l'intitulé est <em>%nom_compte%</em>. ",
     "ccn_don_16":"Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre virement bancaire.",
     "ccn_don_18_part1":"Vous devez télécharger et imprimer le ",
     "ccn_don_18_part2":"formulaire de prélèvement",
@@ -161,7 +160,7 @@
     "ccn_don_28":"Cette information vous est transmise car vous êtes le contact pour le projet",
     "ccn_don_28_bis":"A vous de transmettre cette information à qui de droit. Ce don est versé dans la caisse commune de la communauté.",
     "ccn_don_35":"Grâce à votre don, le projet est maintenant financé à %percentage%%",
-    "ccn_don_36":"Merci de déposer ce montant sur le compte ",
+    "ccn_don_36":"Merci de déposer ce montant sur le compte :<br> %coordonnes_compte% </br> dont l'intitulé est <em>%nom_compte%</em>.",
     "ccn_don_37":"Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre depot bancaire.",
     "ccn_don_38":"ATTENTION, l'envoi du mail au donateur a échoué! Essayer de contacter cette personne par téléphone...",
     "ccn_don_39":"ATTENTION, l'envoi du mail à la personne qui est le contact pour ce projet a échoué! Essayer de contacter cette personne par téléphone..."
