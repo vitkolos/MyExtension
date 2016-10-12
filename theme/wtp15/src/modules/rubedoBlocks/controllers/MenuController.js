@@ -20,12 +20,14 @@
                 }
             });
         };
+	        me.currentLang = $route.current.params.lang;
+
         RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
 		angular.forEach(me.menu.pages, function(page, key) {
 		    me.pagesBlocks[key]={};
-		    me.pagesBlocks[key]["title"] = page.text;
+		    me.pagesBlocks[key]["title"] = page.title;
 		    me.pagesBlocks[key]["url"] = page.url;
 		    me.pagesBlocks[key].blocks=[]; 
 		    var lang = $route.current.params.lang;
