@@ -82,6 +82,7 @@ padding-left: 0;}
   border-color: @rouge;
   text-align: center;
   text-transform: uppercase;
+  letter-spacing: 2px;
 }
 .btn {
   border-radius: 0;
@@ -107,6 +108,7 @@ padding-left: 0;}
   padding: 12px 0 12px 12px;
   border-bottom: solid 1px @marron;
 }
+.panel-body li:hover{background-color: @marron;color: white}
 //c'est du owl mais on surcharge aussi ici
 .owl-item.loading{
   min-height: 150px;
@@ -407,8 +409,8 @@ padding-left: 0;}
 }
 
 .inner-body{
-  &.row {margin-left: auto;
-  margin-right: auto;}
+  &.row {margin-left: auto;  margin-right: auto;}
+  &.container{padding: 20px 15px;}
   .column{
     margin-right: auto;
     margin-left: auto;
