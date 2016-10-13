@@ -19,6 +19,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
                 if (response.data.success){
                     me.contents=response.data.contents;
                     setTimeout(function(){me.initCarousel();},100);
+                    $scope.rubedo.setPageMetaImage(me.contents[0].fields[blockConfig.imageField]);
                 }
             }
         );
