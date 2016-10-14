@@ -5,7 +5,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
     var queryOptions={
         start: blockConfig.resultsSkip ? blockConfig.resultsSkip : 0,
         limit: blockConfig.pageSize ? blockConfig.pageSize : 6,
-        'fields[]' : ["text","summary",blockConfig.imageField],
+        'fields[]' : ["text","summary",blockConfig.imageField,"titre2"],
         'requiredFields[]':[blockConfig.imageField]
     };
     var stopOnHover=blockConfig.stopOnHover;
