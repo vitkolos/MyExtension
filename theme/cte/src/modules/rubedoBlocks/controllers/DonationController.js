@@ -149,7 +149,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                             nom:$scope.don.user.nom,
                             prenom: $scope.don.user.surname,
                             email:$scope.don.user.email,
-                            montant:$scope.don.montant,
+                            montant:$scope.don.montant=='autre'?$scope.don.montant_autre:$scope.don.montant,
                             proposition:$scope.don.projet,
                             idInscription: response.data.instructions.id,
                             paymentType: 'dons',

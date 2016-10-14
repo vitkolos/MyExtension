@@ -20,6 +20,8 @@
                 }
             });
         };
+	        me.currentLang = $route.current.params.lang;
+
         RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;

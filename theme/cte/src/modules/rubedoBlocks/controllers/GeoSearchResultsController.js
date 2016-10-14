@@ -92,8 +92,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     latitude:position.coords.latitude,
                     longitude:position.coords.longitude
                 };
+                console.log(position);
             }, function() {
                 //handle geoloc error
+                console.log("Geolocation API not supported here");
             });
         } else if (config.centerAddress){
             me.geocoder.geocode({

@@ -61,9 +61,9 @@
                         </div>
                     </div>
                     
-                    <p class="capital">{{rubedo.translate("Dons.Finance", "Projet financé à")}}
-                        <span ng-if="datum['fields.cumul'][0]<=datum['fields.budget'][0]">{{datum['fields.cumul'][0]*100/datum['fields.budget'][0] | number :0 }} %</span>
-                        <span ng-if="datum['fields.cumul'][0]>datum['fields.budget'][0]">100%</span>
+                    <p class="capital" ng-init="pourcentage =(datum['fields.cumul'][0]*100/datum['fields.budget'][0] | number :0)">
+                        <span ng-if="datum['fields.cumul'][0]<=datum['fields.budget'][0]">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[pourcentage])}}</span>
+                        <span ng-if="datum['fields.cumul'][0]>datum['fields.budget'][0]">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[100])}}</span>
                     </p>
                 </div>
                 

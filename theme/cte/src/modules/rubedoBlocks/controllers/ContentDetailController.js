@@ -207,6 +207,26 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 }
                             }
                         );
+                        
+                        //add list of inscriptions
+                        if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
+                            var optionsInscriptionsList = {
+                                constrainToSite:false,
+                                siteId: $scope.rubedo.current.site.id,
+                                pageId: $scope.rubedo.current.page.id,
+                                predefinedFacets:{"type":"561627c945205e41208b4581","proposition":config.contentId},
+                                start:0,
+                                limit:500,
+                                orderby:'lastUpdateTime',
+                                orderbyDirection:'desc',
+                                displayedFacets:"['all']"
+                            };
+                            RubedoSearchService.searchByQuery(optionsInscriptionsList).then(function(response){
+                              if(response.data.success){
+                                me.inscriptions = response.data.results.data;
+                              } 
+                            });
+                        }
                     }
 
                     //Albums photos

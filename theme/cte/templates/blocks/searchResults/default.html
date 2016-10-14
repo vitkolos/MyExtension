@@ -22,7 +22,7 @@
                 </form>
             </div>
         </div>
-        <div class="panel panel-default" ng-repeat="facet in searchResultsCtrl.facets  track by $index" ng-if="(facet.terms || facet.ranges)  " ng-init="searchDisplayed=false">
+        <div class="panel panel-default" ng-repeat="facet in searchResultsCtrl.facets  track by $index" ng-if="(facet.terms || facet.ranges) && facet.id!='type' " ng-init="searchDisplayed=false">
             <div class="panel-heading actus" ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">{{facet.label}}&nbsp;<span
                     ng-if="facet.total && (facet.total - facet.other) <= searchResultsCtrl.count" class="badge pull-right">{{facet.total - facet.other}}</span></div>
             <div class="panel-body">
@@ -31,10 +31,10 @@
                         ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
                         {{term.label}}&nbsp;({{term.count}})
                     </li>
-                    <li ng-if="term.facetId=='type' && facet.id=='type'" class="cursor-as-pointer resultData checked search-result" ng-repeat="term in searchResultsCtrl.activeTerms track by $index"
+                    <!--<li ng-if="term.facetId=='type' && facet.id=='type'" class="cursor-as-pointer resultData checked search-result" ng-repeat="term in searchResultsCtrl.activeTerms track by $index"
                     ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
                         {{term.label}}
-                    </li>
+                    </li>-->
                     <li ng-if="facet.ranges" class="cursor-as-pointer resultData search-result" ng-repeat="term in facet.ranges track by $index"
                         ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.key)">
                         {{term.label}}&nbsp;({{term.count}})
@@ -47,7 +47,7 @@
         <div class="resultData search-result" ng-repeat="content in searchResultsCtrl.data track by $index">
             <div ng-if="!content['fields.video'] ||  (content['fields.video'] && content['fields.video'][0]=='') ">
                 <a ng-href="{{content.url }}" ng-if="!content.propositionReferenceeInterne || content.propositionReferenceeInterne=='' ">
-                    <div class="ratio_321 rect" ng-if="content['fields.image']">
+                    <div class="ratio_321 rect" ng-if="content['fields.image'] && content['fields.image']!='' ">
                         <img class="media-object pull-left padding-right"
                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'400px',height:'240px',mode:'crop'})}}"
                                 alt="{{ content.title }}"/>
@@ -61,7 +61,7 @@
                    
                 </a>
                 <a rubedo-page-link="{{content.propositionReferenceeInterne}}" ng-if="content.propositionReferenceeInterne && content.propositionReferenceeInterne!='' ">
-                    <div class="ratio_321 rect" ng-if="content['fields.image']">
+                    <div class="ratio_321 rect" ng-if="content['fields.image'] && content['fields.image']!='' ">
                         <img class="media-object pull-left padding-right"
                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'400px',height:'240px',mode:'crop'})}}"
                                 alt="{{ content.title }}"/>

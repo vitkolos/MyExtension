@@ -96,8 +96,9 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['online'] = true;
         $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
-        $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);    
-
+        $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);
+        
+        
 
         //GET PAYEMENT INFOS
         if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
@@ -105,12 +106,25 @@ class InscriptionResource extends AbstractResource
             $paymentMeans = $contentsService->findById($paymentMeansId,false,false);
             $inscriptionForm['fields']['paymentInfos'] =$paymentMeans['fields'];
         }
-         AbstractCollection::disableUserFilter(false);
+         
        
         
-       if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());}
-       
-       
+       if($resultInscription['success']) {
+            $this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());
+        }
+       if($resultInscription['success']) {
+            //usleep(500000);
+            $content = $contentsService->findById($resultInscription['data']['id'], false, false);
+            $content['fields']['statut'] = $content['fields']['statut'] . " ";
+            $content['i18n'] = array(
+                    $content['locale'] =>array(
+                        "fields" => array("text"=>$content["text"])
+                    )
+                );
+            $result = $contentsService->update($content, array(),false);
+            Manager::getService('ElasticContents')->index($content);
+        }
+        AbstractCollection::disableUserFilter(false);
 
         return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
         
@@ -123,6 +137,10 @@ protected function sendInscriptionMail($inscription,$lang){
     $tutoyer = 0;
     $tuOuVous="vous";
     if($inscription['public_type'] == 'adolescent' || $inscription['public_type'] == 'jeune-adulte' || $inscription['personneConnue']) {
+        $tutoyer = 1;
+        $tuOuVous="tu";
+    }
+    if($inscription['personneConnue'] && !($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille'|| $inscription['public_type'] == 'fiances') ) {
         $tutoyer = 1;
         $tuOuVous="tu";
     }
