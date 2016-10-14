@@ -19,14 +19,14 @@
         <div ng-if="(!ccCtrl.updateMode && ccCtrl.showForm) || (ccCtrl.updateMode)" class="container">
             <div class="form-group" ng-if="blockConfig.contentType=='568e3d503bc32538118b48d6'" ng-controller="AlbumUploadController as uploadCtrl">
 
-                <label for="uploadFiles" class="col-sm-4 control-label">Photos</label>
+                <label for="uploadFiles" class="col-sm-4 control-label">Photos (maximum 50 images)</label>
                 <div  class="col-sm-8">
                     <div ngf-drop ngf-select ng-model="files" class="drop-box" 
                             ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
                             accept="image/*" 
                             ngf-pattern="'image/*'"
-                            ngf-resize-if="$file.size>1024*200"
-                            ngf-resize="{width: 1000, height: 1000, quality: 0.7}"
+                            ngf-resize-if="$file.size>1024*100"
+                            ngf-resize="{width: 1000, height: 1000, quality: 0.6}"
                             ng-disabled="imgCtrl.processing">
                             <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
                             <img src="/theme/cte/img/loader.gif" ng-if="imgCtrl.processing">
