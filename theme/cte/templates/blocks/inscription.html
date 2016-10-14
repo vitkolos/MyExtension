@@ -93,17 +93,14 @@
                         </div>  
                        
                    </div>
-    
+                <div class="row text-center">
+                        <div class="button submit" ng-class="{'disabled' : paiement.$invalid}" ng-click="formCtrl.setCurrentStage(6,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                </div>
                 </ng-form>
             </div>
             
             
-                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==5}" ng-if="formCtrl.isPaiement" ng-click="formCtrl.setCurrentStage(5,inscription_form.paiement.$valid)">
-                        {{contentDetailCtrl.getLabelByName('paf_text')}}
-                        <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>5"></span>
-                </h2>            
-            
-            
+         
             
             <!--remarques-->
             <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==6}" ng-click="formCtrl.setCurrentStage(6,remarques.$valid)">
