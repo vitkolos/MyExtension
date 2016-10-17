@@ -179,7 +179,7 @@ class SearchResource extends AbstractResource
                             ->setFilter('int')
                     )->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setKey('historyDepth')
+                            ->setKey('historySize')
                             ->setDescription('History size')
                             ->setFilter('int')
                     )

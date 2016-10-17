@@ -5,6 +5,8 @@
   <div class="col-sm-8">
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEntity['text']"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('productBox')}}"></rubedo-field><!--image-->
+	<p ng-if="fieldEntity['reference'] && !fieldEditMode">Référence : {{fieldEntity['reference']}}</p>
+  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('reference')}}" ng-if="fieldEntity['reference'] && fieldEditMode"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']"></rubedo-field><!--image-->
     

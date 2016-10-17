@@ -36,9 +36,9 @@
                                 </a>
                                 <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                             </h4>
-                            <p class="text-justify" ng-style="contentListCtrl.summaryStyle" ng-if="!contentListCtrl.titleOnly" style="height: 40px; overflow:hidden; text-overflow: ellipsis; ">
+                            <!--<p class="text-justify" ng-style="contentListCtrl.summaryStyle" ng-if="!contentListCtrl.titleOnly && content.fields.summary!='' " style="height: 40px; overflow:hidden; text-overflow: ellipsis; ">
                                 <rubedo-field field="{{content.type.summary}}" ></rubedo-field>
-                            </p>
+                            </p>-->
                         </div>
                         <div class="text-center" ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
                             <h4>
