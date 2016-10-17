@@ -690,8 +690,6 @@
                     };
                 });
             };
-
-
         };
         me.uploadNewFileWithWorkspace=function(){
            if ($scope.fieldInputMode&&me.newFile&&$scope.field.config.allowedDAMTypes){

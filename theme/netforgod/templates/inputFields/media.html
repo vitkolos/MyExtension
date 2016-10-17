@@ -12,9 +12,9 @@
                 </button>
         </div>
     </div>
-    <div class="form-control">
+    <div class="form-group">
         <rubedo-notification ng-if="mediaFieldCtrl.notification" ng-init="notification=mediaFieldCtrl.notification"></rubedo-notification>
-        <p>Uploader un fichier</p>
+        <label>Uploader un fichier</label>
         <input type="file"
                id="{{fieldIdPrefix+'_'+field.config.name}}"
                ng-required="!field.config.allowBlank"
