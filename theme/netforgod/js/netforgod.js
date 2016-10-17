@@ -51,7 +51,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             getTemplate = function (playerId) {
                 return '<div id="' + playerId + '"></div>';
             };
-            console.log(subTitles);
            var options = {
                       file: filmUrl,
                       ga: {label:attrs.title},

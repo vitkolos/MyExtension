@@ -2,7 +2,7 @@
     <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="control-label">{{field.config.fieldLabel}} <span ng-if="!field.config.allowBlank&&!field.config.fieldLabel.includes('*')">*</span></label>
     <div ng-if="mediaFieldCtrl.fileTypeTemplate" ng-include="mediaFieldCtrl.fileTypeTemplate"></div>
     
-    <div  class="row" ng-init="fieldEditMode=true">
+    <div  class="row" ng-init="fieldEditMode=true" ng-if="field.config.allowedDAMTypes='57f7bf402456407d078b6cbd'">
         <div class="col-sm-12">
                 <em>Depuis la Médiathèque</em>
                 <button
