@@ -64,16 +64,16 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                       },
                       displaytitle:true,
                       tracks: [{ 
-                                 file: "/dam?media-id"+subTitles, 
+                                 file: subTitles, 
                                  label: "FR",
                                  kind: "captions",
                                  "default": true 
-                      },
+                      }/*,
                       { 
                                  file: "/dam?media-id"+"57f7c4282456407d078b6cfd", 
                                  label: "EN",
                                  kind: "captions"
-                      }]
+                      }*/]
                       
            };
             element.html(getTemplate(id));

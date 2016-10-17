@@ -144,9 +144,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             RubedoMediaService.getMediaById(response.data.content.fields.sub_fr).then(
                                 function(response){
                                     if (response.data.success){
-                                        me.sub_trailer_fr=response.data.media;
-                                        console.log(me.sub_trailer_fr);
-                                        //me.displayMedia();
+                                        //me.sub_trailer_fr=response.data.media;
+                                        me.sub_trailer_fr = "/file?file-id="+response.data.media.originalFileId;
                                     }
                                 }
                             );
