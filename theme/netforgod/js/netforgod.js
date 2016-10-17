@@ -64,7 +64,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                       },
                       displaytitle:true,
                       tracks: [{ 
-                                 file: "/dam?media-id"+subTitles, 
+                                 file: "/FR.srt", 
                                  label: "FR",
                                  kind: "captions",
                                  "default": true 
