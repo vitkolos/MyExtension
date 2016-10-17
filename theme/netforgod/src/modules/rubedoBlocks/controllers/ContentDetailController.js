@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope",
+                                                                          function($scope,RubedoContentsService, RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -119,6 +119,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                        
                     }
                     
+                    
                     /* déterminer l'onglet*/
                     if (!(me.content.fields.parole ||me.content.fields.share||me.content.fields.intercession )) {
                         me.tab=1;
@@ -138,6 +139,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 }
                         });
                     }
+                    /*sous-titres trailer*/
+                    if(response.data.content.fields.sub_fr) {
+                            RubedoMediaService.getMediaById(response.data.content.fields.sub_fr).then(
+                                function(response){
+                                    if (response.data.success){
+                                        me.sub_trailer_fr=response.data.media;
+                                        console.log(me.sub_trailer_fr);
+                                        //me.displayMedia();
+                                    }
+                                }
+                            );
+                        }
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     $scope.fieldLanguage=me.content.locale;
