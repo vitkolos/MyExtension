@@ -60,7 +60,7 @@
                           "geoQueryMode": false,
                           "damQueryMode": false,
                           "productQueryMode":true,
-                          "contentQueryMode":true,
+                          "contentQueryMode":false,
                           "name": "predefinedFacets"
                         }
                       },{
