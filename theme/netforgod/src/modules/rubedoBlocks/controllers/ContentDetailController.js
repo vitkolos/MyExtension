@@ -157,14 +157,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     me.subs_trailer = [];
                     if(response.data.content.fields.trailer_subs) {
                         angular.forEach(response.data.content.fields.trailer_subs, function(subtitleId, lang){
-                            RubedoMediaService.getMediaById(subtitleId).then(
-                                function(response){
-                                    if (response.data.success){
-                                        //me.sub_trailer_fr=response.data.media;
-                                        me.subs_trailer.push({file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"});
+                            if (subtitleId!="") {
+                                RubedoMediaService.getMediaById(subtitleId).then(
+                                    function(response){
+                                        if (response.data.success){
+                                            //me.sub_trailer_fr=response.data.media;
+                                            me.subs_trailer.push({file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"});
+                                        }
                                     }
-                                }
-                            );
+                                );
+                            }
+                            
                         });
                             
                     }
