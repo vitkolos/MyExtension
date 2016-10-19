@@ -122,7 +122,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             },
                                             displaytitle:true                                 
                       };
-                       jwplayer(id).load([options]);
+                       jwplayer(id).setup([options]);
 
                 });            
 
