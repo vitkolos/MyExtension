@@ -141,6 +141,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                      /*récupérer les labels des langues (cf type de contenu  FilmYT)*/
                     me.subs_trailer = [];
+                    me.film_subs = [];
                     RubedoContentTypesService.findById("5673e1823bc32589138b4567").then(
                         function(response){
                             if(response.data.success){
