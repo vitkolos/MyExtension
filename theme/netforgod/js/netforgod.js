@@ -63,7 +63,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  link: 'http://test.netforgod.org/'
                       },
                       displaytitle:true,
-                      tracks:subTitles 
+                      tracks:JSON.parse(subTitles)
            };
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
@@ -104,11 +104,11 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
 			          });
                       }
                 });
-            /*watch for captions*/
+            /*watch for captions
             scope.$watch(function () {
                     return attrs.sousTitre;
                 }, function (newValue, oldValue) {
-                      var options2 ={
+                      options ={
                                             file: filmUrl,
                                              tracks:JSON.parse(newValue),
                                            ga: {label:attrs.title},
@@ -122,13 +122,10 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             },
                                             displaytitle:true                                 
                       };
-                      console.log(options2);
-                      console.log(newValue);
-                       jwplayer(id).load([options2]);
+                       jwplayer(id).load([options]);
 
-                });            
-            
-            jwplayer(id).on('captionsList', function(){console.log('changed')});
+                });            */
+
 
 
         }
