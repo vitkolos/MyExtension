@@ -91,7 +91,13 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             modestbranding:0,
                                             showinfo:1,
                                             width:"100%",
-                                            aspectratio:"16:9"
+                                            aspectratio:"16:9",
+                                            logo: {
+                                                       file: '/theme/netforgod/img/logo.png',
+                                                       link: 'http://test.netforgod.org/'
+                                            },
+                                            displaytitle:true,
+                                            tracks:subTitles 
                                  }]);
                                  jwplayer(id).on('firstFrame', function() { 
 			                 jwplayer().seek(delay);
@@ -102,10 +108,21 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             scope.$watch(function () {
                     return attrs.sousTitre;
                 }, function (newValue, oldValue) {
-                      options["tracks"] = newValue;
-                      console.log(newValue);
-                      console.log(options);
-                      jwplayer(id).load(options);
+
+                       jwplayer(id).load([{
+                                            file: filmUrl,
+                                            ga: {label:attrs.title},
+                                            modestbranding:0,
+                                            showinfo:1,
+                                            width:"100%",
+                                            aspectratio:"16:9",
+                                            logo: {
+                                                       file: '/theme/netforgod/img/logo.png',
+                                                       link: 'http://test.netforgod.org/'
+                                            },
+                                            displaytitle:true,
+                                            tracks:newValue 
+                                 }]);
 
                 });            
             
