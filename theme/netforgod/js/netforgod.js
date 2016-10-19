@@ -108,8 +108,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             scope.$watch(function () {
                     return attrs.sousTitre;
                 }, function (newValue, oldValue) {
-
-                       jwplayer(id).load([{
+                      var options2 ={
                                             file: filmUrl,
                                             ga: {label:attrs.title},
                                             modestbranding:0,
@@ -121,8 +120,11 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                                        link: 'http://test.netforgod.org/'
                                             },
                                             displaytitle:true,
-                                            tracks:newValue 
-                                 }]);
+                                            tracks:newValue
+                                 
+                      };
+                      console.log(options2);
+                       jwplayer(id).load([options2]);
 
                 });            
             
