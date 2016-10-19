@@ -110,7 +110,8 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                 }, function (newValue, oldValue) {
                       var options2 ={
                                             file: filmUrl,
-                                            ga: {label:attrs.title},
+                                             tracks:newValue,
+                                           ga: {label:attrs.title},
                                             modestbranding:0,
                                             showinfo:1,
                                             width:"100%",
@@ -119,16 +120,17 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                                        file: '/theme/netforgod/img/logo.png',
                                                        link: 'http://test.netforgod.org/'
                                             },
-                                            displaytitle:true,
-                                            tracks:newValue
-                                 
+                                            displaytitle:true                                 
                       };
                       console.log(options2);
+                      console.log(newValue);
                        jwplayer(id).load([options2]);
 
                 });            
             
-            
+            jwplayer(id).on('captionsList', function(){console.log('changed')});
+
+
         }
     };
 }]);
