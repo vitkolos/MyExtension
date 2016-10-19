@@ -140,6 +140,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                      /*récupérer les labels des langues (cf type de contenu  FilmYT)*/
+                    me.subs_trailer = [];
                     RubedoContentTypesService.findById("5673e1823bc32589138b4567").then(
                         function(response){
                             if(response.data.success){
@@ -147,30 +148,31 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 angular.forEach(response.data.contentType.fields, function(field){
                                     me.languages[field.config.name] = field.config.fieldLabel;
                                 });
+                                
+                                /*sous-titres trailer*/
+                                if(response.data.content.fields.trailer_subs) {
+                                    angular.forEach(response.data.content.fields.trailer_subs, function(subtitleId, lang){
+                                        if (subtitleId!="") {
+                                            RubedoMediaService.getMediaById(subtitleId).then(
+                                                function(response){
+                                                    if (response.data.success){
+                                                        //me.sub_trailer_fr=response.data.media;
+                                                        me.subs_trailer.push({file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"});
+                                                    }
+                                                }
+                                            );
+                                        }
+                                        
+                                    });
+                                        
+                                }                                
                             }
                         }
                     );
                      
                      
                      
-                    /*sous-titres trailer*/
-                    me.subs_trailer = [];
-                    if(response.data.content.fields.trailer_subs) {
-                        angular.forEach(response.data.content.fields.trailer_subs, function(subtitleId, lang){
-                            if (subtitleId!="") {
-                                RubedoMediaService.getMediaById(subtitleId).then(
-                                    function(response){
-                                        if (response.data.success){
-                                            //me.sub_trailer_fr=response.data.media;
-                                            me.subs_trailer.push({file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"});
-                                        }
-                                    }
-                                );
-                            }
-                            
-                        });
-                            
-                    }
+                    
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     $scope.fieldLanguage=me.content.locale;
