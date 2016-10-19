@@ -63,18 +63,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  link: 'http://test.netforgod.org/'
                       },
                       displaytitle:true,
-                      tracks:subTitles /*[{ 
-                                 file: subTitles, 
-                                 label: "FR",
-                                 kind: "captions",
-                                 "default": true 
-                      },
-                      { 
-                                 file: "/dam?media-id"+"57f7c4282456407d078b6cfd", 
-                                 label: "EN",
-                                 kind: "captions"
-                      }]*/
-                      
+                      tracks:subTitles 
            };
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
@@ -114,7 +103,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                     return attrs.sousTitre;
                 }, function (newValue, oldValue) {
                       options.tracks = newValue;
-                      console.log(newValue);
+                      console.log(options);
                       jwplayer(id).load(options);
                       
                 });            
