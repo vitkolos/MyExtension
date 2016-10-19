@@ -57,6 +57,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/carrousel.json'
         ),
+        'category' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' =>  realpath(__DIR__ . "/blocks/") . '/category.json'
+        ),  
        'contactBlock' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/contactBlock.json'
@@ -84,6 +88,10 @@ return array(
         'searchResults' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
+        ),
+        'productList' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/productList.json'
         ),
          'calendar' => array(
             'maxlifeTime' => 60,
