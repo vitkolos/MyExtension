@@ -143,9 +143,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     RubedoContentTypesService.findById("5673e1823bc32589138b4567").then(
                         function(response){
                             if(response.data.success){
-                                console.log(response.data.contentType);
-                                me.contentType=response.data.contentType;
-                                
+                                me.languages = {};
+                                angular.forEach(response.data.contentType.fields, function(field){
+                                    me.languages[field.config.name] = field.config.fieldLabel;
+                                });
                             }
                         }
                     );
@@ -153,16 +154,20 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                      
                      
                     /*sous-titres trailer*/
-                    if(response.data.content.fields.sub_fr) {
-                            RubedoMediaService.getMediaById(response.data.content.fields.sub_fr).then(
+                    me.subs_trailer = [];
+                    if(response.data.content.fields.trailer_subs) {
+                        angular.forEach(response.data.content.fields.trailer_subs, function(subtitleId, lang){
+                            RubedoMediaService.getMediaById(subtitleId).then(
                                 function(response){
                                     if (response.data.success){
                                         //me.sub_trailer_fr=response.data.media;
-                                        me.sub_trailer_fr = "/file?file-id="+response.data.media.originalFileId;
+                                        me.subs_trailer.push({file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"});
                                     }
                                 }
                             );
-                        }
+                        });
+                            
+                    }
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     $scope.fieldLanguage=me.content.locale;
