@@ -150,8 +150,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 });
                                 
                                 /*sous-titres trailer*/
-                                if(response.data.content.fields.trailer_subs) {
-                                    angular.forEach(response.data.content.fields.trailer_subs, function(subtitleId, lang){
+                                if(me.content.fields.trailer_subs) {
+                                    angular.forEach(me.content.fields.trailer_subs, function(subtitleId, lang){
                                         if (subtitleId!="") {
                                             RubedoMediaService.getMediaById(subtitleId).then(
                                                 function(response){
