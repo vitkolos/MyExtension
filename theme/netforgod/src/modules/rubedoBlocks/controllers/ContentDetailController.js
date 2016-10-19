@@ -139,6 +139,40 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 }
                         });
                     }
+                     /*récupérer les labels des langues (cf type de contenu  FilmYT)*/
+                    me.subs_trailer = [];
+                    RubedoContentTypesService.findById("5673e1823bc32589138b4567").then(
+                        function(response){
+                            if(response.data.success){
+                                me.languages = {};
+                                angular.forEach(response.data.contentType.fields, function(field){
+                                    me.languages[field.config.name] = field.config.fieldLabel;
+                                });
+                                
+                                /*sous-titres trailer*/
+                                if(me.content.fields.trailer_subs) {
+                                    angular.forEach(me.content.fields.trailer_subs, function(subtitleId, lang){
+                                        if (subtitleId!="") {
+                                            RubedoMediaService.getMediaById(subtitleId).then(
+                                                function(response){
+                                                    if (response.data.success){
+                                                        //me.sub_trailer_fr=response.data.media;
+                                                        var sub = {file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"};
+                                                        if (me.lang ==lang) {
+                                                            sub["default"]=true;
+                                                        }
+                                                        me.subs_trailer.push(sub);
+                                                    }
+                                                }
+                                            );
+                                        }
+                                        
+                                    });
+                                        
+                                }                                
+                            }
+                        }
+                    );
                      
                      
                      
@@ -181,7 +215,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
-                    
+                    /* déterminer si on a un film ou trailer*/
+                    if ($scope.fieldEntity['filmYT'] && $scope.fieldEntity['filmYT'][me.lang]) {
+                        me.watch = 'film';
+                    }
+                    else if ($scope.fieldEntity['trailer']) {
+                        me.watch = 'trailer';
+                        $scope.rubedo.current.page.video = response.data.content.fields.trailer.url;
+                    }
+                    else me.watch='no';
                     
 
 /*GET CONTENT TAXONOMIES*/
@@ -211,59 +253,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     //Films : 3 autres articles
                     if (me.content.type.code=="filmNFG") {
-                            /*récupérer les labels des langues (cf type de contenu  FilmYT)*/
-                           me.subs_trailer = [];
-                           RubedoContentTypesService.findById("5673e1823bc32589138b4567").then(
-                               function(response){
-                                   if(response.data.success){
-                                       me.languages = {};
-                                       angular.forEach(response.data.contentType.fields, function(field){
-                                           me.languages[field.config.name] = field.config.fieldLabel;
-                                       });
-                                       
-                                       /*sous-titres trailer*/
-                                       if(me.content.fields.trailer_subs) {
-                                           angular.forEach(me.content.fields.trailer_subs, function(subtitleId, lang){
-                                               if (subtitleId!="") {
-                                                   RubedoMediaService.getMediaById(subtitleId).then(
-                                                       function(response){
-                                                           if (response.data.success){
-                                                               //me.sub_trailer_fr=response.data.media;
-                                                               var sub = {file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"};
-                                                               if (me.lang ==lang) {
-                                                                   sub["default"]=true;
-                                                               }
-                                                               me.subs_trailer.push(sub);
-                                                           }
-                                                       }
-                                                   );
-                                               }
-                                               
-                                           });
-                                            /* déterminer si on a un film ou trailer*/
-                                           if ($scope.fieldEntity['filmYT'] && $scope.fieldEntity['filmYT'][me.lang]) {
-                                               me.watch = 'film';
-                                           }
-                                           else if ($scope.fieldEntity['trailer']) {
-                                               me.watch = 'trailer';
-                                               $scope.rubedo.current.page.video = response.data.content.fields.trailer.url;
-                                           }
-                                           else me.watch='no';                                    
-                                                               
-                                       }                                
-                                   }
-                               }
-                           );
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
                         var taxonomy = angular.copy(me.content.taxonomy);
                         if (taxonomy["navigation"]) {
                             delete taxonomy["navigation"];

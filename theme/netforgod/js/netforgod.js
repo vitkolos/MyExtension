@@ -102,7 +102,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             scope.$watch(function () {
                     return attrs.sousTitre;
                 }, function (newValue, oldValue) {
-                      options.tracks = newValue;
+                      options["tracks"] = newValue;
                       console.log(options);
                       jwplayer(id).load(options);
                       
