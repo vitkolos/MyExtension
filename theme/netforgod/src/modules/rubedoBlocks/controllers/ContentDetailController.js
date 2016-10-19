@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope",
-                                                                          function($scope,RubedoContentsService, RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoContentTypesService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope",
+                                                                          function($scope,RubedoContentsService, RubedoContentTypesService,RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -139,6 +139,19 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 }
                         });
                     }
+                     /*récupérer les labels des langues (cf type de contenu  FilmYT)*/
+                    RubedoContentTypesService.findById("5673e1823bc32589138b4567").then(
+                        function(response){
+                            if(response.data.success){
+                                console.log(response.data.contentType);
+                                me.contentType=response.data.contentType;
+                                
+                            }
+                        }
+                    );
+                     
+                     
+                     
                     /*sous-titres trailer*/
                     if(response.data.content.fields.sub_fr) {
                             RubedoMediaService.getMediaById(response.data.content.fields.sub_fr).then(
