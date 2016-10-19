@@ -38,7 +38,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
-           var labels = attrs.labels;
            var subTitles=attrs.sousTitre;
            var delay = 0;
            filmInfos = filmUrl.split("?t=");
@@ -83,7 +82,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             jwplayer(id).on('firstFrame', function() { 
                       jwplayer().seek(delay);
            });
-
+           /*watch for film change*/
             scope.$watch(function () {
                     return attrs.videoUrl;
                 }, function (newValue, oldValue) {
@@ -110,6 +109,17 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
 			          });
                       }
                 });
+            /*watch for captions*/
+            scope.$watch(function () {
+                    return attrs.sousTitre;
+                }, function (newValue, oldValue) {
+                      options.tracks = newValue;
+                      console.log(newValue);
+                      jwplayer(id).load(options);
+                      
+                });            
+            
+            
         }
     };
 }]);
