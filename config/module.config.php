@@ -125,6 +125,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/redirect.json'
         ),
+        'recommendedContents' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' =>  realpath(__DIR__ . "/blocks/")  . '/recommendedContents.json'
+        ),
         'imageBatchUpload' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/imageBatchUpload.json'
