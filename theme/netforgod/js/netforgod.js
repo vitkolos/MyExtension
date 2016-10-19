@@ -104,13 +104,13 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
 			          });
                       }
                 });
-            /*watch for captions
+            /*watch for captions update*/
             scope.$watch(function () {
                     return attrs.sousTitre;
                 }, function (newValue, oldValue) {
                       options ={
                                             file: filmUrl,
-                                             tracks:JSON.parse(newValue),
+                                            tracks:JSON.parse(newValue),
                                            ga: {label:attrs.title},
                                             modestbranding:0,
                                             showinfo:1,
@@ -124,7 +124,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                       };
                        jwplayer(id).load([options]);
 
-                });            */
+                });            
 
 
 
