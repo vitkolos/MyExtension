@@ -157,7 +157,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                                 function(response){
                                                     if (response.data.success){
                                                         //me.sub_trailer_fr=response.data.media;
-                                                        me.subs_trailer.push({file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"});
+                                                        var sub = {file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"};
+                                                        if (me.lang ==lang) {
+                                                            sub["default"]=true;
+                                                        }
+                                                        me.subs_trailer.push(sub);
                                                     }
                                                 }
                                             );
