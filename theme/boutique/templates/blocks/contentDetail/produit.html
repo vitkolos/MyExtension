@@ -7,8 +7,9 @@
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('productBox')}}"></rubedo-field><!--image-->
 	<p ng-if="fieldEntity['reference'] && !fieldEditMode">Référence : {{fieldEntity['reference']}}</p>
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('reference')}}" ng-if="fieldEntity['reference'] && fieldEditMode"></rubedo-field><!--image-->
-  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']"></rubedo-field><!--image-->
+  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']" class="italic"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']"></rubedo-field><!--image-->
+	<h3 ng-if="fieldEntity['trailer']">Trailer</h3>
 	<jwplayer video-url="{{fieldEntity['trailer']}}" ng-if="fieldEntity['trailer']" ></jwplayer>
   </div>
 </div>

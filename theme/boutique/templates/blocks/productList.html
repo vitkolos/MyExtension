@@ -17,8 +17,7 @@
                 <div class="col-sm-6 rubedo-product-in-list" ng-class="contentListCtrl.columns" ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
                     <div class="row">
 
-                        <div ng-style="contentListCtrl.imageStyle"
-                             ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
+                        <div  ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}"> <!--ng-style="contentListCtrl.imageStyle"-->
                             <a  ng-href="{{ content.detailPageUrl }}">
                                 <img class="img-responsive center-block" ng-if="content.fields[contentListCtrl.imageField] && !contentListCtrl.titleOnly"
                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[contentListCtrl.imageField],{mode:contentListCtrl.imageResizeMode,height:contentListCtrl.imageHeight,width:contentListCtrl.imageWidth}) }}"
