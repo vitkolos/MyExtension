@@ -9,6 +9,6 @@
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('reference')}}" ng-if="fieldEntity['reference'] && fieldEditMode"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']"></rubedo-field><!--image-->
-    
+	<jwplayer video-url="{{fieldEntity['trailer']}}" ng-if="fieldEntity['trailer']" ></jwplayer>
   </div>
 </div>
