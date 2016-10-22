@@ -242,6 +242,18 @@ return array(
                     '/js/international.js'
                 ),
            ),
+           'forumjeunespros' => array(
+                'label' => 'Forum JPros',
+                'basePath' => realpath(__DIR__ . '/../theme/forumjeunespros'),
+                'css' => array(
+                    '/css/forumjeunespros.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '../js/lazy-image.js',
+                    '/js/forumjeunespros.js'
+                ),
+           ),
         ),
     ),
     

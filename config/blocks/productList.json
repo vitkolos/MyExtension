@@ -233,6 +233,7 @@
             "timeThreshold": 200,
             "scrollThreshold": 300,
             "imageField": "image",
+            "imageHeight":300,
             "imageResizeMode":"boxed",
             "infiniteScroll": false
         }
