@@ -10,5 +10,6 @@
     "Label.Edit":"Modifier",
     "Blocks.Checkout.Label.AddGiftComments":"Un petit mot pour le cadeau ?",
     "Blocks.UserOrders.SoldOut":"Rupture",
-    "Blocks.UserOrders.ThereAreVariations":"Variantes"
+    "Blocks.UserOrders.ThereAreVariations":"Variantes",
+    "Label.AddedToCart":"Ajouté au panier"
 }

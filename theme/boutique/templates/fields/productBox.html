@@ -15,8 +15,11 @@
                 </select>
             </div>
         </form>
-        <button class="btn btn-default" ng-disabled="!productBoxCtrl.canOrder()" ng-click="productBoxCtrl.addToCart()" style="padding: 12px 24px">
+        <button class="btn btn-default" ng-disabled="!productBoxCtrl.canOrder()" ng-click="productBoxCtrl.addToCart()" style="padding: 12px 24px" ng-if="!productBoxCtrl.isProductAdded">
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}
+        </button>
+        <button class="btn btn-default" style="padding: 12px 24px" ng-if="productBoxCtrl.isProductAdded">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ rubedo.translate('Label.AddedToCart','Ajouté au panier')}}
         </button>
     </div>
     <div ng-if="manageStock && !productBoxCtrl.productProperties.canOrderNotInStock" class="panel-footer">{{productBoxCtrl.getProductAvailabilityText()}}</div>
