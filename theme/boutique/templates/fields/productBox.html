@@ -1,4 +1,4 @@
-<div ng-controller="ProductBoxController as productBoxCtrl" class="panel panel-default">
+<div ng-controller="ProductBoxController as productBoxCtrl" class="panel panel-default product-box">
     <div class="panel-body text-center">
         <h5 ng-if="productBoxCtrl.hasSpecialOffer"><span class="del">{{productBoxCtrl.oldPrice| number : 2}} €</span></h5>
         <h3 ng-class="{'text-danger':productBoxCtrl.hasSpecialOffer}" >{{productBoxCtrl.currentPrice| number : 2}} €</h3>
