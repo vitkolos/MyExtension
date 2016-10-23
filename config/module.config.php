@@ -227,6 +227,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
+                     '../js/lazy-image.js',
                     '/js/boutique.js'
                 ),
            ),
