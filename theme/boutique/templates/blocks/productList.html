@@ -19,11 +19,13 @@
 
                         <div  ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}"> <!--ng-style="contentListCtrl.imageStyle"-->
                             <a  ng-href="{{ content.detailPageUrl }}">
-                                <img class="img-responsive center-block" ng-if="content.fields[contentListCtrl.imageField] && !contentListCtrl.titleOnly"
+                                <img class="img-responsive center-block" ng-if="content.fields[contentListCtrl.imageField] && content.fields[contentListCtrl.imageField] != '' && !contentListCtrl.titleOnly"
                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[contentListCtrl.imageField],{mode:contentListCtrl.imageResizeMode,height:contentListCtrl.imageHeight,width:contentListCtrl.imageWidth}) }}"
-                                     alt="{{ content.fields.text }}"
-                                />
-                            </a>
+                                     alt="{{ content.fields.text }}"/>
+                                <img class="img-responsive center-block" ng-if="(!content.fields[contentListCtrl.imageField] || content.fields[contentListCtrl.imageField] == '') && !contentListCtrl.titleOnly"
+                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId('580cc4382456408a078bb5b1',{mode:contentListCtrl.imageResizeMode,height:contentListCtrl.imageHeight,width:contentListCtrl.imageWidth}) }}"
+                                     alt="{{ content.fields.text }}"/>
+                             </a>
                         </div>
                         <div ng-class="{'col-md-8':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
                             <h4>
