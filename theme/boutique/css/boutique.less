@@ -496,6 +496,7 @@ border: none;
 
 //////////////TEXTE////////////
 .italic p{font-style: italic}
+.texte{max-width: 860px; margin: 24px auto; padding: 6px 8px}
 
 ///////////CONTENT LIST//////////////////
 .product-list-container{text-align: center}
@@ -510,4 +511,20 @@ border: none;
   h3,h5{text-align: center !important}
   .text-center{text-align: center !important}
   button{margin: 6px 0}
+}
+/////////////BACKGROUND IMAGE///////////
+header.content{
+  background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover;
+    h1,h2,h3,h4,h5,p{color:white};
+    height:320px;
+    box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
+    margin-bottom:24px;
+    line-height: 320px;
+    text-align: center;
+    background-color: @beigeCCN;
+    background-image: url('/theme/cte/img/logo_ccn.jpg');
+    overflow-y:hidden;
 }

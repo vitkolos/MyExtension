@@ -9,10 +9,10 @@ blocksConfig.productList={
     "internalDependencies":["/src/modules/rubedoBlocks/controllers/ProductListController.js","/src/modules/rubedoBlocks/directives/PaginatorDirective.js"],
     "externalDependencies":['/components/OwlFonk/OwlCarousel/owl-carousel/owl.carousel.min.js']
 };
-//blocksConfig.navigation={
-//  "template":  "/templates/blocks/navigation.html",
-//  "internalDependencies":["/src/modules/rubedoBlocks/controllers/MenuController.js","/src/modules/rubedoBlocks/controllers/ShoppingCartController.js"],
-//};
+blocksConfig.bg_image={
+           "template": "/templates/blocks/bg_image.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
+};
 blocksConfig.boutiqueTop={
   "template":  "/templates/blocks/boutiqueTop.html",
   "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchFormController.js",
