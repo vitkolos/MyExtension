@@ -43,14 +43,16 @@
             <div class="product-mini" ng-class="{'product-mini-grid col-md-6 col-lg-4':searchResultsCtrl.productDisplayMode=='grid','col-md-12':searchResultsCtrl.productDisplayMode=='list'}" ng-repeat="content in searchResultsCtrl.data track by $index">
                 <!--<h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>-->
                 <!--<div class="row rubedo-product-in-list">-->
-
+                <div>
                     <div ng-style="searchResultsCtrl.imageStyle"
                          ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
                         <a ng-href="{{ content.url }}">
-                            <img class="img-responsive center-block" ng-if="content['fields.'+searchResultsCtrl.imageField] && !searchResultsCtrl.titleOnly"
+                            <img class="img-responsive center-block" ng-if="content['fields.'+searchResultsCtrl.imageField] && content['fields.'+searchResultsCtrl.imageField] != '' && !searchResultsCtrl.titleOnly"
                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.'+searchResultsCtrl.imageField],{mode:'boxed',height:'200px',width:searchResultsCtrl.imageWidth}) }}"
-                                 alt="{{ content.title }}"
-                            />
+                                 alt="{{ content.title }}"/>
+                            <img class="img-responsive center-block" ng-if="(!content['fields.'+searchResultsCtrl.imageField] || content['fields.'+searchResultsCtrl.imageField] == '') && !searchResultsCtrl.titleOnly"
+                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId('580cc4382456408a078bb5b1',{mode:'boxed',height:'200px',width:searchResultsCtrl.imageWidth}) }}"
+                                 alt="{{ content.title }}"/>
                         </a>
                     </div>
                     <div ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-8':searchResultsCtrl.productDisplayMode=='list'}">
@@ -98,7 +100,7 @@
                             <!--<i class="fa fa-list-ul">{{rubedo.translate('Blocks.UserOrders.ThereAreVariations')}}</i>-->
                         </a>
                     </div>
-                <!--</div>-->
+                </div>
             </div>
         </div>
         <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"
