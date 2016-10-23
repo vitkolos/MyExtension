@@ -14,11 +14,6 @@
 @menu:#2e2c29;// couleur de fond du menu par défaut
 @beigeCCN:#f3eeea; // beige fond
 @marron:#d5c5b5 ; // beige plus sombre
-@rencontre:#7d77bf; //violet rencontres
-@lieux:#fbbd58; //jaune lieux communautaires
-@evenement:#f96847; //orange propositions;
-//@14-18:#59d3b6;
-@bleu:#3CA6C1;
 
                                                 //-------------------//
                                                 //generalités du html//
@@ -223,16 +218,15 @@ padding-left: 0;}
 
 }
 .product-mini{
-   padding-bottom: 20px;padding-top: 10px;
+   padding-bottom: 20px;
 }
 .product-mini-grid{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: white;
-  box-shadow: -1px 2px 5px 1px rgba(0,0,0,.1);
   img{box-shadow: none !important;}
 }
+.product-mini-grid > div {padding-top: 10px; padding-bottom: 10px; background: white; box-shadow: -1px 2px 5px 1px rgba(0,0,0,.1);}
 .searchbar-prod-search{
   margin-bottom: 20px;
   .btn{line-height: 1.6}
