@@ -57,7 +57,7 @@
                 </div>
                 <div id="checkoutStage2" class="panel-collapse collapse" ng-class="{'in':checkoutCtrl.currentStage==2}" role="tabpanel" aria-labelledby="checkoutHeading2">
                     <div class="panel-body">
-                        <form ng-if="checkoutCtrl.userType" ng-submit="checkoutCtrl.handleStage2Submit()" class="form-horizontal">
+                        <form ng-if="checkoutCtrl.userType" ng-submit="checkoutCtrl.handleStage2Submit()">
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4 class="text-center">{{ rubedo.translate('Blocks.Checkout.Step2.PersonalDetails')}}</h4>
@@ -65,15 +65,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h4 class="text-center">{{ rubedo.translate('Blocks.Checkout.Label.Address')}}</h4>
-                                    <div class="form-group">
-                                        <label for="{{fieldIdPrefix+'_address_company'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
-                                        <div class="col-sm-8">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="{{fieldIdPrefix+'_address_company'}}"
-                                                   ng-model="fieldEntity.address.company"
-                                            >
-                                        </div>
+                                        <label for="{{fieldIdPrefix+'_address_company'}}">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
+                                        <input type="text" class="form-control"  id="{{fieldIdPrefix+'_address_company'}}" ng-model="fieldEntity.address.company">
                                     </div>
                                     <div class="form-group">
                                         <label for="{{fieldIdPrefix+'_address_attention'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Attention')}} </label>
