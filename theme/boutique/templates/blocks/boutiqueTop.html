@@ -3,7 +3,7 @@
         <span  ng-controller="SearchFormController as searchFormCtrl" class="input-group-btn">
             <form  ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group col-md-10">
                 <span  ng-if="searchFormCtrl.show">
-                    <input style="padding-left: 0;" class="form-control" type="text" ng-model="searchFormCtrl.query" placeholder="{{searchFormCtrl.placeholder}}"/>
+                    <input class="form-control" type="text" ng-model="searchFormCtrl.query" placeholder="{{searchFormCtrl.placeholder}}"/>
                     <button class="btn btn-default top-hover" style="padding-bottom: 8px;"type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
