@@ -268,13 +268,7 @@ padding-left: 0;}
     &:active{box-shadow: none;}
     .montserrat
    }
-.btn-default.hover{
-  span:last-of-type{display:none;}
-}
-.btn-default.hover:hover{
-  span:last-of-type{display:inline;}
-  span:first-of-type{display:none;}
-}
+
    
    
    
@@ -420,16 +414,24 @@ padding-left: 0;}
     margin-right: auto;
     margin-left: auto;
   }
-  .btn-default{
-    color:white;
-    background-color:@rouge;
-    border:none;
-    margin-bottom:1px;
-    .badge{color:@rouge}
-    &:hover, &:focus, &.active, &:active  {background-color: @rouge_shadow; .badge{color:white}}
+.btn-default{
+  color:white;
+  background-color:@rouge;
+  border:none;
+  margin-bottom:1px;
+  .badge{color:@rouge}
+  &:hover, &:focus, &.active, &:active  {background-color: @rouge_shadow; .badge{color:white}}
 
-    //.open>.dropdown-toggle.btn-primary
-  }
+  //.open>.dropdown-toggle.btn-primary
+}
+.btn-default.hover{
+  span:last-of-type{display:none;}
+}
+.btn-default.hover:hover{
+  span:last-of-type{display:inline;}
+  span:first-of-type{display:none;}
+}  
+  
   .btn-inv{
     color:@rouge;
     background-color:white;
