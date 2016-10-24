@@ -66,7 +66,7 @@
                         </p>
                     </div>
                     <div class="text-center" ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
-                        <h4 class="col-md-8" style="padding: 0">
+                        <h4 class="col-xs-8" style="padding: 0">
                             <span ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small class="del">{{content.productProperties.lowestNoSoPrice|number:2}} €</small></span>
                             <!--<span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span>-->
                             <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">
@@ -81,21 +81,21 @@
                         <button ng-if="content.productProperties.variations.length==1 && (content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock)"
                                 ng-click="searchResultsCtrl.addToCart(content)"
                                 ng-disabled="!searchResultsCtrl.canOrder(content)"
-                                class="btn btn-default col-md-4">
+                                class="btn btn-default col-xs-4">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                         </button>
                         <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
 
                         <a ng-if="content.productProperties.variations.length==1 && !(content.productProperties.variations.0.stock>0 && content.productProperties.canOrderNotInStock)"
                                 ng-href="{{ content.url }}"
-                            class="btn btn-default col-md-4 lignten-button" >
+                            class="btn btn-default col-xs-4 lignten-button" >
                             <i class="fa fa-close"></i>
                             <!--<i class="fa fa-close">{{rubedo.translate('Blocks.UserOrders.SoldOut')}}</i>-->
                         </a>
 
                         <a ng-if="content.productProperties.variations.length>1"
                                 ng-href="{{ content.url }}"
-                                class="btn btn-default col-md-4">
+                                class="btn btn-default col-xs-4">
                             <i class="glyphicon glyphicon-shopping-cart"></i>
                             <!--<i class="fa fa-list-ul">{{rubedo.translate('Blocks.UserOrders.ThereAreVariations')}}</i>-->
                         </a>

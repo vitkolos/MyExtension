@@ -266,7 +266,18 @@ padding-left: 0;}
   .btn-default{
      background-color: transparent;
     &:active{box-shadow: none;}
+    .montserrat
    }
+.btn-default.hover{
+  span:last-of-type{display:none;}
+}
+.btn-default.hover:hover{
+  span:last-of-type{display:inline;}
+  span:first-of-type{display:none;}
+}
+   
+   
+   
   .top-hover,.navbar-nav>.open>a{
     &:hover{
       transition: all .2s ease 0s;
