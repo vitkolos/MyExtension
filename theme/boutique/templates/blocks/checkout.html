@@ -83,26 +83,27 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-sm-6 form-group">
-                                            <label for="{{fieldIdPrefix+'_address_city'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.City')}} </label>
-                                            <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_city'}}" ng-model="fieldEntity.address.city" required >
-                                        </div>
-                                        <div class="col-sm-6 form-group">
                                             <label for="{{fieldIdPrefix+'_address_postCode'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Zipcode')}} </label>
                                             <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_postCode'}}" ng-model="fieldEntity.address.postCode" required >
                                         </div>
+                                        <div class="col-sm-6 form-group">
+                                            <label for="{{fieldIdPrefix+'_address_city'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.City')}} </label>
+                                            <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_city'}}" ng-model="fieldEntity.address.city" required >
+                                        </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-sm-6 form-group">
+                                            <label for="{{fieldIdPrefix+'_address_state'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.State')}} </label>
+                                            <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_state'}}" ng-model="fieldEntity.address.regionState" >
+                                        </div>
                                         <div class="col-sm-6 form-group">
                                             <label for="{{fieldIdPrefix+'_address_country'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
                                             <select class="form-control" id="{{fieldIdPrefix+'_address_country'}}" ng-model="fieldEntity.address.country"
                                                     ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray"  required >
                                             </select>
                                         </div>
-                                        <div class="col-sm-6 form-group">
-                                            <label for="{{fieldIdPrefix+'_address_state'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.State')}} </label>
-                                            <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_state'}}" ng-model="fieldEntity.address.regionState" >
-                                        </div>
                                     </div>
+                                    <!--
                                     <p ng-if="!rubedo.current.user">{{rubedo.translate('Blocks.Checkout.MailingLists.Label')}}</p>
                                     <div class="form-group" ng-if="!rubedo.current.user">
                                         <div ng-repeat="mailingList in checkoutCtrl.mailingLists track by $index" class="checkbox">
@@ -110,8 +111,8 @@
                                                 <input ng-model="mailingList.checked" type="checkbox"> {{mailingList.name}}
                                             </label>
                                         </div>
-                                    </div>
-                                    <div class="form-group" ng-if="!rubedo.current.user">
+                                    </div>-->
+                                    <div class="form-group">
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForBilling">
