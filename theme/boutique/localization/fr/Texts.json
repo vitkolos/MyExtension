@@ -12,4 +12,6 @@
     "Blocks.UserOrders.SoldOut":"Rupture",
     "Blocks.UserOrders.ThereAreVariations":"Variantes",
     "Label.AddedToCart":"Ajouté au panier",
+    "Blocks.Checkout.Label.ChooseShipper":"Merci de choisir un mode de livraison",
+    "Blocks.Checkout.Label.ChoosePayment":"Merci de choisir un moyen de paiement"
 }
