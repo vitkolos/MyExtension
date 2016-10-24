@@ -1,4 +1,4 @@
-<div ng-controller="CheckoutController as checkoutCtrl">
+<div ng-controller="CheckoutController as checkoutCtrl" class="checkout-form">
     <div ng-if="checkoutCtrl.cartIsEmpty" class="alert alert-warning" role="alert">Your cart is empty</div>
     <div ng-if="!checkoutCtrl.cartIsEmpty">
         <h2>{{rubedo.translate('Label.Checkout')}}</h2>
@@ -126,7 +126,7 @@
                                         <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.SignUp.label.signUp')}}</button>
                                     </div>
                                     <div class="form-group text-center" ng-if="rubedo.current.user">
-                                        <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
+                                        <button type="submit" class="btn btn-primary pull-right">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
                                     </div>
                                     <div ng-if="checkoutCtrl.stage2Error" ng-init="notification = {type:'error',text:checkoutCtrl.stage2Error}">
                                         <rubedo-notification></rubedo-notification>
@@ -248,7 +248,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-center" ng-if="rubedo.current.user">
-                                    <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
+                                    <button type="submit" class="btn btn-primary pull-right ">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
                                 </div>
                                 <div ng-if="checkoutCtrl.stage3Error" ng-init="notification = {type:'error',text:checkoutCtrl.stage3Error}">
                                     <rubedo-notification></rubedo-notification>
@@ -359,7 +359,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-center" ng-if="rubedo.current.user">
-                                    <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
+                                    <button type="submit" class="btn btn-primary pull-right">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
                                 </div>
                                 <div ng-if="checkoutCtrl.stage4Error" ng-init="notification = {type:'error',text:checkoutCtrl.stage4Error}">
                                     <rubedo-notification></rubedo-notification>
@@ -430,7 +430,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group text-center" ng-if="rubedo.current.user">
-                                    <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
+                                    <button type="submit" class="btn btn-primary pull-right">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
                                 </div>
                                 <div ng-if="checkoutCtrl.stage5Error" ng-init="notification = {type:'error',text:checkoutCtrl.stage5Error}">
                                     <rubedo-notification></rubedo-notification>

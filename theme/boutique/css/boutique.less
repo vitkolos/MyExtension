@@ -53,7 +53,8 @@ text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
 }
 .col-sm-12{
   padding-right: 0;
-padding-left: 0;}
+  padding-left: 0;
+}
 .panel-primary, .panel-default{
   .btn-primary{
     color:@beigeCCN;
@@ -62,7 +63,7 @@ padding-left: 0;}
     margin-bottom:1px;
     .badge{color:@rouge}
     &:hover, &:focus, &.active, &:active  {background-color: @rouge_shadow; .badge{color:@beigeCCN}}
-
+    padding: 6px 12px;
   }
 }
 .panel-primary {
@@ -582,12 +583,16 @@ header.content{
 }
 /////////CHECKOUT//////////////
 .control-label{
-  padding: 6px;
+  padding: 6px; margin-bottom: 0;
   text-transform: uppercase;
   .montserrat;
+  font-weight: normal;
+  font-size: 14px;
+  color: @txt_light;
 }
 .form-control{
   border: 1px solid #ddd;
-  border-radius: none !important;
+  border-radius: 0 !important;
   box-shadow: none !important;
 }
+.checkout-form .panel-body{background:#f5f5f5}
