@@ -13,6 +13,10 @@ blocksConfig.bg_image={
            "template": "/templates/blocks/bg_image.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
 };
+blocksConfig.ordersList={
+           "template": "/templates/blocks/ordersList.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/OrdersListController.js"]
+};
 blocksConfig.boutiqueTop={
   "template":  "/templates/blocks/boutiqueTop.html",
   "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchFormController.js",
