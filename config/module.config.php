@@ -132,7 +132,11 @@ return array(
         'imageBatchUpload' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/imageBatchUpload.json'
-        )  
+        ),
+        'ordersList' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/ordersList.json'
+        ),
  ),
 
     'templates' => array(
