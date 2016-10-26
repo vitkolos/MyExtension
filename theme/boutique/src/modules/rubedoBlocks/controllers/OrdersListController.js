@@ -5,6 +5,7 @@ angular.module("rubedoBlocks").lazy.controller('OrdersListController',['$scope',
     if (config.orderDetailPage){
         options.orderDetailPage=config.orderDetailPage;
     }
+    options.allCommands = true;
     RubedoOrdersService.getMyOrders(options).then(
         function(response){
             if (response.data.success){

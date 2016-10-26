@@ -49,8 +49,8 @@ class OrdersResource extends AbstractResource
             ->addFilter(Filter::factory('Value')->setName('userId')->setValue($user['id']));
         $start=isset($params['start']) ? $params['start'] : 0;
         $limit=isset($params['limit']) ? $params['limit'] : null;
-        //pour les admins boutique, ne pas limiter la liste de commandes à l'utilisateur
-        if($user["defaultGroup"] == "57222992c445ec68568bf2da"){
+        //pour les admins boutique, ne pas limiter la liste de commandes à l'utilisateur, si on est sur le bloc "Liste de commandes"
+        if($user["defaultGroup"] == "57222992c445ec68568bf2da" && $params['allCommands']){
             $orders = $this->getOrdersCollection()->getList(null, array(array('property' => 'createTime', 'direction' => 'desc')),$start,$limit);            
         }
         else {
@@ -345,6 +345,11 @@ class OrdersResource extends AbstractResource
                     ->setKey('orderDetailPage')
                     ->setDescription('Order details page')
                     ->setFilter('\MongoId')
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('allCommands')
+                    ->setDescription('Voir toutes les commandes - pour des utilisateurs avec les droits d\'admin sur la Boutique')
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
