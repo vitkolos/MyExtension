@@ -63,18 +63,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  link: 'http://test.netforgod.org/'
                       },
                       displaytitle:true,
-                      tracks: [{ 
-                                 file: "/dam?media-id"+subTitles, 
-                                 label: "FR",
-                                 kind: "captions",
-                                 "default": true 
-                      },
-                      { 
-                                 file: "/dam?media-id"+"57f7c4282456407d078b6cfd", 
-                                 label: "EN",
-                                 kind: "captions"
-                      }]
-                      
+                      tracks:JSON.parse(subTitles)
            };
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
@@ -82,7 +71,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             jwplayer(id).on('firstFrame', function() { 
                       jwplayer().seek(delay);
            });
-
+           /*watch for film change*/
             scope.$watch(function () {
                     return attrs.videoUrl;
                 }, function (newValue, oldValue) {
@@ -102,13 +91,43 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             modestbranding:0,
                                             showinfo:1,
                                             width:"100%",
-                                            aspectratio:"16:9"
+                                            aspectratio:"16:9",
+                                            logo: {
+                                                       file: '/theme/netforgod/img/logo.png',
+                                                       link: 'http://test.netforgod.org/'
+                                            },
+                                            displaytitle:true,
+                                            tracks:subTitles 
                                  }]);
                                  jwplayer(id).on('firstFrame', function() { 
 			                 jwplayer().seek(delay);
 			          });
                       }
                 });
+            /*watch for captions update*/
+            scope.$watch(function () {
+                    return attrs.sousTitre;
+                }, function (newValue, oldValue) {
+                      options ={
+                                            file: filmUrl,
+                                            tracks:JSON.parse(newValue),
+                                           ga: {label:attrs.title},
+                                            modestbranding:0,
+                                            showinfo:1,
+                                            width:"100%",
+                                            aspectratio:"16:9",
+                                            logo: {
+                                                       file: '/theme/netforgod/img/logo.png',
+                                                       link: 'http://test.netforgod.org/'
+                                            },
+                                            displaytitle:true                                 
+                      };
+                       jwplayer(id).load([options]);
+
+                });            
+
+
+
         }
     };
 }]);

@@ -57,6 +57,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/carrousel.json'
         ),
+        'category' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' =>  realpath(__DIR__ . "/blocks/") . '/category.json'
+        ),  
        'contactBlock' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/contactBlock.json'
@@ -84,6 +88,10 @@ return array(
         'searchResults' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
+        ),
+        'productList' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/productList.json'
         ),
          'calendar' => array(
             'maxlifeTime' => 60,
@@ -116,6 +124,10 @@ return array(
         'redirect' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/redirect.json'
+        ),
+        'recommendedContents' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' =>  realpath(__DIR__ . "/blocks/")  . '/recommendedContents.json'
         ),
         'imageBatchUpload' => array(
             'maxlifeTime' => 60,
@@ -215,6 +227,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
+                     '../js/lazy-image.js',
                     '/js/boutique.js'
                 ),
            ),
@@ -228,6 +241,18 @@ return array(
                 'js' => array(
                     '../js/lazy-image.js',
                     '/js/international.js'
+                ),
+           ),
+           'forumjeunespros' => array(
+                'label' => 'Forum JPros',
+                'basePath' => realpath(__DIR__ . '/../theme/forumjeunespros'),
+                'css' => array(
+                    '/css/forumjeunespros.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '../js/lazy-image.js',
+                    '/js/forumjeunespros.js'
                 ),
            ),
         ),

@@ -39,22 +39,24 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div class="row set-of-product">
-            <div class="product-mini" ng-class="{'product-mini-grid col-md-6 col-lg-4':searchResultsCtrl.productDisplayMode=='grid','col-md-12':searchResultsCtrl.productDisplayMode=='list'}" ng-repeat="content in searchResultsCtrl.data track by $index">
+        <div class="row row-eq-height set-of-product">
+            <div class="product-mini" ng-class="{'product-mini-grid col-sm-6 col-lg-4':searchResultsCtrl.productDisplayMode=='grid','col-xs-12':searchResultsCtrl.productDisplayMode=='list'}" ng-repeat="content in searchResultsCtrl.data track by $index">
                 <!--<h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>-->
                 <!--<div class="row rubedo-product-in-list">-->
-
+                <div>
                     <div ng-style="searchResultsCtrl.imageStyle"
                          ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
                         <a ng-href="{{ content.url }}">
-                            <img class="img-responsive center-block" ng-if="content['fields.'+searchResultsCtrl.imageField] && !searchResultsCtrl.titleOnly"
+                            <img class="img-responsive center-block" ng-if="content['fields.'+searchResultsCtrl.imageField] && content['fields.'+searchResultsCtrl.imageField] != '' && !searchResultsCtrl.titleOnly"
                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.'+searchResultsCtrl.imageField],{mode:'boxed',height:'200px',width:searchResultsCtrl.imageWidth}) }}"
-                                 alt="{{ content.title }}"
-                            />
+                                 alt="{{ content.title }}"/>
+                            <img class="img-responsive center-block" ng-if="(!content['fields.'+searchResultsCtrl.imageField] || content['fields.'+searchResultsCtrl.imageField] == '') && !searchResultsCtrl.titleOnly"
+                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId('580cc4382456408a078bb5b1',{mode:'boxed',height:'200px',width:searchResultsCtrl.imageWidth}) }}"
+                                 alt="{{ content.title }}"/>
                         </a>
                     </div>
                     <div ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-8':searchResultsCtrl.productDisplayMode=='list'}">
-                        <h4>
+                        <h4 class="text-center">
                             <a ng-href="{{ content.url }}">
                                 {{content.title}}
                             </a>
@@ -64,7 +66,7 @@
                         </p>
                     </div>
                     <div class="text-center" ng-class="{'col-md-12':searchResultsCtrl.productDisplayMode=='grid','col-md-2':searchResultsCtrl.productDisplayMode=='list'}">
-                        <h4 class="col-md-8" style="padding: 0">
+                        <h4 class="col-xs-8" style="padding: 0">
                             <span ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small class="del">{{content.productProperties.lowestNoSoPrice|number:2}} €</small></span>
                             <!--<span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span>-->
                             <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">
@@ -76,29 +78,30 @@
                         </h4>
                         <!--<a ng-href="{{ content.url }}"><button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button></a>-->
 
-                        <button ng-if="content.productProperties.variations.length==1 && (content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock)"
-                                ng-click="searchResultsCtrl.addToCart(content)"
+                        <button ng-if="content.productProperties.variations.length==1 && (content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock) "
+                                ng-click="searchResultsCtrl.addToCart(content);content.isProductAdded = !content.isProductAdded"
                                 ng-disabled="!searchResultsCtrl.canOrder(content)"
-                                class="btn btn-default col-md-4">
-                            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                                class="btn btn-default col-xs-4">
+                            <span class="glyphicon glyphicon-shopping-cart" ng-if="!content.isProductAdded" aria-hidden="true"></span>
+                            <span class="glyphicon glyphicon-ok" ng-if="content.isProductAdded" aria-hidden="true"></span>
                         </button>
                         <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
 
                         <a ng-if="content.productProperties.variations.length==1 && !(content.productProperties.variations.0.stock>0 && content.productProperties.canOrderNotInStock)"
                                 ng-href="{{ content.url }}"
-                            class="btn btn-default col-md-4 lignten-button" >
+                            class="btn btn-default col-xs-4 lignten-button" >
                             <i class="fa fa-close"></i>
                             <!--<i class="fa fa-close">{{rubedo.translate('Blocks.UserOrders.SoldOut')}}</i>-->
                         </a>
 
                         <a ng-if="content.productProperties.variations.length>1"
                                 ng-href="{{ content.url }}"
-                                class="btn btn-default col-md-4">
+                                class="btn btn-default col-xs-4">
                             <i class="glyphicon glyphicon-shopping-cart"></i>
                             <!--<i class="fa fa-list-ul">{{rubedo.translate('Blocks.UserOrders.ThereAreVariations')}}</i>-->
                         </a>
                     </div>
-                <!--</div>-->
+                </div>
             </div>
         </div>
         <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"

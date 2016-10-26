@@ -9,10 +9,10 @@ blocksConfig.productList={
     "internalDependencies":["/src/modules/rubedoBlocks/controllers/ProductListController.js","/src/modules/rubedoBlocks/directives/PaginatorDirective.js"],
     "externalDependencies":['/components/OwlFonk/OwlCarousel/owl-carousel/owl.carousel.min.js']
 };
-//blocksConfig.navigation={
-//  "template":  "/templates/blocks/navigation.html",
-//  "internalDependencies":["/src/modules/rubedoBlocks/controllers/MenuController.js","/src/modules/rubedoBlocks/controllers/ShoppingCartController.js"],
-//};
+blocksConfig.bg_image={
+           "template": "/templates/blocks/bg_image.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
+};
 blocksConfig.boutiqueTop={
   "template":  "/templates/blocks/boutiqueTop.html",
   "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchFormController.js",
@@ -35,4 +35,27 @@ angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',functio
         }));
     };
     return serviceInstance;
+}]);
+
+ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
+    return {
+        restrict: 'EC',
+        link: function (scope, element, attrs) {
+           var filmUrl = attrs.videoUrl;
+            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
+            getTemplate = function (playerId) {
+                      
+                return '<div id="' + playerId + '"></div>';
+            };
+           var options = {
+                      file: filmUrl,
+                      modestbranding:0,
+                      showinfo:1,
+                      width:"100%",
+                      aspectratio:"16:9"};
+            element.html(getTemplate(id));
+            $compile(element.contents())(scope);
+            jwplayer(id).setup(options);
+        }
+    };
 }]);

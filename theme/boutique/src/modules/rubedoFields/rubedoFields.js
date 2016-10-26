@@ -824,6 +824,7 @@
                 return($scope.rubedo.translate("Fields.User.Label.InStock", "In stock") + " : " + $scope.rubedo.translate("Fields.User.Label.SentBefore", "sent before") + " " + me.productProperties.preparationDelay + " " + complement);
             }
         };
+        me.isProductAdded = false;
         me.addToCart=function(){
             var options={
                 productId:me.productId,
@@ -833,7 +834,8 @@
             RubedoShoppingCartService.addToCart(options).then(
                 function(response){
                     $rootScope.$broadcast("shoppingCartUpdated",{emitter:"productBox"});
-                    window.location.href= $scope.rubedo.current.site.cartDetailPageUrl;
+                    //window.location.href= $scope.rubedo.current.site.cartDetailPageUrl;
+                    me.isProductAdded = true;
                     
                 }
             );

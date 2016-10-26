@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoContentTypesService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope",
+                                                                          function($scope,RubedoContentsService, RubedoContentTypesService,RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -119,25 +119,86 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                        
                     }
                     
-                    /* déterminer l'onglet*/
-                    if (!(me.content.fields.parole ||me.content.fields.share||me.content.fields.intercession )) {
-                        me.tab=1;
-                        me.showInfos = false;
-                    }
+                    if (me.content.type.code=="filmNFG") {
+                        /* déterminer l'onglet*/
+                        if (!(me.content.fields.parole ||me.content.fields.share||me.content.fields.intercession )) {
+                            me.tab=1;
+                            me.showInfos = false;
+                        }
                     
-                    /*si FOI lié, récupérer le contenu*/
-                    var options = {
-                      siteId: "555c4cf445205e71447e68d3",
-                      pageId: "555c4cf445205e71447e68db"
-                    };
-                    if (me.content.fields.linkedFOI) {
-                        RubedoContentsService.getContentById(me.content.fields.linkedFOI, options).then(
-                            function(response){
-                                if(response.data.success){
-                                    me.relatedFOI=response.data.content;
-                                }
-                        });
+                        /*si FOI lié, récupérer le contenu*/
+                        var options = {
+                          siteId: "555c4cf445205e71447e68d3",
+                          pageId: "555c4cf445205e71447e68db"
+                        };
+                        if (me.content.fields.linkedFOI) {
+                            RubedoContentsService.getContentById(me.content.fields.linkedFOI, options).then(
+                                function(response){
+                                    if(response.data.success){
+                                        me.relatedFOI=response.data.content;
+                                    }
+                            });
+                        }
+                        /*récupérer les labels des langues (cf type de contenu  FilmYT)*/
+                       me.subs_trailer = [];
+                       me.film_subs = [];
+                       RubedoContentTypesService.findById("5673e1823bc32589138b4567").then(
+                           function(response){
+                               if(response.data.success){
+                                   me.languages = {};
+                                   angular.forEach(response.data.contentType.fields, function(field){
+                                       me.languages[field.config.name] = field.config.fieldLabel;
+                                   });
+                                   
+                                   /*sous-titres trailer*/
+                                   if(me.content.fields.trailer_subs) {
+                                       angular.forEach(me.content.fields.trailer_subs, function(subtitleId, lang){
+                                           if (subtitleId!="") {
+                                               RubedoMediaService.getMediaById(subtitleId).then(
+                                                   function(response){
+                                                       if (response.data.success){
+                                                           //me.sub_trailer_fr=response.data.media;
+                                                           var sub = {file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"};
+                                                           if (me.lang ==lang) {
+                                                               sub["default"]=true;
+                                                           }
+                                                           me.subs_trailer.push(sub);
+                                                       }
+                                                   }
+                                               );
+                                           }
+                                           
+                                       });
+                                           
+                                   }
+                                   /*sous-titres film*/
+                                   if(me.content.fields.film_subs) {
+                                       angular.forEach(me.content.fields.film_subs, function(subtitleId, lang){
+                                           if (subtitleId!="") {
+                                               RubedoMediaService.getMediaById(subtitleId).then(
+                                                   function(response){
+                                                       if (response.data.success){
+                                                           var sub = {file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"};
+                                                           if (me.lang ==lang) {
+                                                               sub["default"]=true;
+                                                           }
+                                                           me.film_subs.push(sub);
+                                                       }
+                                                   }
+                                               );
+                                           }
+                                           
+                                       });
+                                           
+                                   } 
+                               }
+                           }
+                       );
                     }
+                     
+                     
+                     
+                    
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     $scope.fieldLanguage=me.content.locale;
@@ -177,7 +238,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     /* déterminer si on a un film ou trailer*/
-                    if ($scope.fieldEntity['filmYT'] && $scope.fieldEntity['filmYT']['fr']) {
+                    if ($scope.fieldEntity['filmYT'] && $scope.fieldEntity['filmYT'][me.lang]) {
                         me.watch = 'film';
                     }
                     else if ($scope.fieldEntity['trailer']) {

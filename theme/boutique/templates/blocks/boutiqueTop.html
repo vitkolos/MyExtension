@@ -3,7 +3,7 @@
         <span  ng-controller="SearchFormController as searchFormCtrl" class="input-group-btn">
             <form  ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group col-md-10">
                 <span  ng-if="searchFormCtrl.show">
-                    <input style="padding-left: 0;" class="form-control" type="text" ng-model="searchFormCtrl.query" placeholder="{{searchFormCtrl.placeholder}}"/>
+                    <input class="form-control" type="text" ng-model="searchFormCtrl.query" placeholder="{{searchFormCtrl.placeholder}}"/>
                     <button class="btn btn-default top-hover" style="padding-bottom: 8px;"type="submit">
                         <span class="glyphicon glyphicon-search"></span>
                     </button>
@@ -19,7 +19,7 @@
                     <!--<span class="caret"></span>-->
                     <span class="sr-only">{{rubedo.translate("Block.Auth.ToggleDropdown","Toggle dropdown")}}</span>
                 </button>
-                <ul class="dropdown-menu" role="menu">
+                <ul class="dropdown-menu" role="menu" style="padding:6px;">
                     <li ng-if="rubedo.current.user.rights.boAccess" ><a href="/backoffice" target="_blank"><span class="glyphicon glyphicon-cog"></span> Back Office</a></li>
                     <li ng-if="authCtrl.profilePageUrl" ><a ng-href="{{authCtrl.profilePageUrl}}" ><span class="glyphicon glyphicon-user"></span> {{rubedo.translate("Block.Auth.Profile","Profile")}}</a></li>
                     <li ng-if="authCtrl.commandPageUrl" ><a ng-href="{{authCtrl.commandPageUrl}}"  ><i class="fa fa-truck"></i> Mes Commandes</a></li>
@@ -163,15 +163,18 @@
                                     ng-click="shoppingCartCtrl.removeFromCart(row.productId.$id,row.variationId.$id,row.amount); $event.stopPropagation();"></span></td>
                         </tr>
                     </table>
-                    <h5><strong>{{ rubedo.translate('Blocks.ShoppingCart.Total')}}</strong> : {{shoppingCartCtrl.detailedCart.totalTaxedPrice | number :2}} €</h5>
-                    <a ng-if="shoppingCartCtrl.checkoutPageUrl"
-                       ng-href="{{shoppingCartCtrl.checkoutPageUrl}}">
-                        <button class="btn btn-primary">{{ rubedo.translate('Label.Checkout')}}</button>
-                    </a>
-                    <a ng-if="shoppingCartCtrl.cartDetailPageUrl"
-                       ng-href="{{shoppingCartCtrl.cartDetailPageUrl}}">
-                        <button class="btn btn-primary">{{ rubedo.translate('Blocks.ShoppingCart.ViewCart')}}</button>
-                    </a>
+                    <h5 class="text-center"><strong>{{ rubedo.translate('Blocks.ShoppingCart.Total')}}</strong> : {{shoppingCartCtrl.detailedCart.totalTaxedPrice | number :2}} €</h5>
+                    <div class="checkout-links text-center">
+                        <a ng-if="shoppingCartCtrl.checkoutPageUrl" class="col-xs-6"
+                        ng-href="{{shoppingCartCtrl.checkoutPageUrl}}">
+                         <button class="btn btn-primary">{{ rubedo.translate('Label.Checkout')}}</button>
+                     </a>
+                     <a ng-if="shoppingCartCtrl.cartDetailPageUrl" class="col-xs-6"
+                        ng-href="{{shoppingCartCtrl.cartDetailPageUrl}}">
+                         <button class="btn btn-primary">{{ rubedo.translate('Blocks.ShoppingCart.ViewCart')}}</button>
+                     </a>
+                    </div>
+                    
                 </ul>
             </span>
         </span>

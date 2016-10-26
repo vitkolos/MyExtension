@@ -49,7 +49,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                         var i= 0
                         me.itIsAGift=false;
                         while (typeof Mycart[i]!= 'undefined' && i<1000){
-                            if (Mycart[i]["productId"]['$id']=="57304df3c445eca2008b7b0f"){
+                            if (Mycart[i]["productId"]['$id']=="580b9c0c245640e5008bb459"){
                                 me.itIsAGift=true;
                             }
                             i++
@@ -73,8 +73,8 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         if (me.itIsAGift){
             me.GiftWrapJustAdded=true;
             var options={
-                productId:"57304df3c445eca2008b7b0f",
-                variationId:"57304cf5c445ec58008b7a4a",
+                productId:"580b9c0c245640e5008bb459",
+                variationId:"580b9bf9245640e8008bb47e",
                 // productId:content.id,
                 //variationId:content.productProperties.variations[0].id,
                 amount:1
@@ -89,8 +89,8 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         else{
             me.GiftWrapJustAdded=true;
             var options={
-                productId:"57304df3c445eca2008b7b0f",
-                variationId:"57304cf5c445ec58008b7a4a",
+                productId:"580b9c0c245640e5008bb459",
+                variationId:"580b9bf9245640e8008bb47e",
                 // productId:content.id,
                 //variationId:content.productProperties.variations[0].id,
                 amount:1
@@ -206,7 +206,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     };
     me.createUser=function(){
         if ($scope.fieldEntity.confirmPassword!=$scope.fieldEntity.password){
-            me.stage2Error="Passwords do not match.";
+            me.stage2Error=$scope.rubedo.translate("Blocks.Auth.Error.PasswordsNotMatch","Passwords do not match.");
             return;
         }
         var newUserFields=angular.copy($scope.fieldEntity);
@@ -299,7 +299,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     me.handleStage5Submit=function(){
         me.stage5Error=null;
         if (!me.currentShipper){
-            me.stage5Error="Please choose a shipper"
+            me.stage5Error=$scope.rubedo.translate("Blocks.Checkout.Label.ChooseShipper","Please choose a shipper");
         } else {
             me.setCurrentStage(me.currentStage+1);
         }
@@ -308,7 +308,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     me.handleOrderCreate=function(){
         me.orderCreateError=null;
         if (!me.currentPaymentMeans){
-            me.orderCreateError="Please choose a payment means";
+            me.orderCreateError=$scope.rubedo.translate("Blocks.Checkout.Label.ChoosePayment","Please choose a payment means");
             return;
         }
         if (typeof me.GiftComments != 'undefined'){

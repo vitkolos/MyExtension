@@ -1,14 +1,16 @@
-<div class="row">
+<div class="row detail">
   <div class="col-sm-4">
+  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('productBox')}}"></rubedo-field><!--prix et déclinaisons-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('image')}}" ng-if="fieldEntity['image']"></rubedo-field><!--image-->
+	<h3 ng-if="fieldEntity['trailer']">Trailer</h3>
+	<jwplayer video-url="{{fieldEntity['trailer']}}" ng-if="fieldEntity['trailer']" ></jwplayer>
   </div>
   <div class="col-sm-8">
-  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEntity['text']"></rubedo-field><!--image-->
-  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('productBox')}}"></rubedo-field><!--image-->
+  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEntity['text']"></rubedo-field><!--titre-->
 	<p ng-if="fieldEntity['reference'] && !fieldEditMode">Référence : {{fieldEntity['reference']}}</p>
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('reference')}}" ng-if="fieldEntity['reference'] && fieldEditMode"></rubedo-field><!--image-->
-  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']"></rubedo-field><!--image-->
+  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']" class="italic"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']"></rubedo-field><!--image-->
-    
+	
   </div>
 </div>

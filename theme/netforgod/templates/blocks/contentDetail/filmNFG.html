@@ -41,13 +41,13 @@
 								  <p ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
 								</div>
 							</div>
-							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" title="{{contentDetailCtrl.content.text + '_'+contentDetailCtrl.lang}}" ></jwplayer>
+							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" title="{{contentDetailCtrl.content.text + '_'+contentDetailCtrl.lang}}"  sous-titre="{{contentDetailCtrl.film_subs}}"></jwplayer>
 						</div>
 					</div>
 		
 				</div>
 				<div ng-if="contentDetailCtrl.watch =='trailer'">
-					<jwplayer video-url="{{fieldEntity['trailer'].url}}"  title="{{contentDetailCtrl.content.text + '_trailer'}}" sous-titre={{fieldEntity['sub_fr']}}></jwplayer>
+					<jwplayer video-url="{{fieldEntity['trailer'].url}}"  title="{{contentDetailCtrl.content.text + '_trailer'}}" sous-titre="{{contentDetailCtrl.subs_trailer}}"></jwplayer>
 				</div>
 				<div class="film-socials">
 					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">

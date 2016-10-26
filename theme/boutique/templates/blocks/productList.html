@@ -9,22 +9,23 @@
         <span class="glyphicon glyphicon-plus"></span>
     </button>
     <div class="row">
-        <div ng-attr-lr-infinite-scroll="loadMoreContents"
+        <div ng-attr-lr-infinite-scroll="loadMoreContents" class="product-list-container"
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle">
             <!--<div id="infiniteScrollCtrl">-->
-            <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
-                <div class="rubedo-product-in-list" ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
+            <div>
+                <div class="col-sm-6 rubedo-product-in-list" ng-class="contentListCtrl.columns" ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
                     <div class="row">
 
-                        <div ng-style="contentListCtrl.imageStyle"
-                             ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
+                        <div  ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}"> <!--ng-style="contentListCtrl.imageStyle"-->
                             <a  ng-href="{{ content.detailPageUrl }}">
-                                <img class="img-responsive center-block" ng-if="content.fields[contentListCtrl.imageField] && !contentListCtrl.titleOnly"
+                                <img class="img-responsive center-block" ng-if="content.fields[contentListCtrl.imageField] && content.fields[contentListCtrl.imageField] != '' && !contentListCtrl.titleOnly"
                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[contentListCtrl.imageField],{mode:contentListCtrl.imageResizeMode,height:contentListCtrl.imageHeight,width:contentListCtrl.imageWidth}) }}"
-                                     alt="{{ content.fields.text }}"
-                                />
-                            </a>
+                                     alt="{{ content.fields.text }}"/>
+                                <img class="img-responsive center-block" ng-if="(!content.fields[contentListCtrl.imageField] || content.fields[contentListCtrl.imageField] == '') && !contentListCtrl.titleOnly"
+                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId('580cc4382456408a078bb5b1',{mode:contentListCtrl.imageResizeMode,height:contentListCtrl.imageHeight,width:contentListCtrl.imageWidth}) }}"
+                                     alt="{{ content.fields.text }}"/>
+                             </a>
                         </div>
                         <div ng-class="{'col-md-8':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
                             <h4>
@@ -41,21 +42,25 @@
                             </p>-->
                         </div>
                         <div class="text-center" ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}">
-                            <h4>
+                            <h4 class="col-xs-8">
                                 <del ng-if="content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice"><small>{{content.productProperties.lowestNoSoPrice|number:2}} €</small></del>
                                 <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span></h4>
-                            <a ng-if="!contentListCtrl.isFOContributeMode"  ng-href="{{ content.detailPageUrl }}">
-                                <button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button>
-                            </a>
-                            <a ng-if="contentListCtrl.isFOContributeMode"  ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
-                                <button class="btn btn-default">Preview detail</button>
-                            </a>
-                            <button ng-if="content.productProperties.variations.length==1"
-                                    ng-click="contentListDetailCtrl.addToCart()"
-                                    ng-disabled="!contentListDetailCtrl.canOrder()"
-                                    class="btn btn-default">
-                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}
-                            </button>
+                                <!--<a ng-if="!contentListCtrl.isFOContributeMode"  ng-href="{{ content.detailPageUrl }}">
+                                    <button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button>
+                                </a>-->
+                                <a ng-if="contentListCtrl.isFOContributeMode"  ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                                    <button class="btn btn-default">Preview detail</button>
+                                </a>
+                                <button ng-if="content.productProperties.variations.length==1 && !contentListDetailCtrl.isProductAdded"
+                                        ng-click="contentListDetailCtrl.addToCart()"
+                                        ng-disabled="!contentListDetailCtrl.canOrder()"
+                                        class="btn btn-default hover col-xs-4">
+                                    <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><!--<span>{{ rubedo.translate('Label.AddToCart')}}</span>-->
+                                </button>
+                                <button ng-if="content.productProperties.variations.length==1 && contentListDetailCtrl.isProductAdded"
+                                        class="btn btn-default col-xs-4">
+                                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><!--<span>{{ rubedo.translate('Label.AddToCart')}}</span>-->
+                                </button>
                         </div>
                     </div>
                 </div>
