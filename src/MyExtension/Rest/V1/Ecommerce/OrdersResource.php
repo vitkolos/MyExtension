@@ -43,12 +43,19 @@ class OrdersResource extends AbstractResource
     public function getAction($params)
     {
         $user = $params['identity']->getUser();
-        var_dump($user);
+        //var_dump($user);
+        
         $filter = Filter::factory()
             ->addFilter(Filter::factory('Value')->setName('userId')->setValue($user['id']));
         $start=isset($params['start']) ? $params['start'] : 0;
         $limit=isset($params['limit']) ? $params['limit'] : null;
-        $orders = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),$start,$limit);
+        //pour les admins boutique, ne pas limiter la liste de commandes à l'utilisateur
+        if($user["defaultGroup"] == "57222992c445ec68568bf2da"){
+            $orders = $this->getOrdersCollection()->getList(null, array(array('property' => 'createTime', 'direction' => 'desc')),$start,$limit);            
+        }
+        else {
+            $orders = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),$start,$limit);            
+        }
         if (!empty($params["orderDetailPage"])) {
             $urlOptions = array(
                 'encode' => true,
