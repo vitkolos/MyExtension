@@ -262,12 +262,13 @@ class OrdersResource extends AbstractResource
     public function getEntityAction($id, $params)
     {
         $user = $params['identity']->getUser();
-        
+        $isAdmin=false;
         if($user["defaultGroup"] == "57222992c445ec68568bf2da"){
             $filters = Filter::factory()
                // ->addFilter(Filter::factory('Value')->setName('userId')->setValue($user['id'])) pour utilisateurs connectés "Admin boutique"
                 ->addFilter(Filter::factory('Uid')->setValue($id));
             $order = $this->getOrdersCollection()->findOne($filters);
+            $isAdmin=true;
         }
         else {
             $filters = Filter::factory()
@@ -284,6 +285,7 @@ class OrdersResource extends AbstractResource
         return array(
             'success' => true,
             'order' => $order,
+            'isAdmin' => $isAdmin
         );
     }
     /**
@@ -410,6 +412,12 @@ class OrdersResource extends AbstractResource
                 (new FilterDefinitionEntity())
                     ->setDescription('Order')
                     ->setKey('order')
+                    ->setRequired()
+            )
+             ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('True si l\'utilisateur est admin de la Boutique')
+                    ->setKey('isAdmin')
                     ->setRequired()
             );
     }
