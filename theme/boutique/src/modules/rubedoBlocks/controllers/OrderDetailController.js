@@ -61,6 +61,8 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             kendo.drawing.pdf.toBlob(group, function(blob){
                                 // you can now upload it to a server
                                 // this form simulates an <input type="file" name="pdfFile" />
+                                var form = new FormData();
+                                console.log(pdfFile)
                                 var uploadOptions={
                                     typeId:"5811cc252456404b018bc74c",
                                      target:"5693b19bc445ecba018b4cb7",
