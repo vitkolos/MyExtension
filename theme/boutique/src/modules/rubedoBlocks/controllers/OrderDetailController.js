@@ -67,7 +67,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                     var uploadOptions = {
                                         typeId:"5811cc252456404b018bc74c",
                                         target:"5693b19bc445ecba018b4cb7",
-                                        fields:{title:me.creatingBill+".pdf"}
+                                        fields:{title:me.billTitle+".pdf"}
                                     }
                                     var form = new FormData();
                                     form.append("file", blob);
