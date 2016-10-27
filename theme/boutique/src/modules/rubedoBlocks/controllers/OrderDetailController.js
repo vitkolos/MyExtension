@@ -59,7 +59,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                         
                         kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
                             me.creatingBill = false;
-                            drawing.pdf.toDataURL(group, function(dataURL){
+                            kendo.drawing.pdf.toDataURL(group, function(dataURL){
                             console.log(dataURL);
                             });
                             /*kendo.drawing.pdf.toBlob(group, function(blob){
