@@ -67,11 +67,18 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             })
                             .done(function(data) {
                                 // Here 'data' is the Base64-encoded PDF file
-                                kendo.saveAs({
+                               var fd = new FormData();
+                               fd.append('file', data);
+                              $http.post(config.baseUrl+"/media", fd, {
+                                    transformRequest: angular.identity,
+                                    params:options,
+                                    headers: {'Content-Type': undefined}
+                                });
+                               /* kendo.saveAs({
                                     dataURI: data,
                                     fileName:me.billTitle+ ".pdf",
                                     proxyURL: "api/v1/media"
-                                });
+                                });*/
                             });
 
                     },500);
