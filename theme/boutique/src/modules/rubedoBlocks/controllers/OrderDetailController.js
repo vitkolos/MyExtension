@@ -20,7 +20,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                         );
                     }
                     //me.isAdmin= response.data.isAdmin;
-                    if(me.order.status=="pendingPayment"){
+                    if(me.order.status=="pendingPayment" && !me.isAdmin){
                         RubedoPaymentService.getPaymentInformation(orderId).then(
                             function(pmResponse){
                                 if (pmResponse.data.success&&pmResponse.data.paymentInstructions){
@@ -47,13 +47,24 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
         );
     }
     me.generateBill = function(){
-        me.creatingBill = true;
-        $timeout(function(){
-            kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
-                kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
-                me.creatingBill = false;
-            })},500);
+        var options = {}
+        options.allCommands = true;
+        options.onlyTotal = true;
+        RubedoOrdersService.getMyOrders(options).then(
+            function(response){
+                if (response.data.success){
+                    var billTitle = "FA2" + ('00000'+response.data.total).substring((response.data.total).length);
+                    me.creatingBill = true;
+                    $timeout(function(){
+                        kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
+                            kendo.drawing.pdf.saveAs(group, billTitle+".pdf");
+                            me.creatingBill = false;
+                        })},500);
 
+                }
+            }
+        );
+        
 
         
     }
