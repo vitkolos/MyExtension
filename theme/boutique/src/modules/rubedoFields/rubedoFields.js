@@ -732,7 +732,7 @@
         me.productProperties=$scope.productProperties;
         me.manageStock=$scope.manageStock;
         me.productId=$scope.productId;
-        me.excludedVariationFields=["id","price","sku","stock","specialOffers"];
+        me.excludedVariationFields=["id","price","sku","stock","specialOffers","weight"];
         me.variationFields=[];
         me.selectionValues={};
         me.possibleSelectValues={};
