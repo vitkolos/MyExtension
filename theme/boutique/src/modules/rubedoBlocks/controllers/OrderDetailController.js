@@ -67,7 +67,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                         kendo.drawing.drawDOM(angular.element("#orderForm"),{ margin: "1cm"})
                             .then(function(root) {
                                 // Chaining the promise via then
-                                return kendo.draw.exportPDF(root, {
+                                return kendo.drawing.exportPDF(root, {
                                     paperSize: "A4",
                                     landscape: true
                                 });
