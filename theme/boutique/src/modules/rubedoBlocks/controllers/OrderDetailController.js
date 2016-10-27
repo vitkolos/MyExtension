@@ -48,11 +48,11 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
     }
     me.generateBill = function(){
         me.creatingBill = true;
-        console.log("true");
         $timeout(function(){
             kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
                 kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
-            })},2000);
+                me.creatingBill = false;
+            })},500);
 
 
         
