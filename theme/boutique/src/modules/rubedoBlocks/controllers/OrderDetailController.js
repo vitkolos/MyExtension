@@ -56,12 +56,13 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                    me.billTitle = "FA2" + ('00000'+(response.data.total+1)).substring((response.data.total).length);
                     me.creatingBill = true;
                     $timeout(function(){
-                        drawing.pdf.toDataURL(group, function(dataURL){
+                        
+                        kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
+                            me.creatingBill = false;
+                            drawing.pdf.toDataURL(group, function(dataURL){
                             console.log(dataURL);
                             });
-                        /*kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
-                            me.creatingBill = false;
-                            kendo.drawing.pdf.toBlob(group, function(blob){
+                            /*kendo.drawing.pdf.toBlob(group, function(blob){
                                 // you can now upload it to a server
                                 // this form simulates an <input type="file" name="pdfFile" />
                                 //var form = new FormData();
