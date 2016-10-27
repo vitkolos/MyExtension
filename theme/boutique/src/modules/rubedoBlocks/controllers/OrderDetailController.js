@@ -57,21 +57,24 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                     me.creatingBill = true;
                     var draw = kendo.drawing;
                         
-                        draw.drawDOM(angular.element("#orderForm"))
-                            .then(function(root) {
-                                // Chaining the promise via then
-                                return draw.exportPDF(root, {
-                                    paperSize: "A4",
-                                    landscape: true
-                                });
-                            })
-                            .done(function(data) {
-                                // Here 'data' is the Base64-encoded PDF file
-                                kendo.saveAs({
-                                    dataURI: data,
-                                    fileName: "calendar.pdf"
-                                });
+                    draw.drawDOM(angular.element("#orderForm"))
+                        .then(function(root) {
+                            // Chaining the promise via then
+                            return draw.exportPDF(root, {
+                                paperSize: "A4",
+                                landscape: true
                             });
+                        })
+                        .done(function(dataURI) {
+                            //Extracting the base64-encoded string and the contentType
+                            var data = {};
+                            var parts = dataURI.split(";base64,");
+                            data.contentType = parts[0].replace("data:", "");
+                            data.base64 = parts[1];
+                            
+                            //Sending the data via jQuery.post method
+                            //jQuery.post("http://chemin-neuf.fr/api/v1/media", data)
+                        });
                     $timeout(function(){
                         /*
                         kendo.drawing.drawDOM(angular.element("#orderForm"),{ margin: "1cm"}).then(function(group) {
