@@ -66,7 +66,7 @@ class OrdersResource extends AbstractResource
                 'locale' => $params['lang']->getLocale(),
             ), $urlOptions);
         }
-        if($params['onlyTotal']) {
+        if(isset($params['onlyTotal'])) {
             return array(
                 'success' => true,
                 'orders' => null,
