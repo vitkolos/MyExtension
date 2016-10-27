@@ -1,4 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope','RubedoOrdersService','$location','RubedoMediaService','RubedoPaymentService',function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService){
+angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope','RubedoOrdersService','$location','RubedoMediaService','RubedoPaymentService','$timeout',
+                                                                        function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService,$timeout){
     var me = this;
     var config = $scope.blockConfig;
     var orderId=$location.search().order;
@@ -48,10 +49,14 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
     me.generateBill = function(){
         me.creatingBill = true;
         console.log("true");
-        kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
-            kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
-            me.creatingBill = false;
-        });
+        $timeout(
+            kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
+                kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
+                me.creatingBill = false;
+            }),500);
+
+
+        
     }
 
 }]);
