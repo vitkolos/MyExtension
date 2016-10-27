@@ -71,9 +71,9 @@
     </div>
     <section id="orderForm" ng-class="{'isBill':orderDetailCtrl.creatingBill}">
         <div class="row">
-            <div class="col-md-12" ng-show="orderDetailCtrl.creatingBill" id="bill-header">
+            <div class="col-md-12" ng-if="orderDetailCtrl.creatingBill" id="bill-header">
                 <img width="300" src="/dam?media-id=56c49b78c445ecc9008b6574&" class="pull-left">
-                    <h3 class="pull-right">Facture n° {{orderDetailCtrl.billTitle}}</h3>
+                    <h4 class="pull-right">Facture n° {{orderDetailCtrl.billTitle}} du {{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</h3>
             </div>
         </div>
         <div class="row">
@@ -91,6 +91,7 @@
                             {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
                             {{ orderDetailCtrl.order.billingAddress.regionState }} {{ orderDetailCtrl.order.billingAddress.country }}<br />
                         </address>
+                        <p ng-if="orderDetailCtrl.isAdmin">{{ rubedo.translate('Blocks.OrderDetails.Payment.Means') }} : {{ orderDetailCtrl.order.paymentMeans }}</p>
                     </div>
                 </div>
             </div>
@@ -108,6 +109,7 @@
                             {{ orderDetailCtrl.order.shippingAddress.postCode }} {{ orderDetailCtrl.order.shippingAddress.city }}<br />
                             {{ orderDetailCtrl.order.shippingAddress.regionState }} {{ orderDetailCtrl.order.shippingAddress.country }}<br />
                         </address>
+                        <p ng-if="orderDetailCtrl.isAdmin">{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }}</p>
                     </div>
                 </div>
             </div>
@@ -158,6 +160,13 @@
     
                 
     
+            </div>
+        </div>
+        <div class="row" style="padding-top:24px;border-top:1px solid grey" ng-if="orderDetailCtrl.isAdmin">
+            <div class="col-sm-12 text-center">
+                <p> Une version électronique est conservée sur votre compte. Pour y accéder, identifiez-vous sur le site <a href="http://www.laboutique-chemin-neuf.com">La Boutique du Chemin Neuf</a></p>
+                <p>LA BOUTIQUE DU CHEMIN NEUF - Siège social 8 rue Henri IV 69002 LYON France<br/>
+            Téléphone : 04 78 92 71 37</p>
             </div>
         </div>
        

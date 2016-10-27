@@ -3,7 +3,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
     var me = this;
     var config = $scope.blockConfig;
     var orderId=$location.search().order;
-    me.isAdmin=true;
+    me.isAdmin=false;
     me.creatingBill = false;
     if (orderId){
         RubedoOrdersService.getOrderDetail(orderId).then(
