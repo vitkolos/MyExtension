@@ -1,3 +1,4 @@
+ <script src="//kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js"></script>
 <div ng-controller="OrderDetailController as orderDetailCtrl">
     <h2 class="text-center">{{ rubedo.translate('Blocks.OrderDetails.OrderReview')}}</h2>
     <div class="row">
@@ -59,8 +60,11 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-6">
+                        <button ng-if="!orderDetailCtrl.billDocumentUrl" class="btn btn-primary" ng-click="orderDetailCtrl.generateBill()">Créer une facture</button>
+        </div>
     </div>
-    <div class="row">
+    <div class="row" id="orderForm">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">

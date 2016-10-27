@@ -44,6 +44,11 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
             }
         );
     }
+    me.generateBill = function(){
+        kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
+            kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
+        });
+    }
 
 }]);
 
