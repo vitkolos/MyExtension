@@ -56,13 +56,16 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                    me.billTitle = "FA2" + ('00000'+(response.data.total+1)).substring((response.data.total).length);
                     me.creatingBill = true;
                     $timeout(function(){
-                        kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
+                        drawing.pdf.toDataURL(group, function(dataURL){
+                            console.log(dataURL);
+                            });
+                        /*kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
                             me.creatingBill = false;
                             kendo.drawing.pdf.toBlob(group, function(blob){
                                 // you can now upload it to a server
                                 // this form simulates an <input type="file" name="pdfFile" />
-                                var form = new FormData();
-                                form.append("pdfFile", blob);
+                                //var form = new FormData();
+                                //form.append("pdfFile", blob);
                                 //console.log(form);
                                 var uploadOptions={
                                     typeId:"5811cc252456404b018bc74c",
@@ -85,7 +88,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 
                                 
                                 
-                            });
+                            });*/
                             
                             //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
                         })},500);
