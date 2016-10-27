@@ -17,7 +17,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             }
                         );
                     }
-                    me.isAdmin= response.data.isAdmin;
+                    //me.isAdmin= response.data.isAdmin;
                     if(me.order.status=="pendingPayment"){
                         RubedoPaymentService.getPaymentInformation(orderId).then(
                             function(pmResponse){
