@@ -66,15 +66,31 @@ class OrdersResource extends AbstractResource
                 'locale' => $params['lang']->getLocale(),
             ), $urlOptions);
         }
-        foreach ($orders['data'] as &$order) {
-            $order = $this->maskOrderInList($order);
+        if(isset($params['onlyTotal'])) {
+            $counter = 0;
+            foreach ($orders['data'] as &$order) {
+                if($order["billDocument"] && $order["billDocument"] !='' ){
+                    $counter++;
+                }
+            }
+            return array(
+                'success' => true,
+                'orders' => null,
+                'total'=>$counter,
+                'orderDetailPageUrl' => isset($orderDetailPageUrl) ? $orderDetailPageUrl : null,
+            );
         }
-        return array(
-            'success' => true,
-            'orders' => &$orders['data'],
-            'total'=>&$orders['count'],
-            'orderDetailPageUrl' => isset($orderDetailPageUrl) ? $orderDetailPageUrl : null,
-        );
+        else {
+            foreach ($orders['data'] as &$order) {
+                $order = $this->maskOrderInList($order);
+            }
+            return array(
+                'success' => true,
+                'orders' => &$orders['data'],
+                'total'=>&$orders['count'],
+                'orderDetailPageUrl' => isset($orderDetailPageUrl) ? $orderDetailPageUrl : null,
+            );
+        }
     }
     /**
      * @param $params
@@ -350,6 +366,11 @@ class OrdersResource extends AbstractResource
                 (new FilterDefinitionEntity())
                     ->setKey('allCommands')
                     ->setDescription('Voir toutes les commandes - pour des utilisateurs avec les droits d\'admin sur la Boutique')
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('onlyTotal')
+                    ->setDescription('Nombre de commandes seulement')
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())

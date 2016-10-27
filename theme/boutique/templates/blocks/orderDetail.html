@@ -64,88 +64,95 @@
                         <button ng-if="!orderDetailCtrl.billDocumentUrl" class="btn btn-primary" ng-click="orderDetailCtrl.generateBill()">Créer une facture</button>
         </div>
     </div>
-    <div class="row" id="orderForm">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>{{rubedo.translate('Blocks.OrderDetails.BillingAddress')}}</h4>
+    <section id="orderForm">
+        <div class="row">
+            <div class="col-md-12" ng-show="orderDetailCtrl.creatingBill" id="bill-header">
+                <img width="300" src="/dam?media-id=56c49b78c445ecc9008b6574&" class="pull-left">
+                    <h3 class="pull-right">Facture n° {{orderDetailCtrl.billTitle}}</h3>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>{{rubedo.translate('Blocks.OrderDetails.BillingAddress')}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <address>
+                            <strong>{{ orderDetailCtrl.order.billingAddress.company }}</strong><br />
+                            <strong>{{ orderDetailCtrl.order.billingAddress.attention }}</strong><br />
+                            {{ orderDetailCtrl.order.billingAddress.address1 }}<br />
+                            {{ orderDetailCtrl.order.billingAddress.address2 }}<br />
+                            {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
+                            {{ orderDetailCtrl.order.billingAddress.regionState }} {{ orderDetailCtrl.order.billingAddress.country }}<br />
+                        </address>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <address>
-                        <strong>{{ orderDetailCtrl.order.billingAddress.company }}</strong><br />
-                        <strong>{{ orderDetailCtrl.order.billingAddress.attention }}</strong><br />
-                        {{ orderDetailCtrl.order.billingAddress.address1 }}<br />
-                        {{ orderDetailCtrl.order.billingAddress.address2 }}<br />
-                        {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
-                        {{ orderDetailCtrl.order.billingAddress.regionState }} {{ orderDetailCtrl.order.billingAddress.country }}<br />
-                    </address>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>{{rubedo.translate('Blocks.OrderDetails.ShippingAddress')}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <address>
+                            <strong>{{ orderDetailCtrl.order.shippingAddress.company }}</strong><br />
+                            <strong>{{ orderDetailCtrl.order.shippingAddress.attention }}</strong><br />
+                            {{ orderDetailCtrl.order.shippingAddress.address1 }}<br />
+                            {{ orderDetailCtrl.order.shippingAddress.address2 }}<br />
+                            {{ orderDetailCtrl.order.shippingAddress.postCode }} {{ orderDetailCtrl.order.shippingAddress.city }}<br />
+                            {{ orderDetailCtrl.order.shippingAddress.regionState }} {{ orderDetailCtrl.order.shippingAddress.country }}<br />
+                        </address>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>{{rubedo.translate('Blocks.OrderDetails.ShippingAddress')}}</h4>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>{{ rubedo.translate('Blocks.OrderDetails.OrderDetails') }}</h4>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Name') }}</th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Amount') }}</th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Cost')}}</th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Price') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="product in orderDetailCtrl.order.detailedCart.cart track by $index">
+                                <td>
+                                    <img class="img-responsive" ng-if="product.image"
+                                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(product.image,{size:'thumbnail'}) }}"
+                                         alt="{{ product.title }}"
+                                            />
+                                </td>
+                                <td>
+                                    {{ product.title }}<br />
+                                    <small>{{ product.subtitle }}</small>
+                                </td>
+                                <td>{{ product.amount }}</td>
+                                <td>{{ product.unitPrice | number : 2 }} €</td>
+                                <td>{{ product.price | number : 2 }} €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="panel-body text-right">
+                        <h5><strong>{{ rubedo.translate('Blocks.Checkout.CheckoutSummary.SubTotal')}} :</strong> {{ orderDetailCtrl.order.detailedCart.totalPrice |number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }} </strong> <small>{{ orderDetailCtrl.order.shipper.hRDelay }} {{ orderDetailCtrl.order.shipper.hRUnit }}</small> : {{ orderDetailCtrl.order.shipper.rate|number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingTax')}} :</strong> {{ orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100 |number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ProductsTaxes') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice -  orderDetailCtrl.order.detailedCart.totalPrice)|number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.TotalPrice') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice + orderDetailCtrl.order.shipper.rate+orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100)|number : 2}} €</h5>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <address>
-                        <strong>{{ orderDetailCtrl.order.shippingAddress.company }}</strong><br />
-                        <strong>{{ orderDetailCtrl.order.shippingAddress.attention }}</strong><br />
-                        {{ orderDetailCtrl.order.shippingAddress.address1 }}<br />
-                        {{ orderDetailCtrl.order.shippingAddress.address2 }}<br />
-                        {{ orderDetailCtrl.order.shippingAddress.postCode }} {{ orderDetailCtrl.order.shippingAddress.city }}<br />
-                        {{ orderDetailCtrl.order.shippingAddress.regionState }} {{ orderDetailCtrl.order.shippingAddress.country }}<br />
-                    </address>
-                </div>
+    
+                
+    
             </div>
         </div>
-    </div>
-    <br />
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>{{ rubedo.translate('Blocks.OrderDetails.OrderDetails') }}</h4>
-                </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Name') }}</th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Amount') }}</th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Cost')}}</th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Price') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="product in orderDetailCtrl.order.detailedCart.cart track by $index">
-                            <td>
-                                <img class="img-responsive" ng-if="product.image"
-                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(product.image,{size:'thumbnail'}) }}"
-                                     alt="{{ product.title }}"
-                                        />
-                            </td>
-                            <td>
-                                {{ product.title }}<br />
-                                <small>{{ product.subtitle }}</small>
-                            </td>
-                            <td>{{ product.amount }}</td>
-                            <td>{{ product.unitPrice | number : 2 }} €</td>
-                            <td>{{ product.price | number : 2 }} €</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="panel-body text-right">
-                    <h5><strong>{{ rubedo.translate('Blocks.Checkout.CheckoutSummary.SubTotal')}} :</strong> {{ orderDetailCtrl.order.detailedCart.totalPrice |number : 2 }} €</h5>
-                    <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }} </strong> <small>{{ orderDetailCtrl.order.shipper.hRDelay }} {{ orderDetailCtrl.order.shipper.hRUnit }}</small> : {{ orderDetailCtrl.order.shipper.rate|number : 2 }} €</h5>
-                    <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingTax')}} :</strong> {{ orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100 |number : 2 }} €</h5>
-                    <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ProductsTaxes') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice -  orderDetailCtrl.order.detailedCart.totalPrice)|number : 2 }} €</h5>
-                    <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.TotalPrice') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice + orderDetailCtrl.order.shipper.rate+orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100)|number : 2}} €</h5>
-                </div>
-            </div>
-
-            
-
-        </div>
-    </div>
+       
+    </section>
 </div>

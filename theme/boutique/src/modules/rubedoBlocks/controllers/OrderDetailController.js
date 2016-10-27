@@ -1,8 +1,10 @@
-angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope','RubedoOrdersService','$location','RubedoMediaService','RubedoPaymentService',function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService){
+angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope','RubedoOrdersService','$location','RubedoMediaService','RubedoPaymentService','$timeout',
+                                                                        function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService,$timeout){
     var me = this;
     var config = $scope.blockConfig;
     var orderId=$location.search().order;
-    me.isAdmin=false;
+    me.isAdmin=true;
+    me.creatingBill = false;
     if (orderId){
         RubedoOrdersService.getOrderDetail(orderId).then(
             function(response){
@@ -17,8 +19,8 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             }
                         );
                     }
-                    me.isAdmin= response.data.isAdmin;
-                    if(me.order.status=="pendingPayment"){
+                    //me.isAdmin= response.data.isAdmin;
+                    if(me.order.status=="pendingPayment" && !me.isAdmin){
                         RubedoPaymentService.getPaymentInformation(orderId).then(
                             function(pmResponse){
                                 if (pmResponse.data.success&&pmResponse.data.paymentInstructions){
@@ -45,9 +47,52 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
         );
     }
     me.generateBill = function(){
-        kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
-            kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
-        });
+        var options = {}
+        options.allCommands = true;
+        options.onlyTotal = true;
+        RubedoOrdersService.getMyOrders(options).then(
+            function(response){
+                if (response.data.success){
+                   me.billTitle = "FA2" + ('00000'+(response.data.total+1)).substring((response.data.total).length);
+                    me.creatingBill = true;
+                    $timeout(function(){
+                        kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
+                            me.creatingBill = false;
+                            drawing.pdf.toBlob(group, function(blob){
+                                // you can now upload it to a server
+                                // this form simulates an <input type="file" name="pdfFile" />
+                                var uploadOptions={
+                                    typeId:"5811cc252456404b018bc74c",
+                                     target:"5693b19bc445ecba018b4cb7",
+                                     title:me.billTitle
+                                };
+                                RubedoMediaService.uploadMedia(blob,uploadOptions).then(
+                                    function(response){
+                                        if (response.data.success){
+                                            console.log(response.data);
+                                        } else {
+                                        }
+                                    },
+                                    function(response){
+                                        
+                                    }
+                                );
+                                
+                                
+                                
+                                
+                                
+                            });
+                            
+                            //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
+                        })},500);
+
+                }
+            }
+        );
+        
+
+        
     }
 
 }]);
