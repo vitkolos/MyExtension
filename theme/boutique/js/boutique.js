@@ -41,6 +41,39 @@ angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',functio
     return serviceInstance;
 }]);
 
+
+angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCookie',function($http,ipCookie){
+    var serviceInstance = {};
+    serviceInstance.getMyOrders=function(options){
+        return ($http.get(config.baseUrl+"/ecommerce/orders",{
+            params:options
+        }));
+    };
+    serviceInstance.getOrderDetail=function(id){
+        return ($http.get(config.baseUrl+"/ecommerce/orders/"+id));
+    };
+    serviceInstance.updateOrder=function(order){
+        return ($http({
+            url:config.baseUrl+"/ecommerce/orders"+content.id,
+            method:"PATCH",
+            data : {
+                content:content
+            }
+        }));
+    };
+    serviceInstance.createOrder=function(options){
+        if (ipCookie("shoppingCartToken")){
+            options.shoppingCartToken=ipCookie("shoppingCartToken");
+        }
+        return ($http({
+            url:config.baseUrl+"/ecommerce/orders",
+            method:"POST",
+            data : options
+        }));
+    };
+    return serviceInstance;
+}]);
+
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {
         restrict: 'EC',

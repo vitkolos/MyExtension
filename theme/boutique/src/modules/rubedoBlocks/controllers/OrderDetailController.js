@@ -94,6 +94,12 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                             function(mediaResponse){
                                                 if (mediaResponse.data.success){
                                                     me.billDocumentUrl=mediaResponse.data.media.url;
+                                                    RubedoOrdersService.updateOrder(me.order).then(
+                                                        function(response){
+                                                            if (response.data.success){
+                                                                console.log(response.data.order);
+                                                                }
+                                                        });
                                                 }
                                             }
                                         );

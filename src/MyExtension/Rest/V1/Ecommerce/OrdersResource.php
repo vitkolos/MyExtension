@@ -304,6 +304,57 @@ class OrdersResource extends AbstractResource
             'isAdmin' => $isAdmin
         );
     }
+    
+    
+    
+   /**
+     * Patch a content
+     *
+     * @param $id
+     * @param $params
+     * @return array
+     * @throws \RubedoAPI\Exceptions\APIAuthException
+     * @throws \RubedoAPI\Exceptions\APIEntityException
+     */
+    public function patchEntityAction($id, $params)
+    {
+        /*get actual order*/
+        $user = $params['identity']->getUser();
+        $isAdmin=false;
+        if($user["defaultGroup"] == "57222992c445ec68568bf2da"){
+            $filters = Filter::factory()
+               // ->addFilter(Filter::factory('Value')->setName('userId')->setValue($user['id'])) pour utilisateurs connectés "Admin boutique"
+                ->addFilter(Filter::factory('Uid')->setValue($id));
+            $order = $this->getOrdersCollection()->findOne($filters);
+            $isAdmin=true;
+        }
+        else {
+        }
+        $toUpdate = $params['order'];
+        if (isset($toUpdate['billDocument']) &&  $toUpdate['billDocument'] != "") $order["billDocument"] = $toUpdate["billDocument"];
+        if (isset($toUpdate['status']) &&  $toUpdate['status'] != "") $order["status"] = $toUpdate["status"];
+        $update =$this->getOrdersCollection()->update($order);
+        return [
+            'success' => $update['success'],
+            'order' => $order,
+            'inputErrors'=>isset($update["inputErrors"]) ? $update["inputErrors"] : false
+        ];
+    }    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param $order
      * @return array
@@ -334,6 +385,9 @@ class OrdersResource extends AbstractResource
             ->setDescription('Deal with order')
             ->editVerb('get', function (VerbDefinitionEntity &$entity) {
                 $this->defineGetEntity($entity);
+            })
+            ->editVerb('patch', function (VerbDefinitionEntity &$entity) {
+                $this->defineEntityPatch($entity);
             });
     }
     /**
@@ -445,6 +499,33 @@ class OrdersResource extends AbstractResource
                     ->setDescription('True si l\'utilisateur est admin de la Boutique')
                     ->setKey('isAdmin')
                     ->setRequired()
+            );
+    }
+    /**
+     * Define patch entity
+     *
+     * @param VerbDefinitionEntity $definition
+     */
+    protected function defineEntityPatch(VerbDefinitionEntity &$entity)
+    {
+        $entity
+            ->setDescription('Patch an order')
+            ->identityRequired()
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('The order')
+                    ->setKey('order')
+                    ->setRequired()
+            )
+            ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('The order')
+                    ->setKey('order')
+                    ->setRequired()
+            )->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Input errors')
+                    ->setKey('inputErrors')
             );
     }
 }
