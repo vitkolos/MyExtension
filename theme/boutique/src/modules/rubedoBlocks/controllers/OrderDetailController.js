@@ -62,8 +62,9 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             .then(function(group) {
                                 // Chaining the promise via then
                                 kendo.drawing.pdf.toBlob(group, function(blob){
-                                    blob.name = me.billTitle+".pdf";
-                                    blob.lastModifiedDate = new Date();
+                                    var file = new File([blob], me.billTitle+".pdf", {type: "application/pdf", lastModified: Date.now()});
+
+
                                     // you can now upload it to a server
                                     // this form simulates an <input type="file" name="pdfFile" />
                                     var uploadOptions = {
@@ -72,7 +73,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                         fields:{title:me.billTitle+".pdf"}
                                     }
                                     var form = new FormData();
-                                    form.append("file", blob);
+                                    form.append("file", file);
 
                                     $http.post("/api/v1/media", form, {
                                       transformRequest: angular.identity,
