@@ -62,7 +62,8 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 // you can now upload it to a server
                                 // this form simulates an <input type="file" name="pdfFile" />
                                 var form = new FormData();
-                                console.log(pdfFile)
+                                form.append("pdfFile", blob);
+                                console.log(form);
                                 var uploadOptions={
                                     typeId:"5811cc252456404b018bc74c",
                                      target:"5693b19bc445ecba018b4cb7",
