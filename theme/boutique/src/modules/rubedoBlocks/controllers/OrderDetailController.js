@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope','RubedoOrdersService','$location','RubedoMediaService','RubedoPaymentService','$timeout',
-                                                                        function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService,$timeout){
+angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope','RubedoOrdersService','$location','RubedoMediaService','RubedoPaymentService','$timeout','$http',
+                                                                        function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService,$timeout,$http){
     var me = this;
     var config = $scope.blockConfig;
     var orderId=$location.search().order;
@@ -81,24 +81,26 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             kendo.drawing.pdf.toBlob(group, function(blob){
                                 // you can now upload it to a server
                                 // this form simulates an <input type="file" name="pdfFile" />
-                                var form = new FormData();
-                                form.append("file", blob);
-                                console.log(form);
+                                
                                 var uploadOptions={
                                     typeId:"5811cc252456404b018bc74c",
                                      target:"5693b19bc445ecba018b4cb7",
                                      fields:{title:me.billTitle}
                                 };
-                                RubedoMediaService.uploadMedia(file,uploadOptions).then(
+                                var fd = new FormData();
+                                fd.append('file', blob);
+                                $http.post("/api/v1/media", fd, {
+                                    transformRequest: angular.identity,
+                                    params:uploadOptions,
+                                    headers: {'Content-Type': undefined}
+                                }).then(
                                     function(response){
                                         if (response.data.success){
                                             console.log(response.data);
                                         } else {
                                         }
-                                    },
-                                    function(response){
-                                        
                                     }
+                                        
                                 );
                                 
                                 
