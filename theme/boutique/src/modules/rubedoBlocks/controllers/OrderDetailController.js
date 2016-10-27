@@ -58,7 +58,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                     $timeout(function(){
                         kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
                             me.creatingBill = false;
-                            drawing.pdf.toBlob(group, function(blob){
+                            kendo.drawing.pdf.toBlob(group, function(blob){
                                 // you can now upload it to a server
                                 // this form simulates an <input type="file" name="pdfFile" />
                                 var uploadOptions={
