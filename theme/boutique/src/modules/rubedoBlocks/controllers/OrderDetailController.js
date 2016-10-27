@@ -53,7 +53,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
             kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
                 kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
                 me.creatingBill = false;
-            }),500);
+            }),2000);
 
 
         
