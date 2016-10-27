@@ -108,23 +108,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 });
                             })
                             
-                        /*
-                        kendo.drawing.drawDOM(angular.element("#orderForm"))
-                            .then(function(root) {
-                                // Chaining the promise via then
-                                return kendo.drawing.exportPDF(root,{ margin: "1cm"});
-                            })
-                            .done(function(data) {
-                                // Here 'data' is the Base64-encoded PDF file
-                               var fd = new FormData();
-                               fd.append('file', data);
-                                $http.post("/api/v1/media", fd, {
-                                      transformRequest: angular.identity,
-                                      params:options,
-                                      headers: {'Content-Type': undefined}
-                                  });
-
-                            });*/
+                       
 
                     },500);
 
@@ -136,6 +120,14 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
         
     }
 
+    me.updateStatus = function(){
+        RubedoOrdersService.updateOrder(me.order).then(
+            function(response){
+                if (response.data.success){
+                    console.log("commande mise à jour");
+                    }
+            });
+    }
 }]);
 
 

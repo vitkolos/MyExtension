@@ -18,8 +18,12 @@
                         </option>
                         
                     </select>
+                    <button class="btn btn-default" ng-click="orderDetailCtrl.updateStatus()">
+                        Modifier
+                    </button>
+                    
                 
-                {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
+                </li>
                 
                 <li ng-if="orderDetailCtrl.order.billingAddress.vatEin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.VatEin') }}</strong> : {{ orderDetailCtrl.order.billingAddress.vatEin }}</li>
 

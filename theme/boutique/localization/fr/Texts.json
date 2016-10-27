@@ -13,5 +13,7 @@
     "Blocks.UserOrders.ThereAreVariations":"Variantes",
     "Label.AddedToCart":"Ajouté au panier",
     "Blocks.Checkout.Label.ChooseShipper":"Merci de choisir un mode de livraison",
-    "Blocks.Checkout.Label.ChoosePayment":"Merci de choisir un moyen de paiement"
+    "Blocks.Checkout.Label.ChoosePayment":"Merci de choisir un moyen de paiement",
+    "Blocks.OrderDetails.Payment.Status":"Statut de la commande",
+    "Blocks.UserOrders.Status.shipped" : "Envoyée"
 }
