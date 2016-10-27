@@ -64,7 +64,6 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             .then(function(group) {
                                 // Chaining the promise via then
                                 group.options.set("pdf", {
-                                    paperSize: "A4",
                                     margin: {
                                         left   : "20mm",
                                         top    : "40mm",
