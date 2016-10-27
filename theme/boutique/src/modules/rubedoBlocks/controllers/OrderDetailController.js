@@ -53,11 +53,11 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
         RubedoOrdersService.getMyOrders(options).then(
             function(response){
                 if (response.data.success){
-                    var billTitle = "FA2" + ('00000'+response.data.total).substring((response.data.total).length);
+                   me.billTitle = "FA2" + ('00000'+response.data.total).substring((response.data.total).length);
                     me.creatingBill = true;
                     $timeout(function(){
                         kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
-                            kendo.drawing.pdf.saveAs(group, billTitle+".pdf");
+                            kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
                             me.creatingBill = false;
                         })},500);
 
