@@ -2,6 +2,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
     var me = this;
     var config = $scope.blockConfig;
     var orderId=$location.search().order;
+    me.isAdmin=false;
     if (orderId){
         RubedoOrdersService.getOrderDetail(orderId).then(
             function(response){
@@ -16,6 +17,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             }
                         );
                     }
+                    me.isAdmin= response.data.isAdmin;
                     if(me.order.status=="pendingPayment"){
                         RubedoPaymentService.getPaymentInformation(orderId).then(
                             function(pmResponse){
@@ -31,7 +33,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                     else if (pmResponse.data.paymentInstructions.whatToDo=="submitForm"&&pmResponse.data.paymentInstructions.url) {
                                         me.showPaymentForm=true;
                                         $scope.parametres = pmResponse.data.paymentInstructions.url;
-                                        console.log(pmResponse.data.paymentInstructions.url);
+                                        //console.log(pmResponse.data.paymentInstructions.url);
                                     }
                                 }
                             }
@@ -46,31 +48,3 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
 }]);
 
 
-
-//config.store=RubedoExtendableSettings.orderStatusList;
-// page rubedo-backoffice-ui/www/app/view/ordersInterface.js
-
-
-
-
-
-
-//Ext.define('RubedoExtendableSettings', {",
-//"    singleton:true,",
-//    "    orderStatusList:[[\"pendingPayment\",Rubedo.RubedoAutomatedElementsLoc.pendingPaymentText],[\"payed\",Rubedo.RubedoAutomatedElementsLoc.payedText],[\"cancelled\",Rubedo.RubedoAutomatedElementsLoc.cancelledText]",
-//    "]});"
-//page   rubedo-backoffice-ui/www/metadata/controller/AppExtensionController
-
-//et
-
-//Ext.define('RubedoExtendableSettings', {
-//    singleton:true,
-//    orderStatusList:[["pendingPayment",Rubedo.RubedoAutomatedElementsLoc.pendingPaymentText],["payed",Rubedo.RubedoAutomatedElementsLoc.payedText],["cancelled",Rubedo.RubedoAutomatedElementsLoc.cancelledText]
-//    ]});
-//page   rubedo-backoffice-ui/www/app/controller/AppExtensionController.js
-
-
-
-
-
-//RubedoAutomatedElementsLoc

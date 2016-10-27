@@ -9,11 +9,16 @@
                 <li><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> : {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
                 <li ng-if="orderDetailCtrl.order.billingAddress.vatEin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.VatEin') }}</strong> : {{ orderDetailCtrl.order.billingAddress.vatEin }}</li>
             </ul>
-            <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
-            <button ng-if="orderDetailCtrl.showPaymentButton" class="btn btn-primary" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
+            <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText && !orderDetailCtrl.isAdmin" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
+            <button ng-if="orderDetailCtrl.showPaymentButton && !orderDetailCtrl.isAdmin" class="btn btn-primary" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
         </div>
         <div class="col-md-4 text-right">
             <time>{{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</time>
+        </div>
+        <div class="col-md-12" ng-if="orderDetailCtrl.isAdmin">
+            <h4><i class="fa fa-address-card-o" aria-hidden="true"></i> Informations client</h4>
+            <p><b>{{orderDetailCtrl.order.userName}}</b></p>
+            <p><i class="fa fa-envelope-o" aria-hidden="true"></i> {{orderDetailCtrl.order.userEmail}}</p>
         </div>
         <div class="col-md-12" style="display: flex;justify-content: center;">
             <form ng-if="orderDetailCtrl.showPaymentForm" id="payment" name="payment"  method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
