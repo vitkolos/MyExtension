@@ -60,7 +60,23 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                         kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
                             me.creatingBill = false;
                             kendo.drawing.pdf.toDataURL(group, function(dataURL){
-                            console.log(dataURL);
+                                var uploadOptions={
+                                    typeId:"5811cc252456404b018bc74c",
+                                     target:"5693b19bc445ecba018b4cb7",
+                                     fields:{title:me.billTitle}
+                                };
+                                RubedoMediaService.uploadMedia(dataURL,uploadOptions).then(
+                                    function(response){
+                                        if (response.data.success){
+                                            console.log(response.data);
+                                        } else {
+                                        }
+                                    },
+                                    function(response){
+                                        
+                                    }
+                                );
+
                             });
                             /*kendo.drawing.pdf.toBlob(group, function(blob){
                                 // you can now upload it to a server
