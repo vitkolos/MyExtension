@@ -1,3 +1,4 @@
+ <script src="//kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js"></script>
 <div ng-controller="OrderDetailController as orderDetailCtrl">
     <h2 class="text-center">{{ rubedo.translate('Blocks.OrderDetails.OrderReview')}}</h2>
     <div class="row">
@@ -9,8 +10,8 @@
                 <li><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> : {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
                 <li ng-if="orderDetailCtrl.order.billingAddress.vatEin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.VatEin') }}</strong> : {{ orderDetailCtrl.order.billingAddress.vatEin }}</li>
             </ul>
-            <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
-            <button ng-if="orderDetailCtrl.showPaymentButton" class="btn btn-primary" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
+            <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText && !orderDetailCtrl.isAdmin" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
+            <button ng-if="orderDetailCtrl.showPaymentButton && !orderDetailCtrl.isAdmin" class="btn btn-primary" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
         </div>
         <div class="col-md-4 text-right">
             <time>{{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</time>
@@ -45,8 +46,25 @@
             </a></strong>
         </div>
 
+    </div>   
+    
+    <div class="row" ng-if="orderDetailCtrl.isAdmin">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-user-plus" aria-hidden="true"></i> {{rubedo.translate('Blocks.Checkout.PersonalDetails')}}</h4>
+                </div>
+                <div class="panel-body">
+                    <p><strong>{{orderDetailCtrl.order.userName}}</strong></p>
+                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> {{orderDetailCtrl.order.userEmail}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+                        <button ng-if="!orderDetailCtrl.billDocumentUrl" class="btn btn-primary" ng-click="orderDetailCtrl.generateBill()">Créer une facture</button>
+        </div>
     </div>
-    <div class="row">
+    <div class="row" id="orderForm">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -94,8 +112,8 @@
                         <tr>
                             <th></th>
                             <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Name') }}</th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Cost')}}</th>
                             <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Amount') }}</th>
+                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Cost')}}</th>
                             <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Price') }}</th>
                         </tr>
                     </thead>
@@ -111,8 +129,8 @@
                                 {{ product.title }}<br />
                                 <small>{{ product.subtitle }}</small>
                             </td>
-                            <td>{{ product.unitPrice | number : 2 }} €</td>
                             <td>{{ product.amount }}</td>
+                            <td>{{ product.unitPrice | number : 2 }} €</td>
                             <td>{{ product.price | number : 2 }} €</td>
                         </tr>
                     </tbody>

@@ -43,12 +43,19 @@ class OrdersResource extends AbstractResource
     public function getAction($params)
     {
         $user = $params['identity']->getUser();
-        var_dump($user);
+        //var_dump($user);
+        
         $filter = Filter::factory()
             ->addFilter(Filter::factory('Value')->setName('userId')->setValue($user['id']));
         $start=isset($params['start']) ? $params['start'] : 0;
         $limit=isset($params['limit']) ? $params['limit'] : null;
-        $orders = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),$start,$limit);
+        //pour les admins boutique, ne pas limiter la liste de commandes à l'utilisateur, si on est sur le bloc "Liste de commandes"
+        if($user["defaultGroup"] == "57222992c445ec68568bf2da" && $params['allCommands']){
+            $orders = $this->getOrdersCollection()->getList(null, array(array('property' => 'createTime', 'direction' => 'desc')),$start,$limit);            
+        }
+        else {
+            $orders = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),$start,$limit);            
+        }
         if (!empty($params["orderDetailPage"])) {
             $urlOptions = array(
                 'encode' => true,
@@ -255,16 +262,30 @@ class OrdersResource extends AbstractResource
     public function getEntityAction($id, $params)
     {
         $user = $params['identity']->getUser();
-        $filters = Filter::factory()
-            ->addFilter(Filter::factory('Value')->setName('userId')->setValue($user['id']))
-            ->addFilter(Filter::factory('Uid')->setValue($id));
-        $order = $this->getOrdersCollection()->findOne($filters);
+        $isAdmin=false;
+        if($user["defaultGroup"] == "57222992c445ec68568bf2da"){
+            $filters = Filter::factory()
+               // ->addFilter(Filter::factory('Value')->setName('userId')->setValue($user['id'])) pour utilisateurs connectés "Admin boutique"
+                ->addFilter(Filter::factory('Uid')->setValue($id));
+            $order = $this->getOrdersCollection()->findOne($filters);
+            $isAdmin=true;
+        }
+        else {
+            $filters = Filter::factory()
+                ->addFilter(Filter::factory('Value')->setName('userId')->setValue($user['id']))
+                ->addFilter(Filter::factory('Uid')->setValue($id));
+            $order = $this->getOrdersCollection()->findOne($filters);
+        }
+            
+            
+            
         if (empty($order)) {
             throw new APIEntityException('Order not found', 404);
         }
         return array(
             'success' => true,
             'order' => $order,
+            'isAdmin' => $isAdmin
         );
     }
     /**
@@ -324,6 +345,11 @@ class OrdersResource extends AbstractResource
                     ->setKey('orderDetailPage')
                     ->setDescription('Order details page')
                     ->setFilter('\MongoId')
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('allCommands')
+                    ->setDescription('Voir toutes les commandes - pour des utilisateurs avec les droits d\'admin sur la Boutique')
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
@@ -391,6 +417,12 @@ class OrdersResource extends AbstractResource
                 (new FilterDefinitionEntity())
                     ->setDescription('Order')
                     ->setKey('order')
+                    ->setRequired()
+            )
+             ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('True si l\'utilisateur est admin de la Boutique')
+                    ->setKey('isAdmin')
                     ->setRequired()
             );
     }
