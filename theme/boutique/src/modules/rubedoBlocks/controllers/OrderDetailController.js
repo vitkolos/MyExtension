@@ -59,8 +59,8 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                         
                         kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
                             me.creatingBill = false;
-                            
-                            /*kendo.drawing.pdf.toBlob(group, function(blob){*/
+                            console.log(group);
+                            /*kendo.drawing.pdf.toBlob(group, function(blob){
                                 // you can now upload it to a server
                                 // this form simulates an <input type="file" name="pdfFile" />
                                 
@@ -70,7 +70,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                      fields:{title:me.billTitle}
                                 };
                                 var fd = new FormData();
-                                fd.append('file', group);
+                                fd.append('file', blob);
                                 $http.post("/api/v1/media", fd, {
                                     transformRequest: angular.identity,
                                     params:uploadOptions,
@@ -89,7 +89,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 
                                 
                                 
-                            /*});*/
+                            });*/
                             
                             //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
                         })},500);
