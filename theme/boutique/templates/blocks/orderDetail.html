@@ -13,7 +13,7 @@
                 <li ng-if="!orderDetailCtrl.isAdmin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> : {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
                 <li ng-if="orderDetailCtrl.isAdmin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> :
                     <select ng-model="orderDetailCtrl.order.status">
-                        <option ng-repeat="(key, value) in orderDetailCtrl.status" value="{{value}}">
+                        <option ng-repeat="(key, value) in orderDetailCtrl.status" value="{{value}}" ng-selected="orderDetailCtrl.order.status === value">
                             {{rubedo.translate('Blocks.UserOrders.Status.'+value,value)}}
                         </option>
                         
