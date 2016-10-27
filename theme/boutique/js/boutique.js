@@ -44,6 +44,7 @@ angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',functio
 
 angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCookie',function($http,ipCookie){
     var serviceInstance = {};
+    var config = {baseUrl:'/api/v1'};
     serviceInstance.getMyOrders=function(options){
         return ($http.get(config.baseUrl+"/ecommerce/orders",{
             params:options
