@@ -55,7 +55,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
     };
     serviceInstance.updateOrder=function(order){
         return ($http({
-            url:config.baseUrl+"/ecommerce/orders"+order.id,
+            url:config.baseUrl+"/ecommerce/orders/"+order.id,
             method:"PATCH",
             data : {
                 order:order
