@@ -63,13 +63,13 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 // this form simulates an <input type="file" name="pdfFile" />
                                 var form = new FormData();
                                 form.append("pdfFile", blob);
-                                console.log(form);
+                                //console.log(form);
                                 var uploadOptions={
                                     typeId:"5811cc252456404b018bc74c",
                                      target:"5693b19bc445ecba018b4cb7",
                                      fields:{title:me.billTitle}
                                 };
-                                RubedoMediaService.uploadMedia(blob,uploadOptions).then(
+                                RubedoMediaService.uploadMedia(pdfFile,uploadOptions).then(
                                     function(response){
                                         if (response.data.success){
                                             console.log(response.data);
