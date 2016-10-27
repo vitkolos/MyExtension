@@ -67,10 +67,16 @@ class OrdersResource extends AbstractResource
             ), $urlOptions);
         }
         if(isset($params['onlyTotal'])) {
+            $counter = 0;
+            foreach ($orders['data'] as &$order) {
+                if($order["billDocument"] && $order["billDocument"] !='' ){
+                    $counter++;
+                }
+            }
             return array(
                 'success' => true,
                 'orders' => null,
-                'total'=>&$orders['count'],
+                'total'=>$counter,
                 'orderDetailPageUrl' => isset($orderDetailPageUrl) ? $orderDetailPageUrl : null,
             );
         }
