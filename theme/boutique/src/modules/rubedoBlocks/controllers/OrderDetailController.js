@@ -80,7 +80,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                      target:"5693b19bc445ecba018b4cb7",
                                      fields:{title:me.billTitle+'.pdf'}
                                 };
-                                RubedoMediaService.uploadMedia(data,options).then(
+                                RubedoMediaService.uploadMedia(data,uploadOptions).then(
                                     function(response){
                                         if (response.data.success){
                                             console.log(response.data);
