@@ -55,15 +55,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                 if (response.data.success){
                    me.billTitle = "FA2" + ('00000'+(response.data.total+1)).substring((response.data.total).length);
                     me.creatingBill = true;
-                    $timeout(function(){
-                        /*
-                        kendo.drawing.drawDOM(angular.element("#orderForm"),{ margin: "1cm"}).then(function(group) {
-                            me.creatingBill = false;
-                            kendo.drawing.exportPDF(group);
-                            //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
-                        })*/
-                        
-                        var draw = kendo.drawing;
+                    var draw = kendo.drawing;
                         
                         draw.drawDOM(angular.element("#orderForm"))
                             .then(function(root) {
@@ -80,6 +72,15 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                     fileName: "calendar.pdf"
                                 });
                             });
+                    $timeout(function(){
+                        /*
+                        kendo.drawing.drawDOM(angular.element("#orderForm"),{ margin: "1cm"}).then(function(group) {
+                            me.creatingBill = false;
+                            kendo.drawing.exportPDF(group);
+                            //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
+                        })*/
+                        
+                        
                         
                         /* draw.drawDOM(angular.element("#orderForm"),{ margin: "1cm"})
                             .then(function(root) {
