@@ -64,7 +64,24 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                         })*/
                         
                         var draw = kendo.drawing;
-                        draw.drawDOM(angular.element("#orderForm"),{ margin: "1cm"})
+                        
+                        draw.drawDOM(angular.element("#orderForm"))
+                            .then(function(root) {
+                                // Chaining the promise via then
+                                return draw.exportPDF(root, {
+                                    paperSize: "A4",
+                                    landscape: true
+                                });
+                            })
+                            .done(function(data) {
+                                // Here 'data' is the Base64-encoded PDF file
+                                kendo.saveAs({
+                                    dataURI: data,
+                                    fileName: "calendar.pdf"
+                                });
+                            });
+                        
+                        /* draw.drawDOM(angular.element("#orderForm"),{ margin: "1cm"})
                             .then(function(root) {
                                 // Chaining the promise via then
                                 return draw.exportPDF(root,{ margin: "1cm"});
@@ -75,7 +92,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                     dataURI: data,
                                     fileName: "calendar.pdf"
                                 });
-                               /* var uploadOptions={
+                               var uploadOptions={
                                     typeId:"5811cc252456404b018bc74c",
                                      target:"5693b19bc445ecba018b4cb7",
                                      fields:{title:me.billTitle+'.pdf'}
@@ -86,8 +103,8 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                             //console.log(response.data);
                                         }
                                     }
-                                );*/
-                            });
+                                );
+                            });*/
                         
                     },500);
 
