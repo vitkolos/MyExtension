@@ -63,14 +63,11 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
                         })*/
                         
-                        
-                        kendo.drawing.drawDOM(angular.element("#orderForm"),{ margin: "1cm"})
+                        var draw = kendo.drawing;
+                        draw.drawDOM(angular.element("#orderForm"),{ margin: "1cm"})
                             .then(function(root) {
                                 // Chaining the promise via then
-                                return kendo.drawing.exportPDF(root, {
-                                    paperSize: "A4",
-                                    landscape: true
-                                });
+                                return draw.exportPDF(root,{ margin: "1cm"});
                             })
                             .done(function(data) {
                                 // Here 'data' is the Base64-encoded PDF file
