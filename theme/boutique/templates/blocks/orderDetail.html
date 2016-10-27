@@ -64,8 +64,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-                        <button ng-if="!orderDetailCtrl.billDocumentUrl" class="btn btn-default" ng-click="orderDetailCtrl.generateBill()">Créer une facture</button>
+        <div class="col-md-6 text-center">
+                        <button ng-if="!orderDetailCtrl.billDocumentUrl && !orderDetailCtrl.creatingBill" class="btn btn-default" ng-click="orderDetailCtrl.generateBill()">Créer une facture</button>
+                        <img src="/theme/cte/img/loader.gif" ng-if="orderDetailCtrl.creatingBill">
         </div>
     </div>
     <section id="orderForm" ng-class="{'isBill':orderDetailCtrl.creatingBill}">
