@@ -66,21 +66,21 @@ class OrdersResource extends AbstractResource
                 'locale' => $params['lang']->getLocale(),
             ), $urlOptions);
         }
-        if(!$params['onlyTotal']) {
+        if($params['onlyTotal']) {
+            return array(
+                'success' => true,
+                'orders' => null,
+                'total'=>&$orders['count'],
+                'orderDetailPageUrl' => isset($orderDetailPageUrl) ? $orderDetailPageUrl : null,
+            );
+        }
+        else {
             foreach ($orders['data'] as &$order) {
                 $order = $this->maskOrderInList($order);
             }
             return array(
                 'success' => true,
                 'orders' => &$orders['data'],
-                'total'=>&$orders['count'],
-                'orderDetailPageUrl' => isset($orderDetailPageUrl) ? $orderDetailPageUrl : null,
-            );
-        }
-        else {
-            return array(
-                'success' => true,
-                'orders' => null,
                 'total'=>&$orders['count'],
                 'orderDetailPageUrl' => isset($orderDetailPageUrl) ? $orderDetailPageUrl : null,
             );
