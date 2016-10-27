@@ -56,12 +56,43 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                    me.billTitle = "FA2" + ('00000'+(response.data.total+1)).substring((response.data.total).length);
                     me.creatingBill = true;
                     $timeout(function(){
-                        
-                        kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
+                        /*
+                        kendo.drawing.drawDOM(angular.element("#orderForm"),{ margin: "1cm"}).then(function(group) {
                             me.creatingBill = false;
-
-                            kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
-                        })},500);
+                            kendo.drawing.exportPDF(group);
+                            //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
+                        })*/
+                        
+                        
+                        kendo.drawing.drawDOM(angular.element("#orderForm"),{ margin: "1cm"})
+                            .then(function(root) {
+                                // Chaining the promise via then
+                                return draw.exportPDF(root, {
+                                    paperSize: "A4",
+                                    landscape: true
+                                });
+                            })
+                            .done(function(data) {
+                                // Here 'data' is the Base64-encoded PDF file
+                                /*kendo.saveAs({
+                                    dataURI: data,
+                                    fileName: "calendar.pdf"
+                                });*/
+                                var uploadOptions={
+                                    typeId:"5811cc252456404b018bc74c",
+                                     target:"5693b19bc445ecba018b4cb7",
+                                     fields:{title:me.billTitle+'.pdf'}
+                                };
+                                RubedoMediaService.uploadMedia(data,options).then(
+                                    function(response){
+                                        if (response.data.success){
+                                            console.log(response.data);
+                                        }
+                                    }
+                                );
+                            });
+                        
+                    },500);
 
                 }
             }
