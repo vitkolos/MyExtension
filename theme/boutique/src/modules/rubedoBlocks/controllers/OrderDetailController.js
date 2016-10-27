@@ -54,62 +54,25 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
             function(response){
                 if (response.data.success){
                    me.billTitle = "FA2" + ('00000'+(response.data.total+1)).substring((response.data.total).length);
-                    me.creatingBill = true;
-                    var draw = kendo.drawing;
-                        
-                    draw.drawDOM(angular.element("#orderForm"))
-                        .then(function(root) {
-                            // Chaining the promise via then
-                            return draw.exportPDF(root, {
-                                paperSize: "A4",
-                                landscape: true
-                            });
-                        })
-                        .done(function(dataURI) {
-                            //Extracting the base64-encoded string and the contentType
-                            var data = {};
-                            var parts = dataURI.split(";base64,");
-                            data.contentType = parts[0].replace("data:", "");
-                            data.base64 = parts[1];
-                            
-                            //Sending the data via jQuery.post method
-                            //jQuery.post("http://chemin-neuf.fr/api/v1/media", data)
-                        });
+                    me.creatingBill = true;                        
+                    
                     $timeout(function(){
-                        /*
-                        kendo.drawing.drawDOM(angular.element("#orderForm"),{ margin: "1cm"}).then(function(group) {
-                            me.creatingBill = false;
-                            kendo.drawing.exportPDF(group);
-                            //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
-                        })*/
                         
+
                         
-                        
-                        /* draw.drawDOM(angular.element("#orderForm"),{ margin: "1cm"})
+                        kendo.drawing.drawDOM(angular.element("#orderForm"))
                             .then(function(root) {
                                 // Chaining the promise via then
-                                return draw.exportPDF(root,{ margin: "1cm"});
+                                return kendo.drawing.exportPDF(root,{ margin: "1cm"});
                             })
                             .done(function(data) {
                                 // Here 'data' is the Base64-encoded PDF file
                                 kendo.saveAs({
                                     dataURI: data,
-                                    fileName: "calendar.pdf"
+                                    fileName:me.billTitle+ ".pdf"
                                 });
-                               var uploadOptions={
-                                    typeId:"5811cc252456404b018bc74c",
-                                     target:"5693b19bc445ecba018b4cb7",
-                                     fields:{title:me.billTitle+'.pdf'}
-                                };
-                                RubedoMediaService.uploadMedia(data,uploadOptions).then(
-                                    function(response){
-                                        if (response.data.success){
-                                            //console.log(response.data);
-                                        }
-                                    }
-                                );
-                            });*/
-                        
+                            });
+
                     },500);
 
                 }
