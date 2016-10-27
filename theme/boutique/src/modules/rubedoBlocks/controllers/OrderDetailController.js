@@ -63,6 +63,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 // Chaining the promise via then
                                 kendo.drawing.pdf.toBlob(group, function(blob){
                                     blob.name = me.billTitle+".pdf";
+                                    blob.lastModifiedDate = new Date();
                                     // you can now upload it to a server
                                     // this form simulates an <input type="file" name="pdfFile" />
                                     var uploadOptions = {
