@@ -53,12 +53,38 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
         RubedoOrdersService.getMyOrders(options).then(
             function(response){
                 if (response.data.success){
-                   me.billTitle = "FA2" + ('00000'+response.data.total).substring((response.data.total).length);
+                   me.billTitle = "FA2" + ('00000'+(response.data.total+1)).substring((response.data.total).length);
                     me.creatingBill = true;
                     $timeout(function(){
                         kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
-                            kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
                             me.creatingBill = false;
+                            drawing.pdf.toBlob(group, function(blob){
+                                // you can now upload it to a server
+                                // this form simulates an <input type="file" name="pdfFile" />
+                                var uploadOptions={
+                                    typeId:"5811cc252456404b018bc74c",
+                                     target:"5693b19bc445ecba018b4cb7",
+                                     title:me.billTitle
+                                };
+                                RubedoMediaService.uploadMedia(blob,uploadOptions).then(
+                                    function(response){
+                                        if (response.data.success){
+                                            console.log(response.data);
+                                        } else {
+                                        }
+                                    },
+                                    function(response){
+                                        
+                                    }
+                                );
+                                
+                                
+                                
+                                
+                                
+                            });
+                            
+                            //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
                         })},500);
 
                 }
