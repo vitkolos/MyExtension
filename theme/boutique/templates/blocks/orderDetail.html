@@ -15,11 +15,6 @@
         <div class="col-md-4 text-right">
             <time>{{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</time>
         </div>
-        <div class="col-md-12" ng-if="orderDetailCtrl.isAdmin">
-            <h4><i class="fa fa-address-card-o" aria-hidden="true"></i> Informations client</h4>
-            <p><b>{{orderDetailCtrl.order.userName}}</b></p>
-            <p><i class="fa fa-envelope-o" aria-hidden="true"></i> {{orderDetailCtrl.order.userEmail}}</p>
-        </div>
         <div class="col-md-12" style="display: flex;justify-content: center;">
             <form ng-if="orderDetailCtrl.showPaymentForm" id="payment" name="payment"  method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
                 <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
@@ -50,6 +45,20 @@
             </a></strong>
         </div>
 
+    </div>   
+    
+    <div class="row" ng-if="orderDetailCtrl.isAdmin">
+        <div class="col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4><i class="fa fa-user-plus" aria-hidden="true"></i> {{rubedo.translate('Blocks.Checkout.PersonalDetails')}}</h4>
+                </div>
+                <div class="panel-body">
+                    <p><strong>{{orderDetailCtrl.order.userName}}</strong></p>
+                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> {{orderDetailCtrl.order.userEmail}}</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -99,8 +108,8 @@
                         <tr>
                             <th></th>
                             <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Name') }}</th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Cost')}}</th>
                             <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Amount') }}</th>
+                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Cost')}}</th>
                             <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Price') }}</th>
                         </tr>
                     </thead>
@@ -116,8 +125,8 @@
                                 {{ product.title }}<br />
                                 <small>{{ product.subtitle }}</small>
                             </td>
-                            <td>{{ product.unitPrice | number : 2 }} €</td>
                             <td>{{ product.amount }}</td>
+                            <td>{{ product.unitPrice | number : 2 }} €</td>
                             <td>{{ product.price | number : 2 }} €</td>
                         </tr>
                     </tbody>
