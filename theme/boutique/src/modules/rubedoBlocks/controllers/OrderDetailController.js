@@ -3,6 +3,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
     var config = $scope.blockConfig;
     var orderId=$location.search().order;
     me.isAdmin=true;
+    me.creatingBill = false;
     if (orderId){
         RubedoOrdersService.getOrderDetail(orderId).then(
             function(response){
@@ -45,8 +46,10 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
         );
     }
     me.generateBill = function(){
+        me.creatingBill = true;
         kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
             kendo.drawing.pdf.saveAs(group, "Converted PDF.pdf");
+            me.creatingBill = false;
         });
     }
 
