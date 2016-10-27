@@ -69,7 +69,8 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 // Here 'data' is the Base64-encoded PDF file
                                 kendo.saveAs({
                                     dataURI: data,
-                                    fileName:me.billTitle+ ".pdf"
+                                    fileName:me.billTitle+ ".pdf",
+                                    proxyURL: "api/v1/media"
                                 });
                             });
 
