@@ -58,8 +58,29 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                     
                     $timeout(function(){
                         
+                        kendo.drawing.drawDOM(angular.element("#orderForm"))
+                            .then(function(group) {
+                                // Chaining the promise via then
+                                kendo.drawing.pdf.toBlob(group, function(blob){
+                                    // you can now upload it to a server
+                                    // this form simulates an <input type="file" name="pdfFile" />
+                                    var uploadOptions = {
+                                        typeId:"5811cc252456404b018bc74c",
+                                        target:"5693b19bc445ecba018b4cb7",
+                                        fields:{title:me.creatingBill+".pdf"}
+                                    }
+                                    var form = new FormData();
+                                    form.append("file", blob);
 
-                        
+                                    $http.post("/api/v1/media", form, {
+                                      transformRequest: angular.identity,
+                                      params:uploadOptions,
+                                      headers: {'Content-Type': undefined}
+                                  });
+                                });
+                            })
+                            
+                        /*
                         kendo.drawing.drawDOM(angular.element("#orderForm"))
                             .then(function(root) {
                                 // Chaining the promise via then
@@ -69,17 +90,13 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 // Here 'data' is the Base64-encoded PDF file
                                var fd = new FormData();
                                fd.append('file', data);
-                              $http.post("/api/v1/media", fd, {
-                                    transformRequest: angular.identity,
-                                    params:options,
-                                    headers: {'Content-Type': undefined}
-                                });
-                               /* kendo.saveAs({
-                                    dataURI: data,
-                                    fileName:me.billTitle+ ".pdf",
-                                    proxyURL: "api/v1/media"
-                                });*/
-                            });
+                                $http.post("/api/v1/media", fd, {
+                                      transformRequest: angular.identity,
+                                      params:options,
+                                      headers: {'Content-Type': undefined}
+                                  });
+
+                            });*/
 
                     },500);
 
