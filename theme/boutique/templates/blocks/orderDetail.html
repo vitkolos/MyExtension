@@ -11,9 +11,19 @@
             <h4>{{rubedo.translate('Blocks.OrderDetails.Payment')}}</h4>
             <ul class="list-unstyled">
                 <li><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Means') }}</strong> : {{ orderDetailCtrl.order.paymentMeans }}</li>
-                <li><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> : {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
+                <li ng-if="!orderDetailCtrl.isAdmin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> : {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
+                <li ng-if="orderDetailCtrl.isAdmin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> :
+                    <select ng-model="orderDetailCtrl.order.status">
+                        <option ng-repeat="(key, value) in orderDetailCtrl.status" value="{{value}}">
+                            {{rubedo.translate('Blocks.UserOrders.Status.'+value,value)}}
+                        </option>
+                        
+                    </select>
+                
+                {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
                 
                 <li ng-if="orderDetailCtrl.order.billingAddress.vatEin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.VatEin') }}</strong> : {{ orderDetailCtrl.order.billingAddress.vatEin }}</li>
+
             </ul>
             <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText && !orderDetailCtrl.isAdmin" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
             <button ng-if="orderDetailCtrl.showPaymentButton && !orderDetailCtrl.isAdmin" class="btn btn-primary" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
@@ -45,16 +55,12 @@
 
         </div>
         <div ng-if="orderDetailCtrl.billDocumentUrl" class="col-md-4 text-right">
-            <button class="btn btn-default">
-                <a ng-href="{{orderDetailCtrl.billDocumentUrl}}" target="_blank">
+            <a ng-href="{{orderDetailCtrl.billDocumentUrl}}" target="_blank">
+                <button class="btn btn-default" style="padding:12px;">
                     <span class="glyphicon glyphicon-save" aria-hidden="true"></span>{{ rubedo.translate('Blocks.OrderDetails.OrderBill')}}
-                </a>
-            </button>
-<!--
-            <strong><a ng-href="{{orderDetailCtrl.billDocumentUrl}}" target="_blank">
-                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                 {{ rubedo.translate('Blocks.OrderDetails.OrderBill')}}
-            </a></strong>-->
+                </button>
+            </a>
+
         </div>
 
     </div>   

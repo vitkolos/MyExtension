@@ -5,6 +5,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
     var orderId=$location.search().order;
     me.isAdmin=false;
     me.creatingBill = false;
+    me.status = ["pendingPayment","payed","cancelled","shipped"];
     if (orderId){
         RubedoOrdersService.getOrderDetail(orderId).then(
             function(response){
