@@ -19,7 +19,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             }
                         );
                     }
-                    //me.isAdmin= response.data.isAdmin;
+                    me.isAdmin= response.data.isAdmin;
                     if(me.order.status=="pendingPayment" && !me.isAdmin){
                         RubedoPaymentService.getPaymentInformation(orderId).then(
                             function(pmResponse){
@@ -35,7 +35,6 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                     else if (pmResponse.data.paymentInstructions.whatToDo=="submitForm"&&pmResponse.data.paymentInstructions.url) {
                                         me.showPaymentForm=true;
                                         $scope.parametres = pmResponse.data.paymentInstructions.url;
-                                        //console.log(pmResponse.data.paymentInstructions.url);
                                     }
                                 }
                             }
