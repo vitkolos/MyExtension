@@ -59,7 +59,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                         
                         kendo.drawing.drawDOM(angular.element("#orderForm")).then(function(group) {
                             me.creatingBill = false;
-                            kendo.drawing.pdf.toDataURL(group, function(dataURL){
+                            /*kendo.drawing.pdf.toDataURL(group, function(dataURL){
                                 var uploadOptions={
                                     typeId:"5811cc252456404b018bc74c",
                                      target:"5693b19bc445ecba018b4cb7",
@@ -77,19 +77,19 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                     }
                                 );
 
-                            });
-                            /*kendo.drawing.pdf.toBlob(group, function(blob){
+                            });*/
+                            kendo.drawing.pdf.toBlob(group, function(blob){
                                 // you can now upload it to a server
                                 // this form simulates an <input type="file" name="pdfFile" />
-                                //var form = new FormData();
-                                //form.append("pdfFile", blob);
-                                //console.log(form);
+                                var form = new FormData();
+                                form.append("file", blob);
+                                console.log(form);
                                 var uploadOptions={
                                     typeId:"5811cc252456404b018bc74c",
                                      target:"5693b19bc445ecba018b4cb7",
                                      fields:{title:me.billTitle}
                                 };
-                                RubedoMediaService.uploadMedia(pdfFile,uploadOptions).then(
+                                RubedoMediaService.uploadMedia(file,uploadOptions).then(
                                     function(response){
                                         if (response.data.success){
                                             console.log(response.data);
@@ -105,7 +105,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 
                                 
                                 
-                            });*/
+                            });
                             
                             //kendo.drawing.pdf.saveAs(group, me.billTitle+".pdf");
                         })},500);
