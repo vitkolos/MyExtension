@@ -69,7 +69,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 // Here 'data' is the Base64-encoded PDF file
                                var fd = new FormData();
                                fd.append('file', data);
-                              $http.post(config.baseUrl+"/media", fd, {
+                              $http.post("api/v/media", fd, {
                                     transformRequest: angular.identity,
                                     params:options,
                                     headers: {'Content-Type': undefined}
