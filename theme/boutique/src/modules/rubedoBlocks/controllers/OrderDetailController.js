@@ -71,11 +71,11 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             })
                             .done(function(data) {
                                 // Here 'data' is the Base64-encoded PDF file
-                                /*kendo.saveAs({
+                                kendo.saveAs({
                                     dataURI: data,
                                     fileName: "calendar.pdf"
-                                });*/
-                                var uploadOptions={
+                                });
+                               /* var uploadOptions={
                                     typeId:"5811cc252456404b018bc74c",
                                      target:"5693b19bc445ecba018b4cb7",
                                      fields:{title:me.billTitle+'.pdf'}
@@ -83,10 +83,10 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                 RubedoMediaService.uploadMedia(data,uploadOptions).then(
                                     function(response){
                                         if (response.data.success){
-                                            console.log(response.data);
+                                            //console.log(response.data);
                                         }
                                     }
-                                );
+                                );*/
                             });
                         
                     },500);
