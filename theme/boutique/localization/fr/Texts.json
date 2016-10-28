@@ -15,5 +15,6 @@
     "Blocks.Checkout.Label.ChooseShipper":"Merci de choisir un mode de livraison",
     "Blocks.Checkout.Label.ChoosePayment":"Merci de choisir un moyen de paiement",
     "Blocks.OrderDetails.Payment.Status":"Statut de la commande",
-    "Blocks.UserOrders.Status.shipped" : "Envoyée"
+    "Blocks.UserOrders.Status.shipped" : "Envoyée",
+    "Blocks.Checkout.Steps.BillingAndShippingDetails":"Étape 3: Détails de facturation et d'expéditions"
 }
