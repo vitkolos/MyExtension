@@ -85,7 +85,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
                         options[key] = JSON.parse(queryParam);
                     } else {
                         if(key == 'query'){
-                            me.query = queryParam;
+                            me.query = "'"+queryParam+"'";
                         }
                         options[key] = queryParam;
                     }
