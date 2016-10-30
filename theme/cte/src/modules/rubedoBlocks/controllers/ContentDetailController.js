@@ -111,7 +111,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                         else {
                             RubedoPagesService.getPageById(me.content.fields.propositionReferenceeInterne).then(function(response){
-                                    if (response.data.success){
+                                    if (response.data.success && ! $scope.rubedo.current.user &&!$scope.rubedo.current.user.rights.canEdit){
                                         window.location.href = response.data.url;
                                     }
                                 });                            
