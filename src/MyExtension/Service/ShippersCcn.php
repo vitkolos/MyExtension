@@ -53,8 +53,8 @@ class ShippersCcn extends AbstractCollection implements IShippers
             '$unwind' => '$rates'
         );
         /*map country et zones*/
-        $europe = array('DE','UK');
-        $northamerica = array('USA');
+        $europe = array('DE','AT','BE','ES','FI','GR','IT','LU,','NL','PL','PT','CZ','GB','SE','DK','NO','IE','RO','SK','CY','EE','LV','LI','LT','MT','HU','SI','UA');
+        $northamerica = array('CA','US','BB','BM','MX','VG','VI');
         if(in_array($country, $europe)){
             $pipeline[] = array(
                 '$match' => array(
