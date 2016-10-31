@@ -284,17 +284,23 @@
                                         <label for="shippersRadio">{{rubedo.translate('Blocks.Checkout.ShippingOption',"",['%name%','%delay%','%unit%','%rate%'],[shipper.name,shipper.hRDelay,rubedo.translate("Label."+shipper.hRUnit, shipper.hRUnit),shipper.rate])}}</label>
                                     </div>
                                 </div>
-                                <div style="text-align: center; margin-bottom: 10px">
-                                    <!--<button ng-click="checkoutCtrl.addPaperToCart()"-->
+                                <h4>{{ rubedo.translate("Blocks.Checkout.Label.Gift")}}</h4>
+                                <div class="form-group">
+                                        <input type="checkbox" name="addGift"  id="addGift"
+                                                   ng-checked="checkoutCtrl.itIsAGift"
+                                                   ng-change="addPaperToCart()">
+                                        <label for="addGift">{{rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "Je souhaite que ma commande soit emballée dans un papier-cadeau.")}}</label>
+
+                                </div>
+                                <!--div style="text-align: center; margin-bottom: 10px">
                                     <div ng-click="addPaperToCart()" class="btn btn-inv" ng-class="{'active':checkoutCtrl.itIsAGift}">
                                         
                                         <i class="fa fa-gift"></i> {{rubedo.translate("Blocks.Checkout.Label.Gift", "Papier cadeau")}} : 2 €
-                                        <!--<i class="fa fa-gift"></i> {{ rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "add a gift wrap")}} : 2 €-->
                                     </div>
                                     <div>
                                         <small><em>{{rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "Je souhaite que ma commande soit emballée dans un papier-cadeau.")}}</em></small>
                                     </div>
-                                </div>
+                            </div>-->
                                 <div class="form-group" style="margin-bottom: 10px">
                                     <span class="appearable" ng-show="checkoutCtrl.itIsAGift">
                                     <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddGiftComments')}} </label>
