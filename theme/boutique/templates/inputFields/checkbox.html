@@ -1,0 +1,7 @@
+<div class="form-group">
+    <input type="checkbox"
+           id="{{fieldIdPrefix+'_'+field.config.name}}"
+           ng-model="fieldEntity[field.config.name]">
+    <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="control-label">{{field.config.fieldLabel}}</label>
+    <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
+</div>
