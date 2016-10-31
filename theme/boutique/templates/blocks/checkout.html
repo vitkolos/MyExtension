@@ -166,8 +166,12 @@
                                     <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_company'}}" ng-model="fieldEntity.billingAddress.company">
                                 </div>
                                 <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_attention'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Attention')}} </label>
-                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_attention'}}" ng-model="fieldEntity.billingAddress.attention">
+                                    <label for="{{fieldIdPrefix+'_billingAddress_name'}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Name.Label")}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_name'}}" ng-model="fieldEntity.billingAddress.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{fieldIdPrefix+'_billingAddress_surname'}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Surname.Label")}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_surname'}}" ng-model="fieldEntity.billingAddress.surname">
                                 </div>
                                 <div class="form-group">
                                     <label for="{{fieldIdPrefix+'_billingAddress_address1'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
@@ -213,8 +217,12 @@
                                     <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_company'}}" ng-model="fieldEntity.shippingAddress.company">
                                 </div>
                                 <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingAddress_attention'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Attention')}} </label>
-                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_attention'}}" ng-model="fieldEntity.shippingAddress.attention">
+                                    <label for="{{fieldIdPrefix+'_shippingAddress_name'}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Name.Label")}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_name'}}" ng-model="fieldEntity.shippingAddress.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{fieldIdPrefix+'_shippingAddress_surname'}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Surname.Label")}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_surname'}}" ng-model="fieldEntity.shippingAddress.surname">
                                 </div>
                                 <div class="form-group">
                                     <label for="{{fieldIdPrefix+'_shippingAddress_address1'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
@@ -352,8 +360,8 @@
                                     </div>
                                     <div class="panel-body">
                                         <address>
-                                            <strong>{{ fieldEntity.billingAddress.company }}</strong><br />
-                                            <strong>{{ fieldEntity.billingAddress.attention }}</strong><br />
+                                            <strong ng-if="fieldEntity.billingAddress.company && fieldEntity.billingAddress.company!='' ">{{ fieldEntity.billingAddress.company }}</strong><br />
+                                            <strong ng-if="fieldEntity.billingAddress.attention && fieldEntity.billingAddress.attention != '' ">{{ fieldEntity.billingAddress.attention }}</strong><br />
                                             {{ fieldEntity.billingAddress.address1 }}<br />
                                             {{ fieldEntity.billingAddress.address2 }}<br />
                                             {{ fieldEntity.billingAddress.postCode }} {{ fieldEntity.billingAddress.city }}<br />
@@ -369,8 +377,8 @@
                                     </div>
                                     <div class="panel-body">
                                         <address>
-                                            <strong>{{ fieldEntity.shippingAddress.company }}</strong><br />
-                                            <strong>{{ fieldEntity.shippingAddress.attention }}</strong><br />
+                                            <strong ng-if="fieldEntity.shippingAddress.company && fieldEntity.billingAddress.company!='' ">{{ fieldEntity.shippingAddress.company }}</strong><br />
+                                            <strong ng-if="fieldEntity.shippingAddress.attention && fieldEntity.billingAddress.attention != '' ">{{ fieldEntity.shippingAddress.attention }}</strong><br />
                                             {{ fieldEntity.shippingAddress.address1 }}<br />
                                             {{ fieldEntity.shippingAddress.address2 }}<br />
                                             {{ fieldEntity.shippingAddress.postCode }} {{ fieldEntity.shippingAddress.city }}<br />
@@ -418,9 +426,9 @@
                                     </div>
                                 </div>
 
-                                <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleOrderCreate()" class="form-horizontal">
+                                <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleOrderCreate()" style="margin-top:24px">
                                     <div class="form-group">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-8 col-md-offset-2">
                                             <div class="radio" ng-repeat="paymentMeans in checkoutCtrl.activePaymentMeans track by $index">
                                                 
                                                     <input type="radio" name="paymentMeansRadio" value="{{paymentMeans.paymentMeans}}" id="paymentMeansRadio_{{$index}}"
@@ -431,7 +439,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-8 col-md-offset-2">
                                             <div class="checkbox">
                                                     <input type="checkbox" ng-model="checkoutCtrl.readTermsAndConds" id="termsandconditions">
                                                     <label for="termsandconditions">{{rubedo.translate('Blocks.Checkout.Label.Terms')}}
