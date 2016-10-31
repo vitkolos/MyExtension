@@ -284,14 +284,6 @@
                                         <label for="shippersRadio">{{rubedo.translate('Blocks.Checkout.ShippingOption',"",['%name%','%delay%','%unit%','%rate%'],[shipper.name,shipper.hRDelay,rubedo.translate("Label."+shipper.hRUnit, shipper.hRUnit),shipper.rate])}}</label>
                                     </div>
                                 </div>
-                                <h4>{{ rubedo.translate("Blocks.Checkout.Label.Gift")}}</h4>
-                                <div class="form-group">
-                                        <input type="checkbox" name="addGift"  id="addGift" ng-model="itIsAGift"
-                                                   ng-checked="checkoutCtrl.itIsAGift"
-                                                   ng-change="addPaperToCart()">
-                                        <label for="addGift">{{rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "Je souhaite que ma commande soit emballée dans un papier-cadeau.")}}</label>
-
-                                </div>
                                 <!--div style="text-align: center; margin-bottom: 10px">
                                     <div ng-click="addPaperToCart()" class="btn btn-inv" ng-class="{'active':checkoutCtrl.itIsAGift}">
                                         
@@ -302,19 +294,9 @@
                                     </div>
                             </div>-->
                                 <div class="form-group" style="margin-bottom: 10px">
-                                    <span class="appearable" ng-show="checkoutCtrl.itIsAGift">
-                                    <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddGiftComments')}} </label>
-                                    <div class="col-sm-8" style="margin-bottom: 10px">
-                                        <textarea
-                                                class="form-control"
-                                                rows="4"
-                                                id="gift-comment"
-                                                ng-model="checkoutCtrl.GiftComments" 
-                                        ></textarea>
-                                        </div>
-                                    </span>
-                                    <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddComments')}} </label>
-                                    <div class="col-sm-8">
+                                    
+                                    <label for="{{fieldIdPrefix+'_shippingComments'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.AddComments')}} </label>
+                                    <div>
 
                                         <textarea
                                                 class="form-control"
@@ -324,8 +306,28 @@
                                         ></textarea>
                                     </div>
                                 </div>
+                                
+                                <h4 style="margin-top:12px;">{{ rubedo.translate("Blocks.Checkout.Label.Gift")}}</h4>
+                                <div class="form-group" style="margin-bottom:12px">
+                                    <input type="checkbox" name="addGift"  id="addGift" ng-model="itIsAGift"
+                                               ng-checked="checkoutCtrl.itIsAGift"
+                                               ng-change="addPaperToCart()">
+                                    <label for="addGift">{{rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "Je souhaite que ma commande soit emballée dans un papier-cadeau.")}}</label>
+                                    <span class="appearable" ng-show="checkoutCtrl.itIsAGift">
+                                        <label for="{{fieldIdPrefix+'_shippingComments'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.AddGiftComments')}} </label>
+                                        <div  style="margin-bottom: 10px">
+                                            <textarea
+                                                    class="form-control"
+                                                    rows="4"
+                                                    id="gift-comment"
+                                                    ng-model="checkoutCtrl.GiftComments" 
+                                            ></textarea>
+                                        </div>
+                                    </span>
+                                </div>
+
                                 <div class="form-group text-center" ng-if="rubedo.current.user">
-                                    <button type="submit" class="btn btn-primary pull-right">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
+                                    <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
                                 </div>
                                 <div ng-if="checkoutCtrl.stage5Error" ng-init="notification = {type:'error',text:checkoutCtrl.stage5Error}">
                                     <rubedo-notification></rubedo-notification>
