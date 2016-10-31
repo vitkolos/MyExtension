@@ -83,11 +83,11 @@ class ShippersResource extends AbstractResource
         $token=isset($params['shoppingCartToken']) ? $params['shoppingCartToken'] : null;
         $myCart = $shoppingCart = $this->getShoppingCartCollection()->getCurrentCart($token);
 
-        foreach ($myCart as $value) {
-            $items = $items + $value['amount'];
+        //foreach ($myCart as $value) {
+          //  $items = $items + $value['amount'];
             //var_dump($value['productId']);
             //var_dump($value['variationId']);
-        }
+        //}
 
         $myShippers = Manager::getService("ShippersCcn")->getApplicableShippers($user['shippingAddress']['country'], $myCart);
         if (empty($myShippers))
