@@ -8,33 +8,31 @@
                     <div class="modal-content">
 
                         <div class="modal-body">
-                            <form class="form-horizontal" role="form" ng-submit="contactCtrl.submit();">
-                                 <div class="form-group">
-                                    <div class="col-sm-2">&nbsp;</div>
-                                    <div class="col-sm-10">{{blockConfig.surname +" "+blockConfig.name}}<br/>
-                                        {{blockConfig.phone}}<br/>
-                                        {{blockConfig.address}}
-                                    </div>
+                            <form role="form" ng-submit="contactCtrl.submit();">
+                                <div class="row no-margin">
+                                        <div class="form-group col-sm-6">
+                                                <label for="{{'name'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name *")}}</label>
+                                                <input type="text" name="name" ng-model="contactCtrl.contactData.name" class="form-control" id="{{'name'+block.id}}" required>
+                                        </div>
+                                        <div class="form-group col-sm-6">
+                                                <label for="{{'surname'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Surname.Label","Surname *")}}</label>
+                                                <input type="text" name="surname" ng-model="contactCtrl.contactData.surname" class="form-control" id="{{'surname'+block.id}}" required>
+                                        </div>
+                                </div>
+                                <div class="row no-margin">
+                                        <div class="form-group">
+                                                <label for="{{'email'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Email.Label","Email *")}}</label>
+                                                <input type="email" name="email" ng-model="contactCtrl.contactData.email" class="form-control" id="{{'email'+block.id}}" required>
+                                        </div>
+                                        <div class="form-group">
+                                                <label for="{{'commande'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Commande.Label","Numéro de commande ")}}</label>
+                                                <input type="text" name="commande" ng-model="contactCtrl.contactData.commande" class="form-control" id="{{'commande'+block.id}}">
+                                        </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="{{'name'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name *")}}</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" name="name" ng-model="contactCtrl.contactData.name" class="form-control" id="{{'name'+block.id}}" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{'email'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Email.Label","Email *")}}</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" name="email" ng-model="contactCtrl.contactData.email" class="form-control" id="{{'email'+block.id}}" required>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{'subject'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
-                                    <div class="col-sm-10">
+                                        <label for="{{'subject'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
                                         <select type="select" name="subject" ng-model="selectedTopic" class="form-control" id="{{'subject'+block.id}}" ng-options="option.topic for option in adressOfTopics "required>
-                                            <!--<option ng-repeat="topic in adressOfTopics" ng-value="$index">{{topic.topic}}</option>-->
                                         </select>
-                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="{{'message'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
@@ -68,33 +66,31 @@
 
 <div ng-controller="ContactBlockController as contactCtrl" ng-if="blockConfig.displayMode=='form'">
 
-        <form class="form-horizontal" role="form" ng-submit="contactCtrl.submit()">
-             <div class="form-group">
-                <div class="col-sm-2">&nbsp;</div>
-                <div class="col-sm-10">{{blockConfig.surname +" "+blockConfig.name}}<br/>
-                    {{blockConfig.phone}}<br/>
-                    {{blockConfig.address}}
-                </div>
+        <form role="form" ng-submit="contactCtrl.submit();">
+            <div class="row no-margin">
+                    <div class="form-group col-sm-6">
+                            <label for="{{'name'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name *")}}</label>
+                            <input type="text" name="name" ng-model="contactCtrl.contactData.name" class="form-control" id="{{'name'+block.id}}" required>
+                    </div>
+                    <div class="form-group col-sm-6">
+                            <label for="{{'surname'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Surname.Label","Surname *")}}</label>
+                            <input type="text" name="surname" ng-model="contactCtrl.contactData.surname" class="form-control" id="{{'surname'+block.id}}" required>
+                    </div>
+            </div>
+            <div class="row no-margin">
+                    <div class="form-group">
+                            <label for="{{'email'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Email.Label","Email *")}}</label>
+                            <input type="email" name="email" ng-model="contactCtrl.contactData.email" class="form-control" id="{{'email'+block.id}}" required>
+                    </div>
+                    <div class="form-group">
+                            <label for="{{'commande'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Commande.Label","Numéro de commande ")}}</label>
+                            <input type="text" name="commande" ng-model="contactCtrl.contactData.commande" class="form-control" id="{{'commande'+block.id}}">
+                    </div>
             </div>
             <div class="form-group">
-                <label for="{{'name'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name *")}}</label>
-                <div class="col-sm-10">
-                    <input type="text" name="name" ng-model="contactCtrl.contactData.name" class="form-control" id="{{'name'+block.id}}" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="{{'email'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Email.Label","Email *")}}</label>
-                <div class="col-sm-10">
-                    <input type="email" name="email" ng-model="contactCtrl.contactData.email" class="form-control" id="{{'email'+block.id}}" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="{{'subject'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
-                <div class="col-sm-10">
+                    <label for="{{'subject'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
                     <select type="select" name="subject" ng-model="selectedTopic" class="form-control" id="{{'subject'+block.id}}" ng-options="option.topic for option in adressOfTopics "required>
-                        <!--<option ng-repeat="topic in adressOfTopics" ng-value="$index">{{topic.topic}}</option>-->
                     </select>
-                </div>
             </div>
             <div class="form-group">
                 <label for="{{'message'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
@@ -108,11 +104,11 @@
                     <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
                         <rubedo-notification></rubedo-notification>
                     </div>
-                    <button type="submit" class="button btn-default rouge" style="padding: 5px 10px;">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
+                    <button type="submit" class="button rouge">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
                 </div>
             </div>
         </form>
-                        
+                       
 
     
     

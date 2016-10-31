@@ -18,5 +18,8 @@
     "Blocks.UserOrders.Status.shipped" : "Envoyée",
     "Blocks.Checkout.Steps.BillingAndShippingDetails":"Étape 3: Détails de facturation et d'expéditions",
     "Blocks.Checkout.Steps.ShippingMethod":"Étape 4: Mode de livraison",
-    "Blocks.Checkout.Steps.ConfirmationPayment":"Étape 5: Confirmation et paiement"
+    "Blocks.Checkout.Steps.ConfirmationPayment":"Étape 5: Confirmation et paiement",
+    "Blocks.Contact.Input.Surname.Label":"Prénom *",
+    "Blocks.Contact.Input.Commande.Label":"Numéro de commande"
+
 }
