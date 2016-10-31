@@ -286,7 +286,7 @@
                                 </div>
                                 <h4>{{ rubedo.translate("Blocks.Checkout.Label.Gift")}}</h4>
                                 <div class="form-group">
-                                        <input type="checkbox" name="addGift"  id="addGift"
+                                        <input type="checkbox" name="addGift"  id="addGift" ng-model="itIsAGift"
                                                    ng-checked="checkoutCtrl.itIsAGift"
                                                    ng-change="addPaperToCart()">
                                         <label for="addGift">{{rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "Je souhaite que ma commande soit emballée dans un papier-cadeau.")}}</label>
