@@ -123,7 +123,7 @@ class OrdersResource extends AbstractResource
         foreach ($myCart as $value) {
             $items = $items + $value['amount'];
         }
-        $myShippers = $this->getShippersCollection()->getApplicableShippers($currentUser['shippingAddress']['country'], $items);
+        $myShippers = Manager::getService("ShippersCcn")->getApplicableShippers($currentUser['shippingAddress']['country'], $items);
         $shippingPrice = 0;
         $shippingTaxedPrice = 0;
         $shippingTax = 0;
