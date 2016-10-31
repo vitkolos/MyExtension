@@ -46,7 +46,7 @@ html,body {
                                     //-------------------//
                                                 //surcharge bootstrap//
                                                 //-------------------//
-
+.no-margin{margin-left:0 !important; margin-right: 0 !important}
 .navbar{border-radius:0}
 .progress-bar {
   background-color: @rouge;
@@ -383,7 +383,7 @@ html,body {
   background-color: @menu;
   color: #fff;
   font-size: 14px;
-  padding: 24px;
+  padding: 36px 24px;
   .capital{
     border-top:1px solid #ffffff;
     padding-top: 6px;
@@ -391,17 +391,11 @@ html,body {
     display: block;
     width: 100%;
   }
-  .container{
-    border-top:1px solid #ffffff;
-    .capital{
-      border:none;
-      text-align: center;
-      font-size: 10px!important;
-    }
-  }
+  
   a{
-    font-size: 18px;
-    color: #ffffff;
+    color: #ffffff; display: inline-block; width: 100%; padding: 3px 0px;
+    i{margin-right: 5px;}
+    a:hover{text-decoration: none;}
   }
 }
 
@@ -509,6 +503,16 @@ border: none;
   float: none;
   vertical-align: top;
   display: inline-block;
+}
+.square{
+  width: 100%;
+  display: inline-block;
+  padding-bottom: 100%;
+  height: 0;
+  overflow-y: hidden;
+  position: relative;
+  background: white;
+  img.img-responsive{position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto}
 }
 
 ///////////PRODUCT BOX///////////////

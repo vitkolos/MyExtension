@@ -1,4 +1,7 @@
- <script src="//kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js"></script>
+
+    <style>
+        .isBill b, .isBill strong, .isBill th{font-weight: normal !important}
+    </style>
 <div ng-controller="OrderDetailController as orderDetailCtrl">
     <h2 class="text-center">{{ rubedo.translate('Blocks.OrderDetails.OrderReview')}}</h2>
     <div class="row">
@@ -7,11 +10,26 @@
             <h4>{{rubedo.translate('Blocks.OrderDetails.Payment')}}</h4>
             <ul class="list-unstyled">
                 <li><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Means') }}</strong> : {{ orderDetailCtrl.order.paymentMeans }}</li>
-                <li><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> : {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
+                <li ng-if="!orderDetailCtrl.isAdmin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> : {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
+                <li ng-if="orderDetailCtrl.isAdmin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> :
+                    <select ng-model="orderDetailCtrl.order.status">
+                        <option ng-repeat="(key, value) in orderDetailCtrl.status" value="{{value}}" ng-selected="orderDetailCtrl.order.status === value">
+                            {{rubedo.translate('Blocks.UserOrders.Status.'+value,value)}}
+                        </option>
+                        
+                    </select>
+                    <button class="btn btn-default" ng-click="orderDetailCtrl.updateStatus()">
+                        Modifier
+                    </button>
+                    
+                
+                </li>
+                
                 <li ng-if="orderDetailCtrl.order.billingAddress.vatEin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.VatEin') }}</strong> : {{ orderDetailCtrl.order.billingAddress.vatEin }}</li>
+
             </ul>
             <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText && !orderDetailCtrl.isAdmin" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
-            <button ng-if="orderDetailCtrl.showPaymentButton && !orderDetailCtrl.isAdmin" class="btn btn-primary" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
+            <button ng-if="orderDetailCtrl.showPaymentButton && !orderDetailCtrl.isAdmin" class="btn btn-default" style="padding:12px 24px" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
         </div>
         <div class="col-md-4 text-right">
             <time>{{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</time>
@@ -40,10 +58,12 @@
 
         </div>
         <div ng-if="orderDetailCtrl.billDocumentUrl" class="col-md-4 text-right">
-            <strong><a ng-href="{{orderDetailCtrl.billDocumentUrl}}" target="_blank">
-                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                 {{ rubedo.translate('Blocks.OrderDetails.OrderBill')}}
-            </a></strong>
+            <a ng-href="{{orderDetailCtrl.billDocumentUrl}}" target="_blank">
+                <button class="btn btn-default" style="padding:12px;">
+                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>{{ rubedo.translate('Blocks.OrderDetails.OrderBill')}}
+                </button>
+            </a>
+
         </div>
 
     </div>   
@@ -60,17 +80,20 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-                        <button ng-if="!orderDetailCtrl.billDocumentUrl" class="btn btn-primary" ng-click="orderDetailCtrl.generateBill()">Créer une facture</button>
+        <div class="col-md-6 text-center">
+                        <button ng-if="!orderDetailCtrl.billDocumentUrl && !orderDetailCtrl.creatingBill" class="btn btn-default" ng-click="orderDetailCtrl.generateBill()">Créer une facture</button>
+                        <img src="/theme/cte/img/loader.gif" ng-if="orderDetailCtrl.creatingBill">
         </div>
     </div>
-    <section id="orderForm">
+    <section id="orderForm" ng-class="{'isBill':orderDetailCtrl.creatingBill}">
         <div class="row">
-            <div class="col-md-12" ng-show="orderDetailCtrl.creatingBill" id="bill-header">
+            <div class="col-md-12" ng-if="orderDetailCtrl.creatingBill" id="bill-header">
                 <img width="300" src="/dam?media-id=56c49b78c445ecc9008b6574&" class="pull-left">
-                    <h3 class="pull-right">Facture n° {{orderDetailCtrl.billTitle}}</h3>
+                    <h4 class="pull-right">Facture n° {{orderDetailCtrl.billTitle}} du {{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</h3>
             </div>
-            <div class="col-md-6">
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4>{{rubedo.translate('Blocks.OrderDetails.BillingAddress')}}</h4>
@@ -84,10 +107,11 @@
                             {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
                             {{ orderDetailCtrl.order.billingAddress.regionState }} {{ orderDetailCtrl.order.billingAddress.country }}<br />
                         </address>
+                        <p ng-if="orderDetailCtrl.isAdmin">{{ rubedo.translate('Blocks.OrderDetails.Payment.Means') }} : {{ orderDetailCtrl.order.paymentMeans }}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4>{{rubedo.translate('Blocks.OrderDetails.ShippingAddress')}}</h4>
@@ -101,6 +125,7 @@
                             {{ orderDetailCtrl.order.shippingAddress.postCode }} {{ orderDetailCtrl.order.shippingAddress.city }}<br />
                             {{ orderDetailCtrl.order.shippingAddress.regionState }} {{ orderDetailCtrl.order.shippingAddress.country }}<br />
                         </address>
+                        <p ng-if="orderDetailCtrl.isAdmin">{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }}</p>
                     </div>
                 </div>
             </div>
@@ -151,6 +176,13 @@
     
                 
     
+            </div>
+        </div>
+        <div class="row" style="padding-top:24px;border-top:1px solid grey" ng-if="orderDetailCtrl.isAdmin && orderDetailCtrl.creatingBill">
+            <div class="col-sm-12 text-center">
+                <p> Une version électronique est conservée sur votre compte. Pour y accéder, identifiez-vous sur le site <a href="http://www.laboutique-chemin-neuf.com">La Boutique du Chemin Neuf</a></p>
+                <p>LA BOUTIQUE DU CHEMIN NEUF - Siège social 8 rue Henri IV 69002 LYON France<br/>
+            Téléphone : 04 78 92 71 37</p>
             </div>
         </div>
        

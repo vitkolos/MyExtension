@@ -29,6 +29,11 @@ blocksConfig.simpleContact={
     "template": "/templates/blocks/simpleContact.html",
     "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
+blocksConfig.orderDetail = {
+            "template": "/templates/blocks/orderDetail.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/OrderDetailController.js"],
+            "externalDependencies":["http://kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js","http://kendo.cdn.telerik.com/2015.2.805/js/pako_deflate.min.js"]
+};
 angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
     var serviceInstance={};
     serviceInstance.sendMail=function(payload){
@@ -36,6 +41,40 @@ angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',functio
             url:"api/v1/mail",
             method:"POST",
             data : payload
+        }));
+    };
+    return serviceInstance;
+}]);
+
+
+angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCookie',function($http,ipCookie){
+    var serviceInstance = {};
+    var config = {baseUrl:'/api/v1'};
+    serviceInstance.getMyOrders=function(options){
+        return ($http.get(config.baseUrl+"/ecommerce/orders",{
+            params:options
+        }));
+    };
+    serviceInstance.getOrderDetail=function(id){
+        return ($http.get(config.baseUrl+"/ecommerce/orders/"+id));
+    };
+    serviceInstance.updateOrder=function(order){
+        return ($http({
+            url:config.baseUrl+"/ecommerce/orders/"+order.id,
+            method:"PATCH",
+            data : {
+                order:order
+            }
+        }));
+    };
+    serviceInstance.createOrder=function(options){
+        if (ipCookie("shoppingCartToken")){
+            options.shoppingCartToken=ipCookie("shoppingCartToken");
+        }
+        return ($http({
+            url:config.baseUrl+"/ecommerce/orders",
+            method:"POST",
+            data : options
         }));
     };
     return serviceInstance;

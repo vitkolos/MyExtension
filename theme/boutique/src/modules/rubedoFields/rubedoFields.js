@@ -737,7 +737,7 @@
         me.selectionValues={};
         me.possibleSelectValues={};
         angular.forEach(me.productProperties.variations[0],function(value,key){
-            if (me.excludedVariationFields.indexOf(key)==-1){
+            if (me.excludedVariationFields.indexOf(key)==-1 && value != " " && value != "  "){
                 me.variationFields.push(key);
             }
         });
