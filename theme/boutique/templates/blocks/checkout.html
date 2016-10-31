@@ -278,10 +278,10 @@
                             <div class="col-md-6 col-md-offset-3">
                                 <div class="form-group">
                                     <div class="radio" ng-repeat="shipper in checkoutCtrl.shippersArray track by $index">
-                                        <input type="radio" name="shippersRadio" value="{{shipper.shipperId}}"
+                                        <input type="radio" name="shippersRadio" value="{{shipper.shipperId}}" id="shippersRadio"
                                                    ng-checked="checkoutCtrl.currentShipper&&checkoutCtrl.currentShipper.shipperId==shipper.shipperId"
                                                    ng-click="checkoutCtrl.currentShipper=shipper;">
-                                        <label>{{rubedo.translate('Blocks.Checkout.ShippingOption',"",['%name%','%delay%','%unit%','%rate%'],[shipper.name,shipper.hRDelay,rubedo.translate("Label."+shipper.hRUnit, shipper.hRUnit),shipper.rate])}}</label>
+                                        <label for="shippersRadio">{{rubedo.translate('Blocks.Checkout.ShippingOption',"",['%name%','%delay%','%unit%','%rate%'],[shipper.name,shipper.hRDelay,rubedo.translate("Label."+shipper.hRUnit, shipper.hRUnit),shipper.rate])}}</label>
                                     </div>
                                 </div>
                                 <div style="text-align: center; margin-bottom: 10px">
