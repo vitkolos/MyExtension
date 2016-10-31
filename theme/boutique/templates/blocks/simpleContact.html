@@ -94,13 +94,13 @@
                         </select>
                 </div>
                 <div class="form-group col-sm-6">
-                        <label for="{{'message'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
+                        <label for="{{'message'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
                         <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message" class="form-control" id="{{'message'+block.id}}" required>
                         </textarea>
                         <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
                                 <rubedo-notification></rubedo-notification>
                         </div>
-                        <button type="submit" class="btn btn-default" style="padding:12px 24px;">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
+                        <button type="submit" class="btn btn-default" style="padding:12px 24px; margin:12px auto">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
                 </div>
             </div>
 
