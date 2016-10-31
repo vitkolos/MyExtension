@@ -274,7 +274,7 @@
                 </div>
                 <div id="checkoutStage5" class="panel-collapse collapse" ng-class="{'in':checkoutCtrl.currentStage==5}" role="tabpanel" aria-labelledby="checkoutHeading5">
                     <div class="panel-body">
-                        <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleStage5Submit()" class="form-horizontal">
+                        <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleStage5Submit()">
                             <div class="col-md-8 col-md-offset-2">
                                 <div class="form-group">
                                     <div class="radio" ng-repeat="shipper in checkoutCtrl.shippersArray track by $index">
