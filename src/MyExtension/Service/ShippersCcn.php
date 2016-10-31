@@ -52,13 +52,36 @@ class ShippersCcn extends AbstractCollection implements IShippers
         $pipeline[] = array(
             '$unwind' => '$rates'
         );
-        $pipeline[] = array(
-            '$match' => array(
-                'rates.country' => array(
-                    '$in' => array($country)
+        /*map country et zones*/
+        $europe = array('DE','UK');
+        $northamerica = array('USA');
+        if(in_array($country, $europe)){
+            $pipeline[] = array(
+                '$match' => array(
+                    'rates.country' => array(
+                        '$in' => array('EU')
+                    )
                 )
-            )
-        );
+            );
+        }
+        else if(in_array($country, $northamerica)){
+            $pipeline[] = array(
+                '$match' => array(
+                    'rates.country' => array(
+                        '$in' => array('AM')
+                    )
+                )
+            );
+        }
+        else {
+            $pipeline[] = array(
+                '$match' => array(
+                    'rates.country' => array(
+                        '$in' => array($country)
+                    )
+                )
+            );
+        }
         $response = $this->_dataService->aggregate($pipeline);
         if ($response['ok']) {
             $itemNumber=0;
