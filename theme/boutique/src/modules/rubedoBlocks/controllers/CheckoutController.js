@@ -70,7 +70,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         }
     });
     $scope.addPaperToCart=function(){
-        if (me.itIsAGift){
+        if (!me.itIsAGift){
             me.GiftWrapJustAdded=true;
             var options={
                 productId:"580b9c0c245640e5008bb459",
