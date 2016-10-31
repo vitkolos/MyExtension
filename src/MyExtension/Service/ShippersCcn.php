@@ -96,7 +96,7 @@ class ShippersCcn extends AbstractCollection implements IShippers
                 if($content['fields']['weight']) $cartWeight += $content['fields']['weight'] * $item['amount'];
                 else if($content['productProperties']['variations'] && $content['productProperties']['variations'][0]['weight']){
                     foreach($content['productProperties']['variations'] as $variation) {
-                        if(variation['id'] == $item['variationId']) $cartWeight+= $variation['weight'] * $item['amount'];
+                        if($variation['id'] == $item['variationId']) $cartWeight+= $variation['weight'] * $item['amount'];
                     }
                 }
             }
