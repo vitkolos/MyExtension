@@ -87,26 +87,23 @@
                             <input type="text" name="commande" ng-model="contactCtrl.contactData.commande" class="form-control" id="{{'commande'+block.id}}">
                     </div>
             </div>
-            <div class="form-group">
-                    <label for="{{'subject'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
-                    <select type="select" name="subject" ng-model="selectedTopic" class="form-control" id="{{'subject'+block.id}}" ng-options="option.topic for option in adressOfTopics "required>
-                    </select>
-            </div>
-            <div class="form-group">
-                <label for="{{'message'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
-                <div class="col-sm-10">
-                    <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message" class="form-control" id="{{'message'+block.id}}" required>
-                    </textarea>
+            <div class="row no-margin">
+                <div class="form-group col-sm-6">
+                        <label for="{{'subject'+block.id}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
+                        <select type="select" name="subject" ng-model="selectedTopic" class="form-control" id="{{'subject'+block.id}}" ng-options="option.topic for option in adressOfTopics "required>
+                        </select>
+                </div>
+                <div class="form-group col-sm-6">
+                        <label for="{{'message'+block.id}}" class="col-sm-2 control-label">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
+                        <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message" class="form-control" id="{{'message'+block.id}}" required>
+                        </textarea>
+                        <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
+                                <rubedo-notification></rubedo-notification>
+                        </div>
+                        <button type="submit" class="btn btn-default" style="padding:12px 24px;">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
-                        <rubedo-notification></rubedo-notification>
-                    </div>
-                    <button type="submit" class="btn btn-default" style="padding:12px 24px;">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
-                </div>
-            </div>
+
         </form>
                        
 
