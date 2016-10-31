@@ -422,21 +422,19 @@
                                     <div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="radio" ng-repeat="paymentMeans in checkoutCtrl.activePaymentMeans track by $index">
-                                                <label>
-                                                    <input type="radio" name="paymentMeansRadio" value="{{paymentMeans.paymentMeans}}"
+                                                
+                                                    <input type="radio" name="paymentMeansRadio" value="{{paymentMeans.paymentMeans}}" id="paymentMeansRadio_{{$index}}"
                                                            ng-checked="checkoutCtrl.currentPaymentMeans&&checkoutCtrl.currentPaymentMeans.paymentMeans==paymentMeans.paymentMeans"
                                                            ng-click="checkoutCtrl.currentPaymentMeans=paymentMeans;">
-                                                    {{paymentMeans.displayName}}
-                                                </label>
+                                                    <label for="paymentMeansRadio_{{$index}}">{{paymentMeans.displayName}}</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" ng-model="checkoutCtrl.readTermsAndConds">
-                                                    {{rubedo.translate('Blocks.Checkout.Label.Terms')}}
+                                                    <input type="checkbox" ng-model="checkoutCtrl.readTermsAndConds" id="termsandconditions">
+                                                    <label for="termsandconditions">{{rubedo.translate('Blocks.Checkout.Label.Terms')}}
                                                     <a ng-href="{{checkoutCtrl.tCPageUrl}}" target="_blank">{{rubedo.translate('Blocks.Checkout.Label.TermsAndCondition')}} </a>
                                                 </label>
                                             </div>
