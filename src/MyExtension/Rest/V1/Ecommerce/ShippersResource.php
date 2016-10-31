@@ -85,8 +85,8 @@ class ShippersResource extends AbstractResource
 
         foreach ($myCart as $value) {
             $items = $items + $value['amount'];
-            var_dump($value['productId']);
-            var_dump($value['variationId']);
+            //var_dump($value['productId']);
+            //var_dump($value['variationId']);
         }
 
         $myShippers = Manager::getService("ShippersCcn")->getApplicableShippers($user['shippingAddress']['country'], $myCart);
