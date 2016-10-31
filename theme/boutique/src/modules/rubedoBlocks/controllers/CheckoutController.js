@@ -108,7 +108,13 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         return parseInt(me.currentStage/me.maxStages*100);
     };
     me.setCurrentStage=function(newStage){
-        if (newStage!=me.currentStage){
+        if (newStage!=me.currentStage && me.currentStage!=3){
+            angular.element("#checkoutStage"+me.currentStage).collapse("hide");
+            angular.element("#checkoutStage"+newStage).collapse("show");
+            me.currentStage=newStage;
+        }
+        else if (newStage!=me.currentStage && me.currentStage==3){
+            me.currentStage++;newStage++;
             angular.element("#checkoutStage"+me.currentStage).collapse("hide");
             angular.element("#checkoutStage"+newStage).collapse("show");
             me.currentStage=newStage;

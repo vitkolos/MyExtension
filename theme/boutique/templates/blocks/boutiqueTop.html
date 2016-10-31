@@ -165,13 +165,13 @@
                     </table>
                     <h5 class="text-center"><strong>{{ rubedo.translate('Blocks.ShoppingCart.Total')}}</strong> : {{shoppingCartCtrl.detailedCart.totalTaxedPrice | number :2}} €</h5>
                     <div class="checkout-links text-center">
-                        <a ng-if="shoppingCartCtrl.checkoutPageUrl" class="col-xs-6"
-                        ng-href="{{shoppingCartCtrl.checkoutPageUrl}}">
-                         <button class="btn btn-primary">{{ rubedo.translate('Label.Checkout')}}</button>
-                     </a>
                      <a ng-if="shoppingCartCtrl.cartDetailPageUrl" class="col-xs-6"
                         ng-href="{{shoppingCartCtrl.cartDetailPageUrl}}">
                          <button class="btn btn-primary">{{ rubedo.translate('Blocks.ShoppingCart.ViewCart')}}</button>
+                     </a>
+                     <a ng-if="shoppingCartCtrl.checkoutPageUrl" class="col-xs-6"
+                        ng-href="{{shoppingCartCtrl.checkoutPageUrl}}">
+                         <button class="btn btn-primary">{{ rubedo.translate('Label.Checkout')}}</button>
                      </a>
                     </div>
                     
