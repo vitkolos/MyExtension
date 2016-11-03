@@ -11,12 +11,31 @@
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('reference')}}" ng-if="fieldEntity['reference'] && fieldEditMode"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']" class="italic"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']"></rubedo-field><!--image-->
-	<div class="row no-margin" ng-if="fieldEntity['image']">
-	  <rubedo-field field = "{{contentDetailCtrl.getFieldByName('images')}}" ng-if="fieldEntity['images']"></rubedo-field><!--image-->
-	  <div ng-repeat="image in contentDetailCtrl.content.fields.images track by $index" class="col-sm-4">
-	    <img class="img-responsive" ng-if="image !='' " ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'400px',height:'400px',mode:'crop'})}}">
-	  </div>
-	</div>
+	<div class="row no-margin" ng-if="fieldEntity['images']">
 	
+	    <div ng-repeat="image in contentDetailCtrl.content.fields.images track by $index" class="col-sm-4" style="margin-bottom: 12px">
+		<div class="img-container">
+		    <img class="img-responsive" title="{{fieldEntity['text']}}" alt="{{fieldEntity['text']}}" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'400px',mode:'boxed'})}}"/>
+		    <div class="img-description hidden-xs" data-toggle="modal" data-target="#rubedoGalleryDetailModal_{{$index}}">
+			<i class="fa fa-expand"></i>
+		    </div>    
+		</div>    	    
+		<div class="modal fade hidden-xs" id="rubedoGalleryDetailModal_{{$index}}" tabindex="1" >
+		    <a class="close" data-dismiss="modal">×</a>
+		    <div class="modal-dialog modal-md">
+			    <div class="modal-body">
+				<img class="img-responsive" style="margin-left:auto;margin-right:auto" ng-src="{{rubedo.imageUrl.getUrlByMediaId(image)}}">
+			    </div>
+		  
+		    </div>
+		</div>
+	    
+	    </div>
+	</div>
   </div>
 </div>
+
+
+
+
+
