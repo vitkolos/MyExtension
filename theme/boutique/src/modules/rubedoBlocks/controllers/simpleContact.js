@@ -4,14 +4,14 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.contactData={ };
     me.contactError=null;
     $scope.adressOfTopics=[
-        {adr:'magasin.henri4@gmail.com',
+        {adr:'magasin.henri4@chemin-neuf.org',
             topic:'Service client'},
-        {adr:'magasin.henri4@gmail.com',
+        {adr:'ame@chemin-neuf.org',
             topic:'Service expédition'},
         {adr:'web@chemin-neuf.org',
             topic:'Webmaster'}]    ;
 
-    $scope.selectedTopic= {adr:'etienne.laval.moi@gmail.com', topic:'Service client'};
+    $scope.selectedTopic= {adr:'magasin.henri4@chemin-neuf.org', topic:'Service client'};
 
     $scope.clearORPlaceholderHeight();
     me.submit=function(){
