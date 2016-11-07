@@ -25,6 +25,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
     var options = {
         start: me.start,
         limit: me.limit,
+        orderByTitle: config.orderByTitle,
         'fields[]' : ["text","summary",me.imageField]
     };
     if(config.singlePage){
