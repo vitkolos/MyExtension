@@ -438,14 +438,14 @@ class ContentsResource extends AbstractResource
      */
     protected function getContentList($filters, $pageData, $ismagic = false, $orderByTitle=false)
     {
-        if($orderByTitle) $contentArray = $filters["sort"];
-        else {
+        var_dump($filters["sort"]);
+        
         $filters["sort"] = isset($filters["sort"]) ? $filters["sort"] : array();
         $contentArray = $this->getContentsCollection()->getOnlineList($filters["filter"], $filters["sort"], $pageData['start'], $pageData['limit'], $ismagic);
         $contentArray['page'] = $pageData;
         if ($contentArray['count'] < $pageData['start']) {
             throw new APIEntityException('There is only ' . $contentArray['count'] . ' contents. Start parameter must be inferior of this value', 404);
-        }}
+        }
         return $contentArray;
     }
     /**
