@@ -9,6 +9,7 @@
         <span class="glyphicon glyphicon-plus"></span>
     </button>
     <div class="row">
+        <h1 ng-if="block.displayTitle && rubedo.current.page.eCTitle" class="text-center">{{rubedo.current.page.eCTitle}}</h1>
         <div ng-attr-lr-infinite-scroll="loadMoreContents" class="product-list-container"
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle">
