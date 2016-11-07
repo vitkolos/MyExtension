@@ -93,7 +93,7 @@ class ContentsResource extends AbstractResource
             $this->getQueriesCollection()->setCurrentPage((string)$params['pageId']);
         }
         if(isset($params['orderByTitle'])){
-            $orderByTitle = $params['$orderByTitle'];
+            $orderByTitle = $params['orderByTitle'];
         }
         else $orderByTitle=false;
         $query=$this->getQueriesCollection()->findById($queryId);
