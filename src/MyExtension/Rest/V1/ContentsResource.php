@@ -438,7 +438,7 @@ class ContentsResource extends AbstractResource
      */
     protected function getContentList($filters, $pageData, $ismagic = false, $orderByTitle=false)
     {
-        
+        if($orderByTitle) var_dump($filters["sort"]);
         $filters["sort"] = isset($filters["sort"]) ? $filters["sort"] : array();
         $contentArray = $this->getContentsCollection()->getOnlineList($filters["filter"], $filters["sort"], $pageData['start'], $pageData['limit'], $ismagic);
         $contentArray['page'] = $pageData;
