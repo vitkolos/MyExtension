@@ -94,6 +94,7 @@ class ContentsResource extends AbstractResource
         }
         if(isset($params['$orderByTitle'])){
             $orderByTitle = $params['$orderByTitle'];
+            var_dump($orderByTitle);
         }
         else $orderByTitle=false;
         $query=$this->getQueriesCollection()->findById($queryId);
