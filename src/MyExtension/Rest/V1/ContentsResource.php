@@ -92,6 +92,10 @@ class ContentsResource extends AbstractResource
         if(isset($params['pageId'])){
             $this->getQueriesCollection()->setCurrentPage((string)$params['pageId']);
         }
+        if(isset($params['$orderByTitle'])){
+            $orderByTitle = $params['$orderByTitle'];
+        }
+        else $orderByTitle=false;
         $query=$this->getQueriesCollection()->findById($queryId);
         if (!$query) {
             throw new APIEntityException('Query not found', 404);
@@ -197,7 +201,7 @@ class ContentsResource extends AbstractResource
             $contentArray['data'] = array_slice($contentArray['data'], $paging["start"], $paging["limit"]);
             $nbItems = $unorderedContentArray['count'];
         } else {
-            $contentArray = $this->getContentList($filters, $this->setPaginationValues($params), $ismagic);
+            $contentArray = $this->getContentList($filters, $this->setPaginationValues($params), $ismagic, $orderByTitle);
             $nbItems = $contentArray['count'];
         }
         return [
@@ -432,8 +436,9 @@ class ContentsResource extends AbstractResource
      * @return array
      * @throws \RubedoAPI\Exceptions\APIEntityException
      */
-    protected function getContentList($filters, $pageData, $ismagic = false)
+    protected function getContentList($filters, $pageData, $ismagic = false, $orderByTitle=false)
     {
+        
         $filters["sort"] = isset($filters["sort"]) ? $filters["sort"] : array();
         $contentArray = $this->getContentsCollection()->getOnlineList($filters["filter"], $filters["sort"], $pageData['start'], $pageData['limit'], $ismagic);
         $contentArray['page'] = $pageData;
@@ -862,7 +867,13 @@ class ContentsResource extends AbstractResource
                 (new FilterDefinitionEntity())
                 ->setKey('includetl')
                 ->setDescription('Retrieve terms labels')
-            ) ->addOutputFilter(
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                ->setKey('orderByTitle')
+                ->setDescription('Trier par titre pour listes de produits')
+            )
+            ->addOutputFilter(
                 (new FilterDefinitionEntity())
                     ->setKey('contents')
                     ->setDescription('List of contents')
