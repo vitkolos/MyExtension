@@ -38,6 +38,14 @@
                             }
                         },
                         {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "Trier par titre",
+                                "name": "orderByTitle",
+                                "inputValue": true
+                            }
+                        },
+                        {
                             "type": "Ext.form.field.Number",
                             "config": {
                                 "fieldLabel": "#ext-gen1407#",
