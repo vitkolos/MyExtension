@@ -182,14 +182,15 @@ html,body {
 .detail{
   *{text-align: left;}
   h1{text-align: center}
-  img{
-    max-height:400px;
-  }
+
   margin-top: 25px;
   margin-bottom: 25px;
   a{ font-size:x-large; }
   .panel-body{padding:12px 24px}
 }
+.detail-img img{
+    max-height:400px;
+  }
 .welcome-linkbox {
   a {
     margin: 12px 6px 0;
@@ -512,7 +513,7 @@ border: none;
   overflow-y: hidden;
   position: relative;
   background: white;
-  img.img-responsive{position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto}
+  img.img-responsive{position: absolute; top: 0; bottom: 0; left: 0; right: 0; margin: auto;max-height: 100%;}
 }
 
 ///////////PRODUCT BOX///////////////
@@ -603,3 +604,68 @@ header.content{
 
 /////agenda///////
 .datetimepicker table tr td.active, .datetimepicker table tr td.active:hover, .datetimepicker table tr td.active.disabled, .datetimepicker table tr td.active.disabled:hover{background-color: @rouge !important; background-image: none}
+
+//checkob et radio box
+/* Cachons la case à cocher */
+ input[type=radio],
+input[type=checkbox] {
+	  display: none;
+  }
+ 
+input[type=radio]+ label:before, input[type=checkbox]+ label:before {
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	position: absolute;
+	left: 0;
+	vertical-align: middle;
+	background-color: white;
+	border: 1px solid @marron;
+  }
+
+input[type=radio] +label:before {
+       border-radius: 10px;
+}
+input[type=checkbox] + label {
+        margin-bottom: 10px;
+}
+input[type=checkbox] + label:before {
+    border-radius: 3px;
+}
+input[type=radio]+ label, input[type=checkbox]+ label {
+      display: inline-block;
+      cursor: pointer;
+      position: relative;
+      padding-left: 25px;
+      margin-right: 15px;
+      font-weight: normal;
+}
+input[type=radio]:checked + label:after {
+    content: "\2022";
+    color: @rouge;
+    font-size: 44px;
+    text-align: center;
+    line-height: 28px;
+    position:absolute;
+    left:1px; top: -5px;
+}
+input[type=radio]+ label, input[type=checkbox]+ label {
+      display: inline-block;
+      cursor: pointer;
+      position: relative;
+      padding-left: 25px;
+      margin-right: 15px;
+      font-weight: normal;
+}
+input[type=checkbox]:checked + label:before {
+        content: "\f00c"; font-family: 'FontAwesome';
+        text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+        font-size: 20px;
+        text-align: center;
+      line-height: 19px;
+      color:@rouge;
+}
+
+

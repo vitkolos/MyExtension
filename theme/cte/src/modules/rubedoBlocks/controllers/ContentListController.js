@@ -280,12 +280,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
     if ($scope.content.fields.propositionReferenceeInterne && $scope.content.fields.propositionReferenceeInterne !=""){
         RubedoPagesService.getPageById($scope.content.fields.propositionReferenceeInterne).then(function(response){
                 if (response.data.success){
-                    $scope.content.contentLinkUrl = response.data.url;;
+                    $scope.content.contentLinkUrl = response.data.url;
                 }
             });
     }
     else if ($scope.content.fields.propositionReferencee && $scope.content.fields.propositionReferencee !="") {
             $scope.content.contentLinkUrl = $scope.content.fields.propositionReferencee;
+            $scope.content.isExternal=true;
     }
     else $scope.content.contentLinkUrl = $scope.content.detailPageUrl;
     

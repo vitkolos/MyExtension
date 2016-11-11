@@ -29,13 +29,13 @@
 
             </ul>
             <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText && !orderDetailCtrl.isAdmin" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
-            <button ng-if="orderDetailCtrl.showPaymentButton && !orderDetailCtrl.isAdmin" class="btn btn-default" style="padding:12px 24px" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
+            <button ng-if="orderDetailCtrl.showPaymentButton && !orderDetailCtrl.isAdmin" class="btn btn-default" style="padding:12px 24px" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Payer la commande</button>
         </div>
         <div class="col-md-4 text-right">
             <time>{{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</time>
         </div>
         <div class="col-md-12" style="display: flex;justify-content: center;">
-            <form ng-if="orderDetailCtrl.showPaymentForm" id="payment" name="payment"  method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
+            <form ng-if="orderDetailCtrl.showPaymentForm" id="payment" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
                 <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
                 <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
                 <input type="hidden" name="PBX_SITE" value="{{parametres.payboxSite}}">

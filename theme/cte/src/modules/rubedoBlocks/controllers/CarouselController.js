@@ -41,6 +41,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
                         }
                         else if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
                                 content.contentLinkUrl = content.fields.propositionReferencee;
+				content.isExternal = true;
                         }
                         else content.contentLinkUrl = $filter('cleanUrl')(content.detailPageUrl);                        
                     });
