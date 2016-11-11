@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope','RubedoMediaService','$location',function($scope,RubedoMediaService,$location){
+angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope','RubedoMediaService','$location','$http',function($scope,RubedoMediaService,$location,$http){
     var me = this;
     var config = $scope.blockConfig;
     me.query = config.query;
