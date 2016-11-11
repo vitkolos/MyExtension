@@ -4,6 +4,7 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
     me.query = config.query;
     var query = JSON.parse(me.query);
     console.log(query);
+    console.log($scope.rubedo.current);
     query["vocabularies"]["navigation"] = {
         rule:'someRec',
         terms:[$scope.rubedo.current.page.id]
