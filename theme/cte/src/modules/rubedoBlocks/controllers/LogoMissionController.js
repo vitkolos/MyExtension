@@ -35,7 +35,7 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
                         $http.get("/api/v1/pages",{
                             params:{
                                 site:$location.host(),
-                                route:$scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb-3]['url']
+                                route:$scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-3]['url']
                             }
                         }).then(function(response){
                             if (response.data.success) {
