@@ -1,7 +1,7 @@
 <div ng-controller="LogoMissionController as logoCtrl">
     <div ng-if="logoCtrl.query" ng-repeat="image in logoCtrl.images track by $index">
         <a rubedo-page-link="{{image.fields.pageId}}" >
-            <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id ,{height:'220px',mode:'boxed'})}}" style="height:110px;margin-left:10px" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"  class="pull-left header"/>
+            <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image.id ,{height:'220',mode:'boxed'})}}" style="height:110px;margin-left:10px" ng-attr-alt="{{image.title}}" ng-attr-title="{{image.title}}"  class="pull-left header"/>
 	</a>
     </div>
  </div>

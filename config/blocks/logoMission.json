@@ -70,7 +70,9 @@
             "changePage":null
           }
         },
-        "configBloc": []
+        "configBloc": {
+            "imageThumbnailHeight":220
+        }
     },
     "category": "#ext-gen1187#",
     "bType": "logoMission",
