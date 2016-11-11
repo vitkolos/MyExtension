@@ -228,7 +228,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                     url: '/api/v1/media',
                     method: 'POST',
                     params:{
-                        typeId:"545cd95245205e91168b45b1",
+                        typeId:"5825dfdf245640f44a8b7230",
                         userWorkspace:true, //on utilise le main workspace de l'utilisateur
                         fields:{title:files[i].name}
                     },
@@ -243,7 +243,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                     }
                     counter++;
                     var id=resp.data.media.id;
-                    me.uploadedFiles.push({title:resp.data.media.title, id:id})
+                    me.uploadedFiles.push({title:resp.data.media.title, id:id, size:fileSize,success:true})
                     ($scope.ccCtrl.imagesForAlbum).push(id);
                 }, function (resp) {
                     console.log('Error status: ' + resp.status);
