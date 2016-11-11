@@ -2,7 +2,10 @@ blocksConfig.imageBatchUpload={
            "template": "/templates/blocks/imageBatchUpload.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
 };
-
+blocksConfig.logoMission={
+           "template": "/templates/blocks/logoMission.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/LogoMissionController.js"]
+};
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
