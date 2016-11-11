@@ -211,11 +211,11 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
             me.processing=true;
             var nbOfImages = files.length;
             for (var i = 0; i < nbOfImages; i++) {                
+                /*
                 Upload.base64DataUrl(files[i]).then(
                     function(response){
                         ($scope.ccCtrl.embeddedImages).push(
-                                                            {code:response/*,
-                                                            imageCode:response.replace("data:image/jpeg","data:image/tmp")*/});
+                                                            {code:response});
                         files[counter].imageCode = response;
                         me.progress += 100* 1/nbOfImages;
                         files[counter].success=true;
@@ -223,15 +223,15 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                     },
                     function(response){
                     }
-                );
-/*
+                );*/
+
                 Upload.upload({
                     url: '/api/v1/media',
                     method: 'POST',
                     params:{
                         typeId:"545cd95245205e91168b45b1",
                         userWorkspace:true, //on utilise le main workspace de l'utilisateur
-                        fields:{title:imgTitle}
+                        fields:{title:files[i].name}
                     },
                     file: files[i],
                     headers: {'Content-Type': undefined}
@@ -252,7 +252,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                         me.processing=false;
                         me.progress=0;
                     }
-                });    */              
+                });              
                 
             }
         }
