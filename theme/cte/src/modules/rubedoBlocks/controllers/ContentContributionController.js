@@ -244,6 +244,7 @@ angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope"
                     }
                     counter++;
                     var id=resp.data.media.id;
+                    files[counter].id=id;
                     ($scope.ccCtrl.imagesForAlbum).push(id);
                 }, function (resp) {
                     console.log('Error status: ' + resp.status);
