@@ -14,7 +14,7 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
         me.limit = 1;
         
         var options = {
-            query: config.query,
+            query: me.query,
             start: me.start,
             limit: me.limit,
             pageWorkspace: $scope.rubedo.current.page.workspace,
