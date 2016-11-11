@@ -3,13 +3,11 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
     var config = $scope.blockConfig;
     me.query = config.query;
     var query = JSON.parse(me.query);
-    console.log(query);
     console.log($scope.rubedo.current);
     query["vocabularies"]["navigation"] = {
         rule:'someRec',
-        terms:[$scope.rubedo.current.page.id]
+        terms:[$scope.rubedo.current.page.id,$scope.rubedo.current.page.parentId]
     };
-    console.log(query);
     me.query = JSON.stringify(query);
 
     if(me.query) {
