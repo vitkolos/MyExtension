@@ -27,16 +27,16 @@
                             ngf-pattern="'image/*'"
                             ngf-resize-if="$file.size>1024*100"
                             ngf-resize="{width: 1000, height: 1000, quality: 0.6}"
-                            ng-disabled="imgCtrl.processing">
-                            <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
-                            <img src="/theme/cte/img/loader.gif" ng-if="imgCtrl.processing">
+                            ng-disabled="uploadCtrl.processing">
+                            <span ng-if="!uploadCtrl.processing">Drop images here or click to upload</span>
+                            <img src="/theme/cte/img/loader.gif" ng-if="uploadCtrl.processing">
                     </div>
                     <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
                 </div>
                 
                 <div class="col-sm-8 col-md-offset-4" ng-show="files.length">
-                    <div ng-repeat="file in files">
-                            <img ng-if="file.imageCode" ng-src="{{file.imageCode}}" style="width:150px; margin:6px"/>
+                    <div ng-repeat="file in uploadCtrl.uploadedFiles">
+                            <img ng-if="file.id" ng-src="{{rubedo.imageUrl.getThumbnailUrlByMediaId(file.id)}}">
                             <span>{{file.name}}</span>
                             (<span ng-switch="file.size > 1024*1024">
                                 <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
