@@ -125,7 +125,6 @@ class MediaResource extends AbstractResource
         $imageThumbnailHeight = isset($params['imageThumbnailHeight']) ? $params['imageThumbnailHeight'] : 100;
         $imageThumbnailWidth = isset($params['imageThumbnailWidth']) ? $params['imageThumbnailWidth'] : 100;
         $filter = $this->setFilters($query, $params);
-        var_dump("TEst");
         $damService = $this->getDamCollection();
         $damService->toggleLocaleFilters();
         if (!isset($filter['filter'])) {
@@ -153,8 +152,10 @@ class MediaResource extends AbstractResource
             /* Add filters on TypeId and publication */
             $filters->addFilter(Filter::factory('In')->setName('typeId')
                 ->setValue($query['DAMTypes']));
-            if($query["DAMTypes"]==["56bdf2a8c445ec6f018b5408"]) {var_dump("OK");}
-            else var_dump($query['DAMTypes']);
+            if($query["DAMTypes"]==["56bdf2a8c445ec6f018b5408"]) {
+                var_dump("OK");
+                
+            }
             
             /* Add filter on taxonomy */
             foreach ($query['vocabularies'] as $key => $value) {

@@ -2,6 +2,12 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
     var me = this;
     var config = $scope.blockConfig;
     me.query = config.query;
+    me.query.vocabularies = {
+        navigation : [
+            rule=>'someRec',
+            terms=>[$scope.rubedo.current.page.id]
+        ]
+    }
 
     if(config.query) {
         me.start = 0;
