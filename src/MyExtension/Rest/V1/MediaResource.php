@@ -152,9 +152,8 @@ class MediaResource extends AbstractResource
             /* Add filters on TypeId and publication */
             $filters->addFilter(Filter::factory('In')->setName('typeId')
                 ->setValue($query['DAMTypes']));
-            if($query["DAMTypes"]==["56bdf2a8c445ec6f018b5408"]) {
+            if($query["DAMTypes"][0]=="56bdf2a8c445ec6f018b5408") {
                 var_dump("OK");
-                
             }
             
             /* Add filter on taxonomy */
