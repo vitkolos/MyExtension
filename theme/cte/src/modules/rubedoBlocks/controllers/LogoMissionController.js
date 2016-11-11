@@ -29,7 +29,7 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
                     me.count = response.data.count;
                     me.images = response.data.media.data;
                     $scope.clearORPlaceholderHeight();
-                    if (me.count=0 && $scope.rubedo.current.breadcrumb.length>2 && !reload) {
+                    if (me.count==0 && $scope.rubedo.current.breadcrumb.length>2 && !reload) {
                         //remonter au niveau supérieur
                         $http.get("/api/v1/pages",{
                             params:{
