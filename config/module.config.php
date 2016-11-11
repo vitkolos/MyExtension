@@ -137,6 +137,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/ordersList.json'
         ),
+        'logoMission' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/logoMission.json'
+        ),
  ),
 
     'templates' => array(
