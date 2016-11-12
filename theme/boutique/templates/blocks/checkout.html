@@ -22,7 +22,7 @@
                     <div class="panel-body">
                         <div ng-if="rubedo.current.user" class="row">
                             <div class="col-md-12 text-center">
-                                <p>{{rubedo.translate('Blocks.Checkout.Step1.CurrentlyLogged','Currently logged in as %user%',['%user%'],[rubedo.current.user.name])}}</p>
+                                <p>{{rubedo.translate('Blocks.Checkout.Step1.CurrentlyLogged','Currently logged in as %user%',['%user%'],[rubedo.current.user.fields.surname+" "+rubedo.current.user.name])}}</p>
                                 <button ng-click="rubedo.logOut()" class="btn btn-primary">{{ rubedo.translate('Blocks.Checkout.Button.LogOut') }}</button>
                                 <button data-ng-click="checkoutCtrl.setCurrentStage(2)" class="btn btn-primary" >{{ rubedo.translate('Blocks.Checkout.Button.Continue') }}</button>
                             </div>
@@ -361,7 +361,7 @@
                                     <div class="panel-body">
                                         <address>
                                             <strong ng-if="fieldEntity.billingAddress.company && fieldEntity.billingAddress.company!='' ">{{ fieldEntity.billingAddress.company }}</strong><br />
-                                            <span ng-if="fieldEntity.billingAddress.surname">{{ fieldEntity.billingAddress.surname }}</span><strong ng-if="fieldEntity.billingAddress.name">{{ fieldEntity.billingAddress.name }}</strong><br />
+                                            <span ng-if="fieldEntity.billingAddress.surname">{{ fieldEntity.billingAddress.surname }} </span><strong ng-if="fieldEntity.billingAddress.name">{{ fieldEntity.billingAddress.name }}<br /></strong>
                                             {{ fieldEntity.billingAddress.address1 }}<br />
                                             {{ fieldEntity.billingAddress.address2 }}<br />
                                             {{ fieldEntity.billingAddress.postCode }} {{ fieldEntity.billingAddress.city }}<br />
@@ -377,8 +377,8 @@
                                     </div>
                                     <div class="panel-body">
                                         <address>
-                                            <strong ng-if="fieldEntity.shippingAddress.company && fieldEntity.shippingAddress.company!='' ">{{ fieldEntity.shippingAddress.company }}</strong><br />
-                                            <span ng-if="fieldEntity.shippingAddress.surname">{{ fieldEntity.shippingAddress.surname }}</span><strong ng-if="fieldEntity.shippingAddress.name">{{ fieldEntity.shippingAddress.name }}</strong><br />
+                                            <strong ng-if="fieldEntity.shippingAddress.company && fieldEntity.shippingAddress.company!='' ">{{ fieldEntity.shippingAddress.company }}<br /></strong>
+                                            <span ng-if="fieldEntity.shippingAddress.surname">{{ fieldEntity.shippingAddress.surname }} </span><strong ng-if="fieldEntity.shippingAddress.name">{{ fieldEntity.shippingAddress.name }}<br /></strong>
                                             {{ fieldEntity.shippingAddress.address1 }}<br />
                                             {{ fieldEntity.shippingAddress.address2 }}<br />
                                             {{ fieldEntity.shippingAddress.postCode }} {{ fieldEntity.shippingAddress.city }}<br />

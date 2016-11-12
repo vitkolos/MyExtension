@@ -101,7 +101,7 @@
                     <div class="panel-body">
                         <address>
                             <strong>{{ orderDetailCtrl.order.billingAddress.company }}</strong><br />
-                            <span ng-if=" orderDetailCtrl.order.billingAddress.surname">{{  orderDetailCtrl.order.billingAddress.surname }}</span><strong ng-if="orderDetailCtrl.order.billingAddress.name">{{ orderDetailCtrl.order.billingAddress.name }}</strong><br />
+                            <span ng-if=" orderDetailCtrl.order.billingAddress.surname">{{  orderDetailCtrl.order.billingAddress.surname }} </span><strong ng-if="orderDetailCtrl.order.billingAddress.name">{{ orderDetailCtrl.order.billingAddress.name }}<br /></strong>
                             {{ orderDetailCtrl.order.billingAddress.address1 }}<br />
                             {{ orderDetailCtrl.order.billingAddress.address2 }}<br />
                             {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
@@ -119,7 +119,7 @@
                     <div class="panel-body">
                         <address>
                             <strong>{{ orderDetailCtrl.order.shippingAddress.company }}</strong><br />
-                            <span ng-if=" orderDetailCtrl.order.shippingAddress.surname">{{  orderDetailCtrl.order.shippingAddress.surname }}</span><strong ng-if="orderDetailCtrl.order.shippingAddress.name">{{ orderDetailCtrl.order.shippingAddress.name }}</strong><br />
+                            <span ng-if=" orderDetailCtrl.order.shippingAddress.surname">{{  orderDetailCtrl.order.shippingAddress.surname }} </span><strong ng-if="orderDetailCtrl.order.shippingAddress.name">{{ orderDetailCtrl.order.shippingAddress.name }}<br /></strong>
                             {{ orderDetailCtrl.order.shippingAddress.address1 }}<br />
                             {{ orderDetailCtrl.order.shippingAddress.address2 }}<br />
                             {{ orderDetailCtrl.order.shippingAddress.postCode }} {{ orderDetailCtrl.order.shippingAddress.city }}<br />
