@@ -15,7 +15,11 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
             delete me.languages[$route.current.params.lang];
         }
         me.isTranslated = function(lang){
-            return $scope.rubedo.current.page.i18n.hasOwnProperty(lang);
+            if ($scope.rubedo.current.site.locStrategy=="fallback") {
+                return true;
+            }
+            else if($scope.rubedo.current.page.i18n) return $scope.rubedo.current.page.i18n.hasOwnProperty(lang);
+            else return false;
         };
         me.getFlagUrl = function(flagCode){
             return '/assets/flags/16/'+flagCode+'.png';
@@ -39,7 +43,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             //Redirect with title
                             RubedoContentsService.getContentById(contentId).then(function(contentResponse){
                                 if (contentResponse.data.success){
-                                    console.log(contentResponse.data.content);
+                                    //console.log(contentResponse.data.content);
                                     var contentSegment=contentResponse.data.content.text;
                                     if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
                                         contentSegment=contentResponse.data.content.fields.urlSegment;
