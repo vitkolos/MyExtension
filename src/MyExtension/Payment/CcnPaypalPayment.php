@@ -47,8 +47,16 @@ class CcnPaypalPayment extends AbstractPayment
         foreach($order['detailedCart']['cart'] as $key => $product){
             $params['item_name_'.($key+1)] = $product['title'];
             $params['item_number_'.($key+1)] = $product['productId'];
-            $params['amount_'.($key+1)] = $product['price'];
+            $params['amount_'.($key+1)] = $product['unitPrice'];
             $params['quantity_'.($key+1)] = $product['amount'];
+            $params['tax_'.($key+1)] = $product['taxedPrice']-$product['price'];
+            if(count($product['variationProperties'])>0) {
+                $params['on0_'.($key+1)] = "";
+                foreach($order['detailedCart']['cart'] as $variationProperty){
+                    $params['on0_'.($key+1)] .=$variationProperty;
+                }
+            }
+            
         }
         $params['tax_cart'] = $order['detailedCart']['totalTaxedPrice'] -  $order['detailedCart']['totalPrice'];
         $params['tax'] = $order['detailedCart']['totalTaxedPrice'] -  $order['detailedCart']['totalPrice'];
