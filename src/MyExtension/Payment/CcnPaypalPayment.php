@@ -59,7 +59,7 @@ class CcnPaypalPayment extends AbstractPayment
             
         }
         //$params['tax_cart'] = $order['detailedCart']['totalTaxedPrice'] -  $order['detailedCart']['totalPrice'];
-        //$params['tax'] = $order['detailedCart']['totalTaxedPrice'] -  $order['detailedCart']['totalPrice'];
+        $params['tax'] = $order['detailedCart']['totalTaxedPrice'] -  $order['detailedCart']['totalPrice'];
         //$params['shipping_cart'] = $order['shippingPrice'];
         $params['shipping_1'] = $order['shippingPrice'];
         $params['tax_1'] = $order['finalTaxes'];
