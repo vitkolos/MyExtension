@@ -20,7 +20,6 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
             limit: me.limit,
             pageWorkspace: $scope.rubedo.current.page.workspace,
             imageThumbnailHeight: config.imageThumbnailHeight?config.imageThumbnailHeight:220,
-            //imageThumbnailWidth: config.imageThumbnailWidth?config.imageThumbnailWidth:100
         };
         me.width = options.imageThumbnailWidth;
         me.getMedia = function(options, reload){
