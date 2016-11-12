@@ -69,10 +69,10 @@
                                             <label for="{{fieldIdPrefix+'_address_company'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
                                             <input type="text" class="form-control"  id="{{fieldIdPrefix+'_address_company'}}" ng-model="fieldEntity.address.company">
                                         </div>
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <label for="{{fieldIdPrefix+'_address_attention'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Attention')}} </label>
                                         <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_attention'}}" ng-model="fieldEntity.address.attention">
-                                    </div>
+                                    </div>-->
                                     <div class="form-group">
                                         <label for="{{fieldIdPrefix+'_address_address1'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
                                         <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_address1'}}" ng-model="fieldEntity.address.address1" required>
@@ -112,18 +112,15 @@
                                             </label>
                                         </div>
                                     </div>-->
+
                                     <div class="form-group" ng-if="!rubedo.current.user">
                                         <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForBilling">
-                                                {{rubedo.translate('Blocks.Checkout.Label.Address.SameBilling')}}
-                                            </label>
+                                            <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForBilling" name="SameBilling" id="SameBilling">
+                                            <label for="SameBilling"> {{rubedo.translate('Blocks.Checkout.Label.Address.SameBilling')}}</label>
                                         </div>
                                         <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForShipping">
-                                                {{rubedo.translate('Blocks.Checkout.Label.Address.SameShipping')}}
-                                            </label>
+                                            <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForShipping" id="SameShipping" name="SameShipping">
+                                            <label for="SameShipping">{{rubedo.translate('Blocks.Checkout.Label.Address.SameShipping')}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group text-center" ng-if="!rubedo.current.user">
