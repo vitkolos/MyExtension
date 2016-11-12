@@ -361,7 +361,7 @@
                                     <div class="panel-body">
                                         <address>
                                             <strong ng-if="fieldEntity.billingAddress.company && fieldEntity.billingAddress.company!='' ">{{ fieldEntity.billingAddress.company }}</strong><br />
-                                            <strong ng-if="fieldEntity.billingAddress.attention && fieldEntity.billingAddress.attention != '' ">{{ fieldEntity.billingAddress.attention }}</strong><br />
+                                            <span ng-if="fieldEntity.billingAddress.surname">{{ fieldEntity.billingAddress.surname }}</span><strong ng-if="fieldEntity.billingAddress.name">{{ fieldEntity.billingAddress.name }}</strong><br />
                                             {{ fieldEntity.billingAddress.address1 }}<br />
                                             {{ fieldEntity.billingAddress.address2 }}<br />
                                             {{ fieldEntity.billingAddress.postCode }} {{ fieldEntity.billingAddress.city }}<br />
@@ -377,8 +377,8 @@
                                     </div>
                                     <div class="panel-body">
                                         <address>
-                                            <strong ng-if="fieldEntity.shippingAddress.company && fieldEntity.billingAddress.company!='' ">{{ fieldEntity.shippingAddress.company }}</strong><br />
-                                            <strong ng-if="fieldEntity.shippingAddress.attention && fieldEntity.billingAddress.attention != '' ">{{ fieldEntity.shippingAddress.attention }}</strong><br />
+                                            <strong ng-if="fieldEntity.shippingAddress.company && fieldEntity.shippingAddress.company!='' ">{{ fieldEntity.shippingAddress.company }}</strong><br />
+                                            <span ng-if="fieldEntity.shippingAddress.surname">{{ fieldEntity.shippingAddress.surname }}</span><strong ng-if="fieldEntity.shippingAddress.name">{{ fieldEntity.shippingAddress.name }}</strong><br />
                                             {{ fieldEntity.shippingAddress.address1 }}<br />
                                             {{ fieldEntity.shippingAddress.address2 }}<br />
                                             {{ fieldEntity.shippingAddress.postCode }} {{ fieldEntity.shippingAddress.city }}<br />
