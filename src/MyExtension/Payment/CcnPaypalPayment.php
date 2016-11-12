@@ -38,7 +38,7 @@ class CcnPaypalPayment extends AbstractPayment
         $params['return'] = "http://" . $_SERVER['HTTP_HOST'];
         $params['notify_url'] = 'http://musculine.fr';
         
-        
+        var_dump($order);
         $params['cmd'] = '_cart';
         $params['upload'] = '1';
         $params['business'] =$this->nativePMConfig['userEmail'];
