@@ -145,7 +145,7 @@ class ShoppingcartResource extends AbstractResource
         $totalPrice = 0;
         $totalTaxedPrice = 0;
         $totalItems = 0;
-        $ignoredArray = array('price', 'amount', 'id', 'sku', 'stock', 'basePrice', 'specialOffers','weight');
+        $ignoredArray = array('price', 'amount', 'id', 'sku', 'stock', 'basePrice', 'specialOffers', 'weight');
         foreach ($cart as &$value) {
             $myContent = $this->getContentsCollection()->findById($value['productId'], true, false);
             if ($myContent) {
