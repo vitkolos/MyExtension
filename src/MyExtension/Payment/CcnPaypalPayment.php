@@ -32,21 +32,27 @@ class CcnPaypalPayment extends AbstractPayment
     }
     public function getOrderPaymentData($order,$currentUserUrl)
     {
-        $query = array();
-        $query['currency_code'] = 'EUR'; //devise
-        $query['lc'] = 'FR'; // langue
-        $query['return'] = "http://" . $_SERVER['HTTP_HOST'];
-        $query['notify_url'] = 'http://musculine.fr';
+        $params = array();
+        $params['currency_code'] = 'EUR'; //devise
+        $params['lc'] = 'FR'; // langue
+        $params['return'] = "http://" . $_SERVER['HTTP_HOST'];
+        $params['notify_url'] = 'http://musculine.fr';
         
         
-        $query['cmd'] = '_cart';
-        $query['upload'] = '1';
-        $query['business'] ='magasin.henri4-facilitator@chemin-neuf.org';
+        $params['cmd'] = '_cart';
+        $params['upload'] = '1';
+        $params['business'] =$this->nativePMConfig['userEmail'];
+        $params['currency_code'] = "EUR";
         
+        foreach($order['detailedCart']['cart'] as $key => $product){
+            $params['item_name_'+($key+1)] = $product['title'];
+            $params['item_number_'+($key+1)] = $product['productId'];
+            $params['amount_'+($key+1)] = $product['price'];
+            $params['quantity_'+($key+1)] = $product['amount'];
+        }
+        $params['tax_cart'] = $order['detailedCart']['totalTaxedPrice'] -  $order['detailedCart']['totalPrice'];
         
-
-        
-        $output['url']=$parametres;
+        $output['url']=$params;
         $output['whatToDo']="submitPaypalForm";
         return $output;
     }
