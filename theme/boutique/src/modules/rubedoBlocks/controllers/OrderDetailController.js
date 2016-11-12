@@ -37,6 +37,9 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                         me.showPaymentForm=true;
                                         $scope.parametres = pmResponse.data.paymentInstructions.url;
                                     }
+                                    else if (pmResponse.data.paymentInstructions.whatToDo=="submitPaypalForm") {
+                                        me.showPaypalForm=true;
+                                    }
                                 }
                             }
                         );
@@ -125,7 +128,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
             function(response){
                 if (response.data.success){
                     console.log("commande mise à jour");
-                    }
+                }
             });
     }
 }]);

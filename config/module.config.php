@@ -284,6 +284,7 @@ return array(
     'service_manager' => array(
         'invokables' => array(
             'PayboxPayment'=>'Rubedo\\Payment\\PayboxPayment',
+            'PaypalPayment'=>'Rubedo\\Payment\\CcnPaypalPayment',
             'ContentsCcn' => 'Rubedo\\Collection\\ContentsCcn',
             'HtmlCleaner' => 'Rubedo\\Security\\CcnHtmlPurifier',
             'ShippersCcn' => 'Rubedo\\Collection\\ShippersCcn',
