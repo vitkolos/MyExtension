@@ -51,7 +51,9 @@ class CcnPaypalPayment extends AbstractPayment
             $params['quantity_'.($key+1)] = $product['amount'];
         }
         $params['tax_cart'] = $order['detailedCart']['totalTaxedPrice'] -  $order['detailedCart']['totalPrice'];
-        
+        $params['tax'] = $order['detailedCart']['totalTaxedPrice'] -  $order['detailedCart']['totalPrice'];
+        $params['shipping_cart'] = $order['shippingPrice'];
+        $params['shipping'] = $order['shippingPrice'];
         $output['url']=$params;
         $output['whatToDo']="submitPaypalForm";
         return $output;
