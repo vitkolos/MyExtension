@@ -45,10 +45,10 @@ class CcnPaypalPayment extends AbstractPayment
         $params['currency_code'] = "EUR";
         
         foreach($order['detailedCart']['cart'] as $key => $product){
-            $params['item_name_'+((int)$key+1)] = $product['title'];
-            $params['item_number_'+((int)$key+1)] = $product['productId'];
-            $params['amount_'+((int)$key+1)] = $product['price'];
-            $params['quantity_'+((int)$key+1)] = $product['amount'];
+            $params['item_name_'.($key+1)] = $product['title'];
+            $params['item_number_'.($key+1)] = $product['productId'];
+            $params['amount_'.($key+1)] = $product['price'];
+            $params['quantity_'.($key+1)] = $product['amount'];
         }
         $params['tax_cart'] = $order['detailedCart']['totalTaxedPrice'] -  $order['detailedCart']['totalPrice'];
         
