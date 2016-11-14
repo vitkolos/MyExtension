@@ -57,7 +57,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
 
         me.displayMode=config.displayMode ? config.displayMode : "default";
         me.productDisplayMode=config.productDisplayMode ? config.productDisplayMode : "grid";       
-        me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByTitle');
+        me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Blocks.Search.Label.OrderByTitle');
 
 
         me.template = themePath+"/templates/blocks/productSearch/"+me.displayMode+".html";
