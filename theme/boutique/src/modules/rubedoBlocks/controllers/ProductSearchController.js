@@ -40,7 +40,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         me.activeFacets = [];
         me.start = 0;
         me.limit = $routeParams.limit?$routeParams.limit:12;
-        me.orderBy = $routeParams.orderby?$routeParams.orderby:"_score";
+        me.orderBy = $routeParams.orderby?$routeParams.orderby:"text";
         me.orderByDirection=$routeParams.orderbyDirection?$routeParams.orderbyDirection:"asc";
         var resolveOrderBy = {
             '_score': $scope.rubedo.translate('Search.Label.OrderByRelevance'),
