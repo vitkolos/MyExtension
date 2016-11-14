@@ -36,7 +36,7 @@ class CcnPaypalPayment extends AbstractPayment
         $params['currency_code'] = 'EUR'; //devise
         $params['lc'] = 'FR'; // langue
         $params['return'] = "http://" . $_SERVER['HTTP_HOST'];
-        $params['notify_url'] = 'http://musculine.fr';
+        $params['notify_url'] = "http://" . $_SERVER['HTTP_HOST'] . "/api/v1/ecommerce/payments/paypal";
         
         //var_dump($order);
         $params['cmd'] = '_cart';
