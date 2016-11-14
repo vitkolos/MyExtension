@@ -57,10 +57,8 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
 
         me.displayMode=config.displayMode ? config.displayMode : "default";
         me.productDisplayMode=config.productDisplayMode ? config.productDisplayMode : "grid";       
-        if(!$routeParams.orderbyDirection) me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
-        else if ($routeParams.orderbyDirection) {
-            me.displayOrderBy = resolveOrderByDirection[$routeParams.orderbyDirection];
-        }
+        me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByTitle');
+
 
         me.template = themePath+"/templates/blocks/productSearch/"+me.displayMode+".html";
         var predefinedFacets = !config.predefinedFacets?{}:JSON.parse(config.predefinedFacets);
@@ -144,9 +142,6 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             if(me.orderBy != orderBy){
                 me.orderBy = orderBy;
                 me.displayOrderBy = resolveOrderBy[orderBy];
-                if (me.orderBy !='price') {
-                    $location.search('orderbyDirection',null);
-                }
                 me.start = 0;
                 $location.search('orderby',me.orderBy);
             }
