@@ -43,19 +43,25 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"_score";
         me.orderByDirection=$routeParams.orderbyDirection?$routeParams.orderbyDirection:"asc";
         var resolveOrderBy = {
-            '_score': "Relevance",
-            'price':  "Price",
-            'lastUpdateTime': 'date'
+            '_score': $scope.rubedo.translate('Search.Label.OrderByRelevance'),
+            'lastUpdateTime': $scope.rubedo.translate('Search.Label.OrderByDate'),
+            'authorName': $scope.rubedo.translate('Search.Label.OrderByAuthor'),
+            'text': $scope.rubedo.translate('Blocks.Search.Label.OrderByTitle'),
+            'price': $scope.rubedo.translate('Blocks.UserOrders.Price') 
         };
-        if(lang=='fr'){ resolveOrderBy={
-            '_score': "Pertinence",
-            'price':  "Prix",
-            'lastUpdateTime': 'date'
-        }   };
+        var resolveOrderByDirection = {
+            'asc': $scope.rubedo.translate('Search.Label.OrderByPriceUp'),
+            'desc': $scope.rubedo.translate('Search.Label.OrderByPriceDown')
+        };
+
+
         me.displayMode=config.displayMode ? config.displayMode : "default";
-        me.productDisplayMode=config.productDisplayMode ? config.productDisplayMode : "grid";
-        me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
-        me.displayOrderByDirection = $routeParams.orderbyDirection?$routeParams.orderbyDirection:$scope.rubedo.translate('Search.Label.OrderByPrice');
+        me.productDisplayMode=config.productDisplayMode ? config.productDisplayMode : "grid";       
+        if(!$routeParams.orderbyDirection) me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
+        else if ($routeParams.orderbyDirection) {
+            me.displayOrderBy = resolveOrderByDirection[$routeParams.orderbyDirection];
+        }
+
         me.template = themePath+"/templates/blocks/productSearch/"+me.displayMode+".html";
         var predefinedFacets = !config.predefinedFacets?{}:JSON.parse(config.predefinedFacets);
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
@@ -138,6 +144,9 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             if(me.orderBy != orderBy){
                 me.orderBy = orderBy;
                 me.displayOrderBy = resolveOrderBy[orderBy];
+                if (me.orderBy !='price') {
+                    $location.search('orderbyDirection',null);
+                }
                 me.start = 0;
                 $location.search('orderby',me.orderBy);
             }
@@ -145,7 +154,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         me.changeOrderByDirection= function(direction){
             if (me.orderByDirection!=direction){
                 me.orderByDirection=direction;
-                me.displayOrderByDirection=direction
+                me.displayOrderBy=resolveOrderByDirection[direction];
                 me.start=0;
                 $location.search('orderbyDirection',direction);
             }
