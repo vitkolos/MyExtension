@@ -149,10 +149,10 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         me.changeOrderByDirection= function(direction){
             if (me.orderByDirection!=direction){
                 me.orderByDirection=direction;
-                me.displayOrderBy=resolveOrderByDirection[direction];
                 me.start=0;
                 $location.search('orderbyDirection',direction);
             }
+            me.displayOrderBy=resolveOrderByDirection[direction];
         }
         me.changeLimit = function(limit){
             if(me.limit != limit){
