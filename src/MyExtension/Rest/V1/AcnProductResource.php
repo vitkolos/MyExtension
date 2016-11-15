@@ -56,9 +56,12 @@ class AcnproductResource extends AbstractResource
 	$contentsService = Manager::getService('Contents');
 
         $codeBarre=$params['codeBarre'];
+	/*
         $findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
 						->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
-
+*/
+	$findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
+						->addFilter(Filter::factory('Value')->setName('fields.reference')->setValue($codeBarre));
         
         $content = $contentsService->findOne($findFilter,true,false);
 
@@ -75,6 +78,7 @@ class AcnproductResource extends AbstractResource
 	$contentsService = Manager::getService('ContentsCcn');
 
         $codeBarre=$params['codeBarre'];
+	
         $findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
 						->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
 
