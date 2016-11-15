@@ -61,7 +61,7 @@ class AcnproductResource extends AbstractResource
 						->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
 */
 	$findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
-						->addFilter(Filter::factory('Value')->setName('fields.reference')->setValue($codeBarre));
+						->addFilter(Filter::factory('Value')->setName('reference')->setValue($codeBarre));
         
         $content = $contentsService->findOne($findFilter,true,false);
 
