@@ -67,11 +67,11 @@ class AcnproductResource extends AbstractResource
         
         //$content = $contentsService->findOne($findFilter,true,false);
 	$content = $this->getContentsCollection()->findById($codeBarre, true, false);
-        
+        $result = $this->getContentsCollection()->destroy($content,array());
         
         return [
             'success' => true,
-            'content' => $content,
+            'content' => $result,
         ];
     }
  
