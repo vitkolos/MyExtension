@@ -21,6 +21,8 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Exceptions\APIRequestException;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
+use Rubedo\Collection\AbstractLocalizableCollection;
+
 /**
  * Class TaxonomiesResource
  * @package RubedoAPI\Rest\V1
@@ -56,17 +58,20 @@ class AcnproductResource extends AbstractResource
 	$contentsService = Manager::getService('Contents');
 
         $codeBarre=$params['codeBarre'];
+	/*
         $findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
 						->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
-
+*/
+	$findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
+						->addFilter(Filter::factory('Value')->setName('id')->setValue($codeBarre));
         
-        $content = $contentsService->findOne($findFilter,true,false);
-
-        
+        //$content = $contentsService->findOne($findFilter,true,false);
+	$content = $this->getContentsCollection()->findById($codeBarre, true, false);
+        $result = $this->getContentsCollection()->destroy($content,array());
         
         return [
             'success' => true,
-            'content' => $content,
+            'content' => $result,
         ];
     }
  
@@ -75,6 +80,7 @@ class AcnproductResource extends AbstractResource
 	$contentsService = Manager::getService('ContentsCcn');
 
         $codeBarre=$params['codeBarre'];
+	
         $findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
 						->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
 
