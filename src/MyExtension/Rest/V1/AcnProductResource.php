@@ -21,6 +21,8 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Exceptions\APIRequestException;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
+use Rubedo\Collection\AbstractLocalizableCollection;
+
 /**
  * Class TaxonomiesResource
  * @package RubedoAPI\Rest\V1
@@ -63,8 +65,8 @@ class AcnproductResource extends AbstractResource
 	$findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
 						->addFilter(Filter::factory('Value')->setName('id')->setValue($codeBarre));
         
-        $content = $contentsService->findOne($findFilter,true,false);
-
+        //$content = $contentsService->findOne($findFilter,true,false);
+	$content = $this->getContentsCollection()->findById($codeBarre, true, false);
         
         
         return [
