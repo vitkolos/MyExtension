@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.contactData={ };
     me.contactError=null;
     $scope.adressOfTopics=[
-        {adr:'magasin.henri4@chemin-neuf.org',
+        {adr:'acnenligne@gmail.com',
             topic:'Service client'},
         {adr:'ame@chemin-neuf.org',
             topic:'Service expédition'},
