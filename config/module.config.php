@@ -250,6 +250,9 @@ return array(
                     '../js/lazy-image.js',
                     '/js/international.js'
                 ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
            ),
            'forumjeunespros' => array(
                 'label' => 'Forum JPros',
