@@ -1,3 +1,7 @@
+blocksConfig.imageBatchUpload={
+           "template": "/templates/blocks/imageBatchUpload.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
+};
 blocksConfig.footer={
     "template": "/templates/blocks/footer.html"
 };
