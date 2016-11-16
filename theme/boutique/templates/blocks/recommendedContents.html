@@ -1,10 +1,10 @@
-<div ng-controller="RecommendedContentsController as rccCtrl">
+<div ng-controller="RecommendedContentsController as rccCtrl" class="bg-white product-list-container">
     <div class="row">
 	<h3 ng-if="block.displayTitle" class="text-center">{{block.title}}</h3>
 
         <div class="col-sm-6 rubedo-product-in-list" ng-repeat="content in rccCtrl.data track by $index" ng-class="rccCtrl.colClass">
             <div class="row">
-                <div ng-style="rccCtrl.imageStyle" class="col-md-12" ng-if="rccCtrl.displayImage">
+                <div class="col-md-12" ng-if="rccCtrl.displayImage">
                     <a ng-href="{{ content.url }}" class="square">
                         <img class="img-responsive center-block" ng-if="content['fields.'+rccCtrl.imageField] && !rccCtrl.titleOnly"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.'+rccCtrl.imageField],{mode:rccCtrl.imageResizeMode,height:rccCtrl.imageHeight,width:rccCtrl.imageWidth}) }}"
