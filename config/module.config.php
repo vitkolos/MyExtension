@@ -238,6 +238,9 @@ return array(
                      '../js/lazy-image.js',
                     '/js/boutique.js'
                 ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
            ),
            'international' => array(
                 'label' => 'Cana International',
