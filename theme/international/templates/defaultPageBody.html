@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid" style="overflow-x:hidden">
     <div ng-repeat="row in rubedo.current.page.rows track by $index"
          ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
          ng-class="{'padding-large':!$first}" class="row"></div>
