@@ -52,15 +52,17 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 				    //si la ligne a un bloc de détail en premier, on affiche seulement le bloc dŽtail dans la ligne
 				    else if (row.columns[0].blocks[0].bType=="contentDetail" && !contentDisplay) {
 					row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
-					filtered.push(row);
+					filtered.push(row); 	
 				    }
 				    else if (row.columns[0].rows && row.columns[0].rows.length>0) {
 						filtered.push(row);
+						console.log(index);
 				    }
 				    // sinon on affiche tout
 				    else if(!contentDisplay) {filtered.push(row);}
                                  }
                       });
+		      console.log(filtered);
                       return filtered;
 		    
            };
