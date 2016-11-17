@@ -56,87 +56,15 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 				    }
 				    else if (row.columns[0].rows && row.columns[0].rows.length>0) {
 						filtered.push(row);
-						console.log(index);
 				    }
 				    // sinon on affiche tout
 				    else if(!contentDisplay) {filtered.push(row);}
                                  }
                       });
-		      console.log(filtered);
                       return filtered;
 		    
            };
   });
-angular.module('rubedoBlocks').filter('tags', function() {
-    return function(contents, tag) {
-           if (tag=="") {
-                      return contents;
-           }
-           else {
-                      var contentList=[];
-                      angular.forEach(contents, function(content){
-                         if(content.taxonomy['5524db6945205e627a8d8c4e'] && (content.taxonomy['5524db6945205e627a8d8c4e']).indexOf(tag) != -1){
-                                    contentList.push(content);
-                         }
-                      })
-                      return contentList;
-           }
-    };
-});
-
-/*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
-angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
-    return function(startDate, endDate, rangeFormat){
-	var format = rangeFormat || 'long';
-	var formatOfDate =  'd MMM yyyy';
-	var start = new Date(startDate*1000);
-	var end = new Date(endDate*1000);
-	if (start.getFullYear() != end.getFullYear()) {
-	    formatOfDate = 'd MMM yyyy';
-	}
-	else if (start.getMonth() != end.getMonth()) {
-	    formatOfDate = 'd MMM';
-	}
-	else  {
-	    formatOfDate = 'd';
-	}
-	if (format == 'short') {
-	    formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
-	}
-	else {
-	    formattedDate= "du "+$filter('date')(start,formatOfDate) + " au "+$filter('date')(end,'d MMMM yyyy');	    
-	}
-	return formattedDate;
-    }
-  });
-
-
-angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
-        var me=this;
-        var mediaId=$scope.audioFileId;
-         me.displayMedia=function(){
-            if (me.media&&me.media.originalFileId){
-
-                        me.jwSettings={
-                            primary:"flash",
-                            width:"100%",
-                            height:40,
-                            file:me.media.url,
-                        };
-                        setTimeout(function(){jwplayer("audio"+me.media.originalFileId).setup(me.jwSettings);}, 200);
-            }
-        };
-        if (mediaId){
-            RubedoMediaService.getMediaById(mediaId).then(
-                function(response){
-                    if (response.data.success){
-                        me.media=response.data.media;
-                        me.displayMedia();
-                    }
-                }
-            );
-        }
-    }]);
 
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {
