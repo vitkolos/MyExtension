@@ -202,7 +202,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 .navbar{border-radius: 0;margin-bottom: 0px; }
 .navbar.navbar-default{background-color: white; border: none;/*border-top: 1px solid white*/; padding: 12px }
 div#bs-example-navbar-collapse-1{background-color: inherit; color:white}
-.navbar-default .navbar-nav>li>a{color:@txt_dark; text-transform: uppercase; font-family: Montserrat; font-size: 1.2em;}
+.navbar-default .navbar-nav>li>a, .navbar-default .navbar-brand{color:@txt_dark; text-transform: uppercase; font-family: Montserrat; font-size: 1.2em;}
 .navbar-default .navbar-nav> a, .navbar-default .navbar-nav> a:hover, .navbar-default .navbar-nav a:focus{ color:@txt_dark; opacity: 0.9}
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{color: @txt_dark; }
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus,.navbar-default .navbar-nav li>a:hover, .navbar-default .navbar-nav li>a:focus{color: @txt_dark; background-color: white}
@@ -211,7 +211,7 @@ div#bs-example-navbar-collapse-1{background-color: inherit; color:white}
 .dropdown-menu{background: white}
 @media screen and (min-width: @min_sm) {
     .navbar-nav {float:none}
-    .navbar-nav>li{display: inline-block; float: none}
+    .navbar-nav>li{/*display: inline-block; float: none; */text-align: center; padding: 0 30px;}
     .navbar-nav>li:hover .dropdown-menu{display: block}
     .languageMenu{float: right}
 
