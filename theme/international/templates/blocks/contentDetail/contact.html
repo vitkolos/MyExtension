@@ -1,8 +1,9 @@
-<div ng-if="blockConfig.contentOnly">
+<div ng-if="block.code=='contact' || blockConfig.contentOnly">
 <div class="container">
-		<div class="row padding-large text-center">
+		<div class="row padding-large text-center" ng-if="fieldEntity['prenom'] || fieldEntity['nom']">
 			<div class="col-xs-12 text-center">
-				<h3>{{contentDetailCtrl.content.fields.prenom}} {{contentDetailCtrl.content.fields.nom}}</h3>
+				<h3 ng-if="!fieldEditMode">{{fieldEntity['text']}}</h3>
+				<rubedo-field ng-if="fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 			</div>
 		</div>
 		<div class="row padding-large text-center">
@@ -11,19 +12,19 @@
 			</div>
 			<div class="col-xs-4 col-sm-4" ng-if="fieldEntity['telephone']">
 				<p><i class="fa fa-phone icon"></i></p>
-				<p><b>{{rubedo.translate("Block.Inscription.Telephone")}}</b></p>
+				<p><b>{{contentDetailCtrl.getLabelByName('telephone')}}</b></p>
 				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></p>
 			</div>
 
 			<div class="col-xs-4 col-sm-4" ng-if="fieldEntity['position']">
 				<p><i class="fa fa-map-marker icon"></i></p>
-				<p><b>{{rubedo.translate("Blocks.Checkout.Label.Address")}}</b></p>
+				<p><b>{{contentDetailCtrl.getLabelByName('position')}}</b></p>
 				<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 			</div>
 			<div class="col-xs-4 col-sm-4"  ng-if="fieldEntity['email']">
 				<p><i class="fa fa-envelope icon"></i></p>
-				<p><b>{{rubedo.translate("Blocks.UserProfile.Label.Email")}}</b></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Email")}}</b></p>
 				<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
 					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
 				</div>
@@ -34,7 +35,7 @@
 		<div style="padding-top:24px" class=""></div>
 	</div>
 </div>
-<div class=" content_border" ng-if="!contentOnly">
+<div class="content_border" ng-if="block.code != 'contact' && !blockConfig.contentOnly">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 ">
@@ -82,6 +83,9 @@
 					   ng-bind-html="rteFieldCtrl.html">
 					</h1>
 					<h3>{{contentDetailCtrl.content.fields.prenom}} {{contentDetailCtrl.content.fields.nom}}</h3>
+					<rubedo-field  ng-if="fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('prenom')}}"></rubedo-field>
+					<rubedo-field  ng-if="fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field>
+					
 				</div>
 			</div>
 		</header>
@@ -100,23 +104,23 @@
 			</div>
 			<div class="col-xs-4 " ng-if="fieldEntity['telephone']">
 				<p><i class="fa fa-phone icon"></i></p>
-				<p><b>{{rubedo.translate("Block.Inscription.Telephone")}}</b></p>
+				<p><b>{{contentDetailCtrl.getLabelByName('telephone')}}</b></p>
 				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></p>
 			</div>
 
 			<div class="col-xs-4" ng-if="fieldEntity['position']">
 				<p><i class="fa fa-map-marker icon"></i></p>
-				<p><b>{{rubedo.translate("Blocks.Checkout.Label.Address")}}</b></p>
+				<p><b>{{contentDetailCtrl.getLabelByName('position')}}</b></p>
 				<p>{{contentDetailCtrl.content.fields.position.address}}</p>
 			</div>
 			<div class="col-xs-4"  ng-if="fieldEntity['email']">
 				<p><i class="fa fa-envelope icon"></i></p>
-				<p><b>{{rubedo.translate("Blocks.UserProfile.Label.Email")}}</b></p>
+				<p><b>{{rubedo.translate("Block.Inscription.Email")}}</b></p>
 				<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
 					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
 				</div>
-				<rubedo-field  ng-if="rubedo.current.user" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user">(visible car vous êtes connectés)</span>
+				<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user">(visible car vous êtes connectés)</span>
 			</div>
 		</div>
 
@@ -125,3 +129,4 @@
 		
 	
 </div>
+
