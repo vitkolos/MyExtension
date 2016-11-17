@@ -54,7 +54,7 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 					row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
 					filtered.push(row);
 				    }
-				    else if (row.columns[0].rows.length>0) {
+				    else if (row.columns[0].rows && row.columns[0].rows.length>0) {
 						filtered.push(row);
 				    }
 				    // sinon on affiche tout
