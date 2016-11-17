@@ -1,0 +1,8 @@
+<div ng-controller="SiteMapController as siteMapCtrl">
+    <span ng-class="{'glyphicon glyphicon-chevron-right': siteMapCtrl.getPageDisplay(menu.id), 'glyphicon glyphicon-chevron-down': !siteMapCtrl.getPageDisplay(menu.id)}"
+           ng-click="siteMapCtrl.setPageDisplay(menu.id)" ng-if="menu.pages"></span>
+    <a ng-href="{{menu.url}}">{{menu.text}}</a>
+    <div class="row" ng-hide="siteMapCtrl.getPageDisplay(menu.id)" ng-if="menu.pages">
+        <li ng-repeat="menu in menu.pages track by $index" class="col-sm-3" ng-include="rubedo.themePath+'/templates/blocks/siteMap/list.html'"></li>
+    </ul>
+</div>
