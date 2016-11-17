@@ -199,29 +199,6 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 
 
 ///////////MENU////////////////
-.collapse.navbar-collapse {
-    display: table;
-    table-layout: fixed;
-    width: 100%;
-}
-
-.collapse.navbar-collapse>ul {
-    display: table-row;
-    margin: 0;
-    padding: 0;
-}
-
-.collapse.navbar-collapse>ul>li {
-    list-style: none;
-    display: table-cell;
-    text-align: center;
-}
-
-.collapse.navbar-collapse>ul>li>a {
-    display: block;
-}
-
-
 
 .dropdown-menu{top:auto !important}
 .dropdown-menu-large{width:100%}
@@ -240,7 +217,30 @@ li.dropdown:hover>ul.dropdown-menu{display:block}
     .navbar-nav {float:none}
     .navbar-nav>li{/*display: inline-block; float: none; */text-align: center; padding: 0 30px;}
     .navbar-nav>li:hover .dropdown-menu{display: block}
-    .languageMenu{float: right}
+
+
+.collapse.navbar-collapse>ul {
+    display: table;
+    margin: 0;
+    padding: 0;
+}
+
+.collapse.navbar-collapse>ul>li {
+    list-style: none;
+    display: table-cell;
+    text-align: center;
+    float: none !important;
+}
+
+.collapse.navbar-collapse>ul>li>a {
+    display: block;
+}
+
+
+    
+    
+    
+    
 
 }
 .languageMenu .dropdown-menu{min-width: 50px}
@@ -325,7 +325,7 @@ header.content{
     h1,h2,h3,h4,h5,p{color:white; font-family: Montserrat};
     h1{text-transform: uppercase}
     height:320px;
-    box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
+    //box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
     margin-bottom:24px;
     line-height: 320px;
     text-align: center;
