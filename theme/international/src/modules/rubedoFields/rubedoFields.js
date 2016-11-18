@@ -1029,7 +1029,6 @@
                 fieldsArray.push(newField);
             }
             $scope.fields=fieldsArray;
-
         };
         me.addField=function(){
             me.fieldIterations=me.fieldIterations+1;
@@ -1055,7 +1054,6 @@
             me.buildFields();
         };
         me.buildFields();
-
     }]);
     module.controller("RSOFieldController",["$scope",function($scope){
         var me=this;
