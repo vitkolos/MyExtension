@@ -26,4 +26,10 @@ CKEDITOR.stylesSet.add( 'default', [
 ] );
 
 
+CKEDITOR.plugins.addExternal( 'widget', '/theme/cte/ckeditor/plugins/widget/','plugin.js' );
+CKEDITOR.plugins.addExternal( 'lineutils', '/theme/cte/ckeditor/plugins/lineutils/','plugin.js' );
 CKEDITOR.plugins.addExternal( 'youtube', '/theme/goodnews/ckeditor/plugins/youtube/','plugin.js' );
+CKEDITOR.plugins.addExternal( 'bootstrapCollapse', '/theme/cte/ckeditor/plugins/bootstrapCollapse/','plugin.js' );
+CKEDITOR.dtd.$removeEmpty['p']= false;
+CKEDITOR.dtd.$removeEmpty['i']= false;
+CKEDITOR.dtd.$removeEmpty['span']= false;
