@@ -16,12 +16,7 @@ blocksConfig.bg_image={
            "template": "/templates/blocks/bg_image.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
 };
-blocksConfig.footer={
-           "template": "/templates/blocks/footer.html"
-};
-blocksConfig.footer_links={
-           "template": "/templates/blocks/footer_links.html"
-};
+
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
             "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js','//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js'],
@@ -32,7 +27,10 @@ blocksConfig.redirect={
            "template": "/templates/blocks/redirect.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/redirectController.js"]
 };
-
+blocksConfig.carrousel2={
+           "template": "/templates/blocks/carrousel_fullWidth.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
+};
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
