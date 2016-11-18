@@ -2,7 +2,7 @@
      ng-class="rubedo.componentsService.resolveResponsiveClass(block.responsive)"
      ng-style="{'min-height':block.configBloc.blockMinHeight}" class="{{block.code}}">
     <div class="row">
-        <div class="panel-heading actus" ng-if="block.displayTitle">{{block.title}}</div>
+        <h2 class="titre-block" ng-if="block.displayTitle">{{block.title}}</h2>
     </div>
     <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)"></div>
 </div>
