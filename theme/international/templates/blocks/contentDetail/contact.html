@@ -8,9 +8,11 @@
 			</div>
 
 			<div class="col-xs-6 col-sm-4 text-left" ng-if="fieldEntity['position']">
-				<p><i class="fa fa-map-marker icon"></i></p>
-				<p><b>{{contentDetailCtrl.getLabelByName('position')}}</b></p>
-				<p>{{contentDetailCtrl.content.fields.position.address}}</p>
+				<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
+				<p>
+								<i class="fa fa-map-marker icon"></i>
+								<span>{{contentDetailCtrl.content.fields.position.address}}</span>
+				</p>
 			</div>
 			<div class="col-xs-6 col-sm-4 text-left" >
 				<h3 style="font-style: italic">Contact</h3>
