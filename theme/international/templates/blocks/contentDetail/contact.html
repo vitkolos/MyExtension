@@ -1,7 +1,7 @@
 <div ng-if="blockConfig.contentOnly">
 <div class="container">
 		
-		<div class="row padding-large center-cols contact">
+		<div class="row padding-large center-cols contact row-eq-height">
 
 			<div class="col-xs-6 col-sm-4 text-left" ng-if="fieldEntity['description']">
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field>
@@ -25,8 +25,8 @@
 				</div>
 				<p>
 								<i class="fa fa-phone icon"></i>
-								<span ng-if="fieldEntity['telephone']"><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field></span>
-								<span ng-if="fieldEntity['telephone2']"><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></span>
+								<rubedo-field style="display:inline-block" ng-if="fieldEntity['telephone']" field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field></span>
+								<rubedo-field style="display:inline-block" ng-if="fieldEntity['telephone2']" field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></span>
 				</p>
 				<p><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('linkfield')}}"></rubedo-field></p>
 				
