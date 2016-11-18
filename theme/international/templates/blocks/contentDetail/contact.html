@@ -1,7 +1,7 @@
 <div ng-if="blockConfig.contentOnly">
 <div class="container">
 		
-		<div class="row padding-large center-cols">
+		<div class="row padding-large center-cols contact">
 
 			<div class="col-xs-6 col-sm-4 text-left" ng-if="fieldEntity['description']">
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field>
@@ -14,13 +14,13 @@
 			</div>
 			<div class="col-xs-6 col-sm-4 text-left" >
 				<h3 style="font-style: italic">Contact</h3>
-				<p>
+				<div>
 						<i class="fa fa-envelope icon"></i>
-						<span ng-if="fieldEntity['email']" style="display: inline-block; margin-left:10px;" ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
+						<div ng-if="fieldEntity['email']" style="display: inline-block; margin-left:10px;" ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
 								<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
-						</span>
+						</div>
 						<rubedo-field  ng-if="rubedo.current.user" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user">(visible car vous êtes connectés)</span>
-				</p>
+				</div>
 				<p>
 								<i class="fa fa-phone icon"></i>
 								<span ng-if="fieldEntity['telephone']"><rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field></span>
