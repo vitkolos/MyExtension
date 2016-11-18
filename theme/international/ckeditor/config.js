@@ -21,8 +21,7 @@ CKEDITOR.stylesSet.add( 'default', [
 		element: 'img',
 		attributes: { 'style': 'margin:0 auto' }
     },
-{ name: 'button', element: 'div', attributes: { 'class': 'button'} },
-{ name:'titre', element:'div', attributes:{'class':'panel-heading actus'}}
+{ name:'Titre', element:'h3', attributes:{'class':'titre-block'}}
 
 ] );
 

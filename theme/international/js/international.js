@@ -102,6 +102,39 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 
 
 
+/*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
+angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
+    return function(startDate, endDate, rangeFormat,from,to){
+	var format = rangeFormat || 'long';
+	var formatOfDate =  'd MMM yyyy';
+	var isSameDay = false;
+	var start = new Date(startDate*1000);
+	var end = new Date(endDate*1000);
+	if (start.getFullYear() != end.getFullYear()) {
+	    formatOfDate = 'd MMM yyyy';
+	}
+	else if (start.getMonth() != end.getMonth()) {
+	    formatOfDate = 'd MMM';
+	}
+	else  if(start.getDate() == end.getDate()){
+	    formatOfDate = 'd';
+	    isSameDay=true;
+	}
+	else {
+	    formatOfDate = 'd';
+	}
+	if (format == 'short') {
+		if(isSameDay) formattedDate= $filter('date')(end,'d MMM yyyy');	  
+	    	else formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
+	}
+	else {
+           if(isSameDay) formattedDate= $filter('date')(end,'d MMM yyyy');	  
+	   else formattedDate= from +" "+$filter('date')(start,formatOfDate) + " "+to+" "+$filter('date')(end,'d MMMM yyyy');	    
+	}
+	return formattedDate;
+    }
+  });
+
 
 
     angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
