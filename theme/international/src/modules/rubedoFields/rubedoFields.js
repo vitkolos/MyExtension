@@ -108,6 +108,8 @@
         "externalMediaField":"/templates/inputFields/externalMedia.html",
         "Rubedo.view.externalMediaField":"/templates/inputFields/externalMedia.html",
         "ratingField":"/templates/inputFields/rating.html",
+        //"embeddedImageField":"/templates/inputFields/embeddedImage.html",
+        //"Rubedo.view.embeddedImageField":"/templates/inputFields/embeddedImage.html",
         "DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.DCEField":"/templates/inputFields/contentLink.html",
         "Rubedo.view.urlField":"/templates/inputFields/url.html",
@@ -180,35 +182,36 @@
         var CKEMode=$scope.field.config.CKETBConfig;
         var myTBConfig=[
             { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
-            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', '-', 'Undo', 'Redo',"Source"  ] },
+            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', '-', 'Undo', 'Redo',"Source" ] },
             { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
             { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
             '/',
-            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
+            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'BootstrapCollapse','-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
             { name: 'styles', items: [ 'Styles', 'Format', 'Font' ] },
             '/',
-            { name: 'colors', items: [ 'TextColor' ] },
+            { name: 'colors', items: ['TextColor', '-','BGColor' ] },
             { name: 'tools', items: [ 'Maximize', '-','ShowBlocks' ] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink','-','Anchor' ] },
-            { name: 'insert', items: [ 'Image', 'Youtube',  '-', 'Table', 'HorizontalRule', 'SpecialChar', 'PageBreak' ] }
+            { name: 'insert', items: [ 'Image', 'Youtube'] }
         ];
         if (CKEMode=="Standard"){
             myTBConfig=[
+                { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [  'Templates' ] },
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
                 { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},
                 { name: 'colors', items: [ 'TextColor','-', 'Scayt' ] },
                 '/',
                 { name: 'styles', items: [ 'Styles', 'Format', 'Font' ] },
-                { name: 'insert', items: [ 'Image',  '-', 'Table', 'SpecialChar', 'PageBreak', 'Link', "Rubedolink", 'Unlink'] },
+                { name: 'insert', items: [ 'Image',  'Youtube',  '-',  'Link', "Rubedolink", 'Unlink'] },
                 { name: 'managing', items: [ 'Maximize','-','Undo', 'Redo', "Source"  ] }
             ];
         } else if (CKEMode=="Basic"){
             myTBConfig=[
-            { name: 'clipboard', groups: [ 'undo' ], items: [ 'Undo', 'Redo' ] },
+            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo','Source'  ] },
            { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic','-', 'RemoveFormat' ] },
-            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo',"Source"  ] },
-           { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote']},
+           { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote', '-', 'JustifyCenter']},
             { name: 'styles', items: [ 'Format' ] },
+             { name: 'colors', items: [ 'TextColor','-', 'Scayt' ] },
             { name: 'insert', items: [ 'Image', 'Youtube', '-', 'HorizontalRule'] },
             { name: 'links', items: [ 'Link', "Rubedolink", 'Unlink'] },
             { name: 'colors', items: [ 'Scayt'] }
@@ -220,7 +223,7 @@
             language:$scope.fieldLanguage,
             entities:false,
             entities_latin:false,
-            extraPlugins:'rubedolink,youtube',
+            extraPlugins:'rubedolink,youtube,widget,lineutils,bootstrapCollapse',
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
@@ -228,7 +231,7 @@
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             templates_replaceContent : false,
             customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
-            font_names : 'Merriweather;Montserrat;FontAwesome',
+            font_names : 'Merriweather;Montserrat;FontAwesome; cheminneuf',
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
@@ -244,7 +247,7 @@
 
         };
         if (!$scope.fieldInputMode){
-            $scope.$watch("fieldEntity."+$scope.field.config.name, function(newValue) {
+            $scope.$watch(function() { return $scope.fieldEntity[$scope.field.config.name]; }, function(newValue) {
                 if(!$scope.fieldEditMode){
                     if (!newValue){
                         newValue="<div></div>";
@@ -254,9 +257,10 @@
                         newValue="<div>"+newValue+"</div>";
                     }
                     me.html=jQuery.htmlClean(newValue, {
-                        allowedAttributes:[["style"],["rubedo-page-link"],["target"],["align"],["width"],["height"]],
-                        allowedTags: ['table','tbody','tr','td','iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br'],
-                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],                        
+                        allowedAttributes:[["style"],["id"],["rubedo-page-link"],["target"],["align"],["width"],["height"],["data-toggle"],["data-target"]],
+                        allowedTags: ['table','tbody','tr','td','iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br','u','sup'],
+                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike"],                        
+                        allowEmpty :["p","i","span"],
                         replace: [[["b", "big"], "strong"]],
                         format: true
                     });
@@ -268,7 +272,8 @@
                     me.html=$sce.trustAsHtml(jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["rubedo-page-link"],["align"],["width"],["height"]],
                         allowedTags: ['iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br'],
-                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],                        
+                        removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],
+                        allowEmpty :["p","i","span"],
                         format: true
                     }));
                 }
@@ -382,7 +387,7 @@
                 }
             });
         }
-        angular.forEach(items,function(item){
+       angular.forEach(items,function(item){
             itemsObj[item.valeur]=item.nom;
         });
         me.displayValue=function(value){
@@ -522,8 +527,10 @@
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id,
             type: $scope.field.config.allowedCT,
-            constrainToSite: true,
-            orderby:'title'
+            constrainToSite: false,
+            orderby:'title',
+            limit:200,
+            displayedFacets:"['all']"
         };
         RubedoSearchService.searchByQuery(options).then(
              function(response){
@@ -587,7 +594,8 @@
     }]);
 
         /*Modifié pour ajouter l'espace de travail de la page ou de la page liée au bloc de contribution*/
-    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
+    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location','Upload',
+                                              function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location,Upload){
         var me=this;
         var mediaId=$scope.fieldEntity[$scope.field.config.name];
         me.launchEditor=function(){
@@ -599,7 +607,10 @@
                 window.saveRubedoMediaChange=function(id){
                     $scope.fieldEntity[$scope.field.config.name]=id;
                     mediaId=id;
-                    $scope.registerFieldEditChanges();
+                    // pour ajouter recherche dans la meidathèque en FO
+                    if ($scope.registerFieldEditChanges){
+                        $scope.registerFieldEditChanges();
+                    }//fin de la modif
                     RubedoMediaService.getMediaById(mediaId).then(
                         function(response){
                             if (response.data.success){
@@ -665,70 +676,90 @@
         }
         me.newFile=null;
         me.uploadNewFile=function(){
-           me.notification=null;
-           me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
-            if (me.pageId&&mongoIdRegex.test(me.pageId)) {
-                RubedoPagesService.getPageById(me.pageId).then(function(response){
-                    if (response.data.success){
-                        me.pageUrl=response.data.url;
-                        $http.get("/api/v1/pages",{
-                            params:{
-                                site:$location.host(),
-                                route:(me.pageUrl).substr(4)
-                            }
-                        }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; me.uploadNewFileWithWorkspace()}});
-                    };
-                });
-            };
-
-
+            me.notification=null;
+            me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
+            me.uploadNewFileWithWorkspace();
         };
-        me.uploadNewFileWithWorkspace=function(){
-           if ($scope.fieldInputMode&&me.newFile&&$scope.field.config.allowedDAMTypes){
-               var uploadOptions={
-                   typeId:$scope.field.config.allowedDAMTypes,
-                   target:me.workspace,
-                   fields:{
-                       title:me.newFile.name
-                   }
-               };
-               RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
-                   function(response){
-                       if (response.data.success){
-                           var id=response.data.media.id;
-                           $scope.fieldEntity[$scope.field.config.name]=id;
-                           mediaId=id;
-                           if ($scope.registerFieldEditChanges){
-                               $scope.registerFieldEditChanges();
-                           }
+        
+        $scope.upload=function(file){
+            me.notification=null;
+            me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
+           if ($scope.fieldInputMode&&file&&$scope.field.config.allowedDAMTypes){
+
+               /*pour images, redimensionner*/
+               if ($scope.field.config.allowedDAMTypes=="545cd95245205e91168b45b1") {
+                    Upload.upload({
+                        url: '/api/v1/media',
+                        method: 'POST',
+                        params:{
+                            typeId:"545cd95245205e91168b45b1",
+                            userWorkspace:true, //on utilise le main workspace de l'utilisateur
+                            fields:{title:file.name},
+                            taxonomy:{navigation:[me.pageId]}
+                        },
+                        file:file,
+                        headers: {'Content-Type': undefined}
+                    }).then(function (response) {
+                            var id=response.data.media.id;
+                            $scope.fieldEntity[$scope.field.config.name]=id;
+                            mediaId=id;
+                            if ($scope.registerFieldEditChanges){
+                                $scope.registerFieldEditChanges();
+                            }
                             me.media=response.data.media;
                             me.displayMedia();
-                       } else {
-                           console.log(response);
-                           me.notification={
-                               type:"error",
-                               text:response.data.message
-                           };
-                       }
-                   },
-                   function(response){
-                       console.log(response);
-                       me.notification={
-                           type:"error",
-                           text:response.data.message
-                       };
-                   }
-               );
+                    }, function (response) {
+                        console.log(response);
+                        me.notification={
+                            type:"error",
+                            text:response.data.message
+                        };
+                    }
+                    );
+               }
+               else {
+                RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
+                    function(response){
+                        if (response.data.success){
+                            var id=response.data.media.id;
+                            $scope.fieldEntity[$scope.field.config.name]=id;
+                            mediaId=id;
+                            if ($scope.registerFieldEditChanges){
+                                $scope.registerFieldEditChanges();
+                            }
+                             me.media=response.data.media;
+                             me.displayMedia();
+                        } else {
+                            console.log(response);
+                            me.notification={
+                                type:"error",
+                                text:response.data.message
+                            };
+                        }
+                    },
+                    function(response){
+                        console.log(response);
+                        me.notification={
+                            type:"error",
+                            text:response.data.message
+                        };
+                    }
+                );
+               }
            }            
         };
-
+        /*
         if ($scope.fieldInputMode){
             $element.find('.form-control').on('change', function(){
+                            console.log("upload old way");
+                console.log($scope.newFile);
                 setTimeout(function(){
                     me.uploadNewFile();
                 }, 200);
             });
-        }
+        }*/
+       
+        
     }]);
 
     module.directive('fileModel', ['$parse','$sce', function ($parse,$sce) {
@@ -895,13 +926,21 @@
         var me=this;
         var originalDate=$scope.fieldEntity[$scope.field.config.name];
         if (originalDate){
-            me.date=new Date($scope.fieldEntity[$scope.field.config.name]*1000);
+             /*format date to be 12h*/
+            var dateForHours=new Date(originalDate*1000);
+            if(dateForHours.getHours()<=6) {
+                me.date=new Date(($scope.fieldEntity[$scope.field.config.name])*1000+3600*12000);
+            }
+            else {
+                me.date=new Date($scope.fieldEntity[$scope.field.config.name]*1000);
+            }
             me.formattedDate=$filter('date')(me.date, "shortDate");
         } else {
             me.date=new Date();
         }
         me.setTime=function(newDate){
-            $scope.fieldEntity[$scope.field.config.name]=newDate.getTime()/1000;
+             /*format date to be 12h*/
+            $scope.fieldEntity[$scope.field.config.name]=newDate.getTime()/1000+3600*12;
             me.formattedDate=$filter('date')(newDate, "shortDate");
             if ($scope.registerFieldEditChanges){
                 $scope.registerFieldEditChanges();
@@ -910,7 +949,6 @@
         };
 
     }]);
-
     module.controller("TimePickerController",["$scope","$element","$filter",function($scope,$element,$filter){
         var me=this;
         var originalDate=$scope.fieldEntity[$scope.field.config.name];
@@ -950,6 +988,25 @@
         );
     }]);
 
+    module.controller("EmbeddedImageController",["$scope","$element",function($scope,$element){
+        var me=this;
+        $scope.previewFile = function () {
+            //var preview = angular.element($element.querySelector('img'));
+            var file    = angular.element($element.querySelector('input[type=file]')).files[0];
+            var reader  = new FileReader();
+            
+            reader.addEventListener("load", function () {
+              //preview.src = reader.result;
+            }, false);
+          
+            $scope.upload = function(file) {
+            if (file) {
+                reader.readAsDataURL(file);
+                console.log(reader.readAsDataURL(file));            }
+              
+            }
+          }
+    }]);
     module.controller("RepeatedFieldController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
         var me=this;
         $scope.fields=[];
@@ -972,6 +1029,7 @@
                 fieldsArray.push(newField);
             }
             $scope.fields=fieldsArray;
+
         };
         me.addField=function(){
             me.fieldIterations=me.fieldIterations+1;
@@ -987,12 +1045,14 @@
             var myValue=angular.copy($scope.fieldEntity[index]);
             $scope.fieldEntity[index-1]=myValue;
             $scope.fieldEntity[index]=otherValue;
+            me.buildFields();
         };
         me.moveDown=function(index){
             var otherValue=angular.copy($scope.fieldEntity[index+1]);
             var myValue=angular.copy($scope.fieldEntity[index]);
             $scope.fieldEntity[index+1]=myValue;
             $scope.fieldEntity[index]=otherValue;
+            me.buildFields();
         };
         me.buildFields();
 
