@@ -3,9 +3,10 @@
 		<div class="row">
 			<div class="col-xs-12">
 				<div ng-controller="BreadcrumbController as breadcrumbCtrl">
-					<ol class="breadcrumb">
-					    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+					<ol class="breadcrumb hidden-xs">
+					    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
 					</ol>
+					<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
 				</div>
 			</div>
 		</div>
@@ -61,7 +62,7 @@
 						<div class="texte">
 								<h3>{{contentDetailCtrl.getLabelByName('intercession')}}</h3>
 						</div>
-						<rubedo-field  class="texte" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 12)=='intercession'"></rubedo-field></em>
+						<rubedo-field  class="texte" style="display:block" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 12)=='intercession'"></rubedo-field></em>
 				</div>
 		</div>
 
