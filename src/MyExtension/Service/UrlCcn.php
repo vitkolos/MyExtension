@@ -114,8 +114,8 @@ class Url extends \Rubedo\Router\Url
             if ($doNotAddSite) {
                 return $pageUrl;
             } else {
-                $siteOfContent =  Manager::getService('Sites')->findById($page['site']);
-                return 'http://' . $siteOfContent['host'] . $pageUrl;
+                $siteOfContent =  Manager::getService('Sites')->getHost($page['site']);
+                return 'http://' . $siteOfContent . $pageUrl;
             }
         } else {
             return '#';
