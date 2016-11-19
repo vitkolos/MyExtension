@@ -81,7 +81,7 @@ class Url extends \Rubedo\Router\Url
         if (!$pageValid) {
             // la page indiquée n'est pas sur le site !
             if ($type == "default") {
-                $pageId = $page['id'];
+                $pageId = $page['id']; //==> c'est la dernière page de la taxo de navigation
                 if (isset($page['maskId'])) {
                     $mask = Manager::getService('Masks')->findById($page['maskId']);
                     if (!isset($mask['mainColumnId']) || empty($mask['mainColumnId'])) {
@@ -114,7 +114,8 @@ class Url extends \Rubedo\Router\Url
             if ($doNotAddSite) {
                 return $pageUrl;
             } else {
-                return 'http://' . $site['host'] . $pageUrl;
+                $siteOfContent =  Manager::getService('Sites')->findById($page['site']);
+                return 'http://' . $siteOfContent['host'] . $pageUrl;
             }
         } else {
             return '#';
