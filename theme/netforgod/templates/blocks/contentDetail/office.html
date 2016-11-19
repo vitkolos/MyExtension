@@ -1,8 +1,8 @@
 <div class="container">
 	<div class="row">
 			<div class="col-xs-12" >
-				<img class="img-responsive" ng-if="fieldEntity['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',height:'500px',mode:'boxed'})}}">
-				<div class="texte">
+				<img class="img-responsive" ng-if="fieldEntity['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',height:'500px',mode:'crop'})}}">
+				<div class="texte" style="margin-top:0">
 					<rubedo-field  ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 				</div>
 				
@@ -23,7 +23,7 @@
 		</div>
 		<div class="row ">
 				<div class="col-xs-12" ng-if="fieldEntity['meditation']">
-						<div class="texte">
+						<div class="texte" style="margin-top:0">
 								<h3>{{contentDetailCtrl.getLabelByName('meditation')}}<br/>
 										{{fieldEntity['titre_meditation']}}
 										<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
