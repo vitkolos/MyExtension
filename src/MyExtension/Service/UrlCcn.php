@@ -79,17 +79,18 @@ class Url extends \Rubedo\Router\Url
             }
         }
         if (!$pageValid) {
-            //throw new APIServiceException("No nav taxo on website", 500);
+            // la page indiquée n'est pas sur le site !
             if ($type == "default") {
                 $pageId = $page['id'];
                 if (isset($page['maskId'])) {
                     $mask = Manager::getService('Masks')->findById($page['maskId']);
-                    throw new APIServiceException("No nav taxo on website".$page["text"], 500);
                     if (!isset($mask['mainColumnId']) || empty($mask['mainColumnId'])) {
                         $pageId = $this->_getDefaultSingleBySiteID($site['id']);
                     }
                     
                 }
+                //récupérer le site
+                $doNotAddSite = false;
             } elseif ($type == "canonical") {
                 $pageId = $this->_getDefaultSingleBySiteID($site['id']);
             } else {
