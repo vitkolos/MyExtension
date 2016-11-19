@@ -44,7 +44,6 @@ class Url extends \Rubedo\Router\Url
     public function displayUrlApi($content, $type = "default", $site, $page, $locale, $defaultPage = null)
     {
         $pageValid = false;
-        
         $doNotAddSite = true;
         
         if ($defaultPage && $type == "default") {
