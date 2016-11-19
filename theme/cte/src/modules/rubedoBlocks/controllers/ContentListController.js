@@ -39,7 +39,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         options.endDate = Math.round( (new Date().getTime() + 2*(3600000*24*365))/1000); //ajouter 2 ans pour la date de fin
         options.endDateFieldName="dateFin";
     }
-    if(config.enableFOContrib&&$scope.rubedo.current.user.rights.canEdit){
+    if(config.enableFOContrib&&$scope.rubedo.current.user&&$scope.rubedo.current.user.rights.canEdit){
         //options.foContributeMode = true;   ENABLE to filter contents by user
         options.useDraftMode=true;
         me.isFOContributeMode=true;
