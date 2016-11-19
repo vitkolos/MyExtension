@@ -84,9 +84,11 @@ class Url extends \Rubedo\Router\Url
                 $pageId = $page['id'];
                 if (isset($page['maskId'])) {
                     $mask = Manager::getService('Masks')->findById($page['maskId']);
+                    throw new APIServiceException("No nav taxo on website".$page["text"], 500);
                     if (!isset($mask['mainColumnId']) || empty($mask['mainColumnId'])) {
                         $pageId = $this->_getDefaultSingleBySiteID($site['id']);
                     }
+                    
                 }
             } elseif ($type == "canonical") {
                 $pageId = $this->_getDefaultSingleBySiteID($site['id']);
