@@ -25,7 +25,7 @@ use RubedoAPI\Exceptions\APIServiceException;
  * Class Url
  * @package RubedoAPI\Services\Router
  */
-class UrlCcn extends \Rubedo\Router\Url
+class Url extends \Rubedo\Router\Url
 {
     
     /**
