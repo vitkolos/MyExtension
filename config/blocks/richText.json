@@ -20,33 +20,6 @@
                             }
                         }
                     ]
-                }
-            ],
-            "avance": [
-                {
-                    "categorie": "Template",
-                    "champs": [
-                        {
-                            "type": "Rubedo.view.ACEField",
-                            "config": {
-                                "fieldLabel": "Custom template",
-                                "name": "customTemplate",
-                                "defaultTemplateUrl": "blocks/richText.html",
-                                "twigMode": false
-
-                            }
-                        },
-                      {
-                        "type": "Ext.form.field.Number",
-                        "config": {
-                          "fieldLabel": "#ext-gen1491#",
-                          "name": "blockMinHeight",
-                          "allowDecimals": false,
-                          "editable": true,
-                          "minValue": 0
-                        }
-                      }
-                    ]
                 },
                 {
                     "categorie": "#ext-gen1063#",
@@ -85,7 +58,35 @@
                             }
                         }
                     ]
-                }                            
+                }
+            ],
+            "avance": [
+                {
+                    "categorie": "Template",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "Custom template",
+                                "name": "customTemplate",
+                                "defaultTemplateUrl": "blocks/richText.html",
+                                "twigMode": false
+
+                            }
+                        },
+                      {
+                        "type": "Ext.form.field.Number",
+                        "config": {
+                          "fieldLabel": "#ext-gen1491#",
+                          "name": "blockMinHeight",
+                          "allowDecimals": false,
+                          "editable": true,
+                          "minValue": 0
+                        }
+                      }
+                    ]
+                }
+                                         
             ]
         },
         "configBloc": {
