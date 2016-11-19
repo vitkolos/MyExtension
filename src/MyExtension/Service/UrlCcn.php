@@ -25,7 +25,7 @@ use RubedoAPI\Exceptions\APIServiceException;
  * Class Url
  * @package RubedoAPI\Services\Router
  */
-class UrlCcn extends \Rubedo\Router\Url
+class Url extends \Rubedo\Router\Url
 {
     
     /**
@@ -75,17 +75,22 @@ class UrlCcn extends \Rubedo\Router\Url
                     $pageValid = true;
                     break;
                 }
+                
             }
         }
         if (!$pageValid) {
+            // la page indiquée n'est pas sur le site !
             if ($type == "default") {
-                $pageId = $page['id'];
+                $pageId = $page['id']; //==> c'est la dernière page de la taxo de navigation
                 if (isset($page['maskId'])) {
                     $mask = Manager::getService('Masks')->findById($page['maskId']);
                     if (!isset($mask['mainColumnId']) || empty($mask['mainColumnId'])) {
                         $pageId = $this->_getDefaultSingleBySiteID($site['id']);
                     }
+                    
                 }
+                //récupérer le site
+                $doNotAddSite = false;
             } elseif ($type == "canonical") {
                 $pageId = $this->_getDefaultSingleBySiteID($site['id']);
             } else {
@@ -109,7 +114,8 @@ class UrlCcn extends \Rubedo\Router\Url
             if ($doNotAddSite) {
                 return $pageUrl;
             } else {
-                return 'http://' . $site['host'] . $pageUrl;
+                $siteOfContent =  Manager::getService('Sites')->getHost($page['site']);
+                return 'http://' . $siteOfContent . $pageUrl;
             }
         } else {
             return '#';

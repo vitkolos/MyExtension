@@ -294,8 +294,7 @@ return array(
             'ContentsCcn' => 'Rubedo\\Collection\\ContentsCcn',
             'HtmlCleaner' => 'Rubedo\\Security\\CcnHtmlPurifier',
             'ShippersCcn' => 'Rubedo\\Collection\\ShippersCcn',
-           'MongoDataImport' => 'Rubedo\\Mongo\\DataImportCcn',
-           'Url' => 'Rubedo\\Router\\UrlCcn',
+           'MongoDataImport' => 'Rubedo\\Mongo\\DataImportCcn'
         )
     ),
     'controllers' => array(
