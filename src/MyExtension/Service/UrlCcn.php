@@ -79,7 +79,7 @@ class Url extends \Rubedo\Router\Url
             }
         }
         if (!$pageValid) {
-            throw new APIServiceException("No nav taxo on website", 500);
+            //throw new APIServiceException("No nav taxo on website", 500);
             if ($type == "default") {
                 $pageId = $page['id'];
                 if (isset($page['maskId'])) {
