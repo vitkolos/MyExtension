@@ -21,10 +21,15 @@ CKEDITOR.stylesSet.add( 'default', [
 		element: 'img',
 		attributes: { 'style': 'margin:0 auto' }
     },
-{ name: 'button', element: 'div', attributes: { 'class': 'button'} },
-{ name:'titre', element:'div', attributes:{'class':'panel-heading actus'}}
+{ name:'Titre', element:'h3', attributes:{'class':'titre-block'}}
 
 ] );
 
 
+CKEDITOR.plugins.addExternal( 'widget', '/theme/cte/ckeditor/plugins/widget/','plugin.js' );
+CKEDITOR.plugins.addExternal( 'lineutils', '/theme/cte/ckeditor/plugins/lineutils/','plugin.js' );
 CKEDITOR.plugins.addExternal( 'youtube', '/theme/goodnews/ckeditor/plugins/youtube/','plugin.js' );
+CKEDITOR.plugins.addExternal( 'bootstrapCollapse', '/theme/cte/ckeditor/plugins/bootstrapCollapse/','plugin.js' );
+CKEDITOR.dtd.$removeEmpty['p']= false;
+CKEDITOR.dtd.$removeEmpty['i']= false;
+CKEDITOR.dtd.$removeEmpty['span']= false;

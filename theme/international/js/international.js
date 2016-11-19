@@ -16,12 +16,7 @@ blocksConfig.bg_image={
            "template": "/templates/blocks/bg_image.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
 };
-blocksConfig.footer={
-           "template": "/templates/blocks/footer.html"
-};
-blocksConfig.footer_links={
-           "template": "/templates/blocks/footer_links.html"
-};
+
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
             "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js','//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js'],
@@ -32,7 +27,10 @@ blocksConfig.redirect={
            "template": "/templates/blocks/redirect.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/redirectController.js"]
 };
-
+blocksConfig.carrousel2={
+           "template": "/templates/blocks/carrousel_fullWidth.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
+};
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
@@ -49,10 +47,13 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 					filtered.push(row);
 					contentDisplay = true;
 				    }
-				    //si la ligne a un bloc de dŽtail en premier, on affiche seulement le bloc dŽtail dans la ligne
+				    //si la ligne a un bloc de détail en premier, on affiche seulement le bloc dŽtail dans la ligne
 				    else if (row.columns[0].blocks[0].bType=="contentDetail" && !contentDisplay) {
 					row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
-					filtered.push(row);
+					filtered.push(row); 	
+				    }
+				    else if (row.columns[0].rows && row.columns[0].rows.length>0) {
+						filtered.push(row);
 				    }
 				    // sinon on affiche tout
 				    else if(!contentDisplay) {filtered.push(row);}
@@ -62,76 +63,6 @@ angular.module('rubedo').filter('ligneNonVide', function () {
 		    
            };
   });
-angular.module('rubedoBlocks').filter('tags', function() {
-    return function(contents, tag) {
-           if (tag=="") {
-                      return contents;
-           }
-           else {
-                      var contentList=[];
-                      angular.forEach(contents, function(content){
-                         if(content.taxonomy['5524db6945205e627a8d8c4e'] && (content.taxonomy['5524db6945205e627a8d8c4e']).indexOf(tag) != -1){
-                                    contentList.push(content);
-                         }
-                      })
-                      return contentList;
-           }
-    };
-});
-
-/*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
-angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
-    return function(startDate, endDate, rangeFormat){
-	var format = rangeFormat || 'long';
-	var formatOfDate =  'd MMM yyyy';
-	var start = new Date(startDate*1000);
-	var end = new Date(endDate*1000);
-	if (start.getFullYear() != end.getFullYear()) {
-	    formatOfDate = 'd MMM yyyy';
-	}
-	else if (start.getMonth() != end.getMonth()) {
-	    formatOfDate = 'd MMM';
-	}
-	else  {
-	    formatOfDate = 'd';
-	}
-	if (format == 'short') {
-	    formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
-	}
-	else {
-	    formattedDate= "du "+$filter('date')(start,formatOfDate) + " au "+$filter('date')(end,'d MMMM yyyy');	    
-	}
-	return formattedDate;
-    }
-  });
-
-
-angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
-        var me=this;
-        var mediaId=$scope.audioFileId;
-         me.displayMedia=function(){
-            if (me.media&&me.media.originalFileId){
-
-                        me.jwSettings={
-                            primary:"flash",
-                            width:"100%",
-                            height:40,
-                            file:me.media.url,
-                        };
-                        setTimeout(function(){jwplayer("audio"+me.media.originalFileId).setup(me.jwSettings);}, 200);
-            }
-        };
-        if (mediaId){
-            RubedoMediaService.getMediaById(mediaId).then(
-                function(response){
-                    if (response.data.success){
-                        me.media=response.data.media;
-                        me.displayMedia();
-                    }
-                }
-            );
-        }
-    }]);
 
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {
@@ -170,6 +101,39 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
 });
 
 
+
+/*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
+angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
+    return function(startDate, endDate, rangeFormat,from,to){
+	var format = rangeFormat || 'long';
+	var formatOfDate =  'd MMM yyyy';
+	var isSameDay = false;
+	var start = new Date(startDate*1000);
+	var end = new Date(endDate*1000);
+	if (start.getFullYear() != end.getFullYear()) {
+	    formatOfDate = 'd MMM yyyy';
+	}
+	else if (start.getMonth() != end.getMonth()) {
+	    formatOfDate = 'd MMM';
+	}
+	else  if(start.getDate() == end.getDate()){
+	    formatOfDate = 'd';
+	    isSameDay=true;
+	}
+	else {
+	    formatOfDate = 'd';
+	}
+	if (format == 'short') {
+		if(isSameDay) formattedDate= $filter('date')(end,'d MMM yyyy');	  
+	    	else formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
+	}
+	else {
+           if(isSameDay) formattedDate= $filter('date')(end,'d MMM yyyy');	  
+	   else formattedDate= from +" "+$filter('date')(start,formatOfDate) + " "+to+" "+$filter('date')(end,'d MMMM yyyy');	    
+	}
+	return formattedDate;
+    }
+  });
 
 
 

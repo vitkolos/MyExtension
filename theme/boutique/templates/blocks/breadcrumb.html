@@ -1,0 +1,9 @@
+<div ng-controller="BreadcrumbController as breadcrumbCtrl"style="background-color: #f5f5f5">
+    <ol class="container breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
+        <li property="itemListElement" typeof="ListItem" ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb track by $index" ng-if="!$first">
+            <a ng-if="page.url" ng-href="{{page.url}}" property="item" typeof="WebPage"><span property="name">{{page.title}}</span></a>
+            <span ng-if="!page.url">{{page.title}}</span>
+            <meta property="position" ng-attr-content="{{$index+1}}">
+        </li>
+    </ol>
+</div>

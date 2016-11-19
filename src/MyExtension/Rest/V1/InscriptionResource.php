@@ -136,7 +136,7 @@ protected function sendInscriptionMail($inscription,$lang){
     //tutoyement pour ados ou jeunes ou personnes connues
     $tutoyer = 0;
     $tuOuVous="vous";
-    if($inscription['public_type'] == 'adolescent' || $inscription['public_type'] == 'jeune-adulte' || $inscription['personneConnue']) {
+    if($inscription['public_type'] == 'adolescent' || $inscription['public_type'] == 'jeune-adulte' ) {
         $tutoyer = 1;
         $tuOuVous="tu";
     }

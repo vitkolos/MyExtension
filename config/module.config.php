@@ -238,6 +238,9 @@ return array(
                      '../js/lazy-image.js',
                     '/js/boutique.js'
                 ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
            ),
            'international' => array(
                 'label' => 'Cana International',
@@ -249,6 +252,9 @@ return array(
                 'js' => array(
                     '../js/lazy-image.js',
                     '/js/international.js'
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
            ),
            'forumjeunespros' => array(
@@ -284,10 +290,12 @@ return array(
     'service_manager' => array(
         'invokables' => array(
             'PayboxPayment'=>'Rubedo\\Payment\\PayboxPayment',
+            //'PaypalPayment'=>'Rubedo\\Payment\\CcnPaypalPayment',
             'ContentsCcn' => 'Rubedo\\Collection\\ContentsCcn',
             'HtmlCleaner' => 'Rubedo\\Security\\CcnHtmlPurifier',
             'ShippersCcn' => 'Rubedo\\Collection\\ShippersCcn',
-           'MongoDataImport' => 'Rubedo\\Mongo\\DataImportCcn'
+           'MongoDataImport' => 'Rubedo\\Mongo\\DataImportCcn',
+           'Url' => 'Rubedo\\Router\\UrlCcn',
         )
     ),
     'controllers' => array(

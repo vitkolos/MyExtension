@@ -53,7 +53,13 @@
                 <input type="hidden" name="PBX_ANNULE" value="{{parametres.urlRetourEchec}}">
                 <input type="hidden" name="PBX_REPONDRE_A" value="{{parametres.urlCallback}}">
                 <input type="hidden" name="PBX_HMAC" value="{{parametres.empreinteHasheeHex}}">
-                <input type="submit" class="btn-default" style="    padding: 10px 20px;    font-size: x-large;    margin-bottom: 30px;" value="Payer">
+                <input type="submit" class="btn-default" style="    padding: 12px 24px;    font-size: x-large;    margin-bottom: 30px;" value="Payer la commande">
+            </form>
+            <form ng-if="orderDetailCtrl.showPaypalForm" id="paypalPayment" name="paypalPayment"  method="POST" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
+                <!--<input type="hidden" name="cmd" value="_cart">-->
+                        <input type="hidden" name="{{name}}" value="{{value}}" ng-repeat="(name, value) in parametres">
+                        
+                <input type="submit" class="btn-default" style="padding: 12px 24px; margin-bottom: 30px;" value="Payer la commande">
             </form>
 
         </div>
@@ -101,7 +107,7 @@
                     <div class="panel-body">
                         <address>
                             <strong>{{ orderDetailCtrl.order.billingAddress.company }}</strong><br />
-                            <strong>{{ orderDetailCtrl.order.billingAddress.attention }}</strong><br />
+                            <span ng-if=" orderDetailCtrl.order.billingAddress.surname">{{  orderDetailCtrl.order.billingAddress.surname }} </span><strong ng-if="orderDetailCtrl.order.billingAddress.name">{{ orderDetailCtrl.order.billingAddress.name }}<br /></strong>
                             {{ orderDetailCtrl.order.billingAddress.address1 }}<br />
                             {{ orderDetailCtrl.order.billingAddress.address2 }}<br />
                             {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
@@ -119,7 +125,7 @@
                     <div class="panel-body">
                         <address>
                             <strong>{{ orderDetailCtrl.order.shippingAddress.company }}</strong><br />
-                            <strong>{{ orderDetailCtrl.order.shippingAddress.attention }}</strong><br />
+                            <span ng-if=" orderDetailCtrl.order.shippingAddress.surname">{{  orderDetailCtrl.order.shippingAddress.surname }} </span><strong ng-if="orderDetailCtrl.order.shippingAddress.name">{{ orderDetailCtrl.order.shippingAddress.name }}<br /></strong>
                             {{ orderDetailCtrl.order.shippingAddress.address1 }}<br />
                             {{ orderDetailCtrl.order.shippingAddress.address2 }}<br />
                             {{ orderDetailCtrl.order.shippingAddress.postCode }} {{ orderDetailCtrl.order.shippingAddress.city }}<br />

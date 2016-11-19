@@ -97,6 +97,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             pageId: $scope.rubedo.current.page.id,
             includeTermLabels:true
         };
+        if ($location.search()["preview_draft"] && $location.search()["preview"] && $scope.rubedo.current.user.rights.canEdit) {
+            options.useDraftMode = true;
+        }
         RubedoContentsService.getContentById(contentId, options).then(
             function(response){
                 if(response.data.success){
@@ -195,7 +198,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.isInscription=false;
                         }
 
-                        else if (me.content.fields.dateDebut*1000 < today.getTime()) {
+                        else if (me.content.fields.dateDebut && me.content.fields.dateDebut*1000 < today.getTime()) {
                             me.propDate = "passee";
                         }
                         else me.propDate="ouverte";

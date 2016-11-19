@@ -84,6 +84,9 @@
                                 <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
                                         <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
                                 </a>
+								<a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ contentListCtrl.editorPageUrl+'/'+content.id+'?preview=true&preview_draft=true' }}">
+									{{rubedo.translate('Block.ContentList.Label.Preview','Preview detail')}}
+								</a>
                             </div>
                         </a>
 

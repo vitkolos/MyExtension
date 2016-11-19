@@ -28,9 +28,9 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
         orderByTitle: config.orderByTitle,
         'fields[]' : ["text","summary",me.imageField]
     };
-    if(config.singlePage){
-        options.detailPageId = config.singlePage;
-    }
+    /*if(config.singlePage){*/
+        options.detailPageId = pageId;
+    /*}*/
     if(config.enableFOContrib&&$scope.rubedo.current.user){
         options.foContributeMode = true;
         me.isFOContributeMode=true;

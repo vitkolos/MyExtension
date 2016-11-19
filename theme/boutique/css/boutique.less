@@ -26,7 +26,6 @@ a{
 
 a:hover, a:focus {
   color: @txt_dark;
-
 }
 html,body {
   font-family: 'Merriweather', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -39,10 +38,8 @@ html,body {
   font-family: 'Montserrat', sans-serif;
 }
 //text, p,a,h1,h2,h2,h4,h5,h6{text-align: center}
-.test{
-  color: green !important;
-  background-color: #990000 !important;
-}
+.bg-white{background-color: white}
+
                                     //-------------------//
                                                 //surcharge bootstrap//
                                                 //-------------------//
@@ -54,6 +51,10 @@ html,body {
 .col-sm-12{
   padding-right: 0;
   padding-left: 0;
+  width:100%;
+}
+@media (max-width: 400px) {
+  .col-xs-6{width:100% !important }
 }
 .panel-primary, .panel-default{
   .btn-primary{
@@ -250,6 +251,7 @@ html,body {
 .dropdown-menu.container {
   padding: 24px;
 }
+.dropdown-menu.user{min-width:180px; left:auto}
 .capital{.montserrat; text-transform: uppercase}
 
                                                 //-------------------//
@@ -274,6 +276,7 @@ html,body {
     &:hover{
       transition: all .2s ease 0s;
       background-color: @beigeCCN;
+      display: inline-table;
     }
     &:active{box-shadow: inset 0 3px 5px rgba(0,0,0,.125);}
   }
@@ -667,5 +670,9 @@ input[type=checkbox]:checked + label:before {
       line-height: 19px;
       color:@rouge;
 }
+////RECOMMENDED CONTENTS////////
+
+.bg-degrade{background-image:linear-gradient(white,@beigeCCN);}
+
 
 

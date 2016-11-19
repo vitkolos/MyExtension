@@ -22,7 +22,7 @@
                     <div class="panel-body">
                         <div ng-if="rubedo.current.user" class="row">
                             <div class="col-md-12 text-center">
-                                <p>{{rubedo.translate('Blocks.Checkout.Step1.CurrentlyLogged','Currently logged in as %user%',['%user%'],[rubedo.current.user.name])}}</p>
+                                <p>{{rubedo.translate('Blocks.Checkout.Step1.CurrentlyLogged','Currently logged in as %user%',['%user%'],[rubedo.current.user.fields.surname+" "+rubedo.current.user.name])}}</p>
                                 <button ng-click="rubedo.logOut()" class="btn btn-primary">{{ rubedo.translate('Blocks.Checkout.Button.LogOut') }}</button>
                                 <button data-ng-click="checkoutCtrl.setCurrentStage(2)" class="btn btn-primary" >{{ rubedo.translate('Blocks.Checkout.Button.Continue') }}</button>
                             </div>
@@ -69,10 +69,10 @@
                                             <label for="{{fieldIdPrefix+'_address_company'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
                                             <input type="text" class="form-control"  id="{{fieldIdPrefix+'_address_company'}}" ng-model="fieldEntity.address.company">
                                         </div>
-                                    <div class="form-group">
+                                    <!--<div class="form-group">
                                         <label for="{{fieldIdPrefix+'_address_attention'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Attention')}} </label>
                                         <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_attention'}}" ng-model="fieldEntity.address.attention">
-                                    </div>
+                                    </div>-->
                                     <div class="form-group">
                                         <label for="{{fieldIdPrefix+'_address_address1'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
                                         <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_address1'}}" ng-model="fieldEntity.address.address1" required>
@@ -112,18 +112,15 @@
                                             </label>
                                         </div>
                                     </div>-->
+
                                     <div class="form-group" ng-if="!rubedo.current.user">
                                         <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForBilling">
-                                                {{rubedo.translate('Blocks.Checkout.Label.Address.SameBilling')}}
-                                            </label>
+                                            <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForBilling" name="SameBilling" id="SameBilling">
+                                            <label for="SameBilling"> {{rubedo.translate('Blocks.Checkout.Label.Address.SameBilling')}}</label>
                                         </div>
                                         <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForShipping">
-                                                {{rubedo.translate('Blocks.Checkout.Label.Address.SameShipping')}}
-                                            </label>
+                                            <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForShipping" id="SameShipping" name="SameShipping">
+                                            <label for="SameShipping">{{rubedo.translate('Blocks.Checkout.Label.Address.SameShipping')}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group text-center" ng-if="!rubedo.current.user">
@@ -361,7 +358,7 @@
                                     <div class="panel-body">
                                         <address>
                                             <strong ng-if="fieldEntity.billingAddress.company && fieldEntity.billingAddress.company!='' ">{{ fieldEntity.billingAddress.company }}</strong><br />
-                                            <strong ng-if="fieldEntity.billingAddress.attention && fieldEntity.billingAddress.attention != '' ">{{ fieldEntity.billingAddress.attention }}</strong><br />
+                                            <span ng-if="fieldEntity.billingAddress.surname">{{ fieldEntity.billingAddress.surname }} </span><strong ng-if="fieldEntity.billingAddress.name">{{ fieldEntity.billingAddress.name }}<br /></strong>
                                             {{ fieldEntity.billingAddress.address1 }}<br />
                                             {{ fieldEntity.billingAddress.address2 }}<br />
                                             {{ fieldEntity.billingAddress.postCode }} {{ fieldEntity.billingAddress.city }}<br />
@@ -377,8 +374,8 @@
                                     </div>
                                     <div class="panel-body">
                                         <address>
-                                            <strong ng-if="fieldEntity.shippingAddress.company && fieldEntity.billingAddress.company!='' ">{{ fieldEntity.shippingAddress.company }}</strong><br />
-                                            <strong ng-if="fieldEntity.shippingAddress.attention && fieldEntity.billingAddress.attention != '' ">{{ fieldEntity.shippingAddress.attention }}</strong><br />
+                                            <strong ng-if="fieldEntity.shippingAddress.company && fieldEntity.shippingAddress.company!='' ">{{ fieldEntity.shippingAddress.company }}<br /></strong>
+                                            <span ng-if="fieldEntity.shippingAddress.surname">{{ fieldEntity.shippingAddress.surname }} </span><strong ng-if="fieldEntity.shippingAddress.name">{{ fieldEntity.shippingAddress.name }}<br /></strong>
                                             {{ fieldEntity.shippingAddress.address1 }}<br />
                                             {{ fieldEntity.shippingAddress.address2 }}<br />
                                             {{ fieldEntity.shippingAddress.postCode }} {{ fieldEntity.shippingAddress.city }}<br />
