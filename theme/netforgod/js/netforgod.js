@@ -13,7 +13,7 @@ blocksConfig.navigation = {
 };
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
-            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
+            "externalDependencies":["//s7.addthis.com/js/300/addthis_widget.js","http://kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js","http://kendo.cdn.telerik.com/2015.2.805/js/pako_deflate.min.js"],
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 blocksConfig.carrousel2={

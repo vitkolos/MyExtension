@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoContentTypesService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope",
-                                                                          function($scope,RubedoContentsService, RubedoContentTypesService,RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoContentTypesService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope","$timeout",
+                                                                          function($scope,RubedoContentsService, RubedoContentTypesService,RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope,$timeout){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -498,6 +498,76 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
+    
+    
+    
+    me.generatePdf = function(){
+
+        var title = me.content.title +".pdf";
+        kendo.pdf.defineFont({
+            "Merriweather"             : "theme/cte/fonts/merriweather.ttf" // this is a URL
+        })
+        $timeout(function(){
+                        
+            kendo.drawing.drawDOM(angular.element(".printZone"))
+                .then(function(group) {
+                    // Chaining the promise via then
+                    group.options.set("pdf", {
+                        margin: {
+                            left   : "20mm",
+                            top    : "40mm",
+                            right  : "20mm",
+                            bottom : "40mm"
+                        }
+                    });
+                    kendo.drawing.pdf.saveAs(group,title);
+                });/*
+                                kendo.drawing.pdf.toBlob(group, function(blob){
+                                    var file = new File([blob], me.billTitle+".pdf", {type: "application/pdf", lastModified: Date.now()});
+                                    // you can now upload it to a server
+                                    // this form simulates an <input type="file" name="pdfFile" />
+                                    var uploadOptions = {
+                                        typeId:"5811cc252456404b018bc74c",
+                                        target:"5693b19bc445ecba018b4cb7",
+                                        fields:{title:me.billTitle+".pdf"}
+                                    }
+                                    var form = new FormData();
+                                    form.append("file", file);
+
+                                    $http.post("/api/v1/media", form, {
+                                        transformRequest: angular.identity,
+                                        params:uploadOptions,
+                                        headers: {'Content-Type': undefined}
+                                    }).then(function(response){
+                                        me.creatingBill = false;
+                                        me.order.billDocument = response.data.media.id;
+                                        RubedoMediaService.getMediaById(me.order.billDocument,{}).then(
+                                            function(mediaResponse){
+                                                if (mediaResponse.data.success){
+                                                    me.billDocumentUrl=mediaResponse.data.media.url;
+                                                    RubedoOrdersService.updateOrder(me.order).then(
+                                                        function(response){
+                                                            if (response.data.success){
+                                                                console.log(response.data.order);
+                                                                }
+                                                        });
+                                                }
+                                            }
+                                        );
+                                    });
+                                });
+                            })*/
+                            
+                       
+
+                    },500);
+
+            
+        
+
+        
+    }
+
 }]);
 
 

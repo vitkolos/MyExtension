@@ -21,28 +21,32 @@
 
 			</div>		
 		</div>
-		<div class="row ">
-				<div class="col-xs-12" ng-if="fieldEntity['meditation']">
-						<div class="texte" style="margin-top:0">
-								<h3>{{contentDetailCtrl.getLabelByName('meditation')}}<br/>
-										{{fieldEntity['titre_meditation']}}
-										<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
-								</h3>
-								<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em>
-								<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field>
-						</div>
-				</div>
+		<div class="printZone">
+			<div class="row ">
+					<div class="col-xs-12" ng-if="fieldEntity['meditation']">
+							<div class="texte" style="margin-top:0">
+									<h3>{{contentDetailCtrl.getLabelByName('meditation')}}<br/>
+											{{fieldEntity['titre_meditation']}}
+											<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
+									</h3>
+									<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em>
+									<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field>
+							</div>
+					</div>
+			</div>
+			<div class="row">
+					<div class="col-xs-12" ng-if="fieldEntity['intercession']">
+							<div class="texte">
+									<h3>{{contentDetailCtrl.getLabelByName('intercession')}}</h3>
+							</div>
+							<rubedo-field  class="texte" style="display:block" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 12)=='intercession'"></rubedo-field></em>
+					</div>
+			</div>
 		</div>
 		<div class="row">
-				<div class="col-xs-12" ng-if="fieldEntity['intercession']">
-						<div class="texte">
-								<h3>{{contentDetailCtrl.getLabelByName('intercession')}}</h3>
-						</div>
-						<rubedo-field  class="texte" style="display:block" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 12)=='intercession'"></rubedo-field></em>
-				</div>
+			<button ng-click="contentDetailCtrl.generatePdf()">Imprimer</button>
 		</div>
 
-		<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 9)=='linkfield' "></rubedo-field>
 		
 </div>
 		
