@@ -87,7 +87,7 @@ class CoreAdapter extends AbstractAdapter
         if ($valid) {
             $this->_authenticateResultInfo['code'] = Result::SUCCESS;
             $this->_authenticateResultInfo['messages'][] = 'Authentication successful.';
-			var_dump("Authentication");
+			throw new APIAuthException('Authentication successful', 500);
             $this->_authenticateResultInfo['identity'] = $user;
             return $this->_authenticateCreateAuthResult();
         } else {
