@@ -62,75 +62,72 @@ class CoreAdapterCcn extends AbstractAdapter
         }
         $user = array_shift($resultIdentities);
 		
+		/////CHECK IN LDAP
 		
-		
-		$curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, "http://account.ccn/user_check_ext.php");
+
+        // prepare request
         $payload = array(
             "login" => $user['login'],
-            "passwd" =>$user['password']
+            "passwd" =>$this->_password
         );
         
-        /*get auth code*/
-        
+        //get LDAP infos
         $this->_dataService = Manager::getService('MongoDataAccess');
         $this->_dataService->init("Contents");
-        $content = $this->_dataService->findById("583322539b1bdec41c00023f");
+        $content = $this->_dataService->findById("58335667245640064b8b9093");
         if (empty($content)) {
             throw new APIEntityException('Content not found', 404);
         }
-        $payload['extpass'] = $content['live']['fields']['site'];
-		var_dump($payload['extpass']);
-    
-        /*$payload = Json::encode($payload);
-		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-            'Content-type: application/json',
-            'Content-Length: ' . strlen($payload)
-        ));*/
-		$fields_string="";
-		foreach($payload as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
-		rtrim($fields_string, '&');
-        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
-        //curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        $payload['extpass'] = $content['live']['fields']['value'];
+        $postURL = $content['live']['fields']['value2'];
+ 		$curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $postURL);
+		curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+		curl_setopt($curl, CURLOPT_HTTPHEADER, array('Expect:'));
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // On dev server only!
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
         $result = curl_exec($curl);
         curl_close($curl);
-        //$result = Json::decode($result, Json::TYPE_ARRAY);
-		var_dump($result);
-		
-        $salt = $user['salt'];
-        $targetHash = $user['password'];
-        //unset($user['password']);
+        $isLDAPValid = explode(";",$result)[0];
+        if($isLDAPValid && $isLDAPValid=="True") {
+            // l'utilisateur existe et a le bon mot de passe => valider la connexion
+            $valid = true;
+            unset($user['password']);
+        }
+        else{
+            // utilisateur non identifié dans LDAP ou utilisateur LDAP avec mauvais mot de passe=> suivre l'identification habituelle dans RUBEDO
+            // ainsi les mots de passe initialisés dans RUBEDO restent valides
+            $salt = $user['salt'];
+            $targetHash = $user['password'];
+            unset($user['password']);
+            $valid = $hashService->checkPassword($targetHash, $this->_password, $salt);
+            $currentTime = Manager::getService('CurrentTime')->getCurrentTime();
+            if ($valid && isset($user['startValidity']) && !empty($user['startValidity'])) {
+                $valid = $valid && ($user['startValidity'] <= $currentTime);
+                if (!$valid) {
+                    $this->_authenticateResultInfo['messages'][] = 'User account is not yet active';
+                }
+            }
+            if ($valid && isset($user['endValidity']) && !empty($user['endValidity'])) {
+                $valid = $valid && ($user['endValidity'] > $currentTime);
+                if (!$valid) {
+                    $this->_authenticateResultInfo['messages'][] = 'User account is no longer active';
+                }
+            }
+            if ($valid && isset($user['status']) && !empty($user['status'])) {
+                $valid = $valid && ($user['status'] == "approved");
+                if (!$valid) {
+                    $this->_authenticateResultInfo['messages'][] = 'User account has not been activated';
+                }
+            }
+        }
         
-        //$valid = $hashService->checkPassword($targetHash, $this->_password, $salt);
-        $valid = 1;
-        /*
-        $currentTime = Manager::getService('CurrentTime')->getCurrentTime();
-        if ($valid && isset($user['startValidity']) && !empty($user['startValidity'])) {
-            $valid = $valid && ($user['startValidity'] <= $currentTime);
-            if (!$valid) {
-                $this->_authenticateResultInfo['messages'][] = 'User account is not yet active';
-            }
-        }
-        if ($valid && isset($user['endValidity']) && !empty($user['endValidity'])) {
-            $valid = $valid && ($user['endValidity'] > $currentTime);
-            if (!$valid) {
-                $this->_authenticateResultInfo['messages'][] = 'User account is no longer active';
-            }
-        }
-        if ($valid && isset($user['status']) && !empty($user['status'])) {
-            $valid = $valid && ($user['status'] == "approved");
-            if (!$valid) {
-                $this->_authenticateResultInfo['messages'][] = 'User account has not been activated';
-            }
-        }
-        */
 		
         if ($valid) {
             $this->_authenticateResultInfo['code'] = Result::SUCCESS;
-            //$this->_authenticateResultInfo['messages'][] = 'Authentication successful.';
-            $this->_authenticateResultInfo['messages'] = array($result);
+            $this->_authenticateResultInfo['messages'][] = 'Authentication successful.';
             $this->_authenticateResultInfo['identity'] = $user;
             return $this->_authenticateCreateAuthResult();
         } else {
