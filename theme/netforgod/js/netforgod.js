@@ -186,7 +186,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                       addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
                                  url: contentUrl,
                                  title : attrs.title,
-                                 description : ''        
+                                 description : attrs.summary     
                       });
 		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
                         $window.addthis.layers.refresh();
