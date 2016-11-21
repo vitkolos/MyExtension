@@ -48,6 +48,7 @@ class Authentication extends AuthenticationService
             ));
             throw new APIAuthException('Bad credentials', 401);
         }
+		var_dump($result);
 		throw new APIAuthException($result->getMessages(), 500);
         Events::getEventManager()->trigger(self::SUCCESS);
         $this->getCurrentUserAPIService()->getToken();
