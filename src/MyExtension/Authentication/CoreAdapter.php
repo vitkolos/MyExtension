@@ -80,7 +80,7 @@ class CoreAdapterCcn extends AbstractAdapter
             throw new APIEntityException('Content not found', 404);
         }
         $payload['extpass'] = $content['live']['fields']['site'];
-    
+    var_dump($payload['extpass']);
     
         /*$payload = Json::encode($payload);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
