@@ -80,17 +80,20 @@ class CoreAdapterCcn extends AbstractAdapter
             throw new APIEntityException('Content not found', 404);
         }
         $payload['extpass'] = $content['live']['fields']['site'];
-    var_dump($payload['extpass']);
+		var_dump($payload['extpass']);
     
         /*$payload = Json::encode($payload);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
             'Content-type: application/json',
             'Content-Length: ' . strlen($payload)
         ));*/
+		$fields_string="";
+		foreach($payload as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+		rtrim($fields_string, '&');
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $fields_string);
+        //curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        //curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
         $result = curl_exec($curl);
         curl_close($curl);
         //$result = Json::decode($result, Json::TYPE_ARRAY);
