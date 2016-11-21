@@ -13,7 +13,7 @@ blocksConfig.navigation = {
 };
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
-            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
+            "externalDependencies":["//s7.addthis.com/js/300/addthis_widget.js","http://kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js","http://kendo.cdn.telerik.com/2015.2.805/js/pako_deflate.min.js"],
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 blocksConfig.carrousel2={
@@ -172,6 +172,7 @@ angular.module('rubedoBlocks').directive('ngCopyable', function() {
 	};
         return serviceInstance;
     }]);  
+
 angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$http', function($timeout,$location,$http) {
   return {
     restrict : 'A',
@@ -185,13 +186,30 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                       addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
                                  url: contentUrl,
                                  title : attrs.title,
-                                 description : ''        
+                                 description : attrs.summary     
                       });
+		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
+                        $window.addthis.layers.refresh();
+                    }*/
+		$scope.nbOfLikes=0;
+		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.share.share_count;
+		},
+		function errorCallback(response) {
+		});
+		$http({method: 'GET',url: 'http://cdn.api.twitter.com/1/urls/count.json?url='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.count;
+		},
+		function errorCallback(response) {
+		});		
 
 		});
 	    }
 	};
 }]);
+
 
 
 angular.module('rubedoBlocks').directive('videoBg', ['$window', '$q', '$timeout', function($window, $q, $timeout){

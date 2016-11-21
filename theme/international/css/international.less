@@ -194,7 +194,7 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 
 .center-cols{text-align: center;}
 @media screen and (min-width: @min_sm) {.center-cols{display:flex}}
-.center-cols>div{display: inline-block}
+.center-cols>div{display: inline-block; float: none !important; margin: 0 auto}
 
 
 
@@ -333,12 +333,15 @@ header.content{
     text-align: center;
     background-color: @beigeCCN;
 }
-header.content.parallax{background-attachment: fixed;}
+header.content.parallax{
+  background-attachment: fixed;
+  h1{text-transform: none}
+}
 header.content.no-filter,{box-shadow: none;}
  .no-filter header.content{box-shadow:inset 0 0 0 1000px rgba(84,84,84,.1);}
 header.content>div{line-height: normal;display: inline-block;text-align:center; vertical-align: middle;}
 @media screen and (min-width: @min_sm) {
-    header.content{line-height: 600px; height:600px}
+    header.content{line-height: 400px; height:400px}
     header.content>div{text-align: left; vertical-align: bottom; padding-bottom: 24px}
 }
 header.content.prop>div{text-align: center; vertical-align: middle; padding-bottom: 0}
@@ -377,8 +380,10 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   .contact h3{
 	font-style: italic;
   }
-  .contact>div+div{
-	border-left: @txt_light 2px solid
+  @media  screen and(min-width:@min_sm) {
+	.contact>div+div{
+	  border-left: @txt_light 2px solid
+	}
   }
   .contact>div{padding-left:36px}
   
