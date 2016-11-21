@@ -387,13 +387,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
-                    $rootScope.$broadcast("ClickStreamEvent",{csEvent:"contentDetailView",csEventArgs:{
-                        contentId:me.content.id,
-                        siteId:options.pageId,
-                        pageId:options.siteId,
-                        typeId:me.content.typeId,
-                        taxonomyTerms:allContentTerms
-                    }});
+                    if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
+                        $rootScope.$broadcast("ClickStreamEvent",{csEvent:me.content.clickStreamEvent});
+                    }
                 }
             }
         );
@@ -503,7 +499,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     me.generatePdf = function(){
 
-        var text = me.content.title +".pdf";
+        var title = me.content.text +".pdf";
         kendo.pdf.defineFont({
             "Roboto"             : "theme/netforgod/fonts/Roboto-Regular.ttf" // this is a URL
         })
