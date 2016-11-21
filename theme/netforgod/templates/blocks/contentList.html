@@ -25,7 +25,7 @@
                 <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index">
                     <div  class="filmList home" ng-class="contentListCtrl.columns" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                         <a ng-href="{{ content.detailPageUrl }}">
-                            <img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'250px',mode:'boxed'}) }}">
+                            <img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'250px',mode:'crop'}) }}">
                             <h4>{{content.fields.text}}</h4>
                             <p ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">{{content.fields.summary}}</p>
                         </a>
