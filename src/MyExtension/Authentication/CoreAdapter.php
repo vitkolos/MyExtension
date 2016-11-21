@@ -127,7 +127,7 @@ class CoreAdapterCcn extends AbstractAdapter
         if ($valid) {
             $this->_authenticateResultInfo['code'] = Result::SUCCESS;
             //$this->_authenticateResultInfo['messages'][] = 'Authentication successful.';
-            $this->_authenticateResultInfo['messages'] = $result;
+            $this->_authenticateResultInfo['messages'] = array($result);
             $this->_authenticateResultInfo['identity'] = $user;
             return $this->_authenticateCreateAuthResult();
         } else {

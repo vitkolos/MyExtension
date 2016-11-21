@@ -22,6 +22,7 @@ use Rubedo\User\Authentication\AuthenticationService;
 use RubedoAPI\Exceptions\APIAuthException;	
 use RubedoAPI\Exceptions\APIEntityException;
 use RubedoAPI\Traits\LazyServiceManager;
+
 /**
  * Class Authentication
  * @package RubedoAPI\Services\Security
