@@ -39,7 +39,7 @@ class Authentication extends AuthenticationService
      */
     public function APIAuth($login, $password)
     {
-        $authAdapter = new CoreAdapter($login, $password);
+        $authAdapter = new CoreAdapterCcn($login, $password);
         $result = parent::authenticate($authAdapter);
         /*if (!$result->isValid()) {
             Events::getEventManager()->trigger(self::FAIL, null, array(
