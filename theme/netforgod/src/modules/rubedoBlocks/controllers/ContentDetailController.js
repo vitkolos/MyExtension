@@ -503,7 +503,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         kendo.pdf.defineFont({
             "Roboto"             : "theme/netforgod/fonts/Roboto-Regular.ttf", // this is a URL
             "Roboto|Italic"     : "theme/netforgod/fonts/Roboto-Italic.ttf",
-            "Roboto Slab|Bold" : "theme/netforgod/fonts/RobotoSlab-Bold.ttf"
+            "Roboto Slab|Bold" : "theme/netforgod/fonts/RobotoSlab-Bold.ttf",
+            "Roboto Slab"   : "theme/netforgod/fonts/RobotoSlab-Regular.ttf"
         })
         $timeout(function(){
                         
