@@ -172,6 +172,7 @@ angular.module('rubedoBlocks').directive('ngCopyable', function() {
 	};
         return serviceInstance;
     }]);  
+
 angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$http', function($timeout,$location,$http) {
   return {
     restrict : 'A',
@@ -187,11 +188,28 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                                  title : attrs.title,
                                  description : ''        
                       });
+		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
+                        $window.addthis.layers.refresh();
+                    }*/
+		$scope.nbOfLikes=0;
+		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.share.share_count;
+		},
+		function errorCallback(response) {
+		});
+		$http({method: 'GET',url: 'http://cdn.api.twitter.com/1/urls/count.json?url='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.count;
+		},
+		function errorCallback(response) {
+		});		
 
 		});
 	    }
 	};
 }]);
+
 
 
 angular.module('rubedoBlocks').directive('videoBg', ['$window', '$q', '$timeout', function($window, $q, $timeout){
