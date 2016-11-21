@@ -82,11 +82,11 @@ class CoreAdapterCcn extends AbstractAdapter
         $payload['extpass'] = $content['live']['fields']['site'];
     
     
-        $payload = Json::encode($payload);
+        /*$payload = Json::encode($payload);
 		curl_setopt($curl, CURLOPT_HTTPHEADER, array(
             'Content-type: application/json',
             'Content-Length: ' . strlen($payload)
-        ));
+        ));*/
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, "POST");
         curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
