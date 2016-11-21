@@ -1,5 +1,6 @@
-<div class="container printZone">
-	<div class="row">
+<div class="container ">
+	<div class="printZone">
+		<div class="row">
 			<div class="col-xs-12" >
 				<img class="img-responsive" ng-if="fieldEntity['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',height:'500px',mode:'crop'})}}">
 				<div class="texte" style="margin-top:0">
@@ -8,7 +9,29 @@
 				
 			</div>		
 		</div>
+
+		<div class="row ">
+				<div class="col-xs-12" ng-if="fieldEntity['meditation']">
+						<div class="texte" style="margin-top:0">
+								<h3>{{contentDetailCtrl.getLabelByName('meditation')}}<br/>
+										{{fieldEntity['titre_meditation']}}
+										<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
+								</h3>
+								<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em>
+								<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field>
+						</div>
+				</div>
+		</div>
 		<div class="row">
+				<div class="col-xs-12" ng-if="fieldEntity['intercession']">
+						<div class="texte">
+								<h3>{{contentDetailCtrl.getLabelByName('intercession')}}</h3>
+						</div>
+						<rubedo-field  class="texte" style="display:block" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 12)=='intercession'"></rubedo-field>
+				</div>
+		</div>
+	</div>
+	<div class="row">
 			<div class="col-xs-12" >
 				
 				<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}"  class="addthis_toolbox socials center" >
@@ -16,39 +39,12 @@
 					<a class="addthis_button_twitter txt-red"><img  class="hidden"><i class="icon-twitter" data-toggle="tooltip" title="Partager sur Twitter"></i> </a>
 					<a class="addthis_button_email txt-red"><img class="hidden"><i class="icon-mail" data-toggle="tooltip" title="Envoyer par mail"></i></a>
 					<a class=" txt-red" ng-click="contentDetailCtrl.generatePdf()"><img class="hidden"><i class="glyphicon glyphicon-download-alt" data-toggle="tooltip" title="Imprimer"></i></a>
-					<!--<a class="addthis_button_expanded txt-red"><img class="hidden"><i class="fa fa-plus-square" data-toggle="tooltip" title="Plus d'options"></i></a>-->
 					
 				</div>
 				{{contentDetailCtrl.tooltips()}}
 
 			</div>		
 		</div>
-		<div class="">
-			<div class="row ">
-					<div class="col-xs-12" ng-if="fieldEntity['meditation']">
-							<div class="texte" style="margin-top:0">
-									<h3>{{contentDetailCtrl.getLabelByName('meditation')}}<br/>
-											{{fieldEntity['titre_meditation']}}
-											<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
-									</h3>
-									<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em>
-									<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field>
-							</div>
-					</div>
-			</div>
-			<div class="row">
-					<div class="col-xs-12" ng-if="fieldEntity['intercession']">
-							<div class="texte">
-									<h3>{{contentDetailCtrl.getLabelByName('intercession')}}</h3>
-							</div>
-							<rubedo-field  class="texte" style="display:block" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 12)=='intercession'"></rubedo-field></em>
-					</div>
-			</div>
-		</div>
-		<div class="row">
-			<button ng-click="contentDetailCtrl.generatePdf()">Imprimer</button>
-		</div>
-
 		
 </div>
 		
