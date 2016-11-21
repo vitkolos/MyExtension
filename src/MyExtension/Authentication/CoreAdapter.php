@@ -94,7 +94,7 @@ class CoreAdapterCcn extends AbstractAdapter
         $result = curl_exec($curl);
         curl_close($curl);
         //$result = Json::decode($result, Json::TYPE_ARRAY);
-		//var_dump($result);
+		var_dump($result);
 		
         $salt = $user['salt'];
         $targetHash = $user['password'];
