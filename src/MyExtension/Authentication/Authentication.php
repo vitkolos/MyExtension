@@ -17,9 +17,9 @@
 namespace RubedoAPI\Services\Security;
 use Rubedo\Services\Events;
 use Rubedo\Services\Manager;
-use Rubedo\User\Authentication\Adapter\CoreAdapter;
+use Rubedo\User\Authentication\Adapter\CoreAdapterCcn;
 use Rubedo\User\Authentication\AuthenticationService;
-use RubedoAPI\Exceptions\APIAuthException;
+use RubedoAPI\Exceptions\APIAuthException;	
 use RubedoAPI\Exceptions\APIEntityException;
 use RubedoAPI\Traits\LazyServiceManager;
 /**

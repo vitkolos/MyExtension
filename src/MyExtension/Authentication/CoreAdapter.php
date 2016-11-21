@@ -4,7 +4,7 @@ use Rubedo\Exceptions\Server;
 use Rubedo\Services\Manager;
 use WebTales\MongoFilters\Filter;
 use Zend\Authentication\Result;
-class CoreAdapter extends AbstractAdapter
+class CoreAdapterCcn extends AbstractAdapter
 {
     /**
      * submited password
