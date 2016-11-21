@@ -503,9 +503,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     me.generatePdf = function(){
 
-        var title = me.content.title +".pdf";
+        var text = me.content.title +".pdf";
         kendo.pdf.defineFont({
-            "Merriweather"             : "theme/cte/fonts/merriweather.ttf" // this is a URL
+            "Roboto"             : "theme/netforgod/fonts/Roboto-Regular.ttf" // this is a URL
         })
         $timeout(function(){
                         
