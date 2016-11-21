@@ -41,15 +41,15 @@ class Authentication extends AuthenticationService
     {
         $authAdapter = new CoreAdapter($login, $password);
         $result = parent::authenticate($authAdapter);
-        if (!$result->isValid()) {
+        /*if (!$result->isValid()) {
             Events::getEventManager()->trigger(self::FAIL, null, array(
                 'login' => $login,
                 'error' => $result->getMessages()
             ));
             throw new APIAuthException('Bad credentials', 401);
-        }
+        }*/
 		var_dump($result);
-		throw new APIAuthException($result->getMessages(), 500);
+		throw new APIAuthException($result->getMessages()[0], 500);
         Events::getEventManager()->trigger(self::SUCCESS);
         $this->getCurrentUserAPIService()->getToken();
         $identity = $result->getIdentity();
