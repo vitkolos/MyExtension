@@ -52,7 +52,9 @@ class OrdersResource extends AbstractResource
         $start=isset($params['start']) ? $params['start'] : 0;
         $limit=isset($params['limit']) ? $params['limit'] : null;
         //pour les admins boutique, ne pas limiter la liste de commandes à l'utilisateur, si on est sur le bloc "Liste de commandes"
-        if($user["defaultGroup"] == "57222992c445ec68568bf2da" && $params['allCommands']){
+        if($this->getAclService()->hasAccess('write.ui.orders')&& $params['allCommands']) {
+
+        /*if($user["defaultGroup"] == "57222992c445ec68568bf2da" && $params['allCommands']){*/
             $orders = $this->getOrdersCollection()->getList(null, array(array('property' => 'createTime', 'direction' => 'desc')),$start,$limit);            
         }
         else {
@@ -281,7 +283,8 @@ class OrdersResource extends AbstractResource
     {
         $user = $params['identity']->getUser();
         $isAdmin=false;
-        if($user["defaultGroup"] == "57222992c445ec68568bf2da"){
+        if($this->getAclService()->hasAccess('write.ui.orders')) {
+        /*if($user["defaultGroup"] == "57222992c445ec68568bf2da"){*/
             $filters = Filter::factory()
                // ->addFilter(Filter::factory('Value')->setName('userId')->setValue($user['id'])) pour utilisateurs connectés "Admin boutique"
                 ->addFilter(Filter::factory('Uid')->setValue($id));
