@@ -1,4 +1,3 @@
-<!--
 <div class=" content_border" itemscope itemtype="http://schema.org/NewsArticle">
 
 	<div class="container-fluid">
@@ -116,25 +115,6 @@
 </div>
 
 <div style="margin-top:24px"></div>
-</div>
--->
-<style type="text/css">
-	.hide-article > div{
-		height: 250px;
-		overflow: hidden;
-	}
-</style>
-<div class="row">
-	<div class="col-xs-12 col-md-12">
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('image')}}"   ng-if="fieldEntity['image']"></rubedo-field>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}"   ng-if="fieldEntity['text']"></rubedo-field>
-		<em>{{fieldEntity['summary']}}</em>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}"   ng-if="fieldEntity['richText']" ng-class="{'hide-article':!rubedo.current.user}"></rubedo-field>
-		<div ng-if="!rubedo.current.user" style="text-align:center; padding:24px; background: #f1f1f1; margin-top: 48px;">
-			<p>POUR LIRE LA SUITE DE CET ARTICLE, VOUS DEVEZ ÊTRE ABONNÉ OU ACHETER CE NUMÉRO. </p>
-			<p class="linkbox"><a href="http://foi.chemin-neuf.org/fr/inscription">Se connecter</a></p>
-		</div>
-	</div>
 </div>
 
 
