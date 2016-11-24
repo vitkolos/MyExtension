@@ -45,8 +45,9 @@
                                     <input type="password" name="password" class="form-control" id="rubedoAuthPasswordInput" placeholder="{{rubedo.translate('Blocks.Auth.Label.Password','Password')}}" ng-model="authCtrl.credentials.password" required>
                                 </div>
                                 <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" ng-model="authCtrl.rememberMe"> {{rubedo.translate("Blocks.Auth.Label.RememberMe","Remember me")}}
+                                    <input type="checkbox" ng-model="authCtrl.rememberMe" id="rememberMe" name="rememberMe"> 
+                                    <label for="rememberMe">
+                                         {{rubedo.translate("Blocks.Auth.Label.RememberMe","Remember me")}}
                                     </label>
                                 </div>
                                 <input type="submit" class="hidden">
