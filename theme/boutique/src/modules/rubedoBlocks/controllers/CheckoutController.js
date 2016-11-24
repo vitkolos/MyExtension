@@ -152,14 +152,14 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                 vtype:"email"
             }
         });
-        me.userType.fields.unshift({
+        /*me.userType.fields.unshift({
             cType:"textfield",
             config:{
                 name:"name",
                 fieldLabel:$scope.rubedo.translate("Blocks.SignUp.label.name"),
                 allowBlank:false
             }
-        });
+        });*/
         me.inputFields=me.userType.fields;
     };
     me.initializeCheckout=function(){
@@ -218,6 +218,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         var newUserFields=angular.copy($scope.fieldEntity);
         delete (newUserFields.confirmPassword);
         newUserFields.login=newUserFields.email;
+        newUserFields.name=newUserFields.surname + " " + newUserFields.nom;
         if (me.useSameAddressForBilling){
             newUserFields.billingAddress=newUserFields.address;
         }
@@ -269,6 +270,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     me.persistUserChanges=function(errorHolder,refreshShippers){
         var payload=angular.copy(me.currentUser);
         payload.fields=angular.copy($scope.fieldEntity);
+        //payload.fields.name=payload.fields.surname + " " + payload.fields.nom;
         delete (payload.type);
         RubedoUsersService.updateUser(payload).then(
             function(response){
