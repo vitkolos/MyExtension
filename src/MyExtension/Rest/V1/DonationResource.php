@@ -90,6 +90,7 @@ class DonationResource extends AbstractResource
         $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
         $don['nativeLanguage'] = $params['lang']->getLocale();
         $resultcreate = $contentsService->create($don, array(),false);                
+        AbstractCollection::disableUserFilter(false);
         
         
         
@@ -120,6 +121,7 @@ class DonationResource extends AbstractResource
         
         if($resultcreate['success']) {
             //usleep(500000);
+            AbstractCollection::disableUserFilter(true);
             $content = $contentsService->findById($resultInscription['data']['id'], false, false);
             $content['fields']['message'] = $content['fields']['message'] . " ";
             $content['i18n'] = array(
@@ -129,9 +131,9 @@ class DonationResource extends AbstractResource
                 );
             $result = $contentsService->update($content, array(),false);
             Manager::getService('ElasticContents')->index($content);
+            AbstractCollection::disableUserFilter(false);
         }
-        AbstractCollection::disableUserFilter(false);
-
+        
 
         
         return array('success' =>true, 'instructions' =>$arrayToReturn);
