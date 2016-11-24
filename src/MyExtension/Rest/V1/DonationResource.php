@@ -29,7 +29,7 @@ class DonationResource extends AbstractResource
         $don=[];
         $don['fields'] =  $donationInfo;
         
-        $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
+        $id = "58371dc8245640c6518ba288"; // id du contenu "Numéro de dons"
         //get numero de dons
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
