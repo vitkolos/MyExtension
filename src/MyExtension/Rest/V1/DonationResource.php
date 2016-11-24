@@ -122,7 +122,7 @@ class DonationResource extends AbstractResource
         if($resultcreate['success']) {
             //usleep(500000);
             AbstractCollection::disableUserFilter(true);
-            $content = $contentsService->findById($resultInscription['data']['id'], false, false);
+            $content = $contentsService->findById($resultcreate['data']['id'], false, false);
             $content['fields']['message'] = $content['fields']['message'] . " ";
             $content['i18n'] = array(
                     $content['locale'] =>array(
