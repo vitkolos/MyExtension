@@ -116,7 +116,21 @@ class DonationResource extends AbstractResource
             else {
                 $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
             }
+            /*METTRE A JOUR LE MONTANT COLLECTE*/
+            if($projectDetail) {
+                AbstractCollection::disableUserFilter(true);
+                $projectDetail['fields']['cumul'] += $don["fields"]["montant"];
+                $projectDetail['i18n'] = array(
+                    $projectDetail['locale'] =>array(
+                        "fields" => array("text"=>$projectDetail["text"])
+                    )
+                );
+                $projectUpdate = $contentsService->update($content, array(),false);
+                AbstractCollection::disableUserFilter(false);
+            }
+            
             $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
+            
         }
         
         if($resultcreate['success']) {
