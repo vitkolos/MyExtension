@@ -1,10 +1,10 @@
 <div ng-switch="question.fields.type.type">
     <!--radio group-->
     <div ng-switch-when="radio_group" class="row">
-        <div class="col-sm-4">
-            <label class="label_style">{{question.fields.questionLabel}}</label>
+        <div class="col-sm-12">
+            <label class="label_style left">{{question.fields.questionLabel}}</label>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-8 col-sm-push-2">
             <div class="col-xs-12" ng-repeat="questionField in question.fields.reponses track by $index">
                 <input type="radio" required name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}"
                        ng-value=' "{{questionField.titre}}"' ng-model="inscription[question.fields.categorie.categorie][question.text]" ng-change="inscription.optionsPayantes[questionField.titre] = questionField.prix">
@@ -17,7 +17,7 @@
     </div>
     <!--checkbox-->
     <div ng-switch-when="checkbox" class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-12">
             <label class="label_style">{{question.fields.questionLabel}}</label>
         </div>
         <div class="col-sm-8">
@@ -30,10 +30,10 @@
     
     <!--checkboxes group-->
     <div ng-switch-when="checkbox_group" class="row">
-        <div class="col-sm-4">
-            <label class="label_style">{{question.fields.questionLabel}}</label>
+        <div class="col-sm-12">
+            <label class="label_style left">{{question.fields.questionLabel}}</label>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-8 col-sm-push-2">
             <div class="col-xs-12" ng-repeat="questionField in question.fields.reponses track by $index">
                 <input type="checkbox"  name="{{question.fields.categorie.categorie}}_{{$parent.$index}}" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}" ng-true-value="{{questionField.titre}}"
                                 ng-model="inscription[question.fields.categorie.categorie][question.fields.questionLabel][$index]['value']" ng-change="formCtrl.setPrice(question.fields.categorie.categorie,question.text,$index,questionField)">
