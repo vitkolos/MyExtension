@@ -420,6 +420,7 @@ class DonationResource extends AbstractResource
         if($don["tel2"])  $messageAdmin .= $this->addLine($trad["ccn_form_telephone_portable"], $don["tel2"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] );
         if($don["message"] && $don["message"]!="") $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] );
+        if($don["montant_text"] && $don["montant_text"]!="") $messageAdmin .= $this->addLine("Bonus", $don["montant_text"] );
         $messageAdmin .= "</table><br/><br/>";
         
         ///message pour le responsable du projet
