@@ -125,7 +125,7 @@ class DonationResource extends AbstractResource
                         "fields" => array("text"=>$projectDetail["text"])
                     )
                 );
-                $projectUpdate = $contentsService->update($content, array(),false);
+                $projectUpdate = $contentsService->update($projectDetail, array(),false);
                 AbstractCollection::disableUserFilter(false);
             }
             
