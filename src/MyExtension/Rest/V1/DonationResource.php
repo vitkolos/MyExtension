@@ -460,7 +460,8 @@ class DonationResource extends AbstractResource
                        
                 }
                 $this->addLine($titre, $answer );
-         }
+            }
+        }
         $messageAdmin .= "</table><br/><br/>";
         
         ///message pour le responsable du projet
