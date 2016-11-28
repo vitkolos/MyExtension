@@ -16,7 +16,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         soeur: $scope.rubedo.translate("Block.Inscription.Civilite.Soeur","Soeur"),
         frere: $scope.rubedo.translate("Block.Inscription.Civilite.Frere","Frère")     
     };
-    
+    me.questions=[];
     $scope.don= {};
     $scope.don.user={};
     // préremplir les champs si l'utilisateur est connecté
@@ -98,6 +98,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 if (me.questions.length>0) {
                     
                 }
+                //go directly to payment
                 else step++;
             }
             /*
@@ -121,7 +122,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     };    
         // récupérer les questions complémentaires
     me.getQuestions = function() {
-        me.questions=[];
+        
         angular.forEach($scope.contentDetailCtrl.content.fields.questions, function(questionId, questionOrder){
             RubedoContentsService.getContentById(questionId, options).then(function(response){
                 if (response.data.success){
