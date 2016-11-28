@@ -220,7 +220,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             
         });
     };
-    /*récupérer le formulaire pour l'inscriptino*/
+    /*récupérer le formulaire pour l'inscription*/
     if (me.content.fields.formulaire_pdf && me.content.fields.formulaire_pdf!="") {
         RubedoMediaService.getMediaById(me.content.fields.formulaire_pdf).then(
             function(response){
