@@ -182,11 +182,11 @@
                 </h2>
                 <div id="inscriptionStage3" class="collapse">
                         <ng-form name="questions">
-                                <div class="row" ng-repeat="question in formCtrl.questions | orderBy:'order' track by $index">
-                                        <ng-include src="formCtrl.questionDetail"></ng-include>
+                                <div class="row" ng-repeat="question in donsCtrl.questions | orderBy:'order' track by $index">
+                                        <ng-include src="donsCtrl.questionDetail"></ng-include>
                                 </div>
                                 <div class="row text-center">
-                                        <div class="button submit" ng-class="{'disabled' : questions.$invalid}" ng-click="formCtrl.setCurrentStage(4,questions.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                                        <div class="button submit" ng-class="{'disabled' : questions.$invalid}" ng-click="donsCtrl.setCurrentStage(4,questions.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                                 </div>
                         </ng-form>
                 </div>
