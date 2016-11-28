@@ -53,15 +53,15 @@
                                                      alt="{{ datum.title }}"/>
                 <div class="padding col-sm-12 bg-white text-center">
                     <p  style="height: 70px; overflow-y: hidden">{{datum.title}} - {{datum.summary}}</p>
-                    <p class="capital">{{datum['fields.budget'][0] |number:0}} {{datum['fields.monnaie'][0]}}</p>
-                    <div class="col-sm-12 no-padding dons-progress">
+                    <p class="capital" ng-show="datum['fields.budget'][0] >0">{{datum['fields.budget'][0] |number:0}} {{datum['fields.monnaie'][0]}}</p>
+                    <div ng-show="datum['fields.budget'][0] >0" class="col-sm-12 no-padding dons-progress">
                         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{datum['fields.cumul'][0]*100/datum['fields.budget'][0] }}"  ng-style="{ width : datum['fields.cumul'][0]*100/datum['fields.budget'][0] +'%' }">
                             <span class="sr-only">
                             </span>
                         </div>
                     </div>
                     
-                    <p class="capital" ng-init="pourcentage =(datum['fields.cumul'][0]*100/datum['fields.budget'][0] | number :0)">
+                    <p ng-show="datum['fields.budget'][0] >0" class="capital" ng-init="pourcentage =(datum['fields.cumul'][0]*100/datum['fields.budget'][0] | number :0)">
                         <span ng-if="datum['fields.cumul'][0]<=datum['fields.budget'][0]">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[pourcentage])}}</span>
                         <span ng-if="datum['fields.cumul'][0]>datum['fields.budget'][0]">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[100])}}</span>
                     </p>
