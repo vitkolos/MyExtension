@@ -11,7 +11,7 @@
                         <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label><label ng-if="questionField.prix>0">{{questionField.prix}} €</label>
                         <label>{{questionField.libelleApresPrix}}</label>
                         <input type="text" ng-if="questionField.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement" ng-model="inscription[question.fields.categorie.categorie][question.text+' complement'+$parent.$index]" class="complement_text" />
-
+                        <label ng-if="questionField.complement && questionField.libelleApresComplement">{{questionField.libelleApresComplement}}</label>
             </div>
         </div>
     </div>
@@ -23,7 +23,7 @@
         <div class="col-sm-8">
             <input type="checkbox"  name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_0" id="{{question.fields.categorie.categorie}}_{{$parent.$index}}_0" ng-true-value="Oui" ng-false-value="Non"
                                 ng-model="inscription[question.fields.categorie.categorie][question.text][0]['value']" >
-                <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_0"></label>
+            <label for="{{question.fields.categorie.categorie}}_{{$parent.$index}}_0"></label>
             <input type="text" ng-if="question.fields.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement" ng-model="inscription[question.fields.categorie.categorie][question.text][0].complement" class="complement_text" />
         </div>
     </div>
@@ -42,6 +42,7 @@
                         <input type="text" ng-if="questionField.complement" name="{{question.fields.categorie.categorie}}_{{$parent.$index}}_complement"
                                ng-model="inscription[question.fields.categorie.categorie][question.fields.questionLabel][$index]['complement']" class="complement_text"
                                ng-disabled="inscription[question.fields.categorie.categorie][question.fields.questionLabel][$index]['value'] !=questionField.titre"/>
+                        <label ng-if="questionField.complement && questionField.libelleApresComplement">{{questionField.libelleApresComplement}}</label>
             </div>
         </div>
     </div>
