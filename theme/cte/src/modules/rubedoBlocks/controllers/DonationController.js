@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     //templates
     me.donationTemplate = themePath+'/templates/blocks/donation.html';
-    me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
+    me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetailDons.html';
     me.currentStage=1;
     me.userType="56e6edeac445eccc038b5b8e"; // type d'utilisateurs = donateurs
     me.civilite = {
