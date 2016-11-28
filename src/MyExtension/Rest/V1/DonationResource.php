@@ -116,7 +116,21 @@ class DonationResource extends AbstractResource
             else {
                 $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
             }
+            /*METTRE A JOUR LE MONTANT COLLECTE*/
+            if($projectDetail) {
+                AbstractCollection::disableUserFilter(true);
+                $projectDetail['fields']['cumul'] += $don["fields"]["montant"];
+                $projectDetail['i18n'] = array(
+                    $projectDetail['locale'] =>array(
+                        "fields" => array("text"=>$projectDetail["text"])
+                    )
+                );
+                $projectUpdate = $contentsService->update($content, array(),false);
+                AbstractCollection::disableUserFilter(false);
+            }
+            
             $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
+            
         }
         
         if($resultcreate['success']) {
@@ -420,6 +434,7 @@ class DonationResource extends AbstractResource
         if($don["tel2"])  $messageAdmin .= $this->addLine($trad["ccn_form_telephone_portable"], $don["tel2"] );
         $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] );
         if($don["message"] && $don["message"]!="") $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] );
+        if($don["montant_text"] && $don["montant_text"]!="") $messageAdmin .= $this->addLine("Bonus", $don["montant_text"] );
         $messageAdmin .= "</table><br/><br/>";
         
         ///message pour le responsable du projet
