@@ -447,6 +447,20 @@ class DonationResource extends AbstractResource
         $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] );
         if($don["message"] && $don["message"]!="") $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] );
         if($don["montant_text"] && $don["montant_text"]!="") $messageAdmin .= $this->addLine("Bonus", $don["montant_text"] );
+        if($don["questions"]){
+            foreach ($don["questions"] as $titre => $reponse){
+                $answer = "";
+                if(is_string($reponse)) $answer= $reponse; // pour texte ou radio
+                else {
+                    foreach($reponse as $value) {//pour checkbox
+                        $answer .= $value['value'];
+                        if($answer['complement'] && $answer['complement'] != "" ) $answer .= " : " .$value['complement'];
+                        $answer .=", ";
+                    }
+                       
+                }
+                $this->addLine($titre, $answer );
+         }
         $messageAdmin .= "</table><br/><br/>";
         
         ///message pour le responsable du projet
