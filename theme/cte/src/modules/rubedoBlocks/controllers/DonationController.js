@@ -119,10 +119,10 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             else {
                 $scope.don.montantAvecFrequence += $scope.don.montant + " " + $scope.don.monnaie;
                 switch($scope.don.montant) {
-                    case $scope.contentDetailCtrl.content.fields.montant_1 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_1; break;
-                    case $scope.contentDetailCtrl.content.fields.montant_2 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_2; break;
-                    case $scope.contentDetailCtrl.content.fields.montant_3 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_3; break;
-                    case $scope.contentDetailCtrl.content.fields.montant_4 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_4; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_1 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_1 ?  $scope.contentDetailCtrl.content.fields.desc_1:""; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_2 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_2 ?  $scope.contentDetailCtrl.content.fields.desc_2:""; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_3 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_3 ?  $scope.contentDetailCtrl.content.fields.desc_3:""; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_4 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_4 ?  $scope.contentDetailCtrl.content.fields.desc_4:""; break;
                 }
                 console.log($scope.don.montant_text);
             }
