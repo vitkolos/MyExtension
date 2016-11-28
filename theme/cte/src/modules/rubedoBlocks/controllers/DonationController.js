@@ -116,7 +116,15 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             if ($scope.don.montant =='autre') {
                 $scope.don.montantAvecFrequence += $scope.don.montant_autre + " " + $scope.don.monnaie;
             }
-            else $scope.don.montantAvecFrequence += $scope.don.montant + " " + $scope.don.monnaie;
+            else {
+                $scope.don.montantAvecFrequence += $scope.don.montant + " " + $scope.don.monnaie;
+                switch($scope.don.montant) {
+                    case $scope.contentDetailCtrl.content.fields.montant_1 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_1; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_2 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_2; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_3 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_3; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_4 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_4; break;
+                }
+            }
             if ($scope.don.mensuel) {
                 $scope.don.montantAvecFrequence += " "+$scope.rubedo.translate("Block.Dons.Mois","par mois");
                 $scope.don.frequence="mensuel";
@@ -130,6 +138,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 me.account = me.fiscalites[$scope.don.condition].fields;
                 $scope.don.conditionId = me.fiscalites[$scope.don.condition].id;
             }
+
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
 
