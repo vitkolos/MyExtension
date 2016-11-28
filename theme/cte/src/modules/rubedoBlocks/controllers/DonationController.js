@@ -345,7 +345,10 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             return  !($scope.don.user.tel1 || $scope.don.user.tel2); // au moins téléphone fixe ou portable
     };
     
-
+// s'il y a des questions complémentaires, les récupérer
+    if ($scope.contentDetailCtrl.content.fields.questions && ($scope.contentDetailCtrl.content.fields.questions).length>0) {
+        me.getQuestions();
+    }
     
 }]);
 
