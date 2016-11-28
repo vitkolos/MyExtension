@@ -124,6 +124,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     case $scope.contentDetailCtrl.content.fields.montant_3 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_3; break;
                     case $scope.contentDetailCtrl.content.fields.montant_4 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_4; break;
                 }
+                console.log($scope.don.montant_text);
             }
             if ($scope.don.mensuel) {
                 $scope.don.montantAvecFrequence += " "+$scope.rubedo.translate("Block.Dons.Mois","par mois");
