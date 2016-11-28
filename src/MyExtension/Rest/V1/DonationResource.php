@@ -156,7 +156,7 @@ class DonationResource extends AbstractResource
    
 
    
-   
+   /*Retour de Paybox*/
     public function getAction($params) {
         $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage="";
         //VERIFICATIONS PAYBOX
@@ -207,16 +207,28 @@ class DonationResource extends AbstractResource
             $contentToUpdate = $contentsService->findById($don["id"],false,false);
             $contentToUpdate["i18n"] = $don["live"]["i18n"];
             $contentToUpdate["fields"]["etat"]="paiement_carte_valide";
-            //$contentToUpdate["version"] = 2;
-        //update numero incrémenté
-            $result = $contentsService->update($contentToUpdate, array(),false);            
+            //update numero incrémenté
+            $result = $contentsService->update($contentToUpdate, array(),false);
             AbstractCollection::disableUserFilter(false);
-
+            
+            /*Update montant récolté pour le projet*/
+            if($projectDetail) {
+                AbstractCollection::disableUserFilter(true);
+                $projectDetail['fields']['cumul'] += $don["live"]["fields"]["montant"];
+                $projectDetail['i18n'] = array(
+                    $projectDetail['locale'] =>array(
+                        "fields" => array("text"=>$projectDetail["text"])
+                    )
+                );
+                $projectUpdate = $contentsService->update($projectDetail, array(),false);
+                AbstractCollection::disableUserFilter(false);
+            }
         }
         else {
             //ajouter un message d'erreur ?
         }
-
+        
+        
         $this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage']);
         return [
                 'success' => true,
