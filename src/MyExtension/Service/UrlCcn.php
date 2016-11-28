@@ -111,10 +111,10 @@ class Url extends \Rubedo\Router\Url
                 throw new APIServiceException("You must specify a good type of URL : default or canonical", 500);
             }
             if ($doNotAddSite) {
-                return $pageUrl;
+                return str_replace("//","/",$pageUrl);
             } else {
                 $siteOfContent =  Manager::getService('Sites')->getHost($page['site']);
-                return 'http://' . $siteOfContent . $pageUrl;
+                return 'http://' . $siteOfContent . str_replace("//","/",$pageUrl);
             }
         } else {
             return '#';

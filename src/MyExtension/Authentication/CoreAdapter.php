@@ -62,9 +62,10 @@ class CoreAdapterCcn extends AbstractAdapter
         }
         $user = array_shift($resultIdentities);
 		
+		
 		/////CHECK IN LDAP
 		
-
+/*
         // prepare request
         $payload = array(
             "login" => $user['login'],
@@ -90,7 +91,8 @@ class CoreAdapterCcn extends AbstractAdapter
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
         $result = curl_exec($curl);
         curl_close($curl);
-        $isLDAPValid = explode(";",$result)[0];
+        $isLDAPValid = explode(";",$result)[0];*/
+		$isLDAPValid = false;
         if($isLDAPValid && $isLDAPValid=="True") {
             // l'utilisateur existe et a le bon mot de passe => valider la connexion
             $valid = true;

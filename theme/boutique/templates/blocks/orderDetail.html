@@ -107,7 +107,7 @@
                     <div class="panel-body">
                         <address>
                             <strong>{{ orderDetailCtrl.order.billingAddress.company }}</strong><br />
-                            <span ng-if=" orderDetailCtrl.order.billingAddress.surname">{{  orderDetailCtrl.order.billingAddress.surname }} </span><strong ng-if="orderDetailCtrl.order.billingAddress.name">{{ orderDetailCtrl.order.billingAddress.name }}<br /></strong>
+                            <span ng-if=" orderDetailCtrl.order.billingAddress.surname">{{  orderDetailCtrl.order.billingAddress.surname }} </span><span ng-if="orderDetailCtrl.order.billingAddress.name">{{ orderDetailCtrl.order.billingAddress.name }}<br /></span>
                             {{ orderDetailCtrl.order.billingAddress.address1 }}<br />
                             {{ orderDetailCtrl.order.billingAddress.address2 }}<br />
                             {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
@@ -125,7 +125,7 @@
                     <div class="panel-body">
                         <address>
                             <strong>{{ orderDetailCtrl.order.shippingAddress.company }}</strong><br />
-                            <span ng-if=" orderDetailCtrl.order.shippingAddress.surname">{{  orderDetailCtrl.order.shippingAddress.surname }} </span><strong ng-if="orderDetailCtrl.order.shippingAddress.name">{{ orderDetailCtrl.order.shippingAddress.name }}<br /></strong>
+                            <span ng-if=" orderDetailCtrl.order.shippingAddress.surname">{{  orderDetailCtrl.order.shippingAddress.surname }} </span><span ng-if="orderDetailCtrl.order.shippingAddress.name">{{ orderDetailCtrl.order.shippingAddress.name }}<br /></span>
                             {{ orderDetailCtrl.order.shippingAddress.address1 }}<br />
                             {{ orderDetailCtrl.order.shippingAddress.address2 }}<br />
                             {{ orderDetailCtrl.order.shippingAddress.postCode }} {{ orderDetailCtrl.order.shippingAddress.city }}<br />
@@ -186,9 +186,9 @@
         </div>
         <div class="row" style="padding-top:24px;border-top:1px solid grey" ng-if="orderDetailCtrl.isAdmin && orderDetailCtrl.creatingBill">
             <div class="col-sm-12 text-center">
-                <p> Une version électronique est conservée sur votre compte. Pour y accéder, identifiez-vous sur le site <a href="http://www.laboutique-chemin-neuf.com">La Boutique du Chemin Neuf</a></p>
-                <p>LA BOUTIQUE DU CHEMIN NEUF - Siège social 8 rue Henri IV 69002 LYON France<br/>
-            Téléphone : 04 78 92 71 37</p>
+                <span> Une version électronique est conservée sur votre compte. Pour y accéder, identifiez-vous sur le site <a href="http://www.laboutique-chemin-neuf.com">La Boutique du Chemin Neuf</a></span>
+                <span>LA BOUTIQUE DU CHEMIN NEUF - Siège social 8 rue Henri IV 69002 LYON France<br/>
+            Téléphone : 04 78 92 71 37</span>
             </div>
         </div>
        

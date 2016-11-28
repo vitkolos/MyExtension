@@ -233,7 +233,7 @@ return array(
                 'css' => array(
                     '/css/boutique.css',
                     '/css/font-awesome.css'
-                ),
+                ),  
                 'js' => array(
                      '../js/lazy-image.js',
                     '/js/boutique.js'
@@ -242,31 +242,19 @@ return array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
            ),
-           'international' => array(
-                'label' => 'Cana International',
-                'basePath' => realpath(__DIR__ . '/../theme/international'),
+           'cana' => array(
+                'label' => 'Cana',
+                'basePath' => realpath(__DIR__ . '/../theme/cana'),
                 'css' => array(
-                    '/css/international.css',
+                    '/css/cana.css',
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
                     '../js/lazy-image.js',
-                    '/js/international.js'
+                    '/js/cana.js'
                 ),
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
-                ),
-           ),
-           'forumjeunespros' => array(
-                'label' => 'Forum JPros',
-                'basePath' => realpath(__DIR__ . '/../theme/forumjeunespros'),
-                'css' => array(
-                    '/css/forumjeunespros.css',
-                    '/css/font-awesome.css'
-                ),
-                'js' => array(
-                    '../js/lazy-image.js',
-                    '/js/forumjeunespros.js'
                 ),
            ),
         ),

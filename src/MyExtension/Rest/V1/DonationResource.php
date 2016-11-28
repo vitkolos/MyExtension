@@ -29,7 +29,7 @@ class DonationResource extends AbstractResource
         $don=[];
         $don['fields'] =  $donationInfo;
         
-        $id = "5722355ac445ec68568bf3ba"; // id du contenu "Numéro de dons"
+        $id = "58371dc8245640c6518ba288"; // id du contenu "Numéro de dons"
         //get numero de dons
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
@@ -117,6 +117,21 @@ class DonationResource extends AbstractResource
                 $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
             }
             $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
+        }
+        
+        if($resultcreate['success']) {
+            //usleep(500000);
+            AbstractCollection::disableUserFilter(true);
+            $content = $contentsService->findById($resultcreate['data']['id'], false, false);
+            $content['fields']['message'] = $content['fields']['message'] . " ";
+            $content['i18n'] = array(
+                    $content['locale'] =>array(
+                        "fields" => array("text"=>$content["text"])
+                    )
+                );
+            $result = $contentsService->update($content, array(),false);
+            Manager::getService('ElasticContents')->index($content);
+            AbstractCollection::disableUserFilter(false);
         }
         
 
