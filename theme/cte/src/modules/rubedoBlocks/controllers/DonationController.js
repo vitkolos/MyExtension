@@ -4,6 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     //templates
     me.donationTemplate = themePath+'/templates/blocks/donation.html';
+    me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
     me.currentStage=1;
     me.userType="56e6edeac445eccc038b5b8e"; // type d'utilisateurs = donateurs
     me.civilite = {
@@ -85,7 +86,8 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 
             }
                
-        });                
+        }
+    );                
     me.setCurrentStage = function(step, valide) {
         if(valide){
             if (step==2) {
@@ -107,6 +109,26 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             me.toggleStage(step);
         }  
     };
+    var options = {
+            siteId: $scope.rubedo.current.site.id,
+            pageId: $scope.rubedo.current.page.id
+    };    
+        // récupérer les questions complémentaires
+    me.getQuestions = function() {
+        me.questions=[];
+        angular.forEach($scope.contentDetailCtrl.content.fields.questions, function(questionId, questionOrder){
+            RubedoContentsService.getContentById(questionId, options).then(function(response){
+                if (response.data.success){
+                    var questionReponse= response.data.content;
+                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isComplement = true;
+                }
+            });
+            
+        });
+    };
+
+    
+    
     //validation du don et inscription dans la base de données
     me.submit = function(isValide){
         if (isValide) {
