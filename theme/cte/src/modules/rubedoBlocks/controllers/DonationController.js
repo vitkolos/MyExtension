@@ -94,6 +94,12 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 /*déterminer les conditions de payement*/
                updatePaymentStatus();
             }
+            if (step==3) {
+                if (me.questions.length>0) {
+                    
+                }
+                else step++;
+            }
             /*
             if (step==3) {
                     me.stage2Error=null;
@@ -125,6 +131,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             });
             
         });
+        
     };
 
     
