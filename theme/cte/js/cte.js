@@ -29,6 +29,11 @@ angular.module('rubedoBlocks').filter('cleanHour', function () {
         return hour;
      };
   });
+angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filter) {
+    return function() {
+        return $filter('date')(new Date(), 'yyyy');
+    };
+}])
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
