@@ -119,12 +119,25 @@ class DonationResource extends AbstractResource
             /*METTRE A JOUR LE MONTANT COLLECTE*/
             if($projectDetail) {
                 AbstractCollection::disableUserFilter(true);
+		$type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
+
+		if (!isset($projectDetail['i18n'])) {
+            		$projectDetail['i18n'] = array();
+        	}
+        	if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
+            		$projectDetail['i18n'][$params['lang']->getLocale()] = array();
+        	}
+        	$projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);
+		    
+		    
+		    
+		    
                 $projectDetail['fields']['cumul'] += $don["fields"]["montant"];
-                $projectDetail['i18n'] = array(
+                /*$projectDetail['i18n'] = array(
                     $projectDetail['locale'] =>array(
                         "fields" => array("text"=>$projectDetail["text"])
                     )
-                );
+                );*/
                 $projectUpdate = $contentsService->update($projectDetail, array(),false);
                 AbstractCollection::disableUserFilter(false);
             }
@@ -623,6 +636,25 @@ class DonationResource extends AbstractResource
         return $content['id'];
     }      
        
+	
+    protected function localizableFields($type, $fields)
+    {
+        $existingFields = array();
+        foreach ($type['fields'] as $field) {
+            if ($field['config']['localizable']) {
+                $existingFields[] = $field['config']['name'];
+            }
+        }
+        foreach ($fields as $key => $value) {
+            unset($value); //unused
+            if (!(in_array($key, $existingFields) || in_array($key, array('text', 'summary')))) {
+                unset ($fields[$key]);
+            }
+        }
+        return $fields;
+    }
+	
+	
 /**
      * Define the resource
      */
