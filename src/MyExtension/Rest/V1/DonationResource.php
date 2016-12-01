@@ -227,12 +227,18 @@ class DonationResource extends AbstractResource
             /*Update montant récolté pour le projet*/
             if($projectDetail) {
                 AbstractCollection::disableUserFilter(true);
+		$type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
+		if (!isset($projectDetail['i18n'])) {
+            		$projectDetail['i18n'] = array();
+        	}
+        	if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
+            		$projectDetail['i18n'][$params['lang']->getLocale()] = array();
+        	}
+        	$projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);  		    
+		    
+		    
                 $projectDetail['fields']['cumul'] += $don["live"]["fields"]["montant"];
-                $projectDetail['i18n'] = array(
-                    $projectDetail['locale'] =>array(
-                        "fields" => array("text"=>$projectDetail["text"])
-                    )
-                );
+                
                 $projectUpdate = $contentsService->update($projectDetail, array(),false);
                 AbstractCollection::disableUserFilter(false);
             }
