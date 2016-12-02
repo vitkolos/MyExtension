@@ -4,6 +4,7 @@
             <thead>
                 <tr>
                     <th>{{ rubedo.translate('Blocks.UserOrders.OrderNumber') }}</th>
+                    <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Name') }}</th>
                     <th>{{ rubedo.translate('Blocks.UserOrders.Date') }}</th>
                     <th>{{ rubedo.translate('Blocks.UserOrders.Price') }}</th>
                     <th>{{ rubedo.translate('Blocks.UserOrders.Shipper') }}</th>
@@ -14,6 +15,7 @@
             <tbody>
                 <tr ng-repeat="item in userOrdersCtrl.orders track by $index">
                     <td>{{ item.orderNumber }}</td>
+                    <td>{{ item.userName }}</td>
                     <td>{{ item.createTime*1000| date: "shortDate" }}</td>
                     <td>{{ item.finalPrice|number : 2 }} €</td>
                     <td>{{ item.shipper.name }}</td>
