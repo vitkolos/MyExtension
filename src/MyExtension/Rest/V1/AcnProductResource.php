@@ -71,6 +71,7 @@ class AcnproductResource extends AbstractResource
 				foreach($order['detailedCart']['cart'] as $product) {
 					$productDetail = $contentsService->findById($product['productId'], true, false);
 					$product['sku'] = $productDetail['productProperties']['sku'];
+					var_dump($product['sku']);
 				}
 			}
 		}
