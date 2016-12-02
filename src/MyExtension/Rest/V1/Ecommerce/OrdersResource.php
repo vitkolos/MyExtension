@@ -363,7 +363,7 @@ class OrdersResource extends AbstractResource
      */
     public function maskOrderInList($order)
     {
-        $mask = array('status', 'id', 'orderNumber', 'finalPrice','createTime','paymentMeans','shipper');
+        $mask = array('status', 'id', 'orderNumber','userName', 'finalPrice','createTime','paymentMeans','shipper');
         return array_intersect_key($order, array_flip($mask));
     }
     /**
