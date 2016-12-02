@@ -1,5 +1,5 @@
-<div class=" content_border">
-	<div class="container-fluid">
+<div ng-class="{'content_border':!blockConfig.contentOnly">
+	<div class="container-fluid" ng-if="!blockConfig.contentOnly">
 		<div class="row">
 			<div class="col-xs-12 ">
 				<div ng-controller="BreadcrumbController as breadcrumbCtrl">
@@ -12,7 +12,7 @@
 		</div>
 	</div>
 
-<header class="container-fluid content prop" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
+<header ng-if="!blockConfig.contentOnly" class="container-fluid content prop" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
 	<div class="text-article container" >
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="!fieldEditMode">
 			<h1 class="balance-text" >{{fieldEntity['text']}}</h1>
@@ -22,7 +22,7 @@
 
 	</div>
 </header>
-<header class="container-fluid" ng-if="!fieldEntity['image']">
+<header  ng-if="!blockConfig.contentOnly" class="container-fluid" ng-if="!fieldEntity['image']">
 	<div class="text-article container">
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="!fieldEditMode">
 			<h1 class="text-left"  style="text-shadow: none">{{fieldEntity['text']}}</h1>
