@@ -71,6 +71,9 @@ class AcnproductResource extends AbstractResource
 				foreach($order['detailedCart']['cart'] as &$product) {
 					$productDetail = $contentsService->findById($product['productId'], true, false);
 					$product['sku'] = $productDetail['productProperties']['sku'];
+					foreach($productDetail['productProperties']['variations'] as $variation) {
+						if($variation['id']==$product['variationId']) $product['variationSKU']=$variation['sku'];
+					}
 				}
 			}
 		}
