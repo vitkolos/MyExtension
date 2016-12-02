@@ -22,7 +22,7 @@
 
 	</div>
 </header>
-<header  ng-if="!blockConfig.contentOnly" class="container-fluid" ng-if="!fieldEntity['image']">
+<header class="container-fluid" ng-if="!fieldEntity['image'] && !blockConfig.contentOnly">
 	<div class="text-article container">
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="!fieldEditMode">
 			<h1 class="text-left"  style="text-shadow: none">{{fieldEntity['text']}}</h1>
