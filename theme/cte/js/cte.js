@@ -83,6 +83,7 @@ angular.module('rubedoBlocks').filter('tags', function() {
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
 angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     return function(startDate, endDate, rangeFormat,from,to){
+	console.log($scope.rubedo);
 	var format = rangeFormat || 'long';
 	var formatOfDate =  'd MMM yyyy';
 	var isSameDay = false;
