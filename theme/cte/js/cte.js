@@ -91,7 +91,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	var start = new Date(startDate*1000);
 	var end = new Date(endDate*1000);
 	var longFormat="";//format complet de date
-	switch(locale){2017. január 01.
+	switch(locale){
 		case 'hu': longFormat = 'yyyy. MMM d.';break;
 		default : longFormat = 'd MMM yyyy';
 	}
