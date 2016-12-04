@@ -99,17 +99,17 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	    formatOfDate = longFormat;
 	}
 	else if (start.getMonth() != end.getMonth()) {
-		switch(locale){
-			case 'hu': formatOfDate = 'yyyy. MMM d';longFormat='d.';break;
-			default : formatOfDate = 'd MMM';
-		}
+		formatOfDate = 'd MMM';
 	}
 	else  if(start.getDate() == end.getDate()){
 	    formatOfDate = 'd';
 	    isSameDay=true;
 	}
 	else {
-	    formatOfDate = 'd';
+		switch(locale){
+			case 'hu': formatOfDate = 'yyyy. MMM d';longFormat='d.';break;
+			default : formatOfDate = 'd';
+		}
 	}
 	if (format == 'short') {
 		if(isSameDay) formattedDate= $filter('date')(end,longFormat);	  
