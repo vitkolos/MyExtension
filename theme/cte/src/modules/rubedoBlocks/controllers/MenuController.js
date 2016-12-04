@@ -4,6 +4,7 @@
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
         me.currentRouteline=$location.path();
+	console.log($scope.rubedo.current);
         var lang = $route.current.params.lang;
        var config=$scope.blockConfig;
 	me.menuTab = false; 
