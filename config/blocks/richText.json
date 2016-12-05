@@ -56,6 +56,14 @@
                                 "forceSelection": true,
                                 "queryMode": "local"
                             }
+                        },
+                        {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "Rendre privé",
+                                "name": "private",
+                                "inputValue": true
+                            }
                         }
                     ]
                 }
@@ -90,7 +98,8 @@
             ]
         },
         "configBloc": {
-            "displayMode": "texte"
+            "displayMode": "texte",
+            "private" : false
         }
     },
     "category": "#ext-gen1068#",
