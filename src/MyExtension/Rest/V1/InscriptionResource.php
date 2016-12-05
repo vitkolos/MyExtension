@@ -55,15 +55,21 @@ class InscriptionResource extends AbstractResource
         $contentsService = Manager::getService("ContentsCcn");
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] +=1;
-	$type = $this->getContentTypesCollection()->findById(empty($content['typeId']) ? $content['typeId'] : $content['typeId']);
-	if (!isset($content['i18n'])) {
-		$content['i18n'] = array();
-	}
-	if (!isset($content['i18n'][$params['lang']->getLocale()])) {
-		$content['i18n'][$params['lang']->getLocale()] = array();
-	}
-	$content['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $content['fields']);
-	$content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
+	$content['i18n'] =  array(
+		    "fr" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    ),
+		    "pl" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    ),
+		    "es" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    ),
+		"hu" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    )
+		);
+	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         $result = $contentsService->update($content, array(),false);
         $inscriptionNumber= $content["fields"]["value"];
 
