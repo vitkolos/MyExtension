@@ -1,6 +1,6 @@
 {
     "type": "Titre de page (image de fond)",
-    "description": "Titre de page avec image fond",
+    "description": "Titre de page avec image de fond - à utiliser de préférence comme seul bloc de la ligne. Deux modes possibles (cf onglet avancé): standard et parallaxe",
     "configBasique": {
         "title": "Image de fond",
         "bType": "bg_image",
