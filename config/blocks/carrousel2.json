@@ -1,6 +1,6 @@
 {
     "type": "Full width slider",
-    "description": "Carousel en pleine page",
+    "description": "<p>Carousel avec des photos - sans l'aplat gris à droite<\/p><p>A utiliser essentiellement pour les pages d'accueil<\/p>",
     "configBasique": {
         "title": "Full width slider",
         "bType": "carrousel2",
