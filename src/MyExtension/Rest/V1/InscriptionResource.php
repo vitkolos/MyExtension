@@ -63,7 +63,7 @@ class InscriptionResource extends AbstractResource
 		$content['i18n'][$params['lang']->getLocale()] = array();
 	}
 	$content['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $content['fields']);
-
+	$content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"]
         $result = $contentsService->update($content, array(),false);
         $inscriptionNumber= $content["fields"]["value"];
 
