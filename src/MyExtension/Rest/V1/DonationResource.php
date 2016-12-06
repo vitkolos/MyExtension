@@ -52,6 +52,7 @@ class DonationResource extends AbstractResource
         $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_hors_pays"]);
         
         //récupérer les infos spécifique au projet : budget, montant payé, contact
+        AbstractLocalizableCollection::setIncludeI18n(true);
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
         //déterminer si le projet est un projet national ou hors pays / international
         $isProjetInternational = true;
@@ -121,7 +122,7 @@ class DonationResource extends AbstractResource
             }
             /*METTRE A JOUR LE MONTANT COLLECTE*/
             if($projectDetail) {
-                AbstractLocalizableCollection::setIncludeI18n(true);
+                
                 AbstractCollection::disableUserFilter(true);
                 $type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
                 if ($projectDetail['nativeLanguage'] === $params['lang']->getLocale()) {
