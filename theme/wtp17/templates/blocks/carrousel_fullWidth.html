@@ -62,34 +62,10 @@
 }
 </style>
 
-<div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" >
-  <ol class="carousel-indicators" ng-if="carouselCtrl.count>1">
-    <li ng-repeat="content in carouselCtrl.contents" 
-      ng-if="content.fields[blockConfig.imageField]" 
-      data-target="{{'block'+block.id}}"
-      data-slide-to="{{$index}}"
-      ng-class="{'active':$first}"
-      ng-click="carouselCtrl.slideTo($index)">
-    </li>
-  </ol>
 
-  <div class="carousel-inner">
-      <div class="item" 
-            ng-repeat="content in carouselCtrl.contents" 
-            ng-class="{'active':$first}">
-          <!-- Set the first background image using inline CSS below. -->
-	  <!--
-          <div class="fill" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],{width:'500px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],{width:'600px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}} 1650w"
-               afkl-lazy-image-options='{"background": true, "nolazy": true}'></div>-->
-	       <div class="fill">
-			<video-bg video-id="aZduPDQA6c0" start="83" end="95" allow-click-events="true"></video-bg>
-			<p class="video-title hidden-sm hidden-xs">TEST</p>
-	       </div>
-      </div>
-  </div>
-       <!-- Controls -->
 
-  <!--<video-bg video-id=" '500kOPqnvDc' " allow-click-events="true"></video-bg>-->
+
+			<video-bg video-id="aZduPDQA6c0"  allow-click-events="true"></video-bg>
 
 </div>
 
