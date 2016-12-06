@@ -178,6 +178,17 @@ return array(
                     '/js/wtp.js',
                 ),
             ),
+             'wtp17' => array(
+                'label' => 'WTP17',
+                'basePath' => realpath(__DIR__ . '/../theme/wtp17'),
+                'css' => array(
+                    '/css/wtp2015.css',
+                    '/css/ru.css'
+                ),
+                'js' => array(
+                    '/js/wtp.js',
+                ),
+            ),
             'jmj2016' => array(
                 'label' => 'JMJ2016',
                 'basePath' => realpath(__DIR__ . '/../theme/jmj2016'),

@@ -1,0 +1,46 @@
+<a ng-attr-name=" {{block.code | split:'/':1}}" ></a>
+<div ng-attr-id=" {{block.code | split:'/':1}}" >
+
+    <div class="row page">
+        <div class="col-xs-12 section-header">                
+            
+            <rubedo-field field= "{{contentDetailCtrl.getFieldByName('banner')}}" class="hidden-xs"></rubedo-field>
+            <div class="section-header-title">
+                <div class="sec-logo">
+                    <rubedo-field field= "{{contentDetailCtrl.getFieldByName('icone')}}"></rubedo-field>
+                </div>
+                <div class="section-title-h1">
+                    <div class="section-title-h2 hidden-xs" ng-if="block.title | section" >
+                            <p> {{block.title | section}}</p>
+                    </div>
+                    <rubedo-field field= "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px">
+        <div class="col-sm-12 col-md-6">
+            <rubedo-field field= "{{contentDetailCtrl.getFieldByName('introduction')}}" ng-if="fieldEntity['introduction']" class="intro"></rubedo-field>
+            <rubedo-field field= "{{contentDetailCtrl.getFieldByName('textOnBg')}}" ng-if="fieldEntity['textOnBg']" class="text-bg"></rubedo-field>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}"></jwplayer>
+            <rubedo-field field= "{{contentDetailCtrl.getFieldByName('image2')}}" ng-if="fieldEntity['image2']"></rubedo-field>
+            <rubedo-field field= "{{contentDetailCtrl.getFieldByName('position')}}" ng-if="fieldEntity['position']"></rubedo-field>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px">
+        <div class="col-sm-12">
+            <rubedo-field class="text-it" field= "{{contentDetailCtrl.getFieldByName('textItalic')}}" ng-if="fieldEntity['textItalic']" ></rubedo-field>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px">
+        <div class="col-xs-12">
+            <rubedo-field class="titre-details" field= "{{contentDetailCtrl.getFieldByName('details')}}" ng-if="fieldEntity['details']"></rubedo-field>
+        </div>
+    </div>
+    <div class="row" style="margin-top:20px;text-align:center">
+            <rubedo-field field= "{{contentDetailCtrl.getFieldByName('texteRiche')}}" ng-if="fieldEntity['texteRiche']" ></rubedo-field>
+    </div>
+
+</div>
