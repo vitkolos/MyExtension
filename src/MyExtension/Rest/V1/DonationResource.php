@@ -1,5 +1,6 @@
 <?php
 namespace RubedoAPI\Rest\V1;
+use Rubedo\Collection\AbstractLocalizableCollection;
 use Rubedo\Collection\AbstractCollection;
 use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
@@ -12,6 +13,8 @@ class DonationResource extends AbstractResource
      *
      * @var array
      */
+    protected $otherLocalizableFields = array('text', 'summary');
+    protected $toExtractFromFields = array('text');
     public function __construct()
     {
         parent::__construct();
@@ -118,26 +121,34 @@ class DonationResource extends AbstractResource
             }
             /*METTRE A JOUR LE MONTANT COLLECTE*/
             if($projectDetail) {
+                AbstractLocalizableCollection::setIncludeI18n(true);
                 AbstractCollection::disableUserFilter(true);
-		$type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
-
-		if (!isset($projectDetail['i18n'])) {
-            		$projectDetail['i18n'] = array();
-        	}
-        	if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
-            		$projectDetail['i18n'][$params['lang']->getLocale()] = array();
-        	}
-        	$projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);
-		    
-		    
-		    
-		    
-                $projectDetail['fields']['cumul'] += $don["fields"]["montant"];
-                /*$projectDetail['i18n'] = array(
-                    $projectDetail['locale'] =>array(
-                        "fields" => array("text"=>$projectDetail["text"])
-                    )
-                );*/
+                $type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
+                if ($projectDetail['nativeLanguage'] === $params['lang']->getLocale()) {
+                    foreach ($projectDetail['fields'] as $fieldName => $fieldValue) {
+                        if (in_array($fieldName, $this->toExtractFromFields)) {
+                            $projectDetail[$fieldName] = $fieldValue;
+                        }
+                    }
+                }
+                if (!isset($projectDetail['i18n'])) {
+                        $projectDetail['i18n'] = array();
+                }
+                if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
+                        $projectDetail['i18n'][$params['lang']->getLocale()] = array();
+                }
+                $projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);
+                $projectDetail['fields'] = $this->filterFields($type, $projectDetail['fields']);		    
+                if (isset($projectDetail['fields'])) {
+                    foreach ($projectDetail["fields"] as $key2 => $value2) {
+                        $projectDetail["fields"][$key2] = $value2;
+                    }
+                    foreach ($projectDetail['i18n'][$params['lang']->getLocale()]['fields']  as $key3 => $value3) {
+                        $projectDetail['i18n'][$params['lang']->getLocale()]['fields'][$key3] = $value3;
+                    }
+                }
+                
+                $projectDetail['fields']['cumul'] +=   $don["fields"]["montant"];
                 $projectUpdate = $contentsService->update($projectDetail, array(),false);
                 AbstractCollection::disableUserFilter(false);
             }
@@ -196,6 +207,7 @@ class DonationResource extends AbstractResource
         $don = $this->_dataService->findByName($idDonation);
         /*Récupérer le contenu projet correspondant*/
         $contentsService = Manager::getService("ContentsCcn");
+        AbstractLocalizableCollection::setIncludeI18n(true);
         $projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
         /*Récupérer le contenu config de dons correspondant*/
         $conditionFiscale = $contentsService->findById($don["live"]["fields"]["conditionId"],false,false);
@@ -227,14 +239,31 @@ class DonationResource extends AbstractResource
             /*Update montant récolté pour le projet*/
             if($projectDetail) {
                 AbstractCollection::disableUserFilter(true);
-		$type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
-		if (!isset($projectDetail['i18n'])) {
-            		$projectDetail['i18n'] = array();
-        	}
-        	if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
-            		$projectDetail['i18n'][$params['lang']->getLocale()] = array();
-        	}
-        	$projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);  		    
+                $type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
+                if ($projectDetail['nativeLanguage'] === $params['lang']->getLocale()) {
+                    foreach ($projectDetail['fields'] as $fieldName => $fieldValue) {
+                        if (in_array($fieldName, $this->toExtractFromFields)) {
+                            $projectDetail[$fieldName] = $fieldValue;
+                        }
+                    }
+                }
+                if (!isset($projectDetail['i18n'])) {
+                        $projectDetail['i18n'] = array();
+                }
+                if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
+                        $projectDetail['i18n'][$params['lang']->getLocale()] = array();
+                }
+                
+                $projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);
+                $projectDetail['fields'] = $this->filterFields($type, $projectDetail['fields']);		    
+                if (isset($projectDetail['fields'])) {
+                    foreach ($projectDetail["fields"] as $key2 => $value2) {
+                        $projectDetail["fields"][$key2] = $value2;
+                    }
+                    foreach ($projectDetail['i18n'][$params['lang']->getLocale()]['fields']  as $key3 => $value3) {
+                        $projectDetail['i18n'][$params['lang']->getLocale()]['fields'][$key3] = $value3;
+                    }
+                }
 		    
 		    
                 $projectDetail['fields']['cumul'] += $don["live"]["fields"]["montant"];
@@ -641,7 +670,22 @@ class DonationResource extends AbstractResource
         }
         return $content['id'];
     }      
-       
+    protected function filterFields($type, $fields)
+    {
+        $existingFields = array();
+        foreach ($type['fields'] as $field) {
+            if (!($field['config']['localizable'] || in_array($field['config']['name'], $this->otherLocalizableFields))) {
+                $existingFields[] = $field['config']['name'];
+            }
+        }
+        foreach ($fields as $key => $value) {
+            unset($value); //unused
+            if (!in_array($key, $existingFields)) {
+                unset ($fields[$key]);
+            }
+        }
+        return $fields;
+    }   
 	
     protected function localizableFields($type, $fields)
     {
