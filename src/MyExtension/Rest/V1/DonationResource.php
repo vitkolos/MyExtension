@@ -198,9 +198,7 @@ class DonationResource extends AbstractResource
             $commande = explode("|", $params['commande']); // $codeAna . "|" .$idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
             $codeAna = $commande[0];
             $idDonation = $commande[1];
- 
-            
-        }
+         }
         /*Récupérer le contenu dons correspondant*/
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $this->_dataService = Manager::getService('MongoDataAccess');
@@ -210,6 +208,9 @@ class DonationResource extends AbstractResource
         $contentsService = Manager::getService("ContentsCcn");
         AbstractLocalizableCollection::setIncludeI18n(true);
         $projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
+        AbstractLocalizableCollection::setIncludeI18n(false);
+        $projectDetailSauv = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
+
         /*Récupérer le contenu config de dons correspondant*/
         $conditionFiscale = $contentsService->findById($don["live"]["fields"]["conditionId"],false,false);
         AbstractCollection::disableUserFilter(false);
@@ -236,7 +237,8 @@ class DonationResource extends AbstractResource
             //update numero incrémenté
             $result = $contentsService->update($contentToUpdate, array(),false);
             AbstractCollection::disableUserFilter(false);
-            
+            $this->envoyerMailsDon($contentToUpdate["fields"],$projectDetailSauv,$paymentConfig["data"],$don['live']['nativeLanguage']);
+
             /*Update montant récolté pour le projet*/
             if($projectDetail) {
                 AbstractCollection::disableUserFilter(true);
@@ -278,7 +280,6 @@ class DonationResource extends AbstractResource
         }
         
         
-        $this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage']);
         return [
                 'success' => true,
                 'result' => $result
