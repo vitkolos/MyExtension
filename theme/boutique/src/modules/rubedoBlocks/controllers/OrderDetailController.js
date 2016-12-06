@@ -20,7 +20,8 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             }
                         );
                     }
-                    me.isAdmin= response.data.isAdmin;
+                  // si c'est une commande de l'admin, il doit la voir comme un client normal !
+                    if($scope.rubedo.current.user && response.data.order.createUser.id != $scope.rubedo.current.user.id) me.isAdmin= response.data.isAdmin;
                     if(me.order.status=="pendingPayment" && !me.isAdmin){
                         RubedoPaymentService.getPaymentInformation(orderId).then(
                             function(pmResponse){

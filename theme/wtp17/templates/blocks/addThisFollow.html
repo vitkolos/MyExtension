@@ -1,0 +1,10 @@
+<div ng-controller="AddThisFollowController as addThisFollowCtrl">
+    <div class="nav-item follow {{addThisFollowCtrl.divClass}}">
+    	<div ng-repeat="network in addThisFollowCtrl.networks" class="home-button" ng-if="network.id">
+    		<a  ng-if="network.name == 'twitter'" ng-href="{{'https://'+network.name+'.com/'+network.id}}" target="_blank">ú</a>
+    		<a  ng-if="network.name == 'facebook'" ng-href="{{'https://'+network.name+'.com/'+network.id}}" target="_blank">\</a>
+    		<a  ng-if="network.name == 'youtube'" ng-href="{{'https://'+network.name+'.com/'+network.id}}" target="_blank">’</a>
+    	</div>
+        
+    </div>
+</div>

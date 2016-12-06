@@ -119,12 +119,25 @@ class DonationResource extends AbstractResource
             /*METTRE A JOUR LE MONTANT COLLECTE*/
             if($projectDetail) {
                 AbstractCollection::disableUserFilter(true);
+		$type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
+
+		if (!isset($projectDetail['i18n'])) {
+            		$projectDetail['i18n'] = array();
+        	}
+        	if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
+            		$projectDetail['i18n'][$params['lang']->getLocale()] = array();
+        	}
+        	$projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);
+		    
+		    
+		    
+		    
                 $projectDetail['fields']['cumul'] += $don["fields"]["montant"];
-                $projectDetail['i18n'] = array(
+                /*$projectDetail['i18n'] = array(
                     $projectDetail['locale'] =>array(
                         "fields" => array("text"=>$projectDetail["text"])
                     )
-                );
+                );*/
                 $projectUpdate = $contentsService->update($projectDetail, array(),false);
                 AbstractCollection::disableUserFilter(false);
             }
@@ -214,12 +227,18 @@ class DonationResource extends AbstractResource
             /*Update montant récolté pour le projet*/
             if($projectDetail) {
                 AbstractCollection::disableUserFilter(true);
+		$type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
+		if (!isset($projectDetail['i18n'])) {
+            		$projectDetail['i18n'] = array();
+        	}
+        	if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
+            		$projectDetail['i18n'][$params['lang']->getLocale()] = array();
+        	}
+        	$projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);  		    
+		    
+		    
                 $projectDetail['fields']['cumul'] += $don["live"]["fields"]["montant"];
-                $projectDetail['i18n'] = array(
-                    $projectDetail['locale'] =>array(
-                        "fields" => array("text"=>$projectDetail["text"])
-                    )
-                );
+                
                 $projectUpdate = $contentsService->update($projectDetail, array(),false);
                 AbstractCollection::disableUserFilter(false);
             }
@@ -400,8 +419,8 @@ class DonationResource extends AbstractResource
         $messageDonateur.=  $trad["ccn_don_6"]  . "<br/>";
         $messageDonateur .= $contactNational["prenom"] . " " . $contactNational["nom"] .", " . $contactNational["text"] . " - " . $contactNational["telephone"] . " - <a href='mailto:" .$contactNational["email"]  . "'>" . $contactNational["email"] . "</a><br/><br/>" ;
         
-        //Grace à votre don, le projet est maintenant financé à 56%.
-        $messageDonateur .= $this->translate($trad["ccn_don_35"],'%percentage%',round(($projectDetail["fields"]["cumul"]+$don["montant"]) *100 / $projectDetail["fields"]["budget"]))  . ".<br/><br/>";
+        //Grace à votre don, le projet est maintenant financé à 56%. Seulement si le budget est > 0
+        if($projectDetail["fields"]["budget"]>0) $messageDonateur .= $this->translate($trad["ccn_don_35"],'%percentage%',round(($projectDetail["fields"]["cumul"]+$don["montant"]) *100 / $projectDetail["fields"]["budget"]))  . ".<br/><br/>";
         
         //"Cordialement" + ",<br><br>"
         $messageDonateur .= $trad["ccn_mail_9_vous"] . ",<br><br/>";
@@ -623,6 +642,25 @@ class DonationResource extends AbstractResource
         return $content['id'];
     }      
        
+	
+    protected function localizableFields($type, $fields)
+    {
+        $existingFields = array();
+        foreach ($type['fields'] as $field) {
+            if ($field['config']['localizable']) {
+                $existingFields[] = $field['config']['name'];
+            }
+        }
+        foreach ($fields as $key => $value) {
+            unset($value); //unused
+            if (!(in_array($key, $existingFields) || in_array($key, array('text', 'summary')))) {
+                unset ($fields[$key]);
+            }
+        }
+        return $fields;
+    }
+	
+	
 /**
      * Define the resource
      */

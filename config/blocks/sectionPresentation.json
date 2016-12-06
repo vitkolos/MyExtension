@@ -17,7 +17,14 @@
 								"name":"linkedPage"
 							}
 						},
-						
+						{
+                            "type": "Rubedo.view.DCEField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1105#",
+                                "name": "contentId",
+                                "chooseOnly": true
+                            }
+                        },
 						{
 							"type":"Rubedo.view.ImagePickerField",
 							"config":{

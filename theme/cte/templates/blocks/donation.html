@@ -177,10 +177,10 @@
                                 
                         </ng-form>
                 </div>
-                <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==3}" >{{contentDetailCtrl.getLabelByName('questions')}}
+                <h2 class="capital txt-red" ng-if="donsCtrl.questions.length>0" ng-class="{'displayed' : donsCtrl.currentStage==3}" >{{contentDetailCtrl.getLabelByName('questions')}}
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>3" ng-click="donsCtrl.setCurrentStage(3,true)"></span>
                 </h2>
-                <div id="inscriptionStage3" class="collapse">
+                <div id="inscriptionStage3" class="collapse" ng-if="donsCtrl.questions.length>0">
                         <ng-form name="questions">
                                 <div class="row" ng-repeat="question in donsCtrl.questions | orderBy:'order' track by $index">
                                         <ng-include src="donsCtrl.questionDetail"></ng-include>

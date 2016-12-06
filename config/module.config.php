@@ -40,6 +40,11 @@ return array(
             'name' => "PAF Espagne",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+         'paf_hu' => array(
+            'name' => "PAF Hongrie",
+            //'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
         )
          
     ),
@@ -165,6 +170,17 @@ return array(
             'wtp15' => array(
                 'label' => 'WTP15',
                 'basePath' => realpath(__DIR__ . '/../theme/wtp15'),
+                'css' => array(
+                    '/css/wtp2015.css',
+                    '/css/ru.css'
+                ),
+                'js' => array(
+                    '/js/wtp.js',
+                ),
+            ),
+             'wtp17' => array(
+                'label' => 'WTP17',
+                'basePath' => realpath(__DIR__ . '/../theme/wtp17'),
                 'css' => array(
                     '/css/wtp2015.css',
                     '/css/ru.css'

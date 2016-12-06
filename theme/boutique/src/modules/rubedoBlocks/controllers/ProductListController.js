@@ -29,7 +29,8 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
         'fields[]' : ["text","summary",me.imageField]
     };
     /*if(config.singlePage){*/
-        options.detailPageId = pageId;
+    //afficher le produit dans la même page / sauf pour page d'accueil
+    if(pageId!="55c8777145205ef317c62e2a") options.detailPageId = pageId;
     /*}*/
     if(config.enableFOContrib&&$scope.rubedo.current.user){
         options.foContributeMode = true;

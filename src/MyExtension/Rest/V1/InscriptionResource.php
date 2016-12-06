@@ -55,17 +55,21 @@ class InscriptionResource extends AbstractResource
         $contentsService = Manager::getService("ContentsCcn");
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] +=1;
-        $content['i18n'] = array(
-            "fr" =>array(
-                "fields" => array("text"=>$content["fields"]["text"])
-            ),
-            "pl" =>array(
-                "fields" => array("text"=>$content["fields"]["text"])
-            ),
-            "es" =>array(
-                "fields" => array("text"=>$content["fields"]["text"])
-            )
-        );
+	$content['i18n'] =  array(
+		    "fr" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    ),
+		    "pl" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    ),
+		    "es" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    ),
+		"hu" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    )
+		);
+	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         $result = $contentsService->update($content, array(),false);
         $inscriptionNumber= $content["fields"]["value"];
 
@@ -663,8 +667,27 @@ protected function sendInscriptionMail($inscription,$lang){
                 return "FR"; break;
             case "www.chemin-neuf.pl" : 
                 return "PL"; break;
+	    case "chemin-neuf.hu" : 
+	    case "hu.chemin-neuf.org" : 
+                return "HU"; break;
         }
      }
+protected function localizableFields($type, $fields)
+    {
+        $existingFields = array();
+        foreach ($type['fields'] as $field) {
+            if ($field['config']['localizable']) {
+                $existingFields[] = $field['config']['name'];
+            }
+        }
+        foreach ($fields as $key => $value) {
+            unset($value); //unused
+            if (!(in_array($key, $existingFields) || in_array($key, array('text', 'summary')))) {
+                unset ($fields[$key]);
+            }
+        }
+        return $fields;
+    }
     protected function getAccountId(){
         switch($_SERVER['HTTP_HOST']) {
             case "chemin-neuf.fr" : 
