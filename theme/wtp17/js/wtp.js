@@ -10,7 +10,10 @@ blocksConfig.form={
            "template": "/templates/blocks/form.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/form.js"]
 };
-
+blocksConfig.carrousel2={
+           "template": "/templates/blocks/carrousel_fullWidth.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
+};
 
 
 
