@@ -154,7 +154,7 @@ class DonationResource extends AbstractResource
                 AbstractCollection::disableUserFilter(false);
             }
             
-            $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'],$projectDetail );
+            $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
             
         }
         
