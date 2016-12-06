@@ -188,6 +188,9 @@ return array(
                 'js' => array(
                     '/js/wtp.js',
                 ),
+                'angularModules' => array(
+                    'angularVideoBg' => '/lib/angular-video-bg.min.js'
+                ),
             ),
             'jmj2016' => array(
                 'label' => 'JMJ2016',

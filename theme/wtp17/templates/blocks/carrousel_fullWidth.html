@@ -1,0 +1,96 @@
+<style>
+
+	.carousel-inner>.item{display: block; position: absolute; top: 0; left: 0; width: 100%; height: 100%}
+        .carousel-inner .item {
+            transition-property: opacity;
+        }
+        
+        .carousel-inner .item,
+        .carousel-inner .active.left,
+        .carousel-inner .active.right {
+            opacity: 0;
+        }
+
+        .carousel-inner .active,
+        .carousel-inner .next.left,
+        .carousel-inner .prev.right {
+            opacity: 1;
+        }
+
+        .carousel-inner .next,
+        .carousel-inner .prev,
+        .carousel-inner .active.left,
+        .carousel-inner .active.right {
+            left: 0;
+            transform: translate3d(0, 0, 0);
+        }
+
+
+  .carousel,
+.item,
+.active {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 100vh;
+}
+@media screen and (min-width:768px){.carousel-inner{height:100vh}}
+
+/* Background images are set within the HTML using inline CSS, not here */
+
+.fill {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute !important;
+    top: 0;
+    left:0;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.video-title{
+	position: absolute !important;
+	bottom: 15px; right: 5%;
+	color: white;
+	padding: 6px 12px;
+	border: 1px solid white;
+	background-color: rgba(0,0,0,0.1)
+}
+</style>
+
+<div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" >
+  <ol class="carousel-indicators" ng-if="carouselCtrl.count>1">
+    <li ng-repeat="content in carouselCtrl.contents" 
+      ng-if="content.fields[blockConfig.imageField]" 
+      data-target="{{'block'+block.id}}"
+      data-slide-to="{{$index}}"
+      ng-class="{'active':$first}"
+      ng-click="carouselCtrl.slideTo($index)">
+    </li>
+  </ol>
+
+  <div class="carousel-inner">
+      <div class="item" 
+            ng-repeat="content in carouselCtrl.contents" 
+            ng-class="{'active':$first}">
+          <!-- Set the first background image using inline CSS below. -->
+	  <!--
+          <div class="fill" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],{width:'500px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],{width:'600px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}} 1650w"
+               afkl-lazy-image-options='{"background": true, "nolazy": true}'></div>-->
+	       <div class="fill">
+			<video-bg video-id="aZduPDQA6c0" start="83" end="95" allow-click-events="true"></video-bg>
+			<p class="video-title hidden-sm hidden-xs">TEST</p>
+	       </div>
+      </div>
+  </div>
+       <!-- Controls -->
+
+  <!--<video-bg video-id=" '500kOPqnvDc' " allow-click-events="true"></video-bg>-->
+
+</div>
+
+ 
