@@ -573,10 +573,6 @@ header.parallax.page{
 	border: 1px solid @txt_grey;
 	height: 250px;
 	padding: 20px;
-	transform:rotateY(0deg);
-	transform-style:preserve-3d;
-	transform-origin:50% 100px 0;
-	transition: all 1.0s ease-in-out;
 	.side1{
 	}
 	.side2{
@@ -585,13 +581,12 @@ header.parallax.page{
 		-o-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
 		-ms-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
 		transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
-		background: #000;
 		opacity: 0;
 	}
 }
 .bloc-icone>div{
 	position:absolute; width:100%;height: 100%; 
-		-webkit-transform-style: preserve-3d;
+	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	-o-transform-style: preserve-3d;
 	-ms-transform-style: preserve-3d;
@@ -603,8 +598,6 @@ header.parallax.page{
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	border-radius: 50%;
-	background-position: center center;
 	-webkit-transition: all 0.4s linear;
 	-moz-transition: all 0.4s linear;
 	-o-transition: all 0.4s linear;
@@ -615,6 +608,7 @@ header.parallax.page{
 	-o-transform-origin: 50% 0%;
 	-ms-transform-origin: 50% 0%;
 	transform-origin: 50% 0%;
+	padding: 20px;
 }
 .bloc-icone:hover .side1 {
 	-webkit-transform: translate3d(0,280px,0) rotate3d(1,0,0,-90deg);
