@@ -900,10 +900,19 @@ module.controller("RECFieldController",["$scope","RubedoContentTypesService",fun
                     me.contentType=response.data.contentType;
                     $scope.fieldIdPrefix=$scope.$parent.fieldIdPrefix+me.contentType.type;
                     $scope.fields=me.contentType.fields;
-                    console.log($scope.fields);
+                    
                 }
             }
         );
+        me.getFieldByName=function(name){
+            var field=null;
+            angular.forEach($scope.fields,function(candidate){
+                if (candidate.config.name==name){
+                    field=candidate;
+                }
+            });
+            return field;
+        };
     }]);
 
     module.controller("RepeatedFieldController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){

@@ -1,7 +1,9 @@
 <div ng-controller="RECFieldController as recCtrl" ng-switch="contentDetailCtrl.content.type.code">
     <div ng-switch-when="pageWTP" class="col-xs-6 col-md-4 bloc-icone">
-        <rubedo-field class="block-details" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>
-
+        <!--<rubedo-field class="block-details" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>-->
+        <rubedo-field field= "{{recCtrl.getFieldByName('icon')}}" ng-if="fieldEntity['icon']" class="block-details"></rubedo-field>
+        <rubedo-field field= "{{recCtrl.getFieldByName('subTitle')}}" ng-if="fieldEntity['subTitle']" class="block-details"></rubedo-field>
+        <rubedo-field field= "{{recCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']" class="block-details"></rubedo-field>
     </div>
     <div ng-switch-default>
         <rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>
