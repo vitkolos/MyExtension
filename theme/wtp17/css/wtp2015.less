@@ -363,7 +363,11 @@ header.parallax{
 @media screen and (max-width: @tablet) {
 	header.parallax{background-attachment: scroll;}
 }
-header.parallax>div{line-height: normal;display: inline-block;text-align:center; vertical-align: middle;}
+header.parallax>div{line-height: 1.6em; font-size: 1.2em;display: inline-block;text-align:center; vertical-align: middle;}
+header.parallax.page{
+	text-align: center;
+	h1{text-transform: uppercase}
+}
 /*@media screen and (min-width: @min_sm) {
     .large header.content{line-height: 600px; height:600px}
     header.content{line-height: 400px; height:400px}
@@ -465,7 +469,7 @@ header.parallax>div{line-height: normal;display: inline-block;text-align:center;
 .changement .linkbox a{color:white; border-color:rgba(255,255,255,0.5)}
 .changement .linkbox a:hover{border-color:white}
 /*PAGES*/
-.page{margin-top:30px}
+//.page{margin-top:30px}
 .section-header {
     cursor: pointer;
     height: 300px;
@@ -590,7 +594,7 @@ header.parallax>div{line-height: normal;display: inline-block;text-align:center;
 .block-detail{display:inline-block;float:none;text-align:center;vertical-align:top; margin:0 -5px}
 .block-detail:nth-of-type(2n)  p:first-of-type{color:@txt_dark !important}
 #kawaco {
-	.sec-logo, .text-bg p, nav{background-color:@kawaco}
+	.sec-logo, .text-bg, nav{background-color:@kawaco}
 	.section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@kawaco}
 }
 #dots-kawaco{color:@kawaco}

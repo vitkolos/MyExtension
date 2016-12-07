@@ -1,25 +1,12 @@
 <a ng-attr-name=" {{block.code | split:'/':1}}" ></a>
 <div ng-attr-id=" {{block.code | split:'/':1}}" >
+<header class="parallax page" afkl-lazy-image-options='{"background": true}'
+                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['banner'],{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['banner'] ,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['banner']  ,{width:'1920px',mode:'boxed'})}} 1650w">
+    <div class="container"><rubedo-field field= "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEntity['text']"></rubedo-field></div>
+</header>
 
-    <div class="row page">
-        <div class="col-xs-12 section-header">                
-            
-            <rubedo-field field= "{{contentDetailCtrl.getFieldByName('banner')}}" class="hidden-xs"></rubedo-field>
-            <div class="section-header-title">
-                <div class="sec-logo">
-                    <rubedo-field field= "{{contentDetailCtrl.getFieldByName('icone')}}"></rubedo-field>
-                </div>
-                <div class="section-title-h1">
-                    <div class="section-title-h2 hidden-xs" ng-if="block.title | section" >
-                            <p> {{block.title | section}}</p>
-                    </div>
-                    <rubedo-field field= "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="margin-top:20px">
-        <div class="col-sm-12 col-md-6">
+    <div class="row text-bg">
+        <div class="col-sm-12">
             <rubedo-field field= "{{contentDetailCtrl.getFieldByName('introduction')}}" ng-if="fieldEntity['introduction']" class="intro"></rubedo-field>
             <rubedo-field field= "{{contentDetailCtrl.getFieldByName('textOnBg')}}" ng-if="fieldEntity['textOnBg']" class="text-bg"></rubedo-field>
         </div>
