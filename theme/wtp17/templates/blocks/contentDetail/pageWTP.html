@@ -15,7 +15,7 @@
     </div>
     <div class="row">
         <div class="container">
-            <div clas="col-sm-12">
+            <div clas="col-sm-12 padding-large">
                 <rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 5)=='infos' && fieldEntity[field.config.name].title!=''" class="color"></rubedo-field>
             </div>
         </div>
@@ -27,6 +27,7 @@
                 <rubedo-field field= "{{contentDetailCtrl.getFieldByName('position')}}" ng-if="fieldEntity['position']"></rubedo-field>-->
             </div>
     </div>
+    <!--
     <div class="row" style="margin-top:20px">
         <div class="col-sm-12">
             <rubedo-field class="text-it" field= "{{contentDetailCtrl.getFieldByName('textItalic')}}" ng-if="fieldEntity['textItalic']" ></rubedo-field>
@@ -39,6 +40,6 @@
     </div>
     <div class="row" style="margin-top:20px;text-align:center">
             <rubedo-field field= "{{contentDetailCtrl.getFieldByName('texteRiche')}}" ng-if="fieldEntity['texteRiche']" ></rubedo-field>
-    </div>
+    </div>-->
 
 </div>
