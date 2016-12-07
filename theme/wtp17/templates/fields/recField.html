@@ -1,5 +1,5 @@
 <div ng-controller="RECFieldController as recCtrl" ng-switch="contentDetailCtrl.content.type.code">
-    <div ng-switch-when="pageWTP" class="col-xs-6 col-md-4 block-icone">
+    <div ng-switch-when="pageWTP" class="col-xs-6 col-md-4 bloc-icone">
         <rubedo-field class="block-details" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>
 
     </div>
