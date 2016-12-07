@@ -15,7 +15,7 @@
     </div>
     <div class="row">
             <div class="col-sm-12">
-                <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}"></jwplayer>
+                <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="24:10"></jwplayer>
                 <rubedo-field field= "{{contentDetailCtrl.getFieldByName('image2')}}" ng-if="fieldEntity['image2']"></rubedo-field>
                 <rubedo-field field= "{{contentDetailCtrl.getFieldByName('position')}}" ng-if="fieldEntity['position']"></rubedo-field>
             </div>

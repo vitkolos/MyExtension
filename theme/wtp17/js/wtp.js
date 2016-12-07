@@ -42,6 +42,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
+		   var format = attrs.format;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
@@ -52,7 +53,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
                       modestbranding:0,
                       showinfo:1,
                       width:"100%",
-                      aspectratio:"24:10"};
+                      aspectratio:format};
                       //to adress rmtp streaming
            if(filmUrl.slice(0,4) =='rtmp'){
            	options.primary= "flash";
