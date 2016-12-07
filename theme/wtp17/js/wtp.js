@@ -127,13 +127,13 @@ angular.module('rubedoBlocks').directive('toggleclass', function() {
         };
         return serviceInstance;
     }]);
-    
+    /*
 $(document).ready(function(){
 dot_kill= '';
 dot = '';
 
 
-/*
+
 $(window).bind("scroll", function(){
     if ($('#infos').length)  {
         $("nav").attr("class"," infos");
@@ -246,7 +246,7 @@ $(window).bind("scroll", function(){
     $(dot).addClass('dots-active');
 });
 
-*/
 
 
-})
+
+})*/
