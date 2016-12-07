@@ -2,6 +2,10 @@ blocksConfig.buttonToPage={
            "template": "/templates/blocks/buttonToPage.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
 };
+blocksConfig.bg_image={
+           "template": "/templates/blocks/bg_image.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
+};
 blocksConfig.contactBlock={
            "template": "/templates/blocks/contactBlock.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/contactBlock.js"]
