@@ -3,8 +3,10 @@
         <!--<rubedo-field class="block-details" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>-->
         <div>
             <div class="col-sm-12  side1">
-                <rubedo-field field= "{{recCtrl.getFieldByName('icon')}}" ng-if="fieldEntity['icon']" class="block-details icone"></rubedo-field>
-                <rubedo-field field= "{{recCtrl.getFieldByName('subTitle')}}" ng-if="fieldEntity['subTitle']" class="block-details"></rubedo-field>
+                <div>
+                    <rubedo-field field= "{{recCtrl.getFieldByName('icon')}}" ng-if="fieldEntity['icon']" class="block-details icone"></rubedo-field>
+                    <rubedo-field field= "{{recCtrl.getFieldByName('subTitle')}}" ng-if="fieldEntity['subTitle']" class="block-details"></rubedo-field>                    
+                </div>
             </div>
             <div class="col-sm-12 side2">
                 <rubedo-field field= "{{recCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']" class="block-details"></rubedo-field>
