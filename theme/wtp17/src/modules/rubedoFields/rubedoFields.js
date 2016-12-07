@@ -900,6 +900,7 @@ module.controller("RECFieldController",["$scope","RubedoContentTypesService",fun
                     me.contentType=response.data.contentType;
                     $scope.fieldIdPrefix=$scope.$parent.fieldIdPrefix+me.contentType.type;
                     $scope.fields=me.contentType.fields;
+                    console.log($scope.fields);
                 }
             }
         );
