@@ -187,6 +187,7 @@ return array(
                 ),
                 'js' => array(
                     '/js/wtp.js',
+                     '../js/lazy-image.js',
                 ),
                 'angularModules' => array(
                     'angularVideoBg' => '/lib/angular-video-bg.min.js'
