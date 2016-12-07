@@ -573,14 +573,21 @@ header.parallax.page{
 	border: 1px solid @txt_grey;
 	height: 250px;
 	padding: 20px;
+	transform:rotateY(0deg);
+	transform-style:preserve-3d;
+	transform-origin:50% 100px 0;
+	transition: all 1.0s ease-in-out;
+	.side1{transform:translateZ(225px)}
+	.side2{transform:rotateY(90deg) translateZ(225px)}
 }
 .bloc-icone:hover{
-	.block-details:nth-of-type(1){display:none}
-	.block-details:nth-of-type(2){display:none}
-	line-height: 250px;
-	 .block-details:nth-of-type(3){display: inline-block; line-height: 1.5em;}
+	transform:rotateY(-90deg);
+	//.block-details:nth-of-type(1){display:none}
+	//.block-details:nth-of-type(2){display:none}
+	//line-height: 250px;
+	//.block-details:nth-of-type(3){display: inline-block; line-height: 1.5em;vertical-align:middle;}
 }
-.bloc-icone .block-details:first-of-type{
+.bloc-icone .side1 .block-details:first-of-type{
 	p{
 		margin: 15px 0 0;
 		display: block;
@@ -590,7 +597,7 @@ header.parallax.page{
 		font-family : 'hautecombe-2014-ronds';
 	}
 }
-.bloc-icone .block-details:nth-of-type(2){
+.bloc-icone .side1 .block-details:nth-of-type(2){
 	p{
 		display: inline-block;
 		width: 100%;
@@ -602,8 +609,9 @@ header.parallax.page{
 		text-align: center;
 	}
 }
-.bloc-icone .block-details:nth-of-type(3){
-	display:none;
+.bloc-icone .side2 .block-details{
+	//display:none;
+	display: inline-block; line-height: 1.5em;vertical-align:middle;
 	p{
 		text-align: center;
 	}
