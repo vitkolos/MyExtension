@@ -14,10 +14,17 @@
         </div>
     </div>
     <div class="row">
+        <div class="container">
+            <div clas="col-sm-12">
+                <rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 5)=='infos' && fieldEntity[field.config.name].title!=''"></rubedo-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
             <div class="col-sm-12">
                 <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="24:10"></jwplayer>
-                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('image2')}}" ng-if="fieldEntity['image2']"></rubedo-field>
-                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('position')}}" ng-if="fieldEntity['position']"></rubedo-field>
+                <!--<rubedo-field field= "{{contentDetailCtrl.getFieldByName('image2')}}" ng-if="fieldEntity['image2']"></rubedo-field>
+                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('position')}}" ng-if="fieldEntity['position']"></rubedo-field>-->
             </div>
     </div>
     <div class="row" style="margin-top:20px">
