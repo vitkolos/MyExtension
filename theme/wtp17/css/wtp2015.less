@@ -67,7 +67,7 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 
 //v2
 @yellow:#f4bf00;
-
+@txt:#4d4f4f;
 
 @txt_grey:#9c9b9d;  //grey text
 @kawaco:#ff9c32;	
@@ -91,6 +91,10 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 @hover:#00b4ff;
 @txt_dark:#444;
 @highlight:#feef07;
+
+
+@tablet:768px;
+
 ////////////////////////////////////////////////
     ///////  WYD Krakow  ////////////////
 ////////////////////////////////////////////////
@@ -321,93 +325,26 @@ input:checked + .push-menu-title:after{content:"c"}
     #push-menu-02{padding:0}
 }
 
-/*SLIDER*/
-.caption-01, .caption-02 {
-    position: absolute;
-    display: block;
-    left: 0;
-    top : 72px;
-    width: auto;
-    margin: 0;
-    padding: 0 15px 0 30px;
-    text-align: center;
-    font-size: 4em;
-    height : 90px;
-    line-height: 90px;
-	text-transform:uppercase;
-}
-.section-header-title {
-    background:rgb(0,0,0);
-    background: transparent\9;
-    background:rgba(0,0,0,0.75);
-    zoom: 1;
-}
-.caption-01:nth-child(n),.caption-02:nth-child(n),.section-header-title:nth-child(n) {
-    filter: none;
-}
-.caption-02 {
-    top : 162px;
-    padding: 0 15px 0 50px;
-}
-.caption-01,.caption-02 {
-    background-color:#feef07;
-    color:black;
-}
-a.slider-button {
-    display: block;
+/*PAGE ACCUEIL*/
+.accueil_vision {
     width:100%;
-    text-align: center;
-   height: 100px;margin-top :-99px;
-    color:white;
-    background: rgb(0,0,0);
-    background: rgba(0,0,0,0.6);
-   p {
-	font-family: 'hautecombe-2015regular';
-	font-size: 4em;
-	margin: 0;
-	position:relative; top:-10px;
-    }
-    h4 {margin:0; text-transform: uppercase;font-size: 1.2em;position:relative; top:-20px}
+    /*background: @welcome;*/
+    background-color:#e6e6e6;
+	background-image: url('../img/vision.jpg');
+    color: @txt;
+    text-align:center;
+    p,h1{width: 800px; margin:0 auto;line-height:1.45em;}
+    p{color:#89896F}
+    h1{color:#464646; margin-bottom:20px; font-weight: bold}
+    h2,h3{color:@txt;}
+    font-size: 1.25em;
+    padding: 50px 0;
+    padding-bottom: 30px;
 }
-a.slider-button:hover {
-    background-color:#feef07;
-    color:black;
+@media screen and (max-width: @tablet) {
+    .accueil_vision p, .accueil_vision h1{width:90%; margin-left:5%}
 }
-.owl-theme .owl-controls .owl-buttons div {
-    border-radius: 0px;
-    background: none;
-    color: #fff;
-    font-size: 5em;
-    margin: 0px;
-    opacity: 0.5;
-    position: absolute;
-    top:45%;
-}
-.owl-prev {left:0px;}
-.owl-next {right:0px;}
-.owl-theme .owl-controls .owl-buttons div{padding: 0}
-.owl-buttons .glyphicon-chevron-left,  .owl-buttons .glyphicon-chevron-right {font-family:'hautecombe-2015regular'; text-transform: none;background-color:rgba(0,0,0,0.75)}
-.glyphicon-chevron-left:before{content:'e'}
-.glyphicon-chevron-right:before{content:'d'}
 
-.play-button {
-    position:absolute;
-    left:45%; top:45%;
-    font-family: 'hautecombe-2014-ronds';
-    font-size: 5em;
-    color:#feef07;
-    text-transform:none;
-    text-transform: none;
-    opacity:0.8;
-    transition: opacity ease 0.3s;
-    cursor: pointer;
-}
-.play-button:hover{opacity:1; color: inherit}
-.video{position: absolute; margin: 0 auto; top:0; width:100%; height: 100%; z-index:1}
-.modal-lg{margin:50px auto 0; height:80%; width: 80%}
-.modal-content{height:100%; box-shadow: 0; border: none;}
-.modal-body{height:100%; padding: 5px}
-.owl-item img{width: 100%}
 /*FOOTER*/
 #footer {
     line-height: 84px;
