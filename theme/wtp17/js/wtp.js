@@ -51,8 +51,8 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
                       file: filmUrl,
                       modestbranding:0,
                       showinfo:1,
-                      width:"80%",
-                      aspectratio:"16:9"};
+                      width:"100%",
+                      aspectratio:"24:10"};
                       //to adress rmtp streaming
            if(filmUrl.slice(0,4) =='rtmp'){
            	options.primary= "flash";
