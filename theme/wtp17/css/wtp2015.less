@@ -346,7 +346,34 @@ input:checked + .push-menu-title:after{content:"c"}
 	.accueil_vision p{ font-size: 1em;}
 }
 
-
+/*BACKGROUND-IMAGE BLOCK*/
+header.parallax{
+	background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    h1,h2,h3,h4,h5,p{color:white};
+    height:400px;
+    //box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
+    margin-bottom:24px;
+    line-height: 400px;
+    text-align: center;
+    background-color: white;
+    overflow-y:hidden;
+}
+@media screen and (max-width: @tablet) {
+	header.parallax{background-attachment: scroll;}
+}
+header.parallax>div{line-height: normal;display: inline-block;text-align:center; vertical-align: middle;}
+/*@media screen and (min-width: @min_sm) {
+    .large header.content{line-height: 600px; height:600px}
+    header.content{line-height: 400px; height:400px}
+    header.content>div{text-align: left; vertical-align: bottom; padding-bottom: 24px}
+}
+@media screen and (max-width:@min_xs){
+  header.content.parallax{background-attachment: scroll;}
+}
+*/
 /*FOOTER*/
 #footer {
     line-height: 84px;
