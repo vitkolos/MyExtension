@@ -1,0 +1,11 @@
+<div ng-controller="RECFieldController as recCtrl" ng-switch="contentDetailCtrl.content.type.code">
+    <div ng-switch-when="pageWTP" class="col-xs-6 col-md-4 block-detail">
+        <rubedo-field class="icone" field = "{{contentDetailCtrl.getFieldByName('icon')}}"   ng-if="fieldEntity['icon']"></rubedo-field>
+        <rubedo-field class="subTitle" field = "{{contentDetailCtrl.getFieldByName('subTitle')}}"   ng-if="fieldEntity['subTitle']"></rubedo-field>
+        <rubedo-field class="description" field = "{{contentDetailCtrl.getFieldByName('description')}}"   ng-if="fieldEntity['description']"></rubedo-field>
+    </div>
+    <div ng-switch-default>
+        <rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>
+    </div>
+    
+</div>
