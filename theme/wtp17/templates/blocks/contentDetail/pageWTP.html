@@ -14,8 +14,8 @@
         </div>
     </div>
     <div class="row">
-        <div class="container">
-            <div clas="col-sm-12 padding-large">
+        <div class="container paddingv">
+            <div clas="col-sm-12">
                 <rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 5)=='infos' && fieldEntity[field.config.name].title!=''" class="color"></rubedo-field>
             </div>
         </div>
