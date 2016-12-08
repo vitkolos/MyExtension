@@ -70,6 +70,9 @@ class InscriptionResource extends AbstractResource
             ),
             "it" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "pt" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
             )
 		);
 	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
