@@ -65,9 +65,12 @@ class InscriptionResource extends AbstractResource
 		    "es" =>array(
 			"fields" => array("text"=>$content["fields"]["text"])
 		    ),
-		"hu" =>array(
-			"fields" => array("text"=>$content["fields"]["text"])
-		    )
+            "hu" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "it" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            )
 		);
 	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         $result = $contentsService->update($content, array(),false);
