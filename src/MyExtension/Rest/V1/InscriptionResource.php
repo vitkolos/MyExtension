@@ -308,7 +308,7 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     // NUMERO D'INSCRIPTION POUR SUIVI
      //"Ton numéro d'inscription est " + idInscription + "<br><br>"
-    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . ".<br/><br/>";
+    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . " ". $inscription['text'] . ".<br/><br/>";
     
     //RECAPITULATIF
     //Voici le récapitulatif de ton inscription
