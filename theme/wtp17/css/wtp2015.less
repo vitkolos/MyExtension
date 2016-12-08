@@ -114,15 +114,18 @@ nav {margin-bottom:0px;}
 .button:hover{border-color:white;}
 .dropdown .dropdown-menu{width:180px; display:none; position:fixed; left:auto; top:50px}
 ::i-block-chrome,.dropdown .dropdown-menu{left:0}
-.dropdown .dropdown-menu li{width:100%; a{padding:8px 0; padding-left:10px; white-space: pre-wrap}}
+.dropdown .dropdown-menu li{width:100%; a{padding:8px 0; padding-left:10px; white-space: pre-wrap; color:white; &:hover{color:@yellow}}}
 .dropdown:hover .dropdown-menu {
 display: block;
 }
 .row-fluid.h-0 [class*="span"] {min-height:0px}
 
 nav{min-height:0;background-color: rgba(0,0,0,0.3)}
+.dropdown-menu{
+	background-color:rgba(0,0,0,0.3);
+}
 .navbar-fixed-top, .navbar-fixed-bottom{transform:none}
-nav .nav > li > a:hover{background-color:@yellow;color:white}
+nav .nav > li > a:hover{color:@yellow;}
 .snap-content{transform:none}
 
 /*STYLING*/
