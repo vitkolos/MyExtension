@@ -13,11 +13,14 @@
             </div>
             <div class="rowTabled">
                 <div class="colLeft" style="overflow: hidden">
-                    <p><img ng-if="content.fields.imageGauche" style="height:400px" ng-src="{{content.fields.imageGauche.imageCode}}"></p>
+                    <img ng-if="content.fields.imageGauche" style="height:400px; vertical-align: top" ng-src="{{content.fields.imageGauche.imageCode}}">
                 </div>
-                <div class="slide-center">
-                    <h3>{{content.fields.text}}</h3>
-                    <p class="icone">{{content.fields.icone}}</p>
+                <div class="slide-center title">
+                    <div style="position:absolute;bottom;0">
+                        <h3>{{content.fields.text}}</h3>
+                        <p class="icone">{{content.fields.icone}}</p>
+                    </div>
+                    
                 </div>
                 <div class="slide-center">
                     <p>{{content.fields.summary}}</p>
