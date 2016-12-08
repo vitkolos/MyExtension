@@ -222,6 +222,7 @@
             stylesSet: [
                 { name: 'Titre boîte', element: 'h3', attributes: { 'class': 'title-border'} }
             ],
+            templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
 
         };
