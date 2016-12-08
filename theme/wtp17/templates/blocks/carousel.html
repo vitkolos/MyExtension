@@ -1,12 +1,17 @@
 <div id="{{'block'+block.id}}" class="owl-carousel" ng-controller="CarouselController as carouselCtrl">
-    <div ng-repeat="content in carouselCtrl.contents track by $index" >
+    <div ng-repeat="content in carouselCtrl.contents track by $index" class="slide">
         
             <!--<img class="lazyOwl" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"
                     alt="{{content.fields.text}}"
                     title="{{content.fields.text}}"
                    >-->
-            <div class="caption-01">{{content.fields.text}}</div>
-            <div ng-if="content.fields.subTitle != '' " class="caption-02">{{content.fields.subTitle}}</div>
+            <div class="slide-left">
+                <img ng-if="content.fields.imageGauche" class="img-responsive" ng-src="{{content.fields.imageGauche.imageCode}}">
+            </div>
+            <div class="slide-center"><h1>{{content.fields.text}}</h1></div>
+            <div class="slide-right">
+                 <img ng-if="content.fields.imageDroite" class="img-responsive" ng-src="{{content.fields.imageDroite.imageCode}}">
+            </div>
              
            
             
