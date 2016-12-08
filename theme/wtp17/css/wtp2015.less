@@ -841,13 +841,35 @@ nav.inscriptions{background-color:@inscriptions}
 
 .slide{
 	height: 500px;
+	display:table;
+	table-layout: fixed;
+	width:100%;
 }
-.slide-center{
-	width: 800px; float: left; height: 100%;
+.colgroup{
+  display:table-column-group;
 }
-.slide-left,.slide-right{
-	width: auto; max-width: 100%; float: left; height: 100%;
+.colCol{
+  display:table-column;
 }
+.middle{
+  background-color:green;
+  width:800px;
+}
+.left,.right{
+  background-color:yellow;
+}
+.rowTabled{
+  display:table-row;
+}
+.colLeft{
+  display:table-cell;
+}
+.colRight{
+  background-color:red;
+  display:table-cell;
+}
+
+
 .carousel-title{
 	position:absolute;
 	top:100px;

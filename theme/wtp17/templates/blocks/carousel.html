@@ -1,3 +1,4 @@
+<style></style>
 <div id="{{'block'+block.id}}" class="owl-carousel" ng-controller="CarouselController as carouselCtrl">
     <div ng-repeat="content in carouselCtrl.contents track by $index" class="slide">
         
@@ -5,12 +6,19 @@
                     alt="{{content.fields.text}}"
                     title="{{content.fields.text}}"
                    >-->
-            <div class="slide-left">
-                <img ng-if="content.fields.imageGauche" class="img-responsive" ng-src="{{content.fields.imageGauche.imageCode}}">
+            <div class="colgroup">
+                <div class="colCol left"></div>
+                <div class="colCol middle"></div>
+                <div class="colCol right"></div>
             </div>
-            <div class="slide-center"><h1>{{content.fields.text}}</h1></div>
-            <div class="slide-right">
-                 <img ng-if="content.fields.imageDroite" class="img-responsive" ng-src="{{content.fields.imageDroite.imageCode}}">
+            <div class="rowTabled">
+                <div class="colLeft">
+                    <img ng-if="content.fields.imageGauche" class="img-responsive" ng-src="{{content.fields.imageGauche.imageCode}}">
+                </div>
+                <div class="slide-center"><h1>{{content.fields.text}}</h1></div>
+                <div class="aside">
+                     <img ng-if="content.fields.imageDroite" class="img-responsive" ng-src="{{content.fields.imageDroite.imageCode}}">
+                </div>
             </div>
              
            
