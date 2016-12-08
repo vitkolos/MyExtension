@@ -12,8 +12,8 @@
                 <div class="colCol right"></div>
             </div>
             <div class="rowTabled">
-                <div class="colLeft">
-                    <img ng-if="content.fields.imageGauche" class="img-responsive" ng-src="{{content.fields.imageGauche.imageCode}}">
+                <div class="colLeft" style="overflow: hidden">
+                    <p><img ng-if="content.fields.imageGauche" style="height:400px" ng-src="{{content.fields.imageGauche.imageCode}}"></p>
                 </div>
                 <div class="slide-center">
                     <h3>{{content.fields.text}}</h3>

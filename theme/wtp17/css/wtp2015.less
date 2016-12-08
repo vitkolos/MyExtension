@@ -844,6 +844,7 @@ nav.inscriptions{background-color:@inscriptions}
 	display:table;
 	table-layout: fixed;
 	width:100%;
+	.colLeft, colRight{height: 400px;}
 }
 .colgroup{
   display:table-column-group;
@@ -858,7 +859,7 @@ nav.inscriptions{background-color:@inscriptions}
 .slide-center{
 	color:white;
 	height: 50%;
-	h3{text-transform: uppercase;}
+	h3{text-transform: uppercase; margin-top:0}
 	text-align: center;
 	p.icone{
 		font-size: 4em; font-family: 'hautecombe-2015regular';
@@ -866,6 +867,7 @@ nav.inscriptions{background-color:@inscriptions}
 }
 .slide-center:first-of-type{
 	border-bottom: 1px solid red;
+	vertical-align: bottom;
 }
 .left,.right{
   background-color:yellow;
