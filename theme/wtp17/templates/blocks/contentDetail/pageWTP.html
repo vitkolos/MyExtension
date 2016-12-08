@@ -22,11 +22,12 @@
             </div>
         </div>
     </div>
-    <div class="row">
-            <div class="col-sm-12">
+    <div class="row" style="margin-bottom:24px">
+            <div class="col-sm-12 hidden-xs">
                 <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="24:10"></jwplayer>
-                <!--<rubedo-field field= "{{contentDetailCtrl.getFieldByName('image2')}}" ng-if="fieldEntity['image2']"></rubedo-field>
-                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('position')}}" ng-if="fieldEntity['position']"></rubedo-field>-->
+            </div>
+            <div class="col-sm-12 visible-xs-block">
+                <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="16:9"></jwplayer>
             </div>
     </div>
     <!--
