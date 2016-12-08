@@ -857,7 +857,7 @@ nav.inscriptions{background-color:@inscriptions}
   width:800px;
 }
 .slide-center{
-	color:white;
+	color:@txt;
 	height: 50%;
 	h3{text-transform: uppercase; margin-top:0}
 	text-align: center;
@@ -867,7 +867,8 @@ nav.inscriptions{background-color:@inscriptions}
 }
 .slide-center.title{
 	border-bottom: 1px solid red;
-	vertical-align: bottom;
+	position: relative;
+	div{position: absolute; bottom:0; width:100%}
 }
 .left,.right{
   background-color:yellow;
