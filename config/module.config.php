@@ -134,6 +134,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' =>  realpath(__DIR__ . "/blocks/")  . '/recommendedContents.json'
         ),
+        'siteMap' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/siteMap.json'
+        ),
         'imageBatchUpload' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/imageBatchUpload.json'
