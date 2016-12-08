@@ -859,10 +859,10 @@ nav.inscriptions{background-color:@inscriptions}
 .slide-center{
 	color:@txt;
 	height: 50%;
-	h3{text-transform: uppercase; margin-top:0}
+	h3{text-transform: uppercase; margin-top:0; font-weight: bold}
 	text-align: center;
 	p.icone{
-		font-size: 4em; font-family: 'hautecombe-2015regular';
+		font-size: 4em; font-family: 'hautecombe-2015regular'; margin-bottom: 0;
 	}
 }
 .slide-center.title{
@@ -870,6 +870,7 @@ nav.inscriptions{background-color:@inscriptions}
 	position: relative;
 	div{position: absolute; bottom:0; width:100%}
 }
+.slide-center:not(.title) {font-size: 1.3em; font-style: italic; padding: 12px 48px;}
 .left,.right{
   background-color:yellow;
 }
