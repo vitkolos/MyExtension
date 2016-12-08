@@ -2,7 +2,7 @@
    ng-click="siteMapCtrl.setPageDisplay(menu.id)" ng-if="menu.pages" class="glyphicon glyphicon-chevron-right"></span>-->
 
     <a ng-href="{{menu.url}}" class="capital" ng-if="!blockConfig.disableLevelOne || (blockConfig.disableLevelOne && !menu.pages)">{{menu.text}}</a>
-    <span class="capital" ng-if="blockConfig.disableLevelOne && !menu.pages">{{menu.text}}</span>
+    <span class="capital" ng-if="blockConfig.disableLevelOne && menu.pages">{{menu.text}}</span>
     <a ng-repeat-start="page in menu.pages track by $index" ng-href="{{page.url}}">{{page.text}}</a>
     <br ng-repeat-end>
 
