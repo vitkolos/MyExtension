@@ -698,6 +698,7 @@ protected function localizableFields($type, $fields)
         switch($_SERVER['HTTP_HOST']) {
             case "chemin-neuf.fr" : 
             case "www.chemin-neuf.pl" : 
+            case "it.chemin-neuf.org" : 
                 return "55473e9745205e1d3ef1864d"; break;
         }
      }
