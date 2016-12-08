@@ -670,10 +670,13 @@ protected function sendInscriptionMail($inscription,$lang){
                 return "FR"; break;
             case "www.chemin-neuf.pl" : 
                 return "PL"; break;
-	    case "chemin-neuf.hu" : 
-	    case "hu.chemin-neuf.org" : 
-                return "HU"; break;
-        }
+            case "chemin-neuf.hu" : 
+            case "hu.chemin-neuf.org" : 
+                    return "HU"; break;
+            case "chemin-neuf.it" : 
+            case "it.chemin-neuf.org" : 
+                    return "IT"; break;
+            }
      }
 protected function localizableFields($type, $fields)
     {
