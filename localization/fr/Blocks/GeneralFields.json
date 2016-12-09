@@ -3,6 +3,8 @@
     "Block.Futurs": "Films en préparation",
     "Block.Saison": "Saison",
     "Block.VoirPlus" : "À voir aussi",
+    "Block.Carte.Presence.Perm":"Pays où la communauté a une présence permanente",
+    "Block.Carte.Presence.Ponct":"Pays où la communauté fait des propositions ponctuelles",
     "Missions.cana":"Cana : au service du couple et de la famille",
     "Missions.netforgod":"Net for God - Fraternité Oecuménique Internationale",
     "Missions.ados":"Mission Jeunes 14-18 ans",
@@ -17,4 +19,4 @@
     "Menu" : "menu",
     "Accueil" : "Accueil",
     "Time.At":"à"
-    }
+}
