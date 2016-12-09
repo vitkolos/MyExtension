@@ -18,12 +18,12 @@
                 </div>
                 <div class="slide-center title"  ng-style="{'border-color':'#{{content.fields.color2}}'}">
                     <div>
-                        <h3>{{content.fields.text}}</h3>
+                        <h3 ng-style="{'color':'#{{content.fields.text_color}}'}">{{content.fields.text}}</h3>
                         <p class="icone"  ng-style="{'color':'#{{content.fields.color2}}'}">{{content.fields.icone}}</p>
                     </div>
                 </div>
                 <div class="slide-center">
-                    <p>{{content.fields.summary}}</p>
+                    <p ng-style="{'color':'#{{content.fields.text_color}}'}">{{content.fields.summary}}</p>
                 </div>
                 <div class="colRight" style="overflow: hidden">
                      <img ng-if="content.fields.imageDroite" style="height:400px; vertical-align: top" ng-src="{{content.fields.imageDroite.imageCode}}">
