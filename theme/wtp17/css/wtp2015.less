@@ -880,12 +880,14 @@ nav.inscriptions{background-color:@inscriptions}
 .colLeft{
   display:table-cell;
   height: 100%;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 20% 65%, 0 50%);
 	clip-path: polygon(0 0, 100% 0, 100% 50%, 20% 65%, 0 50%);
 
 }
 .colRight{
   display:table-cell;
   height: 100%;
+  -webkit-clip-path:polygon(100% 0, 100% 100%, 30% 100%, 0% 50%, 30% 0%);
   clip-path: polygon(100% 0, 100% 100%, 30% 100%, 0% 50%, 30% 0%);
 }
 .rowTabled>div{vertical-align: top;}
