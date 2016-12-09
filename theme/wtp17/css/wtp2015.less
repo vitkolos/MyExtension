@@ -854,7 +854,7 @@ nav.inscriptions{background-color:@inscriptions}
 }
 .middle{
   background-color:white;
-  width:800px;
+  width:750px;
 }
 .slide-center{
 	color:@txt;
@@ -870,25 +870,24 @@ nav.inscriptions{background-color:@inscriptions}
 	position: relative;
 	div{position: absolute; bottom:0; width:100%}
 }
-.slide-center:not(.title) {font-size: 1.3em; font-style: italic; padding: 12px 48px;}
-.left,.right{
-  background-color:yellow;
-}
+.slide-center:not(.title) {font-size: 1.3em; font-style: italic; padding: 12px 48px; text-align: left}
 .rowTabled{
   display:table-row;
 }
 .colLeft{
   display:table-cell;
   height: 100%;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 20% 75%, 0 50%);
+  img, div{-webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 20% 75%, 0 50%);
 	clip-path: polygon(0 0, 100% 0, 100% 50%, 20% 75%, 0 50%);
+	float: right}
 
 }
 .colRight{
   display:table-cell;
   height: 100%;
-  -webkit-clip-path:polygon(100% 0, 100% 100%, 30% 100%, 0% 50%, 30% 0%);
+  img, div{-webkit-clip-path:polygon(100% 0, 100% 100%, 30% 100%, 0% 50%, 30% 0%);
   clip-path: polygon(100% 0, 100% 100%, 30% 100%, 0% 50%, 30% 0%);
+  float: left}
 }
 .rowTabled>div{vertical-align: top;}
 
