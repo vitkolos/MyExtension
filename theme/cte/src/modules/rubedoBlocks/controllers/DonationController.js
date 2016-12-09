@@ -126,8 +126,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
           RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.questions, options).then(function(response){
                 if (response.data.success){
                     var questionReponse= response.data.content;
-                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isComplement = true;
-                  console.log(me.questions);
+                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":0}); me.isComplement = true;
                 }
             });
         }
