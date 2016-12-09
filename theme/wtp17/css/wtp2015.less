@@ -55,7 +55,6 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 
 /*slider controls*/
 .owl-theme .owl-controls{
-	float:right;
 	margin-top:-25px !important;
 	margin-right:10px}
 .owl-theme .owl-controls .owl-page span{background-color:white;opacity:0.8}	
@@ -853,8 +852,13 @@ nav.inscriptions{background-color:@inscriptions}
   display:table-column;
 }
 .middle{
-  background-color:white;
-  width:750px;
+	  background-color:white;
+	  width:750px;
+}
+@media screen and (max-width: @tablet) {
+	.middle{
+	  width:100%;
+	}
 }
 .slide-center{
 	color:@txt;
