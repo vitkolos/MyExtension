@@ -127,6 +127,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 if (response.data.success){
                     var questionReponse= response.data.content;
                     me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isComplement = true;
+                  console.log(me.questions);
                 }
             });
         }
@@ -141,6 +142,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             
         });
       }
+      
     };
 
     
