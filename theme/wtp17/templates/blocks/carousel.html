@@ -12,9 +12,9 @@
                 <div class="colCol right"></div>
             </div>
             <div class="rowTabled">
-                <div class="colLeft" style="overflow: hidden"  ng-style="{'background-color':'#{{content.fields.color2}}'}">
+                <div class="colLeft" style="overflow: hidden">
                     <img ng-if="content.fields.imageGauche" style="height:400px; vertical-align: top" ng-src="{{content.fields.imageGauche.imageCode}}">
-                    <div ng-if="!content.fields.imageGauche" style="height:400px;width: 400px;"></div>
+                    <div ng-if="!content.fields.imageGauche" style="height:400px;width: 400px;" ng-style="{'background-color':'#{{content.fields.color2}}'}"></div>
                 </div>
                 <div class="slide-center title"  ng-style="{'border-color':'#{{content.fields.color2}}'}">
                     <div>
@@ -25,8 +25,9 @@
                 <div class="slide-center">
                     <p>{{content.fields.summary}}</p>
                 </div>
-                <div class="colRight" style="overflow: hidden" ng-style="{'background-color':'#{{content.fields.color2}}'}">
+                <div class="colRight" style="overflow: hidden">
                      <img ng-if="content.fields.imageDroite" style="height:400px; vertical-align: top" ng-src="{{content.fields.imageDroite.imageCode}}">
+                    <div ng-if="!content.fields.imageDroite" style="height:400px;width: 400px;" ng-style="{'background-color':'#{{content.fields.color2}}'}"></div>
                 </div>
             </div>
              
