@@ -6,13 +6,13 @@
                     alt="{{content.fields.text}}"
                     title="{{content.fields.text}}"
                    >-->
-            <div class="colgroup">
-                <div class="colCol left" ng-style="{'background-color':'#{{content.fields.color2}}'}"></div>
-                <div class="colCol middle" ng-style="{'background-color':'#{{content.fields.color1}}'}"></div>
-                <div class="colCol right" ng-style="{'background-color':'#{{content.fields.color2}}'}"></div>
+            <div class="colgroup" ng-style="{'background-color':'#{{content.fields.color1}}'}">
+                <div class="colCol left"></div>
+                <div class="colCol middle"></div>
+                <div class="colCol right"></div>
             </div>
             <div class="rowTabled">
-                <div class="colLeft" style="overflow: hidden">
+                <div class="colLeft" style="overflow: hidden"  ng-style="{'background-color':'#{{content.fields.color2}}'}">
                     <img ng-if="content.fields.imageGauche" style="height:400px; vertical-align: top" ng-src="{{content.fields.imageGauche.imageCode}}">
                 </div>
                 <div class="slide-center title"  ng-style="{'border-color':'#{{content.fields.color2}}'}">
@@ -24,7 +24,7 @@
                 <div class="slide-center">
                     <p>{{content.fields.summary}}</p>
                 </div>
-                <div class="colRight" style="overflow: hidden">
+                <div class="colRight" style="overflow: hidden" ng-style="{'background-color':'#{{content.fields.color2}}'}">
                      <img ng-if="content.fields.imageDroite" style="height:400px; vertical-align: top" ng-src="{{content.fields.imageDroite.imageCode}}">
                 </div>
             </div>
