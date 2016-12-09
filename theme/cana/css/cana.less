@@ -437,7 +437,31 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   font-size: 12px;
   a{padding:12px 0; display: inline-block}}
   
-  
+@media screen and (max-width:@min_sm){
+  .ratio_321{position:relative; width:100%; overflow:hidden; }
+  .ratio_321:before{
+    content: "";
+    display: block;
+    padding-top: 50%; 	/* initial ratio of 3:1*/
+  }
+  .ratio_321>img{
+    position:  absolute;
+    top: -25%;
+    left: 0;
+    bottom: -50%;
+    right: 0;
+    width:100%;
+    padding-right: 0;
+  }
+  .ratio_321 ~ div{padding:12px; background: white}
+
+}
+@media screen and (min-width:@min_xs) and (max-width:@min_sm) {.ratio_321:before{padding-top:33.333%;} .ratio_321>img{top:-85%} .ratio_321.rect>img{top:-35%}}
+@media screen and (min-width:@min_sm){.ratio_321>img{max-width:160px} .ratio_321.rect>img{max-width:300px}}
+
+
+
+
 ////////////////////////////////////////////////////
     ///////////PLAYER///////////////////
 ///////////////////////////////////////////////////
