@@ -75,7 +75,7 @@
 					</div>
 
 					<!--Budget-->
-					<div class="container-fluid" ng-if="contentDetailCtrl.content.fields.budget>0">
+					<!--<div class="container-fluid" ng-if="contentDetailCtrl.content.fields.budget>0">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('budget')}}</p>
 						</div>
@@ -85,9 +85,9 @@
 							<p style="margin-bottom: 0px">{{contentDetailCtrl.content.fields.budget |number:0}} {{contentDetailCtrl.content.fields.monnaie}} <span ng-if="contentDetailCtrl.content.fields.budgetAnnuel">{{rubedo.translate("Dons.Annuel", " / année")}}</span><br/>
 							<p ng-init="pourcentage=(contentDetailCtrl.content.fields.cumul * 100 / contentDetailCtrl.content.fields.budget | number :0)"><i>{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[pourcentage])}}</i></p>
 							<em><a ng-href="{{'http://www.xe.com/ecc/input.cgi?Template=se&Amount='+contentDetailCtrl.content.fields.budget+'&From='+contentDetailCtrl.content.fields.monnaie }}" target="_blank" style="font-size: 0.95em;">Convertir dans une autre monnaie</a></em></p>
-							<p><rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('budget')}}"></rubedo-field></p><!--Budget du projet-->
+							<p><rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('budget')}}"></rubedo-field></p>
 						</div>
-					</div>
+						</div>-->
 				</div>
 				<div class="col-xs-6">
 					<div class="container-fluid">
