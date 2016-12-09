@@ -122,7 +122,15 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     };    
         // récupérer les questions complémentaires
     me.getQuestions = function() {
-        
+        if(typeof $scope.contentDetailCtrl.content.fields.questions === 'string' || $scope.contentDetailCtrl.content.fields.questions instanceof String) {
+          RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.questions, options).then(function(response){
+                if (response.data.success){
+                    var questionReponse= response.data.content;
+                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isComplement = true;
+                }
+            });
+        }
+      else {
         angular.forEach($scope.contentDetailCtrl.content.fields.questions, function(questionId, questionOrder){
             RubedoContentsService.getContentById(questionId, options).then(function(response){
                 if (response.data.success){
@@ -132,7 +140,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             });
             
         });
-        
+      }
     };
 
     
