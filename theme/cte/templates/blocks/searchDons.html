@@ -28,7 +28,7 @@
                     <div class="panel-body">
                         <ul class="search-tags" ng-init="limitTo=3">
                             <li class="cursor-as-pointer resultData search-result" ng-repeat-start="term in facet.terms | limitTo:3 track by $index">
-                                {{term}}<!--&nbsp;({{term.count}})-->
+                                {{term.name}}<!--&nbsp;({{term.count}})-->
                             </li>
                             <li class="cursor-as-pointer resultData" ng-repeat-end ng-show="$last && facet.terms.length>3">
                                 <span class="pull-right capital2 txt-red" ng-click="$parent.limitTo=100" ng-show="$parent.limitTo==3">>> voir plus</span>
