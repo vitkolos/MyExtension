@@ -127,15 +127,19 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
     me.getUsedTaxonomies = function(){
         angular.forEach(me.contents, function(content, index){
             angular.forEach(content.taxonomy, function(terms, vocId){
-                console.log(vocId);
-                if (!me.usedTaxonomies[vocId]) {
-                    me.usedTaxonomies[vocId] = {"name":me.taxo[vocId].name,"terms":{}};
+                if (vocId == 'navigation') {
+                    //do nothing
                 }
-                angular.forEach(terms, function(term){
-                    if (!me.usedTaxonomies[vocId].terms[term]) {
-                        me.usedTaxonomies[vocId].terms[term] = {"id":term, "name":$filter('filter')(me.taxo[vocId].terms,{"id":term})};
+                else {
+                    if (!me.usedTaxonomies[vocId]) {
+                        me.usedTaxonomies[vocId] = {"name":me.taxo[vocId].name,"terms":{}};
                     }
-                });
+                    angular.forEach(terms, function(term){
+                        if (!me.usedTaxonomies[vocId].terms[term]) {
+                            me.usedTaxonomies[vocId].terms[term] = {"id":term, "name":$filter('filter')(me.taxo[vocId].terms,{"id":term})};
+                        }
+                    });
+                }
             });
         });
         console.log(me.usedTaxonomies);
