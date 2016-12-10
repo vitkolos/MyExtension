@@ -1,6 +1,9 @@
 {
+    "type": "Page des dons",
     "description": "#ext-gen1325#",
     "configBasique": {
+        "title": "Page des dons",
+        "bType": "searchDons",
         "flex": 1,
         "champsConfig": {
             "simple": [
@@ -110,4 +113,6 @@
         }
     },
     "category": "#ext-gen1064#",
+    "bType": "searchDons",
+    "id": "506441f8c24074d514899899"
 }
