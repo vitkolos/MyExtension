@@ -2,7 +2,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                                                                        function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$filter){
     var me = this;
     me.contentList=[];
-    me.usedTaxonomies = [];
+    me.usedTaxonomies = {};
     var config=$scope.blockConfig;
     var blockPagingIdentifier=$scope.block.bType+$scope.block.id.substring(21)+"Page";
     var pageId=$scope.rubedo.current.page.id;
