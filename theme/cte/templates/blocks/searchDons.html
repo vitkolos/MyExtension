@@ -47,25 +47,25 @@
             </div>
         </div>
         <div class="col-md-9">
-            <div class="col-sm-4 col-xs-6 col-xxs-12" ng-repeat="datum in searchCtrl.data track by $index" style="margin-bottom: 12px" ng-style="datum['fields.cumul'][0]>datum['fields.budget'][0] && datum['fields.budget'][0]>0 && {'opacity':'0.7'}">
-                <a target="{{searchCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl}}">
-                    <img class="img-responsive" ng-if="datum['fields.image']"
-                                                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'],{width:'400px',height:'266px',mode:'crop'}) }}"
-                                                         alt="{{ datum.title }}"/>
+            <div class="col-sm-4 col-xs-6 col-xxs-12" ng-repeat="projet in searchCtrl.contents track by $index" style="margin-bottom: 12px" ng-style="projet.fields.cumul>projet.fields.budget && projet.fields.budget>0 && {'opacity':'0.7'}">
+                <a  ng-href="{{projet.detailPageUrl}}">
+                    <img class="img-responsive" ng-if="projet.fields.image"
+                                                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(projet.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
+                                                         alt="{{ projet.fields.text }}"/>
                     <div class="padding col-sm-12 bg-white text-center">
-                        <p  style="height: 70px; overflow-y: hidden">{{datum.title}} - {{datum.summary}}</p>
-                        <!--<p class="capital" ng-style="datum['fields.budget'][0]== 0 && {'visibility':'hidden'}">{{datum['fields.budget'][0] |number:0}} {{datum['fields.monnaie'][0]}}</p>
-                        <div ng-style="datum['fields.budget'][0]== 0 && {'visibility':'hidden'}" class="col-sm-12 no-padding dons-progress">
-                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{datum['fields.cumul'][0]*100/datum['fields.budget'][0] }}"  ng-style="{ width : datum['fields.cumul'][0]*100/datum['fields.budget'][0] +'%' }">
+                        <p  style="height: 70px; overflow-y: hidden">{{projet.fields.text}} - {{projet.fields.summary}}</p>
+                        <p class="capital" ng-style="projet.fields.budget== 0 && {'visibility':'hidden'}">{{projet.fields.budget |number:0}} {{projet.fields.monnaie}}</p>
+                        <div ng-style="projet.fields.budget== 0 && {'visibility':'hidden'}" class="col-sm-12 no-padding dons-progress">
+                            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{projet.fields.cumul*100/projet.fields.budget }}"  ng-style="{ width : projet.fields.cumul*100/projet.fields.budget +'%' }">
                                 <span class="sr-only">
                                 </span>
                             </div>
                         </div>
                         
-                        <p ng-style="datum['fields.budget'][0] == 0 && {'visibility':'hidden'}"  class="capital" ng-init="pourcentage =(datum['fields.cumul'][0]*100/datum['fields.budget'][0] | number :0)">
-                            <span ng-if="datum['fields.cumul'][0]<=datum['fields.budget'][0]">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[pourcentage])}}</span>
-                            <span ng-if="datum['fields.cumul'][0]>datum['fields.budget'][0]">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[100])}}</span>
-                        </p>-->
+                        <p ng-style="projet.fields.budget == 0 && {'visibility':'hidden'}"  class="capital" ng-init="pourcentage =(projet.fields.cumul*100/projet.fields.budget | number :0)">
+                            <span ng-if="projet.fields.cumul<=projet.fields.budget">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[pourcentage])}}</span>
+                            <span ng-if="projet.fields.cumul>projet.fields.budget">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[100])}}</span>
+                        </p>
                     </div>
                     
                     

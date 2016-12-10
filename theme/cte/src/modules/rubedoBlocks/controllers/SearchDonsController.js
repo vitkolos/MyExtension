@@ -15,7 +15,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
     var options = {
         start: me.start,
         limit: me.limit,
-        'fields[]' : ["text","summary","image","cumul","budget"]
+        'fields[]' : ["text","summary","image","cumul","budget","monnaie"]
     };
     if(config.singlePage){
         options.detailPageId = config.singlePage;
