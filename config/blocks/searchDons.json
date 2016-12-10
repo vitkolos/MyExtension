@@ -47,44 +47,22 @@
                             }
                         }
                     ]
+                },
+                {
+                    "categorie": "#ext-gen1068#",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.queryBuilderField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1075#",
+                                "name": "query"
+                            }
+                        }
+                    ]
                 }
             ],
             "avance": [
-                {
-                    "categorie": "#ext-gen1372#",
-                    "champs": [
-                        {
-                            "type": "Ext.form.field.ComboBox",
-                            "isAutoStored": true,
-                            "autoStoreData": [
-                                {
-                                    "value": "default",
-                                    "label": "#ext-gen1375#"
-                                },
-                                {
-                                    "value": "checkbox",
-                                    "label": "#ext-gen1376#"
-                                }
-                            ],
-                            "config": {
-                                "fieldLabel": "#ext-gen1374#",
-                                "name": "displayMode",
-                                "editable": false,
-                                "forceSelection": true,
-                                "queryMode": "local"
-                            }
-                        },
-                        {
-                            "type": "Rubedo.view.CTCField",
-                            "config": {
-                                "fieldLabel": "#ext-gen1470#",
-                                "name": "contentType",
-                                "multiSelect": true
-
-                            }
-                        }                      
-                    ]
-                },
+                
                 {
                     "categorie": "Template",
                     "champs": [
@@ -108,7 +86,6 @@
         "configBloc": {
             "constrainToSite": false,
             "displayedFacets": "['all']",
-            "displayMode": "default",
             "autoComplete": false
         }
     },
