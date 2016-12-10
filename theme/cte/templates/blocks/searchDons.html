@@ -23,22 +23,18 @@
                     </form>
                 </div>
             </div>
-            <div class="panel panel-default" ng-repeat="facet in searchCtrl.usedTaxonomies track by $index" ng-init="searchDisplayed=false">
+            <div class="panel panel-default" ng-repeat="facet in searchCtrl.usedTaxonomies track by $index" ng-if="facet.terms.length>1" ng-init="searchDisplayed=false">
                 <div class="panel-heading actus" ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">{{facet.name}}&nbsp;</div>
                     <div class="panel-body">
-                    <ul class="search-tags" ng-init="limitTo=3">
-                        <li ng-if="facet.terms" class="cursor-as-pointer resultData search-result" ng-repeat-start="term in facet.terms | limitTo:limitTo track by $index"
-                            >
-                            {{term.name}}<!--&nbsp;({{term.count}})-->
-                        </li>
-                        <li class="cursor-as-pointer resultData" ng-repeat-end ng-show="$last && facet.terms.length>3">
-                            <span class="pull-right capital2 txt-red" ng-click="$parent.limitTo=100" ng-show="$parent.limitTo==3">>> voir plus</span>
-                            <span class="pull-right capital2 txt-red" ng-click="$parent.limitTo=3" ng-show="$parent.limitTo==100"><< voir moins</span>
-                        </li>
-                        
-    
-                        
-                    </ul>
+                        <ul class="search-tags" ng-init="limitTo=3">
+                            <li class="cursor-as-pointer resultData search-result" ng-repeat-start="term in facet.terms | limitTo:3 track by $index">
+                                {{term.name}}<!--&nbsp;({{term.count}})-->
+                            </li>
+                            <li class="cursor-as-pointer resultData" ng-repeat-end ng-show="$last && facet.terms.length>3">
+                                <span class="pull-right capital2 txt-red" ng-click="$parent.limitTo=100" ng-show="$parent.limitTo==3">>> voir plus</span>
+                                <span class="pull-right capital2 txt-red" ng-click="$parent.limitTo=3" ng-show="$parent.limitTo==100"><< voir moins</span>
+                            </li>
+                        </ul>
                 </div>
             </div>
         </div>
