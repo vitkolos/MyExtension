@@ -6,6 +6,10 @@ blocksConfig.logoMission={
            "template": "/templates/blocks/logoMission.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/LogoMissionController.js"]
 };
+blocksConfig.searchDons={
+           "template": "/templates/blocks/searchDons.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchDonsController.js"]
+};
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");

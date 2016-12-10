@@ -1,0 +1,104 @@
+{
+    "type": "Page des dons",
+    "description": "#ext-gen1325#",
+    "configBasique": {
+        "title": "Page des dons",
+        "bType": "searchDons",
+        "flex": 1,
+        "champsConfig": {
+            "simple": [
+                {
+                    "categorie": "#ext-gen1063#",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ESQfield",
+                            "config": {
+                                "fieldLabel": "#ext-gen1056#",
+                                "advancedESQMode": true,
+                                "name": "predefinedFacets"
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Hidden",
+                            "config": {
+                                "itemId": "displayedFacetsBrotherField",
+                                "name": "displayedFacets"
+                            }
+                        },
+                        {
+                            "type": "Ext.ux.TreePicker",
+                            "config": {
+                                "fieldLabel": "#ext-gen1073#",
+                                "name": "singlePage"
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "config": {
+                                "fieldLabel": "#ext-gen1114#",
+                                "name": "columns",
+                                "allowBlank": false,
+                                "editable": false,
+                                "allowDecimals": false,
+                                "minValue": 1,
+                                "maxValue": 4
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "config": {
+                                "fieldLabel": "#ext-gen1095#",
+                                "name": "pageSize",
+                                "allowDecimals": false,
+                                "minValue": 0
+                            }
+                        }
+                    ]
+                },
+                {
+                    "categorie": "#ext-gen1068#",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.queryBuilderField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1075#",
+                                "name": "query"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "avance": [
+                
+                {
+                    "categorie": "Template",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "Custom template",
+                                "name": "customTemplate",
+                                "defaultTemplateUrl": "blocks/searchResults.html",
+                                "twigMode": false
+
+                            }
+                        }
+                    ]
+                }
+            ],
+            "csEvents":{
+                "changePage":null
+              }
+        },
+        "configBloc": {
+            "constrainToSite": false,
+            "displayedFacets": "['all']",
+            "autoComplete": false,
+            "columns": 3,
+            "pageSize":12
+        }
+    },
+    "category": "#ext-gen1064#",
+    "bType": "searchDons",
+    "id": "506441f8c24074d514899899"
+}
