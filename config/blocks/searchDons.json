@@ -11,13 +11,6 @@
                     "categorie": "#ext-gen1063#",
                     "champs": [
                         {
-                            "type": "Ext.form.field.Checkbox",
-                            "config": {
-                                "fieldLabel": "#ext-gen1055#",
-                                "name": "constrainToSite"
-                            }
-                        },
-                        {
                             "type": "Rubedo.view.ESQfield",
                             "config": {
                                 "fieldLabel": "#ext-gen1056#",
@@ -40,10 +33,24 @@
                             }
                         },
                         {
-                            "type": "Ext.ux.TreePicker",
+                            "type": "Ext.form.field.Number",
                             "config": {
-                                "fieldLabel": "#ext-gen1409#",
-                                "name": "profilePage"
+                                "fieldLabel": "#ext-gen1114#",
+                                "name": "columns",
+                                "allowBlank": false,
+                                "editable": false,
+                                "allowDecimals": false,
+                                "minValue": 1,
+                                "maxValue": 4
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "config": {
+                                "fieldLabel": "#ext-gen1095#",
+                                "name": "pageSize",
+                                "allowDecimals": false,
+                                "minValue": 0
                             }
                         }
                     ]
@@ -86,7 +93,9 @@
         "configBloc": {
             "constrainToSite": false,
             "displayedFacets": "['all']",
-            "autoComplete": false
+            "autoComplete": false,
+            "columns": 3,
+            "pageSize":12
         }
     },
     "category": "#ext-gen1064#",
