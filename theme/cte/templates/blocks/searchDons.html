@@ -23,7 +23,7 @@
                     </form>
                 </div>
             </div>
-            <div class="panel panel-default" ng-repeat="facet in searchCtrl.usedTaxonomies track by $index" ng-if="facet.terms.length>1" ng-init="searchDisplayed=false">
+            <div class="panel panel-default" ng-repeat="facet in searchCtrl.usedTaxonomies track by $index" ng-init="searchDisplayed=false">
                 <div class="panel-heading actus" ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">{{facet.name}}&nbsp;</div>
                     <div class="panel-body">
                     <ul class="search-tags" ng-init="limitTo=3">
