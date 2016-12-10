@@ -12,7 +12,7 @@
     </nav>
     <div class="row">
         <div class="col-md-3">
-            <div class="panel panel-default">
+            <!--<div class="panel panel-default">
                 <div class="panel-heading">
                     <form ng-submit="searchCtrl.onSubmit()" role="form">
                         <div class="input-group">
@@ -22,12 +22,11 @@
                         </div>
                     </form>
                 </div>
-            </div>
+            </div>-->
             <div class="panel panel-default" ng-repeat="facet in searchCtrl.usedTaxonomies track by $index" ng-if="facet.terms.length>1" ng-init="searchDisplayed=false">
                 <div class="panel-heading actus" ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">{{facet.name}}&nbsp;</div>
                     <div class="panel-body">
                         <ul class="search-tags" ng-init="limitTo=3">
-                            <li class="cursor-as-pointer resultData search-result" ng-repeat-start="term in facet.terms | limitTo:3 track by $index">
                                 {{term.name}}<!--&nbsp;({{term.count}})-->
                             </li>
                             <li class="cursor-as-pointer resultData" ng-repeat-end ng-show="$last && facet.terms.length>3">
@@ -41,7 +40,7 @@
         <div class="col-md-9">
             <div class="col-sm-4 col-xs-6 col-xxs-12" ng-repeat="projet in searchCtrl.contents track by $index" style="margin-bottom: 12px" ng-style="projet.fields.cumul>projet.fields.budget && projet.fields.budget>0 && {'opacity':'0.7'}">
                 <a  ng-href="{{projet.detailPageUrl}}">
-                    <img class="img-responsive" ng-if="projet.fields.image"
+                    <img class="img-responsive" style="width:100%" ng-if="projet.fields.image"
                                                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(projet.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
                                                          alt="{{ projet.fields.text }}"/>
                     <div class="padding col-sm-12 bg-white text-center">
