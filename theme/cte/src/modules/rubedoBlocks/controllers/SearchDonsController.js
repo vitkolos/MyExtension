@@ -127,6 +127,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
     me.getUsedTaxonomies = function(){
         angular.forEach(me.contents, function(content, index){
             angular.forEach(content.taxonomy, function(terms, vocId){
+                console.log(vocId);
                 if (!me.usedTaxonomies[vocId]) {
                     me.usedTaxonomies[vocId] = {"name":me.taxo[vocId].name,"terms":{}};
                 }
