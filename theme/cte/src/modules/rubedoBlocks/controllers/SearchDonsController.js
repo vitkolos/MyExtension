@@ -1,6 +1,8 @@
-angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location){
+angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location",'$filter',
+                                                                       function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$filter){
     var me = this;
     me.contentList=[];
+    me.usedTaxonomies = [];
     var config=$scope.blockConfig;
     var blockPagingIdentifier=$scope.block.bType+$scope.block.id.substring(21)+"Page";
     var pageId=$scope.rubedo.current.page.id;
@@ -109,9 +111,10 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                             var tax = response.data.taxo;
                             me.taxo={};
                             angular.forEach(tax, function(taxonomie){
-                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                                me.taxo[taxonomie.vocabulary.id] = {"terms":taxonomie.terms,"name":taxonomie.vocabulary.name};
                             });
                             console.log(me.taxo);
+                            me.getUsedTaxonomies();
                          }
                          
                      });
@@ -121,8 +124,20 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
     me.canAddToList=function(){
         return ($scope.rubedo.fieldEditMode&&me.queryType&&(me.queryType=="simple"||me.queryType=="manual"));
     };
-    me.usedTaxonomies = function(){
-        
+    me.getUsedTaxonomies = function(){
+        angular.forEach(me.contents, function(content, index){
+            angular.forEach(content.taxonomy, function(terms, vocId){
+                if (!me.usedTaxonomies[vocId]) {
+                    me.usedTaxonomies[vocId] = {"name":me.taxo[vocId].name,"terms":{}};
+                }
+                angular.forEach(terms, function(term){
+                    if (!me.usedTaxonomies[vocId].terms[term]) {
+                        me.usedTaxonomies[vocId].terms[term] = {"id":term, "name":$filter('filter')(me.taxo[vocId].terms,{"id":term})};
+                    }
+                });
+            });
+        });
+        console.log(me.usedTaxonomies);
     };
     me.launchContribute=function(){
         if ($scope.rubedo.fieldEditMode){
