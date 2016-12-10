@@ -109,7 +109,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                             var tax = response.data.taxo;
                             me.taxo={};
                             angular.forEach(tax, function(taxonomie){
-                                me.taxo = taxonomie.terms;
+                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
                             });
                             console.log(me.taxo);
                          }
