@@ -132,7 +132,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                 }
                 else {
                     if (!me.usedTaxonomies[vocId]) {
-                        me.usedTaxonomies[vocId] = array(name=>me.taxo[vocId].name,terms=>{});
+                        me.usedTaxonomies[vocId] = [name=>me.taxo[vocId].name,terms=>{}];
                     }
                     angular.forEach(terms, function(term){
                         if (!me.usedTaxonomies[vocId].terms[term]) {
