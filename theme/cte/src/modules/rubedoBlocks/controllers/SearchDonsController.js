@@ -101,6 +101,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                      var taxonomiesArray ={};
                      //taxonomiesArray[0]="555f3bc445205edc117e689b";// taxcnomie de propositions
                      taxonomiesArray[0]=config.displayedFacets;// taxcnomie de propositions
+                     console.log(JSON.parse(config.displayedFacets));
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
                          if(response.data.success){
                             var tax = response.data.taxo;
