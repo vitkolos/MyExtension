@@ -104,15 +104,14 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                      angular.forEach(displayedFacets, function(facet, key){
                         taxonomiesArray[key] = facet.name;
                     });
-                     console.log(taxonomiesArray);
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
                          if(response.data.success){
                             var tax = response.data.taxo;
-                            
                             me.taxo={};
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo = taxonomie.terms;
                             });
+                            console.log(me.taxo);
                          }
                          
                      });
@@ -121,6 +120,9 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
     };
     me.canAddToList=function(){
         return ($scope.rubedo.fieldEditMode&&me.queryType&&(me.queryType=="simple"||me.queryType=="manual"));
+    };
+    me.usedTaxonomies = function(){
+        
     };
     me.launchContribute=function(){
         if ($scope.rubedo.fieldEditMode){

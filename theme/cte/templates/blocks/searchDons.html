@@ -54,7 +54,7 @@
                                                          alt="{{ projet.fields.text }}"/>
                     <div class="padding col-sm-12 bg-white text-center">
                         <p  style="height: 70px; overflow-y: hidden">{{projet.fields.text}} - {{projet.fields.summary}}</p>
-                        <p class="capital" ng-style="projet.fields.budget== 0 && {'visibility':'hidden'}">{{projet.fields.budget |number:0}} {{projet.fields.monnaie}}</p>
+                        <!--<p class="capital" ng-style="projet.fields.budget== 0 && {'visibility':'hidden'}">{{projet.fields.budget |number:0}} {{projet.fields.monnaie}}</p>
                         <div ng-style="projet.fields.budget== 0 && {'visibility':'hidden'}" class="col-sm-12 no-padding dons-progress">
                             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{projet.fields.cumul*100/projet.fields.budget }}"  ng-style="{ width : projet.fields.cumul*100/projet.fields.budget +'%' }">
                                 <span class="sr-only">
@@ -65,7 +65,7 @@
                         <p ng-style="projet.fields.budget == 0 && {'visibility':'hidden'}"  class="capital" ng-init="pourcentage =(projet.fields.cumul*100/projet.fields.budget | number :0)">
                             <span ng-if="projet.fields.cumul<=projet.fields.budget">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[pourcentage])}}</span>
                             <span ng-if="projet.fields.cumul>projet.fields.budget">{{rubedo.translate("Dons.Finance", "Projet financé à ..%",["%pourcentage%"],[100])}}</span>
-                        </p>
+                        </p>-->
                     </div>
                     
                     
