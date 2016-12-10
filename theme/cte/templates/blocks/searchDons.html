@@ -27,6 +27,7 @@
                 <div class="panel-heading actus" ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">{{facet.name}}&nbsp;</div>
                     <div class="panel-body">
                         <ul class="search-tags" ng-init="limitTo=3">
+                            <li class="cursor-as-pointer resultData search-result" ng-repeat-start="term in facet.terms | limitTo:limitTo track by $index">
                                 {{term.name}}<!--&nbsp;({{term.count}})-->
                             </li>
                             <li class="cursor-as-pointer resultData" ng-repeat-end ng-show="$last && facet.terms.length>3">
