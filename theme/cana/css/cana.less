@@ -200,7 +200,11 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 
 ///////////MENU////////////////
 
-.dropdown-menu{top:auto !important}
+.dropdown-menu{
+  top:auto !important;
+  width: 80%;
+  margin: 0 10%;
+}
 .dropdown-menu-large{width:100%; margin-left: 0 !important}
 
 .navbar{border-radius: 0;margin-bottom: 0px; }
@@ -437,7 +441,39 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   font-size: 12px;
   a{padding:12px 0; display: inline-block}}
   
-  
+@media screen and (max-width:@min_sm){
+  .ratio_321{position:relative; width:100%; overflow:hidden; }
+  .ratio_321:before{
+    content: "";
+    display: block;
+    padding-top: 50%; 	/* initial ratio of 3:1*/
+  }
+  .ratio_321>img{
+    position:  absolute;
+    top: -25%;
+    left: 0;
+    bottom: -50%;
+    right: 0;
+    width:100%;
+    padding-right: 0;
+  }
+  .ratio_321 ~ div{padding:12px; background: white}
+
+}
+@media screen and (min-width:@min_xs) and (max-width:@min_sm) {.ratio_321:before{padding-top:33.333%;} .ratio_321>img{top:-85%} .ratio_321.rect>img{top:-35%}}
+@media screen and (min-width:@min_sm){.ratio_321>img{max-width:160px} .ratio_321.rect>img{max-width:300px}}
+.search-result {
+    p.capital{margin-bottom:0}
+    h3{margin-top:10px}
+    padding-bottom:24px;
+    .clearfix();
+}
+@media screen and (min-width: @min_sm) {
+  .search-result{border-bottom:solid 1px @marron;padding:24px 0;}
+}
+
+
+
 ////////////////////////////////////////////////////
     ///////////PLAYER///////////////////
 ///////////////////////////////////////////////////

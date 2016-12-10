@@ -134,6 +134,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' =>  realpath(__DIR__ . "/blocks/")  . '/recommendedContents.json'
         ),
+        'siteMap' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/siteMap.json'
+        ),
         'imageBatchUpload' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/imageBatchUpload.json'
@@ -187,6 +191,10 @@ return array(
                 ),
                 'js' => array(
                     '/js/wtp.js',
+                     '../js/lazy-image.js',
+                ),
+                'angularModules' => array(
+                    'angularVideoBg' => '/lib/angular-video-bg.min.js'
                 ),
             ),
             'jmj2016' => array(

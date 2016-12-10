@@ -21,10 +21,10 @@
     font-style: normal;
 
 }
-@import url(http://fonts.googleapis.com/css?family=Cabin:400,700);
+//@import url(http://fonts.googleapis.com/css?family=Cabin:400,700);
 @max_width:1550px;
 body{font-size:16px; min-height:100%; color:@txt_dark;}
-html,body{font-family: 'Cabin', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto}
+html,body{font-family: 'Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto}
 .container-fluid{overflow-x:hidden; width: 100%; max-width: @max_width}
 .form-horizontal .form-group {margin-left:0; margin-right: 0}
 /*code Nicolas*/
@@ -55,7 +55,6 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 
 /*slider controls*/
 .owl-theme .owl-controls{
-	float:right;
 	margin-top:-25px !important;
 	margin-right:10px}
 .owl-theme .owl-controls .owl-page span{background-color:white;opacity:0.8}	
@@ -65,8 +64,11 @@ a:link, a:visited, a:hover,a{text-decoration:none}
     ///////global variables////////////////
 ////////////////////////////////////////////////
 
+//v2
+@yellow:#f4bf00;
+@txt:#4d4f4f;
+@txt_grey:#888785;  //grey text
 
-@txt_grey:#9c9b9d;  //grey text
 @kawaco:#ff9c32;	
 @fit:#00d5eb;
 @coeur:#9ae36a;
@@ -88,6 +90,10 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 @hover:#00b4ff;
 @txt_dark:#444;
 @highlight:#feef07;
+
+
+@tablet:768px;
+
 ////////////////////////////////////////////////
     ///////  WYD Krakow  ////////////////
 ////////////////////////////////////////////////
@@ -107,20 +113,24 @@ nav {margin-bottom:0px;}
 .button:hover{border-color:white;}
 .dropdown .dropdown-menu{width:180px; display:none; position:fixed; left:auto; top:50px}
 ::i-block-chrome,.dropdown .dropdown-menu{left:0}
-.dropdown .dropdown-menu li{width:100%; a{padding:8px 0; padding-left:10px; white-space: pre-wrap}}
+.dropdown .dropdown-menu li{width:100%; a{padding:8px 0; padding-left:10px; white-space: pre-wrap; color:white; &:hover{color:@yellow; background-color: inherit}}}
 .dropdown:hover .dropdown-menu {
 display: block;
 }
 .row-fluid.h-0 [class*="span"] {min-height:0px}
 
-nav{min-height:0;}
+nav{min-height:0;background-color: rgba(0,0,0,0.3)}
+.dropdown-menu{
+	background-color:rgba(0,0,0,0.3);
+}
 .navbar-fixed-top, .navbar-fixed-bottom{transform:none}
-nav .nav > li > a:hover{background-color:@hover;color:white}
+nav .nav > li > a:hover{color:@yellow; background-color: inherit}
 .snap-content{transform:none}
 
 /*STYLING*/
 .padding{padding:5px}
 .padding-large{padding:0 15px}
+.paddingv{padding-bottom: 24px; padding-top: 24px}
 .style1 {
     color: #666666;
     text-align: justify;
@@ -140,9 +150,8 @@ nav .nav > li > a:hover{background-color:@hover;color:white}
 .dropdown:hover .dropdown-menu {
 display: block;
 }
-.navbar-fixed-top li#inscription a{background-color:#FF5143}	
 .home-button{width:55px;display:inline-block;height:50px}
-.home-button:hover{background-color:@hover;}
+//.home-button:hover{background-color:@hover;}
 .navbar-nav > li.home-button:hover > a, .home-button:hover > a{font-size:2.5em;}
 .nav li{float:left}
 .navbar-toggle{float:left; border:0px;margin:0px;padding:0px}
@@ -319,93 +328,59 @@ input:checked + .push-menu-title:after{content:"c"}
     #push-menu-02{padding:0}
 }
 
-/*SLIDER*/
-.caption-01, .caption-02 {
-    position: absolute;
-    display: block;
-    left: 0;
-    top : 72px;
-    width: auto;
-    margin: 0;
-    padding: 0 15px 0 30px;
-    text-align: center;
-    font-size: 4em;
-    height : 90px;
-    line-height: 90px;
-	text-transform:uppercase;
-}
-.section-header-title {
-    background:rgb(0,0,0);
-    background: transparent\9;
-    background:rgba(0,0,0,0.75);
-    zoom: 1;
-}
-.caption-01:nth-child(n),.caption-02:nth-child(n),.section-header-title:nth-child(n) {
-    filter: none;
-}
-.caption-02 {
-    top : 162px;
-    padding: 0 15px 0 50px;
-}
-.caption-01,.caption-02 {
-    background-color:#feef07;
-    color:black;
-}
-a.slider-button {
-    display: block;
+/*PAGE ACCUEIL*/
+.accueil_vision {
     width:100%;
-    text-align: center;
-   height: 100px;margin-top :-99px;
-    color:white;
-    background: rgb(0,0,0);
-    background: rgba(0,0,0,0.6);
-   p {
-	font-family: 'hautecombe-2015regular';
-	font-size: 4em;
-	margin: 0;
-	position:relative; top:-10px;
-    }
-    h4 {margin:0; text-transform: uppercase;font-size: 1.2em;position:relative; top:-20px}
+    /*background: @welcome;*/
+    background-color:#e1e1e1;
+	//background-image: url('../img/vision_bg.jpg');
+    color: @txt;
+    text-align:center;
+    p,h1,h2,h3{max-width: 800px; margin:0 auto;line-height:1.45em;}
+    h1,h2{color:@txt; margin-bottom:20px; text-transform: uppercase;}
+    h2,h3,p{color:@txt;}
+    //font-size: 1.25em;
+    padding: 60px 0;
+	p{line-height: 1.6em; font-size: 1.2em;}
 }
-a.slider-button:hover {
-    background-color:#feef07;
-    color:black;
+@media screen and (max-width: @tablet) {
+    .accueil_vision p, .accueil_vision h1{width:90%; margin-left:5%}
+	.accueil_vision h1,h2{font-size: 1.5em}
+	.accueil_vision p{ font-size: 1em;}
 }
-.owl-theme .owl-controls .owl-buttons div {
-    border-radius: 0px;
-    background: none;
-    color: #fff;
-    font-size: 5em;
-    margin: 0px;
-    opacity: 0.5;
-    position: absolute;
-    top:45%;
-}
-.owl-prev {left:0px;}
-.owl-next {right:0px;}
-.owl-theme .owl-controls .owl-buttons div{padding: 0}
-.owl-buttons .glyphicon-chevron-left,  .owl-buttons .glyphicon-chevron-right {font-family:'hautecombe-2015regular'; text-transform: none;background-color:rgba(0,0,0,0.75)}
-.glyphicon-chevron-left:before{content:'e'}
-.glyphicon-chevron-right:before{content:'d'}
 
-.play-button {
-    position:absolute;
-    left:45%; top:45%;
-    font-family: 'hautecombe-2014-ronds';
-    font-size: 5em;
-    color:#feef07;
-    text-transform:none;
-    text-transform: none;
-    opacity:0.8;
-    transition: opacity ease 0.3s;
-    cursor: pointer;
+/*BACKGROUND-IMAGE BLOCK*/
+header.parallax{
+	background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    h1,h2,h3,h4,h5,p{color:white};
+    height:600px;
+    //box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
+    line-height: 600px;
+    text-align: center;
+    background-color: white;
+    overflow-y:hidden;
 }
-.play-button:hover{opacity:1; color: inherit}
-.video{position: absolute; margin: 0 auto; top:0; width:100%; height: 100%; z-index:1}
-.modal-lg{margin:50px auto 0; height:80%; width: 80%}
-.modal-content{height:100%; box-shadow: 0; border: none;}
-.modal-body{height:100%; padding: 5px}
-.owl-item img{width: 100%}
+@media screen and (max-width: @tablet) {
+	header.parallax{background-attachment: scroll;}
+}
+header.parallax>div{line-height: 1.6em; font-size: 1.2em;display: inline-block;text-align:center; vertical-align: middle;}
+header.parallax.page{
+	text-align: center;
+	h1{text-transform: uppercase; font-size: 3.5em; font-weight: bold}
+	height:400px;line-height: 400px;
+}
+/*@media screen and (min-width: @min_sm) {
+    .large header.content{line-height: 600px; height:600px}
+    header.content{line-height: 400px; height:400px}
+    header.content>div{text-align: left; vertical-align: bottom; padding-bottom: 24px}
+}
+@media screen and (max-width:@min_xs){
+  header.content.parallax{background-attachment: scroll;}
+}
+*/
 /*FOOTER*/
 #footer {
     line-height: 84px;
@@ -498,7 +473,7 @@ a.slider-button:hover {
 .changement .linkbox a{color:white; border-color:rgba(255,255,255,0.5)}
 .changement .linkbox a:hover{border-color:white}
 /*PAGES*/
-.page{margin-top:30px}
+//.page{margin-top:30px}
 .section-header {
     cursor: pointer;
     height: 300px;
@@ -562,6 +537,7 @@ a.slider-button:hover {
     padding: 0 20px;
     margin: 0 30px 0;
     color : #444;
+	text-transform: uppercase;
 }
 .intro p:first-letter{
     float: left;
@@ -594,6 +570,107 @@ a.slider-button:hover {
 	text-align:center;
 }
 
+
+/*NEW*/
+.color{display: inline-block;float: none; margin-top:-7px; overflow: hidden}
+.bloc-icone{
+	border: 1px solid @txt_grey;
+	height: 250px;
+	overflow: hidden;
+	.side1{
+		line-height: 210px;
+		text-align: center;
+	}
+	.side1>div{
+		line-height: normal;
+		display: inline-block;
+		vertical-align: middle;
+	}
+	.side2{
+		-webkit-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
+		-moz-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
+		-o-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
+		-ms-transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
+		transform: translate3d(0,0,-220px) rotate3d(1,0,0,90deg);
+		opacity: 0;
+		line-height: 210px;
+		background-color:@txt_grey; color:white;
+	}
+}
+.bloc-icone>div{
+	position:absolute; width:100%;height: 100%; 
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-o-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+
+}
+.bloc-icone>div>div{
+	display: block;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	-webkit-transition: all 0.4s linear;
+	-moz-transition: all 0.4s linear;
+	-o-transition: all 0.4s linear;
+	-ms-transition: all 0.4s linear;
+	transition: all 0.4s linear;
+	-webkit-transform-origin: 50% 0%;
+	-moz-transform-origin: 50% 0%;
+	-o-transform-origin: 50% 0%;
+	-ms-transform-origin: 50% 0%;
+	transform-origin: 50% 0%;
+	padding: 20px;
+}
+.bloc-icone:hover .side1 {
+	-webkit-transform: translate3d(0,280px,0) rotate3d(1,0,0,-90deg);
+	-moz-transform: translate3d(0,280px,0) rotate3d(1,0,0,-90deg);
+	-o-transform: translate3d(0,280px,0) rotate3d(1,0,0,-90deg);
+	-ms-transform: translate3d(0,280px,0) rotate3d(1,0,0,-90deg);
+	transform: translate3d(0,280px,0) rotate3d(1,0,0,-90deg);
+	opacity: 0;
+}
+
+.bloc-icone:hover .side2 {
+	-webkit-transform: rotate3d(1,0,0,0deg);
+	-moz-transform: rotate3d(1,0,0,0deg);
+	-o-transform: rotate3d(1,0,0,0deg);
+	-ms-transform: rotate3d(1,0,0,0deg);
+	transform: rotate3d(1,0,0,0deg);
+	opacity: 1;
+}
+
+.bloc-icone .side1 .block-details:first-of-type{
+	p{
+		margin: 15px 0 0;
+		display: block;
+		position: relative;
+		font-size : 5em;
+		text-align: center;
+		font-family : 'hautecombe-2014-ronds';
+	}
+}
+.bloc-icone .side1 .block-details:nth-of-type(2){
+	p{
+		display: inline-block;
+		width: 100%;
+		margin: 15px 0 0;
+		padding: 0 30px;
+		font-size : 1.375em;
+		text-transform: uppercase;
+		font-weight: 700;
+		text-align: center;
+	}
+}
+.bloc-icone .side2 .block-details{
+	//display:none;
+	display: inline-block; line-height: 1.5em;vertical-align:middle;
+	p{
+		text-align: center;
+	}
+}
+/**/
 .block-detail p:first-of-type{
     margin: 15px 0 0;
     display: block;
@@ -621,128 +698,128 @@ a.slider-button:hover {
 }
 
 .block-detail{display:inline-block;float:none;text-align:center;vertical-align:top; margin:0 -5px}
-.block-detail:nth-of-type(2n)  p:first-of-type{color:@txt_dark !important}
+.color:nth-of-type(2n) .icone p:first-of-type{color:@txt_grey !important}
 #kawaco {
-	.sec-logo, .text-bg p, nav{background-color:@kawaco}
-	.section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@kawaco}
+	.sec-logo, .text-bg, nav, .color:nth-of-type(2n) .side2{background-color:@kawaco}
+	.section-title-h1, .titre-details,.block-details.icone p{color:@kawaco}
 }
 #dots-kawaco{color:@kawaco}
 nav.kawaco{background-color:@kawaco}
 
 #fit-fun {
-	.sec-logo, .text-bg p, nav, .table{background-color:@fit}
-	.section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@fit}
+	.sec-logo, .text-bg, nav, .table,.color:nth-of-type(2n) .side2{background-color:@fit}
+	.section-title-h1, .titre-details,.block-details.icone p{color:@fit}
 }
 #dots-fit-fun{color:@fit}
 nav.fit-fun{background-color:@fit}
 
 #coeur-a-coeur {
-	.sec-logo, .text-bg p, nav{background-color:@coeur}
-	.section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@coeur}
+	.sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@coeur}
+	.section-title-h1, .titre-details,.block-details.icone p{color:@coeur}
 }
 #dots-coeur-a-coeur{color:@coeur}
 nav.coeur-a-coeur{background-color:@coeur}
 
 #temps-forts{
-	.sec-logo, .text-bg p, nav{background-color:@temps-forts}
-	.section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@temps-forts}
+	.sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@temps-forts}
+	.section-title-h1, .titre-details,.block-details.icone p{color:@temps-forts}
 }
 #dots-temps-forts{color:@temps-forts}
 nav.temps-forts{background-color:@temps-forts}
 
 #workshops{
-  .sec-logo, .text-bg p, nav, .table{background-color:@workshops}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@workshops}
+  .sec-logo, .text-bg, nav, .table,.color:nth-of-type(2n) .side2{background-color:@workshops}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@workshops}
 }
 #dots-workshops{color:@workshops}
 nav.workshops{background-color:@workshops}
 
 #ateliers{
-  .sec-logo, .text-bg p, nav, .table{background-color:@ateliers}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@ateliers}
+  .sec-logo, .text-bg, nav, .table,.color:nth-of-type(2n) .side2{background-color:@ateliers}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@ateliers}
 }
 #dots-ateliers{color:@ateliers}
 nav.ateliers{background-color:@ateliers}
 
 #intervenants{
-  .sec-logo, .text-bg p, nav, .table{background-color:@intervenants}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@intervenants}
+  .sec-logo, .text-bg, nav, .table,.color:nth-of-type(2n) .side2{background-color:@intervenants}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@intervenants}
 	.page{margin-top:0}
 }
 #dots-intervenants{color:@intervenants}
 nav.intervenants{background-color:@intervenants}
 
 #volontaires{
-  .sec-logo, .text-bg p, nav{background-color:@volontaires}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@volontaires}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@volontaires}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@volontaires}
 	.page{margin-top:0}
 }
 #dots-volontaires{color:@volontaires}
 nav.volontaires{background-color:@volontaires}
 
 #jpros{
-  .sec-logo, .text-bg p, nav{background-color:@jpros}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@jpros}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@jpros}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@jpros}
 }
 #dots-jpros{color:@jpros}
 nav.jpros{background-color:@jpros}
 
 #groupe{
-  .sec-logo, .text-bg p, nav{background-color:@groupe}
-  .section-title-h1, .intro p:first-letter, .titre-details, .block-detail p:first-of-type{color:@groupe}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@groupe}
+  .section-title-h1, .titre-details, .block-details.icone p{color:@groupe}
 }
 #dots-groupe{color:@groupe}
 nav.groupe{background-color:@groupe}
 
 
 #studilac{
-  .sec-logo, .text-bg p, nav{background-color:@studilac}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@studilac}
+  .sec-logo, .text-bg, nav.color:nth-of-type(2n) .side2{background-color:@studilac}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@studilac}
 	.page{margin-top:0}
 }
 #dots-studilac{color:@studilac}
 nav.studilac{background-color:@studilac}
 
 #manaim{
-  .sec-logo, .text-bg p, nav{background-color:@manaim}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@manaim}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@manaim}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@manaim}
 }
 #dots-manaim{color:@manaim}
 nav.manaim{background-color:@manaim}
 
 
 #hozana{
-  .sec-logo, .text-bg p, nav{background-color:@alpha}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@alpha}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@alpha}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@alpha}
 }
 #dots-hozana{color:@alpha}
 nav.hozana{background-color:@alpha}
 
 #retraite{
-  .sec-logo, .text-bg p, nav{background-color:@retraite}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@retraite}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@retraite}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@retraite}
 }
 #dots-retraite{color:@retraite}
 nav.retraite{background-color:@retraite}
 
 #stage{
-  .sec-logo, .text-bg p, nav{background-color:@stage}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@stage}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@stage}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@stage}
 }
 #dots-stage{color:@stage}
 nav.stage{background-color:@stage}
 
 #infos{
-  .sec-logo, .text-bg p, nav{background-color:@infos}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@infos}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@infos}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@infos}
   .page{margin-top:0}
 }
 #dots-infos{color:@infos}
 nav.infos{background-color:@infos}
 
 #cte{
-  .sec-logo, .text-bg p, nav{background-color:@cte}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@cte}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@cte}
+  .section-title-h1,  .titre-details,.block-details.icone p{color:@cte}
  // .page{margin-top:0}
 }
 #dots-cte{color:@cte}
@@ -751,8 +828,8 @@ nav.cte{background-color:@cte}
 
 
 #inscriptions{
-  .sec-logo, .text-bg p, nav{background-color:@inscriptions}
-  .section-title-h1, .intro p:first-letter, .titre-details,.block-detail p:first-of-type{color:@inscriptions}
+  .sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@inscriptions}
+  .section-title-h1, .titre-details,.block-details.icone p{color:@inscriptions}
   .page{margin-top:0}
 }
 nav.inscriptions{background-color:@inscriptions}
@@ -760,20 +837,68 @@ nav.inscriptions{background-color:@inscriptions}
 
 
 
+/*CAROUSEL*/
 
+.slide{
+	height: 400px;
+	display:table;
+	table-layout: fixed;
+	width:100%;
+	.colLeft, colRight{height: 400px;}
+}
+.colgroup{
+  display:table-column-group;
+}
+.colCol{
+  display:table-column;
+}
+.middle{
+	  width:750px;
+}
 
-
-.carousel-title{
-	position:absolute;
-	top:100px;
-	padding:5px 10px 5px 20% ;
-	color:white;
-	z-index:1;
+.slide-center{
+	color:@txt;
+	height: 50%;
+	h3{text-transform: uppercase; margin-top:0; font-weight: bold; padding: 0px 48px }
+	text-align: center;
+	p.icone{
+		font-size: 4em; font-family: 'hautecombe-2015regular'; margin-bottom: 0;
 	}
-.carousel-title h3{margin:0;font-weight:normal}
-.carousel-desc{position:absolute;width:70%;padding:0 15%;text-align:center;bottom:30%;font-size:4em;color:white}
-.carousel-desc:first-line{font-size:1.5em}
+}
+.slide-center.title{
+	border-bottom: 2px solid red;
+	position: relative;
+	div{position: absolute; bottom:0; width:100%}
+}
+.slide-center:not(.title) {font-size: 1.3em; font-style: italic; padding: 12px 48px; text-align: left}
+.rowTabled{
+  display:table-row;
+}
+.colLeft{
+  display:table-cell;
+  height: 100%;
+  img, div{-webkit-clip-path: polygon(0 0,100% 0,100% 50%,20% 75%,0 50%);
+	clip-path: polygon(0 0,100% 0,100% 50%,20% 75%,0 50%);
+	float: right}
 
+}
+.colRight{
+  display:table-cell;
+  height: 100%;
+  img, div{-webkit-clip-path:polygon(400px 0, 400px 400px, 120px 400px, 0px 200px, 120px 0px);
+  clip-path: polygon(400px 0, 400px 400px, 120px 400px, 0px 200px, 120px 0px);float: left}
+}
+.rowTabled>div{vertical-align: top;}
+@media screen and (max-width: @tablet) {
+	.middle{
+	  width:100%;
+	}
+	.slide-center{
+		h3{font-size: 1.3em}
+		p{font-size:0.9em}
+		p.icone{font-size: 3em; }
+	}
+}
 
 // PAVE DETAIL
 .icone-paragraph-1 {

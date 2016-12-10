@@ -2,6 +2,10 @@ blocksConfig.buttonToPage={
            "template": "/templates/blocks/buttonToPage.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
 };
+blocksConfig.bg_image={
+           "template": "/templates/blocks/bg_image.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
+};
 blocksConfig.contactBlock={
            "template": "/templates/blocks/contactBlock.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/contactBlock.js"]
@@ -10,7 +14,10 @@ blocksConfig.form={
            "template": "/templates/blocks/form.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/form.js"]
 };
-
+blocksConfig.carrousel2={
+           "template": "/templates/blocks/carrousel_fullWidth.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
+};
 
 
 
@@ -35,6 +42,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
+		   var format = attrs.format;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
@@ -44,8 +52,8 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
                       file: filmUrl,
                       modestbranding:0,
                       showinfo:1,
-                      width:"80%",
-                      aspectratio:"16:9"};
+                      width:"100%",
+                      aspectratio:format};
                       //to adress rmtp streaming
            if(filmUrl.slice(0,4) =='rtmp'){
            	options.primary= "flash";
@@ -120,7 +128,7 @@ angular.module('rubedoBlocks').directive('toggleclass', function() {
         };
         return serviceInstance;
     }]);
-    
+    /*
 $(document).ready(function(){
 dot_kill= '';
 dot = '';
@@ -242,4 +250,4 @@ $(window).bind("scroll", function(){
 
 
 
-})
+})*/

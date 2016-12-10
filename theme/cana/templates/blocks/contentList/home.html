@@ -1,11 +1,9 @@
 
 <div class="row border-top">
-    
-
     <div class="col-sm-12">
 
       <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
-          <div class="resultData search-result" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents  | filter:contentListCtrl.query | tags : contentListCtrl.taxoFilter track by $index">
+          <div class="resultData search-result" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
               <!--tout sauf video-->
               <div ng-if="!content.fields.video">
                   <div class="ratio_321" ng-if="content.fields.image">
@@ -20,7 +18,7 @@
       
                   <div>
                   <!--<p class="capital">{{content.createTime * 1000 | date}} <span class="pull-right tags" ng-if="content.fields.audio">audio</span></p>-->
-                  <a ng-href="{{content.detailPageUrl |cleanUrl}}"><h4>{{content.fields.text }}</h4>
+                  <a ng-href="{{content.detailPageUrl}}"><h4>{{content.fields.text }}</h4>
                   <p class="summary">{{content.fields.summary}}</p></a>
                   <div ng-init="audioFileId = content.fields.audio" ng-if="content.fields.audio" style="display:inline-block">
                       <div ng-controller="AudioFileController as audioCtrl">
@@ -34,7 +32,7 @@
               <div ng-if="content.fields.video">
                   <div class="col-sm-4">
                       <p class="capital tags">vidéo</p>
-                      <h4><a  ng-href="{{content.detailPageUrl |cleanUrl}}">{{content.fields.text}}</a></h4>
+                      <h4><a  ng-href="{{content.detailPageUrl}}">{{content.fields.text}}</a></h4>
                       <!--<p class="summary">{{content.fields.summary}}</p>
                       <p class="capital">{{content.createTime * 1000 | date}} </p>-->
                   </div>

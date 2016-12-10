@@ -52,6 +52,7 @@ class DonationResource extends AbstractResource
         $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_hors_pays"]);
         
         //récupérer les infos spécifique au projet : budget, montant payé, contact
+        AbstractLocalizableCollection::setIncludeI18n(true);
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
         //déterminer si le projet est un projet national ou hors pays / international
         $isProjetInternational = true;
@@ -119,42 +120,42 @@ class DonationResource extends AbstractResource
             else {
                 $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
             }
-            /*METTRE A JOUR LE MONTANT COLLECTE*/
-            if($projectDetail) {
-                AbstractLocalizableCollection::setIncludeI18n(true);
-                AbstractCollection::disableUserFilter(true);
-                $type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
-                if ($projectDetail['nativeLanguage'] === $params['lang']->getLocale()) {
-                    foreach ($projectDetail['fields'] as $fieldName => $fieldValue) {
-                        if (in_array($fieldName, $this->toExtractFromFields)) {
-                            $projectDetail[$fieldName] = $fieldValue;
-                        }
-                    }
-                }
-                if (!isset($projectDetail['i18n'])) {
-                        $projectDetail['i18n'] = array();
-                }
-                if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
-                        $projectDetail['i18n'][$params['lang']->getLocale()] = array();
-                }
-                $projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);
-                $projectDetail['fields'] = $this->filterFields($type, $projectDetail['fields']);		    
-                if (isset($projectDetail['fields'])) {
-                    foreach ($projectDetail["fields"] as $key2 => $value2) {
-                        $projectDetail["fields"][$key2] = $value2;
-                    }
-                    foreach ($projectDetail['i18n'][$params['lang']->getLocale()]['fields']  as $key3 => $value3) {
-                        $projectDetail['i18n'][$params['lang']->getLocale()]['fields'][$key3] = $value3;
-                    }
-                }
-                
-                $projectDetail['fields']['cumul'] +=   $don["fields"]["montant"];
-                $projectUpdate = $contentsService->update($projectDetail, array(),false);
-                AbstractCollection::disableUserFilter(false);
-            }
+            
             
             $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
+        }
+        /*METTRE A JOUR LE MONTANT COLLECTE*/
+        if($projectDetail) {
             
+            AbstractCollection::disableUserFilter(true);
+            $type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
+            if ($projectDetail['nativeLanguage'] === $params['lang']->getLocale()) {
+                foreach ($projectDetail['fields'] as $fieldName => $fieldValue) {
+                    if (in_array($fieldName, $this->toExtractFromFields)) {
+                        $projectDetail[$fieldName] = $fieldValue;
+                    }
+                }
+            }
+            if (!isset($projectDetail['i18n'])) {
+                    $projectDetail['i18n'] = array();
+            }
+            if (!isset($projectDetail['i18n'][$params['lang']->getLocale()])) {
+                    $projectDetail['i18n'][$params['lang']->getLocale()] = array();
+            }
+            $projectDetail['i18n'][$params['lang']->getLocale()]['fields'] = $this->localizableFields($type, $projectDetail['fields']);
+            $projectDetail['fields'] = $this->filterFields($type, $projectDetail['fields']);		    
+            if (isset($projectDetail['fields'])) {
+                foreach ($projectDetail["fields"] as $key2 => $value2) {
+                    $projectDetail["fields"][$key2] = $value2;
+                }
+                foreach ($projectDetail['i18n'][$params['lang']->getLocale()]['fields']  as $key3 => $value3) {
+                    $projectDetail['i18n'][$params['lang']->getLocale()]['fields'][$key3] = $value3;
+                }
+            }
+            
+            $projectDetail['fields']['cumul'] +=   $don["fields"]["montant"];
+            $projectUpdate = $contentsService->update($projectDetail, array(),false);
+            AbstractCollection::disableUserFilter(false);
         }
         
         if($resultcreate['success']) {
@@ -197,9 +198,7 @@ class DonationResource extends AbstractResource
             $commande = explode("|", $params['commande']); // $codeAna . "|" .$idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
             $codeAna = $commande[0];
             $idDonation = $commande[1];
- 
-            
-        }
+         }
         /*Récupérer le contenu dons correspondant*/
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $this->_dataService = Manager::getService('MongoDataAccess');
@@ -207,8 +206,10 @@ class DonationResource extends AbstractResource
         $don = $this->_dataService->findByName($idDonation);
         /*Récupérer le contenu projet correspondant*/
         $contentsService = Manager::getService("ContentsCcn");
-        AbstractLocalizableCollection::setIncludeI18n(true);
+        //AbstractLocalizableCollection::setIncludeI18n(true);
         $projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
+        //AbstractLocalizableCollection::setIncludeI18n(false);
+
         /*Récupérer le contenu config de dons correspondant*/
         $conditionFiscale = $contentsService->findById($don["live"]["fields"]["conditionId"],false,false);
         AbstractCollection::disableUserFilter(false);
@@ -235,8 +236,9 @@ class DonationResource extends AbstractResource
             //update numero incrémenté
             $result = $contentsService->update($contentToUpdate, array(),false);
             AbstractCollection::disableUserFilter(false);
-            
-            /*Update montant récolté pour le projet*/
+            $this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage']);
+
+            /*Update montant récolté pour le projet
             if($projectDetail) {
                 AbstractCollection::disableUserFilter(true);
                 $type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
@@ -270,14 +272,13 @@ class DonationResource extends AbstractResource
                 
                 $projectUpdate = $contentsService->update($projectDetail, array(),false);
                 AbstractCollection::disableUserFilter(false);
-            }
+            }*/
         }
         else {
             //ajouter un message d'erreur ?
         }
         
         
-        $this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage']);
         return [
                 'success' => true,
                 'result' => $result

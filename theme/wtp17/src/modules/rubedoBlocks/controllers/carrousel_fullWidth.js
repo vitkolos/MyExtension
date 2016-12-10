@@ -1,14 +1,16 @@
-angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","$sce","RubedoContentsService",function($scope,$sce,RubedoContentsService){
+angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
     var me=this;
     me.contents=[];
     var blockConfig=$scope.blockConfig;
     var queryOptions={
         start: blockConfig.resultsSkip ? blockConfig.resultsSkip : 0,
         limit: blockConfig.pageSize ? blockConfig.pageSize : 6,
-        'fields[]' : ["text","summary",blockConfig.imageField,"imageDroite","imageGauche","color1","color2","icone","text_color","icon_color"],
-        //'requiredFields[]':[blockConfig.imageField],
-        ismagic: blockConfig.magicQuery ? blockConfig.magicQuery : false
+        'fields[]' : ["text","summary",blockConfig.imageField]/*,
+        'requiredFields[]':[blockConfig.imageField]*/
     };
+    var stopOnHover=blockConfig.stopOnHover;
+    if(blockConfig.stopOnHover==true) stopOnHover="hover";
+    else stopOnHover="false";
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
     me.getContents=function(){
@@ -16,6 +18,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","$
             function(response){
                 if (response.data.success){
                     me.contents=response.data.contents;
+                    me.count = response.data.count;
                     setTimeout(function(){me.initCarousel();},100);
                 }
             }
@@ -23,21 +26,16 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","$
     };
     me.initCarousel=function(){
         var targetElSelector="#block"+$scope.block.id;
-        var owlOptions={
-            responsiveBaseWidth:targetElSelector,
-            singleItem:true,
-            pagination: blockConfig.showPager,
-            navigation: blockConfig.showNavigation,
-            autoPlay: blockConfig.autoPlay,
-            stopOnHover: blockConfig.stopOnHover,
-            paginationNumbers:blockConfig.showPagingNumbers,
-            navigationText: ['<span class="glyphicon glyphicon-chevron-left"></span>','<span class="glyphicon glyphicon-chevron-right"></span>'],
-            lazyLoad:true
-        };
-        angular.element(targetElSelector).owlCarousel(owlOptions);
+        angular.element(targetElSelector).carousel({
+            interval: blockConfig.duration*1000, //changes the speed
+            pause: blockConfig.stopOnHover?"hover":"false"
+        });
         $scope.clearORPlaceholderHeight();
-
     };
+    me.slideTo=function(index){
+        var targetElSelector="#block"+$scope.block.id;
+        angular.element(targetElSelector).carousel(index);
+    }
     me.getImageOptions=function(){
         return({
             height:blockConfig.imageHeight,
@@ -48,10 +46,8 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","$
     if (blockConfig.query){
         me.getContents();
     }
-    me.trustSrc = function(src) {
-        return $sce.trustAsResourceUrl(src);
-  }
-
-    
-    
 }]);
+
+
+
+

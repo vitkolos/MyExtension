@@ -65,9 +65,15 @@ class InscriptionResource extends AbstractResource
 		    "es" =>array(
 			"fields" => array("text"=>$content["fields"]["text"])
 		    ),
-		"hu" =>array(
-			"fields" => array("text"=>$content["fields"]["text"])
-		    )
+            "hu" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "it" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "pt" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            )
 		);
 	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         $result = $contentsService->update($content, array(),false);
@@ -305,7 +311,7 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     // NUMERO D'INSCRIPTION POUR SUIVI
      //"Ton numéro d'inscription est " + idInscription + "<br><br>"
-    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . ".<br/><br/>";
+    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . " ". $inscription['text'] . ".<br/><br/>";
     
     //RECAPITULATIF
     //Voici le récapitulatif de ton inscription
@@ -667,10 +673,13 @@ protected function sendInscriptionMail($inscription,$lang){
                 return "FR"; break;
             case "www.chemin-neuf.pl" : 
                 return "PL"; break;
-	    case "chemin-neuf.hu" : 
-	    case "hu.chemin-neuf.org" : 
-                return "HU"; break;
-        }
+            case "chemin-neuf.hu" : 
+            case "hu.chemin-neuf.org" : 
+                    return "HU"; break;
+            case "chemin-neuf.it" : 
+            case "it.chemin-neuf.org" : 
+                    return "IT"; break;
+            }
      }
 protected function localizableFields($type, $fields)
     {
@@ -692,6 +701,7 @@ protected function localizableFields($type, $fields)
         switch($_SERVER['HTTP_HOST']) {
             case "chemin-neuf.fr" : 
             case "www.chemin-neuf.pl" : 
+            case "it.chemin-neuf.org" : 
                 return "55473e9745205e1d3ef1864d"; break;
         }
      }
