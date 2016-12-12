@@ -19,7 +19,7 @@
                     <td>{{ item.createTime*1000| date: "shortDate" }}</td>
                     <td>{{ item.finalPrice|number : 2 }} €</td>
                     <td>{{ item.shipper.name }}</td>
-                    <td>{{ item.paymentMeans }}</td>
+                    <td>{{ rubedo.translate('Payment.Means.'+ item.paymentMeans, item.paymentMeans) }}</td>
                     <td> {{ rubedo.translate('Blocks.UserOrders.Status.'+item.status,item.status) }}</td>
                     <td ng-if="userOrdersCtrl.orderDetailPageUrl">
                         <a ng-href="{{ userOrdersCtrl.orderDetailPageUrl }}?order={{ item.id }}" >
