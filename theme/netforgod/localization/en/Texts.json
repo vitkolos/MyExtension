@@ -29,6 +29,7 @@
     "NFG.Copy":"Copy link",
     "NFG.FilmInfo":"Film Info",
     "NFG.Comments":"Comments",
-    "NFG.Links":"Download links"
-
+    "NFG.Links":"Download links",
+    "NFG.Choose":"Choose language",
+    "NFG.Poster":"Poster format"
 }
