@@ -1,7 +1,32 @@
 <div class="container">
-	<p>Choose language :</p>
-	<select ng-model="lang">
-		<option ng-repeat="(id, language) in contentDetailCtrl.languages" ng-value="id">{{language}}</option>
-	</select>		
+	<div class="row">
+		<div class="col-sm-12 text-center">
+			<p>Choose language :</p>
+			<select ng-model="lang">
+				<option ng-repeat="(id, language) in contentDetailCtrl.languages" ng-value="id">{{language}}</option>
+			</select>		
+		</div>
+		
 	</div>
+	<div class="row">
+		<div class="col-sm-3">
+			<h3>{{rubedo.translate('NFG.Links','Download links')}}</h3>
+			<button type="button" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-download-alt"></i>{{contentDetailCtrl.getLabelByName('film_sd')}}</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-download-alt"></i>{{contentDetailCtrl.getLabelByName('film_md')}}</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-download-alt"></i>{{contentDetailCtrl.getLabelByName('film_hd')}}</button>
+		</div>
+		<div class="col-sm-3">
+			
+		</div>
+		<div class="col-sm-3">
+			
+		</div>
+		<div class="col-sm-3">
+			
+		</div>
+	</div>
+	
+	
+	</div>
+	<div class="c"
 </div>
