@@ -47,7 +47,7 @@
 			</button>
 		</div>
 		<div class="col-sm-4" ng-init="posterLang = (lang=='fr' ? 'fr' : 'en' )">
-			{{lang}}
+			{{lang }} - {{posterLang}}
 			<h3 class="text-center">{{rubedo.translate('NFG.Poster','Format d\'affiche')}}</h3>
 				<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_web && contentDetailCtrl.content.fields.affiche_web[posterLang]">
 					<a ng-href="{{contentDetailCtrl.content.fields.affiche_web[posterLang].url}}" target="_blank" class="txt-slight">
