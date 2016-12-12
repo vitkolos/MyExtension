@@ -46,29 +46,53 @@
 				</a>
 			</button>
 		</div>
-		<div class="col-sm-4" ng-init="posterLang = (lang=='fr' ? 'fr' : 'en' )">
-			{{lang }} - {{posterLang}}
+		<div class="col-sm-4">
 			<h3 class="text-center">{{rubedo.translate('NFG.Poster','Format d\'affiche')}}</h3>
-				<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_web && contentDetailCtrl.content.fields.affiche_web[posterLang]">
-					<a ng-href="{{contentDetailCtrl.content.fields.affiche_web[posterLang].url}}" target="_blank" class="txt-slight">
-						<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_web')}}
-					</a>
-				</button>
-				<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_light && contentDetailCtrl.content.fields.affiche_light[posterLang]">
-					<a ng-href="{{contentDetailCtrl.content.fields.affiche_light[posterLang].url}}" target="_blank" class="txt-slight">
-						<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_light')}}
-					</a>
-				</button>
-				<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_nb && contentDetailCtrl.content.fields.affiche_nb[posterLang]">
-					<a ng-href="{{contentDetailCtrl.content.fields.affiche_nb[posterLang].url}}" target="_blank" class="txt-slight">
-						<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_nb')}}
-					</a>
-				</button>
-				<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_impression && contentDetailCtrl.content.fields.affiche_impression[posterLang]">
-					<a ng-href="{{contentDetailCtrl.content.fields.affiche_impression[posterLang].url}}" target="_blank" class="txt-slight">
-						<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_impression')}}
-					</a>
-				</button>
+				<div ng-if="lang=='fr'" ng-init="posterLang='fr'">
+					<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_web && contentDetailCtrl.content.fields.affiche_web[lang]">
+						<a ng-href="{{contentDetailCtrl.content.fields.affiche_web[posterLang].url}}" target="_blank" class="txt-slight">
+							<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_web')}}
+						</a>
+					</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_light && contentDetailCtrl.content.fields.affiche_light[posterLang]">
+						<a ng-href="{{contentDetailCtrl.content.fields.affiche_light[posterLang].url}}" target="_blank" class="txt-slight">
+							<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_light')}}
+						</a>
+					</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_nb && contentDetailCtrl.content.fields.affiche_nb[posterLang]">
+						<a ng-href="{{contentDetailCtrl.content.fields.affiche_nb[posterLang].url}}" target="_blank" class="txt-slight">
+							<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_nb')}}
+						</a>
+					</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_impression && contentDetailCtrl.content.fields.affiche_impression[posterLang]">
+						<a ng-href="{{contentDetailCtrl.content.fields.affiche_impression[posterLang].url}}" target="_blank" class="txt-slight">
+							<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_impression')}}
+						</a>
+					</button>
+				</div>
+				<div ng-if="lang!='fr'" ng-init="posterLang='en'">
+					<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_web && contentDetailCtrl.content.fields.affiche_web[lang]">
+						<a ng-href="{{contentDetailCtrl.content.fields.affiche_web[posterLang].url}}" target="_blank" class="txt-slight">
+							<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_web')}}
+						</a>
+					</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_light && contentDetailCtrl.content.fields.affiche_light[posterLang]">
+						<a ng-href="{{contentDetailCtrl.content.fields.affiche_light[posterLang].url}}" target="_blank" class="txt-slight">
+							<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_light')}}
+						</a>
+					</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_nb && contentDetailCtrl.content.fields.affiche_nb[posterLang]">
+						<a ng-href="{{contentDetailCtrl.content.fields.affiche_nb[posterLang].url}}" target="_blank" class="txt-slight">
+							<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_nb')}}
+						</a>
+					</button>
+					<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.affiche_impression && contentDetailCtrl.content.fields.affiche_impression[posterLang]">
+						<a ng-href="{{contentDetailCtrl.content.fields.affiche_impression[posterLang].url}}" target="_blank" class="txt-slight">
+							<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('affiche_impression')}}
+						</a>
+					</button>
+				</div>
+				
 		</div>
 
 	</div>
