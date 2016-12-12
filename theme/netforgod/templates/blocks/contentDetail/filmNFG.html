@@ -125,10 +125,13 @@
 		</div>
 	</div>
 	<div class="row" ng-if="contentDetailCtrl.tab==3">
-		<div class="col-sm-12">
-			<p class="text-center">Here you can download everything that you need</p>
+		<div class="col-sm-12 padding-large">
+				<p class="text-center">Here you can download everything that you need:</p>
+				<div class="buy-dvd cursor-as-pointer" ng-if="fieldEntity['downloads']">
+					<rubedo-field  field = "{{contentDetailCtrl.getFieldByName('downloads')}}" ></rubedo-field>
+				</div>
 		</div>
-		<div class="col-sm-12">
+		<!--<div class="col-sm-12">
 				<rubedo-field ng-if="fieldEntity['downloads']" field = "{{contentDetailCtrl.getFieldByName('downloads')}}" ></rubedo-field>
 		</div>
 		<div class="col-sm-12" style="margin-top:36px;">
@@ -166,7 +169,8 @@
 				<h3 style="margin-top:0">Video</h3>
 			</div>			
 		</div>	
-	</div>
+		-->	
+		</div>
 		
 	<div class="row padding-large foi" ng-if="fieldEntity['linkedFOI']&&contentDetailCtrl.defaultLang=='fr'" >
 		<div class="col-xs-5 col-xxs-12 text-center">
