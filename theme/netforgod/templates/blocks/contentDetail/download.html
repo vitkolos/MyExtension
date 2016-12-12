@@ -1,19 +1,31 @@
-<div class="container">
+<div class="container" style="margin-top:24px;">
 	<div class="row">
 		<div class="col-sm-12 text-center">
-			<p>Choose language :</p>
+			<p><span class="icon-audiolanguage main"></span>Choose language :</p>
 			<select ng-model="lang">
 				<option ng-repeat="(id, language) in contentDetailCtrl.languages" ng-value="id">{{language}}</option>
 			</select>		
 		</div>
 		
 	</div>
-	<div class="row">
+	<div class="row" ng-if="lang">
 		<div class="col-sm-3">
 			<h3>{{rubedo.translate('NFG.Links','Download links')}}</h3>
-			<button type="button" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-download-alt"></i>{{contentDetailCtrl.getLabelByName('film_sd')}}</button>
-			<button type="button" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-download-alt"></i>{{contentDetailCtrl.getLabelByName('film_md')}}</button>
-			<button type="button" class="btn btn-primary btn-lg btn-block"><i class="glyphicon glyphicon-download-alt"></i>{{contentDetailCtrl.getLabelByName('film_hd')}}</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.film_sd && contentDetailCtrl.content.fields.film_sd[lang]">
+				<a ng-href="{{contentDetailCtrl.content.fields.film_sd[lang].url}}" target="_blank">
+					<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('film_sd')}}
+				</a>
+			</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.film_md && contentDetailCtrl.content.fields.film_md[lang]">
+				<a ng-href="{{contentDetailCtrl.content.fields.film_md[lang].url}}" target="_blank">
+					<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('film_md')}}
+				</a>
+			</button>
+			<button type="button" class="btn btn-primary btn-lg btn-block" ng-if="contentDetailCtrl.content.fields.film_hd && contentDetailCtrl.content.fields.film_hd[lang]">
+				<a ng-href="{{contentDetailCtrl.content.fields.film_hd[lang].url}}" target="_blank">
+					<i class="glyphicon glyphicon-download-alt" style="margin-right:10px"></i>{{contentDetailCtrl.getLabelByName('film_hd')}}
+				</a>
+			</button>
 		</div>
 		<div class="col-sm-3">
 			
