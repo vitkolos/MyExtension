@@ -234,7 +234,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
             displayMode: config.displayMode,
             displayedFacets: config.displayedFacets,
             pageId: $scope.rubedo.current.page.id,
-            siteId: $scope.rubedo.current.site.id
+            siteId: $scope.rubedo.current.site.id,
+            detailPageId:"56a63f4ac445ec795f8b4dd5"
         };
         if (config.singlePage){
             defaultOptions.detailPageId = config.singlePage;
