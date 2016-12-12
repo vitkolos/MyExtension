@@ -1,7 +1,7 @@
 <div class="container">
 	<p>Choose language :</p>
 	<select ng-model="lang">
-		<option ng-repeat="(id, language) in contentDetailCtrl.languages" value="{{id}}">{{language}}</option>
+		<option ng-repeat="(id, language) in contentDetailCtrl.languages" ng-value="id">{{language}}</option>
 	</select>		
 	</div>
 </div>
