@@ -297,9 +297,27 @@ class DonationResource extends AbstractResource
         if($donationInfo["trimestriel"]) $donationInfo["frequence"] = "Trimestriel";
         if($donationInfo["mensuel"]) $donationInfo["frequence"] = "Mensuel";
         if($donationInfo["montant"]=='autre') $donationInfo["montant"] = $donationInfo["montant_autre"];
+        if($don["questions"]) {
+            $answer = "";
+            foreach ($don["questions"] as $titre => $reponse){
+                $answer .= $titre." = ";
+                if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
+                else {
+                    foreach($reponse as $value) {//pour checkbox
+                        $answer .= $value['value'];
+                        if($answer['complement'] && $answer['complement'] != "" ) $answer .= " : " .$value['complement'];
+                        $answer .=", ";
+                    }
+                       
+                }
+                $answer .=", ";
+            }
+            $donationInfo["questionsComplementaires"] = $answer;
+        }
         return $donationInfo;
     }
    
+            
    
    protected function envoyerMailsDon($don,$projectDetail,$configPaymentData,$lang,$responsableInternationalSeulement) {
         $configPayment = $configPaymentData["nativePMConfig"];
@@ -438,7 +456,6 @@ class DonationResource extends AbstractResource
                 //Après encaissement du versement, nous vous enverrons un reçu fiscal.
                 $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
             }
-
         }
         //messageDonateur += "Votre contact pour ce projet est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
         $messageDonateur.=  $trad["ccn_don_5"]  . "<br/>";
@@ -508,7 +525,7 @@ class DonationResource extends AbstractResource
                     }
                        
                 }
-                $this->addLine($titre, $answer );
+                $messageAdmin .= $this->addLine($titre, $answer );
             }
         }
         $messageAdmin .= "</table><br/><br/>";
