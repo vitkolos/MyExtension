@@ -297,9 +297,9 @@ class DonationResource extends AbstractResource
         if($donationInfo["trimestriel"]) $donationInfo["frequence"] = "Trimestriel";
         if($donationInfo["mensuel"]) $donationInfo["frequence"] = "Mensuel";
         if($donationInfo["montant"]=='autre') $donationInfo["montant"] = $donationInfo["montant_autre"];
-        if($don["questions"]) {
+        if($donationInfo["questions"]) {
             $answer = "";
-            foreach ($don["questions"] as $titre => $reponse){
+            foreach ($donationInfo["questions"] as $titre => $reponse){
                 $answer .= $titre." = ";
                 if(is_string($reponse)) $answer.= $reponse; // pour texte ou radio
                 else {
