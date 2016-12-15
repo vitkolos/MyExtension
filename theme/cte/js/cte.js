@@ -153,7 +153,9 @@ angular.module('rubedoBlocks').filter('isAfter', function ($filter) {
 });
 
 
-
+angular.module('rubedoBlocks').filter('encodeURIComponent', function($window) {
+    return $window.encodeURIComponent;
+});
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
         var me=this;
