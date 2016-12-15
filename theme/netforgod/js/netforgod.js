@@ -97,7 +97,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                                        link: 'http://test.netforgod.org/'
                                             },
                                             displaytitle:true,
-                                            tracks:subTitles 
+                                            tracks:JSON.parse(subTitles) 
                                  }]);
                                  jwplayer(id).on('firstFrame', function() { 
 			                 jwplayer().seek(delay);
