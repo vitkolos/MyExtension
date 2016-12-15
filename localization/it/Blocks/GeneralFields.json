@@ -18,5 +18,16 @@
     "FaireUnDon":"Fare una donazione",
     "Menu" : "menu",
     "Accueil" : "Accoglienza",
-    "Time.At":"alle ore"
+    "Time.At":"alle ore",
+    "Blocks.Search.Label.SearchCriteria":"Criteri di ricerca",
+    "Search.ThereAre":"Ci sono",
+    "Search.ThereIs":"C'è",
+    "Search.Results":"risultati",
+    "Search.Result":"risultato",
+    "Search.Label.OrderByRelevance":"Ordina per rilevanza",
+    "Search.Label.OrderByDate":"Ordina per date",
+    "Search.Label.OrderByAuthor":"Ordina per autore",
+    "Blocks.Search.Label.OrderByTitle":"Ordina per tilolo",
+    "Blocks.Search.Label.ByPage":"per pagina",
+    "Search.Label.Search":"Ricerca"
     }
