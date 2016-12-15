@@ -53,7 +53,7 @@
 																					<!---NET FOR GOD FILMS-->
 																				<div ng-switch-when="54cb447145205e7d09db0590" class="padding">
 																								<p class="capital">{{content.fields.date*1000 | date :'MMMM yyyy' }}</p>
-																								<a  ng-href="{{content.detailPageUrl == '#' ? 'http://netforgod.tv/en/home/films/'+content.id+'/' : content.detailPageUrl}}">
+																								<a  ng-href="{{content.detailPageUrl == '#' ? 'http://netforgod.tv/en/home/films/'+content.id+'/'+encodeURIComponent(content.fields.text) : content.detailPageUrl}}">
 																												<img class="img-responsive" ng-if="content.fields.affiche" style="margin:0 auto"
 																																	ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'boxed'}) }}"
 																																	alt="{{ content.fields.text }}"/>
