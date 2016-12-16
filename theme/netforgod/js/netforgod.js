@@ -28,7 +28,25 @@ blocksConfig.footer_en={
 };
 
 angular.module('rubedoBlocks').filter('firstUpper', function() {
-    return function(input, scope) {
+    return function(input, lang) {
+        return input ? input.substring(0,1).toUpperCase()+input.substring(1).toLowerCase() : "";
+    }
+});
+
+angular.module('rubedoBlocks').filter('nfgDate', function($filter) {
+    return function(input, format, locale) {
+           var date = "";
+           switch(locale){
+                      case 'pl':
+                                 if(format=="MMMM yyyy") {
+                                            var months = ["styczeń","luty","marzec","	kwiecień","maj","czerwiec","lipiec","	sierpień","wrzesień","październik","listopad","grudzień"];
+                                            var formattedDate =  new Date(input*1000);
+                                            date = months[formattedDate.getMonth()] + " " + formattedDate.getFullYear();
+                                 }
+                                 else date = $filter('date')(input, format);
+                                 break;
+                      default : date = $filter('date')(input, format);
+           }
         return input ? input.substring(0,1).toUpperCase()+input.substring(1).toLowerCase() : "";
     }
 });
