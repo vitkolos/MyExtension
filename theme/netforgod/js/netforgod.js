@@ -47,7 +47,7 @@ angular.module('rubedoBlocks').filter('nfgDate', function($filter) {
                                  break;
                       default : date = $filter('date')(input, format);
            }
-        return input ? input.substring(0,1).toUpperCase()+input.substring(1).toLowerCase() : "";
+        return date;
     }
 });
 
