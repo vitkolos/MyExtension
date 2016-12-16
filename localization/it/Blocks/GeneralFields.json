@@ -29,5 +29,10 @@
     "Search.Label.OrderByAuthor":"Ordina per autore",
     "Blocks.Search.Label.OrderByTitle":"Ordina per tilolo",
     "Blocks.Search.Label.ByPage":"per pagina",
-    "Search.Label.Search":"Ricerca"
+    "Search.Label.Search":"Ricerca",
+    "Blocks.Contact.Input.Name.Label":"Nome",
+    "Blocks.Contact.Input.Email.Label":"Indirizzo email",
+    "Blocks.Contact.Input.Subject.Label":"Oggetto",
+    "Blocks.Contact.Input.Message.Label":"Messagio",
+    "Blocks.Contact.Input.Submit.Label":"Invia"
     }
