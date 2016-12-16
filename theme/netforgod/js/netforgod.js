@@ -40,7 +40,7 @@ angular.module('rubedoBlocks').filter('nfgDate', function($filter) {
                       case 'pl':
                                  if(format=="MMMM yyyy") {
                                             var months = ["styczeń","luty","marzec","	kwiecień","maj","czerwiec","lipiec","	sierpień","wrzesień","październik","listopad","grudzień"];
-                                            var formattedDate =  new Date(input*1000);
+                                            var formattedDate =  new Date(input);
                                             date = months[formattedDate.getMonth()] + " " + formattedDate.getFullYear();
                                  }
                                  else date = $filter('date')(input, format);
