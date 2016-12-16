@@ -13,7 +13,7 @@
 			<div class="col-sm-8">
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" class="film-title"></rubedo-field><!--Texte-->
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('subTitle')}}" class="uppercase"></rubedo-field><!--sous-titre-->
-				<p style="font-size: 0.8em"><span class="icon-issuedate"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
+				<p style="font-size: 0.8em"><span class="icon-issuedate"></span>{{contentDetailCtrl.content.fields.date*1000 | nfgDate :'MMMM yyyy':rubedo.current.page.locale |uppercase}}</p>
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
 				<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
 				<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
@@ -181,7 +181,7 @@
 		<div class="col-xs-7 col-xxs-12">
 			<a ng-href="{{'http://ccn.chemin-neuf.fr'+contentDetailCtrl.relatedFOI.canonicalUrl}}"><h3 class="media-heading">{{contentDetailCtrl.relatedFOI.text}}</h3></a>
 			<h4 class="media-heading" style="font-size: 0.8em">
-				<span class="icon-issuedate"></span>{{contentDetailCtrl.relatedFOI.fields.date*1000 | date :'MMMM yyyy' |uppercase}}
+				<span class="icon-issuedate"></span>{{contentDetailCtrl.relatedFOI.fields.date*1000 | nfgDate :'MMMM yyyy':rubedo.current.page.locale |uppercase}}
 			</h4>
 			<p>La revue FOI (pour Fraternité Oecuménique Internationale) est une revue trimestrielle éditée par la communauté du Chemin Neuf.
 			Elle donne la parole à des acteurs de l'Eglise et à des membres de la communauté qui partagent leur passion pour l'Unité.</p>
@@ -208,7 +208,7 @@
 				 alt="{{ content.text[0] }}"/>                            
 			    </div>
 			    <h4 class="media-heading">
-				    {{content['fields.date'][0] | date :'MMMM yyyy'}}
+				    {{content['fields.date'][0] | nfgDate :'MMMM yyyy':rubedo.current.page.locale}}
 			    </h4>
 			</a>
 			
