@@ -210,7 +210,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 
             });
         } else {
-            me.template = themePath+"/templates/blocks/geoSearchResults/map.html";
+												if (config.showList) {
+																me.template = themePath+"/templates/blocks/geoSearchResults/mapWithList.html";
+												}
+            else me.template = themePath+"/templates/blocks/geoSearchResults/map.html";
         }
         var predefinedFacets = config.predefinedFacets==""?{}:JSON.parse(config.predefinedFacets);
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
