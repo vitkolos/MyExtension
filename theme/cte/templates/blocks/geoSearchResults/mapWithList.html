@@ -1,5 +1,4 @@
-<div ng-style="{height:'{{geoSearchResultsCtrl.height}}',width:'100%'}">
-    <div class="col-md-8">
+<div ng-style="{height:'{{geoSearchResultsCtrl.height}}'}"  class="col-md-8">
         <google-map ng-if="geoSearchResultsCtrl.display()"
                     center="geoSearchResultsCtrl.map.center"
                     zoom="geoSearchResultsCtrl.map.zoom"
@@ -36,9 +35,9 @@
                     >
             </markers>
     
-        </google-map>        
-    </div>
-    <div class="col-md-4" style="overflow-y:hidden">
+        </google-map>       
+
+    <div class="col-md-4" style="overflow-y:hidden"  ng-style="{height:'{{geoSearchResultsCtrl.height}}'}">
         <div  ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'" class="row search-result ">
                     <a ng-href="{{data.itemData.url}}" ng-if="!data.itemData['fields.propositionReferenceeInterne']">
                         <div style="line-height: 60px; float:left" >
