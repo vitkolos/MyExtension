@@ -513,6 +513,7 @@ class DonationResource extends AbstractResource
         $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] );
         if($don["message"] && $don["message"]!="") $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] );
         if($don["montant_text"] && $don["montant_text"]!="") $messageAdmin .= $this->addLine("Bonus", $don["montant_text"] );
+        //si on envoyer le mail directement
         if($don["questions"]){
             foreach ($don["questions"] as $titre => $reponse){
                 $answer = "";
@@ -527,6 +528,10 @@ class DonationResource extends AbstractResource
                 }
                 $messageAdmin .= $this->addLine($titre, $answer );
             }
+        }
+        // si on envoye le mail après retour de Paybox
+        else if($don["questionsComplementaires"]) {
+            $messageAdmin .= $this->addLine("Questions complémentaires", $don["questionsComplementaires"]);
         }
         $messageAdmin .= "</table><br/><br/>";
         
