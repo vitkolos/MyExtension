@@ -37,7 +37,7 @@
     
         </google-map>       
 </div>
-<div class="col-md-4" style="overflow-y:scroll;overflow-x:hidden"  ng-style="{height:'{{geoSearchResultsCtrl.height}}'}">
+<div class="col-md-4  geo-search" style="overflow-y:scroll;overflow-x:hidden"  ng-style="{height:'{{geoSearchResultsCtrl.height}}'}">
     <div  ng-repeat="data in geoSearchResultsCtrl.data" class="row search-result ">
                 <a ng-href="{{data.itemData.url}}" ng-if="!data.itemData['fields.propositionReferenceeInterne']">
                     <!--<div style="line-height: 60px; float:left" >
