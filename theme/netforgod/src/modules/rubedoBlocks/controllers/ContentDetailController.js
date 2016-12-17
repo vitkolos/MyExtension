@@ -119,7 +119,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                        
                     }
                     
-                    if (me.content.type.code=="filmNFG") {
+                    if (me.content.type.code=="filmNFG" || me.content.type.code=="download") {
                         /* déterminer l'onglet*/
                         if (!(me.content.fields.parole ||me.content.fields.share||me.content.fields.intercession )) {
                             me.tab=1;

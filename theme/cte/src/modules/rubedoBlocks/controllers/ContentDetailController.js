@@ -75,7 +75,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     me.showCalendar = function(){
       var optionsCalendar = {
-        constrainToSite:true,
+        constrainToSite:false,
         siteId: $scope.rubedo.current.site.id,
         pageId: $scope.rubedo.current.page.id,
         predefinedFacets:{"type":"54dc614245205e1d4a8b456b","lieuCommunautaire":config.contentId},

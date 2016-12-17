@@ -1,8 +1,8 @@
 {
     "Block.Page": "Page",
     "Block.Futurs": "Films en préparation",
-				"NFG.HS":"Hors-séries",
-    "Block.Saison": "Saison",
+				"NFG.HS":"Wydanie specjalne",
+    "Block.Saison": "Sezon",
     "Block.VoirPlus" : "À voir aussi",
     "NFG.AcheterDVD": "Acheter la vidéo",
     "NFG.Watch":"Regarder",
@@ -26,7 +26,7 @@
     "NFG.NextMeeting":"prochaine rencontre",
     "NFG.Participate":"Pour participer à la rencontre, merci de contacter le responsable (contact ci-dessus).",
     "NFG.ShowRoute":"Voir le plan",
-    "NFG.ShowMoreFilms":"Plus de films",
+    "NFG.ShowMoreFilms":"WIĘCEJ FILMÓW",
     "NFG.SendMail":"Envoyer un mail",
     "NFG.MoreGroups":"Plus de 700 groupes",
     "NFG.InTheWorld":"Dans le monde entier",
@@ -38,5 +38,4 @@
     "NFG.Choose":"Choisissez votre langue",
     "NFG.Poster":"Format d'affiche",
     "NFG.Texts":"Textes"
-
 }

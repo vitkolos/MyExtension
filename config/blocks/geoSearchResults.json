@@ -34,6 +34,13 @@
                                 "itemId": "displayedFacetsBrotherField",
                                 "name": "displayedFacets"
                             }
+                        },
+                        {
+                            "type": "Ext.ux.TreePicker",
+                            "config": {
+                                "fieldLabel": "#ext-gen1073#",
+                                "name": "singlePage"
+                            }
                         }
                     ]
                 },
