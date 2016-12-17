@@ -52,6 +52,7 @@
                     </div>-->
                     <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
                     <h4>{{data.itemData.title}}</h4>
+                    <p ng-if="data.itemData['i18n.'+rubedo.current.page.locale+'.fields.subTitle']">{{data.itemData['i18n.'+rubedo.current.page.locale+'.fields.subTitle'][0]}}</p>   
                 </a>
                 <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
                 <p ng-if="data.itemData.groupe == 'evenement' ">
