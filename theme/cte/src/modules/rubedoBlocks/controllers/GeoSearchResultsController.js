@@ -210,6 +210,9 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 
             });
         } else {
+												if (config.showList) {
+																me.template = themePath+"/templates/blocks/geoSearchResults/mapWithList.html";
+												}
             me.template = themePath+"/templates/blocks/geoSearchResults/map.html";
         }
         var predefinedFacets = config.predefinedFacets==""?{}:JSON.parse(config.predefinedFacets);

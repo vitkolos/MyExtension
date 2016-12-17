@@ -94,7 +94,7 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
         ),
-		'searchDons' => array(
+								'searchDons' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchDons.json'
         ),

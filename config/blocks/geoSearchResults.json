@@ -117,6 +117,14 @@
                                 "inputValue": true
                             }
                         },
+																								{
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "Afficher liste sur la carte",
+                                "name": "showList",
+                                "inputValue": true
+                            }
+                        },
                         {
                             "type": "Ext.form.field.Number",
                             "config": {
@@ -232,6 +240,7 @@
             "pageSize": 5000,
             "showCenterMarker": false,
             "showPlacesSearch": true,
+												"showList":false,
             "displayedFacets": "['all']",
             "displayMode": "default",
             "autoComplete": false,
