@@ -410,7 +410,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                                 objectType:item.objectType,
                                 title:item.title,
                                 itemData:item,
-                                distance:me.distance(coords[0],coords[1]),
+                                //distance:me.distance(coords[0],coords[1]),
                                 markerOptions:{
                                     title:item.title,
                                     icon: me.displayedItemId==item['class'] ? icon2 : icon
