@@ -35,6 +35,10 @@ blocksConfig.sectionPresentation={
            "template": "/templates/blocks/sectionPresentation.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/sectionPresentation.js"]
 };
+blocksConfig.imageBatchUpload={
+           "template": "/templates/blocks/imageBatchUpload.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
+};
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
