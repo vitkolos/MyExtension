@@ -31,6 +31,10 @@ blocksConfig.carrousel2={
            "template": "/templates/blocks/carrousel_fullWidth.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
 };
+blocksConfig.sectionPresentation={
+           "template": "/templates/blocks/sectionPresentation.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/sectionPresentation.js"]
+};
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];

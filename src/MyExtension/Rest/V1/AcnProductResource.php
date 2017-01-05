@@ -163,7 +163,7 @@ class AcnproductResource extends AbstractResource
                 (new FilterDefinitionEntity())
                 ->setDescription('Nouveau stock du produit')
                 ->setKey('stock')
-		->setFilter('int')
+																->setFilter('int')
 		//->setRequired()
             )
             ->addOutputFilter(
