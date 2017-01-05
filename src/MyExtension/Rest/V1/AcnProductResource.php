@@ -94,7 +94,7 @@ class AcnproductResource extends AbstractResource
 						->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
         
         $content = $contentsService->findOne($findFilter,true,false);
-		$content['productProperties']['variations'][0]['stock'] = $params['stock'];
+		$content['productProperties']['variations'][0]['stock'] = $params['stock'] ?  $params['stock'] : 0;
         AbstractCollection::disableUserFilter(true);
 
         $result = $contentsService->update($content, array(),false);
@@ -164,7 +164,7 @@ class AcnproductResource extends AbstractResource
                 ->setDescription('Nouveau stock du produit')
                 ->setKey('stock')
 		->setFilter('int')
-		->setRequired()
+		//->setRequired()
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
