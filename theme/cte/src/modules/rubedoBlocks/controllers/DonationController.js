@@ -177,6 +177,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 me.account = me.fiscalites[$scope.don.condition].fields;
                 $scope.don.conditionId = me.fiscalites[$scope.don.condition].id;
             }
+            if($scope.contentDetailCtrl.content.fields.codeAna) $scope.don.codeAna = $scope.contentDetailCtrl.content.fields.codeAna;
 
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
