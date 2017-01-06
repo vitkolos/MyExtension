@@ -32,6 +32,7 @@
 body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: 'Merriweather','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:white; margin-top: 12px}
 .container-fluid{padding:0;max-width:1500px !important;}
+.container-fluid > .row{margin-right: 0; margin-left:0;}
 
 h1{font-weight: bold; font-size:24px}
 @media screen and (min-width: @min_xs) and (max-width:@min_sm){h1{font-size: 32px}}
@@ -425,7 +426,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 .list-tags{position: absolute; top:-3em; color: white; opacity: 0.9; right: 5px;}
 @media screen and (min-width:@min_sm){
   .equal-height-cols{
-    display: table;
+    display: table; width: 100%;
     div[class^="col"]{display: table-cell; vertical-align: middle; float: none; height:200px}
   }
 }

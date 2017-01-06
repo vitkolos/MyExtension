@@ -3,7 +3,7 @@
     </div>
     <div class="col-xs-12 col-sm-5 col-md-4 geo-search ">
         <h2>{{rubedo.translate("NFG.Find", "Trouve un Point Net près de chez toi")}}</h2>
-                <div class="row search-result {{data.itemData.class}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.distance' | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}" id="{{data.itemData.id}}">
+                <div class="row search-result {{data.itemData.class}}" ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'itemData.nextDate'" ng-class="{'open':geoSearchResultsCtrl.displayedItemId == data.itemData.id}" id="{{data.itemData.id}}">
                     <div ng-show="geoSearchResultsCtrl.displayedItemId == data.itemData.id" class="container-fluid image">
                         <img ng-if="data.itemData['fields.image'][0]" style="width:100%"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(data.itemData['fields.image'][0],{width:'400px',height:'150px',mode:'crop'})}}"

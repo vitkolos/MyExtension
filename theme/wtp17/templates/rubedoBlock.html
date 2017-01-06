@@ -1,8 +1,12 @@
+<style>
+     .block-hidden{transition:all 1s ease; opacity:0}
+     .block-hidden.show-block{opacity:1}
+</style>
 <div ng-if="!rubedo.current.UXParams.hiddenBlocks[block.code]&&!blockConfig.renderAsEventModal"
      ng-class="rubedo.componentsService.resolveResponsiveClass(block.responsive)+' rubedo-block-'+block.bType"
      in-view="blockEnterFOV()"
      ng-style="{'min-height':getBlockMinHeight()}">
-    <div ng-if="canDisplayBlock()">
+    <div ng-if="canDisplayBlock()" class="block-hidden" ng-class="{'show-block': canDisplayBlock()}">
         <!--<h4 ng-if="block.displayTitle">{{block.title}}</h4>-->
         <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)"></div>
     </div>

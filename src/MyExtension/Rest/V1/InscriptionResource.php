@@ -149,11 +149,11 @@ protected function sendInscriptionMail($inscription,$lang){
     if($inscription['public_type'] == 'adolescent' || $inscription['public_type'] == 'jeune-adulte' ) {
         $tutoyer = 1;
         $tuOuVous="tu";
-    }
+    }/*
     if($inscription['personneConnue'] && !($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille'|| $inscription['public_type'] == 'fiances') ) {
         $tutoyer = 1;
         $tuOuVous="tu";
-    }
+    }*/
     //nombre de personnes inscrites
     $nbInscrits = 1;
     //nom pour le mail aux inscrits

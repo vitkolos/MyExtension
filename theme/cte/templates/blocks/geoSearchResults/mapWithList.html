@@ -36,40 +36,40 @@
             </markers>
     
         </google-map>       
-
-    <div class="col-md-4" style="overflow-y:hidden"  ng-style="{height:'{{geoSearchResultsCtrl.height}}'}">
-        <div  ng-repeat="data in geoSearchResultsCtrl.data | orderBy:'distance'" class="row search-result ">
-                    <a ng-href="{{data.itemData.url}}" ng-if="!data.itemData['fields.propositionReferenceeInterne']">
-                        <div style="line-height: 60px; float:left" >
-                            <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
-                        </div>
-                        <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
-                        <h4>{{data.itemData.title}}</h4>
-                    </a>
-                    <a rubedo-page-link="{{data.itemData['fields.propositionReferenceeInterne'][0]}}" ng-if="data.itemData['fields.propositionReferenceeInterne']" >
-                        <div style="line-height: 60px; float:left" >
-                            <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
-                        </div>
-                        <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
-                        <h4>{{data.itemData.title}}</h4>
-                    </a>
-                    <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
-                    <p ng-if="data.itemData.groupe == 'evenement' ">
-                        <span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span>
-                        <time ng-if="data.itemData['fields.dateDebut'][0]">{{(data.itemData.dateDebut/1000)|dateRange:(data.itemData.dateFin/1000):'short'}}</time>
-                    </p>
-                    <span ng-repeat="taxo in data.itemData['taxonomy.555f3bc445205edc117e689b'] track by $index" ng-if="data.itemData['taxonomy.555f3bc445205edc117e689b']" class="public">
-                            {{geoSearchResultsCtrl.facetsLabels[taxo]}}
-                    </span>
-                    <span ng-repeat="taxo in data.itemData['taxonomy.555a164d45205eea0a7e689b'] track by $index" ng-if="data.itemData['taxonomy.555a164d45205eea0a7e689b']" class="public">
-                            {{geoSearchResultsCtrl.facetsLabels[taxo]}}
-                    </span>
-                    <span ng-repeat="taxo in data.itemData['taxonomy.56af638bc445ecdc008b5bec'] track by $index" ng-if="data.itemData['taxonomy.56af638bc445ecdc008b5bec']" class="public">
-                            {{geoSearchResultsCtrl.facetsLabels[taxo]}}
-                    </span>
-                    
-                    
-                </div>
-    </div>
-    
 </div>
+<div class="col-md-4  geo-search" style="overflow-y:scroll;overflow-x:hidden"  ng-style="{height:'{{geoSearchResultsCtrl.height}}'}">
+    <div  ng-repeat="data in geoSearchResultsCtrl.data" class="row search-result ">
+                <a ng-href="{{data.itemData.url}}" ng-if="!data.itemData['fields.propositionReferenceeInterne']">
+                    <!--<div style="line-height: 60px; float:left" >
+                        <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
+                    </div>-->
+                    <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
+                    <h4>{{data.itemData.title}}</h4>
+                </a>
+                <a rubedo-page-link="{{data.itemData['fields.propositionReferenceeInterne'][0]}}" ng-if="data.itemData['fields.propositionReferenceeInterne']" >
+                    <!--<div style="line-height: 60px; float:left" >
+                        <img ng-src="/theme/cte/img/icons/gmaps-{{data.itemData.groupe}}.png" width="50px">
+                    </div>-->
+                    <p class="capital2" ng-class=" 'txt-'+data.itemData.groupe">{{data.itemData.groupe}}<span class="pull-right fa fa-arrow-circle-o-right" style="font-size:16px"></span></p>
+                    <h4>{{data.itemData.title}}</h4>
+                    <p ng-if="data.itemData['i18n.'+rubedo.current.page.locale+'.fields.subTitle']">{{data.itemData['i18n.'+rubedo.current.page.locale+'.fields.subTitle'][0]}}</p>   
+                </a>
+                <p ng-if="data.itemData.groupe == 'rencontre' || data.itemData.groupe == 'lieux' ">{{data.itemData['fields.position.address'][0]}}</p>
+                <p ng-if="data.itemData.groupe == 'evenement' ">
+                    <span ng-if="data.itemData['fields.positionName'][0]">{{data.itemData['fields.positionName'][0]}} - </span>
+                    <time ng-if="data.itemData['fields.dateDebut'][0]">{{(data.itemData.dateDebut/1000)|dateRange:(data.itemData.dateFin/1000):'short'}}</time>
+                </p>
+                <span ng-repeat="taxo in data.itemData['taxonomy.555f3bc445205edc117e689b'] track by $index" ng-if="data.itemData['taxonomy.555f3bc445205edc117e689b']" class="public">
+                        {{geoSearchResultsCtrl.facetsLabels[taxo]}}
+                </span>
+                <span ng-repeat="taxo in data.itemData['taxonomy.555a164d45205eea0a7e689b'] track by $index" ng-if="data.itemData['taxonomy.555a164d45205eea0a7e689b']" class="public">
+                        {{geoSearchResultsCtrl.facetsLabels[taxo]}}
+                </span>
+                <span ng-repeat="taxo in data.itemData['taxonomy.56af638bc445ecdc008b5bec'] track by $index" ng-if="data.itemData['taxonomy.56af638bc445ecdc008b5bec']" class="public">
+                        {{geoSearchResultsCtrl.facetsLabels[taxo]}}
+                </span>
+                
+                
+            </div>
+</div>
+    

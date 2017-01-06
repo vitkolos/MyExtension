@@ -1,3 +1,14 @@
+<style>
+        .drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 400px;
+    height: 150px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px auto;
+}
+</style>
 <div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl" class="container">
     <form ng-if="ccCtrl.contentType" class="form form-horizontal" ng-submit="ccCtrl.submitNewContent()">
         <h3 ng-if="!ccCtrl.updateMode" class="text-left" ng-click="ccCtrl.showForm= !ccCtrl.showForm">
@@ -7,29 +18,31 @@
         <h2 ng-if="ccCtrl.updateMode" class="text-center" ng-click="ccCtrl.showForm= !ccCtrl.showForm">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>
         <div ng-if="(!ccCtrl.updateMode && ccCtrl.showForm) || (ccCtrl.updateMode)">
             <div class="form-group" ng-if="blockConfig.contentType=='568e3d503bc32538118b48d6'&&rubedo.current.user" ng-controller="AlbumUploadController as uploadCtrl">
-                <label for="titrePhotos" class="col-sm-4 control-label">Titre des photos (pour les renommer)</label>
-                <div class="col-sm-8 ">
-                    <input type="text" ng-model="uploadCtrl.title">
-                </div>
                 <label for="uploadFiles" class="col-sm-4 control-label">Photos</label>
                 <div  class="col-sm-8">
-                    <input type="file"
-                           class="form-control"
-                           id="uploadFiles"
-                           multiple
-                           accept="image/gif, image/jpeg, image/png"
-                           file-model="uploadCtrl.newFiles"
-                            >
+                     <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+                            ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                            accept="image/*" 
+                            ngf-pattern="'image/*'"
+                            ngf-resize-if="$file.size>1024*100"
+                            ngf-resize="{width: 1000, height: 1000, quality: 0.6}"
+                            ng-disabled="uploadCtrl.processing">
+                            <span ng-if="!uploadCtrl.processing">Drop images here or click to upload</span>
+                            <img src="/theme/cte/img/loader.gif" ng-if="uploadCtrl.processing">
+                    </div>
+                    <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
                 </div>
                 
-                <div class="col-sm-8 col-md-offset-4" ng-show="uploadCtrl.newFiles.length>0">
-                    <div ng-repeat="file in uploadCtrl.newFiles">
-                            <span>{{file.name}}</span>
+               <div class="col-sm-8 col-md-offset-4" ng-show="files.length">
+                    <div ng-repeat="file in uploadCtrl.uploadedFiles">
+                            <img ng-if="file.id" ng-src="{{rubedo.imageUrl.getThumbnailUrlByMediaId(file.id)}}">
+                            <span>{{file.title}}</span>
                             (<span ng-switch="file.size > 1024*1024">
                                 <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
                                 <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
                             </span>)
-                            <span class="alert" ng-if="file.size > 1024*300">Attention, la taille de fichiers est trop grande !</span>
+                            <!--<span class="alert" ng-if="file.size > 1024*175">Attention, la taille de fichiers est trop grande !</span>-->
+                            <span class="glyphicon glyphicon-ok txt-vert" ng-if="file.success"></span>
                     </div>                
                 </div>
                 <div class="col-sm-8 col-md-offset-4">
