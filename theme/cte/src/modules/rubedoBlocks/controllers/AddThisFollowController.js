@@ -12,7 +12,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisFollowController',['$scop
         me.divClass += ' addthis_vertical_style';
     }
     me.networkClass = function(network){
-        return 'addthis_button_'+network.name+ ' txt-red';
+        return 'addthis_button_'+network.name+'_follow';
     };
 				me.networkIcon = function(network){
 								var icon = '';
