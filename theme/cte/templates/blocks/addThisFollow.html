@@ -2,7 +2,7 @@
     <div ng-class="addThisFollowCtrl.divClass">
         <a ng-repeat="network in addThisFollowCtrl.networks track by $index" ng-if="network.id"
            ng-class="addThisFollowCtrl.networkClass(network)" addthis:userid="{{network.id}}">
-            <img class="hidden"><i ng-class="addThisFollowCtrl.networkIcon(network)"></i>
+            <img class="hidden"><i ng-class="addThisFollowCtrl.networkIcon(network.name)"></i>
         </a>
     </div>
 </div>
