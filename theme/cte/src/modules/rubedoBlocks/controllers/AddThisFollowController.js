@@ -12,14 +12,14 @@ angular.module("rubedoBlocks").lazy.controller('AddThisFollowController',['$scop
         me.divClass += ' addthis_vertical_style';
     }
     me.networkClass = function(network){
-        return 'addthis_button_'+network.name+ 'txt-red';
+        return 'addthis_button_'+network.name+ ' txt-red';
     };
 				me.networkIcon = function(network){
-								var icon = "";
+								var icon = '';
 								switch (network) {
-												case "facebook" : icon="fa fa-facebook-official"; break;
-												case "twitter" : icon="fa fa-twitter-square"; break;
-												case "youtube" : icon="fa fa-youtube-square"; break;
+												case "facebook" : icon='fa fa-facebook-official'; break;
+												case "twitter" : icon='fa fa-twitter-square'; break;
+												case "youtube" : icon='fa fa-youtube-square'; break;
 								}
         return icon;
     };
