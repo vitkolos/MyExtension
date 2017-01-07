@@ -1,6 +1,6 @@
 <div ng-controller="AddThisFollowController as addThisFollowCtrl" >
     <!--Si Horizontal et large == dans le footer-->
-    <div ng-if="config.disposition == 'Horizontal' && config.small == 1" class="addthis_toolbox">
+    <div ng-if="blockConfig.disposition == 'Horizontal' && blockConfig.small == 1" class="addthis_toolbox">
         <div ng-repeat = "network in addThisFollowCtrl.networks track by $index"  ng-if="network.id" ng-class="addThisFollowCtrl.colClass">
             <a ng-class="addThisFollowCtrl.networkClass(network)" addthis:userid="{{network.id}}">
                 <img class="hidden"><i ng-class="addThisFollowCtrl.networkIcon(network.name)"></i> {{network.name}}
