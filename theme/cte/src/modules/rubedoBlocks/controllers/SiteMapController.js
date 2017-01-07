@@ -61,6 +61,7 @@ angular.module("rubedoBlocks").lazy.controller("SiteMapController",['$scope','$t
     }
 
 /*networks*/
+				me.networks = [];
    me.networkClass = function(network){
         return 'addthis_button_'+network.name+'_follow';
     };
