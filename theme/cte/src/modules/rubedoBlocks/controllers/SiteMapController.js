@@ -83,7 +83,8 @@ angular.module("rubedoBlocks").lazy.controller("SiteMapController",['$scope','$t
             me.networks.push(network);
         }
     });
-				me.nbOfNetworks = me.networks.length;
+				console.log(me.networks);
+				me.nbOfNetworks = (me.networks).length;
 				//me.colClass="col-sm-"+12/me.nbOfNetworks;
 				
     $timeout(function() {
