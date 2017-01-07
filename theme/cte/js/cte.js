@@ -10,6 +10,11 @@ blocksConfig.searchDons={
            "template": "/templates/blocks/searchDons.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchDonsController.js"]
 };
+blocksConfig.siteMap= {
+            "template": "/templates/blocks/siteMap.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/SiteMapController.js"],
+											"externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js']
+};
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
