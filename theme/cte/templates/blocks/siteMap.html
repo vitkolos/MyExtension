@@ -6,7 +6,7 @@
             <span class="capital">{{blockConfig.follow_section}}</span>
             <div class="row">
                 <div ng-repeat = "network in siteMapCtrl.networks track by $index"  ng-if="network.id" class="col-sm-6">
-                    <a ng-class="siteMapCtrl.networkClass(network)" addthis:userid="{{network.id}}">
+                    <a ng-class="siteMapCtrl.networkClass(network)" addthis:userid="{{network.id}}" style="margin-bottom:8px">
                         <img class="hidden"><i ng-class="siteMapCtrl.networkIcon(network.name)"></i> {{network.name}}
                      </a>
                 </div>
