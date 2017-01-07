@@ -75,7 +75,7 @@ angular.module("rubedoBlocks").lazy.controller("SiteMapController",['$scope','$t
         return icon;
     };
     angular.forEach(config, function(value,key){
-        if(key != 'rootPage' && key != 'displayLevel' && key != 'follow_section'){
+        if(key != 'rootPage' && key != 'displayLevel' && key != 'follow_section' && key !='customTemplate' && key !='disableLevelOne'){
             var network = {
                 name: key,
                 id: value
@@ -83,7 +83,6 @@ angular.module("rubedoBlocks").lazy.controller("SiteMapController",['$scope','$t
             me.networks.push(network);
         }
     });
-				console.log(me.networks);
 				me.nbOfNetworks = (me.networks).length;
 				//me.colClass="col-sm-"+12/me.nbOfNetworks;
 				
