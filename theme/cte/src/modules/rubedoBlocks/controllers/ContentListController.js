@@ -18,8 +18,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.filter = function(taxoTerm){
         me.taxoFilter = taxoTerm;
         options['start'] += options['limit'];
-        options['limit'] = 200;
-        me.getContents(config.query, pageId, siteId, options, true);
+        options['limit'] = 100;
+        if (!me.count || me.count > options['start']) {
+            me.getContents(config.query, pageId, siteId, options, true);
+        }
+        
     }
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
@@ -263,7 +266,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     me.taxonomyTerms["name"] = taxonomie.vocabulary.name;
                     me.taxonomyTerms["terms"] = taxonomie.terms;
                 });
-                console.log(me.taxonomyTerms);
                 return true;
             }
             else return false
