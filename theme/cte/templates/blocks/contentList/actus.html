@@ -17,7 +17,9 @@
             <div class="panel-heading actus "  ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">{{contentListCtrl.taxonomyTerms.name}}</div>
             <div class="panel-body">
                 <ul class="search-tags">
-
+                    <li ng-repeat="term in contentListCtrl.taxonomyTerms.terms | limitTo : 7" class="cursor-as-pointer resultData search-result" ng-click="contentListCtrl.filter(term.id)"  ng-class="{'checked':contentListCtrl.taxoFilter==term.id}">
+                        {{term.text}}
+                    </li><!--
                      <li class="cursor-as-pointer resultData search-result" ng-click="contentListCtrl.filter('5524db8f45205ebd7a8d8c4c') " ng-class="{'checked':contentListCtrl.taxoFilter=='5524db8f45205ebd7a8d8c4c'}">
                         Oecuménisme
                     </li>
@@ -38,7 +40,7 @@
                     </li>
                      <li class="cursor-as-pointer resultData search-result txt-red"  ng-click="contentListCtrl.filter('55264ea345205e095d8d8c4b') " ng-class="{'checked':contentListCtrl.taxoFilter=='55264ea345205e095d8d8c4b'}">
                         Vidéos
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>
