@@ -259,11 +259,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
             if(response.data.success){
                 var tax = {};
-                        
                 angular.forEach(response.data.taxo, function(taxonomie){
                     tax["name"] = taxonomie.vocabulary.name;
-                    tax["terms"] = taxonomie.terms
+                    tax["terms"] = taxonomie.terms;
                 });
+                console.log(tax);
                 return tax;
             }
             else return {};
