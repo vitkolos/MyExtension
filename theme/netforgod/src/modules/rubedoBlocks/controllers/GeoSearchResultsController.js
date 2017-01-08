@@ -92,8 +92,8 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 }).then(function successCallback(response) {
                     console.log(response);
                     me.map.center={
-                        latitude:response.lat,
-                        longitude:response.lon
+                        latitude:response.data.lat,
+                        longitude:response.data.lon
                     };
                     // this callback will be called asynchronously
                     // when the response is available
