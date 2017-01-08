@@ -86,8 +86,19 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 };
             }, function() {
                 console.log("location error");
-                //handle geoloc error
-            });
+                $http({
+                    method: 'GET',
+                    url: '//freegeoip.net/json/?callback=?'
+                }).then(function successCallback(response) {
+                    console.log(response);
+                    // this callback will be called asynchronously
+                    // when the response is available
+                  }, function errorCallback(response) {
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                  });
+                    //handle geoloc error
+                });
         }
         else if(config.useLocation&&!navigator.geolocation) {
             $http({
