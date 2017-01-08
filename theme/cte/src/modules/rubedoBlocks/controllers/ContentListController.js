@@ -255,7 +255,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     }
     me.getTaxonomyTerms = function(vocId){
         var taxonomiesArray ={};
-        taxonomiesArray[0]=vocId;// taxcnomie de propositions
+        taxonomiesArray[0]=vocId;// taxonomie de propositions
         TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
             if(response.data.success){
                 var tax = {};
