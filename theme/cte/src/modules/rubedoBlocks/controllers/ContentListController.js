@@ -258,15 +258,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         taxonomiesArray[0]=vocId;// taxonomie de propositions
         TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
             if(response.data.success){
-                var tax = {};
+                me.taxonomyTerms = {};
                 angular.forEach(response.data.taxo, function(taxonomie){
-                    tax["name"] = taxonomie.vocabulary.name;
-                    tax["terms"] = taxonomie.terms;
+                    me.taxonomyTerms["name"] = taxonomie.vocabulary.name;
+                    me.taxonomyTerms["terms"] = taxonomie.terms;
                 });
-                console.log(tax);
-                return tax;
+                console.log(me.taxonomyTerms);
+                return true;
             }
-            else return {};
+            else return false
                          
         });
         
