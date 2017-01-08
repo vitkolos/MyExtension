@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element","$route","RubedoPagesService",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,$route,RubedoPagesService){
+angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$scope","$location","$routeParams","$compile","RubedoSearchService","$element","$route","RubedoPagesService","$http",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,$element,$route,RubedoPagesService,$http){
         var me = this;
         me.showColors=false;
         $scope.lang=$route.current.params.lang;
@@ -85,9 +85,24 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     longitude:position.coords.longitude
                 };
             }, function() {
+                console.log("location error");
                 //handle geoloc error
             });
-        } else if (config.centerAddress){
+        }
+        else if(config.useLocation&&!navigator.geolocation) {
+            $http({
+                method: 'GET',
+                url: '//freegeoip.net/json/?callback=?'
+            }).then(function successCallback(response) {
+                console.log(response);
+                // this callback will be called asynchronously
+                // when the response is available
+              }, function errorCallback(response) {
+                // called asynchronously if an error occurs
+                // or server returns response with an error status.
+              });
+        }
+        else if (config.centerAddress){
             me.geocoder.geocode({
                 'address' : config.centerAddress
             }, function(results, status) {
