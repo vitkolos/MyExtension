@@ -17,7 +17,7 @@
             <div class="panel-heading actus "  ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">{{contentListCtrl.taxonomyTerms.name}}</div>
             <div class="panel-body">
                 <ul class="search-tags">
-                    <li ng-repeat="term in contentListCtrl.taxonomyTerms.terms | limitTo : 7 track by $index" class="cursor-as-pointer resultData search-result" ng-click="contentListCtrl.filter(term.id)"  ng-class="{'checked':contentListCtrl.taxoFilter==term.id, 'txt-red': $index>3}">
+                    <li ng-if="term.text != '' " ng-repeat="term in contentListCtrl.taxonomyTerms.terms | limitTo : 7 track by $index" class="cursor-as-pointer resultData search-result" ng-click="contentListCtrl.filter(term.id)"  ng-class="{'checked':contentListCtrl.taxoFilter==term.id, 'txt-red': $index>3}">
                         {{term.text}}
                     </li>
                 </ul>
