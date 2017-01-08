@@ -90,7 +90,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     method: 'GET',
                     url: '//ip-api.com/json'
                 }).then(function successCallback(response) {
-                    console.log(response);
+                    console.log(response.data.lat);
                     me.map.center={
                         latitude:response.data.lat,
                         longitude:response.data.lon
