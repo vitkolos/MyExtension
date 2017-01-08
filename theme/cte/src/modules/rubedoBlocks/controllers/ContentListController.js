@@ -130,7 +130,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     $scope.clearORPlaceholderHeight();
                 }
                 /*taxonomies pour propositions*/
-                if (me.usedContentTypes[0]="54dc614245205e1d4a8b456b") {
+                if (me.usedContentTypes[0]=="54dc614245205e1d4a8b456b") {
                      var taxonomiesArray ={};
                      taxonomiesArray[0]="555f3bc445205edc117e689b";// taxcnomie de propositions
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
