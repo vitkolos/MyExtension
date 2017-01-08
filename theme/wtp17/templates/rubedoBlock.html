@@ -1,12 +1,27 @@
 <style>
-     .block-hidden{transition:all 1s ease; opacity:0}
-     .block-hidden.show-block{opacity:1}
+     .animate-block{
+     -webkit-animation: mymove 1s ; /* Safari 4.0 - 8.0 */
+    -webkit-animation-delay: 0.5s; /* Safari 4.0 - 8.0 */
+    animation: mymove 1s ;
+    animation-delay: 0.5s;
+     }
+     /* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes mymove {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+     
 </style>
 <div ng-if="!rubedo.current.UXParams.hiddenBlocks[block.code]&&!blockConfig.renderAsEventModal"
      ng-class="rubedo.componentsService.resolveResponsiveClass(block.responsive)+' rubedo-block-'+block.bType"
      in-view="blockEnterFOV()"
      ng-style="{'min-height':getBlockMinHeight()}">
-    <div ng-if="canDisplayBlock()" class="block-hidden" ng-class="{'show-block': canDisplayBlock()}">
+    <div ng-if="canDisplayBlock()" class="animate-block" >
         <!--<h4 ng-if="block.displayTitle">{{block.title}}</h4>-->
         <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)"></div>
     </div>
