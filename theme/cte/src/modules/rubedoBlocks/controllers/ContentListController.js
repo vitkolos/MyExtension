@@ -130,7 +130,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     $scope.clearORPlaceholderHeight();
                 }
                 /*taxonomies pour propositions*/
-                if (me.usedContentTypes="54dc614245205e1d4a8b456b") {
+                if (me.usedContentTypes[0]="54dc614245205e1d4a8b456b") {
                      var taxonomiesArray ={};
                      taxonomiesArray[0]="555f3bc445205edc117e689b";// taxcnomie de propositions
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
@@ -253,6 +253,25 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             $location.url(me.editorPageUrl);
         }
     }
+    me.getTaxonomyTerms = function(vocId){
+        var taxonomiesArray ={};
+        taxonomiesArray[0]=vocId;// taxcnomie de propositions
+        TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+            if(response.data.success){
+                var tax = {};
+                        
+                angular.forEach(response.data.taxo, function(taxonomie){
+                    tax = taxonomie.terms;
+                });
+            }
+                         
+        });
+        console.log(tax);
+        return tax;
+    }
+    
+    
+    
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService','RubedoPagesService',function($scope,$compile,RubedoContentsService,RubedoPagesService){
     var me = this;
