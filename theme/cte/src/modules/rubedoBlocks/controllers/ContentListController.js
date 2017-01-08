@@ -16,7 +16,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.query="";
     me.taxoFilter="";
     me.filter = function(taxoTerm){
-        me.taxoFilter = taxoTerm;
+        if(me.taxoFilter != taxoTerm) me.taxoFilter = taxoTerm;
+        else me.taxoFilter = "";
         options['start'] += options['limit'];
         options['limit'] = 100;
         if (!me.count || me.count > options['start']) {
