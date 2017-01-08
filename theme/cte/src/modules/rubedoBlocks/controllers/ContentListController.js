@@ -261,9 +261,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 var tax = {};
                         
                 angular.forEach(response.data.taxo, function(taxonomie){
-                    tax = taxonomie.terms;
+                    tax["name"] = taxonomie.vocabulary.name;
+                    tax["terms"] = taxonomie.terms
                 });
-                console.log(tax);
                 return tax;
             }
             else return {};
