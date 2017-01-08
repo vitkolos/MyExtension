@@ -88,9 +88,13 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 console.log("location error");
                 $http({
                     method: 'GET',
-                    url: '//ip-api.com/json?callback=?'
+                    url: '//ip-api.com/json?callback='
                 }).then(function successCallback(response) {
-                    console.log(response);
+                    //console.log(response);
+                    me.map.center={
+                        latitude:response.lat,
+                        longitude:response.lon
+                    };
                     // this callback will be called asynchronously
                     // when the response is available
                   }, function errorCallback(response) {
