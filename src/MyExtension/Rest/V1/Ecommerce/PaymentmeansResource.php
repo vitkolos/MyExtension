@@ -92,6 +92,13 @@ class PaymentmeansResource extends AbstractResource
                     $codeMonnaie=978;
                     //$monnaie="zł";
                     break;
+                case "il.chemin-neuf.org" : 
+                case "il2.chemin-neuf.org" : 
+                    if($params['type']=="dons") $accountName="dons_il";
+                    else if($params['type']=="paf") $accountName="paf_il";
+                    $codeMonnaie=998;
+                    //$monnaie="€";
+                    break;
                 case "hu.chemin-neuf.org" :
                 case "chemin-neuf.hu" :
                     $accountName="paf_hu";
