@@ -4,6 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     var themePath='/theme/'+window.rubedoConfig.siteTheme;
     //templates
     me.donationTemplate = themePath+'/templates/blocks/donation.html';
+    me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetailDons.html';
     me.currentStage=1;
     me.userType="56e6edeac445eccc038b5b8e"; // type d'utilisateurs = donateurs
     me.civilite = {
@@ -15,7 +16,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         soeur: $scope.rubedo.translate("Block.Inscription.Civilite.Soeur","Soeur"),
         frere: $scope.rubedo.translate("Block.Inscription.Civilite.Frere","Frère")     
     };
-    
+    me.questions=[];
     $scope.don= {};
     $scope.don.user={};
     // préremplir les champs si l'utilisateur est connecté
@@ -85,12 +86,20 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 
             }
                
-        });                
+        }
+    );                
     me.setCurrentStage = function(step, valide) {
         if(valide){
             if (step==2) {
                 /*déterminer les conditions de payement*/
                updatePaymentStatus();
+            }
+            if (step==3) {
+                if (me.questions.length>0) {
+                    
+                }
+                //go directly to payment
+                else step++;
             }
             /*
             if (step==3) {
@@ -107,6 +116,36 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             me.toggleStage(step);
         }  
     };
+    var options = {
+            siteId: $scope.rubedo.current.site.id,
+            pageId: $scope.rubedo.current.page.id
+    };    
+        // récupérer les questions complémentaires
+    me.getQuestions = function() {
+        if(typeof $scope.contentDetailCtrl.content.fields.questions === 'string' || $scope.contentDetailCtrl.content.fields.questions instanceof String) {
+          RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.questions, options).then(function(response){
+                if (response.data.success){
+                    var questionReponse= response.data.content;
+                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":0}); me.isComplement = true;
+                }
+            });
+        }
+      else {
+        angular.forEach($scope.contentDetailCtrl.content.fields.questions, function(questionId, questionOrder){
+            RubedoContentsService.getContentById(questionId, options).then(function(response){
+                if (response.data.success){
+                    var questionReponse= response.data.content;
+                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isComplement = true;
+                }
+            });
+            
+        });
+      }
+      
+    };
+
+    
+    
     //validation du don et inscription dans la base de données
     me.submit = function(isValide){
         if (isValide) {
@@ -116,7 +155,15 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             if ($scope.don.montant =='autre') {
                 $scope.don.montantAvecFrequence += $scope.don.montant_autre + " " + $scope.don.monnaie;
             }
-            else $scope.don.montantAvecFrequence += $scope.don.montant + " " + $scope.don.monnaie;
+            else {
+                $scope.don.montantAvecFrequence += $scope.don.montant + " " + $scope.don.monnaie;
+                switch($scope.don.montant) {
+                    case $scope.contentDetailCtrl.content.fields.montant_1 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_1 ?  $scope.contentDetailCtrl.content.fields.desc_1:""; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_2 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_2 ?  $scope.contentDetailCtrl.content.fields.desc_2:""; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_3 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_3 ?  $scope.contentDetailCtrl.content.fields.desc_3:""; break;
+                    case $scope.contentDetailCtrl.content.fields.montant_4 : $scope.don.montant_text = $scope.contentDetailCtrl.content.fields.desc_4 ?  $scope.contentDetailCtrl.content.fields.desc_4:""; break;
+                }
+            }
             if ($scope.don.mensuel) {
                 $scope.don.montantAvecFrequence += " "+$scope.rubedo.translate("Block.Dons.Mois","par mois");
                 $scope.don.frequence="mensuel";
@@ -130,6 +177,8 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 me.account = me.fiscalites[$scope.don.condition].fields;
                 $scope.don.conditionId = me.fiscalites[$scope.don.condition].id;
             }
+            if($scope.contentDetailCtrl.content.fields.codeAna) $scope.don.codeAna = $scope.contentDetailCtrl.content.fields.codeAna;
+
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
 
@@ -149,7 +198,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                             nom:$scope.don.user.nom,
                             prenom: $scope.don.user.surname,
                             email:$scope.don.user.email,
-                            montant:$scope.don.montant,
+                            montant:$scope.don.montant=='autre'?$scope.don.montant_autre:$scope.don.montant,
                             proposition:$scope.don.projet,
                             idInscription: response.data.instructions.id,
                             paymentType: 'dons',
@@ -314,7 +363,10 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             return  !($scope.don.user.tel1 || $scope.don.user.tel2); // au moins téléphone fixe ou portable
     };
     
-
+// s'il y a des questions complémentaires, les récupérer
+    if ($scope.contentDetailCtrl.content.fields.questions && ($scope.contentDetailCtrl.content.fields.questions).length>0) {
+        me.getQuestions();
+    }
     
 }]);
 

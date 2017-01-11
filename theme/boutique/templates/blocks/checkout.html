@@ -1,4 +1,4 @@
-<div ng-controller="CheckoutController as checkoutCtrl">
+<div ng-controller="CheckoutController as checkoutCtrl" class="checkout-form">
     <div ng-if="checkoutCtrl.cartIsEmpty" class="alert alert-warning" role="alert">Your cart is empty</div>
     <div ng-if="!checkoutCtrl.cartIsEmpty">
         <h2>{{rubedo.translate('Label.Checkout')}}</h2>
@@ -57,7 +57,7 @@
                 </div>
                 <div id="checkoutStage2" class="panel-collapse collapse" ng-class="{'in':checkoutCtrl.currentStage==2}" role="tabpanel" aria-labelledby="checkoutHeading2">
                     <div class="panel-body">
-                        <form ng-if="checkoutCtrl.userType" ng-submit="checkoutCtrl.handleStage2Submit()" class="form-horizontal">
+                        <form ng-if="checkoutCtrl.userType" ng-submit="checkoutCtrl.handleStage2Submit()">
                             <div class="row">
                                 <div class="col-md-6">
                                     <h4 class="text-center">{{ rubedo.translate('Blocks.Checkout.Step2.PersonalDetails')}}</h4>
@@ -65,123 +65,69 @@
                                 </div>
                                 <div class="col-md-6">
                                     <h4 class="text-center">{{ rubedo.translate('Blocks.Checkout.Label.Address')}}</h4>
-                                    <div class="form-group">
-                                        <label for="{{fieldIdPrefix+'_address_company'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
-                                        <div class="col-sm-8">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="{{fieldIdPrefix+'_address_company'}}"
-                                                   ng-model="fieldEntity.address.company"
-                                            >
+                                        <div class="form-group">
+                                            <label for="{{fieldIdPrefix+'_address_company'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
+                                            <input type="text" class="form-control"  id="{{fieldIdPrefix+'_address_company'}}" ng-model="fieldEntity.address.company">
                                         </div>
+                                    <!--<div class="form-group">
+                                        <label for="{{fieldIdPrefix+'_address_attention'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Attention')}} </label>
+                                        <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_attention'}}" ng-model="fieldEntity.address.attention">
+                                    </div>-->
+                                    <div class="form-group">
+                                        <label for="{{fieldIdPrefix+'_address_address1'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
+                                        <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_address1'}}" ng-model="fieldEntity.address.address1" required>
                                     </div>
                                     <div class="form-group">
-                                        <label for="{{fieldIdPrefix+'_address_attention'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Attention')}} </label>
-                                        <div class="col-sm-8">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="{{fieldIdPrefix+'_address_attention'}}"
-                                                   ng-model="fieldEntity.address.attention"
-                                            >
+                                        <label for="{{fieldIdPrefix+'_address_address2'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address2')}} </label>
+                                        <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_address2'}}" ng-model="fieldEntity.address.address2">
+                                    </div>
+                                    <div class="row no-margin">
+                                        <div class="col-sm-6 form-group">
+                                            <label for="{{fieldIdPrefix+'_address_postCode'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Zipcode')}} </label>
+                                            <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_postCode'}}" ng-model="fieldEntity.address.postCode" required >
+                                        </div>
+                                        <div class="col-sm-6 form-group">
+                                            <label for="{{fieldIdPrefix+'_address_city'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.City')}} </label>
+                                            <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_city'}}" ng-model="fieldEntity.address.city" required >
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="{{fieldIdPrefix+'_address_address1'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
-                                        <div class="col-sm-8">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="{{fieldIdPrefix+'_address_address1'}}"
-                                                   ng-model="fieldEntity.address.address1"
-                                                   required
-                                            >
+                                    <div class="row no-margin">
+                                        <div class="col-sm-6 form-group">
+                                            <label for="{{fieldIdPrefix+'_address_state'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.State')}} </label>
+                                            <input type="text" class="form-control" id="{{fieldIdPrefix+'_address_state'}}" ng-model="fieldEntity.address.regionState" >
+                                        </div>
+                                        <div class="col-sm-6 form-group">
+                                            <label for="{{fieldIdPrefix+'_address_country'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
+                                            <select class="form-control" id="{{fieldIdPrefix+'_address_country'}}" ng-model="fieldEntity.address.country"
+                                                    ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray"  required >
+                                            </select>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="{{fieldIdPrefix+'_address_address2'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Address2')}} </label>
-                                        <div class="col-sm-8">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="{{fieldIdPrefix+'_address_address2'}}"
-                                                   ng-model="fieldEntity.address.address2"
-                                            >
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="{{fieldIdPrefix+'_address_city'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.City')}} </label>
-                                        <div class="col-sm-8">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="{{fieldIdPrefix+'_address_city'}}"
-                                                   ng-model="fieldEntity.address.city"
-                                                   required
-                                            >
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="{{fieldIdPrefix+'_address_country'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
-                                        <div class="col-sm-8">
-                                            <select
-                                                    class="form-control"
-                                                    id="{{fieldIdPrefix+'_address_country'}}"
-                                                    ng-model="fieldEntity.address.country"
-                                                    ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray"
-                                                    required
-                                            ></select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="{{fieldIdPrefix+'_address_state'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.State')}} </label>
-                                        <div class="col-sm-8">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="{{fieldIdPrefix+'_address_state'}}"
-                                                   ng-model="fieldEntity.address.regionState"
-                                            >
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="{{fieldIdPrefix+'_address_postCode'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Zipcode')}} </label>
-                                        <div class="col-sm-8">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   id="{{fieldIdPrefix+'_address_postCode'}}"
-                                                   ng-model="fieldEntity.address.postCode"
-                                                   required
-                                            >
-                                        </div>
-                                    </div>
+                                    <!--
                                     <p ng-if="!rubedo.current.user">{{rubedo.translate('Blocks.Checkout.MailingLists.Label')}}</p>
                                     <div class="form-group" ng-if="!rubedo.current.user">
-                                        <div class="col-sm-8 col-sm-offset-4">
-                                            <div ng-repeat="mailingList in checkoutCtrl.mailingLists track by $index" class="checkbox">
-                                                <label>
-                                                    <input ng-model="mailingList.checked" type="checkbox"> {{mailingList.name}}
-                                                </label>
-                                            </div>
+                                        <div ng-repeat="mailingList in checkoutCtrl.mailingLists track by $index" class="checkbox">
+                                            <label>
+                                                <input ng-model="mailingList.checked" type="checkbox"> {{mailingList.name}}
+                                            </label>
                                         </div>
-                                    </div>
+                                    </div>-->
+
                                     <div class="form-group" ng-if="!rubedo.current.user">
-                                        <div class="col-sm-8 col-sm-offset-4">
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForBilling">
-                                                    {{rubedo.translate('Blocks.Checkout.Label.Address.SameBilling')}}
-                                                </label>
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForShipping">
-                                                    {{rubedo.translate('Blocks.Checkout.Label.Address.SameShipping')}}
-                                                </label>
-                                            </div>
+                                        <div class="checkbox">
+                                            <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForBilling" name="SameBilling" id="SameBilling">
+                                            <label for="SameBilling"> {{rubedo.translate('Blocks.Checkout.Label.Address.SameBilling')}}</label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <input type="checkbox" ng-model="checkoutCtrl.useSameAddressForShipping" id="SameShipping" name="SameShipping">
+                                            <label for="SameShipping">{{rubedo.translate('Blocks.Checkout.Label.Address.SameShipping')}}</label>
                                         </div>
                                     </div>
                                     <div class="form-group text-center" ng-if="!rubedo.current.user">
-
                                         <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.SignUp.label.signUp')}}</button>
                                     </div>
                                     <div class="form-group text-center" ng-if="rubedo.current.user">
-                                        <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
+                                        <button type="submit" class="btn btn-primary pull-right">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
                                     </div>
                                     <div ng-if="checkoutCtrl.stage2Error" ng-init="notification = {type:'error',text:checkoutCtrl.stage2Error}">
                                         <rubedo-notification></rubedo-notification>
@@ -199,231 +145,128 @@
                         <span class="glyphicon glyphicon-pencil cursor-as-pointer pull-right"
                               ng-show="checkoutCtrl.currentStage>3"
                               ng-click="checkoutCtrl.setCurrentStage(3)"></span>
-                        {{rubedo.translate('Blocks.Checkout.Steps.BillingDetails')}}
+                        {{rubedo.translate('Blocks.Checkout.Steps.BillingAndShippingDetails')}}
                     </h4>
                 </div>
                 <div id="checkoutStage3" class="panel-collapse collapse" ng-class="{'in':checkoutCtrl.currentStage==3}" role="tabpanel" aria-labelledby="checkoutHeading3">
                     <div class="panel-body">
-                        <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleStage3Submit()" class="form-horizontal">
-                            <div class="col-md-6 col-md-offset-3">
+                        <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleStage4Submit()">
+                            <!--détails de facturation-->
+                            <div class="col-md-6">
                                 <h4 class="text-center">{{ rubedo.translate('Blocks.Checkout.Step3.BillingAddress')}}</h4>
                                 <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_vatEin'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.VAT')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_billingAddress_vatEin'}}"
-                                               ng-model="fieldEntity.billingAddress.vatEin"
-                                        >
-                                    </div>
+                                    <label for="{{fieldIdPrefix+'_billingAddress_vatEin'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.VAT')}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_vatEin'}}" ng-model="fieldEntity.billingAddress.vatEin">
                                 </div>
                                 <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_company'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_billingAddress_company'}}"
-                                               ng-model="fieldEntity.billingAddress.company"
-                                        >
-                                    </div>
+                                    <label for="{{fieldIdPrefix+'_billingAddress_company'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_company'}}" ng-model="fieldEntity.billingAddress.company">
                                 </div>
                                 <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_attention'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Attention')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_billingAddress_attention'}}"
-                                               ng-model="fieldEntity.billingAddress.attention"
-                                        >
-                                    </div>
+                                    <label for="{{fieldIdPrefix+'_billingAddress_name'}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Name.Label")}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_name'}}" ng-model="fieldEntity.billingAddress.name">
                                 </div>
                                 <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_address1'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_billingAddress_address1'}}"
-                                               ng-model="fieldEntity.billingAddress.address1"
-                                               required
-                                        >
-                                    </div>
+                                    <label for="{{fieldIdPrefix+'_billingAddress_surname'}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Surname.Label")}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_surname'}}" ng-model="fieldEntity.billingAddress.surname">
                                 </div>
                                 <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_address2'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Address2')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_billingAddress_address2'}}"
-                                               ng-model="fieldEntity.billingAddress.address2"
-                                        >
-                                    </div>
+                                    <label for="{{fieldIdPrefix+'_billingAddress_address1'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_address1'}}" ng-model="fieldEntity.billingAddress.address1" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_city'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.City')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_billingAddress_city'}}"
-                                               ng-model="fieldEntity.billingAddress.city"
-                                               required
-                                        >
+                                    <label for="{{fieldIdPrefix+'_billingAddress_address2'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address2')}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_address2'}}" ng-model="fieldEntity.billingAddress.address2" >
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-sm-6 form-group">
+                                        <label for="{{fieldIdPrefix+'_billingAddress_postCode'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Zipcode')}} </label>
+                                        <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_postCode'}}" ng-model="fieldEntity.billingAddress.postCode" required>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label for="{{fieldIdPrefix+'_billingAddress_city'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.City')}} </label>
+                                        <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_city'}}"  ng-model="fieldEntity.billingAddress.city" required>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_country'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
-                                    <div class="col-sm-8">
-                                        <select
-                                                class="form-control"
-                                                id="{{fieldIdPrefix+'_billingAddress_country'}}"
-                                                ng-model="fieldEntity.billingAddress.country"
-                                                ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray"
-                                                required
-                                        ></select>
+                                <div class="row no-margin">
+                                    <div class="col-sm-6 form-group">
+                                        <label for="{{fieldIdPrefix+'_billingAddress_country'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
+                                        <select class="form-control" id="{{fieldIdPrefix+'_billingAddress_country'}}" ng-model="fieldEntity.billingAddress.country"
+                                                ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray" required>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label for="{{fieldIdPrefix+'_billingAddress_state'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.State')}} </label>
+                                        <input type="text" class="form-control" id="{{fieldIdPrefix+'_billingAddress_state'}}" ng-model="fieldEntity.billingAddress.regionState">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_state'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.State')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_billingAddress_state'}}"
-                                               ng-model="fieldEntity.billingAddress.regionState"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_billingAddress_postCode'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Zipcode')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_billingAddress_postCode'}}"
-                                               ng-model="fieldEntity.billingAddress.postCode"
-                                               required
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group text-center" ng-if="rubedo.current.user">
-                                    <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
+                                <!--<div class="form-group text-center" ng-if="rubedo.current.user">
+                                    <button type="submit" class="btn btn-primary pull-right ">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
                                 </div>
                                 <div ng-if="checkoutCtrl.stage3Error" ng-init="notification = {type:'error',text:checkoutCtrl.stage3Error}">
                                     <rubedo-notification></rubedo-notification>
-                                </div>
+                                </div>-->
                             </div>
+                            <div class="col-md-6">
+                                <h4 class="text-center">{{ rubedo.translate('Blocks.Checkout.Step4.ShippingAddress')}}</h4>
+                                <div class="form-group">
+                                    <label for="{{fieldIdPrefix+'_shippingAddress_company'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_company'}}" ng-model="fieldEntity.shippingAddress.company">
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{fieldIdPrefix+'_shippingAddress_name'}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Name.Label")}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_name'}}" ng-model="fieldEntity.shippingAddress.name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{fieldIdPrefix+'_shippingAddress_surname'}}" class="control-label">{{rubedo.translate("Blocks.Contact.Input.Surname.Label")}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_surname'}}" ng-model="fieldEntity.shippingAddress.surname">
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{fieldIdPrefix+'_shippingAddress_address1'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_address1'}}" ng-model="fieldEntity.shippingAddress.address1" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="{{fieldIdPrefix+'_shippingAddress_address2'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Address2')}} </label>
+                                    <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_address2'}}" ng-model="fieldEntity.shippingAddress.address2">
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-sm-6 form-group">
+                                        <label for="{{fieldIdPrefix+'_shippingAddress_postCode'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Zipcode')}} </label>
+                                        <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_postCode'}}" ng-model="fieldEntity.shippingAddress.postCode" required>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label for="{{fieldIdPrefix+'_shippingAddress_city'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.City')}} </label>
+                                        <input type="text"class="form-control" id="{{fieldIdPrefix+'_shippingAddress_city'}}"ng-model="fieldEntity.shippingAddress.city" required>
+                                    </div>
+                                </div>
+                                <div class="row no-margin">
+                                    <div class="col-sm-6 form-group">
+                                        <label for="{{fieldIdPrefix+'_shippingAddress_country'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
+                                        <select class="form-control" id="{{fieldIdPrefix+'_shippingAddress_country'}}" ng-model="fieldEntity.shippingAddress.country"
+                                                ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray" required>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <label for="{{fieldIdPrefix+'_shippingAddress_state'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.State')}} </label>
+                                        <input type="text" class="form-control" id="{{fieldIdPrefix+'_shippingAddress_state'}}" ng-model="fieldEntity.shippingAddress.regionState">
+                                    </div>
+                                </div>
+                                <div class="form-group text-center" ng-if="rubedo.current.user">
+                                    <button type="submit" class="btn btn-primary pull-right">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
+                                </div>
+                                <div ng-if="checkoutCtrl.stage4Error" ng-init="notification = {type:'error',text:checkoutCtrl.stage4Error}">
+                                    <rubedo-notification></rubedo-notification>
+                                </div>
+                                
+                            </div>
+                            
+                            
+                            
                         </form>
                     </div>
                 </div>
             </div>
 
-            <div class="panel panel-default" ng-class="{'panel-primary':checkoutCtrl.currentStage==4}">
-                <div class="panel-heading" role="tab" id="checkoutHeading4">
-                    <h4 class="panel-title">
-                        <span class="glyphicon glyphicon-pencil cursor-as-pointer pull-right"
-                              ng-show="checkoutCtrl.currentStage>4"
-                              ng-click="checkoutCtrl.setCurrentStage(4)"></span>
-                        {{rubedo.translate('Blocks.Checkout.Steps.ShippingDetails')}}
-                    </h4>
-                </div>
-                <div id="checkoutStage4" class="panel-collapse collapse" ng-class="{'in':checkoutCtrl.currentStage==4}" role="tabpanel" aria-labelledby="checkoutHeading4">
-                    <div class="panel-body">
-                        <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleStage4Submit()" class="form-horizontal">
-                            <div class="col-md-6 col-md-offset-3">
-                                <h4 class="text-center">{{ rubedo.translate('Blocks.Checkout.Step4.ShippingAddress')}}</h4>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingAddress_company'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Company')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_shippingAddress_company'}}"
-                                               ng-model="fieldEntity.shippingAddress.company"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingAddress_attention'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Attention')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_shippingAddress_attention'}}"
-                                               ng-model="fieldEntity.shippingAddress.attention"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingAddress_address1'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Address1')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_shippingAddress_address1'}}"
-                                               ng-model="fieldEntity.shippingAddress.address1"
-                                               required
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingAddress_address2'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Address2')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_shippingAddress_address2'}}"
-                                               ng-model="fieldEntity.shippingAddress.address2"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingAddress_city'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.City')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_shippingAddress_city'}}"
-                                               ng-model="fieldEntity.shippingAddress.city"
-                                               required
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingAddress_country'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
-                                    <div class="col-sm-8">
-                                        <select
-                                                class="form-control"
-                                                id="{{fieldIdPrefix+'_shippingAddress_country'}}"
-                                                ng-model="fieldEntity.shippingAddress.country"
-                                                ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray"
-                                                required
-                                        ></select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingAddress_state'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.State')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_shippingAddress_state'}}"
-                                               ng-model="fieldEntity.shippingAddress.regionState"
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="{{fieldIdPrefix+'_shippingAddress_postCode'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.Zipcode')}} </label>
-                                    <div class="col-sm-8">
-                                        <input type="text"
-                                               class="form-control"
-                                               id="{{fieldIdPrefix+'_shippingAddress_postCode'}}"
-                                               ng-model="fieldEntity.shippingAddress.postCode"
-                                               required
-                                        >
-                                    </div>
-                                </div>
-                                <div class="form-group text-center" ng-if="rubedo.current.user">
-                                    <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
-                                </div>
-                                <div ng-if="checkoutCtrl.stage4Error" ng-init="notification = {type:'error',text:checkoutCtrl.stage4Error}">
-                                    <rubedo-notification></rubedo-notification>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
 
             <div class="panel panel-default" ng-class="{'panel-primary':checkoutCtrl.currentStage==5}">
                 <div class="panel-heading" role="tab" id="checkoutHeading5">
@@ -436,45 +279,29 @@
                 </div>
                 <div id="checkoutStage5" class="panel-collapse collapse" ng-class="{'in':checkoutCtrl.currentStage==5}" role="tabpanel" aria-labelledby="checkoutHeading5">
                     <div class="panel-body">
-                        <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleStage5Submit()" class="form-horizontal">
-                            <div class="col-md-6 col-md-offset-3">
+                        <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleStage5Submit()">
+                            <div class="col-md-8 col-md-offset-2">
                                 <div class="form-group">
-                                    <div class="col-sm-8 col-sm-offset-4">
-                                        <div class="radio" ng-repeat="shipper in checkoutCtrl.shippersArray track by $index">
-                                            <label>
-                                                <input type="radio" name="shippersRadio" value="{{shipper.shipperId}}"
-                                                       ng-checked="checkoutCtrl.currentShipper&&checkoutCtrl.currentShipper.shipperId==shipper.shipperId"
-                                                       ng-click="checkoutCtrl.currentShipper=shipper;">
-                                                {{rubedo.translate('Blocks.Checkout.ShippingOption',"",['%name%','%delay%','%unit%','%rate%'],[shipper.name,shipper.hRDelay,rubedo.translate("Label."+shipper.hRUnit, shipper.hRUnit),shipper.rate])}}
-                                            </label>
-                                        </div>
+                                    <div class="radio" ng-repeat="shipper in checkoutCtrl.shippersArray track by $index">
+                                        <input type="radio" name="shippersRadio" value="{{shipper.shipperId}}" id="shippersRadio_{{$index}}"
+                                                   ng-checked="checkoutCtrl.currentShipper&&checkoutCtrl.currentShipper.shipperId==shipper.shipperId"
+                                                   ng-click="checkoutCtrl.currentShipper=shipper;">
+                                        <label for="shippersRadio_{{$index}}">{{rubedo.translate('Blocks.Checkout.ShippingOption',"",['%name%','%delay%','%unit%','%rate%'],[shipper.name,shipper.hRDelay,rubedo.translate("Label."+shipper.hRUnit, shipper.hRUnit),shipper.rate])}}</label>
                                     </div>
                                 </div>
-                                <div style="text-align: center; margin-bottom: 10px">
-                                    <!--<button ng-click="checkoutCtrl.addPaperToCart()"-->
+                                <!--div style="text-align: center; margin-bottom: 10px">
                                     <div ng-click="addPaperToCart()" class="btn btn-inv" ng-class="{'active':checkoutCtrl.itIsAGift}">
                                         
                                         <i class="fa fa-gift"></i> {{rubedo.translate("Blocks.Checkout.Label.Gift", "Papier cadeau")}} : 2 €
-                                        <!--<i class="fa fa-gift"></i> {{ rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "add a gift wrap")}} : 2 €-->
                                     </div>
                                     <div>
                                         <small><em>{{rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "Je souhaite que ma commande soit emballée dans un papier-cadeau.")}}</em></small>
                                     </div>
-                                </div>
+                            </div>-->
                                 <div class="form-group" style="margin-bottom: 10px">
-                                    <span class="appearable" ng-show="checkoutCtrl.itIsAGift">
-                                    <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddGiftComments')}} </label>
-                                    <div class="col-sm-8" style="margin-bottom: 10px">
-                                        <textarea
-                                                class="form-control"
-                                                rows="4"
-                                                id="gift-comment"
-                                                ng-model="checkoutCtrl.GiftComments" 
-                                        ></textarea>
-                                        </div>
-                                    </span>
-                                    <label for="{{fieldIdPrefix+'_shippingComments'}}" class="col-sm-4 control-label">{{rubedo.translate('Blocks.Checkout.Label.AddComments')}} </label>
-                                    <div class="col-sm-8">
+                                    
+                                    <label for="{{fieldIdPrefix+'_shippingComments'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.AddComments')}} </label>
+                                    <div>
 
                                         <textarea
                                                 class="form-control"
@@ -484,6 +311,24 @@
                                         ></textarea>
                                     </div>
                                 </div>
+                                <!-- Ajouter un papier cadeau ?
+                                <h4 style="margin-top:12px;">{{ rubedo.translate("Blocks.Checkout.Label.Gift")}}</h4>
+                                <div class="form-group" style="margin-bottom:24px">
+                                    <input type="checkbox" name="addGift"  id="addGift" ng-model="checkoutCtrl.itIsAGift" ng-change="addPaperToCart()">
+                                    <label for="addGift">{{rubedo.translate("Blocks.Checkout.Label.AddGiftWrap", "Je souhaite que ma commande soit emballée dans un papier-cadeau.")}}</label>
+                                    <span class="appearable" ng-show="checkoutCtrl.itIsAGift">
+                                        <label for="{{fieldIdPrefix+'_shippingComments'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.AddGiftComments')}} </label>
+                                        <div  style="margin-bottom: 10px">
+                                            <textarea
+                                                    class="form-control"
+                                                    rows="4"
+                                                    id="gift-comment"
+                                                    ng-model="checkoutCtrl.GiftComments" 
+                                            ></textarea>
+                                        </div>
+                                    </span>
+                                </div>
+-->
                                 <div class="form-group text-center" ng-if="rubedo.current.user">
                                     <button type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.Label.Continue')}}</button>
                                 </div>
@@ -512,8 +357,8 @@
                                     </div>
                                     <div class="panel-body">
                                         <address>
-                                            <strong>{{ fieldEntity.billingAddress.company }}</strong><br />
-                                            <strong>{{ fieldEntity.billingAddress.attention }}</strong><br />
+                                            <strong ng-if="fieldEntity.billingAddress.company && fieldEntity.billingAddress.company!='' ">{{ fieldEntity.billingAddress.company }}</strong><br />
+                                            <span ng-if="fieldEntity.billingAddress.surname">{{ fieldEntity.billingAddress.surname }} </span><strong ng-if="fieldEntity.billingAddress.name">{{ fieldEntity.billingAddress.name }}<br /></strong>
                                             {{ fieldEntity.billingAddress.address1 }}<br />
                                             {{ fieldEntity.billingAddress.address2 }}<br />
                                             {{ fieldEntity.billingAddress.postCode }} {{ fieldEntity.billingAddress.city }}<br />
@@ -529,8 +374,8 @@
                                     </div>
                                     <div class="panel-body">
                                         <address>
-                                            <strong>{{ fieldEntity.shippingAddress.company }}</strong><br />
-                                            <strong>{{ fieldEntity.shippingAddress.attention }}</strong><br />
+                                            <strong ng-if="fieldEntity.shippingAddress.company && fieldEntity.shippingAddress.company!='' ">{{ fieldEntity.shippingAddress.company }}<br /></strong>
+                                            <span ng-if="fieldEntity.shippingAddress.surname">{{ fieldEntity.shippingAddress.surname }} </span><strong ng-if="fieldEntity.shippingAddress.name">{{ fieldEntity.shippingAddress.name }}<br /></strong>
                                             {{ fieldEntity.shippingAddress.address1 }}<br />
                                             {{ fieldEntity.shippingAddress.address2 }}<br />
                                             {{ fieldEntity.shippingAddress.postCode }} {{ fieldEntity.shippingAddress.city }}<br />
@@ -578,32 +423,30 @@
                                     </div>
                                 </div>
 
-                                <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleOrderCreate()" class="form-horizontal">
+                                <form ng-if="checkoutCtrl.userType&&rubedo.current.user" ng-submit="checkoutCtrl.handleOrderCreate()" style="margin-top:24px">
                                     <div class="form-group">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-8 col-md-offset-2">
                                             <div class="radio" ng-repeat="paymentMeans in checkoutCtrl.activePaymentMeans track by $index">
-                                                <label>
-                                                    <input type="radio" name="paymentMeansRadio" value="{{paymentMeans.paymentMeans}}"
+                                                
+                                                    <input type="radio" name="paymentMeansRadio" value="{{paymentMeans.paymentMeans}}" id="paymentMeansRadio_{{$index}}"
                                                            ng-checked="checkoutCtrl.currentPaymentMeans&&checkoutCtrl.currentPaymentMeans.paymentMeans==paymentMeans.paymentMeans"
                                                            ng-click="checkoutCtrl.currentPaymentMeans=paymentMeans;">
-                                                    {{paymentMeans.displayName}}
-                                                </label>
+                                                    <label for="paymentMeansRadio_{{$index}}">{{paymentMeans.displayName}}</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-8 col-md-offset-2">
                                             <div class="checkbox">
-                                                <label>
-                                                    <input type="checkbox" ng-model="checkoutCtrl.readTermsAndConds">
-                                                    {{rubedo.translate('Blocks.Checkout.Label.Terms')}}
+                                                    <input type="checkbox" ng-model="checkoutCtrl.readTermsAndConds" id="termsandconditions">
+                                                    <label for="termsandconditions">{{rubedo.translate('Blocks.Checkout.Label.Terms')}}
                                                     <a ng-href="{{checkoutCtrl.tCPageUrl}}" target="_blank">{{rubedo.translate('Blocks.Checkout.Label.TermsAndCondition')}} </a>
                                                 </label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group" ng-if="rubedo.current.user">
-                                        <div class="col-sm-12">
+                                        <div class="col-sm-8 col-md-offset-2">
                                             <button ng-disabled="!checkoutCtrl.readTermsAndConds"  type="submit" class="btn btn-primary">{{rubedo.translate('Blocks.Checkout.CheckoutSummary.ConfirmOrder')}}</button>
                                         </div>
                                     </div>

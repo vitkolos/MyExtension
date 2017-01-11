@@ -24,6 +24,11 @@ use WebTales\MongoFilters\Filter;
 use Zend\Json\Json;
 use Rubedo\Services\Manager;
 
+/*
+Modifié pour ajouter le workspace de l'utilisateur
+Modifié pour ajouter des critères de tri pour les logos de mission
+*/
+
 /**
  * Class MediaResource
  *
@@ -147,6 +152,8 @@ class MediaResource extends AbstractResource
             /* Add filters on TypeId and publication */
             $filters->addFilter(Filter::factory('In')->setName('typeId')
                 ->setValue($query['DAMTypes']));
+
+            
             /* Add filter on taxonomy */
             foreach ($query['vocabularies'] as $key => $value) {
                 if (isset($value['rule'])) {

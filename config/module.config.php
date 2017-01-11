@@ -12,8 +12,13 @@ return array(
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
         ),
          'dons_int' => array(
-            'name' => "Dons International",
+            'name' => "Dons International €",
             'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+        ),
+	'dons_int_paypal' => array(
+            'name' => "Dons International autres devises",
+            //'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         ),
          'dons_fr' => array(
@@ -40,6 +45,16 @@ return array(
             'name' => "PAF Espagne",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+         'paf_hu' => array(
+            'name' => "PAF Hongrie",
+            //'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+	'dons_il' => array(
+            'name' => "Dons Israël",
+            'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         )
          
     ),
@@ -57,6 +72,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/carrousel.json'
         ),
+        'category' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' =>  realpath(__DIR__ . "/blocks/") . '/category.json'
+        ),  
        'contactBlock' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/contactBlock.json'
@@ -84,6 +103,14 @@ return array(
         'searchResults' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
+        ),
+								'searchDons' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchDons.json'
+        ),
+        'productList' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/productList.json'
         ),
          'calendar' => array(
             'maxlifeTime' => 60,
@@ -117,10 +144,26 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/redirect.json'
         ),
+        'recommendedContents' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' =>  realpath(__DIR__ . "/blocks/")  . '/recommendedContents.json'
+        ),
+        'siteMap' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/siteMap.json'
+        ),
         'imageBatchUpload' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/imageBatchUpload.json'
-        )  
+        ),
+        'ordersList' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/ordersList.json'
+        ),
+        'logoMission' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/logoMission.json'
+        ),
  ),
 
     'templates' => array(
@@ -151,6 +194,21 @@ return array(
                 ),
                 'js' => array(
                     '/js/wtp.js',
+                ),
+            ),
+             'wtp17' => array(
+                'label' => 'WTP17',
+                'basePath' => realpath(__DIR__ . '/../theme/wtp17'),
+                'css' => array(
+                    '/css/wtp2015.css',
+                    '/css/ru.css'
+                ),
+                'js' => array(
+                    '/js/wtp.js',
+                     '../js/lazy-image.js',
+                ),
+                'angularModules' => array(
+                    'angularVideoBg' => '/lib/angular-video-bg.min.js'
                 ),
             ),
             'jmj2016' => array(
@@ -213,21 +271,28 @@ return array(
                 'css' => array(
                     '/css/boutique.css',
                     '/css/font-awesome.css'
-                ),
+                ),  
                 'js' => array(
+                     '../js/lazy-image.js',
                     '/js/boutique.js'
                 ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
            ),
-           'international' => array(
-                'label' => 'Cana International',
-                'basePath' => realpath(__DIR__ . '/../theme/international'),
+           'cana' => array(
+                'label' => 'Cana',
+                'basePath' => realpath(__DIR__ . '/../theme/cana'),
                 'css' => array(
-                    '/css/international.css',
+                    '/css/cana.css',
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
                     '../js/lazy-image.js',
-                    '/js/international.js'
+                    '/js/cana.js'
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
            ),
         ),
@@ -251,10 +316,11 @@ return array(
     'service_manager' => array(
         'invokables' => array(
             'PayboxPayment'=>'Rubedo\\Payment\\PayboxPayment',
+            //'PaypalPayment'=>'Rubedo\\Payment\\CcnPaypalPayment',
             'ContentsCcn' => 'Rubedo\\Collection\\ContentsCcn',
             'HtmlCleaner' => 'Rubedo\\Security\\CcnHtmlPurifier',
             'ShippersCcn' => 'Rubedo\\Collection\\ShippersCcn',
-
+           'MongoDataImport' => 'Rubedo\\Mongo\\DataImportCcn'
         )
     ),
     'controllers' => array(

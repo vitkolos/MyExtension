@@ -86,6 +86,31 @@ class PaymentmeansResource extends AbstractResource
                     $codeMonnaie=985;
                     //$monnaie="zł";
                     break;
+                case "es.chemin-neuf.org" :
+                case "chemin-neuf.es" :
+                    $accountName="paf_es";
+                    $codeMonnaie=978;
+                    //$monnaie="zł";
+                    break;
+                case "il.chemin-neuf.org" : 
+                case "il2.chemin-neuf.org" : 
+                    if($params['type']=="dons") $accountName="dons_il";
+                    else if($params['type']=="paf") $accountName="paf_il";
+                    $codeMonnaie=998;
+                    //$monnaie="€";
+                    break;
+                case "hu.chemin-neuf.org" :
+                case "chemin-neuf.hu" :
+                    $accountName="paf_hu";
+                    $codeMonnaie=348;
+                    //$monnaie="zł";
+                    break;
+                case "it.chemin-neuf.org" :
+                case "chemin-neuf.it" :
+                    $accountName="paf_it";
+                    $codeMonnaie=978;
+                    //$monnaie="zł";
+                    break;
             }
             $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
             if($paymentMeans['success']) {

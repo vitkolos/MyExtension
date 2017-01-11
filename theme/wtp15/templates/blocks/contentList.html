@@ -15,8 +15,8 @@
                  ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
                  ng-style="contentListCtrl.blockStyle">
                 <!--<div id="infiniteScrollCtrl">-->
-                <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList" >
-                    <div class="media" ng-repeat="content in columnContents"  >
+                <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
+                    <div class="media" ng-repeat="content in columnContents track by $index"  >
                         <img class="media-object pull-left" ng-if="content.fields.image && !contentListCtrl.titleOnly"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{size:'thumbnail'}) }}"
                              alt="{{ content.fields.text }}"/>
@@ -51,17 +51,17 @@
         </div>
        <div class="row table" ng-init="workshop={}; workshop.jour=10" >
             <!--JOURS-->
-            <div  id="jour-container" class="col-md-2 col-sm-4" ng-repeat="columnContents in contentListCtrl.contentList">
+            <div  id="jour-container" class="col-md-2 col-sm-4" ng-repeat="columnContents in contentListCtrl.contentList track by $index">
                 
-                <div ng-repeat="content in columnContents" ng-class="{'not-checked' : workshop.jour==10}">
+                <div ng-repeat="content in columnContents track by $index" ng-class="{'not-checked' : workshop.jour==10}">
                     <input type="radio" name="jour" ng-model="$parent.workshop.jour" ng-attr-value="{{$index}}" ng-attr-id="{{'jour-'+$index}}">
                     <label ng-attr-for="{{'jour-'+$index}}"  class="date-workshops" ng-class="{ 'not-displayed' :$parent.workshop.jour<7 && $parent.workshop.jour != {{$index}} }">{{content.text}}</label>
                 </div>
             </div>
             <!--LISTE DES WORKSHOPS-->
     
-             <div class="table-content col-md-10 col-sm-8" ng-repeat="columnContents in contentListCtrl.contentList" >
-                <div class="table-tab" ng-repeat="content in columnContents" ng-attr-id="{{'jour-'+$index}}" ng-class="{'displayed' : workshop.jour =={{$index}} , 'not-checked' : workshop.jour==10}">
+             <div class="table-content col-md-10 col-sm-8" ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
+                <div class="table-tab" ng-repeat="content in columnContents track by $index" ng-attr-id="{{'jour-'+$index}}" ng-class="{'displayed' : workshop.jour =={{$index}} , 'not-checked' : workshop.jour==10}">
                     <div>
                         <h3 class="closed" ng-click="$parent.workshop.jour=8">X</h3>
                         <h3 class="workshop-nav pull-right" ng-click="$parent.workshop.jour= ($parent.workshop.jour +1)%columnContents.length">ì</h3>
@@ -85,10 +85,10 @@
        <div class="row">
             <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
         </div>
-       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList">
+       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList track by $index">
             <!--CARRES-->
             <div class="col-sm-8 sport-container" ng-class="{'not-displayed' : selectContent >= 0, 'noclick':noclick }">
-                <div ng-repeat="content in columnContents" class="square">
+                <div ng-repeat="content in columnContents track by $index" class="square">
                     <input type="radio" name="sport" ng-model="$parent.selectContent" ng-attr-value="{{$index}}" id="{{'sport-'+$index}}" >
                     <label ng-attr-for="{{'sport-'+$index}}" ng-click="$parent.noclick = false">
                         <p>{{content.fields.text}}</p>
@@ -115,10 +115,10 @@
        <div class="row">
             <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
         </div>
-       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList">
+       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList track by $index">
             <!--CARRES-->
             <div class="col-sm-8 sport-container" ng-class="{'not-displayed' : selectContent >= 0, 'noclick':noclick }">
-                <div ng-repeat="content in columnContents" class="square">
+                <div ng-repeat="content in columnContents track by $index" class="square">
                     <input type="radio" name="ateliers" ng-model="$parent.selectContent" ng-attr-value="{{$index}}" id="{{'atelier-'+$index}}" >
                     <label ng-attr-for="{{'atelier-'+$index}}" ng-click="$parent.noclick = false">
                         <p>{{content.fields.text}}</p>
@@ -147,10 +147,10 @@
        <div class="row">
             <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
         </div>
-       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList">
+       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList track by $index">
             <!--CARRES-->
             <div class="col-sm-8 sport-container" ng-class="{'not-displayed' : selectContent >= 0, 'noclick':noclick }">
-                <div ng-repeat="content in columnContents" class="square" ng-class="{'couple':content.fields.couple}">
+                <div ng-repeat="content in columnContents track by $index" class="square" ng-class="{'couple':content.fields.couple}">
                     <input type="radio" name="intervenants" ng-model="$parent.selectContent" ng-attr-value="{{$index}}" id="{{'intervenants-'+$index}}" >
                     <label ng-attr-for="{{'intervenants-'+$index}}" ng-click="$parent.noclick = false">
                         <img class="media-object" ng-if="content.fields.image && !contentListCtrl.titleOnly"
@@ -163,7 +163,7 @@
                 </div>
             </div>
             <div class="col-sm-4" >
-                <div ng-repeat="content in columnContents" class="table-tab" ng-class="{'displayed' : selectContent =={{$index}} , 'noclick':noclick }">
+                <div ng-repeat="content in columnContents track by $index" class="table-tab" ng-class="{'displayed' : selectContent =={{$index}} , 'noclick':noclick }">
                         <h3 class="closed" ng-click="$parent.selectContent=-1">X</h3>
                         <h3 class="workshop-nav pull-right" ng-click="$parent.selectContent = ($parent.selectContent +1)%columnContents.length">ì</h3>
                         <h3 class="workshop-nav pull-left" ng-click="$parent.selectContent =($parent.selectContent -1)>-1 ? ($parent.selectContent -1)%columnContents.length :  ($parent.selectContent +columnContents.length -1)">Ø</h3>

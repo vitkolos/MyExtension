@@ -15,7 +15,7 @@
         <!--pour contacts, afficher nom, mail, téléphone et résumé (cf siloé pro)-->
         <div ng-if="itemData.typeId=='560d2bf445205e816041ea7f'">
             <p>{{itemData['i18n.'+itemData.lang+'.fields.prenom'][0]}} {{itemData['i18n.'+itemData.lang+'.fields.nom'][0]}}</p>
-            <p><a ng-href="{{itemData['i18n.'+itemData.lang+'.fields.email'][0]}}">{{itemData['i18n.'+itemData.lang+'.fields.email'][0]}}</a><span ng-if="itemData['i18n.'+itemData.lang+'.fields.telephone'][0]">, {{itemData['i18n.'+itemData.lang+'.fields.telephone'][0]}}</span></p>
+            <p><a href="mailto:{{itemData['i18n.'+itemData.lang+'.fields.email'][0]}}">{{itemData['i18n.'+itemData.lang+'.fields.email'][0]}}</a><span ng-if="itemData['i18n.'+itemData.lang+'.fields.telephone'][0]">, {{itemData['i18n.'+itemData.lang+'.fields.telephone'][0]}}</span></p>
             <p><b>{{itemData['i18n.'+itemData.lang+'.fields.summary'][0]}}</b></p>
         </div>
         

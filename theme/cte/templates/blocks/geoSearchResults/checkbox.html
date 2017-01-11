@@ -10,6 +10,7 @@
                 <!--<span ng-click="focus=!focus" ng-init="focus==false" class="capital2" style="color:white">changer</span></p>-->
                 <div class="panel-heading actus visible-xs-block" ng-click="searchDisplayed=!searchDisplayed" style="margin-bottom:12px">{{rubedo.translate("PresDeChezToi.Recherche", "Recherche avancée")}}</div>
                 <div id="advanced-search" ng-class="{'displayed': searchDisplayed}" ng-init="searchDisplayed=false">
+                    <!--
                     <div class="panel">
                         <form ng-submit="geoSearchResultsCtrl.onSubmit()" role="form">
                             <div class="input-group">
@@ -18,7 +19,7 @@
                                         <span class="glyphicon glyphicon-search"></span></button></span>
                             </div>
                         </form>
-                    </div>
+                    </div>-->
                     <div class="panel panel-default panel-geo">
                         
                         <div class="panel-heading actus"  ng-class="{'panel-hidden' :!propDisplayed }" ng-click="propDisplayed = !propDisplayed">{{geoSearchResultsCtrl.taxo['555f3bc445205edc117e689b'].name}}</div>

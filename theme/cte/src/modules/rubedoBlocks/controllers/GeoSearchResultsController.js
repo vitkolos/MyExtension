@@ -92,8 +92,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     latitude:position.coords.latitude,
                     longitude:position.coords.longitude
                 };
+                console.log(position);
             }, function() {
                 //handle geoloc error
+                console.log("Geolocation API not supported here");
             });
         } else if (config.centerAddress){
             me.geocoder.geocode({
@@ -208,7 +210,10 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 
             });
         } else {
-            me.template = themePath+"/templates/blocks/geoSearchResults/map.html";
+												if (config.showList) {
+																me.template = themePath+"/templates/blocks/geoSearchResults/mapWithList.html";
+												}
+            else me.template = themePath+"/templates/blocks/geoSearchResults/map.html";
         }
         var predefinedFacets = config.predefinedFacets==""?{}:JSON.parse(config.predefinedFacets);
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];

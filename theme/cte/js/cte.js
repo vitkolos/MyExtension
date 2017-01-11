@@ -2,7 +2,19 @@ blocksConfig.imageBatchUpload={
            "template": "/templates/blocks/imageBatchUpload.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
 };
-
+blocksConfig.logoMission={
+           "template": "/templates/blocks/logoMission.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/LogoMissionController.js"]
+};
+blocksConfig.searchDons={
+           "template": "/templates/blocks/searchDons.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchDonsController.js"]
+};
+blocksConfig.siteMap= {
+            "template": "/templates/blocks/siteMap.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/SiteMapController.js"],
+											"externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js']
+};
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
@@ -26,31 +38,42 @@ angular.module('rubedoBlocks').filter('cleanHour', function () {
         return hour;
      };
   });
+angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filter) {
+    return function() {
+        return $filter('date')(new Date(), 'yyyy');
+    };
+}])
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
-		      var contentDisplay = false;
-                      angular.forEach(input, function(row, index) {
-				// si la 1re colonne est terminale et non vide
-                                 if (row.columns[0].isTerminal&&row.columns[0].blocks) {
-				    // toujours afficher la 1re ligne (menu) et les 2 dernires (footer)
-				    if (index ==0 || index >= input.length-2) {
-					filtered.push(row);
-				    }
-				    // si la page sert ˆ afficher un contenu (en 2me ligne) on n'affiche pas les autres lignes
-				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
-					filtered.push(row);
-					contentDisplay = true;
-				    }
-				    //si la ligne a un bloc de dŽtail en premier, on affiche seulement le bloc dŽtail dans la ligne
-				    else if (row.columns[0].blocks[0].bType=="contentDetail" && !contentDisplay) {
-					row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
-					filtered.push(row);
-				    }
-				    // sinon on affiche tout
-				    else if(!contentDisplay) {filtered.push(row);}
-                                 }
-                      });
+																						var contentDisplay = false;
+																																	angular.forEach(input, function(row, index) {
+																																												// si la 1re colonne est terminale et non vide
+																																												if (row.columns[0].isTerminal&&row.columns[0].blocks) {
+																																												// toujours afficher la 1re ligne (menu) et les 2 dernires (footer)
+																																																							if (index ==0 || index >= input.length-2) {
+																																																																		filtered.push(row);
+																																																							}
+																																																							// si la page sert à afficher un contenu (en 2me ligne) on n'affiche pas les autres lignes
+																																																							else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
+																																																																		filtered.push(row);
+																																																																		contentDisplay = true;
+																																																							}
+																																																							//si la ligne a un bloc de détail en premier, on affiche seulement le bloc détail dans la ligne
+																																																							else if (row.columns[0].blocks[0].bType=="contentDetail" && !contentDisplay) {
+																																																																		row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
+																																																																		filtered.push(row);
+																																																							}
+																																																							// sinon on affiche tout
+																																																							else if(!contentDisplay) {
+																																																																		filtered.push(row);
+																																																							}
+																																												}
+																																												// si la colonne a des lignes à l'intérieur
+																																												else if (row.columns[0].rows) {
+																																																							filtered.push(row);
+																																												}
+																																	});
                       return filtered;
 		    
            };
@@ -74,32 +97,42 @@ angular.module('rubedoBlocks').filter('tags', function() {
 
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
 angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
-    return function(startDate, endDate, rangeFormat,from,to){
+    return function(startDate, endDate, rangeFormat,from,to,lang){
+	//console.log($scope.rubedo);
+	var locale = lang || 'default';
 	var format = rangeFormat || 'long';
 	var formatOfDate =  'd MMM yyyy';
 	var isSameDay = false;
 	var start = new Date(startDate*1000);
 	var end = new Date(endDate*1000);
+	var longFormat="";//format complet de date
+	switch(locale){
+		case 'hu': longFormat = 'yyyy. MMM d.';break;
+		default : longFormat = 'd MMM yyyy';
+	}
 	if (start.getFullYear() != end.getFullYear()) {
-	    formatOfDate = 'd MMM yyyy';
+	    formatOfDate = longFormat;
 	}
 	else if (start.getMonth() != end.getMonth()) {
-	    formatOfDate = 'd MMM';
+		formatOfDate = 'd MMM';
 	}
 	else  if(start.getDate() == end.getDate()){
 	    formatOfDate = 'd';
 	    isSameDay=true;
 	}
 	else {
-	    formatOfDate = 'd';
+		switch(locale){
+			case 'hu': formatOfDate = 'yyyy. MMM d';longFormat='d.';break;
+			default : formatOfDate = 'd';
+		}
 	}
 	if (format == 'short') {
-		if(isSameDay) formattedDate= $filter('date')(end,'d MMM yyyy');	  
-	    	else formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,'d MMM yyyy');	    
+		if(isSameDay) formattedDate= $filter('date')(end,longFormat);	  
+	    	else formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,longFormat);	    
 	}
 	else {
-           if(isSameDay) formattedDate= $filter('date')(end,'d MMM yyyy');	  
-	   else formattedDate= from +" "+$filter('date')(start,formatOfDate) + " "+to+" "+$filter('date')(end,'d MMMM yyyy');	    
+           if(isSameDay) formattedDate= $filter('date')(end,longFormat);	  
+	   else formattedDate= from +" "+$filter('date')(start,formatOfDate) + " "+to+" "+$filter('date')(end,longFormat);	    
 	}
 	return formattedDate;
     }
@@ -125,7 +158,9 @@ angular.module('rubedoBlocks').filter('isAfter', function ($filter) {
 });
 
 
-
+angular.module('rubedoBlocks').filter('encodeURIComponent', function($window) {
+    return $window.encodeURIComponent;
+});
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
         var me=this;

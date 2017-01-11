@@ -34,6 +34,13 @@
                                 "itemId": "displayedFacetsBrotherField",
                                 "name": "displayedFacets"
                             }
+                        },
+                        {
+                            "type": "Ext.ux.TreePicker",
+                            "config": {
+                                "fieldLabel": "#ext-gen1073#",
+                                "name": "singlePage"
+                            }
                         }
                     ]
                 },
@@ -107,6 +114,14 @@
                             "config": {
                                 "fieldLabel": "#ext-gen1370#",
                                 "name": "showPlacesSearch",
+                                "inputValue": true
+                            }
+                        },
+																								{
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "Afficher liste sur la carte",
+                                "name": "showList",
                                 "inputValue": true
                             }
                         },
@@ -225,6 +240,7 @@
             "pageSize": 5000,
             "showCenterMarker": false,
             "showPlacesSearch": true,
+												"showList":false,
             "displayedFacets": "['all']",
             "displayMode": "default",
             "autoComplete": false,

@@ -52,13 +52,36 @@ class ShippersCcn extends AbstractCollection implements IShippers
         $pipeline[] = array(
             '$unwind' => '$rates'
         );
-        $pipeline[] = array(
-            '$match' => array(
-                'rates.country' => array(
-                    '$in' => array($country)
+        /*map country et zones*/
+        $europe = array('DE','AT','BE','ES','FI','GR','IT','LU,','NL','PL','PT','CZ','GB','SE','DK','NO','IE','RO','SK','CY','EE','LV','LI','LT','MT','HU','SI','UA','CH');
+        $northamerica = array('CA','US','BB','BM','MX','VG','VI');
+        if(in_array($country, $europe)){
+            $pipeline[] = array(
+                '$match' => array(
+                    'rates.country' => array(
+                        '$in' => array('EU')
+                    )
                 )
-            )
-        );
+            );
+        }
+        else if(in_array($country, $northamerica)){
+            $pipeline[] = array(
+                '$match' => array(
+                    'rates.country' => array(
+                        '$in' => array('AM')
+                    )
+                )
+            );
+        }
+        else {
+            $pipeline[] = array(
+                '$match' => array(
+                    'rates.country' => array(
+                        '$in' => array($country)
+                    )
+                )
+            );
+        }
         $response = $this->_dataService->aggregate($pipeline);
         if ($response['ok']) {
             $itemNumber=0;
@@ -71,11 +94,16 @@ class ShippersCcn extends AbstractCollection implements IShippers
             foreach($myCart as $item) {
                 $content = $contentsService->findById($item['productId'], true, false);
                 if($content['fields']['weight']) $cartWeight += $content['fields']['weight'] * $item['amount'];
+                else if($content['productProperties']['variations'] && $content['productProperties']['variations'][0]['weight']){
+                    foreach($content['productProperties']['variations'] as $variation) {
+                        if($variation['id'] == $item['variationId']) $cartWeight+= $variation['weight'] * $item['amount'];
+                    }
+                }
             }
             foreach ($response['result'] as $key => &$value) {
                 $value['shipperId'] = (string)$value['shipperId'];
                 //si le poids est 0 => seulement téléchargement
-                if($cartWeight == 0 && $value['shipperId'] !="57c68a39245640e52b8c02c0") unset($response['result'][$key]);
+                //if($cartWeight == 0 && $value['shipperId'] !="57c68a39245640e52b8c02c0") unset($response['result'][$key]);
                 
                 $value = array_merge($value, $value['rates']);
                 unset ($value['rates']);
@@ -84,7 +112,7 @@ class ShippersCcn extends AbstractCollection implements IShippers
                 }
                 if ($value['rateType'] == 'flatPerWeight') {
                     //si prix fixe par tranche de poids, renvoyer seulement le shipper avec les bonnes limites de poids
-                    if($cartWeight<=$value['limitMin'] || $cartWeight>$value['limitMax']) unset($response['result'][$key]);
+                    if($cartWeight<$value['limitMin'] || $cartWeight>=$value['limitMax']) unset($response['result'][$key]);
                 }
             }
             return array(

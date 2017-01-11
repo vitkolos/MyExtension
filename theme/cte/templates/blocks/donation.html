@@ -177,10 +177,23 @@
                                 
                         </ng-form>
                 </div>
-                <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==3}" >{{rubedo.translate("Block.Paiment","Mon paiement")}} 
+                <h2 class="capital txt-red" ng-if="donsCtrl.questions.length>0" ng-class="{'displayed' : donsCtrl.currentStage==3}" >{{contentDetailCtrl.getLabelByName('questions')}}
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>3" ng-click="donsCtrl.setCurrentStage(3,true)"></span>
                 </h2>
-                <div id="inscriptionStage3" class="collapse">
+                <div id="inscriptionStage3" class="collapse" ng-if="donsCtrl.questions.length>0">
+                        <ng-form name="questions">
+                                <div class="row" ng-repeat="question in donsCtrl.questions | orderBy:'order' track by $index">
+                                        <ng-include src="donsCtrl.questionDetail"></ng-include>
+                                </div>
+                                <div class="row text-center">
+                                        <div class="button submit" ng-class="{'disabled' : questions.$invalid}" ng-click="donsCtrl.setCurrentStage(4,questions.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                                </div>
+                        </ng-form>
+                </div>
+                <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==4}" >{{rubedo.translate("Block.Paiment","Mon paiement")}} 
+                        <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>4" ng-click="donsCtrl.setCurrentStage(4,true)"></span>
+                </h2>
+                <div id="inscriptionStage4" class="collapse">
                         <ng-form name="paiement">
                                 
                                 <!--Récapitulatif-->

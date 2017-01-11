@@ -16,10 +16,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.query="";
     me.taxoFilter="";
     me.filter = function(taxoTerm){
-        me.taxoFilter = taxoTerm;
+        if(me.taxoFilter != taxoTerm) me.taxoFilter = taxoTerm;
+        else me.taxoFilter = "";
         options['start'] += options['limit'];
-        options['limit'] = 200;
-        me.getContents(config.query, pageId, siteId, options, true);
+        options['limit'] = 100;
+        if (!me.count || me.count > options['start']) {
+            me.getContents(config.query, pageId, siteId, options, true);
+        }
+        
     }
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
@@ -28,7 +32,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var options = {
         start: me.start,
         limit: me.limit,
-        'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","dateDebut","dateFin","positionName","complement_date","video","subTitle"]
+        'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","dateDebut","dateFin","positionName","complement_date","video","subTitle","date"]
     };
     if(config.singlePage){
         options.detailPageId = config.singlePage;
@@ -39,7 +43,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         options.endDate = Math.round( (new Date().getTime() + 2*(3600000*24*365))/1000); //ajouter 2 ans pour la date de fin
         options.endDateFieldName="dateFin";
     }
-    if(config.enableFOContrib&&$scope.rubedo.current.user){
+    if(config.enableFOContrib&&$scope.rubedo.current.user&&$scope.rubedo.current.user.rights.canEdit){
         //options.foContributeMode = true;   ENABLE to filter contents by user
         options.useDraftMode=true;
         me.isFOContributeMode=true;
@@ -130,7 +134,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     $scope.clearORPlaceholderHeight();
                 }
                 /*taxonomies pour propositions*/
-                if (me.usedContentTypes="54dc614245205e1d4a8b456b") {
+                if (me.usedContentTypes[0]=="54dc614245205e1d4a8b456b") {
                      var taxonomiesArray ={};
                      taxonomiesArray[0]="555f3bc445205edc117e689b";// taxcnomie de propositions
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
@@ -253,6 +257,26 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             $location.url(me.editorPageUrl);
         }
     }
+    me.getTaxonomyTerms = function(vocId){
+        var taxonomiesArray ={};
+        taxonomiesArray[0]=vocId;// taxonomie de propositions
+        TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+            if(response.data.success){
+                me.taxonomyTerms = {};
+                angular.forEach(response.data.taxo, function(taxonomie){
+                    me.taxonomyTerms["name"] = taxonomie.vocabulary.name;
+                    me.taxonomyTerms["terms"] = taxonomie.terms;
+                });
+                return true;
+            }
+            else return false
+                         
+        });
+        
+    }
+    
+    
+    
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService','RubedoPagesService',function($scope,$compile,RubedoContentsService,RubedoPagesService){
     var me = this;
@@ -280,12 +304,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
     if ($scope.content.fields.propositionReferenceeInterne && $scope.content.fields.propositionReferenceeInterne !=""){
         RubedoPagesService.getPageById($scope.content.fields.propositionReferenceeInterne).then(function(response){
                 if (response.data.success){
-                    $scope.content.contentLinkUrl = response.data.url;;
+                    $scope.content.contentLinkUrl = response.data.url;
                 }
             });
     }
     else if ($scope.content.fields.propositionReferencee && $scope.content.fields.propositionReferencee !="") {
             $scope.content.contentLinkUrl = $scope.content.fields.propositionReferencee;
+            $scope.content.isExternal=true;
     }
     else $scope.content.contentLinkUrl = $scope.content.detailPageUrl;
     

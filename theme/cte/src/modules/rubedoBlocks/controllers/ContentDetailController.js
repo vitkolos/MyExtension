@@ -9,7 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.showInscription = false; // pour les inscriptions, masquer le formulaire
     me.isInscription = true; // pour les propositions, ne pas afficher les inscriptions si closes
 
-    $scope.fieldInputMode=false;is
+    $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
     });
@@ -75,7 +75,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     me.showCalendar = function(){
       var optionsCalendar = {
-        constrainToSite:true,
+        constrainToSite:false,
         siteId: $scope.rubedo.current.site.id,
         pageId: $scope.rubedo.current.page.id,
         predefinedFacets:{"type":"54dc614245205e1d4a8b456b","lieuCommunautaire":config.contentId},
@@ -97,6 +97,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             pageId: $scope.rubedo.current.page.id,
             includeTermLabels:true
         };
+        if ($location.search()["preview_draft"] && $location.search()["preview"] && $scope.rubedo.current.user.rights.canEdit) {
+            options.useDraftMode = true;
+        }
         RubedoContentsService.getContentById(contentId, options).then(
             function(response){
                 if(response.data.success){
@@ -111,7 +114,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                         else {
                             RubedoPagesService.getPageById(me.content.fields.propositionReferenceeInterne).then(function(response){
-                                    if (response.data.success){
+                                    if (response.data.success && ! $scope.rubedo.current.user &&!$scope.rubedo.current.user.rights.canEdit){
                                         window.location.href = response.data.url;
                                     }
                                 });                            
@@ -119,7 +122,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                   
                     // seulement pour propositions - qui peuvent être éditées directement dans la page
-                    me.content.editorPageUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url+"?content-edit="+me.content.id;
+                    if($scope.rubedo.current.breadcrumb.length>0) me.content.editorPageUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url+"?content-edit="+me.content.id;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
                             $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
@@ -195,7 +198,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             me.isInscription=false;
                         }
 
-                        else if (me.content.fields.dateDebut*1000 < today.getTime()) {
+                        else if (me.content.fields.dateDebut && me.content.fields.dateDebut*1000 < today.getTime()) {
                             me.propDate = "passee";
                         }
                         else me.propDate="ouverte";
@@ -207,31 +210,52 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 }
                             }
                         );
+                        
+                        //add list of inscriptions
+                        if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
+                            var optionsInscriptionsList = {
+                                constrainToSite:false,
+                                siteId: $scope.rubedo.current.site.id,
+                                pageId: $scope.rubedo.current.page.id,
+                                predefinedFacets:{"type":"561627c945205e41208b4581","proposition":config.contentId},
+                                start:0,
+                                limit:500,
+                                orderby:'lastUpdateTime',
+                                orderbyDirection:'desc',
+                                displayedFacets:"['all']"
+                            };
+                            RubedoSearchService.searchByQuery(optionsInscriptionsList).then(function(response){
+                              if(response.data.success){
+                                me.inscriptions = response.data.results.data;
+                              } 
+                            });
+                        }
                     }
 
                     //Albums photos
                     if (me.content.type.code=="album") {
                         me.currentIndex=0;
-                        me.loadModal = function(index){
+                        me.loadModal = function(index,embedded){
                             me.currentIndex = index;
-                            me.currentImage = me.content.fields.images[me.currentIndex];
+                            if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex];
+                            else me.currentImage = me.content.fields.images[me.currentIndex];
                         };
-                        me.changeImage = function(side){
+                        me.changeImage = function(side,embedded){
                             if(side == 'left' && me.currentIndex > 0){
                                 me.currentIndex -= 1;
-                            } else if(side == 'right' && me.currentIndex < me.content.fields.images.length - 1) {
+                            } else if(side == 'right'){
                                 me.currentIndex += 1;
                             }
-                            me.currentImage = me.content.fields.images[me.currentIndex];
+                            if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex]; 
+                            else me.currentImage = me.content.fields.images[me.currentIndex];
                         };
-                        me.changeImageKey = function($event){
-                          console.log($event);
+                        me.changeImageKey = function($event,embedded){
                             if ($event.keyCode == 39) { 
-                               me.changeImage('right');
+                               me.changeImage('right',embedded);
                             }
                         
                             else if ($event.keyCode == 37) {
-                               me.changeImage('left');
+                               me.changeImage('left',embedded);
                             }
                         };
 
@@ -331,23 +355,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.clearORPlaceholderHeight();
                         }
                     }
-                    var allContentTerms=[];
-                    if (me.content.taxonomy){
-                        angular.forEach(me.content.taxonomy,function(value){
-                            if (angular.isString(value)&&value!=""){
-                                allContentTerms.push(value);
-                            } else if (angular.isArray(value)){
-                                allContentTerms=allContentTerms.concat(value);
-                            }
-                        });
-                    }
-                    $rootScope.$broadcast("ClickStreamEvent",{csEvent:"contentDetailView",csEventId:me.content.id,csEventArgs:{
-                        contentId:me.content.id,
-                        siteId:options.pageId,
-                        pageId:options.siteId,
-                        typeId:me.content.typeId,
-                        taxonomyTerms:allContentTerms
-                    },csEventLabel:me.content.fields.text});
+                    if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
+                        $rootScope.$broadcast("ClickStreamEvent",{csEvent:me.content.clickStreamEvent});
+                     }
                 }
             }
         );

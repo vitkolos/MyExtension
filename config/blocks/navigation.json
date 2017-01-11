@@ -112,6 +112,15 @@
                                 "name": "disableLevelOne",
                                 "inputValue": true
                             }
+                        },
+                        {
+                            "type": "Rubedo.view.ImagePickerField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1219#",
+                                "name": "imageFile",
+                                "allowedFileType": "Image",
+                                "smallMode": true
+                            }
                         }
                     ]
                 },
@@ -140,7 +149,10 @@
                       }
                     ]
                 }
-            ]
+            ],
+            "csEvents":{
+                "useSearch":null
+              }
         },
         "configBloc": {
             "style": "Horizontal",

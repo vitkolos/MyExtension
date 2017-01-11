@@ -49,29 +49,36 @@ class InscriptionResource extends AbstractResource
     {
         
         //GET NUMERO D'INSCRIPTION ACTUEL
-        $id = "56a10fafc445ec692b8b4f3d"; // id du contenu "Numéro d'inscription"
+        $id = "57e1a814245640fc008ba8a8"; // id du contenu "Numéro d'inscription"
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] +=1;
-        $content['i18n'] = array(
-            "fr" =>array(
+	$content['i18n'] =  array(
+		    "fr" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    ),
+		    "pl" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    ),
+		    "es" =>array(
+			"fields" => array("text"=>$content["fields"]["text"])
+		    ),
+            "hu" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
             ),
-            "pl" =>array(
+            "it" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "pt" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
             )
-        );
+		);
+	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         $result = $contentsService->update($content, array(),false);
         $inscriptionNumber= $content["fields"]["value"];
 
-    
-        //authentication comme admin inscriptions
-        
-        
-        
-        
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
         $inscriptionForm['fields'] =  $params['inscription'];
@@ -83,13 +90,6 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
                 //GET SECRETARIAT
         if($inscriptionForm['fields']['contact']){
-            /*
-            $mailSecretariat = $this->callAPI("GET", $token, $inscriptionForm['fields']['contact']);
-            if($mailSecretariat['success']) {
-                $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['content']['fields']['email'];
-                $inscriptionForm['fields']['contact'] = $mailSecretariat['content']['fields'];
-            }
-            else $inscriptionForm['fields']['mailSecretariat'] = "sessions@chemin-neuf.org";*/
             $mailSecretariat = $contentsService->findById($inscriptionForm['fields']['contact'],false,false);
             $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['fields']['email'];
             $inscriptionForm['fields']['contact'] = $mailSecretariat['fields'];
@@ -106,8 +106,9 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['online'] = true;
         $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
-        $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);    
-
+        $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);
+        
+        
 
         //GET PAYEMENT INFOS
         if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
@@ -115,12 +116,25 @@ class InscriptionResource extends AbstractResource
             $paymentMeans = $contentsService->findById($paymentMeansId,false,false);
             $inscriptionForm['fields']['paymentInfos'] =$paymentMeans['fields'];
         }
-         AbstractCollection::disableUserFilter(false);
+         
        
         
-       if($resultInscription['success']) {$this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());}
-       
-       
+       if($resultInscription['success']) {
+            $this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());
+        }
+       if($resultInscription['success']) {
+            //usleep(500000);
+            $content = $contentsService->findById($resultInscription['data']['id'], false, false);
+            $content['fields']['statut'] = $content['fields']['statut'] . " ";
+            $content['i18n'] = array(
+                    $content['locale'] =>array(
+                        "fields" => array("text"=>$content["text"])
+                    )
+                );
+            $result = $contentsService->update($content, array(),false);
+            Manager::getService('ElasticContents')->index($content);
+        }
+        AbstractCollection::disableUserFilter(false);
 
         return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
         
@@ -132,10 +146,14 @@ protected function sendInscriptionMail($inscription,$lang){
     //tutoyement pour ados ou jeunes ou personnes connues
     $tutoyer = 0;
     $tuOuVous="vous";
-    if($inscription['public_type'] == 'adolescent' || $inscription['public_type'] == 'jeune-adulte' || $inscription['personneConnue']) {
+    if($inscription['public_type'] == 'adolescent' || $inscription['public_type'] == 'jeune-adulte' ) {
         $tutoyer = 1;
         $tuOuVous="tu";
-    }
+    }/*
+    if($inscription['personneConnue'] && !($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille'|| $inscription['public_type'] == 'fiances') ) {
+        $tutoyer = 1;
+        $tuOuVous="tu";
+    }*/
     //nombre de personnes inscrites
     $nbInscrits = 1;
     //nom pour le mail aux inscrits
@@ -293,7 +311,7 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     // NUMERO D'INSCRIPTION POUR SUIVI
      //"Ton numéro d'inscription est " + idInscription + "<br><br>"
-    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . $inscription['text'] . ".<br/><br/>";
+    $messageClient .= $trad["ccn_mail_3_".$tuOuVous] . " ". $inscription['text'] . ".<br/><br/>";
     
     //RECAPITULATIF
     //Voici le récapitulatif de ton inscription
@@ -516,6 +534,13 @@ protected function sendInscriptionMail($inscription,$lang){
     
     
     $mailSecretariat = $mailerService->getNewMessage();
+    $mailSecretariatCopy = array();
+    if($inscription['mails_secretariat']) {
+        foreach ($inscription['mails_secretariat'] as $mail){
+            array_push($mailSecretariatCopy,$mail);
+        }
+        $mailSecretariat->setCc($mailSecretariatCopy); 
+    }
     $mailSecretariat->setTo($inscription['contact']['email']); 
     $mailSecretariat->setFrom(array( "web@chemin-neuf.org" => ($inscription['surname']." ".$inscription['nom']))); 
     $mailSecretariat->setReplyTo(array($inscription['email'] => ($inscription['surname']." ".$inscription['nom']))); 
@@ -648,12 +673,35 @@ protected function sendInscriptionMail($inscription,$lang){
                 return "FR"; break;
             case "www.chemin-neuf.pl" : 
                 return "PL"; break;
-        }
+            case "chemin-neuf.hu" : 
+            case "hu.chemin-neuf.org" : 
+                    return "HU"; break;
+            case "chemin-neuf.it" : 
+            case "it.chemin-neuf.org" : 
+                    return "IT"; break;
+            }
      }
+protected function localizableFields($type, $fields)
+    {
+        $existingFields = array();
+        foreach ($type['fields'] as $field) {
+            if ($field['config']['localizable']) {
+                $existingFields[] = $field['config']['name'];
+            }
+        }
+        foreach ($fields as $key => $value) {
+            unset($value); //unused
+            if (!(in_array($key, $existingFields) || in_array($key, array('text', 'summary')))) {
+                unset ($fields[$key]);
+            }
+        }
+        return $fields;
+    }
     protected function getAccountId(){
         switch($_SERVER['HTTP_HOST']) {
             case "chemin-neuf.fr" : 
             case "www.chemin-neuf.pl" : 
+            case "it.chemin-neuf.org" : 
                 return "55473e9745205e1d3ef1864d"; break;
         }
      }

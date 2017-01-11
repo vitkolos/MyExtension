@@ -48,11 +48,11 @@
                 <div class="col-sm-8"><input type="text" id="profession" ng-model="inscription.profession" name="profession"></div>
             </div>    
             <div class="row">
-                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}</label></div>
+                <div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
                 <div class="col-sm-8"><input type="email" id="email" name="email"  ng-model="inscription.email" placeholder="user@mydomain.com" ng-required="!(inscription.email || inscription.emailPers2)"></div>
             </div>    
             <div class="row">
-                <div class="col-sm-4"><label for="email_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}</label></div>
+                <div class="col-sm-4"><label for="email_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}*</label></div>
                 <div class="col-sm-8">
                     <input type="email" id="email_verif" name="email_verif" placeholder="user@mydomain.com" ng-model="inscription.email_verif" ng-required="inscription.email">
                     <p ng-if="mailError" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
@@ -117,11 +117,11 @@
                 <div class="col-sm-8"><input type="text" id="professionPers2" ng-model="inscription.professionPers2" name="professionPers2"></div>
             </div>    
             <div class="row">
-                <div class="col-sm-4"><label for="emailPers2" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}</label></div>
+                <div class="col-sm-4"><label for="emailPers2" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
                 <div class="col-sm-8"><input type="email" id="emailPers2" name="emailPers2"  ng-model="inscription.emailPers2" placeholder="user@mydomain.com"  ng-required="!(inscription.email || inscription.emailPers2)"></div>
             </div>    
             <div class="row">
-                <div class="col-sm-4"><label for="emailPers2_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}</label></div>
+                <div class="col-sm-4"><label for="emailPers2_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}*</label></div>
                 <div class="col-sm-8">
                     <input type="email" id="emailPers2_verif" name="emailPers2_verif" placeholder="user@mydomain.com" ng-model="inscription.emailPers2_verif" ng-required="inscription.emailPers2">
                     <p ng-if="mailError2" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>

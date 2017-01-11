@@ -128,6 +128,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 if (me.imagesForAlbum && me.imagesForAlbum.length>0) {
                     payLoad.fields.images=angular.copy(me.imagesForAlbum);
                 }
+                if (me.embeddedImages && me.embeddedImages.length>0) {
+                    payLoad.fields.embeddedImages=angular.copy(me.embeddedImages);
+                }
+                
                 payLoad.taxonomy.navigation = [];
                 payLoad.taxonomy.navigation[0] = config.listPageId ? config.listPageId : $scope.rubedo.current.page.id;
                 RubedoContentsService.createNewContent(payLoad).then(
@@ -188,76 +192,57 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
 
 
 
-angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'RubedoPagesService','$http','$location',function($scope,RubedoMediaService,$element,RubedoPagesService,$http,$location){
+angular.module("rubedoBlocks").lazy.controller("AlbumUploadController",["$scope","RubedoMediaService","$element",'Upload',function($scope,RubedoMediaService,$element,Upload){
     var me=this;
-    me.workspace="";
-    me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
-    $scope.ccCtrl.imagesForAlbum=[];
-        if (me.pageId&&mongoIdRegex.test(me.pageId)) {
-            RubedoPagesService.getPageById(me.pageId).then(function(response){
-                if (response.data.success){
-                    me.pageUrl=response.data.url;
-                    $http.get("/api/v1/pages",{
-                        params:{
-                            site:$location.host(),
-                            route:(me.pageUrl).substr(4)
-                        }
-                    }).then(function(response){if(response.data.success) {me.workspace= response.data.page.workspace; }});
-                };
-            });
-        };
-    
-    me.newFiles=null;
-    var nbOfImages = 0;
+    me.files=[];
+    me.processing=false;
     me.progress = 0;
-    me.uploadNewFiles=function(){
-       me.notification=null;
-       me.progress=1;
-       nbOfImages = me.newFiles.length;
-       if ($scope.fieldInputMode&&me.newFiles){
-           var uploadOptions={
-               typeId:"545cd95245205e91168b45b1",
-                target:me.workspace
-           };
-            angular.forEach(me.newFiles, function(file, index) {
-                var options = angular.copy(uploadOptions);
-                if (me.title && me.title!="") {
-                    options.fields={title : me.title+'_'+index};
-                }
-                else {
-                    options.fields={title : file.name};
-                }
-                RubedoMediaService.uploadMedia(file,options).then(
-                    function(response){
-                        if (response.data.success){
-                            var id=response.data.media.id;
-                            ($scope.ccCtrl.imagesForAlbum).push(id);
-                            me.progress += 100* 1/nbOfImages;
-                        } else {
-                            console.log(response);
-                            me.notification={
-                                type:"error",
-                                text:response.data.message
-                            };
-                        }
-                    },
-                    function(response){
-                        console.log(response);
-                        me.notification={
-                            type:"error",
-                            text:response.data.message
-                        };
-                    }
-                );
-            });
-       }
+    $scope.ccCtrl.imagesForAlbum=[];
+    $scope.$watch('files', function () {
+        $scope.upload($scope.files);
+    });
+    me.uploadedFiles=[];
+    $scope.upload = function(files) {
+        var counter=0;
 
+        //var nbOfImages = files.length;
+        if (files && files.length) {
+            me.processing=true;
+            var nbOfImages = files.length;
+            for (var i = 0; i < nbOfImages; i++) {                
+               
+
+                Upload.upload({
+                    url: '/api/v1/media',
+                    method: 'POST',
+                    params:{
+                        typeId:"5825dfdf245640f44a8b7230",
+                        userWorkspace:true, //on utilise le main workspace de l'utilisateur
+                        fields:{title:files[i].name}
+                    },
+                    file: files[i],
+                    headers: {'Content-Type': undefined}
+                }).then(function (resp) {
+                    me.progress += 100* 1/nbOfImages;
+                    files[counter].success=true;
+                    if (counter==nbOfImages-1) {
+                        me.processing=false;
+                        me.progress=0;
+                    }
+                    counter++;
+                    var id=resp.data.media.id;
+                    me.uploadedFiles.push({title:resp.data.media.title, id:id, size:resp.data.media.fileSize,success:true});
+                    ($scope.ccCtrl.imagesForAlbum).push(id);
+                }, function (resp) {
+                    console.log('Error status: ' + resp.status);
+                    counter++;
+                    if (i==nbOfImages-1) {
+                        me.processing=false;
+                        me.progress=0;
+                    }
+                });              
+                
+            }
+        }
     };
-    if ($scope.fieldInputMode){
-        $element.find('.form-control').on('change', function(){
-            setTimeout(function(){
-                me.uploadNewFiles();
-            }, 200);
-        });
-    }
 }]);

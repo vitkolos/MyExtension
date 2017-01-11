@@ -2,6 +2,17 @@
     <div class="row" ng-hide="siteMapCtrl.getPageDisplay(menu.id)" ng-if="menu.pages">
         <div class="col-md-3 col-xs-6" ng-repeat="menu in menu.pages  track by $index" ng-include="rubedo.themePath+'/templates/blocks/siteMap/list.html'">
         </div>
+        <div class="col-md-3 col-xs-6 addthis_toolbox" ng-if="siteMapCtrl.nbOfNetworks>0">
+            <span class="capital">{{blockConfig.follow_section}}</span>
+            <div class="row">
+                <div ng-repeat = "network in siteMapCtrl.networks track by $index"  ng-if="network.id" class="col-sm-6">
+                    <a class="text-capitalize" ng-class="siteMapCtrl.networkClass(network)" addthis:userid="{{network.id}}" style="margin-bottom:8px">
+                        <img class="hidden"><i ng-class="siteMapCtrl.networkIcon(network.name)"></i> {{network.name}}
+                     </a>
+                </div>
+            </div>
+            
+        </div>
     <!--<span ng-class="{'glyphicon glyphicon-chevron-right': siteMapCtrl.getPageDisplay(menu.id), 'glyphicon glyphicon-chevron-down': !siteMapCtrl.getPageDisplay(menu.id)}"
            ng-click="siteMapCtrl.setPageDisplay(menu.id)" ng-if="menu.pages"></span>
     <a ng-href="{{menu.url}}">{{menu.text}}</a>-->

@@ -6,9 +6,9 @@
     <table class="rwd-table">
         <thead>
             <tr>
-                <th>Date</th>
-                <th>Proposition</th>
-                <th>Lieu</th>
+                <th>{{rubedo.translate("Date", "Date")}} </th>
+                <th>{{rubedo.translate("Proposition", "Proposition")}}</th>
+                <th ng-if="!calendarCtrl.isSpecialCalendar">Lieu</th>
                 <th> </th>
             </tr>
         </thead>
@@ -35,7 +35,6 @@
                 <th class="cal-prop" data-th="Proposition"><a ng-href="{{ content.url }}">
                         {{ content["text"][0] }}</a>
                 </th>
-                <th class="cal-date" data-th="Lieu"><a ng-href="{{ content.url }}">{{content["fields.positionName"][0]}}</a></th>
                 <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.dateDebut/1000) && content.inscriptionState.inscriptionState=='ouverte' "><a class="txt-red" ng-href="{{ content.url }}">{{rubedo.translate("Inscription", "S'inscrire")}} <i class="fa fa-arrow-circle-right"></i></a></th>
                 <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.dateDebut/1000) && content.inscriptionState.inscriptionState=='close' "><a class="txt-marron" ng-href="{{ content.url }}">Inscriptions fermées </a></th>
                 <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.dateDebut/1000) && content.inscriptionState.inscriptionState=='septembre' "><a class="txt-marron" ng-href="{{ content.url }}">Inscriptions en septembre</a></th>

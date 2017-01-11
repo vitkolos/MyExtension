@@ -145,8 +145,9 @@ input:focus{outline: 0; border-color:transparent; box-shadow:0}
 .img_full img{width:100%}
 .img-responsive{height:auto !important}
 .padding-right{padding-right:24px}
-.padding-left{padding-right:24px}
+.padding-left{padding-left:24px}
 .padding-top{padding-top:24px}
+tr th{padding-left:6px;padding-right:6px}
 .padding{padding-top:12px; padding-bottom: 12px}
 .padding-large{padding-top:24px; padding-bottom: 24px}
 .padding-{margin-top:-24px; margin-bottom:-24px} // pour ne pas avoir le padding en hauteur des lignes normales
@@ -316,7 +317,7 @@ nav.navbar-fixed-top li:first-of-type{border-left:none}
  .displayed>.menu .container{opacity:1;margin-top:0;}
   .menu +div{width:100%;top:0;left:0;position:relative;z-index:2;-webkit-transform: translate3d(0, 0, 0);}
 
-   nav.footer a, nav.footer span{font-size: 18px !important; padding: 5px 0; top:5px}
+   nav.footer a, nav.footer span{font-size: 17px !important; padding: 5px 0; top:5px}
    .menuToggle:before{content:"\e113"}
    .collapsed .menuToggle:before{content:"\e114"}
    .menuToggle{float: right; padding-left: 12px; cursor: pointer}
@@ -405,7 +406,7 @@ span#close:after {
 .menuTab{color: white; margin-bottom:24px}
 
 @media screen and (min-width: @min_sm) {
-    .modal[id^=menu] > .modal-dialog{width:80%; margin-left:20%}
+    .modal[id^=menu] > .modal-dialog{width:90%; margin-left:10%}
   }
 
 /*HAMBURGER MENU*/ 
@@ -494,7 +495,19 @@ span#close:after {
   -o-transform: rotate(-45deg);
   transform: rotate(-45deg);
 } 
- 
+ .navbar-default{border: none; background-color: transparent}
+ ///////////////////MENU HORIZONTAL/////////////
+.navbar.navbar-default.horizontal{
+  z-index:10;
+  position:fixed;
+  background-color:rgba(255,255,255,0.5);
+  width:100%;
+  border: none;
+}
+.navbar-default.horizontal .navbar-nav>.active>a, .navbar-default.horizontal .navbar-nav>.active>a:hover, .navbar-default.horizontal .navbar-nav>.active>a:focus{color:white;background-color: inherit}
+ @media screen and (min-width: @min_sm) {
+    .horizontal .navbar-nav>li>a{padding-top:20px; padding-bottom:20px;}
+ }
  ////////////////////////////////////////////////////
     ///////////SECONDARY NAV///////////////////
 ///////////////////////////////////////////////////
@@ -840,7 +853,8 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
    -moz-column-gap:20px;
    -webkit-column-gap:20px;
    -o-column-gap:20px;
-   column-gap:20px;    
+   column-gap:20px;
+   padding: 20px 0;
 }
 @media screen and (max-width:@min_sm){
   .sommaire{
@@ -953,6 +967,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   }
   .socials .addthis_counter {.txt-red; .capital; width: auto; margin-right: 3px;
   }
+  .addthis_toolbox a:hover{text-decoration: none}
 ////////////////////////////////////////////////////
     ///////////CONTENT LIST///////////////////
 ///////////////////////////////////////////////////
@@ -1025,6 +1040,27 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 	-webkit-transform: translate3d(100%, 0, 0);
 	transform: translate3d(100%, 0, 0);
 }
+
+
+///////////////RICH TEXT//////////////
+.accueil{
+    padding:12px; color:white;
+    background-color: @marron; margin-bottom:24px;
+}
+.accueil p,.accueil h1,.accueil h3{color:white;}
+.accueil h3{font-family:'Montserrat';}
+.accueil h3:after{display:block;content:'';width:70%;border-bottom:2px solid white;margin-left:15%; margin-top:6px;}
+.accueil h4{text-transform:uppercase;font-size:1.0em; background-color:white; font-family:'Montserrat'; color: @marron;padding:6px 12px;font-weight:400;margin:12px 6px;}
+.accueil .regions-list li{border-color:white;color:white;}
+.accueil .regions-list li a{color:white;}
+.accueil p a{box-shadow: inset 0 -2px 0 white; transition: background 0.3s ease; color:white;}
+.accueil p a:hover,.accueil p a:active{background-color:white; color: @marron;}
+
+
+
+
+
+
 ////////////////////////////////////////////////////
     ///////////FORMS///////////////////
 ///////////////////////////////////////////////////

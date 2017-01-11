@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoContentTypesService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope","$timeout",
+                                                                          function($scope,RubedoContentsService, RubedoContentTypesService,RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope,$timeout){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -119,25 +119,86 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                        
                     }
                     
-                    /* déterminer l'onglet*/
-                    if (!(me.content.fields.parole ||me.content.fields.share||me.content.fields.intercession )) {
-                        me.tab=1;
-                        me.showInfos = false;
-                    }
+                    if (me.content.type.code=="filmNFG" || me.content.type.code=="download") {
+                        /* déterminer l'onglet*/
+                        if (!(me.content.fields.parole ||me.content.fields.share||me.content.fields.intercession )) {
+                            me.tab=1;
+                            me.showInfos = false;
+                        }
                     
-                    /*si FOI lié, récupérer le contenu*/
-                    var options = {
-                      siteId: "555c4cf445205e71447e68d3",
-                      pageId: "555c4cf445205e71447e68db"
-                    };
-                    if (me.content.fields.linkedFOI) {
-                        RubedoContentsService.getContentById(me.content.fields.linkedFOI, options).then(
-                            function(response){
-                                if(response.data.success){
-                                    me.relatedFOI=response.data.content;
-                                }
-                        });
+                        /*si FOI lié, récupérer le contenu*/
+                        var options = {
+                          siteId: "555c4cf445205e71447e68d3",
+                          pageId: "555c4cf445205e71447e68db"
+                        };
+                        if (me.content.fields.linkedFOI) {
+                            RubedoContentsService.getContentById(me.content.fields.linkedFOI, options).then(
+                                function(response){
+                                    if(response.data.success){
+                                        me.relatedFOI=response.data.content;
+                                    }
+                            });
+                        }
+                        /*récupérer les labels des langues (cf type de contenu  FilmYT)*/
+                       me.subs_trailer = [];
+                       me.film_subs = [];
+                       RubedoContentTypesService.findById("5673e1823bc32589138b4567").then(
+                           function(response){
+                               if(response.data.success){
+                                   me.languages = {};
+                                   angular.forEach(response.data.contentType.fields, function(field){
+                                       me.languages[field.config.name] = field.config.fieldLabel;
+                                   });
+                                   
+                                   /*sous-titres trailer*/
+                                   if(me.content.fields.trailer_subs) {
+                                       angular.forEach(me.content.fields.trailer_subs, function(subtitleId, lang){
+                                           if (subtitleId!="") {
+                                               RubedoMediaService.getMediaById(subtitleId).then(
+                                                   function(response){
+                                                       if (response.data.success){
+                                                           //me.sub_trailer_fr=response.data.media;
+                                                           var sub = {file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"};
+                                                           if (me.lang ==lang) {
+                                                               sub["default"]=true;
+                                                           }
+                                                           me.subs_trailer.push(sub);
+                                                       }
+                                                   }
+                                               );
+                                           }
+                                           
+                                       });
+                                           
+                                   }
+                                   /*sous-titres film*/
+                                   if(me.content.fields.film_subs) {
+                                       angular.forEach(me.content.fields.film_subs, function(subtitleId, lang){
+                                           if (subtitleId!="") {
+                                               RubedoMediaService.getMediaById(subtitleId).then(
+                                                   function(response){
+                                                       if (response.data.success){
+                                                           var sub = {file: "/file?file-id="+response.data.media.originalFileId, label:me.languages[lang],kind:"captions"};
+                                                           if (me.lang ==lang) {
+                                                               sub["default"]=true;
+                                                           }
+                                                           me.film_subs.push(sub);
+                                                       }
+                                                   }
+                                               );
+                                           }
+                                           
+                                       });
+                                           
+                                   } 
+                               }
+                           }
+                       );
                     }
+                     
+                     
+                     
+                    
                     
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     $scope.fieldLanguage=me.content.locale;
@@ -177,7 +238,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     /* déterminer si on a un film ou trailer*/
-                    if ($scope.fieldEntity['filmYT'] && $scope.fieldEntity['filmYT']['fr']) {
+                    if ($scope.fieldEntity['filmYT'] && $scope.fieldEntity['filmYT'][me.lang]) {
                         me.watch = 'film';
                     }
                     else if ($scope.fieldEntity['trailer']) {
@@ -326,13 +387,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
-                    $rootScope.$broadcast("ClickStreamEvent",{csEvent:"contentDetailView",csEventArgs:{
-                        contentId:me.content.id,
-                        siteId:options.pageId,
-                        pageId:options.siteId,
-                        typeId:me.content.typeId,
-                        taxonomyTerms:allContentTerms
-                    }});
+                    if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
+                        $rootScope.$broadcast("ClickStreamEvent",{csEvent:me.content.clickStreamEvent});
+                    }
                 }
             }
         );
@@ -437,6 +494,79 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
+    
+    
+    
+    me.generatePdf = function(){
+
+        var title = me.content.text +".pdf";
+        kendo.pdf.defineFont({
+            "Roboto"             : "theme/netforgod/fonts/Roboto-Regular.ttf", // this is a URL
+            "Roboto|Italic"     : "theme/netforgod/fonts/Roboto-Italic.ttf",
+            "Roboto Slab|Bold" : "theme/netforgod/fonts/RobotoSlab-Bold.ttf",
+            "Roboto Slab"   : "theme/netforgod/fonts/RobotoSlab-Regular.ttf"
+        })
+        $timeout(function(){
+                        
+            kendo.drawing.drawDOM(angular.element(".printZone"))
+                .then(function(group) {
+                    // Chaining the promise via then
+                    group.options.set("pdf", {
+                        margin: {
+                            left   : "20mm",
+                            top    : "40mm",
+                            right  : "20mm",
+                            bottom : "40mm"
+                        }
+                    });
+                    kendo.drawing.pdf.saveAs(group,title);
+                });/*
+                                kendo.drawing.pdf.toBlob(group, function(blob){
+                                    var file = new File([blob], me.billTitle+".pdf", {type: "application/pdf", lastModified: Date.now()});
+                                    // you can now upload it to a server
+                                    // this form simulates an <input type="file" name="pdfFile" />
+                                    var uploadOptions = {
+                                        typeId:"5811cc252456404b018bc74c",
+                                        target:"5693b19bc445ecba018b4cb7",
+                                        fields:{title:me.billTitle+".pdf"}
+                                    }
+                                    var form = new FormData();
+                                    form.append("file", file);
+
+                                    $http.post("/api/v1/media", form, {
+                                        transformRequest: angular.identity,
+                                        params:uploadOptions,
+                                        headers: {'Content-Type': undefined}
+                                    }).then(function(response){
+                                        me.creatingBill = false;
+                                        me.order.billDocument = response.data.media.id;
+                                        RubedoMediaService.getMediaById(me.order.billDocument,{}).then(
+                                            function(mediaResponse){
+                                                if (mediaResponse.data.success){
+                                                    me.billDocumentUrl=mediaResponse.data.media.url;
+                                                    RubedoOrdersService.updateOrder(me.order).then(
+                                                        function(response){
+                                                            if (response.data.success){
+                                                                console.log(response.data.order);
+                                                                }
+                                                        });
+                                                }
+                                            }
+                                        );
+                                    });
+                                });
+                            })*/
+                            
+                       
+
+                    },500);
+
+            
+        
+
+        
+    }
+
 }]);
 
 

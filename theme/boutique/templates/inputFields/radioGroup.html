@@ -1,0 +1,11 @@
+<div class="form-group" ng-controller="RadioGroupController as radioGroupCtrl">
+    <label for="{{fieldIdPrefix+'_'+field.config.name}}" class="control-label">{{field.config.fieldLabel}} <span ng-if="!field.config.allowBlank&&!field.config.fieldLabel.includes('*')">*</span></label>
+    <div id="{{fieldIdPrefix+'_'+field.config.name}}">
+        <div ng-repeat="item in field.config.items track by $index" class="col-sm-6">
+            <input ng-required="!field.config.allowBlank" type="radio" name="{{field.config.name}}" id="{{field.config.name}}_{{$index}}" ng-value="item.inputValue" ng-model="fieldEntity[field.config.name][field.config.name]"> 
+            <label for="{{field.config.name}}_{{$index}}">{{item.boxLabel}} </label>
+        </div>
+        
+        <span ng-if="field.config.tooltip" class="help-block">{{field.config.tooltip}}</span>
+    </div>
+</div>

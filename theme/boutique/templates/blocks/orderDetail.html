@@ -1,3 +1,7 @@
+
+    <style>
+        .isBill b, .isBill strong, .isBill th{font-weight: normal !important}
+    </style>
 <div ng-controller="OrderDetailController as orderDetailCtrl">
     <h2 class="text-center">{{ rubedo.translate('Blocks.OrderDetails.OrderReview')}}</h2>
     <div class="row">
@@ -5,18 +9,33 @@
             <h3>{{ rubedo.translate('Blocks.OrderDetails.OrderNumber','',['%order%'],[orderDetailCtrl.order.orderNumber])}}</h3>
             <h4>{{rubedo.translate('Blocks.OrderDetails.Payment')}}</h4>
             <ul class="list-unstyled">
-                <li><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Means') }}</strong> : {{ orderDetailCtrl.order.paymentMeans }}</li>
-                <li><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> : {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
+                <li><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Means') }}</strong> : {{rubedo.translate('Payment.Means.'+orderDetailCtrl.order.paymentMeans,orderDetailCtrl.order.paymentMeans)}}</li>
+                <li ng-if="!orderDetailCtrl.isAdmin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> : {{ rubedo.translate('Blocks.UserOrders.Status.'+orderDetailCtrl.order.status,orderDetailCtrl.order.status) }}</li>
+                <li ng-if="orderDetailCtrl.isAdmin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.Status') }}</strong> :
+                    <select ng-model="orderDetailCtrl.order.status">
+                        <option ng-repeat="(key, value) in orderDetailCtrl.status" value="{{value}}" ng-selected="orderDetailCtrl.order.status === value">
+                            {{rubedo.translate('Blocks.UserOrders.Status.'+value,value)}}
+                        </option>
+                        
+                    </select>
+                    <button class="btn btn-default" ng-click="orderDetailCtrl.updateStatus()">
+                        Modifier
+                    </button>
+                    
+                
+                </li>
+                
                 <li ng-if="orderDetailCtrl.order.billingAddress.vatEin"><strong>{{ rubedo.translate('Blocks.OrderDetails.Payment.VatEin') }}</strong> : {{ orderDetailCtrl.order.billingAddress.vatEin }}</li>
+
             </ul>
-            <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
-            <button ng-if="orderDetailCtrl.showPaymentButton" class="btn btn-primary" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Pay order</button>
+            <rubedo-custom-template ng-if="orderDetailCtrl.paymentRichText && !orderDetailCtrl.isAdmin" template="{{orderDetailCtrl.paymentRichText}}"></rubedo-custom-template>
+            <button ng-if="orderDetailCtrl.showPaymentButton && !orderDetailCtrl.isAdmin" class="btn btn-default" style="padding:12px 24px" ng-click="orderDetailCtrl.handlePaymentButtonClick()">Payer la commande</button>
         </div>
         <div class="col-md-4 text-right">
             <time>{{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</time>
         </div>
         <div class="col-md-12" style="display: flex;justify-content: center;">
-            <form ng-if="orderDetailCtrl.showPaymentForm" id="payment" name="payment"  method="POST" action="https://preprod-tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
+            <form ng-if="orderDetailCtrl.showPaymentForm" id="payment" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi">
                 <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
                 <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
                 <input type="hidden" name="PBX_SITE" value="{{parametres.payboxSite}}">
@@ -34,100 +53,144 @@
                 <input type="hidden" name="PBX_ANNULE" value="{{parametres.urlRetourEchec}}">
                 <input type="hidden" name="PBX_REPONDRE_A" value="{{parametres.urlCallback}}">
                 <input type="hidden" name="PBX_HMAC" value="{{parametres.empreinteHasheeHex}}">
-                <input type="submit" class="btn-default" style="    padding: 10px 20px;    font-size: x-large;    margin-bottom: 30px;" value="Payer">
+                <input type="submit" class="btn-default" style="    padding: 12px 24px;    font-size: x-large;    margin-bottom: 30px;" value="Payer la commande">
+            </form>
+            <form ng-if="orderDetailCtrl.showPaypalForm" id="paypalPayment" name="paypalPayment"  method="POST" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
+                <!--<input type="hidden" name="cmd" value="_cart">-->
+                        <input type="hidden" name="{{name}}" value="{{value}}" ng-repeat="(name, value) in parametres">
+                        
+                <input type="submit" class="btn-default" style="padding: 12px 24px; margin-bottom: 30px;" value="Payer la commande">
             </form>
 
         </div>
         <div ng-if="orderDetailCtrl.billDocumentUrl" class="col-md-4 text-right">
-            <strong><a ng-href="{{orderDetailCtrl.billDocumentUrl}}" target="_blank">
-                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>
-                 {{ rubedo.translate('Blocks.OrderDetails.OrderBill')}}
-            </a></strong>
+            <a ng-href="{{orderDetailCtrl.billDocumentUrl}}" target="_blank">
+                <button class="btn btn-default" style="padding:12px;">
+                    <span class="glyphicon glyphicon-save" aria-hidden="true"></span>{{ rubedo.translate('Blocks.OrderDetails.OrderBill')}}
+                </button>
+            </a>
+
         </div>
 
-    </div>
-    <div class="row">
+    </div>   
+    
+    <div class="row" ng-if="orderDetailCtrl.isAdmin">
         <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h4>{{rubedo.translate('Blocks.OrderDetails.BillingAddress')}}</h4>
+                    <h4><i class="fa fa-user-plus" aria-hidden="true"></i> {{rubedo.translate('Blocks.Checkout.PersonalDetails')}}</h4>
                 </div>
                 <div class="panel-body">
-                    <address>
-                        <strong>{{ orderDetailCtrl.order.billingAddress.company }}</strong><br />
-                        <strong>{{ orderDetailCtrl.order.billingAddress.attention }}</strong><br />
-                        {{ orderDetailCtrl.order.billingAddress.address1 }}<br />
-                        {{ orderDetailCtrl.order.billingAddress.address2 }}<br />
-                        {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
-                        {{ orderDetailCtrl.order.billingAddress.regionState }} {{ orderDetailCtrl.order.billingAddress.country }}<br />
-                    </address>
+                    <p><strong>{{orderDetailCtrl.order.userName}}</strong></p>
+                    <p><i class="fa fa-envelope-o" aria-hidden="true"></i> {{orderDetailCtrl.order.userEmail}}</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>{{rubedo.translate('Blocks.OrderDetails.ShippingAddress')}}</h4>
-                </div>
-                <div class="panel-body">
-                    <address>
-                        <strong>{{ orderDetailCtrl.order.shippingAddress.company }}</strong><br />
-                        <strong>{{ orderDetailCtrl.order.shippingAddress.attention }}</strong><br />
-                        {{ orderDetailCtrl.order.shippingAddress.address1 }}<br />
-                        {{ orderDetailCtrl.order.shippingAddress.address2 }}<br />
-                        {{ orderDetailCtrl.order.shippingAddress.postCode }} {{ orderDetailCtrl.order.shippingAddress.city }}<br />
-                        {{ orderDetailCtrl.order.shippingAddress.regionState }} {{ orderDetailCtrl.order.shippingAddress.country }}<br />
-                    </address>
-                </div>
-            </div>
+        <div class="col-md-6 text-center">
+                        <button ng-if="!orderDetailCtrl.billDocumentUrl && !orderDetailCtrl.creatingBill" class="btn btn-default" ng-click="orderDetailCtrl.generateBill()">Créer une facture</button>
+                        <img src="/theme/cte/img/loader.gif" ng-if="orderDetailCtrl.creatingBill">
         </div>
     </div>
-    <br />
-    <div class="row">
-        <div class="col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h4>{{ rubedo.translate('Blocks.OrderDetails.OrderDetails') }}</h4>
-                </div>
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Name') }}</th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Cost')}}</th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Amount') }}</th>
-                            <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Price') }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-repeat="product in orderDetailCtrl.order.detailedCart.cart track by $index">
-                            <td>
-                                <img class="img-responsive" ng-if="product.image"
-                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(product.image,{size:'thumbnail'}) }}"
-                                     alt="{{ product.title }}"
-                                        />
-                            </td>
-                            <td>
-                                {{ product.title }}<br />
-                                <small>{{ product.subtitle }}</small>
-                            </td>
-                            <td>{{ product.unitPrice | number : 2 }} €</td>
-                            <td>{{ product.amount }}</td>
-                            <td>{{ product.price | number : 2 }} €</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="panel-body text-right">
-                    <h5><strong>{{ rubedo.translate('Blocks.Checkout.CheckoutSummary.SubTotal')}} :</strong> {{ orderDetailCtrl.order.detailedCart.totalPrice |number : 2 }} €</h5>
-                    <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }} </strong> <small>{{ orderDetailCtrl.order.shipper.hRDelay }} {{ orderDetailCtrl.order.shipper.hRUnit }}</small> : {{ orderDetailCtrl.order.shipper.rate|number : 2 }} €</h5>
-                    <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingTax')}} :</strong> {{ orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100 |number : 2 }} €</h5>
-                    <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ProductsTaxes') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice -  orderDetailCtrl.order.detailedCart.totalPrice)|number : 2 }} €</h5>
-                    <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.TotalPrice') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice + orderDetailCtrl.order.shipper.rate+orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100)|number : 2}} €</h5>
+    <section id="orderForm" ng-class="{'isBill':orderDetailCtrl.creatingBill}">
+        <div class="row">
+            <div class="col-md-12" ng-if="orderDetailCtrl.creatingBill" id="bill-header">
+                <img width="300" src="/dam?media-id=56c49b78c445ecc9008b6574&" class="pull-left">
+                    <h4 class="pull-right">Facture n° {{orderDetailCtrl.billTitle}} du {{orderDetailCtrl.order.createTime*1000 | date: "shortDate"  }}</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>{{rubedo.translate('Blocks.OrderDetails.BillingAddress')}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <address>
+                            <strong>{{ orderDetailCtrl.order.billingAddress.company }}</strong><br />
+                            <span ng-if=" orderDetailCtrl.order.billingAddress.surname">{{  orderDetailCtrl.order.billingAddress.surname }} </span><span ng-if="orderDetailCtrl.order.billingAddress.name">{{ orderDetailCtrl.order.billingAddress.name }}<br /></span>
+                            {{ orderDetailCtrl.order.billingAddress.address1 }}<br />
+                            {{ orderDetailCtrl.order.billingAddress.address2 }}<br />
+                            {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
+                            {{ orderDetailCtrl.order.billingAddress.regionState }} {{ orderDetailCtrl.order.billingAddress.country }}<br />
+                        </address>
+                        <p ng-if="orderDetailCtrl.isAdmin">{{ rubedo.translate('Blocks.OrderDetails.Payment.Means') }} : {{ orderDetailCtrl.order.paymentMeans }}</p>
+                    </div>
                 </div>
             </div>
-
-            
-
+            <div class="col-sm-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>{{rubedo.translate('Blocks.OrderDetails.ShippingAddress')}}</h4>
+                    </div>
+                    <div class="panel-body">
+                        <address>
+                            <strong>{{ orderDetailCtrl.order.shippingAddress.company }}</strong><br />
+                            <span ng-if=" orderDetailCtrl.order.shippingAddress.surname">{{  orderDetailCtrl.order.shippingAddress.surname }} </span><span ng-if="orderDetailCtrl.order.shippingAddress.name">{{ orderDetailCtrl.order.shippingAddress.name }}<br /></span>
+                            {{ orderDetailCtrl.order.shippingAddress.address1 }}<br />
+                            {{ orderDetailCtrl.order.shippingAddress.address2 }}<br />
+                            {{ orderDetailCtrl.order.shippingAddress.postCode }} {{ orderDetailCtrl.order.shippingAddress.city }}<br />
+                            {{ orderDetailCtrl.order.shippingAddress.regionState }} {{ orderDetailCtrl.order.shippingAddress.country }}<br />
+                        </address>
+                        <p ng-if="orderDetailCtrl.isAdmin">{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+        <br />
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4>{{ rubedo.translate('Blocks.OrderDetails.OrderDetails') }}</h4>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Name') }}</th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Amount') }}</th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Cost')}}</th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Price') }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="product in orderDetailCtrl.order.detailedCart.cart track by $index">
+                                <td>
+                                    <img class="img-responsive" ng-if="product.image"
+                                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(product.image,{size:'thumbnail'}) }}"
+                                         alt="{{ product.title }}"
+                                            />
+                                </td>
+                                <td>
+                                    {{ product.title }}<br />
+                                    <small>{{ product.subtitle }}</small>
+                                </td>
+                                <td>{{ product.amount }}</td>
+                                <td>{{ product.unitPrice | number : 2 }} €</td>
+                                <td>{{ product.price | number : 2 }} €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="panel-body text-right">
+                        <h5><strong>{{ rubedo.translate('Blocks.Checkout.CheckoutSummary.SubTotal')}} :</strong> {{ orderDetailCtrl.order.detailedCart.totalPrice |number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }} </strong> <small>{{ orderDetailCtrl.order.shipper.hRDelay }} {{ orderDetailCtrl.order.shipper.hRUnit }}</small> : {{ orderDetailCtrl.order.shipper.rate|number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingTax')}} :</strong> {{ orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100 |number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ProductsTaxes') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice -  orderDetailCtrl.order.detailedCart.totalPrice)|number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.TotalPrice') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice + orderDetailCtrl.order.shipper.rate+orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100)|number : 2}} €</h5>
+                    </div>
+                </div>
+    
+                
+    
+            </div>
+        </div>
+        <div class="row" style="padding-top:24px;border-top:1px solid grey" ng-if="orderDetailCtrl.isAdmin && orderDetailCtrl.creatingBill">
+            <div class="col-sm-12 text-center">
+                <span> Une version électronique est conservée sur votre compte. Pour y accéder, identifiez-vous sur le site <a href="http://www.laboutique-chemin-neuf.com">La Boutique du Chemin Neuf</a></span>
+                <span>LA BOUTIQUE DU CHEMIN NEUF - Siège social 8 rue Henri IV 69002 LYON France<br/>
+            Téléphone : 04 78 92 71 37</span>
+            </div>
+        </div>
+       
+    </section>
 </div>

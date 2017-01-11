@@ -13,7 +13,7 @@ blocksConfig.navigation = {
 };
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
-            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
+            "externalDependencies":["//s7.addthis.com/js/300/addthis_widget.js","http://kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js","http://kendo.cdn.telerik.com/2015.2.805/js/pako_deflate.min.js"],
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 blocksConfig.carrousel2={
@@ -28,8 +28,26 @@ blocksConfig.footer_en={
 };
 
 angular.module('rubedoBlocks').filter('firstUpper', function() {
-    return function(input, scope) {
+    return function(input, lang) {
         return input ? input.substring(0,1).toUpperCase()+input.substring(1).toLowerCase() : "";
+    }
+});
+
+angular.module('rubedoBlocks').filter('nfgDate', function($filter) {
+    return function(input, format, locale) {
+           var date = "";
+           switch(locale){
+                      case 'pl':
+                                 if(format=="MMMM yyyy") {
+                                            var months = ["styczeń","luty","marzec","	kwiecień","maj","czerwiec","lipiec","	sierpień","wrzesień","październik","listopad","grudzień"];
+                                            var formattedDate =  new Date(input);
+                                            date = months[formattedDate.getMonth()] + " " + formattedDate.getFullYear();
+                                 }
+                                 else date = $filter('date')(input, format);
+                                 break;
+                      default : date = $filter('date')(input, format);
+           }
+        return date;
     }
 });
 
@@ -38,6 +56,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
+           var subTitles=attrs.sousTitre;
            var delay = 0;
            filmInfos = filmUrl.split("?t=");
            if (filmInfos.length>1) {
@@ -61,7 +80,8 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                  file: '/theme/netforgod/img/logo.png',
                                  link: 'http://test.netforgod.org/'
                       },
-                      displaytitle:true
+                      displaytitle:true,
+                      tracks:JSON.parse(subTitles)
            };
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
@@ -69,7 +89,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
             jwplayer(id).on('firstFrame', function() { 
                       jwplayer().seek(delay);
            });
-
+           /*watch for film change*/
             scope.$watch(function () {
                     return attrs.videoUrl;
                 }, function (newValue, oldValue) {
@@ -89,13 +109,43 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             modestbranding:0,
                                             showinfo:1,
                                             width:"100%",
-                                            aspectratio:"16:9"
+                                            aspectratio:"16:9",
+                                            logo: {
+                                                       file: '/theme/netforgod/img/logo.png',
+                                                       link: 'http://test.netforgod.org/'
+                                            },
+                                            displaytitle:true,
+                                            tracks:JSON.parse(attrs.sousTitre) 
                                  }]);
                                  jwplayer(id).on('firstFrame', function() { 
 			                 jwplayer().seek(delay);
 			          });
                       }
                 });
+            /*watch for captions update*/
+            scope.$watch(function () {
+                    return attrs.sousTitre;
+                }, function (newValue, oldValue) {
+                      options ={
+                                            file: filmUrl,
+                                            tracks:JSON.parse(newValue),
+                                           ga: {label:attrs.title},
+                                            modestbranding:0,
+                                            showinfo:1,
+                                            width:"100%",
+                                            aspectratio:"16:9",
+                                            logo: {
+                                                       file: '/theme/netforgod/img/logo.png',
+                                                       link: 'http://test.netforgod.org/'
+                                            },
+                                            displaytitle:true                                 
+                      };
+                       jwplayer(id).load([options]);
+
+                });            
+
+
+
         }
     };
 }]);
@@ -140,6 +190,7 @@ angular.module('rubedoBlocks').directive('ngCopyable', function() {
 	};
         return serviceInstance;
     }]);  
+
 angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$http', function($timeout,$location,$http) {
   return {
     restrict : 'A',
@@ -153,13 +204,30 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                       addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
                                  url: contentUrl,
                                  title : attrs.title,
-                                 description : ''        
+                                 description : attrs.summary     
                       });
+		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
+                        $window.addthis.layers.refresh();
+                    }*/
+		$scope.nbOfLikes=0;
+		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.share.share_count;
+		},
+		function errorCallback(response) {
+		});
+		$http({method: 'GET',url: 'http://cdn.api.twitter.com/1/urls/count.json?url='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.count;
+		},
+		function errorCallback(response) {
+		});		
 
 		});
 	    }
 	};
 }]);
+
 
 
 angular.module('rubedoBlocks').directive('videoBg', ['$window', '$q', '$timeout', function($window, $q, $timeout){

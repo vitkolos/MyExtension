@@ -2,12 +2,12 @@
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <style>
-.modal#rubedoGalleryDetailModal {
+.modal.rubedoGalleryDetailModal {
   text-align: center;
   padding: 0!important;
 }
 
-.modal#rubedoGalleryDetailModal:before {
+.modal.rubedoGalleryDetailModal:before {
   content: '';
   display: inline-block;
   height: 100%;
@@ -15,13 +15,13 @@
   margin-right: -4px; /* Adjusts for spacing */
 }
 
-.modal#rubedoGalleryDetailModal .modal-dialog {
+.modal.rubedoGalleryDetailModal .modal-dialog {
   display: inline-block;
   text-align: left;
   vertical-align: middle;
 }
-.modal#rubedoGalleryDetailModal .prev,
-.modal#rubedoGalleryDetailModal .next {
+.modal.rubedoGalleryDetailModal .prev,
+.modal.rubedoGalleryDetailModal .next {
   position: absolute;
   top: 50%;
   left: 15px;
@@ -48,27 +48,27 @@
   opacity: 0.5;
   cursor: pointer;
 }
-.modal#rubedoGalleryDetailModal  .next {
+.modal.rubedoGalleryDetailModal  .next {
   left: auto;
   right: 15px;
 }
 
-.modal#rubedoGalleryDetailModal .prev:hover,
-.modal#rubedoGalleryDetailModal .next:hover,
-.modal#rubedoGalleryDetailModal .close{padding: 20px; color:white; font-size: 50px; font-weight: 400;}
-.modal#rubedoGalleryDetailModal .close:hover{opacity: 1; color:white}
+.modal.rubedoGalleryDetailModal .prev:hover,
+.modal.rubedoGalleryDetailModal .next:hover,
+.modal.rubedoGalleryDetailModal .close{padding: 20px; color:white; font-size: 50px; font-weight: 400;}
+.modal.rubedoGalleryDetailModal .close:hover{opacity: 1; color:white}
 
-.modal#rubedoGalleryDetailModal .modal-body {
+.modal.rubedoGalleryDetailModal .modal-body {
 	position: relative;
 	text-align: center;
 	padding: 0 0 100vh 0;
 	overflow: hidden;
 	cursor: pointer;
 }
-.modal#rubedoGalleryDetailModal .modal-footer {
+.modal.rubedoGalleryDetailModal .modal-footer {
 	margin: 0;
 }
-.modal#rubedoGalleryDetailModal .modal-body img {
+.modal.rubedoGalleryDetailModal .modal-body img {
 	max-width: 100%;
 	max-height: 100%;
 	margin: auto;
@@ -78,14 +78,14 @@
 	bottom: 0;
 	left: 0;
 }
-.modal#rubedoGalleryDetailModal .modal-dialog{min-width:300px}
-.modal#rubedoGalleryDetailModal{background-color:black}
+.modal.rubedoGalleryDetailModal .modal-dialog{min-width:300px}
+.modal.rubedoGalleryDetailModal{background-color:black}
 @media screen and (min-width: 768px) {
-  .modal#rubedoGalleryDetailModal .modal-dialog {
+  .modal.rubedoGalleryDetailModal .modal-dialog {
     max-width: 1200px;
   }
 }
-.modal.in#rubedoGalleryDetailModal{z-index:1056}
+.modal.in.rubedoGalleryDetailModal{z-index:1056}
 .grid{max-width:1200px; margin: 0 auto; display: block}
 /* fluid 5 columns */
 .masonry-brick { width: 100%;margin-bottom: 5px; cursor: pointer}
@@ -181,31 +181,31 @@
 </div>
 
 
-
-
-<div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
-	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.fields.images"  >
-	    <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900px',height:'600px',mode:'boxed'})}}" style="width:100%"/>
-	    <div class="img-description hidden-xs" data-toggle="modal" data-target="#rubedoGalleryDetailModal" ng-click="contentDetailCtrl.loadModal($index)">
+<!---ANCIENS ALBUMS (non embedded images)-->
+<div ng-if="contentDetailCtrl.content.fields.images && contentDetailCtrl.content.fields.images.length>0">
+  <div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
+	<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.fields.images track by $index"  >
+	    <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900',height:'600',mode:'boxed'})}}" style="width:100%"/>
+	    <div class="img-description hidden-xs" data-toggle="modal" data-target="#rubedoGalleryDetailModal{{contentDetailCtrl.content.id}}" ng-click="contentDetailCtrl.loadModal($index,false)">
 		<i class="fa fa-expand"></i>
 	    </div>
 	</div>
 	<div class="gutter-sizer"></div>
 </div>
-
-
-
-
-<!-- The modal dialog, which will be used to wrap the lightbox content -->
-<div class="modal fade hidden-xs" id="rubedoGalleryDetailModal" tabindex="1" ng-keydown="contentDetailCtrl.changeImageKey($event)">
-    <a class="prev" ng-click="contentDetailCtrl.changeImage('left')" ng-if="contentDetailCtrl.currentImage>0">‹</a>
-    <a class="next" ng-click="contentDetailCtrl.changeImage('right')" ng-if="contentDetailCtrl.currentImage<(contentDetailCtrl.content.fields.images).length-1">›</a>
+  <!-- The modal dialog, which will be used to wrap the lightbox content -->
+  <div class="modal fade hidden-xs rubedoGalleryDetailModal" id="rubedoGalleryDetailModal{{contentDetailCtrl.content.id}}" tabindex="1" ng-keydown="contentDetailCtrl.changeImageKey($event,false)">
+    <a class="prev" ng-click="contentDetailCtrl.changeImage('left',false)" ng-if="contentDetailCtrl.currentIndex>0">‹</a>
+    <a class="next" ng-click="contentDetailCtrl.changeImage('right',false)" ng-if="contentDetailCtrl.currentIndex<(contentDetailCtrl.content.fields.images).length-1">›</a>
     <a class="close" data-dismiss="modal">×</a>
     <div class="modal-dialog modal-lg">
 	    <div class="modal-body">
-		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage,{width:'900px',height:'600px',mode:'boxed'})}}"></div>
-
+		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage,{width:'900',height:'600',mode:'boxed'})}}">
+	    </div>
+  
     </div>
+  </div>
 </div>
+
+
 
 

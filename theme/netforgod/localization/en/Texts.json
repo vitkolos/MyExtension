@@ -1,4 +1,8 @@
 {
+    "Block.Page": "Page",
+    "Block.Futurs": "Upcoming films",
+    "Block.Saison": "Season",
+    "Block.VoirPlus" : "See also",
     "NFG.AcheterDVD": "Buy the video",
     "NFG.Watch":"Watch",
     "NFG.Like":"If you like this film",
@@ -28,5 +32,9 @@
     "NFG.MoreFilms":"More than 100 films",
     "NFG.Copy":"Copy link",
     "NFG.FilmInfo":"Film Info",
-    "NFG.Comments":"Comments"
+    "NFG.Comments":"Comments",
+    "NFG.Links":"Download links",
+    "NFG.Choose":"Choose language",
+    "NFG.Poster":"Poster format",
+    "NFG.Texts":"Texts"
 }

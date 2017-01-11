@@ -245,8 +245,10 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
             }
         }
         $obj = $this->_filterInputData($obj);
+        
         if ($this->_isValidInput) {
             $returnArray = parent::create($obj, $options, $live, $ignoreIndex);
+            
         } else {
             $returnArray = array(
                 'success' => false,

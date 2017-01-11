@@ -732,12 +732,12 @@
         me.productProperties=$scope.productProperties;
         me.manageStock=$scope.manageStock;
         me.productId=$scope.productId;
-        me.excludedVariationFields=["id","price","sku","stock","specialOffers"];
+        me.excludedVariationFields=["id","price","sku","stock","specialOffers","weight"];
         me.variationFields=[];
         me.selectionValues={};
         me.possibleSelectValues={};
         angular.forEach(me.productProperties.variations[0],function(value,key){
-            if (me.excludedVariationFields.indexOf(key)==-1){
+            if (me.excludedVariationFields.indexOf(key)==-1 && value != " " && value != "  "){
                 me.variationFields.push(key);
             }
         });
@@ -824,6 +824,7 @@
                 return($scope.rubedo.translate("Fields.User.Label.InStock", "In stock") + " : " + $scope.rubedo.translate("Fields.User.Label.SentBefore", "sent before") + " " + me.productProperties.preparationDelay + " " + complement);
             }
         };
+        me.isProductAdded = false;
         me.addToCart=function(){
             var options={
                 productId:me.productId,
@@ -833,7 +834,8 @@
             RubedoShoppingCartService.addToCart(options).then(
                 function(response){
                     $rootScope.$broadcast("shoppingCartUpdated",{emitter:"productBox"});
-                    window.location.href= $scope.rubedo.current.site.cartDetailPageUrl;
+                    //window.location.href= $scope.rubedo.current.site.cartDetailPageUrl;
+                    me.isProductAdded = true;
                     
                 }
             );

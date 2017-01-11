@@ -182,7 +182,7 @@
         var CKEMode=$scope.field.config.CKETBConfig;
         var myTBConfig=[
             { name: 'document', groups: [ 'mode', 'document', 'doctools' ], items: [ 'Source', '-', 'NewPage', 'Preview', 'Print', '-', 'Templates' ] },
-            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', '-', 'Undo', 'Redo'  ] },
+            { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: [ 'Cut', 'Copy', 'Paste', 'PasteText', '-', 'Undo', 'Redo',"Source" ] },
             { name: 'editing', groups: [ 'find', 'selection', 'spellchecker' ], items: [ 'Find', 'Replace', '-', 'SelectAll', '-', 'Scayt' ] },
             { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat' ] },
             '/',
@@ -207,10 +207,9 @@
             ];
         } else if (CKEMode=="Basic"){
             myTBConfig=[
-            { name: 'clipboard', groups: [ 'undo' ], items: [ 'Undo', 'Redo' ] },
-           { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic','-', 'RemoveFormat' ] },
             { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo','Source'  ] },
-           { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote']},
+           { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic','-', 'RemoveFormat' ] },
+           { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote', '-', 'JustifyCenter']},
             { name: 'styles', items: [ 'Format' ] },
              { name: 'colors', items: [ 'TextColor','-', 'Scayt' ] },
             { name: 'insert', items: [ 'Image', 'Youtube', '-', 'HorizontalRule'] },
@@ -686,14 +685,7 @@
             me.notification=null;
             me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
            if ($scope.fieldInputMode&&file&&$scope.field.config.allowedDAMTypes){
-               /*
-               var uploadOptions={
-                   typeId:$scope.field.config.allowedDAMTypes,
-                   target:me.workspace,
-                   fields:{
-                       title:file.name
-                   }
-               };*/
+
                /*pour images, redimensionner*/
                if ($scope.field.config.allowedDAMTypes=="545cd95245205e91168b45b1") {
                     Upload.upload({

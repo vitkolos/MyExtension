@@ -1,0 +1,48 @@
+<style>
+        .drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 400px;
+    height: 150px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px auto;
+}
+</style>
+<div ng-controller="ImageBatchUploadController as imgCtrl" ng-if="rubedo.current.user" class="texte">
+        <form class="row">
+                
+                <div class="col-sm-12" ng-show="files.length">
+                        <div ng-repeat="file in files">
+                                <span>{{file.name}}</span>
+                                (<span ng-switch="file.size > 1024*1024">
+                                    <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                                    <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+                                </span>)
+                                <span class="glyphicon glyphicon-ok txt-vert" ng-if="file.success"></span>
+                        </div>
+                </div>
+                <div class="form-group">
+                        
+                        <div class="progress" ng-show="imgCtrl.progress>0">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{imgCtrl.progress}}"  ng-style="{ width : imgCtrl.progress+'%' }">
+                                        <span class="sr-only">{{imgCtrl.progress}}% Complete </span>
+                                </div>
+                        </div>
+                </div>
+        </form>
+        
+        <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+                ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                accept="image/*" 
+                ngf-pattern="'image/*'"
+                ngf-resize="{width: 1000,height:1000, quality: .7}"
+                ngf-resize-if="$file.size>1024*100"
+                ng-disabled="imgCtrl.processing">
+                <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
+                <img src="/theme/cte/img/loader.gif" ng-if="imgCtrl.processing">
+        </div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+</div>
+
+        

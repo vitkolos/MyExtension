@@ -1,5 +1,5 @@
-<div ng-controller="ProductBoxController as productBoxCtrl" class="panel panel-default">
-    <div class="panel-body">
+<div ng-controller="ProductBoxController as productBoxCtrl" class="panel panel-default product-box">
+    <div class="panel-body text-center">
         <h5 ng-if="productBoxCtrl.hasSpecialOffer"><span class="del">{{productBoxCtrl.oldPrice| number : 2}} €</span></h5>
         <h3 ng-class="{'text-danger':productBoxCtrl.hasSpecialOffer}" >{{productBoxCtrl.currentPrice| number : 2}} €</h3>
         <form ng-if="productBoxCtrl.productProperties.variations.length>1">
@@ -15,9 +15,13 @@
                 </select>
             </div>
         </form>
-        <button class="btn btn-default" ng-disabled="!productBoxCtrl.canOrder()" ng-click="productBoxCtrl.addToCart()">
+        <button class="btn btn-default" ng-disabled="!productBoxCtrl.canOrder()" ng-click="productBoxCtrl.addToCart()" style="padding: 12px 24px" ng-if="!productBoxCtrl.isProductAdded">
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}
         </button>
+        <button class="btn btn-default" style="padding: 12px 24px" ng-if="productBoxCtrl.isProductAdded">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> {{ rubedo.translate('Label.AddedToCart','Ajouté au panier')}}
+        </button>
     </div>
-    <div ng-if="manageStock" class="panel-footer">{{productBoxCtrl.getProductAvailabilityText()}}</div>
+    <!--<div ng-if="manageStock && !productBoxCtrl.productProperties.canOrderNotInStock" class="panel-footer">{{productBoxCtrl.getProductAvailabilityText()}}</div>-->
+    <div ng-if="manageStock && !productBoxCtrl.productProperties.canOrderNotInStock && productBoxCtrl.currentVariation.stock" class="panel-footer">{{ rubedo.translate('Product.Dispo','Nous n'avons plus ce produit en stock. La livraison peut prendre jusqu'à 3 semaines')}}</div>
 </div>

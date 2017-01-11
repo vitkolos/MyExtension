@@ -1,6 +1,6 @@
 {
     "type": "#ext-gen1101#",
-    "description": "#ext-gen1102#",
+    "description": "<p>Le bloc 'Détail de Contenu' permet d’afficher les champs d’un contenu particulier.<\/p><p>Utilisé comme 1er bloc de la 2e ligne, il permet d'afficher seulement le contenu dans la page<\/p><p>Les options permettent aussi un affichage sans bandeau et titre<\/p>",
     "configBasique": {
         "title": "#ext-gen1101#",
         "bType": "contentDetail",

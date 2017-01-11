@@ -13,7 +13,7 @@
 			<div class="col-sm-8">
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" class="film-title"></rubedo-field><!--Texte-->
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('subTitle')}}" class="uppercase"></rubedo-field><!--sous-titre-->
-				<p style="font-size: 0.8em"><span class="icon-issuedate"></span>{{contentDetailCtrl.content.fields.date*1000 | date :'MMMM yyyy' |uppercase}}</p>
+				<p style="font-size: 0.8em"><span class="icon-issuedate"></span>{{contentDetailCtrl.content.fields.date*1000 | nfgDate :'MMMM yyyy':rubedo.current.page.locale |uppercase}}</p>
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ></rubedo-field><!--description-->
 				<p ng-if="contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']"><span class="icon-subjecttag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54cb636245205e0110db058f']" >{{contentDetailCtrl.getTermInTaxo('54cb636245205e0110db058f',tagId)}}</span></p>
 				<p ng-if="contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']"><span class="icon-geotag"></span><span class="tags" ng-repeat="tagId in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']" >{{contentDetailCtrl.getTermInTaxo('54d6299445205e7877a6b28e',tagId)}}</span></p>
@@ -41,13 +41,13 @@
 								  <p ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
 								</div>
 							</div>
-							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" title="{{contentDetailCtrl.content.text + '_'+contentDetailCtrl.lang}}"></jwplayer>
+							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" title="{{contentDetailCtrl.content.text + '_'+contentDetailCtrl.lang}}"  sous-titre="{{contentDetailCtrl.film_subs}}"></jwplayer>
 						</div>
 					</div>
 		
 				</div>
 				<div ng-if="contentDetailCtrl.watch =='trailer'">
-					<jwplayer video-url="{{fieldEntity['trailer'].url}}"  title="{{contentDetailCtrl.content.text + '_trailer'}}"></jwplayer>
+					<jwplayer video-url="{{fieldEntity['trailer'].url}}"  title="{{contentDetailCtrl.content.text + '_trailer'}}" sous-titre="{{contentDetailCtrl.subs_trailer}}"></jwplayer>
 				</div>
 				<div class="film-socials">
 					<div class="col-sm-3 col-xs-6 col-xxs-12 text-left">
@@ -125,8 +125,14 @@
 		</div>
 	</div>
 	<div class="row" ng-if="contentDetailCtrl.tab==3">
-		<div class="col-sm-12">
-			<p class="text-center">Here you can download everything that you need</p>
+		<div class="col-sm-12 padding-large">
+				<p class="text-center">Here you can download everything that you need:</p>
+				<div class="buy-dvd cursor-as-pointer" ng-if="fieldEntity['downloads']">
+					<rubedo-field  field = "{{contentDetailCtrl.getFieldByName('downloads')}}" ></rubedo-field>
+				</div>
+		</div>
+		<!--<div class="col-sm-12">
+				<rubedo-field ng-if="fieldEntity['downloads']" field = "{{contentDetailCtrl.getFieldByName('downloads')}}" ></rubedo-field>
 		</div>
 		<div class="col-sm-12" style="margin-top:36px;">
 			<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
@@ -163,7 +169,8 @@
 				<h3 style="margin-top:0">Video</h3>
 			</div>			
 		</div>	
-	</div>
+		-->	
+		</div>
 		
 	<div class="row padding-large foi" ng-if="fieldEntity['linkedFOI']&&contentDetailCtrl.defaultLang=='fr'" >
 		<div class="col-xs-5 col-xxs-12 text-center">
@@ -172,9 +179,9 @@
 					 alt="{{ contentDetailCtrl.relatedFOI.text }}"/>
 		</div>
 		<div class="col-xs-7 col-xxs-12">
-			<a ng-href="{{'http://ccn.chemin-neuf.fr'+contentDetailCtrl.relatedFOI.canonicalUrl}}"><h3 class="media-heading">{{contentDetailCtrl.relatedFOI.text}}</h3></a>
+			<a ng-href="{{'http://chemin-neuf.fr'+contentDetailCtrl.relatedFOI.canonicalUrl}}"><h3 class="media-heading">{{contentDetailCtrl.relatedFOI.text}}</h3></a>
 			<h4 class="media-heading" style="font-size: 0.8em">
-				<span class="icon-issuedate"></span>{{contentDetailCtrl.relatedFOI.fields.date*1000 | date :'MMMM yyyy' |uppercase}}
+				<span class="icon-issuedate"></span>{{contentDetailCtrl.relatedFOI.fields.date*1000 | nfgDate :'MMMM yyyy':rubedo.current.page.locale |uppercase}}
 			</h4>
 			<p>La revue FOI (pour Fraternité Oecuménique Internationale) est une revue trimestrielle éditée par la communauté du Chemin Neuf.
 			Elle donne la parole à des acteurs de l'Eglise et à des membres de la communauté qui partagent leur passion pour l'Unité.</p>
@@ -201,7 +208,7 @@
 				 alt="{{ content.text[0] }}"/>                            
 			    </div>
 			    <h4 class="media-heading">
-				    {{content['fields.date'][0] | date :'MMMM yyyy'}}
+				    {{content['fields.date'][0] | nfgDate :'MMMM yyyy':rubedo.current.page.locale}}
 			    </h4>
 			</a>
 			
