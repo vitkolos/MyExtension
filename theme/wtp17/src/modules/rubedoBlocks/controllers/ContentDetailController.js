@@ -332,5 +332,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         }
         else{me.gallery.nbImages =me.gallery.limit ;}
     };
+    me.showModal=function(id){
+        angular.element('#myModal'+id).appendTo('body').modal('show');
+    };
 
 }]);
