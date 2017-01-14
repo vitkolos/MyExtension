@@ -5,6 +5,7 @@
         me.pagesBlocks={};
         me.currentRouteleine=$location.path();
         var config=$scope.blockConfig;
+								var lang = $route.current.params.lang;
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
         if (config.rootPage){
             var pageId=config.rootPage;
