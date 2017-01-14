@@ -85,7 +85,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                     longitude:position.coords.longitude
                 };
             }, function() {
-                console.log("location error");
+                console.log("Geolocation API not supported her");
                 $http({
                     method: 'GET',
                     url: '//ip-api.com/json'
