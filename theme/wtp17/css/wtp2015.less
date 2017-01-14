@@ -71,10 +71,10 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 
 @kawaco:#ec008c;//#ff9c32;	
 @fit:#00a3ad;//#00d5eb;
-@coeur:#9ae36a;
+@coeur:#00a3ad;//#9ae36a;
 @temps-forts:#ffef3b;
 @workshops:#ec008c;//#ff5143;
-@ateliers:#3e9dd9;
+@ateliers:#ec008c;//#3e9dd9;
 @studilac:#00d3de;
 @intervenants:#5d5d5d;
 @volontaires:#00a4b7;
@@ -91,7 +91,8 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 @txt_dark:#444;
 @highlight:#feef07;
 
-
+//new
+@bg-pave:#363636;
 @tablet:768px;
 
 ////////////////////////////////////////////////
@@ -702,6 +703,12 @@ header.parallax.page{
 
 .block-detail{display:inline-block;float:none;text-align:center;vertical-align:top; margin:0 -5px}
 .color:nth-of-type(2n) .icone p:first-of-type{color:@txt_grey !important}
+
+.bg-special-class{
+				background-color:@bg-pave;
+				.bloc-icone{border-color: white; color:white}
+}
+
 #kawaco {
 	.sec-logo, .text-bg, nav, .color:nth-of-type(2n) .side2{background-color:@kawaco}
 	.section-title-h1, .titre-details,.block-details.icone p{color:@kawaco}
@@ -719,6 +726,7 @@ nav.fit-fun{background-color:@fit}
 #coeur-a-coeur {
 	.sec-logo, .text-bg, nav,.color:nth-of-type(2n) .side2{background-color:@coeur}
 	.section-title-h1, .titre-details,.block-details.icone p{color:@coeur}
+	.bg-special{.bg-special-class}
 }
 #dots-coeur-a-coeur{color:@coeur}
 nav.coeur-a-coeur{background-color:@coeur}
@@ -733,13 +741,16 @@ nav.temps-forts{background-color:@temps-forts}
 #workshops{
   .sec-logo, .text-bg, nav, .table,.color:nth-of-type(2n) .side2{background-color:@workshops}
   .section-title-h1, .titre-details,.block-details.icone p{color:@workshops}
+		.bg-special{.bg-special-class}
 }
 #dots-workshops{color:@workshops}
 nav.workshops{background-color:@workshops}
 
+
 #ateliers{
   .sec-logo, .text-bg, nav, .table,.color:nth-of-type(2n) .side2{background-color:@ateliers}
   .section-title-h1, .titre-details,.block-details.icone p{color:@ateliers}
+		.bg-special{.bg-special-class}
 }
 #dots-ateliers{color:@ateliers}
 nav.ateliers{background-color:@ateliers}
@@ -836,6 +847,7 @@ nav.cte{background-color:@cte}
   .page{margin-top:0}
 }
 nav.inscriptions{background-color:@inscriptions}
+
 
 
 
