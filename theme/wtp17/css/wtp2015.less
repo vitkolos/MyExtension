@@ -94,6 +94,7 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 //new
 @bg-pave:#363636;
 @tablet:768px;
+@mobile:450px;
 
 ////////////////////////////////////////////////
     ///////  WYD Krakow  ////////////////
@@ -375,6 +376,12 @@ header.parallax.page{
 	text-align: center;
 	h1{text-transform: uppercase; font-size: 3.5em; font-weight: bold}
 	height:400px;line-height: 400px;
+}
+@media screen and (max-width: @tablet) and (min-width: @mobile){
+				header.parallax.page h1{font-size:2.5em;}
+}
+@media screen and (max-width: @mobile){
+				header.parallax.page h1{font-size:2em;}
 }
 /*@media screen and (min-width: @min_sm) {
     .large header.content{line-height: 600px; height:600px}
