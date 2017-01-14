@@ -13,7 +13,7 @@
             </div>
         </div>
     </div>
-    <div class="row bg-special">
+    <div class="row bg-special"  ng-if="fieldEntity['informations'] || rubedo.current.page.id=='5853b210245640c3518bf525'" >
         <div class="container paddingv">
             <div clas="col-sm-12">
                 <!--<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 5)=='infos' && fieldEntity[field.config.name].title!=''" class="color"></rubedo-field>-->
@@ -30,6 +30,10 @@
                 <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="16:9"></jwplayer>
             </div>
     </div>
+    <div class="video-block" ng-if="fieldEntity['video']">
+        <p>{{rubedo.translate("WTP.Video", "Voir la <span>ì</span> vidéo")}}</p>
+    </div>
+    
     <!--
     <div class="row" style="margin-top:20px">
         <div class="col-sm-12">
