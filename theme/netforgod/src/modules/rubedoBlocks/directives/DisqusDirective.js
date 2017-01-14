@@ -52,6 +52,7 @@ angular.module("rubedoBlocks").lazy.directive('dirDisqus', ['$window', function(
                                 this.language = scope.disqus_lang;
                             }
                         });
+																								console.log(scope.disqus_lang);
                     }
                 }
             });
