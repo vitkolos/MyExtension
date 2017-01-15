@@ -41,8 +41,9 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
         link: function(scope, element, attrs) {
             element.on('hidden.bs.modal', function (e) {
                 // Find elements by video tag
-																var video = element.find("iframe");
-																video.attr('src', '');
+																var playerid = element.find("jwplayer").children().attr("id");
+																console.log(playerid);
+																//video.attr('src', '');
             });
         }
     }
