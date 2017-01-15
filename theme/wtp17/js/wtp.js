@@ -41,11 +41,11 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
         link: function(scope, element, attrs) {
             element.on('hidden.bs.modal', function (e) {
                 // Find elements by video tag
-																var playerid = element.find("jwplayer").children().attr("id");
-																playerid = playerid.split("_")[2];
+																var video = element.find("jwplayer").children().attr("id");
+																//playerid = playerid.split("_")[2];
 																//jwplayer(playerid).pause();
-																console.log(playerid);
-																//video.attr('src', '');
+																//console.log(playerid);
+																video.attr('pause', true);
             });
         }
     }
@@ -57,6 +57,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
 											var format = attrs.format;
+											var pause = attrs.pause;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
@@ -78,7 +79,15 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
                       jwplayer(id).setup(options);
            }, 200);
 
-            
+                        /*watch for captions update*/
+           scope.$watch(function () {
+                    return attrs.pause;
+                }, function (newValue, oldValue) {
+                      if (newValue==true) {
+																																jwplayer(id).pause();
+																						}
+                       
+                });    
             
         }
     };
