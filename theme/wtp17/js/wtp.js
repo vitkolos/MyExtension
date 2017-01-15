@@ -47,6 +47,14 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																//console.log(playerid);
 																video.attr('pause', 'pause');
             });
+												 element.on('shown.bs.modal', function (e) {
+                // Find elements by video tag
+																var video = element.find("jwplayer");
+																//playerid = playerid.split("_")[2];
+																//jwplayer(playerid).pause();
+																//console.log(playerid);
+																video.attr('pause', 'notpaused');
+            });
         }
     }
 });
@@ -89,7 +97,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																						}
 																						else console.log("not in condition " + newValue);
                        console.log("status change");
-                });    
+           });    
             
         }
     };
