@@ -85,7 +85,9 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
                 }, function (newValue, oldValue) {
                       if (newValue==true) {
 																																jwplayer(id).pause();
+																																console.log(newValue);
 																						}
+																						else console.log("not in condition" + newValue);
                        
                 });    
             
