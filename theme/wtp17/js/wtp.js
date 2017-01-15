@@ -43,7 +43,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
                 // Find elements by video tag
 																var playerid = element.find("jwplayer").children().attr("id");
 																playerid = playerid.split("_")[2];
-																jwplayer(playerid).pause();
+																//jwplayer(playerid).pause();
 																console.log(playerid);
 																//video.attr('src', '');
             });
