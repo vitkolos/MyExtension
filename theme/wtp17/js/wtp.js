@@ -41,7 +41,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
         link: function(scope, element, attrs) {
             element.on('hidden.bs.modal', function (e) {
                 // Find elements by video tag
-																var video = element.find("jwplayer").children().attr("id");
+																var video = element.find("jwplayer");
 																//playerid = playerid.split("_")[2];
 																//jwplayer(playerid).pause();
 																//console.log(playerid);
