@@ -35,7 +35,17 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
         }
     }
 });
-
+angular.module('rubedoBlocks').directive('pauseOnClose', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            element.on('hidden.bs.modal', function (e) {
+                // Find elements by video tag
+																var video = angular.element("iframe").attr('src', '')
+            });
+        }
+    }
+});
 
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile',function ($compile) {
     return {
