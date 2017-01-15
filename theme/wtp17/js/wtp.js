@@ -39,7 +39,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            element.on('hidden.bs.modal', function (e) {
+            element.on('hide.bs.modal', function (e) {
                 // Find elements by video tag
 																var video = element.find("jwplayer");
 																//playerid = playerid.split("_")[2];
@@ -89,7 +89,6 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 
                         /*watch for pause status update*/
            scope.$watch(function () {
-																						console.log(attrs.pause);
                     return attrs.pause;
                 }, function (newValue, oldValue) {
                       if (newValue=="pause") {
