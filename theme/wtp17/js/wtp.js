@@ -41,7 +41,8 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
         link: function(scope, element, attrs) {
             element.on('hidden.bs.modal', function (e) {
                 // Find elements by video tag
-																var video = angular.element("iframe").attr('src', '')
+																var video = element.find("iframe");
+																video.attr('src', '');
             });
         }
     }
@@ -52,7 +53,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
-		   var format = attrs.format;
+											var format = attrs.format;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
