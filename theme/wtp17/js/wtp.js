@@ -90,7 +90,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
                         /*watch for pause status update*/
            scope.$watch(function () {
                     return attrs.pause;
-                }, function (newValue, oldValue) {
+                }, function (newValue) {
                       if (newValue=="pause") {
 																																jwplayer(id).pause();
 																																console.log(newValue);
