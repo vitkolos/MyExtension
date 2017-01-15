@@ -79,7 +79,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
                       jwplayer(id).setup(options);
            }, 200);
 
-                        /*watch for captions update*/
+                        /*watch for pause status update*/
            scope.$watch(function () {
                     return attrs.pause;
                 }, function (newValue, oldValue) {
@@ -87,8 +87,8 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																																jwplayer(id).pause();
 																																console.log(newValue);
 																						}
-																						else console.log("not in condition" + newValue);
-                       
+																						else console.log("not in condition " + newValue);
+                       console.log("status change");
                 });    
             
         }
