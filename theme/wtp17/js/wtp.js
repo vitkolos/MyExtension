@@ -89,6 +89,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 
                         /*watch for pause status update*/
            scope.$watch(function () {
+																						console.log(attrs.pause);
                     return attrs.pause;
                 }, function (newValue, oldValue) {
                       if (newValue=="pause") {
@@ -96,7 +97,6 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																																console.log(newValue);
 																						}
 																						else console.log("not in condition " + newValue);
-                       console.log("status change");
            });    
             
         }
