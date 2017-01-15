@@ -35,8 +35,16 @@ angular.module("rubedoBlocks").lazy.directive('dirDisqus', ['$window', function(
                     $window.disqus_url = scope.disqus_url;
                     $window.disqus_category_id = scope.disqus_category_id;
                     $window.disqus_disable_mobile = scope.disqus_disable_mobile;
-                    $window.disqus_config_language = scope.disqus_lang;
-																				$window.disqus_language = scope.disqus_lang;
+																				$window.disqus_config = function () {
+                        this.language = scope.disqus_lang;
+                        /*this.page.remote_auth_s3 = scope.config.disqus_remote_auth_s3;
+                        this.page.api_key = scope.config.disqus_api_key;
+                        if (scope.config.disqus_on_ready) {
+                            this.callbacks.onReady = [function () {
+                                scope.config.disqus_on_ready();
+                            }];
+                        }*/
+                    };
                     // get the remote Disqus script and insert it into the DOM, but only if it not already loaded (as that will cause warnings)
                     if (!$window.DISQUS) {
                         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
