@@ -45,7 +45,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																//playerid = playerid.split("_")[2];
 																//jwplayer(playerid).pause();
 																//console.log(playerid);
-																video.attr('pause', true);
+																video.attr('pause', 'pause');
             });
         }
     }
@@ -83,7 +83,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
            scope.$watch(function () {
                     return attrs.pause;
                 }, function (newValue, oldValue) {
-                      if (newValue==true) {
+                      if (newValue=="pause") {
 																																jwplayer(id).pause();
 																																console.log(newValue);
 																						}
