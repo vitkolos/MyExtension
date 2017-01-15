@@ -39,7 +39,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-            element.on('hide.bs.modal', function (e) {
+            element.on('hiden.bs.modal', function (e) {
                 // Find elements by video tag
 																var video = element.find("jwplayer");
 																//playerid = playerid.split("_")[2];
@@ -76,7 +76,8 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
                       modestbranding:0,
                       showinfo:1,
                       width:"100%",
-                      aspectratio:format};
+                      aspectratio:format
+											};
                       //to adress rmtp streaming
            if(filmUrl.slice(0,4) =='rtmp'){
            	options.primary= "flash";
@@ -91,6 +92,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
            scope.$watch(function () {
                     return attrs.pause;
                 }, function (newValue) {
+																						console.log(newValue);
                       if (newValue=="pause") {
 																																jwplayer(id).pause();
 																																console.log(newValue);
