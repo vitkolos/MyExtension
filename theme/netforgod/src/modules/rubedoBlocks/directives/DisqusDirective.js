@@ -37,7 +37,6 @@ angular.module("rubedoBlocks").lazy.directive('dirDisqus', ['$window', function(
                     $window.disqus_disable_mobile = scope.disqus_disable_mobile;
 																				$window.disqus_config = function () {
                         this.language = scope.disqus_lang;
-																								console.log(scope.disqus_lang);
                         //this.page.remote_auth_s3 = scope.config.disqus_remote_auth_s3;
                         //this.page.api_key = scope.config.disqus_api_key;
                         /*if (scope.config.disqus_on_ready) {
