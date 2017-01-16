@@ -1006,6 +1006,8 @@ nav.inscriptions{background-color:@inscriptions}
     .table-tab p:nth-of-type(3).displayed{height: auto;padding: 15px 30px;overflow: auto}
     .table-tab p:nth-of-type(2):hover{background-color:@hover}
 }
+
+
 input:checked + .date-workshops {background-color:white; color:@workshops}
 .table-tab{position: relative;display:none}
 .table-tab.displayed{display:block}
@@ -1018,7 +1020,7 @@ input:checked + .date-workshops {background-color:white; color:@workshops}
     text-align: left;
     }
 #intervenants .table-tab p:first-of-type{text-transform:none}
-.table-tab p:nth-of-type(2), .table-tab p:nth-of-type(3){
+.table-tab p:nth-of-type(n+1){
     color: #fff;
     cursor: pointer;
     font-weight: 500;
