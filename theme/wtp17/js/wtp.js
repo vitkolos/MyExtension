@@ -68,6 +68,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
         restrict: 'EC',
 								transclude: true,
         link: function (scope, element, attrs) {
+											console.log(scope);
            var filmUrl = attrs.videoUrl;
 											var format = attrs.format;
 											var pause = attrs.pause;
