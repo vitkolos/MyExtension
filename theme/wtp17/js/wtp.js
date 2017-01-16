@@ -93,6 +93,11 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
                       jwplayer(id).setup(options);
            }, 200);
 
+											//modelObject is a scope property of the parent/current scope
+            scope.$watch(attrs.pause, function(value){
+                console.log("in new loop" +value);
+            });
+											
                         /*watch for pause status update*/
            scope.$watch(function () {
                     return attrs.pause;
