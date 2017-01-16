@@ -50,7 +50,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																scope.pause = "pause";
 																console.log(scope.pause);
             });
-												 element.on('shown.bs.modal', function (e) {
+													element.on('shown.bs.modal', function (e) {
                 // Find elements by video tag
 																//var video = element.find("jwplayer");
 																//playerid = playerid.split("_")[2];
@@ -58,6 +58,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																//console.log(playerid);
 																//video.attr('pause', 'notpaused');
 																scope.pause = "notpaused";
+																console.log(scope.pause);
             });
         }
     }
