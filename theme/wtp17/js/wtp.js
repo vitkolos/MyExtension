@@ -40,9 +40,9 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
         restrict: 'A',
         link: function(scope, element, attrs) {
 											scope.pause="notpaused";
-            element.on('hiden.bs.modal', function (e) {
+            element.on('hidden.bs.modal', function (e) {
                 // Find elements by video tag
-																var video = element.find("jwplayer");
+																//var video = element.find("jwplayer");
 																//playerid = playerid.split("_")[2];
 																//jwplayer(playerid).pause();
 																//console.log(playerid);
@@ -52,7 +52,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
             });
 												 element.on('shown.bs.modal', function (e) {
                 // Find elements by video tag
-																var video = element.find("jwplayer");
+																//var video = element.find("jwplayer");
 																//playerid = playerid.split("_")[2];
 																//jwplayer(playerid).pause();
 																//console.log(playerid);
