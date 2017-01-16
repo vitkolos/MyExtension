@@ -31,6 +31,7 @@
 																				me.pagesBlocks[key]={};
 																				me.pagesBlocks[key]["title"] = page.text;
 																				me.pagesBlocks[key]["url"] = page.url;
+																				me.pagesBlocks[key]["id"] = page.id;
 																				me.pagesBlocks[key].blocks=[]; 
 																				var lang = $route.current.params.lang;
 																				angular.forEach(page.blocks, function(block, key2){
