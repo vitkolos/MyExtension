@@ -10,6 +10,10 @@ blocksConfig.contactBlock={
            "template": "/templates/blocks/contactBlock.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/contactBlock.js"]
 };
+blocksConfig.simpleContact={
+           "template": "/templates/blocks/simpleContact.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
+};
 blocksConfig.form={
            "template": "/templates/blocks/form.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/form.js"]
