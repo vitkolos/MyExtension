@@ -81,7 +81,7 @@
     </div>        
 
     <!--SPORTS-->         
-    <div ng-if="block.code =='fit-fun' "  ng-attr-id=" {{block.code}}">
+    <div ng-if="block.code =='fit-fun' "  ng-attr-id=" {{block.code}}" ng-if="rubedo.current.user">
        <div class="row">
             <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
         </div>
