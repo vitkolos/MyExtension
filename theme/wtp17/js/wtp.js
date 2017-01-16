@@ -48,7 +48,6 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																//console.log(playerid);
 																//video.attr('pause', 'pause');
 																scope.pause = "pause";
-																console.log(scope.pause);
             });
 													element.on('shown.bs.modal', function (e) {
                 // Find elements by video tag
@@ -58,7 +57,6 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																//console.log(playerid);
 																//video.attr('pause', 'notpaused');
 																scope.pause = "notpaused";
-																console.log(scope.pause);
             });
         }
     }
