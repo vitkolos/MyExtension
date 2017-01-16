@@ -39,7 +39,8 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
     return {
         restrict: 'A',
         link: function(scope, element, attrs) {
-											scope.pause="notpaused";
+											scope.props={};
+											scope.props.pause="notpaused";
             element.on('hidden.bs.modal', function (e) {
                 // Find elements by video tag
 																//var video = element.find("jwplayer");
@@ -47,7 +48,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																//jwplayer(playerid).pause();
 																//console.log(playerid);
 																//video.attr('pause', 'pause');
-																scope.pause = "pause";
+																scope.props.pause = "pause";
             });
 													element.on('shown.bs.modal', function (e) {
                 // Find elements by video tag
@@ -56,7 +57,7 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
 																//jwplayer(playerid).pause();
 																//console.log(playerid);
 																//video.attr('pause', 'notpaused');
-																scope.pause = "notpaused";
+																scope.props.pause = "notpaused";
             });
         }
     }
