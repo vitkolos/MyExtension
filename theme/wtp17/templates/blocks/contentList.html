@@ -85,10 +85,10 @@
        <div class="row">
             <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
         </div>
-       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList track by $index">
+       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList  track by $index">
             <!--CARRES-->
             <div class="col-sm-8 sport-container" ng-class="{'not-displayed' : selectContent >= 0, 'noclick':noclick }">
-                <div ng-repeat="content in columnContents track by $index" class="square">
+                <div ng-repeat="content in columnContents | orderBy:'text' track by $index" class="square">
                     <input type="radio" name="sport" ng-model="$parent.selectContent" ng-attr-value="{{$index}}" id="{{'sport-'+$index}}" >
                     <label ng-attr-for="{{'sport-'+$index}}" ng-click="$parent.noclick = false">
                         <p>{{content.fields.text}}</p>
