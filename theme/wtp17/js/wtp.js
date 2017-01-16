@@ -66,12 +66,12 @@ angular.module('rubedoBlocks').directive('pauseOnClose', function() {
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile',function ($compile) {
     return {
         restrict: 'EC',
-								scope: true,
+								transclude: true,
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
 											var format = attrs.format;
 											var pause = attrs.pause;
-            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
+           var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId +'" ></div>';
