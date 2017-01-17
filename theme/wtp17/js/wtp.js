@@ -6,10 +6,7 @@ blocksConfig.bg_image={
            "template": "/templates/blocks/bg_image.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
 };
-blocksConfig.contactBlock={
-           "template": "/templates/blocks/contactBlock.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/contactBlock.js"]
-};
+
 blocksConfig.simpleContact={
            "template": "/templates/blocks/simpleContact.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
@@ -22,7 +19,10 @@ blocksConfig.carrousel2={
            "template": "/templates/blocks/carrousel_fullWidth.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
 };
-
+blocksConfig.facebook={
+           "template": "/templates/blocks/facebook.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
+};
 
 
 
