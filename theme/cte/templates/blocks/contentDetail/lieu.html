@@ -1,4 +1,4 @@
-<div ng-class="{'content_border':!blockConfig.contentOnly}">
+<div ng-class="{'content_border':!blockConfig.contentOnly">
 	<div class="container-fluid" ng-if="!blockConfig.contentOnly">
 		<div class="row">
 			<div class="col-xs-12 ">
@@ -114,7 +114,7 @@
 			                        {{ content.text[0] }}</a>
 			                </th>
 			                <th style=line-height:0.8em"">
-		                		<span ng-repeat="taxo in content['taxonomy.555f3bc445205edc117e689b']" class="public">
+		                		<span ng-repeat="taxo in content['taxonomy.555f3bc445205edc117e689b'] track by $index" class="public">
 		                			{{contentDetailCtrl.calendarContents.facetsLabels[taxo]}}
 		                		</span>
 			                </th>
