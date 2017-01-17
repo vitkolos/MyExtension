@@ -17,7 +17,7 @@
                 <!--<div id="infiniteScrollCtrl">-->
                 <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
                     <div ng-class="contentListCtrl.columns" ng-repeat="content in columnContents track by $index"   ng-controller="ContentListDetailController as contentListDetailCtrl">
-                        <div class="row">
+                        <div class="row list">
                             <div class="col-xs-12 col-sm-5">
                                 <a ng-href="{{ content.detailPageUrl }}">
                                     <img class="img-responsive pull-right" ng-if="content.fields.image && !contentListCtrl.titleOnly"
