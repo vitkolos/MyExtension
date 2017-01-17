@@ -9,31 +9,30 @@
         <span class="glyphicon glyphicon-plus"></span>
     </button>
     <!--DEFAULT-->         
-    <div ng-if="block.code =='default'">
+    <div ng-if="!block.code || block.code =='' ">
         <div class="row">
             <div ng-attr-lr-infinite-scroll="loadMoreContents"
                  ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
                  ng-style="contentListCtrl.blockStyle">
                 <!--<div id="infiniteScrollCtrl">-->
                 <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
-                    <div class="media" ng-repeat="content in columnContents track by $index"  >
-                        <img class="media-object pull-left" ng-if="content.fields.image && !contentListCtrl.titleOnly"
-                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{size:'thumbnail'}) }}"
-                             alt="{{ content.fields.text }}"/>
-                        <div class="media-body">
-                            <h4 class="media-heading">
-                                <a ng-href="{{ content.detailPageUrl }}">
-                                    {{ content.fields.text }}
-                                </a>
-                            </h4>
-                            <span>{{ content.createTime*1000 | date }}</span>
-                            <p  ng-style="{'height':contentListCtrl.contentHeight}" ng-if="!contentListCtrl.titleOnly">
-                                {{ content.fields.summary }}
-                            </p>
+                    <div ng-repeat="content in columnContents track by $index"   ng-controller="ContentListDetailController as contentListDetailCtrl">
+                        <div class="col-xs-12 col-sm-5">
+                            <a ng-href="{{ content.detailPageUrl }}">
+                                <img class="img-responsive pull-right" ng-if="content.fields.image && !contentListCtrl.titleOnly"
+                                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'500px',height:'170px',mode:'crop'}) }}"
+                                    alt="{{ content.fields.text }}"/>
+                            </a>
                         </div>
-                        <a class="pull-right" ng-href="{{ content.detailPageUrl }}">
-                            Read More
-                        </a>
+                        <div class="col-xs-12 col-sm-7">
+                            <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
+                                <h4> {{content.fields.text}}</h4>
+                                <p>{{content.fields.summary}}</p>
+                            </a>
+                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.summary}}"></rubedo-field>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -178,33 +177,6 @@
     </div>
     
     
-    <!--LEFT MENU-->     
-    <div ng-if=" block.code =='menu' ">
-        <input type="checkbox" ng-attr-id="{{'section-'+block.title}}" ng-model="section" ng-init="section=true">
-        <label class='push-menu-title' ng-attr-for="{{'section-'+block.title}}">{{block.title }}</label>
-        <div ng-repeat="content in contentListCtrl.contentList[0]"  ng-class="{'displayed' : section}">
-            <a ng-href="#{{content.fields.urlSegment}}" >
-                <div class='push-menu-button'>
-                    <div ng-attr-id="{{'dots-'+content.fields.urlSegment}}" class="dots" ></div>
-                    <p>{{content.text}} </p>
-                </div>
-            </a>
-        </div>
-    </div>
-    
-    <div ng-if=" block.code =='menu2' " >
-        <input type="checkbox" ng-attr-id="{{'section-'+block.title}}" ng-model="section" ng-init="section=true">
-        <label class='push-menu-title' ng-attr-for="{{'section-'+block.title}}">{{block.title}}</label>
-        <div ng-repeat="content in contentListCtrl.contentList[0]"  ng-class="{'displayed' : section}">
-            <!--<a ng-href="{{content.detailPageUrl | homepage}}#{{content.fields.urlSegment}}">-->
-            <a href="{{content.detailPageUrl |homepage}}#{{content.fields.urlSegment}}">
-                <div class='push-menu-button'>
-                    <div ng-attr-id="{{'dots-'+content.fields.urlSegment}}" class="dots" ></div>
-                    <p>{{content.text}} </p>
-                </div>
-            </a>
-        </div>
-    </div>
         
     
 </div>
