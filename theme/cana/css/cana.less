@@ -10,24 +10,6 @@
   }
 }
 
-.ellipsis(@number,@line-height:1.4em){
-  overflow: hidden;
-  position: relative;
-  max-height: (@number*@line-height); /*display ellipsis after 5 lines*/
-  &:before {
-  bottom: 0;
-  position: absolute;
-  right: 0;
-  content: '...';
-}
-	&:after {
-  content: '';
-  position: absolute;
-  height: 50px;
-  width: 100%;
-  z-index: 1;
-}
-}
 
 body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: 'Merriweather','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:white; margin-top: 12px}
@@ -49,6 +31,8 @@ label{font-weight: normal}
 /*site communauté*/
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12{min-height:0.1px}
 .row.vide{min-height:1px !important}
+.container-fluid > .row:nth-of-type(n+3){margin-right: 0; margin-left:0;}
+
 a,a:link, a:visited,a:hover, a:active{text-decoration: none; }
 a, a:visited,a:hover, a:active{color:@txt_dark}
 p a{box-shadow: inset 0 -2px 0 @marron; transition: background 0.3s ease }
@@ -263,10 +247,7 @@ a.navbar-brand{float: none !important}
 ///////////////////////////////////////////////////
 .carousel-caption{text-align:left;background-color:#2f2e2a;opacity:1; h3{border-bottom:1px solid white; padding-bottom:12px;margin-top:0};p{color:white}}
 .carousel-caption{padding:24px}
-@media screen and (max-width: @min_lg){
-.carousel-caption p{
-  .ellipsis(5);
-}}
+
 .owl-theme .owl-controls{position:absolute;right:0;margin-top:-30px !important;margin-right:10px;}
 .owl-theme .owl-controls .owl-page span{background:white;opacity:0.75}
 .owl-theme .owl-controls .owl-page.active span{background:@rouge}
@@ -364,7 +345,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   }
   ///////RICH TEXT/////////
   h2.titre-block{
-	padding-left: 1em;
+	//padding-left: 1em;
 	font-variant: small-caps;
 	border-bottom: @marron 4px solid;
 	margin-bottom: 24px;
