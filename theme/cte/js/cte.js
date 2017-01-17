@@ -337,11 +337,9 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                       addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
                                  url: contentUrl,
                                  title : attrs.title,
-                                 description : ''        
+                                 description : attrs.summary     
                       });
-		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
-                        $window.addthis.layers.refresh();
-                    }*/
+
 		$scope.nbOfLikes=0;
 		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
 		.then(function successCallback(response) {
@@ -349,17 +347,13 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 		},
 		function errorCallback(response) {
 		});
-		$http({method: 'GET',url: 'http://cdn.api.twitter.com/1/urls/count.json?url='+contentUrl})
-		.then(function successCallback(response) {
-			$scope.nbOfLikes += response.data.count;
-		},
-		function errorCallback(response) {
-		});		
+		
 
 		});
 	    }
 	};
 }]);
+
 
 
 
