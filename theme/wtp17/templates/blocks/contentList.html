@@ -9,7 +9,7 @@
         <span class="glyphicon glyphicon-plus"></span>
     </button>
     <!--DEFAULT-->         
-    <div ng-if="!block.code || block.code =='' ">
+    <div ng-if="!block.code || block.code =='' " class="container">
         <div class="row">
             <div ng-attr-lr-infinite-scroll="loadMoreContents"
                  ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
