@@ -92,7 +92,7 @@ class SitestructureResource extends AbstractResource
                 $page["includedRichText"]=$this->getContentsCollection()->findById($page["richTextId"], true, false);
             }
             /*add blocks*/
-            $page=array_intersect_key($page, array_flip(array('title','parentId','hasMainColumn','description','excludeFromMenu', 'id', 'text','pages','url','eCTitle','eCDescription','eCImage','richTextId','includedRichText','taxonomy','orderValue','blocks')));
+            $page=array_intersect_key($page, array_flip(array('title','parentId','hasMainColumn','description','excludeFromMenu', 'id', 'text','pages','url','eCTitle','eCDescription','eCImage','richTextId','includedRichText','taxonomy','orderValue','blocks','site')));
             $pageArray[$page["id"]]=$page;
         }
         return [
