@@ -29,14 +29,16 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
                     if(me.count>0 && me.images[0].taxonomy.navigation) {
                         for (var i = 0, len = me.images[0].taxonomy.navigation.length; i < len; i++) {
                             RubedoPagesService.getPageById(me.images[0].taxonomy.navigation[i]).then(function(response){
-                                console.log(response);
-                                /*if (response.pageData) {
-                                    //code
-                                }*/
+                                if (response.data.success ) {
+                                    if (response.data.pageData.site && response.data.pageData.site==$scope.rubedo.current.site.id) {
+                                        me.images[0].pageId = me.images[0].taxonomy.navigation[i];
+                                        
+                                    }
+                                }
                             });
                         }
                     }
-                    
+                    console.log(me.images[0].pageId);
 
                     
                     
