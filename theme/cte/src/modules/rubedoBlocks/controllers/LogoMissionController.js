@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope','RubedoMediaService','$location','$http',function($scope,RubedoMediaService,$location,$http){
+angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope','RubedoMediaService','RubedoPagesService','$location','$http',function($scope,RubedoMediaService,RubedoPagesService,$location,$http){
     var me = this;
     var config = $scope.blockConfig;
     me.query = config.query;
@@ -8,7 +8,6 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
         terms:[$scope.rubedo.current.page.id,$scope.rubedo.current.page.parentId]
     };
     me.query = JSON.stringify(query);
-    console.log(me.query);
     if(me.query) {
         me.start = 0;
         me.limit = 1;
@@ -26,6 +25,21 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
                 if(response.data.success){
                     me.count = response.data.count;
                     me.images = response.data.media.data;
+                    //get only pages on the website 
+                    if(me.count>0 && me.images[0].taxonomy.navigation) {
+                        for (var i = 0, len = me.images[0].taxonomy.navigation.length; i < len; i++) {
+                            RubedoPagesService.getPageById(me.images[0].taxonomy.navigation[i]).then(function(response){
+                                console.log(response.pageData);
+                                /*if (response.pageData) {
+                                    //code
+                                }*/
+                            });
+                        }
+                    }
+                    
+
+                    
+                    
                     $scope.clearORPlaceholderHeight();
                     if (me.count==0 && ($scope.rubedo.current.breadcrumb).length>2 && !reload) {
                         //remonter au niveau supérieur
