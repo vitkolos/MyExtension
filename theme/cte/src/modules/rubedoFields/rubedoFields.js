@@ -687,12 +687,12 @@
            if ($scope.fieldInputMode&&file&&$scope.field.config.allowedDAMTypes){
 
                /*pour images, redimensionner*/
-               if ($scope.field.config.allowedDAMTypes=="545cd95245205e91168b45b1") {
+               if ($scope.field.config.allowedDAMTypes=="545cd95245205e91168b45b1" || $scope.field.config.allowedDAMTypes=="5825dfdf245640f44a8b7230") {
                     Upload.upload({
                         url: '/api/v1/media',
                         method: 'POST',
                         params:{
-                            typeId:"545cd95245205e91168b45b1",
+                            typeId:$scope.field.config.allowedDAMTypes,
                             userWorkspace:true, //on utilise le main workspace de l'utilisateur
                             fields:{title:file.name},
                             taxonomy:{navigation:[me.pageId]}

@@ -208,7 +208,8 @@ return array(
                      '../js/lazy-image.js',
                 ),
                 'angularModules' => array(
-                    'angularVideoBg' => '/lib/angular-video-bg.min.js'
+                    'angularVideoBg' => '/lib/angular-video-bg.min.js',
+																				'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
             ),
             'jmj2016' => array(
