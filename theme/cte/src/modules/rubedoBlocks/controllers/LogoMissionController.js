@@ -31,7 +31,7 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
                             RubedoPagesService.getPageById(me.images[0].taxonomy.navigation[i]).then(function(response){
                                 if (response.data.success ) {
                                     if (response.data.pageData.site && response.data.pageData.site==$scope.rubedo.current.site.id) {
-                                        me.images[0].pageId = me.images[0].taxonomy.navigation[i];
+                                        me.images[0].pageId = response.data.pageData.id;
                                         console.log(me.images[0].pageId);
                                     }
                                 }
