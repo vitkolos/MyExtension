@@ -10,7 +10,7 @@
 }
 </style>
 <div ng-if="rubedo.current.user&&rubedo.current.user.rights.canContributeFO" ng-controller="ContentContributionController as ccCtrl" style="margin-top:50px;" class="container">
-    <form ng-if="ccCtrl.contentType" class="form form-horizontal" ng-submit="ccCtrl.submitNewContent()">
+    <form ng-if="ccCtrl.contentType" class="form" ng-submit="ccCtrl.submitNewContent()">
         <h3 ng-if="!ccCtrl.updateMode" class="text-left" ng-click="ccCtrl.showForm= !ccCtrl.showForm">
                 <span class="glyphicon glyphicon-plus cursor-as-pointer google" style="font-size: 0.8em"></span>
                 {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}} : {{ccCtrl.contentType.type}}

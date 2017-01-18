@@ -584,7 +584,7 @@
         };            
     }]);
 
-    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",function($scope,RubedoMediaService,$element){
+    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element","Upload",function($scope,RubedoMediaService,$element,Upload){
         var me=this;
         var mediaId=$scope.fieldEntity[$scope.field.config.name];
         me.launchEditor=function(){
