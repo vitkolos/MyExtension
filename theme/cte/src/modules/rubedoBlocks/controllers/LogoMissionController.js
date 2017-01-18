@@ -32,13 +32,13 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
                                 if (response.data.success ) {
                                     if (response.data.pageData.site && response.data.pageData.site==$scope.rubedo.current.site.id) {
                                         me.images[0].pageId = me.images[0].taxonomy.navigation[i];
-                                        
+                                        console.log(me.images[0].pageId);
                                     }
                                 }
                             });
                         }
                     }
-                    console.log(me.images[0].pageId);
+                    
 
                     
                     
