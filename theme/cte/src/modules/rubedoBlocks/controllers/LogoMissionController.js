@@ -8,7 +8,7 @@ angular.module("rubedoBlocks").lazy.controller('LogoMissionController',['$scope'
         terms:[$scope.rubedo.current.page.id,$scope.rubedo.current.page.parentId]
     };
     me.query = JSON.stringify(query);
-
+    console.log(me.query);
     if(me.query) {
         me.start = 0;
         me.limit = 1;
