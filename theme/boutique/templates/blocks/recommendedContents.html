@@ -1,4 +1,4 @@
-<div ng-controller="RecommendedContentsController as rccCtrl" class="bg-degrade product-list-container" style="padding:0 48px;">
+<div ng-controller="RecommendedContentsController as rccCtrl" class="bg-degrade product-list-container" style="padding:0 48px;" ng-if="rccCtrl.isDetail">
     <div class="row">
 	<h3 ng-if="block.displayTitle" class="text-center">{{block.title}}</h3>
 
