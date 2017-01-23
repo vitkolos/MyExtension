@@ -113,7 +113,7 @@
                             {{ orderDetailCtrl.order.billingAddress.postCode }} {{ orderDetailCtrl.order.billingAddress.city }}<br />
                             {{ orderDetailCtrl.order.billingAddress.regionState }} {{ orderDetailCtrl.order.billingAddress.country }}<br />
                         </address>
-                        <p ng-if="orderDetailCtrl.isAdmin">{{ rubedo.translate('Blocks.OrderDetails.Payment.Means') }} : {{ orderDetailCtrl.order.paymentMeans }}</p>
+                        <p ng-if="orderDetailCtrl.isAdmin">{{ rubedo.translate('Blocks.OrderDetails.Payment.Means') }} : {{rubedo.translate('Payment.Means.'+orderDetailCtrl.order.paymentMeans, orderDetailCtrl.order.paymentMeans)}} </p>
                     </div>
                 </div>
             </div>
