@@ -1,5 +1,5 @@
-<div ng-controller="RecommendedContentsController as rccCtrl" class="bg-degrade product-list-container" style="padding:0 48px;" ng-if="rccCtrl.isDetail">
-    <div class="row">
+<div ng-controller="RecommendedContentsController as rccCtrl" class="bg-degrade product-list-container" style="padding:0 48px;">
+    <div class="row" ng-if="rccCtrl.isDetail">
 	<h3 ng-if="block.displayTitle" class="text-center">{{block.title}}</h3>
 
         <div class="col-xs-6 col-sm-4 rubedo-product-in-list" ng-repeat="content in rccCtrl.data track by $index" ng-class="rccCtrl.colClass">
