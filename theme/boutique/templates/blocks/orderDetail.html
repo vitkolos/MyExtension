@@ -149,8 +149,8 @@
                                 <th></th>
                                 <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Name') }}</th>
                                 <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Amount') }}</th>
-                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Cost')}}</th>
-                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Price') }}</th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.UnitCostHT')}}</th>
+                                <th>{{ rubedo.translate('Blocks.OrderDetails.Table.PriceTTC') }}</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -167,15 +167,17 @@
                                 </td>
                                 <td>{{ product.amount }}</td>
                                 <td>{{ product.unitPrice | number : 2 }} €</td>
-                                <td>{{ product.price | number : 2 }} €</td>
+                                <td>{{ product.taxedPrice | number : 2 }} €</td>
                             </tr>
                         </tbody>
                     </table>
                     <div class="panel-body text-right">
-                        <h5><strong>{{ rubedo.translate('Blocks.Checkout.CheckoutSummary.SubTotal')}} :</strong> {{ orderDetailCtrl.order.detailedCart.totalPrice |number : 2 }} €</h5>
-                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }} </strong> <small>{{ orderDetailCtrl.order.shipper.hRDelay }} {{ orderDetailCtrl.order.shipper.hRUnit }}</small> : {{ orderDetailCtrl.order.shipper.rate|number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.Checkout.CheckoutSummary.SubTotalHT')}} :</strong> {{ orderDetailCtrl.order.detailedCart.totalPrice |number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.Checkout.CheckoutSummary.SubTotalTTC')}} :</strong> {{ orderDetailCtrl.order.detailedCart.totalTaxedPrice |number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.Checkout.CheckoutSummary.ShippingTTC') }}</strong> <small>({{ orderDetailCtrl.order.shipper.name }})</small> : {{ orderDetailCtrl.order.shippingTaxedPrice|number : 2 }} €</h5>
+                        <!--<h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }} </strong> <small>{{ orderDetailCtrl.order.shipper.hRDelay }} {{ orderDetailCtrl.order.shipper.hRUnit }}</small> : {{ orderDetailCtrl.order.shipper.rate|number : 2 }} €</h5>
                         <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingTax')}} :</strong> {{ orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100 |number : 2 }} €</h5>
-                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ProductsTaxes') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice -  orderDetailCtrl.order.detailedCart.totalPrice)|number : 2 }} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ProductsTaxes') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice -  orderDetailCtrl.order.detailedCart.totalPrice)|number : 2 }} €</h5>-->
                         <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.TotalPrice') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice + orderDetailCtrl.order.shipper.rate+orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100)|number : 2}} €</h5>
                     </div>
                 </div>
