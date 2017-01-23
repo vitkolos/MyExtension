@@ -87,7 +87,7 @@ class PaymentmeansResource extends AbstractResource
                     //$monnaie="zł";
                     break;
                 case "es.chemin-neuf.org" :
-                case "chemin-neuf.es" :
+                case "www.chemin-neuf.es" :
                     $accountName="paf_es";
                     $codeMonnaie=978;
                     //$monnaie="zł";
@@ -100,13 +100,12 @@ class PaymentmeansResource extends AbstractResource
                     //$monnaie="€";
                     break;
                 case "hu.chemin-neuf.org" :
-                case "chemin-neuf.hu" :
+                case "www.chemin-neuf.hu" :
                     $accountName="paf_hu";
                     $codeMonnaie=348;
                     //$monnaie="zł";
                     break;
-                case "it.chemin-neuf.org" :
-                case "chemin-neuf.it" :
+                case "www.chemin-neuf.it" :
                     $accountName="paf_it";
                     $codeMonnaie=978;
                     //$monnaie="zł";
