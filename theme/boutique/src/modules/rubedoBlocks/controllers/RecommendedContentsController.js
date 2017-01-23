@@ -109,5 +109,6 @@ angular.module("rubedoBlocks").lazy.controller("RecommendedContentsController",[
 																me.isDetail=true;
             }
         }
-        me.searchByQuery(options);
+								// chercher seulement si on est sur un détail de contenu (tant qu'on n'a pas de magic queries)
+        if(options.useDetailContent) me.searchByQuery(options);
     }]);
