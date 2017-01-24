@@ -50,19 +50,19 @@
                             
                         </div>
                    </div>
-																					<!---NET FOR GOD FILMS-->
-																				<div ng-switch-when="54cb447145205e7d09db0590" class="padding" ng-init="url= content.fields.text | encodeURIComponent">
-																								<p class="capital">{{content.fields.date*1000 | date :'MMMM yyyy' }}</p>
-																								<a  ng-href="{{content.detailPageUrl == '#' ? 'http://netforgod.tv/en/home/films/'+content.id+'/' +url : content.detailPageUrl}}" target="_blank">
-																												<img class="img-responsive" ng-if="content.fields.affiche" style="margin:0 auto"
-																																	ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
-																																	alt="{{ content.fields.text }}"/>
-																								</a>
-				
-																								<a class="site-link" ng-href="{{content.detailPageUrl == '#' ? 'http://netforgod.tv/en/home/films/'+content.id+'/' +url : content.detailPageUrl}}" target="_blank"> 
-																												{{content.fields.text}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
-																								</a>
-																				</div>
+			<!---NET FOR GOD FILMS-->
+		<div ng-switch-when="54cb447145205e7d09db0590" class="padding" ng-init="url= content.fields.text | encodeURIComponent">
+			<p class="capital">{{content.fields.date*1000 | date :'MMMM yyyy' }}</p>
+			<a  ng-href="{{content.detailPageUrl == '#' ? 'https://www.netforgod.tv/en/home/films/'+content.id+'/' +url : content.detailPageUrl}}" target="_blank">
+							<img class="img-responsive" ng-if="content.fields.affiche" style="margin:0 auto"
+												ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
+												alt="{{ content.fields.text }}"/>
+			</a>
+
+			<a class="site-link" ng-href="{{content.detailPageUrl == '#' ? 'https://www.netforgod.tv/en/home/films/'+content.id+'/' +url : content.detailPageUrl}}" target="_blank"> 
+							{{content.fields.text}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+			</a>
+		</div>
                                       <!--DEFAUT-->
                     <div ng-switch-default>
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
