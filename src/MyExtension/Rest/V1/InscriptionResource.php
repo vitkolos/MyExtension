@@ -669,7 +669,7 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     protected function getPays(){
         switch($_SERVER['HTTP_HOST']) {
-            case "chemin-neuf.fr" : 
+            case "www.chemin-neuf.fr" : 
                 return "FR"; break;
             case "www.chemin-neuf.pl" : 
                 return "PL"; break;
@@ -701,7 +701,7 @@ protected function localizableFields($type, $fields)
     }
     protected function getAccountId(){
         switch($_SERVER['HTTP_HOST']) {
-            case "chemin-neuf.fr" : 
+            case "www.chemin-neuf.fr" : 
             case "www.chemin-neuf.pl" : 
             case "www.chemin-neuf.it" : 
                 return "55473e9745205e1d3ef1864d"; break;
