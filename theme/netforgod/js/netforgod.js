@@ -32,7 +32,11 @@ angular.module('rubedoBlocks').filter('firstUpper', function() {
         return input ? input.substring(0,1).toUpperCase()+input.substring(1).toLowerCase() : "";
     }
 });
-
+angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filter) {
+    return function() {
+        return $filter('date')(new Date(), 'yyyy');
+    };
+}])
 angular.module('rubedoBlocks').filter('nfgDate', function($filter) {
     return function(input, format, locale) {
            var date = "";
