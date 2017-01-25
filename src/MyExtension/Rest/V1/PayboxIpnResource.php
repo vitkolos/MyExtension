@@ -215,7 +215,7 @@ protected function getMailCompta(){
         $mailCompta="nicolas.rhone@chemin-neuf.org";
         $accountName = "";
         switch($_SERVER['HTTP_HOST']) {
-            case "chemin-neuf.fr" :
+            case "www.chemin-neuf.fr" :
                 $accountName = "paf_fr";
                 break;
             case "www.chemin-neuf.pl" : 
