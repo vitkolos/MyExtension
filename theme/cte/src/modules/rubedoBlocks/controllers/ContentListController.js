@@ -16,10 +16,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.query="";
     me.taxoFilter="";
     me.filter = function(taxoTerm){
-        me.taxoFilter = taxoTerm;
+        if(me.taxoFilter != taxoTerm) me.taxoFilter = taxoTerm;
+        else me.taxoFilter = "";
         options['start'] += options['limit'];
-        options['limit'] = 200;
-        me.getContents(config.query, pageId, siteId, options, true);
+        options['limit'] = 100;
+        if (!me.count || me.count > options['start']) {
+            me.getContents(config.query, pageId, siteId, options, true);
+        }
+        
     }
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
@@ -130,7 +134,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     $scope.clearORPlaceholderHeight();
                 }
                 /*taxonomies pour propositions*/
-                if (me.usedContentTypes="54dc614245205e1d4a8b456b") {
+                if (me.usedContentTypes[0]=="54dc614245205e1d4a8b456b") {
                      var taxonomiesArray ={};
                      taxonomiesArray[0]="555f3bc445205edc117e689b";// taxcnomie de propositions
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
@@ -253,6 +257,26 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             $location.url(me.editorPageUrl);
         }
     }
+    me.getTaxonomyTerms = function(vocId){
+        var taxonomiesArray ={};
+        taxonomiesArray[0]=vocId;// taxonomie de propositions
+        TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+            if(response.data.success){
+                me.taxonomyTerms = {};
+                angular.forEach(response.data.taxo, function(taxonomie){
+                    me.taxonomyTerms["name"] = taxonomie.vocabulary.name;
+                    me.taxonomyTerms["terms"] = taxonomie.terms;
+                });
+                return true;
+            }
+            else return false
+                         
+        });
+        
+    }
+    
+    
+    
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService','RubedoPagesService',function($scope,$compile,RubedoContentsService,RubedoPagesService){
     var me = this;

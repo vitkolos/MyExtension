@@ -584,7 +584,7 @@
         };            
     }]);
 
-    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element",function($scope,RubedoMediaService,$element){
+    module.controller("MediaFieldController",["$scope","RubedoMediaService","$element","Upload",function($scope,RubedoMediaService,$element,Upload){
         var me=this;
         var mediaId=$scope.fieldEntity[$scope.field.config.name];
         me.launchEditor=function(){
@@ -662,51 +662,85 @@
         }
         me.newFile=null;
         me.uploadNewFile=function(){
-           me.notification=null;
-           if ($scope.fieldInputMode&&me.newFile&&$scope.field.config.allowedDAMTypes){
-               var uploadOptions={
-                   typeId:$scope.field.config.allowedDAMTypes,
-                   fields:{
-                       title:me.newFile.name
-                   }
-               };
-               RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
-                   function(response){
-                       if (response.data.success){
-                           var id=response.data.media.id;
-                           $scope.fieldEntity[$scope.field.config.name]=id;
-                           mediaId=id;
-                           if ($scope.registerFieldEditChanges){
-                               $scope.registerFieldEditChanges();
-                           }
+            me.notification=null;
+            me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
+            me.uploadNewFileWithWorkspace();
+        };
+        
+        $scope.upload=function(file){
+            me.notification=null;
+            me.pageId = $scope.blockConfig.listPageId ? $scope.blockConfig.listPageId : $scope.rubedo.current.page.id;
+           if ($scope.fieldInputMode&&file&&$scope.field.config.allowedDAMTypes){
+
+               /*pour images, redimensionner*/
+               if ($scope.field.config.allowedDAMTypes=="545cd95245205e91168b45b1" || $scope.field.config.allowedDAMTypes=="5825dfdf245640f44a8b7230") {
+                    Upload.upload({
+                        url: '/api/v1/media',
+                        method: 'POST',
+                        params:{
+                            typeId:$scope.field.config.allowedDAMTypes,
+                            userWorkspace:true, //on utilise le main workspace de l'utilisateur
+                            fields:{title:file.name},
+                            taxonomy:{navigation:[me.pageId]}
+                        },
+                        file:file,
+                        headers: {'Content-Type': undefined}
+                    }).then(function (response) {
+                            var id=response.data.media.id;
+                            $scope.fieldEntity[$scope.field.config.name]=id;
+                            mediaId=id;
+                            if ($scope.registerFieldEditChanges){
+                                $scope.registerFieldEditChanges();
+                            }
                             me.media=response.data.media;
                             me.displayMedia();
-                       } else {
-                           console.log(response);
-                           me.notification={
-                               type:"error",
-                               text:response.data.message
-                           };
-                       }
-                   },
-                   function(response){
-                       console.log(response);
-                       me.notification={
-                           type:"error",
-                           text:response.data.message
-                       };
-                   }
-               );
-           }
-
+                    }, function (response) {
+                        console.log(response);
+                        me.notification={
+                            type:"error",
+                            text:response.data.message
+                        };
+                    }
+                    );
+               }
+               else {
+                RubedoMediaService.uploadMedia(me.newFile,uploadOptions).then(
+                    function(response){
+                        if (response.data.success){
+                            var id=response.data.media.id;
+                            $scope.fieldEntity[$scope.field.config.name]=id;
+                            mediaId=id;
+                            if ($scope.registerFieldEditChanges){
+                                $scope.registerFieldEditChanges();
+                            }
+                             me.media=response.data.media;
+                             me.displayMedia();
+                        } else {
+                            console.log(response);
+                            me.notification={
+                                type:"error",
+                                text:response.data.message
+                            };
+                        }
+                    },
+                    function(response){
+                        console.log(response);
+                        me.notification={
+                            type:"error",
+                            text:response.data.message
+                        };
+                    }
+                );
+               }
+           }            
         };
-        if ($scope.fieldInputMode){
+/*        if ($scope.fieldInputMode){
             $element.find('.form-control').on('change', function(){
                 setTimeout(function(){
                     me.uploadNewFile();
                 }, 200);
             });
-        }
+        }*/
     }]);
 
     module.directive('fileModel', ['$parse','$sce', function ($parse,$sce) {

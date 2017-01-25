@@ -6,9 +6,10 @@ blocksConfig.bg_image={
            "template": "/templates/blocks/bg_image.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
 };
-blocksConfig.contactBlock={
-           "template": "/templates/blocks/contactBlock.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/contactBlock.js"]
+
+blocksConfig.simpleContact={
+           "template": "/templates/blocks/simpleContact.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 blocksConfig.form={
            "template": "/templates/blocks/form.html",
@@ -18,7 +19,10 @@ blocksConfig.carrousel2={
            "template": "/templates/blocks/carrousel_fullWidth.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
 };
-
+blocksConfig.facebook={
+           "template": "/templates/blocks/facebook.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
+};
 
 
 
@@ -34,16 +38,42 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
             });
         }
     }
-});
-
+});/*
+angular.module('rubedoBlocks').directive('pauseOnClose', function() {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+											scope.props={};
+											scope.props.pause="notpaused";
+            element.on('hidden.bs.modal', function (e) {
+                // Find elements by video tag
+																//var video = element.find("jwplayer");
+																//playerid = playerid.split("_")[2];
+																//jwplayer(playerid).pause();
+																//console.log(playerid);
+																//video.attr('pause', 'pause');
+																scope.props.pause = "pause";
+            });
+													element.on('shown.bs.modal', function (e) {
+                // Find elements by video tag
+																//var video = element.find("jwplayer");
+																//playerid = playerid.split("_")[2];
+																//jwplayer(playerid).pause();
+																//console.log(playerid);
+																//video.attr('pause', 'notpaused');
+																scope.props.pause = "notpaused";
+            });
+        }
+    }
+});*/
 
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile',function ($compile) {
     return {
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
-		   var format = attrs.format;
-            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
+											var format = attrs.format;
+           var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId +'" ></div>';
@@ -53,7 +83,8 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
                       modestbranding:0,
                       showinfo:1,
                       width:"100%",
-                      aspectratio:format};
+                      aspectratio:format
+											};
                       //to adress rmtp streaming
            if(filmUrl.slice(0,4) =='rtmp'){
            	options.primary= "flash";
@@ -64,7 +95,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
                       jwplayer(id).setup(options);
            }, 200);
 
-            
+											
             
         }
     };
@@ -115,6 +146,35 @@ angular.module('rubedoBlocks').directive('toggleclass', function() {
            }
  });
  
+angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$http', function($timeout,$location,$http) {
+  return {
+    restrict : 'A',
+	  transclude : true,
+	  replace : true,
+	  template : '<div ng-transclude></div>',
+	  link : function($scope, element, attrs) {
+		$timeout(function () {
+                      addthis.init();
+                      var contentUrl = $location.absUrl();
+                      addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
+                                 url: contentUrl,
+                                 title : attrs.title,
+                                 description : attrs.summary     
+                      });
+
+		$scope.nbOfLikes=0;
+		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.share.share_count;
+		},
+		function errorCallback(response) {
+		});
+		
+
+		});
+	    }
+	};
+}]);
 
     angular.module('rubedoDataAccess').factory('TaxonomyService', ['$http',function($http) {
         var serviceInstance={};
@@ -128,126 +188,14 @@ angular.module('rubedoBlocks').directive('toggleclass', function() {
         };
         return serviceInstance;
     }]);
-    /*
-$(document).ready(function(){
-dot_kill= '';
-dot = '';
-
-
-
-$(window).bind("scroll", function(){
-    if ($('#infos').length)  {
-        $("nav").attr("class"," infos");
-    }
-    else if ($('#inscriptions').length)  {
-        $("nav").attr("class","inscriptions");
-    }       
-    else if ($('#stage').length && $(window).scrollTop() > $('#stage').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-stage');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","stage");
-    }
-    else if ($('#retraite').length && $(window).scrollTop() > $('#retraite').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-retraite');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","retraite");
-    }                
-    else if ($('#volontaires').length && $(window).scrollTop() > $('#volontaires').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-volontaires');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","volontaires");
-    }  
-    else if ($('#groupe').length && $(window).scrollTop() > $('#groupe').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-groupe');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","groupe");
-    }  
-    else if ($('#jpros').length && $(window).scrollTop() > $('#jpros').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-jpros');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","jpros");
-    }
-    else if ( $('#hozana').length && $(window).scrollTop() > $('#hozana').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-hozana');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","hozana");
-    }            
-    else if ($('#manaim').length && $(window).scrollTop() > $('#manaim').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-manaim');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","manaim");
-    }  
-    else if ($('#studilac').length && $(window).scrollTop() > $('#studilac').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-studilac');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","studilac");
-    }  
-    else if ($('#cte').length && $(window).scrollTop() > $('#cte').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-cte');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","cte");
-    }
-    else if ($('#kawaco').length && $(window).scrollTop() > $('#kawaco').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-kawaco');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","kawaco");
-    }  
-    else if ( $('#ateliers').length && $(window).scrollTop() > $('#ateliers').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-ateliers');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","ateliers");
-    }  
-    else if ( $('#coeur-a-coeur').length && $(window).scrollTop() > $('#coeur-a-coeur').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-coeur-a-coeur');
-        $(dot_kill).removeClass('dots-active');
-         $("nav").attr("class","coeur-a-coeur");
-   }  
-    else if ($('#temps-forts').length && $(window).scrollTop() > $('#temps-forts').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-temps-forts');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","temps-forts");
-    }  
-    else if ($('#workshops').length && $(window).scrollTop() > $('#workshops').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-workshops');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","workshops");
-    }  
-    else if ($('#fit-fun').length && $(window).scrollTop() > $('#fit-fun').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-fit-fun');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","fit-fun");
-    }  
-    else if ($('#intervenants').length && $(window).scrollTop() > $('#intervenants').offset().top - 20)  {
-    	dot_kill= dot;
-        dot= $('#dots-intervenants');
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","intervenants");
-    }  
-    else if ($('#top').length && $(window).scrollTop() >= $('#top').offset().top) {
-		dot_kill= dot;
-        dot= '';
-        $(dot_kill).removeClass('dots-active');
-        $("nav").attr("class","bg-0");
-    }
-    $(dot).addClass('dots-active');
-});
-
-
-
-
-})*/
+    angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
+        var serviceInstance={};
+        serviceInstance.sendMail=function(payload){
+            return ($http({
+                url:"api/v1/mail",
+                method:"POST",
+                data : payload
+            }));
+        };
+        return serviceInstance;
+    }]);

@@ -27,10 +27,64 @@
                             }
                         }
                     ]
-                }
+                },
+																{
+                    "categorie": "#ext-gen1340#",
+                    "champs": [
+																								{
+                            "type": "Ext.form.field.Text",
+                            "config": {
+                                "fieldLabel": "Titre de section",
+                                "name": "follow_section"
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "config": {
+                                "fieldLabel": "#ext-gen1341#",
+                                "name": "facebook"
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Text",
+                            "config": {
+                                "fieldLabel": "#ext-gen1342#",
+                                "name": "twitter"
+                            }
+                        },
+																								{
+                            "type": "Ext.form.field.Text",
+                            "config": {
+                                "fieldLabel": "#ext-gen1345#",
+                                "name": "youtube"
+                            }
+                        },
+																								{
+                            "type": "Ext.form.field.Text",
+                            "config": {
+                                "fieldLabel": "#ext-gen1349#",
+                                "name": "instagram"
+                            }
+                        },
+																								{
+                            "type": "Ext.form.field.Text",
+                            "config": {
+                                "fieldLabel": "#ext-gen1352#",
+                                "name": "rss"
+                            }
+                        },
+																								{
+                            "type": "Ext.form.field.Text",
+                            "config": {
+                                "fieldLabel": "#ext-gen1151#",
+                                "name": "newsletter"
+                            }
+                        }
+																				]
+																}
             ],
             "avance": [
-				{
+																{
                     "categorie": "Display settings",
                     "champs": [
                         {

@@ -12,7 +12,7 @@ angular.module("rubedoBlocks").lazy.controller('AddThisFollowController',['$scop
         me.divClass += ' addthis_vertical_style';
     }
     me.networkClass = function(network){
-        return 'addthis_button_'+network.name+ ' txt-red';
+        return 'addthis_button_'+network.name+'_follow';
     };
 				me.networkIcon = function(network){
 								var icon = '';
@@ -32,6 +32,9 @@ angular.module("rubedoBlocks").lazy.controller('AddThisFollowController',['$scop
             me.networks.push(network);
         }
     });
+				//me.nbOfNetworks = me.networks.length;
+				//me.colClass="col-sm-"+12/me.nbOfNetworks;
+				
     $timeout(function() {
         addthis.toolbox('.addthis_toolbox');
         $scope.clearORPlaceholderHeight();

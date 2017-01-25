@@ -12,8 +12,13 @@ return array(
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
         ),
          'dons_int' => array(
-            'name' => "Dons International",
+            'name' => "Dons International €",
             'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+        ),
+	'dons_int_paypal' => array(
+            'name' => "Dons International autres devises",
+            //'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         ),
          'dons_fr' => array(
@@ -45,6 +50,11 @@ return array(
             'name' => "PAF Hongrie",
             //'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+	'dons_il' => array(
+            'name' => "Dons Israël",
+            'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         )
          
     ),
@@ -198,7 +208,8 @@ return array(
                      '../js/lazy-image.js',
                 ),
                 'angularModules' => array(
-                    'angularVideoBg' => '/lib/angular-video-bg.min.js'
+                    'angularVideoBg' => '/lib/angular-video-bg.min.js',
+																				'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
             ),
             'jmj2016' => array(

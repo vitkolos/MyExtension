@@ -22,7 +22,7 @@ CKEDITOR.stylesSet.add( 'default', [
 		element: 'img',
 		attributes: { 'style': 'margin:0 auto' }
     },
-{ name:'Titre', element:'h3', attributes:{'class':'titre-block'}}
+{ name:'Titre', element:'h2', attributes:{'class':'titre-block'}}
 
 ] );
 

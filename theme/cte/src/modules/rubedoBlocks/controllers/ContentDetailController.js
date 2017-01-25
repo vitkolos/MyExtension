@@ -75,7 +75,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     me.showCalendar = function(){
       var optionsCalendar = {
-        constrainToSite:false,
+        constrainToSite:true,
         siteId: $scope.rubedo.current.site.id,
         pageId: $scope.rubedo.current.page.id,
         predefinedFacets:{"type":"54dc614245205e1d4a8b456b","lieuCommunautaire":config.contentId},
@@ -233,7 +233,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
 
                     //Albums photos
-                    if (me.content.type.code=="album") {
+                    if (me.content.type.code=="album" || me.content.type.code=="actualites") {
                         me.currentIndex=0;
                         me.loadModal = function(index,embedded){
                             me.currentIndex = index;
@@ -261,7 +261,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 
                     }
                     if(me.content.type.code=="lieu"){
-                      me.showCalendar();
+                        var date = new Date();
+                        me.currentDate = date.getTime();
+                        me.showCalendar();
                     }
                     
                     

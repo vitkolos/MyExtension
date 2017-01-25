@@ -75,7 +75,7 @@ class PaymentmeansResource extends AbstractResource
                 "cheque"=>false
             );
             switch($_SERVER['HTTP_HOST']) {
-                case "chemin-neuf.fr" : 
+                case "www.chemin-neuf.fr" : 
                     if($params['type']=="dons") $accountName="dons_fr";
                     else if($params['type']=="paf") $accountName="paf_fr";
                     $codeMonnaie=978;
@@ -87,19 +87,25 @@ class PaymentmeansResource extends AbstractResource
                     //$monnaie="zł";
                     break;
                 case "es.chemin-neuf.org" :
-                case "chemin-neuf.es" :
+                case "www.chemin-neuf.es" :
                     $accountName="paf_es";
                     $codeMonnaie=978;
                     //$monnaie="zł";
                     break;
+                case "il.chemin-neuf.org" : 
+                case "il2.chemin-neuf.org" : 
+                    if($params['type']=="dons") $accountName="dons_il";
+                    else if($params['type']=="paf") $accountName="paf_il";
+                    $codeMonnaie=998;
+                    //$monnaie="€";
+                    break;
                 case "hu.chemin-neuf.org" :
-                case "chemin-neuf.hu" :
+                case "www.chemin-neuf.hu" :
                     $accountName="paf_hu";
                     $codeMonnaie=348;
                     //$monnaie="zł";
                     break;
-                case "it.chemin-neuf.org" :
-                case "chemin-neuf.it" :
+                case "www.chemin-neuf.it" :
                     $accountName="paf_it";
                     $codeMonnaie=978;
                     //$monnaie="zł";

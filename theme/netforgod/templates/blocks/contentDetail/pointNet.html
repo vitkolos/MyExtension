@@ -36,7 +36,7 @@
 			</p>
 			<p ng-if="contentDetailCtrl.content.nextDate"><span class="icon-watches"></span>{{contentDetailCtrl.content.nextDate*1000 |date:'H:mm'}}</p>
 			
-			<h3>Contact</h3>
+			<h3>{{rubedo.translate("NFG.Contact",'Contact')}}</h3>
 			<rubedo-field ng-if="fieldEntity['nom']" field =  "{{contentDetailCtrl.getFieldByName('nom')}}"></rubedo-field><!--Nom du contact-->
 			<rubedo-field ng-if="fieldEntity['telephone']" field =  "{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field><!--Téléphone du contact-->
 			<div ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'email_txt':rubedo.translate('NFG.SendMail','Envoyer un mail')}">
@@ -56,7 +56,8 @@
 			    disqus-shortname="{{contentDetailCtrl.disqusShortname}}"
 			    disqus-identifier="{{ contentDetailCtrl.disqusIdentifier }}"
 			    disqus-url="{{ contentDetailCtrl.disqusUrl}}"
-			    disqus-title="{{ contentDetailCtrl.disqusTitle }}">
+			    disqus-title="{{ contentDetailCtrl.disqusTitle }}"
+								disqus-lang="{{ contentDetailCtrl.lang }}">
 			</dir-disqus>	
 		</div>	
 	</div>

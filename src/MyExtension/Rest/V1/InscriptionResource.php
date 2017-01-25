@@ -669,17 +669,19 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     protected function getPays(){
         switch($_SERVER['HTTP_HOST']) {
-            case "chemin-neuf.fr" : 
+            case "www.chemin-neuf.fr" : 
                 return "FR"; break;
             case "www.chemin-neuf.pl" : 
                 return "PL"; break;
             case "chemin-neuf.hu" : 
             case "hu.chemin-neuf.org" : 
                     return "HU"; break;
-            case "chemin-neuf.it" : 
-            case "it.chemin-neuf.org" : 
+            case "www.chemin-neuf.it" : 
                     return "IT"; break;
-            }
+            case "www.chemin-neuf.es" : 
+            case "es.chemin-neuf.org" : 
+                    return "ES"; break;
+        }
      }
 protected function localizableFields($type, $fields)
     {
@@ -699,9 +701,9 @@ protected function localizableFields($type, $fields)
     }
     protected function getAccountId(){
         switch($_SERVER['HTTP_HOST']) {
-            case "chemin-neuf.fr" : 
+            case "www.chemin-neuf.fr" : 
             case "www.chemin-neuf.pl" : 
-            case "it.chemin-neuf.org" : 
+            case "www.chemin-neuf.it" : 
                 return "55473e9745205e1d3ef1864d"; break;
         }
      }

@@ -10,6 +10,11 @@ blocksConfig.searchDons={
            "template": "/templates/blocks/searchDons.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchDonsController.js"]
 };
+blocksConfig.siteMap= {
+            "template": "/templates/blocks/siteMap.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/SiteMapController.js"],
+											"externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js']
+};
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
@@ -332,29 +337,23 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                       addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
                                  url: contentUrl,
                                  title : attrs.title,
-                                 description : ''        
+                                 description : attrs.summary     
                       });
-		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
-                        $window.addthis.layers.refresh();
-                    }*/
+
 		$scope.nbOfLikes=0;
-		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
+		$http({method: 'GET',url: 'https://graph.facebook.com/?id='+contentUrl})
 		.then(function successCallback(response) {
 			$scope.nbOfLikes += response.data.share.share_count;
 		},
 		function errorCallback(response) {
 		});
-		$http({method: 'GET',url: 'http://cdn.api.twitter.com/1/urls/count.json?url='+contentUrl})
-		.then(function successCallback(response) {
-			$scope.nbOfLikes += response.data.count;
-		},
-		function errorCallback(response) {
-		});		
+		
 
 		});
 	    }
 	};
 }]);
+
 
 
 
