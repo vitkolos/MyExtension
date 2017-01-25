@@ -75,7 +75,7 @@ class PaymentmeansResource extends AbstractResource
                 "cheque"=>false
             );
             switch($_SERVER['HTTP_HOST']) {
-                case "chemin-neuf.fr" : 
+                case "www.chemin-neuf.fr" : 
                     if($params['type']=="dons") $accountName="dons_fr";
                     else if($params['type']=="paf") $accountName="paf_fr";
                     $codeMonnaie=978;
