@@ -45,8 +45,8 @@ class SitesConfigCcn extends AbstractCollection
             //FRANCE
             case "www.chemin-neuf.fr" :
             case "www2.chemin-neuf.fr" : 
-                    if($params['type']=="dons") $accountName="dons_fr";
-                    else if($params['type']=="paf") $accountName="paf_fr";
+                    if($type=="dons") $accountName="dons_fr";
+                    else if($type=="paf") $accountName="paf_fr";
                     $countryID="FR";
                     $codeMonnaie=978;
                     break;
@@ -78,12 +78,15 @@ class SitesConfigCcn extends AbstractCollection
                     break;
         }
         $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
-        return array(
+        if($paymentConfig['success']){
+            return array(
                     'success' => true,
-                    'paymentConfig' =>$paymentConfig,
+                    'paymentConfig' =>$paymentConfig['data'],
                     'codeMonnaie' => $codeMonnaie,
                     'countryID' => $countryID
-        );
+            );
+        }
+        
     }
 
 
