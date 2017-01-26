@@ -37,12 +37,52 @@ class SitesConfigCcn extends AbstractCollection
     /**
      * @see \Rubedo\Interfaces\Collection\IShippers::getApplicableShippers
      */
-    public function getConfig()
+    public function getConfig($type)
     {
-        $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM("paf_fr");
+        $accountName="paf_fr";
+        $countryID="FR";
+        switch($_SERVER['HTTP_HOST']){
+            //FRANCE
+            case "www.chemin-neuf.fr" :
+            case "www2.chemin-neuf.fr" : 
+                    if($params['type']=="dons") $accountName="dons_fr";
+                    else if($params['type']=="paf") $accountName="paf_fr";
+                    $countryID="FR";
+                    $codeMonnaie=978;
+                    break;
+            //POLOGNE
+            case "www.chemin-neuf.pl" :
+                    $accountName="paf_pl";
+                    $codeMonnaie=985;
+                    $countryID="PL";
+                    break;
+            //ESPAGNE
+            case "es.chemin-neuf.org" :
+            case "www.chemin-neuf.es" :
+                    $accountName="paf_es";
+                    $codeMonnaie=978;
+                    $countryID="ES";
+                    break;
+            //ITALIE
+            case "www.chemin-neuf.it" :
+                    $accountName="paf_it";
+                    $codeMonnaie=978;
+                    $countryID="IT";
+                    break;
+            //HONGRIE
+            case "hu.chemin-neuf.org" :
+            case "www.chemin-neuf.hu" :
+                    $accountName="paf_hu";
+                    $codeMonnaie=348;
+                    $countryID="HU";
+                    break;
+        }
+        $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
         return array(
                     'success' => true,
-                    'paymentConfig' =>$paymentConfig
+                    'paymentConfig' =>$paymentConfig,
+                    'codeMonnaie' => $codeMonnaie,
+                    'countryID' => $countryID
         );
     }
 
