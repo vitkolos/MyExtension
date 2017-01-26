@@ -111,6 +111,8 @@ class PaymentmeansResource extends AbstractResource
                     //$monnaie="zł";
                     break;
             }
+            $test = Manager::getService("SitesConfigCcn")->getConfig();
+            var_dump($test);
             $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
             if($paymentMeans['success']) {
                 $arrayToReturn = array_intersect_key($paymentMeans['data'], array_flip(array("id","paymentMeans","displayName","logo","nativePMConfig")));
