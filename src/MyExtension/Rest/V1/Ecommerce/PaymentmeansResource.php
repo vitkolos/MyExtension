@@ -95,7 +95,7 @@ class PaymentmeansResource extends AbstractResource
                                                          "contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"],
                                                          "fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"],
                                                          "monnaie" => $arrayToReturn["nativePMConfig"]["monnaie"],
-                                                         "codeMonnaie" => $paymentMeans['$codeMonnaie']
+                                                         "codeMonnaie" => $paymentMeans['codeMonnaie']
                                                         );
                 return array(
                     'success' => true,
