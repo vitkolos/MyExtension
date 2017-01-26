@@ -40,11 +40,10 @@ class SitesConfigCcn extends AbstractCollection
     public function getConfig()
     {
         $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM("paf_fr");
-        var_dump($paymentConfig);
         return array(
                     'success' => true,
                     'paymentConfig' =>$paymentConfig
-                );
+        );
     }
 
 
