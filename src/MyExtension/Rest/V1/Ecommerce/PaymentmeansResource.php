@@ -74,46 +74,10 @@ class PaymentmeansResource extends AbstractResource
                 "carte"=>false,
                 "cheque"=>false
             );
-            switch($_SERVER['HTTP_HOST']) {
-                case "www.chemin-neuf.fr" : 
-                    if($params['type']=="dons") $accountName="dons_fr";
-                    else if($params['type']=="paf") $accountName="paf_fr";
-                    $codeMonnaie=978;
-                    //$monnaie="€";
-                    break;
-                case "www.chemin-neuf.pl" :
-                    $accountName="paf_pl";
-                    $codeMonnaie=985;
-                    //$monnaie="zł";
-                    break;
-                case "es.chemin-neuf.org" :
-                case "www.chemin-neuf.es" :
-                    $accountName="paf_es";
-                    $codeMonnaie=978;
-                    //$monnaie="zł";
-                    break;
-                case "il.chemin-neuf.org" : 
-                case "il2.chemin-neuf.org" : 
-                    if($params['type']=="dons") $accountName="dons_il";
-                    else if($params['type']=="paf") $accountName="paf_il";
-                    $codeMonnaie=998;
-                    //$monnaie="€";
-                    break;
-                case "hu.chemin-neuf.org" :
-                case "www.chemin-neuf.hu" :
-                    $accountName="paf_hu";
-                    $codeMonnaie=348;
-                    //$monnaie="zł";
-                    break;
-                case "www.chemin-neuf.it" :
-                    $accountName="paf_it";
-                    $codeMonnaie=978;
-                    //$monnaie="zł";
-                    break;
-            }
-            $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
+            
+            $paymentMeans = Manager::getService("SitesConfigCcn")->getConfig($params['type']);
             if($paymentMeans['success']) {
-                $arrayToReturn = array_intersect_key($paymentMeans['data'], array_flip(array("id","paymentMeans","displayName","logo","nativePMConfig")));
+                $arrayToReturn = array_intersect_key($paymentMeans['paymentConfig'], array_flip(array("id","paymentMeans","displayName","logo","nativePMConfig")));
                 //determiner les types de payement possibles
                 if($arrayToReturn["nativePMConfig"]["paybox"] && $arrayToReturn["nativePMConfig"]["paybox"] !="") {
                     $paymentModes["carte"] = true;
@@ -131,8 +95,8 @@ class PaymentmeansResource extends AbstractResource
                                                          "contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"],
                                                          "fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"],
                                                          "monnaie" => $arrayToReturn["nativePMConfig"]["monnaie"],
-                                                         "codeMonnaie" => $codeMonnaie
-                                                         );
+                                                         "codeMonnaie" => $paymentMeans['codeMonnaie']
+                );
                 return array(
                     'success' => true,
                     'paymentMeans' => $arrayToReturn
