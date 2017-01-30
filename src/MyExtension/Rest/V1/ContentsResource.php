@@ -197,8 +197,8 @@ class ContentsResource extends AbstractResource
         /*Filtrer seulement les produits avec des promotions valides*/
         if($specialOffersOnly=="true") {
             $date = new DateTime();
-            $timestamp = (string)$date->getTimestamp();
-            var_dump($timestamp);
+            //$timestamp = (string)$date->getTimestamp();
+            var_dump($date);
            /* $hasSpecialOffers = Filter::factory('And')
                     ->addFilter(Filter::factory('OperatorTovalue')
                         ->setName('productProperties.variations.0.specialOffers.0.beginDate')
@@ -207,8 +207,8 @@ class ContentsResource extends AbstractResource
                     ->addFilter(Filter::factory('OperatorTovalue')
                         ->setName('productProperties.variations.0.specialOffers.0.endDate')
                         ->setOperator('$gte')
-                        ->setValue($timestamp));*/
-            //$filters['filter']->addFilter($hasSpecialOffers);
+                        ->setValue($timestamp));
+            $filters['filter']->addFilter($hasSpecialOffers);*/
 
         }
         if ($queryType === 'manual' && $query != false && isset($query['query']) && is_array($query['query'])) {
