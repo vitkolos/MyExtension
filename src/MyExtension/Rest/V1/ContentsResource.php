@@ -196,9 +196,8 @@ class ContentsResource extends AbstractResource
         }
         /*Filtrer seulement les produits avec des promotions valides*/
         if($specialOffersOnly=="true") {
-            //$date = new DateTime();
-            //$timestamp = (string)$date->getTimestamp();
-            $current_timestamp = (string)strtotime("now")
+            $date = new DateTime('NOW');
+            $timestamp = (string)$date->getTimestamp();
             var_dump($current_timestamp);
            /* $hasSpecialOffers = Filter::factory('And')
                     ->addFilter(Filter::factory('OperatorTovalue')
