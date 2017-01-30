@@ -198,7 +198,7 @@ class ContentsResource extends AbstractResource
         if($specialOffersOnly=="true") {
             $hasSpecialOffers = Filter::factory('And')
                     ->addFilter(Filter::factory('OperatorTovalue')
-                        ->setName('productProperties.variations.0')
+                        ->setName('productProperties.variations[0]')
                         ->setOperator('$exists')
                         ->setValue(true))
                     /*->addFilter(Filter::factory('OperatorTovalue')
