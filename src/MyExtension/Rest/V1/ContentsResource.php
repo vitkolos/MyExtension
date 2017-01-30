@@ -195,7 +195,7 @@ class ContentsResource extends AbstractResource
             }
         }
         /*Filtrer seulement les produits avec des promotions valides*/
-        if($specialOffersOnly==true) {
+        if($specialOffersOnly=="true") {
             var_dump($specialOffersOnly);
             /*$hasSpecialOffers = Filter::factory('And')
                     ->addFilter(Filter::factory('OperatorTovalue')
