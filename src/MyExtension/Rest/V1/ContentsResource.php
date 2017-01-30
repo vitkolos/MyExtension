@@ -201,7 +201,7 @@ class ContentsResource extends AbstractResource
                         ->setName('productProperties.variations.0')
                         ->setOperator('$exists')
                         ->setValue(true))
-                    ->addFilter(Filter::factory('OperatorTovalue')
+                    /*->addFilter(Filter::factory('OperatorTovalue')
                         ->setName('productProperties.variations.0.specialOffers.0')
                         ->setOperator('$exists')
                         ->setValue(true))
@@ -212,7 +212,7 @@ class ContentsResource extends AbstractResource
                     ->addFilter(Filter::factory('OperatorTovalue')
                         ->setName('productProperties.variations.0.specialOffers.0.endDate')
                         ->setOperator('$gte')
-                        ->setValue($timestamp));
+                        ->setValue($timestamp))*/;
             $filters['filter']->addFilter($hasSpecialOffers);
 
         }
