@@ -106,6 +106,7 @@ class SearchResource extends GlobalSearch
             $site = $this->getSitesCollection()->findById($params['siteId']);
         }
         foreach ($results['data'] as $key => &$value) {
+            
             if (isset($params['pageId'],$params['siteId'])) {
                 $value['url'] = $this->getUrlAPIService()->displayUrlApi($value, 'default', $site, $page, $params['lang']->getLocale(), isset($params['detailPageId']) ? (string)$params['detailPageId'] : null);
             }
