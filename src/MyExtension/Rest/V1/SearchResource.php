@@ -17,7 +17,7 @@
 
          /**
          *pour CCN : modifié pour ajouter un tableau avec les labels des taxonomies
-         et ajouter option pour filtrer les promotions sur les produits
+         *et ajouter option pour filtrer les promotions sur les produits
         **/
 namespace RubedoAPI\Rest\V1;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
