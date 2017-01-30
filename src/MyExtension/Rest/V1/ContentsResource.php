@@ -14,6 +14,9 @@
  * @copyright  Copyright (c) 2012-2014 WebTales (http://www.webtales.fr)
  * @license    http://www.gnu.org/licenses/gpl.html Open Source GPL 3.0 license
  */
+/*
+*Modifié CCN pour ajouter filtre sur promotions
+*/
 namespace RubedoAPI\Rest\V1;
 use Rubedo\Collection\AbstractLocalizableCollection;
 use Rubedo\Services\Manager;
@@ -96,6 +99,11 @@ class ContentsResource extends AbstractResource
             $orderByTitle = $params['orderByTitle'];
         }
         else $orderByTitle=false;
+        if(isset($params['specialOffersOnly'])){
+            $specialOffersOnly = $params['specialOffersOnly'];
+        }
+        else $specialOffersOnly=false;
+        
         $query=$this->getQueriesCollection()->findById($queryId);
         if (!$query) {
             throw new APIEntityException('Query not found', 404);
@@ -184,6 +192,24 @@ class ContentsResource extends AbstractResource
                     Filter::factory('OperatorToValue')->setName('fields.' . $requiredField)->setOperator('$ne')->setValue("")
                 );
             }
+        }
+        /*Filtrer seulement les produits avec des promotions valides*/
+        if($specialOffersOnly) {
+            $hasSpecialOffers = Filter::factory('And')
+                    ->addFilter(Filter::factory('OperatorTovalue')
+                        ->setName('productProperties.variations.0.specialOffers.0')
+                        ->setOperator('$exists')
+                        ->setValue(true))
+                    ->addFilter(Filter::factory('OperatorTovalue')
+                        ->setName('productProperties.variations.0.specialOffers.0.beginDate')
+                        ->setOperator('$lt')
+                        ->setValue($timestamp))
+                    ->addFilter(Filter::factory('OperatorTovalue')
+                        ->setName('productProperties.variations.0.specialOffers.0.endDate')
+                        ->setOperator('$gte')
+                        ->setValue($timestamp));
+            $filters['filter']->addFilter($hasSpecialOffers);
+
         }
         if ($queryType === 'manual' && $query != false && isset($query['query']) && is_array($query['query'])) {
             $contentOrder = $query['query'];
@@ -872,6 +898,11 @@ class ContentsResource extends AbstractResource
                 (new FilterDefinitionEntity())
                 ->setKey('orderByTitle')
                 ->setDescription('Trier par titre pour listes de produits')
+            )
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('specialOffersOnly')
+                    ->setDescription('Vrai pour récupérer seulement les promotions')
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
