@@ -103,8 +103,7 @@ class ContentsResource extends AbstractResource
             $specialOffersOnly = $params['specialOffersOnly'];
         }
         else $specialOffersOnly=false;
-        var_dump($params['specialOffersOnly']);
-        var_dump($specialOffersOnly);
+
         
         $query=$this->getQueriesCollection()->findById($queryId);
         if (!$query) {
@@ -196,7 +195,8 @@ class ContentsResource extends AbstractResource
             }
         }
         /*Filtrer seulement les produits avec des promotions valides*/
-        if($specialOffersOnly) {
+        if($specialOffersOnly==true) {
+            var_dump($specialOffersOnly);
             /*$hasSpecialOffers = Filter::factory('And')
                     ->addFilter(Filter::factory('OperatorTovalue')
                         ->setName('productProperties.variations.0.specialOffers.0')
