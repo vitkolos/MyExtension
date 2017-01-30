@@ -1,0 +1,17 @@
+<div ng-controller="CategoryController as categoryCtrl">
+    <div class="row">
+        <div ng-class="categoryCtrl.colClass" ng-repeat="page in categoryCtrl.menu.pages track by $index" ng-if="page.eCTitle">
+            <img class="img-responsive" ng-if="page.eCImage"
+                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(page.eCImage,{mode:categoryCtrl.imageResizeMode,height:categoryCtrl.imageHeight,width:categoryCtrl.imageWidth}) }}"
+                 alt="{{ page.eCTitle }}"
+                    />
+            <a ng-href="{{page.url}}"><h3 class="text-center">{{page.eCTitle}}</h3></a>
+            <p class="text-justify">{{page.eCDescription}}</p>
+            <ul ng-if="page.pages">
+                <li ng-repeat="subPage in page.pages track by $index" ng-if="subPage.eCTitle">
+                    <a ng-href="{{subPage.url}}">{{subPage.eCTitle}}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
