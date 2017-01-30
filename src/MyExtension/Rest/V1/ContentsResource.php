@@ -196,8 +196,8 @@ class ContentsResource extends AbstractResource
         }
         /*Filtrer seulement les produits avec des promotions valides*/
         if($specialOffersOnly=="true") {
+            $timestamp = (string)$date->getTimestamp();
             $hasSpecialOffers = Filter::factory('And')
-
                     ->addFilter(Filter::factory('OperatorTovalue')
                         ->setName('productProperties.variations.0.specialOffers.0.beginDate')
                         ->setOperator('$lt')
