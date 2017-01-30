@@ -99,8 +99,8 @@ class ContentsResource extends AbstractResource
             $orderByTitle = $params['orderByTitle'];
         }
         else $orderByTitle=false;
-        if(isset($params['specialOffersOnly'])){
-            $specialOffersOnly = $params['specialOffersOnly'];
+        if(isset($params['specialOffersOnly']) && $params['specialOffersOnly']){
+            $specialOffersOnly = true;
         }
         else $specialOffersOnly=false;
         
