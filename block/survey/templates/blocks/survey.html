@@ -1,0 +1,64 @@
+<div ng-controller="SurveyController as surveyCtrl">
+    <div  ng-if="surveyCtrl.survey" class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">
+            <h4 ng-if="!surveyCtrl.currentPage">{{surveyCtrl.survey.title}}</h4>
+            <div class="btn-group btn-group-justified" role="group" ng-if="surveyCtrl.currentPage">
+                <div class="btn-group" role="group" ng-repeat="page in surveyCtrl.survey.formPages">
+                    <button type="button" class="btn btn-default"
+                            ng-class="{'btn-primary':page.id==surveyCtrl.currentPage.id,'disabled':$index>surveyCtrl.currentPageIndex}"
+                            ng-click="surveyCtrl.setPage(page,$index)">
+                        {{page.itemConfig.label}}</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="panel-body" ng-if="!surveyCtrl.currentPage&&!surveyCtrl.isFinished">
+            <p>{{surveyCtrl.survey.description}}</p>
+            <button class="btn btn-primary" ng-if="surveyCtrl.survey.formPages[0]" ng-click="surveyCtrl.startSurvey()">Démarrer le questionnaire</button>
+        </div>
+        <div class="panel-body" ng-if="!surveyCtrl.currentPage&&surveyCtrl.isFinished">
+            <p>{{surveyCtrl.survey.endMessage}}</p>
+        </div>
+        <div class="panel-body" ng-if="surveyCtrl.currentPage">
+            <form class="form" role="form" ng-submit="surveyCtrl.doNext()">
+                <div ng-repeat="element in surveyCtrl.currentPage.elements" ng-if="surveyCtrl.handleConditionals(element.itemConfig.conditionals)">
+                    <rubedo-custom-template ng-if="element.itemConfig.fType=='richText'" template="{{element.itemConfig.html}}"></rubedo-custom-template>
+                    <rubedo-custom-template ng-if="element.itemConfig.fType!='richText'&&element.itemConfig.label&&element.itemConfig.fieldType" template="{{element.itemConfig.label}}"></rubedo-custom-template>
+                    <div class="form-group" ng-if="element.itemConfig.fType=='openQuestion'&&element.itemConfig.fieldType">
+                        <input ng-if="element.itemConfig.fieldType=='textfield'" type="text" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory" >
+                        <input ng-if="element.itemConfig.fieldType=='numberfield'" type="number" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory" >
+                        <input ng-if="element.itemConfig.fieldType=='datefield'" type="date" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory" >
+                        <input ng-if="element.itemConfig.fieldType=='timefield'" type="time" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory" >
+                        <textarea ng-if="element.itemConfig.fieldType=='textareafield'" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory"></textarea>
+                    </div>
+                    <div class="form-group" ng-if="element.itemConfig.fType=='multiChoiceQuestion'">
+                        <select ng-if="element.itemConfig.fieldType=='checkboxgroup'"
+                                chosen
+                                class="form-control"
+                                multiple
+                                data-placeholder="Choisir une ou plusieurs options"
+                                ng-required="element.itemConfig.fieldConfig.mandatory"
+                                ng-options="s.inputValue as s.boxLabel for s in element.itemConfig.fieldConfig.items"
+                                ng-model="fieldEntity[element.id]"
+                                ></select>
+                        <select ng-if="element.itemConfig.fieldType=='radiogroup'"
+                                chosen
+                                class="form-control"
+                                data-placeholder="Choisir une option"
+                                ng-required="element.itemConfig.fieldConfig.mandatory"
+                                ng-options="s.inputValue as s.boxLabel for s in element.itemConfig.fieldConfig.items"
+                                ng-model="fieldEntity[element.id]"
+                                ></select>
+                    </div>
+                </div>
+                <button class="btn btn-primary pull-right" type="submit">
+                    <span ng-if="surveyCtrl.hasNext()">Suivant</span>
+                    <span ng-if="!surveyCtrl.hasNext()">Valider</span>
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+</div>

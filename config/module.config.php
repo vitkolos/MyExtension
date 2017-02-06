@@ -92,9 +92,9 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/facebook.json'
         ),
-       'form' => array(
-            'maxlifeTime' => 60,
-            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/form.json'
+							 'form' => array(
+            'maxlifeTime' => -1,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/survey_form.json'
         ),
        'simpleContact' => array(
             'maxlifeTime' => 60,
@@ -164,7 +164,7 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/logoMission.json'
         ),
- ),
+				),
 
     'templates' => array(
         'themes' => array(
@@ -323,11 +323,51 @@ return array(
             'ShippersCcn' => 'Rubedo\\Collection\\ShippersCcn',
            'MongoDataImport' => 'Rubedo\\Mongo\\DataImportCcn',
             'SitesConfigCcn' => 'Rubedo\\Collection\\SitesConfigCcn',
+												'Forms' => 'MyExtension\\Service\\Forms',
+            'FormsResponses' => 'MyExtension\\Service\\FormsResponses'
         )
     ),
     'controllers' => array(
         'invokables' => array(
-            'Rubedo\\Backoffice\\Controller\\Contents' => 'Rubedo\\Backoffice\\Controller\\CcnContentsController'
+            'Rubedo\\Backoffice\\Controller\\Contents' => 'Rubedo\\Backoffice\\Controller\\CcnContentsController',
+												'MyExtension\\Backoffice\\Controller\\Forms' => 'MyExtension\\Backoffice\\Controller\\FormsController'
+        )
+    ),
+				'router' => array(
+        'routes' => array(
+            // Backoffice route : prefix by backoffice
+            'surveyBackOffice' => array(
+                'type' => 'Literal',
+                'options' => array(
+                    'route' => '/backoffice/forms',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'MyExtension\\Backoffice\\Controller',
+                        'controller' => 'forms',
+                        'action' => 'index'
+                    )
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type' => 'Segment',
+                        'options' => array(
+                            'route' => '/[:action]',
+                            '__NAMESPACE__' => 'MyExtension\\Backoffice\\Controller',
+                            'constraints' => array(
+                                'controller' => 'forms',
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*'
+                            ),
+                            'defaults' => array()
+                        )
+                    )
+                )
+            )
+        )
+    ),
+				'appExtension' => array(
+        'survey' => array(
+            'basePath' => realpath(__DIR__ . '/../app-extension') . '/survey',
+            'definitionFile' => realpath(__DIR__ . '/../app-extension') . '/survey.json'
         )
     ),
     /* Surcharge des traductions
@@ -336,7 +376,15 @@ return array(
         'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/ButtonToPage.json',
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/GeneralFields.json',
          'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Share.json',
-         'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Emails.json'
+         'extensions/nicolasrhone/myextension/localization/languagekey/Blocks/Emails.json',
+									'extensions/nicolasrhone/myextension/localization/languagekey/Survey/survey.json'
+    ),
+				'extension_paths' => array(
+        'survey' => array(
+            'path' => realpath(__DIR__ . '/../block/survey'),
+            'css' => array(),
+            'js' => array('js/survey.js'),
+        ),
     ),
    
 );
