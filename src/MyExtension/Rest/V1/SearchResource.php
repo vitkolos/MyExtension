@@ -17,6 +17,7 @@
 
          /**
          *pour CCN : modifié pour ajouter un tableau avec les labels des taxonomies
+         *
         **/
 namespace RubedoAPI\Rest\V1;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
