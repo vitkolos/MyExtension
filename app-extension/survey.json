@@ -1,0 +1,18 @@
+{
+    "extensionName": "survey",
+    "models":["formFieldTypeModel","formModel"],
+    "stores":["FCEStore","FormFieldTypesStore","FormPickerStore","FormsStore","ShippersRatesStore"],
+    "views":["MyComboBox32","addFormFieldWindow","FCEditor","FormPickerField","FormsEditContainer","FormsInterface","FormsPageConfigurator","MultiChoiceConfigurator","newFormWindow","OpenFieldConfigurator","predefinedPrefsQuestionConfigurator","RFormField","RFormPage","shippersInterface","CKEFields","ordersInterface"],
+    "controllers":["FormsController"],
+    "launchButtons":{
+        "studio":[{
+		    "ACL": "read.ui.forms",
+		    "favoriteIcon": "note.edit.png",
+		    "itemId": "FormsInterface",
+		    "iconCls": "form_small",
+		    "localiserId": "formsLaunchBtn",
+		    "text": "Questionnaires"
+		}],
+		"administration":[]
+    }
+}
