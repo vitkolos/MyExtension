@@ -199,7 +199,7 @@ class ContentsResource extends AbstractResource
             $date = new \DateTime('NOW');
             $timestamp = $date->getTimestamp();
            $hasSpecialOffers = Filter::factory('And')
-                    ->addFilter(Filter::factory('OperatorToValue')->setName('productProperties.variations[0]')->setOperator('$exists')->setValue(true))
+                    ->addFilter(Filter::factory('OperatorToValue')->setName('productProperties.variations')->setOperator('$exists')->setValue(true))
 
                     /*->addFilter(Filter::factory('OperatorTovalue')
                         ->setName('productProperties.variations[0].specialOffers[0].beginDate')
