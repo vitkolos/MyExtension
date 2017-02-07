@@ -200,11 +200,11 @@ class ContentsResource extends AbstractResource
             $timestamp = $date->getTimestamp();
            $hasSpecialOffers = Filter::factory('And')
                     ->addFilter(Filter::factory('OperatorTovalue')
-                        ->setName('productProperties.variations.0.specialOffers.0.beginDate')
+                        ->setName('productProperties.variations[0].specialOffers[0].beginDate')
                         ->setOperator('$lt')
                         ->setValue($timestamp))
                     ->addFilter(Filter::factory('OperatorTovalue')
-                        ->setName('productProperties.variations.0.specialOffers.0.endDate')
+                        ->setName('productProperties.variations[0].specialOffers[0].endDate')
                         ->setOperator('$gte')
                         ->setValue($timestamp));
             $filters['filter']->addFilter($hasSpecialOffers);
