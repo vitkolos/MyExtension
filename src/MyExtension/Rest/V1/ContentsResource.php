@@ -197,17 +197,18 @@ class ContentsResource extends AbstractResource
         /*Filtrer seulement les produits avec des promotions valides*/
         if($specialOffersOnly=="true") {
             $date = new \DateTime('NOW');
-            $timestamp = (string)$date->getTimestamp();
-            //var_dump($timestamp);
+            $timestamp = $date->getTimestamp();
            $hasSpecialOffers = Filter::factory('And')
-                    ->addFilter(Filter::factory('OperatorTovalue')
-                        ->setName('productProperties.variations.0.specialOffers.0.beginDate')
+                    ->addFilter(Filter::factory('OperatorToValue')->setName('productProperties.variations[0]')->setOperator('$exists')->setValue(true))
+
+                    /*->addFilter(Filter::factory('OperatorTovalue')
+                        ->setName('productProperties.variations[0].specialOffers[0].beginDate')
                         ->setOperator('$lt')
                         ->setValue($timestamp))
                     ->addFilter(Filter::factory('OperatorTovalue')
-                        ->setName('productProperties.variations.0.specialOffers.0.endDate')
+                        ->setName('productProperties.variations[0].specialOffers[0].endDate')
                         ->setOperator('$gte')
-                        ->setValue($timestamp));
+                        ->setValue($timestamp))*/;
             $filters['filter']->addFilter($hasSpecialOffers);
 
         }
