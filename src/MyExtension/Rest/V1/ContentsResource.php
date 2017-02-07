@@ -198,8 +198,8 @@ class ContentsResource extends AbstractResource
         if($specialOffersOnly=="true") {
             $date = new \DateTime('NOW');
             $timestamp = $date->getTimestamp();
-           $hasSpecialOffers = Filter::factory('And')
-                    ->addFilter(Filter::factory('OperatorToValue')->setName('productProperties.variations')->setOperator('$exists')->setValue(true))
+            $hasSpecialOffers = Filter::factory('And')
+                    ->addFilter(Filter::factory('OperatorToValue')->setName('productProperties.variations')->setOperator('$exists')->setValue(true));
 
                     /*->addFilter(Filter::factory('OperatorTovalue')
                         ->setName('productProperties.variations[0].specialOffers[0].beginDate')
@@ -208,8 +208,8 @@ class ContentsResource extends AbstractResource
                     ->addFilter(Filter::factory('OperatorTovalue')
                         ->setName('productProperties.variations[0].specialOffers[0].endDate')
                         ->setOperator('$gte')
-                        ->setValue($timestamp))*/;
-            $filters['filter']->addFilter($hasSpecialOffers);
+                        ->setValue($timestamp));*/
+            //$filters['filter']->addFilter($hasSpecialOffers);
 
         }
         if ($queryType === 'manual' && $query != false && isset($query['query']) && is_array($query['query'])) {
