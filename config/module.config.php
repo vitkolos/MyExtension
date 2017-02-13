@@ -51,7 +51,7 @@ return array(
             //'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
         ),
-								'paf_hu' => array(
+								'paf_ca' => array(
             'name' => "PAF Canada",
             //'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
