@@ -88,6 +88,24 @@
             "allowBlank": true,
             "allowOnlyWhitespace": true
         }
+    },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Code ISO 4217",
+            "name": "codeMonnaie",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Code Pays ",
+            "name": "codePays",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
     }
     
     
