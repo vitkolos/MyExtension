@@ -100,8 +100,8 @@
                 active: translations['Block.Carte.Presence.Ponct'],
             },
         });
+        angular.element("#map_container").scope().loading=false;
         console.log(angular.element("#map_container").scope().loading);
-
     };
     angular.element("#map_container").scope().retrieveData({searchMode:'default'},function(a){processData(a);}, function(b,c){});
 
