@@ -65,11 +65,20 @@ class BartimeeResource extends AbstractResource
      * @param $queryParams
      * @return array
      */
-    public function getAction($queryParams)
+    public function getAction()
     {
-        $queryParams["type"] = ["5652dcb945205e0d726d6caf"];
-        $queryParams["searchMode"] = "default";
-        $params = $this->initParams($queryParams);
+    
+        $queryParams = [];
+        $params = [
+            "limit" => 50,
+            "start" =>0,
+            "orderby" => "lastUpdateTime",
+            "type" =>  "5652dcb945205e0d726d6caf",
+            "block-config" => [
+                "displayedFacets" =>'[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
+                "displayMode" => "default"
+            ]
+        ];
         $query = $this->getElasticDataSearchService();
         $query::setIsFrontEnd(true);
         $query->init();
