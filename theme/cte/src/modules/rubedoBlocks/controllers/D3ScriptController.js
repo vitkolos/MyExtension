@@ -1,6 +1,8 @@
 angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$sce','RubedoSearchService',function($scope,$sce,RubedoSearchService){
     var me = this;
     var config = $scope.blockConfig;
+				var themePath="/theme/"+window.rubedoConfig.siteTheme;
+				me.ccnMap = themePath+"/templates/blocks/ccnMap.html";
     var d3Code = config.d3Code ? config.d3Code : "";
     $scope.predefinedFacets = config.predefinedFacets ? config.predefinedFacets : "{ }";
     $scope.pageSize = config.pageSize ? config.pageSize : 5000;
