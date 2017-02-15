@@ -2,13 +2,13 @@
     <img src="/theme/cte/img/loader.gif" ng-if="d3ScriptCtrl.loading">
     <ng-include src="d3ScriptCtrl.ccnMap" class="hidden-xs"></ng-include>
     <div class="visible-xs-block regions-list">
-        <p>rubedo.translate("Block.Carte.Presence.Perm","Pays où la Communauté assuez une présence permanente")</p>
+        <h3>{{rubedo.translate("Block.Carte.Presence.Perm","Pays où la Communauté assuez une présence permanente")}}</h3>
         <ul>
             <li ng-repeat="country in d3ScriptCtrl.results | filter: { presence: 'present' } | orderBy:'title'">
                 <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.title}}</a>
             </li>
         </ul>
-        <p>rubedo.translate("Block.Carte.Presence.Ponct","Pays où la Communauté assuez une présence ponctuelle")</p>
+        <h3>{{rubedo.translate("Block.Carte.Presence.Ponct","Pays où la Communauté assuez une présence ponctuelle")}}</h3>
         <ul>
             <li ng-repeat="country in d3ScriptCtrl.results | filter: { presence: 'active' } | orderBy:'title'">
                 <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.title}}</a>
