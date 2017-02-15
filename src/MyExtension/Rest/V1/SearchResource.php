@@ -232,7 +232,7 @@ class SearchResource extends AbstractResource
     {
         
         $params = $this->initParams($queryParams);
-        var_dump($params);
+        var_dump($queryParams);
         $query = $this->getElasticDataSearchService();
         $query::setIsFrontEnd(true);
         $query->init();
