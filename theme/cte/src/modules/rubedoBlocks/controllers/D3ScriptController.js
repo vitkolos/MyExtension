@@ -7,6 +7,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
     $scope.predefinedFacets = config.predefinedFacets ? config.predefinedFacets : "{ }";
     $scope.pageSize = config.pageSize ? config.pageSize : 5000;
 				$scope.loading = true;
+				$scope.clearORPlaceholderHeight();
     $scope.retrieveData=function(params, successFunction, failureFunction ){
         var options={
             start: 0,
@@ -30,5 +31,5 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
         );
     };
     me.html=$sce.trustAsHtml(d3Code);
-$scope.clearORPlaceholderHeight();
+
 }]);
