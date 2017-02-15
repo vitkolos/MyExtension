@@ -129,7 +129,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
                 }
                 //dans les autres cas
                 else {
-                    $inscription['fields']['montantAPayerMaintenant'] = $montant + (int)$inscription['fields']['montantAPayerMaintenant'];
+                    $inscription['fields']['montantAPayerMaintenant'] = $montant;
                     $inscription['fields']['statut'] = "paiement_carte_valide" ;
                 }
                  $mailSecretariat = $inscription['fields']['mailSecretariat'];
