@@ -23,7 +23,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
         });
         RubedoSearchService.searchByQuery(options).then(
             function(response){
-																me.results = response.data.results;
+																me.results = response.data.results.data;
                 successFunction(response.data.results);
             },
             function(response){

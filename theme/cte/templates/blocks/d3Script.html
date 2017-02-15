@@ -4,7 +4,7 @@
     <div class="visible-xs-block">
         <ul>
             <li ng-repeat="country in d3ScriptCtrl.results |orderBy:'title'">
-                <a href="country.fields.url">{{country.title}}</a>
+                <a ng-href="{{country.fields.url}}" target="_blank">{{country.title}}</a>
             </li>
         </ul>
     </div>
