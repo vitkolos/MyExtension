@@ -86,9 +86,11 @@
                     window.location.href = map.options.data[geography.id].url;
               });
             }
+           
             
         });
-    
+        angular.element("#map_container").scope().loading=false;
+        console.log(angular.element("#map_container").scope().loading);
         //resize with d3
         d3.select(window).on('resize', function() {
             map.resize();
@@ -100,8 +102,7 @@
                 active: translations['Block.Carte.Presence.Ponct'],
             },
         });
-        angular.element("#map_container").scope().loading=false;
-        console.log(angular.element("#map_container").scope().loading);
+        
     };
     angular.element("#map_container").scope().retrieveData({searchMode:'default'},function(a){processData(a);}, function(b,c){});
 
