@@ -195,7 +195,7 @@ class ContentsResource extends AbstractResource
             }
         }
         /*Filtrer seulement les produits avec des promotions valides*/
-        
+
         if ($queryType === 'manual' && $query != false && isset($query['query']) && is_array($query['query'])) {
             $contentOrder = $query['query'];
             $contentArray = array();

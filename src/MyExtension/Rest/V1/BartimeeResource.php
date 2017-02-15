@@ -38,17 +38,16 @@ class BartimeeResource extends AbstractResource
     public function __construct()
     {
         parent::__construct();
-        $this->searchOption = 'all';
+        $this->searchOption = 'content';
         $this->searchParamsArray = array('orderby', 'orderbyDirection', 'query', 'objectType', 'type', 'damType', 'userType', 'author',
             'userName', 'lastupdatetime', 'start', 'limit', 'searchMode','price','inStock',"isMagic","fingerprint","historyDepth","historySize","useDetailContent","detailContentId");
         $this
             ->definition
             ->setName('Search')
-            ->setDescription('Search with ElasticSearch')
+            ->setDescription('Search Donations with ElasticSearch')
             ->editVerb('get', function (VerbDefinitionEntity &$entity) {
                 $entity
                     ->setDescription('Get a list of media using Elastic Search')
-                    
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('results')
@@ -66,13 +65,33 @@ class BartimeeResource extends AbstractResource
      * @param $queryParams
      * @return array
      */
-    public function getAction($queryParams)
+    public function getAction()
     {
-        $queryParams["type"] = ["5652dcb945205e0d726d6caf"];
-        $queryParams["searchMode"] = "default";
-        $params = $this->initParams($queryParams);
+
+    
+        $queryParams = [
+            "constrainToSite" => false,
+            "displayMode" => "default",
+            "displayedFacets" => '[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
+            "lang" => "fr",
+            "limit" => 50,
+            "start" =>0,
+            "orderby" => "lastUpdateTime",
+            "predefinedFacets" => '{"type":"5652dcb945205e0d726d6caf"}',
+            "taxonomies" => '{}'
+       ];
+        $params = [
+            "limit" => 50,
+            "start" =>0,
+            "orderby" => "lastUpdateTime",
+            "type" =>  "5652dcb945205e0d726d6caf",
+            "block-config" => [
+                "displayedFacets" =>'[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
+                "displayMode" => "default"
+            ]
+        ];
         $query = $this->getElasticDataSearchService();
-        $query::setIsFrontEnd(true);
+        //$query::setIsFrontEnd(true);
         $query->init();
         $results = $query->search($params, $this->searchOption);
         $this->injectDataInResults($results, $queryParams);
