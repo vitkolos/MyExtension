@@ -268,7 +268,7 @@
             "infiniteScroll": false,
 	    "hidePlace":false,
 	    "container":true,
-					"display":"blog"
+					"display":"default"
         }
     },
     "category": "#ext-gen1068#",
