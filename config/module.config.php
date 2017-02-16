@@ -16,7 +16,7 @@ return array(
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
         ),
-	'dons_int_paypal' => array(
+								'dons_int_paypal' => array(
             'name' => "Dons International autres devises",
             //'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
@@ -51,7 +51,12 @@ return array(
             //'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
         ),
-	'dons_il' => array(
+								'paf_ca' => array(
+            'name' => "PAF Canada",
+            //'service' => 'PayboxPayment',
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'dons_il' => array(
             'name' => "Dons Israël",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'

@@ -76,6 +76,13 @@ class SitesConfigCcn extends AbstractCollection
                     $codeMonnaie=348;
                     $countryID="HU";
                     break;
+            //CANADA
+            case "ca.chemin-neuf.org" :
+            case "www.chemin-neuf.ca" :
+                    $accountName="paf_ca";
+                    $codeMonnaie=124;
+                    $countryID="CA";
+                    break;
         }
         $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
         if($paymentConfig['success']){

@@ -276,13 +276,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     //Films : 3 autres articles
                     if (me.content.type.code=="filmNFG") {
                         var taxonomy = angular.copy(me.content.taxonomy);
-                        if (taxonomy["navigation"]) {
+                        var taxoThema = {};
+																								if (taxonomy["54cb636245205e0110db058f"]) {
+																												taxoThema = {"54cb636245205e0110db058f":taxonomy["54cb636245205e0110db058f"]}
+																								}
+                        /*if (taxonomy["navigation"]) {
                             delete taxonomy["navigation"];
                        }
-                       /*delete texonomie de lieux de tournage*/
-                       if (taxonomy["54d6299445205e7877a6b28e"]) {
+                       if (taxonomy["54d6299445205e7877a6b28e"] || taxonomy["54d6299445205e7877a6b28e"]=="") {
                             delete taxonomy["54d6299445205e7877a6b28e"];
-                       }
+                       }*/
                        var displayedFacets = [];
                        displayedFacets.push({"name":"54cb636245205e0110db058f","operator":"OR"});
                         var options3 = {
@@ -293,7 +296,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             limit:6,
                             constrainToSite: true,
                             orderby:'fields.date',
-                            taxonomies: taxonomy,
+                            taxonomies: taxoThema,
                             type:me.content.type.id,
                             displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
                         };

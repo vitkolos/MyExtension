@@ -82,7 +82,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                       aspectratio:"16:9",
                       logo: {
                                  file: '/theme/netforgod/img/logo.png',
-                                 link: 'http://test.netforgod.org/'
+                                 link: 'https://test.netforgod.org/'
                       },
                       displaytitle:true,
                       tracks:JSON.parse(subTitles)
@@ -116,7 +116,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             aspectratio:"16:9",
                                             logo: {
                                                        file: '/theme/netforgod/img/logo.png',
-                                                       link: 'http://test.netforgod.org/'
+                                                       link: 'https://test.netforgod.org/'
                                             },
                                             displaytitle:true,
                                             tracks:JSON.parse(attrs.sousTitre) 
@@ -140,7 +140,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
                                             aspectratio:"16:9",
                                             logo: {
                                                        file: '/theme/netforgod/img/logo.png',
-                                                       link: 'http://test.netforgod.org/'
+                                                       link: 'https://test.netforgod.org/'
                                             },
                                             displaytitle:true                                 
                       };
@@ -214,13 +214,13 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                         $window.addthis.layers.refresh();
                     }*/
 		$scope.nbOfLikes=0;
-		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
+		$http({method: 'GET',url: 'https://graph.facebook.com/?id='+contentUrl})
 		.then(function successCallback(response) {
 			$scope.nbOfLikes += response.data.share.share_count;
 		},
 		function errorCallback(response) {
 		});
-		$http({method: 'GET',url: 'http://cdn.api.twitter.com/1/urls/count.json?url='+contentUrl})
+		$http({method: 'GET',url: 'https://cdn.api.twitter.com/1/urls/count.json?url='+contentUrl})
 		.then(function successCallback(response) {
 			$scope.nbOfLikes += response.data.count;
 		},

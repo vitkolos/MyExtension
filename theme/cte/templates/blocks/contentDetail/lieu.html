@@ -12,7 +12,7 @@
 		</div>
 	</div>
 
-<header ng-if="!blockConfig.contentOnly" class="container-fluid content prop" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
+<header ng-if="!blockConfig.contentOnly && fieldEntity['image']" class="container-fluid content prop" ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
 	<div class="text-article container" >
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="!fieldEditMode">
 			<h1 class="balance-text" >{{fieldEntity['text']}}</h1>

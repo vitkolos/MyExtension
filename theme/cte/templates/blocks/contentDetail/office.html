@@ -52,8 +52,12 @@
 										{{fieldEntity['titre_meditation']}}
 										<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
 								</h3>
-								<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em>
+								<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field>
+								</em>
 								<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field>
+								<p class="small">
+									<rubedo-field  ng-if="fieldEntity['references']" field ="{{contentDetailCtrl.getFieldByName('references')}}"></rubedo-field>
+								</p>
 						</div>
 				</div>
 		</div>

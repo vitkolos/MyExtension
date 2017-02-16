@@ -343,9 +343,14 @@ class DonationResource extends AbstractResource
         $sujetDonateur = $trad["ccn_don_7"] . " - " . $don["text"];
         $messageDonateur = "";
         $messageDonateur .= "<p>".$trad["ccn_label_". $don["civilite"]] . " ". $don["surname"] . " ". $don["nom"] . ", <br/><br/>";
-        //sujet admininistrateur
-        $sujetAdmin= $trad["ccn_don"] . " " . $don["text"] . " - " . $don["montantAvecFrequence"] ." - " . $don["nom"] . " - " . $don["modePaiement"] . " - " . $don["projet"];
-
+        //sujet admininistrateur pour un don normal
+        if($don["etat"]!="paiement_carte_valide"){
+            $sujetAdmin= $trad["ccn_don"] . " " . $don["text"] . " - " . $don["montantAvecFrequence"] ." - " . $don["nom"] . " - " . $don["modePaiement"] . " - " . $don["projet"];
+        }
+        //sujet admininistrateur pour un don avec payement par carte valide
+        else {
+            $sujetAdmin= $trad["ccn_don"] . " " . $don["text"] . " - " . $don["montantAvecFrequence"] ." - " . $don["nom"] . " - " . "paiement_carte_valide" . " - " . $don["projet"];
+        }
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
         $messageDonateur .= $this->translate($trad["ccn_don_1"],['%montantAvecMonnaieEtFrequence%','%projet%'],[$don["montantAvecFrequence"],$don["projet"]]) . ".<br/><br/>";
    
@@ -772,7 +777,7 @@ class DonationResource extends AbstractResource
     }
        
     /**
-     * Define post
+     * Define get
      *
      * @param VerbDefinitionEntity $verbDef
      */
