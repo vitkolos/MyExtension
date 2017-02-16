@@ -114,7 +114,9 @@ class Url extends \Rubedo\Router\Url
                 return str_replace("//","/",$pageUrl);
             } else {
                 $siteOfContent =  Manager::getService('Sites')->getHost($page['site']);
-                return 'https://' . $siteOfContent . str_replace("//","/",$pageUrl);
+                $siteDetail = Manager::getService('Sites')->findByHost($siteOfContent);
+                $protocol = in_array('HTTPS', $siteDetail['protocol']) ? 'https' : 'http';
+                return $protocol . '://' . $siteOfContent . str_replace("//","/",$pageUrl);
             }
         } else {
             return '#';
