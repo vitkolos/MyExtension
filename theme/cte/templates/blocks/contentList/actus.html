@@ -13,7 +13,7 @@
     </button>
 <div class="row border-top" >
     <div class="col-md-3 col-md-push-9" style="padding-top:24px">
-        <div class="panel panel-default" ng-init="searchDisplayed=false; taxonomyTerms = contentListCtrl.getTaxonomyTerms('5524db6945205e627a8d8c4e')">
+        <div class="panel panel-default" ng-init="searchDisplayed=false; taxonomyTerms = contentListCtrl.getTaxonomyTerms('5524db6945205e627a8d8c4e')" ng-show="contentListCtrl.taxonomyTerms.length>0">
             <div class="panel-heading actus "  ng-class="{'panel-hidden' :!searchDisplayed }" ng-click="searchDisplayed = !searchDisplayed">{{contentListCtrl.taxonomyTerms.name}}</div>
             <div class="panel-body">
                 <ul class="search-tags">
