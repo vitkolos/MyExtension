@@ -184,7 +184,10 @@ class PaymentResource extends AbstractResource {
                     .$parametres["country"];
             $parametres["chk"] = hash('sha256',$chk);
         }
-        
+         /*PAIEMENT PAR PAYPAL */
+        if($onlinePaymentMeans == "paypal") {
+            var_dump($params);
+        }
         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
         else {
             // récupérer l'id du compte de paiement

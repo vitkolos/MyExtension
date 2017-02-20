@@ -113,6 +113,21 @@ class DonationResource extends AbstractResource
             $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "accountName" => $payboxAccountName );
             
         }
+        //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
+        if($don["fields"]["modePaiement"]=="paypal") {
+            $payboxAccountName ="";
+            if($isProjetInternational) {
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
+                $payboxAccountName = $accountInfos["config_hors_pays"];
+            }
+            else {
+                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
+                $payboxAccountName = $accountInfos["config_pays"];
+            }
+
+            $arrayToReturn = array("whatToDo" =>"proceedToPaypal", "id" =>$don['fields']['text'], "accountName" => $payboxAccountName );
+            
+        }
         else {
             if($isProjetInternational) {
                 $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale());
