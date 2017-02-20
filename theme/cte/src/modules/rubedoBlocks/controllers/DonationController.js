@@ -242,7 +242,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
             }
             else {
                 me.isCarte = me.account.isCarte;
-                me.isCarte = me.account.isPaypal;
+                me.isPaypal = me.account.isPaypal;
                 me.isPrelevement = me.account.isPrelevement;
             }
         }
