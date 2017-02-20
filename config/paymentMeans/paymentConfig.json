@@ -8,6 +8,15 @@
             "chooseOnly": true
         }
     },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Compte Paypal (email)",
+            "name": "paypal",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
     {
         "type": "Ext.form.field.Text",
         "config": {

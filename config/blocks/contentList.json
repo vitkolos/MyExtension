@@ -236,7 +236,21 @@
                           "editable": true,
                           "minValue": 0
                         }
-                      }
+                      },
+																						{
+																								"type": "Ext.form.field.ComboBox",
+																								"config": {
+																										"fieldLabel": "Affichage",
+																										"name": "display",
+																										"editable": false,
+																										"forceSelection": true,
+																										"queryMode": "local",
+																										"store": [
+																												["default","Défaut"],
+																												["blog","Blog"]
+																										]
+																								}
+																						}
                     ]
                 }
             ],
@@ -253,7 +267,8 @@
             "scrollThreshold": 300,
             "infiniteScroll": false,
 	    "hidePlace":false,
-	    "container":true
+	    "container":true,
+					"display":"default"
         }
     },
     "category": "#ext-gen1068#",

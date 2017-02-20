@@ -117,7 +117,7 @@
                 </div>
             </div>
             <div class="col-sm-4" >
-                <div ng-repeat="content in columnContents" class="table-tab" ng-class="{'displayed' : selectContent =={{$index}} , 'noclick':noclick }">
+                <div ng-repeat="content in columnContents | orderBy:'text' track by $index" class="table-tab" ng-class="{'displayed' : selectContent =={{$index}} , 'noclick':noclick }">
                         <h3 class="closed" ng-click="$parent.selectContent=-1">X</h3>
                         <h3 class="workshop-nav pull-right" ng-click="$parent.selectContent = ($parent.selectContent +1)%columnContents.length">ì</h3>
                         <h3 class="workshop-nav pull-left" ng-click="$parent.selectContent =($parent.selectContent -1)>-1 ? ($parent.selectContent -1)%columnContents.length :  ($parent.selectContent +columnContents.length -1)">Ø</h3>

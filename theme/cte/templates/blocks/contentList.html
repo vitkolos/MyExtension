@@ -5,9 +5,9 @@
             ng-click="contentListCtrl.launchFOContribute()">
         <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}}
     </button>
-    <div class="row contentList" ng-switch="blockConfig.columns">
+    <div class="row contentList" ng-switch="blockConfig.columns" ng-if="!blockConfig.display || blockConfig.display == 'default'">
        <!--POUR 1 COLONNE-->
-        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1" class="padding-">
+        <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1" class="padding-" >
             <!--<div id="infiniteScrollCtrl">-->            
             <div  ng-repeat="columnContents in contentListCtrl.contentList" ng-init="columnIndex = $index" style="display: block" >
                 <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents" class="equal-height-cols">
@@ -28,6 +28,8 @@
 
                 </div>
             </div>
+			
+			
         </div>
 
 
@@ -135,4 +137,5 @@
     </div>
 
 
+	<div ng-if="blockConfig.display == 'blog' " ng-include="contentListCtrl.template_actus"></div>
 </div>
