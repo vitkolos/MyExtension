@@ -222,12 +222,12 @@
                                                     <input type="radio"  name="modePaiement" id="carte" ng-model="don.modePaiement" value="carte" required>
                                                     <label for="carte">{{rubedo.translate("Block.Inscription.Paf.Carte", "par carte")}}</label>    
                                                 </div>
-                                                <!--
-                                                <div class="col-xs-12" ng-if="!don.mensuel && !don.trimestriel">
+                                                
+                                                <div class="col-xs-12" ng-if="!don.mensuel && !don.trimestriel && donsCtrl.isPaypal">
                                                     <input type="radio"  name="modePaiement" id="paypal" ng-model="don.modePaiement" value="paypal" required>
                                                     <label for="paypal">{{rubedo.translate("Block.Inscription.Paf.Paypal","Paypal")}}</label> 
                                                 </div>
-                                                -->               
+                                                         
                                                 <div class="col-xs-12" ng-if="!don.mensuel && !don.trimestriel">
                                                     <input type="radio"  name="modePaiement" id="cheque" ng-model="don.modePaiement" value="cheque" required>
                                                     <label for="cheque">{{rubedo.translate("Block.Inscription.Paf.Cheque")}}</label> 

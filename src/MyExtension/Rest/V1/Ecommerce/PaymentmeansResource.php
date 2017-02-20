@@ -72,6 +72,7 @@ class PaymentmeansResource extends AbstractResource
             $monnaie="";
             $paymentModes=array(
                 "carte"=>false,
+                "paypal"=>false,
                 "cheque"=>false
             );
             
@@ -89,6 +90,9 @@ class PaymentmeansResource extends AbstractResource
                 }
                 if($arrayToReturn["nativePMConfig"]["libelle_cheque"] && $arrayToReturn["nativePMConfig"]["libelle_cheque"] !="") {
                     $paymentModes["cheque"] = true;
+                }
+                if($arrayToReturn["nativePMConfig"]["paypal"] && $arrayToReturn["nativePMConfig"]["paypal"] !="") {
+                    $paymentModes["paypal"] = true;
                 }
                 $arrayToReturn["paymentModes"] = $paymentModes;
                 $arrayToReturn["nativePMConfig"] = array(
