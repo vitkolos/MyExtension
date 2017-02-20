@@ -33,7 +33,7 @@
                                         <div class="col-sm-8" ng-init="don.montant = contentDetailCtrl.content.fields.montant_1">                                          
                                                 
                                                 <input type="radio"  name="montant" id="montant1" value="{{contentDetailCtrl.content.fields.montant_1}}" ng-model="don.montant" required>
-                                                        <label for="montant1" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_1}}€</label>	
+                                                        <label for="montant1" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_1}}{{don.monnaie}}</label>	
                                                 <input type="radio"  name="montant" id="montant2" value="{{contentDetailCtrl.content.fields.montant_2}}" ng-model="don.montant">
                                                             <label for="montant2" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_2}}€</label>
                                                 <input type="radio"  name="montant" id="montant3" value="{{contentDetailCtrl.content.fields.montant_3}}" ng-model="don.montant">

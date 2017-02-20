@@ -88,7 +88,7 @@ class SitesConfigCcn extends AbstractCollection
             case "il.chemin-neuf.org" :
                 if($type=="dons") $accountName="dons_il";
                     $codeMonnaie=124;
-                    $countryID="CA";
+                    $countryID="IL";
                     break;
         }
         $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
