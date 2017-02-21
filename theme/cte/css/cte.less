@@ -1245,8 +1245,9 @@ label.label_style.left, .label_style.left label{text-align:left; float:left}
 @media screen and (max-width:@min_sm) {label.label_style{text-align:left; float:left}}
 //////////////COLLAPSE////////////////////////
 .panel-group[id^=collapse]{
+		 .panel+.panel{margin-top:12px}
 		.panel-default>.panel-heading{cursor: pointer; a{display: inline-block; width: 100%;}}
-		.panel-body ul{list-style-type: initial; padding-left: 12px;}
+		.panel-body ul{list-style-type: initial; padding-left: 24px;}
 		font-size: 16px;
 }
 #jeunes .panel-group[id^=collapse]{
@@ -1259,7 +1260,7 @@ label.label_style.left, .label_style.left label{text-align:left; float:left}
   .panel-heading{border-top-left-radius:0px; border-top-right-radius:0px;.downarrow();}
   .panel-heading:after{margin-top: -1.5em}
 }
-
+@media screen and (max-width:@min_sm) {.panel-group[id^=collapse] .panel-body ul{padding-left: 12px}}
 
 /////////DONS/////////////////
 .dons-progress{
