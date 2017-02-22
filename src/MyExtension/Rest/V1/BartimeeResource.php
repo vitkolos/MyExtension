@@ -51,12 +51,7 @@ class BartimeeResource extends AbstractResource
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Title of the last Donation registered in Bartimee')
-                            ->setKey('lastInBartimee')
-                    )
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Last Update Tiùe')
-                            ->setKey('lastupdatetime')
+                            ->setKey('lastinbartimee')
                     )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
@@ -78,7 +73,15 @@ class BartimeeResource extends AbstractResource
     public function getAction($inputs)
     {
 
-    
+        /*Get last donation registered in Bartimee by name*/
+        $dataService= Manager::getService('MongoDataAccess');
+        $dataService->init("Contents");
+        $lastDonation = $dataService->findByName($inputs['lastinbartimee']);
+        if (empty($content)) {
+            throw new APIEntityException('Donation not found', 404);
+        }
+                
+        /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
             "constrainToSite" => false,
             "displayMode" => "default",
@@ -94,7 +97,7 @@ class BartimeeResource extends AbstractResource
             "limit" => 50,
             "start" =>0,
             "orderby" => "lastUpdateTime",
-            "lastupdatetime" => $inputs['lastupdatetime'],
+            "lastupdatetime" => $lastDonation['lastUpdateTime']*1000,
             "type" =>  "5652dcb945205e0d726d6caf",
             "block-config" => [
                 "displayedFacets" =>'[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
