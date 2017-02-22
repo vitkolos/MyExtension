@@ -92,7 +92,8 @@ class BartimeeResource extends AbstractResource
             throw new APIEntityException('Donation not found', 404);
         }
         $response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);
-        var_dump($response);
+        if($response['user']['id'] !='58ada957245640d7008b5ffc') throw new APIEntityException('Non identified application', 404);
+        //var_dump($response);
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
             "constrainToSite" => false,
