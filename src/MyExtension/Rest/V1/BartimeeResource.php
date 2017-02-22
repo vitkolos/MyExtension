@@ -47,7 +47,12 @@ class BartimeeResource extends AbstractResource
             ->setDescription('Search Donations with ElasticSearch')
             ->editVerb('get', function (VerbDefinitionEntity &$entity) {
                 $entity
-                    ->setDescription('Get a list of media using Elastic Search')
+                    ->setDescription('Get a list of donations using Elastic Search')
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Title of the last Donation registered in Bartimee')
+                            ->setKey('lastInBartimee')
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('results')
@@ -84,6 +89,7 @@ class BartimeeResource extends AbstractResource
             "limit" => 50,
             "start" =>0,
             "orderby" => "lastUpdateTime",
+            "lastupdatetime" => 1485101767,
             "type" =>  "5652dcb945205e0d726d6caf",
             "block-config" => [
                 "displayedFacets" =>'[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
