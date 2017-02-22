@@ -18,6 +18,7 @@ namespace RubedoAPI\Rest\V1;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use Zend\Json\Json;
+use Rubedo\Services\Manager;
 /**
  * Class SearchResource
  * @package RubedoAPI\Rest\V1
@@ -77,7 +78,7 @@ class BartimeeResource extends AbstractResource
         $dataService= Manager::getService('MongoDataAccess');
         $dataService->init("Contents");
         $lastDonation = $dataService->findByName($inputs['lastinbartimee']);
-        if (empty($content)) {
+        if (empty($lastDonation)) {
             throw new APIEntityException('Donation not found', 404);
         }
                 
