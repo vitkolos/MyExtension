@@ -53,6 +53,11 @@ class BartimeeResource extends AbstractResource
                             ->setDescription('Title of the last Donation registered in Bartimee')
                             ->setKey('lastInBartimee')
                     )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Last Update Tiùe')
+                            ->setKey('lastupdatetime')
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('results')
@@ -70,7 +75,7 @@ class BartimeeResource extends AbstractResource
      * @param $queryParams
      * @return array
      */
-    public function getAction()
+    public function getAction($inputs)
     {
 
     
@@ -89,7 +94,7 @@ class BartimeeResource extends AbstractResource
             "limit" => 50,
             "start" =>0,
             "orderby" => "lastUpdateTime",
-            "lastupdatetime" => 1485101767,
+            "lastupdatetime" => $inputs['lastupdatetime'],
             "type" =>  "5652dcb945205e0d726d6caf",
             "block-config" => [
                 "displayedFacets" =>'[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
