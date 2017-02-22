@@ -100,7 +100,7 @@ class BartimeeResource extends AbstractResource
             "displayMode" => "default",
             "displayedFacets" => '[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
             "lang" => "fr",
-            "limit" => 50,
+            "limit" => 100,
             "start" =>0,
             "orderby" => "lastUpdateTime",
             "predefinedFacets" => '{"type":"5652dcb945205e0d726d6caf"}',
@@ -124,7 +124,7 @@ class BartimeeResource extends AbstractResource
         $this->injectDataInResults($results, $queryParams);
         return [
             'success' => true,
-            'results' => $results,
+            'results' => $results['data'],
             'count' => $results['total']
         ];
     }
