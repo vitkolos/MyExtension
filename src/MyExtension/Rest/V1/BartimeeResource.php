@@ -54,6 +54,16 @@ class BartimeeResource extends AbstractResource
                             ->setDescription('Title of the last Donation registered in Bartimee')
                             ->setKey('lastinbartimee')
                     )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Identifiant')
+                            ->setKey('login')
+                    )
+                    >addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Mot de passe')
+                            ->setKey('passwd')
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('results')
@@ -81,7 +91,8 @@ class BartimeeResource extends AbstractResource
         if (empty($lastDonation)) {
             throw new APIEntityException('Donation not found', 404);
         }
-                
+        $response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);
+        var_dump($response);
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
             "constrainToSite" => false,
