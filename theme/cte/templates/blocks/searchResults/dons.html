@@ -51,6 +51,9 @@
                 <img class="img-responsive" ng-if="datum['fields.image']"
                                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'],{width:'400px',height:'266px',mode:'crop'}) }}"
                                                      alt="{{ datum.title }}"/>
+                <div ng-if="datum['fields.cumul'][0]>datum['fields.budget'][0] && datum['fields.budget'][0]>0" class="ruban-termine">
+                    <div>{{rubedo.translate('Block.Dons.Fini','Projet financé')}}</div>
+                </div>
                 <div class="padding col-sm-12 bg-white text-center">
                     <p  style="height: 70px; overflow-y: hidden">{{datum.title}} - {{datum.summary}}</p>
                     <!--<p class="capital" ng-style="datum['fields.budget'][0]== 0 && {'visibility':'hidden'}">{{datum['fields.budget'][0] |number:0}} {{datum['fields.monnaie'][0]}}</p>
