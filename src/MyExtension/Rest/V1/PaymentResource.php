@@ -73,7 +73,7 @@ class PaymentResource extends AbstractResource {
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Moyen de payement en ligne (paybox/dotpay)')
+                            ->setDescription('Moyen de payement en ligne (paybox/dotpay/paypal)')
                             ->setKey('onlinePaymentMeans')
                             ->setFilter('string')
                     )
