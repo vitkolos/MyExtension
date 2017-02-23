@@ -387,7 +387,7 @@ class SearchResource extends AbstractResource
         **/
         $results['facetsLabels'] = array();
         foreach ($results['facets'] as $facet) {
-            if($facet['terms']) {
+            if(isset($facet['terms'])) {
                 foreach ($facet['terms'] as $term) {
                     $results['facetsLabels'][$term['term']] = $term['label'];
                 }
