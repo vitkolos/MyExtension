@@ -18,7 +18,7 @@
                         {{alert(page.includedRichText.fields.body);}}
                         <div class=' col-xs-12 pull-{{blockConfig.menuAlign}} categories ' ng-class="page.includedRichText.fields.body ? 'col-sm-{{blockConfig.menuWidth}}':'col-sm-12'" >
                             <div ng-repeat="subpage in page.pages track by $index" ng-class="page.includedRichText.fields.body ? 'col-md-4':'col-lg-3'" class="col-xs-6" >
-                                <span ng-if="!blockConfig.disableLevelTwo || (blockConfig.disableLevelTwo && subpage.pages.length==0)">
+                                <span ng-if="!blockConfig.disableLevelTwo || (blockConfig.disableLevelTwo && (subpage.pages.length==0 || !subpage.pages))">
                                     <a class="dropdown-header" ng-href="{{subpage.url}}">{{subpage.text}}</a>
                                 </span>
                                 <span ng-if="blockConfig.disableLevelTwo && subpage.pages.length>0" class="dropdown-header">

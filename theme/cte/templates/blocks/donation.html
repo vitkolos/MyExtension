@@ -33,13 +33,13 @@
                                         <div class="col-sm-8" ng-init="don.montant = contentDetailCtrl.content.fields.montant_1">                                          
                                                 
                                                 <input type="radio"  name="montant" id="montant1" value="{{contentDetailCtrl.content.fields.montant_1}}" ng-model="don.montant" required>
-                                                        <label for="montant1" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_1}}€</label>	
+                                                        <label for="montant1" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_1}}{{don.monnaie}}</label>	
                                                 <input type="radio"  name="montant" id="montant2" value="{{contentDetailCtrl.content.fields.montant_2}}" ng-model="don.montant">
-                                                            <label for="montant2" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_2}}€</label>
+                                                            <label for="montant2" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_2}}{{don.monnaie}}</label>
                                                 <input type="radio"  name="montant" id="montant3" value="{{contentDetailCtrl.content.fields.montant_3}}" ng-model="don.montant">
-                                                            <label for="montant3" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_3}}€</label>
+                                                            <label for="montant3" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_3}}{{don.monnaie}}</label>
                                                 <input type="radio"  name="montant" id="montant4" value="{{contentDetailCtrl.content.fields.montant_4}}" ng-model="don.montant">
-                                                            <label for="montant4" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_4}}€</label>
+                                                            <label for="montant4" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_4}}{{don.monnaie}}</label>
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
                                                             <label for="autre" class="sexe_label dons">autre</label>
                                                 <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder="Autre" ng-pattern="/^[0-9]{1,7}$/" ng-required="don.montant=='autre'">

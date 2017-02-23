@@ -18,6 +18,7 @@ namespace RubedoAPI\Rest\V1;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use Zend\Json\Json;
+use Rubedo\Services\Manager;
 /**
  * Class SearchResource
  * @package RubedoAPI\Rest\V1
@@ -47,7 +48,22 @@ class BartimeeResource extends AbstractResource
             ->setDescription('Search Donations with ElasticSearch')
             ->editVerb('get', function (VerbDefinitionEntity &$entity) {
                 $entity
-                    ->setDescription('Get a list of media using Elastic Search')
+                    ->setDescription('Get a list of donations using Elastic Search')
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Title of the last Donation registered in Bartimee')
+                            ->setKey('lastinbartimee')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Identifiant')
+                            ->setKey('login')
+                    )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Mot de passe')
+                            ->setKey('passwd')
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setKey('results')
@@ -65,16 +81,26 @@ class BartimeeResource extends AbstractResource
      * @param $queryParams
      * @return array
      */
-    public function getAction()
+    public function getAction($inputs)
     {
 
-    
+        /*Get last donation registered in Bartimee by name*/
+        $dataService= Manager::getService('MongoDataAccess');
+        $dataService->init("Contents");
+        $lastDonation = $dataService->findByName($inputs['lastinbartimee']);
+        if (empty($lastDonation)) {
+            throw new APIEntityException('Donation not found', 404);
+        }
+        $response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);
+        if($response['user']['id'] !='58ada957245640d7008b5ffc') throw new APIEntityException('Non identified application', 404);
+        //var_dump($response);
+        /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
             "constrainToSite" => false,
             "displayMode" => "default",
             "displayedFacets" => '[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
             "lang" => "fr",
-            "limit" => 50,
+            "limit" => 100,
             "start" =>0,
             "orderby" => "lastUpdateTime",
             "predefinedFacets" => '{"type":"5652dcb945205e0d726d6caf"}',
@@ -84,6 +110,7 @@ class BartimeeResource extends AbstractResource
             "limit" => 50,
             "start" =>0,
             "orderby" => "lastUpdateTime",
+            "lastupdatetime" => $lastDonation['lastUpdateTime']*1000,
             "type" =>  "5652dcb945205e0d726d6caf",
             "block-config" => [
                 "displayedFacets" =>'[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
@@ -97,7 +124,7 @@ class BartimeeResource extends AbstractResource
         $this->injectDataInResults($results, $queryParams);
         return [
             'success' => true,
-            'results' => $results,
+            'results' => $results['data'],
             'count' => $results['total']
         ];
     }

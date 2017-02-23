@@ -46,12 +46,15 @@
         </div>
     </div>
     <div class="col-md-9">
-        <div class="col-sm-4 col-xs-6 col-xxs-12" ng-repeat="datum in searchResultsCtrl.data track by $index" style="margin-bottom: 12px" ng-style="datum['fields.cumul'][0]>datum['fields.budget'][0] && datum['fields.budget'][0]>0 && {'opacity':'0.7'}">
+        <div class="col-sm-4 col-xs-6 col-xxs-12" ng-repeat="datum in searchResultsCtrl.data track by $index" style="margin-bottom: 12px">
             <a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url |cleanUrl}}">
-                <img class="img-responsive" ng-if="datum['fields.image']"
+                <img class="img-responsive" ng-if="datum['fields.image']"  ng-style="datum['fields.cumul'][0]>datum['fields.budget'][0] && datum['fields.budget'][0]>0 && {'opacity':'0.7'}"
                                                      ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'],{width:'400px',height:'266px',mode:'crop'}) }}"
                                                      alt="{{ datum.title }}"/>
-                <div class="padding col-sm-12 bg-white text-center">
+                <div ng-if="datum['fields.cumul'][0]>datum['fields.budget'][0] && datum['fields.budget'][0]>0" class="ruban-termine">
+                    <div>{{rubedo.translate('Block.Dons.Fini','Projet financé')}}</div>
+                </div>
+                <div class="padding col-sm-12 bg-white text-center"  ng-style="datum['fields.cumul'][0]>datum['fields.budget'][0] && datum['fields.budget'][0]>0 && {'opacity':'0.7'}">
                     <p  style="height: 70px; overflow-y: hidden">{{datum.title}} - {{datum.summary}}</p>
                     <!--<p class="capital" ng-style="datum['fields.budget'][0]== 0 && {'visibility':'hidden'}">{{datum['fields.budget'][0] |number:0}} {{datum['fields.monnaie'][0]}}</p>
                     <div ng-style="datum['fields.budget'][0]== 0 && {'visibility':'hidden'}" class="col-sm-12 no-padding dons-progress">

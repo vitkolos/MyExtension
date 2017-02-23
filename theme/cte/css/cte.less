@@ -211,7 +211,10 @@ span.glyphicon{margin: 0 5px; vertical-align: middle}
 .bg-rouge{background-color: @rouge !important}
 .desaturate{filter:grayscale(100%); -webkit-filter:grayscale(100%)}
 .beige{background-color: @beigeCCN}
-.texte{max-width: 860px; margin: 24px auto; padding: 6px 8px}
+.texte{
+		max-width: 860px; margin: 24px auto; padding: 6px 8px;
+		font-size: 1.1em; line-height:1.4em;
+		}
 span.font_icon{
   font-family: 'FontAwesome';
   font-size: 40px;
@@ -1242,16 +1245,23 @@ label.label_style.left, .label_style.left label{text-align:left; float:left}
 @media screen and (max-width:@min_sm) {label.label_style{text-align:left; float:left}}
 //////////////COLLAPSE////////////////////////
 .panel-group[id^=collapse]{
+		 .panel+.panel{margin-top:12px}
+		.panel-default>.panel-heading{cursor: pointer; a{display: inline-block; width: 100%;}}
+		.panel-body ul{list-style-type: initial; padding-left: 24px;}
+		font-size: 16px;
+		td{padding-right : 12px;}
+}
+#jeunes .panel-group[id^=collapse]{
   .panel-default{border-color:@txt_dark}
-  .panel-default>.panel-heading{background-color: @txt_dark; color:white; .capital; cursor: pointer; a{display: inline-block; width: 100%;}}
+  .panel-default>.panel-heading{background-color: @txt_dark; color:white; .capital;}
   .panel-title{padding-right: 15px}
-  .panel-body ul{list-style-type: initial; padding-left: 12px;}
   li{padding-bottom: 2px;}
   a:hover{color:white}
   .panel{border-radius:0px !important}
   .panel-heading{border-top-left-radius:0px; border-top-right-radius:0px;.downarrow();}
   .panel-heading:after{margin-top: -1.5em}
 }
+@media screen and (max-width:@min_sm) {.panel-group[id^=collapse] .panel-body ul{padding-left: 12px}}
 
 /////////DONS/////////////////
 .dons-progress{
@@ -1314,6 +1324,18 @@ label.label_style.left, .label_style.left label{text-align:left; float:left}
         background-size: 100% 100%;
     }
 }
+.ruban-termine{
+		position: absolute;
+		top:0; left: 0;
+		width:150px; height: 150px; overflow:hidden; margin-left:15px;
+		div{background-color: @rouge; color:white; top:40px; right:60px;width:240px; text-transform: uppercase; position: relative; padding: 7px 0; text-align: center; font-family: 'Montserrat'; font-size: 0.85em;
+		    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);}
+}
+
 .loader-container{text-align: center; margin: 64px auto}
 .accueil p,.accueil h1,.accueil h3{color:white;}
 .accueil h3{font-family:'Montserrat';}

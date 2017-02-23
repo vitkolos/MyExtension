@@ -25,7 +25,7 @@
 @max_width:1550px;
 body{font-size:16px; min-height:100%; color:@txt_dark;}
 html,body{font-family: 'Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto}
-.container-fluid{overflow-x:hidden; width: 100%; max-width: @max_width}
+.container-fluid{overflow-x:hidden; width: 100%; /*max-width: @max_width*/}
 .form-horizontal .form-group {margin-left:0; margin-right: 0}
 /*code Nicolas*/
 /*site communauté*/
@@ -303,7 +303,18 @@ input:checked + .push-menu-title:after{content:"c"}
     }
     .sections-container.no-dots{margin:0}
     .sections-container.first{
-	margin:0; overflow-y:hidden;
+								margin:0; overflow-y:hidden;
+								position: fixed;
+								top: 0;
+								left:0;
+								right: 0;
+    }
+				.sections-container.first + .sections-container{
+								margin-top: 100vh;
+								background-color: rgba(225,225,225,0.8);
+				}
+				@media screen and (max-width: 600px) and (orientation:portrait){
+        	.sections-container.first + .sections-container{margin-top: 75vh;}
     }
 .sections-container-push {
     -webkit-transform: translate3d(214px,0,0);
@@ -334,8 +345,7 @@ input:checked + .push-menu-title:after{content:"c"}
 /*PAGE ACCUEIL*/
 .accueil_vision {
     width:100%;
-    /*background: @welcome;*/
-    background-color:#e1e1e1;
+    //background-color:#e1e1e1;
 	//background-image: url('../img/vision_bg.jpg');
     color: @txt;
     text-align:center;
