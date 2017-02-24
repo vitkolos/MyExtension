@@ -60,6 +60,59 @@ return array(
             'name' => "Dons Israël",
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+        ),
+								/*NEW CONFIGS*/
+								'int' => array(
+            'name' => "International",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'france' => array(
+            'name' => "France",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'pologne' => array(
+            'name' => "Pologne",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'italie' => array(
+            'name' => "Italie",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'espagne' => array(
+            'name' => "Espagne",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'liban' => array(
+            'name' => "Liban",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'israel' => array(
+            'name' => "Israël",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'belgique' => array(
+            'name' => "Belgique",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'martinique' => array(
+            'name' => "Martinique",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+									'canada' => array(
+            'name' => "Canada",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'hongrie' => array(
+            'name' => "Hongrie",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'uk' => array(
+            'name' => "Royaume-Uni",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+        ),
+								'bresil' => array(
+            'name' => "Brésil",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
         )
          
     ),
