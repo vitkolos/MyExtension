@@ -1,0 +1,105 @@
+[
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Code Pays ",
+            "name": "codePays",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Monnaie",
+            "name": "monnaie",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Code monnaie numérique",
+            "name": "codeMonnaie",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+				{
+        "type": "Rubedo.view.ESQfield",
+        "config": {
+            "fieldLabel": "Taxonomie du pays",
+            "name": "taxo_pays",
+            "queryMode": true
+        }
+    },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Nom de la fiscalité",
+            "name": "fiscalite",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+				{
+        "type": "Rubedo.view.DCEField",
+        "config": {
+            "fieldLabel": "Conf. de payment PAF",
+            "name": "conf_paf",
+												"allowedCT":"55473bf845205e413cf1864d",
+            "chooseOnly": true
+        }
+    },
+    {
+        "type": "Rubedo.view.DCEField",
+        "config": {
+            "fieldLabel": "Conf. de payment Dons",
+            "name": "conf_dons",
+												"allowedCT":"55473bf845205e413cf1864d",
+            "chooseOnly": true
+        }
+    },
+				{
+        "type": "Rubedo.view.DCEField",
+        "config": {
+            "fieldLabel": "Contact pour les dons",
+            "name": "contactDonsId",
+            "chooseOnly": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Email comptabilité",
+            "name": "email_compta",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Email Intendance",
+            "name": "email_intendance",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Analytique pays",
+            "name": "code_ana",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    }
+    
+
+    
+    
+    
+    
+]

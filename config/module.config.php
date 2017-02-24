@@ -64,55 +64,55 @@ return array(
 								/*NEW CONFIGS*/
 								'int' => array(
             'name' => "International",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'france' => array(
             'name' => "France",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'pologne' => array(
             'name' => "Pologne",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'italie' => array(
             'name' => "Italie",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'espagne' => array(
             'name' => "Espagne",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'liban' => array(
             'name' => "Liban",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'israel' => array(
             'name' => "Israël",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'belgique' => array(
             'name' => "Belgique",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'martinique' => array(
             'name' => "Martinique",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 									'canada' => array(
             'name' => "Canada",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'hongrie' => array(
             'name' => "Hongrie",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'uk' => array(
             'name' => "Royaume-Uni",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
 								'bresil' => array(
             'name' => "Brésil",
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         )
          
     ),
