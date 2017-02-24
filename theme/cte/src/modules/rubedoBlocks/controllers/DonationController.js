@@ -57,7 +57,6 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                         if(response.data.success){
                             $scope.contentDetailCtrl.contactNational=response.data.content;
                             $scope.contentDetailCtrl.contactNationalPhoto = response.data.content.fields.photo.imageCode;
-
                             $scope.don.contactNational = response.data.content.fields;
                             $scope.don.contactNational.photo="";
                         }
@@ -178,7 +177,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 $scope.don.conditionId = me.fiscalites[$scope.don.condition].id;
             }
             if($scope.contentDetailCtrl.content.fields.codeAna) $scope.don.codeAna = $scope.contentDetailCtrl.content.fields.codeAna;
-
+												
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
 
@@ -202,9 +201,9 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                             proposition:$scope.don.projet,
                             idInscription: response.data.instructions.id,
                             paymentType: 'dons',
-                            onlinePaymentMeans: me.paymentmeans.onlinePaymentMeans,
+                            paymentMeans:$scope.inscription.modePaiement,
                             placeId:$scope.contentDetailCtrl.content.fields.codeAna,
-                            accountName:response.data.instructions.accountName
+                            paymentConfID:response.data.instructions.paymentConfID
                         };            
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {

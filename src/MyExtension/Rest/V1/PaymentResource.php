@@ -74,24 +74,24 @@ class PaymentResource extends AbstractResource {
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Moyen de payement en ligne (paybox/dotpay/paypal)')
-                            ->setKey('onlinePaymentMeans')
+                            ->setKey('paymentMeans')
                             ->setFilter('string')
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Nom du compte (pour récupérer les infos de payement)')
-                            ->setKey('accountName')
+                            ->setDescription('Identifiant de la config de payement (pour récupérer les infos de payement)')
+                            ->setKey('paymentConfID')
                             ->setFilter('string')
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('idInscription')
+                            ->setDescription('Identifiant de l\'inscription ou du don')
                             ->setKey('idInscription')
                             ->setFilter('string')
                     )
                     ->addInputFilter(
                         (new FilterDefinitionEntity())
-                            ->setDescription('Nom de la proposition')
+                            ->setDescription('Nom de la proposition ou du projet')
                             ->setKey('proposition')
                             ->setFilter('string')
                     )
@@ -117,11 +117,11 @@ class PaymentResource extends AbstractResource {
         $proposition = $params['proposition']; // titre de la proposition si inscription
         $paymentType=$params['paymentType']; // type de paiement (paf ou dons)
         $place = $params['placeID']; // lieu communautaire pour compta
-        $onlinePaymentMeans=$params['onlinePaymentMeans'];  //moyen de payment en ligne du site
+        $onlinePaymentMeans=$params['paymentMeans'];  //moyen de payment en ligne du site : carte (=paybox), paypal, dotpay
         $codeCompta="";
 
-        //get account properties
-        $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($params['accountName']);
+        // Récupérer les infos de payement
+      
         
         //get code comptabilité (par maison /pays)
         if($paymentType=="paf"){
@@ -131,7 +131,11 @@ class PaymentResource extends AbstractResource {
                 $lieuCommunautaire = Manager::getService("Contents")->findById($place,false,false);
                 $codeCompta = "[" . $lieuCommunautaire["fields"]["codeCompta"] . "]";
             }
-            else $codeCompta = "[no]";
+            else  {
+                    //si le code compta du lieu n'est pas là, indiquer le code compta du site
+                    $siteConfig = Manager::getService("SitesConfigCcn")->getConfig();
+                    $codeCompta = "[" . $siteConfig['paymentConfig']['nativePMConfig']['code_ana'] . "]"; 
+            }       
         }
         else if($paymentType=="dons") {
             /*le code compta est envoyé dans le paramètre placeId*/
@@ -190,37 +194,30 @@ class PaymentResource extends AbstractResource {
         }
         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
         else {
-            // récupérer l'id du compte de paiement
-            $id = $paymentConfig["data"]["nativePMConfig"]["paybox"];
+            // récupérer l'id de la configuration de payement
+            $id = $params['paymentConfID'];
+            // récupérer les infos du compte
+            $wasFiltered = AbstractCollection::disableUserFilter(true);
+            $contentsService = Manager::getService("Contents");
+            $paymentInfos = $contentsService->findById($id,false,false)['fields'];
+            $wasFiltered = AbstractCollection::disableUserFilter(false);
             switch ($paymentType) {
-                
+                /*PAF*/
                 case "paf":                
-                    // récupérer les infos du compte
-                    $paymentInfos = $this->getPaymentInfos($id);
-                    
-                    
                     $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($proposition)) . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
-                    $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
+                    $urlCallback="https://" . $_SERVER['HTTP_HOST'] . "/api/v1/PayboxIpn/";
                     break;
-            
-            
-            
              /*DONS */           
-                case "dons":
-                    
-
-                // récupérer les infos du compte
-                    $paymentInfos = $this->getPaymentInfos($id);
-                    
+                case "dons":                 
                     $commande = $codeCompta . "|" . $idInscription . "|" . urlencode(urlencode($prenom)) . "|" . urlencode(urlencode($nom)); 
-                    $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/donation/";
+                    $urlCallback="https://" . $_SERVER['HTTP_HOST'] . "/api/v1/donation/";
                     break;
                 default:
                     $parametres = "Pas de mode de paiement indiqué";
             }            
             $dateTime = date("c");
-            $urlNormal="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
-            $urlEchec="http://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
+            $urlNormal="https://" . $_SERVER['HTTP_HOST'] ;//. "/payment/success";
+            $urlEchec="https://" . $_SERVER['HTTP_HOST'] ;//. "/payment/cancel";
             $payboxSite = $paymentInfos['site'];
             $payboxRang = $paymentInfos['rang'];
             $payboxID = $paymentInfos['identifiant'];
@@ -289,18 +286,7 @@ class PaymentResource extends AbstractResource {
         );
     }
     
-    public function getPaymentInfos($id){
-        $contentId = (string)$id;
-        $className = (string)get_class($this);
 
-        $this->_dataService = Manager::getService('MongoDataAccess');
-        $this->_dataService->init("Contents");
-        $content = $this->_dataService->findById($id);
-        if (empty($content)) {
-            throw new APIEntityException('Content not found', 404);
-        }
-        return $content['live']['fields'];
-    }
     
 
      

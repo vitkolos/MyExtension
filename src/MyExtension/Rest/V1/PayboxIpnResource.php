@@ -147,14 +147,14 @@ if(!($erreurStatus) && $securite && $autorisation) {
  
         }    
 
-
-        
-        $mailCompta = $this->getMailCompta();
+        $siteConfig = Manager::getService("SitesConfigCcn")->getConfig();
+        $mailCompta = $siteConfig['paymentConfig']['nativePMConfig']['email_compta'] ; 
+        if(!isset($mailCompta)) $mailCompta="web@chemin-neuf.org";
         $mailerService = Manager::getService('Mailer');
 
         $mailerObject = $mailerService->getNewMessage();
         if($mailSecretariat) $destinataires=array($mailCompta,$mailSecretariat);
-        else $destinataires=array($mailCompta,"nicolas.rhone@chemin-neuf.org");
+        else $destinataires=array($mailCompta,"web@chemin-neuf.org");
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
         
@@ -176,9 +176,9 @@ if(!($erreurStatus) && $securite && $autorisation) {
             $body .= "Prénom : " . $inscription['fields']['surname']."\n";
             $body .= "Email : " . $inscription['fields']['email']."\n";
              if($inscription['fields']['public_type'] == "couple" || $inscription['fields']['public_type'] == "fiances" || $inscription['fields']['public_type'] == "famille") {
-                if($inscription['fields']['nomPers2']) $body .= "Nom 2e personne : " . $inscription['fields']['nomPers2']."\n";
-                if($inscription['fields']['prenomPers2']) $body .= "Prénom 2e personne : " . $inscription['fields']['prenomPers2']."\n";
-                if($inscription['fields']['emailPers2']) $body .= "Email 2e personne: " . $inscription['fields']['emailPers2']."\n";
+                if(isset($inscription['fields']['nomPers2'])) $body .= "Nom 2e personne : " . $inscription['fields']['nomPers2']."\n";
+                if(isset($inscription['fields']['prenomPers2'])) $body .= "Prénom 2e personne : " . $inscription['fields']['prenomPers2']."\n";
+                if(isset($inscription['fields']['emailPers2'])) $body .= "Email 2e personne: " . $inscription['fields']['emailPers2']."\n";
              }
             if($erreurMessage!="") $body.="\n\n Message : " . $erreurMessage;
         }
@@ -211,23 +211,6 @@ if(!($erreurStatus) && $securite && $autorisation) {
     }
 
 
-protected function getMailCompta(){
-        $mailCompta="nicolas.rhone@chemin-neuf.org";
-        $accountName = "";
-        switch($_SERVER['HTTP_HOST']) {
-            case "www.chemin-neuf.fr" :
-                $accountName = "paf_fr";
-                break;
-            case "www.chemin-neuf.pl" : 
-                $accountName="paf_pl"; break;
-        }
-        $paymentMeans=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
-        if($paymentMeans['success']) {
-            $mailCompta = $paymentMeans["data"]["nativePMConfig"]["email_compta"];
-        }
-        return $mailCompta;
-    }
-     
 
     
     

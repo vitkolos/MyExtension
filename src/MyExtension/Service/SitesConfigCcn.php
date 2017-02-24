@@ -37,67 +37,72 @@ class SitesConfigCcn extends AbstractCollection
     /**
      * @see \Rubedo\Interfaces\Collection\IShippers::getApplicableShippers
      */
-    public function getConfig($type)
+    public function getConfig()
     {
-        $accountName="paf_fr";
-        $countryID="FR";
+        $accountName="france";
         switch($_SERVER['HTTP_HOST']){
             //FRANCE
             case "www.chemin-neuf.fr" :
-            case "www2.chemin-neuf.fr" : 
-                    if($type=="dons") $accountName="dons_fr";
-                    else if($type=="paf") $accountName="paf_fr";
-                    $countryID="FR";
-                    $codeMonnaie=978;
+            case "www2.chemin-neuf.fr" :
+                    $accountName="france";
                     break;
             //POLOGNE
             case "www.chemin-neuf.pl" :
-                    $accountName="paf_pl";
-                    $codeMonnaie=985;
-                    $countryID="PL";
-                    break;
-            //ESPAGNE
-            case "es.chemin-neuf.org" :
-            case "www.chemin-neuf.es" :
-                    $accountName="paf_es";
-                    $codeMonnaie=978;
-                    $countryID="ES";
+                    $accountName="pologne";
                     break;
             //ITALIE
             case "www.chemin-neuf.it" :
-                    $accountName="paf_it";
-                    $codeMonnaie=978;
-                    $countryID="IT";
+                    $accountName="italie";
                     break;
-            //HONGRIE
-            case "hu.chemin-neuf.org" :
-            case "www.chemin-neuf.hu" :
-                    $accountName="paf_hu";
-                    $codeMonnaie=348;
-                    $countryID="HU";
+            //ESPAGNE
+            case "www.chemin-neuf.es" :
+                    $accountName="espagne";
+                    break;
+            //LIBAN
+            case "lb.chemin-neuf.org" :
+                    $accountName="liban";
+                    break;
+            //ISRAEL
+            case "il.chemin-neuf.org" :
+            case "il2.chemin-neuf.org" :
+                    $accountName="israel";
+                    break;
+            //BELGIQUE
+            case "www.chemin-neuf.be" :
+            case "test.chemin-neuf.be" :
+                    $accountName="belgique";
+                    break;
+            //MARTINIQUE
+            case "mq2.chemin-neuf.org" :
+            case "mq.chemin-neuf.org" :
+                    $accountName="martinique";
                     break;
             //CANADA
             case "ca.chemin-neuf.org" :
             case "www.chemin-neuf.ca" :
-                    $accountName="paf_ca";
-                    $codeMonnaie=124;
-                    $countryID="CA";
+                    $accountName="canada";
                     break;
-            //ISRAEL
-            case "il2.chemin-neuf.org" :
-            case "il.chemin-neuf.org" :
-                if($type=="dons") $accountName="dons_il";
-                    $codeMonnaie=124;
-                    $countryID="IL";
+            //HONGRIE
+            case "hu.chemin-neuf.org" :
+            case "www.chemin-neuf.hu" :
+                    $accountName="hongrie";
+                    break;
+            //ROYAUME UNI
+            case "uk.chemin-neuf.org" :
+            case "www.chemin-neuf.org.uk" :
+                    $accountName="uk";
+                    break;
+            //BRESIL
+            case "br2.chemin-neuf.org" :
+            case "br2.chemin-neuf.org" :
+                    $accountName="bresil";
                     break;
         }
         $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
         if($paymentConfig['success']){
             return array(
                     'success' => true,
-                    'paymentConfig' =>$paymentConfig['data'],
-                    'codeMonnaie' => $codeMonnaie,
-                    'countryID' => $countryID
+                    'paymentConfig' =>$paymentConfig['data']
             );
         }
         

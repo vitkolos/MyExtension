@@ -55,37 +55,39 @@ class InscriptionResource extends AbstractResource
         $contentsService = Manager::getService("ContentsCcn");
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] +=1;
-	$content['i18n'] =  array(
-		    "fr" =>array(
-			"fields" => array("text"=>$content["fields"]["text"])
-		    ),
-		    "pl" =>array(
-			"fields" => array("text"=>$content["fields"]["text"])
-		    ),
-		    "es" =>array(
-			"fields" => array("text"=>$content["fields"]["text"])
-		    ),
-				"hu" =>array(
-								"fields" => array("text"=>$content["fields"]["text"])
-				),
-				"it" =>array(
-								"fields" => array("text"=>$content["fields"]["text"])
-				),
-				"pt" =>array(
-								"fields" => array("text"=>$content["fields"]["text"])
-				),
-				"pt-BR" =>array(
-								"fields" => array("text"=>$content["fields"]["text"])
-				)
+								$content['i18n'] =  array(
+													"fr" =>array(
+										"fields" => array("text"=>$content["fields"]["text"])
+													),
+													"pl" =>array(
+										"fields" => array("text"=>$content["fields"]["text"])
+													),
+													"es" =>array(
+										"fields" => array("text"=>$content["fields"]["text"])
+													),
+											"hu" =>array(
+															"fields" => array("text"=>$content["fields"]["text"])
+											),
+											"it" =>array(
+															"fields" => array("text"=>$content["fields"]["text"])
+											),
+											"pt" =>array(
+															"fields" => array("text"=>$content["fields"]["text"])
+											),
+											"pt-BR" =>array(
+															"fields" => array("text"=>$content["fields"]["text"])
+											)
 		);
 	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         $result = $contentsService->update($content, array(),false);
         $inscriptionNumber= $content["fields"]["value"];
-
+								//GET SITE CONFIG
+								$siteConfig = Manager::getService("SitesConfigCcn")->getConfig()['paymentConfig']['nativePMConfig'];
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
         $inscriptionForm['fields'] =  $params['inscription'];
-        $inscriptionForm['fields']['text'] = "". $this->getPays().(string)$inscriptionNumber;
+        $codePays = $siteConfig['codePays'];
+								$inscriptionForm['fields']['text'] = "". $codePays . str_pad($inscriptionNumber, 6, '0', STR_PAD_LEFT);
         $inscriptionForm['text'] = $inscriptionForm['fields']['text'];
         $inscriptionForm['target'] = $params['workspace'];
         $inscriptionForm['writeWorkspace'] = $params['workspace'];
@@ -115,12 +117,13 @@ class InscriptionResource extends AbstractResource
 
         //GET PAYEMENT INFOS
         if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
-            $paymentMeansId = $this->getAccountId();
+            $paymentMeansId = $siteConfig['conf_paf'];
             $paymentMeans = $contentsService->findById($paymentMeansId,false,false);
             $inscriptionForm['fields']['paymentInfos'] =$paymentMeans['fields'];
+												 //return payement conf id in response
+												$resultInscription['paymentConfID'] = $paymentMeansId;
         }
-         
-       
+        
         
        if($resultInscription['success']) {
             $this->sendInscriptionMail($inscriptionForm['fields'], $params['lang']->getLocale());
@@ -160,7 +163,7 @@ protected function sendInscriptionMail($inscription,$lang){
     //nombre de personnes inscrites
     $nbInscrits = 1;
     //nom pour le mail aux inscrits
-    if($inscription['prenomPers2'] && $inscription['prenomPers2']!="" )  {
+    if(isset($inscription['prenomPers2']) && $inscription['prenomPers2']!="" )  {
         $nbInscrits = 2;
         if(!$inscription['nomPers2'] || $inscription['nomPers2']=="" || $inscription['nomPers2'] == $inscription['nom'])
             $nomClient = $inscription['surname'] . " " . $trad["et"] . " " . $inscription['prenomPers2'] . " " . $inscription['nom'];
@@ -263,14 +266,14 @@ protected function sendInscriptionMail($inscription,$lang){
         
         else if($inscription['modePaiement'] == 'carte') {
             //Nous allons vérifier le succès de ton paiement en ligne de 60€ et tu recevras un mail de confirmation de ton paiement.
-            $messageClient .= $trad["ccn_mail_27_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . $trad["ccn_mail_27_1".$tuOuVous] ."<br/><br/>";
+            $messageClient .= $trad["ccn_mail_27_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . $trad["ccn_mail_27_1_".$tuOuVous] ."<br/><br/>";
             if($inscription['paiement_maintenant'] != 'accompte') {
                 //Attention, ton inscription ne sera complète que quand ton paiement en ligne aura été confirmé.
                 $messageClient .= $trad["ccn_mail_32_".$tuOuVous] . "<br/><br/>";
             }            
         }
         # si le montant total à payer n'a pas été défini, il a été mis à 0 et alors, on n'affiche pas la ligne suivante
-        if ($inscription['montantTotalAPayer'] && ($inscription['montantTotalAPayer'] >0) ) {
+        if (isset($inscription['montantTotalAPayer']) && ($inscription['montantTotalAPayer'] >0) ) {
             //Nous te rappelons que d'après le choix que tu as fais, ta participation totale est de 120€. 
             $messageClient .= $this->translate($trad["ccn_mail_28_".$tuOuVous],'%montantAvecMonnaie%',$inscription['montantTotalAPayerAvecMonnaie']) . ".<br/><br/>";
         }
@@ -280,20 +283,20 @@ protected function sendInscriptionMail($inscription,$lang){
     
     
     // NOTES SUPPLEMENTAIRES (ENTRETIEN / LETTRES / PDF A REMPLIR)
-    if($inscription['motivation'] && !$inscription['formulaire_pdf']) {
+    if(isset($inscription['motivation']) && !$inscription['formulaire_pdf']) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois envoyer une lettre de motivation à l'adresse suivante
         if($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille' || $inscription['public_type'] == 'fiances')
             $messageClient .= $trad["ccn_mail_5_couple"] . " :<br/>";
         else $messageClient .= $trad["ccn_mail_5_".$tuOuVous] . " :<br/>";
     }
     
-    if(!$inscription['motivation'] && $inscription['formulaire_pdf']) {
+    if(!isset($inscription['motivation']) && isset($inscription['formulaire_pdf'])) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire ( formulaire ), le remplir à la main et l'envoyer à l'adresse suivante" 
         $messageClient.= $trad["ccn_mail_6_".$tuOuVous]
                 . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
                 . $trad["ccn_mail_6_1"] . " :<br/>" ;
     }
-    if($inscription['motivation'] && $inscription['formulaire_pdf']) {
+    if(isset($inscription['motivation']) && isset($inscription['formulaire_pdf'])) {
         //Nous te rappelons que pour que ton inscription soit complète, tu dois imprimer le formulaire complémentaire (formulaire), le remplir à la main et l'envoyer, ainsi qu'une lettre de motivation à l'adresse suivante"
         if($inscription['public_type'] == 'couple' || $inscription['public_type'] == 'famille' || $inscription['public_type'] == 'fiances')
             $messageClient.= $trad["ccn_mail_6_vous"]
@@ -303,12 +306,12 @@ protected function sendInscriptionMail($inscription,$lang){
                     . "<a href='http://" . $_SERVER['HTTP_HOST'] . $inscription['formulaire_pdf']['url'] ."'>" . $inscription['formulaire_pdf']['title'] ."</a>"
                     . $trad["ccn_mail_7_1"] . " :<br/>" ;
     }
-    if($inscription['motivation'] || $inscription['formulaire_pdf']) {
+    if(isset($inscription['motivation']) || isset($inscription['formulaire_pdf'])) {
         /*adresse du contact*/
         $messageClient.= $inscription['contact']['prenom'] . " " . $inscription['contact']['nom'] . "<br/>";
         $messageClient.= $inscription['contact']['position']['address'] . "<br/><br/>";
     }
-    if($inscription['entretien']) {
+    if(isset($inscription['entretien'])) {
         /*Nous te rappelons que ton inscription sera confirmée suite à un entretien. Nous te contacterons bientôt pour fixer ensemble la date et le lieu de cet entretien.*/
         $messageClient.= $trad["ccn_mail_8_".$tuOuVous] . "<br/><br/>";
     }
@@ -324,7 +327,7 @@ protected function sendInscriptionMail($inscription,$lang){
         $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_personne_inscrite"] . "</i></td><td width=67%>" .  $nomClient . "</td></tr>";
     else if($nbInscrits ==2)
         $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_personnes_inscrites"] . "</i></td><td width=67%>" .  $nomClient . "</td></tr>";
-    if($inscription['enfants_org']){
+    if(isset($inscription['enfants_org'])){
         $nomsEnfants = "";
         foreach ($inscription['enfants_org'] as $index => $enfant){
             if($index>0) $nomsEnfants .= ", ";
@@ -341,25 +344,25 @@ protected function sendInscriptionMail($inscription,$lang){
     $messageClient .= "</table>";
     //OPTIONS ET QUESTIONS DIVERSES
     $messageClient .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
-    if($inscription['logement']) {
+    if(isset($inscription['logement'])) {
        $messageClient .= $this->questionToRecap($inscription['logement_org']);
     }
-    if($inscription['transport']) {
+    if(isset($inscription['transport'])) {
        $messageClient .= $this->questionToRecap($inscription['transport_org']);
     }
-    if($inscription['complementaire']) {
+    if(isset($inscription['complementaire'])) {
        $messageClient .= $this->questionToRecap($inscription['complementaire_org']);
     }        
-    if($inscription['jai_connu']){
+    if(isset($inscription['jai_connu'])){
        $messageClient .= $this->questionToRecap($inscription['jai_connu_org']);
     }
-    if($inscription['situation'] && !$inscription['autreSituation']) {
+    if(isset($inscription['situation']) && !isset($inscription['autreSituation'])) {
         $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['situation'] . "</td></tr>";
     }
-    if($inscription['autreSituation']){
+    if(isset($inscription['autreSituation'])){
        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['autreSituation'] . "</td></tr>";
     }
-    if($inscription['remarques']) {
+    if(isset($inscription['remarques'])) {
        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_form_remarques"] . "</i></td><td width=67%>" .  $inscription['remarques'] . "</td></tr>";
         
     }
@@ -430,28 +433,28 @@ protected function sendInscriptionMail($inscription,$lang){
     if($nbInscrits == 1){
         if($inscription['sexe']) {
             $sexe = ($inscription['sexe']['sexe'] =='H') ? $trad["ccn_form_homme"] : $trad["ccn_form_femme"];
-            $messageSecretariat .= $this->addLine($trad["ccn_label_sexe"], $sexe );
+            $messageSecretariat .= $this->addLine($trad["ccn_label_sexe"], $sexe , null);
         }
-        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['nom'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'] );
-        if($inscription['birthdate']) {
-            $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) );
-            $messageSecretariat .= $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"]);
+        $messageSecretariat .= $this->addLine($trad["ccn_label_nom"], $inscription['nom'] , null );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_prenom"], $inscription['surname']  , null);
+        if(isset($inscription['nationality'])) $messageSecretariat .= $this->addLine($trad["ccn_form_nationalite"], $inscription['nationality'] , null );
+        if(isset($inscription['birthdate'])) {
+            $messageSecretariat .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$inscription['birthdate']) , null );
+            $messageSecretariat .= $this->addLine($trad["ccn_label_age_debut_proposition"], $this->getAge($inscription['birthdate'], $inscription['dateDebut'])." ". $trad["ccn_ans"] , null);
         }
 
-        if($inscription['profession']) $messageSecretariat .= $this->addLine($trad["ccn_form_profession"], $inscription['profession'] );
-        if($inscription['classeEtudes']) $messageSecretariat .= $this->addLine($trad["ccn_label_classeEtudes"], $inscription['classeEtudes'] );
-        if($inscription['facebook']) $messageSecretariat .= $this->addLine("Facebook", $inscription['facebook'] );
-        if($inscription['situation']) $messageSecretariat .= $this->addLine($trad["ccn_label_situation"], $inscription['situation'] );
-        if($inscription['tel2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] );
-        if($inscription['tel2Pers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] );
-        $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'] );
-        if($inscription['emailPers2']) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] );
-        if($inscription['country']) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] );
-        if($inscription['address']) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] );
-        if($inscription['cp'] || $inscription['city']) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $inscription['cp']." - ". $inscription['city'] );
-        if($inscription['tel1']) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] );
+        if(isset($inscription['profession'])) $messageSecretariat .= $this->addLine($trad["ccn_form_profession"], $inscription['profession']  , null);
+        if(isset($inscription['classeEtudes'])) $messageSecretariat .= $this->addLine($trad["ccn_label_classeEtudes"], $inscription['classeEtudes'] , null );
+        if(isset($inscription['facebook'])) $messageSecretariat .= $this->addLine("Facebook", $inscription['facebook'] , null );
+        if(isset($inscription['situation'])) $messageSecretariat .= $this->addLine($trad["ccn_label_situation"], $inscription['situation'] , null );
+        if(isset($inscription['tel2'])) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable"], $inscription['tel2'] , null );
+        if(isset($inscription['tel2Pers2'])) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_portable_parent"], $inscription['tel2Pers2'] , null );
+        $messageSecretariat .= $this->addLine($trad["ccn_label_email"], $inscription['email'] , null );
+        if(isset($inscription['emailPers2'])) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] , null );
+        if(isset($inscription['country'])) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] , null );
+        if(isset($inscription['address'])) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] , null );
+        if(isset($inscription['cp']) || isset($inscription['city'])) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], isset($inscription['cp']) ? $inscription['cp']. " - " : ''. isset($inscription['city'])?$inscription['city']:'' , null );
+        if(isset($inscription['tel1'])) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] , null );
 
    }
     /*pour couple / fiances / familles*/
@@ -486,7 +489,7 @@ protected function sendInscriptionMail($inscription,$lang){
    }
     $messageSecretariat .= "</table><br/>";
     /*Enfants*/
-    if($inscription['enfants']) {
+    if(isset($inscription['enfants']) && count($inscription['enfants'])>0) {
         $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
         $messageSecretariat .= "<tr><td bgcolor='#8CACBB' width=100% colspan=5><i>".$trad["ccn_label_enfants"]."</i></td></tr>";
         $messageSecretariat .="<tr><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_prenom"]. "</i></td><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_nom"]. "</i></td><td bgcolor='#8CACBB' width=25%><i>" .$trad["ccn_label_dateNaiss"]. "</i></td><td bgcolor='#8CACBB' width=10%><i>" .$trad["ccn_label_age"]. "</i></td><td bgcolor='#8CACBB' width=15%><i>" .$trad["ccn_label_sexe"]. "</i></td></tr>";
@@ -501,44 +504,44 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     /*QUESTIONS ET REMARQUES*/
     $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
-    if($inscription['logement']) {
+    if(isset($inscription['logement'])) {
        $messageSecretariat .= $this->questionToRecap($inscription['logement_org']);
     }
-    if($inscription['transport']) {
+    if(isset($inscription['transport'])) {
        $messageSecretariat .= $this->questionToRecap($inscription['transport_org']);
     }
-    if($inscription['complementaire']) {
+    if(isset($inscription['complementaire'])) {
        $messageSecretariat .= $this->questionToRecap($inscription['complementaire_org']);
     }        
-    if($inscription['jai_connu']){
+    if(isset($inscription['jai_connu'])){
        $messageSecretariat .= $this->questionToRecap($inscription['jai_connu_org']);
     }
-    if($inscription['remarques']) {
+    if(isset($inscription['remarques'])) {
        $messageSecretariat .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_form_remarques"] . "</i></td><td width=67%>" .  $inscription['remarques'] . "</td></tr>";
     }
     $messageSecretariat .= "</table><br/>";
     /*INFOS DE PAIEMENT*/
     if($inscription['isPayment']) {
         $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
-        $messageSecretariat .= $this->addLine($trad["ccn_label_mode_paiement"], $inscription['modePaiement'] );          
-        $messageSecretariat .= $this->addLine($trad["ccn_label_montant_total_a_payer"], $inscription['montantTotalAPayerAvecMonnaie'] );          
-        $messageSecretariat .= $this->addLine($trad["ccn_label_montant_a_l_inscription"], $inscription['montantAPayerMaintenantAvecMonnaie'] );          
+        $messageSecretariat .= $this->addLine($trad["ccn_label_mode_paiement"], $inscription['modePaiement'] , null );          
+        $messageSecretariat .= $this->addLine($trad["ccn_label_montant_total_a_payer"], isset($inscription['montantTotalAPayerAvecMonnaie']) ? $inscription['montantTotalAPayerAvecMonnaie'] : 0, null );          
+        $messageSecretariat .= $this->addLine($trad["ccn_label_montant_a_l_inscription"], $inscription['montantAPayerMaintenantAvecMonnaie'] , null );          
         $messageSecretariat .= "</table><br/>";
     }
     /*RECAP FINAL*/
     $messageSecretariat .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
-    $messageSecretariat .= $this->addLine($trad["ccn_label_proposition"],  "<a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a>");          
-    $messageSecretariat .= $this->addLine($trad["ccn_label_date"], $inscription['propositionDate'] );          
-    $messageSecretariat .= $this->addLine($trad["ccn_label_lieu"], $inscription['propositionLieu'] );
-    $messageSecretariat .= $this->addLine($trad["ccn_label_proposition"],  "<a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a>");          
-    if($inscription['codeOnesime']) $messageSecretariat .= $this->addLine($trad["ccn_label_codeOnesime"], $inscription['codeOnesime'] );          
+    $messageSecretariat .= $this->addLine($trad["ccn_label_proposition"],  "<a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a>" , null);          
+    $messageSecretariat .= $this->addLine($trad["ccn_label_date"], $inscription['propositionDate'] , null);          
+    $messageSecretariat .= $this->addLine($trad["ccn_label_lieu"], $inscription['propositionLieu'] , null );
+    $messageSecretariat .= $this->addLine($trad["ccn_label_proposition"],  "<a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a>" , null);          
+    if(isset($inscription['codeOnesime'])) $messageSecretariat .= $this->addLine($trad["ccn_label_codeOnesime"], $inscription['codeOnesime'] , null );          
     $messageSecretariat .= "</table><br/>";
    
     
     
     $mailSecretariat = $mailerService->getNewMessage();
     $mailSecretariatCopy = array();
-    if($inscription['mails_secretariat']) {
+    if(isset($inscription['mails_secretariat'])) {
         foreach ($inscription['mails_secretariat'] as $mail){
             array_push($mailSecretariatCopy,$mail);
         }
@@ -563,41 +566,41 @@ protected function sendInscriptionMail($inscription,$lang){
     protected function processInscription($inscription) {
         //dates avec +12h pour éviter problèmes
         if($inscription['birthdate']) $inscription['birthdate'] = strtotime($inscription['birthdate']) + 3600*12;
-        if($inscription['dateNaissPers2']) $inscription['dateNaissPers2'] = strtotime($inscription['dateNaissPers2'])+ 3600*12;
-        if($inscription['dateMariage']) $inscription['dateMariage'] = strtotime($inscription['dateMariage'])+ 3600*12;
+        if(isset($inscription['dateNaissPers2'])) $inscription['dateNaissPers2'] = strtotime($inscription['dateNaissPers2'])+ 3600*12;
+        if(isset($inscription['dateMariage'])) $inscription['dateMariage'] = strtotime($inscription['dateMariage'])+ 3600*12;
         //telephones formatés pour la France
-        if($this->getPays() == "FR"){
-            if($inscription['tel1']) $inscription['tel1'] = $this->formatTelephone($inscription['tel1']);
-            if($inscription['tel2']) $inscription['tel2'] = $this->formatTelephone($inscription['tel2']);
-            if($inscription['tel1Pers2']) $inscription['tel1Pers2'] = $this->formatTelephone($inscription['tel1Pers2']);
-            if($inscription['tel2Pers2']) $inscription['tel2Pers2'] = $this->formatTelephone($inscription['tel2Pers2']);
+        if(Manager::getService("SitesConfigCcn")->getConfig()['paymentConfig']['nativePMConfig']['codePays'] == "FR"){
+            if(isset($inscription['tel1'])) $inscription['tel1'] = $this->formatTelephone($inscription['tel1']);
+            if(isset($inscription['tel2'])) $inscription['tel2'] = $this->formatTelephone($inscription['tel2']);
+            if(isset($inscription['tel1Pers2'])) $inscription['tel1Pers2'] = $this->formatTelephone($inscription['tel1Pers2']);
+            if(isset($inscription['tel2Pers2'])) $inscription['tel2Pers2'] = $this->formatTelephone($inscription['tel2Pers2']);
         }
-        if($inscription['logement']) {
+        if(isset($inscription['logement'])) {
              $inscription['logement_org'] = $inscription['logement'];           
             $inscription['logement'] = $this->questionToAnswer($inscription['logement']);
         }
-        if($inscription['transport']) {
+        if(isset($inscription['transport'])) {
              $inscription['transport_org'] = $inscription['transport'];           
             $inscription['transport'] = $this->questionToAnswer($inscription['transport']);
         }
-        if($inscription['complementaire']) {
+        if(isset($inscription['complementaire'])) {
             $inscription['complementaire_org'] = $inscription['complementaire'];
             $inscription['questionsComplementaires'] = $this->questionToAnswer($inscription['complementaire']);
         }        
-        if($inscription['jai_connu']){
+        if(isset($inscription['jai_connu'])){
             $inscription['jai_connu_org'] = $inscription['jai_connu'];
             $inscription['jai_connu'] = $this->questionToAnswer($inscription['jai_connu'], false);
         }
-        if($inscription['autreSituation']){
+        if(isset($inscription['autreSituation'])){
             $inscription['situation'] .= " : ".$inscription['autreSituation'];
         }
-        if($inscription['enfants']){
+        if(isset($inscription['enfants'])){
             $inscription['enfants_org'] = $inscription['enfants'];
             foreach ($inscription['enfants'] as $index => $enfant){
                 $inscription['enfants'][$index] = $enfant['prenom']. " ".strtoupper($enfant['nom'])." ; ".$enfant['birthdateF']." ; ".$enfant['sexe'];
             }
         }
-        if($inscription['prenomPers2']&&$inscription['prenomPers2']!="") {
+        if(isset($inscription['prenomPers2'])&&$inscription['prenomPers2']!="") {
             $inscription['sexePers2'] = "F";
             $inscription['sexe'] = "H";
         }
@@ -613,7 +616,7 @@ protected function sendInscriptionMail($inscription,$lang){
                 else {
                     foreach($reponse as $value) {
                         $answer .= $value['value'];
-                        if($answer['complement'] && $answer['complement'] != "" ) $answer .= " : " .$value['complement'];
+                        if(isset($value['complement']) && $value['complement'] != "" ) $answer .= " : " .$value['complement'];
                         $answer .=", ";
                     }
                 }
@@ -630,7 +633,7 @@ protected function sendInscriptionMail($inscription,$lang){
             else {
                 foreach($reponse as $value) {//pour checkbox
                     $answer .= $value['value'];
-                    if($answer['complement'] && $answer['complement'] != "" ) $answer .= " : " .$value['complement'];
+                    if(isset($value['complement']) && $value['complement'] != "" ) $answer .= " : " .$value['complement'];
                     $answer .=", ";
                 }
                    
@@ -640,7 +643,7 @@ protected function sendInscriptionMail($inscription,$lang){
         return $stringToAdd;
     }
     protected function addLine($titre, $reponse, $reponse2){
-        if($reponse2) return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=33%>" . $reponse . "</td><td width=33%>".$reponse2 ."</td></tr>";
+        if(isset($reponse2)) return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=33%>" . $reponse . "</td><td width=33%>".$reponse2 ."</td></tr>";
         else return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67% colspan=2>" . $reponse . "</td></tr>";
     }
     
@@ -667,25 +670,9 @@ protected function sendInscriptionMail($inscription,$lang){
     
     private function translate($string,$toReplaceArray,$toReplaceWithArray)
     {
-	return str_replace($toReplaceArray,$toReplaceWithArray,$string);
-    
+								return str_replace($toReplaceArray,$toReplaceWithArray,$string);
     }
-    protected function getPays(){
-        switch($_SERVER['HTTP_HOST']) {
-            case "www.chemin-neuf.fr" : 
-                return "FR"; break;
-            case "www.chemin-neuf.pl" : 
-                return "PL"; break;
-            case "chemin-neuf.hu" : 
-            case "hu.chemin-neuf.org" : 
-                    return "HU"; break;
-            case "www.chemin-neuf.it" : 
-                    return "IT"; break;
-            case "www.chemin-neuf.es" : 
-            case "es.chemin-neuf.org" : 
-                    return "ES"; break;
-        }
-     }
+
 protected function localizableFields($type, $fields)
     {
         $existingFields = array();
@@ -702,14 +689,7 @@ protected function localizableFields($type, $fields)
         }
         return $fields;
     }
-    protected function getAccountId(){
-        switch($_SERVER['HTTP_HOST']) {
-            case "www.chemin-neuf.fr" : 
-            case "www.chemin-neuf.pl" : 
-            case "www.chemin-neuf.it" : 
-                return "55473e9745205e1d3ef1864d"; break;
-        }
-     }
+
      
 
 }     

@@ -20,6 +20,7 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use RubedoAPI\Exceptions\APIEntityException;
 use RubedoAPI\Rest\V1\AbstractResource;
+use Rubedo\Collection\AbstractCollection;
 /**
  * Class ShippersResource
  * @package RubedoAPI\Rest\V1\Ecommerce
@@ -73,34 +74,34 @@ class PaymentmeansResource extends AbstractResource
             $paymentModes=array(
                 "carte"=>false,
                 "paypal"=>false,
-                "cheque"=>false
+                "cheque"=>false,
+                "dotpay" => false
             );
             
-            $paymentMeans = Manager::getService("SitesConfigCcn")->getConfig($params['type']);
+            $paymentMeans = Manager::getService("SitesConfigCcn")->getConfig();
             if($paymentMeans['success']) {
-                $arrayToReturn = array_intersect_key($paymentMeans['paymentConfig'], array_flip(array("id","paymentMeans","displayName","logo","nativePMConfig")));
+                $arrayToReturn = array_intersect_key($paymentMeans['paymentConfig'], array_flip(array("id","paymentMeans","displayName","nativePMConfig")));
                 //determiner les types de payement possibles
-                if($arrayToReturn["nativePMConfig"]["paybox"] && $arrayToReturn["nativePMConfig"]["paybox"] !="") {
-                    $paymentModes["carte"] = true;
-                    $arrayToReturn["onlinePaymentMeans"]="paybox";
+               if($params['type']=='paf' && isset($paymentMeans['paymentConfig']['nativePMConfig']['conf_paf']) && $paymentMeans['paymentConfig']['nativePMConfig']['conf_paf'] !='' ) {
+                    $wasFiltered = AbstractCollection::disableUserFilter(true);
+                    $contentsService = Manager::getService("Contents");
+                    $pafConfig = $contentsService->findById($paymentMeans['paymentConfig']['nativePMConfig']['conf_paf'],false,false);
+                    if(isset($pafConfig['fields']['site']) && $pafConfig['fields']['site'] !='' ) $paymentModes["carte"] = true;
+                    if(isset($pafConfig['fields']['paypal']) && $pafConfig['fields']['paypal'] !='' ) $paymentModes["paypal"] = true;
+                    if(isset($pafConfig['fields']['libelleCheque']) && $pafConfig['fields']['libelleCheque'] !='' ) $paymentModes["cheque"] = true;
+                    if(isset($pafConfig['fields']['dotpay_id']) && $pafConfig['fields']['dotpay_id'] !='' ) $paymentModes["dotpay"] = true;
+                    $arrayToReturn["paymentModes"] = $paymentModes;
                 }
-                else if($arrayToReturn["nativePMConfig"]["dotpay_id"] && $arrayToReturn["nativePMConfig"]["dotpay_id"] !="") {
-                    $paymentModes["carte"] = true;
-                    $arrayToReturn["onlinePaymentMeans"]="dotpay";
-                }
-                if($arrayToReturn["nativePMConfig"]["libelle_cheque"] && $arrayToReturn["nativePMConfig"]["libelle_cheque"] !="") {
-                    $paymentModes["cheque"] = true;
-                }
-                if($arrayToReturn["nativePMConfig"]["paypal"] && $arrayToReturn["nativePMConfig"]["paypal"] !="") {
-                    $paymentModes["paypal"] = true;
-                }
-                $arrayToReturn["paymentModes"] = $paymentModes;
+            
+                
                 $arrayToReturn["nativePMConfig"] = array(
-                                                         "contactDonsId" => $arrayToReturn["nativePMConfig"]["contactDonsId"],
-                                                         "fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"],
-                                                         "monnaie" => $arrayToReturn["nativePMConfig"]["monnaie"],
-                                                         "codeMonnaie" => $paymentMeans['codeMonnaie']
+                                                        "fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"],
+                                                        "monnaie" => $arrayToReturn["nativePMConfig"]["monnaie"],
+                                                        "codeMonnaie" => $arrayToReturn["nativePMConfig"]["codeMonnaie"]
                 );
+                if($params['type']=='dons' && isset($paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"]) && $paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"] !='' ) {
+                    $arrayToReturn["nativePMConfig"]["contactDonsId"] = $paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"];
+                }
                 return array(
                     'success' => true,
                     'paymentMeans' => $arrayToReturn

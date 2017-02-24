@@ -52,15 +52,6 @@
             "chooseOnly": true
         }
     },
-    {
-        "type": "Rubedo.view.DCEField",
-        "config": {
-            "fieldLabel": "Conf. de payment Dons",
-            "name": "conf_dons",
-												"allowedCT":"55473bf845205e413cf1864d",
-            "chooseOnly": true
-        }
-    },
 				{
         "type": "Rubedo.view.DCEField",
         "config": {
