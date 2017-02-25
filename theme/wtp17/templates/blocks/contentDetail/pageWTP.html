@@ -32,7 +32,7 @@
                 <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="16:9"></jwplayer>
             </div>
     </div>-->
-    <div class="video-block" ng-if="fieldEntity['video']" ng-click="contentDetailCtrl.showModal(contentDetailCtrl.content.id)" >
+    <div class="video-block" ng-if="fieldEntity['video']&&  contentDetailCtrl.content.fields.video.url" ng-click="contentDetailCtrl.showModal(contentDetailCtrl.content.id)" >
         <p>{{rubedo.translate("WTP.Video1", "Voir la")}} <span>ì</span>{{rubedo.translate("WTP.Video2", "vidéo")}} </p>
     </div>
 
