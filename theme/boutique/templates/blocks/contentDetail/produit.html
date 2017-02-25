@@ -11,6 +11,7 @@
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('reference')}}" ng-if="fieldEntity['reference'] && fieldEditMode"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']" class="italic"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']"></rubedo-field><!--image-->
+  	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('sommaire')}}" ng-if="fieldEntity['sommaire']"></rubedo-field><!--image-->
 	<div class="row no-margin" ng-if="fieldEntity['images']">
 	
 	    <div ng-repeat="image in contentDetailCtrl.content.fields.images track by $index" class="col-sm-4" style="margin-bottom: 12px">
