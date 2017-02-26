@@ -4,7 +4,8 @@
                         <p class="capital">{{rubedo.translate("Block.Dons.Soutien", "Je soutiens le projet")}}</p>
                         <h3>{{contentDetailCtrl.content.fields.text}}</h3>
                         <p>{{contentDetailCtrl.content.fields.subTitle}}</p>
-                        <p><em>{{rubedo.translate("Block.Dons.Website",'',['%countryname%'],[donsCtrl.paymentmeans.displayName])}}
+
+                        <p><em ng-bind-html="rubedo.translate('Block.Dons.Website','',['%countryname%'],[donsCtrl.paymentmeans.displayName]) | unsafe">
                                 <!--Vous êtes sur le site de la communauté en France. Si vous êtes fiscalement ou administrativement rattaché à un autre pays, <a href="http://www.chemin-neuf.org/aidez-nous/faire-un-don-org/pages-de-soutien-dans-les-pays">cliquez ici </a>-->
                                 </em></p>
                 </div>
