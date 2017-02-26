@@ -22,7 +22,7 @@
                                                 <div class="col-xs-12" ng-repeat="fiscalite in donsCtrl.fiscalites" >
                                                         <input type="radio" required name="condition" id="{{'condition_'+$index}}"
                                                                ng-value=' "{{fiscalite.label}}"' ng-model="don.condition" >
-                                                                <label for="{{'condition_'+$index}}">{{fiscalite.label}}</label>
+                                                                <label for="{{'condition_'+$index}}">{{fiscalite.fields.title}}</label>
                                         
                                                 </div>
                                                 <div class="col-xs-12" >
