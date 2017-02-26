@@ -68,8 +68,6 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 me.fiscalitesCount=0;
                 /*get fiscalités*/
                 if($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite] && $scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite].length>0){
-                    console.log('NO');
-                    console.log($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite]);
                     angular.forEach($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite], function(fiscalite){
                         RubedoContentsService.getContentById(fiscalite, options).then(
                             function (response) {
@@ -88,7 +86,6 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     });
                 }
                 else {
-                    console.log(me.paymentmeans.nativePMConfig.conditionId);
                     RubedoContentsService.getContentById(me.paymentmeans.nativePMConfig.conditionId, options).then(
                         function (response) {
                             if(response.data.success){
