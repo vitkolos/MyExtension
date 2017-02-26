@@ -114,7 +114,8 @@
         },
         "configBloc": {
             "displayMode": "texte",
-            "private" : false
+            "private" : false,
+		"span":12
         }
     },
     "category": "#ext-gen1068#",
