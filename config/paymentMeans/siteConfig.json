@@ -43,7 +43,16 @@
             "allowOnlyWhitespace": true
         }
     },
-				{
+	{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Format n° de téléphone ",
+            "name": "format_telephone",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+{
         "type": "Rubedo.view.DCEField",
         "config": {
             "fieldLabel": "Conf. de payment PAF",
