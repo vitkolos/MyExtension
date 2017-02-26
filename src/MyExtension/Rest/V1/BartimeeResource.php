@@ -97,6 +97,21 @@ class BartimeeResource extends AbstractResource
         
         //if($response['user']['id'] !='58ada957245640d7008b5ffc') throw new APIEntityException('Non identified application', 404);
         //var_dump($response);
+        $output = array('success' => true);
+        $response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);
+        $output['token'] = $this->subTokenFilter($response['token']);
+        $this->subUserFilter($response['user']);
+        $route = $this->getContext()->params()->fromRoute();
+        $route['api'] = array('auth');
+        $route['method'] = 'GET';
+        $route['access_token'] = $output['token']['access_token'];
+        //Hack Refresh currentUser
+        $this->getCurrentUserAPIService()->setAccessToken($output['token']['access_token']);
+        $rightsSubRequest = $this->getContext()->forward()->dispatch('RubedoAPI\\Frontoffice\\Controller\\Api', $route);
+        $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
+        
+        
+        
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
             "constrainToSite" => false,
@@ -273,4 +288,19 @@ class BartimeeResource extends AbstractResource
             }
         }
     }
+    protected function subTokenFilter(&$token)
+    {
+        return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
+    }
+    /**
+     * Filter user from database
+     *
+     * @param $user
+     * @return array
+     */
+    protected function subUserFilter(&$user)
+    {
+        $user = $this->getUsersCollection()->findById($user['id']);
+        return array_intersect_key($user, array_flip(array('id', 'login', 'name','fields','email','mailingLists')));
+    }    
 }
