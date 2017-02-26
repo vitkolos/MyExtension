@@ -19,6 +19,7 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use Zend\Json\Json;
 use Rubedo\Services\Manager;
+use Rubedo\Collection\AbstractCollection;
 /**
  * Class SearchResource
  * @package RubedoAPI\Rest\V1
@@ -83,9 +84,10 @@ class BartimeeResource extends AbstractResource
      */
     public function getAction($inputs)
     {
-
+        $wasFiltered = AbstractCollection::disableUserFilter(true);
         /*Get last donation registered in Bartimee by name*/
         $dataService= Manager::getService('MongoDataAccess');
+        
         $dataService->init("Contents");
         $lastDonation = $dataService->findByName($inputs['lastinbartimee']);
         if (empty($lastDonation)) {
@@ -121,6 +123,7 @@ class BartimeeResource extends AbstractResource
         //$query::setIsFrontEnd(true);
         $query->init();
         $results = $query->search($params, $this->searchOption);
+        $wasFiltered = AbstractCollection::disableUserFilter(false);
         $this->injectDataInResults($results, $queryParams);
         return [
             'success' => true,
