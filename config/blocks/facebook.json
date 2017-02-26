@@ -80,9 +80,9 @@
 				
 			]
 		},
-		"configBloc":[
-
-		]
+		"configBloc":{
+			"span":12
+		}
 	},
 	"category":"#ext-gen1331#",
 	"bType":"facebook",
