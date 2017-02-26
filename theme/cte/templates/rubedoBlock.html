@@ -4,7 +4,8 @@
      ng-style="{'min-height':getBlockMinHeight()}">
     <div ng-if="canDisplayBlock()">
         <h4 ng-if="block.displayTitle">{{block.title}}</h4>
-        <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)" class="{{block.code}}"></div>
+        <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)" class="{{block.code}}"
+             ng-class="blockConfig.span ? 'col-md'+ blockConfig.span: '' "></div>
     </div>
 
 </div>
