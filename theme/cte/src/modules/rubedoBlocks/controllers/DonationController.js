@@ -88,8 +88,8 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                     });
                 }
                 else {
-                    console.log('OK');
-                    RubedoContentsService.getContentById(me.paymentmeans.nativePMConfig.defaut_conditionId, options).then(
+                    console.log(me.paymentmeans.nativePMConfig.conditionId);
+                    RubedoContentsService.getContentById(me.paymentmeans.nativePMConfig.conditionId, options).then(
                         function (response) {
                             if(response.data.success){
                                 me.fiscalites[response.data.content.text] = {
@@ -100,6 +100,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                                 me.account = response.data.content.fields;
                                 $scope.don.conditionId = response.data.content.id;
                                 me.fiscalitesCount++;
+                                console.log(me.fiscalites);
                             }
                         }
                     );
