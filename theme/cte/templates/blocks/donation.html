@@ -146,11 +146,11 @@
                                </div>
                                 <div class="row" >
                                         <div class="col-sm-4"><label for="tel1" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
-                                        <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="don.user.tel1" placeholder="+33/x xx xx xx xx"   ng-required="isTelephoneRequired()"></div>
+                                        <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="don.user.tel1" placeholder="{{donsCtrl.paymentmeans.nativePMConfig.format_telephone}}"   ng-required="isTelephoneRequired()"></div>
                                 </div>    
                                 <div class="row">
                                         <div class="col-sm-4"><label for="tel2" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
-                                        <div class="col-sm-8"><input type="text" id="tel2" name="tel2" placeholder="+33/x xx xx xx xx" ng-model="don.user.tel2"  ng-required="isTelephoneRequired()">
+                                        <div class="col-sm-8"><input type="text" id="tel2" name="tel2" placeholder="{{donsCtrl.paymentmeans.nativePMConfig.format_telephone}}" ng-model="don.user.tel2"  ng-required="isTelephoneRequired()">
                                                 <p ng-if="inscription.public_type != 'adolescent'" ng-class=" {'txt-red' : isTelephoneRequired()}" class="infos_validation">** {{rubedo.translate("Block.Inscription.Telephone.Condition")}}</p>
                                         </div>
                                 </div>               
