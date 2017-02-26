@@ -139,7 +139,6 @@ class BartimeeResource extends AbstractResource
         //$query::setIsFrontEnd(true);
         $query->init();
         $results = $query->search($params, $this->searchOption);
-        var_dump($results);
         $this->injectDataInResults($results, $queryParams);
         $wasFiltered = AbstractCollection::disableUserFilter(false);
         return [
