@@ -65,7 +65,7 @@
         "config": {
             "fieldLabel": "Conf. de payment PAF",
             "name": "conf_paf",
-												"allowedCT":"55473bf845205e413cf1864d",
+	"allowedCT":"55473bf845205e413cf1864d",
             "chooseOnly": true
         }
     },
@@ -74,6 +74,16 @@
         "config": {
             "fieldLabel": "Contact pour les dons",
             "name": "contactDonsId",
+		"allowedCT":"560d2bf445205e816041ea7f",
+            "chooseOnly": true
+        }
+    },
+{
+        "type": "Rubedo.view.DCEField",
+        "config": {
+            "fieldLabel": "Condition de dons par défaut",
+            "name": "defaut_conditionId",
+		"allowedCT":"5728b703c445ec7e008b6aa5",
             "chooseOnly": true
         }
     },
