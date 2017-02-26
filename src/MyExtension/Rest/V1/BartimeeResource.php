@@ -93,8 +93,9 @@ class BartimeeResource extends AbstractResource
         if (empty($lastDonation)) {
             throw new APIEntityException('Donation not found', 404);
         }
-        $response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);
-        if($response['user']['id'] !='58ada957245640d7008b5ffc') throw new APIEntityException('Non identified application', 404);
+        //$response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);        
+        
+        //if($response['user']['id'] !='58ada957245640d7008b5ffc') throw new APIEntityException('Non identified application', 404);
         //var_dump($response);
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
@@ -123,8 +124,8 @@ class BartimeeResource extends AbstractResource
         //$query::setIsFrontEnd(true);
         $query->init();
         $results = $query->search($params, $this->searchOption);
-        $wasFiltered = AbstractCollection::disableUserFilter(false);
         $this->injectDataInResults($results, $queryParams);
+        $wasFiltered = AbstractCollection::disableUserFilter(false);
         return [
             'success' => true,
             'results' => $results['data'],
