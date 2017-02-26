@@ -67,8 +67,26 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 me.account = {};
                 me.fiscalitesCount=0;
                 /*get fiscalités*/
-                angular.forEach($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite], function(fiscalite){
-                    RubedoContentsService.getContentById(fiscalite, options).then(
+                if($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite] && $scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite].length>0){
+                    angular.forEach($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite], function(fiscalite){
+                        RubedoContentsService.getContentById(fiscalite, options).then(
+                            function (response) {
+                                if(response.data.success){
+                                    me.fiscalites[response.data.content.text] = {
+                                        "label" : response.data.content.text,
+                                        "fields":response.data.content.fields,
+                                        "id":response.data.content.id
+                                    };
+                                    me.account = response.data.content.fields;
+                                    $scope.don.conditionId = response.data.content.id;
+                                    me.fiscalitesCount++;
+                                }
+                            }
+                        );
+                    });
+                }
+                else {
+                    RubedoContentsService.getContentById(me.paymentmeans.nativePMConfig.defaut_conditionId, options).then(
                         function (response) {
                             if(response.data.success){
                                 me.fiscalites[response.data.content.text] = {
@@ -82,7 +100,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                             }
                         }
                     );
-                });
+                }
                 
             }
                
