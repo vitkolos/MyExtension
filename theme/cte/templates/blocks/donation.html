@@ -43,8 +43,8 @@
                                                 <input type="radio"  name="montant" id="montant4" value="{{contentDetailCtrl.content.fields.montant_4}}" ng-model="don.montant">
                                                             <label for="montant4" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_4}}{{don.monnaie}}</label>
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
-                                                            <label for="autre" class="sexe_label dons">{{rubedo.translate("Block.Inscription.Situation.Autre", "autre) | lowercase}}</label>
-                                                <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder='{{rubedo.translate("Block.Inscription.Situation.Autre", "autre) }}' ng-pattern="/^[0-9]{1,7}$/" ng-required="don.montant=='autre'">
+                                                            <label for="autre" class="sexe_label dons">{{rubedo.translate("Block.Inscription.Situation.Autre", "autre") | lowercase}}</label>
+                                                <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder='{{rubedo.translate("Block.Inscription.Situation.Autre", "Autre") }}' ng-pattern="/^[0-9]{1,7}$/" ng-required="don.montant=='autre'">
                                                         
                                                 <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_1">
                                                         <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_1')}}" ng-init="fieldInputMode=false"></rubedo-field>
@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="row text-center">
                                     <div class="button submit" ng-class="{'disabled' : infos_dons.$invalid}" ng-click="donsCtrl.setCurrentStage(2,infos_dons.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-                                    <p ng-if="infos_dons.$invalid && infos_dons.$dirty" class="txt-marron">Merci de bien remplir tous les champs obligatoires</p>
+                                    <p ng-if="infos_dons.$invalid && infos_dons.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs", "Merci de remplir les champs obligatoires")}}</p>
                                 </div>
                         </ng-form>
                                         </div>
