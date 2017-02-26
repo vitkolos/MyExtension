@@ -29,7 +29,6 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         }
         
     }    
-    $scope.don.user.country = "FRANCE";
     $scope.don.projet = $scope.contentDetailCtrl.content.fields.text;
     $scope.don.projetId = $scope.contentDetailCtrl.content.id;
     me.toggleStage = function(newStage){
@@ -51,6 +50,8 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 /*définir la monnaie du site*/
                 $scope.don.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
                 $scope.don.monnaie = me.paymentmeans.nativePMConfig.monnaie;
+                if(!$scope.don.user.country) $scope.don.user.country = $filter('uppercase')(me.paymentmeans.displayName);
+ 
                 /*get contact national défini dans la config de payement*/
                 RubedoContentsService.getContentById(response.data.paymentMeans.nativePMConfig.contactDonsId, options).then(
                     function(response){
