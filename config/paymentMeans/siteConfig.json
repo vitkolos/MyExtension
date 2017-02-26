@@ -26,6 +26,14 @@
             "allowOnlyWhitespace": true
         }
     },
+	                 {
+                            "type": "Ext.form.field.Checkbox",
+                            "config": {
+                                "fieldLabel": "Monnaie avant chiffre ?",
+                                "name": "monnaie_before",
+                                "inputValue": true
+                            }
+                        }
 				{
         "type": "Rubedo.view.ESQfield",
         "config": {
@@ -43,7 +51,7 @@
             "allowOnlyWhitespace": true
         }
     },
-	{
+{
         "type": "Ext.form.field.Text",
         "config": {
             "fieldLabel": "Format n° de téléphone ",
@@ -51,7 +59,7 @@
             "allowBlank": true,
             "allowOnlyWhitespace": true
         }
-    },
+ },
 {
         "type": "Rubedo.view.DCEField",
         "config": {
