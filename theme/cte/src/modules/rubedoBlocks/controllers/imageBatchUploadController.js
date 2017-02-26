@@ -25,7 +25,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
                     imgTitle=files[i].name;
                 }
                 else {
-                    imgTitle=me.batchTitle + '_'+i;
+                    imgTitle=me.batchTitle + ' ('+i+')';
                 }
                 Upload.upload({
                     url: '/api/v1/media',
