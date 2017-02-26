@@ -17,7 +17,7 @@
             "allowOnlyWhitespace": true
         }
     },
-				{
+	{
         "type": "Ext.form.field.Text",
         "config": {
             "fieldLabel": "Code monnaie numérique",
@@ -26,15 +26,15 @@
             "allowOnlyWhitespace": true
         }
     },
-	                 {
-                            "type": "Ext.form.field.Checkbox",
-                            "config": {
-                                "fieldLabel": "Monnaie avant chiffre ?",
-                                "name": "monnaie_before",
-                                "inputValue": true
-                            }
-                        }
-				{
+	 {
+            "type": "Ext.form.field.Checkbox",
+            "config": {
+                "fieldLabel": "Monnaie avant chiffre ?",
+                "name": "monnaie_before",
+                "inputValue": true
+            }
+        },
+		{
         "type": "Rubedo.view.ESQfield",
         "config": {
             "fieldLabel": "Taxonomie du pays",
