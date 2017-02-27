@@ -102,10 +102,6 @@ class PaypalIpnCcnResource extends AbstractResource
                     //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_pays"]);
                     $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_pays_id"],false,false);
                 }
-                var_dump($paymentConfig['fields']['paypal']);
-                var_dump($_POST['receiver_email']);
-                var_dump((float)$donation["live"]["fields"]["montant"]);
-                var_dump((float)$_POST['mc_gross']);
                 
                 if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['mc_gross']) {
                     //mettre à jour le statut de payement dans le contenu don
@@ -118,8 +114,9 @@ class PaypalIpnCcnResource extends AbstractResource
                     //update payement status
                     $result = $contentsService->update($contentToUpdate, array(),false);
                     AbstractCollection::disableUserFilter(false);
-                    //$this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$don['live']['nativeLanguage'], false);
-                //$projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
+                    $projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
+                    DonationResource::envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$don['live']['nativeLanguage'], false);
+                
 
                 }
             }            
