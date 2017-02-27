@@ -40,9 +40,8 @@ class PaypalIpnCcnResource extends AbstractResource
             if (count($keyval) == 2)
                 $myPost[$keyval[0]] = urldecode($keyval[1]);
         }
-        var_dump($myPost);
 // read the IPN message sent from PayPal and prepend 'cmd=_notify-validate'
-        /*$req = 'cmd=_notify-validate';
+        $req = 'cmd=_notify-validate';
         if(function_exists('get_magic_quotes_gpc')) {
             $get_magic_quotes_exists = true;
         }
@@ -54,8 +53,9 @@ class PaypalIpnCcnResource extends AbstractResource
             }
             $req .= "&$key=$value";
         }
+        var_dump($req);
 // STEP 2: POST IPN data back to PayPal to validate
-        $ch = curl_init($this->nativePMConfig['customerRedirect']);
+        /*$ch = curl_init($this->nativePMConfig['customerRedirect']);
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
