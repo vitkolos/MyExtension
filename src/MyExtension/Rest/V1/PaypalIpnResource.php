@@ -73,40 +73,16 @@ class PaypalIpnCcnResource extends AbstractResource
             exit;
         }
         curl_close($ch);
-        var_dump($res);
 // STEP 3: Inspect IPN validation result and act accordingly
-        /*if (strcmp ($res, "VERIFIED") == 0) {
+        if (strcmp ($res, "VERIFIED") == 0) {
             // The IPN is verified, process it:
             // check whether the payment_status is Completed
             // check that txn_id has not been previously processed
             // check that receiver_email is your Primary PayPal email
             // check that payment_amount/payment_currency are correct
             // process the notification
-            /*
-            Manager::getService("PaypalIPN")->create(array(
-                "postData"=>$_POST,
-                "source"=>"paypal",
-                "verified"=>true
-            ));
-            // assign posted variables to local variables
-            $payment_status = $_POST['status'];
-            $orderPayKey=$_POST['pay_key'];
-            if ($payment_status!="COMPLETED"){
-                return array("success"=>false);
-            }
-            $filter = Filter::factory()->addFilter(Filter::factory('Value')->setName('paypalPayKey')->setValue($orderPayKey));
-            $order=Manager::getService("Orders")->findOne($filter);
-            if (!$order){
-                return array("success"=>false);
-            }
-            if($order['status']!='pendingPayment'){
-                return array("success"=>false);
-            }
-            $order['status']="payed";
-            $updatedOrder=Manager::getService("Orders")->update($order);
-            if (!$updatedOrder['success']){
-                return array("success"=>false);
-            }
+            
+            
             $mailerService = Manager::getService('Mailer');
             $mailerObject = $mailerService->getNewMessage();
             $destinataires=array("nicolas.rhone@chemin-neuf.org");
@@ -138,8 +114,7 @@ class PaypalIpnCcnResource extends AbstractResource
             $mailerService->sendMessage($mailerObject, $errors);
             // IPN invalid
             return array("success"=>false);
-        }*/
-                return array("success"=>true);
+        }
 
     }
 }
