@@ -83,7 +83,7 @@ class PaypalIpnCcnResource extends AbstractResource
             // check whether the payment_status is Completed
             if($_POST['payment_status']=="Completed") {
                 var_dump($_POST);
-                /*$wasFiltered = AbstractCollection::disableUserFilter(true);
+                $wasFiltered = AbstractCollection::disableUserFilter(true);
                 // check that receiver_email is your Primary PayPal email
                 $donationName = $_POST['item_number'];
                 //get donation infos
@@ -94,8 +94,9 @@ class PaypalIpnCcnResource extends AbstractResource
                 $contentsService = Manager::getService("ContentsCcn");
                 $conditionId = $donation['live']['fields']['conditionId'];
                 $conditionFiscale = $contentsService->findById($conditionId,false,false);
+                var_dump($conditionFiscale);
                 //get the configuration de payement content
-                if($donation["live"]["fields"]["isInternational"]) {
+                /*if($donation["live"]["fields"]["isInternational"]) {
                     //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_hors_pays"]);
                     $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_int_id"],false,false);
                 }
