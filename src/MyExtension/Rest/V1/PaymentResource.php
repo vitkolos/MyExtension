@@ -101,6 +101,12 @@ class PaymentResource extends AbstractResource {
                             ->setKey('placeID')
                             ->setFilter('string')
                     )
+                    ->addInputFilter(
+                        (new FilterDefinitionEntity())
+                            ->setDescription('Code monnaie Alpha pour paypal')
+                            ->setKey('codeMonnaieAlpha')
+                            ->setFilter('string')
+                    )
                     ->addOutputFilter(
                         (new FilterDefinitionEntity())
                             ->setDescription('Parametres pour bouton Paybox ou infos de payement par chèque')
@@ -201,8 +207,8 @@ class PaymentResource extends AbstractResource {
 
 
             $query = array();
-            $query['currency_code'] = 'EUR'; //devise
-            $query['lc'] = 'FR'; // langue
+            $query['currency_code'] = $params['codeMonnaieAlpha']; //devise
+            $query['lc'] = $params['lang']->getLocale(); // langue
             $query['business'] = $paypalAccount; //compte Paypal
             $query['item_name'] = $params['proposition']; //nom du projet
             $query['item_number'] = $idInscription;//id du don

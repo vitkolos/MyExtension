@@ -49,6 +49,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 };
                 /*définir la monnaie du site*/
                 $scope.don.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
+                $scope.don.codeMonnaieAlpha = me.paymentmeans.nativePMConfig.codeMonnaieAlpha;
                 $scope.don.monnaie = me.paymentmeans.nativePMConfig.monnaie;
                 if(!$scope.don.user.country) $scope.don.user.country = $filter('uppercase')(me.paymentmeans.displayName);
  
@@ -223,7 +224,8 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                             paymentType: 'dons',
                             paymentMeans:$scope.don.modePaiement,
                             placeId:$scope.contentDetailCtrl.content.fields.codeAna,
-                            paymentConfID:response.data.instructions.paymentConfID
+                            paymentConfID:response.data.instructions.paymentConfID,
+                            codeMonnaieAlpha:$scope.don.codeMonnaieAlpha
                         };            
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
