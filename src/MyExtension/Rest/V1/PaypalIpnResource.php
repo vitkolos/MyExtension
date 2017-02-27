@@ -102,9 +102,13 @@ class PaypalIpnCcnResource extends AbstractResource
                     //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_pays"]);
                     $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_pays_id"],false,false);
                 }
+                var_dump($paymentConfig['fields']['paypal']);
+                var_dump($_POST['receiver_email']);
+                var_dump($donation["live"]["fields"]["montant"]);
+                var_dump($_POST['paypalmc_gross']);
+                
                 if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['paypalmc_gross']) {
                     //mettre à jour le statut de payement dans le contenu don
-                    $wasFiltered = AbstractCollection::disableUserFilter(true);
                     var_dump($donation["id"]);
                     //récupérer le contenu don avec le bon format :-)
                     /*$contentToUpdate = $contentsService->findById($donation["id"],false,false);
