@@ -82,6 +82,7 @@ class PaypalIpnCcnResource extends AbstractResource
             // The IPN is verified, process it:
             // check whether the payment_status is Completed
             if($_POST['payment_status']=="Completed") {
+                var_dump($_POST);
                 $wasFiltered = AbstractCollection::disableUserFilter(true);
                 // check that receiver_email is your Primary PayPal email
                 $donationName = $_POST['item_number'];
