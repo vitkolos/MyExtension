@@ -218,7 +218,7 @@ class DonationResource extends AbstractResource
         /*récupérer les infos du compte*/
         
         
-        if($don["fields"]["isInternational"]) {
+        if($don["live"]["fields"]["isInternational"]) {
             //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_hors_pays"]);
             $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_int_id"],false,false);
         }
