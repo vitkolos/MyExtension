@@ -26,6 +26,15 @@
             "allowOnlyWhitespace": true
         }
     },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Code monnaie alpha",
+            "name": "codeMonnaieAlpha",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
 	 {
             "type": "Ext.form.field.Checkbox",
             "config": {

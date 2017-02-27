@@ -211,7 +211,20 @@ class PaymentResource extends AbstractResource {
             $query['cancel_return'] = "https://" . $_SERVER['HTTP_HOST']; // page d'annulation de commande
             $query['return'] = "https://" . $_SERVER['HTTP_HOST']; // page de confirmation et remerciement
             $query['cmd'] = "_xclick";
-
+            //infos de la personne
+            //$query['address_override'] = '1';
+            $query['first_name'] = $prenom;
+            $query['last_name'] =$nom;
+            $query['email'] =$email;
+            $query['address1'] = $params['facturation']['address'];
+            //$query['city'] = $params['facturation']['city'];
+            //$query['zip'] = $params['facturation']['cp'];
+            /*if($params['facturation']['telephone'][0] == 0) {
+                $query['night_phone_b'] = substr($params['facturation']['telephone'],1);
+            }
+            else {
+                $query['night_phone_b'] = $params['facturation']['telephone'];
+            }*/
             $query_string = http_build_query($query);
             $parametres = 'https://www.paypal.com/cgi-bin/webscr?' . $query_string;
         }
