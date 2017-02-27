@@ -2,6 +2,8 @@
 namespace MyExtension\Rest\V1;
 use RubedoAPI\Rest\V1\AbstractResource;
 use Rubedo\Services\Manager;
+use Rubedo\Collection\AbstractLocalizableCollection;
+use Rubedo\Collection\AbstractCollection;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
@@ -80,18 +82,40 @@ class PaypalIpnCcnResource extends AbstractResource
             // The IPN is verified, process it:
             // check whether the payment_status is Completed
             if($_POST['payment_status']=="Completed") {
+                $wasFiltered = AbstractCollection::disableUserFilter(true);
                 // check that receiver_email is your Primary PayPal email
                 $donationName = $_POST['item_number'];
-                $siteConfig = Manager::getService("SitesConfigCcn")->getConfig();
                 //get donation infos
                 $this->_dataService = Manager::getService('MongoDataAccess');
                 $this->_dataService->init("Contents");
-                $content = $this->_dataService->findByName($donationName);
-                $donationId = $content['id'];
+                $donation = $this->_dataService->findByName($donationName);
+                //get the fiscal condition used
                 $contentsService = Manager::getService("ContentsCcn");
-                $donation = $contentsService->findById($donationId,false,false);
-            
-            
+                $conditionId = $donation['live']['fields']['conditionId'];
+                $conditionFiscale = $contentsService->findById($conditionId,false,false);
+                //get the configuration de payement content
+                if($donation["live"]["fields"]["isInternational"]) {
+                    //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_hors_pays"]);
+                    $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_int_id"],false,false);
+                }
+                else {
+                    //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_pays"]);
+                    $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_pays_id"],false,false);
+                }
+                if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['paypalmc_gross']) {
+                    /*mettre à jour le statut de payement dans le contenu don*/
+                    $wasFiltered = AbstractCollection::disableUserFilter(true);
+                    //récupérer le contenu don avec le bon format :-)
+                    $contentToUpdate = $contentsService->findById($donation["id"],false,false);
+                    $contentToUpdate["i18n"] = $donation["live"]["i18n"];
+                    $contentToUpdate["fields"]["etat"]="paiement_paypal_valide";
+                    //update payement status
+                    $result = $contentsService->update($contentToUpdate, array(),false);
+                    AbstractCollection::disableUserFilter(false);
+                    //$this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$don['live']['nativeLanguage'], false);
+                //$projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
+
+                
             }            
             
             // check that payment_amount/payment_currency are correct
