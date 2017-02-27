@@ -115,6 +115,7 @@ class PaypalIpnCcnResource extends AbstractResource
                     $result = $contentsService->update($contentToUpdate, array(),false);
                     AbstractCollection::disableUserFilter(false);
                     $projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
+                    var_dump($projectDetail);
                     DonationResource::envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$donation['live']['nativeLanguage'], false);
                 
 
@@ -125,23 +126,6 @@ class PaypalIpnCcnResource extends AbstractResource
             // process the notification
             
             
-            $mailerService = Manager::getService('Mailer');
-            $mailerObject = $mailerService->getNewMessage();
-            $destinataires=array("nicolas.rhone@chemin-neuf.org");
-            $replyTo="web@chemin-neuf.org";
-            $from="web@chemin-neuf.org";
-            $sujet = "Test";
-            $body="retour de paypal";
-            foreach ($_POST as $key => $value) {
-                
-                $body .= $key . " : " . $value. "\n";
-            }
-            $mailerObject->setTo($destinataires);
-            $mailerObject->setFrom($from);
-            $mailerObject->setSubject($sujet);
-            $mailerObject->setReplyTo($replyTo);
-            $mailerObject->setBody($body);
-            $mailerService->sendMessage($mailerObject, $errors);
             return array("success"=>true);
         } 
         else if (strcmp ($res, "INVALID") == 0) {
