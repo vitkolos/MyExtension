@@ -221,13 +221,13 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                             proposition:$scope.don.projet,
                             idInscription: response.data.instructions.id,
                             paymentType: 'dons',
-                            paymentMeans:$scope.inscription.modePaiement,
+                            paymentMeans:$scope.don.modePaiement,
                             placeId:$scope.contentDetailCtrl.content.fields.codeAna,
                             paymentConfID:response.data.instructions.paymentConfID
                         };            
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
-                                if($scope.inscription.modePaiement == 'carte') {
+                                if($scope.don.modePaiement == 'carte') {
                                     $scope.parametres = response.data.parametres;
                                     /*délai pour laisser le formulaire se remplir*/
                                     $timeout(function() {
@@ -235,7 +235,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                                         document.getElementById('payment').submit();
                                     }, 100);
                                 }
-                                else if($scope.inscription.modePaiement == 'paypal'){
+                                else if($scope.don.modePaiement == 'paypal'){
                                     window.location.href= response.data.parametres;
                                 }
                                 
