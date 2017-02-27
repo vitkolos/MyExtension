@@ -29,10 +29,11 @@ class PaypalIpnCcnResource extends AbstractResource
     }
     public function postAction($params)
     {
+        return array("success"=>true);
 // STEP 1: read POST data
 // Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
 // Instead, read raw POST data from the input stream.
-        $raw_post_data = file_get_contents('php://input');
+       /* $raw_post_data = file_get_contents('php://input');
         $raw_post_array = explode('&', $raw_post_data);
         $myPost = array();
         foreach ($raw_post_array as $keyval) {
@@ -105,7 +106,7 @@ class PaypalIpnCcnResource extends AbstractResource
             $updatedOrder=Manager::getService("Orders")->update($order);
             if (!$updatedOrder['success']){
                 return array("success"=>false);
-            }*/
+            }
             $mailerService = Manager::getService('Mailer');
             $mailerObject = $mailerService->getNewMessage();
             $destinataires=array("nicolas.rhone@chemin-neuf.org");
@@ -137,6 +138,6 @@ class PaypalIpnCcnResource extends AbstractResource
             $mailerService->sendMessage($mailerObject, $errors);
             // IPN invalid
             return array("success"=>false);
-        }
+        }*/
     }
 }
