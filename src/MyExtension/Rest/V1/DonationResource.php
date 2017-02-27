@@ -39,10 +39,14 @@ class DonationResource extends AbstractResource
         $content = $contentsService->findById($id,false,false);
         //update numero incrémenté
        $content['i18n'] = array(
-            $params['lang']->getLocale() =>array(
+            "fr" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "en" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
             )
         );
+
         $donationNumber = $content["fields"]["value"];
         $content["fields"]["value"] += 1; //add 1
         $result = $contentsService->update($content, array(),false);

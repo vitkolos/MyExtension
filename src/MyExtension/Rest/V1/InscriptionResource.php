@@ -55,28 +55,28 @@ class InscriptionResource extends AbstractResource
         $contentsService = Manager::getService("ContentsCcn");
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] +=1;
-								$content['i18n'] =  array(
-													"fr" =>array(
-										"fields" => array("text"=>$content["fields"]["text"])
-													),
-													"pl" =>array(
-										"fields" => array("text"=>$content["fields"]["text"])
-													),
-													"es" =>array(
-										"fields" => array("text"=>$content["fields"]["text"])
-													),
-											"hu" =>array(
-															"fields" => array("text"=>$content["fields"]["text"])
-											),
-											"it" =>array(
-															"fields" => array("text"=>$content["fields"]["text"])
-											),
-											"pt" =>array(
-															"fields" => array("text"=>$content["fields"]["text"])
-											),
-											"pt-BR" =>array(
-															"fields" => array("text"=>$content["fields"]["text"])
-											)
+        $content['i18n'] =  array(
+                            "fr" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+                            ),
+                            "pl" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+                            ),
+                            "es" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+                            ),
+                    "hu" =>array(
+                                    "fields" => array("text"=>$content["fields"]["text"])
+                    ),
+                    "it" =>array(
+                                    "fields" => array("text"=>$content["fields"]["text"])
+                    ),
+                    "pt" =>array(
+                                    "fields" => array("text"=>$content["fields"]["text"])
+                    ),
+                    "pt-BR" =>array(
+                                    "fields" => array("text"=>$content["fields"]["text"])
+                    )
 		);
 	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         $result = $contentsService->update($content, array(),false);
