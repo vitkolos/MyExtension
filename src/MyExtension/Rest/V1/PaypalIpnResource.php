@@ -90,6 +90,10 @@ class PaypalIpnCcnResource extends AbstractResource
             $from="web@chemin-neuf.org";
             $sujet = "Test";
             $body="retour de paypal";
+            foreach ($_POST as $key => $value) {
+                
+                $body .= $key . " : " . $value;
+            }
             $mailerObject->setTo($destinataires);
             $mailerObject->setFrom($from);
             $mailerObject->setSubject($sujet);
@@ -106,6 +110,10 @@ class PaypalIpnCcnResource extends AbstractResource
             $from="web@chemin-neuf.org";
             $sujet = "Test";
             $body="retour de paypal";
+            foreach ($_POST as $key => $value) {
+                
+                $body .= $key . " : " . $value;
+            }
             $mailerObject->setTo($destinataires);
             $mailerObject->setFrom($from);
             $mailerObject->setSubject($sujet);
