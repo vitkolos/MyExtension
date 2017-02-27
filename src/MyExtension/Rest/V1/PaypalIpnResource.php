@@ -174,4 +174,8 @@ class PaypalIpnCcnResource extends AbstractResource
     {
         return str_replace($toReplaceArray,$toReplaceWithArray,$string);
     } 
+    public function addLine($titre, $reponse, $reponse2){
+        if(isset($reponse2)) return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=33%>" . $reponse . "</td><td width=33%>".$reponse2 ."</td></tr>";
+        else return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67% colspan=2>" . $reponse . "</td></tr>";
+    }
 }
