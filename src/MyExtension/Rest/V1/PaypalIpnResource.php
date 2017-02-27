@@ -13,6 +13,8 @@ class PaypalIpnCcnResource extends AbstractResource
      * @var array
      */
     //protected $nativePMConfig;
+        protected $_dataService;
+
     public function __construct()
     {
         parent::__construct();
@@ -77,8 +79,21 @@ class PaypalIpnCcnResource extends AbstractResource
         if (strcmp ($res, "VERIFIED") == 0) {
             // The IPN is verified, process it:
             // check whether the payment_status is Completed
-            // check that txn_id has not been previously processed
-            // check that receiver_email is your Primary PayPal email
+            if($_POST['payment_status']=="Completed") {
+                // check that receiver_email is your Primary PayPal email
+                $donationName = $_POST['item_number'];
+                $siteConfig = Manager::getService("SitesConfigCcn")->getConfig();
+                //get donation infos
+                $this->_dataService = Manager::getService('MongoDataAccess');
+                $this->_dataService->init("Contents");
+                $content = $this->_dataService->findByName($donationName);
+                $donationId = $content['id'];
+                $contentsService = Manager::getService("ContentsCcn");
+                $donation = $contentsService->findById($donationId,false,false);
+            
+            
+            }            
+            
             // check that payment_amount/payment_currency are correct
             // process the notification
             
