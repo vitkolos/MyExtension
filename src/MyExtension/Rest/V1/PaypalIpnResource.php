@@ -7,7 +7,7 @@ use Rubedo\Collection\AbstractCollection;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
-use RubedoAPI\Rest\V1\DonationResource
+use RubedoAPI\Rest\V1\DonationResource;
 class PaypalIpnCcnResource extends AbstractResource
 {
     /**
