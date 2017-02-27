@@ -166,11 +166,12 @@ class PaypalIpnCcnResource extends AbstractResource
             // IPN invalid
             return array("success"=>false);
         }
-        private function translate($string,$toReplaceArray,$toReplaceWithArray)
-        {
-            return str_replace($toReplaceArray,$toReplaceWithArray,$string);
-        }    
+   
 
 
     }
+    private function translate($string,$toReplaceArray,$toReplaceWithArray)
+    {
+        return str_replace($toReplaceArray,$toReplaceWithArray,$string);
+    } 
 }
