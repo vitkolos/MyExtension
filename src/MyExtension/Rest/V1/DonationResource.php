@@ -325,7 +325,7 @@ class DonationResource extends AbstractResource
    
             
    
-   protected function envoyerMailsDon($don,$projectDetail,$configPayment,$lang,$responsableInternationalSeulement) {
+   public function envoyerMailsDon($don,$projectDetail,$configPayment,$lang,$responsableInternationalSeulement) {
         $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
         $infoPaiementAdmin="";
         //contact du projet
