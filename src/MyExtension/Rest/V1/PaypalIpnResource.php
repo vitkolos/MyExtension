@@ -170,7 +170,7 @@ class PaypalIpnCcnResource extends AbstractResource
 
 
     }
-    private function translate($string,$toReplaceArray,$toReplaceWithArray)
+    public function translate($string,$toReplaceArray,$toReplaceWithArray)
     {
         return str_replace($toReplaceArray,$toReplaceWithArray,$string);
     } 
