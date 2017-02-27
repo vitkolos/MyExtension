@@ -208,12 +208,12 @@ class PaymentResource extends AbstractResource {
 
             $query = array();
             $query['currency_code'] = $params['codeMonnaieAlpha']; //devise
-            $query['lc'] = $params['lang']->getLocale(); // langue
+            $query['lc'] = strtoupper($params['lang']->getLocale()); // langue
             $query['business'] = $paypalAccount; //compte Paypal
             $query['item_name'] = $params['proposition']; //nom du projet
             $query['item_number'] = $idInscription;//id du don
             $query['amount'] = $params['montant'];//montant du don
-            $query['notify_url'] = "https://" . $_SERVER['HTTP_HOST']; // adresse de l'IPN ? 
+            $query['notify_url'] = "https://" . $_SERVER['HTTP_HOST']. "/api/v1/PaypalIpn/"; // adresse de l'IPN ? 
             $query['cancel_return'] = "https://" . $_SERVER['HTTP_HOST']; // page d'annulation de commande
             $query['return'] = "https://" . $_SERVER['HTTP_HOST']; // page de confirmation et remerciement
             $query['cmd'] = "_xclick";

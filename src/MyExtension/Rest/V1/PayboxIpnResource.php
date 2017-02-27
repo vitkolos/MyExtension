@@ -98,7 +98,6 @@ class PayboxIpnResource extends AbstractResource {
 
 if(!($erreurStatus) && $securite && $autorisation) {
             // ENREGISTRER LE PAIEMENT DANS LA BASE DE DONNEES
-            
             //pour inscription, on récupère le contenu inscription et on change le statut
             $commande = explode("|", $params['commande']); // $codeCompta . "|" .$idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
             $codeCompta = $commande[0];
