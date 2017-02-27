@@ -103,7 +103,7 @@ class PaypalIpnCcnResource extends AbstractResource
                     $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_pays_id"],false,false);
                 }
                 var_dump($paymentConfig);
-                /*if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['paypalmc_gross']) {
+                if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['paypalmc_gross']) {
                     //mettre à jour le statut de payement dans le contenu don
                     $wasFiltered = AbstractCollection::disableUserFilter(true);
                     //récupérer le contenu don avec le bon format :-)
@@ -115,7 +115,7 @@ class PaypalIpnCcnResource extends AbstractResource
                     AbstractCollection::disableUserFilter(false);
                     //$this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$don['live']['nativeLanguage'], false);
                 //$projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
-*/
+
                 
             }            
             
