@@ -92,7 +92,7 @@ class PaypalIpnCcnResource extends AbstractResource
             $body="retour de paypal";
             foreach ($_POST as $key => $value) {
                 
-                $body .= $key . " : " . $value;
+                $body .= $key . " : " . $value. "\n";
             }
             $mailerObject->setTo($destinataires);
             $mailerObject->setFrom($from);
@@ -112,7 +112,7 @@ class PaypalIpnCcnResource extends AbstractResource
             $body="retour de paypal";
             foreach ($_POST as $key => $value) {
                 
-                $body .= $key . " : " . $value;
+                $body .= $key . " : " . $value . "\n";
             }
             $mailerObject->setTo($destinataires);
             $mailerObject->setFrom($from);
