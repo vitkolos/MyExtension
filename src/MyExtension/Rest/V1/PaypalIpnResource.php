@@ -111,17 +111,17 @@ class PaypalIpnCcnResource extends AbstractResource
                     //mettre à jour le statut de payement dans le contenu don
                     var_dump($donation["id"]);
                     //récupérer le contenu don avec le bon format :-)
-                    /*$contentToUpdate = $contentsService->findById($donation["id"],false,false);
+                    $contentToUpdate = $contentsService->findById($donation["id"],false,false);
                     
                     $contentToUpdate["i18n"] = $donation["live"]["i18n"];
                     $contentToUpdate["fields"]["etat"]="paiement_paypal_valide";
                     //update payement status
                     $result = $contentsService->update($contentToUpdate, array(),false);
-                    AbstractCollection::disableUserFilter(false);*/
+                    AbstractCollection::disableUserFilter(false);
                     //$this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$don['live']['nativeLanguage'], false);
                 //$projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
 
-                
+                }
             }            
             
             // check that payment_amount/payment_currency are correct
