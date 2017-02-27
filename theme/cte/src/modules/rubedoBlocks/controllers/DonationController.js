@@ -247,6 +247,15 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                                 $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
                             }
                             
+                        })
+                        .catch(function(e) {
+                            console.log('Error: ', e);
+                            $scope.processForm=false;
+                            $scope.finInscription=true;  
+                            $scope.inscription={};
+                            $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
+
+                            throw e;
                         });
                     }
                 }
