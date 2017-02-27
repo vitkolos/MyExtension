@@ -82,7 +82,6 @@ class PaypalIpnCcnResource extends AbstractResource
             // The IPN is verified, process it:
             // check whether the payment_status is Completed
             if($_POST['payment_status']=="Completed") {
-                var_dump($_POST);
                 $wasFiltered = AbstractCollection::disableUserFilter(true);
                 // check that receiver_email is your Primary PayPal email
                 $donationName = $_POST['item_number'];
@@ -94,9 +93,8 @@ class PaypalIpnCcnResource extends AbstractResource
                 $contentsService = Manager::getService("ContentsCcn");
                 $conditionId = $donation['live']['fields']['conditionId'];
                 $conditionFiscale = $contentsService->findById($conditionId,false,false);
-                var_dump($conditionFiscale);
                 //get the configuration de payement content
-                /*if($donation["live"]["fields"]["isInternational"]) {
+                if($donation["live"]["fields"]["isInternational"]) {
                     //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_hors_pays"]);
                     $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_int_id"],false,false);
                 }
@@ -104,7 +102,8 @@ class PaypalIpnCcnResource extends AbstractResource
                     //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_pays"]);
                     $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_pays_id"],false,false);
                 }
-                if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['paypalmc_gross']) {
+                var_dump($paymentConfig);
+                /*if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['paypalmc_gross']) {
                     //mettre à jour le statut de payement dans le contenu don
                     $wasFiltered = AbstractCollection::disableUserFilter(true);
                     //récupérer le contenu don avec le bon format :-)
