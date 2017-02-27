@@ -227,12 +227,18 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                         };            
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
-                                $scope.parametres = response.data.parametres;
-                                /*délai pour laisser le formulaire se remplir*/
-                                $timeout(function() {
-                                    $scope.processForm=false;
-                                    document.getElementById('payment').submit();
-                                }, 100);
+                                if($scope.inscription.modePaiement == 'carte') {
+                                    $scope.parametres = response.data.parametres;
+                                    /*délai pour laisser le formulaire se remplir*/
+                                    $timeout(function() {
+                                        $scope.processForm=false;
+                                        document.getElementById('payment').submit();
+                                    }, 100);
+                                }
+                                else if($scope.inscription.modePaiement == 'paypal'){
+                                    window.location.href= response.data.parametres;
+                                }
+                                
                             }
                             else {
                                 $scope.processForm=false;

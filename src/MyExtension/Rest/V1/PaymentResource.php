@@ -190,7 +190,30 @@ class PaymentResource extends AbstractResource {
         }
          /*PAIEMENT PAR PAYPAL */
         if($onlinePaymentMeans == "paypal") {
-            var_dump($params);
+            // récupérer l'id de la configuration de payement
+            $id = $params['paymentConfID'];
+            // récupérer les infos du compte
+            $wasFiltered = AbstractCollection::disableUserFilter(true);
+            $contentsService = Manager::getService("Contents");
+            $paymentInfos = $contentsService->findById($id,false,false)['fields'];
+            $wasFiltered = AbstractCollection::disableUserFilter(false);
+            $paypalAccount = $paymentInfos['paypal'];
+
+
+            $query = array();
+            $query['currency_code'] = 'EUR'; //devise
+            $query['lc'] = 'FR'; // langue
+            $query['business'] = $paypalAccount; //compte Paypal
+            $query['item_name'] = $params['proposition']; //nom du projet
+            $query['item_number'] = $idInscription;//id du don
+            $query['amount'] = $params['montant'];//montant du don
+            $query['notify_url'] = "https://" . $_SERVER['HTTP_HOST']; // adresse de l'IPN ? 
+            $query['cancel_return'] = "https://" . $_SERVER['HTTP_HOST']; // page d'annulation de commande
+            $query['return'] = "https://" . $_SERVER['HTTP_HOST']; // page de confirmation et remerciement
+            $query['cmd'] = "_xclick";
+
+            $query_string = http_build_query($query);
+            $parametres = 'https://www.paypal.com/cgi-bin/webscr?' . $query_string;
         }
         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
         else {
@@ -273,8 +296,6 @@ class PaymentResource extends AbstractResource {
             $empreinteHasheeHex = strtoupper(hash_hmac('sha512', $empreinteBrute, $binKey));
             // La chaîne sera envoyée en majuscules, d'où l'utilisation de strtoupper()
             $parametres['empreinteHasheeHex'] = $empreinteHasheeHex;
-     
-
 
         }
         
