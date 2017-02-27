@@ -115,7 +115,7 @@ class DonationResource extends AbstractResource
         else if($don["fields"]["modePaiement"]=="paypal") {
 
 
-            $arrayToReturn = array("whatToDo" =>"proceedToPaypal", "id" =>$don['fields']['text'], "paymentConfID" => $paymentConfID );
+            $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "paymentConfID" => $paymentConfID );
             
         }
         else {
