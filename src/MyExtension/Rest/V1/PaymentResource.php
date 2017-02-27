@@ -232,7 +232,7 @@ class PaymentResource extends AbstractResource {
                 $query['night_phone_b'] = $params['facturation']['telephone'];
             }*/
             $query_string = http_build_query($query);
-            $parametres = 'https://www.paypal.com/cgi-bin/webscr?' . $query_string;
+            $parametres = 'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string;
         }
         /*PAIEMENT PAR CARTE -> COMPTE PAYBOX*/
         else {
