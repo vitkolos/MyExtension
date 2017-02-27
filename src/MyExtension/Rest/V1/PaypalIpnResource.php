@@ -53,9 +53,8 @@ class PaypalIpnCcnResource extends AbstractResource
             }
             $req .= "&$key=$value";
         }
-        var_dump($req);
 // STEP 2: POST IPN data back to PayPal to validate
-        /*$ch = curl_init($this->nativePMConfig['customerRedirect']);
+        $ch = curl_init($this->nativePMConfig['customerRedirect']);
         curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
@@ -74,8 +73,9 @@ class PaypalIpnCcnResource extends AbstractResource
             exit;
         }
         curl_close($ch);
+        var_dump($res);
 // STEP 3: Inspect IPN validation result and act accordingly
-        if (strcmp ($res, "VERIFIED") == 0) {
+        /*if (strcmp ($res, "VERIFIED") == 0) {
             // The IPN is verified, process it:
             // check whether the payment_status is Completed
             // check that txn_id has not been previously processed
