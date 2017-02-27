@@ -83,7 +83,7 @@ class PaypalIpnCcnResource extends AbstractResource
             // check whether the payment_status is Completed
             if($_POST['payment_status']=="Completed") {
                 var_dump($_POST);
-                $wasFiltered = AbstractCollection::disableUserFilter(true);
+                /*$wasFiltered = AbstractCollection::disableUserFilter(true);
                 // check that receiver_email is your Primary PayPal email
                 $donationName = $_POST['item_number'];
                 //get donation infos
@@ -104,7 +104,7 @@ class PaypalIpnCcnResource extends AbstractResource
                     $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_pays_id"],false,false);
                 }
                 if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['paypalmc_gross']) {
-                    /*mettre à jour le statut de payement dans le contenu don*/
+                    //mettre à jour le statut de payement dans le contenu don
                     $wasFiltered = AbstractCollection::disableUserFilter(true);
                     //récupérer le contenu don avec le bon format :-)
                     $contentToUpdate = $contentsService->findById($donation["id"],false,false);
@@ -115,7 +115,7 @@ class PaypalIpnCcnResource extends AbstractResource
                     AbstractCollection::disableUserFilter(false);
                     //$this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$don['live']['nativeLanguage'], false);
                 //$projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
-
+*/
                 
             }            
             
