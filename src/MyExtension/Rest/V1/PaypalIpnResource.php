@@ -116,7 +116,7 @@ class PaypalIpnCcnResource extends AbstractResource
                     $result = $contentsService->update($contentToUpdate, array(),false);
                     AbstractCollection::disableUserFilter(false);
                     $projectDetail = $contentsService->findById($don["live"]["fields"]["projetId"],false,false);
-                    DonationResource::envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$don['live']['nativeLanguage'], false);
+                    DonationResource::envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$donation['live']['nativeLanguage'], false);
                 
 
                 }
