@@ -105,9 +105,9 @@ class PaypalIpnCcnResource extends AbstractResource
                 var_dump($paymentConfig['fields']['paypal']);
                 var_dump($_POST['receiver_email']);
                 var_dump($donation["live"]["fields"]["montant"]);
-                var_dump($_POST['paypalmc_gross']);
+                var_dump($_POST['mc_gross']);
                 
-                if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['paypalmc_gross']) {
+                if($paymentConfig['fields']['paypal'] == $_POST['receiver_email'] && $donation["live"]["fields"]["montant"] == $_POST['mc_gross']) {
                     //mettre à jour le statut de payement dans le contenu don
                     var_dump($donation["id"]);
                     //récupérer le contenu don avec le bon format :-)
