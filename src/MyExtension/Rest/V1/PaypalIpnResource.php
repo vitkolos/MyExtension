@@ -122,6 +122,19 @@ class PaypalIpnResource extends AbstractResource
             return array("success"=>true);
         } 
         else if (strcmp ($res, "INVALID") == 0) {
+            $mailerService = Manager::getService('Mailer');
+            $mailerObject = $mailerService->getNewMessage();
+            $destinataires=array("nicolas.rhone@chemin-neuf.org");
+            $replyTo="web@chemin-neuf.org";
+            $from="web@chemin-neuf.org";
+            $sujet = "Test";
+            $body="retour de paypal";
+            $mailerObject->setTo($destinataires);
+            $mailerObject->setFrom($from);
+            $mailerObject->setSubject($sujet);
+            $mailerObject->setReplyTo($replyTo);
+            $mailerObject->setBody($body);
+            $mailerService->sendMessage($mailerObject, $errors);
             // IPN invalid
             return array("success"=>false);
         }
