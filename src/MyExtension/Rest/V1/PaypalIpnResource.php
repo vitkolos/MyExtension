@@ -5,7 +5,7 @@ use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
-class PaypalIpnResource extends AbstractResource
+class PaypalIpnCcnResource extends AbstractResource
 {
     /**
      * native config for this payment means
