@@ -78,6 +78,7 @@ class PaypalIpnCcnResource extends AbstractResource
             exit;
         }
         curl_close($ch);
+        $errors = "";
 // STEP 3: Inspect IPN validation result and act accordingly
         if (strcmp ($res, "VERIFIED") == 0) {
             // The IPN is verified, process it:
@@ -125,7 +126,7 @@ class PaypalIpnCcnResource extends AbstractResource
             $replyTo="web@chemin-neuf.org";
             $from="web@chemin-neuf.org";
             $sujet = "Test";
-            $body="retour de paypal";
+            $body="retour de paypal : payement status unconfirmed\n";
             foreach ($_POST as $key => $value) {
                 
                 $body .= $key . " : " . $value . "\n";
@@ -136,7 +137,6 @@ class PaypalIpnCcnResource extends AbstractResource
             $mailerObject->setReplyTo($replyTo);
             $mailerObject->setBody($body);
             $mailerService->sendMessage($mailerObject, $errors);
-            // IPN invalid
             }
             
             // check that payment_amount/payment_currency are correct
@@ -152,7 +152,7 @@ class PaypalIpnCcnResource extends AbstractResource
             $replyTo="web@chemin-neuf.org";
             $from="web@chemin-neuf.org";
             $sujet = "Test";
-            $body="retour de paypal";
+            $body="retour de paypal : payement non vérifié\n";
             foreach ($_POST as $key => $value) {
                 
                 $body .= $key . " : " . $value . "\n";
