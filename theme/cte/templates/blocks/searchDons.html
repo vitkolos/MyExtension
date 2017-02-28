@@ -31,8 +31,8 @@
                                 {{term.name}}<!--&nbsp;({{term.count}})-->
                             </li>
                             <li class="cursor-as-pointer resultData" ng-repeat-end ng-show="$last && facet.terms.length>3">
-                                <span class="pull-right capital2 txt-red" ng-click="$parent.limitTo=100" ng-show="$parent.limitTo==3">>> voir plus</span>
-                                <span class="pull-right capital2 txt-red" ng-click="$parent.limitTo=3" ng-show="$parent.limitTo==100"><< voir moins</span>
+                                <span class="pull-right capital2 txt-red" ng-click="$parent.limitTo=100" ng-show="$parent.limitTo==3">>> {{rubedo.translate('Block.Dons.Search.More', 'Voir moins')}}</span>
+                                <span class="pull-right capital2 txt-red" ng-click="$parent.limitTo=3" ng-show="$parent.limitTo==100"><< {{rubedo.translate('Block.Dons.Search.Less', 'Voir moins')}}</span>
                             </li>
                         </ul>
                 </div>
