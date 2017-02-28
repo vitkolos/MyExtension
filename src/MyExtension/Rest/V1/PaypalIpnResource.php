@@ -116,10 +116,28 @@ class PaypalIpnCcnResource extends AbstractResource
                     AbstractCollection::disableUserFilter(false);
                     $projectDetail = $contentsService->findById($donation["live"]["fields"]["projetId"],false,false);
                     DonationResource::envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$donation['live']['nativeLanguage'], false);
-                
-
                 }
-            }            
+            }  
+            else {
+            $mailerService = Manager::getService('Mailer');
+            $mailerObject = $mailerService->getNewMessage();
+            $destinataires=array("nicolas.rhone@chemin-neuf.org");
+            $replyTo="web@chemin-neuf.org";
+            $from="web@chemin-neuf.org";
+            $sujet = "Test";
+            $body="retour de paypal";
+            foreach ($_POST as $key => $value) {
+                
+                $body .= $key . " : " . $value . "\n";
+            }
+            $mailerObject->setTo($destinataires);
+            $mailerObject->setFrom($from);
+            $mailerObject->setSubject($sujet);
+            $mailerObject->setReplyTo($replyTo);
+            $mailerObject->setBody($body);
+            $mailerService->sendMessage($mailerObject, $errors);
+            // IPN invalid
+            }
             
             // check that payment_amount/payment_currency are correct
             // process the notification
