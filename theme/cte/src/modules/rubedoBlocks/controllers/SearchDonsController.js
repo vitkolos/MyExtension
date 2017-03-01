@@ -3,6 +3,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
     var me = this;
     me.contentList=[];
     me.usedTaxonomies = {};
+    me.activeTerms={};
     var config=$scope.blockConfig;
     var blockPagingIdentifier=$scope.block.bType+$scope.block.id.substring(21)+"Page";
     var pageId=$scope.rubedo.current.page.id;
@@ -59,6 +60,20 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
             );
         }
     });
+      /*activeTErms = vocId, term, name*/                                                                   
+     me.clickOnFacets = function(facetId, term){
+       
+         if(me.activeTerms.length>0 && me.activeTerms.vocId==facetId && me.activeTerms.termId==term.id) {
+           me.activeTerms={};
+         }
+         else{
+           me.activeTerms = {
+             "vocId": facetId,
+             "termId": term.id,
+             "name":term.name
+           };
+        }
+     }
     /*
     me.getTermInTaxo=function(termId){
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
