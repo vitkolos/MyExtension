@@ -80,7 +80,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
       if(me.activeTerms.length==0) return true;
       else {
         var isSelected = false;
-        angular.forEach(taxonomies, function(vocId, terms){
+        angular.forEach(taxonomies, function(terms, vocId){
           if (me.activeTerms[0].vocId==vocId) {
             angular.forEach(terms, function(term){
               if(term==me.activeTerms[0].termId) isSelected = true;
