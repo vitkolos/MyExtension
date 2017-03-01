@@ -85,6 +85,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
             })
           }
         });
+        return isSelected;
       }
     }
     /*
