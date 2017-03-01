@@ -163,9 +163,12 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                         me.usedTaxonomies[vocId]  ={"name":me.taxo[vocId].name,"terms":[],"id":vocId};
                     }
                     angular.forEach(terms, function(term){
-                        if (!me.usedTaxonomies[vocId]["terms"][term]) {
-                            me.usedTaxonomies[vocId]["terms"].push({"id":term, "name":$filter('filter')(me.taxo[vocId].terms,{"id":term})[0].text});
-                        }
+                      var doAdd = true;
+                      angular.forEach(me.usedTaxonomies[vocId]["terms"], function(userTerm){
+                        if(usedTerm.id == term) doAdd=false;
+                      });
+                      if(doAdd) me.usedTaxonomies[vocId]["terms"].push({"id":term, "name":$filter('filter')(me.taxo[vocId].terms,{"id":term})[0].text});
+
                     });
                 }
             });
