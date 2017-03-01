@@ -73,7 +73,20 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
              "name":term.name
            };
         }
-     }
+     };
+    me.isSelected = function(taxonomies){
+      if(me.activeTerms.length==0) return true;
+      else {
+        var isSelected = false;
+        angular.forEach(taxonomies, function(vocId, terms){
+          if (me.activeTerms[0].vocId==vocId) {
+            angular.forEach(terms, function(term){
+              if(term==me.activeTerms[0].termId) isSelected = true;
+            })
+          }
+        });
+      }
+    }
     /*
     me.getTermInTaxo=function(termId){
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
