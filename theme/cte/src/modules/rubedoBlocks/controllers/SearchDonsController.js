@@ -75,8 +75,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
         }
      };
     me.isSelected = function(taxonomies){
-      console.log(taxonomies);
-      console.log(me.activeTerms);
       if(me.activeTerms.length==0) return true;
       else {
         var isSelected = false;
