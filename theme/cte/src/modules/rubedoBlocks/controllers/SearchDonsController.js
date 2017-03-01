@@ -75,6 +75,8 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
         }
      };
     me.isSelected = function(taxonomies){
+      console.log(taxonomies);
+      console.log(me.activeTerms);
       if(me.activeTerms.length==0) return true;
       else {
         var isSelected = false;
@@ -142,7 +144,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo[taxonomie.vocabulary.id] = {"terms":taxonomie.terms,"name":taxonomie.vocabulary.name};
                             });
-                            console.log(me.taxo);
                             me.getUsedTaxonomies();
                          }
                          
