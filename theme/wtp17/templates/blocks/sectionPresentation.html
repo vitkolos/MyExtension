@@ -1,5 +1,5 @@
-<div ng-controller="PresentationController as presentationCtrl"  ng-class="presentationCtrl.columns" class="google-btn">
-	<a ng-href="{{ presentationCtrl.pageLink }}" style="display:block; width:100%">
+<div ng-controller="PresentationController as presentationCtrl"  ng-class="presentationCtrl.columns" >
+	<a ng-href="{{ presentationCtrl.pageLink }}" style="display:block;" class="google-btn">
 		<img class="img-circle img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
                                                                      alt="{{ blockConfig.title }}"/>   
 		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
