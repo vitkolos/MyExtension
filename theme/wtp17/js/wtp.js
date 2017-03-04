@@ -23,6 +23,10 @@ blocksConfig.facebook={
            "template": "/templates/blocks/facebook.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
 };
+blocksConfig.sectionPresentation={
+           "template": "/templates/blocks/sectionPresentation.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/sectionPresentation.js"]
+};
 
 
 
