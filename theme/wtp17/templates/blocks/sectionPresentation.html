@@ -1,4 +1,4 @@
-<div ng-controller="PresentationController as presentationCtrl"  ng-class="presentationCtrl.columns">
+<div ng-controller="PresentationController as presentationCtrl"  ng-class="presentationCtrl.columns" class="google-btn">
 	<a ng-href="{{ presentationCtrl.pageLink }}" style="display:block; width:100%">
 		<img class="img-circle img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
                                                                      alt="{{ blockConfig.title }}"/>   
