@@ -1,6 +1,6 @@
 <h3 ng-if="column.displayTitle">{{column.eTitle}}</h3>
 <rubedo-block ng-if="column.isTerminal && column.blocks[0].bType!='sectionPresentation' " ng-repeat="block in column.blocks track by $index"></rubedo-block>
-<div class="flex-container" ng-if="column.blocks[0].bType!='sectionPresentation' && rubedo.current.user">
+<div class="flex-container" ng-if="column.blocks[0].bType=='sectionPresentation' && rubedo.current.user">
     <rubedo-block ng-if="column.isTerminal && rubedo.current.user" ng-repeat="block in column.blocks track by $index" class="equal-height-blocks col-sm-6 col-xs-6" ng-class="'col-md-'+(12/blockConfig.columns)"></rubedo-block>
 </div>
 <div ng-if="!column.isTerminal" ng-repeat="row in column.rows track by $index"
