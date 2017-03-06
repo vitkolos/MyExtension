@@ -92,8 +92,6 @@ class PaymentmeansResource extends AbstractResource
                     if(isset($pafConfig['fields']['dotpay_id']) && $pafConfig['fields']['dotpay_id'] !='' ) $paymentModes["dotpay"] = true;
                     $arrayToReturn["paymentModes"] = $paymentModes;
                 }
-            
-                
                 $arrayToReturn["nativePMConfig"] = array(
                                                         "fiscalite" =>$arrayToReturn["nativePMConfig"]["fiscalite"],
                                                         "monnaie" => $arrayToReturn["nativePMConfig"]["monnaie"],
@@ -104,6 +102,7 @@ class PaymentmeansResource extends AbstractResource
                 if($params['type']=='dons' && isset($paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"]) && $paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"] !='' ) {
                     $arrayToReturn["nativePMConfig"]["contactDonsId"] = $paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"];
                 }
+                if($params['type']=='paf') $arrayToReturn["nativePMConfig"]["conf_paf"] = $paymentMeans['paymentConfig']['nativePMConfig']['conf_paf'];
                 return array(
                     'success' => true,
                     'paymentMeans' => $arrayToReturn

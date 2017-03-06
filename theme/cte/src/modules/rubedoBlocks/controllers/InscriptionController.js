@@ -475,7 +475,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         });
     }
     me.payementComplementaire = function(){
-        $scope.processForm=true;
+        $scope.processForm=true;	
+								
         var payload = {
             nom:me.lastInscription.fields.nom,
             prenom: me.lastInscription.fields.surname,
@@ -483,8 +484,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             montant:$scope.inscription.montantAPayerMaintenant,
             proposition:propositionTitle,
             idInscription: me.lastInscription.fields.text,
-            paymentType:'paf',
-            accountName:me.paymentmeans.paymentMeans
+												paymentMeans:me.paymentmeans.nativePMConfig.conf_paf,
+            paymentType:'paf'
         };
         if (me.content.fields.lieuCommunautaire) {
             payload.placeID=me.content.fields.lieuCommunautaire;
