@@ -484,7 +484,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             montant:$scope.inscription.montantAPayerMaintenant,
             proposition:propositionTitle,
             idInscription: me.lastInscription.fields.text,
-												paymentMeans:me.paymentmeans.nativePMConfig.conf_paf,
+												paymentConfID:me.paymentmeans.nativePMConfig.conf_paf,
+												paymentMeans:'carte',
             paymentType:'paf'
         };
         if (me.content.fields.lieuCommunautaire) {
