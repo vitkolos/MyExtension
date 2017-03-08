@@ -358,6 +358,7 @@ class DonationResource extends AbstractResource
         }
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
         $messageDonateur .= $this->translate($trad["ccn_don_1"],['%montantAvecMonnaieEtFrequence%','%projet%'],[$don["montantAvecFrequence"],$don["projet"]]) . ".<br/><br/>";
+        
         //paiement par chèque
         if($don["modePaiement"]=="cheque") {
             //"Merci de nous faire parvenir votre chèque à l'ordre de ${ordre-cheque} à l'adresse suivante: ${adresse-cheque}."
@@ -517,6 +518,7 @@ class DonationResource extends AbstractResource
         if(isset($don["tel2"]))  $messageAdmin .= $this->addLine($trad["ccn_form_telephone_portable"], $don["tel2"] , null );
         $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] , null );
         if(isset($don["message"]) && $don["message"]!="") $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] , null );
+        if(isset($don["gift_aid"]) && $don["gift_aid"]) $messageAdmin .= $this->addLine("Gift Aid", "I want to Gift Aid this donation" , null );
         if(isset($don["montant_text"]) && $don["montant_text"]!="") $messageAdmin .= $this->addLine("Bonus", $don["montant_text"] , null );
         //si on envoyer le mail directement
         if(isset($don["questions"])){
