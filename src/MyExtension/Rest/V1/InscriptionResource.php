@@ -453,7 +453,10 @@ protected function sendInscriptionMail($inscription,$lang){
         if(isset($inscription['emailPers2'])) $messageSecretariat .= $this->addLine($trad["ccn_form_mail_parent"], $inscription['emailPers2'] , null );
         if(isset($inscription['country'])) $messageSecretariat .= $this->addLine($trad["ccn_label_pays"], $inscription['country'] , null );
         if(isset($inscription['address'])) $messageSecretariat .= $this->addLine($trad["ccn_label_adresse"], $inscription['address'] , null );
-        if(isset($inscription['cp']) || isset($inscription['city'])) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], isset($inscription['cp']) ? $inscription['cp']. " - " : ''. isset($inscription['city'])?$inscription['city']:'' , null );
+								$cpAndCity = "";
+								if(isset($inscription['cp'])) $cpAndCity .= $inscription['cp'] . " - ";
+								if(isset($inscription['city'])) $cpAndCity .= $inscription['city'] ;
+        if(isset($inscription['cp']) || isset($inscription['city'])) $messageSecretariat .= $this->addLine($trad["ccn_label_codepostal"]. " - ".$trad["ccn_label_ville"], $cpAndCity , null );
         if(isset($inscription['tel1'])) $messageSecretariat .= $this->addLine($trad["ccn_form_telephone_fixe"], $inscription['tel1'] , null );
 
    }
