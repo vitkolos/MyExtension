@@ -202,7 +202,8 @@
                 { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Underline','Strike', '-', 'RemoveFormat' ] },
                 { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'NumberedList', 'BulletedList', '-',  'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock','-','Image']},
                 { name: 'colors', items: [ 'TextColor','-', 'Scayt'] },
-                { name: 'styles', items: [ 'Font', 'FontSize' ] }
+                { name: 'styles', items: [ 'Font', 'FontSize' ] },
+                { name: 'insert', items: [  'Link', "Rubedolink", 'Unlink'] }
             ];
         }
         var editorOptions={
