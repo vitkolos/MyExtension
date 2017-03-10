@@ -39,12 +39,12 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 .btn-group, .btn-group-vertical{z-index:3}
 
 
-@media screen and (min-width: 600px) and (max-width: 768px){
+@media screen and (min-width: 500px) and (max-width: 768px){
     .col-xs-6, .col-xxs-6{width:50%;}
     .col-xs-4{width:33.33333333%;}
     .col-xs-8{width:66.66666666%;}
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 500px) {
      .col-xs-4,.col-xs-6, .col-xs-8{width:100%;}
      .col-xxs-6{width:50%}
 }
@@ -76,8 +76,8 @@ a:link, a:visited, a:hover,a{text-decoration:none}
 @workshops:#ec008c;//#ff5143;
 @ateliers:#ec008c;//#3e9dd9;
 @studilac:#00d3de;
-@intervenants:#5d5d5d;
 @volontaires:#00a4b7;
+@intervenants:@volontaires;
 @jpros:#00D3DE;
 @groupe:#B4DB37;
 @manaim:#7f7fc1;
@@ -137,7 +137,10 @@ nav .nav > li > a:hover{color:@yellow; background-color: inherit}
     color: #666666;
     text-align: justify;
 }
-
+img.hover{
+    opacity:1; transition:opacity 0.2s ease;
+    &:hover{opacity:0.8}
+}
 //colors for secondary menu
 
 /*NAVBAR*/
@@ -199,7 +202,7 @@ button.submit{background-color:@txt_grey; color:white}
     padding: 48px 0 0 ;
     position: fixed;
     background-color: #fff;
-    z-index: 1;
+    z-index: 0;
 }
 #push-menu-01 .push-menu-button{
     color: #fff;
@@ -293,10 +296,10 @@ input:checked + .push-menu-title:after{content:"c"}
     transition: transform .2s cubic-bezier(.16, .68, .43, .99);
     /* improves performance issues on mobile*/
     -webkit-backface-visibility: hidden;
-    -webkit-perspective: 1000;
+    //-webkit-perspective: 1000;
     overflow-x: hidden;
-    z-index: 1;
-    -webkit-transform: scale3d(1,1,1);
+    //z-index: 1;
+    //-webkit-transform: scale3d(1,1,1);
 }
    .sections-container {
     margin: 0 0 0 48px;
@@ -454,10 +457,12 @@ header.parallax.page{
     color:@txt_grey;
 }
 .google-btn {
-    h3, p{
+    h4, p{
 	padding:0 5px; 
 	color:@txt_grey;
+    text-align:center;
     }
+    h4{margin-top:25px; margin-bottom:20px; text-transform:uppercase}
 }
 .linkbox{display:block}
 .linkbox a{
@@ -1618,3 +1623,18 @@ ul.programme li:first-of-type:first-line{font-size:1.5em}
 					-moz-box-shadow:0px 5px 5px rgba(0,0,0,.2), 0px 10px 14px rgba(0,0,0,.1), inset 0px 1px 0px rgba(255,255,255,.25), inset 0px -1px 0px rgba(0,0,0,.10);
 				box-shadow:0px 5px 5px rgba(0,0,0,.2), 0px 10px 14px rgba(0,0,0,.1), inset 0px 1px 0px rgba(255,255,255,.25), inset 0px -1px 0px rgba(0,0,0,.10);
 }
+
+////////SECTION PRESENTATION BLOCK//////////
+.flex-container{  
+    display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.equal-height-blocks{   
+    display: flex;
+  flex-direction: column;
+}
+
+.equal-height-blocks:hover{background-color:#f4f4f2}

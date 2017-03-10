@@ -139,6 +139,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     };
     // préremplir les champs si l'utilisateur est connecté
     if ($scope.rubedo.current.user) {
+								console.log($scope.rubedo.current.user);
         $scope.inscription=angular.copy($scope.rubedo.current.user.fields);
         $scope.inscription.email = $scope.rubedo.current.user.email;
         $scope.inscription.email_verif = $scope.rubedo.current.user.email;
@@ -364,7 +365,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 $scope.message="";
                 if (response.data.success) {
                     // si paiement par Paybox
-                    if ($scope.inscription.modePaiement=='carte') { 
+                    if ($scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
                         var payload = {
                             nom:$scope.inscription.nom,
                             prenom: $scope.inscription.surname,
@@ -372,7 +373,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             montant:$scope.inscription.montantAPayerMaintenant,
                             proposition:propositionTitle,
                             idInscription: response.data.id,
-                            accountName:me.paymentmeans.paymentMeans
+                            paymentConfID:response.data.result.paymentConfID,
+																												paymentMeans:$scope.inscription.modePaiement,
+																												paymentType:'paf'
                         };
                         /*si ados, le mail indiqué pour le payement est celui du parent*/
                         if($scope.inscription.public_type == 'adolescent' && $scope.inscription.emailPers2 && $scope.inscription.emailPers2!=''){
@@ -384,11 +387,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         if(window.ga) {
                             window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
                         }
-                        payload.paymentType= 'paf';
-                        payload.onlinePaymentMeans=me.paymentmeans.onlinePaymentMeans;
-                        if (me.paymentmeans.onlinePaymentMeans=='dotpay') {
+                        if ($scope.inscription.modePaiement=='dotpay') {
                             payload.infos=$scope.inscription;
-
                         }
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
@@ -475,7 +475,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         });
     }
     me.payementComplementaire = function(){
-        $scope.processForm=true;
+        $scope.processForm=true;	
+								
         var payload = {
             nom:me.lastInscription.fields.nom,
             prenom: me.lastInscription.fields.surname,
@@ -483,8 +484,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             montant:$scope.inscription.montantAPayerMaintenant,
             proposition:propositionTitle,
             idInscription: me.lastInscription.fields.text,
-            paymentType:'paf',
-            accountName:me.paymentmeans.paymentMeans
+												paymentConfID:me.paymentmeans.nativePMConfig.conf_paf,
+												paymentMeans:'carte',
+            paymentType:'paf'
         };
         if (me.content.fields.lieuCommunautaire) {
             payload.placeID=me.content.fields.lieuCommunautaire;

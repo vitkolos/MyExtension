@@ -19,6 +19,8 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                 return true;
             }
             else if($scope.rubedo.current.page.i18n) return $scope.rubedo.current.page.i18n.hasOwnProperty(lang);
+												else if ($scope.rubedo.current.page.parentId=='root' ) return true;
+												
             else return false;
         };
         me.getFlagUrl = function(flagCode){

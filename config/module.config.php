@@ -6,60 +6,58 @@ return array(
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paybox.json'
         ),
-        'paf_fr' => array(
-            'name' => "PAF France",
-            'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+								/*NEW CONFIGS*/
+								'int' => array(
+            'name' => "International",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-         'dons_int' => array(
-            'name' => "Dons International €",
-            'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+								'france' => array(
+            'name' => "France",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'dons_int_paypal' => array(
-            'name' => "Dons International autres devises",
-            //'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+								'pologne' => array(
+            'name' => "Pologne",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-         'dons_fr' => array(
-            'name' => "Dons FR",
-            'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+								'italie' => array(
+            'name' => "Italie",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-         'dons_hautecombe' => array(
-            'name' => "Fondation d'Hautecombe",
-            'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+								'espagne' => array(
+            'name' => "Espagne",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-        'paf_pl' => array(
-            'name' => "PAF Pologne",
-            'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+								'liban' => array(
+            'name' => "Liban",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-        'paf_it' => array(
-            'name' => "PAF Italie",
-            'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+								'israel' => array(
+            'name' => "Israël",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-         'paf_es' => array(
-            'name' => "PAF Espagne",
-            'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+								'belgique' => array(
+            'name' => "Belgique",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-         'paf_hu' => array(
-            'name' => "PAF Hongrie",
-            //'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+								'martinique' => array(
+            'name' => "Martinique",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'paf_ca' => array(
-            'name' => "PAF Canada",
-            //'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paysConfig.json'
+									'canada' => array(
+            'name' => "Canada",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'dons_il' => array(
-            'name' => "Dons Israël",
-            'service' => 'PayboxPayment',
-            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paymentConfig.json'
+								'hongrie' => array(
+            'name' => "Hongrie",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
+        ),
+								'uk' => array(
+            'name' => "Royaume-Uni",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
+        ),
+								'bresil' => array(
+            'name' => "Brésil",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         )
          
     ),

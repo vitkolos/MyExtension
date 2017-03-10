@@ -3,6 +3,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
     var me = this;
     me.contentList=[];
     me.usedTaxonomies = {};
+    me.activeTerms=[];
     var config=$scope.blockConfig;
     var blockPagingIdentifier=$scope.block.bType+$scope.block.id.substring(21)+"Page";
     var pageId=$scope.rubedo.current.page.id;
@@ -59,6 +60,34 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
             );
         }
     });
+      /*activeTErms = vocId, term, name*/                                                                   
+     me.clickOnFacets = function(facetId, term){
+       
+         if(me.activeTerms.length>0 && me.activeTerms.vocId==facetId && me.activeTerms.termId==term.id) {
+           me.activeTerms=[];
+         }
+         else{
+           me.activeTerms[0]={
+             "vocId": facetId,
+             "termId": term.id,
+             "name":term.name
+           };
+        }
+     };
+    me.isSelected = function(taxonomies){
+      if(me.activeTerms.length==0) return true;
+      else {
+        var isSelected = false;
+        angular.forEach(taxonomies, function(terms, vocId){
+          if (me.activeTerms[0].vocId==vocId) {
+            angular.forEach(terms, function(term){
+              if(term==me.activeTerms[0].termId) isSelected = true;
+            })
+          }
+        });
+        return isSelected;
+      }
+    }
     /*
     me.getTermInTaxo=function(termId){
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
@@ -113,7 +142,6 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo[taxonomie.vocabulary.id] = {"terms":taxonomie.terms,"name":taxonomie.vocabulary.name};
                             });
-                            console.log(me.taxo);
                             me.getUsedTaxonomies();
                          }
                          
@@ -132,12 +160,15 @@ angular.module("rubedoBlocks").lazy.controller("SearchDonsController",['$scope',
                 }
                 else {
                     if (!me.usedTaxonomies[vocId]) {
-                        me.usedTaxonomies[vocId]  ={"name":me.taxo[vocId].name,terms:[]};
+                        me.usedTaxonomies[vocId]  ={"name":me.taxo[vocId].name,"terms":[],"id":vocId};
                     }
                     angular.forEach(terms, function(term){
-                        if (!me.usedTaxonomies[vocId]["terms"][term]) {
-                            me.usedTaxonomies[vocId]["terms"].push({"id":term, "name":$filter('filter')(me.taxo[vocId].terms,{"id":term})[0].text});
-                        }
+                      var doAdd = true;
+                      angular.forEach(me.usedTaxonomies[vocId]["terms"], function(usedTerm){
+                        if(usedTerm.id == term) doAdd=false;
+                      });
+                      if(doAdd) me.usedTaxonomies[vocId]["terms"].push({"id":term, "name":$filter('filter')(me.taxo[vocId].terms,{"id":term})[0].text});
+
                     });
                 }
             });

@@ -1,0 +1,132 @@
+[
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Code Pays ",
+            "name": "codePays",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Monnaie",
+            "name": "monnaie",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+	{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Code monnaie numérique",
+            "name": "codeMonnaie",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Code monnaie alpha",
+            "name": "codeMonnaieAlpha",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+	 {
+            "type": "Ext.form.field.Checkbox",
+            "config": {
+                "fieldLabel": "Monnaie avant chiffre ?",
+                "name": "monnaie_before",
+                "inputValue": true
+            }
+        },
+		{
+        "type": "Rubedo.view.ESQfield",
+        "config": {
+            "fieldLabel": "Taxonomie du pays",
+            "name": "taxo_pays",
+            "queryMode": true
+        }
+    },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Nom de la fiscalité",
+            "name": "fiscalite",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Format n° de téléphone ",
+            "name": "format_telephone",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+ },
+{
+        "type": "Rubedo.view.DCEField",
+        "config": {
+            "fieldLabel": "Conf. de payment PAF",
+            "name": "conf_paf",
+	"allowedCT":"55473bf845205e413cf1864d",
+            "chooseOnly": true
+        }
+    },
+				{
+        "type": "Rubedo.view.DCEField",
+        "config": {
+            "fieldLabel": "Contact pour les dons",
+            "name": "contactDonsId",
+		"allowedCT":"560d2bf445205e816041ea7f",
+            "chooseOnly": true
+        }
+    },
+{
+        "type": "Rubedo.view.DCEField",
+        "config": {
+            "fieldLabel": "Condition de dons par défaut",
+            "name": "defaut_conditionId",
+		"allowedCT":"5728b703c445ec7e008b6aa5",
+            "chooseOnly": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Email comptabilité",
+            "name": "email_compta",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+    {
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Email Intendance",
+            "name": "email_intendance",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    },
+				{
+        "type": "Ext.form.field.Text",
+        "config": {
+            "fieldLabel": "Analytique pays",
+            "name": "code_ana",
+            "allowBlank": true,
+            "allowOnlyWhitespace": true
+        }
+    }
+    
+
+    
+    
+    
+    
+]

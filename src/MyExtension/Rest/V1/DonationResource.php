@@ -39,26 +39,31 @@ class DonationResource extends AbstractResource
         $content = $contentsService->findById($id,false,false);
         //update numero incrémenté
        $content['i18n'] = array(
-            $params['lang']->getLocale() =>array(
+            "fr" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "en" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
             )
         );
+
         $donationNumber = $content["fields"]["value"];
         $content["fields"]["value"] += 1; //add 1
         $result = $contentsService->update($content, array(),false);
         
-        // on récupére les infos du compte
-        $paymentConfigPays=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_pays"]);
-        $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM($accountInfos["config_hors_pays"]);
+
+        //Get the taxonomy of the actual website to know if the donation is local or international
+        $siteConfig = Manager::getService("SitesConfigCcn")->getConfig()['paymentConfig']['nativePMConfig'];
         
         //récupérer les infos spécifique au projet : budget, montant payé, contact
         AbstractLocalizableCollection::setIncludeI18n(true);
         $projectDetail = $contentsService->findById($don["fields"]["projetId"],false,false);
+        
         //déterminer si le projet est un projet national ou hors pays / international
         $isProjetInternational = true;
-        if($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"]){
+        if(isset($siteConfig["taxo_pays"])){
             //taxonomie du pays du site
-            $taxoPays = (array) json_decode($paymentConfigPays["data"]["nativePMConfig"]["taxo_pays"], true);
+            $taxoPays = (array) json_decode($siteConfig["taxo_pays"], true);
             foreach ($taxoPays as $vocabulary => $taxonomy){
                 //si le projet a la taxonomie de pays et qu'elle vaut le pays concerné, alors on prend la config du pays
                 if (array_key_exists($vocabulary, $projectDetail["taxonomy"])) {
@@ -69,15 +74,22 @@ class DonationResource extends AbstractResource
             }
         };
         
-        
-        
+        //get payment config
+        if($isProjetInternational) {
+            $paymentConfID = $accountInfos["config_int_id"];
+        }
+        else {
+            $paymentConfID = $accountInfos["config_pays_id"];
+        }
+        $paymentConfig = $contentsService->findById($paymentConfID,false,false);
         
         // create don
         $don['fields']["condition"] = $accountInfos["text"];
         $don['fields']["justificatif"] = $accountInfos["recu"];
         $don['fields']['isInternational'] = $isProjetInternational; 
         $don['fields'] = $this->processDon($don['fields']);
-        $don['fields']['text'] = $this->getPays() . "_" . date("Y") . "_" . str_pad($donationNumber, 6, '0', STR_PAD_LEFT); ;
+        if(isset($accountInfos['codeCompta'])) $don['fields']['codeCompta'] = $accountInfos['codeCompta'];
+        $don['fields']['text'] = $siteConfig['codePays'] . "_" . date("Y") . "_" . str_pad($donationNumber, 6, '0', STR_PAD_LEFT) ;
         $don['text'] =$don['fields']['text'] ;
         $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
         $don['target'] = "57237282c445ecf3008c7ddc";
@@ -98,45 +110,21 @@ class DonationResource extends AbstractResource
         
         
         
-        //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
+        //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons seulement et on procède au payement
         if($don["fields"]["modePaiement"]=="carte") {
-            $payboxAccountName ="";
-            if($isProjetInternational) {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
-                $payboxAccountName = $accountInfos["config_hors_pays"];
-            }
-            else {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
-                $payboxAccountName = $accountInfos["config_pays"];
-            }
-
-            $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "accountName" => $payboxAccountName );
-            
+            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfig['fields'],$params['lang']->getLocale(),true);
+            $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "paymentConfID" => $paymentConfID );
         }
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         else if($don["fields"]["modePaiement"]=="paypal") {
-            $payboxAccountName ="";
-            if($isProjetInternational) {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale(),true);
-                $payboxAccountName = $accountInfos["config_hors_pays"];
-            }
-            else {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale(),true);
-                $payboxAccountName = $accountInfos["config_pays"];
-            }
 
-            $arrayToReturn = array("whatToDo" =>"proceedToPaypal", "id" =>$don['fields']['text'], "accountName" => $payboxAccountName );
+
+            $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "paymentConfID" => $paymentConfID );
             
         }
         else {
-            if($isProjetInternational) {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigInt["data"],$params['lang']->getLocale());
-            }
-            else {
-                $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfigPays["data"],$params['lang']->getLocale());
-            }
-            
-            
+
+            $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfig['fields'],$params['lang']->getLocale(),false);
             $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
         }
         /*METTRE A JOUR LE MONTANT COLLECTE*/
@@ -177,7 +165,7 @@ class DonationResource extends AbstractResource
             //usleep(500000);
             AbstractCollection::disableUserFilter(true);
             $content = $contentsService->findById($resultcreate['data']['id'], false, false);
-            $content['fields']['message'] = $content['fields']['message'] . " ";
+            $content['fields']['message'] = isset($content['fields']['message']) ? $content['fields']['message'] . " " : " ";
             $content['i18n'] = array(
                     $content['locale'] =>array(
                         "fields" => array("text"=>$content["text"])
@@ -227,18 +215,21 @@ class DonationResource extends AbstractResource
 
         /*Récupérer le contenu config de dons correspondant*/
         $conditionFiscale = $contentsService->findById($don["live"]["fields"]["conditionId"],false,false);
-        AbstractCollection::disableUserFilter(false);
         /*récupérer les infos du compte*/
-        if($don["fields"]["isInternational"]) {
-            $paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_hors_pays"]);
+        
+        
+        if($don["live"]["fields"]["isInternational"]) {
+            //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_hors_pays"]);
+            $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_int_id"],false,false);
         }
         else {
-            $paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_pays"]);
+            //$paymentConfig = Manager::getService("PaymentConfigs")->getConfigForPM($conditionFiscale["fields"]["config_pays"]);
+            $paymentConfig = $contentsService->findById($conditionFiscale["fields"]["config_pays_id"],false,false);
         }
-        
+        AbstractCollection::disableUserFilter(false);
+
         /*ajouter le titre du don*/        
         $don["live"]["fields"]["text"] = $don["text"];
-
         /*mettre à jour le statut de payement dans le contenu don*/
         if($don["live"]["fields"]["montant"]*100 == $params['montant']) {
             $don["live"]["fields"]["etat"] = "paiement_carte_valide";
@@ -251,7 +242,7 @@ class DonationResource extends AbstractResource
             //update numero incrémenté
             $result = $contentsService->update($contentToUpdate, array(),false);
             AbstractCollection::disableUserFilter(false);
-            $this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["data"],$don['live']['nativeLanguage']);
+            $this->envoyerMailsDon($contentToUpdate["fields"],$projectDetail,$paymentConfig["fields"],$don['live']['nativeLanguage'], false);
 
             /*Update montant récolté pour le projet
             if($projectDetail) {
@@ -308,11 +299,11 @@ class DonationResource extends AbstractResource
         foreach($donationInfo["user"] as $key => $value) {
             $donationInfo[$key] = $value;
         }
-        if($donationInfo["birthdate"]) $donationInfo["birthdate"] = strtotime($donationInfo["birthdate"]);
-        if($donationInfo["trimestriel"]) $donationInfo["frequence"] = "Trimestriel";
-        if($donationInfo["mensuel"]) $donationInfo["frequence"] = "Mensuel";
+        if(isset($donationInfo["birthdate"])) $donationInfo["birthdate"] = strtotime($donationInfo["birthdate"]);
+        if(isset($donationInfo["trimestriel"]) && $donationInfo["trimestriel"]) $donationInfo["frequence"] = "Trimestriel";
+        if(isset($donationInfo["mensuel"]) && $donationInfo["mensuel"]) $donationInfo["frequence"] = "Mensuel";
         if($donationInfo["montant"]=='autre') $donationInfo["montant"] = $donationInfo["montant_autre"];
-        if($donationInfo["questions"]) {
+        if(isset($donationInfo["questions"])) {
             $answer = "";
             foreach ($donationInfo["questions"] as $titre => $reponse){
                 $answer .= $titre." = ";
@@ -320,7 +311,7 @@ class DonationResource extends AbstractResource
                 else {
                     foreach($reponse as $value) {//pour checkbox
                         $answer .= $value['value'];
-                        if($answer['complement'] && $answer['complement'] != "" ) $answer .= " : " .$value['complement'];
+                        if(isset($value['complement']) && $value['complement'] != "" ) $answer .= " : " .$value['complement'];
                         $answer .=", ";
                     }
                        
@@ -334,19 +325,18 @@ class DonationResource extends AbstractResource
    
             
    
-   protected function envoyerMailsDon($don,$projectDetail,$configPaymentData,$lang,$responsableInternationalSeulement) {
-        $configPayment = $configPaymentData["nativePMConfig"];
+   public function envoyerMailsDon($don,$projectDetail,$configPayment,$lang,$responsableInternationalSeulement) {
         $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
         $infoPaiementAdmin="";
         //contact du projet
         $contactProjet = array("nom" => $projectDetail["fields"]["nom"],
                                "titre" => $projectDetail["fields"]["contactTitle"],
                                "email" =>$projectDetail["fields"]["email"]);
-        //contact national défini dans la configuration de payement du pays (et pas forcément celle choisie par le donateur!)
-        //$contactNational = $don["contactNational"];
-        $paymentMeansPays=Manager::getService("PaymentConfigs")->getConfigForPM($this->getConfigPays());
-
-        $contactNationalDonsId = $paymentMeansPays["data"]["nativePMConfig"]["contactDonsId"];
+        
+        //contact national défini dans la configuration du pays
+        $siteConfig=Manager::getService("SitesConfigCcn")->getConfig()['paymentConfig']['nativePMConfig'];
+        $contactNationalDonsId = $siteConfig["contactDonsId"];
+        
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         //récupérer le contenu contact national
         $contentsService = Manager::getService("ContentsCcn");
@@ -368,11 +358,11 @@ class DonationResource extends AbstractResource
         }
         //messageDonateur += "Nous vous remercions pour votre don de ${montantAvecMonnaieEtFrequence} pour soutenir le projet ${projet}."
         $messageDonateur .= $this->translate($trad["ccn_don_1"],['%montantAvecMonnaieEtFrequence%','%projet%'],[$don["montantAvecFrequence"],$don["projet"]]) . ".<br/><br/>";
-   
+        
         //paiement par chèque
         if($don["modePaiement"]=="cheque") {
             //"Merci de nous faire parvenir votre chèque à l'ordre de ${ordre-cheque} à l'adresse suivante: ${adresse-cheque}."
-            $messageDonateur.=$trad["ccn_don_2"] . "<em>" . $configPayment["libelle_cheque"] . "</em> " . $trad["ccn_don_2_bis"]. " : <br/>". $configPayment["adresse"] . "<br/><br/>";
+            $messageDonateur.=$trad["ccn_don_2"] . "<em>" . $configPayment["libelleCheque"] . "</em> " . $trad["ccn_don_2_bis"]. " : <br/>". $configPayment["adresse_postale"] . "<br/><br/>";
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
             //Merci de reporter ce numéro au dos de votre chèque.
@@ -381,18 +371,18 @@ class DonationResource extends AbstractResource
             if($don["justificatif"]) 
                 $messageDonateur .= $trad["ccn_don_4"] ."<br/><br/>";
             
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_cheque"]);
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_ordre_du_cheque"], $configPayment["libelle_cheque"]);
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_adresse_cheque"], $configPayment["adresse"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_cheque"] , null);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_ordre_du_cheque"], $configPayment["libelleCheque"] , null);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_adresse_cheque"], $configPayment["adresse_postale"] , null);
         }
         else if($don["modePaiement"]=="virement" || $don["modePaiement"]=="virementPeriod") {
             //Vous devez vous connecter à votre service en ligne de votre banque et effectuer un virement sur le compte '${compte} dont l'intitulé est '${intitule}.
             //$messageDonateur.=$trad["ccn_don_15"] . ":<br>" . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
             
-            $messageDonateur.= $this->translate($trad["ccn_don_15"],['%coordonnes_compte%','%nom_compte%'],[$configPayment["coordonnes_compte"], $configPayment["nom_compte"]]). "<br/><br/>";
+            $messageDonateur.= $this->translate($trad["ccn_don_15"],['%coordonnes_compte%','%nom_compte%'],[$configPayment["ribTexte"], $configPayment["titreCompteVir"]]). "<br/><br/>";
             
-            if($configPayment["image_rib"])
-                $messageDonateur .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["image_rib"] . "&width=300px'></center><br/>";
+            if(isset($configPayment["rib"]))
+                $messageDonateur .= "<center><img src='https://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["rib"] . "&width=300px'></center><br/>"  ;
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
             //Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre virement bancaire.
@@ -403,28 +393,28 @@ class DonationResource extends AbstractResource
                     //Après encaissement du versement, nous vous enverrons un reçu fiscal.
                     $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
                 }   
-                $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement"]);
+                $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement"] , null);
             }
             else if($don["modePaiement"]=="virementPeriod") {
                  if($don["justificatif"]) {
                     //Au début de chaque année, nous vous enverrons un reçu fiscal
                     $messageDonateur .= $trad["ccn_don_20"] ."<br/><br/>";
                 }   
-                $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement_periodique"]);
+                $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_virement_periodique"] , null);
             }
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_intitule_compte"], $configPayment["nom_compte"]);
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_coordonnees_compte"], $configPayment["coordonnes_compte"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_intitule_compte"], $configPayment["titreCompteVir"] , null);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_coordonnees_compte"], $configPayment["ribTexte"] , null);
 
         }
         else if($don["modePaiement"]=="liquide") {
             //messageDonateur += "Merci de déposer ce montant sur le compte '${compte} dont l'intitulé est '${intitule}."
              //$messageDonateur.=$trad["ccn_don_36"] . $configPayment["coordonnes_compte"] . "</br> " . $trad["ccn_don_15_bis"]. " : <br/>". $configPayment["nom_compte"] . "<br/><br/>";
              
-            $messageDonateur.= $this->translate($trad["ccn_don_36"],['%coordonnes_compte%','%nom_compte%'],[$configPayment["coordonnes_compte"], $configPayment["nom_compte"]]). "<br/><br/>";
+            $messageDonateur.= $this->translate($trad["ccn_don_36"],['%coordonnes_compte%','%nom_compte%'],[$configPayment["ribTexte"], $configPayment["titreCompteVir"]]). "<br/><br/>";
 
         
-            if($configPayment["image_rib"])
-                $messageDonateur .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["image_rib"] . "&width=300px'></center><br/>";
+            if(isset($configPayment["rib"]))
+                $messageDonateur .= "<center><img src='https://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["rib"] . "&width=300px'></center><br/>";
             
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
@@ -436,17 +426,17 @@ class DonationResource extends AbstractResource
                 $messageDonateur .= $trad["ccn_don_14"] ."<br/><br/>";
             }              
 
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_liquide"]);
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_intitule_compte"], $configPayment["nom_compte"]);
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_coordonnees_compte"], $configPayment["coordonnes_compte"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_liquide"] , null);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_intitule_compte"], $configPayment["nom_compte"] , null);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_coordonnees_compte"], $configPayment["coordonnes_compte"] , null);
                        
         }
         else if($don["modePaiement"]=="prelevement") {
             //Vous devez télécharger et imprimer le formulaire de prélèvement
             $messageDonateur .= $trad["ccn_don_18_part1"];
-            $messageDonateur .=  "<a href='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["form_prevelement"] . "' target='_blank'>" . $trad["ccn_don_18_part2"] ."</a>";
+            $messageDonateur .=  "<a href='https://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["formulaire_prelevements"] . "' target='_blank'>" . $trad["ccn_don_18_part2"] ."</a>";
             //, le remplir à la main et le renvoyé, accompagné d'un Relevé d'Identité Bancaire (RIB) à l'adresse suivante:
-            $messageDonateur .= $trad["ccn_don_18_part3"] . ":<br/>" . $configPayment["adresse"] . "<br/><br/>";
+            $messageDonateur .= $trad["ccn_don_18_part3"] . ":<br/>" . $configPayment["adresse_postale"] . "<br/><br/>";
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
             //Merci de reporter ce numero dans le champ 'numéro du don' sur le formulaire de prélèvement.
@@ -455,19 +445,15 @@ class DonationResource extends AbstractResource
                 //Au début de chaque année, nous vous enverrons un reçu fiscal
                 $messageDonateur .= $trad["ccn_don_20"] ."<br/><br/>";
             }
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_prelevement_auto"]);
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_formulaire_de_prelevement"], "<a href='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["form_prevelement"] . "' target='_blank'>" . $trad["ccn_don_18_part2"] ."</a>");
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_prelevement_auto"] , null);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_formulaire_de_prelevement"], "<a href='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $configPayment["formulaire_prelevements"] . "' target='_blank'>" . $trad["ccn_don_18_part2"] ."</a>" , null);
 
         }
         else if($don["modePaiement"]=="carte") {
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_carte"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_label_mode_paiement"], $trad["ccn_paiement_par_carte"] , null);
             /*get paybox account identifiant*/
-            $wasFiltered = AbstractCollection::disableUserFilter(true);
-            //récupérer le contenu configuration de payment paybox 
-            $payboxInfos = $contentsService->findById($configPayment["paybox"],false,false);
-            AbstractCollection::disableUserFilter(false);
             
-            $infoPaiementAdmin .= $this->addLine($trad["ccn_compte_paybox"], $payboxInfos["fields"]["site"]);
+            $infoPaiementAdmin .= $this->addLine($trad["ccn_compte"], $configPayment["site"] , null);
             //Votre don a été enregistré sous le numéro « FR2012/12539 ».
             $messageDonateur .= $this->translate($trad["ccn_don_3"],'%numero%', $don["text"])  .". ";
             //Merci de rappeler ce numéro dans vos correspondances.
@@ -479,7 +465,7 @@ class DonationResource extends AbstractResource
         }
         //messageDonateur += "Votre contact pour ce projet est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
         $messageDonateur.=  $trad["ccn_don_5"]  . "<br/>";
-        if($contactProjet["titre"] !="") $messageDonateur .= $contactProjet["titre"] . " - ";
+        if(isset($contactProjet["titre"]) && $contactProjet["titre"] !="") $messageDonateur .= $contactProjet["titre"] . " - ";
         $messageDonateur.=  $contactProjet["nom"]." - <a href='mailto:" .  $contactProjet['email'] . "'>" . $contactProjet['email'] ."</a><br/><br/>";
 
         //messageDonateur += "Votre contact pour les questions administratives et fiscales est : « prénom et Nom », « responsabilité », Téléphone « +33/(0)6 47 29 05 02 », E-mail « partage@chemin-neuf.org » "
@@ -487,7 +473,7 @@ class DonationResource extends AbstractResource
         $messageDonateur .= $contactNational["prenom"] . " " . $contactNational["nom"] .", " . $contactNational["text"] . " - " . $contactNational["telephone"] . " - <a href='mailto:" .$contactNational["email"]  . "'>" . $contactNational["email"] . "</a><br/><br/>" ;
         
         //Grace à votre don, le projet est maintenant financé à 56%. Seulement si le budget est > 0
-        if($projectDetail["fields"]["budget"]>0) $messageDonateur .= $this->translate($trad["ccn_don_35"],'%percentage%',round(($projectDetail["fields"]["cumul"]+$don["montant"]) *100 / $projectDetail["fields"]["budget"]))  . ".<br/><br/>";
+        //if($projectDetail["fields"]["budget"]>0) $messageDonateur .= $this->translate($trad["ccn_don_35"],'%percentage%',round(($projectDetail["fields"]["cumul"]+$don["montant"]) *100 / $projectDetail["fields"]["budget"]))  . ".<br/><br/>";
         
         //"Cordialement" + ",<br><br>"
         $messageDonateur .= $trad["ccn_mail_9_vous"] . ",<br><br/>";
@@ -501,40 +487,41 @@ class DonationResource extends AbstractResource
         $messageAdmin .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
             ///infos sur le don
         $dateDonation = date("d/m/Y, H:i");
-        $messageAdmin .= $this->addLine($trad["ccn_label_date"],$dateDonation);
-        $messageAdmin .= $this->addLine($trad["ccn_label_montant"],$don["montantAvecFrequence"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_projet"],$don["projet"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_mode_paiement"],$don["modePaiement"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_statut"],$don["etat"] );
+        $messageAdmin .= $this->addLine($trad["ccn_label_date"],$dateDonation , null);
+        $messageAdmin .= $this->addLine($trad["ccn_label_montant"],$don["montantAvecFrequence"]  , null);
+        $messageAdmin .= $this->addLine($trad["ccn_label_projet"],$don["projet"] , null );
+        $messageAdmin .= $this->addLine($trad["ccn_label_mode_paiement"],$don["modePaiement"] , null );
+        $messageAdmin .= $this->addLine($trad["ccn_label_statut"],$don["etat"] , null );
         if($don["justificatif"]) {
-            $messageAdmin .= $this->addLine($trad["ccn_label_justificatif_fiscal"],$trad["ccn_oui"] );
+            $messageAdmin .= $this->addLine($trad["ccn_label_justificatif_fiscal"],$trad["ccn_oui"] , null );
         }
         else {
-            $messageAdmin .= $this->addLine($trad["ccn_label_justificatif_fiscal"],$trad["ccn_non"] );
+            $messageAdmin .= $this->addLine($trad["ccn_label_justificatif_fiscal"],$trad["ccn_non"] , null );
         }
-        $messageAdmin .= $this->addLine($trad["ccn_label_codeComptable"],$projectDetail["fields"]["codeCompta"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_codeAna"],$projectDetail["fields"]["codeAna"]  );
+        if(isset($don["codeCompta"])) $messageAdmin .= $this->addLine($trad["ccn_label_codeComptable"],$don["codeCompta"] , null );
+        if(isset($projectDetail["fields"]["codeAna"])) $messageAdmin .= $this->addLine($trad["ccn_label_codeAna"],$projectDetail["fields"]["codeAna"] , null  );
         $messageAdmin .= $infoPaiementAdmin;
         $messageAdmin .="</table><br/><br/><br/>";
         
         // infos sur le donateur
         $messageAdmin .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
-        $messageAdmin .= $this->addLine($trad["ccn_label_societe_ou_organisme"],$don["societe"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_civilite"],$trad["ccn_label_". $don["civilite"]] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_nom"],$don["nom"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_prenom"],$don["surname"] );
-        if ($don["birthdate"]) $messageAdmin .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$don["birthdate"]) );
-        $messageAdmin .= $this->addLine($trad["ccn_label_adresse"], $don["adresse"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_codepostal"], $don["cp"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_ville"], $don["city"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_pays"], $don["country"] );
-        if($don["tel1"]) $messageAdmin .= $this->addLine($trad["ccn_form_telephone_fixe"], $don["tel1"] );
-        if($don["tel2"])  $messageAdmin .= $this->addLine($trad["ccn_form_telephone_portable"], $don["tel2"] );
-        $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] );
-        if($don["message"] && $don["message"]!="") $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] );
-        if($don["montant_text"] && $don["montant_text"]!="") $messageAdmin .= $this->addLine("Bonus", $don["montant_text"] );
+        if(isset($don["societe"])) $messageAdmin .= $this->addLine($trad["ccn_label_societe_ou_organisme"],$don["societe"] , null );
+        if(isset($don["civilite"])) $messageAdmin .= $this->addLine($trad["ccn_label_civilite"],$trad["ccn_label_". $don["civilite"]] , null );
+        if(isset($don["nom"])) $messageAdmin .= $this->addLine($trad["ccn_label_nom"],$don["nom"] , null );
+        if(isset($don["surname"])) $messageAdmin .= $this->addLine($trad["ccn_label_prenom"],$don["surname"] , null );
+        if (isset($don["birthdate"])) $messageAdmin .= $this->addLine($trad["ccn_label_dateNaiss"], date("d/m/Y",$don["birthdate"])  , null);
+        if(isset($don["adresse"])) $messageAdmin .= $this->addLine($trad["ccn_label_adresse"], $don["adresse"] , null );
+        if(isset($don["cp"])) $messageAdmin .= $this->addLine($trad["ccn_label_codepostal"], $don["cp"]  , null);
+        if(isset($don["city"])) $messageAdmin .= $this->addLine($trad["ccn_label_ville"], $don["city"] , null );
+        if(isset($don["country"])) $messageAdmin .= $this->addLine($trad["ccn_label_pays"], $don["country"] , null );
+        if(isset($don["tel1"])) $messageAdmin .= $this->addLine($trad["ccn_form_telephone_fixe"], $don["tel1"] , null );
+        if(isset($don["tel2"]))  $messageAdmin .= $this->addLine($trad["ccn_form_telephone_portable"], $don["tel2"] , null );
+        $messageAdmin .= $this->addLine($trad["ccn_label_email"], $don["email"] , null );
+        if(isset($don["message"]) && $don["message"]!="") $messageAdmin .= $this->addLine($trad["ccn_label_message_joint_au_don"], $don["message"] , null );
+        if(isset($don["gift_aid"]) && $don["gift_aid"]) $messageAdmin .= $this->addLine("Gift Aid", "I want to Gift Aid this donation" , null );
+        if(isset($don["montant_text"]) && $don["montant_text"]!="") $messageAdmin .= $this->addLine("Bonus", $don["montant_text"] , null );
         //si on envoyer le mail directement
-        if($don["questions"]){
+        if(isset($don["questions"])){
             foreach ($don["questions"] as $titre => $reponse){
                 $answer = "";
                 if(is_string($reponse)) $answer= $reponse; // pour texte ou radio
@@ -550,8 +537,8 @@ class DonationResource extends AbstractResource
             }
         }
         // si on envoye le mail après retour de Paybox
-        else if($don["questionsComplementaires"]) {
-            $messageAdmin .= $this->addLine("Questions complémentaires", $don["questionsComplementaires"]);
+        else if(isset($don["questionsComplementaires"])) {
+            $messageAdmin .= $this->addLine("Questions complémentaires", $don["questionsComplementaires"] , null);
         }
         $messageAdmin .= "</table><br/><br/>";
         
@@ -564,12 +551,12 @@ class DonationResource extends AbstractResource
         
         ///adresses mails
         $emailDonateur = $don["email"];
-        $emailComptableNational = $configPayment["email_compta"];
-        $emailIntendantNational = $configPayment["email_intendance"];
+        $emailComptableNational = $siteConfig["email_compta"];
+        $emailIntendantNational = $siteConfig["email_intendance"];
         $emailResponsableNationalDons = $contactNational["email"];
         
         //mails international
-        $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM("dons_int");
+        $paymentConfigInt=Manager::getService("PaymentConfigs")->getConfigForPM("int");
         $emailComptableInternational = $paymentConfigInt["data"]["nativePMConfig"]["email_compta"];
         $emailIntendantGeneral = $paymentConfigInt["data"]["nativePMConfig"]["email_intendance"];
         
@@ -665,8 +652,8 @@ class DonationResource extends AbstractResource
    }
    
    
-    protected function addLine($titre, $reponse, $reponse2){
-        if($reponse2) return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=33%>" . $reponse . "</td><td width=33%>".$reponse2 ."</td></tr>";
+    public function addLine($titre, $reponse, $reponse2){
+        if(isset($reponse2)) return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=33%>" . $reponse . "</td><td width=33%>".$reponse2 ."</td></tr>";
         else return "<tr><td bgcolor='#8CACBB' width=33%><i>" .$titre . "</i></td><td width=67% colspan=2>" . $reponse . "</td></tr>";
     }
     
@@ -687,32 +674,14 @@ class DonationResource extends AbstractResource
         return $telephoneFormat;
     }
     
-    protected function getPays(){
-        switch($_SERVER['HTTP_HOST']) {
-            case "www.chemin-neuf.fr" : 
-                return "FR"; break;
-        }
-     }
-     protected function getConfigPays(){
-        switch($_SERVER['HTTP_HOST']) {
-            case "ww.chemin-neuf.fr" : 
-                return "dons_fr"; break;
-        }
-     }
-    private function translate($string,$toReplaceArray,$toReplaceWithArray)
+
+    public function translate($string,$toReplaceArray,$toReplaceWithArray)
     {
 	return str_replace($toReplaceArray,$toReplaceWithArray,$string);
     
     }    
-    public function getContentIdByName($name){
-        $this->_dataService = Manager::getService('MongoDataAccess');
-        $this->_dataService->init("Contents");
-        $content = $this->_dataService->findByName($name);
-        if (empty($content)) {
-            throw new APIEntityException('Content not found', 404);
-        }
-        return $content['id'];
-    }      
+
+      
     protected function filterFields($type, $fields)
     {
         $existingFields = array();

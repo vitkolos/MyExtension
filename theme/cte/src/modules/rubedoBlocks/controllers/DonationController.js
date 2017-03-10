@@ -29,7 +29,6 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
         }
         
     }    
-    $scope.don.user.country = "FRANCE";
     $scope.don.projet = $scope.contentDetailCtrl.content.fields.text;
     $scope.don.projetId = $scope.contentDetailCtrl.content.id;
     me.toggleStage = function(newStage){
@@ -50,14 +49,16 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 };
                 /*définir la monnaie du site*/
                 $scope.don.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
+                $scope.don.codeMonnaieAlpha = me.paymentmeans.nativePMConfig.codeMonnaieAlpha;
                 $scope.don.monnaie = me.paymentmeans.nativePMConfig.monnaie;
+                if(!$scope.don.user.country) $scope.don.user.country = $filter('uppercase')(me.paymentmeans.displayName);
+ 
                 /*get contact national défini dans la config de payement*/
                 RubedoContentsService.getContentById(response.data.paymentMeans.nativePMConfig.contactDonsId, options).then(
                     function(response){
                         if(response.data.success){
                             $scope.contentDetailCtrl.contactNational=response.data.content;
                             $scope.contentDetailCtrl.contactNationalPhoto = response.data.content.fields.photo.imageCode;
-
                             $scope.don.contactNational = response.data.content.fields;
                             $scope.don.contactNational.photo="";
                         }
@@ -67,8 +68,26 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 me.account = {};
                 me.fiscalitesCount=0;
                 /*get fiscalités*/
-                angular.forEach($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite], function(fiscalite){
-                    RubedoContentsService.getContentById(fiscalite, options).then(
+                if($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite] && $scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite].length>0){
+                    angular.forEach($scope.contentDetailCtrl.content.fields[me.paymentmeans.nativePMConfig.fiscalite], function(fiscalite){
+                        RubedoContentsService.getContentById(fiscalite, options).then(
+                            function (response) {
+                                if(response.data.success){
+                                    me.fiscalites[response.data.content.text] = {
+                                        "label" : response.data.content.text,
+                                        "fields":response.data.content.fields,
+                                        "id":response.data.content.id
+                                    };
+                                    me.account = response.data.content.fields;
+                                    $scope.don.conditionId = response.data.content.id;
+                                    me.fiscalitesCount++;
+                                }
+                            }
+                        );
+                    });
+                }
+                else {
+                    RubedoContentsService.getContentById(me.paymentmeans.nativePMConfig.conditionId, options).then(
                         function (response) {
                             if(response.data.success){
                                 me.fiscalites[response.data.content.text] = {
@@ -79,10 +98,11 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                                 me.account = response.data.content.fields;
                                 $scope.don.conditionId = response.data.content.id;
                                 me.fiscalitesCount++;
+                                console.log(me.fiscalites);
                             }
                         }
                     );
-                });
+                }
                 
             }
                
@@ -178,7 +198,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 $scope.don.conditionId = me.fiscalites[$scope.don.condition].id;
             }
             if($scope.contentDetailCtrl.content.fields.codeAna) $scope.don.codeAna = $scope.contentDetailCtrl.content.fields.codeAna;
-
+												
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
 
@@ -202,18 +222,25 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                             proposition:$scope.don.projet,
                             idInscription: response.data.instructions.id,
                             paymentType: 'dons',
-                            onlinePaymentMeans: me.paymentmeans.onlinePaymentMeans,
+                            paymentMeans:$scope.don.modePaiement,
                             placeId:$scope.contentDetailCtrl.content.fields.codeAna,
-                            accountName:response.data.instructions.accountName
+                            paymentConfID:response.data.instructions.paymentConfID,
+                            codeMonnaieAlpha:$scope.don.codeMonnaieAlpha
                         };            
                         PaymentService.payment(payload).then(function(response){
                             if (response.data.success) {
-                                $scope.parametres = response.data.parametres;
-                                /*délai pour laisser le formulaire se remplir*/
-                                $timeout(function() {
-                                    $scope.processForm=false;
-                                    document.getElementById('payment').submit();
-                                }, 100);
+                                if($scope.don.modePaiement == 'carte') {
+                                    $scope.parametres = response.data.parametres;
+                                    /*délai pour laisser le formulaire se remplir*/
+                                    $timeout(function() {
+                                        $scope.processForm=false;
+                                        document.getElementById('payment').submit();
+                                    }, 100);
+                                }
+                                else if($scope.don.modePaiement == 'paypal'){
+                                    window.location.href= response.data.parametres;
+                                }
+                                
                             }
                             else {
                                 $scope.processForm=false;
@@ -222,6 +249,15 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                                 $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
                             }
                             
+                        })
+                        .catch(function(e) {
+                            console.log('Error: ', e);
+                            $scope.processForm=false;
+                            $scope.finInscription=true;  
+                            $scope.inscription={};
+                            $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
+
+                            throw e;
                         });
                     }
                 }

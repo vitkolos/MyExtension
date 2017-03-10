@@ -161,6 +161,7 @@ tr th{padding-left:6px;padding-right:6px}
 @media screen and (min-width: @min_xs){
     .no-padding{padding: 0}
 }
+.no-padding-blocks{padding: 0}
 ::selection {
   background: @rouge; color:white/* WebKit/Blink Browsers */
 }
@@ -917,8 +918,10 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
       // end options
   
   }
-  thead{display: none}
-  tr,th{display: block;}
+  table:not(.year-view){
+    thead{display: none}
+    tr,th{display: block;}
+  }
 }
 .rwd-table{
   th{padding: 6px 12px}

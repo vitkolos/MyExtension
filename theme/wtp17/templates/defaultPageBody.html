@@ -1,6 +1,5 @@
-<div class="container-fluid test"  id="top">
+<div class="container-fluid"  id="top">
     <div ng-repeat="row in rubedo.current.page.rows track by $index"
          ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
          class="row "  ng-class="{'sections-container-push':!toggleNav &&$index>1 ,'sections-container no-dots':$index>1, 'first' : row.code=='slider' }"></div>
 </div>
-

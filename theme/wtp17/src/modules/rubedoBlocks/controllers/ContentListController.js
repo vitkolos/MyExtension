@@ -84,6 +84,29 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             }
         });
     };
+       /*PERSONS LIST*/
+   me.persons = 0;
+    me.nbPersons = 16;
+    me.nbPersonsDisplayed = 16;
+    me.pageNb = 1;
+    me.nextPersons = function(){
+        if (me.persons + me.nbPersonsDisplayed < me.count) {
+            me.persons += me.nbPersonsDisplayed;
+            me.pageNb++;
+        }
+        if (me.persons + me.nbPersonsDisplayed > me.count-1) {
+            me.nbPersonsDisplayed = me.count-me.persons;
+        }
+    };
+    me.prevPersons = function(){
+        if (me.persons >= me.nbPersonsDisplayed) {
+            me.persons -= me.nbPersons;
+            me.pageNb--;
+        }
+        if (me.nbPersonsDisplayed !=me.nbPersons) {
+            me.nbPersonsDisplayed =me.nbPersons;
+        }
+    }
     me.canAddToList=function(){
         return ($scope.rubedo.fieldEditMode&&me.queryType&&(me.queryType=="simple"||me.queryType=="manual"));
     };

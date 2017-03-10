@@ -19,6 +19,7 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use Zend\Json\Json;
 use Rubedo\Services\Manager;
+use Rubedo\Collection\AbstractCollection;
 /**
  * Class SearchResource
  * @package RubedoAPI\Rest\V1
@@ -83,17 +84,34 @@ class BartimeeResource extends AbstractResource
      */
     public function getAction($inputs)
     {
-
+        $wasFiltered = AbstractCollection::disableUserFilter(true);
         /*Get last donation registered in Bartimee by name*/
         $dataService= Manager::getService('MongoDataAccess');
+        
         $dataService->init("Contents");
         $lastDonation = $dataService->findByName($inputs['lastinbartimee']);
         if (empty($lastDonation)) {
             throw new APIEntityException('Donation not found', 404);
         }
-        $response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);
-        if($response['user']['id'] !='58ada957245640d7008b5ffc') throw new APIEntityException('Non identified application', 404);
+        //$response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);        
+        
+        //if($response['user']['id'] !='58ada957245640d7008b5ffc') throw new APIEntityException('Non identified application', 404);
         //var_dump($response);
+        $output = array('success' => true);
+        $response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);
+        $output['token'] = $this->subTokenFilter($response['token']);
+        $this->subUserFilter($response['user']);
+        $route = $this->getContext()->params()->fromRoute();
+        $route['api'] = array('auth');
+        $route['method'] = 'GET';
+        $route['access_token'] = $output['token']['access_token'];
+        //Hack Refresh currentUser
+        $this->getCurrentUserAPIService()->setAccessToken($output['token']['access_token']);
+        $rightsSubRequest = $this->getContext()->forward()->dispatch('RubedoAPI\\Frontoffice\\Controller\\Api', $route);
+        $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
+        
+        
+        
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
             "constrainToSite" => false,
@@ -122,6 +140,7 @@ class BartimeeResource extends AbstractResource
         $query->init();
         $results = $query->search($params, $this->searchOption);
         $this->injectDataInResults($results, $queryParams);
+        $wasFiltered = AbstractCollection::disableUserFilter(false);
         return [
             'success' => true,
             'results' => $results['data'],
@@ -268,4 +287,19 @@ class BartimeeResource extends AbstractResource
             }
         }
     }
+    protected function subTokenFilter(&$token)
+    {
+        return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
+    }
+    /**
+     * Filter user from database
+     *
+     * @param $user
+     * @return array
+     */
+    protected function subUserFilter(&$user)
+    {
+        $user = $this->getUsersCollection()->findById($user['id']);
+        return array_intersect_key($user, array_flip(array('id', 'login', 'name','fields','email','mailingLists')));
+    }    
 }
