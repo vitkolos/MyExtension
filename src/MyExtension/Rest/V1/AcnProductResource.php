@@ -21,8 +21,6 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Exceptions\APIRequestException;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
-use Rubedo\Collection\AbstractLocalizableCollection;
-
 /**
  * Class TaxonomiesResource
  * @package RubedoAPI\Rest\V1
@@ -45,22 +43,7 @@ class AcnproductResource extends AbstractResource
         parent::__construct();
         $this->define();
     }
-    protected function init()
-    {
-        // initialize
-        // localized
-        // collections
-        $serviceLanguages = Manager::getService('Languages');
-        if ($serviceLanguages->isActivated()) {
-            $workingLanguage = $this->params()->fromQuery('workingLanguage');
-            if ($workingLanguage && $serviceLanguages->isActive($workingLanguage)) {
-                AbstractLocalizableCollection::setWorkingLocale($workingLanguage);
-            } else {
-                AbstractLocalizableCollection::setWorkingLocale($serviceLanguages->getDefaultLanguage());
-            }
-        }
-    }
-
+    
      /**
      * Get from /taxonomy
      *
@@ -71,29 +54,14 @@ class AcnproductResource extends AbstractResource
     {
 	    $contentsService = Manager::getService('Contents');
 		if(!isset($params["orders"])) {//retourner les propriétés du produit
-			$this->init();
-	/*
+			
+	
 			$codeBarre=$params['codeBarre'];
 			$findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
-							->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
+			->addFilter(Filter::factory('In')->setName('productProperties')->setValue($codeBarre))/*
+							->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre))*/;
 	
-			$content = $contentsService->findOne($findFilter,true,false);*/
-	
-				$query = Manager::getService('ElasticDataSearch');
-				$query->init();
-				$parametres = [];
-				$parametres["query"] = $codeBarre;
-				$parametres["isProduct"]=true;
-				$parametres["workingLanguage"]="fr";
-				$parametres["start"]=0;
-				$parametres["limit"]=50;
-				$parametres["pagesize"]=50;
-				$parametres["page"]=1;
-				$parametres["pager"]=0;
-				var_dump($parametres);
-				$content = $query->search($parametres,  'content');
-	
-	
+			$content = $contentsService->findOne($findFilter,true,false);
 			
 		}
 		else {//retourner la liste des dernières commandes
