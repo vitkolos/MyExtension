@@ -59,6 +59,7 @@ class AcnproductResource extends AbstractResource
 			$codeBarre=$params['codeBarre'];
 			$findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
 																				->addFilter(Filter::factory('OperatorToValue')->setName('productProperties.variations')->setOperator('$exists')->setValue(true))
+																				->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre))
 																			/*	->addFilter(Filter::factory('In')->setName('productProperties.variations')->setValue($codeBarre))
 							->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre))*/;
 	
