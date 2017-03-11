@@ -57,12 +57,33 @@ class AcnproductResource extends AbstractResource
 			
 	
 			$codeBarre=$params['codeBarre'];
-			$findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
-																			/*	->addFilter(Filter::factory('OperatorToValue')->setName('productProperties.variations')->setOperator('$exists')->setValue(true))*/
-																				->addFilter(Filter::factory('Value')->setName('productProperties.variations.*.sku')->setValue($codeBarre))
-																			/*	->addFilter(Filter::factory('In')->setName('productProperties.variations')->setValue($codeBarre))
-							->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre))*/;
-	
+			/*
+			 $contextExist = Filter::factory('OperatorToValue')
+            ->setName('context')
+            ->setOperator('$exists')
+            ->setValue(false);
+        $boContext = Filter::factory('Value')
+            ->setName('context')
+            ->setValue('back');
+        $mongoFilters->addFilter(
+            Filter::factory('Or')
+                ->addFilter($contextExist)
+                ->addFilter($boContext)
+        )*/
+			
+			$productFilter = Filter::factory('Value')->setName('isProduct')->setValue(true);
+			$codeBarreFilter = Filter::Factory('Or')->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre))
+								->addFilter(Filter::factory('Value')->setName('productProperties.variations.0.sku')->setValue($codeBarre))
+								->addFilter(Filter::factory('Value')->setName('productProperties.variations.1.sku')->setValue($codeBarre))
+								->addFilter(Filter::factory('Value')->setName('productProperties.variations.2.sku')->setValue($codeBarre))
+								->addFilter(Filter::factory('Value')->setName('productProperties.variations.3.sku')->setValue($codeBarre))
+								->addFilter(Filter::factory('Value')->setName('productProperties.variations.4.sku')->setValue($codeBarre))
+								->addFilter(Filter::factory('Value')->setName('productProperties.variations.5.sku')->setValue($codeBarre));
+			
+			
+			
+			
+			$findFilter = Filter::Factory('And')->addFilter($productFilter)->addFilter($codeBarreFilter);
 			$content = $contentsService->findOne($findFilter,true,false);
 			
 		}
