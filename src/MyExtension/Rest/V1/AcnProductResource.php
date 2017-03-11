@@ -55,13 +55,21 @@ class AcnproductResource extends AbstractResource
 	    $contentsService = Manager::getService('Contents');
 		if(!isset($params["orders"])) {//retourner les propriétés du produit
 			
-	
+	/*
 			$codeBarre=$params['codeBarre'];
 			$findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
 							->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre));
 	
+			$content = $contentsService->findOne($findFilter,true,false);*/
+	
+				$query = Manager::getService('ElasticDataSearch');
+				$query->init();
+				$parametres = [];
+				$parametres["query"] = $codeBarre;
+				$content = $query->search($parametres,  'content');
+	
+	
 			
-			$content = $contentsService->findOne($findFilter,true,false);
 		}
 		else {//retourner la liste des dernières commandes
 			$filter = Filter::factory()
