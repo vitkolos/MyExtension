@@ -66,6 +66,13 @@ class AcnproductResource extends AbstractResource
 				$query->init();
 				$parametres = [];
 				$parametres["query"] = $codeBarre;
+				$parametres["isProduct"]=true;
+				$parametres["workingLanguage"]="fr";
+				$parametres["start"]=0;
+				$parametres["limit"]=50;
+				$parametres["pagesize"]=50;
+				$parametres["page"]=1;
+				$parametres["pager"]=0;
 				$content = $query->search($parametres,  'content');
 	
 	
