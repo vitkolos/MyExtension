@@ -51,6 +51,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 $scope.don.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
                 $scope.don.codeMonnaieAlpha = me.paymentmeans.nativePMConfig.codeMonnaieAlpha;
                 $scope.don.monnaie = me.paymentmeans.nativePMConfig.monnaie;
+                $scope.isMonnaieBefore = me.paymentmeans.nativePMConfig.monnaie_before;
                 if(!$scope.don.user.country) $scope.don.user.country = $filter('uppercase')(me.paymentmeans.displayName);
  
                 /*get contact national défini dans la config de payement*/
