@@ -90,6 +90,7 @@ class AcnproductResource extends AbstractResource
 				$parametres["pagesize"]=50;
 				$parametres["page"]=1;
 				$parametres["pager"]=0;
+				var_dump($parametres);
 				$content = $query->search($parametres,  'content');
 	
 	
