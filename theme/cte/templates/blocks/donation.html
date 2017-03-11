@@ -35,13 +35,13 @@
                                         <div class="col-sm-8" ng-init="don.montant = contentDetailCtrl.content.fields.montant_1">                                          
                                                 
                                                 <input type="radio"  name="montant" id="montant1" value="{{contentDetailCtrl.content.fields.montant_1}}" ng-model="don.montant" required>
-                                                        <label for="montant1" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_1}}{{don.monnaie}}</label>	
+                                                        <label for="montant1" class="sexe_label dons"><span ng-if="isMonnaieBefore">{{don.monnaie}}</span>{{contentDetailCtrl.content.fields.montant_1}}<span ng-if="!isMonnaieBefore">{{don.monnaie}}</span></label>	
                                                 <input type="radio"  name="montant" id="montant2" value="{{contentDetailCtrl.content.fields.montant_2}}" ng-model="don.montant">
-                                                            <label for="montant2" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_2}}{{don.monnaie}}</label>
+                                                            <label for="montant2" class="sexe_label dons"><span ng-if="isMonnaieBefore">{{don.monnaie}}</span>{{contentDetailCtrl.content.fields.montant_2}}<span ng-if="!isMonnaieBefore">{{don.monnaie}}</span></label>
                                                 <input type="radio"  name="montant" id="montant3" value="{{contentDetailCtrl.content.fields.montant_3}}" ng-model="don.montant">
-                                                            <label for="montant3" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_3}}{{don.monnaie}}</label>
+                                                            <label for="montant3" class="sexe_label dons"><span ng-if="isMonnaieBefore">{{don.monnaie}}</span>{{contentDetailCtrl.content.fields.montant_3}}<span ng-if="!isMonnaieBefore">{{don.monnaie}}</span></label>
                                                 <input type="radio"  name="montant" id="montant4" value="{{contentDetailCtrl.content.fields.montant_4}}" ng-model="don.montant">
-                                                            <label for="montant4" class="sexe_label dons">{{contentDetailCtrl.content.fields.montant_4}}{{don.monnaie}}</label>
+                                                            <label for="montant4" class="sexe_label dons"><span ng-if="isMonnaieBefore">{{don.monnaie}}</span>{{contentDetailCtrl.content.fields.montant_4}}<span ng-if="!isMonnaieBefore">{{don.monnaie}}</span></label>
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
                                                             <label for="autre" class="sexe_label dons">{{rubedo.translate("Block.Inscription.Situation.Autre", "autre") | lowercase}}</label>
                                                 <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder='{{rubedo.translate("Block.Inscription.SituationConjugale.Autre", "Autre") }}' ng-pattern="/^[0-9]{1,7}$/" ng-required="don.montant=='autre'">
@@ -220,7 +220,7 @@
                                 <!--Récapitulatif-->
                                 <div class="row">
                                         <div class="col-xs-12 text-center">
-                                                <p>{{rubedo.translate("Dons.Recap","Je fais un don de")}} <span ng-if="don.montant!='autre'">{{don.montant}}</span><span ng-if="don.montant=='autre'">{{don.montant_autre}}</span>{{don.monnaie}} <span ng-if="don.mensuel">{{rubedo.translate("Block.Dons.Mois","par mois")}}</span>
+                                                <p>{{rubedo.translate("Dons.Recap","Je fais un don de")}} <span ng-if="isMonnaieBefore">{{don.monnaie}}</span><span ng-if="don.montant!='autre'">{{don.montant}}</span><span ng-if="don.montant=='autre'">{{don.montant_autre}}</span><span ng-if="!isMonnaieBefore">{{don.monnaie}}</span> <span ng-if="don.mensuel">{{rubedo.translate("Block.Dons.Mois","par mois")}}</span>
                                                         <span ng-if="don.trimestriel">{{rubedo.translate("Block.Dons.Trimestre","par trimestre")}}</span>
                                                 </p>
                                         </div>

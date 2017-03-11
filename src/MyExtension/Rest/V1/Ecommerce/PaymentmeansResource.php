@@ -97,7 +97,8 @@ class PaymentmeansResource extends AbstractResource
                                                         "monnaie" => $arrayToReturn["nativePMConfig"]["monnaie"],
                                                         "codeMonnaie" => $arrayToReturn["nativePMConfig"]["codeMonnaie"],
                                                         "conditionId"=>$arrayToReturn["nativePMConfig"]["defaut_conditionId"],
-                                                        "codeMonnaieAlpha" =>$arrayToReturn["nativePMConfig"]["codeMonnaieAlpha"]
+                                                        "codeMonnaieAlpha" =>$arrayToReturn["nativePMConfig"]["codeMonnaieAlpha"],
+                                                        "monnaie_before" =>$arrayToReturn["nativePMConfig"]["monnaie_before"]
                 );
                 if($params['type']=='dons' && isset($paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"]) && $paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"] !='' ) {
                     $arrayToReturn["nativePMConfig"]["contactDonsId"] = $paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"];
