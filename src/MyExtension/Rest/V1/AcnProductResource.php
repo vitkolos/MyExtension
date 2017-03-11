@@ -21,6 +21,8 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Exceptions\APIRequestException;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
+use Rubedo\Collection\AbstractLocalizableCollection;
+
 /**
  * Class TaxonomiesResource
  * @package RubedoAPI\Rest\V1
@@ -43,7 +45,22 @@ class AcnproductResource extends AbstractResource
         parent::__construct();
         $this->define();
     }
-    
+    protected function init()
+    {
+        // initialize
+        // localized
+        // collections
+        $serviceLanguages = Manager::getService('Languages');
+        if ($serviceLanguages->isActivated()) {
+            $workingLanguage = $this->params()->fromQuery('workingLanguage');
+            if ($workingLanguage && $serviceLanguages->isActive($workingLanguage)) {
+                AbstractLocalizableCollection::setWorkingLocale($workingLanguage);
+            } else {
+                AbstractLocalizableCollection::setWorkingLocale($serviceLanguages->getDefaultLanguage());
+            }
+        }
+    }
+
      /**
      * Get from /taxonomy
      *
@@ -54,7 +71,7 @@ class AcnproductResource extends AbstractResource
     {
 	    $contentsService = Manager::getService('Contents');
 		if(!isset($params["orders"])) {//retourner les propriétés du produit
-			
+			$this->init();
 	/*
 			$codeBarre=$params['codeBarre'];
 			$findFilter = Filter::Factory()->addFilter(Filter::factory('Value')->setName('isProduct')->setValue(true))
