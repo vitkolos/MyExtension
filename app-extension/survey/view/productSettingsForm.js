@@ -96,12 +96,12 @@ Ext.define('Rubedo.view.productSettingsForm', {
                             name: 'basePriceTTC',
                             allowBlank: true,
                             minValue: 0,
-                            listeners: {
+                            /*listeners: {
                                 change: {
                                     fn: me.onBasePriceTTCFieldChange,
                                     scope: me
                                 }
-                            }
+                            }*/
                         },
                         {
                             xtype: 'numberfield',
@@ -374,21 +374,24 @@ Ext.define('Rubedo.view.productSettingsForm', {
     },
 
     onBasePriceFieldChange: function(field, newValue, oldValue, eOpts) {
-        var type = Ext.getCmp('TypesContenusGridView').getSelectionModel().getLastSelected().data.type;
-        var taxRate = parseFloat(type.split(" ")[0]);
+        var contentType = Ext.getStore("ContentTypesForContent").getRange().filter(function (el) {
+            return el.internalId == Ext.getStore("CurrentContent").getRange()[0].data.typeId;
+          });
+        var type = contentType[0].data.type;
+        var taxRate = parseFloat(type.split(" ")[0]); console.log(taxRate);
        var form = Ext.getCmp('productSettingsForm').getComponent(0).getForm();
        if (Ext.getCmp("productVariationsGrid").getStore().getRange().length==1&&!Ext.isEmpty(newValue)){
             Ext.getCmp("productVariationsGrid").getStore().getRange()[0].set("price",newValue);
         }
         form.setValues({"basePriceTTC":newValue+taxRate*newValue/100});
     },
-    onBasePriceTTCFieldChange: function(field, newValue, oldValue, eOpts) {
+    /*onBasePriceTTCFieldChange: function(field, newValue, oldValue, eOpts) {
         var type = Ext.getCmp('TypesContenusGridView').getSelectionModel().getLastSelected().data.type;
         var taxRate = parseFloat(type.split(" ")[0]);
        var form = Ext.getCmp('productSettingsForm').getComponent(0).getForm();
        form.setValues({"basePrice":100*newValue/(taxRate+100)});
       
-    },
+    },*/
     
     
     onButtonClick: function(button, e, eOpts) {
