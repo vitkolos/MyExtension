@@ -376,6 +376,7 @@ Ext.define('Rubedo.view.productSettingsForm', {
     },
 
     onBasePriceFieldChange: function(field, newValue, oldValue, eOpts) {
+								console.log(Ext.getCmp("productVariationsGrid").getStore());
         if (Ext.getCmp("productVariationsGrid").getStore().getRange().length==1&&!Ext.isEmpty(newValue)){
             Ext.getCmp("productVariationsGrid").getStore().getRange()[0].set("price",newValue);
         }
