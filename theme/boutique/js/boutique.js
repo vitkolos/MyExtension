@@ -135,6 +135,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																														// we don't have a duration yet, so start playing
 																																												jwplayer(id).play();
 																																												console.log("play");
+																																												jwplayer(id).setMute(true);
 																																												
 																																	}
 																						});
@@ -161,6 +162,7 @@ duration =jwplayer(id).getDuration();
                     return attrs.play;
                 }, function (newValue, oldValue) {
 																						jwplayer(id).play(newValue);
+																						if(jwplayer(id).getMute()) jwplayer(id).setMute(false);
 																						console.log(jwplayer(id).getDuration());
 
                 });      
