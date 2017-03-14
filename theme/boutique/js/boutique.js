@@ -111,24 +111,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																	}
 																						}*/
 											};
-											var duration = 0;
-											jwplayer(id).onReady(function() {
-																						if (duration == 0) {
-																								// we don't have a duration yet, so start playing
-																								jwplayer(id).play();
-																						}
-											});
 
-											jwPlayer(id).onTime(function() {
-																						if (duration == 0) {
-																						// we don't have a duration, so it's playing so we can discover it...
-																																	duration = jwplayer(id).getDuration();
-																																	jwplayer().stop();
-																																	console.log(duration);
-																						// do something with duration here
-																				} else {
-																				}
-											});
 											
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
@@ -138,7 +121,24 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						console.log( jwplayer(id).getDuration());
 											}, 200);
 												
-												
+											var duration = 0;
+											jwplayer(id).onReady(function() {
+																						if (duration == 0) {
+																								// we don't have a duration yet, so start playing
+																								jwplayer(id).play();
+																						}
+											});
+
+											jwplayer(id).onTime(function() {
+																						if (duration == 0) {
+																						// we don't have a duration, so it's playing so we can discover it...
+																																	duration = jwplayer(id).getDuration();
+																																	jwplayer().stop();
+																																	console.log(duration);
+																						// do something with duration here
+																				} else {
+																				}
+											});												
 												
 											/*watch for play update*/
             scope.$watch(function () {
