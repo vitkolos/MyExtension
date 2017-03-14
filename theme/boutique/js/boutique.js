@@ -101,7 +101,15 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						modestbranding:0,
 																						showinfo:1,
 																						width:"100%",
-																						aspectratio:"16:9"};
+																						aspectratio:"16:9",
+																						events:{
+																																	onReady: function() {
+																																												jwplayer(id).play();
+																																												jwplayer(id).pause();
+																																												scope.duration = jwplayer(id).getDuration();
+																																	}
+																						}
+											};
 											
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
