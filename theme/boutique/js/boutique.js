@@ -96,7 +96,6 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
                 return '<div id="' + playerId + '"></div>';
             };
 
-
 											var options = {
 																						file: filmUrl,
 																						modestbranding:0,
@@ -110,16 +109,13 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 												
 												
 												
-											/*watch for captions update*/
-            scope.$watch(function () {
+											/*watch for captions update
                     return attrs.play;
                 }, function (newValue, oldValue) {
 																						console.log(newValue);
 																						jwplayer(id).play(true);
 																						
-                      // jwplayer(id).load([options]);
-
-                });      
+                });      */
         }
     };
 }]);
