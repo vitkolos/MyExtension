@@ -15,8 +15,8 @@
 	<!--Pistes des CD-->
 	<div ng-if="fieldEntity['piste'] && rubedo.current.user && rubedo.current.user.rights.canEdit">
 	  <table class="table table-striped">
-		<tr ng-repeat="piste in contentDetailCtrl.content.fields.piste track by $index">
-		  <td class="center play-button"><span class="badge">{{$index}}</span><span class="glyphicon glyphicon-play"></span></td>
+		<tr ng-repeat="piste in contentDetailCtrl.content.fields.piste track by $index" class="track">
+		  <td width="50" class="play-button" style="text-align: center"><span class="badge">{{$index}}</span><span class="glyphicon glyphicon-play"></span></td>
 		  <td>{{piste.title}}<jwplayer class="audio-player" video-url="{{piste.url}}" audio="yes" ></jwplayer></td>
 		</tr>
 	  </table>
