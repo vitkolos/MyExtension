@@ -139,11 +139,12 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						});
 
 											jwplayer(id).on('firstFrame', function(event) {
-																						console.log(event);
+																						//console.log(event);
 																						if (duration == 0) {
 																						// we don't have a duration, so it's playing so we can discover it...
+																																	console.log("pause");
+																																	jwplayer(id).play();
 																																	duration = jwplayer(id).getDuration();
-																																	jwplayer(id).pause();
 																						
 																																	console.log(duration);
 																						// do something with duration here
