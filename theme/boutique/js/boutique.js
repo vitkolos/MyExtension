@@ -103,12 +103,13 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
                             width:"100%",
                             file:me.media.url
                         };*/
-											if (audio=='yes') {
+											if (audio=="yes") {
 																						var options = {
 																																	primary:"flash",
-                            height:40,
-                            width:"100%",
-                            file:filmUrl};
+																																	height:40,
+																																	width:"100%",
+																																	file:filmUrl};
+																																	console.log("yes");
 											}
 											else {
 																						var options = {
