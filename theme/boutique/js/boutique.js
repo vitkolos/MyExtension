@@ -136,6 +136,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																												jwplayer(id).play();
 																																												console.log("play mute");
 																																												jwplayer(id).setMute(true);
+																																												jwplayer(id).setVolume(1);
 																																												console.log(jwplayer(id).getMute());
 																																												
 																																	}
