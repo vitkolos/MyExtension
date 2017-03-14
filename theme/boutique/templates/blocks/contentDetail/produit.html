@@ -12,6 +12,15 @@
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']" class="italic"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('sommaire')}}" ng-if="fieldEntity['sommaire']"></rubedo-field><!--image-->
+	<!--Pistes des CD-->
+	<div ng-if="fieldEntity['piste'] && rubedo.current.user && rubedo.current.user.rights.canEdit">
+	  <table class="table table-striped">
+		<tr ng-repeat="piste in contentDetailCtrl.getFieldByName('piste') track by $index">
+		  <td class="center"><span class="badge">{{$index}}</span></td>
+		  <td>{{piste.title}}</td>
+		</tr>
+	  </table>
+	</div>
 	<div class="row no-margin" ng-if="fieldEntity['images']">
 	
 	    <div ng-repeat="image in contentDetailCtrl.content.fields.images track by $index" class="col-sm-4" style="margin-bottom: 12px">
