@@ -114,7 +114,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
             scope.$watch(function () {
                     return attrs.play;
                 }, function (newValue, oldValue) {
-																						console.log(newValue);
+																						//console.log(newValue);
 																						jwplayer(id).play(newValue);
 																						
                       // jwplayer(id).load([options]);
