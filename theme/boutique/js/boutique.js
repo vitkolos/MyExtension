@@ -105,7 +105,10 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 											
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
-												setTimeout(function(){jwplayer(id).setup(options);}, 200);
+												setTimeout(function(){
+																						jwplayer(id).setup(options);
+																						scope.duration = jwplayer(id).getDuration();
+											}, 200);
 												
 												
 												
@@ -113,9 +116,8 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
             scope.$watch(function () {
                     return attrs.play;
                 }, function (newValue, oldValue) {
-																						 jwplayer(id).play();
-																						console.log(jwplayer(id).getDuration());
-                      // jwplayer(id).load([options]);
+																						jwplayer(id).play();
+																						//console.log(jwplayer(id).getDuration());
 
                 });      
         }
