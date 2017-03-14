@@ -105,7 +105,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 											
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
-            jwplayer(id).setup(options);
+												setTimeout(function(){jwplayer(id).setup(options);}, 200);
 												
 												
 												
