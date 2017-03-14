@@ -130,9 +130,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						jwplayer(id).setup(options);
 																						scope.duration = jwplayer(id).getDuration();
 																						console.log( jwplayer(id).getDuration());
-											}, 200);
-												
-										jwplayer(id).onReady(function() {
+																						jwplayer(id).onReady(function() {
 																						if (duration == 0) {
 																								// we don't have a duration yet, so start playing
 																								jwplayer(id).play();
@@ -152,6 +150,9 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						console.log("ontime");
 																				}
 											});										
+											}, 200);
+												
+										
 												
 											/*watch for play update*/
             scope.$watch(function () {
