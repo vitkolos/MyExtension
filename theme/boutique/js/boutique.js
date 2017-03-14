@@ -140,11 +140,11 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 												
 												
 												
-											/*watch for captions update*/
+											/*watch for play update*/
             scope.$watch(function () {
                     return attrs.play;
                 }, function (newValue, oldValue) {
-																						jwplayer(id).play();
+																						jwplayer(id).play(newValue);
 																						//console.log(jwplayer(id).getDuration());
 
                 });      
