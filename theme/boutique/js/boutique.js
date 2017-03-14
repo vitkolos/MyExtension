@@ -89,6 +89,36 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
+            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
+            getTemplate = function (playerId) {
+                      
+                return '<div id="' + playerId + '"></div>';
+            };
+											var duration = 0;
+											var options = {
+																						file: filmUrl,
+																						modestbranding:0,
+																						showinfo:1,
+																						width:"100%",
+																						aspectratio:"16:9"
+
+											};
+
+											
+            element.html(getTemplate(id));
+            $compile(element.contents())(scope);
+												setTimeout(function(){
+																						jwplayer(id).setup(options);										
+											}, 200);
+    
+        }
+    };
+}]);
+	 angular.module('rubedoBlocks').directive('audioplayer', ['$compile', function ($compile) {
+    return {
+        restrict: 'EC',
+        link: function (scope, element, attrs) {
+           var filmUrl = attrs.videoUrl;
 											var audio = attrs.play;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
             getTemplate = function (playerId) {
@@ -101,26 +131,8 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						modestbranding:0,
 																						showinfo:1,
 																						width:"100%",
-																						aspectratio:"16:9"/*,
-																						events:{
-																																	onReady: function() {
-																																												if (duration == 0) {
-																																																							// we don't have a duration yet, so start playing
-																																																							jwplayer(id).play();
-																																												}
+																						aspectratio:"16:9"
 
-																																	},
-																																	onTime:function() {
-																																												if (duration == 0) {
-																																												// we don't have a duration, so it's playing so we can discover it...
-																																																							duration = jwplayer(id).getDuration();
-																																																							jwplayer(id).stop();
-																																																							console.log(duration);
-																																												// do something with duration here
-																																										} else {
-																																										}
-											}
-																						}*/
 											};
 
 											
@@ -130,30 +142,25 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						jwplayer(id).setup(options);
 																						
 																						//console.log( jwplayer(id).getDuration());
-	jwplayer(id).on('ready', function(){
+																							jwplayer(id).on('ready', function(){
 																																	if (duration == 0) {
 																																														// we don't have a duration yet, so start playing
-																																												jwplayer(id).play();
-																																												console.log("play mute");
-																																												
+																																												jwplayer(id).play();																																												
 																																	}
 																						});
 
-											jwplayer(id).on('time', function(event) {
-																						//console.log(event);
-																						if (duration == 0) {
-																						// we don't have a duration, so it's playing so we can discover it...
-																																	jwplayer(id).setMute(true);
-																																	console.log("pause");
-																																	jwplayer(id).play(false);
-																																	duration =jwplayer(id).getDuration();
-																																	console.log(duration);
-																																	scope.duration = jwplayer(id).getDuration();
-																																	
-																						// do something with duration here
-																				} else {
-																				}
-											});																											
+																						jwplayer(id).on('time', function(event) {
+																																	//console.log(event);
+																																	if (duration == 0) {
+																																	// we don't have a duration, so it's playing so we can discover it...
+																																												jwplayer(id).setMute(true);
+																																												jwplayer(id).play(false);
+																																												duration =jwplayer(id).getDuration();
+																																												scope.duration = jwplayer(id).getDuration();scope.apply();
+																																	// do something with duration here
+																															} else {
+																															}
+																						});																											
 											}, 200);
 											
 												

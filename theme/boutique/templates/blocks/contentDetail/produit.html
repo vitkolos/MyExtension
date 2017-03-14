@@ -3,7 +3,7 @@
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('productBox')}}"></rubedo-field><!--prix et déclinaisons-->
   	<rubedo-field class="fetail-img" field = "{{contentDetailCtrl.getFieldByName('image')}}" ng-if="fieldEntity['image']"></rubedo-field><!--image-->
 	<h3 ng-if="fieldEntity['trailer']">Trailer</h3>
-	<jwplayer video-url="{{fieldEntity['trailer']}}" audio="false" ng-if="fieldEntity['trailer']" ></jwplayer>
+	<jwplayer video-url="{{fieldEntity['trailer']}}"  ng-if="fieldEntity['trailer']" ></jwplayer>
   </div>
   <div class="col-sm-8">
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEntity['text']"></rubedo-field><!--titre-->
@@ -17,7 +17,7 @@
 	  <table class="table table-striped">
 		<tr ng-repeat="piste in contentDetailCtrl.content.fields.piste track by $index" class="track" ng-init="state = false">
 		  <td width="50" class="play-button" style="text-align: center" ng-click="state = !state"><span class="badge">{{$index}}</span><span class="glyphicon glyphicon-play-circle" style="color:#333"></span></td>
-		  <td>{{piste.title}}<jwplayer class="audio-player" video-url="{{piste.url}}" play="{{state}}" ></jwplayer></td>
+		  <td>{{piste.title}}<audioplayer class="audio-player" video-url="{{piste.url}}" play="{{state}}" ></jwplayer></td>
 		  <td>{{duration}}</td>
 		</tr>
 	  </table>
