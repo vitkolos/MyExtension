@@ -136,6 +136,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																												jwplayer(id).play();
 																																												console.log("play mute");
 																																												jwplayer(id).setMute(true);
+																																												console.log(jwplayer(id).getMute());
 																																												
 																																	}
 																						});
@@ -151,7 +152,6 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																	
 																						// do something with duration here
 																				} else {
-																						console.log("ontime");
 																				}
 											});																											
 											}, 200);
@@ -163,7 +163,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
                 }, function (newValue, oldValue) {
 																						jwplayer(id).play(newValue);
 																						if(jwplayer(id).getMute()) jwplayer(id).setMute(false);
-																						console.log(jwplayer(id).getDuration());
+																						//console.log(jwplayer(id).getDuration());
 
                 });      
         }
