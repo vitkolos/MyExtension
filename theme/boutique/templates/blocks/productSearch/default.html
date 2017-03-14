@@ -87,7 +87,7 @@
                         </button>
                         <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
 
-                        <a ng-if="content.productProperties.variations.length==1 && !(content.productProperties.variations.0.stock>0 && content.productProperties.canOrderNotInStock)"
+                        <a ng-if="content.productProperties.variations.length==1 && !(content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock)"
                                 ng-href="{{ content.url }}"
                             class="btn btn-default col-xs-4 lignten-button" >
                             <i class="fa fa-close"></i>
