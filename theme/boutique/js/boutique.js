@@ -128,7 +128,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
             $compile(element.contents())(scope);
 												setTimeout(function(){
 																						jwplayer(id).setup(options);
-																						scope.duration = jwplayer(id).getDuration();
+																						
 																						//console.log( jwplayer(id).getDuration());
 	jwplayer(id).on('ready', function(){
 																																	if (duration == 0) {
@@ -148,6 +148,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																	jwplayer(id).play(false);
 																																	duration =jwplayer(id).getDuration();
 																																	console.log(duration);
+																																	scope.duration = jwplayer(id).getDuration();
 																																	
 																						// do something with duration here
 																				} else {
