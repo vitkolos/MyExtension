@@ -18,7 +18,7 @@
 		<tr ng-repeat="piste in contentDetailCtrl.content.fields.piste track by $index" class="track">
 		  <td width="50" class="play-button" style="text-align: center" ng-click="state = !state"><div><span class="glyphicon"  ng-class="{'glyphicon-pause':state, 'glyphicon-play':!state}"></span></div></td>
 		  <td>{{$index}} - {{piste.title}}<audioplayer class="audio-player" video-url="{{piste.url}}" play="{{state}}" ></jwplayer></td>
-		  <td ><span ng-show="duration>0">{{duration*1000 | date : 'mm:ss'}}</span></td>
+		  <td ><span ng-show="duration>0">{{(duration%3600)*1000 | date : 'mm:ss'}}</span></td>
 		</tr>
 	  </table>
 	</div>
