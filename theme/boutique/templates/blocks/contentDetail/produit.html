@@ -16,7 +16,7 @@
 	<div ng-if="fieldEntity['piste'] && rubedo.current.user && rubedo.current.user.rights.canEdit">
 	  <table class="table table-striped">
 		<tr ng-repeat="piste in contentDetailCtrl.content.fields.piste track by $index" class="track">
-		  <td width="50" class="play-button" ng-class="{'active':state}" style="text-align: center" ng-click="state = !state"><div><span class="glyphicon glyphicon-play-circle" ></span></div></td>
+		  <td width="50" class="play-button" style="text-align: center" ng-click="state = !state"><div><span class="glyphicon"  ng-class="{'glyphicon-pause':state, 'glyphicon-play':!state}"></span></div></td>
 		  <td>{{$index}} - {{piste.title}}<audioplayer class="audio-player" video-url="{{piste.url}}" play="{{state}}" ></jwplayer></td>
 		  <td>{{duration}}</td>
 		</tr>

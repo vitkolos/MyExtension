@@ -675,23 +675,12 @@ input[type=checkbox]:checked + label:before {
 
 /////ALBUMS
 .track td{padding:12px 8px; }
+
 .play-button>div{
-  width: 30px; height: 30px; border-radius: 15px; background: @rouge; color:white;
+  width: 30px; height: 30px; border-radius: 15px; background: @rouge; color:white; transition: all ease 0.3s;
 }
-.play-button{
-  span:first-of-type{
-    display: inline-block;
-  };
-  span:last-of-type{
-    display: none;
-  }
-}
-.track:hover .play-button, .track:active .play-button,  .play-button.active{
-  span:first-of-type{
-    display: none;
-  };
-  span:last-of-type{
-    display: inline-block;
-  }
+
+.play-button:hover>div, .play-button.active>div{
+  background-color: @rouge_shadow;
 }
 .audio-player{display: none;}
