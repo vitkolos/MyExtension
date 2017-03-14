@@ -89,17 +89,35 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
+											var audio = attrs.audio;
             var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId + '"></div>';
             };
-           var options = {
-                      file: filmUrl,
-                      modestbranding:0,
-                      showinfo:1,
-                      width:"100%",
-                      aspectratio:"16:9"};
+												
+												/*
+												me.jwSettings={
+                            primary:"flash",
+                            height:40,
+                            width:"100%",
+                            file:me.media.url
+                        };*/
+											if (audio=='yes') {
+																						var options = {
+																																	primary:"flash",
+                            height:40,
+                            width:"100%",
+                            file:filmUrl};
+											}
+											else {
+																						var options = {
+																																	file: filmUrl,
+																																	modestbranding:0,
+																																	showinfo:1,
+																																	width:"100%",
+																																	aspectratio:"16:9"};
+											}
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
             jwplayer(id).setup(options);
