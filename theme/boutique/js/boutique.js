@@ -135,18 +135,18 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																														// we don't have a duration yet, so start playing
 																																												jwplayer(id).play();
 																																												console.log("play");
-																																												duration =jwplayer(id).getDuration();
-																																	console.log(duration)
+																																												
 																																	}
 																						});
 
-											jwplayer(id).on('firstFrame', function(event) {
+											jwplayer(id).on('time', function(event) {
 																						//console.log(event);
 																						if (duration == 0) {
 																						// we don't have a duration, so it's playing so we can discover it...
 																																	console.log("pause");
-																																	jwplayer(id).stop();
-
+																																	jwplayer(id).play(false);
+duration =jwplayer(id).getDuration();
+																																	console.log(duration);
 																																	
 																						// do something with duration here
 																				} else {
