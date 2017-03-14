@@ -95,7 +95,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
                       
                 return '<div id="' + playerId + '"></div>';
             };
-
+											var duration = 0;
 											var options = {
 																						file: filmUrl,
 																						modestbranding:0,
@@ -132,8 +132,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						console.log( jwplayer(id).getDuration());
 											}, 200);
 												
-											var duration = 0;
-											jwplayer(id).onReady(function() {
+										/*	jwplayer(id).onReady(function() {
 																						if (duration == 0) {
 																								// we don't have a duration yet, so start playing
 																								jwplayer(id).play();
@@ -149,7 +148,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						// do something with duration here
 																				} else {
 																				}
-											});												
+											});						*/						
 												
 											/*watch for play update*/
             scope.$watch(function () {
