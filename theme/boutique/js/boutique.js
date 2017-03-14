@@ -157,8 +157,8 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																												jwplayer(id).play(false);
 																																												duration =jwplayer(id).getDuration();
 																																												scope.$apply(function () {
-																																																							scope.duration = jwplayer(id).getDuration();
-																																																							console.log(duration);
+																																																							scope.piste.duration = jwplayer(id).getDuration();
+																																																							console.log(scope.piste.duration);
 																																												});
 																																	// do something with duration here
 																															} else {
