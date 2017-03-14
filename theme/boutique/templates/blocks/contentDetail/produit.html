@@ -16,8 +16,8 @@
 	<div ng-if="fieldEntity['piste'] && rubedo.current.user && rubedo.current.user.rights.canEdit">
 	  <table class="table table-striped">
 		<tr ng-repeat="piste in contentDetailCtrl.content.fields.piste track by $index">
-		  <td class="center"><span class="badge">{{$index}}</span></td>
-		  <td>{{piste.title}}<jwplayer video-url="{{piste.url}}" audio="yes" ></jwplayer></td>
+		  <td class="center play-button"><span class="badge">{{$index}}</span><span class="glyphicon glyphicon-play"></span></td>
+		  <td>{{piste.title}}<jwplayer class="audio-player" video-url="{{piste.url}}" audio="yes" ></jwplayer></td>
 		</tr>
 	  </table>
 	</div>
