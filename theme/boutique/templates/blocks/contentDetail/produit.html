@@ -15,7 +15,7 @@
 	<!--Pistes des CD-->
 	<div ng-if="fieldEntity['piste'] && rubedo.current.user && rubedo.current.user.rights.canEdit">
 	  <table class="table table-striped">
-		<tr ng-repeat="piste in contentDetailCtrl.getFieldByName('piste') track by $index">
+		<tr ng-repeat="piste in contentDetailCtrl.content.fields.piste track by $index">
 		  <td class="center"><span class="badge">{{$index}}</span></td>
 		  <td>{{piste.title}}</td>
 		</tr>
