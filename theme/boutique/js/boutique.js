@@ -135,6 +135,8 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																														// we don't have a duration yet, so start playing
 																																												jwplayer(id).play();
 																																												console.log("play");
+																																												duration =jwplayer(id).getDuration();
+																																	console.log(duration)
 																																	}
 																						});
 
@@ -144,10 +146,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																						// we don't have a duration, so it's playing so we can discover it...
 																																	console.log("pause");
 																																	jwplayer(id).stop();
-																																	setTimeout(function(){
-																																												duration =jwplayer(id).getDuration();
-																						
-																																	console.log(duration);},100);
+
 																																	
 																						// do something with duration here
 																				} else {
@@ -162,7 +161,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
                     return attrs.play;
                 }, function (newValue, oldValue) {
 																						jwplayer(id).play(newValue);
-																						//console.log(jwplayer(id).getDuration());
+																						console.log(jwplayer(id).getDuration());
 
                 });      
         }
