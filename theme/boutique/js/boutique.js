@@ -109,13 +109,16 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 												
 												
 												
-											/*watch for captions update
+											/*watch for captions update*/
+            scope.$watch(function () {
                     return attrs.play;
                 }, function (newValue, oldValue) {
-																						console.log(newValue);
-																						jwplayer(id).play(true);
+																					console.log(oldValue);
+																						if(!oldValue) jwplayer(id).play(true);
 																						
-                });      */
+                      // jwplayer(id).load([options]);
+
+                });      
         }
     };
 }]);
