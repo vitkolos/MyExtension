@@ -162,6 +162,7 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																												});
 																																	// do something with duration here
 																															} else {
+																																	console.log(event);
 																															}
 																						});																											
 											}, 200);
