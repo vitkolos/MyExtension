@@ -377,7 +377,7 @@ Ext.define('Rubedo.view.productSettingsForm', {
         var contentType = Ext.getStore("ContentTypesForContent").getRange().filter(function (el) {
             return el.internalId == Ext.getStore("CurrentContent").getRange()[0].data.typeId;
           });
-        console.log(Ext.getStore("CurrentContent"));
+        console.log(Ext.getStore("CurrentContent").getRange());
         var type = contentType[0].data.type;
         var taxRate = parseFloat(type.split(" ")[0]);
        var form = Ext.getCmp('productSettingsForm').getComponent(0).getForm();
