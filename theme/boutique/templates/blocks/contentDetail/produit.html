@@ -13,7 +13,7 @@
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('description')}}" ng-if="fieldEntity['description']"></rubedo-field><!--image-->
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('sommaire')}}" ng-if="fieldEntity['sommaire']"></rubedo-field><!--image-->
 	<!--Pistes des CD-->
-	<div ng-if="fieldEntity['piste'] && rubedo.current.user && rubedo.current.user.rights.canEdit">
+	<div ng-if="fieldEntity['piste']">
 	  <table class="table table-striped">
 		<tr ng-repeat="piste in contentDetailCtrl.content.fields.piste track by $index" class="track">
 		  <td width="50" class="play-button" style="text-align: center" ng-click="state = !state">
