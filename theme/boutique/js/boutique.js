@@ -155,14 +155,16 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
 																																	// we don't have a duration, so it's playing so we can discover it...
 																																												jwplayer(id).setMute(true);
 																																												jwplayer(id).play(false);
-																																												duration =jwplayer(id).getDuration();
+																																												duration = event.duration;
 																																												scope.$apply(function () {
-																																																							scope.piste.duration = jwplayer(id).getDuration();
-																																																							console.log(scope.piste.duration);
+																																																							scope.piste.duration = event.duration;
+																																																							//console.log(scope.piste.duration);
 																																												});
 																																	// do something with duration here
 																															} else {
-																																	console.log(event);
+																																												if (event.position>30) {
+																																																								jwplayer(id).stop();
+																																												}
 																															}
 																						});																											
 											}, 200);
