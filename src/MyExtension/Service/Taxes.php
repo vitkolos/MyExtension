@@ -14,7 +14,7 @@
  * @copyright  Copyright (c) 2012-2014 WebTales (http://www.webtales.fr)
  * @license    http://www.gnu.org/licenses/gpl.html Open Source GPL 3.0 license
  */
-namespace MyExtension\Collection;
+namespace Rubedo\Collection;
 use Rubedo\Interfaces\Collection\ITaxes;
 use WebTales\MongoFilters\Filter;
 /**
@@ -24,7 +24,7 @@ use WebTales\MongoFilters\Filter;
  * @category Rubedo
  * @package Rubedo
  */
-class Taxes extends AbstractCollection implements ITaxes
+class TaxesCcn extends AbstractCollection implements ITaxes
 {
     public function __construct()
     {
