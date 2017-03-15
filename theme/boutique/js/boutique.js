@@ -114,6 +114,11 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
         }
     };
 }]);
+	angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filter) {
+    return function() {
+        return $filter('date')(new Date(), 'yyyy');
+    };
+}])
 	 angular.module('rubedoBlocks').directive('audioplayer', ['$compile', function ($compile) {
     return {
         restrict: 'EC',
