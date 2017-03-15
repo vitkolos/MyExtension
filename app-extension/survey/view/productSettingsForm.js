@@ -378,7 +378,7 @@ Ext.define('Rubedo.view.productSettingsForm', {
             return el.internalId == Ext.getStore("CurrentContent").getRange()[0].data.typeId;
           });
         var type = contentType[0].data.type;
-        var taxRate = parseFloat(type.split(" ")[0]); console.log(taxRate);
+        var taxRate = parseFloat(type.split(" ")[0]);
        var form = Ext.getCmp('productSettingsForm').getComponent(0).getForm();
        if (Ext.getCmp("productVariationsGrid").getStore().getRange().length==1&&!Ext.isEmpty(newValue)){
             Ext.getCmp("productVariationsGrid").getStore().getRange()[0].set("price",newValue);
