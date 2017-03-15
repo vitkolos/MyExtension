@@ -374,7 +374,6 @@ Ext.define('Rubedo.view.productSettingsForm', {
     },
 
     onBasePriceFieldChange: function(field, newValue, oldValue, eOpts) {
-        console.log(Ext.getStore("CurrentContent").getRange());
         if (Ext.getStore("CurrentContent").getRange().length>0) {
             var contentType = Ext.getStore("ContentTypesForContent").getRange().filter(function (el) {
                 return el.internalId == Ext.getStore("CurrentContent").getRange()[0].data.typeId;
