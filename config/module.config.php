@@ -327,7 +327,8 @@ return array(
            'MongoDataImport' => 'Rubedo\\Mongo\\DataImportCcn',
             'SitesConfigCcn' => 'Rubedo\\Collection\\SitesConfigCcn',
 												'Forms' => 'MyExtension\\Service\\Forms',
-            'FormsResponses' => 'MyExtension\\Service\\FormsResponses'
+            'FormsResponses' => 'MyExtension\\Service\\FormsResponses',
+												'Taxes' => 'Rubedo\\Collection\\TaxesCcn'
         )
     ),
     'controllers' => array(

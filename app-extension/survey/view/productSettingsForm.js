@@ -383,13 +383,12 @@ Ext.define('Rubedo.view.productSettingsForm', {
             var form = Ext.getCmp('productSettingsForm').getComponent(0).getForm();
             form.setValues({"basePriceTTC":newValue+taxRate*newValue/100});
         }
-        else {
-            var type = Ext.getCmp('TypesContenusGridView').getSelectionModel().getLastSelected().data.type;
-            var taxRate = parseFloat(type.split(" ")[0]);
-            var form = Ext.getCmp('productSettingsForm').getComponent(0).getForm();
-            form.setValues({"basePriceTTC":newValue+taxRate*newValue/100});
-        }
-        if (Ext.getCmp("productVariationsGrid").getStore().getRange().length==1&&!Ext.isEmpty(newValue)){
+        
+        
+        
+        
+       
+       if (Ext.getCmp("productVariationsGrid").getStore().getRange().length==1&&!Ext.isEmpty(newValue)){
             Ext.getCmp("productVariationsGrid").getStore().getRange()[0].set("price",newValue);
         }
         
