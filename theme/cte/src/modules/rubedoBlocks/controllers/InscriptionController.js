@@ -312,7 +312,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             
             $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
-            if(me.content.fields.dateDebut && me.content.fields.dateDebut!='') $scope.inscription.propositionDate = propositionDate;
+            $scope.inscription.propositionDate = propositionDate;
             $scope.inscription.dateDebut = me.content.fields.dateDebut;
             $scope.inscription.propositionLieu = me.content.fields.positionName;
             $scope.inscription.propositionUrl = me.content.canonicalUrl;

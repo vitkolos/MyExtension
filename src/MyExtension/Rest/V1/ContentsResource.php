@@ -583,9 +583,6 @@ class ContentsResource extends AbstractResource
                 }
             }
         }
-        if(isset($data['isProduct']) && $data['isProduct']) {
-            unset($data["productProperties"]);
-        };
         $content = array_replace_recursive($content, $data);
         if (isset($data["taxonomy"])&&is_array($data["taxonomy"])){
             foreach($data["taxonomy"] as $key1=>$value1){

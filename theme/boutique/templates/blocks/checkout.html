@@ -99,7 +99,7 @@
                                         <div class="col-sm-6 form-group">
                                             <label for="{{fieldIdPrefix+'_address_country'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
                                             <select class="form-control" id="{{fieldIdPrefix+'_address_country'}}" ng-model="fieldEntity.address.country"
-                                                    ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray | orderBy:'name' "  required >
+                                                    ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray"  required >
                                             </select>
                                         </div>
                                     </div>

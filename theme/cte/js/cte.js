@@ -194,7 +194,7 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
-            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
+            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId + '"></div>';

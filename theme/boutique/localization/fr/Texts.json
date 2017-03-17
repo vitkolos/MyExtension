@@ -27,7 +27,7 @@
     "Payment.Means.check":"Chèque",
     "Payment.Means.paybox":"Carte",
     "Payment.Means.paypal":"Paypal",
-    "Product.Dispo":"Nous n'avons plus ce produit en stock. La livraison peut prendre jusqu'à 3 semaines.",
+    "Product.Dispo":"Nous n'avons plus ce produit en stock. La livraison peut prendre jusqu'à 3 semaines",
     "Blocks.OrderDetails.Table.UnitCostHT":"Prix unitaire (HT)",
     "Blocks.OrderDetails.Table.PriceTTC":"Prix (TTC)",
     "Blocks.Checkout.CheckoutSummary.SubTotalHT":"Total produits (HT)",

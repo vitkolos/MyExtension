@@ -1,10 +1,10 @@
 <nav class="navbar navbar-default" style="background-color: white">
     <div class="navbar-header">
             <span class="navbar-brand">{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} :
-                <!--<span ng-repeat-start="term in searchResultsCtrl.notRemovableTerms track by $index">{{term.operator}}</span><span
+                <span ng-repeat-start="term in searchResultsCtrl.notRemovableTerms track by $index">{{term.operator}}</span><span
                         class="badge" ng-repeat-end>
                     {{term.label}}
-                </span>--><span ng-repeat-start="term in searchResultsCtrl.activeTerms track by $index">{{term.operator}}</span>
+                </span><span ng-repeat-start="term in searchResultsCtrl.activeTerms track by $index">{{term.operator}}</span>
                 <span class="badge cursor-as-pointer" ng-repeat-end
                       ng-click="searchResultsCtrl.clickOnFacets(term.facetId, term.term)">
                     {{term.label}}&nbsp;&times;
@@ -87,7 +87,7 @@
                         </button>
                         <!--<span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}-->
 
-                        <a ng-if="content.productProperties.variations.length==1 && !(content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock)"
+                        <a ng-if="content.productProperties.variations.length==1 && !(content.productProperties.variations.0.stock>0 && content.productProperties.canOrderNotInStock)"
                                 ng-href="{{ content.url }}"
                             class="btn btn-default col-xs-4 lignten-button" >
                             <i class="fa fa-close"></i>
