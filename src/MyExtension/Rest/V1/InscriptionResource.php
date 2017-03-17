@@ -336,7 +336,7 @@ protected function sendInscriptionMail($inscription,$lang){
         $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_enfants"] . "</i></td><td width=67%>" .  $nomsEnfants . "</td></tr>";
     }
     $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_proposition"] . "</i></td><td width=67%>" .  $inscription['propositionTitre'] . "</td></tr>";
-    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_date"] . "</i></td><td width=67%>" .  $inscription['propositionDate'] . "</td></tr>";
+    if(isset($inscription['propositionDate']) && $inscription['propositionDate'] != "") $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_date"] . "</i></td><td width=67%>" .  $inscription['propositionDate'] . "</td></tr>";
     $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_lieu"] . "</i></td><td width=67%>" .  $inscription['propositionLieu'] . "</td></tr>";
     $url="http://". $_SERVER['HTTP_HOST'] . $inscription['propositionUrl'];
     $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_page_web"] . "</i></td><td width=67%><a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a></td></tr>";

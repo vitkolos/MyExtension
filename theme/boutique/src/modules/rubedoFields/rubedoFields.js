@@ -728,7 +728,7 @@
 
     }]);
 
-    module.controller("ProductBoxController",['$scope','RubedoShoppingCartService','$rootScope',function($scope,RubedoShoppingCartService,$rootScope){
+    module.controller("ProductBoxController",['$scope','RubedoShoppingCartService','$rootScope','$timeout',function($scope,RubedoShoppingCartService,$rootScope,$timeout){
         var me=this;
         me.productProperties=$scope.productProperties;
         me.manageStock=$scope.manageStock;
@@ -837,7 +837,9 @@
                     $rootScope.$broadcast("shoppingCartUpdated",{emitter:"productBox"});
                     //window.location.href= $scope.rubedo.current.site.cartDetailPageUrl;
                     me.isProductAdded = true;
-                    
+                    $timeout(function() {
+                        me.isProductAdded = false;
+                    }, 1000);
                 }
             );
         };

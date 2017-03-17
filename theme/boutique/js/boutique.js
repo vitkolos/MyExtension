@@ -89,20 +89,101 @@ angular.module('rubedoDataAccess').factory('RubedoOrdersService',['$http','ipCoo
         restrict: 'EC',
         link: function (scope, element, attrs) {
            var filmUrl = attrs.videoUrl;
-            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1),
+            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
             getTemplate = function (playerId) {
                       
                 return '<div id="' + playerId + '"></div>';
             };
-           var options = {
-                      file: filmUrl,
-                      modestbranding:0,
-                      showinfo:1,
-                      width:"100%",
-                      aspectratio:"16:9"};
+											var duration = 0;
+											var options = {
+																						file: filmUrl,
+																						modestbranding:0,
+																						showinfo:1,
+																						width:"100%",
+																						aspectratio:"16:9"
+
+											};
+
+											
             element.html(getTemplate(id));
             $compile(element.contents())(scope);
-            jwplayer(id).setup(options);
+												setTimeout(function(){
+																						jwplayer(id).setup(options);										
+											}, 200);
+    
+        }
+    };
+}]);
+	angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filter) {
+    return function() {
+        return $filter('date')(new Date(), 'yyyy');
+    };
+}])
+	 angular.module('rubedoBlocks').directive('audioplayer', ['$compile', function ($compile) {
+    return {
+        restrict: 'EC',
+        link: function (scope, element, attrs) {
+           var filmUrl = attrs.videoUrl;
+											var audio = attrs.play;
+            var id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
+            getTemplate = function (playerId) {
+                      
+                return '<div id="' + playerId + '"></div>';
+            };
+											var duration = 0;
+											var options = {
+																						file: filmUrl,
+																						modestbranding:0,
+																						showinfo:1,
+																						width:"100%",
+																						aspectratio:"16:9"
+
+											};
+
+											
+            element.html(getTemplate(id));
+            $compile(element.contents())(scope);
+												setTimeout(function(){
+																						jwplayer(id).setup(options);
+																						
+																						//console.log( jwplayer(id).getDuration());
+																							jwplayer(id).on('ready', function(){
+																																	if (duration == 0) {
+																																														// we don't have a duration yet, so start playing
+																																												jwplayer(id).play();																																												
+																																	}
+																						});
+
+																						jwplayer(id).on('time', function(event) {
+																																	//console.log(event);
+																																	if (duration == 0) {
+																																	// we don't have a duration, so it's playing so we can discover it...
+																																												jwplayer(id).setMute(true);
+																																												jwplayer(id).play(false);
+																																												duration = event.duration;
+																																												scope.$apply(function () {
+																																																							scope.piste.duration = event.duration;
+																																																							//console.log(scope.piste.duration);
+																																												});
+																																	// do something with duration here
+																															} else {
+																																												if (event.position>30) {
+																																																								jwplayer(id).stop();
+																																												}
+																															}
+																						});																											
+											}, 200);
+											
+												
+											/*watch for play update*/
+            scope.$watch(function () {
+                    return attrs.play;
+                }, function (newValue, oldValue) {
+																						jwplayer(id).play(newValue);
+																						if(jwplayer(id).getMute()) jwplayer(id).setMute(false);
+																						//console.log(jwplayer(id).getDuration());
+
+                });      
         }
     };
 }]);
