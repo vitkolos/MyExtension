@@ -126,7 +126,6 @@
 <div class=" content_border" itemscope itemtype="http://schema.org/NewsArticle">
   <meta itemprop="image" content="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'768px',mode:'boxed'}) }}" />
   <meta itempro="author" content="{{contentDetailCtrl.content.createUser.fullName}}">
-  
 	<!--<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12">
@@ -150,7 +149,7 @@
 		</a>
 	</div>
 			
-<header class="container-fluid content" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',mode:'boxed'})}} 1600w"
+<header class="container-fluid content" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 480w,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1600px',mode:'boxed'})}} 1200w"
 	ng-if="fieldEntity['image']"  afkl-lazy-image-options='{"background": true}'>
 	<div class="text-article container">
 		<p class='capital'>{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
