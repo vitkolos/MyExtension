@@ -82,6 +82,7 @@ class ShoppingcartResource extends AbstractResource
      $index = 0;
      foreach ($shoppingCart['test'] as $value) {
           $shoppingCart['test'][$index] = $value;
+      $index++;
       }
         return array(
             'success' => true,
