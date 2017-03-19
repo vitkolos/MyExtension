@@ -77,7 +77,7 @@ class ShoppingcartResource extends AbstractResource
         if ($cartUpdate === false) {
             throw new APIEntityException('Update failed');
         }
-     $shoppingCart['shoppingCart'] = array_values($shoppingCart['shoppingCart']);
+     //$shoppingCart['shoppingCart'] = array_values($shoppingCart['shoppingCart']);
         return array(
             'success' => true,
             'shoppingCart' => $this->filterShoppingCart($cartUpdate, isset($params['includeDetail'])),
