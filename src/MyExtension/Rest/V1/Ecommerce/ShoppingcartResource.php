@@ -77,14 +77,7 @@ class ShoppingcartResource extends AbstractResource
         if ($cartUpdate === false) {
             throw new APIEntityException('Update failed');
         }
-     //$shoppingCart['shoppingCart'] = array_values($shoppingCart['shoppingCart']);
-     //$cartUpdate['test'] = $cartUpdate['shoppingCart'];
-     $index = 0;
-     foreach ($cartUpdate['shoppingCart'] as $key => $value) {
-          $cartUpdate['shoppingCart'][$index] = $value;
-          $index++;
-       unset($cartUpdate['shoppingCart'][$key]);
-      }
+
         return array(
             'success' => true,
             'shoppingCart' => $this->filterShoppingCart($cartUpdate, isset($params['includeDetail'])),
@@ -117,7 +110,7 @@ class ShoppingcartResource extends AbstractResource
      */
     protected function filterShoppingCart($shoppingCart, $includeDetail = null)
     {
-        $mask = array('id', 'shoppingCart', 'detailedCart','test');
+        $mask = array('id', 'shoppingCart', 'detailedCart');
         if (!$includeDetail||!isset($shoppingCart['shoppingCart'])) {
             return array_intersect_key($shoppingCart, array_flip($mask));
         }
