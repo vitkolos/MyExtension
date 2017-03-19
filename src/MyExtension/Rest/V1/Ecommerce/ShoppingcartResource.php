@@ -83,7 +83,7 @@ class ShoppingcartResource extends AbstractResource
      foreach ($cartUpdate['test'] as $key => $value) {
           $cartUpdate['test'][$index] = $value;
           $index++;
-      //unset($cartUpdate['test'][$key]);
+       unset($cartUpdate['test'][$key]);
       }
         return array(
             'success' => true,
