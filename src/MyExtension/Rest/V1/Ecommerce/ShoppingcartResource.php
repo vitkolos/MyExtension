@@ -115,7 +115,7 @@ class ShoppingcartResource extends AbstractResource
      */
     protected function filterShoppingCart($shoppingCart, $includeDetail = null)
     {
-        $mask = array('id', 'shoppingCart', 'detailedCart');
+        $mask = array('id', 'shoppingCart', 'detailedCart','test');
         if (!$includeDetail||!isset($shoppingCart['shoppingCart'])) {
             return array_intersect_key($shoppingCart, array_flip($mask));
         }
