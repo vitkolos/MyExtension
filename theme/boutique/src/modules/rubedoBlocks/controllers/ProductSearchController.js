@@ -39,7 +39,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         me.facets = [];
         me.activeFacets = [];
         me.start = 0;
-        me.limit = $routeParams.limit?$routeParams.limit:12;
+        me.limit = $routeParams.limit?$routeParams.limit:24;
         me.orderBy = $routeParams.orderby?$routeParams.orderby:"text";
         me.orderByDirection=$routeParams.orderbyDirection?$routeParams.orderbyDirection:"asc";
         var resolveOrderBy = {
