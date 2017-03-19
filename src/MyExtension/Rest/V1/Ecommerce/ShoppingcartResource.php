@@ -78,10 +78,10 @@ class ShoppingcartResource extends AbstractResource
             throw new APIEntityException('Update failed');
         }
      //$shoppingCart['shoppingCart'] = array_values($shoppingCart['shoppingCart']);
-     $shoppingCart['test'] = $shoppingCart['shoppingCart'];
+     $cartUpdate['test'] = $cartUpdate['shoppingCart'];
      $index = 0;
-     foreach ($shoppingCart['test'] as $value) {
-          $shoppingCart['test'][$index] = $value;
+     foreach ($cartUpdate['test'] as $value) {
+          $cartUpdate['test'][$index] = $value;
       $index++;
       }
         return array(
