@@ -258,7 +258,7 @@
                     }
                     me.html=jQuery.htmlClean(newValue, {
                         allowedAttributes:[["style"],["id"],["rubedo-page-link"],["target"],["align"],["width"],["height"],["data-toggle"],["data-target"]],
-                        allowedTags: ['table','tbody','tr','td','iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br','u','sup'],
+                        allowedTags: ['table','tbody','tr','td','th','iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br','u','sup'],
                         removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike"],                        
                         allowEmpty :["p","i","span"],
                         replace: [[["b", "big"], "strong"]],
