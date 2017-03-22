@@ -73,7 +73,7 @@
 			<p ng-if="content.fields.email">
 				<i class="fa fa-envelope icon"></i>
 				<span ng-init="blockConfig={'email':content.fields.email, 'name':content.fields.nom,'surname': content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
-					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
+					<span ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></span>
 				</span>
 			</p>
 				
