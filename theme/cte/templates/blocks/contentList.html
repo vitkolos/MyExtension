@@ -72,7 +72,7 @@
 			<p ng-if="content.fields.position"><i class="fa fa-map-marker icon"></i> {{content.fields.position.address}}</p>
 			<p ng-if="content.fields.email">
 				<i class="fa fa-envelope icon"></i>
-				<span ng-init="blockConfig={'email':content.fields.email, 'name':content.fields.nom,'surname': content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
+				<span style="display:inline-block" ng-init="blockConfig={'email':content.fields.email, 'name':content.fields.nom,'surname': content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
 					<span ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></span>
 				</span>
 			</p>
