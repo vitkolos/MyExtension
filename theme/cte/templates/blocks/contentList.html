@@ -70,11 +70,14 @@
 			<h4 class="capital">{{content.fields.text}}</h4>
 			<p ng-if="content.fields.telephone"><i class="fa fa-phone icon"></i> {{content.fields.telephone}}</p>
 			<p ng-if="content.fields.position"><i class="fa fa-map-marker icon"></i> {{content.fields.position.address}}</p>
-			<p ng-if="content.fields.email"><i class="fa fa-envelope icon"></i>
-				<div ng-init="blockConfig={'email':content.fields.email, 'name':content.fields.nom,'surname': content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
+			<p ng-if="content.fields.email">
+				<i class="fa fa-envelope icon"></i>
+				<span ng-init="blockConfig={'email':content.fields.email, 'name':content.fields.nom,'surname': content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
 					<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
-				</div>
+				</span>
 			</p>
+				
+			
 		</div>
                                       <!--DEFAUT-->
                     <div ng-switch-default>
