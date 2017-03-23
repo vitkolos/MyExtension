@@ -5,9 +5,9 @@
                         <h3>{{contentDetailCtrl.content.fields.text}}</h3>
                         <p>{{contentDetailCtrl.content.fields.subTitle}}</p>
 
-                        <p><em ng-bind-html="rubedo.translate('Block.Dons.Website','',['%countryname%'],[donsCtrl.paymentmeans.displayName]) | unsafe">
+                        <!--<p><em ng-bind-html="rubedo.translate('Block.Dons.Website','',['%countryname%'],[donsCtrl.paymentmeans.displayName]) | unsafe">
                                 <!--Vous êtes sur le site de la communauté en France. Si vous êtes fiscalement ou administrativement rattaché à un autre pays, <a href="http://www.chemin-neuf.org/aidez-nous/faire-un-don-org/pages-de-soutien-dans-les-pays">cliquez ici </a>-->
-                                </em></p>
+                                <!--</em></p>-->
                         <div ng-if="donsCtrl.paymentmeans.nativePMConfig.donationText" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:donsCtrl.paymentmeans.nativePMConfig.donationText}"></div>
                 </div>
                 
