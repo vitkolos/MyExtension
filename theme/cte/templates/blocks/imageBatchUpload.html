@@ -54,7 +54,7 @@
                 accept="image/*" 
                 ngf-pattern="'image/*'"
                 ngf-resize="{width: imgCtrl.format, quality: .7}"
-                ngf-resize-if="$width > imgCtrl.format"
+                ngf-resize-if="$width > imgCtrl.format || $file.size>1024*200"
                 ng-disabled="imgCtrl.processing">
                 <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
                 <img src="/theme/cte/img/loader.gif" ng-if="imgCtrl.processing">
