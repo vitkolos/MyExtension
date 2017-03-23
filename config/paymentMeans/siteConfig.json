@@ -96,6 +96,15 @@
             "chooseOnly": true
         }
     },
+	{
+                            "type": "Rubedo.view.DCEField",
+                            "config": {
+                                "fieldLabel": "Texte avant formulaire de dons",
+                                "name": "donationText",
+                                "allowedCT": "richText",
+                                "addOnly": true
+                            }
+                        }
     {
         "type": "Ext.form.field.Text",
         "config": {
