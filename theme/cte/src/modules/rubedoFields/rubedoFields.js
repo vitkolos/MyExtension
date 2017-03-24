@@ -208,7 +208,7 @@
         } else if (CKEMode=="Basic"){
             myTBConfig=[
             { name: 'clipboard', groups: [ 'clipboard', 'undo' ], items: ['PasteText', '-', 'Undo', 'Redo','Source'  ] },
-           { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic','-', 'RemoveFormat' ] },
+           { name: 'basicstyles', groups: [ 'basicstyles', 'cleanup' ], items: [ 'Bold', 'Italic', 'Strike','-', 'RemoveFormat' ] },
            { name: 'paragraph', groups: [ 'list', 'indent', 'blocks', 'align', 'bidi' ], items: [ 'BulletedList', '-', 'Outdent', 'Indent', 'Blockquote', '-', 'JustifyCenter']},
             { name: 'styles', items: ['Styles', 'Format' ] },
              { name: 'colors', items: [ 'TextColor','-', 'Scayt' ] },
