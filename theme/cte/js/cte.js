@@ -115,11 +115,13 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	    formatOfDate = longFormat;
 	}
 	else if (start.getMonth() != end.getMonth()) {
-		formatOfDate = 'd MMM';
+		if (locale=='de') formatOfDate = 'd. MMM';
+		else formatOfDate = 'd MMM';
 	}
 	else  if(start.getDate() == end.getDate()){
-	    formatOfDate = 'd';
-	    isSameDay=true;
+		if (locale=='de') formatOfDate = 'd.';
+	    	else formatOfDate = 'd';
+	    	isSameDay=true;
 	}
 	else {
 		switch(locale){
