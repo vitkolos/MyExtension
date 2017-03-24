@@ -108,6 +108,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	var longFormat="";//format complet de date
 	switch(locale){
 		case 'hu': longFormat = 'yyyy. MMM d.';break;
+		case 'de': longFormat = 'd. MMM yyyy';break;
 		default : longFormat = 'd MMM yyyy';
 	}
 	if (start.getFullYear() != end.getFullYear()) {
@@ -123,6 +124,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	else {
 		switch(locale){
 			case 'hu': formatOfDate = 'yyyy. MMM d';longFormat='d.';break;
+			case 'de': formatOfDate = 'd. MMM yyyy';longFormat='d.';break;
 			default : formatOfDate = 'd';
 		}
 	}
