@@ -16,10 +16,11 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             from:me.contactData.email,
             subject:contactSnap.subject
         };
-        if(contactSnap.template) payload.template = contactSnap.template;
+        if(contactSnap.template) {payload.template = contactSnap.template;delete (contactSnap.template);}
         /*var destinataires = {'Nicolas':'nicolas.rhone@gmail.com' ,'Nicolas Rhoné':'nicolas.rhone@wanadoo.fr' }*/
         delete (contactSnap.subject);
         delete (contactSnap.to);
+        
         payload.fields=contactSnap;
         angular.element('#myModal'+$scope.block.id+$scope.blockConfig.id).modal('hide');
         angular.element('#myModalsingle').modal('hide');
