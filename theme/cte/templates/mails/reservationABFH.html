@@ -1,11 +1,77 @@
 <html><body>
+  <h3>Identification</h3>
 <table width="80%">
 <tr>
   <td> 
-    Surname : {{surname}}<br/>
-    Family name : {{name}}<br/>
-    Email : {{email}}
+    Surname : {{ surname }}<br/>
+    Family name : {{ name }}<br/>
+    Email : {{ email }}
   </td>
-</tr>
+  <td> 
+    Phone : {{ phone }}<br/>
+    City : {{ city }}<br/>
+    Country : {{ country }}
+  </td>
+ </tr>
 </table>
+<h3>Your demand</h3>
+<table width="80%">
+  <tr>
+    <td>
+      Start date: {{ startDate }}<br/> 
+      Nights: {{ nbOfNights }}<br/>
+      End date: {{ endDate }}
+    </td>
+  </tr>
+  </table>
+<table style="width:80%">
+  <thead>
+          <tr>
+              <th>Stay in:</th>
+              <th>Price for 1 night</th>
+              <th>Quantity of adults</th>
+              <th>Quantity of children (4-6)</th>
+              <th>Quantity of children (7-12)</th>
+              <th>Price (ILS)</th>
+          </tr>
+      </thead>
+      <tr>
+          <th>Single room</th>
+          <th>230 ILS /pers</th>
+          <th> {{ adults1 }}</th>
+          <th></th>
+          <th></th>
+          <th>{{ price1}}</th>
+      </tr>
+      <tr >
+          <th>Double room (twin or couple)</th>
+          <th>140 ILS /pers</th>
+          <th>{{ adults2 }}</th>
+          <th{{ children2_50 }}</th>
+          <th{{ children2_25 }}</th>
+          <th>{{ price2 }}</th>
+      </tr>
+      <tr>
+          <th>Triple or quadruple room</th>
+          <th>120 ILS /pers</th>
+          <th{{ adults3 }}</th>
+          <th>{{ children3_50 }}</th>
+          <th>{{ children3_25 }}</th>
+          <th>{{ price3 }}</th>
+      </tr>
+      <tr>
+          <th>Meals</th>
+          <th>65 ILS /pers</th>
+          <th>{{ adults_meal }}</th>
+          <th>{{ children_meal_50 }}</th>
+          <th>{{ children_meal_25 }}</th>
+          <th>{{ price_meals}}</th>
+      </tr>
+      <tr style="padding-top:12px">
+          <th colspan="4"></th><th colspan="2" style="text-align:right"><b>Total ILS: </b>
+              {{ total }}
+          </th>
+      </tr>
+  </table>
+
 </body></html>
