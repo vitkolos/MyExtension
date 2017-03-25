@@ -1,3 +1,4 @@
+<!--mail pour la réservation à Abuna Faraj Pilgrim House (Nazareth)-->
 <html><body>
   <h3>Identification</h3>
 <table width="80%">
@@ -16,7 +17,7 @@
 </table>
 <h3>Your demand</h3>
 <table width="80%">
-  <tr>
+  <tr >
     <td>
       Start date: { startDate }<br/> 
       Nights: { nbOfNights }<br/>
@@ -26,24 +27,24 @@
   </table>
 <table style="width:80%">
   <thead>
-          <tr>
-              <td>Stay in:</td>
-              <td>Price for 1 night</td>
-              <td>Quantity of adults</td>
-              <td>Quantity of children (4-6)</td>
-              <td>Quantity of children (7-12)</td>
-              <td>Price (ILS)</td>
+          <tr style="border-bottom:1px solid grey">
+            <td><b>Stay in:</b></td>
+            <td><b>Price for 1 night</b></td>
+            <td><b>Quantity of adults</b></td>
+            <td><b>Quantity of children (4-6)</b></td>
+            <td><b>Quantity of children (7-12)</b></td>
+            <td><b>Price (ILS)</b></td>
           </tr>
       </thead>
-      <tr>
+      <tr style="border-bottom:1px solid grey">
           <td>Single room</td>
           <td>230 ILS /pers</td>
           <td> { adults1 }</td>
           <td></td>
           <td></td>
-          <td>{{ price1}}</td>
+          <td>{ price1 }</td>
       </tr>
-      <tr >
+      <tr style="border-bottom:1px solid grey" >
           <td>Double room (twin or couple)</td>
           <td>140 ILS /pers</td>
           <td>{ adults2 }</td>
@@ -51,7 +52,7 @@
           <td>{ children2_25 }</td>
           <td>{ price2 }</td>
       </tr>
-      <tr>
+      <tr style="border-bottom:1px solid grey">
           <td>Triple or quadruple room</td>
           <td>120 ILS /pers</td>
           <td>{ adults3 }</td>
@@ -59,19 +60,25 @@
           <td>{ children3_25 }</td>
           <td>{ price3 }</td>
       </tr>
-      <tr>
+      <tr style="border-bottom:1px solid grey">
           <td>Meals</td>
           <td>65 ILS /pers</td>
           <td>{ adults_meal }</td>
           <td>{ children_meal_50 }</td>
           <td>{ children_meal_25 }</td>
-          <td>{ price_meals}</td>
+          <td>{ price_meals }</td>
       </tr>
-      <tr style="padding-top:12px">
-          <td colspan="4"></td><td colspan="2" style="text-align:right"><b>Total ILS: </b>
-              { total }
-          </td>
-      </tr>
+  
   </table>
+  <p>Comments : <br/>
+  { remarks }</p>
+  <p><b>Total price:</b> { total } ILS<br></p>
+  <p><em>
+    Free for a children under 3 years old<br/>
+        Free meal for a  children under 3 years old<br/>
+        50% for a children 4-6 years old<br/>
+        50% for the meal for a children 4-6 years old<br/>
+        25% for a children 7-12 years old<br/>
+        25% for the meal for a children 7-12 years old</em></p>
 
 </body></html>
