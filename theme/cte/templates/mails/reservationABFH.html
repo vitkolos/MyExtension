@@ -18,59 +18,59 @@
 <table width="80%">
   <tr>
     <td>
-      Start date: {{ startDate }}<br/> 
-      Nights: {{ nbOfNights }}<br/>
-      End date: {{ endDate }}
+      Start date: { startDate }<br/> 
+      Nights: { nbOfNights }<br/>
+      End date: { endDate }
     </td>
   </tr>
   </table>
 <table style="width:80%">
   <thead>
           <tr>
-              <th>Stay in:</th>
-              <th>Price for 1 night</th>
-              <th>Quantity of adults</th>
-              <th>Quantity of children (4-6)</th>
-              <th>Quantity of children (7-12)</th>
-              <th>Price (ILS)</th>
+              <td>Stay in:</td>
+              <td>Price for 1 night</td>
+              <td>Quantity of adults</td>
+              <td>Quantity of children (4-6)</td>
+              <td>Quantity of children (7-12)</td>
+              <td>Price (ILS)</td>
           </tr>
       </thead>
       <tr>
-          <th>Single room</th>
-          <th>230 ILS /pers</th>
-          <th> {{ adults1 }}</th>
-          <th></th>
-          <th></th>
-          <th>{{ price1}}</th>
+          <td>Single room</td>
+          <td>230 ILS /pers</td>
+          <td> { adults1 }</td>
+          <td></td>
+          <td></td>
+          <td>{{ price1}}</td>
       </tr>
       <tr >
-          <th>Double room (twin or couple)</th>
-          <th>140 ILS /pers</th>
-          <th>{{ adults2 }}</th>
-          <th{{ children2_50 }}</th>
-          <th{{ children2_25 }}</th>
-          <th>{{ price2 }}</th>
+          <td>Double room (twin or couple)</td>
+          <td>140 ILS /pers</td>
+          <td>{ adults2 }</td>
+          <td>{ children2_50 }</td>
+          <td>{ children2_25 }</td>
+          <td>{ price2 }</td>
       </tr>
       <tr>
-          <th>Triple or quadruple room</th>
-          <th>120 ILS /pers</th>
-          <th{{ adults3 }}</th>
-          <th>{{ children3_50 }}</th>
-          <th>{{ children3_25 }}</th>
-          <th>{{ price3 }}</th>
+          <td>Triple or quadruple room</td>
+          <td>120 ILS /pers</td>
+          <td>{ adults3 }</td>
+          <td>{ children3_50 }</td>
+          <td>{ children3_25 }</td>
+          <td>{ price3 }</td>
       </tr>
       <tr>
-          <th>Meals</th>
-          <th>65 ILS /pers</th>
-          <th>{{ adults_meal }}</th>
-          <th>{{ children_meal_50 }}</th>
-          <th>{{ children_meal_25 }}</th>
-          <th>{{ price_meals}}</th>
+          <td>Meals</td>
+          <td>65 ILS /pers</td>
+          <td>{ adults_meal }</td>
+          <td>{ children_meal_50 }</td>
+          <td>{ children_meal_25 }</td>
+          <td>{ price_meals}</td>
       </tr>
       <tr style="padding-top:12px">
-          <th colspan="4"></th><th colspan="2" style="text-align:right"><b>Total ILS: </b>
-              {{ total }}
-          </th>
+          <td colspan="4"></td><td colspan="2" style="text-align:right"><b>Total ILS: </b>
+              { total }
+          </td>
       </tr>
   </table>
 
