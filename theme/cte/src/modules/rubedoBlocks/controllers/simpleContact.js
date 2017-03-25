@@ -16,6 +16,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             from:me.contactData.email,
             subject:contactSnap.subject
         };
+        if(contactSnap.template) payload.template = contactSnap.template;
         /*var destinataires = {'Nicolas':'nicolas.rhone@gmail.com' ,'Nicolas Rhoné':'nicolas.rhone@wanadoo.fr' }*/
         delete (contactSnap.subject);
         delete (contactSnap.to);
