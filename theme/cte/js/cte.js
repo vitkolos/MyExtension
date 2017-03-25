@@ -126,7 +126,7 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	else {
 		switch(locale){
 			case 'hu': formatOfDate = 'yyyy. MMM d';longFormat='d.';break;
-			case 'de': formatOfDate = 'd. MMM yyyy';longFormat='d.';break;
+			case 'de': longFormat= 'd. MMM yyyy';formatOfDate='d.';break;
 			default : formatOfDate = 'd';
 		}
 	}
