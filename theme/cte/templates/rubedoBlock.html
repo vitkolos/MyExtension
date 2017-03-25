@@ -5,7 +5,7 @@
     <div ng-if="canDisplayBlock()">
         <h4 ng-if="block.displayTitle">{{block.title}}</h4>
         <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)" class="{{block.code}}"
-             ng-class="blockConfig.span ? 'col-sm-'+ blockConfig.span: '' "></div>
+             ng-class="(blockConfig.span && blockConfig.span<12)? 'col-sm-'+ blockConfig.span: '' "></div>
     </div>
 
 </div>
