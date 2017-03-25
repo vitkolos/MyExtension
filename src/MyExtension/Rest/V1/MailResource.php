@@ -145,7 +145,7 @@ class MailResource extends AbstractResource
     protected function buildEmailFromTemplate($fields,$template,$subject)
     {
         
-         $body =file_get_contents("http://vps112595.ovh.net".$template);
+         $body =file_get_contents('http://' . $_SERVER['HTTP_HOST']  .$template);
           foreach ($fields as $name => $content) {
             $body = preg_replace("~{".$name."}~i", $content, $body);
         }
