@@ -1,3 +1,19 @@
 {
-    "Block.Page": "Seite"
+    "Block.Page": "Seite",
+    "Block.Carte.Presence.Perm":"Pays où la communauté a une présence permanente",
+    "Block.Carte.Presence.Ponct":"Pays où la communauté fait des propositions ponctuelles",
+    "Missions.cana":"Cana : au service du couple et de la famille",
+    "Missions.netforgod":"Net for God - Fraternité Oecuménique Internationale",
+    "Missions.ados":"Mission Jeunes 14-18 ans",
+    "Missions.jeunes":"Mission Jeunes 18-30 ans",
+    "Missions.foyers":"Foyers d'étudiants",
+    "Missions.jet":"JET - Volontariat International",
+    "Block.Mail.SendMail":"Email senden",
+    "Block.Inscription.Telephone":"Telefon",
+    "InfosPratiques":"Informationen",
+    "Inscription":"Anmelden",
+    "FaireUnDon":"Spenden",
+    "Menu" : "menu",
+    "Accueil" : "Startseite",
+    "Time.At":"um"
 }

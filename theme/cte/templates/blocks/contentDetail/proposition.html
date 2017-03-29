@@ -1,6 +1,17 @@
 <script async src="/theme/cte/src/modules/rubedoBlocks/controllers/InscriptionController.js"></script>
 
-<div class=" content_border">
+<div class=" content_border"  itemscope itemtype="http://schema.org/Event">
+  <meta itemprop="image" content="{{'https://www.chemin-neuf.fr' + rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'768px',mode:'boxed'}) }}" />
+  <meta itemprop="name" content="{{fieldEntity['text']}}">
+  <meta itemprop="startDate" content="{{contentDetailCtrl.content.fields.dateDebut *1000 | date:'yyyy-MM-ddTHH:mm:ssZ' }}">
+  <meta ng-if="contentDetailCtrl.content.fields.dateFin" itemprop="endDate" content="{{contentDetailCtrl.content.fields.dateFin *1000 | date:'yyyy-MM-ddTHH:mm:ssZ' }}">
+	<meta itemprop="description" content="{{contentDetailCtrl.content.fields.summary}}">
+	<span itemprop="location" itemscope itemtype="http://schema.org/Place">
+		<meta itemprop="name" content="{{fieldEntity['positionName']}}">
+		<meta itemprop="address" content="{{contentDetailCtrl.content.fields.position.address}}">
+			
+		</span>
+	  </span>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 ">

@@ -108,21 +108,25 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	var longFormat="";//format complet de date
 	switch(locale){
 		case 'hu': longFormat = 'yyyy. MMM d.';break;
+		case 'de': longFormat = 'd. MMM yyyy';break;
 		default : longFormat = 'd MMM yyyy';
 	}
 	if (start.getFullYear() != end.getFullYear()) {
 	    formatOfDate = longFormat;
 	}
 	else if (start.getMonth() != end.getMonth()) {
-		formatOfDate = 'd MMM';
+		if (locale=='de') formatOfDate = 'd. MMM';
+		else formatOfDate = 'd MMM';
 	}
 	else  if(start.getDate() == end.getDate()){
-	    formatOfDate = 'd';
-	    isSameDay=true;
+		if (locale=='de') formatOfDate = 'd.';
+	    	else formatOfDate = 'd';
+	    	isSameDay=true;
 	}
 	else {
 		switch(locale){
 			case 'hu': formatOfDate = 'yyyy. MMM d';longFormat='d.';break;
+			case 'de': longFormat= 'd. MMM yyyy';formatOfDate='d.';break;
 			default : formatOfDate = 'd';
 		}
 	}

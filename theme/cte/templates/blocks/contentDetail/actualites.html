@@ -124,6 +124,11 @@
 
 </style>
 <div class=" content_border" itemscope itemtype="http://schema.org/NewsArticle">
+  <meta itemprop="image" content="{{'https://www.chemin-neuf.fr' + rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'768px',mode:'boxed'}) }}" />
+  <meta itemprop="author" content="{{contentDetailCtrl.content.createUser.fullName}}">
+  <meta itemprop="publisher" content="{{rubedo.current.site.author}}">
+  <meta itemprop="datePublished" content="{{contentDetailCtrl.content.createTime *1000 | date:'yyyy-MM-ddTHH:mm:ssZ' }}">
+  <meta itemprop="dateModified" content="{{contentDetailCtrl.content.lastUpdateTime *1000 | date:'yyyy-MM-ddTHH:mm:ssZ' }}">
 	<!--<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12">
@@ -147,7 +152,7 @@
 		</a>
 	</div>
 			
-<header class="container-fluid content" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'480px',mode:'boxed'})}} 480w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',mode:'boxed'})}} 1200w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1500px',mode:'boxed'})}} 1500w"
+<header class="container-fluid content" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 480w,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1600px',mode:'boxed'})}} 1200w"
 	ng-if="fieldEntity['image']"  afkl-lazy-image-options='{"background": true}'>
 	<div class="text-article container">
 		<p class='capital'>{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>

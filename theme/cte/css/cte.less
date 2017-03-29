@@ -506,14 +506,17 @@ nav a:hover,nav a:active {background-color: inherit;}
 .navbar.navbar-default.horizontal{
   z-index:10;
   position:fixed;
-  background-color:rgba(255,255,255,0.5);
+  //background-color:rgba(255,255,255,0.5);
+		background-color:white;
   width:100%;
   border: none;
 }
-.navbar-default.horizontal .navbar-nav>.active>a, .navbar-default.horizontal .navbar-nav>.active>a:hover, .navbar-default.horizontal .navbar-nav>.active>a:focus{color:white;background-color: inherit}
+.navbar-default.horizontal .navbar-nav>.active, .navbar-default.horizontal .navbar-nav>li:hover{a{color:white};background-color: grey}
+.navbar-default.horizontal .navbar-nav>.active>a, .navbar-default.horizontal .navbar-nav>.active>a:hover, .navbar-default.horizontal .navbar-nav>.active>a:focus, .navbar-default.horizontal .navbar-nav>li:hover{color:white;background-color: grey}
  @media screen and (min-width: @min_sm) {
     .horizontal .navbar-nav>li>a{padding-top:20px; padding-bottom:20px;}
  }
+	.row.first{margin-top:60px;}
  ////////////////////////////////////////////////////
     ///////////SECONDARY NAV///////////////////
 ///////////////////////////////////////////////////
@@ -894,7 +897,7 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
  .button:hover{opacity:0.8;}
 .button.rouge{background: @rouge;box-shadow: 0px 2px @rouge_shadow; color:white}
   .button.submit{border: 2px solid @rouge; color:@rouge;}
-  .button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}
+  .button.submit.disabled, .button.rouge.disabled{color:@marron; border: 2px solid @marron; cursor: default}
 
     ////////////////////////////////////////////////////
     ///////////LISTE///////////////////

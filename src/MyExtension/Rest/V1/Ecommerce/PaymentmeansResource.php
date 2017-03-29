@@ -102,6 +102,7 @@ class PaymentmeansResource extends AbstractResource
                 );
                 if($params['type']=='dons' && isset($paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"]) && $paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"] !='' ) {
                     $arrayToReturn["nativePMConfig"]["contactDonsId"] = $paymentMeans['paymentConfig']["nativePMConfig"]["contactDonsId"];
+                    $arrayToReturn["nativePMConfig"]["donationText"] = $paymentMeans['paymentConfig']["nativePMConfig"]["donationText"];
                 }
                 if($params['type']=='paf') $arrayToReturn["nativePMConfig"]["conf_paf"] = $paymentMeans['paymentConfig']['nativePMConfig']['conf_paf'];
                 return array(

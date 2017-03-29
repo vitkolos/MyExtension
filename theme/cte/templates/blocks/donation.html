@@ -5,9 +5,10 @@
                         <h3>{{contentDetailCtrl.content.fields.text}}</h3>
                         <p>{{contentDetailCtrl.content.fields.subTitle}}</p>
 
-                        <p><em ng-bind-html="rubedo.translate('Block.Dons.Website','',['%countryname%'],[donsCtrl.paymentmeans.displayName]) | unsafe">
+                        <!--<p><em ng-bind-html="rubedo.translate('Block.Dons.Website','',['%countryname%'],[donsCtrl.paymentmeans.displayName]) | unsafe">
                                 <!--Vous êtes sur le site de la communauté en France. Si vous êtes fiscalement ou administrativement rattaché à un autre pays, <a href="http://www.chemin-neuf.org/aidez-nous/faire-un-don-org/pages-de-soutien-dans-les-pays">cliquez ici </a>-->
-                                </em></p>
+                                <!--</em></p>-->
+                        <div ng-if="donsCtrl.paymentmeans.nativePMConfig.donationText" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:donsCtrl.paymentmeans.nativePMConfig.donationText}"></div>
                 </div>
                 
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==1}" ng-click="donsCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Block.Dons.Titre", "Mon don")}}
@@ -43,7 +44,7 @@
                                                 <input type="radio"  name="montant" id="montant4" value="{{contentDetailCtrl.content.fields.montant_4}}" ng-model="don.montant">
                                                             <label for="montant4" class="sexe_label dons"><span ng-if="isMonnaieBefore">{{don.monnaie}}</span>{{contentDetailCtrl.content.fields.montant_4}}<span ng-if="!isMonnaieBefore">{{don.monnaie}}</span></label>
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
-                                                            <label for="autre" class="sexe_label dons">{{rubedo.translate("Block.Inscription.Situation.Autre", "autre") | lowercase}}</label>
+                                                            <label for="autre" class="sexe_label dons">{{rubedo.translate("Block.Inscription.SituationConjugale.Autre", "autre") | lowercase}}</label>
                                                 <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder='{{rubedo.translate("Block.Inscription.SituationConjugale.Autre", "Autre") }}' ng-pattern="/^[0-9]{1,7}$/" ng-required="don.montant=='autre'">
                                                         
                                                 <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_1">

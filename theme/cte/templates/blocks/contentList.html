@@ -65,6 +65,20 @@
 							{{content.fields.text}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
 			</a>
 		</div>
+			<!--CONTACTS-->
+		<div ng-switch-when="560d2bf445205e816041ea7f">
+			<h4 class="capital">{{content.fields.text}}</h4>
+			<p ng-if="content.fields.telephone"><i class="fa fa-phone icon"></i> {{content.fields.telephone}}</p>
+			<p ng-if="content.fields.position"><i class="fa fa-map-marker icon"></i> {{content.fields.position.address}}</p>
+			<p ng-if="content.fields.email">
+				<i class="fa fa-envelope icon"></i>
+				<span style="display:inline-block" ng-init="blockConfig={'email':content.fields.email, 'name':content.fields.nom,'surname': content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
+					<span ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></span>
+				</span>
+			</p>
+				
+			
+		</div>
                                       <!--DEFAUT-->
                     <div ng-switch-default>
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
@@ -84,7 +98,7 @@
                                     <p class="list-tags" ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
                                     <span>
                                         <span ng-if="!blockConfig.hidePlace">{{content.fields.positionName}}</span><span ng-if="!blockConfig.hidePlace && content.fields.dateDebut"> - </span>
-                                        <time ng-if="content.fields.dateDebut">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}} <span ng-if="content.fields.complement_date">{{content.fields.complement_date}}</span></time>
+                                        <time ng-if="content.fields.dateDebut">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short':'':'':rubedo.current.page.locale }} <span ng-if="content.fields.complement_date">{{content.fields.complement_date}}</span></time>
                                         <time ng-if="!content.fields.dateDebut && content.fields.complement_date">{{content.fields.complement_date}}</time>
                                     </span>
                                 </h4>

@@ -6,7 +6,7 @@
 			     <input id="st" type="number" min="0" name="small_trad" ng-model="formCtrl.small_trad">
 		     </div>
 		     <div class="prix">
-			    <p>{{formCtrl.small_trad * formCtrl.stprice | number : 2}}</p>
+			    <p>{{formCtrl.small_trad * formCtrl.stprice  * (1.055) | number : 2}}</p>
 		     </div>
 		     <div class="titles">
 			    <p>Musculine 250g traditionnelle</p>
@@ -17,7 +17,7 @@
 			     <input id="so" type="number" min="0" name="small_or" ng-model="formCtrl.small_or">		     
 		     </div>
 		     <div class="prix">
-			    <p>{{formCtrl.small_or * formCtrl.soprice | number : 2}}</p>
+			    <p>{{formCtrl.small_or * formCtrl.soprice * (1.055) | number : 2}}</p>
 		     </div>
 		     <div class="titles">
 			    <p>Musculine 250g arôme naturel orange</p>
@@ -28,7 +28,7 @@
 			     <input id="bt" type="number" min="0" name="big_trad" ng-model="formCtrl.big_trad">		     
 		     </div>
 		     <div class="prix">
-			    <p>{{formCtrl.big_trad * formCtrl.btprice | number : 2}}</p>
+			    <p>{{formCtrl.big_trad * formCtrl.btprice  * (1.055) | number : 2}}</p>
 		     </div>
 		     <div class="titles">
 			    <p>Musculine 700g traditionnelle</p>
@@ -39,20 +39,20 @@
 			    <input id="bo" type="number" min="0" name="big_or" ng-model="formCtrl.big_or">
 		     </div>
 		     <div class="prix">
-			    <p>{{formCtrl.big_or * formCtrl.boprice | number : 2}}</p>
+			    <p>{{formCtrl.big_or * formCtrl.boprice * (1.055) | number : 2}}</p>
 		     </div>
 		     <div class="titles">
 			    <p>Musculine 700g arôme naturel orange</p>
 		     </div>
 	      </div>
-	      <div class="row checked">
+	      <!--<div class="row checked">
 		     <div class="prix">
 			    <p>{{formCtrl.tva() |number :2}}</p>
 		     </div>
 		     <div class="titles">
 			    <p>TVA 5.5%</p>
 		     </div>
-	      </div>
+	      </div>-->
 	      <div class="row border-bottom checked">
 		     <div class="prix">
 			    <p>{{formCtrl.fraisExp()}}</p>
@@ -100,6 +100,10 @@
 			    <div>
 				   <label for="email">Email*</label>
 				   <input type="email" name="email" ng-model="formCtrl.facture.email" required>			    
+			    </div>
+				<div ng-if="rubedo.current.user">
+				   <label for="email">Code promo</label>
+				   <input type="text" name="codePromo" ng-model="formCtrl.facture.codePromo" >			    
 			    </div>
 		     </div>
 		     
