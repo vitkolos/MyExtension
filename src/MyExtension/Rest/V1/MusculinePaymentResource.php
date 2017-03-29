@@ -115,7 +115,7 @@ class MusculinepaymentResource extends AbstractResource {
     else {
         $query['night_phone_b'] = $params['facturation']['telephone'];
     }
-
+    if(isset($params['facturation']['codePromo'])) {$query['custom'] =$params['facturation']['codePromo']; }
 
     // Prepare query string
     $query_string = http_build_query($query);
