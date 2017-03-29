@@ -99,7 +99,7 @@ class MusculinepaymentResource extends AbstractResource {
     $query['notify_url'] = 'http://musculine.fr';
     $query['cmd'] = '_cart';
     $query['upload'] = '1';
-    $query['business'] ='ateliers.dombes-facilitator@chemin-neuf.org';
+    $query['business'] ='ccn.ateliers.dombes-facilitator@wanadoo.fr';
     $query['address_override'] = '1';
     $query['first_name'] = $params['facturation']['surname'];
     $query['last_name'] =$params['facturation']['name'];
