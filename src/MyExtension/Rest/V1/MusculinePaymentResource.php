@@ -99,7 +99,7 @@ class MusculinepaymentResource extends AbstractResource {
     $query['notify_url'] = 'http://musculine.fr';
     $query['cmd'] = '_cart';
     $query['upload'] = '1';
-    $query['business'] ='ateliers.dombes@chemin-neuf.org';
+    $query['business'] ='ateliers.dombes-facilitator@chemin-neuf.org';
     $query['address_override'] = '1';
     $query['first_name'] = $params['facturation']['surname'];
     $query['last_name'] =$params['facturation']['name'];
@@ -139,7 +139,7 @@ class MusculinepaymentResource extends AbstractResource {
      
     return array(
             'success' => true,
-            'url' =>'https://www.paypal.com/cgi-bin/webscr?' . $query_string,
+            'url' =>'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string,
             'message' => $resultcreate['success']
         );
 
