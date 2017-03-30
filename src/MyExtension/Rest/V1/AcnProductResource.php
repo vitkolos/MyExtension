@@ -132,7 +132,8 @@ class AcnproductResource extends AbstractResource
 												$filters = Filter::factory()
                 ->addFilter(Filter::factory('Uid')->setValue($params['codeBarre']));
             $order = $this->getOrdersCollection()->findOne($filters);
-												$content = $order;
+												if(isset($params['status'])) $order["status"] = $params['status'];
+												$content = $this->getOrdersCollection()->update($order);
 								}
         return [
             'success' => true,
