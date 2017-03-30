@@ -63,7 +63,6 @@ class MusculinepaymentResource extends AbstractResource {
 
 
         
-    $query['shipping_1'] = $fraisExp;
     $query['return'] = 'http://musculine.fr';
 
     $query['notify_url'] = 'http://musculine.fr';
@@ -131,6 +130,7 @@ class MusculinepaymentResource extends AbstractResource {
         elseif ($poids>2000) {
             $fraisExp =10.93;
         }
+    $query['shipping_1'] = $fraisExp;
 
     // Prepare query string
     $query_string = http_build_query($query);
