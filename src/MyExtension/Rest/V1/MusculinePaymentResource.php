@@ -57,40 +57,7 @@ class MusculinepaymentResource extends AbstractResource {
     $query['currency_code'] = 'EUR'; //devise
     $query['lc'] = 'FR'; // langue
     
-        /*quantités et prix des produits*/
-    $counter = 1;
-    $poids = 0;
-    foreach ($params['products'] as $sku => $product) {
-        if($product["quantite"]>0){
-            $query['item_name_'.$counter] = $product["titre"] ;
-            $query['quantity_'.$counter] =$product["quantite"];
-            $query['amount_'.$counter] = round($product["prix"],2);
-            $poids+= $product["quantite"] * $product["poids"];
-            $query['tax_rate_'.$counter] = 5.5;
-            //if($isPromo) $query['discount_rate_'.$counter] = 10;
-            $counter++;
-        };
-    };
     
-    /*frais d'expédition*/
-        $fraisExp = 0;
-        if ($poids>0 AND $poids<=500) {
-           $fraisExp = 6.13;
-        }
-        elseif ($poids>500 AND $poids<=750) {
-            $fraisExp = 6.89;
-        }
-        elseif ($poids>750 AND $poids<=1000) {
-            $fraisExp =7.51;
-        }
-        elseif ($poids>1000 AND $poids<=2000) {
-            $fraisExp =8.50;
-        }
-        elseif ($poids>2000) {
-            $fraisExp =10.93;
-        }
-    $query['shipping_1'] = $fraisExp;
-   
 
     /*infos de facturation*/
 
@@ -117,7 +84,7 @@ class MusculinepaymentResource extends AbstractResource {
     else {
         $query['night_phone_b'] = $params['facturation']['telephone'];
     }
-    /*if(isset($params['facturation']['codePromo'])) {
+    if(isset($params['facturation']['codePromo'])) {
         $query['custom'] =$params['facturation']['codePromo'];
         $isPromo = false;
         $wasFiltered = AbstractCollection::disableUserFilter(true);
@@ -128,9 +95,41 @@ class MusculinepaymentResource extends AbstractResource {
         }
         
         $wasFiltered = AbstractCollection::disableUserFilter(false);
-        //58dd015024564055068b82c7
-    }*/
+    }
     
+        /*quantités et prix des produits*/
+    $counter = 1;
+    $poids = 0;
+    foreach ($params['products'] as $sku => $product) {
+        if($product["quantite"]>0){
+            $query['item_name_'.$counter] = $product["titre"] ;
+            $query['quantity_'.$counter] =$product["quantite"];
+            $query['amount_'.$counter] = round($product["prix"],2);
+            $poids+= $product["quantite"] * $product["poids"];
+            $query['tax_rate_'.$counter] = 5.5;
+            if($isPromo) $query['discount_rate_'.$counter] = 10;
+            $counter++;
+        };
+    };
+    
+    /*frais d'expédition*/
+        $fraisExp = 0;
+        if ($poids>0 AND $poids<=500) {
+           $fraisExp = 6.13;
+        }
+        elseif ($poids>500 AND $poids<=750) {
+            $fraisExp = 6.89;
+        }
+        elseif ($poids>750 AND $poids<=1000) {
+            $fraisExp =7.51;
+        }
+        elseif ($poids>1000 AND $poids<=2000) {
+            $fraisExp =8.50;
+        }
+        elseif ($poids>2000) {
+            $fraisExp =10.93;
+        }
+    $query['shipping_1'] = $fraisExp;
 
     // Prepare query string
     $query_string = http_build_query($query);
