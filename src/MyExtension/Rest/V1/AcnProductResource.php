@@ -99,32 +99,42 @@ class AcnproductResource extends AbstractResource
  
     public function postAction($params)
     {
-								$contentsService = Manager::getService('ContentsCcn');
-
-        $codeBarre=$params['codeBarre'];
-        			//filter on products
-								$productFilter = Filter::factory('Value')->setName('isProduct')->setValue(true);
-								//filter on product sku or variations sku
-								$codeBarreFilter = Filter::Factory('Or')->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre))
-												->addFilter(Filter::factory('Value')->setName('productProperties.variations.0.sku')->setValue($codeBarre))
-												->addFilter(Filter::factory('Value')->setName('productProperties.variations.1.sku')->setValue($codeBarre))
-												->addFilter(Filter::factory('Value')->setName('productProperties.variations.2.sku')->setValue($codeBarre))
-												->addFilter(Filter::factory('Value')->setName('productProperties.variations.3.sku')->setValue($codeBarre))
-												->addFilter(Filter::factory('Value')->setName('productProperties.variations.4.sku')->setValue($codeBarre))
-												->addFilter(Filter::factory('Value')->setName('productProperties.variations.5.sku')->setValue($codeBarre))
-												->addFilter(Filter::factory('Value')->setName('productProperties.variations.6.sku')->setValue($codeBarre))
-												->addFilter(Filter::factory('Value')->setName('productProperties.variations.7.sku')->setValue($codeBarre));
-
-								$findFilter = Filter::Factory('And')->addFilter($productFilter)->addFilter($codeBarreFilter);
-								$content = $contentsService->findOne($findFilter,true,false);
-								foreach($content['productProperties']['variations'] as &$variation) {
-												if($variation['sku']==$codeBarre) $variation['stock'] = $params['stock'] ?  $params['stock'] : 0;
+								//change product stock
+								if(!isset($params["status"])) {
+												$contentsService = Manager::getService('ContentsCcn');
+				
+												$codeBarre=$params['codeBarre'];
+															//filter on products
+												$productFilter = Filter::factory('Value')->setName('isProduct')->setValue(true);
+												//filter on product sku or variations sku
+												$codeBarreFilter = Filter::Factory('Or')->addFilter(Filter::factory('Value')->setName('productProperties.sku')->setValue($codeBarre))
+																->addFilter(Filter::factory('Value')->setName('productProperties.variations.0.sku')->setValue($codeBarre))
+																->addFilter(Filter::factory('Value')->setName('productProperties.variations.1.sku')->setValue($codeBarre))
+																->addFilter(Filter::factory('Value')->setName('productProperties.variations.2.sku')->setValue($codeBarre))
+																->addFilter(Filter::factory('Value')->setName('productProperties.variations.3.sku')->setValue($codeBarre))
+																->addFilter(Filter::factory('Value')->setName('productProperties.variations.4.sku')->setValue($codeBarre))
+																->addFilter(Filter::factory('Value')->setName('productProperties.variations.5.sku')->setValue($codeBarre))
+																->addFilter(Filter::factory('Value')->setName('productProperties.variations.6.sku')->setValue($codeBarre))
+																->addFilter(Filter::factory('Value')->setName('productProperties.variations.7.sku')->setValue($codeBarre));
+				
+												$findFilter = Filter::Factory('And')->addFilter($productFilter)->addFilter($codeBarreFilter);
+												$content = $contentsService->findOne($findFilter,true,false);
+												foreach($content['productProperties']['variations'] as &$variation) {
+																if($variation['sku']==$codeBarre) $variation['stock'] = $params['stock'] ?  $params['stock'] : 0;
+												}
+												AbstractCollection::disableUserFilter(true);
+				
+												$result = $contentsService->update($content, array(),false);
+												AbstractCollection::disableUserFilter(false);
 								}
-        AbstractCollection::disableUserFilter(true);
-
-        $result = $contentsService->update($content, array(),false);
-        AbstractCollection::disableUserFilter(false);
-
+								// change order status
+								else {
+												$filters = Filter::factory()
+                ->addFilter(Filter::factory('Uid')->setValue($params['codeBarre']));
+            $order = $this->getOrdersCollection()->findOne($filters);
+												if(isset($params['status'])) $order["status"] = $params['status'];
+												$content = $this->getOrdersCollection()->update($order);
+								}
         return [
             'success' => true,
             'content' => $content,
@@ -177,19 +187,23 @@ class AcnproductResource extends AbstractResource
     protected function definePost(VerbDefinitionEntity &$entity)
     {
         $entity
-	    ->setDescription('Patch product stock')
+	    ->setDescription('Patch product stock / change order status')
             ->addInputFilter(
                 (new FilterDefinitionEntity())
-                ->setDescription('Code barre / sku')
+                ->setDescription('Code barre  / orderID')
                 ->setKey('codeBarre')
-		->setRequired()
+																->setRequired()
             )
 	    ->addInputFilter(
                 (new FilterDefinitionEntity())
                 ->setDescription('Nouveau stock du produit')
                 ->setKey('stock')
 																->setFilter('int')
-		//->setRequired()
+            )
+					->addInputFilter(
+                (new FilterDefinitionEntity())
+                ->setDescription('Nouveau statut de commande')
+                ->setKey('status')
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())

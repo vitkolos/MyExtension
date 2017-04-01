@@ -101,9 +101,13 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
                             MUS250O: me.small_or,
                             MUS700T: me.big_trad,
                             MUS700O: me.big_or
-                        }
+                        },
+																								"totalPrice":me.totalPrice
                     }
             };
+												if (me.facture.codePromo && me.facture.codePromo != '') {
+																payLoad.fields.codePromo = me.facture.codePromo;
+												}
 
             
             

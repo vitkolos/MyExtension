@@ -58,7 +58,46 @@ class MusculinepaymentResource extends AbstractResource {
     $query['lc'] = 'FR'; // langue
     
     
-    /*quantités et prix des produits*/
+
+    /*infos de facturation*/
+
+
+        
+    $query['return'] = 'http://musculine.fr';
+
+    $query['notify_url'] = 'http://musculine.fr';
+    $query['cmd'] = '_cart';
+    $query['upload'] = '1';
+    $query['business'] ='ateliers.dombes@chemin-neuf.org';
+    $query['address_override'] = '1';
+    $query['first_name'] = $params['facturation']['surname'];
+    $query['last_name'] =$params['facturation']['name'];
+    $query['email'] =$params['facturation']['email'];
+    $query['address1'] = $params['facturation']['address'];
+    $query['city'] = $params['facturation']['city'];
+    //$query['tax_cart']= 55;
+    /*$query['state'] = $params['facturation']['state'];*/
+    $query['zip'] = $params['facturation']['cp'];
+    if($params['facturation']['telephone'][0] == 0) {
+        $query['night_phone_b'] = substr($params['facturation']['telephone'],1);
+    }
+    else {
+        $query['night_phone_b'] = $params['facturation']['telephone'];
+    }
+    if(isset($params['facturation']['codePromo'])) {
+        $query['custom'] =$params['facturation']['codePromo'];
+        $isPromo = false;
+        $wasFiltered = AbstractCollection::disableUserFilter(true);
+        $contentsService = Manager::getService("ContentsCcn");
+        $codePromos = $contentsService->findById("58dd015024564055068b82c7",false,false)['fields'];
+        foreach ($codePromos["multi"] as $codePromo){
+            if($codePromo == $params['facturation']['codePromo']) {$isPromo=true; break;}
+        }
+        
+        $wasFiltered = AbstractCollection::disableUserFilter(false);
+    }
+    
+        /*quantités et prix des produits*/
     $counter = 1;
     $poids = 0;
     foreach ($params['products'] as $sku => $product) {
@@ -68,6 +107,7 @@ class MusculinepaymentResource extends AbstractResource {
             $query['amount_'.$counter] = round($product["prix"],2);
             $poids+= $product["quantite"] * $product["poids"];
             $query['tax_rate_'.$counter] = 5.5;
+            if($isPromo) $query['discount_rate_'.$counter] = 10;
             $counter++;
         };
     };
@@ -89,10 +129,6 @@ class MusculinepaymentResource extends AbstractResource {
         elseif ($poids>2000) {
             $fraisExp =10.93;
         }
-    /*infos de facturation*/
-
-
-        
     $query['shipping_1'] = $fraisExp;
     $query['return'] = 'http://musculine.fr';
 
