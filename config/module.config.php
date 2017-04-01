@@ -299,6 +299,21 @@ return array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
            ),
+											'foi' => array(
+                'label' => 'F.O.I.',
+                'basePath' => realpath(__DIR__ . '/../theme/foi'),
+                'css' => array(
+                    '/css/foi.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '../js/lazy-image.js',
+                    '/js/foi.js'
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
+           ),
         ),
     ),
     
