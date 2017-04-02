@@ -29,6 +29,11 @@ h2.titre:after{
 		content:''; border-bottom: 2px solid @grey
 }
 /*RESPONSIVE FIXES*/
+@media screen and (max-width: @min_xs){
+    [class*="col-xs-"]{width:100%;}
+    [class*="col-xs-pull-"]{right:0;}
+    [class*="col-xs-push-"]{left:0;}
+}
 /*buttons*/
 .btn-default{background-color: @main; color:white; border-color: @main;}
 .btn-default:hover{background-color: white; color:@main; border-color:@main}
@@ -69,7 +74,7 @@ h2.titre:after{
 		h4, h4:hover{color:@txt !important; font-weight: 700;}
 }
 .summary{
-		height: 120px; overflow-y: hidden; display: inline-block; padding: 15px 10px;
+		height: 120px; overflow-y: hidden; display: inline-block; padding: 5px 10px;
 		h4, h4:hover{color:@txt !important; font-weight: 700;}
 		border: 2px solid #464646;
 }
