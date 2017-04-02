@@ -23,24 +23,23 @@
                 <!--Transparent BG--->
                 <div  ng-switch-when="2">
                     <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" ng-class="contentListCtrl.columns" >
-                        <div>
-                            <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
+                        <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
+                            <div style="position:relative">
                                 <img class="media-object pull-left img-responsive" ng-if="content.fields.image"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'450px',width:'400px',mode:'crop'}) }}"
                              alt="{{ content.fields.text }}"/>
-                            </a>
-                            <div class="transparent">
-                                <h4 class="media-heading">
-                                    <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
-                                        {{content.fields.text }}
-                                    </a>
-                                    <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
-                                        {{content.fields.text }} ( {{rubedo.translate("Label." + content.status.toLowerCase())}} )
-                                    </a>
+                                <div class="transparent">
+                                    <h4 class="media-heading" ng-if="!fieldEditMode" >
+                                            {{content.fields.text }}
+                                    </h4>
                                     <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                                </h4>
+                                    <p>
+                                        <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                                    </p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
+
                         
                         
                         <a ng-if="!contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl }}">
