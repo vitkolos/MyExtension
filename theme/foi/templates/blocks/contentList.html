@@ -24,7 +24,7 @@
                 <div  ng-switch-when="2">
                     <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" ng-class="contentListCtrl.columns" >
                         <a ng-if="!fieldEditMode&&!contentListCtrl.isFOContributeMode" ng-href="{{ content.detailPageUrl }}">
-                            <div style="position:relative">
+                            <div style="position:relative;display: inline-block">
                                 <img class="media-object pull-left img-responsive" ng-if="content.fields.image"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'450px',width:'400px',mode:'crop'}) }}"
                              alt="{{ content.fields.text }}"/>
