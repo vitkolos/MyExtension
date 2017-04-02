@@ -14,10 +14,14 @@ body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: 'PT Sans','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:@bg;}
 p{color:@txt; font-size:16px}
 
+
+/*CLASSES UTILES*/
+.bg-main{background-color: @main}
 /*RESPONSIVE FIXES*/
 /*buttons*/
-.btn-default{background-color: @main; color:white; border: none;}
-.btn.btn-primary{background-color: @main; color:white; border: non}
+.btn-default{background-color: @main; color:white; border-color: @main;}
+.btn-default:hover{background-color: white; color:@main; border-color:@main}
+.btn.btn-primary{background-color: @main; color:white;  border-color: @main;}
 
 /*NAVIGATION*/
 .navbar-brand{height: auto}
