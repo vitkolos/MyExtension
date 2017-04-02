@@ -2,21 +2,40 @@
 @main: #ff3100;
 @bg: #dedede;
 @txt:#252525;
+/*BOOTSTRAP VARIABLES*/
+@width_xxs:420px;
+@min_xs:500px;
+@min_sm:768px;
+@min_md:992px;
+@min_lg:1200px;
+
 /*GENERAL DEFINITIONS*/
 body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: 'PT Sans','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:@bg;}
 p{color:@txt; font-size:16px}
 
 /*RESPONSIVE FIXES*/
-
+/*buttons*/
+.btn-default{background-color: @main; color:white; border: none;}
+.btn.btn-primary{background-color: @main; color:white; border: non}
 
 /*NAVIGATION*/
+.navbar-brand{height: auto}
 .nav.navbar-nav{
 		background-color: @main;
-		a{color:white; text-transform: uppercase;}
+		a{color:white; text-transform: uppercase; font-weight: 700;}
 }
 .nav>li>a:hover, .nav>li>a:focus {
     text-decoration: none;
     background-color: transparent;
 				background-color: white; color:@main;
 }
+@media (min-width: @min_sm) {
+		.nav.navbar-nav>li>a {
+    padding: 20px;
+		}
+}
+
+/*AUTHENTICATION*/
+
+
