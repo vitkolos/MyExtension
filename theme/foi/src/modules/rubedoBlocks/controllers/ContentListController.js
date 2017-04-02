@@ -15,7 +15,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     }
     var options = {
         start: me.start,
-        limit: me.limit
+        limit: me.limit,
+								 'fields[]' : ["text","summary","image"]
     };
     if(config.singlePage){
         options.detailPageId = config.singlePage;
