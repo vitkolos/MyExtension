@@ -18,10 +18,11 @@ p{color:@txt; font-size:16px}
 
 /*CLASSES UTILES*/
 .bg-main{background-color: @main}
-h3.titre{font-weight: 700; text-transform: uppercase;}
-h3.titre:after{
-		content:''; border-bottom: 2px solid @grey
+.titre{
+		position: relative; border-bottom: 5px solid @grey; margin: 20px 0;
+		h3{font-weight: 700; text-transform: uppercase; padding: 0 15px; border-bottom: 5px solid @bg; position:absolute; bottom:0}
 }
+
 h2.titre{font-weight: 700; text-transform: uppercase; color:white}
 h2.titre:after{
 		content:''; border-bottom: 2px solid @grey
