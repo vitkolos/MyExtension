@@ -68,6 +68,26 @@
 		     
 	      </div>
 	      
+		  <div class="row" ng-if="rubedo.current.user">
+		     <h3 class="capital">
+			    Connexion
+		     </h3>
+			 <div ng-init="blockConfig={'displayMode':'form', 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':'Envoyer un mail'}">
+					<div ng-include="rubedo.blockTemplateResolver.getTemplate('authentication',blockConfig)"></div>
+				</div>
+			 <div class="infos">
+			    <div>
+				   <label for="login">Email*</label>
+				   <input type="email" name="login" ng-model="formCtrl.user.login" required>			    
+			    </div>
+			    <div>
+				   <label for="password">Mot de passe*</label>
+				   <input type="password" name="password" ng-model="formCtrl.user.password" required>
+			    </div>
+			 </div>
+			  <button ng-click="">Se connecter</button>
+					 
+		  </div>
 	      <div class="row">
 		     <h3 class="capital">
 			    Adresse de livraison
@@ -93,6 +113,18 @@
 				   <label for="cp">Code postal*</label>
 				   <input type="text" name="cp" ng-model="formCtrl.facture.cp" required>			    
 			    </div>
+				<div>
+				   <label for="countryname">Pays*</label>
+				   <input type="text" name="countryname" ng-model="formCtrl.facture.countryname" disabled>			    
+			    </div>
+				<!--<div ng-if="rubedo.current.user">
+				   <label for="country">Pays*</label>
+				   <select id="country"
+                                                   ng-model="formCtrl.facture.country"
+                                                   ng-options="c['alpha-2'] as c.name for c in formCtrl.countriesArray"
+                                                   required
+                                                    ></select>
+			    </div>-->
 			    <div>
 				   <label for="telephone">Téléphone</label>
 				   <input type="text" name="telephone" ng-model="formCtrl.facture.telephone" ng-pattern="/^\+?[0-9 ]+$/">			    
@@ -103,7 +135,7 @@
 			    </div>
 				<div ng-if="rubedo.current.user">
 				   <label for="email">Code promo</label>
-				   <input type="text" name="codePromo" ng-model="formCtrl.facture.codePromo" >			    
+				   <input type="text" name="codePromo" ng-model="formCtrl.facture.codePromo" >
 			    </div>
 		     </div>
 		     
