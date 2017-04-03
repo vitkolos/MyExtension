@@ -9,6 +9,10 @@
 @min_sm:768px;
 @min_md:992px;
 @min_lg:1200px;
+@media screen and (min-width: @min_sm) {
+		h1 {font-size: 48px;}
+}
+
 
 /*GENERAL DEFINITIONS*/
 body{font-size:16px; min-height:100%; line-height: 1.4em }
@@ -136,7 +140,7 @@ header.content{
 		background-position: center center;
 		background-attachment: scroll;
 		background-size: cover;
-		h1,h2,h3,h4,h5,p{color:white};
+		h1,h2,h3,h4,h5,p{color:white; text-shadow: 2.5px 2.5px 2.5px rgba(0,0,0,.33)};
 		height:320px;
 		margin-bottom:24px;
 		line-height: 320px;
