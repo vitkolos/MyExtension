@@ -68,9 +68,7 @@ class MusculinepaymentResource extends AbstractResource {
     $query['notify_url'] = 'http://musculine.fr';
     $query['cmd'] = '_cart';
     $query['upload'] = '1';
-    //$query['business'] ='ateliers.dombes@chemin-neuf.org';
-        $query['business'] ='nicolas.rhone@chemin-neuf.org';
-
+    $query['business'] ='ateliers.dombes@chemin-neuf.org';
     $query['address_override'] = '1';
     $query['first_name'] = $params['facturation']['surname'];
     $query['last_name'] =$params['facturation']['name'];
@@ -92,9 +90,7 @@ class MusculinepaymentResource extends AbstractResource {
         $isPromo = false;
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
-        
-        $codePromos = $contentsService->findById("58e255609b1bde181a00003b",false,false)['fields']; 
-        //$codePromos = $contentsService->findById("58dd015024564055068b82c7",false,false)['fields']; //for master
+        $codePromos = $contentsService->findById("58dd015024564055068b82c7",false,false)['fields'];
         foreach ($codePromos["multi"] as $codePromo){
             if($codePromo == $params['facturation']['codePromo']) {$isPromo=true; break;}
         }
@@ -112,7 +108,7 @@ class MusculinepaymentResource extends AbstractResource {
             $query['amount_'.$counter] = round($product["prix"],2);
             $poids+= $product["quantite"] * $product["poids"];
             $query['tax_rate_'.$counter] = 5.5;
-            //if($isPromo) $query['discount_rate_'.$counter] = 10;
+            if($isPromo) $query['discount_rate_'.$counter] = 10;
             $counter++;
         };
     };
@@ -158,7 +154,7 @@ class MusculinepaymentResource extends AbstractResource {
      
     return array(
             'success' => true,
-            'url' =>'https://www.sandbox.paypal.com/cgi-bin/webscr?' . $query_string,
+            'url' =>'https://www.paypal.com/cgi-bin/webscr?' . $query_string,
             'message' => $resultcreate['success']
         );
 
