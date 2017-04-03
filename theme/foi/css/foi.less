@@ -22,7 +22,8 @@ p{color:@txt; font-size:16px}
 		position: relative; border-bottom: 5px solid @grey; margin: 20px 15px;
 		h3{font-weight: 700; text-transform: uppercase; padding-right:25px; background-color:@bg; position:absolute; bottom:0; margin-bottom:-10px;}
 		h2{color:white; font-weight: 700; text-transform: uppercase; padding-right :25px; background-color:@main; position:absolute; bottom:0; margin-bottom:-10px;}
-		ol{position: absolute; bottom: 0; margin-bottom: -10px; background-color:@bg; padding-right:25px; a{color: @txt}}
+		ol{position: absolute; bottom: 0; margin-bottom: -10px; background-color:@bg; padding: 0 25px 0 0; a{color: @txt; font-weight: 700;}}
+		.breadcrumb>li+li:before{color: @txt}
 }
 
 h2.titre{font-weight: 700; text-transform: uppercase; color:white}
@@ -126,4 +127,5 @@ ul.presentation{
 		background-color: rgba(194,194,194,0.75);
 		list-style-type:none;
 		li {float: left; height:45px; line-height:30px; padding: 5px 0; span{line-height: 1em; display: inline-block;}text-align: center; width:33.3333%; a{font-weight: 700; color: white; text-transform: uppercase; text-decoration: none; } border-top: 2px solid @main}
+		li+li{border-left: 1px solid @txt;}
 }
