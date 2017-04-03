@@ -89,7 +89,9 @@ class MusculinepaymentResource extends AbstractResource {
         $isPromo = false;
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
-        $codePromos = $contentsService->findById("58dd015024564055068b82c7",false,false)['fields'];
+        
+        $codePromos = $contentsService->findById("58e255609b1bde181a00003b",false,false)['fields']; 
+        //$codePromos = $contentsService->findById("58dd015024564055068b82c7",false,false)['fields']; //for master
         foreach ($codePromos["multi"] as $codePromo){
             if($codePromo == $params['facturation']['codePromo']) {$isPromo=true; break;}
         }
@@ -130,28 +132,6 @@ class MusculinepaymentResource extends AbstractResource {
             $fraisExp =10.93;
         }
     $query['shipping_1'] = $fraisExp;
-    $query['return'] = 'http://musculine.fr';
-
-    $query['notify_url'] = 'http://musculine.fr';
-    $query['cmd'] = '_cart';
-    $query['upload'] = '1';
-    $query['business'] ='nicolas.rhone@chemin-neuf.org';
-    $query['address_override'] = '1';
-    $query['first_name'] = $params['facturation']['surname'];
-    $query['last_name'] =$params['facturation']['name'];
-    $query['email'] =$params['facturation']['email'];
-    $query['address1'] = $params['facturation']['address'];
-    $query['city'] = $params['facturation']['city'];
-    //$query['tax_cart']= 55;
-    /*$query['state'] = $params['facturation']['state'];*/
-    $query['zip'] = $params['facturation']['cp'];
-    if($params['facturation']['telephone'][0] == 0) {
-        $query['night_phone_b'] = substr($params['facturation']['telephone'],1);
-    }
-    else {
-        $query['night_phone_b'] = $params['facturation']['telephone'];
-    }
-    if(isset($params['facturation']['codePromo'])) {$query['custom'] =$params['facturation']['codePromo']; }
 
     // Prepare query string
     $query_string = http_build_query($query);
