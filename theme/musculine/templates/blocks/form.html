@@ -95,7 +95,7 @@
 			    </div>
 				<div ng-if="rubedo.current.user">
 				   <label for="country">Pays*</label>
-				   <select class="form-control" id="country"
+				   <select id="country"
                                                    ng-model="formCtrl.facture.country"
                                                    ng-options="c['alpha-2'] as c.name for c in formCtrl.countriesArray"
                                                    required
