@@ -68,14 +68,14 @@
 		     
 	      </div>
 	      
-		  <div class="row" ng-if="rubedo.current.user">
+		  <div class="row" >
 		     <h3 class="capital">
 			    Connexion
 		     </h3>
 			 <div ng-init="blockConfig={'displayMode':'form', 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':'Envoyer un mail'}">
 					<div ng-include="rubedo.blockTemplateResolver.getTemplate('authentication',blockConfig)"></div>
 				</div>
-			 <div class="infos">
+			 <!--<div class="infos">
 			    <div>
 				   <label for="login">Email*</label>
 				   <input type="email" name="login" ng-model="formCtrl.user.login" required>			    
@@ -85,7 +85,7 @@
 				   <input type="password" name="password" ng-model="formCtrl.user.password" required>
 			    </div>
 			 </div>
-			  <button ng-click="">Se connecter</button>
+			  <button ng-click="">Se connecter</button>-->
 					 
 		  </div>
 	      <div class="row">
