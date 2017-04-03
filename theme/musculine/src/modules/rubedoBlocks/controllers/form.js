@@ -11,6 +11,8 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
     );
     $scope.Math = Math;
     me.facture={};
+    me.facture.countryname="FRANCE";
+    me.facture.country="FR";
     me.expedition={};
     // get prices of products
     me.stprice = 0;
