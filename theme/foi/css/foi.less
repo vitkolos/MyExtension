@@ -61,7 +61,25 @@ h2.titre:after{
     padding: 20px;
 		}
 }
-
+.nav input{background-color:transparent !important}
+.nav inputform-control::focus{
+		border-color: white;
+		box-shadow: none;
+}
+.nav input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    white;
+}
+.nav input:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    white;
+   opacity:  1;
+}
+.nav input::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    white;
+   opacity:  1;
+}
+.nav input:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color: white;
+}
 /*AUTHENTICATION*/
 /*HOME PAGE*/
 .dossiers{
