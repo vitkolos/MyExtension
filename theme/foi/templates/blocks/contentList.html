@@ -14,7 +14,7 @@
             ng-click="contentListCtrl.launchFOContribute()">
         <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate('Block.ContentList.Label.Add','add content')}}
     </button>
-    <div class="row">
+    <div class="row ">
         <div ng-attr-lr-infinite-scroll="loadMoreContents"
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle">
@@ -22,9 +22,9 @@
             <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-switch="blockConfig.columns">
                 <!--Transparent BG--->
                 <div  ng-switch-when="2">
-                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="col-xs-6 " ng-class="contentListCtrl.columns" >
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList col-xs-6 " ng-class="contentListCtrl.columns" >
                         <a ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
-                            <div style="position:relative;display: inline-block">
+                            <div  style="position:relative;display: inline-block">
                                 <img class="media-object pull-left img-responsive" ng-if="content.fields.image"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'450px',width:'400px',mode:'crop'}) }}"
                              alt="{{ content.fields.text }}"/>
@@ -46,7 +46,7 @@
                 </div>
                 <!--normal-->
                 <div ng-switch-default>
-                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="col-xs-6 " ng-class="contentListCtrl.columns" >
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList col-xs-6 " ng-class="contentListCtrl.columns" >
                         <a ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
                             <img class="media-object pull-left img-responsive" ng-if="content.fields.image && !contentListCtrl.titleOnly"
                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'300px',width:'450px',mode:'crop'}) }}"
