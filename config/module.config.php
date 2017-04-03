@@ -309,7 +309,6 @@ return array(
                 'js' => array(
                     '../js/lazy-image.js',
                     '/js/foi.js',
-																				 '../js/blocks.js',
                 ),
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
