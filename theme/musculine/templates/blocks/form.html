@@ -72,17 +72,20 @@
 		     <h3 class="capital">
 			    Connexion
 		     </h3>
+			 <div ng-init="blockConfig={'displayMode':'form', 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':'Envoyer un mail'}">
+					<div ng-include="rubedo.blockTemplateResolver.getTemplate('authentication',blockConfig)"></div>
+				</div>
 			 <div class="infos">
 			    <div>
-				   <label for="name">Email*</label>
-				   <input type="email" name="name" ng-model="formCtrl.facture.name" required>			    
+				   <label for="login">Email*</label>
+				   <input type="email" name="login" ng-model="formCtrl.user.login" required>			    
 			    </div>
 			    <div>
-				   <label for="surname">Mot de passe*</label>
-				   <input type="password" name="surname" ng-model="formCtrl.facture.surname" required>
+				   <label for="password">Mot de passe*</label>
+				   <input type="password" name="password" ng-model="formCtrl.user.password" required>
 			    </div>
 			 </div>
-			  <button></button>
+			  <button ng-click="">Se connecter</button>
 					 
 		  </div>
 	      <div class="row">
