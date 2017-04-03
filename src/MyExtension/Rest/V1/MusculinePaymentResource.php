@@ -111,7 +111,7 @@ class MusculinepaymentResource extends AbstractResource {
             $query['amount_'.$counter] = round($product["prix"],2);
             $poids+= $product["quantite"] * $product["poids"];
             $query['tax_rate_'.$counter] = 5.5;
-            if($isPromo) $query['discount_rate_'.$counter] = 10;
+            //if($isPromo) $query['discount_rate_'.$counter] = 10;
             $counter++;
         };
     };
