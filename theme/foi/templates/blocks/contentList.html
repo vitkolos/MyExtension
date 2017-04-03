@@ -1,0 +1,78 @@
+<div ng-controller="ContentListController as contentListCtrl">
+    <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
+            ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
+            ng-model="contentListCtrl.selectedManualType"></select>
+    <button ng-if="contentListCtrl.canAddToList()"
+            title="{{rubedo.translate('Block.ContentList.Label.Add','add content')}}"
+            class="btn btn-default"
+            ng-click="contentListCtrl.launchContribute()">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
+    <button ng-if="!contentListCtrl.canAddToList()&&contentListCtrl.isFOContributeMode&&contentListCtrl.editorPageUrl"
+            title="{{rubedo.translate('Block.ContentList.Label.Add','add content')}}"
+            class="btn btn-default"
+            ng-click="contentListCtrl.launchFOContribute()">
+        <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate('Block.ContentList.Label.Add','add content')}}
+    </button>
+    <div class="row ">
+        <div ng-attr-lr-infinite-scroll="loadMoreContents"
+             ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
+             ng-style="contentListCtrl.blockStyle">
+            <!--<div id="infiniteScrollCtrl">-->
+            <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-switch="blockConfig.columns">
+                <!--Transparent BG--->
+                <div  ng-switch-when="2">
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList col-xs-6 " ng-class="contentListCtrl.columns" >
+                        <a ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
+                            <div  style="position:relative;display: inline-block">
+                                <img class="media-object pull-left img-responsive" ng-if="content.fields.image"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'450px',width:'400px',mode:'crop'}) }}"
+                             alt="{{ content.fields.text }}"/>
+                                <div class="transparent">
+                                    <h4 class="media-heading" ng-if="!fieldEditMode" >
+                                            {{content.fields.text }}
+                                    </h4>
+                                    <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                                    <p>
+                                        <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                            {{rubedo.translate('Block.ContentList.Label.Preview','Preview detail')}}
+                        </a>
+                    </div>
+                </div>
+                <!--normal-->
+                <div ng-switch-default>
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList col-xs-6 " ng-class="contentListCtrl.columns" >
+                        <a ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
+                            <div>
+                                <img class="media-object pull-left img-responsive" ng-if="content.fields.image && !contentListCtrl.titleOnly"
+                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'300px',width:'450px',mode:'crop'}) }}"
+                                     alt="{{ content.fields.text }}"/>
+                            </div>
+                            <div class="summary">
+                                <h4>
+                                    {{content.fields.text }}
+                                    <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                                </h4>
+                                <p  ng-style="{'height':contentListCtrl.contentHeight}" >
+                                    <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                                </p>
+                            </div>
+                        </a>
+                        
+                        <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                            {{rubedo.translate('Block.ContentList.Label.Preview','Preview detail')}}
+                        </a>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit"
+               count="contentListCtrl.count" change-page-action="contentListCtrl.changePageAction()"></paginator>
+</div>

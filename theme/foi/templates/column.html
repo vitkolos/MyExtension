@@ -1,0 +1,6 @@
+<h3 ng-if="column.displayTitle">{{column.eTitle}}</h3>
+<rubedo-block ng-if="column.isTerminal" ng-repeat="block in column.blocks track by $index"></rubedo-block>
+<div ng-if="!column.isTerminal" ng-repeat="row in column.rows track by $index"
+     ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
+     class="row {{row.code}} inner-row"
+     ng-class="rubedo.componentsService.resolveResponsiveClass(row.responsive)"></div>

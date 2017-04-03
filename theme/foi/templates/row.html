@@ -1,0 +1,5 @@
+<div class="titre" ng-if="row.displayTitle">
+    <h3>{{row.eTitle}}</h3>
+</div>
+<div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"
+     ng-class="rubedo.componentsService.getColumnClass(column.span,column.offset,column.stackThreshold)+' '+rubedo.componentsService.resolveResponsiveClass(column.responsive)"></div>
