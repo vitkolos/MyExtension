@@ -1,10 +1,10 @@
 <div ng-if="!fieldInputMode" class="form">
     <div class="form-group" ng-repeat="field in userProfileCtrl.user.type.fields track by $index" ng-if="field.config.name != 'photo' ">
         <label class="">{{field.config.fieldLabel}} :</label>
-        <rubedo-field class="form-control"></rubedo-field>
+        <rubedo-field ></rubedo-field>
     </div>
 </div>
-<div ng-if="fieldInputMode" class="form form-horizontal">
+<div ng-if="fieldInputMode" class="form">
     <rubedo-field ng-repeat="field in userProfileCtrl.user.type.fields track by $index" ng-if="field.config.name != 'photo' "></rubedo-field>
 </div>
 
