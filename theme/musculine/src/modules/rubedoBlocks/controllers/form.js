@@ -1,7 +1,14 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','RubedoContentsService','$http','MusculinePaymentService','RubedoProductsService','$filter',function($scope,RubedoContentsService,$http,MusculinePaymentService,RubedoProductsService,$filter){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','RubedoContentsService','$http','MusculinePaymentService','RubedoProductsService','RubedoCountriesService','$filter',function($scope,RubedoContentsService,$http,MusculinePaymentService,RubedoProductsService,RubedoCountriesService,$filter){
     var me = this;
     var config = $scope.blockConfig;
     me.loading=false;
+				RubedoCountriesService.getCountries().then(
+        function(response){
+            if (response.data.success){
+                me.countriesArray=response.data.countries;
+            }
+        }
+    );
     $scope.Math = Math;
     me.facture={};
     me.expedition={};

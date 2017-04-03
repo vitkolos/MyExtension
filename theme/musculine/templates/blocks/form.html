@@ -93,6 +93,14 @@
 				   <label for="cp">Code postal*</label>
 				   <input type="text" name="cp" ng-model="formCtrl.facture.cp" required>			    
 			    </div>
+				<div ng-if="rubedo.current.user">
+				   <label for="country">Pays*</label>
+				   <select class="form-control" id="country"
+                                                   ng-model="formCtrl.facture.country"
+                                                   ng-options="c['alpha-2'] as c.name for c in formCtrl.countriesArray"
+                                                   required
+                                                    ></select>
+			    </div>
 			    <div>
 				   <label for="telephone">Téléphone</label>
 				   <input type="text" name="telephone" ng-model="formCtrl.facture.telephone" ng-pattern="/^\+?[0-9 ]+$/">			    
@@ -103,7 +111,8 @@
 			    </div>
 				<div ng-if="rubedo.current.user">
 				   <label for="email">Code promo</label>
-				   <input type="text" name="codePromo" ng-model="formCtrl.facture.codePromo" >			    
+				   <input type="text" name="codePromo" ng-model="formCtrl.facture.codePromo" >
+					 {{formCtrl.facture}}
 			    </div>
 		     </div>
 		     
