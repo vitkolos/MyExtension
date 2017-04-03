@@ -68,6 +68,23 @@
 		     
 	      </div>
 	      
+		  <div class="row" ng-if="rubedo.current.user">
+		     <h3 class="capital">
+			    Connexion
+		     </h3>
+			 <div class="infos">
+			    <div>
+				   <label for="name">Email*</label>
+				   <input type="email" name="name" ng-model="formCtrl.facture.name" required>			    
+			    </div>
+			    <div>
+				   <label for="surname">Mot de passe*</label>
+				   <input type="password" name="surname" ng-model="formCtrl.facture.surname" required>
+			    </div>
+			 </div>
+			  <button></button>
+					 
+		  </div>
 	      <div class="row">
 		     <h3 class="capital">
 			    Adresse de livraison
