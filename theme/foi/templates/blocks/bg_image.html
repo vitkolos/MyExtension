@@ -1,16 +1,8 @@
-<style>
-header.content .linkbox a{
-        color:white; border-color:rgba(255,255,255,.5)
-}
-header.content .linkbox a:hover{
-        color:white; border-color:white;
-}
-header.content p a:hover, header.content p a:active{background: transparent}
-</style>
+
 <div ng-controller="BgImageController as imageCtrl" style="overflow-x:hidden">
-        <header class="content prop" style="margin-bottom:0;width:100%;" ng-class="{'parallax':blockConfig.displayMode=='parallax', 'no-filter':(!blockConfig.pageTitle || blockConfig.noFilter)}"
+        <header class="content" 
                 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1200px',mode:'boxed'})}} 1200w"
                 afkl-lazy-image-options='{"background": true}'>
-            <div ng-if="blockConfig.pageTitle" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.pageTitle}" class="text-article">
+            <div ng-if="blockConfig.pageTitle" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.pageTitle}" >
         </header>
 </div>
