@@ -74,7 +74,7 @@
 		     </h3>
 			 <div ng-init="blockConfig={'displayMode':'form', 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':'Envoyer un mail'}">
 					<div ng-include="rubedo.blockTemplateResolver.getTemplate('authentication',blockConfig)"></div>
-				</div>
+			  </div>
 			 <!--<div class="infos">
 			    <div>
 				   <label for="login">Email*</label>
@@ -88,7 +88,7 @@
 			  <button ng-click="">Se connecter</button>-->
 					 
 		  </div>
-	      <div class="row">
+	      <div class="row" id="signUp">
 		     <h3 class="capital">
 			    Adresse de livraison
 		     </h3>
