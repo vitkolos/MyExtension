@@ -51,9 +51,8 @@ h2.titre:after{
 		background-color: @main;
 		a{color:white; text-transform: uppercase; font-weight: 700;}
 }
-.nav>li>a:hover, .nav>li>a:focus {
+.nav>li>a:hover, .nav>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
     text-decoration: none;
-    background-color: transparent;
 				background-color: white; color:@main;
 }
 @media (min-width: @min_sm) {
@@ -61,6 +60,7 @@ h2.titre:after{
     padding: 20px;
 		}
 }
+.dropdown-menu>li>a{padding:6px 20px; }
 .nav input{background-color:transparent !important; color:white}
 .nav inputform-control::focus{
 		border-color: white;
