@@ -139,7 +139,7 @@
             <strong>{{rubedo.translate("Block.error", "Error !")}}</strong> {{authCtrl.authError}}
         </div>
     </div>
-    <div ng-if="authCtrl.showRegistration" ng-init="blockConfig={'userType':'55c8ac9145205ed22cc62e20', 'collectPassword':true'}">
+    <div ng-if="authCtrl.showRegistration" ng-init="blockConfig={'userType':'55c8ac9145205ed22cc62e20', 'collectPassword':true}">
         <div ng-include="rubedo.blockTemplateResolver.getTemplate('signUp',blockConfig)"></div>
     </div>
 </div>
