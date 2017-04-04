@@ -4,8 +4,8 @@
          ng-init="blockConfig = {contentId:blockConfig.introduction}"
             >
     </div>
-    <form ng-if="signUpCtrl.showForm" class="infos" role="form" ng-submit="signUpCtrl.submit()">
-        <rubedo-field ng-repeat="field in signUpCtrl.inputFields track by $index" ></rubedo-field>
+    <form ng-if="signUpCtrl.showForm"  role="form" ng-submit="signUpCtrl.submit()">
+        <div class="infos"><rubedo-field ng-repeat="field in signUpCtrl.inputFields track by $index" ></rubedo-field></div>
         <div ng-if="blockConfig.introNewsletters"
              ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })"
              ng-init="blockConfig = {contentId:blockConfig.introNewsletters}"
