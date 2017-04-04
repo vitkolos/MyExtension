@@ -146,7 +146,22 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
 																								me.currentUser.fields.shippingAddress={};
 																				}
 																}
-																console.log(user);
+																console.log(me.currentUser);
+																if (me.currentUser.fields.address.address1) {
+																				me.facture.address = me.currentUser.fields.address.address1;
+																}
+																if (me.currentUser.fields.address.city) {
+																				me.facture.city = me.currentUser.fields.address.city;
+																}
+																if (me.currentUser.fields.address.postCode) {
+																				me.facture.cp = me.currentUser.fields.address.postCode;
+																}
+																me.facture.name = me.currentUser.fields.nom;
+																me.facture.surname = me.currentUser.fields.surname;
+																me.facture.email = me.currentUser.fields.email;
+																if (me.currentUser.fields.tel1) {
+																				me.facture.telephone = me.currentUser.fields.tel1;
+																}
 												}
 
 								);
