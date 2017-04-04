@@ -99,6 +99,7 @@ angular.module("rubedoBlocks").lazy.controller('SignUpController',['$scope','Rub
 																				
 																				//delete sex box
 																				angular.forEach(me.userType, function(field, index){
+																								console.log(field);
 																								if (field.config.name == "sexe" ) {
 																												me.userType.fields.splice(index,1);
 																								}
