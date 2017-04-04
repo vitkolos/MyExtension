@@ -103,6 +103,7 @@ angular.module("rubedoBlocks").lazy.controller('SignUpController',['$scope','Rub
 																												me.userType.splice(index,1);
 																								}
 																				});
+																				console.log(me.userType.fields);
                     $scope.fieldIdPrefix="signUp"+"_"+me.userType.type;
                     if (config.collectPassword){
                         me.userType.fields.push({
