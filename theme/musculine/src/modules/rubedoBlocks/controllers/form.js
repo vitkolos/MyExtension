@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','RubedoContentsService','$http','MusculinePaymentService','RubedoProductsService','RubedoCountriesService','$filter',function($scope,RubedoContentsService,$http,MusculinePaymentService,RubedoProductsService,RubedoCountriesService,$filter){
+angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','RubedoUsersService','RubedoContentsService','$http','MusculinePaymentService','RubedoProductsService','RubedoCountriesService','$filter',function($scope,RubedoUsersService,RubedoContentsService,$http,MusculinePaymentService,RubedoProductsService,RubedoCountriesService,$filter){
     var me = this;
     var config = $scope.blockConfig;
     me.loading=false;
@@ -118,11 +118,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
 												if (me.facture.codePromo && me.facture.codePromo != '') {
 																payLoad.fields.codePromo = me.facture.codePromo;
 												}
-
-            
-            
-            
-            
+           
             MusculinePaymentService.paymentService(me.contents, me.facture, payLoad).then(function(response){
                 if (response.data.success) {
                     window.location.href= response.data.url;
@@ -135,4 +131,59 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
         }
        
     }
+				if ($scope.rubedo.current.user) {
+								RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
+												function(response){
+																if (response.data.success){
+																				me.currentUser=response.data.user;
+																				if (angular.element.isEmptyObject(me.currentUser.fields.address)){
+																								me.currentUser.fields.address={};
+																				}
+																				if (angular.element.isEmptyObject(me.currentUser.fields.billingAddress)){
+																								me.currentUser.fields.billingAddress={};
+																				}
+																				if (angular.element.isEmptyObject(me.currentUser.fields.shippngAddress)){
+																								me.currentUser.fields.shippingAddress={};
+																				}
+																}
+																console.log(me.currentUser);
+																if (me.currentUser.fields.address.address1) {
+																				me.facture.address = me.currentUser.fields.address.address1;
+																}
+																if (me.currentUser.fields.address.city) {
+																				me.facture.city = me.currentUser.fields.address.city;
+																}
+																if (me.currentUser.fields.address.postCode) {
+																				me.facture.cp = me.currentUser.fields.address.postCode;
+																}
+																me.facture.name = me.currentUser.fields.nom;
+																me.facture.surname = me.currentUser.fields.surname;
+																me.facture.email = me.currentUser.fields.email;
+																if (me.currentUser.fields.tel1) {
+																				me.facture.telephone = me.currentUser.fields.tel1;
+																}
+												}
+
+								);
+				}
+				me.updateUser=function(){
+        /*var payload=angular.copy(me.currentUser);
+        payload.fields=angular.copy($scope.fieldEntity);
+        delete (payload.type);
+        RubedoUsersService.updateUser(payload).then(
+            function(response){
+                if (refreshShippers){
+                    me.refreshShippers();
+                } else {
+                    me.setCurrentStage(me.currentStage+1);
+                }
+                if (event){
+                    $scope.handleCSEvent(event);
+                }
+            },
+            function(response){
+                me.errorHolder=response.data.message;
+            }
+        );*/
+    };
 }]);

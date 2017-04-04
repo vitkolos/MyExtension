@@ -126,16 +126,19 @@ input[type="number"]::-webkit-inner-spin-button {
 .part-end{padding-bottom:24px; border-bottom:6px solid white}
 h3.capital{ font-family: 'Montserrat'; text-transform: uppercase; font-weight: normal;font-size:23px}
 .infos {
-  div{height:50px}
+  div.form-group,div.inputs-group{height:50px; margin-bottom: 0;}
+		.form-group .dropdown{top:-53px; input[type="text"]{top:0}}
   border: 2px solid white;
   border-radius: 5px;
   font-family: 'Montserrat', sans-serif;
   color:@txt_dark;
   margin-bottom: 25px;
   label{
-  width:144px; background-color:transparent; padding:12px;font-weight: normal;height:50px;line-height: 30px; position: relative; z-index:1; border-right: 1px solid white;
+  vertical-align: middle;width:144px; background-color:transparent; padding:12px;font-weight: normal;height:50px;line-height: 30px; position: relative; z-index:1; border-right: 1px solid white;
   }
+		div.form-group label{line-height: 16px;}
   input{border:none; background-color:transparent;height:50px;border-bottom:2px white solid;width:100%; top:-53px; position: relative; padding-left: 150px;}
+		.form-group span.help-block{display: none}
 }
 input:focus{
     outline: 0;
@@ -156,7 +159,7 @@ input.ng-invalid.ng-dirty{border:red solid 2px; border-radius:5px}
   font-size:12px; font-family: 'Montserrat'; letter-spacing: 3px; max-width:600px; color:white; text-transform: uppercase;
 }
 button{
-					text-align:center;margin:10px auto; background-color:white; text-transform: uppercase; color:@txt_dark; padding:10px 15px; border-radius: 5px;cursor: pointer; font-size: 23px;
+					border:none; text-align:center;margin:10px auto; background-color:white; text-transform: uppercase; color:@txt_dark; padding:10px 15px; border-radius: 5px;cursor: pointer; font-size: 23px;
 }
 button:hover{background:@txt_dark; color:white}
 
@@ -192,4 +195,19 @@ select {
 				background-color:  @background;
 				border: none;
     border-bottom: 2px #fff solid;
+}
+
+::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    @txt_dark;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    @txt_dark;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    @txt_dark;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    @txt_dark;
 }
