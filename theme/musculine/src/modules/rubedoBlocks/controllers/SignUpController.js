@@ -96,6 +96,13 @@ angular.module("rubedoBlocks").lazy.controller('SignUpController',['$scope','Rub
                 if (response.data.success){
                     me.showForm=true;
                     me.userType=response.data.userType;
+																				
+																				//delete sex box
+																				angular.forEach(me.userType, function(field, index){
+																								if (field.cType == "Ext.form.RadioGroup" ) {
+																												me.userType.splice(index,1);
+																								}
+																				});
                     $scope.fieldIdPrefix="signUp"+"_"+me.userType.type;
                     if (config.collectPassword){
                         me.userType.fields.push({
