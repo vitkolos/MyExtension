@@ -1,0 +1,45 @@
+<div ng-controller="ContactBlockController as contactCtrl" ng-if="blockConfig.displayMode=='form'">
+        
+        <form role="form" ng-submit="contactCtrl.submit()">
+                <div class="row">
+                        <div class="infos">
+                               <div class="inputs-group">
+                                        <label for="{{'name'+block.id}}" >{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name *")}}</label>
+                                        <input type="text" name="name" ng-model="contactCtrl.contactData.name" id="{{'name'+block.id}}" required>
+                               </div>
+                               <div class="inputs-group">
+                                        <label for="{{'email'+block.id}}" >{{rubedo.translate("Blocks.Contact.Input.Email.Label","Email *")}}</label>
+                                        <input type="email" name="email" ng-model="contactCtrl.contactData.email" id="{{'email'+block.id}}" required>
+                               </div>
+                               <div class="inputs-group">
+                                        <label for="{{'subject'+block.id}}">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
+                                        <input type="text" name="subject" ng-model="contactCtrl.contactData.subject" id="{{'subject'+block.id}}" required>
+                               </div>
+                               <div class="inputs-group large" >
+                                        <label for="{{'message'+block.id}}">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
+                                        <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message"  id="{{'message'+block.id}}" required>
+                                        </textarea>
+                               </div>
+                               
+                        </div>
+                </div>
+                <div class="row">
+                         <div class="col-sm-offset-2 col-sm-10">
+                                <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
+                                    <rubedo-notification></rubedo-notification>
+                                </div>
+                                <button type="submit" >{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
+                        </div>
+                        
+                </div>
+                
+        </form>
+                        
+
+    
+    
+    
+    <div ng-if="contactCtrl.showConfirmMessage" ng-init="notification = {type:'success',text:rubedo.translate('Blocks.Auth.Msg.EmailSent','Email has been sent')}">
+        <rubedo-notification></rubedo-notification>
+    </div>
+</div>
