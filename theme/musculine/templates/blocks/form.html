@@ -1,6 +1,6 @@
 <div ng-controller="FormController as formCtrl">
 
-       
+       <form>
 	      <div class="row" ng-class="{'checked':formCtrl.small_trad>0}">
 		     <div class="inputs">
 			     <input id="st" type="number" min="0" name="small_trad" ng-model="formCtrl.small_trad">
@@ -88,6 +88,7 @@
 			  <button ng-click="">Se connecter</button>-->
 					 
 		  </div>
+	   </form>
 		  <form name="form" method="post"  novalidate>
 			  <div class="row" id="signUp">
 				 <h3 class="capital">
