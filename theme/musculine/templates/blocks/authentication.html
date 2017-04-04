@@ -117,11 +117,11 @@
     </div>
     <div ng-if="blockConfig.displayMode=='form'&&!rubedo.current.user&&!authCtrl.showRegistration">
         <form class="form infos" role="form" name="rubedoAuthForm"  style="padding:0">
-            <div  ng-class="{'has-error':rubedoAuthForm.login.$error.required}">
+            <div  class="inputs" ng-class="{'has-error':rubedoAuthForm.login.$error.required}">
                 <label class="sr-only" for="rubedoAuthLoginInput">{{rubedo.translate("Blocks.Auth.Label.Login","Login")}}</label>
                 <input type="text" name="login" id="rubedoAuthLoginInput" placeholder="{{rubedo.translate('Blocks.Auth.Label.Email','Email')}}" ng-model="authCtrl.credentials.login" required>
             </div>
-            <div  ng-class="{'has-error':rubedoAuthForm.password.$error.required}">
+            <div class="inputs"  ng-class="{'has-error':rubedoAuthForm.password.$error.required}">
                 <label class="sr-only" for="rubedoAuthPasswordInput">{{rubedo.translate("Blocks.Auth.Label.Password","Password")}}</label>
                 <input type="password" name="password" id="rubedoAuthPasswordInput" placeholder="{{rubedo.translate('Blocks.Auth.Label.Password','Password')}}" ng-model="authCtrl.credentials.password" required>
             </div>
