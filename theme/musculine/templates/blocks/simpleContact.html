@@ -1,37 +1,24 @@
 <div ng-controller="ContactBlockController as contactCtrl" ng-if="blockConfig.displayMode=='form'">
         
-        <form class="infos" role="form" ng-submit="contactCtrl.submit()">
+        <form role="form" ng-submit="contactCtrl.submit()">
                 <div class="row">
                         <div class="infos">
-             
-                                <div class="inputs-group">
-                                          <label for="countryname">Pays*</label>
-                                          <input type="text" name="countryname" ng-model="formCtrl.facture.countryname" disabled>			    
-                                       </div>
                                <div class="inputs-group">
-                                   <label for="{{'name'+block.id}}" >{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name *")}}</label>
-                                   <div class="col-sm-10">
-                                       <input type="text" name="name" ng-model="contactCtrl.contactData.name" id="{{'name'+block.id}}" required>
-                                   </div>
+                                        <label for="{{'name'+block.id}}" >{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name *")}}</label>
+                                        <input type="text" name="name" ng-model="contactCtrl.contactData.name" id="{{'name'+block.id}}" required>
                                </div>
                                <div class="inputs-group">
-                                   <label for="{{'email'+block.id}}" >{{rubedo.translate("Blocks.Contact.Input.Email.Label","Email *")}}</label>
-                                   <div class="col-sm-10">
-                                       <input type="email" name="email" ng-model="contactCtrl.contactData.email" id="{{'email'+block.id}}" required>
-                                   </div>
+                                        <label for="{{'email'+block.id}}" >{{rubedo.translate("Blocks.Contact.Input.Email.Label","Email *")}}</label>
+                                        <input type="email" name="email" ng-model="contactCtrl.contactData.email" id="{{'email'+block.id}}" required>
                                </div>
                                <div class="inputs-group">
-                                   <label for="{{'subject'+block.id}}">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
-                                   <div class="col-sm-10">
-                                       <input type="text" name="subject" ng-model="contactCtrl.contactData.subject" id="{{'subject'+block.id}}" required>
-                                   </div>
+                                        <label for="{{'subject'+block.id}}">{{rubedo.translate("Blocks.Contact.Input.Subject.Label","Subject *")}}</label>
+                                        <input type="text" name="subject" ng-model="contactCtrl.contactData.subject" id="{{'subject'+block.id}}" required>
                                </div>
-                               <div class="inputs-group">
-                                   <label for="{{'message'+block.id}}">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
-                                   <div class="col-sm-10">
-                                       <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message"  id="{{'message'+block.id}}" required>
-                                       </textarea>
-                                   </div>
+                               <div class="inputs-group large" >
+                                        <label for="{{'message'+block.id}}">{{rubedo.translate("Blocks.Contact.Input.Message.Label","Message *")}}</label>
+                                        <textarea name="message" rows="5" ng-model="contactCtrl.contactData.message"  id="{{'message'+block.id}}" required>
+                                        </textarea>
                                </div>
                                
                         </div>
