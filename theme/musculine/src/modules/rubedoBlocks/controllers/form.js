@@ -12,6 +12,9 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
     $scope.Math = Math;
     me.facture={};
     me.user={};
+				if ($scope.rubedo.user); {
+								//code
+				}
     me.facture.countryname="FRANCE";
     me.facture.country="FR";
     me.expedition={};
