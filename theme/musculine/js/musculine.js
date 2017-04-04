@@ -8,7 +8,6 @@ blocksConfig.simpleContact={
 };
 
 
-
 angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',function($http) {
     var serviceInstance={};
     serviceInstance.paymentService=function(produits, facturation, content){
