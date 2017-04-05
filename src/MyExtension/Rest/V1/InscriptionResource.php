@@ -62,6 +62,9 @@ class InscriptionResource extends AbstractResource
 																												"en" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
                             ),
+																												"de" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
+                            ),
                             "pl" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
                             ),
