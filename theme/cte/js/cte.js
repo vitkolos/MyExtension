@@ -50,7 +50,7 @@ angular.module('rubedoBlocks').filter('timediff',['$scope','$filter','$interval'
 																		};
 											
 											fireDigestEverySecond();*/
-												newScope = $scope.$new(true);
+											var	newScope = $scope.$new(true);
 												$interval(function (){}, 1000);
 											var currentDate = new Date();
 											var endDate = new Date(nextDate);
