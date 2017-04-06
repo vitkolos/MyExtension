@@ -51,8 +51,7 @@ angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  functi
 											
 											fireDigestEverySecond();*/
 												//$interval(function (){timeDiff()}, 1000);
-												var valueToReturn = timeDiff();
-												var timeDiff = function(){
+												var dateDiff = function(){
 																						var currentDate = new Date();
 																						var endDate = new Date(nextDate);
 																						var miliseconds = endDate-currentDate;
@@ -82,7 +81,7 @@ angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  functi
 																																	return window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000)-min*(60*1000))/(1000));
 																						}
 												};
-											return valueToReturn;
+											return dateDiff();
 											};
 }])
 angular.module('rubedo').filter('ligneNonVide', function () {
