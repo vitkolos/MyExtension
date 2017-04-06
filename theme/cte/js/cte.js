@@ -47,8 +47,13 @@ angular.module('rubedoBlocks').filter('timediff',['$filter',  function($filter) 
     return function(nextDate,format) {
 											var currentDate = new Date();
 											var endDate = new Date(nextDate);
-											console.log(currentDate); console.log(nextDate); 
-        return $filter('date')(new Date(), 'yyyy');
+											console.log(currentDate); console.log(endDate);
+											var miliseconds = endDate-currentDate;
+											var seconds = miliseconds/1000;
+											var minutes = seconds/60;
+											var hours = minutes/60;
+											var days = hours/24;
+        return days;
     };
 }])
 angular.module('rubedo').filter('ligneNonVide', function () {
