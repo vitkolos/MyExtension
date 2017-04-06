@@ -43,13 +43,14 @@ angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filte
         return $filter('date')(new Date(), 'yyyy');
     };
 }])
-angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  function($filter,$interval) {
+angular.module('rubedoBlocks').filter('timediff',['$scope','$filter','$interval',  function($scope,$filter,$interval) {
     return function(nextDate,format) {
 												/*var fireDigestEverySecond = function () {
 																						$timeout(function () {fireDigestEverySecond()}, 1000);
 																		};
 											
 											fireDigestEverySecond();*/
+												newScope = $scope.$new(true);
 												$interval(function (){}, 1000);
 											var currentDate = new Date();
 											var endDate = new Date(nextDate);
