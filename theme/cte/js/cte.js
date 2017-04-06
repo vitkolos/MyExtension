@@ -50,7 +50,7 @@ angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  functi
 																		};
 											
 											fireDigestEverySecond();*/
-												$interval(function (){timeDiff()}, 1000);
+												//$interval(function (){timeDiff()}, 1000);
 												var valueToReturn = timeDiff();
 												var timeDiff = function(){
 																						var currentDate = new Date();
