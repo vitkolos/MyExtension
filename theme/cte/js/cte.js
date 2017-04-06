@@ -57,8 +57,19 @@ angular.module('rubedoBlocks').filter('timediff',['$filter',  function($filter) 
 											var seconds = miliseconds/1000;
 											var minutes = seconds/60;
 											var hours = minutes/60;
-											var days = window.Math.round(hours/24);
-											return days;
+											var days = window.Math.round(miliseconds/(24*60*60*1000));
+											var hours = window.Math.round((miliseconds-days*(24*60*60*1000))/(60*60*1000));
+											var min = window.Math.round((miliseconds-days*(24*60*60*1000)-min*(60*60*1000))/(60*1000));
+											if (format=='day') {
+																						return days;
+											}
+											else if (format=='hour') {
+																						return hour;
+											}
+											else if (format=='min') {
+																						return min;
+											}
+											
     };
 }])
 angular.module('rubedo').filter('ligneNonVide', function () {
