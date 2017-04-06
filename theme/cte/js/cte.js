@@ -43,8 +43,10 @@ angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filte
         return $filter('date')(new Date(), 'yyyy');
     };
 }])
-angular.module('rubedoBlocks').filter('timediff',['$filter',  function($filter) {
+angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  function($filter,$interval) {
     return function(nextDate,format) {
+											$interval(function (){
+																																	 
 											var currentDate = new Date();
 											var endDate = new Date(nextDate);
 											var miliseconds = endDate-currentDate;
@@ -54,6 +56,7 @@ angular.module('rubedoBlocks').filter('timediff',['$filter',  function($filter) 
 											else if (format=='min') {
 																						return window.Math.round(miliseconds/(1000*60*60));
 											}*/
+
 											var seconds = miliseconds/1000;
 											var minutes = seconds/60;
 											var hours = minutes/60;
@@ -72,6 +75,7 @@ angular.module('rubedoBlocks').filter('timediff',['$filter',  function($filter) 
 											else if (format=='sec') {
 																						return window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000)-min*(60*1000))/(1000));
 											}
+											}, 1000);
 											
     };
 }])
