@@ -64,7 +64,7 @@ angular.module('rubedoBlocks').filter('timediff',['$filter',  function($filter) 
 																						return days;
 											}
 											else if (format=='hour') {
-																						return hour;
+																						return hours;
 											}
 											else if (format=='min') {
 																						return min;
