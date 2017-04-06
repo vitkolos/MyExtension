@@ -45,7 +45,7 @@ angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filte
 }])
 angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  function($filter,$interval) {
     return function(nextDate,format) {
-											$interval(function (){
+											return $interval(function (){
 																																	 
 											var currentDate = new Date();
 											var endDate = new Date(nextDate);
