@@ -50,38 +50,39 @@ angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  functi
 																		};
 											
 											fireDigestEverySecond();*/
-											var	newScope = $scope.$new(true);
-												$interval(function (){}, 1000);
-											var currentDate = new Date();
-											var endDate = new Date(nextDate);
-											var miliseconds = endDate-currentDate;
-											/*if (format=='days') {
-																						return window.Math.round(miliseconds/(1000*60*60));
-											}
-											else if (format=='min') {
-																						return window.Math.round(miliseconds/(1000*60*60));
-											}*/
-
-											var seconds = miliseconds/1000;
-											var minutes = seconds/60;
-											var hours = minutes/60;
-											var days = window.Math.floor(miliseconds/(24*60*60*1000));
-											var hours = window.Math.floor((miliseconds-days*(24*60*60*1000))/(60*60*1000));
-											var min = window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000))/(60*1000));
-											if (format=='day') {
-																						return days;
-											}
-											else if (format=='hour') {
-																						return hours;
-											}
-											else if (format=='min') {
-																						return min;
-											}
-											else if (format=='sec') {
-																						return window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000)-min*(60*1000))/(1000));
-											}
+												$interval(function (){timeDiff()}, 1000);
+												var valueToReturn = timeDiff();
+												var timeDiff = function(){
+																						var currentDate = new Date();
+																						var endDate = new Date(nextDate);
+																						var miliseconds = endDate-currentDate;
+																						/*if (format=='days') {
+																																	return window.Math.round(miliseconds/(1000*60*60));
+																						}
+																						else if (format=='min') {
+																																	return window.Math.round(miliseconds/(1000*60*60));
+																						}*/
 											
-											
+																						var seconds = miliseconds/1000;
+																						var minutes = seconds/60;
+																						var hours = minutes/60;
+																						var days = window.Math.floor(miliseconds/(24*60*60*1000));
+																						var hours = window.Math.floor((miliseconds-days*(24*60*60*1000))/(60*60*1000));
+																						var min = window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000))/(60*1000));
+																						if (format=='day') {
+																																	return days;
+																						}
+																						else if (format=='hour') {
+																																	return hours;
+																						}
+																						else if (format=='min') {
+																																	return min;
+																						}
+																						else if (format=='sec') {
+																																	return window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000)-min*(60*1000))/(1000));
+																						}
+												};
+											return valueToReturn;
 											};
 }])
 angular.module('rubedo').filter('ligneNonVide', function () {
