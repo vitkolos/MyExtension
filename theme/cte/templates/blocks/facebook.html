@@ -6,7 +6,7 @@
     </div>
 </div>
 <style>
-    .fb_iframe_widget span{width:500px !important;height:800px !important}
-    .fb_iframe_widget.noFeed span{width:500px !important;height:auto !important}
+    .fb_iframe_widget:not(.noFeed) span{width:500px !important;height:800px !important}
+    .fb_iframe_widget.noFeed span{width:500px !important;}
     .fb_iframe_widget iframe{height:100% !important; width: 100% !important}
 </style>
