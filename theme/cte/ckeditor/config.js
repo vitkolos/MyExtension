@@ -11,6 +11,8 @@ CKEDITOR.editorConfig = function( config ) {
         config.colorButton_enableMore = false;
         config.youtube_responsive = true;
         config.format_tags ='p;h1;h2;h3;h4;h5;h6;label';
+        config.format_label = { element: 'label' };
+
 
 };
 
