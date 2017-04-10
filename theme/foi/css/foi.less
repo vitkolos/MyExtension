@@ -47,7 +47,7 @@ h2.titre:after{
 .btn-default:hover{background-color: white; color:@main; border-color:@main}
 .btn.btn-primary{background-color: @main; color:white;  border-color: @main;}
 .btn.abonnement{
-		position: absolute; margin: 5px auto; bottom:70px; 
+		position: absolute; margin: 5px 33%; bottom:70px; &:hover a{color:@main}; width: 33%;
 		a{color: white; text-transform: uppercase; font-weight: bold; text-decoration: none; &:hover{color:@main} }
 }
 /*NAVIGATION*/
@@ -125,14 +125,14 @@ h2.titre:after{
      transform:scale(1.15) rotate(5deg);
 }
 
-.foiPresentation>div:last-of-type{
+.foiPresentation>div{
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a0a0a0+0,a0a0a0+40,000000+40,000000+100 */
 
 
-background-image: url('../img/presentation.png') center center / auto 90% no-repeat ; /* Old browsers */
-background-image: url('../img/presentation.png') center center / auto 90% no-repeat , -moz-linear-gradient(top, transparent 0%, transparent 60%, #a0a0a0 60%, #a0a0a0 100%); /* FF3.6-15 */
-background-image: url('../img/presentation.png') center center / auto 90% no-repeat , -webkit-linear-gradient(top, transparent 0%,transparent 60%,#a0a0a0 60%,#a0a0a0 100%); /* Chrome10-25,Safari5.1-6 */
-background-image:url('../img/presentation.png') center center / auto 90% no-repeat ,  linear-gradient(to bottom, transparent 0%,transparent 60%,#a0a0a0 60%,#a0a0a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+background: url('../img/presentation.png') center center / auto 90% no-repeat ; /* Old browsers */
+background: url('../img/presentation.png') center center / auto 90% no-repeat , -moz-linear-gradient(top, transparent 0%, transparent 60%, #a0a0a0 60%, #a0a0a0 100%); /* FF3.6-15 */
+background: url('../img/presentation.png') center center / auto 90% no-repeat , -webkit-linear-gradient(top, transparent 0%,transparent 60%,#a0a0a0 60%,#a0a0a0 100%); /* Chrome10-25,Safari5.1-6 */
+background:url('../img/presentation.png') center center / auto 90% no-repeat ,  linear-gradient(to bottom, transparent 0%,transparent 60%,#a0a0a0 60%,#a0a0a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr='#a0a0a0',GradientType=0 ); /* IE6-9 */
 
 		display: inline-block; position: relative; width:100%;
