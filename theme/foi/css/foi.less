@@ -104,7 +104,7 @@ h2.titre:after{
 		h4, h4:hover{color:@txt !important; font-weight: 700;}
 }
 .summary{
-		height: 120px; overflow-y: hidden; display: inline-block; padding: 5px 10px; background-color: white;
+		height: 120px; width:100%;overflow-y: hidden; display: inline-block; padding: 5px 10px; background-color: white; margin-bottom: 24px;
 		h4, h4:hover{color:@txt !important; font-weight: 700;}
 		border: 2px solid #464646;
 }
@@ -183,4 +183,9 @@ header.content{
 		background-color: @bg;
 		overflow-y:hidden;
 }
-header.content>div{line-height: normal;display: inline-block;text-align:left; vertical-align: middle;padding: 25px}
+header.content>div{line-height: normal;display: inline-block;text-align:left; vertical-align: middle;padding: 25px; border-radius: 0 !important}
+/*PAGINATEUR*/
+.pagination>li>a, .pagination>li>span{border:1px solid @txt; color:@txt; margin-right:6px;}
+.pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus{background-color: @txt; border-color: @txt; color:white}
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{background-color: @txt; border-color: @txt; color:white  }
+
