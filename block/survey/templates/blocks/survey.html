@@ -22,6 +22,7 @@
         </div>
         <div class="panel-body" ng-if="surveyCtrl.currentPage">
             <form class="form" role="form" ng-submit="surveyCtrl.doNext()">
+                {{fieldEntity}}
                 <div ng-repeat="element in surveyCtrl.currentPage.elements" ng-if="surveyCtrl.handleConditionals(element.itemConfig.conditionals)">
                     <rubedo-custom-template ng-if="element.itemConfig.fType=='richText'" template="{{element.itemConfig.html}}"></rubedo-custom-template>
                     <rubedo-custom-template class="left label_style" style="margin-bottom:6px" ng-if="element.itemConfig.fType!='richText'&&element.itemConfig.label&&element.itemConfig.fieldType" template="{{element.itemConfig.label}}"></rubedo-custom-template>
@@ -32,12 +33,12 @@
                         <input ng-if="element.itemConfig.fieldType=='timefield'" type="time" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory" >
                         <textarea ng-if="element.itemConfig.fieldType=='textareafield'" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory"></textarea>
                     </div>
-                    <div class="form-group" ng-if="element.itemConfig.fType=='multiChoiceQuestion'">
+                    <div ng-if="element.itemConfig.fType=='multiChoiceQuestion'">
                         
                         <div class="row" ng-if="element.itemConfig.fieldType=='checkboxgroup' ">
                             <div class="col-xs-6" ng-repeat="option in element.itemConfig.fieldConfig.items track by $index">
                                 <input type="checkbox" ng-model="fieldEntity[element.id][$index]" ng-true-value="{{option.inputValue}}">
-                                    <label>{{option.boxLabel}</label>
+                                    <label>{{option.boxLabel}}</label>
                             </div>
                             
                         </div>
