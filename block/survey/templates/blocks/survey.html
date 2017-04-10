@@ -37,7 +37,7 @@
                         
                         <div class="row" ng-if="element.itemConfig.fieldType=='checkboxgroup' ">
                             <div class="col-xs-6" ng-repeat="option in element.itemConfig.fieldConfig.items track by $index">
-                                <input type="checkbox" ng-model="option.values[$index]" ng-change="{{option.values[$index] ? fieldEntity[element.id].push(option.inputValue)}}">
+                                <input type="checkbox" ng-model="option['reponse'+$index]" ng-change="{{option.values[$index] ? fieldEntity[element.id].push(option.inputValue)}}">
                                     <label>{{option.boxLabel}}</label>
                             </div>
                             
