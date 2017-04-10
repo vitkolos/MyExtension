@@ -122,12 +122,20 @@ h2.titre:after{
      transform:scale(1.15) rotate(5deg);
 }
 
-.foiPresentation>div{
-		background: url('../img/presentation.png') no-repeat bottom;
+.foiPresentation>div:last-of-type{
+		background:  no-repeat bottom;
+		background-image:url('../img/presentation.png');
+		background-image:url('../img/presentation.png'),  -webkit-linear-gradient(to top, #a0a0a0, #a0a0a0 40%, transparent 40%, transparent);
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a0a0a0+0,a0a0a0+40,000000+40,000000+100 */
+background-image: url('../img/presentation.png'); /* Old browsers */
+background-image: -moz-linear-gradient(top, #a0a0a0 0%, #a0a0a0 40%, transparent 40%, transparent 100%); /* FF3.6-15 */
+background-image: -webkit-linear-gradient(top, #a0a0a0 0%,#a0a0a0 40%,transparent 40%,transparent 100%); /* Chrome10-25,Safari5.1-6 */
+background-image: linear-gradient(to bottom, #a0a0a0 0%,#a0a0a0 40%,transparent 40%,transparent 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a0a0a0', endColorstr='transparent',GradientType=0 ); /* IE6-9 */
+
 		display: inline-block; position: relative; width:100%;
 		background-size: auto 100%;
 		img{margin:30px 15% 50px; width:70%; box-shadow: 0px 0px 50px rgba(0,0,0,0.36);}
-		div{position: absolute; width:100%; height: 40%; background: #a0a0a0; bottom: 0;}
 }
 
 /*CAROUSEL */
