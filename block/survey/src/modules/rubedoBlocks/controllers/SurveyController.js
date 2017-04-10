@@ -16,8 +16,7 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         me.currentPage=me.survey.formPages[0];
         me.currentPageIndex=0;
     };
-				me.currentPage=me.survey.formPages[0];
-    me.currentPageIndex=0;
+				
     me.setPage=function(page,index){
         if(page.id!=me.currentPage.id){
             me.currentPage=page;
@@ -96,4 +95,5 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         }
         return(res);
     };
+				me.startSurvey();
 }]);
