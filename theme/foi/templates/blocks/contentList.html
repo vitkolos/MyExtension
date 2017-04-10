@@ -67,8 +67,8 @@
                             {{rubedo.translate('Block.ContentList.Label.Preview','Preview detail')}}
                         </a>-->
                         <div>
-                            <img class="media-object pull-left img-responsive" ng-if="content.fields.image"
-                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'450px',width:'400px',mode:'crop'}) }}"
+                            <img class="img-responsive" ng-if="content.fields.image"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
                              alt="{{ content.fields.text }}"/>
                             <ul class="presentation">
                                 <li><a>Sommaire</a></li>
