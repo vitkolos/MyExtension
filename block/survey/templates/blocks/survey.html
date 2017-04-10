@@ -50,7 +50,7 @@
                                 ng-options="s.inputValue as s.boxLabel for s in element.itemConfig.fieldConfig.items"
                                 ng-model="fieldEntity[element.id]"
                                 ></select>-->
-                        <div class="row" ng-if="element.itemConfig.fieldType=='checkboxgroup' ">
+                        <div class="row" ng-if="element.itemConfig.fieldType=='radiogroup' ">
                             <div class="col-sm-{{12/element.itemConfig.fieldConfig.columns}}" ng-repeat="option in element.itemConfig.fieldConfig.items track by $index">
                                 <input type="radio" name="{{element.id}}" id="{{element.id}}_{{option.inputValue}}" ng-model="fieldEntity[element.id]" ng-value=' "{{option.inputValue}}"'>
                                     <label for="{{element.id}}_{{option.inputValue}}">{{option.boxLabel}}</label>

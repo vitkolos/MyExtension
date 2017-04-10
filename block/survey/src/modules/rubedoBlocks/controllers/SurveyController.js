@@ -19,7 +19,6 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
 				me.checkboxGroups = function(questionId, value){
 								if (!$scope.fieldEntity[questionId]) {
 												$scope.fieldEntity[questionId] = [value];
-												console.log($scope.fieldEntity);
 								}
 								else {
 												/*if value present, then delete it*/
