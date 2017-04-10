@@ -17,9 +17,8 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         me.currentPageIndex=0;
     };
 				me.checkboxGroups = function(questionId, value){
-								alert('OK');
 								if (!$scope.fieldEntity[questionId]) {
-												$scope.fieldEntity[questionId] = array(value);
+												$scope.fieldEntity[questionId] = [value];
 												console.log($scope.fieldEntity);
 								}
 								else $scope.fieldEntity[questionId].push(value);
