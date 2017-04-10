@@ -155,14 +155,6 @@ class MusculinepaymentResource extends AbstractResource {
 
     $wasFiltered = AbstractCollection::disableUserFilter(false);
      
-     
-     
-     
-     
-     
-     
-     
-     
     return array(
             'success' => true,
             'url' =>'https://www.paypal.com/cgi-bin/webscr?' . $query_string,
