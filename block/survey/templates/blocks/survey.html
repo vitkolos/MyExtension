@@ -15,7 +15,7 @@
         </div>
         <div class="panel-body" ng-if="!surveyCtrl.currentPage&&!surveyCtrl.isFinished">
             <p>{{surveyCtrl.survey.description}}</p>
-            <!--<button class="btn btn-primary" ng-if="surveyCtrl.survey.formPages[0]" ng-click="surveyCtrl.startSurvey()">Démarrer le questionnaire</button>-->
+            <button class="btn btn-primary" ng-if="surveyCtrl.survey.formPages[0]" ng-click="surveyCtrl.startSurvey()">Démarrer le questionnaire</button>
         </div>
         <div class="panel-body" ng-if="!surveyCtrl.currentPage&&surveyCtrl.isFinished">
             <p>{{surveyCtrl.survey.endMessage}}</p>
