@@ -95,4 +95,10 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         }
         return(res);
     };
+				me.checkboxGroups = function(questionId, value){
+								if (!$scope.fieldEntity[questionId]) {
+												$scope.fieldEntity[questionId] = array(value);
+								}
+								else $scope.fieldEntity[questionId].push(value);
+				};
 }]);
