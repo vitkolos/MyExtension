@@ -101,5 +101,6 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
 												console.log($scope.fieldEntity);
 								}
 								else $scope.fieldEntity[questionId].push(value);
+								console.log($scope.fieldEntity);
 				};
 }]);
