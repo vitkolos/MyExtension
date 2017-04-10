@@ -16,7 +16,15 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         me.currentPage=me.survey.formPages[0];
         me.currentPageIndex=0;
     };
-				
+				me.checkboxGroups = function(questionId, value){
+								alert('OK');
+								if (!$scope.fieldEntity[questionId]) {
+												$scope.fieldEntity[questionId] = array(value);
+												console.log($scope.fieldEntity);
+								}
+								else $scope.fieldEntity[questionId].push(value);
+								console.log($scope.fieldEntity);
+				};
     me.setPage=function(page,index){
         if(page.id!=me.currentPage.id){
             me.currentPage=page;
@@ -95,12 +103,5 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         }
         return(res);
     };
-				me.checkboxGroups = function(questionId, value){
-								if (!$scope.fieldEntity[questionId]) {
-												$scope.fieldEntity[questionId] = array(value);
-												console.log($scope.fieldEntity);
-								}
-								else $scope.fieldEntity[questionId].push(value);
-								console.log($scope.fieldEntity);
-				};
+
 }]);
