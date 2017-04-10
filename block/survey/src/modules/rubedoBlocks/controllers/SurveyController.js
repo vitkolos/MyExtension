@@ -21,8 +21,13 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
 												$scope.fieldEntity[questionId] = [value];
 												console.log($scope.fieldEntity);
 								}
-								else $scope.fieldEntity[questionId].push(value);
-								console.log($scope.fieldEntity);
+								else {
+												/*if value present, then delete it*/
+												if ($scope.fieldEntity[questionId].indexOf(value)>-1) {
+																$scope.fieldEntity[questionId].splice($scope.fieldEntity[questionId].indexOf(value),1);
+												}
+												else $scope.fieldEntity[questionId].push(value);
+								}
 				};
     me.setPage=function(page,index){
         if(page.id!=me.currentPage.id){

@@ -34,14 +34,11 @@
                         <textarea ng-if="element.itemConfig.fieldType=='textareafield'" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory"></textarea>
                     </div>
                     <div ng-if="element.itemConfig.fType=='multiChoiceQuestion'">
-                        
                         <div class="row" ng-if="element.itemConfig.fieldType=='checkboxgroup' ">
-                            <div class="col-xs-6" ng-repeat="option in element.itemConfig.fieldConfig.items track by $index">
+                            <div class="col-sm-{{12/element.itemConfig.fieldConfig.columns}}" ng-repeat="option in element.itemConfig.fieldConfig.items track by $index">
                                 <input type="checkbox" id="{{element.id}}_{{option.inputValue}}" ng-model="option.selected" ng-change="surveyCtrl.checkboxGroups(element.id,option.inputValue); ">
                                     <label for="{{element.id}}_{{option.inputValue}}">{{option.boxLabel}}</label>
-                            </div>
-                            {{element.itemConfig.fieldConfig}}
-                            
+                            </div>                            
                         </div>
                         <!--
                         <select ng-if="element.itemConfig.fieldType=='checkboxgroup'"
@@ -53,17 +50,20 @@
                                 ng-options="s.inputValue as s.boxLabel for s in element.itemConfig.fieldConfig.items"
                                 ng-model="fieldEntity[element.id]"
                                 ></select>-->
-                                
-                                
-                                
-                        <select ng-if="element.itemConfig.fieldType=='radiogroup'"
+                        <div class="row" ng-if="element.itemConfig.fieldType=='checkboxgroup' ">
+                            <div class="col-sm-{{12/element.itemConfig.fieldConfig.columns}}" ng-repeat="option in element.itemConfig.fieldConfig.items track by $index">
+                                <input type="radio" name="{{element.id}}" id="{{element.id}}_{{option.inputValue}}" ng-model="fieldEntity[element.id]" ng-value=' "{{option.inputValue}}"'>
+                                    <label for="{{element.id}}_{{option.inputValue}}">{{option.boxLabel}}</label>
+                            </div>
+                        </div>
+                        <!--<select ng-if="element.itemConfig.fieldType=='radiogroup'"
                                 chosen
                                 class="form-control"
                                 data-placeholder="Choisir une option"
                                 ng-required="element.itemConfig.fieldConfig.mandatory"
                                 ng-options="s.inputValue as s.boxLabel for s in element.itemConfig.fieldConfig.items"
                                 ng-model="fieldEntity[element.id]"
-                                ></select>{{fieldEntity[element.id]}}
+                                ></select>-->{{fieldEntity[element.id]}}
                     </div>
                 </div>
                 <button class="btn btn-primary pull-right" type="submit">
