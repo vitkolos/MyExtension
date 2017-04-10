@@ -112,7 +112,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
                             MUS700T: me.big_trad,
                             MUS700O: me.big_or
                         },
-																								"totalPrice":me.totalPrice
+																								"totalPrice":me.totalPrice()
                     }
             };
 												if (me.facture.codePromo && me.facture.codePromo != '') {
