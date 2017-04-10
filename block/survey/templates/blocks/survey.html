@@ -34,7 +34,7 @@
                     </div>
                     <div class="form-group" ng-if="element.itemConfig.fType=='multiChoiceQuestion'">
                         
-                        <div class="row" ng-if="element.itemConfig.fieldType=='checkboxgroup">
+                        <div class="row" ng-if="element.itemConfig.fieldType=='checkboxgroup' ">
                             <div class="col-xs-6" ng-repeat="option in element.itemConfig.fieldConfig.items track by $index">
                                 <input type="checkbox" ng-model="fieldEntity[element.id][$index]" ng-true-value="{{option.inputValue}}">
                                     <label>{{option.boxLabel}</label>
