@@ -33,6 +33,15 @@
                         <textarea ng-if="element.itemConfig.fieldType=='textareafield'" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory"></textarea>
                     </div>
                     <div class="form-group" ng-if="element.itemConfig.fType=='multiChoiceQuestion'">
+                        
+                        <div class="row" ng-if="element.itemConfig.fieldType=='checkboxgroup">
+                            <div class="col-xs-6" ng-repeat="option in element.itemConfig.fieldConfig.items track by $index">
+                                <input type="checkbox" ng-model="fieldEntity[element.id][$index]" ng-true-value="{{option.inputValue}}">
+                                    <label>{{option.boxLabel}</label>
+                            </div>
+                            
+                        </div>
+                        <!--
                         <select ng-if="element.itemConfig.fieldType=='checkboxgroup'"
                                 chosen
                                 class="form-control"
@@ -41,8 +50,10 @@
                                 ng-required="element.itemConfig.fieldConfig.mandatory"
                                 ng-options="s.inputValue as s.boxLabel for s in element.itemConfig.fieldConfig.items"
                                 ng-model="fieldEntity[element.id]"
-                                ></select>
-                        {{fieldEntity[element.id]}}
+                                ></select>-->
+                                
+                                
+                                
                         <select ng-if="element.itemConfig.fieldType=='radiogroup'"
                                 chosen
                                 class="form-control"
