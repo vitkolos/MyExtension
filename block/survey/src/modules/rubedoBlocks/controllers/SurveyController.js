@@ -95,5 +95,4 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         }
         return(res);
     };
-				me.startSurvey();
 }]);
