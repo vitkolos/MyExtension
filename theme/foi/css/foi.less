@@ -46,7 +46,10 @@ h2.titre:after{
 .btn-default{background-color: @main; color:white; border-color: @main;}
 .btn-default:hover{background-color: white; color:@main; border-color:@main}
 .btn.btn-primary{background-color: @main; color:white;  border-color: @main;}
-.btn.abonnement a{color: white; position: absolute; margin: 5px auto; bottom:70px; text-transform: uppercase; font-weight: bold; text-decoration: none; &:hover{color:@main} }
+.btn.abonnement{
+		position: absolute; margin: 5px auto; bottom:70px; 
+		a{color: white; text-transform: uppercase; font-weight: bold; text-decoration: none; &:hover{color:@main} }
+}
 /*NAVIGATION*/
 .navbar-brand{height: auto}
 .nav.navbar-nav, .dropdown-menu{
@@ -123,16 +126,16 @@ h2.titre:after{
 }
 
 .foiPresentation>div:last-of-type{
-		background:  no-repeat bottom;
 /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a0a0a0+0,a0a0a0+40,000000+40,000000+100 */
-background-image: url('../img/presentation.png'); /* Old browsers */
-background-image: url('../img/presentation.png'), -moz-linear-gradient(top, transparent 0%, transparent 60%, #a0a0a0 60%, #a0a0a0 100%); /* FF3.6-15 */
-background-image: url('../img/presentation.png'), -webkit-linear-gradient(top, transparent 0%,transparent 60%,#a0a0a0 60%,#a0a0a0 100%); /* Chrome10-25,Safari5.1-6 */
-background-image:url('../img/presentation.png'),  linear-gradient(to bottom, transparent 0%,transparent 60%,#a0a0a0 60%,#a0a0a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+background-image: url('../img/presentation.png') center center / auto 90% no-repeat ; /* Old browsers */
+background-image: url('../img/presentation.png') center center / auto 90% no-repeat , -moz-linear-gradient(top, transparent 0%, transparent 60%, #a0a0a0 60%, #a0a0a0 100%); /* FF3.6-15 */
+background-image: url('../img/presentation.png') center center / auto 90% no-repeat , -webkit-linear-gradient(top, transparent 0%,transparent 60%,#a0a0a0 60%,#a0a0a0 100%); /* Chrome10-25,Safari5.1-6 */
+background-image:url('../img/presentation.png') center center / auto 90% no-repeat ,  linear-gradient(to bottom, transparent 0%,transparent 60%,#a0a0a0 60%,#a0a0a0 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='transparent', endColorstr='#a0a0a0',GradientType=0 ); /* IE6-9 */
 
 		display: inline-block; position: relative; width:100%;
-		background-size: auto 100%;
 		img{margin:30px 15% 50px; width:70%; box-shadow: 0px 0px 50px rgba(0,0,0,0.36);}
 }
 
