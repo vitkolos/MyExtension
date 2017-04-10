@@ -24,7 +24,7 @@
             <form class="form" role="form" ng-submit="surveyCtrl.doNext()">
                 <div ng-repeat="element in surveyCtrl.currentPage.elements" ng-if="surveyCtrl.handleConditionals(element.itemConfig.conditionals)">
                     <rubedo-custom-template ng-if="element.itemConfig.fType=='richText'" template="{{element.itemConfig.html}}"></rubedo-custom-template>
-                    <rubedo-custom-template class="left label_style" ng-if="element.itemConfig.fType!='richText'&&element.itemConfig.label&&element.itemConfig.fieldType" template="{{element.itemConfig.label}}"></rubedo-custom-template>
+                    <rubedo-custom-template class="left label_style" style="margin-bottom:6px" ng-if="element.itemConfig.fType!='richText'&&element.itemConfig.label&&element.itemConfig.fieldType" template="{{element.itemConfig.label}}"></rubedo-custom-template>
                     <div class="form-group" ng-if="element.itemConfig.fType=='openQuestion'&&element.itemConfig.fieldType">
                         <input ng-if="element.itemConfig.fieldType=='textfield'" type="text" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory" >
                         <input ng-if="element.itemConfig.fieldType=='numberfield'" type="number" name="{{element.id}}" class="form-control" ng-model="fieldEntity[element.id]" ng-required="element.itemConfig.fieldConfig.mandatory" >
