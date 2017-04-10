@@ -15,7 +15,7 @@
         </div>
         <div class="panel-body" ng-if="!surveyCtrl.currentPage&&!surveyCtrl.isFinished">
             <p>{{surveyCtrl.survey.description}}</p>
-            <button class="btn btn-primary" ng-if="surveyCtrl.survey.formPages[0]" ng-click="surveyCtrl.startSurvey()">Démarrer le questionnaire</button>
+            <!--<button class="btn btn-primary" ng-if="surveyCtrl.survey.formPages[0]" ng-click="surveyCtrl.startSurvey()">Démarrer le questionnaire</button>-->
         </div>
         <div class="panel-body" ng-if="!surveyCtrl.currentPage&&surveyCtrl.isFinished">
             <p>{{surveyCtrl.survey.endMessage}}</p>
@@ -37,7 +37,7 @@
                         
                         <div class="row" ng-if="element.itemConfig.fieldType=='checkboxgroup' ">
                             <div class="col-xs-6" ng-repeat="option in element.itemConfig.fieldConfig.items track by $index">
-                                <input type="checkbox" ng-model="fieldEntity[element.id][$index]" ng-true-value="{{option.inputValue}}">
+                                <input type="checkbox" ng-model="option.values[$index]" ng-change="{{option.values[$index] ? fieldEntity[element.id].push(option.inputValue)}}">
                                     <label>{{option.boxLabel}}</label>
                             </div>
                             
