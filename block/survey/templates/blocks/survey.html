@@ -22,7 +22,7 @@
         </div>
         <div class="panel-body" ng-if="surveyCtrl.currentPage">
             <form class="form" role="form" ng-submit="surveyCtrl.doNext()">
-                <div ng-repeat="element in surveyCtrl.currentPage.elements" ng-if="surveyCtrl.handleConditionals(element.itemConfig.conditionals)" class="questionElement">
+                <div ng-repeat="element in surveyCtrl.currentPage.elements" ng-if="surveyCtrl.handleConditionals(element.itemConfig.conditionals)" ng-class="{'questionElement':element.itemConfig.fType!='richText'}">
                     <rubedo-custom-template ng-if="element.itemConfig.fType=='richText'" template="{{element.itemConfig.html}}"></rubedo-custom-template>
                     <rubedo-custom-template class="left label_style" style="margin-bottom:6px" ng-if="element.itemConfig.fType!='richText'&&element.itemConfig.label&&element.itemConfig.fieldType" template="{{element.itemConfig.label}}"></rubedo-custom-template>
                     <div class="form-group" ng-if="element.itemConfig.fType=='openQuestion'&&element.itemConfig.fieldType">
