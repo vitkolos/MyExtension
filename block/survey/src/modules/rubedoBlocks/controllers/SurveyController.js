@@ -8,7 +8,8 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         $http.get("/api/v1/survey/"+config.formId).then(
             function(response){
                 me.survey=response.data.survey;
-
+																
+												me.startSurvey();
             }
         );
     }

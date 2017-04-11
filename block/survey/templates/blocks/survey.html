@@ -1,5 +1,5 @@
 <div ng-controller="SurveyController as surveyCtrl">
-    <div  ng-if="surveyCtrl.survey" class="beige">
+    <div  ng-if="surveyCtrl.survey">
         <!-- Default panel contents -->
         <div class="panel-heading" ng-if="surveyCtrl.survey.formPages.length>1">
             <h4 ng-if="!surveyCtrl.currentPage">{{surveyCtrl.survey.title}}</h4>
