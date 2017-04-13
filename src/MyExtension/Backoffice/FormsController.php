@@ -90,7 +90,7 @@ class FormsController extends DataAccessController
             foreach ($page['elements'] as $element) {
                 switch ($element['itemConfig']['fType']) {
                     case 'multiChoiceQuestion':
-                        if ($element['itemConfig']['fieldType'] == 'checkboxgroup') {
+                       /* if ($element['itemConfig']['fieldType'] == 'checkboxgroup') {*/
                             $tempSubField = array();
                             foreach ($element['itemConfig']['fieldConfig']['items'] as $item) {
                                 $headerArray[] = $element['itemConfig']["qNb"]. ' - ' . $item['boxLabel'];
@@ -106,7 +106,7 @@ class FormsController extends DataAccessController
                             );
                             break;
                         
-                        }/*else {
+                        /*}else {
                             $headerArray[] = $element['itemConfig']["qNb"];
                             $fieldsArray[] = array(
                                 'type' => 'simple',
