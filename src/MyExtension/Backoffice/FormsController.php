@@ -106,7 +106,7 @@ class FormsController extends DataAccessController
                             );
                             break;
                         
-                        }else {
+                        }/*else {
                             $headerArray[] = $element['itemConfig']["qNb"];
                             $fieldsArray[] = array(
                                 'type' => 'simple',
@@ -116,7 +116,7 @@ class FormsController extends DataAccessController
                                 $definiedAnswersArray[$item['inputValue']] = $item['boxLabel'];
                             }
                             break;
-                        }
+                        }*/
                     case 'openQuestion':
                         $headerArray[] = $element['itemConfig']["qNb"];
                         $fieldsArray[] = array(
@@ -147,7 +147,7 @@ class FormsController extends DataAccessController
         }
         
         $list = Manager::getService('FormsResponses')->getResponsesByFormId($formId);
-        var_dump($list);
+        //var_dump($list);
         fputcsv($csvResource, $headerArray, ';');
         
         foreach ($list['data'] as $response) {
