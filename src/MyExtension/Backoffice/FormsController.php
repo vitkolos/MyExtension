@@ -168,7 +168,7 @@ class FormsController extends DataAccessController
                             $result = array_pop($response['data'][$element['value']]);
                             $csvLine[] = $definiedAnswersArray[$result];
                         } else {
-                            $csvLine[] = null;
+                            $csvLine[] = $response['data'][$element['value']];
                         }
                         
                         break;
