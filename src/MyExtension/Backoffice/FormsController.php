@@ -90,7 +90,7 @@ class FormsController extends DataAccessController
             foreach ($page['elements'] as $element) {
                 switch ($element['itemConfig']['fType']) {
                     case 'multiChoiceQuestion':
-                       /* if ($element['itemConfig']['fieldType'] == 'checkboxgroup') {*/
+                       if ($element['itemConfig']['fieldType'] == 'checkboxgroup') {
                             $tempSubField = array();
                             foreach ($element['itemConfig']['fieldConfig']['items'] as $item) {
                                 $headerArray[] = $element['itemConfig']["qNb"]. ' - ' . $item['boxLabel'];
@@ -106,17 +106,24 @@ class FormsController extends DataAccessController
                             );
                             break;
                         
-                        /*}else {
-                            $headerArray[] = $element['itemConfig']["qNb"];
+                        }else {
+                            foreach ($element['itemConfig']['fieldConfig']['items'] as $item) {
+                                $headerArray[] = $element['itemConfig']["qNb"]. ' - ' . $item['boxLabel'];
+                                $tempSubField[] = $item['inputValue'];
+                                $definiedAnswersArray[$item['inputValue']] = $item['boxLabel'];
+                            }
                             $fieldsArray[] = array(
                                 'type' => 'simple',
-                                'value' => $element['id']
+                                'value' => array(
+                                    'id' => $element['id'],
+                                    'items' => $tempSubField
+                                )
                             );
                             foreach ($element['itemConfig']['fieldConfig']['items'] as $item) {
                                 $definiedAnswersArray[$item['inputValue']] = $item['boxLabel'];
                             }
                             break;
-                        }*/
+                        }
                     case 'openQuestion':
                         $headerArray[] = $element['itemConfig']["qNb"];
                         $fieldsArray[] = array(
@@ -164,12 +171,21 @@ class FormsController extends DataAccessController
                         $csvLine[] = isset($response['data'][$element['value']]) ? $response['data'][$element['value']]+1 : null;
                         break;
                     case 'simple':
+                        foreach ($element['value']['items'] as $item) {
+                            $csvLine[] = ($item ==$response['data'][$element['value']]);
+                            /*if (isset($response['data'][$element['value']['id']])) {
+                                $csvLine[] = in_array($item, $response['data'][$element['value']['id']]);
+                            } else {
+                                $csvLine[] = null;
+                            }*/
+                        }
+                        /*
                         if (isset($response['data'][$element['value']]) && is_array($response['data'][$element['value']])) {
                             $result = array_pop($response['data'][$element['value']]);
                             $csvLine[] = $definiedAnswersArray[$result];
                         } else {
                             $csvLine[] = $response['data'][$element['value']];
-                        }
+                        }*/
                         
                         break;
                     case 'qcm':
