@@ -1,11 +1,11 @@
 <div ng-switch="question.fields.type.type"
      ng-if="(question.fields.questionPour.questionPour == 'tous') || ((question.fields.questionPour.questionPour == 'serviteurs')&&(inscription.serviteur)) || ((question.fields.questionPour.questionPour == 'sessionistes')&&!(inscription.serviteur))">
-    <!--radio group-->
     <div class="row" ng-if="question.fields.longTitle">
         <div class="col-sm-12" ng-bind-html="question.fields.longTitle| unsafe">
             
         </div>
     </div>
+    <!--radio group-->
     <div ng-switch-when="radio_group" class="row">
         <div class="col-sm-4">
             <label class="label_style">{{question.fields.questionLabel}}</label>
