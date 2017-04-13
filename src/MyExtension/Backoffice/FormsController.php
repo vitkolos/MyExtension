@@ -172,20 +172,9 @@ class FormsController extends DataAccessController
                     case 'simple':
                         foreach ($element['value']['items'] as $item) {
                             $csvLine[] = ($item ==$response['data'][$element['value']['id']]);
-                            /*if (isset($response['data'][$element['value']['id']])) {
-                                $csvLine[] = in_array($item, $response['data'][$element['value']['id']]);
-                            } else {
-                                $csvLine[] = null;
-                            }*/
+
                         }
-                        /*
-                        if (isset($response['data'][$element['value']]) && is_array($response['data'][$element['value']])) {
-                            $result = array_pop($response['data'][$element['value']]);
-                            $csvLine[] = $definiedAnswersArray[$result];
-                        } else {
-                            $csvLine[] = $response['data'][$element['value']];
-                        }*/
-                        
+                       
                         break;
                     case 'qcm':
                         foreach ($element['value']['items'] as $item) {
