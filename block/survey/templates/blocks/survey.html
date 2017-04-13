@@ -54,16 +54,15 @@
                                 <input type="radio" name="{{element.id}}" id="{{element.id}}_{{option.inputValue}}" ng-model="fieldEntity[element.id]" ng-value=" '{{option.inputValue}}' " ng-required="element.itemConfig.fieldConfig.mandatory">
                                     <label for="{{element.id}}_{{option.inputValue}}">{{option.boxLabel}}</label>
                             </div>
-                            {{fieldEntity[element.id]}}
                         </div>
-                        <select ng-if="element.itemConfig.fieldType=='radiogroup'"
+                        <!--<select ng-if="element.itemConfig.fieldType=='radiogroup'"
                                 chosen
                                 class="form-control"
                                 data-placeholder="Choisir une option"
                                 ng-required="element.itemConfig.fieldConfig.mandatory"
                                 ng-options="s.inputValue as s.boxLabel for s in element.itemConfig.fieldConfig.items"
                                 ng-model="fieldEntity[element.id]"
-                                ></select>
+                                ></select>-->
                     </div>
                 </div>
                 <button class="btn btn-primary pull-right" type="submit">

@@ -147,7 +147,7 @@ class FormsController extends DataAccessController
         }
         
         $list = Manager::getService('FormsResponses')->getResponsesByFormId($formId);
-        
+        var_dump($list);
         fputcsv($csvResource, $headerArray, ';');
         
         foreach ($list['data'] as $response) {
