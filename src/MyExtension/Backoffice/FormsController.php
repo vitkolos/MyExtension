@@ -107,6 +107,7 @@ class FormsController extends DataAccessController
                             break;
                         
                         }else {
+                            $tempSubField = array();
                             foreach ($element['itemConfig']['fieldConfig']['items'] as $item) {
                                 $headerArray[] = $element['itemConfig']["qNb"]. ' - ' . $item['boxLabel'];
                                 $tempSubField[] = $item['inputValue'];
@@ -119,9 +120,7 @@ class FormsController extends DataAccessController
                                     'items' => $tempSubField
                                 )
                             );
-                            foreach ($element['itemConfig']['fieldConfig']['items'] as $item) {
-                                $definiedAnswersArray[$item['inputValue']] = $item['boxLabel'];
-                            }
+
                             break;
                         }
                     case 'openQuestion':
@@ -154,7 +153,7 @@ class FormsController extends DataAccessController
         }
         
         $list = Manager::getService('FormsResponses')->getResponsesByFormId($formId);
-        var_dump($list);
+       // var_dump($list);
         fputcsv($csvResource, $headerArray, ';');
         
         foreach ($list['data'] as $response) {
@@ -172,7 +171,7 @@ class FormsController extends DataAccessController
                         break;
                     case 'simple':
                         foreach ($element['value']['items'] as $item) {
-                            $csvLine[] = ($item ==$response['data'][$element['value']]);
+                            $csvLine[] = ($item ==$response['data'][$element['value']['id']]);
                             /*if (isset($response['data'][$element['value']['id']])) {
                                 $csvLine[] = in_array($item, $response['data'][$element['value']['id']]);
                             } else {
