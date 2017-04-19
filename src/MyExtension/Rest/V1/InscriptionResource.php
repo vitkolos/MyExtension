@@ -199,7 +199,7 @@ class InscriptionResource extends AbstractResource
 								//echo($content);
 								return [
             'success' => true,
-            'path' => $content
+            'path' => utf8_decode($content)
         ];
 				}
 
