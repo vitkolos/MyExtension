@@ -52,14 +52,13 @@ class InscriptionResource extends AbstractResource
                 Filter::factory('Value')->setName('writeWorkspace')
 																				->setValue((string)$mainWorkspace['id'])
         );
-								var_dump($mainWorkspace);
         $contentType = Manager::getService("ContentTypes")->findById($params['typeId']);
         $filters->addFilter(
             Filter::factory('Value')->setName('typeId')
                 ->setValue($params['typeId'])
         );
         $contents = Manager::getService('Contents')->getOnlineList($filters);
-								//var_dump($contents);
+								var_dump($contents);
         $fileName = 'export_rubedo_contents_' . $contentType['type'] . '_' . time() . '.csv';
         $filePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $fileName;
         $csvResource = fopen($filePath, 'w+');
@@ -195,8 +194,6 @@ class InscriptionResource extends AbstractResource
             fputcsv($csvResource, $csvLine, ';');
         }
         $content = file_get_contents($filePath);
-								$currentUser = $this->getCurrentUserAPIService()->getCurrentUser();
-								var_dump($currentUser);
 								//header("Content-type: text/x-csv");
 								//header("Content-Disposition: attachment; filename=".$fileName."");
 								//echo($content);
