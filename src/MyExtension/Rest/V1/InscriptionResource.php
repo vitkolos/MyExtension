@@ -5,7 +5,7 @@ use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
-
+use Zend\Json\Json;
 class InscriptionResource extends AbstractResource
 {
     /**
