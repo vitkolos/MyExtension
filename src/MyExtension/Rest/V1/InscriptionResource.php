@@ -196,7 +196,7 @@ class InscriptionResource extends AbstractResource
         $content = file_get_contents($filePath);
 								header("Content-type: text/x-csv");
 								header("Content-Disposition: attachment; filename=".$fileName."");
-								//echo($content);
+								echo($content);
 								return [
             'success' => true,
             'count' => $contents
