@@ -41,7 +41,7 @@ class InscriptionResource extends AbstractResource
         }
 								if (!empty($params['propositionId'])) {
             $filters->addFilter(
-                Filter::factory('Value')->setName('fields.proposition')
+                Filter::factory('In')->setName('fields.proposition')
                     ->setValue($params['propositionId'])
             );
         }
