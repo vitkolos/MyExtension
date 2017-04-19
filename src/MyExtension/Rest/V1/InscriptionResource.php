@@ -15,35 +15,7 @@ class InscriptionResource extends AbstractResource
     public function __construct()
     {
         parent::__construct();
-        $this
-            ->definition
-            ->setName('Inscription')
-            ->setDescription('Service d\'inscription')
-            ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
-                $verbDefinitionEntity
-                    ->setDescription('Get résultats du formulaire d\'inscription')
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Inscription')
-                            ->setKey('inscription')                            
-                    )
-                     ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('workspace')
-                            ->setRequired()
-                            ->setDescription('Workspace')
-                    )
-                     ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Numéro d\'inscription')
-                            ->setKey('id')
-                    )
-                    ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('résultat')
-                            ->setKey('result')
-                    );
-            });
+        $this->define();
     }
     public function postAction($params)
     {
@@ -698,6 +670,70 @@ protected function localizableFields($type, $fields)
         }
         return $fields;
     }
+				
+    /**
+     * Define the resource
+     */
+    protected function define()
+    {
+        $this
+            ->definition
+            ->setName('Inscription')
+            ->setDescription('Service d\'inscription')
+            ->editVerb('get', function (VerbDefinitionEntity &$definition) {
+                $this->defineGet($definition);
+            })
+            ->editVerb('post', function (VerbDefinitionEntity &$definition) {
+                $this->definePost($definition);
+            });
+        
+    }
+				
+   protected function defineGet(VerbDefinitionEntity &$definition)
+    {
+        $definition
+            ->setDescription('Get a list of contents')
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('queryId')
+                    ->setRequired()
+                    ->setDescription('Id of the query')
+                    ->setFilter('\\MongoId')
+            )
+            ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('count')
+                    ->setDescription('Number of all contents')
+            );
+    }
+
+
+				protected function definePost(VerbDefinitionEntity &$definition)
+    {
+        $definition
+																->setDescription('Get résultats du formulaire d\'inscription')
+																->addInputFilter(
+																				(new FilterDefinitionEntity())
+																								->setDescription('Inscription')
+																								->setKey('inscription')                            
+																)
+																	->addInputFilter(
+																				(new FilterDefinitionEntity())
+																								->setKey('workspace')
+																								->setRequired()
+																								->setDescription('Workspace')
+																)
+																	->addOutputFilter(
+																				(new FilterDefinitionEntity())
+																								->setDescription('Numéro d\'inscription')
+																								->setKey('id')
+																)
+																->addOutputFilter(
+																				(new FilterDefinitionEntity())
+																								->setDescription('résultat')
+																								->setKey('result')
+																);
+				}
 
      
 
