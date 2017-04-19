@@ -34,9 +34,9 @@ class PayboxPayment extends AbstractPayment
     {
         $output = array();
         $dateTime = date("c");
-        $urlNormal="http://" . $_SERVER['HTTP_HOST'];//. "/payment/success";
-        $urlEchec="http://" . $_SERVER['HTTP_HOST'];//. "/payment/cancel";
-        $urlCallback="http://" . $_SERVER['HTTP_HOST'] . "/api/v1/AcnIpn/";
+        $urlNormal="https://" . $_SERVER['HTTP_HOST'];//. "/payment/success";
+        $urlEchec="https://" . $_SERVER['HTTP_HOST'];//. "/payment/cancel";
+        $urlCallback="https://" . $_SERVER['HTTP_HOST'] . "/api/v1/AcnIpn/";
 
         $parametres = [
             "typePaiement" => "CARTE",

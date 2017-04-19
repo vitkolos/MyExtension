@@ -213,9 +213,9 @@ class PaymentResource extends AbstractResource {
             $query['item_name'] = $params['proposition']; //nom du projet
             $query['item_number'] = $idInscription;//id du don
             $query['amount'] = $params['montant'];//montant du don
-            $query['notify_url'] = "http://" . $_SERVER['HTTP_HOST']. "/api/v1/PaypalIpnCcn/"; // adresse de l'IPN ? 
-            $query['cancel_return'] = "http://" . $_SERVER['HTTP_HOST']; // page d'annulation de commande
-            $query['return'] = "http://" . $_SERVER['HTTP_HOST']; // page de confirmation et remerciement
+            $query['notify_url'] = "https://" . $_SERVER['HTTP_HOST']. "/api/v1/PaypalIpnCcn/"; // adresse de l'IPN ? 
+            $query['cancel_return'] = "https://" . $_SERVER['HTTP_HOST']; // page d'annulation de commande
+            $query['return'] = "https://" . $_SERVER['HTTP_HOST']; // page de confirmation et remerciement
             $query['cmd'] = "_xclick";
             //infos de la personne
             //$query['address_override'] = '1';
