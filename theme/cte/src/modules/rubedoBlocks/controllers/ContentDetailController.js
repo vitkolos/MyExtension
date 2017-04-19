@@ -236,7 +236,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 propositionId:me.content.id
                             };
                             InscriptionService.exportInscriptions(payload).then(function(response){
-                                window.open(response.data.path,'_blank', '');  
+                                var csvData =  'data:application/csv;charset=utf-8,' + encodeURIComponent(response.data.path);
+                                var target = angular.element("#btnExport");
+                                target.attr({'href': csvData,'target': '_blank'});
+                                //window.open(response.data.path,'_blank', '');  
                             });
                         }
                     }
