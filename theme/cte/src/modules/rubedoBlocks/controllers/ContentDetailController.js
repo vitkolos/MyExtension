@@ -231,7 +231,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             });
                         }
                         //add export function
-                        me.exportInscription = function(){
+                        me.exportInscriptions = function(){
                             var payload={
                                 propositionId:me.content.id
                             };
