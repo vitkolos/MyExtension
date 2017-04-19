@@ -39,6 +39,12 @@ class InscriptionResource extends AbstractResource
                     ->setValue((int)$params['endDate'])
             );
         }
+								if (!empty($params['propositionId'])) {
+            $filters->addFilter(
+                Filter::factory('Value')->setName('proposition')
+                    ->setValue($params['propositionId'])
+            );
+        }
         $contentType = Manager::getService("ContentTypes")->findById($params['typeId']);
         $filters->addFilter(
             Filter::factory('Value')->setName('typeId')
@@ -180,26 +186,10 @@ class InscriptionResource extends AbstractResource
             fputcsv($csvResource, $csvLine, ';');
         }
         $content = file_get_contents($filePath);
-        /*$response = $this->getResponse();
-        $headers = $response->getHeaders();
-        $headers->addHeaderLine('Content-Type', 'text/csv');
-        $headers->addHeaderLine('Content-Disposition', "attachment; filename=\"$fileName\"");
-        $headers->addHeaderLine('Accept-Ranges', 'bytes');
-        $headers->addHeaderLine('Content-Length', strlen($content));
-        $response->setContent($content);*/
-        //return $response;
-								
-								/*header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
-            header("Cache-Control: public"); // needed for internet explorer
-            header("Content-Type: text/csvp");
-            header("Content-Transfer-Encoding: Binary");
-            header("Content-Length:".strlen($content));
-            header("Content-Disposition: attachment; filename='$fileName'");
-            readfile($filePath);
-            die(); */
+
 								header("Content-type: text/x-csv");
-header("Content-Disposition: attachment; filename=".$fileName."");
-echo($content);
+								header("Content-Disposition: attachment; filename=".$fileName."");
+								echo($content);
 								return [
             'success' => true,
             'count' => File($content, "text/csv", $fileName)
