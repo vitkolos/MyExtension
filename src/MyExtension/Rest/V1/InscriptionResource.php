@@ -39,12 +39,12 @@ class InscriptionResource extends AbstractResource
                     ->setValue((int)$params['endDate'])
             );
         }
-								/*if (!empty($params['propositionId'])) {
+								if (!empty($params['propositionId'])) {
             $filters->addFilter(
                 Filter::factory('In')->setName('fields.proposition')
 																				->setValue([$params['propositionId'], '*'])
             );
-        }*/
+        }
         $contentType = Manager::getService("ContentTypes")->findById($params['typeId']);
         $filters->addFilter(
             Filter::factory('Value')->setName('typeId')
@@ -932,7 +932,7 @@ protected function localizableFields($type, $fields)
                 (new FilterDefinitionEntity())
                     ->setKey('propositionId')
                     ->setDescription('ID de la proposition')
-                    ->setFilter('\\MongoId')
+                    //->setFilter('\\MongoId')
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
