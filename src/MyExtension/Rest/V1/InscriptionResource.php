@@ -180,16 +180,23 @@ class InscriptionResource extends AbstractResource
             fputcsv($csvResource, $csvLine, ';');
         }
         $content = file_get_contents($filePath);
-        $response = $this->getResponse();
+        /*$response = $this->getResponse();
         $headers = $response->getHeaders();
         $headers->addHeaderLine('Content-Type', 'text/csv');
         $headers->addHeaderLine('Content-Disposition', "attachment; filename=\"$fileName\"");
         $headers->addHeaderLine('Accept-Ranges', 'bytes');
         $headers->addHeaderLine('Content-Length', strlen($content));
-        $response->setContent($content);
+        $response->setContent($content);*/
         //return $response;
 								
-								
+								header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
+            header("Cache-Control: public"); // needed for internet explorer
+            header("Content-Type: text/csvp");
+            header("Content-Transfer-Encoding: Binary");
+            header("Content-Length:".strlen($content));
+            header("Content-Disposition: attachment; filename='$fileName'");
+            readfile($attachment_location);
+            die(); 
 								
 								return [
             'success' => true,
