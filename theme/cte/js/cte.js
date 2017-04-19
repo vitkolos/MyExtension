@@ -43,6 +43,47 @@ angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filte
         return $filter('date')(new Date(), 'yyyy');
     };
 }])
+angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  function($filter,$interval) {
+    return function(nextDate,format) {
+												/*var fireDigestEverySecond = function () {
+																						$timeout(function () {fireDigestEverySecond()}, 1000);
+																		};
+											
+											fireDigestEverySecond();*/
+												//$interval(function (){timeDiff()}, 1000);
+												var dateDiff = function(){
+																						var currentDate = new Date();
+																						var endDate = new Date(nextDate);
+																						var miliseconds = endDate-currentDate;
+																						/*if (format=='days') {
+																																	return window.Math.round(miliseconds/(1000*60*60));
+																						}
+																						else if (format=='min') {
+																																	return window.Math.round(miliseconds/(1000*60*60));
+																						}*/
+											
+																						var seconds = miliseconds/1000;
+																						var minutes = seconds/60;
+																						var hours = minutes/60;
+																						var days = window.Math.floor(miliseconds/(24*60*60*1000));
+																						var hours = window.Math.floor((miliseconds-days*(24*60*60*1000))/(60*60*1000));
+																						var min = window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000))/(60*1000));
+																						if (format=='day') {
+																																	return days;
+																						}
+																						else if (format=='hour') {
+																																	return hours;
+																						}
+																						else if (format=='min') {
+																																	return min;
+																						}
+																						else if (format=='sec') {
+																																	return window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000)-min*(60*1000))/(1000));
+																						}
+												};
+											return dateDiff();
+											};
+}])
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];

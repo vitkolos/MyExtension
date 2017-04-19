@@ -44,6 +44,26 @@
                         </a>
                     </div>
                 </div>
+                <!--PRESENTATION FOI-->
+                <div  ng-switch-when="1">
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="foiPresentation" ng-class="contentListCtrl.columns" >
+
+                        <div>
+                            <img class="img-responsive" ng-if="content.fields.image"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
+                             alt="{{ content.fields.text }}"/>
+                            <button class="btn btn-default abonnement"><a rubedo-page-link="58e518b1245640860f8bca42">S'abonner</a></button>
+                            <ul class="presentation">
+                                <li><a>Sommaire</a></li>
+                                <li><a>Acheter</a></li>
+                                <li><span><a>Déjà abonné</a></span></li>
+                            </ul>
+                            
+                            
+                        </div>
+                        
+                    </div>
+                </div>
                 <!--normal-->
                 <div ng-switch-default>
                     <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList col-xs-6 " ng-class="contentListCtrl.columns" >

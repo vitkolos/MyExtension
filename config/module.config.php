@@ -55,6 +55,10 @@ return array(
             'name' => "Royaume-Uni",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
+								'de' => array(
+            'name' => "Allemagne",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
+        ),
 								'bresil' => array(
             'name' => "Brésil",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'

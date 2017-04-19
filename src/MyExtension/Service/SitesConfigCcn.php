@@ -64,7 +64,6 @@ class SitesConfigCcn extends AbstractCollection
                     break;
             //ISRAEL
             case "il.chemin-neuf.org" :
-            case "il2.chemin-neuf.org" :
                     $accountName="israel";
                     break;
             //BELGIQUE
@@ -73,12 +72,10 @@ class SitesConfigCcn extends AbstractCollection
                     $accountName="belgique";
                     break;
             //MARTINIQUE
-            case "mq2.chemin-neuf.org" :
             case "mq.chemin-neuf.org" :
                     $accountName="martinique";
                     break;
             //CANADA
-            case "ca.chemin-neuf.org" :
             case "www.chemin-neuf.ca" :
                     $accountName="canada";
                     break;
@@ -92,8 +89,11 @@ class SitesConfigCcn extends AbstractCollection
             case "www.chemin-neuf.org.uk" :
                     $accountName="uk";
                     break;
+            //ALLEMAGNE
+            case "www.chemin-neuf.de" :
+                    $accountName="de";
+                    break;
             //BRESIL
-            case "br2.chemin-neuf.org" :
             case "br2.chemin-neuf.org" :
                     $accountName="bresil";
                     break;

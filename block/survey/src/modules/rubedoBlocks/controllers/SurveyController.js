@@ -8,7 +8,8 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         $http.get("/api/v1/survey/"+config.formId).then(
             function(response){
                 me.survey=response.data.survey;
-
+																
+												me.startSurvey();
             }
         );
     }
@@ -16,6 +17,18 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         me.currentPage=me.survey.formPages[0];
         me.currentPageIndex=0;
     };
+				me.checkboxGroups = function(questionId, value){
+								if (!$scope.fieldEntity[questionId]) {
+												$scope.fieldEntity[questionId] = [value];
+								}
+								else {
+												/*if value present, then delete it*/
+												if ($scope.fieldEntity[questionId].indexOf(value)>-1) {
+																$scope.fieldEntity[questionId].splice($scope.fieldEntity[questionId].indexOf(value),1);
+												}
+												else $scope.fieldEntity[questionId].push(value);
+								}
+				};
     me.setPage=function(page,index){
         if(page.id!=me.currentPage.id){
             me.currentPage=page;
@@ -94,4 +107,5 @@ angular.module("rubedoBlocks").lazy.controller('SurveyController',['$scope','$ht
         }
         return(res);
     };
+
 }]);

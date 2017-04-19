@@ -90,7 +90,7 @@ class FormsController extends DataAccessController
             foreach ($page['elements'] as $element) {
                 switch ($element['itemConfig']['fType']) {
                     case 'multiChoiceQuestion':
-                        if ($element['itemConfig']['fieldType'] == 'checkboxgroup') {
+                       if ($element['itemConfig']['fieldType'] == 'checkboxgroup') {
                             $tempSubField = array();
                             foreach ($element['itemConfig']['fieldConfig']['items'] as $item) {
                                 $headerArray[] = $element['itemConfig']["qNb"]. ' - ' . $item['boxLabel'];
@@ -107,14 +107,20 @@ class FormsController extends DataAccessController
                             break;
                         
                         }else {
-                            $headerArray[] = $element['itemConfig']["qNb"];
-                            $fieldsArray[] = array(
-                                'type' => 'simple',
-                                'value' => $element['id']
-                            );
+                            $tempSubField = array();
                             foreach ($element['itemConfig']['fieldConfig']['items'] as $item) {
+                                $headerArray[] = $element['itemConfig']["qNb"]. ' - ' . $item['boxLabel'];
+                                $tempSubField[] = $item['inputValue'];
                                 $definiedAnswersArray[$item['inputValue']] = $item['boxLabel'];
                             }
+                            $fieldsArray[] = array(
+                                'type' => 'simple',
+                                'value' => array(
+                                    'id' => $element['id'],
+                                    'items' => $tempSubField
+                                )
+                            );
+
                             break;
                         }
                     case 'openQuestion':
@@ -147,7 +153,7 @@ class FormsController extends DataAccessController
         }
         
         $list = Manager::getService('FormsResponses')->getResponsesByFormId($formId);
-        
+       // var_dump($list);
         fputcsv($csvResource, $headerArray, ';');
         
         foreach ($list['data'] as $response) {
@@ -164,13 +170,11 @@ class FormsController extends DataAccessController
                         $csvLine[] = isset($response['data'][$element['value']]) ? $response['data'][$element['value']]+1 : null;
                         break;
                     case 'simple':
-                        if (isset($response['data'][$element['value']]) && is_array($response['data'][$element['value']])) {
-                            $result = array_pop($response['data'][$element['value']]);
-                            $csvLine[] = $definiedAnswersArray[$result];
-                        } else {
-                            $csvLine[] = null;
+                        foreach ($element['value']['items'] as $item) {
+                            $csvLine[] = ($item ==$response['data'][$element['value']['id']]);
+
                         }
-                        
+                       
                         break;
                     case 'qcm':
                         foreach ($element['value']['items'] as $item) {

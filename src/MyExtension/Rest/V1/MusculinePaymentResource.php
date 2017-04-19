@@ -147,6 +147,8 @@ class MusculinepaymentResource extends AbstractResource {
             )
         )
     );
+    $data['startPublicationDate'] = ""; $data['endPublicationDate'] = "";
+    $data['online'] = false;
     $wasFiltered = AbstractCollection::disableUserFilter(true);
     $contentsService = Manager::getService("ContentsCcn");
     $resultcreate = $contentsService->create($data, array(),false);

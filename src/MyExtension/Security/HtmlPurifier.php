@@ -63,6 +63,7 @@ class CcnHtmlPurifier extends HtmlCleaner
             $def = $config->getHTMLDefinition(true);
             $def->addAttribute('a', 'rubedo-page-link', 'CDATA');
             $def->addAttribute('a', 'rubedo-event', 'CDATA');
+												$def->addAttribute('iframe', 'allowfullscreen', 'Bool');
             $def->addAttribute('a', 'onclick', 'CDATA');
 		$def->addAttribute('a', 'data-dismiss', 'CDATA');
 		$def->addAttribute('button', 'onclick', 'CDATA');
