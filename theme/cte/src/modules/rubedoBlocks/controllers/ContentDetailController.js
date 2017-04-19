@@ -239,7 +239,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 var csvData =  'data:application/csv;charset=utf-8,' + encodeURIComponent(response.data.path);
                                var target = angular.element("#btnExport");
                                 target.attr({'href': csvData,'target': '_blank'});
-                                setTimeout(function(){target.click();},100);
+                                setTimeout(function(){target[0].click();},200);
                                 //console.log(csvData);
                             });
                         }
