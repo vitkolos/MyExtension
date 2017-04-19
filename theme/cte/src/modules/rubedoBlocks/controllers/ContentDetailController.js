@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope","RubedoPaymentMeansService",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope,RubedoPaymentMeansService){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope","RubedoPaymentMeansService","InscriptionService",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope,RubedoPaymentMeansService,InscriptionService){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -229,6 +229,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 me.inscriptions = response.data.results.data;
                               } 
                             });
+                        }
+                        //add export function
+                        me.exportInscription = function(){
+                            var payload={
+                                propositionId:me.content.id
+                            };
+                            InscriptionService.exportInscriptions(payload).then(function(response){});
                         }
                     }
 

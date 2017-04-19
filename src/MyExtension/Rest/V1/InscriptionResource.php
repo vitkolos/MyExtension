@@ -22,7 +22,7 @@ class InscriptionResource extends AbstractResource
 				
 				public function getAction($params)
 				{
-								
+								$typeId = "561627c945205e41208b4581";
 								//$params = $this->params()->fromQuery();
         $filters = Filter::factory();
         if (!empty($params['startDate'])) {
@@ -52,10 +52,10 @@ class InscriptionResource extends AbstractResource
                 Filter::factory('Value')->setName('writeWorkspace')
 																				->setValue((string)$mainWorkspace['id'])
         );
-        $contentType = Manager::getService("ContentTypes")->findById($params['typeId']);
+        $contentType = Manager::getService("ContentTypes")->findById($typeId);
         $filters->addFilter(
             Filter::factory('Value')->setName('typeId')
-                ->setValue($params['typeId'])
+                ->setValue($typeId)
         );
         $contents = Manager::getService('Contents')->getOnlineList($filters);
 								var_dump($contents);
@@ -916,12 +916,6 @@ protected function localizableFields($type, $fields)
     {
         $definition
             ->setDescription('Get Excel list of registrations')
-            ->addInputFilter(
-                (new FilterDefinitionEntity())
-                    ->setKey('typeId')
-                    ->setRequired()
-                    ->setDescription('Content type')
-            )
 												->addInputFilter(
                 (new FilterDefinitionEntity())
                     ->setKey('startDate')
