@@ -235,7 +235,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             };
                             InscriptionService.exportInscriptions(payload).then(function(response){
                                 var csvData =  'data:application/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(response.data.path);
-                               var target = angular.element("#btnExport");
+                                var target = angular.element("#btnExport");
                                 target.attr({'href': csvData,'target': '_blank'});
                                 //setTimeout(function(){target[0].click();},200);
                             });
