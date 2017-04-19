@@ -1,10 +1,12 @@
 <?php
 namespace RubedoAPI\Rest\V1;
+use Zend\Mvc\Controller\AbstractActionController;
 use Rubedo\Collection\AbstractCollection;
 use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
-
+use WebTales\MongoFilters\Filter;
+use Zend\Json\Json;
 class InscriptionResource extends AbstractResource
 {
     /**
@@ -15,36 +17,197 @@ class InscriptionResource extends AbstractResource
     public function __construct()
     {
         parent::__construct();
-        $this
-            ->definition
-            ->setName('Inscription')
-            ->setDescription('Service d\'inscription')
-            ->editVerb('post', function (VerbDefinitionEntity &$verbDefinitionEntity) {
-                $verbDefinitionEntity
-                    ->setDescription('Get résultats du formulaire d\'inscription')
-                    ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Inscription')
-                            ->setKey('inscription')                            
-                    )
-                     ->addInputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setKey('workspace')
-                            ->setRequired()
-                            ->setDescription('Workspace')
-                    )
-                     ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('Numéro d\'inscription')
-                            ->setKey('id')
-                    )
-                    ->addOutputFilter(
-                        (new FilterDefinitionEntity())
-                            ->setDescription('résultat')
-                            ->setKey('result')
-                    );
-            });
+        $this->define();
     }
+				
+				public function getAction($params)
+				{
+								
+								//$params = $this->params()->fromQuery();
+        $filters = Filter::factory();
+        if (!empty($params['startDate'])) {
+            $filters->addFilter(
+                Filter::factory('OperatorTovalue')->setName('createTime')
+                    ->setOperator('$gte')
+                    ->setValue((int)$params['startDate'])
+            );
+        }
+        if (!empty($params['endDate'])) {
+            $filters->addFilter(
+                Filter::factory('OperatorTovalue')->setName('createTime')
+                    ->setOperator('$lte')
+                    ->setValue((int)$params['endDate'])
+            );
+        }
+        $contentType = Manager::getService("ContentTypes")->findById($params['typeId']);
+        $filters->addFilter(
+            Filter::factory('Value')->setName('typeId')
+                ->setValue($params['typeId'])
+        );
+        $contents = Manager::getService('Contents')->getOnlineList($filters);
+        $fileName = 'export_rubedo_contents_' . $contentType['type'] . '_' . time() . '.csv';
+        $filePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $fileName;
+        $csvResource = fopen($filePath, 'w+');
+        $fieldsArray = array(
+            "text" => null,
+            "summary" => null
+        );
+        $headerArray = array(
+            "text" => "Title",
+            "summary" => "Summary"
+        );
+        $fieldsArray["createTime"] = null;
+        $fieldsArray["createUser"] = null;
+        $multivaluedFieldsArray = array();
+        $headerArray["createTime"] = "Creation";
+        $headerArray["createUser"] = "Nom du créateur";
+        $exportableFieldTypes = [
+            "Ext.form.field.Text",
+            "textfield",
+            "Ext.form.field.TextArea",
+            "textarea",
+            "textareafield",
+            "Ext.form.field.Number",
+            "numberfield",
+            "Ext.form.field.ComboBox",
+            "combobox",
+            "Ext.form.field.Checkbox",
+            "checkboxfield",
+            "Ext.form.RadioGroup",
+            "radiogroup",
+            "Ext.form.field.Date",
+            "datefield",
+            "Ext.form.field.Time",
+            "timefield",
+            "Ext.slider.Single",
+            "slider",
+            "Rubedo.view.CKEField",
+            "CKEField",
+            "Rubedo.view.localiserField",
+            "localiserField",
+        ];
+        foreach ($contentType['fields'] as $typeField) {
+            if (in_array($typeField['cType'], $exportableFieldTypes)) {
+                $fieldsArray[$typeField['config']['name']] = $typeField['cType'];
+                $headerArray[$typeField['config']['name']] = $typeField['config']['fieldLabel'];
+                if (isset($typeField['config']['multivalued']) && $typeField['config']['multivalued']) {
+                    $multivaluedFieldsArray[] = $typeField['config']['name'];
+                }
+            }
+        }
+        $taxoService = Manager::getService("Taxonomy");
+        $taxoTermsService = Manager::getService("TaxonomyTerms");
+        $taxoHeaderArray = array();
+        $taxoFieldsArray = array();
+        foreach ($contentType['vocabularies'] as $vocabId) {
+            if (!empty($vocabId) && $vocabId != "navigation") {
+                $vocabulary = $taxoService->findById($vocabId);
+                if ($vocabulary) {
+                    $taxoHeaderArray[$vocabId] = $vocabulary['name'];
+                    $taxoFieldsArray[] = $vocabId;
+                }
+            }
+        }
+        $csvLine = array();
+        foreach ($fieldsArray as $field => $fieldType) {
+            $csvLine[] = $headerArray[$field];
+        }
+        foreach ($taxoFieldsArray as $field) {
+            $csvLine[] = $taxoHeaderArray[$field];
+        }
+        fputcsv($csvResource, $csvLine, ';');
+        $usersService=Manager::getService("Users");
+        foreach ($contents['data'] as $content) {
+            $csvLine = array();
+            foreach ($fieldsArray as $field => $fieldType) {
+                switch ($field) {
+                    case 'createTime':
+                        $csvLine[] = date('d-m-Y H:i:s', $content["createTime"]);
+                        break;
+                    case 'createUser':
+                        $foundUser=$usersService->findByid($content["createUser"]["id"]);
+                        if ($foundUser){
+                            $csvLine[] = $foundUser["name"];
+                        } else {
+                            $csvLine[] = "";
+                        }
+                        break;
+                    case 'text':
+                        $csvLine[] = isset($content[$field]) ? $content[$field] : '';
+                        break;
+                    default:
+                        if (!isset($content['fields'][$field])) {
+                            $csvLine[] = '';
+                        } elseif (in_array($field, $multivaluedFieldsArray) && is_array($content['fields'][$field])) {
+                            $formatedValuesArray = array();
+                            foreach ($content['fields'][$field] as $unformatedValue) {
+                                $formatedValuesArray[] = $this->formatFieldData($unformatedValue, $fieldType);
+                            }
+                            $csvLine[] = implode(", ", $formatedValuesArray);
+                        } else {
+                            $csvLine[] = $this->formatFieldData($content['fields'][$field], $fieldType);
+                        }
+                        break;
+                }
+            }
+            foreach ($taxoFieldsArray as $taxoField) {
+                if (!isset($content['taxonomy'][$taxoField])) {
+                    $csvLine[] = '';
+                } elseif (is_array($content['taxonomy'][$taxoField])) {
+                    $termLabelsArray = array();
+                    foreach ($content['taxonomy'][$taxoField] as $taxoTermId) {
+                        if (!empty($taxoTermId)) {
+                            $foundTerm = $taxoTermsService->findById($taxoTermId);
+                            if ($foundTerm) {
+                                $termLabelsArray[] = $foundTerm['text'];
+                            }
+                        }
+                    }
+                    $csvLine[] = implode(", ", $termLabelsArray);
+                } else {
+                    if (!empty($content['taxonomy'][$taxoField])) {
+                        $foundTerm = $taxoTermsService->findById($content['taxonomy'][$taxoField]);
+                        if ($foundTerm) {
+                            $csvLine[] = $foundTerm['text'];
+                        } else {
+                            $csvLine[] = '';
+                        }
+                    } else {
+                        $csvLine[] = '';
+                    }
+                }
+            }
+            fputcsv($csvResource, $csvLine, ';');
+        }
+        $content = file_get_contents($filePath);
+        /*$response = $this->getResponse();
+        $headers = $response->getHeaders();
+        $headers->addHeaderLine('Content-Type', 'text/csv');
+        $headers->addHeaderLine('Content-Disposition', "attachment; filename=\"$fileName\"");
+        $headers->addHeaderLine('Accept-Ranges', 'bytes');
+        $headers->addHeaderLine('Content-Length', strlen($content));
+        $response->setContent($content);*/
+        //return $response;
+								
+								/*header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
+            header("Cache-Control: public"); // needed for internet explorer
+            header("Content-Type: text/csvp");
+            header("Content-Transfer-Encoding: Binary");
+            header("Content-Length:".strlen($content));
+            header("Content-Disposition: attachment; filename='$fileName'");
+            readfile($filePath);
+            die(); */
+								header("Content-type: text/x-csv");
+header("Content-Disposition: attachment; filename=".$fileName."");
+echo($content);
+								return [
+            'success' => true,
+            'count' => File($content, "text/csv", $fileName)
+        ];
+				}
+
+				
+				
     public function postAction($params)
     {
         
@@ -698,6 +861,122 @@ protected function localizableFields($type, $fields)
         }
         return $fields;
     }
+				
+    
+ protected function formatFieldData($value, $cType = null)
+    {
+        switch ($cType) {
+            case 'Ext.form.field.Date':
+            case 'datefield':
+                return date('d-m-Y H:i:s', $value);
+                break;
+            case 'Ext.form.RadioGroup':
+            case 'radiogroup':
+            case 'Ext.form.field.ComboBox':
+            case 'combobox':
+                if (is_array($value)) {
+                    return implode(", ", $value);
+                } else {
+                    return $value;
+                }
+                break;
+            case 'localiserField':
+            case 'Rubedo.view.localiserField':
+                if (isset($value["lat"])&&isset($value["lon"])){
+                    $stringLat= (string) $value["lat"];
+                    $stringLon= (string) $value["lon"];
+                    return($stringLat.",".$stringLon);
+                } else {
+                    return "";
+                }
+                break;
+            default:
+                return ($value);
+                break;
+        }
+    }				
+				
+				
+				/**
+     * Define the resource
+     */
+    protected function define()
+    {
+        $this
+            ->definition
+            ->setName('Inscription')
+            ->setDescription('Service d\'inscription')
+            ->editVerb('get', function (VerbDefinitionEntity &$definition) {
+                $this->defineGet($definition);
+            })
+            ->editVerb('post', function (VerbDefinitionEntity &$definition) {
+                $this->definePost($definition);
+            });
+        
+    }
+				
+   protected function defineGet(VerbDefinitionEntity &$definition)
+    {
+        $definition
+            ->setDescription('Get Excel list of registrations')
+            ->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('typeId')
+                    ->setRequired()
+                    ->setDescription('Content type')
+            )
+												->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('startDate')
+                    //->setRequired()
+                    ->setDescription('Start date')
+            )
+												->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('endDate')
+                    //->setRequired()
+                    ->setDescription('End date')
+            )
+												->addInputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('propositionId')
+                    ->setDescription('ID de la proposition')
+                    ->setFilter('\\MongoId')
+            )
+            ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setKey('count')
+                    ->setDescription('Number of all contents')
+            );
+    }
+
+
+				protected function definePost(VerbDefinitionEntity &$definition)
+    {
+        $definition
+																->setDescription('Get résultats du formulaire d\'inscription')
+																->addInputFilter(
+																				(new FilterDefinitionEntity())
+																								->setDescription('Inscription')
+																								->setKey('inscription')                            
+																)
+																	->addInputFilter(
+																				(new FilterDefinitionEntity())
+																								->setKey('workspace')
+																								->setRequired()
+																								->setDescription('Workspace')
+																)
+																	->addOutputFilter(
+																				(new FilterDefinitionEntity())
+																								->setDescription('Numéro d\'inscription')
+																								->setKey('id')
+																)
+																->addOutputFilter(
+																				(new FilterDefinitionEntity())
+																								->setDescription('résultat')
+																								->setKey('result')
+																);
+				}
 
      
 
