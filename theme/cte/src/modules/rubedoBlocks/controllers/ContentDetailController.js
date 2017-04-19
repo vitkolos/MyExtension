@@ -234,17 +234,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 propositionId:me.content.id
                             };
                             InscriptionService.exportInscriptions(payload).then(function(response){
-                                var csvData =  'data:application/csv;charset=utf-8,' + encodeURIComponent(response.data.path);
+                                var csvData =  'data:application/csv;charset=utf-8,' + decodeURIComponent(response.data.path);
                                var target = angular.element("#btnExport");
                                 target.attr({'href': csvData,'target': '_blank'});
                                 //setTimeout(function(){target[0].click();},200);
                             });
                             
                         }
-                        //add export function
-                        me.exportInscriptions = function(){
-                            
-                        }
+
                     }
 
                     //Albums photos
