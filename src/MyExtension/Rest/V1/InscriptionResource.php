@@ -1,5 +1,6 @@
 <?php
 namespace RubedoAPI\Rest\V1;
+use Zend\Mvc\Controller\AbstractActionController;
 use Rubedo\Collection\AbstractCollection;
 use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
