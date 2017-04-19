@@ -43,7 +43,7 @@ class InscriptionResource extends AbstractResource
             Filter::factory('Value')->setName('typeId')
                 ->setValue($params['typeId'])
         );
-        $contents = $this->_dataService->getOnlineList($filters);
+        $contents = Manager::getService('Contents')->getOnlineList($filters);
         $fileName = 'export_rubedo_contents_' . $contentType['type'] . '_' . time() . '.csv';
         $filePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $fileName;
         $csvResource = fopen($filePath, 'w+');
