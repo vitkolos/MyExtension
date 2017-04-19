@@ -852,7 +852,42 @@ protected function localizableFields($type, $fields)
         return $fields;
     }
 				
-    /**
+    
+ protected function formatFieldData($value, $cType = null)
+    {
+        switch ($cType) {
+            case 'Ext.form.field.Date':
+            case 'datefield':
+                return date('d-m-Y H:i:s', $value);
+                break;
+            case 'Ext.form.RadioGroup':
+            case 'radiogroup':
+            case 'Ext.form.field.ComboBox':
+            case 'combobox':
+                if (is_array($value)) {
+                    return implode(", ", $value);
+                } else {
+                    return $value;
+                }
+                break;
+            case 'localiserField':
+            case 'Rubedo.view.localiserField':
+                if (isset($value["lat"])&&isset($value["lon"])){
+                    $stringLat= (string) $value["lat"];
+                    $stringLon= (string) $value["lon"];
+                    return($stringLat.",".$stringLon);
+                } else {
+                    return "";
+                }
+                break;
+            default:
+                return ($value);
+                break;
+        }
+    }				
+				
+				
+				/**
      * Define the resource
      */
     protected function define()
