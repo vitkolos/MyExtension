@@ -194,12 +194,12 @@ class InscriptionResource extends AbstractResource
             fputcsv($csvResource, $csvLine, ';');
         }
         $content = file_get_contents($filePath);
-								header("Content-type: text/x-csv");
-								header("Content-Disposition: attachment; filename=".$fileName."");
-								echo($content);
+								//header("Content-type: text/x-csv");
+								//header("Content-Disposition: attachment; filename=".$fileName."");
+								//echo($content);
 								return [
             'success' => true,
-            'count' => $contents
+            'path' => $filePath
         ];
 				}
 
@@ -936,8 +936,8 @@ protected function localizableFields($type, $fields)
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
-                    ->setKey('count')
-                    ->setDescription('Number of all contents')
+                    ->setKey('path')
+                    ->setDescription('Fichier temporaire')
             );
     }
 
