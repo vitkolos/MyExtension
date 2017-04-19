@@ -41,8 +41,8 @@ class InscriptionResource extends AbstractResource
         }
 								if (!empty($params['propositionId'])) {
             $filters->addFilter(
-                Filter::factory('Value')->setName('proposition')
-																				->setValue($params['propositionId'])
+                Filter::factory('In')->setName('fields.proposition')
+																				->setValue([$params['propositionId'], '*'])
             );
         }
         $contentType = Manager::getService("ContentTypes")->findById($params['typeId']);
