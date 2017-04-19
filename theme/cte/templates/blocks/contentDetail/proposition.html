@@ -253,7 +253,8 @@
 	<div class="row" ng-if="rubedo.current.user && rubedo.current.user.rights.canEdit && contentDetailCtrl.inscriptions">
 		<div class="text-article">
 			<div class="col-xs-12">
-				<h3>{{rubedo.translate("Inscriptions.Liste", "Liste des inscriptions")}}</h3>
+				<h3>{{rubedo.translate("Inscriptions.Liste", "Liste des inscriptions")}} </h3>
+				<a  download="inscriptions_{{fieldEntity['text']}}.csv" id="btnExport"  ng-click="contentDetailCtrl.exportInscriptions()"><p><span class="glyphicon glyphicon-download-alt "></span> {{rubedo.translate("Inscriptions.Export", "Exporter en Excel")}}</p></a>
 			</div>
 		</div>
 		<div class="col-xs-12" style="overflow-y: scroll">

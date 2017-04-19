@@ -22,7 +22,7 @@ class InscriptionResource extends AbstractResource
 				
 				public function getAction($params)
 				{
-								
+								$typeId = "561627c945205e41208b4581";
 								//$params = $this->params()->fromQuery();
         $filters = Filter::factory();
         if (!empty($params['startDate'])) {
@@ -39,12 +39,26 @@ class InscriptionResource extends AbstractResource
                     ->setValue((int)$params['endDate'])
             );
         }
-        $contentType = Manager::getService("ContentTypes")->findById($params['typeId']);
+								/*Filter by propositionId*/
+								if (!empty($params['propositionId'])) {
+            $filters->addFilter(
+                Filter::factory('In')->setName('fields.proposition')
+																				->setValue([(string)$params['propositionId'], '*'])
+            );
+        }
+								/*only get registrations in the default workspace of the user for security*/
+								$mainWorkspace = Manager::getService('CurrentUser')->getMainWorkspace();
+								$filters->addFilter(
+                Filter::factory('Value')->setName('writeWorkspace')
+																				->setValue((string)$mainWorkspace['id'])
+        );
+        $contentType = Manager::getService("ContentTypes")->findById($typeId);
         $filters->addFilter(
             Filter::factory('Value')->setName('typeId')
-                ->setValue($params['typeId'])
+                ->setValue($typeId)
         );
         $contents = Manager::getService('Contents')->getOnlineList($filters);
+								//var_dump($contents);
         $fileName = 'export_rubedo_contents_' . $contentType['type'] . '_' . time() . '.csv';
         $filePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $fileName;
         $csvResource = fopen($filePath, 'w+');
@@ -180,29 +194,12 @@ class InscriptionResource extends AbstractResource
             fputcsv($csvResource, $csvLine, ';');
         }
         $content = file_get_contents($filePath);
-        /*$response = $this->getResponse();
-        $headers = $response->getHeaders();
-        $headers->addHeaderLine('Content-Type', 'text/csv');
-        $headers->addHeaderLine('Content-Disposition', "attachment; filename=\"$fileName\"");
-        $headers->addHeaderLine('Accept-Ranges', 'bytes');
-        $headers->addHeaderLine('Content-Length', strlen($content));
-        $response->setContent($content);*/
-        //return $response;
-								
-								/*header($_SERVER["SERVER_PROTOCOL"] . " 200 OK");
-            header("Cache-Control: public"); // needed for internet explorer
-            header("Content-Type: text/csvp");
-            header("Content-Transfer-Encoding: Binary");
-            header("Content-Length:".strlen($content));
-            header("Content-Disposition: attachment; filename='$fileName'");
-            readfile($filePath);
-            die(); */
-								header("Content-type: text/x-csv");
-header("Content-Disposition: attachment; filename=".$fileName."");
-echo($content);
+								//header("Content-type: text/x-csv");
+								//header("Content-Disposition: attachment; filename=".$fileName."");
+								//echo($content);
 								return [
             'success' => true,
-            'count' => File($content, "text/csv", $fileName)
+            'path' => $content
         ];
 				}
 
@@ -919,12 +916,6 @@ protected function localizableFields($type, $fields)
     {
         $definition
             ->setDescription('Get Excel list of registrations')
-            ->addInputFilter(
-                (new FilterDefinitionEntity())
-                    ->setKey('typeId')
-                    ->setRequired()
-                    ->setDescription('Content type')
-            )
 												->addInputFilter(
                 (new FilterDefinitionEntity())
                     ->setKey('startDate')
@@ -945,8 +936,8 @@ protected function localizableFields($type, $fields)
             )
             ->addOutputFilter(
                 (new FilterDefinitionEntity())
-                    ->setKey('count')
-                    ->setDescription('Number of all contents')
+                    ->setKey('path')
+                    ->setDescription('Fichier temporaire')
             );
     }
 

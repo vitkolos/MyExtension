@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope","RubedoPaymentMeansService",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope,RubedoPaymentMeansService){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope","RubedoPaymentMeansService","InscriptionService",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope,RubedoPaymentMeansService,InscriptionService){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -229,7 +229,19 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 me.inscriptions = response.data.results.data;
                               } 
                             });
+                            /*Get inscriptions list for dowlonad as csv */
+                            var payload={
+                                propositionId:me.content.id
+                            };
+                            InscriptionService.exportInscriptions(payload).then(function(response){
+                                var csvData =  'data:application/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(response.data.path);
+                                var target = angular.element("#btnExport");
+                                target.attr({'href': csvData,'target': '_blank'});
+                                //setTimeout(function(){target[0].click();},200);
+                            });
+                            
                         }
+
                     }
 
                     //Albums photos
