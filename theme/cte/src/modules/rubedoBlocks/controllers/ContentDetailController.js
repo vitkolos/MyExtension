@@ -229,9 +229,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 me.inscriptions = response.data.results.data;
                               } 
                             });
-                        }
-                        //add export function
-                        me.exportInscriptions = function(){
+                            /*Get inscriptions list for dowlonad as csv */
                             var payload={
                                 propositionId:me.content.id
                             };
@@ -239,9 +237,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 var csvData =  'data:application/csv;charset=utf-8,' + encodeURIComponent(response.data.path);
                                var target = angular.element("#btnExport");
                                 target.attr({'href': csvData,'target': '_blank'});
-                                setTimeout(function(){target[0].click();},200);
-                                //console.log(csvData);
+                                //setTimeout(function(){target[0].click();},200);
                             });
+                            
+                        }
+                        //add export function
+                        me.exportInscriptions = function(){
+                            
                         }
                     }
 
