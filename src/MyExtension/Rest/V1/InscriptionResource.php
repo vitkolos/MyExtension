@@ -883,13 +883,13 @@ protected function localizableFields($type, $fields)
 												->addInputFilter(
                 (new FilterDefinitionEntity())
                     ->setKey('startDate')
-                    ->setRequired()
+                    //->setRequired()
                     ->setDescription('Start date')
             )
 												->addInputFilter(
                 (new FilterDefinitionEntity())
                     ->setKey('endDate')
-                    ->setRequired()
+                    //->setRequired()
                     ->setDescription('End date')
             )
 												->addInputFilter(
