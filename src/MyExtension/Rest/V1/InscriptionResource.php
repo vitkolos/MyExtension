@@ -187,7 +187,8 @@ class InscriptionResource extends AbstractResource
             fputcsv($csvResource, $csvLine, ';');
         }
         $content = file_get_contents($filePath);
-
+								$currentUser = $this->getCurrentUserAPIService()->getCurrentUser();
+								var_dump($currentUser);
 								//header("Content-type: text/x-csv");
 								//header("Content-Disposition: attachment; filename=".$fileName."");
 								//echo($content);
