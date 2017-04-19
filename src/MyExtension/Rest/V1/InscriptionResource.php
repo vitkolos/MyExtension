@@ -197,10 +197,12 @@ class InscriptionResource extends AbstractResource
             header("Content-Disposition: attachment; filename='$fileName'");
             readfile($filePath);
             die(); */
-								
+								header("Content-type: text/x-csv");
+header("Content-Disposition: attachment; filename=".$fileName."");
+echo($content);
 								return [
             'success' => true,
-            'count' => File($content, "text/csvp", $fileName)
+            'count' => File($content, "text/csv", $fileName)
         ];
 				}
 
