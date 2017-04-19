@@ -50,7 +50,7 @@ class InscriptionResource extends AbstractResource
 								$mainWorkspace = Manager::getService('CurrentUser')->getMainWorkspace();
 								$filters->addFilter(
                 Filter::factory('Value')->setName('writeWorkspace')
-																				->setValue((string)$mainWorkspace)
+																				->setValue((string)$mainWorkspace['id'])
         );
 								var_dump($mainWorkspace);
         $contentType = Manager::getService("ContentTypes")->findById($params['typeId']);
