@@ -195,7 +195,7 @@ class InscriptionResource extends AbstractResource
             header("Content-Transfer-Encoding: Binary");
             header("Content-Length:".strlen($content));
             header("Content-Disposition: attachment; filename='$fileName'");
-            readfile($attachment_location);
+            readfile($filePath);
             die(); 
 								
 								return [
