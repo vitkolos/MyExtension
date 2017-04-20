@@ -48,7 +48,6 @@ class TaxesCcn extends AbstractCollection implements ITaxes
             'direction' => 'ASC'
         );
         $applicableTaxes = $this->getList($filters, $sort);
-        var_dump($applicableTaxes);
         $endPrice = $basePrice;
         $currentPriority = 0;
         $currentRate = 0;
