@@ -63,6 +63,11 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             navigationText: ['<span class="glyphicon glyphicon-chevron-left"></span>','<span class="glyphicon glyphicon-chevron-right"></span>'],
             lazyLoad:true
         };
+								if ($scope.block.code && $scope.block.code!='') {
+												owlOptions.items = $scope.block.code;
+												owlOptions.singleItem=false;
+												console.log(owlOptions);
+								}
         angular.element(targetElSelector).owlCarousel(owlOptions);
         $scope.clearORPlaceholderHeight();
     };
