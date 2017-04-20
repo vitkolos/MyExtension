@@ -54,7 +54,7 @@ class TaxesCcn extends AbstractCollection implements ITaxes
         $currentRate = 0;
         foreach ($applicableTaxes['data'] as $value) {
             if ($value['priority'] > $currentPriority) {
-                $endPrice = $endPrice + ($endPrice * ($currentRate / 100));
+                //$endPrice = $endPrice + ($endPrice * ($currentRate / 100));
                 $currentRate = 0;
             }
             $currentPriority = $value['priority'];

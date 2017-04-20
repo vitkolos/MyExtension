@@ -192,7 +192,7 @@
                                     <div class="col-sm-6 form-group">
                                         <label for="{{fieldIdPrefix+'_billingAddress_country'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
                                         <select class="form-control" id="{{fieldIdPrefix+'_billingAddress_country'}}" ng-model="fieldEntity.billingAddress.country"
-                                                ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray" required>
+                                                ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray | orderBy:'name'" required>
                                         </select>
                                     </div>
                                     <div class="col-sm-6 form-group">
@@ -243,7 +243,7 @@
                                     <div class="col-sm-6 form-group">
                                         <label for="{{fieldIdPrefix+'_shippingAddress_country'}}" class="control-label">{{rubedo.translate('Blocks.Checkout.Label.Country')}} </label>
                                         <select class="form-control" id="{{fieldIdPrefix+'_shippingAddress_country'}}" ng-model="fieldEntity.shippingAddress.country"
-                                                ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray" required>
+                                                ng-options="c['alpha-2'] as c.name for c in checkoutCtrl.countriesArray | orderBy:'name'" required>
                                         </select>
                                     </div>
                                     <div class="col-sm-6 form-group">
