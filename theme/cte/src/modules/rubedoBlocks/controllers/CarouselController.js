@@ -66,6 +66,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
 								if ($scope.block.code && $scope.block.code!='') {
 												owlOptions.items = $scope.block.code;
 												owlOptions.singleItem=false;
+												console.log(owlOptions);
 								}
         angular.element(targetElSelector).owlCarousel(owlOptions);
         $scope.clearORPlaceholderHeight();
