@@ -361,7 +361,7 @@ protected function sendInscriptionMail($inscription,$lang){
     }
     /**************MESSAGE CLIENT*****************/
     //SALUTATION
-    if($tutoyer || $inscription['personneConnue']) {
+    if($tutoyer || $inscription['personneConnue'] || $lang =='hu') {
         $messageClient .="<p>".$trad["ccn_mail_1_tu"]." ".$inscription['surname'] ;// Bonjour Anne 
         if($nbInscrits==2) $messageClient.= " " . $trad["et"] . " " . $inscription['prenomPers2']; //et Patrick
     }
@@ -421,7 +421,7 @@ protected function sendInscriptionMail($inscription,$lang){
             //Comme convenu, nous attendons ton virement de 60€
             $messageClient .= $trad["ccn_mail_25_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . ". ";
             //Tu dois te connecter à ton service bancaire en ligne ou te rendre à ta banque et effectuer un virement sur notre compte '${intitule}' dont les références sont '${compte}'.
-            $messageClient .= $trad["ccn_mail_26".$tuOuVous] . "<i>" . $inscription['paymentInfos']['titreCompteVir'] . "</i>" . $trad["ccn_mail_26_1"] ." : <br/>". $inscription['paymentInfos']['ribTexte'] . "<br/>";
+            $messageClient .= $trad["ccn_mail_26_".$tuOuVous] . "<i>" . $inscription['paymentInfos']['titreCompteVir'] . "</i><br/>" . $trad["ccn_mail_26_1"] ." : ". $inscription['paymentInfos']['ribTexte'] . "<br/>";
             /*Ajouter image RIB*/
             //$messageClient .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $inscription['paymentInfos']['rib'] . "&width=300px'></center><br/>" ;
             if($inscription['paiement_maintenant'] != 'accompte') {
