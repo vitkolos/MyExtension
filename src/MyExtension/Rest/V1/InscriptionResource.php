@@ -410,7 +410,7 @@ protected function sendInscriptionMail($inscription,$lang){
             //Ce chèque doit être à l'ordre de ${ordre_cheque} et envoyé à l'adresse suivante
             $messageClient .= $trad["ccn_mail_24"] . "<i>" . $inscription['paymentInfos']['libelleCheque'] . "</i>" . $trad["ccn_mail_24_1"] ."<br/>";
             $messageClient .= $inscription['contact']['text'] . "<br/>" . $inscription['contact']['position']['address'] . "<br/><br/>";
-            if($inscription['paiement_maintenant'] != 'accompte') {
+            if($inscription['paiement_maintenant'] == 'accompte') {
                 //Attention, ton inscription ne sera complète que quand nous aurons reçu ton chèque.
                 $messageClient .= $trad["ccn_mail_30_".$tuOuVous] . "<br/><br/>";
             }
@@ -424,7 +424,7 @@ protected function sendInscriptionMail($inscription,$lang){
             $messageClient .= $trad["ccn_mail_26_".$tuOuVous] . "<i>" . $inscription['paymentInfos']['titreCompteVir'] . "</i><br/>" . $trad["ccn_mail_26_1"] ." : ". $inscription['paymentInfos']['ribTexte'] . "<br/>";
             /*Ajouter image RIB*/
             //$messageClient .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $inscription['paymentInfos']['rib'] . "&width=300px'></center><br/>" ;
-            if($inscription['paiement_maintenant'] != 'accompte') {
+            if($inscription['paiement_maintenant'] == 'accompte') {
                 //Attention, ton inscription ne sera complète que quand nous aurons reçu ton virement.
                 $messageClient .= $trad["ccn_mail_31_".$tuOuVous] . "<br/><br/>";
             }            
