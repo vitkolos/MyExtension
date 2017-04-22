@@ -73,6 +73,7 @@ class PaymentmeansResource extends AbstractResource
             $monnaie="";
             $paymentModes=array(
                 "carte"=>false,
+                "virement"=>false,
                 "paypal"=>false,
                 "cheque"=>false,
                 "dotpay" => false
@@ -90,6 +91,7 @@ class PaymentmeansResource extends AbstractResource
                     if(isset($pafConfig['fields']['paypal']) && $pafConfig['fields']['paypal'] !='' ) $paymentModes["paypal"] = true;
                     if(isset($pafConfig['fields']['libelleCheque']) && $pafConfig['fields']['libelleCheque'] !='' ) $paymentModes["cheque"] = true;
                     if(isset($pafConfig['fields']['dotpay_id']) && $pafConfig['fields']['dotpay_id'] !='' ) $paymentModes["dotpay"] = true;
+                    if(isset($pafConfig['fields']['titreCompteVir']) && $pafConfig['fields']['titreCompteVir'] !='' ) $paymentModes["virement"] = true;
                     $arrayToReturn["paymentModes"] = $paymentModes;
                 }
                 $arrayToReturn["nativePMConfig"] = array(
