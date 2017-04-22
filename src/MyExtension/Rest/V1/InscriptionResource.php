@@ -423,7 +423,7 @@ protected function sendInscriptionMail($inscription,$lang){
             //Tu dois te connecter à ton service bancaire en ligne ou te rendre à ta banque et effectuer un virement sur notre compte '${intitule}' dont les références sont '${compte}'.
             $messageClient .= $trad["ccn_mail_26".$tuOuVous] . "<i>" . $inscription['paymentInfos']['titreCompteVir'] . "</i>" . $trad["ccn_mail_26_1"] ." : <br/>". $inscription['paymentInfos']['ribTexte'] . "<br/>";
             /*Ajouter image RIB*/
-            $messageClient .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $inscription['paymentInfos']['rib'] . "&width=300px'></center><br/>" ;
+            //$messageClient .= "<center><img src='http://" . $_SERVER['HTTP_HOST']  . "/dam?media-id=" . $inscription['paymentInfos']['rib'] . "&width=300px'></center><br/>" ;
             if($inscription['paiement_maintenant'] != 'accompte') {
                 //Attention, ton inscription ne sera complète que quand nous aurons reçu ton virement.
                 $messageClient .= $trad["ccn_mail_31_".$tuOuVous] . "<br/><br/>";
