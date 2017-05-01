@@ -102,7 +102,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
                             event.end = content.fields[config['endDate']]?
                                 moment.unix(content.fields[config['endDate']]).format(formatOfDate):
                                 moment.unix(content.fields[config['date']]).format(formatOfDate);
-                            event.url = content.detailPageUrl;
+                            if(displayMode != 'showCalWeek') event.url = content.detailPageUrl;
                             newEvents.push(event);
                         });
                         me.calendar.fullCalendar('removeEvents');
