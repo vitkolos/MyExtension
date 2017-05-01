@@ -76,6 +76,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
         
     }
     me.init = function(){
+								var formatOfDate = 'showCalWeek' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
         me.calendar = $element.find('#'+me.calendarId);
         me.calendar.fullCalendar({
             lang: $route.current.params.lang,
@@ -92,10 +93,10 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
                         angular.forEach(me.contents,function(content){
                             var event = {};
                             event.title = content.fields.text;
-                            event.start = moment.unix(content.fields[config['date']]).format('YYYY-MM-DD');
+                            event.start = moment.unix(content.fields[config['date']]).format(formatOfDate);
                             event.end = content.fields[config['endDate']]?
-                                moment.unix(content.fields[config['endDate']]).format('YYYY-MM-DD'):
-                                moment.unix(content.fields[config['date']]).format('YYYY-MM-DD');
+                                moment.unix(content.fields[config['endDate']]).format(formatOfDate):
+                                moment.unix(content.fields[config['date']]).format(formatOfDate);
                             event.url = content.detailPageUrl;
                             newEvents.push(event);
                         });
