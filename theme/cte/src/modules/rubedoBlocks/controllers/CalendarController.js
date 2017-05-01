@@ -86,6 +86,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
 																center: 'title',
 																right: 'month,basicWeek,agendaDay'
 															},
+															displayEventEnd: true
 												views: {
 																basicWeek: { // name of view
 																				//timeFormat:'H:mm-{H:mm}',
