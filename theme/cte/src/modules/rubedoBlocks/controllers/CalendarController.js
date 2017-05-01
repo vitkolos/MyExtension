@@ -91,8 +91,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
 												views: {
 																basicWeek: { // name of view
 																				//timeFormat:'H:mm-{H:mm}',
-																				displayEventEnd: true,
-																				timeFormat:'H:mm',
+																				columnFormat: 'dddd D' 
 																				// other view-specific options here
 																}
 												},
