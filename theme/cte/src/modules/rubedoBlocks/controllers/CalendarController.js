@@ -81,6 +81,11 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
         me.calendar.fullCalendar({
             lang: $route.current.params.lang,
             //weekMode: 'liquid',
+												header: {
+																left: 'prev,next today',
+																center: 'title',
+																right: 'month,agendaWeek,agendaDay'
+															},
 												defaultView:displayMode == 'showCalWeek' ? 'basicWeek ' : 'month',
             timezone: false,
             viewRender: function(view){
@@ -100,6 +105,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
                             event.url = content.detailPageUrl;
                             newEvents.push(event);
                         });
+																								console.log(newEvents);
                         me.calendar.fullCalendar('removeEvents');
                         me.calendar.fullCalendar('addEventSource', newEvents);
                         me.calendar.fullCalendar('refetchEvents');
