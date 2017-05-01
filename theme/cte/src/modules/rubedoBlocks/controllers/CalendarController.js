@@ -80,12 +80,12 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
         me.calendar = $element.find('#'+me.calendarId);
         me.calendar.fullCalendar({
             lang: $route.current.params.lang,
-            //weekMode: 'liquid',
-												header: {
+            weekMode: 'liquid',
+												/*header: {
 																left: 'prev,next today',
 																center: 'title',
 																right: 'month,agendaWeek,agendaDay'
-															},
+															},*/
 												defaultView:displayMode == 'showCalWeek' ? 'basicWeek' : 'month',
             timezone: false,
             viewRender: function(view){
