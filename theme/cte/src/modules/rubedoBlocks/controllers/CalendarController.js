@@ -8,16 +8,21 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
     me.calendarId = 'block-'+$scope.block.id+'-calendar';
     var showCal = false;
     var showList = false;
+    var showCalWeek = false;
     var displayMode = 'all';
     angular.forEach(config.display,function(displ){
         showCal = displ == 'showCal' ? true : showCal;
         showList = displ == 'showList' ? true : showList;
-    });
+        showCalWeek = displ == 'showCalWeek' ? true : showCalWeek;
+   });
     if(showCal && !showList){
         displayMode = 'showCal';
     } else if (!showCal && showList){
         displayMode = 'showList';
     }
+				else if (showCalWeek) {
+								displayMode = 'showCalWeek';
+				}
     me.template = themePath+"/templates/blocks/calendar/"+displayMode+".html";
     var today = new Date();
     today = today.getTime();
@@ -76,11 +81,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
             lang: $route.current.params.lang,
             weekMode: 'liquid',
 												defaultView:displayMode == 'showCalWeek' ? 'listWeek' : 'month',
-												header:{
-    left:   'title',
-    center: '',
-    right:  'today prev,next'
-},
+
             timezone: false,
             viewRender: function(view){
                 options.date = moment(view.start.format()).unix();
