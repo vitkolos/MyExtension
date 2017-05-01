@@ -84,7 +84,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
 												header: {
 																left: 'prev,next today',
 																center: 'title',
-																right: 'month,basicWeek,agendaDay'
+																right: 'month,basicWeek'
 															},
 															displayEventEnd: true,
 															timeFormat:'H:mm',
