@@ -103,7 +103,8 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
                         var newEvents = [];
                         angular.forEach(me.contents,function(content){
                             var event = {};
-                            event.title = content.fields.text;
+                            if(content.fields.titre && content.fields.titre !='') event.title = content.fields.titre;
+			else event.title = content.fields.text;
                             event.start = moment.unix(content.fields[config['date']]).format(formatOfDate);
                             event.end = content.fields[config['endDate']]?
                                 moment.unix(content.fields[config['endDate']]).format(formatOfDate):
