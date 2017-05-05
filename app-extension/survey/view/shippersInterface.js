@@ -238,6 +238,7 @@ Ext.define('Rubedo.view.shippersInterface', {
                                             ['FR','France'],
                                             ['EU','Europe'],
                                             ['AM','North America'],
+                                            ['DOM','DOM/TOM'],
                                             ['AF','Afrique']
                                         ]
                                     })
@@ -490,6 +491,7 @@ Ext.define('Rubedo.view.shippersInterface', {
                 ['FR',Rubedo.RubedoAutomatedElementsLoc.FRText],
                 ['EU',Rubedo.RubedoAutomatedElementsLoc.EUText],
                 ['AM',Rubedo.RubedoAutomatedElementsLoc.AMText],
+                ['DOM',Rubedo.RubedoAutomatedElementsLoc.DOMText],
                 ['AF',Rubedo.RubedoAutomatedElementsLoc.AFText]
 
             ];
