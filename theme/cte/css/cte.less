@@ -514,8 +514,9 @@ nav a:hover,nav a:active {background-color: inherit;}
 		.dropdown-menu>li:hover>a, .dropdown-menu>li>a:hover{color:white;background-color: grey}
 		.navbar-default.horizontal .navbar-nav>li:hover .dropdown-menu a{color: #777}
 }
-.navbar-default.horizontal .navbar-nav>.active, .navbar-default.horizontal .navbar-nav>li:hover{a{color:white};background-color: grey}
+.navbar-default.horizontal .navbar-nav>.active, .navbar-default.horizontal .navbar-nav>.dropdown.open,.navbar-default.horizontal .navbar-nav>li:hover{&>a{color:white};background-color: grey}
 .navbar-default.horizontal .navbar-nav>.active>a, .navbar-default.horizontal .navbar-nav>.active>a:hover, .navbar-default.horizontal .navbar-nav>.active>a:focus, .navbar-default.horizontal .navbar-nav>li:hover{color:white;background-color: grey}
+.navbar-default.horizontal .navbar-nav>li li a{color: #777}
  @media screen and (min-width: @min_sm) {
     .horizontal .navbar-nav>li>a{padding-top:20px; padding-bottom:20px;}
  }
@@ -924,7 +925,7 @@ p.red-sub{.capital; font-size:11px !important; .txt-red; margin-bottom: 24px}
       // end options
   
   }
-  table:not(.year-view){
+  table.rwd-table:not(.year-view){
     thead{display: none}
     tr,th{display: block;}
   }

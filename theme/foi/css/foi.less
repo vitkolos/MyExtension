@@ -133,9 +133,6 @@ h2.titre:after{
 }
 
 .foiPresentation>div{
-/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#a0a0a0+0,a0a0a0+40,000000+40,000000+100 */
-
-
 background: url('../img/presentation.png') center center / auto 90% no-repeat ; /* Old browsers */
 background: url('../img/presentation.png') center center / auto 90% no-repeat , -moz-linear-gradient(top, transparent 0%, transparent 60%, #a0a0a0 60%, #a0a0a0 100%); /* FF3.6-15 */
 background: url('../img/presentation.png') center center / auto 90% no-repeat , -webkit-linear-gradient(top, transparent 0%,transparent 60%,#a0a0a0 60%,#a0a0a0 100%); /* Chrome10-25,Safari5.1-6 */
@@ -196,3 +193,24 @@ header.content>div{line-height: normal;display: inline-block;text-align:left; ve
 .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus{background-color: @txt; border-color: @txt; color:white}
 .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{background-color: @txt; border-color: @txt; color:white  }
 
+/*DETAIL REVUE FOI*/
+.sommaire {
+    -moz-column-count:2;
+   -webkit-column-count:2;
+   -o-column-count:2;
+   column-count:2;
+   -moz-column-gap:20px;
+   -webkit-column-gap:20px;
+   -o-column-gap:20px;
+   column-gap:20px;
+   padding: 20px 0;
+			p:not(.red-sub){font-weight: bold;margin-bottom:0}
+			p.red-sub{font-size:11px !important; margin-bottom: 24px; text-transform: uppercase}
+}
+@media screen and (max-width:@min_sm){
+  .sommaire{
+     -moz-column-count:1;
+   -webkit-column-count:1;
+   -o-column-count:1;
+   column-count:1;
+ }}

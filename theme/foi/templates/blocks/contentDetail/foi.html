@@ -1,0 +1,43 @@
+<!--<div class="container">
+<div class="row">
+	<div class="col-xs-12 col-sm-6">
+		<img class="media-object pull-right padding-top padding-right" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[1].config.name]"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity[contentDetailCtrl.content.type.fields[1].config.name],{height:'420px',width:'300px',mode:'crop'}) }}"
+				 alt=""/>	
+	</div>
+	<div class="col-xs-12 col-sm-6">
+		<div style="max-width:400px">
+		<h1>Revue FOI</h1>
+		<p class="clearfix">La revue FOI (pour Fraternité Oecuménique Internationale) est une revue trimestrielle éditée par la communauté du Chemin Neuf.
+		Elle donne la parole à des acteurs de l’Eglise et à des membres de la communauté qui partagent leur passion pour l'Unité.</p>
+		<a class="button rouge" href="http://www.laboutique-chemin-neuf.com/fr/la-revue-foi/1628-abonnenement-revue-foi-2-ans.html">S'abonner à la revue</a>
+		<a class="button rouge" ng-if="fieldEntity['link_revue']" ng-href="{{fieldEntity['link_revue']}}">Acheter ce numéro</a>
+		</div>
+	</div>
+</div>
+<div class="row" style="border-top:4px solid white; margin-top:24px">
+	<h3>Sommaire - {{fieldEntity['text']}}</h3>
+</div>
+<div class="row sommaire" style="border-bottom:4px solid white">
+	<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field>
+
+</div>
+<div style="margin-top:24px"></div>
+</div>
+
+-->
+<div class="row">
+    
+    <div class="col-sm-9 col-sm-push-3">
+        <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{fieldEntity['text']}}</h3>
+        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
+        <div class="sommaire">
+            <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
+        </div>
+    </div>
+    <div class="col-sm-3 col-sm-pull-9"> 
+        <img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'300px',mode:'boxed'}) }}"
+				 alt=""/>	
+    </div>
+</div>

@@ -8,16 +8,21 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
     me.calendarId = 'block-'+$scope.block.id+'-calendar';
     var showCal = false;
     var showList = false;
+    var showCalWeek = false;
     var displayMode = 'all';
     angular.forEach(config.display,function(displ){
         showCal = displ == 'showCal' ? true : showCal;
         showList = displ == 'showList' ? true : showList;
-    });
+        showCalWeek = displ == 'showCalWeek' ? true : showCalWeek;
+   });
     if(showCal && !showList){
         displayMode = 'showCal';
     } else if (!showCal && showList){
         displayMode = 'showList';
     }
+				else if (showCalWeek) {
+								displayMode = 'showCalWeek';
+				}
     me.template = themePath+"/templates/blocks/calendar/"+displayMode+".html";
     var today = new Date();
     today = today.getTime();
@@ -71,10 +76,23 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
         
     }
     me.init = function(){
+								var formatOfDate = 'showCalWeek' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD';
         me.calendar = $element.find('#'+me.calendarId);
         me.calendar.fullCalendar({
             lang: $route.current.params.lang,
             weekMode: 'liquid',
+												header: {
+																left: 'prev,next today',
+																center: 'title',
+																right: 'month,basicWeek'
+												},
+												displayEventEnd: true,
+												timeFormat:'H:mm',
+												columnFormat: {
+																	basicWeek: 'dddd D' 
+												},
+												height:"auto",
+												defaultView:displayMode == 'showCalWeek' ? 'basicWeek' : 'month',
             timezone: false,
             viewRender: function(view){
                 options.date = moment(view.start.format()).unix();
@@ -85,12 +103,14 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
                         var newEvents = [];
                         angular.forEach(me.contents,function(content){
                             var event = {};
-                            event.title = content.fields.text;
-                            event.start = moment.unix(content.fields[config['date']]).format('YYYY-MM-DD');
+                            if(content.fields.titre && content.fields.titre !='') event.title = content.fields.titre;
+			else event.title = content.fields.text;
+                            event.start = moment.unix(content.fields[config['date']]).format(formatOfDate);
                             event.end = content.fields[config['endDate']]?
-                                moment.unix(content.fields[config['endDate']]).format('YYYY-MM-DD'):
-                                moment.unix(content.fields[config['date']]).format('YYYY-MM-DD');
-                            event.url = content.detailPageUrl;
+                                moment.unix(content.fields[config['endDate']]).format(formatOfDate):
+                                moment.unix(content.fields[config['date']]).format(formatOfDate);
+                            if(displayMode != 'showCalWeek') event.url = content.detailPageUrl;
+																												else event.allDay= false;
                             newEvents.push(event);
                         });
                         me.calendar.fullCalendar('removeEvents');

@@ -55,6 +55,7 @@ class ShippersCcn extends AbstractCollection implements IShippers
         /*map country et zones*/
         $europe = array('DE','AT','BE','ES','FI','GR','IT','LU,','NL','PL','PT','CZ','GB','SE','DK','NO','IE','RO','SK','CY','EE','LV','LI','LT','MT','HU','SI','UA','CH');
         $northamerica = array('CA','US','BB','BM','MX','VG','VI');
+        $outremer = array('RE','MQ','GY','GP');
         if(in_array($country, $europe)){
             $pipeline[] = array(
                 '$match' => array(
@@ -65,6 +66,15 @@ class ShippersCcn extends AbstractCollection implements IShippers
             );
         }
         else if(in_array($country, $northamerica)){
+            $pipeline[] = array(
+                '$match' => array(
+                    'rates.country' => array(
+                        '$in' => array('AM')
+                    )
+                )
+            );
+        }
+        else if(in_array($country, $outremer)){
             $pipeline[] = array(
                 '$match' => array(
                     'rates.country' => array(

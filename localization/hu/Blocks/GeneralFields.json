@@ -19,5 +19,10 @@
     "Menu" : "menü",
     "Accueil" : "Főoldalra",
     "Time.At":"à",
-    "Blocks.Checkout.Button.Continue":"Folytatás"
-    }
+    "Blocks.Checkout.Button.Continue":"Folytatás",
+				"Blocks.Contact.Input.Name.Label":"Név",
+				"Blocks.Contact.Input.Email.Label":"E-mail cím",
+				"Blocks.Contact.Input.Subject.Label":"Tárgy",
+				"Blocks.Contact.Input.Message.Label":"Üzenet",
+				"Blocks.Contact.Input.Submit.Label":"Küldés"
+}

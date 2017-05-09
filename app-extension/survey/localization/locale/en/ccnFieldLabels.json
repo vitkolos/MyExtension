@@ -2,5 +2,6 @@
 	"flatRatePerWeightText":"Flat rate per order's weight (/kg)",
 	"FRText":"France",
 	"EUText":"Europe",
-	"AMText":"North America"
+	"AMText":"North America",
+	"DOMText":"DOM/TOM"
 }

@@ -64,7 +64,11 @@
                                 {
                                     "label": "#ext-gen1080#",
                                     "value": "showList"
-                                }
+                                },
+																																{
+																																				"label" : "#ext-gen2054#",
+																																				"value" : "showCalWeek"
+																																}
                             ],
                             "config": {
                                 "fieldLabel": "#ext-gen1072#",
@@ -75,7 +79,8 @@
                                 "editable": false,
                                 "value": [
                                     "showCal",
-                                    "showList"
+                                    "showList",
+																																				"showCalWeek"
                                 ]
                             }
                         },
