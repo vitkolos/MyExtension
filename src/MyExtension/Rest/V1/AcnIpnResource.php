@@ -152,13 +152,27 @@ class AcnIpnResource extends AbstractResource {
             $body.="\n\n Raisons de l'échec : ".$erreurMessage;
         }
         $body = $body . " \n\n " . $params['commande'];
-        
         $mailerObject->setTo($destinataires);
         $mailerObject->setFrom($from);
         $mailerObject->setSubject($sujet);
         $mailerObject->setReplyTo($replyTo);
         $mailerObject->setBody($body);
 
+        //mail de confirmation pour le client
+												$mailerObject2 = $mailerService->getNewMessage();
+												$from2 = array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf");
+												
+												$mailerObject2->setTo(array("nicolas.rhone@gmail.com" => "Nicolas Rhoné"));
+												$mailerObject2->setReplyTo(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
+												$mailerObject2->setFrom(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
+												$mailerObject2->setCharset('utf-8');
+												$mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
+												$mailerObject2->setBody("Coucou", 'text/html', 'utf-8');
+												$mailerService2->sendMessage($mailerObject, []);
+												
+        
+        
+        
         // Send e-mail
         if ($mailerService->sendMessage($mailerObject, $errors)) {
             return [

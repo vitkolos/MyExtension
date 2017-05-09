@@ -107,18 +107,6 @@ class PaypalResource extends AbstractResource
                 return array("success"=>false);
             }
 												//HERE SEND EMAIL
-												$mailerService = Manager::getService('Mailer');
-												$mailerObject = $mailerService->getNewMessage();
-												$destinataires=array("nicolas.rhone@gmail.com" => "Nicolas Rhoné");
-												$from = array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf");
-												
-												$mailerObject->setTo($destinataires);
-												$mailerObject->setReplyTo(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
-												$mailerObject->setFrom($from);
-												$mailerObject->setCharset('utf-8');
-												$mailerObject->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
-												$mailerObject->setBody("Coucou", 'text/html', 'utf-8');
-												$mailerService->sendMessage($mailerObject, []);
 												
 												
             return array("success"=>true);
