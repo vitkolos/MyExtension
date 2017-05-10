@@ -67,7 +67,7 @@ class PaymentmeansResource extends AbstractResource
      */
     public function getAction($params)
     {
-        if($params['filter_by_site']) {
+        if(isset($params['filter_by_site']) && $params['filter_by_site']) {
             $accountName="";
             $codeMonnaie="";
             $monnaie="";

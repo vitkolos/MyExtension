@@ -11,7 +11,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         {adr:'web@chemin-neuf.org',
             topic:'Webmaster'}]    ;
 
-    $scope.selectedTopic= {adr:'magasin.henri4@chemin-neuf.org', topic:'Service client'};
+    $scope.selectedTopic= {adr:'acnenligne@gmail.com', topic:'Service client'};
 
     $scope.clearORPlaceholderHeight();
     me.submit=function(){
