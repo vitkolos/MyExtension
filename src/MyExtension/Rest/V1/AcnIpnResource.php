@@ -213,11 +213,25 @@ class AcnIpnResource extends AbstractResource {
             $body .= '<td align="center" valign="top" style="font-size:11px;padding:6px 9px;border-bottom:1px dotted #cccccc">' . $item['amount']. '</td>';
             $body .= '<td align="right" valign="top" style="font-size:11px;padding:6px 9px;border-bottom:1px dotted #cccccc">' . $item['taxedPrice']. ' €</td></tr>';
         }
-        $body .='<tr bgcolor="white"><td colspan="2"align="right" style="padding:6px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (HT)</td><td>' . $order['detailedCart']['totalPrice']. ' €</td></tr>';
-        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:6px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (TTC)</td><td>' . $order['detailedCart']['totalTaxedPrice']. ' €</td></tr>';
-        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:6px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Frais d\'expédition</td><td>' . $order['shippingTaxedPrice']. ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (HT)</td><td align="right">' . $order['detailedCart']['totalPrice']. ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (TTC)</td><td align="right">' . $order['detailedCart']['totalTaxedPrice']. ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Frais d\'expédition</td><td align="right">' . $order['shippingTaxedPrice']. ' €</td></tr>';
         $totalPrice = $order['detailedCart']['totalTaxedPrice'] + $order['shippingTaxedPrice'];
-        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:6px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px"><strong>Prix total</strong></td><td>' .  $totalPrice . ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px"><strong>Prix total</strong></td><td align="right">' .  $totalPrice . ' €</td></tr></table><br>';
+        $body .= '<table cellspacing="0" cellpadding="0" border="0" width="650">';
+        $body .= '<thead><tr><th align="left" width="320" bgcolor="#EAEAEA" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Adresse de facturation :</th><th width="10"></th>';
+        $body .= '   <th align="left" width="320" bgcolor="#EAEAEA" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Mode de paiement :</th></tr></thead>';
+        $body .= '<tr><td valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:7px 9px 9px 9px;border-left:1px solid #eaeaea;border-bottom:1px solid #eaeaea;border-right:1px solid #eaeaea;width:319px">';
+        $body .= '<p>';
+        if(isset($order['billingAddress']['company'])) $body .= '<strong>'.$order['billingAddress']['company'].'</strong><br/>';
+         $body .= $order['billingAddress']['surname'] . $order['billingAddress']['name'] . '<br/>';
+        if(isset($order['billingAddress']['address1'])) $body .= $order['billingAddress']['address1'] . '<br/>' ;
+        if(isset($order['billingAddress']['address2'])) $body .= $order['billingAddress']['address2'] . '<br/>' ;
+        if(isset($order['billingAddress']['postCode'])) $body .= $order['billingAddress']['postCode'] . ' - ' . $order['billingAddress']['city'] . '<br/>' ;
+        $body .= $order['billingAddress']['country'];
+        $body .= '</p>';
+        
+
         
         $body .='</table></td></tr>';
         $body .='</table></td></tr>';
