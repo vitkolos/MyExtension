@@ -107,6 +107,7 @@ class OrdersResource extends AbstractResource
         if (!isset($pmConfig[$params['paymentMeans']])) {
             throw new APIRequestException('Unknown payment method', 400);
         }
+        
         //$myPaymentMeans = $pmConfig[$params['paymentMeans']];
         if (isset($params['shoppingCartToken'])){
             $myCart = $this->getShoppingCartCollection()->getCurrentCart($params['shoppingCartToken']);
@@ -177,12 +178,85 @@ class OrdersResource extends AbstractResource
             } else {
                 $this->getShoppingCartCollection()->setCurrentCart(array());
             }
+            //si payement par chèque, envoyer mail de confirmation de commande
+            if($params['paymentMeans']){
+                $mailerService = Manager::getService('Mailer');
+                $mailerObject2 = $mailerService->getNewMessage();
+                $bodyClient = "";
+                $mailerObject2->setTo(array($registeredOrder['data']['userEmail'] => $registeredOrder['data']['userName']));
+                $mailerObject2->setBcc(array("nicolas.rhone@gmail.com"));
+                $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
+                $mailerObject2->setFrom(array("ame@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
+                $mailerObject2->setCharset('utf-8');
+                $mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $registeredOrder['data']["orderNumber"]);
+                $mailerObject2->setBody($this->getMailConfirmation($registeredOrder['data']), 'text/html', 'utf-8');
+                $mailerService->sendMessage($mailerObject2,$errors);
+            }
         }
         return array(
             'success' => $registeredOrder['success'],
             'order' => $registeredOrder['data'],
         );
     }
+    
+    private function getMailConfirmation($order) {
+        $body = '<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin:0;padding:0;font-family:Lucida Grande,Arial,Helvetica,sans-serif;font-size:11px;min-width:690px">';
+        $body.="<tr><td bgcolor='#f3eeea' align='center'><table cellspacing='10' cellpadding='0' border='0' width='670'>";
+        //header
+        $body .= '<tr><td style="padding-top:11px;padding-bottom:7px;color:#ffffff"><img height="100" src="https://www.laboutique-chemin-neuf.com/dam?media-id=56c49b78c445ecc9008b6574&mode=boxed&height=150" alt="La Boutiques des Ateliers du Chemin Neuf"/></td></tr>';
+        //texte d'intro
+        $body .= '<tr><td bgcolor="white"><table cellspacing="10" cellpadding="0" border="0" width="650">';
+        //Bonjour Nicolas,
+        $body .= '<tr><td valign="top"><h1>Bonjour '. $order['userName'].',</h1>';
+        //Confirmation de commande
+        $body .= '<p style="font-size:12px;">Nous vous confirmons que nous avons bien enregistré votre commande  n°' .$order["orderNumber"] . ' en date du ' . substr($order['dateCode'],6,2).'/'.substr($order['dateCode'],4,2) . '/' . substr($order['dateCode'],0,4) . '.<br/> ';
+        $body .= 'Vous avez choisi un payement par chèque. Votre commande sera traitée à la réception du chèque.<br/>';
+        //$body .= 'Vous pourrez suivre l\'avancement de votre commande <a href="https://www.laboutique-chemin-neuf.com/fr/mes-commandes/detail-commande?order='.$order['id'] .'">en vous connectant sur le site</a> ()</p></td></tr>';
+        $body .= 'Vous pourrez suivre l\'avancement de votre commande <a href="https://www.laboutique-chemin-neuf.com/fr/mes-commandes/">en vous connectant sur le site</a> (pour voir vos commandes, vous devrez vous connecter si vous ne l\'êtes pas)</p></td></tr>';
+        //Récapitulatif de commande
+        $body .= '<tr><td><h3>Récapitulatif de votre commande</h3></td></tr>';
+        $body .= '<tr><td><table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #eaeaea">';
+        $body .= '<thead><tr><th align="left" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Article</th> <th align="center" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Qté</th><th align="right" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Sous-total</th></tr></thead>'; 
+        foreach($order['detailedCart']['cart'] as $item) {
+            $body .= '<tr><td align="left" valign="top" style="font-size:11px;padding:6px 9px;border-bottom:1px dotted #cccccc"><strong>' . $item['title'] .'</strong></td>';
+            $body .= '<td align="center" valign="top" style="font-size:11px;padding:6px 9px;border-bottom:1px dotted #cccccc">' . $item['amount']. '</td>';
+            $body .= '<td align="right" valign="top" style="font-size:11px;padding:6px 9px;border-bottom:1px dotted #cccccc">' . $item['taxedPrice']. ' €</td></tr>';
+        }
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (HT)</td><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">' . $order['detailedCart']['totalPrice']. ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (TTC)</td><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">' . $order['detailedCart']['totalTaxedPrice']. ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Frais d\'expédition <small>('.$order['shipper']['name'] . ')</small></td><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">' . round($order['shippingTaxedPrice'],2). ' €</td></tr>';
+        $totalPrice = $order['detailedCart']['totalTaxedPrice'] + round($order['shippingTaxedPrice'],2);
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px"><strong>Prix total</strong></td><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">' .  $totalPrice . ' €</td></tr></table><br>';
+        $body .= '<table cellspacing="0" cellpadding="0" border="0" width="650">';
+        $body .= '<thead><tr><th align="left" width="320" bgcolor="#EAEAEA" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Adresse de facturation :</th><th width="10"></th>';
+        $body .= '   <th align="left" width="320" bgcolor="#EAEAEA" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Adresse d\'expédition :</th></tr></thead>';
+        $body .= '<tr><td valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:7px 9px 9px 9px;border-left:1px solid #eaeaea;border-bottom:1px solid #eaeaea;border-right:1px solid #eaeaea;width:319px">';
+        $body .= '<p>';
+        if(isset($order['billingAddress']['company'])) $body .= '<strong>'.$order['billingAddress']['company'].'</strong><br/>';
+         $body .= $order['billingAddress']['surname'] . ' ' . $order['billingAddress']['name'] . '<br/>';
+        if(isset($order['billingAddress']['address1'])) $body .= $order['billingAddress']['address1'] . '<br/>' ;
+        if(isset($order['billingAddress']['address2'])) $body .= $order['billingAddress']['address2'] . '<br/>' ;
+        if(isset($order['billingAddress']['postCode'])) $body .= $order['billingAddress']['postCode'] . ' - ' . $order['billingAddress']['city'] . '<br/>' ;
+        $body .= $order['billingAddress']['country'];
+        $body .= '</p></td><td>&nbsp;</td><td valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:7px 9px 9px 9px;border-left:1px solid #eaeaea;border-bottom:1px solid #eaeaea;border-right:1px solid #eaeaea;width:319px">';
+        $body .= '<p>';
+        if(isset($order['shippingAddress']['company'])) $body .= '<strong>'.$order['shippingAddress']['company'].'</strong><br/>';
+         $body .= $order['shippingAddress']['surname'] . ' ' . $order['shippingAddress']['name'] . '<br/>';
+        if(isset($order['shippingAddress']['address1'])) $body .= $order['shippingAddress']['address1'] . '<br/>' ;
+        if(isset($order['shippingAddress']['address2'])) $body .= $order['shippingAddress']['address2'] . '<br/>' ;
+        if(isset($order['shippingAddress']['postCode'])) $body .= $order['shippingAddress']['postCode'] . ' - ' . $order['billingAddress']['city'] . '<br/>' ;
+        $body .= $order['shippingAddress']['country'];
+        $body .= '</p>';
+
+        
+        $body .='</td></tr></table></td></tr>';
+        $body .= '<tr><td><pstyle="font-size:12px;">Merci de votre confiance et à bientôt <a href="https://www.laboutique-chemin-neuf.com">sur notre site</a>.</p><p>Les Ateliers du Chemin Neuf</p></td></tr>';
+        $body .='</table></td></tr>';
+        $body .="</table></td></tr></table>";
+        return $body;
+    }
+    
+    
     /**
      * @param $cart
      * @param $userTypeId
