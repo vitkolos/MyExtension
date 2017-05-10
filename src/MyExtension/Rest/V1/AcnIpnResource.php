@@ -162,16 +162,16 @@ class AcnIpnResource extends AbstractResource {
         $mailerObject->setBody($body);
 
         //mail de confirmation pour le client
-												$mailerObject2 = $mailerService->getNewMessage();
-												$from2 = array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf");
-												
-												$mailerObject2->setTo(array("nicolas.rhone@gmail.com" => "Nicolas Rhoné"));
-												$mailerObject2->setReplyTo(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
-												$mailerObject2->setFrom(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
-												$mailerObject2->setCharset('utf-8');
-												$mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
-												$mailerObject2->setBody("Coucou", 'text/html', 'utf-8');
-												$mailerService->sendMessage($mailerObject2,$errors);
+        $mailerObject2 = $mailerService->getNewMessage();
+        $from2 = array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf");
+        $bodyClient = "";
+        $mailerObject2->setTo(array("nicolas.rhone@gmail.com" => "Nicolas Rhoné"));
+        $mailerObject2->setReplyTo(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
+        $mailerObject2->setFrom(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
+        $mailerObject2->setCharset('utf-8');
+        $mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
+        $mailerObject2->setBody("Coucou", 'text/html', 'utf-8');
+        $mailerService->sendMessage($mailerObject2,$errors);
 												
         
         
@@ -192,7 +192,21 @@ class AcnIpnResource extends AbstractResource {
 
 
 
-    
+    private function getMailConfirmation($order) {
+        $body = '<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin:0;padding:0;font-family:Lucida Grande,Arial,Helvetica,sans-serif;font-size:11px;min-width:690px">';
+        $body.="<tr><td bgcolor='#f3eeea' align='center'><table cellspacing='0' cellpadding='0' border='0' width='670'>";
+        //header
+        $body .= '<tr><td style="padding-top:11px;padding-bottom:7px;color:#ffffff"><img height="60" src="https://www/laboutique-chemin-neuf.com/dam?media-id=56c49b78c445ecc9008b6574&mode=boxed&height=150" alt="La Boutiques des Ateliers du Chemin Neuf"/></td></tr>';
+        //texte d'intro
+        $body .= '<tr><td style="padding-top:11px;padding-bottom:7px;color:#ffffff"><table cellspacing="0" cellpadding="0" border="0" width="650">';
+        //Bonjour Nicolas,
+        $body .= '<tr><td valign="top"><h1>Bonjour, '. $order['userName'].'</h1></td></tr>';
+        //Confirmation de commande
+        $body .= 'Nous vous confirmons que nous avons bien enregistré votre commande  n°' .$order["orderNumber"] . ' en date du ' . substr($order['dateCode'],6,2).'/'.substr($order['dateCode'],4,2) . '/' . substr($order['dateCode'],0,4) . '. ';
+        $body .= 'Vous pourrez suivre l\'avancement de votre commande <a href="https://www.laboutique-chemin-neuf.com/fr/mes-commandes/detail-commande?order='.$order['id'] .'">en vous connectant sur le site</a>';
+        $body .='</table></td></tr>';
+        $body .="</table></td></tr></table>";
+    }
     
 
     public function getErrorMessage($error) {
