@@ -171,7 +171,7 @@ class AcnIpnResource extends AbstractResource {
 												$mailerObject2->setCharset('utf-8');
 												$mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
 												$mailerObject2->setBody("Coucou", 'text/html', 'utf-8');
-												$mailerService->sendMessage($mailerObject2, []);
+												$mailerService->sendMessage($mailerObject2,$errors);
 												
         
         
