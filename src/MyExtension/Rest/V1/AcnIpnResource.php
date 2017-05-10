@@ -196,9 +196,9 @@ class AcnIpnResource extends AbstractResource {
         $body = '<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin:0;padding:0;font-family:Lucida Grande,Arial,Helvetica,sans-serif;font-size:11px;min-width:690px">';
         $body.="<tr><td bgcolor='#f3eeea' align='center'><table cellspacing='0' cellpadding='0' border='0' width='670'>";
         //header
-        $body .= '<tr><td style="padding-top:11px;padding-bottom:7px;color:#ffffff"><img height="60" src="https://www.laboutique-chemin-neuf.com/dam?media-id=56c49b78c445ecc9008b6574&mode=boxed&height=150" alt="La Boutiques des Ateliers du Chemin Neuf"/></td></tr>';
+        $body .= '<tr><td style="padding-top:11px;padding-bottom:7px;color:#ffffff"><img height="100" src="https://www.laboutique-chemin-neuf.com/dam?media-id=56c49b78c445ecc9008b6574&mode=boxed&height=150" alt="La Boutiques des Ateliers du Chemin Neuf"/></td></tr>';
         //texte d'intro
-        $body .= '<tr><td style="padding-top:11px;padding-bottom:7px; " bgcolor="white"><table cellspacing="0" cellpadding="0" border="0" width="650">';
+        $body .= '<tr><td style="padding-top:11px;padding-bottom:7px; padding-left:11px, padding-right:11px" bgcolor="white"><table cellspacing="0" cellpadding="0" border="0" width="650">';
         //Bonjour Nicolas,
         $body .= '<tr><td valign="top"><h1>Bonjour, '. $order['userName'].'</h1>';
         //Confirmation de commande
@@ -208,7 +208,7 @@ class AcnIpnResource extends AbstractResource {
         $body .= '<tr><td><h3>Récapitulatif de votrez commande</h3></td></tr>';
         $body .= '<tr><td><table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #eaeaea">';
         $body .= '<thead><tr><th align="left" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Article</th> <th align="center" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Qté</th><th align="right" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Sous-total</th></tr></thead>'; 
-        foreach($order['cart'] as $item) {
+        foreach($order['detailedCart']['cart'] as $item) {
             $body .= '<tr><td align="left" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc"><strong>' . $item['title'] .'</strong></td>';
             $body .= '<td align="center" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc">' . $item['amount']. '</td>';
             $body .= '<td align="right" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc">' . $item['taxedPrice']. '</td>';
