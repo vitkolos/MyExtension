@@ -188,7 +188,7 @@ class OrdersResource extends AbstractResource
                 $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
                 $mailerObject2->setFrom(array("ame@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
                 $mailerObject2->setCharset('utf-8');
-                $mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
+                $mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $registeredOrder['data']["orderNumber"]);
                 $mailerObject2->setBody($this->getMailConfirmation($registeredOrder['data']), 'text/html', 'utf-8');
                 $mailerService->sendMessage($mailerObject2,$errors);
             }
