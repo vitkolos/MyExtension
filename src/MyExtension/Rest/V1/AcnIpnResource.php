@@ -125,7 +125,7 @@ class AcnIpnResource extends AbstractResource {
         $mailerService = Manager::getService('Mailer');
 
         //$mailerObject = $mailerService->getNewMessage();
-        $destinataires=array($mailCompta,$mailAcn);
+        //$destinataires=array($mailCompta,$mailAcn);
         $destinataires=array($mailCompta);
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
