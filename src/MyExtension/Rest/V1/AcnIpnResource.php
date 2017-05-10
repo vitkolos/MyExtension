@@ -112,6 +112,17 @@ class AcnIpnResource extends AbstractResource {
                 $paymentValide = true;
                 $order['status']="payed";
                 $updatedOrder=Manager::getService("Orders")->update($order);
+                        //mail de confirmation pour le client
+                $mailerObject2 = $mailerService->getNewMessage();
+                $bodyClient = "";
+                $mailerObject2->setTo(array($order['userEmail'] => $order['userName']));
+                $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
+                $mailerObject2->setFrom(array("ame@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
+                $mailerObject2->setCharset('utf-8');
+                $mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
+                $mailerObject2->setBody($this->getMailConfirmation($order), 'text/html', 'utf-8');
+                $mailerService->sendMessage($mailerObject2,$errors);
+         
             }
 
             
@@ -160,17 +171,7 @@ class AcnIpnResource extends AbstractResource {
         $mailerObject->setReplyTo($replyTo);
         $mailerObject->setBody($body);
 
-        //mail de confirmation pour le client
-        $mailerObject2 = $mailerService->getNewMessage();
-        $bodyClient = "";
-        $mailerObject2->setTo(array($order['userEmail'] => $order['userName']));
-        $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
-        $mailerObject2->setFrom(array("ame@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
-        $mailerObject2->setCharset('utf-8');
-        $mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
-        $mailerObject2->setBody($this->getMailConfirmation($order), 'text/html', 'utf-8');
-        $mailerService->sendMessage($mailerObject2,$errors);
-												
+											
         
         
         
@@ -241,7 +242,7 @@ class AcnIpnResource extends AbstractResource {
 
         
         $body .='</td></tr></table></td></tr>';
-        $body .= '<tr><td><pstyle="font-size:12px;">Merci de votre confiance et à bientôt <a href="https://www.laboutique-chemin-neuf.com">sur notre site.</p><p>Les Ateliers du Chemin Neuf</p></td></tr>';
+        $body .= '<tr><td><pstyle="font-size:12px;">Merci de votre confiance et à bientôt <a href="https://www.laboutique-chemin-neuf.com">sur notre site</a>.</p><p>Les Ateliers du Chemin Neuf</p></td></tr>';
         $body .='</table></td></tr>';
         $body .="</table></td></tr></table>";
         return $body;
