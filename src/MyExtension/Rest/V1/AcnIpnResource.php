@@ -194,11 +194,11 @@ class AcnIpnResource extends AbstractResource {
 
     private function getMailConfirmation($order) {
         $body = '<table cellspacing="0" cellpadding="0" border="0" width="100%" style="margin:0;padding:0;font-family:Lucida Grande,Arial,Helvetica,sans-serif;font-size:11px;min-width:690px">';
-        $body.="<tr><td bgcolor='#f3eeea' align='center'><table cellspacing='0' cellpadding='0' border='0' width='670'>";
+        $body.="<tr><td bgcolor='#f3eeea' align='center'><table cellspacing='10' cellpadding='0' border='0' width='670'>";
         //header
         $body .= '<tr><td style="padding-top:11px;padding-bottom:7px;color:#ffffff"><img height="100" src="https://www.laboutique-chemin-neuf.com/dam?media-id=56c49b78c445ecc9008b6574&mode=boxed&height=150" alt="La Boutiques des Ateliers du Chemin Neuf"/></td></tr>';
         //texte d'intro
-        $body .= '<tr><td style="padding-top:11px;padding-bottom:7px; padding-left:11px, padding-right:11px" bgcolor="white"><table cellspacing="0" cellpadding="0" border="0" width="650">';
+        $body .= '<tr><td bgcolor="white"><table cellspacing="0" cellpadding="0" border="0" width="650">';
         //Bonjour Nicolas,
         $body .= '<tr><td valign="top"><h1>Bonjour, '. $order['userName'].'</h1>';
         //Confirmation de commande
@@ -211,9 +211,12 @@ class AcnIpnResource extends AbstractResource {
         foreach($order['detailedCart']['cart'] as $item) {
             $body .= '<tr><td align="left" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc"><strong>' . $item['title'] .'</strong></td>';
             $body .= '<td align="center" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc">' . $item['amount']. '</td>';
-            $body .= '<td align="right" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc">' . $item['taxedPrice']. '</td>';
+            $body .= '<td align="right" valign="top" style="font-size:11px;padding:3px 9px;border-bottom:1px dotted #cccccc">' . $item['taxedPrice']. ' €</td></tr>';
         }
-        
+        $body .='<tr bgcolor="white"><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (HT)</td><td>' . $order['detailedCart']['totalPrice']. '</td></tr>';
+        $body .='<tr bgcolor="white"><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (TTC)</td><td>' . $order['detailedCart']['totalTaxedPrice']. '</td></tr>';
+        $body .='<tr bgcolor="white"><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Frais d\expédition</td><td>' . $order['shippingTaxedPrice']. '</td></tr>';
+        $body .='<tr bgcolor="white"><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px"><strong>Prix total</strong></td><td>' .  $order['detailedCart']['totalTaxedPrice'] + $order['shippingTaxedPrice']. '</td></tr>';
         
         $body .='</table></td></tr>';
         $body .='</table></td></tr>';
