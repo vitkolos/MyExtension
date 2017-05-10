@@ -131,7 +131,7 @@ class AcnIpnResource extends AbstractResource {
         
         $erreur = $params['erreur'];
         if ($erreur == "00000") {
-            $sujet = "Réception d'un paiement en ligne - ".$prenom.' '. $nom;
+            $sujet = "Réception d'un paiement en ligne - ".$order['userName'];
         }
         else {
             $sujet = "Échec paiement en ligne";
@@ -170,7 +170,7 @@ class AcnIpnResource extends AbstractResource {
 												$mailerObject2->setCharset('utf-8');
 												$mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
 												$mailerObject2->setBody("Coucou", 'text/html', 'utf-8');
-												$mailerService2->sendMessage($mailerObject, []);
+												$mailerService->sendMessage($mailerObject2, []);
 												
         
         
