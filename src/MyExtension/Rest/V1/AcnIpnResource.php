@@ -166,7 +166,7 @@ class AcnIpnResource extends AbstractResource {
         $bodyClient = "";
         $mailerObject2->setTo(array($order['userEmail'] => $order['userName']));
         $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
-        $mailerObject2->setFrom(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
+        $mailerObject2->setFrom(array("ame@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
         $mailerObject2->setCharset('utf-8');
         $mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
         $mailerObject2->setBody($this->getMailConfirmation($order), 'text/html', 'utf-8');
@@ -199,7 +199,7 @@ class AcnIpnResource extends AbstractResource {
         //texte d'intro
         $body .= '<tr><td bgcolor="white"><table cellspacing="10" cellpadding="0" border="0" width="650">';
         //Bonjour Nicolas,
-        $body .= '<tr><td valign="top"><h1>Bonjour, '. $order['userName'].'</h1>';
+        $body .= '<tr><td valign="top"><h1>Bonjour '. $order['userName'].',</h1>';
         //Confirmation de commande
         $body .= '<p style="font-size:12px;">Nous vous confirmons que nous avons bien enregistré votre commande  n°' .$order["orderNumber"] . ' en date du ' . substr($order['dateCode'],6,2).'/'.substr($order['dateCode'],4,2) . '/' . substr($order['dateCode'],0,4) . '.<br/> ';
         $body .= 'Votre paiement en ligne par carte bancaire a bien été pris en compte.<br/>';
