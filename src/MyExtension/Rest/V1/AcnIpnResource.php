@@ -206,6 +206,7 @@ class AcnIpnResource extends AbstractResource {
         $body .= 'Vous pourrez suivre l\'avancement de votre commande <a href="https://www.laboutique-chemin-neuf.com/fr/mes-commandes/detail-commande?order='.$order['id'] .'">en vous connectant sur le site</a>';
         $body .='</table></td></tr>';
         $body .="</table></td></tr></table>";
+        return $body;
     }
     
 
