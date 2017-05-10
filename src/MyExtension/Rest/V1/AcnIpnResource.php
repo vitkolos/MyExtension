@@ -205,7 +205,7 @@ class AcnIpnResource extends AbstractResource {
         $body .= '<p>Nous vous confirmons que nous avons bien enregistré votre commande  n°' .$order["orderNumber"] . ' en date du ' . substr($order['dateCode'],6,2).'/'.substr($order['dateCode'],4,2) . '/' . substr($order['dateCode'],0,4) . '. ';
         $body .= 'Vous pourrez suivre l\'avancement de votre commande <a href="https://www.laboutique-chemin-neuf.com/fr/mes-commandes/detail-commande?order='.$order['id'] .'">en vous connectant sur le site</a></p></td></tr>';
         //Récapitulatif de commande
-        $body .= '<tr><td><h3>Récapitulatif de votrez commande</h3></td></tr>';
+        $body .= '<tr><td><h3>Récapitulatif de votre commande</h3></td></tr>';
         $body .= '<tr><td><table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #eaeaea">';
         $body .= '<thead><tr><th align="left" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Article</th> <th align="center" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Qté</th><th align="right" bgcolor="#EAEAEA" style="font-size:13px;padding:3px 9px">Sous-total</th></tr></thead>'; 
         foreach($order['detailedCart']['cart'] as $item) {
@@ -215,26 +215,34 @@ class AcnIpnResource extends AbstractResource {
         }
         $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (HT)</td><td align="right">' . $order['detailedCart']['totalPrice']. ' €</td></tr>';
         $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (TTC)</td><td align="right">' . $order['detailedCart']['totalTaxedPrice']. ' €</td></tr>';
-        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Frais d\'expédition</td><td align="right">' . $order['shippingTaxedPrice']. ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Frais d\'expédition <small>('.$order['shipper']['name'] . ')</small></td><td align="right">' . $order['shippingTaxedPrice']. ' €</td></tr>';
         $totalPrice = $order['detailedCart']['totalTaxedPrice'] + $order['shippingTaxedPrice'];
         $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px"><strong>Prix total</strong></td><td align="right">' .  $totalPrice . ' €</td></tr></table><br>';
         $body .= '<table cellspacing="0" cellpadding="0" border="0" width="650">';
         $body .= '<thead><tr><th align="left" width="320" bgcolor="#EAEAEA" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Adresse de facturation :</th><th width="10"></th>';
-        $body .= '   <th align="left" width="320" bgcolor="#EAEAEA" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Mode de paiement :</th></tr></thead>';
+        $body .= '   <th align="left" width="320" bgcolor="#EAEAEA" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Adresse d\'expédition :</th></tr></thead>';
         $body .= '<tr><td valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:7px 9px 9px 9px;border-left:1px solid #eaeaea;border-bottom:1px solid #eaeaea;border-right:1px solid #eaeaea;width:319px">';
         $body .= '<p>';
         if(isset($order['billingAddress']['company'])) $body .= '<strong>'.$order['billingAddress']['company'].'</strong><br/>';
-         $body .= $order['billingAddress']['surname'] . $order['billingAddress']['name'] . '<br/>';
+         $body .= $order['billingAddress']['surname'] . ' ' . $order['billingAddress']['name'] . '<br/>';
         if(isset($order['billingAddress']['address1'])) $body .= $order['billingAddress']['address1'] . '<br/>' ;
         if(isset($order['billingAddress']['address2'])) $body .= $order['billingAddress']['address2'] . '<br/>' ;
         if(isset($order['billingAddress']['postCode'])) $body .= $order['billingAddress']['postCode'] . ' - ' . $order['billingAddress']['city'] . '<br/>' ;
         $body .= $order['billingAddress']['country'];
+        $body .= '</p></td><td>&nbsp;</td><td valign="top" style="font-family:Arial,Helvetica,sans-serif;font-size:12px;padding:7px 9px 9px 9px;border-left:1px solid #eaeaea;border-bottom:1px solid #eaeaea;border-right:1px solid #eaeaea;width:319px">';
+        $body .= '<p>';
+        if(isset($order['shippingAddress']['company'])) $body .= '<strong>'.$order['shippingAddress']['company'].'</strong><br/>';
+         $body .= $order['shippingAddress']['surname'] . ' ' . $order['shippingAddress']['name'] . '<br/>';
+        if(isset($order['shippingAddress']['address1'])) $body .= $order['shippingAddress']['address1'] . '<br/>' ;
+        if(isset($order['shippingAddress']['address2'])) $body .= $order['shippingAddress']['address2'] . '<br/>' ;
+        if(isset($order['shippingAddress']['postCode'])) $body .= $order['shippingAddress']['postCode'] . ' - ' . $order['billingAddress']['city'] . '<br/>' ;
+        $body .= $order['shippingAddress']['country'];
         $body .= '</p>';
-        
 
         
+        $body .='</td></tr></table></td></tr>';
         $body .='</table></td></tr>';
-        $body .='</table></td></tr>';
+        $body .= '<tr><td><p>Merci de votre confiance et à bientôt <a href="https://www.laboutique-chemin-neuf.com">sur notre site.</p><p>Les Ateliers du Chemin Neuf</p></td></tr>';
         $body .="</table></td></tr></table>";
         return $body;
     }
