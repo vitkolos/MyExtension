@@ -124,8 +124,8 @@ class AcnIpnResource extends AbstractResource {
         $mailAcn ="acnenligne@gmail.com";
         $mailerService = Manager::getService('Mailer');
 
-        $mailerObject = $mailerService->getNewMessage();
-        //$destinataires=array($mailCompta,$mailAcn);
+        //$mailerObject = $mailerService->getNewMessage();
+        $destinataires=array($mailCompta,$mailAcn);
         $destinataires=array($mailCompta);
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
@@ -163,10 +163,9 @@ class AcnIpnResource extends AbstractResource {
 
         //mail de confirmation pour le client
         $mailerObject2 = $mailerService->getNewMessage();
-        $from2 = array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf");
         $bodyClient = "";
-        $mailerObject2->setTo(array("nicolas.rhone@gmail.com" => "Nicolas Rhoné"));
-        $mailerObject2->setReplyTo(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
+        $mailerObject2->setTo(array($order['userEmail'] => $order['userName']));
+        $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
         $mailerObject2->setFrom(array("boutique@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
         $mailerObject2->setCharset('utf-8');
         $mailerObject2->setSubject("Votre commande aux Ateliers du Chemin Neuf : " . $order["orderNumber"]);
