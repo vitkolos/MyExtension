@@ -101,7 +101,9 @@ class AcnIpnResource extends AbstractResource {
             $orderNumber = $params['commande']; // on récupère le numéro de commande
            //on récupère la commande
             $filter = Filter::factory()->addFilter(Filter::factory('Value')->setName('orderNumber')->setValue($orderNumber));
+            
             $order=Manager::getService("Orders")->findOne($filter);
+            var_dump($order);
         // véfifier si le montant de la commande est bien le montant payé  et update order
         /*$finalPrice = ((float)$order['finalPrice']) * 100;
                     $receivedPrice = (float)$postParams['vads_amount'];
