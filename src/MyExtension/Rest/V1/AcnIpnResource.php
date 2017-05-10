@@ -241,8 +241,8 @@ class AcnIpnResource extends AbstractResource {
 
         
         $body .='</td></tr></table></td></tr>';
-        $body .='</table></td></tr>';
         $body .= '<tr><td><p>Merci de votre confiance et à bientôt <a href="https://www.laboutique-chemin-neuf.com">sur notre site.</p><p>Les Ateliers du Chemin Neuf</p></td></tr>';
+        $body .='</table></td></tr>';
         $body .="</table></td></tr></table>";
         return $body;
     }
