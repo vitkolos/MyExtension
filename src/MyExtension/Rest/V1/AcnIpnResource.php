@@ -84,6 +84,7 @@ class AcnIpnResource extends AbstractResource {
             });
     }
     function getAction($params) {
+        $mailerService = Manager::getService('Mailer');
         $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage=""; 
         //VERIFICATIONS PAYBOX
         //code d'erreur
@@ -132,7 +133,7 @@ class AcnIpnResource extends AbstractResource {
         
         $mailCompta ="nicolas.rhone@gmail.com";
         $mailAcn ="acnenligne@gmail.com";
-        $mailerService = Manager::getService('Mailer');
+        
 
         $mailerObject = $mailerService->getNewMessage();
         //$destinataires=array($mailCompta,$mailAcn);
