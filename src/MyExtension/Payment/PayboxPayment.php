@@ -56,8 +56,6 @@ class PayboxPayment extends AbstractPayment
 
         ];
         
-
-
         $empreinteBrute  =
             "PBX_TYPEPAIEMENT=". $parametres['typePaiement'] . 
             "&PBX_TYPECARTE=" . $parametres['typeCarte']  .

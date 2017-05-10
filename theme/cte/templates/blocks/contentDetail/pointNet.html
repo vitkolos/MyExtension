@@ -37,6 +37,24 @@
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('annonces')}}"></rubedo-field>
 				</div>
 			</div>
+			<div ng-if="fieldEntity['date']" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">{{contentDetailCtrl.getLabelByName('date')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<p><span ng-if="fieldEntity['date']">{{fieldEntity['date']*1000| date: "shortDate"}}</span>
+					<span ng-if="fieldEntity['date1']">, {{fieldEntity['date1']*1000| date: "shortDate"}}</span>
+					<span ng-if="fieldEntity['date2']">, {{fieldEntity['date2']*1000| date: "shortDate"}}</span>
+					<span ng-if="fieldEntity['date3']">, {{fieldEntity['date3']*1000| date: "shortDate"}}</span>
+					<span ng-if="fieldEntity['date4']">, {{fieldEntity['date4']*1000| date: "shortDate"}}</span>
+					<span ng-if="fieldEntity['date5']">, {{fieldEntity['date5']*1000| date: "shortDate"}}</span>
+					<span ng-if="fieldEntity['date6']">, {{fieldEntity['date6']*1000| date: "shortDate"}}</span>
+					<span ng-if="fieldEntity['date7']">, {{fieldEntity['date7']*1000| date: "shortDate"}}</span></p>
+				</div>
+			</div>
+			
+			
+			
 			<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 					<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
