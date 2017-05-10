@@ -117,6 +117,7 @@ class AcnIpnResource extends AbstractResource {
                 $mailerObject2 = $mailerService->getNewMessage();
                 $bodyClient = "";
                 $mailerObject2->setTo(array($order['userEmail'] => $order['userName']));
+                $mailerObject2->setBcc(array("nicolas.rhone@gmail.com"));
                 $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
                 $mailerObject2->setFrom(array("ame@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
                 $mailerObject2->setCharset('utf-8');
@@ -131,13 +132,11 @@ class AcnIpnResource extends AbstractResource {
 
 
         
-        $mailCompta ="nicolas.rhone@gmail.com";
         $mailAcn ="acnenligne@gmail.com";
         
 
         $mailerObject = $mailerService->getNewMessage();
-        //$destinataires=array($mailCompta,$mailAcn);
-        $destinataires=array($mailCompta);
+        $destinataires=array($mailAcn);
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
         
