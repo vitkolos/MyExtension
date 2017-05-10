@@ -53,7 +53,7 @@ class AcnproductResource extends AbstractResource
     public function getAction($params)
     {
 	    $contentsService = Manager::getService('Contents');
-		if(!isset($params["orders"])) {//retourner les propriétés du produit
+				if(!isset($params["orders"])) {//retourner les propriétés du produit
 			
 	
 			$codeBarre=$params['codeBarre'];
@@ -138,6 +138,7 @@ class AcnproductResource extends AbstractResource
         return [
             'success' => true,
             'content' => $content,
+												'more' => $result
         ];
     }
    
@@ -210,7 +211,11 @@ class AcnproductResource extends AbstractResource
                     ->setDescription('Nouvelle version du produit')
                     ->setKey('content')
                     ->setRequired()
-            );
+            )->addOutputFilter(
+																(new FilterDefinitionEntity())
+													->setKey('more')
+													->setDescription('Infos')
+												);;
     }
 
 
