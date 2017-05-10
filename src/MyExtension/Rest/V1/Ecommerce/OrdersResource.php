@@ -180,7 +180,8 @@ class OrdersResource extends AbstractResource
             }
             //si payement par chèque, envoyer mail de confirmation de commande
             if($params['paymentMeans']){
-                $mailerObject2 = Manager::getService('Mailer')->getNewMessage();
+                $mailerService = Manager::getService('Mailer');
+                $mailerObject2 = $mailerService->getNewMessage();
                 $bodyClient = "";
                 $mailerObject2->setTo(array($registeredOrder['data']['userEmail'] => $registeredOrder['data']['userName']));
                 $mailerObject2->setBcc(array("nicolas.rhone@gmail.com"));
