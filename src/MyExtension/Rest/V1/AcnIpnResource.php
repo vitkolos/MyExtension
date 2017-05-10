@@ -204,7 +204,7 @@ class AcnIpnResource extends AbstractResource {
         $body .= '<p style="font-size:12px;">Nous vous confirmons que nous avons bien enregistré votre commande  n°' .$order["orderNumber"] . ' en date du ' . substr($order['dateCode'],6,2).'/'.substr($order['dateCode'],4,2) . '/' . substr($order['dateCode'],0,4) . '.<br/> ';
         $body .= 'Votre paiement en ligne par carte bancaire a bien été pris en compte.<br/>';
         //$body .= 'Vous pourrez suivre l\'avancement de votre commande <a href="https://www.laboutique-chemin-neuf.com/fr/mes-commandes/detail-commande?order='.$order['id'] .'">en vous connectant sur le site</a> ()</p></td></tr>';
-        $body .= 'Vous pourrez suivre l\'avancement de votre commande <a href="https://www.laboutique-chemin-neuf.com/fr/mes-commandes/">en vous connectant sur le site</a> (pour voir vos commandes, vous devrez vous connecter si vous ne l\êtes pas)</p></td></tr>';
+        $body .= 'Vous pourrez suivre l\'avancement de votre commande <a href="https://www.laboutique-chemin-neuf.com/fr/mes-commandes/">en vous connectant sur le site</a> (pour voir vos commandes, vous devrez vous connecter si vous ne l\'êtes pas)</p></td></tr>';
         //Récapitulatif de commande
         $body .= '<tr><td><h3>Récapitulatif de votre commande</h3></td></tr>';
         $body .= '<tr><td><table cellspacing="0" cellpadding="0" border="0" width="650" style="border:1px solid #eaeaea">';
@@ -214,11 +214,11 @@ class AcnIpnResource extends AbstractResource {
             $body .= '<td align="center" valign="top" style="font-size:11px;padding:6px 9px;border-bottom:1px dotted #cccccc">' . $item['amount']. '</td>';
             $body .= '<td align="right" valign="top" style="font-size:11px;padding:6px 9px;border-bottom:1px dotted #cccccc">' . $item['taxedPrice']. ' €</td></tr>';
         }
-        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (HT)</td><td align="right">' . $order['detailedCart']['totalPrice']. ' €</td></tr>';
-        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (TTC)</td><td align="right">' . $order['detailedCart']['totalTaxedPrice']. ' €</td></tr>';
-        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Frais d\'expédition <small>('.$order['shipper']['name'] . ')</small></td><td align="right">' . $order['shippingTaxedPrice']. ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (HT)</td><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">' . $order['detailedCart']['totalPrice']. ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Total produits (TTC)</td><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">' . $order['detailedCart']['totalTaxedPrice']. ' €</td></tr>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">Frais d\'expédition <small>('.$order['shipper']['name'] . ')</small></td><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">' . $order['shippingTaxedPrice']. ' €</td></tr>';
         $totalPrice = $order['detailedCart']['totalTaxedPrice'] + $order['shippingTaxedPrice'];
-        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px"><strong>Prix total</strong></td><td align="right">' .  $totalPrice . ' €</td></tr></table><br>';
+        $body .='<tr bgcolor="white"><td colspan="2" align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px"><strong>Prix total</strong></td><td align="right" style="padding:3px 9px;font-family:Arial,Helvetica,sans-serif;font-size:11px">' .  $totalPrice . ' €</td></tr></table><br>';
         $body .= '<table cellspacing="0" cellpadding="0" border="0" width="650">';
         $body .= '<thead><tr><th align="left" width="320" bgcolor="#EAEAEA" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Adresse de facturation :</th><th width="10"></th>';
         $body .= '   <th align="left" width="320" bgcolor="#EAEAEA" style="font-family:Arial,Helvetica,sans-serif;font-size:13px;padding:5px 9px 6px 9px;line-height:1em">Adresse d\'expédition :</th></tr></thead>';
