@@ -22,7 +22,7 @@ CKEDITOR.stylesSet.add( 'default', [
 		attributes: { 'style': 'margin:0 auto' }
 	},
 	{ name: 'Citation', element: 'blockquote', attributes: { 'class': 'center'} },
-	{ name: 'Bouton rouge', element: 'button', attributes: { 'class': 'btn btn-default abonnement'} }
+	{ name: 'Bouton rouge', element: 'button', attributes: { 'class': 'btn btn-default'} }
 
 ] );
 
