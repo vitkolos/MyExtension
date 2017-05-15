@@ -22,6 +22,7 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use RubedoAPI\Exceptions\APIEntityException;
 use RubedoAPI\Rest\V1\AbstractResource;
+use Rubedo\Services\Manager;
 /**
  * Class ShoppingcartResource
  * @package RubedoAPI\Rest\V1\Ecommerce
@@ -62,6 +63,7 @@ class ShoppingcartResource extends AbstractResource
     public function postAction($params)
     {
         $params['amount'] = isset($params['amount']) ? $params['amount'] : 1;
+        $hasEnoughStock =true;
         /*Get cart*/
          if (empty($params['shoppingCartToken'])) {
             $cart = $this->getShoppingCartCollection()->getCurrentCart(null,true);
@@ -69,7 +71,22 @@ class ShoppingcartResource extends AbstractResource
             $cart = $this->getShoppingCartCollection()->getCurrentCart($params['shoppingCartToken'],true);
         }
         foreach($cart['shoppingCart'] as $item){
-            var_dump($item);
+            /*if item is already in cart -> check if has enough stock*/
+            if($item['productId']['$id'] == $params['productId'] && $item['variationId']['$id'] == $params['variationId']) {
+                $itemDetail = Manager::getService('Contents')->findById(productId);
+                foreach($itemDetail['productProperties']['variations'] as $variation) {
+                    if($variation['id'] == $params['variationId']){
+                        if($variation['stock'] < $item['amount'] + $params['amount']) {
+                            $hasEnoughStock = false;
+                            return array(
+                                'success' => false,
+                                'shoppingCart' => "Il n'y a pas assez de stock",
+                            );
+                        }
+                    }
+                }
+            }
+            //var_dump($item);
         }
         
         if (empty($params['shoppingCartToken'])) {
