@@ -50,7 +50,6 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 								function(response){
 												if(response.data.success){
 																me.paymentmeans = response.data.paymentMeans;
-																console.log(me.paymentmeans);
 												}
 								}
 				);
@@ -82,7 +81,6 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
                             if(response.data.success){
                                 me.lastInscription = response.data.content;
 																																me.toggleStage(3);
-																																console.log(me.lastInscription);
                             }
                         }
                     );
@@ -167,7 +165,6 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																
 												})
 												.catch(function(error){
-																console.log(error);
 																$scope.processForm=false;
 																$scope.finInscription=true;
 																$scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de contacter le secrétariat - vous pourrez indiquer la raison de l'erreur : ";

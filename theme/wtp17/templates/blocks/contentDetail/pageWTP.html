@@ -12,9 +12,11 @@
             <div class="col-sm-12">
                 <rubedo-field field= "{{contentDetailCtrl.getFieldByName('introduction')}}" ng-if="fieldEntity['introduction']" class="intro"></rubedo-field>
                 <rubedo-field field= "{{contentDetailCtrl.getFieldByName('textOnBg')}}" ng-if="fieldEntity['textOnBg']" class="text-bg"></rubedo-field>
+                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('suite')}}" ng-if="fieldEntity['suite']" ></rubedo-field>
             </div>
         </div>
     </div>
+
     <div class="row bg-special"  ng-if="fieldEntity['informations'] || rubedo.current.page.id=='5853b210245640c3518bf525'" >
         <div class="container paddingv">
             <div clas="col-sm-12">
