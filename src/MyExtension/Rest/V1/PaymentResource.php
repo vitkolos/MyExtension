@@ -132,7 +132,7 @@ class PaymentResource extends AbstractResource {
         //get code comptabilité (par maison /pays)
         if($paymentType=="paf"){
             /*le paramètre placeId est l'id du lieu communautaire, dans lequel est stocké le code compta*/
-            if($place && $place!="") {
+            if(isset($place) && $place!="") {
                 $wasFiltered = AbstractCollection::disableUserFilter(true);
                 $lieuCommunautaire = Manager::getService("Contents")->findById($place,false,false);
                 $codeCompta = "[" . $lieuCommunautaire["fields"]["codeCompta"] . "]";
