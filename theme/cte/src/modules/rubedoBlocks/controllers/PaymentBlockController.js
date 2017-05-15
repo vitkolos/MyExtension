@@ -142,7 +142,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																nom:$scope.inscription.nom,
 																prenom: $scope.inscription.surname,
 																email:$scope.inscription.email,
-																montant:$scope.inscription.montantAPayerMaintenant,
+																montant:$scope.inscription.montantTotalAPayer,
 																proposition:me.proposition.text,
 																idInscription: me.lastInscription.id,
 																paymentConfID:config.contentId,
@@ -181,7 +181,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																$scope.processForm=false;
 																$scope.finInscription=true;
 																$scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de contacter le secrétariat - vous pourrez indiquer la raison de l'erreur : ";
-																$scope.message +=error.data.message;
+																$scope.errorMessage =error.data.message;
 												});
 												
 												
