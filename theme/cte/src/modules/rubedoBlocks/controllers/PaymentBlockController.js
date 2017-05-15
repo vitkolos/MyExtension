@@ -154,7 +154,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																payload.placeID=me.content.fields.lieuCommunautaire;
 												}
 												if(window.ga) {
-																window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
+																window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantTotalAPayer);
 												}
 												if ($scope.inscription.modePaiement=='dotpay') {
 																payload.infos=$scope.inscription;
@@ -175,7 +175,9 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																				$scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
 																}
 																
-												});
+												})
+												.catch(function(error){console.log(error);	$scope.processForm=false;
+																				$scope.finInscription=true;  });
 												
 												
 												
