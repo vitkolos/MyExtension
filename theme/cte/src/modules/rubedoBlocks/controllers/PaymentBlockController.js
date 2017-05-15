@@ -44,7 +44,15 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
     if(config.query){
         me.getContents(config.query, pageId, siteId, options, false);
     }
-
+				/*Get infos de payement générales*/
+				RubedoPaymentMeansService.getPaymentMeansPaf().then(
+								function(response){
+												if(response.data.success){
+																me.paymentmeans = response.data.paymentMeans;
+																console.log(me.paymentmeans);
+												}
+								}
+				);
     
 				$scope.inscription = {};
 				me.currentStage=1;
