@@ -61,12 +61,12 @@
                             <p>{{formCtrl.proposition.fields.paf_text}}</p>
                             
                             <div class="row" >
-                                    <label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label>
+                                    <label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Maintenant")}}</label>
                             </div>
                             <p><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[1-9][0-9]{1,3}$/"><b>{{paymentCtrl.paymentmeans.nativePMConfig.monnaie}}</b></p>
                         </div>
                     </div>
-                   <!---CHOIX DU PAIEMENT-->
+                   <!---CHOIX DU PAIEMENT
                    <div class="row border-bottom">
                         <div class="col-xs-6">
                             <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.Maintenant")}}</label>
@@ -89,14 +89,14 @@
                                 <label for="{{option}}" ng-if="option == 'totalite'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Totalite")}}</label> 
                             </div>
                         </div>  
-                   </div>
+                   </div>-->
                    <!---CHOIX DU MODE DE PAIEMENT-->
-                   <div class="row border-bottom" ng-if="inscription.paiement_maintenant && inscription.paiement_maintenant !='rien' ">
+                   <div class="row border-bottom" >
                         <div class="col-xs-6">
                             <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.ModePaiment")}}</label>
                         </div>
                         <div class="col-xs-6">
-                            <div class="col-xs-12" ng-repeat="(paymentmode, value) in formCtrl.paymentmeans.paymentModes" ng-if="value">
+                            <div class="col-xs-12" ng-repeat="(paymentmode, value) in paymentCtrl.paymentmeans.paymentModes" ng-if="value">
                                     <input type="radio" name="modePaiement" ng-attr-id="{{paymentmode}}" ng-model="inscription.modePaiement" value={{paymentmode}} required>
                                     <label for="{{paymentmode}}">
                                             {{rubedo.translate('Block.Inscription.Paf.'+paymentmode)}}
@@ -104,10 +104,10 @@
                             </div>                            
                         </div>  
                        
-                   </div>
-                <div class="row text-center">
-                        <div class="button submit" ng-class="{'disabled' : paiement.$invalid}" ng-click="formCtrl.setCurrentStage(5,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-                </div>
+					</div>
+					<div class="row text-center">
+							<div class="button submit" ng-class="{'disabled' : paiement.$invalid}" ng-click="paymentCtrl.setCurrentStage(3,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+					</div>
                 </ng-form>
             </div>
             
