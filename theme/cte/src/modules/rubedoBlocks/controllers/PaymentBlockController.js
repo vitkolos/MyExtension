@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope','RubedoContentsService','RubedoPaymentMeansService','RubedoSearchService','PaymentService',
-																																																																									function($scope,RubedoContentsService,RubedoPaymentMeansService,RubedoSearchService,PaymentService){
+angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope','RubedoContentsService','RubedoPaymentMeansService','RubedoSearchService','PaymentService','$timeout',
+																																																																									function($scope,RubedoContentsService,RubedoPaymentMeansService,RubedoSearchService,PaymentService,$timeout){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
