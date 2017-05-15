@@ -18,6 +18,8 @@
  /*Modification CCN pour ne pas afficher le "sous titre = les déclinaisons non utilisées dans l"affichage du panier*/
  
 namespace RubedoAPI\Rest\V1\Ecommerce;
+
+use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use RubedoAPI\Exceptions\APIEntityException;
@@ -43,9 +45,49 @@ class ShoppingcartResource extends AbstractResource
      * @return array
      * @throws \RubedoAPI\Exceptions\APIEntityException
      */
+    
+ /*
+ "shoppingCart":{
+    "shoppingCart":[
+        {
+            "productId":{"$id":"5816225d245640d84a8b4ce5" },
+            "variationId":{"$id":"58162202245640f34a8b4c01"},
+            "amount":1
+        }
+    ],
+    "id":"58f8d7269b1bde1421000062"
+}
+ 
+ */   
+    
+    
     public function postAction($params)
     {
         $params['amount'] = isset($params['amount']) ? $params['amount'] : 1;
+        $hasEnoughStock =true;
+        $message="";
+        /*Get cart*/
+         if (empty($params['shoppingCartToken'])) {
+            $cart = $this->getShoppingCartCollection()->getCurrentCart(null,true);
+        } else {
+            $cart = $this->getShoppingCartCollection()->getCurrentCart($params['shoppingCartToken'],true);
+        }
+        foreach($cart['shoppingCart'] as $item){
+            /*if item is already in cart -> check if has enough stock*/
+            if((string)($item['productId']) == $params['productId'] && (string)($item['variationId']) == $params['variationId']) {
+                $itemDetail = Manager::getService("Contents")->findById($item['productId']);
+                var_dump($itemDetail);
+                foreach($itemDetail['productProperties']['variations'] as $variation) {
+                    if($variation['id'] == $params['variationId']){
+                        if($variation['stock'] < $item['amount'] + $params['amount']) {
+                            $hasEnoughStock = false;
+                            $message = "Il n'y a pas assez de stock";
+                        }
+                    }
+                }
+            }
+        }
+        
         if (empty($params['shoppingCartToken'])) {
             $cartUpdate = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount']);
         } else {
@@ -57,6 +99,7 @@ class ShoppingcartResource extends AbstractResource
         return array(
             'success' => true,
             'shoppingCart' => $this->filterShoppingCart($cartUpdate, isset($params['includeDetail'])),
+            'message' =>$message
         );
     }
     /**
@@ -285,6 +328,11 @@ class ShoppingcartResource extends AbstractResource
                     ->setDescription('Cart items')
                     ->setKey('shoppingCart')
                     ->setRequired()
+            )
+            ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Message d\'erreur')
+                    ->setKey('message')
             );
     }
     /**
