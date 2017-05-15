@@ -63,9 +63,6 @@
                     ]
                 }
             ],
-          "csEvents":{
-            "changePage":null
-          }
         },
         "configBloc": {
             
@@ -73,5 +70,5 @@
     },
     "category": "#ext-gen1064#",
     "bType": "paymentBlock",
-    "id": "506441f8c64804d514888000"
+    "id": "506441f8c64804d514111222"
 }
