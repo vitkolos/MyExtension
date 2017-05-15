@@ -73,7 +73,7 @@ class ShoppingcartResource extends AbstractResource
         foreach($cart['shoppingCart'] as $item){
             /*if item is already in cart -> check if has enough stock*/
             if((string)($item['productId']) == $params['productId'] && (string)($item['variationId']) == $params['variationId']) {
-                $itemDetail = Manager::getService('Contents')->findById($params['productId']);
+                $itemDetail = Manager::getService("Contents")->findById($item['productId']);
                 var_dump($itemDetail);
                 foreach($itemDetail['productProperties']['variations'] as $variation) {
                     if($variation['id'] == $params['variationId']){
