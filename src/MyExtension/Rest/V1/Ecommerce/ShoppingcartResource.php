@@ -86,11 +86,12 @@ class ShoppingcartResource extends AbstractResource
                 }
             }
         }
-        
-        if (empty($params['shoppingCartToken'])) {
-            $cart = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount']);
-        } else {
-            $cart = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount'], $params['shoppingCartToken']);
+        if($hasEnoughStock) {
+            if (empty($params['shoppingCartToken'])) {
+                $cart = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount']);
+            } else {
+                $cart = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount'], $params['shoppingCartToken']);
+            }
         }
         if ($cart === false) {
             throw new APIEntityException('Update failed');
