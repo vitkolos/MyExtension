@@ -25,7 +25,20 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
             }
         });
     };
-
+				me.getContentById = function (contentId){
+        var options = {
+            siteId: $scope.rubedo.current.site.id,
+            pageId: $scope.rubedo.current.page.id
+        };
+        RubedoContentsService.getContentById(contentId, options).then(
+            function(response){
+                if(response.data.success){
+                    me.proposition=response.data.content;
+                    console.log(me.proposition);
+                }
+            }
+        );
+    };
     
 
     if(config.query){
@@ -51,7 +64,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
             if (step==0) {me.toggleStage(1);}
             else if (step==1) {
                 me.toggleStage(2);
-                
+																me.getContentById(me.propositionId);
             }
             else if (step==2) {
                 if (me.isTransport) {me.toggleStage(3);}

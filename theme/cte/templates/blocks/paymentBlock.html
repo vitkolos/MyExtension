@@ -12,7 +12,7 @@
                 <ng-form name="proposition_choice">
                         <div  class="row">
 							<div class="col-xs-6 col-xs-push-3">
-								<select ng-model="paymentCtrl.proposition" name="proposition" required>
+								<select ng-model="paymentCtrl.propositionId" name="proposition" required>
 									<option ng-repeat="proposition in paymentCtrl.contents" value="{{proposition.id}}">{{proposition.text}}</option>
 								</select>
 
@@ -25,9 +25,9 @@
                 </ng-form>
             </div>
 			<h2 class="capital txt-red" ng-class="{'displayed' : paymentCtrl.currentStage==2}" ng-click="paymentCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
-                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="paymentCtrl.currentStage>1"></span>
+                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="paymentCtrl.currentStage>2"></span>
             </h2>
-            <div id="inscriptionStage2" class="collapse in">
+            <div id="inscriptionStage2" class="collapse">
                 <ng-form name="infos_personnelles">
 					<div class="row">
 						<div class="col-sm-4"><label for="nom" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}*</label></div>
@@ -48,17 +48,12 @@
                 </ng-form>
             </div>
 
-
-            
-			
-			
-			
 			<!--PAIEMENT-->
-            <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==5}" ng-if="formCtrl.isPaiement" ng-click="formCtrl.setCurrentStage(5,inscription_form.paiement.$valid)">
+            <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==3}" ng-click="formCtrl.setCurrentStage(2,paiement.$valid)">
                 {{contentDetailCtrl.getLabelByName('paf_text')}}
-                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>5"></span>
+                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
             </h2>
-            <div id="inscriptionStage5" ng-if="formCtrl.isPaiement" class="collapse">
+            <div id="inscriptionStage3" class="collapse">
                 <ng-form name="paiement">
                    <div class="row">
                         <div class="col-xs-12 text-center">
