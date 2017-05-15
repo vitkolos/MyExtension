@@ -43,16 +43,34 @@ class ShoppingcartResource extends AbstractResource
      * @return array
      * @throws \RubedoAPI\Exceptions\APIEntityException
      */
+    
+ /*
+ "shoppingCart":{
+    "shoppingCart":[
+        {
+            "productId":{"$id":"5816225d245640d84a8b4ce5" },
+            "variationId":{"$id":"58162202245640f34a8b4c01"},
+            "amount":1
+        }
+    ],
+    "id":"58f8d7269b1bde1421000062"
+}
+ 
+ */   
+    
+    
     public function postAction($params)
     {
         $params['amount'] = isset($params['amount']) ? $params['amount'] : 1;
         /*Get cart*/
          if (empty($params['shoppingCartToken'])) {
-            $shoppingCart = $this->getShoppingCartCollection()->getCurrentCart(null,true);
+            $cart = $this->getShoppingCartCollection()->getCurrentCart(null,true);
         } else {
-            $shoppingCart = $this->getShoppingCartCollection()->getCurrentCart($params['shoppingCartToken'],true);
+            $cart = $this->getShoppingCartCollection()->getCurrentCart($params['shoppingCartToken'],true);
         }
-        var_dump($shoppingCart);
+        foreach($cart['shoppingCart'] as $item){
+            var_dump($item);
+        }
         
         if (empty($params['shoppingCartToken'])) {
             $cartUpdate = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount']);
