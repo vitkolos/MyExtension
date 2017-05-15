@@ -75,10 +75,8 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																me.getContentById(me.propositionId);
             }
             else if (step==2) {
-                if (me.isTransport) {me.toggleStage(3);}
-                else if (me.isLogement) {me.toggleStage(4);}
-                 else if(me.isPaiement) {me.toggleStage(5);}
-               else {me.toggleStage(6);}
+                me.toggleStage(3);
+                
             }
             else if (step==3) {
                 if (me.isLogement) {me.toggleStage(4);}
