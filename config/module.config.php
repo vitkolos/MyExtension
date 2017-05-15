@@ -171,10 +171,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/logoMission.json'
         ),
-								'paymentBlock' => array(
+								/*'paymentBlock' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/paymentBlock.json'
-        ),
+        ),*/
 				),
 
     'templates' => array(
