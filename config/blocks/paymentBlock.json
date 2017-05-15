@@ -32,19 +32,17 @@
                         }
                     ]
                 }
- 
-		
             ],
             "avance": [
                 {
-                    "categorie": "#ext-gen1472#",
+                    "categorie": "Template",
                     "champs": [
                         {
                             "type": "Rubedo.view.ACEField",
                             "config": {
-                                "fieldLabel": "#ext-gen1452#",
+                                "fieldLabel": "Custom template",
                                 "name": "customTemplate",
-                                "defaultTemplateUrl": "blocks/contentList.html",
+                                "defaultTemplateUrl": "blocks/contentDetail.html",
                                 "twigMode": false
 
                             }
@@ -58,17 +56,20 @@
                           "editable": true,
                           "minValue": 0
                         }
-                      },
-																						
+                      }
                     ]
-                }
-            ],
+                }     
+            ]
         },
-        "configBloc": {
-            
-        }
+        "configBloc": {}
     },
     "category": "#ext-gen1064#",
     "bType": "paymentBlock",
-    "id": "506441f8c64804d514000002"
+    "id": "506441f8c64804d515000001"
 }
+
+
+
+
+
+
