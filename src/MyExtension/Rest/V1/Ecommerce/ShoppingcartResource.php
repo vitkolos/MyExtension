@@ -65,6 +65,7 @@ class ShoppingcartResource extends AbstractResource
     {
         $params['amount'] = isset($params['amount']) ? $params['amount'] : 1;
         $hasEnoughStock =true;
+        $message="";
         /*Get cart*/
          if (empty($params['shoppingCartToken'])) {
             $cart = $this->getShoppingCartCollection()->getCurrentCart(null,true);
@@ -80,15 +81,11 @@ class ShoppingcartResource extends AbstractResource
                     if($variation['id'] == $params['variationId']){
                         if($variation['stock'] < $item['amount'] + $params['amount']) {
                             $hasEnoughStock = false;
-                            return array(
-                                'success' => false,
-                                'shoppingCart' => "Il n'y a pas assez de stock",
-                            );
+                            $message = "Il n'y a pas assez de stock";
                         }
                     }
                 }
             }
-            //var_dump($item);
         }
         
         if (empty($params['shoppingCartToken'])) {
@@ -102,6 +99,7 @@ class ShoppingcartResource extends AbstractResource
         return array(
             'success' => true,
             'shoppingCart' => $this->filterShoppingCart($cartUpdate, isset($params['includeDetail'])),
+            'message' =>$message
         );
     }
     /**
@@ -330,6 +328,11 @@ class ShoppingcartResource extends AbstractResource
                     ->setDescription('Cart items')
                     ->setKey('shoppingCart')
                     ->setRequired()
+            )
+            ->addOutputFilter(
+                (new FilterDefinitionEntity())
+                    ->setDescription('Message d\'erreur')
+                    ->setKey('message')
             );
     }
     /**
