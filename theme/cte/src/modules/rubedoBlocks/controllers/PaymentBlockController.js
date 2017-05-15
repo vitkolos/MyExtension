@@ -72,18 +72,8 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
             siteId: $scope.rubedo.current.site.id           
         };
         RubedoSearchService.searchByQuery(options).then(function(response){
-												//pour tester
-												me.inscriptionsCount  =1;
-												RubedoContentsService.getContentById("59197a6d9b1bdedc140002b1").then(
-                        function(response){
-                            if(response.data.success){
-                                me.lastInscription = response.data.content;
-																																me.toggleStage(3);
-																																console.log(me.lastInscription);
-                            }
-                        }
-                    );
-            /*if(response.data.success){
+											
+            if(response.data.success){
                 me.inscriptionsCount = response.data.count;
                 me.showInscriptionResult = true;
                 if (response.data.count>0) {
@@ -100,7 +90,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																else {
 																				me.noInscription = true;
 																}
-            }*/
+            }
         });
     }
 				
