@@ -122,7 +122,7 @@ class PaymentResource extends AbstractResource {
         $email = $params['email'];
         $proposition = $params['proposition']; // titre de la proposition si inscription
         $paymentType=$params['paymentType']; // type de paiement (paf ou dons)
-        $place = $params['placeID']; // lieu communautaire pour compta
+        if(isset($params['placeID'])) $place = $params['placeID']; // lieu communautaire pour compta
         $onlinePaymentMeans=$params['paymentMeans'];  //moyen de payment en ligne du site : carte (=paybox), paypal, dotpay
         $codeCompta="";
 
