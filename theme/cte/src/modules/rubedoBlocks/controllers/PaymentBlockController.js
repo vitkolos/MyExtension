@@ -1,4 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope','RubedoContentsService','RubedoPaymentMeansService','RubedoSearchService',function($scope,RubedoContentsService,RubedoPaymentMeansService,RubedoSearchService){
+angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope','RubedoContentsService','RubedoPaymentMeansService','RubedoSearchService','PaymentService',
+																																																																									function($scope,RubedoContentsService,RubedoPaymentMeansService,RubedoSearchService,PaymentService){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -147,11 +148,8 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																paymentMeans:$scope.inscription.modePaiement,
 																paymentType:'paf'
 												};
-												/*si ados, le mail indiqué pour le payement est celui du parent*/
-												if($scope.inscription.public_type == 'adolescent' && $scope.inscription.emailPers2 && $scope.inscription.emailPers2!=''){
-																payload.email = $scope.inscription.emailPers2;
-												}
-												if (me.content.fields.lieuCommunautaire) {
+												
+												if (me.proposition.fields.lieuCommunautaire) {
 																payload.placeID=me.content.fields.lieuCommunautaire;
 												}
 												if(window.ga) {
