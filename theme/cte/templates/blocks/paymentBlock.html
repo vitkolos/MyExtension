@@ -49,24 +49,21 @@
             </div>
 
 			<!--PAIEMENT-->
-            <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==3}" ng-click="formCtrl.setCurrentStage(2,paiement.$valid)">
-                {{contentDetailCtrl.getLabelByName('paf_text')}}
-                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
+            <h2 class="capital txt-red" ng-class="{'displayed' : paymentCtrl.currentStage==3}" ng-click="paymentCtrl.setCurrentStage(2,paiement.$valid)">
+                {{rubedo.translate("Block.Paiment","Mon paiement")}}
+                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="paymentCtrl.currentStage>3"></span>
             </h2>
             <div id="inscriptionStage3" class="collapse">
                 <ng-form name="paiement">
                    <div class="row">
                         <div class="col-xs-12 text-center">
                             <p>{{rubedo.translate("Block.Inscription.Paf","La participation aux frais est de :")}} </p>
-                            <p>{{contentDetailCtrl.content.fields.paf_text}}</p>
-                            <p ng-repeat="(option, prix) in inscription.optionsPayantes" ng-if="prix">
-                                    + {{option}} : {{prix}}{{formCtrl.paymentmeans.nativePMConfig.monnaie}}
-                            </p>
-                            <!---on demande le montant à payer seulement si on peut payer pour la session - pas seulement l'accompte-->
-                            <div class="row" ng-if="!formCtrl.isPaimentAccompteSeulement">
+                            <p>{{formCtrl.proposition.fields.paf_text}}</p>
+                            
+                            <div class="row" >
                                     <label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label>
                             </div>
-                            <p ng-if="!formCtrl.isPaimentAccompteSeulement"><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[1-9][0-9]{1,3}$/"><b>{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</b></p>
+                            <p><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[1-9][0-9]{1,3}$/"><b>{{paymentCtrl.paymentmeans.nativePMConfig.monnaie}}</b></p>
                         </div>
                     </div>
                    <!---CHOIX DU PAIEMENT-->
