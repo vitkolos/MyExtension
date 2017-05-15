@@ -27,6 +27,7 @@
                             "config": {
                                 "fieldLabel": "#ext-gen1105#",
                                 "name": "contentId",
+																																"allowedCT":"55473bf845205e413cf1864d",
                                 "chooseOnly": true
                             }
                         }

@@ -15,6 +15,10 @@ blocksConfig.siteMap= {
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/SiteMapController.js"],
 											"externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js']
 };
+blocksConfig.paymentBlock= {
+            "template": "/templates/blocks/paymentBlock.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/PaymentBlockController.js"]
+};
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
