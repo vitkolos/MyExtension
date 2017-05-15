@@ -45,9 +45,9 @@
 						<div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="paymentCtrl.setCurrentStage(2,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
 						<p ng-if="infos_personnelles.$invalid && infos_personnelles.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
 					</div>
-					<div class="row text-center" ng-if="formCtrl.inscriptionsCount==0">
+					<div class="row text-center" ng-if="paymentCtrl.inscriptionsCount==0">
 						<p class="txt-red">{{rubedo.translate("Block.Inscription.PaimentComplementaire.Email.Aucun", "Nous n'avons trouvé aucune inscription à cette proposition avec le email suivant :")}} {{inscription.email}}<br/>
-    {{rubedo.translate("Block.Inscription.PaimentComplementaire.Email.Autre", "Merci d'essayer avec un autre mail")}};</p>
+	 {{rubedo.translate("Block.Inscription.PaimentComplementaire.Email.Autre", "Merci d'essayer avec un autre mail")}};</p>
 
 					</div>
                 </ng-form>
@@ -72,21 +72,7 @@
                         </div>
                     </div>
                    
-                   <!---CHOIX DU MODE DE PAIEMENT-->
-                   <div class="row " >
-                        <div class="col-xs-6">
-                            <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.ModePaiment")}}</label>
-                        </div>
-                        <div class="col-xs-6">
-                            <div class="col-xs-12" ng-repeat="(paymentmode, value) in paymentCtrl.paymentmeans.paymentModes" ng-if="value">
-                                    <input type="radio" name="modePaiement" ng-attr-id="{{paymentmode}}" ng-model="inscription.modePaiement" value={{paymentmode}} required>
-                                    <label for="{{paymentmode}}">
-                                            {{rubedo.translate('Block.Inscription.Paf.'+paymentmode)}}
-                                    </label>
-                            </div>                            
-                        </div>  
-                       
-					</div>
+
 					<div class="row text-center">
 							<div class="button submit" ng-class="{'disabled' : paiement.$invalid}" ng-click="paymentCtrl.setCurrentStage(3,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
 					</div>
@@ -97,7 +83,7 @@
          
             
             <!--remarques-->
-            <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==4}">
+            <h2 class="capital txt-red" ng-class="{'displayed' : paymentCtrl.currentStage==4}">
                 {{rubedo.translate("Block.Inscription.Remarques")}}
             </h2>
             <div id="inscriptionStage4" class="collapse">
@@ -114,11 +100,33 @@
             </div>
             
             <div class="row text-center">
-                <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(4,inscription_form.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Paiment","Payer")}}</div><!----inscription_form.$valid)-->
+                <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="paymentCtrl.setCurrentStage(4,inscription_form.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Paiment","Payer")}}</div><!----inscription_form.$valid)-->
                 <img src="/theme/cte/img/loader.gif" ng-if="processForm">
-                    <p ng-if="finInscription">{{message}}</p>
+                <p ng-if="finInscription">{{message}}</p>
+				<p ng-if="finInscription && errorMessage"><em></em></p>
             </div>
             <!---submit inscription-->
         </ng-form>
+	
+	<form  id="payment" ng-if="formCtrl.inscriptionsCount>0" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
+            <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
+            <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
+            <input type="hidden" name="PBX_SITE" value="{{parametres.payboxSite}}">
+            <input type="hidden" name="PBX_RANG" value="{{parametres.payboxRang}}">
+            <input type="hidden" name="PBX_IDENTIFIANT" value="{{parametres.payboxIdentifiant}}">
+            <input type="hidden" name="PBX_TOTAL" value="{{parametres.montantEnCentimes}}">
+            <input type="hidden" name="PBX_DEVISE" value="{{parametres.codeMonnaieNumerique}}">
+            <input type="hidden" name="PBX_CMD" value="{{parametres.commande}}">
+            <input type="hidden" name="PBX_PORTEUR" value="{{parametres.email}}">
+            <input type="hidden" name="PBX_RETOUR" value="{{parametres.payboxRetour}}">
+            <input type="hidden" name="PBX_HASH" value="SHA512">
+            <input type="hidden" name="PBX_TIME" value="{{parametres.dateTime}}">
+            <input type="hidden" name="PBX_EFFECTUE" value="{{parametres.urlRetourNormal}}">
+            <input type="hidden" name="PBX_REFUSE" value="{{parametres.urlRetourEchec}}">
+            <input type="hidden" name="PBX_ANNULE" value="{{parametres.urlRetourEchec}}">
+            <input type="hidden" name="PBX_REPONDRE_A" value="{{parametres.urlCallback}}">
+            <input type="hidden" name="PBX_HMAC" value="{{parametres.empreinteHasheeHex}}">
+        <input type="submit" value="Envoyer">
+    </form>
     
 </div>
