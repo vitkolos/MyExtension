@@ -18,11 +18,12 @@
  /*Modification CCN pour ne pas afficher le "sous titre = les déclinaisons non utilisées dans l"affichage du panier*/
  
 namespace RubedoAPI\Rest\V1\Ecommerce;
+
+use Rubedo\Services\Manager;
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use RubedoAPI\Exceptions\APIEntityException;
 use RubedoAPI\Rest\V1\AbstractResource;
-use Rubedo\Services\Manager;
 /**
  * Class ShoppingcartResource
  * @package RubedoAPI\Rest\V1\Ecommerce
