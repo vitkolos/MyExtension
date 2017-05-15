@@ -79,11 +79,15 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
                         function(response){
                             if(response.data.success){
                                 me.lastInscription = response.data.content;
+																																me.toggleStage(3);
 																																console.log(me.lastInscription);
                             }
                         }
                     );
                 }
+																else {
+																				me.noInscription = true;
+																}
             }
         });
     }
@@ -111,19 +115,16 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																me.getContentById(me.propositionId);
             }
             else if (step==2) {
-																me.getInscription($scope.inscription.email);
-                me.toggleStage(3);
-                
+																me.getInscription($scope.inscription.email);                
             }
             else if (step==3) {
                 me.toggleStage(4);
-                
             }
         }
         if (valide && step==4) {
             // validations préliminaires
             $scope.processForm=true;
-            
+
 												 var payload = {
 																nom:$scope.inscription.nom,
 																prenom: $scope.inscription.surname,
