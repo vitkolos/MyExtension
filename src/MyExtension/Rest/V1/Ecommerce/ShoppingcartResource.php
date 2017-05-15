@@ -46,6 +46,14 @@ class ShoppingcartResource extends AbstractResource
     public function postAction($params)
     {
         $params['amount'] = isset($params['amount']) ? $params['amount'] : 1;
+        /*Get cart*/
+         if (empty($params['shoppingCartToken'])) {
+            $shoppingCart = $this->getShoppingCartCollection()->getCurrentCart(null,true);
+        } else {
+            $shoppingCart = $this->getShoppingCartCollection()->getCurrentCart($params['shoppingCartToken'],true);
+        }
+        var_dump($shoppingCart);
+        
         if (empty($params['shoppingCartToken'])) {
             $cartUpdate = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount']);
         } else {
