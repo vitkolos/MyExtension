@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope','$compile','RubedoContentsService',function($scope,$compile,RubedoContentsService){
+angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope','RubedoContentsService','RubedoPaymentMeansService',function($scope,RubedoContentsService,RubedoPaymentMeansService){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
