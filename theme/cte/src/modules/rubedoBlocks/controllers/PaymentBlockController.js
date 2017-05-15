@@ -127,7 +127,8 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																me.getContentById(me.propositionId);
             }
             else if (step==2) {
-																me.getInscription($scope.inscription.email);                
+																me.getInscription($scope.inscription.email);
+																$scope.inscription.modePaiement = 'carte';
             }
             else if (step==3) {
                 me.toggleStage(4);
