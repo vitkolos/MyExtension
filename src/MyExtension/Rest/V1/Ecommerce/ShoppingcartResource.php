@@ -75,8 +75,7 @@ class ShoppingcartResource extends AbstractResource
         foreach($cart['shoppingCart'] as $item){
             /*if item is already in cart -> check if has enough stock*/
             if((string)($item['productId']) == $params['productId'] && (string)($item['variationId']) == $params['variationId']) {
-                $itemDetail = Manager::getService("Contents")->findById($item['productId']);
-                //var_dump($itemDetail);
+                $itemDetail = Manager::getService("Contents")->findById($item['productId'], true, false);
                 foreach($itemDetail['productProperties']['variations'] as $variation) {
                     if($variation['id'] == $params['variationId']){
                         if($variation['stock'] < $item['amount'] + $params['amount']) {
@@ -87,18 +86,19 @@ class ShoppingcartResource extends AbstractResource
                 }
             }
         }
-        
-        if (empty($params['shoppingCartToken'])) {
-            $cartUpdate = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount']);
-        } else {
-            $cartUpdate = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount'], $params['shoppingCartToken']);
+        if($hasEnoughStock) {
+            if (empty($params['shoppingCartToken'])) {
+                $cart = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount']);
+            } else {
+                $cart = $this->getShoppingCartCollection()->addItemToCart($params['productId'], $params['variationId'], $params['amount'], $params['shoppingCartToken']);
+            }
         }
-        if ($cartUpdate === false) {
+        if ($cart === false) {
             throw new APIEntityException('Update failed');
         }
         return array(
-            'success' => true,
-            'shoppingCart' => $this->filterShoppingCart($cartUpdate, isset($params['includeDetail'])),
+            'success' => $hasEnoughStock,
+            'shoppingCart' => $this->filterShoppingCart($cart, isset($params['includeDetail'])),
             'message' =>$message
         );
     }
