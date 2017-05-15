@@ -1,0 +1,76 @@
+{
+    "type": "Bloc de payement",
+    "description": "Bloc pour créer une page de paiement pour une liste de propositions spécifique - Réservé à l'administrateur",
+    "configBasique": {
+        "title": "Bloc de payement",
+        "bType": "paymentBlock",
+        "flex": 1,
+        "champsConfig": {
+            "simple": [
+                {
+                    "categorie": "#ext-gen1068#",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.queryBuilderField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1075#",
+                                "name": "query"
+                            }
+                        }
+                    ]
+                },
+																{
+                    "categorie": "#ext-gen1104#",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.DCEField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1105#",
+                                "name": "contentId",
+																																"allowedCT":"55473bf845205e413cf1864d",
+                                "chooseOnly": true
+                            }
+                        }
+                    ]
+                }
+            ],
+            "avance": [
+                {
+                    "categorie": "Template",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "Custom template",
+                                "name": "customTemplate",
+                                "defaultTemplateUrl": "blocks/contentDetail.html",
+                                "twigMode": false
+
+                            }
+                        },
+                      {
+                        "type": "Ext.form.field.Number",
+                        "config": {
+                          "fieldLabel": "#ext-gen1491#",
+                          "name": "blockMinHeight",
+                          "allowDecimals": false,
+                          "editable": true,
+                          "minValue": 0
+                        }
+                      }
+                    ]
+                }     
+            ]
+        },
+        "configBloc": {}
+    },
+    "category": "#ext-gen1064#",
+    "bType": "paymentBlock",
+    "id": "506441f8c64804d515000001"
+}
+
+
+
+
+
+

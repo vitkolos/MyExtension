@@ -1,0 +1,119 @@
+<div ng-controller="PaymentBlockController as paymentCtrl" class="container">
+	<ng-form name="inscription_form" novalidate id="inscription_form">
+            <!--si pas de payement en ligne
+            <h2 class="capital txt-red"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0 && fieldEntity['paf_text']">
+                {{contentDetailCtrl.getLabelByName('paf_text')}}
+            </h2>
+            <div class="row text-center"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0"><p>{{contentDetailCtrl.content.fields.paf_text}}</p></div>-->
+            <h2 class="capital txt-red" ng-class="{'displayed' : paymentCtrl.currentStage==1}" ng-click="paymentCtrl.setCurrentStage(0,proposition_choice.$valid)">Choix de la proposition
+                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="paymentCtrl.currentStage>1"></span>
+            </h2>
+            <div id="inscriptionStage1" class="collapse in">
+                <ng-form name="proposition_choice">
+                        <div  class="row">
+							<div class="col-xs-6 col-xs-push-3">
+								<select ng-model="paymentCtrl.propositionId" name="proposition" required>
+									<option ng-repeat="proposition in paymentCtrl.contents | orderBy : 'text' " value="{{proposition.id}}">{{proposition.text}}</option>
+								</select>
+
+							</div>
+						</div>
+                        <div class="row text-center">
+                            <div class="button submit" ng-class="{'disabled' : proposition_choice.$invalid}" ng-click="paymentCtrl.setCurrentStage(1,proposition_choice.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                            <p ng-if="proposition_choice.$invalid && proposition_choice.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
+                        </div>
+                </ng-form>
+            </div>
+			<h2 class="capital txt-red" ng-class="{'displayed' : paymentCtrl.currentStage==2}" ng-click="paymentCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
+                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="paymentCtrl.currentStage>2"></span>
+            </h2>
+            <div id="inscriptionStage2" class="collapse">
+                <ng-form name="infos_personnelles">
+					<div class="row">
+						<div class="col-sm-4"><label for="nom" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}*</label></div>
+						<div class="col-sm-8"><input type="text" id="nom" ng-model="inscription.nom" name="name" required></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4"><label for="prenom" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}*</label></div>
+						<div class="col-sm-8"><input type="text" id="prenom" ng-model="inscription.surname" name="surname" required></div>
+					</div>
+					<div class="row">
+						<div class="col-sm-4"><label for="email" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
+						<div class="col-sm-8"><input type="email" id="email" name="email"  ng-model="inscription.email" placeholder="user@mydomain.com" required></div>
+					</div>
+					<div class="row text-center">
+						<div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="paymentCtrl.setCurrentStage(2,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+						<p ng-if="infos_personnelles.$invalid && infos_personnelles.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
+					</div>
+                </ng-form>
+            </div>
+
+			<!--PAIEMENT-->
+            <h2 class="capital txt-red" ng-class="{'displayed' : paymentCtrl.currentStage==3}" ng-click="paymentCtrl.setCurrentStage(2,paiement.$valid)">
+                {{rubedo.translate("Block.Paiment","Mon paiement")}}
+                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="paymentCtrl.currentStage>3"></span>
+            </h2>
+            <div id="inscriptionStage3" class="collapse">
+                <ng-form name="paiement">
+                   <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <p ng-if="paymentCtrl.proposition.fields.paf_text">{{rubedo.translate("Block.Inscription.Paf","La participation aux frais est de :")}} </p>
+                            <p ng-if="paymentCtrl.proposition.fields.paf_text">{{paymentCtrl.proposition.fields.paf_text}}</p>
+                            
+                            <div class="row" >
+                                    <label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Maintenant")}}</label>
+                            </div>
+                            <p><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[1-9][0-9]{1,3}$/"><b>{{paymentCtrl.paymentmeans.nativePMConfig.monnaie}}</b></p>
+                        </div>
+                    </div>
+                   
+                   <!---CHOIX DU MODE DE PAIEMENT-->
+                   <div class="row " >
+                        <div class="col-xs-6">
+                            <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.ModePaiment")}}</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-xs-12" ng-repeat="(paymentmode, value) in paymentCtrl.paymentmeans.paymentModes" ng-if="value">
+                                    <input type="radio" name="modePaiement" ng-attr-id="{{paymentmode}}" ng-model="inscription.modePaiement" value={{paymentmode}} required>
+                                    <label for="{{paymentmode}}">
+                                            {{rubedo.translate('Block.Inscription.Paf.'+paymentmode)}}
+                                    </label>
+                            </div>                            
+                        </div>  
+                       
+					</div>
+					<div class="row text-center">
+							<div class="button submit" ng-class="{'disabled' : paiement.$invalid}" ng-click="paymentCtrl.setCurrentStage(3,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+					</div>
+                </ng-form>
+            </div>
+            
+            
+         
+            
+            <!--remarques-->
+            <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==4}">
+                {{rubedo.translate("Block.Inscription.Remarques")}}
+            </h2>
+            <div id="inscriptionStage4" class="collapse">
+                <ng-form name="remarques">
+                   <div class="row">
+                        <div class="col-sm-3"><div class="row vide"></div></div>
+                        <div class="col-sm-6">
+                            <div class="col-xs-12">
+                                <textarea rows="5" id="remarques" ng-model="inscription.remarques" name="remarques" placeholder=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </ng-form>
+            </div>
+            
+            <div class="row text-center">
+                <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(4,inscription_form.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Paiment","Payer")}}</div><!----inscription_form.$valid)-->
+                <img src="/theme/cte/img/loader.gif" ng-if="processForm">
+                    <p ng-if="finInscription">{{message}}</p>
+            </div>
+            <!---submit inscription-->
+        </ng-form>
+    
+</div>
