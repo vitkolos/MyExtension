@@ -53,7 +53,43 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 												}
 								}
 				);
-    
+    //récupérer l'inscription par email
+    me.getInscription = function(email){
+        var options = {
+            start: 0,
+            limit: 100,
+            constrainToSite: false,
+            orderby: 'lastUpdateTime',
+            orderbyDirection:'desc',
+            //query:'"'+email+'"',
+            type:"561627c945205e41208b4581",
+            taxonomies:{
+                "proposition":[me.proposition.id],
+                "email":[email]
+            },
+            pageId: $scope.rubedo.current.page.id,
+            siteId: $scope.rubedo.current.site.id           
+        };
+        RubedoSearchService.searchByQuery(options).then(function(response){
+            if(response.data.success){
+                me.inscriptionsCount = response.data.count;
+                me.showInscriptionResult = true;
+                if (response.data.count>0) {
+                    RubedoContentsService.getContentById(response.data.results.data[0].id).then(
+                        function(response){
+                            if(response.data.success){
+                                me.lastInscription = response.data.content;
+																																console.log(me.lastInscription);
+                            }
+                        }
+                    );
+                }
+            }
+        });
+    }
+				
+				
+				
 				$scope.inscription = {};
 				me.currentStage=1;
 				// affichage des sections du formulaire
@@ -75,26 +111,73 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																me.getContentById(me.propositionId);
             }
             else if (step==2) {
+																me.getInscription($scope.inscription.email);
                 me.toggleStage(3);
                 
             }
             else if (step==3) {
-                if (me.isLogement) {me.toggleStage(4);}
-                 else if(me.isPaiement) {me.toggleStage(5);}
-                else {me.toggleStage(6);}
-            }
-            else if(step==4) {
-                if(me.isPaiement) {me.toggleStage(5);}
-                else me.toggleStage(6);
-            }
-            else if (step==5) {
-                me.toggleStage(6);
+                me.toggleStage(4);
+                
             }
         }
-        if (valide && step==6) {
+        if (valide && step==4) {
             // validations préliminaires
             $scope.processForm=true;
             
+												 var payload = {
+																nom:$scope.inscription.nom,
+																prenom: $scope.inscription.surname,
+																email:$scope.inscription.email,
+																montant:$scope.inscription.montantAPayerMaintenant,
+																proposition:me.proposition.text,
+																idInscription: response.data.id,
+																paymentConfID:response.data.result.paymentConfID,
+																paymentMeans:$scope.inscription.modePaiement,
+																paymentType:'paf'
+												};
+												/*si ados, le mail indiqué pour le payement est celui du parent*/
+												if($scope.inscription.public_type == 'adolescent' && $scope.inscription.emailPers2 && $scope.inscription.emailPers2!=''){
+																payload.email = $scope.inscription.emailPers2;
+												}
+												if (me.content.fields.lieuCommunautaire) {
+																payload.placeID=me.content.fields.lieuCommunautaire;
+												}
+												if(window.ga) {
+																window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
+												}
+												if ($scope.inscription.modePaiement=='dotpay') {
+																payload.infos=$scope.inscription;
+												}
+												PaymentService.payment(payload).then(function(response){
+																if (response.data.success) {
+																				$scope.parametres = response.data.parametres;
+																				/*délai pour laisser le formulaire se remplir*/
+																				$timeout(function() {
+																								$scope.processForm=false;
+																								document.getElementById('payment').submit();
+																				}, 100);
+																}
+																else {
+																				$scope.processForm=false;
+																				$scope.finInscription=true;  
+																				$scope.inscription={};
+																				$scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
+																}
+																
+												});
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
+												
             $scope.inscription.proposition=  propositionId;
             $scope.inscription.propositionTitre=  propositionTitle;
             if(me.content.fields.dateDebut && me.content.fields.dateDebut!='') $scope.inscription.propositionDate = propositionDate;
