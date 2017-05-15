@@ -179,7 +179,7 @@ class OrdersResource extends AbstractResource
                 $this->getShoppingCartCollection()->setCurrentCart(array());
             }
             //si payement par chèque, envoyer mail de confirmation de commande
-            if($params['paymentMeans']){
+            if($params['paymentMeans']=='check'){
                 $mailerService = Manager::getService('Mailer');
                 $mailerObject2 = $mailerService->getNewMessage();
                 $bodyClient = "";

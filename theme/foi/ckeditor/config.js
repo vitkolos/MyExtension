@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-        config.colorButton_colors = 'c1573c,2e2c29,d5c5b5,898989,ffffff';
+        config.colorButton_colors = '252525,c2c2c2,cd2d05,ffffff';
         config.colorButton_enableMore = false;
         config.youtube_responsive = true;
 
@@ -22,7 +22,7 @@ CKEDITOR.stylesSet.add( 'default', [
 		attributes: { 'style': 'margin:0 auto' }
 	},
 	{ name: 'Citation', element: 'blockquote', attributes: { 'class': 'center'} },
-	{ name: 'Bouton rouge', element: 'a', attributes: { 'class': 'button rouge'} }
+	{ name: 'Bouton rouge', element: 'button', attributes: { 'class': 'btn btn-default'} }
 
 ] );
 
