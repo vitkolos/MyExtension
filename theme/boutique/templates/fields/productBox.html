@@ -34,7 +34,7 @@
                     <h4 class="modal-title" id="rubedoRecoverPwdModalLabel">{{rubedo.translate("Fields.User.Label.OutOfStock","Rupture de stock")}}</h4>
                 </div>
                 <div class="modal-body">
-                    <p ng-bind-html='{{rubedo.translate("Fields.ProductBox.StockIssue","Nous n\'avons pas assez de stock pour ce produit. Pour en commander plus, merci de prendre contact directement avec la boutique.")}}'></p>
+                    <p ng-bind-html="rubedo.translate('Fields.ProductBox.StockIssue','Nous n avons pas assez de stock pour ce produit. Pour en commander plus, merci de prendre contact directement avec la boutique.')  | unsafe"></p>
                 </div>
             </div>
         </div>
