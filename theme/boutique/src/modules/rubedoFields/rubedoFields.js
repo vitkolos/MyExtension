@@ -812,17 +812,9 @@
         me.canOrder=function(){
             return !(me.manageStock&&(me.productProperties.canOrderNotInStock=="false")&&(me.currentVariation.stock < me.productProperties.outOfStockLimit)) ;
         };
-        me.getProductAvailabilityText=function(){
-            if (!me.manageStock){
-                return "";
-            }
-            var complement;
-            if (me.currentVariation.stock < me.productProperties.outOfStockLimit){
-                complement=me.productProperties.resupplyDelay > 1 ? $scope.rubedo.translate("Label.days", "days") : $scope.rubedo.translate("Label.day", "day");
-                return($scope.rubedo.translate("Fields.User.Label.OutOfStock", "Out of stock") + " : " + $scope.rubedo.translate("Fields.User.Label.RessupliedBefore", "ressuplied before") + " " + me.productProperties.resupplyDelay + " " + complement);
-            } else {
-                complement=me.productProperties.preparationDelay > 1 ? $scope.rubedo.translate("Label.days", "days") : $scope.rubedo.translate("Label.day", "day");
-                return($scope.rubedo.translate("Fields.User.Label.InStock", "In stock") + " : " + $scope.rubedo.translate("Fields.User.Label.SentBefore", "sent before") + " " + me.productProperties.preparationDelay + " " + complement);
+        me.getProductAvailabilityText=function(){                   
+           if (me.canOrder() && me.productProperties.canOrderNotInStock=="false") {
+                return $scope.rubedo.translate("Fields.User.Label.InStock", "In stock") + " : " + me.currentVariation.stock ;
             }
         };
         me.isProductAdded = false;
