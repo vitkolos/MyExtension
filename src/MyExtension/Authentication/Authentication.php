@@ -49,7 +49,9 @@ class Authentication extends AuthenticationService
             ));
             throw new APIAuthException('Bad credentials', 401);
         }
-								var_dump($_SERVER['SERVER_PROTOCOL']);
+								$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+
+								var_dump($protocol);
 		//var_dump($result);
 		//throw new APIAuthException($result->getMessages()[0], 500);
         Events::getEventManager()->trigger(self::SUCCESS);
