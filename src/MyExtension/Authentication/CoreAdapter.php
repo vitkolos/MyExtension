@@ -93,7 +93,6 @@ class CoreAdapterCcn extends AbstractAdapter
 												$result = curl_exec($curl);
 												curl_close($curl);
 												$isLDAPValid = explode(";",$result)[0];
-												var_dump($result);
 												//$isLDAPValid = false;
 												if($isLDAPValid && $isLDAPValid=="True") {
 																// l'utilisateur existe et a le bon mot de passe => valider la connexion
@@ -133,7 +132,7 @@ class CoreAdapterCcn extends AbstractAdapter
 		
         if ($valid) {
             $this->_authenticateResultInfo['code'] = Result::SUCCESS;
-            $this->_authenticateResultInfo['messages'][] = $result;
+            $this->_authenticateResultInfo['messages'][] = $isLDAPValid;
 												//$this->_authenticateResultInfo['messages'][] = 'Authentication successful.';
             
 												$this->_authenticateResultInfo['identity'] = $user;
