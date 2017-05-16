@@ -331,7 +331,7 @@ return array(
                 ),
                 'js' => array(
                     '/js/foyers.js',
-                    /*'../js/blocks.js'/
+                    /*'../js/blocks.js'*/
                 ),
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
