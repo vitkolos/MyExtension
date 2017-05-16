@@ -322,6 +322,21 @@ return array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
            ),
+											'foyers' => array(
+                'label' => 'FOYERS',
+                'basePath' => realpath(__DIR__ . '/../theme/foyers'),
+                'css' => array(
+                    '/css/foyers.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '/js/foyers.js',
+                    '../js/blocks.js'
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
+            ),
         ),
     ),
     
