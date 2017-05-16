@@ -51,6 +51,7 @@ class Authentication extends AuthenticationService
         }
 								$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
 var_dump(stripos($_SERVER['SERVER_PROTOCOL'],'http'));
+var_dump(stripos($_SERVER['SERVER_PROTOCOL'],'https'));
 								var_dump($protocol);
 		//var_dump($result);
 		//throw new APIAuthException($result->getMessages()[0], 500);
