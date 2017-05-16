@@ -72,6 +72,9 @@ angular.module("rubedoBlocks").lazy.controller("ShoppingCartController",["$scope
                     }
                     $rootScope.$broadcast("shoppingCartUpdated",{emitter:me.blockId});
                 }
+																else {
+																				angular.element('#notEnoughInStock').appendTo('body').modal('show');
+																}
             }
         );
     };
