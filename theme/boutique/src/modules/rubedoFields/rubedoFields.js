@@ -826,12 +826,18 @@
             };
             RubedoShoppingCartService.addToCart(options).then(
                 function(response){
-                    $rootScope.$broadcast("shoppingCartUpdated",{emitter:"productBox"});
-                    //window.location.href= $scope.rubedo.current.site.cartDetailPageUrl;
-                    me.isProductAdded = true;
-                    $timeout(function() {
-                        me.isProductAdded = false;
-                    }, 1000);
+                    if (response.data.success) {
+                        $rootScope.$broadcast("shoppingCartUpdated",{emitter:"productBox"});
+                        //window.location.href= $scope.rubedo.current.site.cartDetailPageUrl;
+                        me.isProductAdded = true;
+                        $timeout(function() {
+                            me.isProductAdded = false;
+                        }, 1000);
+                    }
+                    else{
+                        angular.element('#notEnoughInStock').appendTo('body').modal('show');
+                    }
+                    
                 }
             );
         };
