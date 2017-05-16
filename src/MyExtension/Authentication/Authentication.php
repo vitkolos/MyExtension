@@ -51,7 +51,7 @@ class Authentication extends AuthenticationService
         }
 								$protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
 
-								var_dump($protocol);
+								//var_dump($protocol);
 		//var_dump($result);
 		//throw new APIAuthException($result->getMessages()[0], 500);
         Events::getEventManager()->trigger(self::SUCCESS);
