@@ -49,7 +49,7 @@ class Authentication extends AuthenticationService
             ));
             throw new APIAuthException('Bad credentials', 401);
         }
-								$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'https') === true ? 'https://' : 'http://';
+								$protocol = stripos($_SERVER['SERVER_PROTOCOL'],'http') === true ? 'http://' : 'https://';
 
 								var_dump($protocol);
 		//var_dump($result);
