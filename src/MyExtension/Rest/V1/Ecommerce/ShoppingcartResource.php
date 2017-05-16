@@ -76,11 +76,14 @@ class ShoppingcartResource extends AbstractResource
             /*if item is already in cart -> check if has enough stock*/
             if((string)($item['productId']) == $params['productId'] && (string)($item['variationId']) == $params['variationId']) {
                 $itemDetail = Manager::getService("Contents")->findById($item['productId'], true, false);
-                foreach($itemDetail['productProperties']['variations'] as $variation) {
-                    if($variation['id'] == $params['variationId']){
-                        if($variation['stock'] < $item['amount'] + $params['amount']) {
-                            $hasEnoughStock = false;
-                            $message = "Il n'y a pas assez de stock";
+                // block stock update if we can't order when not in stock !
+                if($itemDetail['productProperties']['canOrderNotInStock']=="false") {
+                    foreach($itemDetail['productProperties']['variations'] as $variation) {
+                        if($variation['id'] == $params['variationId']){
+                            if($variation['stock'] < $item['amount'] + $params['amount']) {
+                                $hasEnoughStock = false;
+                                $message = "Il n'y a pas assez de stock";
+                            }
                         }
                     }
                 }
