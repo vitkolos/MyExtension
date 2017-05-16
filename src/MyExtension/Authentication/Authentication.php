@@ -49,6 +49,9 @@ class Authentication extends AuthenticationService
             ));
             throw new APIAuthException('Bad credentials', 401);
         }
+								$protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
+
+								var_dump($protocol);
 		//var_dump($result);
 		//throw new APIAuthException($result->getMessages()[0], 500);
         Events::getEventManager()->trigger(self::SUCCESS);
