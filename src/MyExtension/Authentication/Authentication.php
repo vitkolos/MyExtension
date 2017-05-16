@@ -52,7 +52,7 @@ class Authentication extends AuthenticationService
 								
 
 		//var_dump($result);
-		//throw new APIAuthException($result->getMessages()[0], 500);
+		throw new APIAuthException($result->getMessages()[0], 500);
         Events::getEventManager()->trigger(self::SUCCESS);
         $this->getCurrentUserAPIService()->getToken();
         $identity = $result->getIdentity();
