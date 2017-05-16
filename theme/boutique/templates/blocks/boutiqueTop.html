@@ -180,4 +180,17 @@
             </span>
         </span>
     </span>
+    <div class="modal fade" id="notEnoughInStock" tabindex="-1" role="dialog" aria-labelledby="notEnoughInStock" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{{rubedo.translate("Label.Close","Close")}}</span></button>
+                    <h4 class="modal-title" id="rubedoRecoverPwdModalLabel">{{rubedo.translate("Fields.User.Label.OutOfStock","Rupture de stock")}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p ng-bind-html="rubedo.translate('Fields.ProductBox.StockIssue','Nous n avons pas assez de stock pour ce produit. Pour en commander plus, merci de prendre contact directement avec la boutique.')  | unsafe"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
