@@ -1,1 +1,56 @@
-body{font-size:16px;min-height:100%;line-height:1.4em}html,body{font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;height:100%;overflow:hidden;background-color:#41a0c7}.container-fluid{overflow-x:hidden}.container-fluid{padding:0}.owl-carousel{background-color:#e8eef1;height:380px!important;width:70%;margin-left:auto;margin-right:auto;top:20vh}.owl-carousel p,.owl-carousel h1,.owl-carousel h3{color:#17789c}.owl-carousel h1{font-weight:700}.owl-carousel h3{text-transform:uppercase;font-weight:700;font-size:14px;margin-bottom:0}
+body {
+  font-size: 16px;
+  min-height: 100%;
+  line-height: 1.4em;
+}
+html,
+body {
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+  height: 100%;
+  overflow: hidden;
+  background-color: #41a0c7;
+}
+.container-fluid {
+  overflow-x: hidden;
+}
+.container-fluid {
+  padding: 0;
+}
+.owl-carousel {
+  background-color: #e8eef1;
+  height: 380px !important;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  top: 20vh;
+}
+.owl-carousel p,
+.owl-carousel h1,
+.owl-carousel h3 {
+  color: #17789c;
+}
+.owl-carousel h1 {
+  font-weight: bold;
+}
+.owl-carousel h3 {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  margin-bottom: 0px;
+}
+/*CHOISIS TA VILLE*/
+#choisis {
+  position: absolute;
+  height: 400px;
+  padding: 60px 0 0 0;
+  top: 10%;
+  margin-left: 20%;
+  width: 80%;
+}
+#choisis a {
+  display: block;
+  width: 15%;
+  background: #fff;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  border: none;
+}
