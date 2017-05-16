@@ -10,7 +10,7 @@
             <a ng-if="blockConfig.displayRootPage" class="navbar-brand" ng-href="{{menuCtrl.menu.url}}">{{menuCtrl.menu.text}}</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav navbar-right">
                 <li ng-repeat="page in menuCtrl.menu.pages track by $index"
                     ng-class="{active:menuCtrl.currentRouteline.indexOf(page.url+'/') > -1 ||  menuCtrl.currentRouteline.indexOf(page.url,menuCtrl.currentRouteline.length-page.url.length) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}">
                     <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}"> {{page.text}}</a>
