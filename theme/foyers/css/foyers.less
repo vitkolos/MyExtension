@@ -1,6 +1,7 @@
 ////VARIABLES
 @bg:#41a0c7;
 @txt_blue : #17789c;
+@txt_dark:#333;
 
 body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; height: 100%; overflow: hidden;background-color:@bg;}
@@ -77,3 +78,10 @@ html,body{font-family: "Helvetica Neue", Arial, Helvetica, sans-serif; height: 1
 
 
 
+//menu
+.navbar.navbar-default{
+	//background-color:transparent; a{color:white}
+	//&:hover{background-color:rgba(0,0,0,0.3);} 
+	background-color:white; a{color:@txt_dark; text-transform: uppercase;padding:0 12px;font-weight: bold;}
+	a:hover{background-color:rgba(0,0,0,0.3); color:white} 
+}
