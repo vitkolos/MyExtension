@@ -41,6 +41,7 @@ img#foyer {
 }
 .owl-theme .owl-controls .owl-page span{background-color: #09627f}
 /* Navigation Arrows */
+.owl-theme .owl-controls .owl-buttons div{opacity: 1; padding: 0}
 .arrow {
 	top: 50%;
 	position: absolute;
@@ -59,13 +60,13 @@ img#foyer {
 .arrow a span { display: block; visibility: hidden; }
 /* back arrow */
 .arrow.back { left: -30px; }
-.arrow.back a { background-position: left top; }
-.arrow.back a:hover, div.anythingSlider .back a.hover { background-position: left -140px; }
+.arrow.back a { background-position: left bottom; }
+.arrow.back a:hover, div.anythingSlider .back a.hover { background-position: left 0; }
 .arrow.back.disabled { display: none; } /* disabled arrows, hide or reduce opacity: opacity: .5; filter: alpha(opacity=50); */
 /* forward arrow */
-.arrow.forward { right: 0; }
-.arrow.forward a { background-position: right top; }
-.arrow.forward a:hover, div.anythingSlider .forward a.hover { background-position: right -140px; }
+.arrow.forward { right: -30px; }
+.arrow.forward a { background-position: right bottom; }
+.arrow.forward a:hover, div.anythingSlider .forward a.hover { background-position: right 0; }
 .arrow.forward.disabled { display: none; } /* disabled arrows, hide or reduce opacity: opacity: .5; filter: alpha(opacity=50); */
 
 /*CHOISIS TA VILLE*/
