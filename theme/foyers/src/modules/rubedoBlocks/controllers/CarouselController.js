@@ -36,7 +36,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             autoPlay: blockConfig.autoPlay,
             stopOnHover: blockConfig.stopOnHover,
             paginationNumbers:blockConfig.showPagingNumbers,
-            navigationText: ['<span class="arrow back"></span>','<span class="arrow forward"></span>'],
+            navigationText: ['<span class="arrow back"><a></a></span>','<span class="arrow forward"><a></a></span>'],
             lazyLoad:true
         };
         angular.element(targetElSelector).owlCarousel(owlOptions);
