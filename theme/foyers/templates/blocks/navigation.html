@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a ng-if="blockConfig.displayRootPage" class="navbar-brand" ng-href="{{menuCtrl.menu.url}}">{{menuCtrl.menu.text}}</a>
+            <a ng-if="blockConfig.displayRootPage" class="navbar-brand" ng-href="{{menuCtrl.menu.url}}">{{menuCtrl.menu.text | firstword : 0}}<br>{{menuCtrl.menu.text | firstword : 1}}</a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
