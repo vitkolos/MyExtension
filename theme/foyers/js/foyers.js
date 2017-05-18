@@ -46,8 +46,8 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																																							direction: [[0,0],[0,1],[1,0],[1,1]],
 																																																							time: 1900,
 																																																								easing: 'easeInOutCubic',
-																																																								touchSwipeIntegration: true,
-																																																								ascensorFloorName: ['Accueil','PourQuoi-PourQui-ParQui','Contact','Foyers']
+																																																								touchSwipeIntegration: true/*,
+																																																								ascensorFloorName: ['Accueil','PourQuoi-PourQui-ParQui','Contact','Foyers']*/
 																																												};
 																																												angular.element("#ascensorBuilding").ascensor(options);
 																																	}
