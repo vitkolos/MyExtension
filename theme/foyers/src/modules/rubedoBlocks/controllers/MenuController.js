@@ -23,7 +23,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$loca
         RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
-                $scope.clearORPlaceholderHeight();
+                $scope.clearORPlaceholderHeight();console.log(me.menu);
             } else {
                 me.menu={};
                 $scope.clearORPlaceholderHeight();
