@@ -65,6 +65,7 @@ angular.module("rubedo").directive('hide', function() {
             }
         }, true);
     }
+})
 
 
 /*
