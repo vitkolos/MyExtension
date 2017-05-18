@@ -78,7 +78,16 @@ angular.module("rubedo").directive('hide', function() {
 											}
     }
 })
-
+angular.module("rubedoBlocks").directive('openModal', [function() {
+  return {
+    restrict: 'A',
+    link: function (scope, elem, attrs) {
+      elem.bind('click', function(){
+											$document.find("#modalblock_contact").modal();
+											})
+    }
+  };
+}]);
 angular.module("rubedoBlocks").directive('plaxImg', [function() {
   return {
     restrict: 'C',
