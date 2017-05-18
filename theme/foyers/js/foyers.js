@@ -38,22 +38,20 @@ angular.module("rubedo").directive("ascensor",[function(){
 																						controller:['$scope','$timeout', function($scope,$timeout) {
 																																//	console.log($scope);
 																																	var targetElSelector="#ascensorBuilding";
-																																	//angular.element(targetElSelector).css( "visibility", "hidden" );
-																																	//setTimeout(function(){initAscensor();},100);
+																																	angular.element(targetElSelector).css( "visibility", "hidden" );
 																																	var initAscensor = function(){
-																																												//angular.element(targetElSelector).css("visibility", "visible");
+																																												angular.element(targetElSelector).css("visibility", "visible");
 																																												var options={
 																																																							direction: [[0,0],[0,1],[1,0],[1,1]],
 																																																							time: 1900,
 																																																								easing: 'easeInOutCubic',
-																																																								touchSwipeIntegration: true/*,
-																																																								ascensorFloorName: ['Accueil','PourQuoi-PourQui-ParQui','Contact','Foyers']*/
+																																																								touchSwipeIntegration: true
 																																												};
 																																												angular.element("#ascensorBuilding").ascensor(options);
 																																	}
 																																	$timeout(function(){
 																																												initAscensor();
-																																								},3000)
+																																								},100)
 																						}]
 											}
 }]);
