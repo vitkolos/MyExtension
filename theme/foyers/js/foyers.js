@@ -49,6 +49,9 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																												};
 																																												angular.element("#ascensorBuilding").ascensor(options);
 																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");})
+																																												angular.element("#flecheLeft").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");})
+																																												angular.element("#flecheDown").on("click", function(){ascensor.trigger("scrollToDirection" ,"down");})
+																																												angular.element("#flecheUp").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");})
 																																	}
 																																	$timeout(function(){
 																																												initAscensor();
@@ -62,7 +65,7 @@ angular.module("rubedo").directive('hide', function() {
             if(value) {
                 element.css("opacity", 0);
 																setTimeout(function(){
-																						element.removeClass("opacity", 0.8);
+																						element.css("opacity", 0.8);
 																				}, 2000);
             } 
         }, true);
