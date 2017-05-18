@@ -55,7 +55,7 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																												angular.element("#flecheUp2").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");});
 																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
 																																												angular.element("#flecheRight2").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
-																																												
+																																												angular.element(".openSignUp").on("click", function(){	angular.element('#signup_form').modal()})
 																																	}
 																																	setTimeout(function(){
 																																												initAscensor();
