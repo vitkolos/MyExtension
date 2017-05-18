@@ -31,11 +31,11 @@
         
 }]);*/
 
-angular.module("rubedo").directive("ascensor",["$scope",function($scope){
+angular.module("rubedo").directive("ascensor",[function(){
 											return {
 																						restrict: "A",
 																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
-																						controller:['$scope', function($scope) {
+																						controller:[function() {
 																																	console.log($scope);
 																																	}]
 											}
