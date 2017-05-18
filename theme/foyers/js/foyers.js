@@ -55,26 +55,18 @@ angular.module("rubedo").directive("ascensor",[function(){
 																						}]
 											}
 }]);
-											/*var me=this;
-											var targetElSelector="#ascensorBuilding";
-											console.log(angular.element(targetElSelector));
-											angular.element(targetElSelector).css( "visibility", "hidden" );
-											setTimeout(function(){me.initAscensor();},100);
-											
-											me.initAscensor = function(){
-																						angular.element(targetElSelector).css("visibility", "visible");
-																						var options={
-																																	direction: [[0,0],[0,1],[1,0],[1,1]],
-																																	time: 1900,
-																																	 easing: 'easeInOutCubic',
-																																		touchSwipeIntegration: true,
-																																		ascensorFloorName: ['Accueil','PourQuoi-PourQui-ParQui','Contact','Foyers']
-																						};
-																						angular.element(targetElSelector).ascensor(options);
-											}
-											
-        
-}]);*/
+directives.directive('hide', function() {
+    return function(scope, element, attrs) {
+        scope.$watch(attrs.hide, function(value, oldValue) {
+            if(value) {
+                element.hide();
+            } else {
+                element.show();
+            }
+        }, true);
+    }
+
+
 /*
 
 <script>
