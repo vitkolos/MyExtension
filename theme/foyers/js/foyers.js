@@ -78,7 +78,7 @@ angular.module("rubedo").directive('hide', function() {
 											}
     }
 })
-angular.module("rubedoBlocks").directive('openModal', [function() {
+angular.module("rubedoBlocks").directive('openModal', ['$document', function($document) {
   return {
     restrict: 'A',
     link: function (scope, elem, attrs) {
