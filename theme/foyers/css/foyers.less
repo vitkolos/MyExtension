@@ -219,35 +219,34 @@ input, textarea {
 }
  
 
-  input::-webkit-input-placeholder {
+  input::-webkit-input-placeholder,textarea::-webkit-input-placeholder {
        color: @bg !important ; text-transform: uppercase;
   }
     
-  input:-moz-placeholder { /* Firefox 18- */
+  input:-moz-placeholder ,textarea:-moz-placeholder{ /* Firefox 18- */
        color: @bg !important;  text-transform: uppercase;
   }
    
-  input::-moz-placeholder {  /* Firefox 19+ */
+  input::-moz-placeholder, textarea::-moz-placeholder {  /* Firefox 19+ */
        color: @bg !important;  text-transform: uppercase;
   }
     
-  input:-ms-input-placeholder {  
+  input:-ms-input-placeholder, textarea:-ms-input-placeholder {  
       color: @bg !important;  text-transform: uppercase;
   }
 		.button {
-	display: inline-block;
-	color: white;
-	font-weight: bold;
-	font-size: 18px;
-	white-space: nowrap;
-	line-height: 40px;
-	height: 40px;
-	background:  #296e8a;
-	padding: 0 11px;
-	text-decoration: none;
-	border: none;
-	margin-top: 100px;
-	width: 29%;
+		display: inline-block;
+		font-family: "trend_sansone";
+		color: white;
+		font-size: 18px;
+		white-space: nowrap;
+		line-height: 40px;
+		height: 40px;
+		background:  @bg;
+		padding: 0 11px;
+		text-decoration: none;
+		border: none;
+		width: 29%;
 }
 //menu
 .navbar.navbar-default{
