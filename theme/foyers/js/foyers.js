@@ -9,7 +9,7 @@
         }
     });
 
-angular.module("rubedoBlocks").controller("AscensorController",["$scope",function($scope){
+angular.module("rubedo").controller("AscensorController",["$scope",function($scope){
 											var me=this;
 											var targetElSelector="#ascensorBuilding";
 											console.log(angular.element(targetElSelector));
