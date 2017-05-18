@@ -2,7 +2,10 @@ blocksConfig.simpleContact={
            "template": "/templates/blocks/simpleContact.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 }; 
-	
+blocksConfig.carrousel2={
+           "template": "/templates/blocks/carrousel_fullWidth.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
+};
 	angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
         var serviceInstance={};
         serviceInstance.sendMail=function(payload){
@@ -34,7 +37,6 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																						restrict: "A",
 																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
 																						link: function(scope,element, attrs) {
-																																//	console.log($scope);
 																																	var targetElSelector="#ascensorBuilding";
 																																	angular.element(targetElSelector).css( "visibility", "hidden" );
 																																	var initAscensor = function(){
@@ -53,9 +55,7 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																												angular.element("#flecheUp2").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");});
 																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
 																																												angular.element("#flecheRight2").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
-																																												/*angular.element(".openSignUp").on("click", function(){
-																																																							$document.find("#modalblock_contact").modal();
-																																												});*/
+
 																																	}
 																																	setTimeout(function(){
 																																												initAscensor();
@@ -68,7 +68,6 @@ angular.module("rubedo").directive('hide', function() {
 											scope: true,
 											link : 	function(scope, element, attrs) {
 																						element.bind('click', function(){
-																																//	console.log(ascensor);
 																																	element.css("opacity", 0);
 																																	setTimeout(function(){
 																																							element.css("opacity", 0.8);
