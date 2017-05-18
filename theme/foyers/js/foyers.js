@@ -48,10 +48,10 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																																								touchSwipeIntegration: true
 																																												};
 																																												angular.element("#ascensorBuilding").ascensor(options);
-																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");})
 																																												angular.element("#flecheLeft").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");})
 																																												angular.element("#flecheDown").on("click", function(){ascensor.trigger("scrollToDirection" ,"down");})
 																																												angular.element("#flecheUp").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");})
+																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");})
 																																	}
 																																	setTimeout(function(){
 																																												initAscensor();
