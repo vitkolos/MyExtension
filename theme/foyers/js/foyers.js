@@ -35,7 +35,7 @@ angular.module("rubedo").directive("ascensor",[function(){
 											return {
 																						restrict: "A",
 																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
-																						controller:['$scope','$timeout', function($scope,$timeout) {
+																						link: function(scope,element, attrs) {
 																																//	console.log($scope);
 																																	var targetElSelector="#ascensorBuilding";
 																																	angular.element(targetElSelector).css( "visibility", "hidden" );
@@ -53,10 +53,10 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																												angular.element("#flecheDown").on("click", function(){ascensor.trigger("scrollToDirection" ,"down");})
 																																												angular.element("#flecheUp").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");})
 																																	}
-																																	$timeout(function(){
+																																	setTimeout(function(){
 																																												initAscensor();
 																																								},400)
-																						}]
+																						}
 											}
 }]);
 angular.module("rubedo").directive('hide', function() {
