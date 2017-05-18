@@ -64,7 +64,7 @@ angular.module("rubedo").directive('hide', function() {
 											scope: true,
 											link : 	function(scope, element, attrs) {
 																						element.bind('click', function(){
-																																	console.log(ascensor);
+																																//	console.log(ascensor);
 																																	element.css("opacity", 0);
 																																	setTimeout(function(){
 																																							element.css("opacity", 0.8);
