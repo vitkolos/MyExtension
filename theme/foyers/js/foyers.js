@@ -40,7 +40,7 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																	var targetElSelector="#ascensorBuilding";
 																																	angular.element(targetElSelector).css( "visibility", "hidden" );
 																																	var initAscensor = function(){
-																																												angular.element(targetElSelector).css("visibility", "visible");
+																																												var ascensor = angular.element(targetElSelector).css("visibility", "visible");
 																																												var options={
 																																																							direction: [[0,0],[0,1],[1,0],[1,1]],
 																																																							time: 1900,
