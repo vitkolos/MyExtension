@@ -48,6 +48,7 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																																								touchSwipeIntegration: true
 																																												};
 																																												angular.element("#ascensorBuilding").ascensor(options);
+																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");})
 																																	}
 																																	$timeout(function(){
 																																												initAscensor();
@@ -59,9 +60,9 @@ angular.module("rubedo").directive('hide', function() {
     return function(scope, element, attrs) {
         scope.$watch(attrs.hide, function(value, oldValue) {
             if(value) {
-                element.addClass("hidden");
+                element.css("opacity", 0);
 																setTimeout(function(){
-																						element.removeClass("hidden");
+																						element.removeClass("opacity", 0.8);
 																				}, 2000);
             } 
         }, true);
