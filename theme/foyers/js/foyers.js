@@ -60,9 +60,10 @@ angular.module("rubedo").directive('hide', function() {
         scope.$watch(attrs.hide, function(value, oldValue) {
             if(value) {
                 element.addClass("hidden");
-            } else {
-                element.removeClass("hidden");
-            }
+																setTimeout(function(){
+																						element.removeClass("hidden");
+																				}, 2000);
+            } 
         }, true);
     }
 })
