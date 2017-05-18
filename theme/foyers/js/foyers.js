@@ -9,7 +9,7 @@
         }
     });
 
-angular.module("rubedo").controller("AscensorController",["$scope",function($scope){
+/*angular.module("rubedo").controller("AscensorController",["$scope",function($scope){
 											var me=this;
 											var targetElSelector="#ascensorBuilding";
 											console.log(angular.element(targetElSelector));
@@ -29,7 +29,37 @@ angular.module("rubedo").controller("AscensorController",["$scope",function($sco
 											}
 											
         
+}]);*/
+
+angular.module("rubedo").directive("ascensor",["$scope",function($scope){
+											return {
+																						restrict: "A",
+																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
+																						controller:['$scope', function($scope) {
+																																	console.log($scope);
+																																	}]
+											}
 }]);
+											/*var me=this;
+											var targetElSelector="#ascensorBuilding";
+											console.log(angular.element(targetElSelector));
+											angular.element(targetElSelector).css( "visibility", "hidden" );
+											setTimeout(function(){me.initAscensor();},100);
+											
+											me.initAscensor = function(){
+																						angular.element(targetElSelector).css("visibility", "visible");
+																						var options={
+																																	direction: [[0,0],[0,1],[1,0],[1,1]],
+																																	time: 1900,
+																																	 easing: 'easeInOutCubic',
+																																		touchSwipeIntegration: true,
+																																		ascensorFloorName: ['Accueil','PourQuoi-PourQui-ParQui','Contact','Foyers']
+																						};
+																						angular.element(targetElSelector).ascensor(options);
+											}
+											
+        
+}]);*/
 /*
 
 <script>
