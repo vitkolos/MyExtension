@@ -63,14 +63,13 @@ angular.module("rubedo").directive('hide', function() {
     return {
 											scope: true,
 											link : 	function(scope, element, attrs) {
-																						scope.$watch(attrs.hide, function(value, oldValue) {
-																										if(value) {
-																														element.css("opacity", 0);
-																														setTimeout(function(){
-																																				element.css("opacity", 0.8);
-																																		}, 2000);
-																										} 
-																						}, true);
+																						element.bind('click', function(){
+																																	element.css("opacity", 0);
+																																	setTimeout(function(){
+																																							element.css("opacity", 0.8);
+																																					}, 2000);
+																						});
+																					
 											}
     }
 })
