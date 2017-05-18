@@ -215,25 +215,40 @@ width: 90%;
 }
 input, textarea {
     color: @bg !important;
-				background: white; border: 2px solid @bg !important;
+				background: white; border: 2px solid @bg !important; padding: 3% !important;
 }
  
 
   input::-webkit-input-placeholder {
-       color: @bg; text-transform: uppercase;
+       color: @bg !important ; text-transform: uppercase;
   }
     
   input:-moz-placeholder { /* Firefox 18- */
-       color: @bg;  text-transform: uppercase;
+       color: @bg !important;  text-transform: uppercase;
   }
    
   input::-moz-placeholder {  /* Firefox 19+ */
-       color: @bg;  text-transform: uppercase;
+       color: @bg !important;  text-transform: uppercase;
   }
     
   input:-ms-input-placeholder {  
-       color: @bg;  text-transform: uppercase;
+      color: @bg !important;  text-transform: uppercase;
   }
+		.button {
+	display: inline-block;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	white-space: nowrap;
+	line-height: 40px;
+	height: 40px;
+	background:  #296e8a;
+	padding: 0 11px;
+	text-decoration: none;
+	border: none;
+	margin-top: 100px;
+	width: 29%;
+}
 //menu
 .navbar.navbar-default{
 	padding: 30px 0 30px 0;

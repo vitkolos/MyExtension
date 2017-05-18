@@ -83,9 +83,7 @@ angular.module("rubedoBlocks").directive('openModal', ['$document', function($do
     restrict: 'A',
     link: function (scope, elem, attrs) {
       elem.bind('click', function(){
-											console.log("ok");
 											$document.find("#modalblock_contact").modal();
-											console.log($document.find("#modalblock_contact"));
 											})
     }
   };
