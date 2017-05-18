@@ -214,22 +214,26 @@ width: 90%;
 		.close{opacity: 0.5; color: white; font-size: 1.5em;}
 }
 input, textarea {
-    color: @bg;
-				background: white; border: 2px solid @bg;
+    color: @bg !important;
+				background: white; border: 2px solid @bg !important;
 }
  
-input:-moz-placeholder, textarea:-moz-placeholder {
-    color: @bg;
-}
- 
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
-    color: @bg;
-}
- 
-input.placeholder, textarea.placeholder {
-    color: @bg;
-}
 
+  input::-webkit-input-placeholder {
+       color: @bg; text-transform: uppercase;
+  }
+    
+  input:-moz-placeholder { /* Firefox 18- */
+       color: @bg;  text-transform: uppercase;
+  }
+   
+  input::-moz-placeholder {  /* Firefox 19+ */
+       color: @bg;  text-transform: uppercase;
+  }
+    
+  input:-ms-input-placeholder {  
+       color: @bg;  text-transform: uppercase;
+  }
 //menu
 .navbar.navbar-default{
 	padding: 30px 0 30px 0;
