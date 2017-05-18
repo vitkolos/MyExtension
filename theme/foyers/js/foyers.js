@@ -55,7 +55,7 @@ angular.module("rubedo").directive("ascensor",[function(){
 																						}]
 											}
 }]);
-directives.directive('hide', function() {
+angular.module("rubedo").directive('hide', function() {
     return function(scope, element, attrs) {
         scope.$watch(attrs.hide, function(value, oldValue) {
             if(value) {
