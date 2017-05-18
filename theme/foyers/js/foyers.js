@@ -74,7 +74,38 @@ angular.module("rubedo").directive('hide', function() {
     }
 })
 
+app.directive('plaxImg', [function() {
+  return {
+    restrict: 'C',
+    link: function (scope, elem, attrs) {
+      $(elem).plaxify({"xRange": attrs.xRange, "yRange": attrs.yRange});
+    }
+  };
+}]);
 
+// and a drop in element directive to start plax
+app.directive('plax', [function () {
+  return {
+    restrict: 'E',
+    link: function (scope, elem, attrs) {
+      var args = {};
+
+      if (attrs.activityTarget) {
+        args.activityTarget = $(attrs.activityTarget);
+      }
+
+      // probably want to disable first to be sure that plax isn't already
+      // initialized
+      $.plax.disable();
+      // then enable with the new args
+      $.plax.enable(args);
+
+      elem.on('destroy', function () {
+        $.plax.disable();
+      });
+    }
+  }
+}]);
 /*
 
 <script>
