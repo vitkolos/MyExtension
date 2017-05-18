@@ -1,4 +1,22 @@
- angular.module('rubedoFields').filter('firstword', function() {
+blocksConfig.simpleContact={
+           "template": "/templates/blocks/simpleContact.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
+}; 
+	
+	angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
+        var serviceInstance={};
+        serviceInstance.sendMail=function(payload){
+            return ($http({
+                url:"api/v1/mail",
+                method:"POST",
+                data : payload
+            }));
+        };
+        return serviceInstance;
+    }]);
+	
+	
+	angular.module('rubedoFields').filter('firstword', function() {
         return function(input, splitIndex) {
             // do some bounds checking here to ensure it has that index
 
@@ -9,27 +27,7 @@
         }
     });
 
-/*angular.module("rubedo").controller("AscensorController",["$scope",function($scope){
-											var me=this;
-											var targetElSelector="#ascensorBuilding";
-											console.log(angular.element(targetElSelector));
-											angular.element(targetElSelector).css( "visibility", "hidden" );
-											setTimeout(function(){me.initAscensor();},100);
-											
-											me.initAscensor = function(){
-																						angular.element(targetElSelector).css("visibility", "visible");
-																						var options={
-																																	direction: [[0,0],[0,1],[1,0],[1,1]],
-																																	time: 1900,
-																																	 easing: 'easeInOutCubic',
-																																		touchSwipeIntegration: true,
-																																		ascensorFloorName: ['Accueil','PourQuoi-PourQui-ParQui','Contact','Foyers']
-																						};
-																						angular.element(targetElSelector).ascensor(options);
-											}
-											
-        
-}]);*/
+
 
 angular.module("rubedo").directive("ascensor",['$document',function($document){
 											return {
@@ -56,9 +54,7 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
 																																												angular.element("#flecheRight2").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
 																																												angular.element(".openSignUp").on("click", function(){
-																																																							//$document[0].getElementById('signup_form').modal();
 																																																							$document.find("#signup_form").modal();
-																																																							console.log($document.find("#signup_form"));
 																																												});
 																																	}
 																																	setTimeout(function(){
