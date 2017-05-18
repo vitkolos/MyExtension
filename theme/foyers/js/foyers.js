@@ -36,8 +36,22 @@ angular.module("rubedo").directive("ascensor",[function(){
 																						restrict: "A",
 																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
 																						controller:['$scope', function($scope) {
-																																	console.log($scope);
-																																	}]
+																																//	console.log($scope);
+																																	var targetElSelector="#ascensorBuilding";
+																																	angular.element(targetElSelector).css( "visibility", "hidden" );
+																																	setTimeout(function(){initAscensor();},100);
+																																	var initAscensor = function(){
+																																												angular.element(targetElSelector).css("visibility", "visible");
+																																												var options={
+																																																							direction: [[0,0],[0,1],[1,0],[1,1]],
+																																																							time: 1900,
+																																																								easing: 'easeInOutCubic',
+																																																								touchSwipeIntegration: true,
+																																																								ascensorFloorName: ['Accueil','PourQuoi-PourQui-ParQui','Contact','Foyers']
+																																												};
+																																												angular.element(targetElSelector).ascensor(options);
+																																	}
+																						}]
 											}
 }]);
 											/*var me=this;
