@@ -9,7 +9,7 @@
         }
     });
 
-angular.module("rubedoBlocks").lazy.controller("AscensorController",["$scope",function($scope){
+angular.module("rubedoBlocks").controller("AscensorController",["$scope",function($scope){
 											var me=this;
 											var targetElSelector="#ascensorBuilding";
 											angular.element(targetElSelector).css( "visibility", "hidden" );
