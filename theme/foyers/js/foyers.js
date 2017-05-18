@@ -49,11 +49,11 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																																								touchSwipeIntegration: true,
 																																																								ascensorFloorName: ['Accueil','PourQuoi-PourQui-ParQui','Contact','Foyers']
 																																												};
-																																												angular.element(targetElSelector).ascensor(options);
+																																												angular.element("#ascensorBuilding").ascensor(options);
 																																	}
 																																	$timeout(function(){
 																																												initAscensor();
-																																								})
+																																								},3000)
 																						}]
 											}
 }]);
