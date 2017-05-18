@@ -74,7 +74,7 @@ angular.module("rubedo").directive('hide', function() {
     }
 })
 
-app.directive('plaxImg', [function() {
+angular.module("rubedoBlocks").directive('plaxImg', [function() {
   return {
     restrict: 'C',
     link: function (scope, elem, attrs) {
@@ -84,7 +84,7 @@ app.directive('plaxImg', [function() {
 }]);
 
 // and a drop in element directive to start plax
-app.directive('plax', [function () {
+angular.module("rubedoBlocks").directive('plax', [function () {
   return {
     restrict: 'E',
     link: function (scope, elem, attrs) {
