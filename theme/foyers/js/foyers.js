@@ -31,7 +31,7 @@
         
 }]);*/
 
-angular.module("rubedo").directive("ascensor",function($document){
+angular.module("rubedo").directive("ascensor",['$document',function($document){
 											return {
 																						restrict: "A",
 																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
@@ -55,7 +55,7 @@ angular.module("rubedo").directive("ascensor",function($document){
 																																												angular.element("#flecheUp2").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");});
 																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
 																																												angular.element("#flecheRight2").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
-																																												angular.element(".openSignUp").on("click", function(){	$document.getElementById("signup_form").modal(); console.log(document.getElementById("signup_form"));})
+																																												angular.element(".openSignUp").on("click", function(){	document.getElementById("signup_form").modal(); console.log();})
 																																	}
 																																	setTimeout(function(){
 																																												initAscensor();
