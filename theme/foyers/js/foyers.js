@@ -51,6 +51,7 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																												};
 																																												angular.element(targetElSelector).ascensor(options);
 																																	}
+																																	initAscensor();
 																						}]
 											}
 }]);
