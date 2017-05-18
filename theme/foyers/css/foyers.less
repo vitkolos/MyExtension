@@ -213,7 +213,22 @@ width: 90%;
 		background: @bg; color:white; text-align: center; font-family: "trend_sansone";
 		.close{opacity: 0.5; color: white; font-size: 1.5em;}
 }
-
+input, textarea {
+    color: @bg;
+				background: white; border: 2px solid @bg;
+}
+ 
+input:-moz-placeholder, textarea:-moz-placeholder {
+    color: @bg;
+}
+ 
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    color: @bg;
+}
+ 
+input.placeholder, textarea.placeholder {
+    color: @bg;
+}
 
 //menu
 .navbar.navbar-default{
