@@ -1,5 +1,8 @@
 {
 	"amountCol": {
         "text": "Qté"
-    }
+    },
+				"confirmDeleteWindow":{
+	    "title":"Confirmation de suppression de cette page"
+	  }
 }
