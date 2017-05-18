@@ -12,8 +12,10 @@
 angular.module("rubedoBlocks").controller("AscensorController",["$scope",function($scope){
 											var me=this;
 											var targetElSelector="#ascensorBuilding";
+											console.log(angular.element(targetElSelector));
 											angular.element(targetElSelector).css( "visibility", "hidden" );
 											setTimeout(function(){me.initAscensor();},100);
+											
 											me.initAscensor = function(){
 																						angular.element(targetElSelector).css("visibility", "visible");
 																						var options={
