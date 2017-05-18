@@ -2,7 +2,19 @@
 @bg:#41a0c7;
 @txt_blue : #17789c;
 @txt_dark:#333;
+/*polic pour titre des foyers*/
+@font-face {
+    font-family: 'trend_sansone';
+    src: url('trendsansone.eot');
+    src: url('trendsansone.eot?#iefix') format('embedded-opentype'),
+         url('trendsansone.woff2') format('woff2'),
+         url('trendsansone.woff') format('woff'),
+         url('trendsansone.ttf') format('truetype'),
+         url('trendsansone.svg#trend_sansone') format('svg');
+    font-weight: normal;
+    font-style: normal;
 
+}
 body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: "Lato","Helvetica Neue", Arial, Helvetica, sans-serif; height: 100%; overflow: hidden;background-color:@bg;}
 .container-fluid{overflow-x:hidden;}
@@ -26,6 +38,7 @@ img#foyer {
 .fleche{
 		position: absolute; opacity: 0.8; transition-duration: 1s;
 		&hover{opacity: 1}
+		&.hidden{opacity: 0}
 }
 	
 		#flecheDown{margin-top:0; bottom: 15px;left:48%;width: 80px; }
@@ -146,7 +159,7 @@ img#foyer {
 	//background-color:transparent; a{color:white}
 	//&:hover{background-color:rgba(0,0,0,0.3);} 
 	background-color:white; a{height:40px; line-height:40px; color:@txt_blue !important; text-transform: uppercase;padding:0 12px;}
-	a.navbar-brand{line-height: 20px; &:hover{background-color:white!important; color:@txt_blue !important;}}
+	a.navbar-brand{line-height: 20px; font-family: 'trend_sansone'; &:hover{background-color:white!important; color:@txt_blue !important;}}
 	a:hover{background-color:@txt_blue !important; color:white !important;} 
 }
 

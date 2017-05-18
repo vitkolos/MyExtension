@@ -51,7 +51,7 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																	}
 																																	$timeout(function(){
 																																												initAscensor();
-																																								},100)
+																																								},400)
 																						}]
 											}
 }]);
@@ -59,9 +59,9 @@ angular.module("rubedo").directive('hide', function() {
     return function(scope, element, attrs) {
         scope.$watch(attrs.hide, function(value, oldValue) {
             if(value) {
-                element.hide();
+                element.addClass("hidden");
             } else {
-                element.show();
+                element.removeClass("hidden");
             }
         }, true);
     }
