@@ -26,7 +26,7 @@ Ext.define('Rubedo.view.DelConfirmZ', {
     localiserId: 'confirmDeleteWindow',
     draggable: false,
     id: 'delConfirmZ',
-    width: 350,
+    width: 300,
     resizable: false,
     closable: false,
     iconCls: 'warning',
@@ -59,7 +59,8 @@ Ext.define('Rubedo.view.DelConfirmZ', {
                         },
 																								{
 																												xtype: 'tbtext',
-																												text: 'Cette action est irréversible'
+																												text: 'Attention, cette action est irréversible',
+																												margin:'15 0 15 0'
 																								},
                         {
                             xtype: 'button',
