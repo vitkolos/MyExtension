@@ -48,14 +48,17 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																																								touchSwipeIntegration: true
 																																												};
 																																												angular.element("#ascensorBuilding").ascensor(options);
-																																												angular.element("#flecheLeft").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");})
-																																												angular.element("#flecheDown").on("click", function(){ascensor.trigger("scrollToDirection" ,"down");})
-																																												angular.element("#flecheUp").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");})
-																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");})
+																																												setTimeout(function(){
+																																																							angular.element("#flecheLeft").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
+																																																							angular.element("#flecheDown").on("click", function(){ascensor.trigger("scrollToDirection" ,"down");});
+																																																							angular.element("#flecheUp").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");});
+																																																							angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
+																																												},200)
+																																												
 																																	}
 																																	setTimeout(function(){
 																																												initAscensor();
-																																								},400)
+																																								},400);
 																						}
 											}
 }]);
