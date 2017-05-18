@@ -39,7 +39,7 @@ angular.module("rubedo").directive("ascensor",[function(){
 																																//	console.log($scope);
 																																	var targetElSelector="#ascensorBuilding";
 																																	//angular.element(targetElSelector).css( "visibility", "hidden" );
-																																	setTimeout(function(){initAscensor();},100);
+																																	//setTimeout(function(){initAscensor();},100);
 																																	var initAscensor = function(){
 																																												//angular.element(targetElSelector).css("visibility", "visible");
 																																												var options={
