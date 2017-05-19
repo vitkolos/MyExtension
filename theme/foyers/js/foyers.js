@@ -6,6 +6,10 @@ blocksConfig.carrousel2={
            "template": "/templates/blocks/carrousel_fullWidth.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
 };
+blocksConfig.bg_image={
+           "template": "/templates/blocks/bg_image.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
+};
 	angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
         var serviceInstance={};
         serviceInstance.sendMail=function(payload){
