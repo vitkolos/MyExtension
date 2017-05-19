@@ -93,6 +93,7 @@ angular.module("rubedo").directive("swiper",[function(){
 																																								},400);
 																																	scope.goToSlide = function(index){
 																																												element.trigger('to.owl.carousel', [2]);
+																																												console.log("slde");
 																																	}
 																						}
 											}
