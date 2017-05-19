@@ -87,13 +87,14 @@ angular.module("rubedo").directive("swiper",[function(){
 																																																lazyLoad:false
 																																												};
 																																												element.owlCarousel(owlOptions);
+																																												var owl = element.data('owlCarousel');
 																																	}
 																																	setTimeout(function(){
 																																												initCarousel();
 																																								},400);
 																																	scope.goToSlide = function(index){
-																																												element.trigger('jumpTo', 2);
-																																												console.log("slde");
+																																												owl.goTo(3)
+																																												console.log("slide");
 																																	}
 																						}
 											}
