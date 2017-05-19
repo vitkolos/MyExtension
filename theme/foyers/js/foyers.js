@@ -69,6 +69,31 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																						}
 											}
 }]);
+angular.module("rubedo").directive("swiper",[function(){
+											return {
+																						restrict: "A",
+																						link: function(scope,element, attrs) {
+																																	var initCarousel=function(){
+																																												var targetElSelector="#block"+$scope.block.id;
+																																												var owlOptions={
+																																																responsiveBaseWidth:targetElSelector,
+																																																singleItem:true,
+																																																pagination: blockConfig.showPager,
+																																																navigation: blockConfig.showNavigation,
+																																																autoPlay: blockConfig.autoPlay,
+																																																stopOnHover: blockConfig.stopOnHover,
+																																																paginationNumbers:blockConfig.showPagingNumbers,
+																																																navigationText: ['<span class="arrow back"><a></a></span>','<span class="arrow forward"><a></a></span>'],
+																																																lazyLoad:true
+																																												};
+																																												angular.element(targetElSelector).owlCarousel(owlOptions);
+																																	}
+																																	setTimeout(function(){
+																																												initCarousel();
+																																								},400);
+																						}
+											}
+}]);
 angular.module("rubedo").directive('hide', function() {
     return {
 											scope: true,
