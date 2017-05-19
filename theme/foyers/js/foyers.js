@@ -91,6 +91,9 @@ angular.module("rubedo").directive("swiper",[function(){
 																																	setTimeout(function(){
 																																												initCarousel();
 																																								},400);
+																																	scope.goToSlide = function(index){
+																																												element.trigger('to.owl.carousel', [2]);
+																																	}
 																						}
 											}
 }]);
