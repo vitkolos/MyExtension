@@ -327,7 +327,7 @@ return array(
                 'basePath' => realpath(__DIR__ . '/../theme/foyers'),
                 'css' => array(
                     '/css/foyers.css',
-                    '/css/font-awesome.css'
+                    //'/css/font-awesome.css'
                 ),
                 'js' => array(
                     '/js/foyers.js',
