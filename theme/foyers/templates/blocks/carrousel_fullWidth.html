@@ -1,7 +1,16 @@
 <style>
 
- .carousel-indicators li,.carousel-indicators li.active{margin:1px 6px}
-   
+ .carousel-indicators li,.carousel-indicators li.active{margin:4px 6px, border-radius:0; border: none}
+ .carousel-indicators li{
+    background: white; opacity: 0.5; transition: opacity 0.2s;
+ }
+ .carousel-indicators li:hover, .carousel-indicators li.active{opacity: 0.9}
+  .carousel-indicators{
+    left: 50px;
+    bottom: 50px;
+    width: 30px;
+    margin-left:0px;
+  }
 .carousel-inner .item {
     transition-property: opacity;
 }
