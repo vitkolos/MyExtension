@@ -78,13 +78,13 @@ angular.module("rubedo").directive("swiper",[function(){
 																																												var owlOptions={
 																																																//responsiveBaseWidth:targetElSelector,
 																																																singleItem:true,
-																																																pagination: blockConfig.showPager,
-																																																navigation: blockConfig.showNavigation,
-																																																autoPlay: blockConfig.autoPlay,
-																																																stopOnHover: blockConfig.stopOnHover,
-																																																paginationNumbers:blockConfig.showPagingNumbers,
-																																																navigationText: ['<span class="arrow back"><a></a></span>','<span class="arrow forward"><a></a></span>'],
-																																																lazyLoad:true
+																																																pagination:false,
+																																																navigation: false,
+																																																autoPlay: false,
+																																																//stopOnHover: blockConfig.stopOnHover,
+																																																//paginationNumbers:blockConfig.showPagingNumbers,
+																																																//navigationText: ['<span class="arrow back"><a></a></span>','<span class="arrow forward"><a></a></span>'],
+																																																lazyLoad:false
 																																												};
 																																												element.owlCarousel(owlOptions);
 																																	}
