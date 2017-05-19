@@ -76,6 +76,7 @@ angular.module("rubedo").directive("swiper",[function(){
 																																	var initCarousel=function(){
 																																												//var targetElSelector="#block"+$scope.block.id;
 																																												var owlOptions={
+																																												slideSpeed : 200,
 																																																//responsiveBaseWidth:targetElSelector,
 																																																singleItem:true,
 																																																pagination:false,
