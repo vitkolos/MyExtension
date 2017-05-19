@@ -279,12 +279,14 @@ input, textarea {
 		a.navbar-brand, a.navbar-brand:hover{color: white !important; background: transparent !important}
 
 }
-@media screen and (max-width:768px) {.navbar.navbar-default, .navbar.navbar-default.transparent {background-color:rgb(34,49,63)}}
+@media screen and (max-width:768px) {
+		.navbar.navbar-default,.navbar.navbar-default.transparent, .navbar.navbar-default:hover,.navbar.navbar-default.transparent:hover {background-color:rgb(34,49,63)}
+}
 .fixed-nav{margin-bottom:100px;}
 .navbar-toggle{
-		border: none;
+		border: none !important;
 		background: transparent;
-		&:hover{background: transparent !important}
+		&:hover, &:focus, &:active{background: transparent !important}
 		.icon-bar{width:16px;}
 }
 #page-foyers {
