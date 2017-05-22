@@ -8,10 +8,13 @@
 </style>
 
 <script src="/theme/cte/js/datamaps.world.min.js"></script>
-<div id="map_container" style="width:100%;"></div>
+<div class="container"><div id="map_container" style="width:100%;"></div></div>
 <script>
     var mapType = 'cte';
     var translations = angular.element("#map_container").scope().rubedo.translations;
+    if (angular.element("#map_container").scope().blockConfig.mapType) {
+        mapType = angular.element("#map_container").scope().blockConfig.mapType;
+    }
     var countryList = {};
     processData = function (countries) {
         var locale = window.location.pathname.split('/')[1];
