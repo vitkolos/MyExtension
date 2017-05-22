@@ -44,7 +44,8 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
 																						link: function(scope,element, attrs) {
 																																	var targetElSelector="#ascensorBuilding";
-																																	angular.element(targetElSelector).css( "visibility", "hidden" );
+																																	var ascensor = angular.element(targetElSelector);
+																																	ascensor.css( "visibility", "hidden" );
 																																	var initAscensor = function(){
 																																												var ascensor = angular.element(targetElSelector);
 																																												ascensor.css("visibility", "visible");
@@ -55,18 +56,21 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																																								touchSwipeIntegration: true
 																																												};
 																																												angular.element("#ascensorBuilding").ascensor(options);
-																																												angular.element("#flecheLeft").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
+																																												/*angular.element("#flecheLeft").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
 																																												angular.element("#flecheLeft2").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
 																																												angular.element("#flecheDown").on("click", function(){ascensor.trigger("scrollToDirection" ,"down");});
 																																												angular.element("#flecheUp").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");});
 																																												angular.element("#flecheUp2").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");});
 																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
-																																												angular.element("#flecheRight2").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
+																																												angular.element("#flecheRight2").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});*/
 
 																																	}
 																																	setTimeout(function(){
 																																												initAscensor();
 																																								},400);
+																																	scope.slideTo = function(direction){
+																																												ascensor.trigger("scrollToDirection",direction);
+																																	}
 																						}
 											}
 }]);
