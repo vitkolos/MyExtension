@@ -71,9 +71,7 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																								},400);
 																																	scope.slideTo = function(direction){
 																																												var ascensorInstance = angular.element(targetElSelector).data('ascensor');   // Access instance
-																																												//ascensor.trigger("scrollToDirection",direction);
 																																												ascensorInstance.scrollToDirection(direction);
-																																												console.log(ascensorInstance);
 																																	}
 																						}
 											}
