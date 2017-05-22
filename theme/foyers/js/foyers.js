@@ -46,7 +46,8 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																	var targetElSelector="#ascensorBuilding";
 																																	angular.element(targetElSelector).css( "visibility", "hidden" );
 																																	var initAscensor = function(){
-																																												var ascensor = angular.element(targetElSelector).css("visibility", "visible");
+																																												var ascensor = angular.element(targetElSelector);
+																																												ascensor.css("visibility", "visible");
 																																												var options={
 																																																							direction: [[0,0],[0,1],[1,0],[1,1]],
 																																																							time: 1900,
@@ -94,7 +95,7 @@ angular.module("rubedo").directive("swiper",[function(){
 																																												initCarousel();
 																																								},400);
 																																	scope.goToSlide = function(index){
-																																												element.data('owlCarousel').goTo(index)
+																																												element.data('owlCarousel').goTo(index);
 																																	}
 																						}
 											}

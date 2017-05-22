@@ -128,8 +128,10 @@ width: 90%;
 		.text-container{padding: 30px 40px 30px 0}
 }
 
-@media screen and (max-width: 950px) {
-	.owl-carousel.slider .text-container{padding: 20px 20px 20px 0}
+
+@media screen and (min-width:768px) and (max-width:992px) {
+		.owl-carousel.slider .text-container{padding: 20px 20px 20px 0}
+		.owl-carousel.slider{height: 450px !important}
 }
 .owl-theme .owl-controls .owl-page span{background-color: #09627f}
 /* Navigation Arrows */
@@ -189,8 +191,8 @@ width: 90%;
 .arrow.forward.disabled { display: none; } /* disabled arrows, hide or reduce opacity: opacity: .5; filter: alpha(opacity=50); */
 
 /*CHOISIS TA VILLE*/
-#choisis{ position:absolute; height:400px; padding: 60px 0 0 0; top:10%;margin-left:20%;width:80%;}
-
+#press{ position:absolute; height:400px; padding: 60px 0 0 0; top:10%;margin-left:20%;width:80%;}
+#press img#choisis{margin-top: 2%;  margin-left: 5%;z-index:1;position:relative;}
 #choisis a	{ 
 	display: block; 
 	width:15%; 
@@ -243,6 +245,14 @@ width: 90%;
 	a.foyer15 	{   top:50%; left:-15%; }
 	a.foyer16 	{   top:30%; left:-15%;  }
 }
+@media screen and (min-width:768px) and (max-width:992px){
+		#press img#choisis {
+				margin-top: 5%;
+				margin-left: 5%;
+				width:65%;
+		}
+}
+
 .foyer{
 		display: inline-block;
 		width:80%; margin-left: 10%;
