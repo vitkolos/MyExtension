@@ -56,7 +56,7 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																																								touchSwipeIntegration: true
 																																												};
 																																												ascensor.ascensor(options);
-																																												var ascensorInstance = ascensor.data('ascensor');   // Access instance
+																																												
 																																												/*angular.element("#flecheLeft").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
 																																												angular.element("#flecheLeft2").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
 																																												angular.element("#flecheDown").on("click", function(){ascensor.trigger("scrollToDirection" ,"down");});
@@ -70,6 +70,7 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																												initAscensor();
 																																								},400);
 																																	scope.slideTo = function(direction){
+																																												var ascensorInstance = angular.element(targetElSelector).data('ascensor');   // Access instance
 																																												//ascensor.trigger("scrollToDirection",direction);
 																																												ascensorInstance.scrollToDirection(direction);
 																																												console.log(ascensorInstance);
