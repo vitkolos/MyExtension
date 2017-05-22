@@ -59,7 +59,7 @@
 					   ckeditor="editorOptions"
 					   contenteditable="true"
 					   ready="setCKEIsReady()"
-					   ng-model="fieldEntity[field.config.name]"
+					   ng-model="fieldEntity['text']"
 					   output-plain-text="true"
 					   ng-bind-html="rteFieldCtrl.html">
 					</h1>
@@ -78,7 +78,7 @@
 					   ckeditor="editorOptions"
 					   contenteditable="true"
 					   ready="setCKEIsReady()"
-					   ng-model="fieldEntity[field.config.name]"
+					   ng-model="fieldEntity['text']"
 					   output-plain-text="true"
 					   ng-bind-html="rteFieldCtrl.html">
 					</h1>
@@ -93,9 +93,11 @@
 
 
 	<div class="container">
-		<div class="row padding-large text-center">
+		<div class="row padding-large text-center" ng-if="fieldEntity['description']">
 			<div class="col-xs-12 text-center">
-				
+				<div class="text-article">
+						<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('telephone')}}"></rubedo-field>
+				</div>
 			</div>
 		</div>
 		<div class="row padding-large text-center">
