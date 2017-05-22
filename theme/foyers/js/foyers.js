@@ -47,7 +47,6 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																	var ascensor = angular.element(targetElSelector);
 																																	ascensor.css( "visibility", "hidden" );
 																																	var initAscensor = function(){
-																																												var ascensor = angular.element(targetElSelector);
 																																												ascensor.css("visibility", "visible");
 																																												var options={
 																																																							direction: [[0,0],[0,1],[1,0],[1,1]],
@@ -55,7 +54,8 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																																								easing: 'easeInOutCubic',
 																																																								touchSwipeIntegration: true
 																																												};
-																																												angular.element("#ascensorBuilding").ascensor(options);
+																																												ascensor.ascensor(options);
+																																												var ascensorInstance = ascensor.data('ascensor');   // Access instance
 																																												/*angular.element("#flecheLeft").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
 																																												angular.element("#flecheLeft2").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
 																																												angular.element("#flecheDown").on("click", function(){ascensor.trigger("scrollToDirection" ,"down");});
@@ -69,7 +69,9 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																												initAscensor();
 																																								},400);
 																																	scope.slideTo = function(direction){
-																																												ascensor.trigger("scrollToDirection",direction);
+																																												//ascensor.trigger("scrollToDirection",direction);
+																																												ascensorInstance.scrollToDirection(direction);
+																																												console.log(ascensorInstance);
 																																	}
 																						}
 											}
