@@ -95,6 +95,10 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/contentDetail.json'
         ),
+							'd3Script' => array(
+            'maxlifeTime' => 60,
+            'definitionFile' => realpath(__DIR__ . "/blocks/") . '/d3Script.json'
+        ),
        'facebook' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/facebook.json'

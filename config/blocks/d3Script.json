@@ -1,0 +1,115 @@
+{
+    "type": "#ext-gen1422#",
+    "description": "#ext-gen1428#",
+    "configBasique": {
+        "title": "#ext-gen1422#",
+        "bType": "d3Script",
+        "flex": 1,
+        "champsConfig": {
+            "simple": [
+                {
+                    "categorie": "#ext-gen1143#",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ESQfield",
+                            "config": {
+                                "fieldLabel": "#ext-gen1056#",
+                                "name": "predefinedFacets",
+                                "queryMode": true
+                            }
+                        },
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "#ext-gen1423#",
+                                "name": "d3Code"
+
+                            }
+                        },
+                        {
+                            "type": "Ext.form.field.Number",
+                            "config": {
+                                "fieldLabel": "#ext-gen1424#",
+                                "name": "pageSize",
+                                "allowDecimals": false,
+                                "minValue": 0
+                            }
+                        },
+																								{
+                            "type": "Ext.form.field.ComboBox",
+                            "isAutoStored": true,
+                            "autoStoreData": [
+                                {
+                                    "label": "Cana",
+                                    "value": "cana"
+                                },
+                                {
+                                    "label": "Jeunes 18-30",
+                                    "value": "1830"
+                                },
+																																{
+                                    "label": "Jeunes 14-18",
+                                    "value": "1430"
+                                },
+																																{
+                                    "label": "JET",
+                                    "value": "jet"
+                                },
+																																{
+                                    "label": "Net for God",
+                                    "value": "netforgod"
+                                }
+                            ],
+                            "config": {
+                                "fieldLabel": "Mission",
+                                "name": "mapType",
+                                "multiSelect": false,
+                                "allowBlank": true,
+                                "editable": false,
+                                "value": [
+                                ]
+                            }
+                        }
+                    ]
+                }
+
+
+            ],
+            "avance": [
+                {
+                    "categorie": "Template",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "Custom template",
+                                "name": "customTemplate",
+                                "defaultTemplateUrl": "blocks/d3Script.html",
+                                "twigMode": false
+
+                            }
+                        },
+                      {
+                        "type": "Ext.form.field.Number",
+                        "config": {
+                          "fieldLabel": "#ext-gen1491#",
+                          "name": "blockMinHeight",
+                          "allowDecimals": false,
+                          "editable": true,
+                          "minValue": 0
+                        }
+                      }
+                    ]
+                }
+            ]
+        },
+        "configBloc": {
+            "pageSize": 5000
+        }
+
+
+    },
+    "category": "#ext-gen1425#",
+    "bType": "d3Script",
+    "id": "52cbd7b0f05c1d741e000001"
+}
