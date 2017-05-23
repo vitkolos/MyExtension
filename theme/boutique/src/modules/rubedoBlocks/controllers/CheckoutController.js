@@ -236,6 +236,9 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                                     mailingListsSuscribe.push(mailingList.id);
                                 }
                             });
+																												if(window.ga) {
+																																window.ga('send', 'event', 'Compte client', 'Création', newUserFields.email);
+																												}
                             if (mailingListsSuscribe.length>0){
                                 var mloptions = {
                                     mailingLists: mailingListsSuscribe,
@@ -251,6 +254,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                             }
                         }
                     );
+																				
                 }
             },
             function(response){
@@ -289,6 +293,8 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         me.stage2Error=null;
         if (!$scope.rubedo.current.user){
             me.createUser();
+												$scope.rubedo.sendGaEvent('/form/', 'contact');
+												
         } else {
             me.persistUserChanges(me.stage2Error);
         }
@@ -332,8 +338,11 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             function(response){
                 if (response.data.success){
                     var myOrderId=response.data.order.id;
+																				if(window.ga) {
+                            window.ga('send', 'event', 'Commandes', 'Création', myOrderId, response.data.order.finalPrice);
+                    }
                     $location.url(me.orderDetailPageUrl+"?order="+myOrderId);
-                    $scope.rubedo.sendGaEvent('/form/', 'order');
+                    //$scope.rubedo.sendGaEvent('/form/', 'order');
                 }
             }
         );
