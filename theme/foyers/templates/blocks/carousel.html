@@ -1,6 +1,6 @@
 <div class="container">
     <div id="{{'block'+block.id}}" class="slider owl-carousel" ng-controller="CarouselController as carouselCtrl" >
-        <div ng-repeat="content in carouselCtrl.contents track by $index" ng-if="content.fields[blockConfig.imageField]" class="row">
+        <div ng-repeat="content in carouselCtrl.contents track by $index" ng-if="content.fields[blockConfig.imageField]" class="row no-margin">
                 <div class="col-sm-6">
                     <img ng-if="!isArray(content.fields[blockConfig.imageField])" class="lazyOwl img-responsive" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"
                         alt="{{content.fields.text}}"
