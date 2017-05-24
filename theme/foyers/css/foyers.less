@@ -388,6 +388,12 @@ header.bg-image{
 		overflow-y:hidden;
 		&>div{text-align: center; vertical-align: middle; padding-bottom: 0;line-height: normal;display: inline-block;}
 }
+@media screen and (max-width:768px) {
+		header.bg-image{height:250px; line-height: 250px;};
+}
+@media screen and (min-width:1200px) {
+		header.bg-image{height:500px; line-height: 500px;};
+}
 /*BOC TEXTE*/
 .bloc-icone>div p:first-of-type{
 		font-family: FontAwesome;
@@ -416,7 +422,7 @@ header.bg-image{
 .col3{
 		margin-top: 30px; margin-bottom: 50px;
 		div{
-				border-bottom: 3px solid white;
+				padding-top: 18px; padding-bottom: 18px;
 		}
 }
 @media screen and (min-width:768px){
@@ -434,6 +440,9 @@ header.bg-image{
 		p a{box-shadow: none !important; opacity: 0.7}
 		p a:hover{background-color: transparent !important; color:white !important;opacity: 0.9}
 		a:hover{text-decoration: none}
+}
+@media screen and (max-width:768px){
+		p{text-align: center;}
 }
 /*ANIMATIONS*/
 @-webkit-keyframes bounce {
