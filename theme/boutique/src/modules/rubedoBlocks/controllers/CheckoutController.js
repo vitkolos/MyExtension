@@ -302,11 +302,18 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
 
     me.handleStage3Submit=function(){
         me.stage3Error=null;
+								if(window.ga) {
+																window.ga('send', 'event', 'Checkout process', 'Facturation et expéditions', myOrderId);
+								}
         me.persistUserChanges(me.stage3Error);
+								
     };
 
     me.handleStage4Submit=function(){
         me.stage4Error=null;
+								if(window.ga) {
+																window.ga('send', 'event', 'Checkout process', 'Livraison', myOrderId);
+								}
         me.persistUserChanges(me.stage4Error,true);
     };
 
@@ -316,6 +323,9 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             me.stage5Error=$scope.rubedo.translate("Blocks.Checkout.Label.ChooseShipper","Please choose a shipper");
         } else {
             me.setCurrentStage(me.currentStage+1);
+												if(window.ga) {
+																window.ga('send', 'event', 'Checkout process', 'Expéditeurs', myOrderId);
+								}
         }
     };
 
