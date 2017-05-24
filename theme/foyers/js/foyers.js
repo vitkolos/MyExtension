@@ -57,6 +57,10 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																																								wheelNavigation :true
 																																												};
 																																												ascensor.ascensor(options);
+																																												if (!angular.element(targetElSelector + " #floor1" ).css("width")) {
+																																																							angular.element(targetElSelector).data('ascensor').refresh();
+																																																							console.log("refreshing");
+																																												}
 																																												console.log(angular.element(targetElSelector + " #floor1" ).css("width"));
 																																	}
 																																	setTimeout(function(){
