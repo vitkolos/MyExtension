@@ -57,14 +57,13 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																																								wheelNavigation :true
 																																												};
 																																												ascensor.ascensor(options);
+																																												//sur un réseau lent, l'initialisation ne se fait pas bien -> les élements ne sont pas dimensionnés. dans ce cas faire un refresh 
 																																												if (!angular.element(targetElSelector + " #floor1" ).css("width")) {
-																																																							//angular.element(targetElSelector).data('ascensor').refresh();
-																																																							console.log("refreshing");
+
 																																																							setTimeout(function(){
 																																																																		angular.element(targetElSelector).data('ascensor').refresh();
 																																																														},400);
 																																												}
-																																												console.log(angular.element(targetElSelector + " #floor1" ).css("width"));
 																																	}
 																																	setTimeout(function(){
 																																												initAscensor();
