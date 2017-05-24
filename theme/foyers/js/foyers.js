@@ -56,15 +56,7 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																																								touchSwipeIntegration: true
 																																												};
 																																												ascensor.ascensor(options);
-																																												
-																																												/*angular.element("#flecheLeft").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
-																																												angular.element("#flecheLeft2").on("click", function(){ascensor.trigger("scrollToDirection" ,"left");});
-																																												angular.element("#flecheDown").on("click", function(){ascensor.trigger("scrollToDirection" ,"down");});
-																																												angular.element("#flecheUp").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");});
-																																												angular.element("#flecheUp2").on("click", function(){ascensor.trigger("scrollToDirection" ,"up");});
-																																												angular.element("#flecheRight").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});
-																																												angular.element("#flecheRight2").on("click", function(){ascensor.trigger("scrollToDirection" ,"right");});*/
-
+																																												console.log(angular.element(targetElSelector).data('ascensor'));
 																																	}
 																																	setTimeout(function(){
 																																												initAscensor();
