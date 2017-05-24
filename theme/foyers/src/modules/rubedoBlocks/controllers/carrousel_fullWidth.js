@@ -13,6 +13,9 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
     else stopOnHover="false";
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
+				if(blockConfig.singlePage){
+        me.detailPageId = blockConfig.singlePage;
+    }
     me.getContents=function(){
         RubedoContentsService.getContents(blockConfig.query,pageId,siteId, queryOptions).then(
             function(response){

@@ -88,7 +88,11 @@
 @media screen and (max-width:500px){
         .homepage_txt h1{font-size: 30px;}
 }
-
+.link{position:absolute; bottom: 2%;width:100%; text-align: center}
+.link a{
+ border: 1px solid white; font-family: "trend_sansone"; color:white
+}
+.link a:hover{color: white; text-decoration: none;}
 
 
 </style>
@@ -113,6 +117,9 @@
           <div class="fill dotted" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField])}}');"></div>
           <div class="homepage_txt" >
               <h1>{{rubedo.current.page.text | firstword : 0}}<br>{{rubedo.current.page.text | firstword : 1}}</h1>
+          </div>
+          <div class="link visible-xs-block" ng-if="carouselCtrl.detailPageId">
+           <a rubedo-page-link="{{carouselCtrl.detailPageId}}">Présentation</a>
           </div>
       </div>
   </div>
