@@ -41,7 +41,7 @@ blocksConfig.bg_image={
 angular.module("rubedo").directive("ascensor",['$document',function($document){
 											return {
 																						restrict: "A",
-																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
+																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" id="floor{{$index}}" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
 																						link: function(scope,element, attrs) {
 																																	var targetElSelector="#ascensorBuilding";
 																																	var ascensor = angular.element(targetElSelector);
@@ -53,10 +53,11 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																																							direction: [[0,0],[0,1],[1,0],[1,1]],
 																																																							time: 1900,
 																																																								easing: 'easeInOutCubic',
-																																																								touchSwipeIntegration: true
+																																																								swipeNavigation : true,
+																																																								wheelNavigation :true
 																																												};
 																																												ascensor.ascensor(options);
-																																												console.log(angular.element(targetElSelector).data('ascensor'));
+																																												console.log(angular.element(targetElSelector + " #floor1" ).css("width"));
 																																	}
 																																	setTimeout(function(){
 																																												initAscensor();
