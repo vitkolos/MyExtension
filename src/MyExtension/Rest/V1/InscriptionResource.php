@@ -340,7 +340,10 @@ protected function sendInscriptionMail($inscription,$lang){
         $nomClient = $inscription['surname'] . " ".  $inscription['nom'];
     }
     //CONTACT SECRETARIAT
-    $contactSecretariat =  $inscription['contact']['text'] . " - ". $inscription['contact']['prenom']." ".$inscription['contact']['nom'] . " - " . $inscription['contact']['telephone'];
+    $contactSecretariat =  $inscription['contact']['text'] ;
+				if(isset($inscription['contact']['prenom']) || isset($inscription['contact']['nom'])) $contactSecretariat .=  " - ". $inscription['contact']['prenom']." ".$inscription['contact']['nom'];
+				if(isset($inscription['contact']['position'])) $contactSecretariat .=  " - ". $inscription['contact']['position']['address'];
+				if(isset($inscription['contact']['telephone'])) $contactSecretariat .=  " - ". $inscription['contact']['telephone'];
     $contactSecretariat .= " - <a href='mailto:" . $inscription['contact']['email'] . "'>" . $inscription['contact']['email'] . "</a>" ;
     $messageClient="";
     $messageSecretariat="";
