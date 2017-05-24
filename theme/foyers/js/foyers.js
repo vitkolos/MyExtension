@@ -60,7 +60,9 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																																												if (!angular.element(targetElSelector + " #floor1" ).css("width")) {
 																																																							//angular.element(targetElSelector).data('ascensor').refresh();
 																																																							console.log("refreshing");
-																																																							initAscensor();
+																																																							setTimeout(function(){
+																																																																		angular.element(targetElSelector).data('ascensor').refresh();
+																																																														},400);
 																																												}
 																																												console.log(angular.element(targetElSelector + " #floor1" ).css("width"));
 																																	}
