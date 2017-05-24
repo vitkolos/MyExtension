@@ -21,6 +21,9 @@ html,body{font-family: "Lato","Helvetica Neue", Arial, Helvetica, sans-serif; he
 .container-fluid{overflow-x:hidden;}
 .container-fluid{padding:0}
 .row.no-margin{margin-right: 0; margin-left: 0}
+@media screen and (max-width:768px){
+		h1{font-size: 26px;}
+}
 .uppercase{text-transform: uppercase}
 /*ACCUEIL*/
 img#foyer {
@@ -341,14 +344,16 @@ input, textarea {
 		a.navbar-brand, a.navbar-brand:hover{color: white !important; background: transparent !important}
 
 }
+.fixed-nav{margin-bottom:100px;}
 @media screen and (max-width:768px) {
 		.navbar.navbar-default.transparent,.navbar.navbar-default.transparent:hover {background-color:rgb(34,49,63)}
 		.navbar-default .navbar-collapse {border: none !important}
 				.navbar-default .navbar-toggle .icon-bar{background: @txt_blue;}
 		.navbar-default.transparent .navbar-toggle .icon-bar{background: white;}
 		.navbar.navbar-default{padding: 20px 0 20px 0}
+		.fixed-nav{margin-bottom:88px;}
+
 }
-.fixed-nav{margin-bottom:100px;}
 .navbar-toggle{
 		border: none !important;
 		background: transparent;
