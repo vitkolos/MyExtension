@@ -14,7 +14,7 @@
  * @copyright  Copyright (c) 2012-2016 WebTales (http://www.webtales.fr)
  * @license    http://www.gnu.org/licenses/gpl.html Open Source GPL 3.0 license
  */
-namespace Rubedo\Elastic;
+namespace MyExtension\Elastic;
 
 use Zend\Json\Json;
 
