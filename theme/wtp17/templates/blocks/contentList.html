@@ -84,14 +84,14 @@
                 <div class="table-workshops" ng-repeat="content in columnContents track by $index" ng-attr-id="{{'jour-'+$index}}" ng-class="{'displayed' : workshop.jour =={{$index}} , 'not-checked' : workshop.jour==10}">
                     <div class="row">
                         <div class="col-sm-6 padding-large" ng-if="content.fields.morning">
-                            <h3>{{rubedo.translate("WTP.morning","Matin")}}</h3>
+                            <h3>{{rubedo.translate("WTP.morning","Morning")}}</h3>
                             <div ng-repeat="detail in content.fields.morning.values">
                                 <p>{{detail.title}}</p>
                                 <p><em>{{detail.speaker}}</em></p>
                             </div>
                         </div>
                         <div class="col-sm-6 padding-large" ng-if="content.fields.afternoon">
-                            <h3>{{rubedo.translate("WTP.fternoon","Après midi")}}</h3>
+                            <h3>{{rubedo.translate("WTP.afternoon","Afternoon")}}</h3>
                             <div ng-repeat="detail in content.fields.afternoon.values">
                                 <p>{{detail.title}}</p>
                                 <p><em>{{detail.speaker}}</em></p>
