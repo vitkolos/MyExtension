@@ -364,7 +364,6 @@ return array(
             'PayboxPayment'=>'Rubedo\\Payment\\PayboxPayment',
             //'PaypalPayment'=>'Rubedo\\Payment\\CcnPaypalPayment',
             'ContentsCcn' => 'Rubedo\\Collection\\ContentsCcn',
-												'ElasticContents' => 'MyExtension\\Elastic\\Contents',
             'HtmlCleaner' => 'Rubedo\\Security\\CcnHtmlPurifier',
             'ShippersCcn' => 'Rubedo\\Collection\\ShippersCcn',
            'MongoDataImport' => 'Rubedo\\Mongo\\DataImportCcn',
