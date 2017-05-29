@@ -303,7 +303,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     me.handleStage3Submit=function(){
         me.stage3Error=null;
 								if(window.ga) {
-																window.ga('send', 'event', 'Checkout process', 'Facturation et expéditions', myOrderId);
+																window.ga('send', 'event', 'Checkout process', 'Facturation et expéditions');
 								}
         me.persistUserChanges(me.stage3Error);
 								
@@ -312,7 +312,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     me.handleStage4Submit=function(){
         me.stage4Error=null;
 								if(window.ga) {
-																window.ga('send', 'event', 'Checkout process', 'Livraison', myOrderId);
+																window.ga('send', 'event', 'Checkout process', 'Livraison');
 								}
         me.persistUserChanges(me.stage4Error,true);
     };
@@ -324,7 +324,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
         } else {
             me.setCurrentStage(me.currentStage+1);
 												if(window.ga) {
-																window.ga('send', 'event', 'Checkout process', 'Expéditeurs', myOrderId);
+																window.ga('send', 'event', 'Checkout process', 'Expéditeurs');
 								}
         }
     };
