@@ -42,34 +42,7 @@ angular.module('rubedoBlocks').directive('loadModal', function () {
             });
         }
     }
-});/*
-angular.module('rubedoBlocks').directive('pauseOnClose', function() {
-    return {
-        restrict: 'A',
-        link: function(scope, element, attrs) {
-											scope.props={};
-											scope.props.pause="notpaused";
-            element.on('hidden.bs.modal', function (e) {
-                // Find elements by video tag
-																//var video = element.find("jwplayer");
-																//playerid = playerid.split("_")[2];
-																//jwplayer(playerid).pause();
-																//console.log(playerid);
-																//video.attr('pause', 'pause');
-																scope.props.pause = "pause";
-            });
-													element.on('shown.bs.modal', function (e) {
-                // Find elements by video tag
-																//var video = element.find("jwplayer");
-																//playerid = playerid.split("_")[2];
-																//jwplayer(playerid).pause();
-																//console.log(playerid);
-																//video.attr('pause', 'notpaused');
-																scope.props.pause = "notpaused";
-            });
-        }
-    }
-});*/
+});
 
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile',function ($compile) {
     return {
@@ -131,10 +104,15 @@ angular.module('rubedoBlocks').filter('homepage', function() {
  angular.module('rubedoFields').filter('split', function() {
         return function(input, splitChar, splitIndex) {
             // do some bounds checking here to ensure it has that index
-            if (!splitChar) {
-                     splitChar = "_";
-            }
-            return input.split(splitChar)[splitIndex];
+											if (!splitChar) {
+																				splitChar = "_";
+											}
+											if (input && input !='') {
+																					return input.split(splitChar)[splitIndex];
+											}
+											else return "";
+            
+            
         }
     });  
     
