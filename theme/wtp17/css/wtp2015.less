@@ -673,6 +673,15 @@ header.parallax.page{
 #dots-kawaco{color:@kawaco}
 nav.kawaco{background-color:@kawaco}
 
+#apercu {
+	.sec-logo, .text-bg, nav, .color:nth-of-type(2n) .side2{background-color:@temps-forts}
+	.section-title-h1, .titre-details,.block-details.icone p{color:@temps-forts}
+}
+#focus {
+	.sec-logo, .text-bg, nav, .color:nth-of-type(2n) .side2{background-color:@workshops}
+	.section-title-h1, .titre-details,.block-details.icone p{color:@workshops}
+}
+
 #fit-fun {
 	.sec-logo, .text-bg, nav, .table,.color:nth-of-type(2n) .side2{background-color:@fit}
 	.section-title-h1, .titre-details,.block-details.icone p{color:@fit}
@@ -880,7 +889,7 @@ nav.inscriptions{background-color:@inscriptions}
     .table-tab p:first-of-type,  .workshop-nav{
 	color:@workshops;
    }
-   h3.closed {margin-top:-65px}
+   .workshop-nav {margin-top:-65px}
     .table-tab p:nth-of-type(3) {
 	background-color: #fff;
 	height: 0;
@@ -919,9 +928,15 @@ input:checked + .date-workshops {background-color:white; color:@workshops}
     font-size:1.1em;
     //border-bottom: 1px solid rgb(255, 255, 255);
 }
-#workshops .table-tab p:nth-of-type(2) {padding-left:30px; border-bottom: 1px solid rgb(255, 255, 255);}
-#workshops .table-tab p:nth-of-type(3) {color:@txt_dark; padding-left:30px; }
-#workshops .table-tab div div:last-child p:nth-of-type(2) {border: none}
+.table-workshops{
+				padding-left: 24px;position: relative;display:none;
+				h3{text-transform: uppercase}
+				h3,p{color:white}
+				em{font-weight: bold}
+				p:first-of-type{margin-bottom: 0;}
+}
+.table-workshops.displayed{display:block}
+
 .table-tab span{font-style: italic;display: inline-block;width:100%}
 
 .workshop-nav {
@@ -930,6 +945,7 @@ input:checked + .date-workshops {background-color:white; color:@workshops}
     margin:0;
     font-weight: bold;
     font-size: 2em;
+				text-transform: none !important; cursor: pointer
 }
 @media screen and (min-width: 768px) {
     div.not-checked:first-of-type label {background-color:white; color:@workshops}
