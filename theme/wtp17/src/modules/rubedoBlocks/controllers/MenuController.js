@@ -38,6 +38,9 @@
 																								if (block.bType=="contentDetail" && block.orderValue<=1) {
 																												if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
 																												else me.pagesBlocks[key].blocks.push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+																												if (!block.code) {
+																																console.log(block);
+																												}
 																												//if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
 																												//else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
 																								}
