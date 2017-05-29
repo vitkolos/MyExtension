@@ -317,7 +317,7 @@ class DataAbstract
                     case 'datefield' :
 																								if ($field['config']['useAsFacet']) {
 																												$config = [
-																																'type' => 'date',
+																																'type' => 'string',
 																																'store' => $store,
 																												];
 																								}
