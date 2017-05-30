@@ -7,6 +7,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
     $scope.predefinedFacets = config.predefinedFacets ? config.predefinedFacets : "{ }";
     $scope.pageSize = config.pageSize ? config.pageSize : 5000;
 				$scope.loading = true;
+				var mapType = config.mapType ? config.mapType : 'cte';
 				//$scope.clearORPlaceholderHeight();
     $scope.retrieveData=function(params, successFunction, failureFunction ){
         var options={
@@ -24,7 +25,31 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
         RubedoSearchService.searchByQuery(options).then(
             function(response){
 																me.results = response.data.results.data;
-                successFunction(response.data.results);
+																me.countryList = {};
+																angular.forEach(me.results, function(country){
+																				var id=country["fields.id"][0];
+																				me.countryList[id] = {
+																								'name':country["title"],
+																								'fillKey':country["fields.presence"][0],
+																								'text':''
+																				};
+																				if (mapType!='cte') {
+																								if(country[mapType] && country[mapType]!="") countryList[id]['url'] = country[mapType];
+																								else if(country["presence"]=="active") countryList[id]['fillKey']='not';
+																				}
+																				else {
+																								if(country["fields.url"]&&country["fields.url"][0]!="") countryList[id]['url']=country["fields.url"][0];
+
+																								var missions = ["cana","1418","1830","foyers","jet","netforgod"];
+																								for (var i = 0; i < missions.length; i++) {
+																												if(country[missions[i]]&&country[missions[i]]!="") countryList[id]['text']+=translations['Missions.'.missions[i]]+'<br/>';
+																								}
+
+																				}
+																				
+																});
+																console.log(me.countryList);
+                successFunction(me.countryList);
             },
             function(response){
                 failureFunction(response.data);
@@ -34,3 +59,4 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
     me.html=$sce.trustAsHtml(d3Code);
 
 }]);
+
