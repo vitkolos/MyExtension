@@ -30,7 +30,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 																				var id=country["fields.id"][0];
 																				me.countryList[id] = {
 																								'name':country["title"],
-																								'fillKey':country["fields.presence"][0],
+																								'fillKey':country["presence"],
 																								'text':''
 																				};
 																				if (mapType!='cte') {
