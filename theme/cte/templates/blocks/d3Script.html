@@ -31,7 +31,7 @@
                         <div class="col-sm-6  regions-list">
                             <h4>{{rubedo.translate("Block.Carte.Presence.Perm","Pays où la Communauté assure une présence permanente")}}</h4>
                             <ul>
-                                <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { fillKey: 'present' } | orderBy:'name'">
+                                <li ng-repeat="country in d3ScriptCtrl.countryList |  orderBy:'name'" ng-if="country.fillKey== 'present'">
                                     <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
                                 </li>
                             </ul>
@@ -39,7 +39,7 @@
                         <div class="col-sm-6  regions-list">
                             <h4>{{rubedo.translate("Block.Carte.Presence.Ponct","Pays où la Communauté assure une présence ponctuelle")}}</h4>
                              <ul>
-                                <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { fillKey: 'active' } | orderBy:'name'">
+                                <li ng-repeat="country in d3ScriptCtrl.countryList | orderBy:'name'"  ng-if="country.fillKey== 'active'">
                                     <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
                                 </li>
                             </ul>
