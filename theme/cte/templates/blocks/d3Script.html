@@ -9,14 +9,14 @@
     <div class="visible-xs-block regions-list">
         <h3>{{rubedo.translate("Block.Carte.Presence.Perm","Pays où la Communauté assure une présence permanente")}}</h3>
         <ul>
-            <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { presence: 'present' } | orderBy:'title'">
-                <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.title}}</a>
+            <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { presence: 'present' } | orderBy:'name'">
+                <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.name}}</a>
             </li>
         </ul>
         <h3>{{rubedo.translate("Block.Carte.Presence.Ponct","Pays où la Communauté assure une présence ponctuelle")}}</h3>
         <ul>
-            <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { presence: 'active' } | orderBy:'title'">
-                <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.title}}</a>
+            <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { presence: 'active' } | orderBy:'name'">
+                <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.name}}</a>
             </li>
         </ul>
     </div>
@@ -31,16 +31,16 @@
                         <div class="col-sm-6  regions-list">
                             <h4>{{rubedo.translate("Block.Carte.Presence.Perm","Pays où la Communauté assure une présence permanente")}}</h4>
                             <ul>
-                                <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { presence: 'present' } | orderBy:'title'">
-                                    <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.title}}</a>
+                                <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { fillKey: 'present' } | orderBy:'name'">
+                                    <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.name}}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-sm-6  regions-list">
                             <h4>{{rubedo.translate("Block.Carte.Presence.Ponct","Pays où la Communauté assure une présence ponctuelle")}}</h4>
                              <ul>
-                                <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { presence: 'active' } | orderBy:'title'">
-                                    <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.title}}</a>
+                                <li ng-repeat="country in d3ScriptCtrl.countryList | filter: { presence: 'active' } | orderBy:'name'">
+                                    <a ng-href="{{country['fields.url'][0]}}" target="_blank">{{country.name}}</a>
                                 </li>
                             </ul>
                         </div>
