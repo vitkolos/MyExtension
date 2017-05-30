@@ -34,15 +34,15 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 																								'text':''
 																				};
 																				if (mapType!='cte') {
-																								if(country[mapType] && country[mapType]!="") countryList[id]['url'] = country[mapType];
-																								else if(country["presence"]=="active") countryList[id]['fillKey']='not';
+																								if(country[mapType] && country[mapType]!="") me.countryList[id]['url'] = country[mapType];
+																								else if(country["presence"]=="active") me.countryList[id]['fillKey']='not';
 																				}
 																				else {
-																								if(country["fields.url"]&&country["fields.url"][0]!="") countryList[id]['url']=country["fields.url"][0];
+																								if(country["fields.url"]&&country["fields.url"][0]!="") me.countryList[id]['url']=country["fields.url"][0];
 
 																								var missions = ["cana","1418","1830","foyers","jet","netforgod"];
 																								for (var i = 0; i < missions.length; i++) {
-																												if(country[missions[i]]&&country[missions[i]]!="") countryList[id]['text']+=translations['Missions.'.missions[i]]+'<br/>';
+																												if(country[missions[i]]&&country[missions[i]]!="") me.countryList[id]['text']+=translations['Missions.'.missions[i]]+'<br/>';
 																								}
 
 																				}
