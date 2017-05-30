@@ -48,7 +48,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 																				}
 																				
 																});
-																console.log(me.countryList);
+																console.log(me.results);
                 successFunction(me.countryList);
             },
             function(response){
