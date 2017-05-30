@@ -27,8 +27,8 @@
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only ng-binding">{{rubedo.translate("Label.Close","Close")}}</span></button>
                         <h4 class="modal-title ng-binding" id="countryListModalLAbel">Liste des pays</h4>
                     </div>
-                    <div class="modal-body regions-list">
-                        <div class="col-sm-6 ">
+                    <div class="modal-body row">
+                        <div class="col-sm-6  regions-list">
                             <h4>{{rubedo.translate("Block.Carte.Presence.Perm","Pays où la Communauté assure une présence permanente")}}</h4>
                             <ul>
                                 <li ng-repeat="country in d3ScriptCtrl.results | filter: { presence: 'present' } | orderBy:'title'">
@@ -36,7 +36,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-sm-6 ">
+                        <div class="col-sm-6  regions-list">
                             <h4>{{rubedo.translate("Block.Carte.Presence.Ponct","Pays où la Communauté assure une présence ponctuelle")}}</h4>
                              <ul>
                                 <li ng-repeat="country in d3ScriptCtrl.results | filter: { presence: 'active' } | orderBy:'title'">
