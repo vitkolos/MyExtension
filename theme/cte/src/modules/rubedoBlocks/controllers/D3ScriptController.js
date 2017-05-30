@@ -42,7 +42,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 
 																								var missions = ["cana","1418","1830","foyers","jet","netforgod"];
 																								for (var i = 0; i < missions.length; i++) {
-																												if(country[missions[i]]&&country[missions[i]]!="") me.countryList[id]['text']+=translations['Missions.'.missions[i]]+'<br/>';
+																												if(country[missions[i]]&&country[missions[i]]!="") me.countryList[id]['text']+=translations['Missions.'+missions[i]]+'<br/>';
 																								}
 
 																				}
