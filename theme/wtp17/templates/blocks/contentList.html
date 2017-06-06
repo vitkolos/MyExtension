@@ -82,6 +82,10 @@
     
              <div class="table-content col-md-10 col-sm-8" ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
                 <div class="table-workshops" ng-repeat="content in columnContents track by $index" ng-attr-id="{{'jour-'+$index}}" ng-class="{'displayed' : workshop.jour =={{$index}} , 'not-checked' : workshop.jour==10}">
+                    <!--<h3 class="closed" ng-click="$parent.workshop.jour=0">X</h3>-->
+                    <h3 class="workshop-nav pull-right" ng-click="$parent.workshop.jour= ($parent.workshop.jour +1)%columnContents.length">ì</h3>
+                    <h3 class="workshop-nav pull-left" ng-click="$parent.workshop.jour=($parent.workshop.jour -1)>-1 ? ($parent.workshop.jour -1)%columnContents.length :  ($parent.workshop.jour +columnContents.length-1)">Ø</h3>
+
                     <div class="row">
                         <div class="col-sm-6 padding-large" ng-if="content.fields.morning">
                             <h3>{{rubedo.translate("WTP.morning","Morning")}}</h3>
@@ -115,7 +119,7 @@
             </div>
                 
         </div>
-    </div>      
+    </div>        
 
     <!--SPORTS-->         
     <div ng-if="block.code =='fit-fun' "  ng-attr-id=" {{block.code}}">
