@@ -27,5 +27,5 @@ angular.module("rubedoBlocks").lazy.controller("SearchFormController",['$scope',
             }
         });
     };
-				me.getProducts("5899fa6f9b1bdee822000029", pageId, siteId, options);
+				//me.getProducts("5899fa6f9b1bdee822000029", pageId, siteId, options);
 }]);
