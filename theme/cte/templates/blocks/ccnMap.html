@@ -18,7 +18,7 @@
     var countryList = {};
     processData = function (countries) {
         var locale = window.location.pathname.split('/')[1];
-        for (i = 0; i < countries.data.length; i++) { 
+        /*for (i = 0; i < countries.data.length; i++) { 
             var country=countries.data[i];
             var id = country["fields.id"][0];
            countryList[id] = {
@@ -39,7 +39,8 @@
                if(country["fields.jet"]&&country["fields.jet"][0]!="") countryList[id]['text']+=translations['Missions.jet']+'<br/>';
                if(country["fields.netforgod"]&&country["fields.netforgod"][0]!="") countryList[id]['text']+=translations['Missions.netforgod']+'<br/>';
             }
-        };
+        };*/
+        countryList = countries;
 
         var width = document.getElementById('map_container').offsetWidth;
         var height = document.getElementById('map_container').offsetHeight; 

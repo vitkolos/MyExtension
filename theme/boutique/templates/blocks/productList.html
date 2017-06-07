@@ -15,7 +15,7 @@
              ng-style="contentListCtrl.blockStyle">
             <!--<div id="infiniteScrollCtrl">-->
             <div>
-                <div class="col-sm-6 rubedo-product-in-list" ng-class="contentListCtrl.columns" ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
+                <div class="col-xs-6 col-sm-6 rubedo-product-in-list" ng-class="contentListCtrl.columns" ng-controller="ProductListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
                     <div class="row">
 
                         <div  ng-class="{'col-md-2':!(blockConfig.columns>1),'col-md-12':blockConfig.columns>1}"> <!--ng-style="contentListCtrl.imageStyle"-->

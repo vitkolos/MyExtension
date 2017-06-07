@@ -36,7 +36,7 @@ blocksConfig.simpleContact={
 blocksConfig.orderDetail = {
             "template": "/templates/blocks/orderDetail.html",
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/OrderDetailController.js"],
-            "externalDependencies":["http://kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js","http://kendo.cdn.telerik.com/2015.2.805/js/pako_deflate.min.js"]
+            "externalDependencies":["https://kendo.cdn.telerik.com/2016.3.914/js/kendo.all.min.js","https://kendo.cdn.telerik.com/2015.2.805/js/pako_deflate.min.js"]
 };
 angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
     var serviceInstance={};
