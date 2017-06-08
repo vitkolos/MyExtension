@@ -69,7 +69,7 @@ class BotResource extends AbstractResource
     public function getAction($params)
     {
         var_dump($params);
-        $curl = curl_init();
+        /*$curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, "http://10.66.50.200:5000/parse?q=" . $params['query']);
     
         curl_setopt($curl, CURLOPT_POST, 1);
@@ -79,10 +79,10 @@ class BotResource extends AbstractResource
         $result = curl_exec($curl);
         curl_close($curl);
 
-        var_dump($result);
+        var_dump($result);*/
         return [
             'success' => true,
-            'answer' => $result,
+            'answer' => $params,
         ];
     }
 }
