@@ -5,9 +5,8 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 								$http({
 												method: 'GET',
 												url: 'http://10.66.50.200:5000/parse',
-												data: { q: $scope.question },
+												params: { q: $scope.question },
 												headers: {
-                  'Authorization': 'Basic dGVzdDp0ZXN0',
                   'Content-Type': 'application/x-www-form-urlencoded'
        },
 										}).then(function successCallback(response) {
