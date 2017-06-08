@@ -4,12 +4,7 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 				$scope.submit = function(){
 								$http({
 												method: 'GET',
-												url: 'http://10.66.50.200:5000/parse',
-												params: { q: $scope.question },
-												headers: {
-                  'Content-Type': 'application/x-www-form-urlencoded',
-																		'Access-Control-Allow-Origin':'*'
-       },
+												url: 'http://10.66.50.200:5000/parse?q='+$scope.question,
 										}).then(function successCallback(response) {
 												console.log(response)
 														// this callback will be called asynchronously
