@@ -68,6 +68,7 @@ class BotResource extends AbstractResource
      */
     public function getAction($params)
     {
+        var_dump($params);
         $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, "http://10.66.50.200:5000/parse?q=" . $params['query']);
     
