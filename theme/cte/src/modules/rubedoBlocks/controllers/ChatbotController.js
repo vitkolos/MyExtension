@@ -5,7 +5,8 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 								$http({
 												method: 'GET',
 												url: 'http://10.66.50.200:5000/parse',
-												data: { q: $scope.question }
+												data: { q: $scope.question },
+												dataType: 'jsonp',
 										}).then(function successCallback(response) {
 												console.log(response)
 														// this callback will be called asynchronously
