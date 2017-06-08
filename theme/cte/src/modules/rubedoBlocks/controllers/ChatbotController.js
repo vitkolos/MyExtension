@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 				$scope.submit = function(){
 								$http.get("/api/v1/bot",{
                 params:{
-                    query:$$scope.question
+                    query:$scope.question
                 }
             }).then(function(response){console.log(response)});
 				}
