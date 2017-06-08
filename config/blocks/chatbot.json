@@ -1,0 +1,56 @@
+{
+    "type": "Bot",
+    "description": "#ext-gen1428#",
+    "configBasique": {
+        "title": "Bot",
+        "bType": "chatbot",
+        "flex": 1,
+        "champsConfig": {
+            "simple": [
+                {
+                    "categorie": "#ext-gen1143#",
+                    "champs": [
+                        
+                    ]
+                }
+
+
+            ],
+            "avance": [
+                {
+                    "categorie": "Template",
+                    "champs": [
+                        {
+                            "type": "Rubedo.view.ACEField",
+                            "config": {
+                                "fieldLabel": "Custom template",
+                                "name": "customTemplate",
+                                "defaultTemplateUrl": "blocks/d3Script.html",
+                                "twigMode": false
+
+                            }
+                        },
+                      {
+                        "type": "Ext.form.field.Number",
+                        "config": {
+                          "fieldLabel": "#ext-gen1491#",
+                          "name": "blockMinHeight",
+                          "allowDecimals": false,
+                          "editable": true,
+                          "minValue": 0
+                        }
+                      }
+                    ]
+                }
+            ]
+        },
+        "configBloc": {
+
+        }
+
+
+    },
+    "category": "#ext-gen1425#",
+    "bType": "chatbot",
+    "id": "52cbd7b0f05c1d741e000005"
+}

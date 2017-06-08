@@ -1,0 +1,16 @@
+<div ng-controller="ChatbotController as chatCtrl" class="row">
+    <div class="col-sm-4">
+        <div class="panel panel-default" >
+            <div class="panel-heading">Chatbot</div>
+            <div class="panel-body" style="height: 450px;overflow-y: scroll">
+              <div class="row" ng-repeat="sentence in discussion">{{sentence}}</div>
+            </div>
+            <div class="panel-footer">
+                <form ng-submit="submit()"  >
+                        <input type="text" name="texte" ng-model="question">
+                        <input type="submit" value="Submit">
+                </form>
+            </div>
+          </div>
+    </div>
+</div>

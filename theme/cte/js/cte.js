@@ -19,6 +19,10 @@ blocksConfig.paymentBlock= {
             "template": "/templates/blocks/paymentBlock.html",
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/PaymentBlockController.js"]
 };
+blocksConfig.chatbot= {
+            "template": "/templates/blocks/chatBot.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ChatbotController.js"]
+};
 angular.module('rubedoBlocks').filter('cleanUrl', function () {
     return function (input) {
         return input.replace("//","/");
