@@ -6,6 +6,6 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
                 params:{
                     query:$scope.question
                 }
-            }).then(function(response){console.log(response)});
+            }).then(function(response){console.log(response.data.answer)});
 				}
 }]);

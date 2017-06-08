@@ -68,18 +68,19 @@ class BotResource extends AbstractResource
      */
     public function getAction($params)
     {
-        var_dump($params);
-        /*$curl = curl_init();
+        //var_dump($params);
+        $curl = curl_init();
         curl_setopt($curl, CURLOPT_URL, "http://10.66.50.200:5000/parse?q=" . $params['query']);
     
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // On dev server only!
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
+        curl_setopt($curl, CURLOPT_HTTPGET, true);
         $result = curl_exec($curl);
         curl_close($curl);
 
-        var_dump($result);*/
+        var_dump($result);
         return [
             'success' => true,
             'answer' => $params,
