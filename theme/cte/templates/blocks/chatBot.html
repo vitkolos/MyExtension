@@ -5,10 +5,10 @@
             <div class="panel-body" style="height: 450px;overflow-y: scroll">
                 <div class="media" ng-repeat="sentence in discussion" >
                     <div class="media-left">
-                        <img class="img-circle" src="/dam?media-id=58c708ff245640ec008b8a62&height=150px&width=150px&mode=crop" >
+                        <img class="img-circle" width="64" ng-src="{{botImage}}" >
                     </div>
                     <div class="media-body">
-                      <!--<h4 class="media-heading">Media heading</h4>-->{{sentence}}
+                      {{sentence}}
                          
                     </div>
                 </div>

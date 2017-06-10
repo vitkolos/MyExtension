@@ -1,6 +1,8 @@
 angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$timeout','$http',function($scope,$timeout,$http){
 				$scope.discussion = [];
-				$scope.discussion.push("Que puis-je faire pour vous ?");
+				$scope.botName =  "Jésus";
+				$scope.botImage = "http://www.senegal7.com/wp-content/uploads/2017/05/jesus-5.jpg";
+				$scope.discussion.push("Que puis-je faire pour toi ?");
 				$scope.submit = function(){
 								$scope.discussion.push($scope.question);
 								$.get('http://10.66.50.200:5000/parse?q='+$scope.question, function (data) {
@@ -12,7 +14,7 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 												else {
 																switch(data.intent.name) {
 																case 'greeting':
-																				botMessage = "Salut ! Je suis " + botName + ". Et toi ?" ;
+																				botMessage = "Salut ! Je suis " + $scope.botName  + ". Et toi ?" ;
 																				break;
 																case 'bot_state':
 																				botMessage = "Je vais bien ! " ;
