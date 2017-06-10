@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 				$scope.botImage = "https://st2.depositphotos.com/2668729/5771/v/950/depositphotos_57719963-stock-illustration-jesus-avatar-wearing-sun-glasses.jpg";
 				$scope.discussion.push("Que puis-je faire pour toi ?");
 				$scope.submit = function(){
-								$scope.discussion.push($scope.question);
+								$scope.discussion.unshift($scope.question);
 								$.get('http://10.66.50.200:5000/parse?q='+$scope.question, function (data) {
 												console.log(data);
 												var botMessage="Je ne suis pas encore assez intelligent pour comprendre ça...";
@@ -33,7 +33,7 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 																}
 												}
 												console.log(botMessage);
-												$timeout(function(){$scope.discussion.push(botMessage);}, 100);
+												$timeout(function(){$scope.discussion.unshift(botMessage);$scope.question="";}, 100);
 												
 												
 												
