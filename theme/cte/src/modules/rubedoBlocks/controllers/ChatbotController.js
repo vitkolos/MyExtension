@@ -2,8 +2,10 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 				$scope.discussion = [];
 				$scope.discussion.push("Que puis-je faire pour vous ?");
 				$scope.submit = function(){
+								$scope.discussion.push($scope.question);
 								$.get('http://10.66.50.200:5000/parse?q='+$scope.question, function (data) {
 												console.log(data);
+												var botMessage="Je ne suis pas encore assez intelligent pour comprendre ça...";
 												if (data.intent.confidence<0.7) {
 													// not undestood entry
 												}
@@ -28,6 +30,7 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 																				break;
 																}
 												}
+												$scope.discussion.push(botMessage);
 												
 												
 								});

@@ -3,11 +3,21 @@
         <div class="panel panel-default" >
             <div class="panel-heading">Chatbot</div>
             <div class="panel-body" style="height: 450px;overflow-y: scroll">
-              <div class="row" ng-repeat="sentence in discussion">{{sentence}}</div>
+                <div class="media" ng-repeat="sentence in discussion" >
+                    <div class="media-left">
+                        <img class="img-circle" src="/dam?media-id=58c708ff245640ec008b8a62&height=150px&width=150px&mode=crop" >
+                    </div>
+                    <div class="media-body">
+                      <!--<h4 class="media-heading">Media heading</h4>-->{{sentence}}
+                         
+                    </div>
+                </div>
+                
+                
             </div>
             <div class="panel-footer">
                 <form ng-submit="submit()"  >
-                        <input type="text" name="texte" ng-model="question">
+                        <input type="text" name="texte" ng-model="question"  placeholder="Tu peux écrire ici pour me parler.">
                         <input type="submit" value="Submit">
                 </form>
             </div>
