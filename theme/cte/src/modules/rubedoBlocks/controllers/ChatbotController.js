@@ -33,7 +33,8 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 																}
 												}
 												console.log(botMessage);
-												$scope.discussion.push(botMessage);
+												$timeout(function(){$scope.discussion.push(botMessage);}, 100);
+												
 												
 												
 								});
