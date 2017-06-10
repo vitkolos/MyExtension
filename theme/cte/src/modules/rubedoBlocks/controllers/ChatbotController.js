@@ -1,7 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$timeout','$http',function($scope,$timeout,$http){
 				$scope.discussion = [];
 				$scope.botName =  "Jésus";
-				$scope.botImage = "http://www.senegal7.com/wp-content/uploads/2017/05/jesus-5.jpg";
+				$scope.botImage = "https://st2.depositphotos.com/2668729/5771/v/950/depositphotos_57719963-stock-illustration-jesus-avatar-wearing-sun-glasses.jpg";
 				$scope.discussion.push("Que puis-je faire pour toi ?");
 				$scope.submit = function(){
 								$scope.discussion.push($scope.question);
@@ -32,6 +32,7 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 																				break;
 																}
 												}
+												console.log(botMessage);
 												$scope.discussion.push(botMessage);
 												
 												

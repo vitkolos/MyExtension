@@ -4,8 +4,8 @@
             <div class="panel-heading">Chatbot</div>
             <div class="panel-body" style="height: 450px;overflow-y: scroll">
                 <div class="media" ng-repeat="sentence in discussion" >
-                    <div class="media-left">
-                        <img class="img-circle" width="64" ng-src="{{botImage}}" >
+                    <div class="pull-left">
+                        <img class="img-circle" style="width:64px;" ng-src="{{botImage}}" >
                     </div>
                     <div class="media-body">
                       {{sentence}}
