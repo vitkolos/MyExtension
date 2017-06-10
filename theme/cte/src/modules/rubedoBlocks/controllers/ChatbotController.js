@@ -2,10 +2,34 @@ angular.module("rubedoBlocks").lazy.controller('ChatbotController',['$scope','$t
 				$scope.discussion = [];
 				$scope.discussion.push("Que puis-je faire pour vous ?");
 				$scope.submit = function(){
-								$http.get("/api/v1/bot",{
-                params:{
-                    query:$scope.question
-                }
-            }).then(function(response){console.log(response.data.answer)});
+								$.get('http://10.66.50.200:5000/parse?q='+$scope.question, function (data) {
+												console.log(data);
+												if (data.intent.confidence<0.7) {
+													// not undestood entry
+												}
+												else {
+																switch(data.intent.name) {
+																case 'greeting':
+																				botMessage = "Salut ! Je suis " + botName + ". Et toi ?" ;
+																				break;
+																case 'bot_state':
+																				botMessage = "Je vais bien ! " ;
+																				break;
+																case 'user_name':
+																				botMessage = "Bonjour" ;
+																				for (var i = 0; i < data.entities.length; i++) {
+																					if (data.entities[i].entity=='user_name') {
+																						userName = data.entities[i].value;
+																						botMessage += " "+userName ;
+																					}
+																//Do something
+																}
+																default:
+																				break;
+																}
+												}
+												
+												
+								});
 				}
 }]);
