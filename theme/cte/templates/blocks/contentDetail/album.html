@@ -144,15 +144,8 @@
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('lieu')}}" ng-if="fieldEditMode"></rubedo-field>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
 			<h1 class="text-left" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
-			<h1 ng-if="fieldEditMode"
-			   ng-controller="RTEFieldController as rteFieldCtrl"
-			   ckeditor="editorOptions"
-			   contenteditable="true"
-			   ready="setCKEIsReady()"
-			   ng-model="fieldEntity['text']"
-			   output-plain-text="true"
-			   ng-bind-html="rteFieldCtrl.html">
-			</h1>
+
+			<rubedo-field ng-if="fieldEditMode" field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEditMode"></rubedo-field>
 		</div>
 
 	</div>
