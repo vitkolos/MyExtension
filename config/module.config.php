@@ -345,6 +345,19 @@ return array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
             ),
+											'baskerville' => array(
+                'label' => 'Baskerville',
+                'basePath' => realpath(__DIR__ . '/../theme/baskerville'),
+                'css' => array(
+                    '/css/baskerville.css',
+                ),
+                'js' => array(
+                    '/js/baskerville.js',
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
+            ),
         ),
     ),
     

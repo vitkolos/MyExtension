@@ -1,0 +1,126 @@
+<div class="container" ng-controller="InscriptionController as formCtrl">
+        <div class="text-center">
+                <p class="capital">{{rubedo.translate("Block.Inscription.Fiche", "Fiche d'inscription")}}</p>
+                <h3>{{contentDetailCtrl.content.fields.text}}</h3>
+                <p>du {{contentDetailCtrl.content.fields.dateDebut* 1000 | date:'d MMMM'}} au {{contentDetailCtrl.content.fields.dateFin* 1000 | date:'d MMMM yyyy'}}<br/><!--Description-->
+                {{contentDetailCtrl.content.fields.position.address}}</p>
+
+        </div>
+
+
+        
+        <form name="inscription_form" novalidate ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'">
+                <!--si pas de payement en ligne-->
+                <h2 class="capital txt-red"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0">
+                    {{contentDetailCtrl.getLabelByName('paf_text')}}
+                </h2>
+                <div class="col-xs-12 text-center"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0"><rubedo-field field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field></div>
+                
+                
+                <ng-form name="enfants">
+                    <input type="text" ng-model="enfant.nom" placeholder="Name" ><br />
+                    <input type="text" ng-model="enfant.prenom" placeholder="Prénom" ><br />
+                    <input type="text" ng-model="enfant.age" placeholder="Age" ><br />
+                    <button type="button" ng-click="formCtrl.addChild(enfant);enfant={}">Add Child</button>
+                    <ul ng-repeat="enfant in inscription.enfants">
+                    <li>
+                      {{ enfant.nom }}
+                   </li>
+                   <li>
+                      {{ enfant.prenom }}
+                   </li>
+                   <li>
+                      {{ enfant.age }}
+                   </li>
+                   <li>
+                      <button type="button" ng-click="formCtrl.removeChild($index)">Remove Person</button>
+                   </li>
+                
+                   
+                </ul>
+                </ng-form>
+                
+                
+                
+                
+                
+                <div ng-switch="inscription.public_type">
+                    <div ng-switch-when="adolescent" >
+                        <div  ng-include="formCtrl.infos_individuel"></div>
+                    </div>
+                    <div ng-switch-when="jeune-adulte" >
+                        <div  ng-include="formCtrl.infos_individuel"></div>
+                    </div>
+                    <div ng-switch-when="couple" >
+                        <div  ng-include="formCtrl.couple"></div>
+                    </div>
+                </div>
+                <div ng-include="formCtrl.questions"></div>
+                <!--PAIEMENT-->
+                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==6}" ng-if="formCtrl.isPaiement" ng-click="formCtrl.setCurrentStage(5,paiement.$valid)">
+                    {{contentDetailCtrl.getLabelByName('paf_text')}}
+                    <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>6"></span>
+                </h2>
+                <ng-form name="paiement" ng-if="formCtrl.isPaiement">
+                   <div class="row">
+                        <div class="col-xs-12 text-center">
+                            <p>{{rubedo.translate("Block.Inscription.Paf")}} <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('paf_text')}}"></rubedo-field></p>
+                            <div class="row"><label class="label_style" style="text-align:center; float:none" for="montant">{{rubedo.translate("Block.Inscription.Paf.Montant")}}</label></div>
+                            <p><input type="text" class="number" ng-model="inscription.montantTotalAPayer" ng-pattern="/^[0-9]{1,4}$/"><b>€</b></p>
+                        </div>
+                    </div>
+                   <div class="row">
+                        <div class="col-xs-6">
+                            <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.Maintenant")}}</label>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="col-xs-12" ng-if="contentDetailCtrl.content.fields.accompte == 0">
+                                <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement.accompte" required>
+                                <label for="accompte">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Rien")}}</label>    
+                            </div>
+                            <div class="col-xs-12" ng-if="formCtrl.content.fields.accompte > 0">
+                                <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement.accompte" checked="checked" required>
+                                <label for="accompte">{{contentDetailCtrl.getFieldByName('accompte')}} : {{formCtrl.content.fields.accompte}}</label> 
+                            </div>                            
+                            <div class="col-xs-12" ng-repeat="option in formCtrl.content.fields.paimentOption.paimentOption">
+                                <input type="radio"  name="paiement_maintenant" ng-attr-id="{{option}}" ng-model="inscription.paiement[option]" required>
+                                <label for="{{option}}" ng-if="option == 'partie'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Partie")}}<input type="text" class="complement_text" name="montantAPayerMaintenant" ng-model="inscription.paiement.montantAPayerMaintenant" ng-required="paiement_maintenant == 'partie' "></label> 
+                                <label for="{{option}}" ng-if="option == 'totalite'">{{rubedo.translate("Block.Inscription.Paf.Maintenant.Totalite")}}</label> 
+                            </div>
+                        </div>  
+                  
+                        
+                        
+                        
+                   </div>
+                    <div class="row text-center">
+                        <div class="button submit" ng-class="{'disabled' : paiement.$invalid}" ng-click="formCtrl.setCurrentStage(6,paiement.$valid)">{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div><!----inscription_form.$valid)-->
+                    </div>
+                </ng-form>
+                <!--remarques-->
+                <h2 class="capital txt-red displayed" ng-click="formCtrl.setCurrentStage(6,remarques.$valid)">{{rubedo.translate("Block.Inscription.Remarques")}}</h2>
+                <ng-form name="remarques">
+                   <div class="row">
+                        <div class="col-sm-3"><div class="row vide"></div></div>
+                        <div class="col-sm-6">
+                            <div class="col-xs-12">
+                                <textarea rows="5" id="remarques" ng-model="inscription.remarques" name="remarques" placeholder=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </ng-form>
+                <div ng-include="formCtrl.infosFin"></div>
+
+                
+
+                
+                <div class="row text-center">
+                        <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(7,inscription_form.$valid)">{{rubedo.translate("Block.Inscription.Inscrire")}}</div><!----inscription_form.$valid)-->
+                    </div>
+                <!---submit inscription-->
+                {{inscription}}
+        </form>
+        
+
+        
+</div>
