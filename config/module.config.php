@@ -353,7 +353,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '/js/goodnews.js'
+                    '/js/baskerville.js'
                 ),
             ),
         ),
