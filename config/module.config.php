@@ -349,7 +349,7 @@ return array(
                  'label' => 'Baskerville',
                 'basePath' => realpath(__DIR__ . '/../theme/baskerville'),
                 'css' => array(
-                    '/css/goodnews.css',
+                    '/css/baskerville.css',
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
