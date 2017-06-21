@@ -6,14 +6,9 @@ blocksConfig.simpleContact={
            "template": "/templates/blocks/simpleContact.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
-
-
 blocksConfig.bg_image={
            "template": "/templates/blocks/bg_image.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
-};
-blocksConfig.footer={
-           "template": "/templates/blocks/footer.html"
 };
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
@@ -28,10 +23,7 @@ blocksConfig.carrousel2={
            "template": "/templates/blocks/carrousel_fullWidth.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
 };
-blocksConfig.redirect={
-           "template": "/templates/blocks/redirect.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/redirectController.js"]
-};
+
 
 
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
