@@ -346,17 +346,14 @@ return array(
                 ),
             ),
 											'baskerville' => array(
-                'label' => 'Baskerville',
+                 'label' => 'Baskerville',
                 'basePath' => realpath(__DIR__ . '/../theme/baskerville'),
                 'css' => array(
-                    '/css/baskerville.css',
+                    '/css/goodnews.css',
+                    '/css/font-awesome.css'
                 ),
                 'js' => array(
-																				'../js/lazy-image.js',
-                    '/js/baskerville.js'
-                ),
-                'angularModules' => array(
-                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                    '/js/goodnews.js'
                 ),
             ),
         ),
