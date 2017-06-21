@@ -352,7 +352,8 @@ return array(
                     '/css/baskerville.css',
                 ),
                 'js' => array(
-                    '/js/baskerville.js',
+																				'../js/lazy-image.js',
+                    '/js/baskerville.js'
                 ),
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
