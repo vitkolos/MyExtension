@@ -64,6 +64,18 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 				a{color:@txt; &:hover{text-decoration: none}}
 				.post-title{line-height: 120%; word-wrap:break-word; }
 }
+.post-header:after{
+    border: 11px solid transparent;
+    border-top-color: #fff;
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 10%;
+    margin-bottom: -21px;
+    margin-left: 1px;
+    position: absolute;
+    z-index: 11;
+}
 .post-content{padding: 10%}
 .featured-media{
 		overflow: hidden;min-height: 100px;

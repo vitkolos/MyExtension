@@ -1,7 +1,9 @@
 <style>
     .grid{ margin: 0 auto; display: block}
 /* fluid 5 columns */
-.masonry-brick { width: 100%;background: white; margin-bottom: 35px;}
+.masonry-brick { width: 100%;background: white; margin-bottom: 35px;    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);}
 .gutter-sizer{width:0%}
 
 @media screen and (min-width: 400px) {.masonry-brick { width: 49%; }.gutter-sizer{width:2%}}
@@ -56,6 +58,7 @@
                     </div>
                     <div class="post-content">
                         <p>{{datum.summary}}</p>
+                        <p><a ng-href="{{ datum.url }}">{{rubedo.translate("Block.ContentList.Label.ReadMore","")}} →</a></p>
                     </div>
                     <div class="post-meta">
                         <time><i class="fa fa-clock-o"></i> {{datum.lastUpdateTime*1000 | date:'mediumDate'}}</time>
