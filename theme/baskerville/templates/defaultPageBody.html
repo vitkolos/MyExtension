@@ -1,7 +1,10 @@
 <div class="container-fluid">
-    <div ng-repeat="row in rubedo.current.page.rows track by $index" ng-class="{'container':($index>0&&!$last)}">
+    <div ng-repeat="row in rubedo.current.page.rows track by $index" ng-class="{'container':(!$first&&!$last), 'footer':$last}">
         <div ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
-         ng-class="{'padding-large':!$first, 'footer':$last}" class="row"></div>
+         ng-class="{'padding-large':!$first}" class="row" ng-if="!$last"></div>
+        <div class="container" ng-if="$last">
+            <div class="row" ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"> </div>
+        </div>
     </div>
          
 </div>
