@@ -40,7 +40,7 @@
                 </div>
             <hr/>
         </div>-->
-        <div class="col-md-12">
+        <div class="col-md-12" ng-if="searchResultsCtrl.data.length>0">
             <div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
                 <div class="masonry-brick" ng-repeat="datum in searchResultsCtrl.data track by $index"  >
                     <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
