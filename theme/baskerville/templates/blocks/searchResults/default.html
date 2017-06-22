@@ -49,9 +49,10 @@
                     </div>
                     <!--<h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}"></a></h4>-->
                     <div class="featured-media">
-                        <a ng-href="{{ datum.url }}"><img class="img-responsive " ng-if="datum['fields.image']" style="width:100%""
-                                                                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'390px',height:'195px',mode:'crop'}) }}"
-                                                                         alt="{{ datum.title }}"/></a>
+                        <a ng-href="{{ datum.url }}">
+                            <img class="img-responsive " ng-if="datum['fields.image']" style="width:100%""
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'390px',height:'195px',mode:'crop'}) }}"
+                                alt="{{ datum.title }}"/></a>
                     </div>
                     <div class="post-content">
                         <p>{{datum.summary}}</p>
