@@ -77,12 +77,21 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
     z-index: 11;
 }
 .post-content{padding: 10%}
+.post .post-content{
+		    line-height: 180%;
+    margin-bottom: 1.1em;
+}
 .featured-media{
 		overflow: hidden;min-height: 100px;
 		img{transition: all .4s ease; opacity: 1}
-		&:hover img{transform:scale(1.15); opacity: 0.8}
+		&:hover img{transform:scale(1.1); opacity: 0.8}
 }
 .post-meta{
 		    background: #f9f9f9;
     padding: 20px 10%; font-style: italic;
+}
+
+.content{
+		padding: 5% 0;
+		>div{background: white;}
 }
