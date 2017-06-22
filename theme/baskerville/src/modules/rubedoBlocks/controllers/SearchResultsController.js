@@ -18,12 +18,20 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Search.Label.OrderByRelevance');
         me.template = themePath+"/templates/blocks/searchResults/"+config.displayMode+".html";
         var predefinedFacets = !config.predefinedFacets?{}:JSON.parse(config.predefinedFacets);
+								if ($scope.rubedo.current.page.taxonomy) {
+												angular.forEach($scope.rubedo.current.page.taxonomy, function(value, key){
+																if (value.length>0) {
+																				console.log(value);
+																				predefinedFacets[key] = value[0];
+																}
+												});
+								}
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
         var defaultOptions = {
             start: me.start,
             limit: me.limit,
             constrainToSite: config.constrainToSite,
-            predefinedFacets: config.predefinedFacets,
+            predefinedFacets: predefinedFacets,
             displayMode: config.displayMode,
             displayedFacets: config.displayedFacets,
             orderby: me.orderBy,
