@@ -7,6 +7,7 @@
 @min_md:992px;
 @min_lg:1200px;
 @txt: #444;
+@link:#13c4a5;
 @bg:#f1f1f1;
 
 .container-fluid{
@@ -15,6 +16,7 @@
 body{font-size:16px; min-height:100%; line-height: 1.4em;overflow-x:hidden; background: @bg }
 p{font-family: 'Roboto'}
 html,body{font-family: 'Roboto'; height: 100%; overflow: auto;color: @txt; }
+a, a:hover{color:@link}
 /*MENU*/
 nav.navbar{
 		background-color: #1d1d1d; border: 0; border-radius: 0;
@@ -62,3 +64,8 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 				.post-title{line-height: 120%; word-wrap:break-word}
 }
 .post-content{padding: 10%}
+.featured-media{
+		overflow: hidden;
+		img{transition: all .4s ease}
+		&:hover img{tansform:scale(1.15) }
+}

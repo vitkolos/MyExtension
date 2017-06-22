@@ -45,12 +45,14 @@
             <div class="grid" masonry item-selector=".masonry-brick"  masonry-options="{ gutter: '.gutter-sizer',percentPosition: true, horizontalOrder: true }" reload-on-resize>
                 <div class="masonry-brick" ng-repeat="datum in searchResultsCtrl.data track by $index"  >
                     <div class="post-header">
-                        <h2>{{datum.title}}</h2>
+                        <a ng-href="{{ datum.url }}"><h2>{{datum.title}}</h2></a>
                     </div>
                     <!--<h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}"></a></h4>-->
-                    <img class="img-responsive " ng-if="datum['fields.image']" style="width:100%""
-                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'390px',height:'195px',mode:'crop'}) }}"
-                                                                     alt="{{ content.fields.text }}"/>
+                    <div class="featured-media">
+                        <a ng-href="{{ datum.url }}"><img class="img-responsive " ng-if="datum['fields.image']" style="width:100%""
+                                                                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'390px',height:'195px',mode:'crop'}) }}"
+                                                                         alt="{{ content.fields.text }}"/></a>
+                    </div>
                     <div class="post-content">
                         <p>{{datum.summary |limitTo:300}}...</p>
                     </div>
