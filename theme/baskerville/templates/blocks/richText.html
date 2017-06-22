@@ -1,0 +1,6 @@
+<div ng-controller="RichTextController as richTextCtrl" class=" content-detail" >
+    <div class="post-content">
+        <rubedo-field ng-repeat="field in richTextCtrl.content.type.fields track by $index" ng-if="fieldEntity[field.config.name]"></rubedo-field>
+    </div>
+    <div class="clearfix"></div>
+</div>
