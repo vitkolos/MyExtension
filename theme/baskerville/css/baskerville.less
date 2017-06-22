@@ -61,11 +61,15 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
     border-bottom: 1px solid #eee;
     padding: 8% 10%;
     position: relative;
-				.post-title{line-height: 120%; word-wrap:break-word}
+				.post-title{line-height: 120%; word-wrap:break-word; a{color:@txt; &:hover{text-decoration: none}}}
 }
 .post-content{padding: 10%}
 .featured-media{
 		overflow: hidden;
-		img{transition: all .4s ease}
-		&:hover img{tansform:scale(1.15) }
+		img{transition: all .4s ease; opacity: 1}
+		&:hover img{transform:scale(1.15); opacity: 0.8}
+}
+.post-meta{
+		    background: #f9f9f9;
+    padding: 0 10%;
 }

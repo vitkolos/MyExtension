@@ -51,10 +51,13 @@
                     <div class="featured-media">
                         <a ng-href="{{ datum.url }}"><img class="img-responsive " ng-if="datum['fields.image']" style="width:100%""
                                                                          ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'390px',height:'195px',mode:'crop'}) }}"
-                                                                         alt="{{ content.fields.text }}"/></a>
+                                                                         alt="{{ datum.title }}"/></a>
                     </div>
                     <div class="post-content">
-                        <p>{{datum.summary |limitTo:300}}...</p>
+                        <p>{{datum.summary}}</p>
+                    </div>
+                    <div class="post-meta">
+                        <time><i class="fa fa-clock-o"></i> {{datum.lastUpdateTime*1000 | date:'mediumDate'}}</time>
                     </div>
                     
                 </div>
