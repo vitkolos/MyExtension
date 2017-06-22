@@ -132,7 +132,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																email:$scope.inscription.email,
 																montant:$scope.inscription.montantTotalAPayer,
 																proposition:me.proposition.text,
-																idInscription: me.lastInscription.title,
+																idInscription: me.lastInscription.text,
 																paymentConfID:config.contentId,
 																paymentMeans:$scope.inscription.modePaiement,
 																paymentType:'paf'

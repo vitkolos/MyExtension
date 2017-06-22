@@ -15,11 +15,11 @@
         <!--code pour un calendrier basé sur une requête-->
         <tbody ng-if="!calendarCtrl.isSpecialCalendar">
             <tr ng-repeat="content in calendarCtrl.contents track by $index">
-                <th class="cal-date" data-th="Date"><a ng-href="{{ content.detailPageUrl }}">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</a></th>
-                <th class="cal-prop" data-th="Proposition"><a ng-href="{{ content.detailPageUrl }}">
+                <th class="cal-date" data-th='{{rubedo.translate("Date", "Date")}}'><a ng-href="{{ content.detailPageUrl }}">{{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</a></th>
+                <th class="cal-prop" data-th='{{rubedo.translate("Proposition", "Proposition")}}'><a ng-href="{{ content.detailPageUrl }}">
                         {{ content.fields.text }}</a>
                 </th>
-                <th class="cal-date" data-th="Lieu"><a ng-href="{{ content.detailPageUrl }}">{{content.fields.positionName}}</a></th>
+                <th class="cal-date" data-th='{{rubedo.translate("Block.Calendar.Place", "Lieu")}}'><a ng-href="{{ content.detailPageUrl }}">{{content.fields.positionName}}</a></th>
                 <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.fields.dateDebut) && content.fields.inscriptionState.inscriptionState=='ouverte' "><a class="txt-red" ng-href="{{ content.detailPageUrl }}">{{rubedo.translate("Inscription", "S'inscrire")}} <i class="fa fa-arrow-circle-right"></i></a></th>
                 <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.fields.dateDebut) && content.fields.inscriptionState.inscriptionState=='close' "><a class="txt-marron" ng-href="{{ content.detailPageUrl }}">{{rubedo.translate("Block.Inscription.Statut.Close", "Inscriptions fermées")}}</a></th>
                 <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.fields.dateDebut) && content.fields.inscriptionState.inscriptionState=='septembre' "><a class="txt-marron" ng-href="{{ content.detailPageUrl }}">Inscriptions en septembre</a></th>

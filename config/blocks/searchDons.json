@@ -94,6 +94,7 @@
             "constrainToSite": false,
             "displayedFacets": "['all']",
             "autoComplete": false,
+												"predefinedFacets" : "{'type':'56be0ff7c445ecc41a8b4ee0'}",
             "columns": 3,
             "pageSize":12
         }

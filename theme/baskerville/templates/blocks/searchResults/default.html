@@ -1,0 +1,65 @@
+<style>
+    .grid{ margin: 0 auto; display: block}
+/* fluid 5 columns */
+.masonry-brick { width: 100%;background: white; margin-bottom: 35px;    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);}
+.gutter-sizer{width:0%}
+
+@media screen and (min-width: 400px) {.masonry-brick { width: 49%; }.gutter-sizer{width:2%}}
+@media screen and (min-width: 768px) {.masonry-brick { width: 32%; }.gutter-sizer{width:2%}}
+@media screen and (min-width: 1200px) {.masonry-brick { width: 32%; } .gutter-sizer{width:2%}}
+
+</style>
+<!--<nav class="navbar navbar-default" style="background:white">
+    <div class="navbar-header">
+            <span class="navbar-brand">{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} :
+               <span ng-repeat-start="term in searchResultsCtrl.activeTerms track by $index">{{term.operator}}</span>
+                <span class="badge cursor-as-pointer" ng-repeat-end
+                      ng-click="searchResultsCtrl.clickOnFacets(term.facetId, term.term)">
+                    {{term.label}}&nbsp;&times;
+                </span>
+            </span>
+    </div>
+</nav>-->
+<div class="row">
+
+        <div class="col-md-12" ng-if="searchResultsCtrl.data.length>0">
+            <div class="grid" masonry item-selector=".masonry-brick"  masonry-options="{ gutter: '.gutter-sizer',percentPosition: true, horizontalOrder: true }" reload-on-resize>
+                <div class="masonry-brick" ng-repeat="datum in searchResultsCtrl.data track by $index"  >
+                    <div class="post-header">
+                        <a ng-href="{{ datum.url }}"><h3>{{datum.title}}</h3></a>
+                    </div>
+                    <!--<h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}"></a></h4>-->
+                    <div class="featured-media">
+                        <a ng-href="{{ datum.url }}">
+                            <img class="img-responsive " ng-if="datum['fields.image']" style="width:100%""
+                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'390px',height:'195px',mode:'crop'}) }}"
+                                alt="{{ datum.title }}"/></a>
+                    </div>
+                    <div class="post-content">
+                        <p>{{datum.summary}}</p>
+                        <p><a ng-href="{{ datum.url }}">{{rubedo.translate("Block.ContentList.Label.ReadMore","")}} →</a></p>
+                    </div>
+                    <div class="post-meta">
+                        <time><i class="fa fa-clock-o"></i> {{datum.lastUpdateTime*1000 | date:'mediumDate'}}</time>
+                    </div>
+                    
+                </div>
+                <div class="gutter-sizer"></div>
+            </div>
+        </div>
+    
+        
+        
+        
+        
+
+        <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"
+                   count="searchResultsCtrl.count"
+                   change-page-action="searchResultsCtrl.changePageAction()"></paginator>
+    </div>
+</div>
+
+
+

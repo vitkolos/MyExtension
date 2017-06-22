@@ -52,6 +52,7 @@ class SitesConfigCcn extends AbstractCollection
                     break;
             //ITALIE
             case "www.chemin-neuf.it" :
+            case "www.esercizi-altavilla.it" :
                     $accountName="italie";
                     break;
             //ESPAGNE

@@ -1,0 +1,9 @@
+<div ng-controller="SearchResultsController as searchResultsCtrl">
+<div class="row">
+    <div class="col-sm-12">
+        <h3 ng-if="searchResultsCtrl.count > 1">{{rubedo.translate('Search.ThereAre','There are')}} <span>{{searchResultsCtrl.count}}</span> {{rubedo.translate('Search.Results','results')}}</h3>
+        <h3 ng-if="searchResultsCtrl.count <= 1">{{rubedo.translate('Search.ThereIs','There is')}} <span>{{searchResultsCtrl.count}}</span> {{rubedo.translate('Search.Result','result')}}</h3>        
+    </div>
+</div>
+    <ng-include src="searchResultsCtrl.template"></ng-include>
+</div>

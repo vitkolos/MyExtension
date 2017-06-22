@@ -1,0 +1,19 @@
+<div class=" content-detail" itemscope itemtype="http://schema.org/NewsArticle">
+    <div>
+        <meta itemprop="image" content="{{'https://www.chemin-neuf.fr' + rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'768px',mode:'boxed'}) }}" />
+        <meta itemprop="author" content="{{contentDetailCtrl.content.createUser.fullName}}">
+        <meta itemprop="publisher" content="{{rubedo.current.site.author}}">
+        <meta itemprop="datePublished" content="{{contentDetailCtrl.content.createTime *1000 | date:'yyyy-MM-ddTHH:mm:ssZ' }}">
+        <meta itemprop="dateModified" content="{{contentDetailCtrl.content.lastUpdateTime *1000 | date:'yyyy-MM-ddTHH:mm:ssZ' }}">
+        <div class="post-header">
+            <rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" ></rubedo-field><!--Texte-->
+        </div>
+        <rubedo-field field = "{{contentDetailCtrl.getFieldByName('image')}}" ></rubedo-field><!--Texte-->
+        <div class="post-content">
+            <rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ></rubedo-field><!--Texte-->
+        </div>
+            
+            
+    </div>
+</div>
+
