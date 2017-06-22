@@ -10,15 +10,28 @@
 
 
 .container-fluid{
-		padding: 0;
+		padding: 0; overflow-x: hidden;
 }
 body{font-size:16px; min-height:100%; line-height: 1.4em;overflow-x:hidden }
 p{font-family: 'Roboto'}
 html,body{font-family: 'Roboto'; height: 100%; overflow: auto;background-color: white;color: @txt; }
 /*MENU*/
 nav.navbar{
-		background-color: #1d1d1d;
-		li a {color:#999}
+		background-color: #1d1d1d; border: 0;
+		li a {color:#999; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; padding: 27px;	}
+		li:before{
+				    color: #444;
+    content: "\002F";
+    display: block;
+    font-size: 16px;
+    font-weight: 300;
+    margin-right: -3px;
+    margin-top: -9px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    z-index: 1000;
+		}
 }
 /*BACKGROUND IMAGE*/
 header.content{
@@ -27,7 +40,7 @@ header.content{
   background-attachment: scroll;
   background-size: cover;
   h1,h2,h3,h4,h5,p{color:white; font-family: 'Pacifico', serif;};
-height:220px;
+		height:220px;
     //box-shadow:inset 0 0 0 1000px rgba(84,84,84,.33);
     line-height: 220px;
     text-align: center;
