@@ -1,3 +1,13 @@
+<style>
+    .grid{ margin: 0 auto; display: block}
+/* fluid 5 columns */
+.masonry-brick { width: 100%;margin-bottom: 35px; }
+.gutter-sizer{width:0%}
+@media screen and (min-width: 400px) {.masonry-brick { width: 49%; }.gutter-sizer{width:2%}}
+@media screen and (min-width: 768px) {.masonry-brick { width: 32%; }.gutter-sizer{width:2%}}
+@media screen and (min-width: 1200px) {.masonry-brick { width: 24.25%; } .gutter-sizer{width:1%}}
+
+</style>
 <nav class="navbar navbar-default" style="background:white">
     <div class="navbar-header">
             <span class="navbar-brand">{{rubedo.translate('Blocks.Search.Label.SearchCriteria', 'Search criteria')}} :
@@ -10,36 +20,7 @@
     </div>
 </nav>
 <div class="row">
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <form ng-submit="searchResultsCtrl.onSubmit()" role="form">
-                    <div class="input-group">
-                        <input class="form-control" type="text" ng-model="searchResultsCtrl.query" placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
-                            <span class="input-group-btn"><button class="btn btn-default" type="submit">
-                                <span class="glyphicon glyphicon-search"></span></button></span>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <div class="panel panel-default" ng-repeat="facet in searchResultsCtrl.facets track by $index" ng-if="facet.terms || facet.ranges">
-            <div class="panel-heading">{{facet.label}}&nbsp;<span
-                    ng-if="facet.total && (facet.total - facet.other) <= searchResultsCtrl.count" class="badge pull-right">{{facet.total - facet.other}}</span></div>
-            <div class="panel-body">
-                <ul>
-                    <li ng-if="facet.terms" class="cursor-as-pointer" ng-repeat="term in facet.terms track by $index"
-                        ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.term)">
-                        {{term.label}}&nbsp;({{term.count}})
-                    </li>
-                    <li ng-if="facet.ranges" class="cursor-as-pointer" ng-repeat="term in facet.ranges track by $index"
-                        ng-click="searchResultsCtrl.clickOnFacets(facet.id, term.key)">
-                        {{term.label}}&nbsp;({{term.count}})
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-9">
+    <!--<div class="col-md-12">
         <div class="resultData row" ng-repeat="datum in searchResultsCtrl.data track by $index">
                 <div class="col-xs-12 col-sm-5">
                         <a ng-href="{{ datum.url }}">
@@ -49,8 +30,7 @@
                         </a>
                 </div>
                 <div class="col-xs-12 col-sm-7">
-                         <!--<p class="thin" ng-if="content.taxonomy['5666a87c3bc325fc368b4568']"><span class="glyphicon glyphicon-folder-open"></span><span class="tags" ng-repeat="tagId in content.taxonomy['5666a87c3bc325fc368b4568']">{{contentListCtrl.getTermLabel(tagId)|uppercase}}</span></p>
-                        -->
+
                         <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
                         <p>{{datum.summary |limitTo:300}}...</p>
                         <p class="thin">
@@ -59,7 +39,25 @@
                        </p>
                 </div>
             <hr/>
+        </div>-->
+        <div class="col-md-12">
+            <div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
+                <div class="masonry-brick" ng-repeat="datum in searchResultsCtrl.data track by $index"  >
+                    <h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}">{{datum.title}}</a></h4>
+                    <img class="img-responsive pull-right" ng-if="datum['fields.image']" style="width:100%""
+                                                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(datum['fields.image'][0],{width:'390px',height:'195px',mode:'crop'}) }}"
+                                                                     alt="{{ content.fields.text }}"/>
+                    <p>{{datum.summary |limitTo:300}}...</p>
+                                                    
+                    <div class="gutter-sizer"></div>
+                </div>
+            </div>
         </div>
+    
+        
+        
+        
+        
 
         <paginator start="searchResultsCtrl.start" limit="searchResultsCtrl.limit"
                    count="searchResultsCtrl.count"
