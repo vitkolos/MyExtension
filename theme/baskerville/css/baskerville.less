@@ -10,6 +10,7 @@
 @link:#13c4a5;
 @bg:#f1f1f1;
 @bg_footer:#262626;
+/*CSS UTILITIES*/
 .container-fluid{
 		padding: 0; overflow-x: hidden;
 }
@@ -37,6 +38,14 @@ nav.navbar{
 		}
 }
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{background: transparent; color:white}
+button, .button{
+		  background: #2b3542;
+    border-radius: 3px;
+    color: #fff;
+    font-size: .9em;
+    padding: 16px 20px;
+				&:hover{background: @link; color: white; text-decoration: none}
+}
 /*BACKGROUND IMAGE*/
 header.content{
   background-repeat: no-repeat;
