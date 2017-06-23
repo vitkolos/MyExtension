@@ -355,6 +355,9 @@ return array(
                 'js' => array(
                     '/js/baskerville.js'
                 ),
+																'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
             ),
         ),
     ),
