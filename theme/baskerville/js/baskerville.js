@@ -27,7 +27,7 @@ blocksConfig.contentList= {
 };
 blocksConfig.imageBatchUpload={
            "template": "/templates/blocks/imageBatchUpload.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/ImageBatchUploadController.js"]
 };
 
 angular.module('rubedo').filter('ligneNonVide', function () {
