@@ -25,7 +25,10 @@ blocksConfig.contentList= {
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentListController.js","/src/modules/rubedoBlocks/directives/PaginatorDirective.js"],
             "externalDependencies":['//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js']
 };
-								
+blocksConfig.imageBatchUpload={
+           "template": "/templates/blocks/imageBatchUpload.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
+};						
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
