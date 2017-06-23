@@ -19,7 +19,13 @@ blocksConfig.searchResults={
             "template": "/templates/blocks/searchResults.html",
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchResultsController.js","/src/modules/rubedoBlocks/directives/PaginatorDirective.js"],
             "externalDependencies":['/components/jquery/fullCalendar/lib/jquery-ui.custom.min.js','/components/jquery/fullCalendar/fullcalendar.min.js','/components/jquery/fullCalendar/lang/en-gb.js','/components/jquery/fullCalendar/lang/fr.js','//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js']
-        },
+};
+blocksConfig.contentList= {
+            "template": "/templates/blocks/contentList.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentListController.js","/src/modules/rubedoBlocks/directives/PaginatorDirective.js"],
+            "externalDependencies":['//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js']
+};
+								
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];

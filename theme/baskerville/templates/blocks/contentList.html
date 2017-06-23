@@ -1,3 +1,16 @@
+<style>
+    .grid{ margin: 0 auto; display: block; margin-bottom: 50px;}
+/* fluid 5 columns */
+.masonry-brick { width: 100%;background: white; margin-bottom: 35px;    -webkit-box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 1px 4px rgba(0,0,0,.1);
+    box-shadow: 0 1px 4px rgba(0,0,0,.1);}
+.gutter-sizer{width:0%}
+
+@media screen and (min-width: 400px) {.masonry-brick { width: 49%; }.gutter-sizer{width:2%}}
+@media screen and (min-width: 768px) {.masonry-brick { width: 32%; }.gutter-sizer{width:2%}}
+@media screen and (min-width: 1200px) {.masonry-brick { width: 32%; } .gutter-sizer{width:2%}}
+
+</style>
 <div ng-controller="ContentListController as contentListCtrl">
 
     <div class="row contentList" ng-switch="blockConfig.columns" style="margin-top:24px">
@@ -53,6 +66,35 @@
              ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
              ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
             <!--<div id="infiniteScrollCtrl">-->
+            <div class="col-md-12" ng-if="contentListCtrl.contents.length>0">
+                <div class="grid" masonry item-selector=".masonry-brick"  masonry-options="{ gutter: '.gutter-sizer',percentPosition: true, horizontalOrder: true }" reload-on-resize>
+                    <div class="masonry-brick" ng-repeat="content in contentListCtrl.contents track by $index"  ng-controller="ContentListDetailController as contentListDetailCtrl">
+                        <div class="post-header">
+                            <a ng-href="{{ content.detailPageUrl }}"><h3>{{content.fields.text }}</h3></a>
+                        </div>
+                        <!--<h4><a target="{{searchResultsCtrl.target(datum)}}" ng-href="{{datum.url}}"></a></h4>-->
+                        <div class="featured-media">
+                            <a ng-href="{{ content.detailPageUrl }}">
+                                <img class="img-responsive " ng-if="content.fields.image" style="width:100%"
+                                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
+                                    alt="{{content.fields.text }}"/></a>
+                        </div>
+                        <div class="post-content">
+                            <p>{{content.fields.summary }}</p>
+                            <p><a ng-href="{{ content.detailPageUrl }}">{{rubedo.translate("Block.ContentList.Label.ReadMore","")}} →</a></p>
+                        </div>
+                        <div class="post-meta">
+                            <time><i class="fa fa-clock-o"></i> {{content.createTime*1000 | date:'mediumDate'}}</time>
+                        </div>
+                    
+                    </div>
+                    <div class="gutter-sizer"></div>
+                </div>
+            </div>
+                
+            
+            
+            <!--
             <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
                 <div class="col-md-4 col-sm-6 col-xs-12" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
                     <div class="list-blog">
@@ -74,7 +116,7 @@
                         {{rubedo.translate("Label.Edit", "Edit")}}
                     </a>                
                 </div>
-            </div>
+            </div>-->
         </div>
           
          
