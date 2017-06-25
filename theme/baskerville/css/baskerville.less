@@ -18,6 +18,8 @@ body{font-size:16px; min-height:100%; line-height: 1.4em;overflow-x:hidden; back
 p{font-family: 'Roboto'}
 html,body{font-family: 'Roboto'; height: 100%; overflow: auto;color: @txt; }
 a, a:hover{color:@link}
+.img-responsive{height:auto !important}
+
 /*MENU*/
 nav.navbar{
 		background-color: #1d1d1d; border: 0; border-radius: 0;
@@ -38,11 +40,13 @@ nav.navbar{
     z-index: 1000;
 		}
 }
+li:hover>.dropdown-menu{display: block}
 .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{color:white}
 .navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus,.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{background: transparent; color:white}
 .dropdown-menu{
 		background-color: #2d2d2d;
 		li:nth-of-type(n+1){border-top:1px solid rgba(255,255,255,.075)}
+		&>li>a{padding: 20px !important}
 }
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{background: transparent}
 button, .button{
