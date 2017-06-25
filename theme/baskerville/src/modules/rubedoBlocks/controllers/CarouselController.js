@@ -34,7 +34,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
 																												else {
                             RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
                                     if (response.data.success){
-                                        content.contentLinkUrl = $filter('cleanUrl')(response.data.url);
+                                        response.data.url;
                                     }
                                 });
 																												}
