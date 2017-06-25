@@ -22,7 +22,8 @@ a, a:hover{color:@link}
 nav.navbar{
 		background-color: #1d1d1d; border: 0; border-radius: 0;
 		li a, .navbar-brand {color:#999; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; padding: 27px;	}
-		li:hover a, .navbar-header:hover a{color: white}
+		.navbar-brand{height: auto}
+		li:hover a, .navbar-header:hover a, .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus{color: white}
 		li:before{
 				    color: #444;
     content: "\002F";
@@ -37,7 +38,7 @@ nav.navbar{
     z-index: 1000;
 		}
 }
-.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus{background: transparent; color:white}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus,.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus{background: transparent; color:white}
 button, .button{
 		display: inline-block;
 		  background: #2b3542;
