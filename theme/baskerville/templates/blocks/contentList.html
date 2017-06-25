@@ -67,7 +67,7 @@
              ng-style="contentListCtrl.blockStyle" ng-switch-when="3">
             <!--<div id="infiniteScrollCtrl">-->
             <div class="col-md-12" ng-if="contentListCtrl.contents.length>0">
-                <div class="grid" masonry item-selector=".masonry-brick"  masonry-options="{ gutter: '.gutter-sizer',percentPosition: true, horizontalOrder: true }" reload-on-resize>
+                <div class="grid" masonry  masonry-options="{ gutter: '.gutter-sizer',percentPosition: true, horizontalOrder: true }" reload-on-resize>
                     <div class="masonry-brick" ng-repeat="content in contentListCtrl.contents track by $index"  ng-controller="ContentListDetailController as contentListDetailCtrl">
                         <div class="post-header">
                             <a ng-href="{{ content.detailPageUrl }}"><h3>{{content.fields.text }}</h3></a>
