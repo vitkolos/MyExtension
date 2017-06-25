@@ -163,10 +163,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if(me.content.type.code&&me.content.type.code!=""){
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
                                 function (response){
-                                    if ($scope.rubedo.current.page.id=="5669ec213bc325f05f8b4579") {
-                                        me.detailTemplate=themePath+'/templates/blocks/contentDetail/blog.html';
-                                    }
-                                    else me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
+                                    me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
                                     $scope.fields=me.transformForFront(me.content.type.fields);
                                     $scope.clearORPlaceholderHeight();
 
