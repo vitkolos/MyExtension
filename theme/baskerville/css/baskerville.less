@@ -23,7 +23,7 @@ nav.navbar{
 		background-color: #1d1d1d; border: 0; border-radius: 0;
 		li a, .navbar-brand {color:#999; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; padding: 27px;	}
 		.navbar-brand{height: auto}
-		li:hover a, .navbar-header:hover a{color: white}
+		li:hover> a, .navbar-header:hover> a{color: white}
 		li:before{
 				    color: #444;
     content: "\002F";
@@ -44,6 +44,7 @@ nav.navbar{
 		background-color: #2d2d2d;
 		li:nth-of-type(n+1){border-top:1px solid rgba(255,255,255,.075)}
 }
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{background: transparent}
 button, .button{
 		display: inline-block;
 		  background: #2b3542;
