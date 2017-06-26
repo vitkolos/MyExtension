@@ -47,10 +47,12 @@ li:hover>.dropdown-menu{display: block}
 		background-color: #2d2d2d;
 		li:nth-of-type(n+1){border-top:1px solid rgba(255,255,255,.075)}
 		&>li>a{padding: 20px !important}
-		&:before{
+		
+}
+.dropdown-menu:before{
 				border: 10px solid transparent;
     border-bottom-color: #2d2d2d;
-    content: "";
+    content: '';
     display: block;
     left: 50%;
     margin-left: -10px;
@@ -58,7 +60,6 @@ li:hover>.dropdown-menu{display: block}
     top: 0;
     z-index: 1000;
 		}
-}
 .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus{background: transparent}
 button, .button{
 		display: inline-block;
