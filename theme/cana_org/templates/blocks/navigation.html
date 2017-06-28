@@ -1,4 +1,4 @@
-<nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl" ng-class="{'transparent':rubedo.current.page.id==blockConfig.rootPage}">
+<nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  scroll-position="scroll" ng-class="{'transparent':(rubedo.current.page.id==blockConfig.rootPage && scroll<500)}">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">

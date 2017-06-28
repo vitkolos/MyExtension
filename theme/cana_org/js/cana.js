@@ -39,38 +39,7 @@ blocksConfig.imageBatchUpload={
            "template": "/templates/blocks/imageBatchUpload.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
 };
-angular.module('rubedo').filter('ligneNonVide', function () {
-           return function (input) {
-                      var filtered = [];
-		      var contentDisplay = false;
-                      angular.forEach(input, function(row, index) {
-				// si la 1re colonne est terminale et non vide
-                                 if (row.columns[0].isTerminal&&row.columns[0].blocks) {
-				    // toujours afficher la 1re ligne (menu) et les 2 dernires (footer)
-				    if (index ==0 || index >= input.length-2) {
-					filtered.push(row);
-				    }
-				    // si la page sert ˆ afficher un contenu (en 2me ligne) on n'affiche pas les autres lignes
-				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
-					filtered.push(row);
-					contentDisplay = true;
-				    }
-				    //si la ligne a un bloc de détail en premier, on affiche seulement le bloc dŽtail dans la ligne
-				    else if (row.columns[0].blocks[0].bType=="contentDetail" && !contentDisplay) {
-					row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
-					filtered.push(row); 	
-				    }
-				    else if (row.columns[0].rows && row.columns[0].rows.length>0) {
-						filtered.push(row);
-				    }
-				    // sinon on affiche tout
-				    else if(!contentDisplay) {filtered.push(row);}
-                                 }
-                      });
-                      return filtered;
-		    
-           };
-  });
+
 
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {
@@ -95,17 +64,20 @@ angular.module('rubedo').filter('ligneNonVide', function () {
     };
 }]);
 
- angular.module('rubedoBlocks').directive('balanceText', function ($timeout) {
-    return {
-        restrict: 'C',
-        link:  function (scope, element, attr) {
-           function balanceText() {
-                      element.balanceText();
-            }
-            $timeout(balanceText);
-                    
-        }
-    };
+	angular.module('rubedoBlocks').directive('scrollPosition', function($window) {
+  return {
+    scope: {
+      scroll: '=scrollPosition'
+    },
+    link: function(scope, element, attrs) {
+      var windowEl = angular.element($window);
+      var handler = function() {
+        scope.scroll = windowEl.scrollTop();
+      }
+      windowEl.on('scroll', scope.$apply.bind(scope, handler));
+      handler();
+    }
+  };
 });
 
 
