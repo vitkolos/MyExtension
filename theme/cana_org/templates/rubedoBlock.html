@@ -3,9 +3,9 @@
      in-view="blockEnterFOV()"
      ng-style="{'min-height':getBlockMinHeight()}"  class="{{block.code}}">
     <div ng-if="canDisplayBlock()">
-        <div class="row">
+        <!--<div class="row">
             <h2 class="titre-block" ng-if="block.displayTitle">{{block.title}}</h2>
-        </div>
+        </div>-->
         <div ng-include="rubedo.blockTemplateResolver.getTemplate(block.bType,blockConfig)"></div>
     </div>
 
