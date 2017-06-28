@@ -103,6 +103,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
+																me.contents = response.data.contents;
                 var columnContentList = [];
                 if (add){
                     angular.forEach(response.data.contents,function(newContent){
@@ -122,22 +123,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         me.contentList.push(columnContentList);
                     }
                 }
-                /*taxonomies pour propositions*/
-                if (me.usedContentTypes="54dc614245205e1d4a8b456b") {
-                     var taxonomiesArray ={};
-                     taxonomiesArray[0]="555f3bc445205edc117e689b";// taxcnomie de propositions
-                    TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
-                         if(response.data.success){
-                            var tax = response.data.taxo;
-                            
-                            me.taxo={};
-                            angular.forEach(tax, function(taxonomie){
-                                me.taxo = taxonomie.terms;
-                            });
-                         }
-                         
-                     });
-                }
+
             }
         });
     };
