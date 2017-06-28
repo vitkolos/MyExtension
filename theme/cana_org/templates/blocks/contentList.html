@@ -45,6 +45,9 @@
 
         <!--AUTRES-->
         <div ng-style="contentListCtrl.blockStyle" ng-switch-default  ng-class="{'container' : blockConfig.container}" class="contentList">
+            <div class="col-sm-12" ng-if="block.displayTitle">
+                <h4>{{block.title | uppercase}}</h4>
+            </div>
                 <div class="col-sm-6 col-xs-12" ng-class="contentListCtrl.columns" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents" ng-switch="content.typeId">                
                     <!---VIDEOS-->
                     <div ng-switch-when="56094a2245205e0e2541ea77">
