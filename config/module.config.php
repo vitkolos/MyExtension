@@ -315,6 +315,21 @@ return array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
            ),
+											'cana_org' => array(
+                'label' => 'Cana ORG',
+                'basePath' => realpath(__DIR__ . '/../theme/cana_org'),
+                'css' => array(
+                    '/css/cana.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '../js/lazy-image.js',
+                    '/js/cana.js'
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
+           ),
 											'foi' => array(
                 'label' => 'F.O.I.',
                 'basePath' => realpath(__DIR__ . '/../theme/foi'),
