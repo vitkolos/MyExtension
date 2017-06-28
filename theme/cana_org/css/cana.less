@@ -88,11 +88,13 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 iframe{width:100% !important}
 
 /*CONTENT LIST*/
-.contentList{text-align: center}
+.contentList{text-align: center; padding-top: 30px; padding-bottom: 30px;}
 .contentList>div{
 		display: inline-block; float: none;vertical-align: top; 
 }
 .pageList{
-		img{margin: 12px auto; width:80%}
+		h3{text-transform: uppercase}
+		img{margin: 12px auto; width:80%; opacity: 1; transition: all 0.3s ease; &:hover{opacity:0.8}}
 		p a, p a:hover{color: @grey; text-decoration: none; display: inline-block;		padding: 3px 12px 0px; border: 2px solid @grey; border-radius: 18px;		text-transform: uppercase}
 }
+p.linkbox a, p.linkbox a:hover{color: @grey; text-decoration: none; display: inline-block;		padding: 3px 12px 0px; border: 2px solid @grey; border-radius: 18px;		text-transform: uppercase}
