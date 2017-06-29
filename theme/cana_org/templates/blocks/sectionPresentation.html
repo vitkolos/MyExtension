@@ -1,4 +1,9 @@
-<div ng-controller="PresentationController as presentationCtrl"  ng-switch="blockConfig.columns" >
+<div ng-controller="PresentationController as presentationCtrl"  ng-switch="blockConfig.columns" class="container">
+	<div class="row">
+		<div class="col-sm-12 paddingv" ng-if="block.displayTitle">
+			<h3 style="text-align: left">{{block.title | uppercase}}</h3>
+		</div>
+	</div>
 	<div ng-switch-when="1" class="row row-eq-height">
 		<div class="col-sm-7 col-xs-12">
 			<a ng-href="{{ presentationCtrl.pageLink }}">
