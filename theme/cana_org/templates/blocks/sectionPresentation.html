@@ -4,34 +4,21 @@
 			<h3 style="text-align: left" class="txt-grey" ng-class="{'pull-right':blockConfig.columns==2}">{{block.title | uppercase}}</h3>
 		</div>
 	</div>
-	<div ng-switch-when="1" class="row row-eq-height">
-		<div class="col-sm-7 col-xs-12">
+	<div class="row row-eq-height">
+		<div class="col-sm-7 col-xs-12" ng-class="{'col-sm-push-5':blockConfig.columns==2}">
 			<a ng-href="{{ presentationCtrl.pageLink }}">
 				<img class="img-responsive" ng-if="blockConfig.imageFile"
 						ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{width:'700px',mode:'boxed'}) }}"
 						/>         
 			</a>
 		</div>
-		<div class="col-sm-5 col-xs-12 text-container">
+		<div class="col-sm-5 col-xs-12 text-container" ng-class="{'col-sm-pull-7':blockConfig.columns==2}">
 			<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 			</div>	
 		</div>		
 	</div>
 	
-	<div ng-switch-when="2" class="row row-eq-height">
-		<div class="col-sm-5 col-xs-12 text-container">
-			<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
-			</div>	
-		</div>	
-		<div class="col-sm-7 col-xs-12">
-			<a ng-href="{{ presentationCtrl.pageLink }}">
-				<img class="img-responsive" ng-if="blockConfig.imageFile"
-						ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{width:'700px',mode:'boxed'}) }}"
-						/>         
-			</a>
-		</div>
-			
-	</div>
+	
 
 	
 </div>
