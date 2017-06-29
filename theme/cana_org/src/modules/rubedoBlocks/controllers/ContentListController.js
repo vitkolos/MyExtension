@@ -41,7 +41,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     };
 				me.getVideoId = function(url){
 								var string = url.split("/");
-								return string[string.length-1];
+								return "https://www.youtube.com/embed/"+string[string.length-1];
 				}
     $scope.$on('$routeUpdate', function(){window.location.reload();});
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
