@@ -46,7 +46,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 								if (videoId.length>12) {
 												videoId=url.split("watch?v=")[1];
 								}
-								return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+videoId);
+								return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+videoId+"?showinfo=0");
 				}
     $scope.$on('$routeUpdate', function(){window.location.reload();});
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {

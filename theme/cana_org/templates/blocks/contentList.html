@@ -50,7 +50,7 @@
             </div>
                 <div class="col-sm-6 col-xs-12" ng-class="contentListCtrl.columns" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents" ng-switch="content.typeId">                
                     <!---VIDEOS-->
-                    <div ng-switch-when="56094a2245205e0e2541ea77" class="actusList">
+                    <div ng-switch-when="56094a2245205e0e2541ea77" class="videoList">
                         <div class="video">
                             <iframe width="350" height="350" src="{{contentListCtrl.getVideoId(content.fields.video.url)}}" frameborder="0" ></iframe>
                         </div>
