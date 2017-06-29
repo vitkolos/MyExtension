@@ -7,9 +7,10 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a ng-if="blockConfig.displayRootPage && blockConfig.imageFile" class="navbar-brand visible-md-block visible-lg-block" ng-href="{{menuCtrl.menu.url}}">
-                <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'60px',mode:'boxed'})}}" ng-if="rubedo.current.page.id!=blockConfig.rootPage || (rubedo.current.page.id!=blockConfig.rootPage&&scroll>=500)"/>
-               <!-- 5954bcb73965886261c47040-->
+            <a scroll-position="scroll2" ng-if="blockConfig.displayRootPage && blockConfig.imageFile" class="navbar-brand visible-md-block visible-lg-block" ng-href="{{menuCtrl.menu.url}}">
+                <img   ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'60px',mode:'boxed'})}}" ng-if="rubedo.current.page.id!=blockConfig.rootPage || (rubedo.current.page.id!=blockConfig.rootPage&&scroll2>=500)"/>
+                <img   ng-src="{{rubedo.imageUrl.getUrlByMediaId('5954bcb73965886261c47040' ,{height:'60px',mode:'boxed'})}}" ng-if="rubedo.current.page.id==blockConfig.rootPage&&scroll2<500"/>
+               <!-- -->
             </a>
         </div>
         <div class="container">
