@@ -10,22 +10,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
     me.ismagic = config.magicQuery ? config.magicQuery : false;
-    var themePath="/theme/"+window.rubedoConfig.siteTheme;
-    me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
-    me.template_foi = themePath+"/templates/blocks/contentList/foi.html";
-    me.template_home = themePath+"/templates/blocks/contentList/home.html";
-    me.query="";
-    me.taxoFilter="";
-    me.filter = function(taxoTerm){
-        me.taxoFilter = taxoTerm;
-        options['start'] += options['limit'];
-        options['limit'] = 200;
-        me.getContents(config.query, pageId, siteId, options, true);
-    }
-    var urlCurrentPage=$location.search()[blockPagingIdentifier];
-    if (urlCurrentPage){
-        me.start=(urlCurrentPage-1)*me.limit;
-    }
     var options = {
         start: me.start,
         limit: me.limit,
@@ -55,6 +39,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         $location.search(blockPagingIdentifier,(me.start/me.limit)+1);
         me.getContents(config.query, pageId, siteId, options);
     };
+				me.getVideoId = function(url){
+								var string = url.split("/");
+								return string[string.length-1];
+				}
     $scope.$on('$routeUpdate', function(){window.location.reload();});
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         alreadyPersist = false;
@@ -86,17 +74,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             'overflow-y': 'visible'
         };
     }
-    me.getTermInTaxo=function(termId){
-        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
-        var term=null;
-        angular.forEach(me.taxo,function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
-            if(!term){
-                if(candidate.id==termId && candidate.parentId!='root'){term=candidate.text;}
-            }
-         });
-        return(term);
-    }
-
+    
     me.getContents = function (queryId, pageId, siteId, options, add){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
             if (response.data.success){

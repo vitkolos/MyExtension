@@ -50,19 +50,16 @@
             </div>
                 <div class="col-sm-6 col-xs-12" ng-class="contentListCtrl.columns" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents" ng-switch="content.typeId">                
                     <!---VIDEOS-->
-                    <div ng-switch-when="56094a2245205e0e2541ea77">
-                    
-                        <div class="media-body">
-                            <jwplayer video-url="{{content.fields.video.url}}"></jwplayer>
-                            <a ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}">
-                                <h4 class="list-item-title capital"><span>
-                                        {{content.fields.text}}
-                                    </span>
-                                </h4>
-                            </a>
-                            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                            
+                    <div ng-switch-when="56094a2245205e0e2541ea77" class="pageList">
+                        <div class="video">
+                            <iframe width="350" height="350" ng-src="https://www.youtube.com/embed/{{contentListCtrl.getVideoId(content.fields.video.url)}}" frameborder="0" ></iframe>
                         </div>
+                        <div>
+                            <h3>{{content.fields.text}}</h3>
+                            <p>{{content.fields.summary}}</p>
+                            <p><a ng-href="{{ content.contentLinkUrl }}">{{content.fields.subTitle}}</a></p>
+                        </div>
+                        
                    </div>
                     <!--LINK TO PAGE-->
                     <div ng-switch-when="56ab6e94c445ecde138b4e2b" class="pageList">
