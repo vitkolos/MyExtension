@@ -12,14 +12,14 @@
 						/>         
 			</a>
 		</div>
-		<div class="col-sm-5 col-xs-12">
+		<div class="col-sm-5 col-xs-12 text-container">
 			<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 			</div>	
 		</div>		
 	</div>
 	
-	<div ng-switch-when="1" class="row row-eq-height">
-		<div class="col-sm-5 col-xs-12">
+	<div ng-switch-when="2" class="row row-eq-height">
+		<div class="col-sm-5 col-xs-12 text-container">
 			<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 			</div>	
 		</div>	
