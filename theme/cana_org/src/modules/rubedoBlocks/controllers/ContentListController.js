@@ -1,4 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location","$sce",
+																																																																								function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$sce){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -41,7 +42,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     };
 				me.getVideoId = function(url){
 								var string = url.split("/");
-								return "https://www.youtube.com/embed/"+string[string.length-1];
+								return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+string[string.length-1]);
 				}
     $scope.$on('$routeUpdate', function(){window.location.reload();});
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
