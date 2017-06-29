@@ -28,6 +28,7 @@
 @bg:#eeeeee;
 @txt:#1b1b1b;
 @grey:#bfbfbf;
+@txt_grey:#707070;
 @rouge:#92220c;
 
 body{font-size:16px; min-height:100%; line-height: 1.4em }
@@ -39,7 +40,7 @@ html,body{font-family: 'MyanmarText','Arimo', "Helvetica Neue",Helvetica,Arial,s
 @media screen and (min-width: @min_sm) {
 		li:hover>.dropdown-menu{display: block}
 }
-
+.txt-grey{color:@txt_grey}
 /*NAVIGATION*/
 .navbar{
 		background: white; box-shadow: 0 3px 10px rgba(0,0,0,0.2);  border-radius: 0;border: none;
@@ -125,12 +126,19 @@ p.linkbox a, p.linkbox a:hover{color: @grey; text-decoration: none; display: inl
 }
 
 /*SECTION PRESENTATION*/
+.row-eq-height{
+		.text-container{
+				font-size: 130%; line-height: 130%;
+				.txt-grey
+		}
+}
 @media screen and (min-width: @min_sm) {
 		.row-eq-height{
 				display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
 				display: flex;
+				img:hover{opacity: 0.9;}
 				.text-container{
 						display: flex; flex-direction:column; justify-content:center;
 				}
