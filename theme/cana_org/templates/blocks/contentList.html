@@ -55,7 +55,7 @@
                             <iframe width="444" height="250" src="{{contentListCtrl.getVideoId(content.fields.video.url)}}" frameborder="0" ></iframe>
                         </div>
                         <div class="video" data-toggle="modal" data-target="#myModal{{content.id}}"></div>
-                        <div>
+                        <div class="video-txt">
                             <h3>{{content.fields.text}}</h3>
                             <p>{{content.fields.summary}}</p>
                             <p><a ng-href="{{ content.contentLinkUrl }}">{{content.fields.subTitle}}</a></p>
@@ -68,7 +68,7 @@
                                   <h4 class="modal-title" id="myModalLabel">{{content.fields.text}}</h4>
                                 </div>
                                 <div class="modal-body">
-                                    <iframe width="620" height="380" src="{{contentListCtrl.getVideoId(content.fields.video.url)}}" frameborder="0" ></iframe>
+                                    <iframe width="620" height="380" src="{{contentListCtrl.getVideoId(content.fields.video.url)}}" frameborder="0" allowfullscreen></iframe>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
