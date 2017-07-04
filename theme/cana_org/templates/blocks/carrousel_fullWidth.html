@@ -34,10 +34,10 @@
 }
 
 .carousel-inner {
-    height: 70vh;
+    height: 100vh;
     background-color: white;
-    min-height:350px;
-    max-height: 600px;
+    //*min-height:350px;
+    max-height: 600px;*/
 }
 
 /* Background images are set within the HTML using inline CSS, not here */
@@ -96,7 +96,7 @@
           <div class="fill" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}');"></div>
           <div class="homepage_txt" ng-if="blockConfig.showCaption">
               <h1>{{content.fields.text}}</h1>
-              <p>{{content.fields.titre2}}</p>
+              <p ng-if="content.fields.titre2">{{content.fields.titre2}}</p>
               <p ng-repeat="text in content.fields.subTitle">{{text}}</p>
           </div>
       </div>
