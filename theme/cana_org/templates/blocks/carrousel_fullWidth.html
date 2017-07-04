@@ -62,13 +62,13 @@
 }
 .homepage_txt:before, .homepage_txt:after{
  content:'';
- width:3px; background-color:white; height:0px; position: relative; display: inline-block; transition: height ease 0.5s;
+ width:3px; background-color:white; height:0px; position: relative; display: inline-block; transition: all ease 0.5s;opacity: 0;
 }
  .homepage_txt:after{transition-delay: 1s}
-.homepage_txt p, .homepage_txt h1{line-height: 0.9em; color:white; text-shadow: 2.5px 2.5px 2.5px rgba(0,0,0,.33); opacity: 0; transition: all ease 0.5s; top: 20px;transition-delay:0.5s}
+.homepage_txt p, .homepage_txt h1{font-size: 300%;line-height: 0.9em; color:white; text-shadow: 2.5px 2.5px 2.5px rgba(0,0,0,.33); opacity: 0; transition: all ease 1s; top: 50px;transition-delay:0.5s}
 .homepage_txt p:first-of-type{ font-size:1.3em;}
 .item.active .homepage_txt:before,.item.active .homepage_txt:after{
- height:40px;
+ height:40px; opacity: 1;
 }
 .item.active .homepage_txt p,.item.active .homepage_txt h1{
  top:0; opacity: 1;
