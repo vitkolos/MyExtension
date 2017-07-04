@@ -96,12 +96,12 @@
             ng-if="content.fields[blockConfig.imageField]"
             ng-class="{'active':$first}">
           <!-- Set the first background image using inline CSS below. -->
-          <div class="fill" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}');"></div>
+          <div class="fill" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}');">
           <div class="homepage_txt" ng-if="blockConfig.showCaption">
               <h1>{{content.fields.text}}</h1>
               <p ng-if="content.fields.titre2">{{content.fields.titre2}}</p>
               <p ng-repeat="text in content.fields.subTitle">{{text}}</p>
-          </div>
+          </div></div>
       </div>
   </div>
        <!-- Controls -->
