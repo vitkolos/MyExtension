@@ -366,6 +366,6 @@ p.linkbox a:hover {
 }
 @media screen and (min-width: 768px) {
   .contact > div + div {
-    border-left: white 2px solid;
+    border-left: #707070 2px solid;
   }
 }
