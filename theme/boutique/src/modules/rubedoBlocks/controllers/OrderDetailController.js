@@ -52,6 +52,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                             function(response){
                                 if (response.data.success){
                                     console.log(response.data);
+                                    me.orderUser = response.data.user;
                                 }
                             }
                         );
