@@ -51,7 +51,6 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                         RubedoUsersService.getUserById(me.order.createUser.id).then(
                             function(response){
                                 if (response.data.success){
-                                    console.log(response.data);
                                     me.orderUser = response.data.user;
                                 }
                             }
