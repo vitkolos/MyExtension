@@ -43,6 +43,12 @@ body {
 .txt-grey {
   color: #707070;
 }
+h2.titre-block {
+  font-variant: small-caps;
+  border-bottom: #bfbfbf 4px solid;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+}
 /*FIXES*/
 .rubedo-block-contentContribution {
   min-height: 0 !important;
@@ -178,6 +184,9 @@ header.content.full {
   height: 100vh;
   line-height: 100vh;
   background-attachment: scroll;
+}
+header.content.full img {
+  max-width: 80%;
 }
 header.content.full h1 {
   font-size: 3em;
