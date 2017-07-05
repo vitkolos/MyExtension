@@ -48,6 +48,8 @@ h2.titre-block {
   border-bottom: #bfbfbf 4px solid;
   margin-bottom: 24px;
   padding-bottom: 12px;
+  display: inline-block;
+  min-width: 50%;
 }
 /*FIXES*/
 .rubedo-block-contentContribution {

@@ -91,7 +91,7 @@
                             <p><a ng-href="{{ content.contentLinkUrl }}">{{content.fields.subTitle}}</a></p>
                         </div>
                     </div>
-                                      <!--DEFAUT-->
+                    <!--DEFAUT-->
                     <div ng-switch-default class="actusList">
                         <a ng-href="{{ content.contentLinkUrl }}">
                             <img  ng-if="content.fields.image" style="width: 100%"
@@ -108,14 +108,13 @@
                         
 
                     </div>
-                   
-                    
-                  
                 </div>
         </div>
- 
-        
     </div>
-
+    <div class="row" ng-if="blockConfig.singlePage">
+        <div class="col-sm-12">
+            <a class="pull-left " rubedo-page-link="{{blockConfig.singlePage}}"><i class="glyphicon glyphicon-th"></i> {{rubedo.translate('Block.ContentList.Label.ReadMore','read more')}}</a>
+        </div>
+    </div>
 
 </div>
