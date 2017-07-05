@@ -109,12 +109,13 @@
 
                     </div>
                 </div>
+                <div class="row" ng-if="blockConfig.singlePage">
+                    <div class="col-sm-12">
+                        <a class="pull-right txt-grey" rubedo-page-link="{{blockConfig.singlePage}}"><i class="glyphicon glyphicon-th"></i> {{rubedo.translate('Block.ContentList.Label.ReadMore','read more')}}</a>
+                    </div>
+                </div>
         </div>
     </div>
-    <div class="row" ng-if="blockConfig.singlePage">
-        <div class="col-sm-12">
-            <a class="pull-left " rubedo-page-link="{{blockConfig.singlePage}}"><i class="glyphicon glyphicon-th"></i> {{rubedo.translate('Block.ContentList.Label.ReadMore','read more')}}</a>
-        </div>
-    </div>
+    
 
 </div>
