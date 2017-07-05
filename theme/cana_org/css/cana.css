@@ -165,6 +165,12 @@ header.content a:hover {
   border-radius: 18px;
   text-transform: uppercase;
 }
+header.content h1 {
+  font-size: 3em;
+}
+header.content p {
+  font-size: 1.2em;
+}
 .bethanien header.content.parallax {
   background-attachment: fixed;
 }
@@ -178,7 +184,7 @@ header.content.full h1 {
   text-transform: uppercase;
 }
 header.content.full p {
-  font-size: 1.3em;
+  font-size: 2em;
 }
 header.content.standard {
   height: 65vh;
