@@ -364,3 +364,8 @@ p.linkbox a:hover {
     justify-content: center;
   }
 }
+@media screen and (min-width: 768px) {
+  .contact > div + div {
+    border-left: white 2px solid;
+  }
+}
