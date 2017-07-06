@@ -57,7 +57,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">
-			<div class="text-article">
+			<div class="texte">
 
 				<div class="col-xs-12 col-sm-4 col-sm-push-8">
 					<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}"  data-summary="{{contentDetailCtrl.content.fields.summary}}" class="addthis_toolbox socials" >
@@ -76,25 +76,25 @@
 			</div>
 		</div>
 		<div class="col-xs-12 " ng-if="fieldEntity['video']">
-			<div class="text-article">
+			<div class="texte">
 				<jwplayer video-url="{{fieldEntity['video']}}"></jwplayer>
 			</div>
 		</div>
 		<div class="col-xs-12">
-			<div class="text-article">
+			<div class="texte">
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ></rubedo-field>
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('copyrights')}}" class="copyrights"></rubedo-field>
 			</div>
 		</div>
 		<div class="col-xs-12">
-			<div class="text-article">
+			<div class="texte">
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('externalMedia')}}"  ng-if="fieldEntity['externalMedia']" ></rubedo-field>
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('audio')}}"   ng-if="fieldEntity['audio']"></rubedo-field>
 			</div>
 		</div>
 	</div>
 	<div class="row" >
-		<div class="text-article">
+		<div class="texte">
 			<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['5524db6945205e627a8d8c4e']" class="capital tags">
 				{{contentDetailCtrl.getTermInTaxo("5524db6945205e627a8d8c4e",taxonomy)}}
 			</span>
