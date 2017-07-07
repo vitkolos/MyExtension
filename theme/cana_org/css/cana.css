@@ -252,8 +252,11 @@ iframe {
 .pageList h3 a,
 .pageList h3 a:hover {
   text-transform: uppercase;
-  color: #bfbfbf;
+  color: #1b1b1b;
   text-decoration: none;
+}
+.pageList h3 a:hover {
+  color: #bfbfbf;
 }
 .pageList img {
   margin: 12px auto;
