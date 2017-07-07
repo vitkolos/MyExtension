@@ -51,6 +51,9 @@ h2.titre-block {
   display: inline-block;
   min-width: 50%;
 }
+h3.titre-block {
+  font-family: 'MyanmarText Bold';
+}
 /*FIXES*/
 .rubedo-block-contentContribution {
   min-height: 0 !important;
@@ -246,8 +249,11 @@ iframe {
   float: none;
   vertical-align: top;
 }
-.pageList h3 {
+.pageList h3 a,
+.pageList h3 a:hover {
   text-transform: uppercase;
+  color: #bfbfbf;
+  text-decoration: none;
 }
 .pageList img {
   margin: 12px auto;
