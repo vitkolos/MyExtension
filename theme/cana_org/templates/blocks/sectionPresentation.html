@@ -8,8 +8,7 @@
 		<div class="col-sm-7 col-xs-12" ng-class="{'col-sm-push-5':blockConfig.columns==2}">
 			<a ng-href="{{ presentationCtrl.pageLink }}">
 				<img class="img-responsive" ng-if="blockConfig.imageFile"
-						ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{width:'700px',mode:'boxed'}) }}"
-						/>         
+						ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{width:'700px',mode:'boxed'}) }}"/>         
 			</a>
 		</div>
 		<div class="col-sm-5 col-xs-12 text-container" ng-class="{'col-sm-pull-7':blockConfig.columns==2}">

@@ -7,7 +7,7 @@
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field>
 			</div>
 
-			<div class="col-xs-12 col-sm-4 text-left" ng-if="fieldEntity['position']">
+			<div class="col-xs-12 col-sm-4 text-left" ng-if="fieldEntity['position']" ng-class="{'col-sm-pull-2':!fieldEntity['description']">
 				<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
 				<p>
 						<i class="fa fa-map-marker icon"></i>
