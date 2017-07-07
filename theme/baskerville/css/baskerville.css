@@ -27,6 +27,9 @@ a:hover {
 .img-responsive {
   height: auto !important;
 }
+.rubedo-block-contentContribution {
+  min-height: 1px !important;
+}
 /*MENU*/
 nav.navbar {
   background-color: #1d1d1d;
@@ -163,7 +166,7 @@ header.content.prop > div {
 /*POSTS*/
 .post-header {
   border-bottom: 1px solid #eee;
-  padding: 8% 10%;
+  padding: 4% 8%;
   position: relative;
 }
 .post-header a {
