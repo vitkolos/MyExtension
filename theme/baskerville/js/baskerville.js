@@ -35,13 +35,13 @@ angular.module('rubedo').filter('ligneNonVide', function () {
                       var filtered = [];
 		      var contentDisplay = false;
                       angular.forEach(input, function(row, index) {
-				// si la 1�re colonne est terminale et non vide
+				// si la 1ère colonne est terminale et non vide
                                  if (row.columns[0].isTerminal&&row.columns[0].blocks) {
 				    // toujours afficher la 1�re ligne (menu) et la derni�re (footer)
 				    if (index ==0 || index >= input.length-1) {
 					filtered.push(row);
 				    }
-				    // si la page sert � afficher un contenu (en 2�me ligne) on n'affiche pas les autres lignes
+				    // si la page sert �àafficher un contenu (en 2�me ligne) on n'affiche pas les autres lignes
 				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
 					filtered.push(row);
 					contentDisplay = true;
