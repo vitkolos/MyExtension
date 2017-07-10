@@ -6,6 +6,9 @@
             <div class="homepage_txt" ng-if="blockConfig.showCaption">
                 <h1>{{content.fields.text}}</h1>
                 <p ng-if="blockConfig.showSummary" class="visible-md-inline-block visible-lg-inline-block">{{content.fields.summary}}</p>
+            <img class="lazyOwl img-responsive carousel-img" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"
+                        alt="{{content.fields.text}}"
+                        title="{{content.fields.text}}" >
             </div>
                <!-- <img class="lazyOwl img-responsive carousel-img" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"
                         alt="{{content.fields.text}}"
