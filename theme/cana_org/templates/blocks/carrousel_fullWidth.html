@@ -1,5 +1,8 @@
 <style>
-
+.carousel-control{
+    background-image: none; 
+}
+.carousel-control span{top:45%}
  .carousel-indicators li,.carousel-indicators li.active{margin:1px 6px}
    
    .carousel-inner .item {
@@ -111,12 +114,12 @@
       </div>
   </div>
 <!-- Controls -->
-  <a class="left carousel-control" href="#{{'block'+block.id}}}" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="fa fa-angle-left" aria-hidden="true"></span>
     <span class="sr-only">Previous</span>
   </a>
-  <a class="right carousel-control" href="##{{'block'+block.id}}}" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="fa fa-angle-right" aria-hidden="true"></span>
     <span class="sr-only">Next</span>
   </a>
   
