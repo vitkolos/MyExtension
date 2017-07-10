@@ -35,7 +35,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
     me.slideTo=function(index){
         var targetElSelector="#block"+$scope.block.id;
         angular.element(targetElSelector).carousel(index);
-    }
+    };
     me.getImageOptions=function(){
         var height = angular.element("#block"+$scope.block.id).height();
         var width = angular.element("#block"+$scope.block.id).width();
