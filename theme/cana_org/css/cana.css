@@ -379,3 +379,12 @@ p.linkbox a:hover {
     border-left: #707070 2px solid;
   }
 }
+/*SLIDER*/
+.carousel-control {
+  background-image: none !important;
+  cursor: pointer;
+}
+.carousel-control span {
+  position: relative;
+  font-size: 2em;
+}
