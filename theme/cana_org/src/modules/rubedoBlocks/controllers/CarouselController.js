@@ -53,7 +53,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
             autoPlay: blockConfig.autoPlay,
             stopOnHover: blockConfig.stopOnHover,
             paginationNumbers:blockConfig.showPagingNumbers,
-            navigationText: ['<span class="glyphicon glyphicon-menu-left"></span>','<span class="glyphicon glyphicon-menu-right"></span>'],
+            navigationText: ['<span class="fa fa-angle-left"></span>','<span class="fa fa-angle-right"></span>'],
             lazyLoad:true
         };
         angular.element(targetElSelector).owlCarousel(owlOptions);
