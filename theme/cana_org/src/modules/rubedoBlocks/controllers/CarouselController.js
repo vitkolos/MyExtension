@@ -48,7 +48,6 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
         var owlOptions={
             responsiveBaseWidth:targetElSelector,
             singleItem:true,
-transitionStyle: 'fade',
             pagination: blockConfig.showPager,
             navigation: blockConfig.showNavigation,
             autoPlay: blockConfig.autoPlay,
