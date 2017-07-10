@@ -193,6 +193,10 @@ p.linkbox a, p.linkbox a:hover{color: @grey; text-decoration: none; display: inl
 /*SLIDER*/
 
 .carousel-control{
-	background-image: none !important; cursor: pointer;
-	span{position: relative;font-size: 2em;}
+	background-image: none !important; cursor: pointer;width:10%;opacity:0.9;
+	span{
+		position: relative;font-size: 1.5em;
+		width: 35px; height: 35px; border: 1px solid white; border-radius: 5px;
+		&:hover{border-color: @bleu_bethanien; background-color: @bleu_bethanien}
+	}
 }

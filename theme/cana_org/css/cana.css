@@ -383,8 +383,18 @@ p.linkbox a:hover {
 .carousel-control {
   background-image: none !important;
   cursor: pointer;
+  width: 10%;
+  opacity: 0.9;
 }
 .carousel-control span {
   position: relative;
-  font-size: 2em;
+  font-size: 1.5em;
+  width: 35px;
+  height: 35px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+.carousel-control span:hover {
+  border-color: #006ba8;
+  background-color: #006ba8;
 }
