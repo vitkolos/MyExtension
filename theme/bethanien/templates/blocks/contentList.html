@@ -45,9 +45,6 @@
 
         <!--AUTRES-->
         <div ng-style="contentListCtrl.blockStyle" ng-switch-default  ng-class="{'container' : blockConfig.container}">
-            <div class="col-sm-12 paddingv" ng-if="block.displayTitle">
-                <h3 style="text-align: left" class="txt-grey">{{block.title | uppercase}}</h3>
-            </div>
                 <div class="col-sm-6 col-xs-12" ng-class="contentListCtrl.columns" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents" ng-switch="content.typeId">                
                     <!---VIDEOS-->
                     <div ng-switch-when="56094a2245205e0e2541ea77" class="videoList">
@@ -82,7 +79,7 @@
                     <div ng-switch-when="56ab6e94c445ecde138b4e2b" class="pageList">
                         <div>
                              <a ng-href="{{ content.contentLinkUrl }}"><img  ng-if="content.fields.image"
-                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'400px',mode:'crop'}) }}"
+                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'600px',height:'400px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/></a>
                         </div>
                         <div>

@@ -44,11 +44,11 @@ body {
   color: #707070;
 }
 h2.titre-block {
-  font-variant: small-caps;
+  text-transform: uppercase;
   font-family: 'MyanmarText Bold';
-  border-bottom: #bfbfbf 4px solid;
   margin-bottom: 24px;
-  padding-bottom: 12px;
+  color: #707070;
+  letter-spacing: 3px;
 }
 h2.titre-block:before,
 h2.titre-block:after {
@@ -56,10 +56,8 @@ h2.titre-block:after {
   display: inline-block;
   height: 2px;
   background-color: #bfbfbf;
-  width: 30px;
-}
-h3.titre-block {
-  font-family: 'MyanmarText Bold';
+  width: 100%;
+  max-width: 20%;
 }
 /*FIXES*/
 .rubedo-block-contentContribution {

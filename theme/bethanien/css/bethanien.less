@@ -51,18 +51,13 @@ html,body{font-family: 'MyanmarText','Arimo', "Helvetica Neue",Helvetica,Arial,s
 }
 .txt-grey{color:@txt_grey}
 h2.titre-block{
-	font-variant: small-caps;font-family: 'MyanmarText Bold';
-    border-bottom: @grey 4px solid;
-    margin-bottom: 24px;
-    padding-bottom: 12px;
-	
+	text-transform: uppercase;font-family: 'MyanmarText Bold';
+    margin-bottom: 24px; color: @txt_grey; letter-spacing: 3px;
 }
 h2.titre-block:before, h2.titre-block:after{
-	content:''; display: inline-block; height: 2px; background-color: @grey; width: 30px;
+	content:''; display: inline-block; height: 2px; background-color: @grey; width: 100%; max-width: 20%;
 }
-h3.titre-block{
-	font-family: 'MyanmarText Bold';
-}
+
 /*FIXES*/
 .rubedo-block-contentContribution{min-height:0 !important}
 /*NAVIGATION*/
