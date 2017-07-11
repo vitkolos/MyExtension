@@ -34,7 +34,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
 			    else {
                             RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
                                     if (response.data.success){
-                                        content.contentLinkUrl = $filter('cleanUrl')(response.data.url);
+                                        content.contentLinkUrl = response.data.url;
                                     }
                                 });
 			    }
@@ -43,7 +43,7 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
                                 content.contentLinkUrl = content.fields.propositionReferencee;
 				content.isExternal = true;
                         }
-                        else content.contentLinkUrl = $filter('cleanUrl')(content.detailPageUrl);                        
+                        else content.contentLinkUrl = content.detailPageUrl;                        
                     });
                 }
             }
