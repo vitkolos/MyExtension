@@ -1,0 +1,7 @@
+<div class="container-fluid">
+    <div ng-repeat="row in rubedo.current.page.rows track by $index" ng-class="{'container':($index>1&&!$last&&!(row.columns[0].blocks && row.columns[0].blocks[0].bType=='bg_image' ))}">
+        <div ng-include="rubedo.componentsService.getRowTemplate(row.customTemplate)"
+         ng-class="{'padding-large':!$first, 'footer':$last}" class="row"></div>
+    </div>
+         
+</div>
