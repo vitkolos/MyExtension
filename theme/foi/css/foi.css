@@ -448,6 +448,5 @@ header.content > div {
 }
 /*TEXTE RICHE*/
 .texte {
-  font-size: 2em;
-  line-height: 18px;
+  line-height: 1.5em;
 }
