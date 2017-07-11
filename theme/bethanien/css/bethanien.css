@@ -45,11 +45,18 @@ body {
 }
 h2.titre-block {
   font-variant: small-caps;
+  font-family: 'MyanmarText Bold';
   border-bottom: #bfbfbf 4px solid;
   margin-bottom: 24px;
   padding-bottom: 12px;
+}
+h2.titre-block:before,
+h2.titre-block:after {
+  content: '';
   display: inline-block;
-  min-width: 50%;
+  height: 2px;
+  background-color: #bfbfbf;
+  width: 30px;
 }
 h3.titre-block {
   font-family: 'MyanmarText Bold';
@@ -89,7 +96,7 @@ h3.titre-block {
   color: white;
 }
 .navbar.transparent .navbar-nav > li > a:hover {
-  color: #92220c;
+  color: #006ba8;
 }
 .navbar.transparent li:hover,
 .navbar.transparent li a:hover {
@@ -98,27 +105,14 @@ h3.titre-block {
 .navbar.transparent .navbar-toggle .icon-bar {
   background: #ffffff;
 }
-.bethanien .navbar.transparent .navbar-nav > li > a:hover {
-  color: #006ba8;
-}
 .navbar-nav li > a,
 dropdown-menu li > a {
-  color: #92220c;
-  text-transform: uppercase;
+  color: #006ba8;
   font-size: 15px;
-  padding-top: 25px;
-  padding-bottom: 25px;
+  padding: 25px 10px;
 }
 .navbar-nav li > a:hover,
 dropdown-menu li > a:hover {
-  color: #92220c;
-}
-.bethanien .navbar-nav li > a,
-.bethanien dropdown-menu li > a {
-  color: #006ba8;
-}
-.bethanien .navbar-nav li > a:hover,
-.bethanien dropdown-menu li > a:hover {
   color: #006ba8;
 }
 .navbar > .container .navbar-brand,
@@ -380,6 +374,9 @@ p.linkbox a:hover {
   }
 }
 /*SLIDER*/
+.carousel-inner {
+  background-color: #006ba8;
+}
 .carousel-control {
   background-image: none !important;
   cursor: pointer;
