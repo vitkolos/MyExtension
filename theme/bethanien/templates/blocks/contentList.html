@@ -77,16 +77,18 @@
                    </div>
                     <!--LINK TO PAGE-->
                     <div ng-switch-when="56ab6e94c445ecde138b4e2b" class="pageList">
-                        <div>
-                             <a ng-href="{{ content.contentLinkUrl }}"><img  ng-if="content.fields.image"
-                                                 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'600px',height:'400px',mode:'crop'}) }}"
-                                                 alt="{{ content.fields.text }}"/></a>
-                        </div>
-                        <div>
-                            <h3><a ng-href="{{ content.contentLinkUrl }}">{{content.fields.text}}</a></h3>
-                            <p>{{content.fields.summary}}</p>
-                           <!-- <p><a ng-href="{{ content.contentLinkUrl }}">{{content.fields.subTitle}}</a></p>-->
-                        </div>
+                        <a ng-href="{{ content.contentLinkUrl }}">
+                            <div>
+                                <img  ng-if="content.fields.image"
+                                                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'600px',height:'400px',mode:'crop'}) }}"
+                                                    alt="{{ content.fields.text }}"/>
+                            </div>
+                            <div>
+                                <h3>{{content.fields.text}}</h3>
+                                <p>{{content.fields.summary}}</p>
+                            <!-- <p><a ng-href="{{ content.contentLinkUrl }}">{{content.fields.subTitle}}</a></p>-->
+                            </div>
+                        </a>
                     </div>
                     <!--DEFAUT-->
                     <div ng-switch-default class="actusList">
