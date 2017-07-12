@@ -58,6 +58,7 @@ h2.titre-block:after {
   background-color: #bfbfbf;
   width: 100%;
   max-width: 20%;
+  vertical-align: middle;
 }
 /*FIXES*/
 .rubedo-block-contentContribution {
