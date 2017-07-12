@@ -257,9 +257,11 @@ iframe {
   right: 0;
   bottom: 0;
   left: 0;
+  background-image: linear-gradient(225deg, rgba(31, 31, 46, 0.5) 0%, rgba(77, 77, 102, 0.4) 49%, rgba(21, 21, 31, 0.5) 100%);
+  transition: background-image ease 0.5s;
 }
 .pageList a:hover:before {
-  background-image: linear-gradient(225deg, rgba(31, 31, 46, 0.5) 0%, rgba(77, 77, 102, 0.4) 49%, rgba(21, 21, 31, 0.5) 100%);
+  background-image: none;
 }
 .pageList div:last-of-type {
   position: absolute;
@@ -281,11 +283,11 @@ iframe {
   margin: 0;
   width: 100%;
   opacity: 1;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
 }
 .pageList img:hover {
   opacity: 0.8;
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 .actusList {
   background: white;
