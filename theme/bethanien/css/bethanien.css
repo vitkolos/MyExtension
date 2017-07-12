@@ -262,7 +262,7 @@ iframe {
   left: 15px;
   background-image: linear-gradient(225deg, rgba(31, 31, 46, 0.5) 0%, rgba(77, 77, 102, 0.4) 49%, rgba(21, 21, 31, 0.5) 100%);
   transition: opacity ease 0.5s;
-  opacity: 1;
+  opacity: 0.7;
 }
 .pageList a:hover:before {
   opacity: 0.2;
@@ -289,7 +289,7 @@ iframe {
   opacity: 1;
   transition: all 0.5s ease;
 }
-.pageList img:hover {
+.pageList a:hover img {
   opacity: 0.8;
   transform: scale(1.05);
 }
