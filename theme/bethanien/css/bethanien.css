@@ -290,7 +290,6 @@ iframe {
   transition: all 0.5s ease;
 }
 .pageList a:hover img {
-  opacity: 0.8;
   transform: scale(1.05);
 }
 .actusList {
