@@ -128,10 +128,18 @@ iframe{width:100% !important}
 		display: inline-block; float: none;vertical-align: top; 
 }
 .pageList{
-		h3 a, h3 a:hover{text-transform: uppercase; color: @txt; text-decoration: none;}
-		h3 a:hover{color:@grey}
-		img{margin: 12px auto; width:80%; opacity: 1; transition: all 0.3s ease; &:hover{opacity:0.8}}
-		p a, p a:hover{color: @grey; text-decoration: none; display: inline-block;		padding: 3px 12px 0px; border: 2px solid @grey; border-radius: 18px;		text-transform: uppercase}
+	a{display: inline-block}
+	div:first-of-type{
+		overflow: hidden;
+	}
+	div:last-of-type{
+		position: absolute;
+		top:50%; transform: translateY(-50%);
+	}
+	a p, a h3{color:white; text-decoration: none;}
+	h3, h3{text-transform: uppercase; text-decoration: none;}
+	a:hover h3 {color:@grey}
+	img{margin: 0; width:100%; opacity: 1; transition: all 0.3s ease; &:hover{opacity:0.8; transform: scale(1.1)}}
 }
 .actusList{
 		background: white;

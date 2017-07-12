@@ -244,33 +244,39 @@ iframe {
   float: none;
   vertical-align: top;
 }
-.pageList h3 a,
-.pageList h3 a:hover {
-  text-transform: uppercase;
-  color: #1b1b1b;
+.pageList a {
+  display: inline-block;
+}
+.pageList div:first-of-type {
+  overflow: hidden;
+}
+.pageList div:last-of-type {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.pageList a p,
+.pageList a h3 {
+  color: white;
   text-decoration: none;
 }
-.pageList h3 a:hover {
+.pageList h3,
+.pageList h3 {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.pageList a:hover h3 {
   color: #bfbfbf;
 }
 .pageList img {
-  margin: 12px auto;
-  width: 80%;
+  margin: 0;
+  width: 100%;
   opacity: 1;
   transition: all 0.3s ease;
 }
 .pageList img:hover {
   opacity: 0.8;
-}
-.pageList p a,
-.pageList p a:hover {
-  color: #bfbfbf;
-  text-decoration: none;
-  display: inline-block;
-  padding: 3px 12px 0px;
-  border: 2px solid #bfbfbf;
-  border-radius: 18px;
-  text-transform: uppercase;
+  transform: scale(1.1);
 }
 .actusList {
   background: white;
