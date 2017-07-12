@@ -132,13 +132,24 @@ iframe{width:100% !important}
 	div:first-of-type{
 		overflow: hidden;
 	}
+	a:before{
+    	content: "";
+    	position: absolute;
+    	top: 0;
+    	right: 0;
+    	bottom: 0;
+    	left: 0;
+	}
+	a:hover:before{
+		background-image:linear-gradient(225deg, rgba(31, 31, 46, 0.5) 0%, rgba(77, 77, 102, 0.4) 49%, rgba(21, 21, 31, 0.5) 100%);
+	}
 	div:last-of-type{
 		position: absolute;
-		top:50%; transform: translateY(-50%);
+		top:50%; transform: translateY(-50%); width:100%;
 	}
 	a p, a h3{color:white; text-decoration: none;}
 	h3, h3{text-transform: uppercase; text-decoration: none;}
-	a:hover h3 {color:@grey}
+	//a:hover h3 {color:@white}
 	img{margin: 0; width:100%; opacity: 1; transition: all 0.3s ease; &:hover{opacity:0.8; transform: scale(1.1)}}
 }
 .actusList{
