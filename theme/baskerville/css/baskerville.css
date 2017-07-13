@@ -30,6 +30,9 @@ a:hover {
 .rubedo-block-contentContribution {
   min-height: 1px !important;
 }
+.youtube-embed-wrapper {
+  position: relative;
+}
 /*MENU*/
 nav.navbar {
   background-color: #1d1d1d;
