@@ -33,6 +33,9 @@ a:hover {
 .youtube-embed-wrapper {
   position: relative;
 }
+.youtube-embed-wrapper iframe {
+  position: absolute;
+}
 /*MENU*/
 nav.navbar {
   background-color: #1d1d1d;
