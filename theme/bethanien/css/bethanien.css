@@ -267,6 +267,7 @@ iframe {
 }
 .pageList a:hover:before {
   opacity: 0.2;
+  transition: opacity ease 0.5s;
 }
 .pageList div:last-of-type {
   position: absolute;

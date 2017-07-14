@@ -63,10 +63,18 @@
 }
 .homepage_txt:before, .homepage_txt:after{
  content:'';transform:rotateZ(3deg);
- width:3px; background-color:white; height:5px; position: relative; display: inline-block; transition: all ease 0.5s;opacity: 0;
+ width:3px; background-color:white; height:5px; position: relative; display: inline-block; 
+ -webkit-transition: all ease-out 0.5s;
+ -moz-transition: all ease-out 0.5s;
+ transition: all ease-out 0.5s;
+ opacity: 0;
 }
- .homepage_txt:after{transition-delay: 1s}
-.homepage_txt p, .homepage_txt h1{position: relative; font-size: 300%;line-height: 0.9em; color:white; text-shadow: 2.5px 2.5px 2.5px rgba(0,0,0,.33); opacity: 0; transition: all ease-in 1s; top: 50px;transition-delay:0.3s}
+ .homepage_txt:after{transition-delay: 0.7s}
+.homepage_txt p, .homepage_txt h1{position: relative; font-size: 300%;line-height: 0.9em; color:white; text-shadow: 2.5px 2.5px 2.5px rgba(0,0,0,.33); opacity: 0; 
+    -webkit-transition: all ease-out 0.7s; 
+    -moz-transition: all ease-out 0.7s; 
+    transition: all ease-out 0.7s; 
+    top: 50px;transition-delay:0.2s}
 .homepage_txt p:first-of-type{ font-size:1.3em;}
 .item.active .homepage_txt:before,.item.active .homepage_txt:after{
  height:40px; opacity: 1;
@@ -87,15 +95,7 @@
 </style>
 
 <div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl" style="margin-top:-24px;margin-bottom:-24px;">
-  <!--<ol class="carousel-indicators">
-    <li ng-repeat="content in carouselCtrl.contents" 
-      ng-if="content.fields[blockConfig.imageField]" 
-      data-target="{{'block'+block.id}}"
-      data-slide-to="{{$index}}"
-      ng-class="{'active':$first}"
-      ng-click="carouselCtrl.slideTo($index)">
-    </li>
-  </ol>-->
+
 
   <div class="carousel-inner">
       <div class="item" 
