@@ -136,6 +136,16 @@ dropdown-menu li > a {
     display: inline-block;
     margin-bottom: -9px;
   }
+  .navbar-right .dropdown-menu {
+    right: auto;
+    left: 0;
+    min-width: 100%;
+  }
+}
+.nav .open > a,
+.nav .open > a:hover,
+.nav .open > a:focus {
+  background: transparent !important;
 }
 .dropdown-menu > .active > a,
 .dropdown-menu > .active > a:hover,
@@ -266,10 +276,11 @@ iframe {
 }
 .pageList a {
   display: inline-block;
+  position: relative;
 }
 .pageList div:first-of-type {
   overflow: hidden;
-  background-color: rgba(31, 31, 46, 0.5);
+  background-color: rgba(31, 31, 46, 0.8);
 }
 .pageList div:last-of-type {
   position: absolute;
