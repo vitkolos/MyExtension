@@ -272,6 +272,7 @@ iframe {
 }
 .pageList div:last-of-type {
   position: absolute;
+  background-color: rgba(31, 31, 46, 0.5);
   top: 50%;
   transform: translateY(-50%);
   width: 100%;
@@ -294,6 +295,7 @@ iframe {
 }
 .pageList a:hover img {
   transform: scale(1.05);
+  opacity: 0.5;
 }
 .actusList {
   background: white;
