@@ -1,16 +1,4 @@
-Skip to content
-Features Business Explore Marketplace Pricing
-This repository
-Search
-Sign in or Sign up
- Watch 8  Star 0  Fork 3 WebTales/rubedo-frontoffice
- Code  Issues 1  Pull requests 0  Projects 0 Insights 
-Branch: 3.4.x Find file Copy pathrubedo-frontoffice/src/modules/rubedoBlocks/controllers/ContentDetailController.js
-a372496  on 2 Sep 2016
-@Alexandru-Dobre Alexandru-Dobre image replace
-3 contributors @Alexandru-Dobre @Rodrive @goncalvesm
-RawBlameHistory     
-220 lines (218 sloc)  11.1 KB
+
 angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","$http","$route","$rootScope",function($scope, RubedoContentsService,$http,$route,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
@@ -231,5 +219,3 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
 }]);
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help

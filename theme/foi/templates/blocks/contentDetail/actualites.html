@@ -1,8 +1,21 @@
 
+<div class="row">
+  
+  <!-- Contenu standard de l'article -->
+  <div class="col-md-12" >
+	  <rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>
+  </div>
+  
+  <div class="restreindre">
+    <h1>Article réservé aux abonnés</h1>
+    <p>Abonnez-vous pour poursuivre la lecture</p>
+  </div>
 
-<div class="col-md-12" >
-    <rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>
+  
+  
 </div>
+
+
 
 
 
