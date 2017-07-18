@@ -6,11 +6,13 @@
 	  <rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>
   </div>
   
-  <div class="col-md-12 bg-grey">
-    <h2>Article réservé aux abonnés</h2>
-    <!--<p><a href="http://foi.chemin-neuf.org/fr/accueil/abonnement">Abonnez-vous</a> pour poursuivre la lecture</p>   -->
-	<p style="text-align:center">Abonnez-vous pour poursuivre la lecture    <button  class="btn btn-default "><a rubedo-page-link="58e51a9c245640db008bde81">JE M'ABONNE</a></button></p>
-  </div>
+	<div class="col-md-12">
+	  <div clas="bg-main">
+		  <h2>Article réservé aux abonnés</h2>
+		  <!--<p><a href="http://foi.chemin-neuf.org/fr/accueil/abonnement">Abonnez-vous</a> pour poursuivre la lecture</p>   -->
+		  <p style="text-align:center">Abonnez-vous pour poursuivre la lecture    <button  class="btn btn-default "><a rubedo-page-link="58e51a9c245640db008bde81">JE M'ABONNE</a></button></p>
+	  </div>
+	</div>
   
 </div>
   
