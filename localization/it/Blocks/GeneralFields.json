@@ -34,5 +34,6 @@
     "Blocks.Contact.Input.Email.Label":"Indirizzo email *",
     "Blocks.Contact.Input.Subject.Label":"Oggetto *",
     "Blocks.Contact.Input.Message.Label":"Messagio *",
-    "Blocks.Contact.Input.Submit.Label":"Invia"
+    "Blocks.Contact.Input.Submit.Label":"Invia",
+    "Blocks.Checkout.Button.Continue": "Continuare"
     }
