@@ -9,16 +9,11 @@
 	  
   </div>
   
-	<div class="col-md-12 bg-grey" style="text-align:center">
+	<div ng-if="!rubedo.current.user" class="col-md-12 bg-grey" style="text-align:center">
 		<h2 >Article réservé aux abonnés</h2>
 		<p>Il vous reste 90% de l'article à découvrir... Abonnez-vous pour poursuivre la lecture</p>
 		<div class="col-sm-6">
-		  <!--<p style="text-align:center"><button  class="btn btn-default btn-connect"><a rubedo-page-link="58e51a9c245640db008bde81">JE ME CONNECTE</a></button></br></p>-->
-		  
-		  
-		  
-		      
-					
+
 					<button class="btn btn-default btn-connect" data-toggle="modal" data-target="#rubedoAuthModal">JE ME CONNECTE</button>
 					<div class="modal fade" id="rubedoAuthModal" tabindex="-1" role="dialog" aria-labelledby="rubedoAuthModalLabel" aria-hidden="true">
 						<div class="modal-dialog modal-sm">
@@ -61,15 +56,6 @@
 							</div>
 						</div>
 					</div>
-				
-		  
-		  
-		  
-		  
-		  
-		  
-		  
-		  
 		  
 		</div>
 		<div class="col-sm-6">
@@ -81,21 +67,7 @@
   
 </div>
   
-  
-  
-  <!--
-<div class="titre" ng-if="row.displayTitle">
-    <h2>{{row.eTitle}}</h2>
-</div>
-<div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"
-     ng-class="rubedo.componentsService.getColumnClass(column.span,column.offset,column.stackThreshold)+' '+rubedo.componentsService.resolveResponsiveClass(column.responsive)"></div>
-  
-  <h3 ng-if="row.displayTitle">{{row.eTitle}}</h3>
-<div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"
-     ng-class="rubedo.componentsService.getColumnClass(column.span,column.offset,column.stackThreshold)+' '+rubedo.componentsService.resolveResponsiveClass(column.responsive)"></div>
 
-	 <rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]||field.cType=='checkboxfield'||field.cType=='productBox'"></rubedo-field>
-</div>
 
 
 
