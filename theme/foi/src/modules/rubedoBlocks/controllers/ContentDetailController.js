@@ -1,5 +1,5 @@
 
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","$http","$route","$rootScope",function($scope, RubedoContentsService,$http,$route,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoUsersService","$http","$route","$rootScope",function($scope, RubedoContentsService,RubedoUsersService,$http,$route,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -218,4 +218,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
+    
+    me.getUserById = function (userId){
+            RubedoUsersService.getUserById(userId).then(
+                function(response){
+                    if(response.data.success){
+                        me.user=response.data.user;}
+                })}
+     console.log($scope.rubedo.current.user);       
+    /*var infos = getUserById(userId);*/
+    
 }]);
