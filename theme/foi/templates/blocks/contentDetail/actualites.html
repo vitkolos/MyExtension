@@ -7,11 +7,16 @@
   </div>
   
   <div class="restreindre">
-    <h1>Article réservé aux abonnés</h1>
-    <p><a href="http://foi.chemin-neuf.org/fr/accueil/abonnement">Abonnez-vous</a> pour poursuivre la lecture</p>
+    <h2>Article réservé aux abonnés</h2>
+    <!--<p><a href="http://foi.chemin-neuf.org/fr/accueil/abonnement">Abonnez-vous</a> pour poursuivre la lecture</p>   -->
+	<p style="text-align:center">Abonnez-vous pour poursuivre la lecture    <button  class="btn btn-default "><a rubedo-page-link="58e51a9c245640db008bde81">JE M'ABONNE</a></button></p>
   </div>
-  
-
+  <!--
+<div class="titre" ng-if="row.displayTitle">
+    <h2>{{row.eTitle}}</h2>
+</div>
+<div ng-repeat="column in row.columns track by $index" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"
+     ng-class="rubedo.componentsService.getColumnClass(column.span,column.offset,column.stackThreshold)+' '+rubedo.componentsService.resolveResponsiveClass(column.responsive)"></div>
   
   
 </div>
