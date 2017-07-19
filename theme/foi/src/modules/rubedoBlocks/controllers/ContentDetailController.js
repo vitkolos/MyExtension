@@ -238,5 +238,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         me.isClient($scope.rubedo.current.user.id);
     }
     
+    $scope.positionFinParagraphe = me.content.fields.richText.indexOf("</p>")+4;
+    
     
 }]);
