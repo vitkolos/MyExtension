@@ -14,6 +14,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         angular.forEach(me.content.type.fields,function(candidate){
             if (candidate.config.name==name){
                 field=candidate;
+                console.log(field);
             }
         });
         return field;
