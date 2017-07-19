@@ -230,7 +230,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     
     me.isClient = function (){
-        if ($scope.rubedo.current.user) {
+        if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
+           $scope.isClient=true;
+           console.log($scope.rubedo.current.user);
+        }
+        else if ($scope.rubedo.current.user) {
             RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
                 function(response){
                     if(response.data.success){
@@ -249,13 +253,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
              var limit = $scope.fieldEntity['richText'].indexOf("</p>",$scope.fieldEntity['richText'].length*0.1)+4;
              $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit);
         }
-       // console.log($scope.fieldEntity['richText'].indexOf("</p>"));
     };
     
-   /* if ($scope.rubedo.current.user) {
-        $scope.positionFinParagraphe = me.content.fields.richText.indexOf("</p>")+4;
-    }*/
-    
+
     
     
 }]);
