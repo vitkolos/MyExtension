@@ -219,6 +219,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
     
+    
     me.isClient = function (userId){
             RubedoUsersService.getUserById(userId).then(
                 function(response){
