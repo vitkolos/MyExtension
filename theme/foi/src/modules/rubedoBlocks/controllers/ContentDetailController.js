@@ -52,7 +52,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     /*Vérifier les droits du client et limiter le texte si besoin pour les actualites*/
                     /*et seulement pour des articles publiés il y a moins de 3 mois*/
                     var today = new Date();
-                    console.log(today.getTime() - me.content.createTime*1000);
+                    console.log((today.getTime() - me.content.createTime*1000)>1000*3600*24*90);
+                    
                     if(me.content.type.code=="actualites" ) me.isClient();
                     
                     
