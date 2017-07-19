@@ -219,33 +219,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
     
-    me.getGroup = function (userId){
+    me.isClient = function (userId){
             RubedoUsersService.getUserById(userId).then(
                 function(response){
-                    console.log(response.data.success);
-                    console.log(response.data.user.groups);
                     if(response.data.success){
-                        return response.data.user.groups;
+                        console.log(response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0"));
+                        if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
+                            return true;
+                        }else{
+                            return false;
+                        }
                     }
                 }
             )
     };
     
-    me.getGroup($scope.rubedo.current.user.id);
     
     
-    me.isClient = function (groupId){
-        if(groupId.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
-            return true;
-        }
-        else{
-            return false;
-        }
-    };
-    me.isClient(me.getGroup($scope.rubedo.current.user.id));
-    
-    console.log(me.isClient(me.getGroup($scope.rubedo.current.user.id)));
-    
-    
+    me.isClient($scope.rubedo.current.user.id);
+        
     
 }]);
