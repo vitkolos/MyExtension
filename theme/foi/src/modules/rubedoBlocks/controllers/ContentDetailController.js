@@ -222,7 +222,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.getUserById = function (userId){
             RubedoUsersService.getUserById(userId).then(
                 function(response){
-                    
+                    console.log(response);
                     if(response.data.success){
                         $scope.rubedo.current.user=response.data.user;
                     }
@@ -231,7 +231,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
                         
      console.log($scope.rubedo.current.user.id);
-    console.log(RubedoUsersService.getUserById($scope.rubedo.current.user.id));
+    
     
      /* 
     console.log(RubedoUsersService.getUserById($scope.rubedo.current.user.id));
