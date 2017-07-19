@@ -244,7 +244,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     me.isClient(me.getGroup($scope.rubedo.current.user.id));
     
-    /*console.log(me.isClient(me.getGroup($scope.rubedo.current.user.id)));*/
+    console.log(me.isClient(me.getGroup($scope.rubedo.current.user.id)));
     
     
     
