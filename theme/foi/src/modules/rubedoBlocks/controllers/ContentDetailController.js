@@ -49,8 +49,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     
                     
-                    /*Vérifier les droits du client et limiter le texte si besoin*/
-                    me.isClient();
+                    /*Vérifier les droits du client et limiter le texte si besoin pour les actualites*/
+                    if(me.content.type.code=="actualites") me.isClient();
                     
                     
                     
