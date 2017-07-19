@@ -6,7 +6,7 @@
   <div class="col-md-12" >
 	  <rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Titre-->
 	  <rubedo-field field = "{{contentDetailCtrl.getFieldByName('image')}}"></rubedo-field>
-	  
+	  {{contentDetailCtrl.content.createTime | date}}
 	  <div >
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field>
 	  </div>

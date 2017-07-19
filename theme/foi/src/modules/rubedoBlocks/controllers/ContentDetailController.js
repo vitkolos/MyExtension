@@ -50,7 +50,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     
                     /*Vérifier les droits du client et limiter le texte si besoin pour les actualites*/
-                    if(me.content.type.code=="actualites") me.isClient();
+                    /*et seulement pour des articles publiés il y a moins de 3 mois*/
+                    if(me.content.type.code=="actualites" ) me.isClient();
+                    
                     
                     
                     
