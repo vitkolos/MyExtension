@@ -228,6 +228,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         
                         if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
                             $scope.isClient=true;
+                            $scope.fieldEntity['richText'] ="Salut";
+                            
                         }
                     }
                 }
@@ -238,7 +240,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         me.isClient($scope.rubedo.current.user.id);
     }
     
-    $scope.positionFinParagraphe = me.content.fields.richText.indexOf("</p>")+4;
+    if ($scope.rubedo.current.user) {
+        $scope.positionFinParagraphe = me.content.fields.richText.indexOf("</p>")+4;
+    }
+    
     
     
 }]);
