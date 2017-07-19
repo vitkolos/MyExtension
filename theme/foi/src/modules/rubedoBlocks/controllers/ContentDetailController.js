@@ -54,7 +54,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     var today = new Date();
                     console.log((today.getTime() - me.content.createTime*1000)>1000*3600*24*90);
                     
-                    if(me.content.type.code=="actualites" ) me.isClient();
+                    if(me.content.type.code=="actualites" && (today.getTime() - me.content.createTime*1000)<1000*3600*24*90) me.isClient();
                     
                     
                     
