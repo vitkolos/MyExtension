@@ -222,7 +222,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.getGroup = function (userId){
             RubedoUsersService.getUserById(userId).then(
                 function(response){
-                    /*console.log(response);*/
+                    console.log(response.data.success);
+                    console.log(response.data);
                     if(response.data.success){
                         return response.data.user.groups;
                         console.log(response.data.user.groups);
@@ -232,6 +233,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     
     me.getGroup($scope.rubedo.current.user.id);
+    
+    
     me.isClient = function (groupId){
         if(groupId === "545cd94b45205e91168b4569"){
             return true;
@@ -241,7 +244,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         }
     };
     
-    console.log(me.isClient(me.getGroup($scope.rubedo.current.user.id)));
+    /*console.log(me.isClient(me.getGroup($scope.rubedo.current.user.id)));*/
     
     
     
