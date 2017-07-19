@@ -50,7 +50,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     
                     /*Vérifier les droits du client et limiter le texte si besoin*/
-                    me.isClient($scope.rubedo.current.user.id);
+                    me.isClient();
                     
                     
                     
