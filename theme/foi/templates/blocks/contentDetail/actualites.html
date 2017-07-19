@@ -12,7 +12,7 @@
 	  </div>
 	  
 	  <div ng-if="!isClient">
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText') | limitTo : 200}}"></rubedo-field>
+		{{me.content.fields.richText | limitTo : 200}}
 	  </div>
 	  
   </div>
