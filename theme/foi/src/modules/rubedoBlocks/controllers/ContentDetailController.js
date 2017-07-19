@@ -223,7 +223,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             RubedoUsersService.getUserById(userId).then(
                 function(response){
                     console.log(response.data.success);
-                    console.log(response.data);
+                    console.log(response.data.user);
                     if(response.data.success){
                         return response.data.user.groups;
                         console.log(response.data.user.groups);
