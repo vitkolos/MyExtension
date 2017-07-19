@@ -225,7 +225,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     if(response.data.success){
                         me.user=response.data.user;}
                 })}
-     console.log($scope.rubedo.current.user);       
-    /*var infos = getUserById(userId);*/
+      
+    me.getUserById($scope.rubedo.current.user.id);
+    console.log($scope.rubedo.current.user.id);
+    
     
 }]);
