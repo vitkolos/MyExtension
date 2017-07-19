@@ -3,6 +3,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
+    $scope.isClient = false;
     var previousFields;
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
@@ -46,6 +47,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     $scope.fieldEntity=angular.copy(me.content.fields);
+                    
+                    
+                
+                    if ($scope.rubedo.current.user) {
+                        me.isClient($scope.rubedo.current.user.id);
+                    }
+                    
+                    
+                    
                     $scope.fieldLanguage=me.content.locale;
                     if (me.content.isProduct){
                         me.content.type.fields.unshift({
@@ -220,7 +230,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
     
-    $scope.isClient = false;
+    
     me.isClient = function (userId){
             RubedoUsersService.getUserById(userId).then(
                 function(response){
@@ -235,10 +245,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 }
             )
     };
-    
-    if ($scope.rubedo.current.user) {
-        me.isClient($scope.rubedo.current.user.id);
-    }
     
    /* if ($scope.rubedo.current.user) {
         $scope.positionFinParagraphe = me.content.fields.richText.indexOf("</p>")+4;
