@@ -7,14 +7,15 @@
 	  <rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Titre-->
 	  <rubedo-field field = "{{contentDetailCtrl.getFieldByName('image')}}"></rubedo-field>
 	  
-	  <div ng-if="isClient">
+	  <div >
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field>
 	  </div>
-	  
+
+	  <!--
 	  <div ng-if="!isClient">
 		{{contentDetailCtrl.content.fields.richText | limitTo : positionFinParagraphe}}
 	  </div>
-	  
+	  -->
   </div>
   
 	<div ng-if="!rubedo.current.user" class="col-md-12 bg-grey" style="text-align:center">
