@@ -29,6 +29,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
+                    console.log(me.content);
                     $scope.fieldIdPrefix="contentDetail"+me.content.type.type;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
