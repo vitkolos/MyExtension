@@ -235,7 +235,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     
     me.isClient = function (groupId){
-        if(groupId === ["545cd94b45205e91168b4569"]){
+        if(groupId.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
             return true;
         }
         else{
