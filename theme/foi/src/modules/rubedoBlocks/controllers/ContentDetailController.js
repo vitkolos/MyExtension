@@ -231,7 +231,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     me.isClient = function (){
         if ($scope.rubedo.current.user) {
-            RubedoUsersService.getUserById(userId).then(
+            RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
                 function(response){
                     if(response.data.success){
                         if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
@@ -247,6 +247,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         else {
              $scope.fieldEntity['richText'] ="Salut";
         }
+        console.log($scope.fieldEntity['richText'].indexOf("</p>"));
     };
     
    /* if ($scope.rubedo.current.user) {
