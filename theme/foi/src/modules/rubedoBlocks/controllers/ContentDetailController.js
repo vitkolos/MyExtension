@@ -223,7 +223,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             RubedoUsersService.getUserById(userId).then(
                 function(response){
                     if(response.data.success){
-                        console.log(response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0"));
                         if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
                             return true;
                         }else{
@@ -234,9 +233,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             )
     };
     
-    
-    
-    me.isClient($scope.rubedo.current.user.id);
         
     
 }]);
