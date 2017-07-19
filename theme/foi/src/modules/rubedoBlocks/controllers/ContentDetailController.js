@@ -233,6 +233,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             )
     };
     
+    if ($scope.rubedo.current.user) {
+        me.isClient($scope.rubedo.current.user.id);
+    }
     
     
 }]);
