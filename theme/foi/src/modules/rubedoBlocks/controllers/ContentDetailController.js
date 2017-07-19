@@ -224,7 +224,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 function(response){
                     /*console.log(response);*/
                     if(response.data.success){
-                        return response.data.user.groups[0];
+                        return response.data.user.groups;
+                        console.log(response.data.user.groups);
                     }
                 }
             )
