@@ -231,19 +231,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     $scope.registerFieldEditChanges=me.registerEditChanges;
     
     
-    me.isClient = function (userId){
+    me.isClient = function (){
+        if ($scope.rubedo.current.user) {
             RubedoUsersService.getUserById(userId).then(
                 function(response){
                     if(response.data.success){
-                        
                         if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
                             $scope.isClient=true;
+                        }
+                        else{
                             $scope.fieldEntity['richText'] ="Salut";
-                            
                         }
                     }
                 }
             )
+        }
+        else {
+             $scope.fieldEntity['richText'] ="Salut";
+        }
     };
     
    /* if ($scope.rubedo.current.user) {
