@@ -223,7 +223,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             RubedoUsersService.getUserById(userId).then(
                 function(response){
                     if(response.data.success){
-                        me.user=response.data.user;}
+                        $scope.rubedo.current.user=response.data.user;}
                 })}
       
     console.log($scope.rubedo.current.user);
