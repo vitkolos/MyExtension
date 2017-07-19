@@ -232,7 +232,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     
     me.getGroup($scope.rubedo.current.user.id);
-    me.isClient(me.getGroup($scope.rubedo.current.user.id));
+    
     
     me.isClient = function (groupId){
         if(groupId === ["545cd94b45205e91168b4569"]){
@@ -242,6 +242,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             return false;
         }
     };
+    me.isClient(me.getGroup($scope.rubedo.current.user.id));
     
     /*console.log(me.isClient(me.getGroup($scope.rubedo.current.user.id)));*/
     
