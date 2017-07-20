@@ -190,7 +190,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
                         $window.addthis.layers.refresh();
                     }*/
 		$scope.nbOfLikes=0;
-		$http({method: 'GET',url: 'http://graph.facebook.com/?id='+contentUrl})
+		$http({method: 'GET',url: 'https://graph.facebook.com/?id='+contentUrl})
 		.then(function successCallback(response) {
 			$scope.nbOfLikes += response.data.shares;
 		},

@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope','RubedoOrdersService','$location','RubedoMediaService','RubedoPaymentService','$timeout','$http',
-                                                                        function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService,$timeout,$http){
+angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope','RubedoOrdersService','$location','RubedoMediaService','RubedoPaymentService','$timeout','$http','RubedoUsersService',
+                                                                        function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService,$timeout,$http,RubedoUsersService){
     var me = this;
     var config = $scope.blockConfig;
     var orderId=$location.search().order;
@@ -42,6 +42,16 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                                         me.showPaypalForm=true;
                                         $scope.parametres = pmResponse.data.paymentInstructions.url;
                                     }
+                                }
+                            }
+                        );
+                    }
+                    // pour les administrateurs, accéder aux infos du créateur de la commande
+                    if(me.isAdmin && me.order) {
+                        RubedoUsersService.getUserById(me.order.createUser.id).then(
+                            function(response){
+                                if (response.data.success){
+                                    me.orderUser = response.data.user;
                                 }
                             }
                         );

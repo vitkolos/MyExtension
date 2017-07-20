@@ -1,18 +1,13 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","RubedoUsersService","$rootScope",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,RubedoUsersService,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","$http","$route","$rootScope",function($scope, RubedoContentsService,$http,$route,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
-    me.taxonomy=[];
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
+
     });
-    $scope.isArray = angular.isArray;
-    me.tooltips=function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    }
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
@@ -21,54 +16,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             }
         });
         return field;
-    };
-    me.getLabelByName=function(name){
-        var field=null;
-        angular.forEach(me.content.type.fields,function(candidate){
-            if (candidate.config.name==name){
-                field=candidate;
-            }
-        });
-        return field.config.fieldLabel;
-    };
-    me.getLabel = function(field,name) {
-        var value = null;
-        if (field.cType == 'combobox') {
-            angular.forEach(field.store.data,function(candidate){
-                if (candidate.valeur == name) {
-                    value = candidate.nom;
-                }
-            });
-        }
-        else if (field.cType == 'checkboxgroup') {
-            angular.forEach(field.config.items,function(candidate){
-                if (candidate.inputValue == name) {
-                    value = candidate.boxLabel;
-                }
-            });
-        }
-        
-        return value;
-    };
-    me.getTermInTaxo=function(taxoKey,termId){
-        
-        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
-        var term=null;
-        angular.forEach(me.taxo[taxoKey],function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
-            if(!term){
-                if(candidate.id==termId){term=candidate.text;}
-            }
-         });
-         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
-    return(term);
-    }
-    
-    me.search = function(taxoKey,termId){
-        RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
-            if (response.data.success){
-                $location.url(response.data.url+'?taxonomies={"'+taxoKey+'":["'+termId+'"]}');
-            }
-        });        
     };
     me.getContentById = function (contentId){
         var options = {
@@ -80,6 +27,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
+                    $scope.fieldIdPrefix="contentDetail"+me.content.type.type;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
                             $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
@@ -87,28 +35,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if (me.content.fields.summary){
                             $scope.rubedo.setPageDescription(angular.copy(me.content.fields.summary));
                         }
-                        if(me.content.fields.image) {
-                            //$scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
-                            $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields['image']));
-                        }/*
                         var foundMeta=false;
                         angular.forEach(me.content.type.fields,function(field){
                             if(!foundMeta&&field.config&&field.config.useAsMetadata&&me.content.fields[field.config.name]&&me.content.fields[field.config.name]!=""){
                                 $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields[field.config.name]));
                                 foundMeta=true;
                             }
-                        });*/
-                        if(response.data.content.fields.video) {
-                            $scope.rubedo.current.page.video = response.data.content.fields.video.url;
-                        }
+                        });
                     }
-                
-                    
-                    
-                    
                     $scope.fieldEntity=angular.copy(me.content.fields);
-                    
-
                     $scope.fieldLanguage=me.content.locale;
                     if (me.content.isProduct){
                         me.content.type.fields.unshift({
@@ -145,9 +80,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
-
-                    
-                    
                     if(me.customLayout){
                         me.content.type.fields.unshift({
                             cType:"textarea",
@@ -158,53 +90,59 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                         me.detailTemplate=me.customLayout.customTemplate?themePath+'/templates/blocks/contentDetail/customTemplate.html':themePath+'/templates/blocks/contentDetail/customLayout.html';
-                        $scope.clearORPlaceholderHeight();
                     } else {
                         if(me.content.type.code&&me.content.type.code!=""){
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
                                 function (response){
-                                    if ($scope.rubedo.current.page.id=="5669ec213bc325f05f8b4579") {
-                                        me.detailTemplate=themePath+'/templates/blocks/contentDetail/blog.html';
-                                    }
-                                    else me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
+                                    me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
                                     $scope.fields=me.transformForFront(me.content.type.fields);
                                     $scope.clearORPlaceholderHeight();
-
                                 },
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                                     $scope.fields=me.transformForFront(me.content.type.fields);
                                     $scope.clearORPlaceholderHeight();
-
-
                                 }
                             );
                         } else {
                             me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
                             $scope.fields=me.transformForFront(me.content.type.fields);
                             $scope.clearORPlaceholderHeight();
-
                         }
                         //$http.get(themePath+'/templates/blocks/contentDetail/)
+                    }
+                    if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
+                        $rootScope.$broadcast("ClickStreamEvent",{csEvent:me.content.clickStreamEvent});
+                    }
+
+					//Albums photos
+                    if (me.content.type.code=="album" || me.content.type.code=="actualites") {
+                        me.currentIndex=0;
+                        me.loadModal = function(index,embedded){
+                            me.currentIndex = index;
+                            if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex];
+                            else me.currentImage = me.content.fields.images[me.currentIndex];
+                        };
+                        me.changeImage = function(side,embedded){
+                            if(side == 'left' && me.currentIndex > 0){
+                                me.currentIndex -= 1;
+                            } else if(side == 'right'){
+                                me.currentIndex += 1;
+                            }
+                            if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex]; 
+                            else me.currentImage = me.content.fields.images[me.currentIndex];
+                        };
+                        me.changeImageKey = function($event,embedded){
+                            if ($event.keyCode == 39) { 
+                               me.changeImage('right',embedded);
+                            }
+                        
+                            else if ($event.keyCode == 37) {
+                               me.changeImage('left',embedded);
+                            }
+                        };
 
                     }
-                    var allContentTerms=[];
-                    if (me.content.taxonomy){
-                        angular.forEach(me.content.taxonomy,function(value){
-                            if (angular.isString(value)&&value!=""){
-                                allContentTerms.push(value);
-                            } else if (angular.isArray(value)){
-                                allContentTerms=allContentTerms.concat(value);
-                            }
-                        });
-                    }
-                    $rootScope.$broadcast("ClickStreamEvent",{csEvent:"contentDetailView",csEventArgs:{
-                        contentId:me.content.id,
-                        siteId:options.pageId,
-                        pageId:options.siteId,
-                        typeId:me.content.typeId,
-                        taxonomyTerms:allContentTerms
-                    }});
                 }
             }
         );
@@ -212,7 +150,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     if (config.contentId){
         me.getContentById(config.contentId);
     }
-    
     me.revertChanges=function(){
         $scope.fieldEntity=angular.copy(previousFields);
     };
@@ -309,12 +246,4 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
-    
-    
-    
-    
 }]);
-
-
-
-

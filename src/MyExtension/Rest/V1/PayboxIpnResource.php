@@ -180,6 +180,21 @@ if(!($erreurStatus) && $securite && $autorisation) {
                 if(isset($inscription['fields']['emailPers2'])) $body .= "Email 2e personne: " . $inscription['fields']['emailPers2']."\n";
              }
             if($erreurMessage!="") $body.="\n\n Message : " . $erreurMessage;
+            
+            
+            /*CONFIRM PAYMENT FOR USER*/
+            if($inscription['fields']['email']){
+                 $mailUser = $mailerService->getNewMessage();
+                 $mailUser->setTo(array($inscription['fields']['email']));
+                 $mailUser->setFrom(array("web@chemin-neuf.org" => "Communauté du Chemin Neuf"));
+                 $mailUser->setReplyTo($mailSecretariat);
+                 $mailUser->setSubject("Accusé de réception payement en ligne");
+                 $messageUser="Bonjour,\n";
+                 $messageUser.="Nous vous confirmons la réception de votre payement en ligne de ".$params['montant']/100  . " euros suite à votre inscription à : ".$inscription['fields']['propositionTitre']."\n";
+                 $messageUser.= "Merci de votre confiance.";
+                 $mailUser->setBody($body);
+                 $mailerService->sendMessage($mailUser, $errors);
+            }
         }
         else {
             $body = "Montant non payé : " . $params['montant']/100  . " euros." ;
@@ -192,7 +207,7 @@ if(!($erreurStatus) && $securite && $autorisation) {
         $mailerObject->setSubject($sujet);
         $mailerObject->setReplyTo($replyTo);
         $mailerObject->setBody($body);
-
+        
         // Send e-mail
         if ($mailerService->sendMessage($mailerObject, $errors)) {
             return [

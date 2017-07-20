@@ -83,6 +83,8 @@
                 <div class="panel-body">
                     <p><strong>{{orderDetailCtrl.order.userName}}</strong></p>
                     <p><i class="fa fa-envelope-o" aria-hidden="true"></i> {{orderDetailCtrl.order.userEmail}}</p>
+                    <p ng-if="orderDetailCtrl.orderUser.fields.tel1"><i class="fa fa-phone" aria-hidden="true"></i> {{orderDetailCtrl.orderUser.fields.tel1}}</p>
+                    <p ng-if="orderDetailCtrl.orderUser.fields.tel2"><i class="fa fa-phone" aria-hidden="true"></i> {{orderDetailCtrl.orderUser.fields.tel2}}</p>
                 </div>
             </div>
         </div>

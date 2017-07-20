@@ -6,8 +6,8 @@ return array(
             'service' => 'PayboxPayment',
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/paybox.json'
         ),
-								/*NEW CONFIGS*/
-								'int' => array(
+        /*NEW CONFIGS*/
+        'int' => array(
             'name' => "International",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
@@ -95,7 +95,7 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/contentDetail.json'
         ),
-							'd3Script' => array(
+        'd3Script' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/d3Script.json'
         ),
@@ -115,7 +115,7 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchResults.json'
         ),
-								'searchDons' => array(
+        'searchDons' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/searchDons.json'
         ),
@@ -175,11 +175,11 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/logoMission.json'
         ),
-								'paymentBlock' => array(
+        'paymentBlock' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/paymentBlock.json'
         ),
-									'chatbot' => array(
+        'chatbot' => array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/chatbot.json'
         ),
@@ -315,7 +315,37 @@ return array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
            ),
-											'foi' => array(
+            'cana_org' => array(
+                'label' => 'Cana ORG',
+                'basePath' => realpath(__DIR__ . '/../theme/cana_org'),
+                'css' => array(
+                    '/css/cana.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '../js/lazy-image.js',
+                    '/js/cana.js'
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
+           ),
+           'bethanien' => array(
+                'label' => 'Bethanien',
+                'basePath' => realpath(__DIR__ . '/../theme/bethanien'),
+                'css' => array(
+                    '/css/bethanien.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '../js/lazy-image.js',
+                    '/js/bethanien.js'
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
+           ),
+            'foi' => array(
                 'label' => 'F.O.I.',
                 'basePath' => realpath(__DIR__ . '/../theme/foi'),
                 'css' => array(
@@ -354,6 +384,9 @@ return array(
                 ),
                 'js' => array(
                     '/js/baskerville.js'
+                ),
+																'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
             ),
         ),

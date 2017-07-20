@@ -7,5 +7,26 @@
     "Blocks.Contact.Input.Subject.Label":"Object *",
     "Blocks.Contact.Input.Message.Label":"Bericht *",
     "Blocks.Contact.Input.Submit.Label":"Sturen",
-    "Contents.PublishedBy":"Uitgegeven door"
+    "Contents.PublishedBy":"Uitgegeven door",
+				"Block.Carte.Presence.Perm":"Land waar de gemeenschap permanent aanwezig is",
+    "Block.Carte.Presence.Ponct":"Land waar de gemeenschap tijdelijke activiteiten heeft",
+    "Missions.cana":"Kana: in dienst van echtparen en gezinnen",
+    "Missions.netforgod":"Net for God",
+    "Missions.ados":"Tienermissie 14-18 jaar",
+    "Missions.jeunes":"Jongerenmissie 18-30 jaar",
+    "Missions.foyers":"Foyers d'étudiants",
+    "Missions.jet":"JET - Internationale vrijwilligers",
+    "Block.Mail.SendMail":"Send mail",
+    "Block.Inscription.Telephone":"Téléphone",
+    "InfosPratiques":"Praktische info",
+    "Inscription":"Inschrijving",
+    "FaireUnDon":"Een gift geven",
+    "Menu" : "menu",
+    "Accueil" : "Home",
+    "Time.At":"à"
     }
+				
+				
+				
+				
+    

@@ -8,7 +8,7 @@ blocksConfig.bg_image={
 };
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
-            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
+            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js','//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js'],
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js"]
 };
 blocksConfig.carrousel2={
@@ -19,19 +19,29 @@ blocksConfig.searchResults={
             "template": "/templates/blocks/searchResults.html",
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/SearchResultsController.js","/src/modules/rubedoBlocks/directives/PaginatorDirective.js"],
             "externalDependencies":['/components/jquery/fullCalendar/lib/jquery-ui.custom.min.js','/components/jquery/fullCalendar/fullcalendar.min.js','/components/jquery/fullCalendar/lang/en-gb.js','/components/jquery/fullCalendar/lang/fr.js','//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js']
-        },
+};
+blocksConfig.contentList= {
+            "template": "/templates/blocks/contentList.html",
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentListController.js","/src/modules/rubedoBlocks/directives/PaginatorDirective.js"],
+            "externalDependencies":['//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js']
+};
+blocksConfig.imageBatchUpload={
+           "template": "/templates/blocks/imageBatchUpload.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/ImageBatchUploadController.js"]
+};
+
 angular.module('rubedo').filter('ligneNonVide', function () {
            return function (input) {
                       var filtered = [];
 		      var contentDisplay = false;
                       angular.forEach(input, function(row, index) {
-				// si la 1re colonne est terminale et non vide
+				// si la 1Ã¨re colonne est terminale et non vide
                                  if (row.columns[0].isTerminal&&row.columns[0].blocks) {
-				    // toujours afficher la 1re ligne (menu) et la dernire (footer)
+				    // toujours afficher la 1ï¿½re ligne (menu) et la derniï¿½re (footer)
 				    if (index ==0 || index >= input.length-1) {
 					filtered.push(row);
 				    }
-				    // si la page sert ˆ afficher un contenu (en 2me ligne) on n'affiche pas les autres lignes
+				    // si la page sert ï¿½Ã afficher un contenu (en 2ï¿½me ligne) on n'affiche pas les autres lignes
 				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
 					filtered.push(row);
 					contentDisplay = true;
