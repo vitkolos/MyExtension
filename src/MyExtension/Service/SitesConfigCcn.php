@@ -69,7 +69,6 @@ class SitesConfigCcn extends AbstractCollection
                     break;
             //BELGIQUE
             case "www.chemin-neuf.be" :
-            case "test.chemin-neuf.be" :
                     $accountName="belgique";
                     break;
             //MARTINIQUE
@@ -81,12 +80,10 @@ class SitesConfigCcn extends AbstractCollection
                     $accountName="canada";
                     break;
             //HONGRIE
-            case "hu.chemin-neuf.org" :
             case "www.chemin-neuf.hu" :
                     $accountName="hongrie";
                     break;
             //ROYAUME UNI
-            case "uk.chemin-neuf.org" :
             case "www.chemin-neuf.org.uk" :
                     $accountName="uk";
                     break;
@@ -96,7 +93,37 @@ class SitesConfigCcn extends AbstractCollection
                     break;
             //BRESIL
             case "br2.chemin-neuf.org" :
+            case "br.chemin-neuf.org" :
                     $accountName="bresil";
+                    break;
+            //SUISSE
+            case "ch.chemin-neuf.org" :
+            case "www.chemin-neuf.ch" :
+                    $accountName="suisse";
+                    break;
+             //TCHEQUIE
+            case "cz.chemin-neuf.org" :
+            case "www.chemin-neuf.cz" :
+                    $accountName="tchequie";
+                    break;
+            //PAYS BAS
+            case "nl.chemin-neuf.org" :
+            case "www.chemin-neuf.nl" :
+                    $accountName="nl";
+                    break;
+            //MAURICE
+            case "mu.chemin-neuf.org" :
+                    $accountName="maurice";
+                    break;
+            //TCHAD
+            case "td.chemin-neuf.org" :
+            case "td2.chemin-neuf.org" :
+                    $accountName="tchad";
+                    break;
+            //TCHAD
+            case "ci.chemin-neuf.org" :
+            case "ci2.chemin-neuf.org" :
+                    $accountName="ci";
                     break;
         }
         $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);

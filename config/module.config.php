@@ -62,6 +62,30 @@ return array(
 								'bresil' => array(
             'name' => "Brésil",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
+        ),
+								'suisse' => array(
+            'name' => "Suisse",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
+        ),
+								'tchequie' => array(
+            'name' => "Tchéquie",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
+        ),
+								'nl' => array(
+            'name' => "Pays Bas",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
+        ),
+								'maurice' => array(
+            'name' => "Maurice",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
+        ),
+								'tchad' => array(
+            'name' => "Tchad",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
+        ),
+								'ci' => array(
+            'name' => "Côte d'Ivoire",
+            'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         )
          
     ),
