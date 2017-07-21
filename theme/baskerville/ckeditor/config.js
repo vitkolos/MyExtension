@@ -17,6 +17,7 @@ CKEDITOR.editorConfig = function( config ) {
 CKEDITOR.stylesSet.add( 'default', [
     { name: 'Tags', element: 'p', attributes: { 'class': 'tag'} },
     { name: 'Bouton', element: 'a', attributes: { 'class': 'button '} },
+    { name: 'Bouton inverse', element: 'a', attributes: { 'class': 'button-inv'} },
     {
 		name: 'Image 100%',
 		element: 'img',
