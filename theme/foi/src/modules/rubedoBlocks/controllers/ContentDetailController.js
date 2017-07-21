@@ -56,7 +56,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     
                     if(me.content.type.code=="actualites" && (today.getTime() - me.content.createTime*1000)<1000*3600*24*90) me.isClient();
                     
-                    var oldArticle = true;
+                    me.oldArticle = true;
                     if ((today.getTime() - me.content.createTime*1000)<1000*3600*24*90) {me.oldArticle=false;
                     };
                     console.log(me.oldArticle);
