@@ -128,7 +128,7 @@ class DonationResource extends AbstractResource
             $arrayToReturn = array("whatToDo" =>"displayRichText", "id" =>$don['fields']['text'] );
         }
         /*METTRE A JOUR LE MONTANT COLLECTE*/
-        if($projectDetail) {
+       /* if($projectDetail) {
             
             AbstractCollection::disableUserFilter(true);
             $type = $this->getContentTypesCollection()->findById(empty($projectDetail['typeId']) ? $projectDetail['typeId'] : $projectDetail['typeId']);
@@ -159,7 +159,7 @@ class DonationResource extends AbstractResource
             $projectDetail['fields']['cumul'] +=   $don["fields"]["montant"];
             $projectUpdate = $contentsService->update($projectDetail, array(),false);
             AbstractCollection::disableUserFilter(false);
-        }
+        }*/
         
         if($resultcreate['success']) {
             //usleep(500000);
@@ -172,7 +172,7 @@ class DonationResource extends AbstractResource
                     )
                 );
             $result = $contentsService->update($content, array(),false);
-            //Manager::getService('ElasticContents')->index($content);
+            Manager::getService('ElasticContents')->index($content);
             AbstractCollection::disableUserFilter(false);
         }
         
