@@ -172,7 +172,7 @@ class DonationResource extends AbstractResource
                     )
                 );
             $result = $contentsService->update($content, array(),false);
-            Manager::getService('ElasticContents')->index($content);
+            //Manager::getService('ElasticContents')->index($content);
             AbstractCollection::disableUserFilter(false);
         }
         
