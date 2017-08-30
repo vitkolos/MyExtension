@@ -122,7 +122,7 @@ class PaypalIpnCcnResource extends AbstractResource
             else {
             $mailerService = Manager::getService('Mailer');
             $mailerObject = $mailerService->getNewMessage();
-            $destinataires=array("nicolas.rhone@chemin-neuf.org");
+            $destinataires=array("web@chemin-neuf.org");
             $replyTo="web@chemin-neuf.org";
             $from="web@chemin-neuf.org";
             $sujet = "Test";
