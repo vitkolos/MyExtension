@@ -153,7 +153,8 @@ if(!($erreurStatus) && $securite && $autorisation) {
 
         $mailerObject = $mailerService->getNewMessage();
         if($mailSecretariat) $destinataires=array($mailCompta,$mailSecretariat);
-        else $destinataires=array($mailCompta,"web@chemin-neuf.org");
+        else if(!isset($mailSecretariat) && $erreur == "00000") $destinataires=array($mailCompta,"web@chemin-neuf.org");
+        else if(!isset($mailSecretariat) && $erreur != "00000") $destinataires=array($mailCompta);
         $replyTo="web@chemin-neuf.org";
         $from="web@chemin-neuf.org";
         
