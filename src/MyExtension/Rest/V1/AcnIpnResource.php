@@ -117,7 +117,6 @@ class AcnIpnResource extends AbstractResource {
                 $mailerObject2 = $mailerService->getNewMessage();
                 $bodyClient = "";
                 $mailerObject2->setTo(array($order['userEmail'] => $order['userName']));
-                $mailerObject2->setBcc(array("nicolas.rhone@gmail.com"));
                 $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
                 $mailerObject2->setFrom(array("ame@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
                 $mailerObject2->setCharset('utf-8');
