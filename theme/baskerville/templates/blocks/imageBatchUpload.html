@@ -21,11 +21,11 @@
                 </div>
                 <div class="col-sm-8 col-sm-offset-2" ng-init="imgCtrl.format=1800">
                         <div class="col-sm-6">
-                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1800" ng-model="imgCtrl.format">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1200" ng-model="imgCtrl.format">
                                 <label  for="inlineRadio1">Bandeau</label>
                         </div>
                         <div class="col-sm-6">
-                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1000" ng-model="imgCtrl.format">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="800" ng-model="imgCtrl.format">
                                 <label  for="inlineRadio2">Texte / Albums</label>
                         </div>
                 </div>
@@ -54,7 +54,7 @@
                 accept="image/*" 
                 ngf-pattern="'image/*'"
                 ngf-resize="{width: imgCtrl.format, quality: .7}"
-                ngf-resize-if="$width > imgCtrl.format || $file.size>1024*200"
+                ngf-resize-if="$width > imgCtrl.format || $file.size>1024*150"
                 ng-disabled="imgCtrl.processing">
                 <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
                 <img src="/theme/cte/img/loader.gif" ng-if="imgCtrl.processing">
