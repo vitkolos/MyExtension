@@ -1,45 +1,51 @@
 <style>
+	.pdf-only{display:none}
+	.k-pdf-export .pdf-only{display:block}
 	.k-pdf-export .texte{max-width:760px}
 	.k-pdf-export h1{font-size:30px}
+	.k-pdf-export h3{text-align:center}
   .k-pdf-export p {font-size:20px;}
   .k-pdf-export .small p {font-size:15px;}
+	
 
 </style>
 <div class="container ">
 	<div class="row">
 		<div class="col-xs-12" >
 			<img class="img-responsive" ng-if="fieldEntity['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',height:'500px',mode:'crop'})}}">
-		</div>		
+		</div>
+		<div class="col-xs-12">
+			<div class="texte">
+				<rubedo-field  ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
+				<p><em>{{fieldEntity['summary']}}</em></p>
+			</div>
+		</div>
 	</div>
 	<div class="printZone">
-		<div class="row">
-			<div class="col-xs-12" >
-				<div class="texte" style="margin-top:0">
-					<rubedo-field  ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
-					<p><em>{{fieldEntity['summary']}}</em></p>
-				</div>
-
-			</div>		
-		</div>
 		<div class="row ">
 				<div class="col-xs-12" ng-if="fieldEntity['meditation']">
 						<div class="texte" style="margin-top:0">
-								<h3>{{contentDetailCtrl.getLabelByName('meditation')}}<br/>
-										{{fieldEntity['titre_meditation']}}
-										<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
-								</h3>
-								<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em>
-								<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field>
-								<p class="small">
-									<rubedo-field  ng-if="fieldEntity['references']" field ="{{contentDetailCtrl.getFieldByName('references')}}"></rubedo-field>
-								</p>
-						</div>
+							<p class="pdf-only"><em>{{fieldEntity['summary']}}</em></p>
+
+							<h3>{{contentDetailCtrl.getLabelByName('meditation')}}<br/>
+								<em class="pdf-only">{{fieldEntity['text']}}<br/></em>
+								{{fieldEntity['titre_meditation']}}
+								<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
+							</h3>
+							<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em>
+							<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field>
+							<p class="small">
+								<rubedo-field  ng-if="fieldEntity['references']" field ="{{contentDetailCtrl.getFieldByName('references')}}"></rubedo-field>
+							</p>
+					</div>
 				</div>
 		</div>
 		<div class="row page-break">
 				<div class="col-xs-12" ng-if="fieldEntity['intercession']">
 						<div class="texte">
-								<h3>{{contentDetailCtrl.getLabelByName('intercession')}}</h3>
+								<h3>{{contentDetailCtrl.getLabelByName('intercession')}}
+								<em class="pdf-only"><br/>{{fieldEntity['text']}}</em>
+							</h3>
 						</div>
 						<rubedo-field  class="texte" style="display:block" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 12)=='intercession'"></rubedo-field>
 				</div>
