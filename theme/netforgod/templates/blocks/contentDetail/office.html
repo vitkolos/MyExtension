@@ -1,16 +1,19 @@
 <div class="container ">
+	<div class="row">
+		<div class="col-xs-12" >
+			<img class="img-responsive" ng-if="fieldEntity['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',height:'500px',mode:'crop'})}}">
+		</div>		
+	</div>
 	<div class="printZone">
 		<div class="row">
 			<div class="col-xs-12" >
-				<img class="img-responsive" ng-if="fieldEntity['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',height:'500px',mode:'crop'})}}">
 				<div class="texte" style="margin-top:0">
 					<rubedo-field  ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 					<p><em>{{fieldEntity['summary']}}</em></p>
 				</div>
-				
+
 			</div>		
 		</div>
-
 		<div class="row ">
 				<div class="col-xs-12" ng-if="fieldEntity['meditation']">
 						<div class="texte" style="margin-top:0">
@@ -26,7 +29,7 @@
 						</div>
 				</div>
 		</div>
-		<div class="row">
+		<div class="row page-break">
 				<div class="col-xs-12" ng-if="fieldEntity['intercession']">
 						<div class="texte">
 								<h3>{{contentDetailCtrl.getLabelByName('intercession')}}</h3>
