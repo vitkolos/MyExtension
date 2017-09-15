@@ -518,7 +518,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     group.options.set("pdf", {
                         margin: {
                             left   : "2mm",
-                            top    : "5mm",
+                            top    : "10mm",
                             right  : "2mm",
                             bottom : "5mm"
                         },
