@@ -516,14 +516,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     // Chaining the promise via then
                     group.options.set("pdf", {
                         margin: {
-                            left   : "20mm",
-                            top    : "40mm",
-                            right  : "20mm",
-                            bottom : "40mm"
+                            left   : "10mm",
+                            top    : "20mm",
+                            right  : "10mm",
+                            bottom : "20mm"
                         },
 			multiPage: true,
-			paperSize: "A4",
-			scale: 0.5
+			paperSize: "A4"
                     });
                     kendo.drawing.pdf.saveAs(group,title);
                 });
