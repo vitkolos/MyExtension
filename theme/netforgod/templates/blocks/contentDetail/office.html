@@ -28,7 +28,7 @@
 							<p class="pdf-only"><em>{{fieldEntity['summary']}}</em></p>
 
 							<h3>{{contentDetailCtrl.getLabelByName('meditation')}}<br/>
-								<em class="pdf-only">{{fieldEntity['text']}}<br/></em>
+								<span class="pdf-only" style="font-style:italic">{{fieldEntity['text']}}<br/></span>
 								{{fieldEntity['titre_meditation']}}
 								<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
 							</h3>
