@@ -5,6 +5,7 @@
 				<img class="img-responsive" ng-if="fieldEntity['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1200px',height:'500px',mode:'crop'})}}">
 				<div class="texte" style="margin-top:0">
 					<rubedo-field  ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
+					<p><em>{{fieldEntity['summary']}}</em></p>
 				</div>
 				
 			</div>		
