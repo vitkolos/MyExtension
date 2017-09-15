@@ -45,9 +45,8 @@
 		<div class="row page-break">
 				<div class="col-xs-12" ng-if="fieldEntity['intercession']">
 						<div class="texte">
-								<h3>{{contentDetailCtrl.getLabelByName('intercession')}}
-								<em class="pdf-only"><br/>{{fieldEntity['text']}}</em>
-							</h3>
+							<h1>{{contentDetailCtrl.getLabelByName('intercession')}}</h1>
+							<rubedo-field class="pdf-only" ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 						</div>
 						<rubedo-field  class="texte" style="display:block" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 12)=='intercession'"></rubedo-field>
 				</div>
