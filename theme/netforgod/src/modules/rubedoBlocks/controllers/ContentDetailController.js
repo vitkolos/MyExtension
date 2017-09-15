@@ -520,7 +520,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             top    : "40mm",
                             right  : "20mm",
                             bottom : "40mm"
-                        }
+                        },
+			multiPage: true
                     });
                     kendo.drawing.pdf.saveAs(group,title);
                 });/*
