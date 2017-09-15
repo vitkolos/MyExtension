@@ -522,7 +522,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             bottom : "40mm"
                         },
 			multiPage: true,
-			paperSize: "A4"
+			paperSize: "A4",
+			scale: 0.5
                     });
                     kendo.drawing.pdf.saveAs(group,title);
                 });
