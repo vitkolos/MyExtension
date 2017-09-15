@@ -517,10 +517,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     // Chaining the promise via then
                     group.options.set("pdf", {
                         margin: {
-                            left   : "10mm",
-                            top    : "20mm",
-                            right  : "10mm",
-                            bottom : "20mm"
+                            left   : "2mm",
+                            top    : "5mm",
+                            right  : "2mm",
+                            bottom : "5mm"
                         },
 			multiPage: true,
 			paperSize: "A4",
