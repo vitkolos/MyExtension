@@ -512,7 +512,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 	    
         $timeout(function(){
                         
-            kendo.drawing.drawDOM(angular.element(".printZone"), { forcePageBreak: ".page-break", scale:0.5 })
+            kendo.drawing.drawDOM(angular.element(".printZone"), { forcePageBreak: ".page-break", scale:0.8 })
                 .then(function(group) {
                     // Chaining the promise via then
                     group.options.set("pdf", {
