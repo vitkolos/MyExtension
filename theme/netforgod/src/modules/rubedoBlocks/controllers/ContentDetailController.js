@@ -509,9 +509,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             "Roboto Slab|Bold" : "theme/netforgod/fonts/RobotoSlab-Bold.ttf",
             "Roboto Slab"   : "theme/netforgod/fonts/RobotoSlab-Regular.ttf"
         })
+	    
         $timeout(function(){
                         
-            kendo.drawing.drawDOM(angular.element(".printZone"), { forcePageBreak: ".page-break" })
+            kendo.drawing.drawDOM(angular.element(".printZone"), { forcePageBreak: ".page-break", scale:0.5 })
                 .then(function(group) {
                     // Chaining the promise via then
                     group.options.set("pdf", {
@@ -522,7 +523,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             bottom : "20mm"
                         },
 			multiPage: true,
-			paperSize: "A4"
+			paperSize: "A4",
+			    
                     });
                     kendo.drawing.pdf.saveAs(group,title);
                 });
