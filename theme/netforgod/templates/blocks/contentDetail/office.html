@@ -29,13 +29,14 @@
 						</div>
 						<div class="texte" >
 							<h1>{{contentDetailCtrl.getLabelByName('meditation')}}</h1>
+							<p style="text-align:center" class="pdf-only"><em>{{fieldEntity['summary']}}</em></p>
 							<rubedo-field class="pdf-only" ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 							<h3>
 								{{fieldEntity['titre_meditation']}}
-								<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
+								<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field><br/>
 							</h3>
-							<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em>
-							<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field>
+							<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em><br/>
+							<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field><br/>
 							<p class="small">
 								<rubedo-field  ng-if="fieldEntity['references']" field ="{{contentDetailCtrl.getFieldByName('references')}}"></rubedo-field>
 							</p>
@@ -46,6 +47,7 @@
 				<div class="col-xs-12" ng-if="fieldEntity['intercession']">
 						<div class="texte">
 							<h1>{{contentDetailCtrl.getLabelByName('intercession')}}</h1>
+							<p class="pdf-only" style="text-align:center"><em>{{fieldEntity['summary']}}</em><br/></p>
 							<rubedo-field class="pdf-only" ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 						</div>
 						<rubedo-field  class="texte" style="display:block" ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 12)=='intercession'"></rubedo-field>
