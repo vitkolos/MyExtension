@@ -27,11 +27,11 @@
 						<div class="texte" >
 							<h1>{{contentDetailCtrl.getLabelByName('meditation')}}</h1>
 							<rubedo-field class="pdf-only" ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
+							<p style="text-align:center" class="pdf-only"><em>{{fieldEntity['summary']}}</em></p>
 							<h3>
 								{{fieldEntity['titre_meditation']}}
 								<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
 							</h3><br/>
-							<p style="text-align:center" class="pdf-only"><em>{{fieldEntity['summary']}}</em></p>
 							<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em><br/>
 							<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field><br/>
 							<p class="small">
