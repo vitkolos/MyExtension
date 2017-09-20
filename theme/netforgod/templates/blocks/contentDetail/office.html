@@ -24,17 +24,14 @@
 	<div class="printZone">
 		<div class="row ">
 				<div class="col-xs-12" ng-if="fieldEntity['meditation']">
-						<div class="texte" style="margin-top:0">
-							<p class="pdf-only"><em>{{fieldEntity['summary']}}</em></p>
-						</div>
 						<div class="texte" >
 							<h1>{{contentDetailCtrl.getLabelByName('meditation')}}</h1>
 							<p style="text-align:center" class="pdf-only"><em>{{fieldEntity['summary']}}</em></p>
 							<rubedo-field class="pdf-only" ng-if="fieldEntity['text']" field ="{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 							<h3>
 								{{fieldEntity['titre_meditation']}}
-								<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field><br/>
-							</h3>
+								<rubedo-field  ng-if="fieldEntity['titre_meditation'] && fieldEditMode" field ="{{contentDetailCtrl.getFieldByName('titre_meditation')}}"></rubedo-field>
+							</h3><br/>
 							<em><rubedo-field  ng-if="fieldEntity['auteur']" field ="{{contentDetailCtrl.getFieldByName('auteur')}}"></rubedo-field></em><br/>
 							<rubedo-field  ng-if="fieldEntity['meditation']" field ="{{contentDetailCtrl.getFieldByName('meditation')}}"></rubedo-field><br/>
 							<p class="small">
