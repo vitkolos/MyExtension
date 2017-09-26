@@ -512,6 +512,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             
         });        
     }
+				
+				console.log($scope.contentDetailCtrl.content.fields.email);
 
 
     
