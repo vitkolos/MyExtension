@@ -519,10 +519,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id
     };
+				console.log("options");
 				console.log(options);
-				console.log($scope.contentDetailCtrl.content.fields.questions);
-				
-				console.log(RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.questions, options));
+				console.log("contact");
+				console.log($scope.contentDetailCtrl.content.fields.contact);
+				console.log("affiche contact");
+				console.log(RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.contact, options));
 				//RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.contact, options)
 
     
