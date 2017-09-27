@@ -525,8 +525,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 				console.log("affiche page");
 				console.log(RubedoPagesService.getPageById($scope.rubedo.current.page.id));
 				console.log("affiche contact");
-				var idcontact = $scope.contentDetailCtrl.content.fields.contact;
-				console.log(get.contents.idcontact);
+				console.log($scope.contentDetailCtrl.content);
 				//RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.contact, options)
 
     
