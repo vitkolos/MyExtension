@@ -513,10 +513,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         });        
     }
 				
-				console.log($scope.contentDetailCtrl.content.fields.contact);
-				console.log(RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.contact));
-				console.log(response.data.results.data[0]);
-				console.log(RubedoContentsService.getContentById(response.data.results.data[0].id));
+				//console.log($scope.contentDetailCtrl.content.fields.contact);
+				//console.log(RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.contact));
+	
 
     
 }]);
