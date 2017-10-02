@@ -528,10 +528,27 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 				console.log($scope.contentDetailCtrl.content);
 				console.log("par getcontents");
 				console.log(RubedoContentsService.getContents($scope.contentDetailCtrl.content.fields.contact));
-				//RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.contact, options)*/
+				//RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.contact, options)
 				console.log("contact");
 				console.log($scope.inscription);
-				console.log($scope.inscription.mails_secretariat);
+				console.log($scope.inscription.mails_secretariat);*/
+				
+								var contentId = $scope.contentDetailCtrl.content.fields.contact;
+				
+        var options = {
+            siteId: $scope.rubedo.current.site.id,
+            pageId: $scope.rubedo.current.page.id,
+            includeTermLabels:true
+        };
+        
+        RubedoContentsService.getContentById(contentId, options).then(
+            function(response){
+                    me.contenu=response.data.content;
+												}
+								);
+								console.log(contentId);
+								console.log("contenu");
+								console.log(me.contenu);
 
     
 }]);
