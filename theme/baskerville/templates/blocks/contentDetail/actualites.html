@@ -10,8 +10,9 @@
         </div>
         <rubedo-field field = "{{contentDetailCtrl.getFieldByName('image')}}" ></rubedo-field><!--Texte-->
         <div class="post-content">
-            <rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ></rubedo-field><!--Texte-->
-            <!--<rubedo-field  ng-if="contentDetailCtrl.getFieldByName('media')" field =  "{{contentDetailCtrl.getFieldByName('media')}}" ></rubedo-field><!-- PDF-->
+            <rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ></rubedo-field><br/><!--Texte-->
+            <p ng-if="contentDetailCtrl.getFieldByName('media')"><strong>PDF</strong></p>
+            <rubedo-field  ng-if="contentDetailCtrl.getFieldByName('media')" field =  "{{contentDetailCtrl.getFieldByName('media')}}" ></rubedo-field><!-- PDF-->
         </div>
             
     </div>
