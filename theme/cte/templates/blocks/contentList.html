@@ -79,6 +79,14 @@
 				
 			
 		</div>
+		
+		<!--INTERVENANTS-->
+		<div ng-if="block.code =='intervenants' " ng-controller="ContentListController as contentListCtrl" ng-attr-id=" {{block.code}}">
+			<div class="row">
+				 <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
+			 </div>
+       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList track by $index">
+		
                                       <!--DEFAUT-->
                     <div ng-switch-default>
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
