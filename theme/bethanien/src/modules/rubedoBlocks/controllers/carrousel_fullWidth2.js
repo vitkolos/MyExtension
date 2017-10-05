@@ -26,7 +26,6 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
     };
     me.initCarousel=function(){
         var targetElSelector="#block"+$scope.block.id;
-
         angular.element(targetElSelector).carousel({
             interval: blockConfig.duration*1000, //changes the speed
             pause: blockConfig.stopOnHover?"hover":"false"
@@ -36,8 +35,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
     me.slideTo=function(index){
         var targetElSelector="#block"+$scope.block.id;
         angular.element(targetElSelector).carousel(index);
-        
-    }
+    };
     me.getImageOptions=function(){
         var height = angular.element("#block"+$scope.block.id).height();
         var width = angular.element("#block"+$scope.block.id).width();
