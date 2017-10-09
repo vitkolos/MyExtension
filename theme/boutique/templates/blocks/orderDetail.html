@@ -95,7 +95,7 @@
                     <h4><i class="fa fa-comment"></i>{{rubedo.translate('Block.Inscription.Remarques')}}</h4>
                 </div>
                 <div class="panel-body">
-                    <p>{{orderDetailCtrl.order.userName}}</strong></p>
+                    <p>{{orderDetailCtrl.order.shippingComments}}</strong></p>
                 </div>
             </div>
         </div> 
@@ -107,7 +107,7 @@
                         <img src="/theme/cte/img/loader.gif" ng-if="orderDetailCtrl.creatingBill">
         </div>-->
     </div>
-    <!--<section id="orderForm" ng-class="{'isBill':orderDetailCtrl.creatingBill}">
+    <section id="orderForm" ng-class="{'isBill':orderDetailCtrl.creatingBill}">
         <div class="row">
             <div class="col-md-12" ng-if="orderDetailCtrl.creatingBill" id="bill-header">
                 <img width="300" src="/dam?media-id=56c49b78c445ecc9008b6574&" class="pull-left">
@@ -194,7 +194,7 @@
                         <!--<h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingMethod') }} : {{ orderDetailCtrl.order.shipper.name }} </strong> <small>{{ orderDetailCtrl.order.shipper.hRDelay }} {{ orderDetailCtrl.order.shipper.hRUnit }}</small> : {{ orderDetailCtrl.order.shipper.rate|number : 2 }} €</h5>
                         <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ShippingTax')}} :</strong> {{ orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100 |number : 2 }} €</h5>
                         <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.ProductsTaxes') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice -  orderDetailCtrl.order.detailedCart.totalPrice)|number : 2 }} €</h5>
-                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.TotalPrice') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice + orderDetailCtrl.order.shipper.rate+orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100)|number : 2}} €</h5>
+                        <h5><strong>{{ rubedo.translate('Blocks.OrderDetails.Table.TotalPrice') }} :</strong> {{ (orderDetailCtrl.order.detailedCart.totalTaxedPrice + orderDetailCtrl.order.shipper.rate+orderDetailCtrl.order.shipper.tax*orderDetailCtrl.order.shipper.rate/100)|number : 2}} €</h5>-->
                     </div>
                 </div>
     
@@ -210,5 +210,5 @@
             </div>
         </div>
        
-    </section>-->
+    </section>
 </div>
