@@ -144,7 +144,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
             });
     }
 				
-				console.log(orderDetailCtrl.order);
+				console.log(orderDetailCtrl.order.comment);
 
 
 
