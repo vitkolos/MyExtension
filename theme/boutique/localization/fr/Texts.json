@@ -19,6 +19,7 @@
     "Blocks.OrderDetails.Payment.Status":"Statut de la commande",
     "Blocks.UserOrders.Status.shipped" : "Envoyée",
     "Blocks.UserOrders.Status.preparation" : "En préparation",
+				"Blocks.UserOrders.Comments" : "Commentaires du client",
     "Blocks.UserOrders.Status.subscribed" : "Abonné",
     "Blocks.Checkout.Steps.BillingAndShippingDetails":"Étape 3: Détails de facturation et d'expéditions",
     "Blocks.Checkout.Steps.ShippingMethod":"Étape 4: Mode de livraison",
