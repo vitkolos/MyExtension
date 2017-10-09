@@ -11,6 +11,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
             function(response){
                 if (response.data.success){
                     me.order=response.data.order;
+																				console.log(me.order);
                     if (me.order.billDocument){
                         RubedoMediaService.getMediaById(me.order.billDocument,{}).then(
                             function(mediaResponse){
@@ -143,8 +144,7 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                 }
             });
     }
-				
-				console.log(orderDetailCtrl.order.comment);
+
 
 
 
