@@ -41,7 +41,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
                 if (response.data.success){
                     me.editorPageUrl=response.data.url;
                 }
-            });
+            }); 
         }
     }
     me.titleOnly = config.showOnlyTitle;
