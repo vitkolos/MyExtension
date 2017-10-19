@@ -49,7 +49,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
             }
         })
     };
-    if (displayMode=='showList' || displayMode=='showListPlace') {
+    if (displayMode=='showList') {
         if (config.predefinedFacets) {
             me.isSpecialCalendar=true;
             var searchOptions = {
