@@ -68,6 +68,10 @@
 																																{
 																																				"label" : "#ext-gen2054#",
 																																				"value" : "showCalWeek"
+																																},
+																																{
+																																				"label" : "#ext-gen2055#",
+																																				"value" : "showListPlace"
 																																}
                             ],
                             "config": {
@@ -80,7 +84,8 @@
                                 "value": [
                                     "showCal",
                                     "showList",
-																																				"showCalWeek"
+																																				"showCalWeek",
+																																				"showListPlace"
                                 ]
                             }
                         },
