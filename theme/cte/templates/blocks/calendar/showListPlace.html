@@ -21,7 +21,7 @@
                 </th>
                 <th style="line-height:0.8em">
                     <span ng-repeat="taxo in content['taxonomy.555f3bc445205edc117e689b'] track by $index" class="public">
-                        {{content[taxo]}}
+                        {{}}
                     </span>
                 </th>
                 <th class="capital" ng-if="!calendarCtrl.isPastProposition(content.fields.dateDebut) && content.fields.inscriptionState.inscriptionState=='ouverte' "><a class="txt-red" ng-href="{{ content.detailPageUrl }}">{{rubedo.translate("Inscription", "S'inscrire")}} <i class="fa fa-arrow-circle-right"></i></a></th>
