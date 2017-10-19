@@ -77,7 +77,7 @@
                             "config": {
                                 "fieldLabel": "#ext-gen1072#",
                                 "name": "display",
-                                "multiSelect": true,
+                                "multiSelect": false,
                                 "allowBlank": false,
                                 "forceSelection": true,
                                 "editable": false,
