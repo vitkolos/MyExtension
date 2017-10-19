@@ -50,7 +50,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
             }
         })
     };
-    if (displayMode=='showList') {
+    if (displayMode=='showList' || displayMode=='showListPlace') {
         if (config.predefinedFacets) {
             me.isSpecialCalendar=true;
             var searchOptions = {
@@ -76,6 +76,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
             me.getContents(config.query, pageId, siteId, options, function(data){
                 me.contents = data.contents;
                 $scope.clearORPlaceholderHeight();
+																console.log(me.contents);
             });
         }
         
