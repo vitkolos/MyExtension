@@ -16,8 +16,8 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
         showList = displ == 'showList' ? true : showList;
         showCalWeek = displ == 'showCalWeek' ? true : showCalWeek;
 								showListPlace = displ == 'showListPlace' ? true : showListPlace;
-								console.log("showListPlace");
-								console.log(showListPlace);
+								console.log("showList");
+								console.log(showList);
    });
     if(showCal && !showList){
         displayMode = 'showCal';
