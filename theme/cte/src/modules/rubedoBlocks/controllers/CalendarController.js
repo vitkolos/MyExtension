@@ -14,6 +14,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
         showCal = displ == 'showCal' ? true : showCal;
         showList = displ == 'showList' ? true : showList;
         showCalWeek = displ == 'showCalWeek' ? true : showCalWeek;
+								showListPlace = displ == 'showListPlace' ? true : showListPlace;
    });
     if(showCal && !showList){
         displayMode = 'showCal';
@@ -22,6 +23,9 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
     }
 				else if (showCalWeek) {
 								displayMode = 'showCalWeek';
+				}
+				else if (showListPlace) {
+								displayMode = 'showListPlace';
 				}
     me.template = themePath+"/templates/blocks/calendar/"+displayMode+".html";
     var today = new Date();
@@ -45,7 +49,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
             }
         })
     };
-    if (displayMode=='showList') {
+    if (displayMode=='showList' || displayMode=='showListPlace') {
         if (config.predefinedFacets) {
             me.isSpecialCalendar=true;
             var searchOptions = {
