@@ -9,6 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("CalendarController",["$scope","$
     var showCal = false;
     var showList = false;
     var showCalWeek = false;
+				var showListPlace = false;
     var displayMode = 'all';
     angular.forEach(config.display,function(displ){
         showCal = displ == 'showCal' ? true : showCal;
