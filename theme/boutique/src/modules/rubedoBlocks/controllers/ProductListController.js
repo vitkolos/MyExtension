@@ -218,6 +218,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductListDetailController",['$
             function(response){
                 $rootScope.$broadcast("shoppingCartUpdated",{emitter:"listProductBox"});
                 me.content.isProductAdded = true;
+																console.log(me.content);
             }
         );
         $scope.handleCSEvent("addToCart");
