@@ -49,6 +49,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
     me.showPaginator = config.showPager && !config.infiniteScroll;
     me.changePageAction = function(){
         options.start = me.start;
+								me.isProductAdded = false;
         me.getContents(config.query, pageId, siteId, options);
     };
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
