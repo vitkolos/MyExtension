@@ -221,21 +221,6 @@ angular.module("rubedoBlocks").lazy.controller("ProductListDetailController",['$
                 }
             );
         };
-    /*me.addToCart=function(content){
-        var options={
-            productId:me.content.id,
-            variationId:me.content.productProperties.variations[0].id,
-            amount:1
-        };
-        RubedoShoppingCartService.addToCart(options).then(
-            function(response){
-                $rootScope.$broadcast("shoppingCartUpdated",{emitter:"listProductBox"});
-                /*me.content.isProductAdded = true;
-																console.log(me.content);
-            }
-        );
-        $scope.handleCSEvent("addToCart");
-    };*/
     $scope.fieldEntity=angular.copy(me.content.fields);
     $scope.fieldLanguage=me.content.locale;
     $scope.fieldInputMode=false;
