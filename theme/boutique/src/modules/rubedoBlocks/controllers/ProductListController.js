@@ -49,7 +49,6 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
     me.showPaginator = config.showPager && !config.infiniteScroll;
     me.changePageAction = function(){
         options.start = me.start;
-								me.isProductAdded = false;
         me.getContents(config.query, pageId, siteId, options);
     };
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
@@ -205,7 +204,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductListDetailController",['$
     me.index = $scope.$index;
     me.parentIndex = $scope.columnIndex;
     me.content = $scope.content;
-    me.isProductAdded = false;
+    me.content.isProductAdded = false;
     me.canOrder=function(){
         return !(me.content.productProperties.manageStock&&(me.content.productProperties.canOrderNotInStock=="false")&&(me.content.productProperties.variations[0].stock < me.content.productProperties.outOfStockLimit)) ;
     };
@@ -218,7 +217,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductListDetailController",['$
         RubedoShoppingCartService.addToCart(options).then(
             function(response){
                 $rootScope.$broadcast("shoppingCartUpdated",{emitter:"listProductBox"});
-                me.isProductAdded = true;
+                me.content.isProductAdded = true;
             }
         );
         $scope.handleCSEvent("addToCart");

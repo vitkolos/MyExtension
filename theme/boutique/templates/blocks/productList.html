@@ -52,13 +52,13 @@
                                 <a ng-if="contentListCtrl.isFOContributeMode"  ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
                                     <button class="btn btn-default">Preview detail</button>
                                 </a>
-                                <button ng-if="content.productProperties.variations.length==1 && !contentListDetailCtrl.isProductAdded"
+                                <button ng-if="content.productProperties.variations.length==1 && !contentListDetailCtrl.content.isProductAdded"
                                         ng-click="contentListDetailCtrl.addToCart()"
                                         ng-disabled="!contentListDetailCtrl.canOrder()"
                                         class="btn btn-default hover col-xs-4">
                                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span><span class="glyphicon glyphicon-plus" aria-hidden="true"></span><!--<span>{{ rubedo.translate('Label.AddToCart')}}</span>-->
                                 </button>
-                                <button ng-if="content.productProperties.variations.length==1 && contentListDetailCtrl.isProductAdded"
+                                <button ng-if="content.productProperties.variations.length==1 && contentListDetailCtrl.content.isProductAdded"
                                         class="btn btn-default col-xs-4">
                                     <span class="glyphicon glyphicon-ok" aria-hidden="true"></span><!--<span>{{ rubedo.translate('Label.AddToCart')}}</span>-->
                                 </button>
