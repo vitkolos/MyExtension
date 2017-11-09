@@ -85,6 +85,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
         RubedoProductsService.getContents(queryId,pageId,siteId, options).then(function(response){
             if (response.data.success){
                 me.count = response.data.count;
+																console.log(me.count);
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
                 me.contents = response.data.contents;
