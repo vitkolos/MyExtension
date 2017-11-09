@@ -204,20 +204,22 @@ angular.module("rubedoBlocks").lazy.controller("ProductListDetailController",['$
     me.index = $scope.$index;
     me.parentIndex = $scope.columnIndex;
     me.content = $scope.content;
-    me.isProductAdded = false;
+    me.isProductAdded = function(index){
+								return false;
+				}
     me.canOrder=function(){
         return !(me.content.productProperties.manageStock&&(me.content.productProperties.canOrderNotInStock=="false")&&(me.content.productProperties.variations[0].stock < me.content.productProperties.outOfStockLimit)) ;
     };
-    me.addToCart=function(){
+    me.addToCart=function(index){
         var options={
             productId:me.content.id,
             variationId:me.content.productProperties.variations[0].id,
             amount:1
         };
         RubedoShoppingCartService.addToCart(options).then(
-            function(response){
+            function(response, index){
                 $rootScope.$broadcast("shoppingCartUpdated",{emitter:"listProductBox"});
-                me.isProductAdded = true;
+                me.isProductAdded(index) = true;
             }
         );
         $scope.handleCSEvent("addToCart");
