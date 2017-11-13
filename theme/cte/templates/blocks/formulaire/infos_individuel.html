@@ -76,7 +76,7 @@
     </div>
     <!--Si adulte, demander profession-->
     <div class="row" ng-if="inscription.public_type == 'adulte' && !personneConnue">
-        <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
+        <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}*</label></div>
         <div class="col-sm-8"><input type="text" id="profession" ng-model="inscription.profession" name="profession" required></div>
     </div>
 
