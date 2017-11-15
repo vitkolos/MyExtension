@@ -263,9 +263,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         }
     };
 				
-				if (me.content.fields.idIssuu){
-        $scope.idIssuu=me.content.fields.idIssuu;
-    }
+
     
 
     
