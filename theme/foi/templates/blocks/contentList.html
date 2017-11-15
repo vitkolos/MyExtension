@@ -34,7 +34,9 @@
                                     </h4>
                                     <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                                     <p>
-                                        <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                                        <img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
+                                            ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'50px',mode:'boxed'}) }}"
+                                            alt=""/>
                                     </p>
                                 </div>
                             </div>
