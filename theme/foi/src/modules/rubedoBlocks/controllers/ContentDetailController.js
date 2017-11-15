@@ -262,6 +262,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
              $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit);
         }
     };
+				
+				if (me.content.fields.idIssuu){
+        $scope.idIssuu=me.content.fields.idIssuu;
+    }
     
 
     
