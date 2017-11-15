@@ -74,13 +74,13 @@
                                      alt="{{ content.fields.text }}"/>
                             </div>
                             <div class="summary">
-                                <h4>
+                                <!--<h4>
                                     {{content.fields.text }}
                                     <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                                </h4>
+                                </h4>-->
                                 <p  ng-style="{'height':contentListCtrl.contentHeight}" >
                                     <img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
-                                            ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'50px',mode:'boxed'}) }}"
+                                            ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'200px',mode:'boxed'}) }}"
                                             alt=""/>
                                 </p>
                             </div>
