@@ -203,7 +203,7 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 if (response.data.success) {
 
                     if (response.data.instructions.whatToDo=="displayRichText") {
-                        $scope.message = $scope.rubedo.translate('Blocks.Dons.Success','Votre don a bien été enregistré. Votre numéro de suivi est : %donationId%. Un récapitulatif vous sera envoyé par mail.',['%donationId%'],[response.data.instructions.id]);
+                        $scope.message = $scope.rubedo.translate('Block.Dons.Success','Votre don a bien été enregistré. Votre numéro de suivi est : %donationId%. Un récapitulatif vous sera envoyé par mail.',['%donationId%'],[response.data.instructions.id]);
                         $scope.finInscription = true;
                         $scope.processForm=false;   
                         if(window.ga) {
