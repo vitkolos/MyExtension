@@ -47,7 +47,7 @@
 	</div>
 
 
-	<div id="bottom"  class="container-fluid">
+	<div class="container-fluid">
 		<div class="row" ng-if="fieldEntity['description']">
 			<div class="col-xs-12 bg-white" >
 				<div class="text-article">
@@ -195,7 +195,7 @@
 						<!--si un seul public accueilli-->
 						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">						
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true; contentDetailCtrl.gotoBottom()">
-								{{rubedo.translate("Inscription", "S'inscrire")}}
+								<a href="#bottom">{{rubedo.translate("Inscription", "S'inscrire")}}</a>
 							</div>
 						</div>
 						<!--si un plusieurs types de public accueillis-->
@@ -230,6 +230,7 @@
 			</div>
 		</div>
 		<div style="padding-top:24px" class="bg-white"></div>
+		<a name="bottom"></a>
 	</div>
 		
 		
