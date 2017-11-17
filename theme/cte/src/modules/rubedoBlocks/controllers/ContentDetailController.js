@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$timeout","$http","$route","$location","$filter","$rootScope","RubedoPaymentMeansService","InscriptionService",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$timeout,$http,$route,$location,$filter,$rootScope,RubedoPaymentMeansService,InscriptionService){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$timeout","$http","$route","$location","$filter","$rootScope","RubedoPaymentMeansService","InscriptionService", "$location", "$anchorScroll",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$timeout,$http,$route,$location,$filter,$rootScope,RubedoPaymentMeansService,InscriptionService, $location, $anchorScroll){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -486,6 +486,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
+    
+    //Pour descendre lors de l'inscription
+    $scope.gotoBottom = function() {
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('bottom');
+
+      // call $anchorScroll()
+      $anchorScroll();
+    };
 }]);
 
  
