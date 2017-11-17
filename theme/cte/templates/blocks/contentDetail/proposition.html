@@ -210,7 +210,7 @@
 						<!--si un seul public au service-->
 						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.public_service).length==1 && contentDetailCtrl.content.fields.public_service[0]">
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.public_service[0];contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = true" >
-								{{rubedo.translate("Block.Inscription.Inscrire.Service", "S'inscrire au service")}}
+								<a href="#bottom">{{rubedo.translate("Block.Inscription.Inscrire.Service", "S'inscrire au service")}}</a>
 							</div>
 						</div>
 						<!--si un plusieurs types de public au service-->
@@ -223,7 +223,7 @@
 							</div>
 						</div>
 						<div class="col-sm-12 padding" ng-if="(contentDetailCtrl.content.fields.paimentOption.paimentOption).indexOf('complement') > -1">
-							<p>Effectuer un <a href="" ng-click="contentDetailCtrl.paimentComplementaire =true; contentDetailCtrl.showInscription =false">paiement complémentaire</a> </p>
+							<p><a href="#bottom">Effectuer un <a href="" ng-click="contentDetailCtrl.paimentComplementaire =true; contentDetailCtrl.showInscription =false">paiement complémentaire</a></a> </p>
 						</div>
 					</div>
 				</div>
