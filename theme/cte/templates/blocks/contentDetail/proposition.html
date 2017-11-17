@@ -194,10 +194,11 @@
 						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente')">
 						<!--si un seul public accueilli-->
 						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">
-							
+							<a href="#bottom">
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true">
-								<a href="#bottom">{{rubedo.translate("Inscription", "S'inscrire")}}</a>
+								{{rubedo.translate("Inscription", "S'inscrire")}}
 							</div>
+							</a>
 						</div>
 						<!--si un plusieurs types de public accueillis-->
 						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1" class="col-sm-6 text-center">
