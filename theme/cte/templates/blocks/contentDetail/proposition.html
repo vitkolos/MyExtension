@@ -194,9 +194,9 @@
 						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente')">
 						<!--si un seul public accueilli-->
 						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">
-							<a href="#bottom"></a>
+							
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true">
-								{{rubedo.translate("Inscription", "S'inscrire")}}
+								<a href="#bottom">{{rubedo.translate("Inscription", "S'inscrire")}}</a>
 							</div>
 						</div>
 						<!--si un plusieurs types de public accueillis-->
@@ -224,7 +224,7 @@
 							</div>
 						</div>
 						<div class="col-sm-12 padding" ng-if="(contentDetailCtrl.content.fields.paimentOption.paimentOption).indexOf('complement') > -1">
-							<p>Effectuer un <a href="" ng-click="contentDetailCtrl.paimentComplementaire =true; contentDetailCtrl.showInscription =false">paiement complémentaire</a> </p>
+							<p>Effectuer un <a href="#bottom" ng-click="contentDetailCtrl.paimentComplementaire =true; contentDetailCtrl.showInscription =false">paiement complémentaire</a> </p>
 						</div>
 					</div>
 				</div>
