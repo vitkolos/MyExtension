@@ -193,12 +193,10 @@
 						|| contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription'
 						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente')">
 						<!--si un seul public accueilli-->
-						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">
-							<a href="#bottom2">
+						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">						
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true; contentDetailCtrl.gotoBottom()">
 								{{rubedo.translate("Inscription", "S'inscrire")}}
 							</div>
-							</a>
 						</div>
 						<!--si un plusieurs types de public accueillis-->
 						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1" class="col-sm-6 text-center">
@@ -231,7 +229,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="bottom2" style="padding-top:24px" class="bg-white"></div>
+		<div style="padding-top:24px" class="bg-white"></div>
 	</div>
 		
 		
@@ -239,7 +237,7 @@
 		<div ng-init="proposition = contentDetailCtrl.content" class="row padding-large" ng-include="contentDetailCtrl.inscriptionTemplate">
 		</div>
 		
-		<div style="margin-top:24px"></div>
+		<div id="bottom" style="margin-top:24px"></div>
 		
 	</div>
 	<div class="container-fluid" ng-if="contentDetailCtrl.paimentComplementaire && !contentDetailCtrl.showInscription" >
