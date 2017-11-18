@@ -17,7 +17,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field;
     };
-	me.getLabelByName=function(name){
+				me.getLabelByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
             if (candidate.config.name==name){
@@ -225,6 +225,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         previousFields = angular.copy($scope.fieldEntity);
         return res;
     };
+				console.log(me.content);
     $scope.registerFieldEditChanges=me.registerEditChanges;
 				
 				//Albums photos
