@@ -1,4 +1,3 @@
-
 <link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
 <style>
@@ -122,11 +121,11 @@
 }
 .masonry-brick:hover .img-description{opacity:1}
 .masonry-brick:not(.loaded) .img-description{display: none}
-
 </style>
-
-<!---ANCIENS ALBUMS (non embedded images)-->
-<div ng-if="contentDetailCtrl.content.fields.images && contentDetailCtrl.content.fields.images.length>0">
+	
+<div class="container">
+					<!---ANCIENS ALBUMS (non embedded images)-->
+<div ng-if="contentDetailCtrl.content.fields.images && contentDetailCtrl.content.fields.images.length>0" class="row">
 				<div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
 								<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.fields.images track by $index"  >
 												<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900',height:'600',mode:'boxed'})}}" style="width:100%"/>
@@ -136,7 +135,7 @@
 								</div>
 								<div class="gutter-sizer"></div>
 				</div>
-  <!-- The modal dialog, which will be used to wrap the lightbox content -->
+		<!-- The modal dialog, which will be used to wrap the lightbox content -->
 				<div class="modal fade hidden-xs rubedoGalleryDetailModal" id="rubedoGalleryDetailModal{{contentDetailCtrl.content.id}}" tabindex="1" ng-keydown="contentDetailCtrl.changeImageKey($event,false)">
 								<a class="prev" ng-click="contentDetailCtrl.changeImage('left',false)" ng-if="contentDetailCtrl.currentIndex>0">‹</a>
 								<a class="next" ng-click="contentDetailCtrl.changeImage('right',false)" ng-if="contentDetailCtrl.currentIndex<(contentDetailCtrl.content.fields.images).length-1">›</a>
@@ -145,11 +144,11 @@
 												<div class="modal-body">
 																<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage,{width:'900',height:'600',mode:'boxed'})}}">
 											</div>
-  
+		
 								</div>
 				</div>
 </div>
-
-
+	
+<div style="margin-top:24px"></div>
 
 
