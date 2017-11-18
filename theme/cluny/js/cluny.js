@@ -23,6 +23,12 @@ blocksConfig.contentDetail = {
             "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/controllers/simpleContact.js","/lib/masonry/masonry.js",]
 };
 
+blocksConfig.gallery = {
+            "template": "/templates/blocks/gallery.html",
+            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js','//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js'],
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/GalleryController.js","/src/modules/rubedoBlocks/controllers/simpleContact.js","/lib/masonry/masonry.js",]
+};
+
 blocksConfig.redirect={
            "template": "/templates/blocks/redirect.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/redirectController.js"]
