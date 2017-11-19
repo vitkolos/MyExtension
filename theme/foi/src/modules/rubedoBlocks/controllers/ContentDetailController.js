@@ -263,9 +263,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         }
     };
 				
+				if(me.content.type.code=="article_foi") {
+								$scope.numero_issuu = contentDetailCtrl.getFieldByName('idIssuu');
+				}
 
-    
-
-    
     
 }]);
