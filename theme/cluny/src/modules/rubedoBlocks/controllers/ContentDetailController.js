@@ -225,7 +225,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         previousFields = angular.copy($scope.fieldEntity);
         return res;
     };
-				console.log(me.content);
+
     $scope.registerFieldEditChanges=me.registerEditChanges;
 				
 				//Albums photos
