@@ -3,19 +3,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
-    me.inscriptionTemplate = themePath+'/templates/blocks/inscription.html';
+    
     var previousFields;
-    me.taxonomy=[];
-    me.showInscription = false; // pour les inscriptions, masquer le formulaire
-    me.isInscription = true; // pour les propositions, ne pas afficher les inscriptions si closes
+   
 
-    $scope.fieldInputMode=false;
-    $scope.$watch('rubedo.fieldEditMode', function(newValue) {
-        $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
-    });
-    me.tooltips=function(){
-        $('[data-toggle="tooltip"]').tooltip();
-    }
+    
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
@@ -34,95 +26,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field.config.fieldLabel;
     };
-    me.getLabel = function(field,name) {
-        var value = null;
-        if (field.cType == 'combobox') {
-            angular.forEach(field.store.data,function(candidate){
-                if (candidate.valeur == name) {
-                    value = candidate.nom;
-                }
-            });
-        }
-        else if (field.cType == 'checkboxgroup') {
-            angular.forEach(field.config.items,function(candidate){
-                if (candidate.inputValue == name) {
-                    value = candidate.boxLabel;
-                }
-            });
-        }
-        
-        return value;
-    };
-    me.getTermInTaxo=function(taxoKey,termId){
-        
-        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
-        var term=null;
-        angular.forEach(me.taxo[taxoKey],function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
-            if(!term){
-                if(candidate.id==termId){term=candidate.text;}
-            }
-         });
-         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
-    return(term);
-    }
     
-    me.search = function(taxoKey,termId){
-        RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
-            if (response.data.success){
-                $location.url(response.data.url+'?taxonomies={"'+taxoKey+'":["'+termId+'"]}');
-            }
-        });        
-    };
-    me.showCalendar = function(){
-      var optionsCalendar = {
-        constrainToSite:true,
-        siteId: $scope.rubedo.current.site.id,
-        pageId: $scope.rubedo.current.page.id,
-        predefinedFacets:{"type":"54dc614245205e1d4a8b456b","lieuCommunautaire":config.contentId},
-        start:0,
-        limit:50,
-        orderby:'fields.dateDebut',
-        orderbyDirection:'asc',
-        displayedFacets:"['all']"
-      };
-      RubedoSearchService.searchByQuery(optionsCalendar).then(function(response){
-        if(response.data.success){
-          me.calendarContents = response.data.results;
-        } 
-      });
-    }
+    
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
-            pageId: $scope.rubedo.current.page.id,
-            includeTermLabels:true
+            pageId: $scope.rubedo.current.page.id
         };
-        if ($location.search()["preview_draft"] && $location.search()["preview"] && $scope.rubedo.current.user.rights.canEdit) {
-            options.useDraftMode = true;
-        }
         RubedoContentsService.getContentById(contentId, options).then(
             function(response){
                 if(response.data.success){
-                    if(config.isAutoInjected) $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
+                    
+																				me.content=response.data.content;
+                    $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
-                    //si contenu référence une autre page (interne ou externe)
-                    if (me.content.fields.propositionReferencee && me.content.fields.propositionReferencee !="") {
-                        window.location.href =  me.content.fields.propositionReferencee;
-                    }
-                    else if (me.content.fields.propositionReferenceeInterne && me.content.fields.propositionReferenceeInterne) {
-                        if (me.content.fields.propositionReferenceeInterne == options.pageId) {
-                        }
-                        else {
-                            RubedoPagesService.getPageById(me.content.fields.propositionReferenceeInterne).then(function(response){
-                                    if (response.data.success && ! $scope.rubedo.current.user &&!$scope.rubedo.current.user.rights.canEdit){
-                                        window.location.href = response.data.url;
-                                    }
-                                });                            
-                        }
-                    }
-                  
-                    // seulement pour propositions - qui peuvent être éditées directement dans la page
-                    if($scope.rubedo.current.breadcrumb.length>0) me.content.editorPageUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url+"?content-edit="+me.content.id;
+                    console.log(me.content);
+                    $scope.fieldIdPrefix="contentDetail"+me.content.type.type;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
                             $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
@@ -130,25 +49,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if (me.content.fields.summary){
                             $scope.rubedo.setPageDescription(angular.copy(me.content.fields.summary));
                         }
-                        if(me.content.fields.image) {
-                            //$scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
-                            $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields['image']));
-                        }/*
                         var foundMeta=false;
                         angular.forEach(me.content.type.fields,function(field){
                             if(!foundMeta&&field.config&&field.config.useAsMetadata&&me.content.fields[field.config.name]&&me.content.fields[field.config.name]!=""){
                                 $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields[field.config.name]));
                                 foundMeta=true;
                             }
-                        });*/
-                        if(response.data.content.fields.video) {
-                          if(response.data.content.fields.video.url) $scope.rubedo.current.page.video = response.data.content.fields.video.url;
-                          else $scope.rubedo.current.page.video = response.data.content.fields.video;
-                        }
-                        $scope.rubedo.current.page.fbPage = "http://www.facebook.com/cheminneuf/";
-                       
+                        });
                     }
                     $scope.fieldEntity=angular.copy(me.content.fields);
+                    
+                  
 
 
                     $scope.fieldLanguage=me.content.locale;
@@ -190,62 +101,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     
-                    if (me.content.type.code=="proposition") {
-                        //Propositions : déterminer si les inscriptions sont possibles
-                        var today = new Date();
-                        if (!me.content.fields.inscriptionState
-                            || (me.content.fields.inscriptionState &&(me.content.fields.inscriptionState.inscriptionState == 'close' || me.content.fields.inscriptionState.inscriptionState == 'non' || me.content.fields.inscriptionState.inscriptionState == 'libre'))) {
-                            me.isInscription=false;
-                        }
-
-                        else if (me.content.fields.dateDebut && me.content.fields.dateDebut*1000 < today.getTime()) {
-                            me.propDate = "passee";
-                        }
-                        else me.propDate="ouverte";
-                        // déterminer la monnaie du site
-                        RubedoPaymentMeansService.getPaymentMeansPaf().then(
-                            function(response){
-                                if(response.data.success){
-                                    me.paymentmeans = response.data.paymentMeans;
-                                }
-                            }
-                        );
-                        
-                        //add list of inscriptions
-                        if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
-                            var optionsInscriptionsList = {
-                                constrainToSite:false,
-                                siteId: $scope.rubedo.current.site.id,
-                                pageId: $scope.rubedo.current.page.id,
-                                predefinedFacets:{"type":"561627c945205e41208b4581","proposition":config.contentId},
-                                start:0,
-                                limit:500,
-                                orderby:'lastUpdateTime',
-                                orderbyDirection:'desc',
-                                displayedFacets:"['all']"
-                            };
-                            RubedoSearchService.searchByQuery(optionsInscriptionsList).then(function(response){
-                              if(response.data.success){
-                                $timeout(function(){me.inscriptions = response.data.results.data;},100);
-                              } 
-                            });
-                            /*Get inscriptions list for dowlonad as csv */
-                            var payload={
-                                propositionId:me.content.id
-                            };
-                            InscriptionService.exportInscriptions(payload).then(function(response){
-                                var csvData =  'data:application/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(response.data.path);
-                                $timeout(function(){me.downloadUrl=  csvData;},100);
-                               /* var target = angular.element("#btnExport");
-                                target.attr({'href': csvData,'target': '_blank'});*/
-                                //setTimeout(function(){target[0].click();},200);
-                            });
-                            
-                        }
-
-                    }
-
-                    
 																				//Albums photos
 																				console.log(me.content);
 																				if (me.content.type.code=="album" || me.content.type.code=="actualites") {
@@ -275,73 +130,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								};
 
 																				}
-                    if(me.content.type.code=="lieu"){
-                        var date = new Date();
-                        me.currentDate = date.getTime();
-                        me.showCalendar();
-                    }
-                    
-                    
-/*GET CONTENT TAXONOMIES*/
-
-
-                     var taxonomiesArray ={};
-                     var index=0;
-                     angular.forEach(me.content.taxonomy,function(value, taxo){
-                            if (taxo!='navigation'){
-                                taxonomiesArray[index] = taxo;
-                                index++;
-                            }
-                        });
-                    TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
-                         if(response.data.success){
-                            var tax = response.data.taxo;
-                            me.taxo={};
-                            angular.forEach(tax, function(taxonomie){
-                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
-                            });
-                         }
-                         
-                     });
-                     
-                    
-                    //Actualités : 3 autres articles
-                    if (me.content.type.code=="actualites") {
-                        
-                        var actusTaxonomy ={};
-                        actusTaxonomy['5524db6945205e627a8d8c4e'] = me.content.taxonomy['5524db6945205e627a8d8c4e'];
-                        actusTaxonomy['navigation'] = [$scope.rubedo.current.page.id];
-                       var displayedFacets = [];
-                       displayedFacets.push({"name":"5524db6945205e627a8d8c4e","operator":"OR"});
-                        var options3 = {
-                            siteId: $scope.rubedo.current.site.id,
-                            pageId: $scope.rubedo.current.page.id,
-                            start:0,
-                            limit:4,
-                            constrainToSite: true,
-                            orderby:'lastUpdateTime',
-                            taxonomies: actusTaxonomy,
-                            type:me.content.type.id,
-                            displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
-                        };
-                        
-                        RubedoSearchService.searchByQuery(options3).then(function(response){
-                            if (response.data.success) {
-                                var results = response.data.results.data;
-                                var counter=0;
-                                me.linkedContents={};
-                                angular.forEach(results, function(content, key){
-                                    if (content.id != me.content.id && counter <3) {
-                                        me.linkedContents[counter] = content;
-                                        counter++;
-                                    }
-                                });
-                            }
-                        });
-                    }
-                    
-                    
-                    
+                  
                     if(me.customLayout){
                         me.content.type.fields.unshift({
                             cType:"textarea",
@@ -492,14 +281,3 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 
 }]);
 
- 
-
-
-
-				
-				
-			
-				
-				
-				
-}]);
