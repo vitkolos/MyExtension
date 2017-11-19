@@ -55,7 +55,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     console.log((today.getTime() - me.content.createTime*1000)>1000*3600*24*90);
 																				
 																				if(me.content.type.code=="foi") {
-																								var numero_issuu = me.content.fields.idIssuu;
+																								console.log("FOI");
+																								me.numero_issuu = me.content.fields.idIssuu;
 																				}
                     
                     if((me.content.type.code=="actualites" || me.content.type.code=="article_foi") && (today.getTime() - me.content.createTime*1000)<1000*3600*24*90) me.isClient();
