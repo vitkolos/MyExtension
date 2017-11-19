@@ -53,6 +53,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     /*et seulement pour des articles publiés il y a moins de 3 mois*/
                     var today = new Date();
                     console.log((today.getTime() - me.content.createTime*1000)>1000*3600*24*90);
+																				
+																				if(me.content.type.code=="foi") {
+																								$scope.numero_issuu = contentDetailCtrl.getFieldByName('idIssuu');
+																				}
                     
                     if((me.content.type.code=="actualites" || me.content.type.code=="article_foi") && (today.getTime() - me.content.createTime*1000)<1000*3600*24*90) me.isClient();
                     
@@ -263,9 +267,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         }
     };
 				
-				if(me.content.type.code=="foi") {
-								$scope.numero_issuu = contentDetailCtrl.getFieldByName('idIssuu');
-				}
+				
 
     
 }]);
