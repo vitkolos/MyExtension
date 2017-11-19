@@ -49,12 +49,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     
                     
-                    /*Vérifier les droits du client et limiter le texte si besoin pour les actualites*/
+                    /*Vérifier les droits du client et limiter le texte si besoin pour les actualites et les articles FOI*/
                     /*et seulement pour des articles publiés il y a moins de 3 mois*/
                     var today = new Date();
                     console.log((today.getTime() - me.content.createTime*1000)>1000*3600*24*90);
                     
-                    if(me.content.type.code=="actualites" && (today.getTime() - me.content.createTime*1000)<1000*3600*24*90) me.isClient();
+                    if((me.content.type.code=="actualites" || me.content.type.code=="article_foi") && (today.getTime() - me.content.createTime*1000)<1000*3600*24*90) me.isClient();
                     
                     me.oldArticle = true;
                     if ((today.getTime() - me.content.createTime*1000)<1000*3600*24*90) {me.oldArticle=false;
