@@ -263,7 +263,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         }
     };
 				
-				if(me.content.type.code=="article_foi") {
+				if(me.content.type.code=="foi") {
 								$scope.numero_issuu = contentDetailCtrl.getFieldByName('idIssuu');
 				}
 
