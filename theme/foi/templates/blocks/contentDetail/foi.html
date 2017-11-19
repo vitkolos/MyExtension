@@ -36,10 +36,10 @@
         </div>
 		<div class="lien_articles">
             <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link_article')}}"></rubedo-field><!--Plan-->
-			<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('idIssuu')}}"></rubedo-field>
+			<p>{{contentDetailCtrl.numero_issuu}}</p>
         </div>
 		<!-- Ajout de la liseuse -->
-		<div data-configid="numero_issuu" style="width:100%; height:300px;" class="issuuembed"></div>
+		<div data-configid="{{contentDetailCtrl.numero_issuu}}" style="width:100%; height:300px;" class="issuuembed"></div>
 		<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
     </div>
     <div class="col-sm-3 col-sm-pull-9"> 
