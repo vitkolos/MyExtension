@@ -38,8 +38,8 @@
             <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link_article')}}"></rubedo-field><!--Plan-->
 			<p>{{contentDetailCtrl.numero_issuu}}</p>
         </div>
-		<div class=sommaire_main" field="{{contentDetailCtrl.getContentById('contentDetailCtrl.content.fields.link_revue')}}">
-			<p>{{content.fields.text}}, {{content.fields.redacteur}}</p>
+		<div class=sommaire_main" >
+			<p>{{contentDetailCtrl.content.fields.link_revue}}</p>
 		</div>
 		<!-- Ajout de la liseuse -->
 		<div data-configid="{{contentDetailCtrl.numero_issuu}}" style="width:100%; height:300px;" class="issuuembed"></div>

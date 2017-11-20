@@ -11,8 +11,8 @@
 	  </div>-->
 
 	  
-	  <div ng-if="!isClient">
-		{{contentDetailCtrl.content.fields.richText | limitTo : positionFinParagraphe}}
+	  <div ng-if="!isClient && !contentDetailCtrl.oldArticle">
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field>
 	  </div>
 </div>
   
