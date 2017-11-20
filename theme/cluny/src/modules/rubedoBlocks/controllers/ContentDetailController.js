@@ -1,13 +1,13 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$timeout","$http","$route","$location","$filter","$rootScope","RubedoPaymentMeansService","InscriptionService",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$timeout,$http,$route,$location,$filter,$rootScope,RubedoPaymentMeansService,InscriptionService){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","$http","$route","$rootScope",function($scope, RubedoContentsService,$http,$route,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
-    
     var previousFields;
-   
+    $scope.fieldInputMode=false;
+    $scope.$watch('rubedo.fieldEditMode', function(newValue) {
+        $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
 
-    
+    });
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
@@ -17,7 +17,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field;
     };
-    me.getLabelByName=function(name){
+	me.getLabelByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
             if (candidate.config.name==name){
@@ -26,8 +26,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field.config.fieldLabel;
     };
-    
-    
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
@@ -36,11 +34,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         RubedoContentsService.getContentById(contentId, options).then(
             function(response){
                 if(response.data.success){
-                    
-																				me.content=response.data.content;
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
-                    console.log(me.content);
                     $scope.fieldIdPrefix="contentDetail"+me.content.type.type;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
@@ -58,10 +53,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     $scope.fieldEntity=angular.copy(me.content.fields);
-                    
-                  
-
-
                     $scope.fieldLanguage=me.content.locale;
                     if (me.content.isProduct){
                         me.content.type.fields.unshift({
@@ -82,8 +73,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             allowBlank:false
                         }
                     });
-                    //si le contenu est affiché "à la main" par un bloc détail de contenu, on enlève la page du breadcrumb
-                    if(!config.isAutoInjected) $scope.rubedo.current.breadcrumb.pop(); 
                     $scope.rubedo.current.breadcrumb.push({title:response.data.content.text});
                     if (me.content.type.activateDisqus&&$scope.rubedo.current.site.disqusKey){
                         me.activateDisqus=true;
@@ -100,37 +89,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
-                    
-																				//Albums photos
-																				console.log(me.content);
-																				if (me.content.type.code=="album" || me.content.type.code=="actualites") {
-																								me.currentIndex=0;
-																								me.loadModal = function(index,embedded){
-																												me.currentIndex = index;
-																												if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex];
-																												else me.currentImage = me.content.fields.images[me.currentIndex];
-																								};
-																								me.changeImage = function(side,embedded){
-																												if(side == 'left' && me.currentIndex > 0){
-																																me.currentIndex -= 1;
-																												} else if(side == 'right'){
-																																me.currentIndex += 1;
-																												}
-																												if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex]; 
-																												else me.currentImage = me.content.fields.images[me.currentIndex];
-																								};
-																								me.changeImageKey = function($event,embedded){
-																												if ($event.keyCode == 39) { 
-																															me.changeImage('right',embedded);
-																												}
-																								
-																												else if ($event.keyCode == 37) {
-																															me.changeImage('left',embedded);
-																												}
-																								};
-
-																				}
-                  
                     if(me.customLayout){
                         me.content.type.fields.unshift({
                             cType:"textarea",
@@ -160,10 +118,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.fields=me.transformForFront(me.content.type.fields);
                             $scope.clearORPlaceholderHeight();
                         }
+                        //$http.get(themePath+'/templates/blocks/contentDetail/)
                     }
                     if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
                         $rootScope.$broadcast("ClickStreamEvent",{csEvent:me.content.clickStreamEvent});
-                     }
+                    }
                 }
             }
         );
@@ -171,8 +130,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     if (config.contentId){
         me.getContentById(config.contentId);
     }
-    
-    
     me.revertChanges=function(){
         $scope.fieldEntity=angular.copy(previousFields);
     };
@@ -220,21 +177,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var transformForPersist = function(){
         var returnFields = angular.copy(me.content.fields);
         angular.forEach(me.content.fields, function(field, fieldKey){
-            var fieldType="";
-            if (me.getFieldByName(fieldKey)) {
-                fieldType=me.getFieldByName(fieldKey).cType;
-            }
-            if(angular.isArray(field) && fieldType!='combobox'){
+            if(angular.isArray(field)){
                 angular.forEach(field, function(fld, fldKey){
-                    if (fieldKey!='image' ) {
-                        if(fldKey === 0){
-                            returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
-                        } else {
-                            returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey+fldKey];
-                        }    
+                    if(fldKey === 0){
+                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey];
+                    } else {
+                        returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey+fldKey];
                     }
-                    else returnFields[fieldKey][fldKey]=$scope.fieldEntity[fieldKey][fldKey];
-                    
                 })
             } else {
                 returnFields[fieldKey] = $scope.fieldEntity[fieldKey];
@@ -277,7 +226,37 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
-    
+				
+				//Albums photos
+				/*if (me.content.type.code=="album" || me.content.type.code=="actualites") {
+								me.currentIndex=0;
+								me.loadModal = function(index,embedded){
+												me.currentIndex = index;
+												if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex];
+												else me.currentImage = me.content.fields.images[me.currentIndex];
+								};
+								me.changeImage = function(side,embedded){
+												if(side == 'left' && me.currentIndex > 0){
+																me.currentIndex -= 1;
+												} else if(side == 'right'){
+																me.currentIndex += 1;
+												}
+												if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex]; 
+												else me.currentImage = me.content.fields.images[me.currentIndex];
+								};
+								me.changeImageKey = function($event,embedded){
+												if ($event.keyCode == 39) { 
+															me.changeImage('right',embedded);
+												}
+								
+												else if ($event.keyCode == 37) {
+															me.changeImage('left',embedded);
+												}
+								};
 
+				}*/
+			
+				
+				
+				
 }]);
-
