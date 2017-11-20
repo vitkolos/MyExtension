@@ -143,7 +143,7 @@
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('date')}}" ng-if="fieldEditMode"></rubedo-field>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('lieu')}}" ng-if="fieldEditMode"></rubedo-field>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
-			<h1 class="text-left" ng-if="!fieldEditMode" style="text-shadow: none">{{fieldEntity['text']}}</h1>
+			<h1 ng-if="!fieldEditMode" style="text-shadow: none, text-align: center">{{fieldEntity['text']}}</h1>
 
 			<rubedo-field ng-if="fieldEditMode" field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEditMode"></rubedo-field>
 		</div>
