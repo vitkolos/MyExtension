@@ -22,6 +22,19 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+	font-family: 'HelveticaText';
+	src: url('../fonts/HelveticaRegular.eot');
+	src: url('../fonts/HelveticaRegular.woff') format('woff'), url('../fonts/HelveticaRegular.ttf') format('truetype'), url('../fonts/HelveticaRegular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	@font-face {
+	font-family: 'HelveticaText Black';
+	src: url('../fonts/HelveticaBlack.eot');
+	src: url('../fonts/HelveticaBlack.woff') format('woff'), url('../fonts/HelveticaBlack.ttf') format('truetype'), url('../fonts/HelveticaBlack.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+	
 ////////////////////////////////////////////////
     ///////global variables////////////////
 ////////////////////////////////////////////////
@@ -40,7 +53,7 @@
 
 
 body{font-size:16px; min-height:100%; line-height: 1.4em }
-html,body{font-family: 'MyanmarText','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:@bg; color:@txt}
+html,body{font-family: 'HelveticaText','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:@bg; color:@txt}
 .container-fluid{
 		padding: 0; overflow: hidden;
 }
@@ -58,7 +71,7 @@ h2.titre-block{
 	display: inline-block; min-width: 50%;
 }
 h3.titre-block{
-	font-family: 'MyanmarText Bold';
+	font-family: 'HelveticaText Black';
 }
 /*FIXES*/
 .rubedo-block-contentContribution{min-height:0 !important}
