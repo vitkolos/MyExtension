@@ -92,14 +92,14 @@
                         </div>
                     </div>
                     <!--DEFAUT-->
-                    <div ng-switch-default class="album">
+                    <div ng-switch-default class="actusList">
                         <a ng-href="{{ content.contentLinkUrl }}">
                             <img  ng-if="content.fields.image" style="width: 100%"
                                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'200px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>
                             <div>
                                 <h4>{{content.fields.text}}</h4>
-                                <p>{{content.fields.date}}</p>
+                                <p>{{content.fields.summary}}</p>
                             </div>
                             
                         </a>
