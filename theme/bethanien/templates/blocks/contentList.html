@@ -91,7 +91,7 @@
                         </a>
                     </div>
                     <!--DEFAUT-->
-                    <div ng-switch-default class="pageList">
+                    <div ng-switch-default class="album">
                         <a ng-href="{{ content.contentLinkUrl }}">
                             <img  ng-if="content.fields.image" style="width: 100%"
                                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'200px',mode:'crop'}) }}"
