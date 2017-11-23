@@ -139,14 +139,14 @@
 
 <header class="container-fluid" style="margin-bottom: 48px" ng-if="!blockConfig.contentOnly">
 	<div class="text-article container">
-		<p class='capital txt-red' style="text-shadow: none" ng-if="fieldEntity['date']">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}} - {{fieldEntity['lieu']}}</p>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('date')}}" ng-if="fieldEditMode"></rubedo-field>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('lieu')}}" ng-if="fieldEditMode"></rubedo-field>
+		
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
 			<h1 ng-if="!fieldEditMode" style="text-shadow: none, text-align: center">{{fieldEntity['text']}}</h1>
-
 			<rubedo-field ng-if="fieldEditMode" field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEditMode"></rubedo-field>
 		</div>
+		<p class='capital txt-red' style="text-shadow: none, font-style: italic;" ng-if="fieldEntity['date']">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}} - {{fieldEntity['lieu']}}</p>
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('date')}}" ng-if="fieldEditMode"></rubedo-field>
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('lieu')}}" ng-if="fieldEditMode"></rubedo-field>
 
 
 	</div>
