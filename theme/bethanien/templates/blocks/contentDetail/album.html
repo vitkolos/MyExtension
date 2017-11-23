@@ -144,8 +144,8 @@
 			<h1 ng-if="!fieldEditMode" style="text-shadow: none, text-align: center, margin-top: 30px">{{fieldEntity['text']}}</h1>
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEditMode"></rubedo-field>
 		</div>
-		<p style="text-shadow: none, font-style: italic" ng-if="fieldEntity['date'] !fieldEditMode">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}}</p>
-		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('date')}}" ng-if="fieldEntity['date'] fieldEditMode"></rubedo-field>
+		<p style="text-shadow: none, font-style: italic" ng-if="fieldEntity['date'] && !fieldEditMode">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}}</p>
+		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('date')}}" ng-if="fieldEntity['date'] && fieldEditMode"></rubedo-field>
 
 
 
