@@ -147,10 +147,9 @@
 
 			<rubedo-field ng-if="fieldEditMode" field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEditMode"></rubedo-field>
 		</div>
+		<p style="text-shadow: none, text-align: justify" ng-if="fieldEntity['description']">{{contentDetailCtrl.content.fields'description}}</p>
 		<div ng-if="fieldEntity['description']" field = "{{contentDetailCtrl.getFieldByName('description')}}" >
-			<p ng-if="!fieldEditMode" style="text-shadow: none, text-align: justify">{{fieldEntity[''description']}}</p>
-			<rubedo-field ng-if="fieldEditMode" field = "{{contentDetailCtrl.getFieldByName(''description')}}" ng-if="fieldEditMode"></rubedo-field>
-		</div>
+		<rubedo-field ng-if="fieldEditMode" field = "{{contentDetailCtrl.getFieldByName(''description')}}" ng-if="fieldEditMode"></rubedo-field>
 
 	</div>
 </header>
