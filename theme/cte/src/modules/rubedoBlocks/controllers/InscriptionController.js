@@ -430,7 +430,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     $scope.finInscription=true; 
                     $scope.message +="Il y a eu une erreur lors de la prise en compte de votre inscription. Merci de réessayer plus tard ou de contacter le secrétariat.";
                 }
-																console.log($scope.finInscription);
+																
             })
             
                 
