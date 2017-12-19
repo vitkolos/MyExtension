@@ -61,6 +61,7 @@ class CoreAdapter extends AbstractAdapter
             return $this->_authenticateCreateAuthResult();
         }
         $user = array_shift($resultIdentities);
+<<<<<<< HEAD
         $salt = $user['salt'];
         $targetHash = $user['password'];
         unset($user['password']);
@@ -84,6 +85,75 @@ class CoreAdapter extends AbstractAdapter
                 $this->_authenticateResultInfo['messages'][] = 'User account has not been activated';
             }
         }
+=======
+        //DO LDAP CONNECTION ONLY ON HTTPS WEBSITE
+        $isSecured = isset($_SERVER['HTTPS']) ? true :false;
+        $valid = false;
+        if($isSecured) {
+            /////CHECK IN LDAP
+            // prepare request
+            $payload = array(
+                            "login" => $user['login'],
+                            "passwd" =>$this->_password
+            );
+            //get LDAP infos
+            $this->_dataService = Manager::getService('MongoDataAccess');
+            $this->_dataService->init("Contents");
+            $content = $this->_dataService->findById("58335667245640064b8b9093");
+            if (empty($content)) {
+                            throw new APIEntityException('Content not found', 404);
+            }
+            $payload['extpass'] = $content['live']['fields']['value'];
+            $postURL = $content['live']['fields']['value2'];
+            $curl = curl_init();
+            curl_setopt($curl, CURLOPT_URL, $postURL);
+            curl_setopt($curl, CURLOPT_POST, 1);
+            curl_setopt($curl, CURLOPT_POSTFIELDS, $payload);
+            curl_setopt($curl, CURLOPT_HTTPHEADER, array('Expect:'));
+            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); // On dev server only!
+            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);  // Follow the redirects (needed for mod_rewrite)
+            $result = curl_exec($curl);
+            curl_close($curl);
+            $isLDAPValid = explode(";",$result)[0];
+            //$isLDAPValid = false;
+            if($isLDAPValid && $isLDAPValid=="True") {
+                // l'utilisateur existe et a le bon mot de passe => valider la connexion
+                $valid = true;
+                unset($user['password']);
+            }
+        }
+        if(!$isSecured || ($isSecured && $isLDAPValid=="False")) {
+            //site non HTTPS ou
+            // utilisateur non identifié dans LDAP ou utilisateur LDAP avec mauvais mot de passe=> suivre l'identification habituelle dans RUBEDO
+            // ainsi les mots de passe initialisés dans RUBEDO restent valides
+            $salt = $user['salt'];
+            $targetHash = $user['password'];
+            unset($user['password']);
+            $valid = $hashService->checkPassword($targetHash, $this->_password, $salt);
+            $currentTime = Manager::getService('CurrentTime')->getCurrentTime();
+            if ($valid && isset($user['startValidity']) && !empty($user['startValidity'])) {
+                $valid = $valid && ($user['startValidity'] <= $currentTime);
+                if (!$valid) {
+                    $this->_authenticateResultInfo['messages'][] = 'User account is not yet active';
+                }
+            }
+            if ($valid && isset($user['endValidity']) && !empty($user['endValidity'])) {
+                $valid = $valid && ($user['endValidity'] > $currentTime);
+                if (!$valid) {
+                                $this->_authenticateResultInfo['messages'][] = 'User account is no longer active';
+                }
+            }
+            if ($valid && isset($user['status']) && !empty($user['status'])) {
+                $valid = $valid && ($user['status'] == "approved");
+                if (!$valid) {
+                                $this->_authenticateResultInfo['messages'][] = 'User account has not been activated';
+                }
+            }
+        }
+        
+		
+>>>>>>> origin/master
         if ($valid) {
             $this->_authenticateResultInfo['code'] = Result::SUCCESS;
             $this->_authenticateResultInfo['messages'][] = 'Authentication successful.';
