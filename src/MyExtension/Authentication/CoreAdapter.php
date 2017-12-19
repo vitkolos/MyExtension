@@ -64,7 +64,8 @@ class CoreAdapterCcn extends AbstractAdapter
         //DO LDAP CONNECTION ONLY ON HTTPS WEBSITE
         $isSecured = isset($_SERVER['HTTPS']) ? true :false;
         $valid = false;
-        if($isSecured) {
+        //if($isSecured) {
+	    if(false){
             /////CHECK IN LDAP
             // prepare request
             $payload = array(
