@@ -99,7 +99,8 @@ class CoreAdapterCcn extends AbstractAdapter
                 unset($user['password']);
             }
         }
-        if(!$isSecured || ($isSecured && $isLDAPValid=="False")) {
+        //if(!$isSecured || ($isSecured && $isLDAPValid=="False")) {
+	    if(true){
             //site non HTTPS ou
             // utilisateur non identifié dans LDAP ou utilisateur LDAP avec mauvais mot de passe=> suivre l'identification habituelle dans RUBEDO
             // ainsi les mots de passe initialisés dans RUBEDO restent valides
