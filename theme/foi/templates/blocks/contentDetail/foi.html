@@ -36,22 +36,22 @@
         </div>
 		
 		<div class="lien_articles" ng-if="contentDetailCtrl.content.fields.link_article">
-			<div ng-repeat="link in contentDetailCtrl.content.fields.link_article track by $index"  >
-					<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link')}}"></rubedo-field><!--Plan--> 
+			<div ng-repeat="lien in contentDetailCtrl.content.fields.liens track by $index"  >
+					<a class="lien" ng-if="fieldEntity['lien']" ng-href="{{fieldEntity['lien']}}">{{contentDetailCtrl.getFieldByName('lien')}}</a>
 					<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900',height:'600',mode:'boxed'})}}" style="width:100%"/>
 			</div>
 		</div>
 		
-            <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link_article')}}"></rubedo-field><!--Plan-->
+            <!--<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link_article')}}"></rubedo-field><!--Plan-->
 			<p>{{contentDetailCtrl.numero_issuu}}</p>
-		</div>
+	</div>
 		
-		<a class="sommaire_main" ng-if="fieldEntity['link_article']" ng-href="{{fieldEntity['link_article']}}">Acheter ce numéro</a>
+		<!--<a class="sommaire_main" ng-if="fieldEntity['link_article']" ng-href="{{fieldEntity['link_article']}}">Acheter ce numéro</a>-->
 		
 		<!-- Ajout de la liseuse -->
 		<div data-configid="{{contentDetailCtrl.numero_issuu}}" style="width:100%; height:300px;" class="issuuembed"></div>
 		<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>
-    </div>
+
     <div class="col-sm-3 col-sm-pull-9"> 
         <img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
 				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'300px',mode:'boxed'}) }}"
