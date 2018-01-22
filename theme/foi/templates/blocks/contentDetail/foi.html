@@ -37,7 +37,7 @@
 		
 		<div class="lien_articles" ng-if="contentDetailCtrl.content.fields.link_article">
 			<div ng-repeat="link in contentDetailCtrl.content.fields.link_article track by $index"  >
-					<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link')}}"></rubedo-field><!--Plan-->
+					<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link')}}"></rubedo-field><!--Plan--> 
 					<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900',height:'600',mode:'boxed'})}}" style="width:100%"/>
 			</div>
 		</div>
