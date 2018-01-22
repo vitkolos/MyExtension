@@ -35,10 +35,10 @@
             <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
         </div>
 		
-		<div class="lien_articles" ng-if="contentDetailCtrl.content.fields.liens">
-			<div ng-repeat="lien in contentDetailCtrl.content.fields.liens track by $index"  >
-					<a class="lien" ng-if="fieldEntity['lien']" ng-href="{{fieldEntity['lien']}}">Lien vers article</a>
-					<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900',height:'600',mode:'boxed'})}}" style="width:100%"/>
+		<div class="lien_articles" ng-if="contentDetailCtrl.content.fields.link_article">
+			<div ng-repeat="lien in contentDetailCtrl.content.fields.link_article track by $index"  >
+					<a class="lien" ng-href="{{fieldEntity['lien']}}">Lien vers article</a>
+					<!--<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900',height:'600',mode:'boxed'})}}" style="width:100%"/>-->
 			</div>
 		</div>
 		
