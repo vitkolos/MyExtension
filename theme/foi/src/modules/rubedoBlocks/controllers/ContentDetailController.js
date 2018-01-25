@@ -58,6 +58,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								console.log("FOI");
 																								me.numero_issuu = me.content.fields.idIssuu;
 																				}
+																				
+																					if(me.content.type.code=="article_foi"){
+																								var date = new Date();
+																								me.currentDate = date.getTime();
+																								me.showSommaire();
+																				}
                     
                     if((me.content.type.code=="actualites" || me.content.type.code=="article_foi") && (today.getTime() - me.content.createTime*1000)<1000*3600*24*90) me.isClient();
                     
@@ -268,12 +274,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         }
     };
 				/*AJOUT SOMMAIRE POUR LES ARTICLES*/
-				if(me.content.type.code=="article_foi"){
-								var date = new Date();
-								me.currentDate = date.getTime();
-								me.showSommaire();
-				}
-				me.showSommaire = function(){
+					me.showSommaire = function(){
       var optionsSommaire = {
         constrainToSite:true,
         siteId: $scope.rubedo.current.site.id,
