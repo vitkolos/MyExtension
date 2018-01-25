@@ -311,7 +311,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         if(response.data.success){
           me.infoArticles = response.data.results;
 										console.log('infoArticles');
-										console.log('response.data.results');
+										console.log(response.data.results);
         } 
       });
     };
