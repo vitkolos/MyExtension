@@ -276,7 +276,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				/*AJOUT SOMMAIRE POUR LES ARTICLES*/
 					me.showSommaire = function(){
       var optionsSommaire = {
-        constrainToSite:true,
+        constrainToSite:false,
         siteId: $scope.rubedo.current.site.id,
         pageId: $scope.rubedo.current.page.id,
         predefinedFacets:{"type":"552e2d0e45205eab168a64e7","article_foi":config.contentId},
