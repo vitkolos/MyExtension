@@ -267,8 +267,32 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
              $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit);
         }
     };
+				/*AJOUT SOMMAIRE POUR LES ARTICLES*/
+				if(me.content.type.code=="article_foi"){
+								var date = new Date();
+								me.currentDate = date.getTime();
+								me.showSommaire();
+				}
+				me.showSommaire = function(){
+      var optionsSommaire = {
+        constrainToSite:true,
+        siteId: $scope.rubedo.current.site.id,
+        pageId: $scope.rubedo.current.page.id,
+        predefinedFacets:{"type":"552e2d0e45205eab168a64e7","article_foi":config.contentId},
+        start:0,
+        limit:50,
+        orderby:'fields.date',
+        orderbyDirection:'asc',
+        displayedFacets:"['all']"
+      };
+      RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
+        if(response.data.success){
+          me.foiContents = response.data.results;
+										console.log('etape 1 : data.results');
+										console.log(response.data.results);
+        } 
+      });
+    };
 				
-				
-
-    
+				  
 }]);

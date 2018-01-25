@@ -5,7 +5,22 @@
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('image')}}"></rubedo-field>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('contenu')}}"></rubedo-field>
 </div>
-
+<div class="row">
+    <div class="col-sm-9 col-sm-push-3">
+        <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{contentDetailCtrl.foiContents.data.text}}</h3>
+        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.foiContents.data.text}}"></rubedo-field><!--Plan-->
+        <div class="sommaire">
+            <rubedo-field field =  "{{contentDetailCtrl.foiContents.data.richText}}"></rubedo-field><!--Plan-->
+        </div>
+	</div>
+		
+    <div class="col-sm-3 col-sm-pull-9"> 
+        <img class="img-responsive  padding-top padding-right" ng-if="contentDetailCtrl.foiContents.data.image"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.foiContents.data.image,{width:'300px',mode:'boxed'}) }}"
+				 alt=""/>	
+    </div>
+	
+</div>
  <!-- 
 	<div ng-if="!isClient && !contentDetailCtrl.oldArticle" class="col-md-12 bg-grey" style="text-align:center">
 		<h2 >Article réservé aux abonnés</h2>
