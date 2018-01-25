@@ -10,13 +10,13 @@
         <a ng-href="{{ contentDetailCtrl.foiContents.data[0].url }}" style="border-bottom: 1px solid;padding-bottom: 12px;"><h3 ng-if="!fieldEditMode" >Sommaire - {{contentDetailCtrl.foiContents.data[0].text[0]}}</h3></a>
         <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.foiContents.data[0].text[0]}}"></rubedo-field><!--Plan-->
         <div class="sommaire">
-            <rubedo-field field =  "{{contentDetailCtrl.content.fields.richText}}"></rubedo-field><!--Plan-->
+            <rubedo-field field =  "{{contentDetailCtrl.foiContents.data[0].fields.richText}}"></rubedo-field><!--Plan-->
         </div>
 	</div>
 		
     <div class="col-sm-3 col-sm-pull-9"> 
-        <img class="img-responsive  padding-top padding-right" ng-if="contentDetailCtrl.foiContents.data.image"
-				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.foiContents.data.image,{width:'300px',mode:'boxed'}) }}"
+        <img class="img-responsive  padding-top padding-right" ng-if="contentDetailCtrl.foiContents.data[0].fields.image"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.foiContents.data[0].fields.image,{width:'300px',mode:'boxed'}) }}"
 				 alt=""/>	
     </div>
 	
