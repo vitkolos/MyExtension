@@ -88,6 +88,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
       RubedoSearchService.searchByQuery(optionsCalendar).then(function(response){
         if(response.data.success){
           me.calendarContents = response.data.results;
+          console.log('response.data.results');
+          console.log(response.data.results);
         } 
       });
     }
