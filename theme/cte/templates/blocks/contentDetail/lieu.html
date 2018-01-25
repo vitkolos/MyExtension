@@ -111,7 +111,7 @@
 			            <tr ng-repeat="content in contentDetailCtrl.calendarContents.data track by $index" ng-if="content.dateDebut>contentDetailCtrl.currentDate">
 			                <th class="cal-date" data-th="Date"><a ng-href="{{ content.url }}">{{(content.dateDebut/1000+3600*12)|dateRange:(content.dateFin/1000+3600*12):'short'}}</a></th>
 			                <th class="cal-prop" data-th="Proposition"><a ng-href="{{ content.url }}">
-			                        {{ content.text[0] }}</a>
+			                        {{ content.title }}</a>
 			                </th>
 			                <th style=line-height:0.8em"">
 		                		<span ng-repeat="taxo in content['taxonomy.555f3bc445205edc117e689b'] track by $index" class="public">
