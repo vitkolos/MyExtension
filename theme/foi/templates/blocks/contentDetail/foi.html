@@ -36,7 +36,7 @@
             <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
 			
 			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
-				<p class="red-sub" ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index">{{contentDetailCtrl.infoArticles.facetsLabels[taxo]</p>
+				<p class="red-sub" ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index">{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}</p>
 				<p><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
 			</div>
 			
