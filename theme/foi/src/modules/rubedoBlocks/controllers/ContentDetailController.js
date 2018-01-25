@@ -290,7 +290,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         if(response.data.success){
           me.foiContents = response.data.results;
 										console.log(response.data.results.data[0].id);
-										me.getContentById(response.data.results.data[0].id);
+										
 										console.log('etape 1 : data.results');
 										console.log(response.data.results);
         } 
