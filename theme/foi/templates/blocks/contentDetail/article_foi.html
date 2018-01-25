@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-sm-9 col-sm-push-3">
         <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{contentDetailCtrl.foiContents.data.text}}</h3>
-        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.foiContents.data[0].text}}"></rubedo-field><!--Plan-->
+        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.foiContents.data[0].text[0]}}"></rubedo-field><!--Plan-->
         <div class="sommaire">
             <rubedo-field field =  "{{contentDetailCtrl.content.fields.richText}}"></rubedo-field><!--Plan-->
         </div>
