@@ -35,16 +35,28 @@
             <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
         </div>
 		
-		<tr ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
-			<th class="cal-prop" data-th="Titre de l'article"><a ng-href="{{ content.url }}">
-					{{ content.text[0] }}</a>
-			</th>
-			<th style=line-height:0.8em"">
-				<span ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index" class="public">
-					{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}
-				</span>
-			</th>
-		</tr>
+		<div class="col-sm-12 padding-large">
+			<table class="rwd-table">
+			        <thead>
+			            <tr>
+			                <th>Articles</th>
+			                <th>Catégorie</th>
+			            </tr>
+			        </thead>
+			        <tbody>
+			            <tr ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
+							<th class="cal-prop" data-th="Titre de l'article"><a ng-href="{{ content.url }}">
+									{{ content.text[0] }}</a>
+							</th>
+							<th style=line-height:0.8em"">
+								<span ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index" class="public">
+									{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}
+								</span>
+							</th>
+						</tr>
+			        </tbody>
+			</table>
+		</div>
 		
             <!--<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link_article')}}"></rubedo-field><!--Plan-->
 			<!--<p>{{contentDetailCtrl.numero_issuu}}</p>-->
