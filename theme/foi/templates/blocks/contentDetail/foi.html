@@ -35,12 +35,16 @@
             <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
         </div>
 		
-		<div class="lien_articles" ng-if="contentDetailCtrl.content.fields.link_article">
-			<div ng-repeat="lien in contentDetailCtrl.content.fields.link_article track by $index"  >
-					<a class="lien" ng-href="{{fieldEntity['link_article']}}">Lien vers article</a>
-					<!--<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900',height:'600',mode:'boxed'})}}" style="width:100%"/>-->
-			</div>
-		</div> 
+		<tr ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
+			<th class="cal-prop" data-th="Titre de l'article"><a ng-href="{{ content.url }}">
+					{{ content.text[0] }}</a>
+			</th>
+			<th style=line-height:0.8em"">
+				<span ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index" class="public">
+					{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}
+				</span>
+			</th>
+		</tr>
 		
             <!--<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link_article')}}"></rubedo-field><!--Plan-->
 			<!--<p>{{contentDetailCtrl.numero_issuu}}</p>-->

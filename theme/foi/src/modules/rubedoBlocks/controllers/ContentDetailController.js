@@ -57,6 +57,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				if(me.content.type.code=="foi") {
 																								console.log("FOI");
 																								me.numero_issuu = me.content.fields.idIssuu;
+																								me.buildSommaire();
 																				}
 																				
 																					if(me.content.type.code=="article_foi"){
@@ -289,10 +290,26 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
       RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
         if(response.data.success){
           me.foiContents = response.data.results;
-										console.log(response.data.results.data[0].fields.date);
-										
-										console.log('etape 1 : data.results');
-										console.log(response.data.results);
+        } 
+      });
+    };
+				
+				/*AJOUT SOMMAIRE POUR LES REVUES FOI*/
+					me.buildSommaire = function(){
+      var optionsSommaire = {
+        constrainToSite:false,
+        siteId: $scope.rubedo.current.site.id,
+        pageId: $scope.rubedo.current.page.id,
+        predefinedFacets:{"type":"5a114b5c396588e62456706b","numero_foi":config.contentId},
+        start:0,
+        limit:50,
+        orderby:'fields.date',
+        orderbyDirection:'asc',
+        displayedFacets:"['all']"
+      };
+      RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
+        if(response.data.success){
+          me.infoArticles = response.data.results;
         } 
       });
     };
