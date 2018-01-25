@@ -31,11 +31,20 @@
     <div class="col-sm-9 col-sm-push-3">
         <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{fieldEntity['text']}}</h3>
         <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
-        <div class="sommaire">
+        
+		<div class="sommaire">
             <rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
+			
+			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
+				<p class="red-sub">{{contentDetailCtrl.infoArticles.facetsLabels[content['taxonomy.5a114f1b396588d22856706f']]</p>
+				<p><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
+			</div>
+			
         </div>
+
+
 		
-		<div class="col-sm-12 padding-large">
+		<!--<div class="col-sm-12 padding-large">
 			<table class="rwd-table">
 			        <thead>
 			            <tr>
@@ -48,15 +57,14 @@
 							<th class="cal-prop" data-th="Titre de l'article"><a ng-href="{{ content.url }}">
 									{{ content.text[0] }}</a>
 							</th>
-							<th style=line-height:0.8em"">
+							<th style="line-height:0.8em">
 								<span ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index" class="public">
 									{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}
 								</span>
 							</th>
 						</tr>
 			        </tbody>
-			</table>
-		</div>
+			</tab-->
 		
             <!--<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link_article')}}"></rubedo-field><!--Plan-->
 			<!--<p>{{contentDetailCtrl.numero_issuu}}</p>-->
