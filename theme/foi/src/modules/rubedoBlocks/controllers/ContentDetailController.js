@@ -310,6 +310,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
       RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
         if(response.data.success){
           me.infoArticles = response.data.results;
+										console.log('infoArticles');
+										console.log('response.data.results');
         } 
       });
     };
