@@ -290,6 +290,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
       RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
         if(response.data.success){
           me.foiContents = response.data.results;
+										console.log(response.data.results);
         } 
       });
     };
