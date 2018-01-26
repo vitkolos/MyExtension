@@ -171,21 +171,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																$scope.errorMessage =error.data.message;
 												});
 												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-												
-            
-            
-                
+	  
                 
                 
         }
