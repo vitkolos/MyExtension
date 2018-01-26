@@ -64,6 +64,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								var date = new Date();
 																								me.currentDate = date.getTime();
 																								me.numeroFoi=me.content.fields.numero_foi;
+																								console.log('articleFoi');
+																								console.log(me.content);
+																								console.log('numeroFoi');
+																								console.log(me.numeroFoi);
 																								me.titreSommaire();
 																								me.buildSommaire();
 																				}

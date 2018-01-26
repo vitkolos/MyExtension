@@ -8,8 +8,8 @@
 <div class="row">
     
     <div class="col-sm-9 col-sm-push-3">
-        <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - foiContents.data[0].text[0]}}</h3>
-        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
+        <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{contentDetailCtrl.foiContents.data[0].text[0]}}</h3>
+        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.foiContents.data[0].text[0]}}"></rubedo-field><!--Plan-->
         
 		<div class="sommaire">
             <!--<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
@@ -27,7 +27,7 @@
 
     <div class="col-sm-3 col-sm-pull-9"> 
         <img class="img-responsive  padding-top padding-right" ng-if="foiContents.data[0].fields.image"
-				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(foiContents.data[0].image,{width:'300px',mode:'boxed'}) }}"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(foiContents.data[0].fields.image,{width:'300px',mode:'boxed'}) }}"
 				 alt=""/>	
     </div>
 	
