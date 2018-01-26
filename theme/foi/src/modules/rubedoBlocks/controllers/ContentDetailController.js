@@ -68,7 +68,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								console.log(me.content);
 																								console.log('numeroFoi');
 																								console.log(me.numeroFoi);
-																								me.titreSommaire();
+																								me.titreSommaire(me.numeroFoi);
 																								me.buildSommaire();
 																				}
                     
@@ -306,26 +306,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																};
 				
 																/*INFORMATIONS FOI*/
-																	me.titreSommaire = function(){
-																		var optionsSommaire = {
-																				constrainToSite:false,
-																				siteId: $scope.rubedo.current.site.id,
-																				pageId: $scope.rubedo.current.page.id,
-																				predefinedFacets:{"type":"552e2d0e45205eab168a64e7"},
-																				start:0,
-																				limit:50,
-																				orderby:'fields.date',
-																				orderbyDirection:'asc',
-																				displayedFacets:"['all']"
-																		};
-																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
-																				if(response.data.success){
-																						me.foiContents = response.data.results;
-																						console.log('infos FOI');
-																						console.log(response.data.results);
-																				} 
-																		});
-																}; 
+																	me.titreSommaire = function(numeroFoi){
+																				me.getContentById(numeroFoi);
+																				me.foiContents = me.content;
+																				console.log('infos FOI');
+																				console.log(me.foiContents);
+																};
+
 				
 				
 				/*FOI*/
