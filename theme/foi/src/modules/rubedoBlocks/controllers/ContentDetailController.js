@@ -311,7 +311,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				constrainToSite:false,
 																				siteId: $scope.rubedo.current.site.id,
 																				pageId: $scope.rubedo.current.page.id,
-																				predefinedFacets:{"type":"552e2d0e45205eab168a64e7","numero_foi":me.numeroFoi},
+																				predefinedFacets:{"type":"552e2d0e45205eab168a64e7","id":config.contentId},
 																				start:0,
 																				limit:50,
 																				orderby:'fields.date',
@@ -321,6 +321,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
 																				if(response.data.success){
 																						me.foiContents = response.data.results;
+																						console.log('infos FOI');
 																						console.log(response.data.results);
 																				} 
 																		});
