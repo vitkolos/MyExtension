@@ -6,17 +6,28 @@
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('contenu')}}"></rubedo-field>
 </div>
 <div class="row">
+    
     <div class="col-sm-9 col-sm-push-3">
-        <a ng-href="{{ contentDetailCtrl.foiContents.data[0].url }}" style="border-bottom: 1px solid;padding-bottom: 12px;"><h3 ng-if="!fieldEditMode" >Sommaire - {{contentDetailCtrl.foiContents.data[0].text[0]}}</h3></a>
-        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.foiContents.data[0].text[0]}}"></rubedo-field><!--Plan-->
-        <div class="sommaire">
-            <rubedo-field field =  "{{contentDetailCtrl.foiContents.data[0].fields.richText}}"></rubedo-field><!--Plan-->
+        <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - foiContents.data[0].text[0]}}</h3>
+        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
+        
+		<div class="sommaire">
+            <!--<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
+			
+			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
+				
+				<p><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
+				<p class="red-sub" ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index">{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}</p>
+			</div> 
+			
         </div>
+
 	</div>
-		
+
+
     <div class="col-sm-3 col-sm-pull-9"> 
-        <img class="img-responsive  padding-top padding-right" ng-if="contentDetailCtrl.foiContents.data[0].fields.image"
-				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.foiContents.data[0].fields.image,{width:'300px',mode:'boxed'}) }}"
+        <img class="img-responsive  padding-top padding-right" ng-if="foiContents.data[0].image"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(foiContents.data[0].image,{width:'300px',mode:'boxed'}) }}"
 				 alt=""/>	
     </div>
 	
