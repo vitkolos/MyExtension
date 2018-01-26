@@ -14,10 +14,10 @@
 		<div class="sommaire">
             <!--<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
 			
-			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
+			<div ng-repeat="content in contentDetailCtrl.accesArticles.data track by $index">
 				
 				<p><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
-				<p class="red-sub" ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index">{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}</p>
+				<p class="red-sub" ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index">{{contentDetailCtrl.accesArticles.facetsLabels[taxo]}}</p>
 			</div> 
 			
         </div>
@@ -26,7 +26,7 @@
 
 
     <div class="col-sm-3 col-sm-pull-9"> 
-        <img class="img-responsive  padding-top padding-right" ng-if="foiContents.data[0].image"
+        <img class="img-responsive  padding-top padding-right" ng-if="foiContents.data[0].fields.image"
 				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(foiContents.data[0].image,{width:'300px',mode:'boxed'}) }}"
 				 alt=""/>	
     </div>
