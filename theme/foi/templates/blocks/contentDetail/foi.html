@@ -1,3 +1,44 @@
+
+
+
+<div class="row">
+    
+    <div class="col-sm-9 col-sm-push-3">
+        <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{fieldEntity['text']}}</h3>
+        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
+		<div class="sommaire">	
+			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
+				<p><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
+				<p class="red-sub" ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index">{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}</p>
+			</div>
+        </div>
+	</div>
+		
+    <div class="col-sm-3 col-sm-pull-9"> 
+        <img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'300px',mode:'boxed'}) }}"
+				 alt=""/>	
+    </div>
+	
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--<div class="container">
 <div class="row">
 	<div class="col-xs-12 col-sm-6">
@@ -26,61 +67,3 @@
 </div>
 
 -->
-<div class="row">
-    
-    <div class="col-sm-9 col-sm-push-3">
-        <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{fieldEntity['text']}}</h3>
-        <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
-        
-		<div class="sommaire">
-            <!--<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('richText')}}"></rubedo-field><!--Plan-->
-			
-			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
-				
-				<p><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
-				<p class="red-sub" ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index">{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}</p>
-			</div>
-			
-        </div>
-
-
-		
-		<!--<div class="col-sm-12 padding-large">
-			<table class="rwd-table">
-			        <thead>
-			            <tr>
-			                <th>Articles</th>
-			                <th>Catégorie</th>
-			            </tr>
-			        </thead>
-			        <tbody>
-			            <tr ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
-							<th class="cal-prop" data-th="Titre de l'article"><a ng-href="{{ content.url }}">
-									{{ content.text[0] }}</a>
-							</th>
-							<th style="line-height:0.8em">
-								<span ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index" class="public">
-									{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}
-								</span>
-							</th>
-						</tr>
-			        </tbody>
-			</tab-->
-		
-            <!--<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('link_article')}}"></rubedo-field><!--Plan-->
-			<!--<p>{{contentDetailCtrl.numero_issuu}}</p>-->
-	</div>
-		
-		<!--<a class="sommaire_main" ng-if="fieldEntity['link_article']" ng-href="{{fieldEntity['link_article']}}">Acheter ce numéro</a>-->
-		
-		<!-- Ajout de la liseuse -->
-		<!--<div data-configid="{{contentDetailCtrl.numero_issuu}}" style="width:100%; height:300px;" class="issuuembed"></div>
-		<script type="text/javascript" src="//e.issuu.com/embed.js" async="true"></script>-->
-
-    <div class="col-sm-3 col-sm-pull-9"> 
-        <img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
-				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'300px',mode:'boxed'}) }}"
-				 alt=""/>	
-    </div>
-	
-</div>
