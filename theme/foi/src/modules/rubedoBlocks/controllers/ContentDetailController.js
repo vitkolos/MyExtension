@@ -328,28 +328,28 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				//												}; 
 				//
 				//
-				///*FOI*/
-				//												/*INFORMATIONS SUR LES ARTICLES*/
-				//													me.contenuSommaire = function(){
-				//														var optionsSommaire = {
-				//																constrainToSite:false,
-				//																siteId: $scope.rubedo.current.site.id,
-				//																pageId: $scope.rubedo.current.page.id,
-				//																predefinedFacets:{"type":"5a114b5c396588e62456706b","numero_foi":config.contentId},
-				//																start:0,
-				//																limit:50,
-				//																orderby:'taxonomy.5a114f1b396588d22856706f',
-				//																orderbyDirection:'asc',
-				//																displayedFacets:"['all']"
-				//														};
-				//														RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
-				//																if(response.data.success){
-				//																		me.infoArticles = response.data.results;
-				//																		console.log('infoArticles');
-				//																		console.log(response.data.results);
-				//																} 
-				//														});
-				//												};
+				/*FOI*/
+																/*INFORMATIONS SUR LES ARTICLES*/ 
+																	me.contenuSommaire = function(){
+																		var optionsSommaire = {
+																				constrainToSite:false,
+																				siteId: $scope.rubedo.current.site.id,
+																				pageId: $scope.rubedo.current.page.id,
+																				predefinedFacets:{"type":"5a114b5c396588e62456706b","numero_foi":config.contentId},
+																				start:0,
+																				limit:50,
+																				orderby:'taxonomy.5a114f1b396588d22856706f',
+																				orderbyDirection:'asc',
+																				displayedFacets:"['all']"
+																		};
+																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
+																				if(response.data.success){
+																						me.infoArticles = response.data.results;
+																						console.log('infoArticles');
+																						console.log(response.data.results);
+																				} 
+																		});
+																};
 				
 				  
 }]);
