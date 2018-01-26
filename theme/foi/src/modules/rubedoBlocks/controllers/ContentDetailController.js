@@ -57,7 +57,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				if(me.content.type.code=="foi") {
 																								console.log("FOI");
 																								me.numero_issuu = me.content.fields.idIssuu;
-																								/*me.contenuSommaire();*/
+																								me.contenuSommaire();
 																				}
 																				
 																					if(me.content.type.code=="article_foi"){
