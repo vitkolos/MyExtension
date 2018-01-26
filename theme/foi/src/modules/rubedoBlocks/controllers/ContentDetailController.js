@@ -57,13 +57,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				if(me.content.type.code=="foi") {
 																								console.log("FOI");
 																								me.numero_issuu = me.content.fields.idIssuu;
-																								me.buildSommaire();
+																								me.titreSommaire();
+																								me.contenuSommaire();
 																				}
 																				
 																					if(me.content.type.code=="article_foi"){
 																								var date = new Date();
 																								me.currentDate = date.getTime();
-																								me.showSommaire();
+																								me.titreSommaire();
+																								me.contenuSommaire();
 																				}
                     
                     if((me.content.type.code=="actualites" || me.content.type.code=="article_foi") && (today.getTime() - me.content.createTime*1000)<1000*3600*24*90) me.isClient();
@@ -274,13 +276,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
              $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit);
         }
     };
-				/*AJOUT SOMMAIRE POUR LES ARTICLES*/
-					me.showSommaire = function(){
+				/*INFORMATIONS FOI*/
+					me.titreSommaire = function(){
       var optionsSommaire = {
         constrainToSite:false,
         siteId: $scope.rubedo.current.site.id,
         pageId: $scope.rubedo.current.page.id,
-        predefinedFacets:{"type":"552e2d0e45205eab168a64e7","numero_foi":content.fields.numero_foi},
+        predefinedFacets:{"type":"552e2d0e45205eab168a64e7","links_article":config.contentId},
         start:0,
         limit:50,
         orderby:'fields.date',
@@ -293,10 +295,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 										console.log(response.data.results);
         } 
       });
-    };
+    }; 
 				
-				/*AJOUT SOMMAIRE POUR LES REVUES FOI*/
-					me.buildSommaire = function(){
+				/*INFORMATIONS SUR LES ARTICLES*/
+					me.contenuSommaire = function(){
       var optionsSommaire = {
         constrainToSite:false,
         siteId: $scope.rubedo.current.site.id,
