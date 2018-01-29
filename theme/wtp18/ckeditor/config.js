@@ -12,18 +12,17 @@ CKEDITOR.editorConfig = function( config ) {
         config.youtube_responsive = true;
         };
         
-//CKEDITOR.stylesSet.add( 'default', [
-//    { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox-square'} },
-//    	{ name:'Lien rond', element:'p', attributes:{'class':'linkbox-rond'}},
-//    {
-//		name: 'Centered image',
-//		element: 'img',
-//		attributes: { 'style': 'margin:0 auto' }
-//    }
-//
-//}
-//
-//] );
+CKEDITOR.stylesSet.add( 'default', [
+    { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox-square'} },
+    	{ name:'Lien rond', element:'p', attributes:{'class':'linkbox-rond'}},
+    {
+		name: 'Centered image',
+		element: 'img',
+		attributes: { 'style': 'margin:0 auto' }
+    }
+
+
+] );
 
 
 CKEDITOR.plugins.addExternal( 'youtube', '/theme/goodnews/ckeditor/plugins/youtube/','plugin.js' );
