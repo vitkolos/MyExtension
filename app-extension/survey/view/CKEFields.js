@@ -116,7 +116,7 @@ Ext.define('Rubedo.view.CKEField', {
             filebrowserImageBrowseUrl:"ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
-            font_names : 'Merriweather;Montserrat;FontAwesome;Allura;HoneyScript; cheminneuf',
+            font_names : 'Merriweather;Montserrat;FontAwesome;Oswald Light;Oswald SemiBold; cheminneuf',
         });
         component.editor.on("maximize",function(){
             var mainWindow=component.findParentByType("window");
