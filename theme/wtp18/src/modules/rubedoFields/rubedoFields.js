@@ -219,14 +219,15 @@
             filebrowserImageBrowseUrl:"/backoffice/ext-finder?type=Image",
             filebrowserImageUploadUrl:null,
             forcePasteAsPlainText: true,
-            //stylesSet: [
+            stylesSet: [
+                { name: 'Titre boîte', element: 'h3', attributes: { 'class': 'title-border'} }
             //    { name: 'Titre boîte', element: 'h3', attributes: { 'class': 'title-border'} },
             //    { name: 'Titre rond', element: 'h3', attributes: { 'class': 'title-border'} }
-            //],
+            ],
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
             font_names : 'Oswald Light;Oswald SemiBold;FontAwesome;',
-
+ 
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
