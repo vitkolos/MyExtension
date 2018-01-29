@@ -13,8 +13,9 @@ CKEDITOR.editorConfig = function( config ) {
         };
         
 CKEDITOR.stylesSet.add( 'default', [
-    { name: 'Lien boîte', element: 'p', attributes: { 'class': 'linkbox-square'} },
-    	{ name:'Lien rond', element:'p', attributes:{'class':'linkbox-rond'}},
+    { name: 'Lien boîte', element: 'h2', attributes: { 'class': 'linkbox-square'} },
+    	{ name:'Lien rond blanc', element:'p', attributes:{'class':'linkbox-rond-blanc'}},
+     { name:'Lien rond noir', element:'p', attributes:{'class':'linkbox-rond-noir'}},
     {
 		name: 'Centered image',
 		element: 'img',
