@@ -1,0 +1,242 @@
+<div ng-controller="ContentListController as contentListCtrl">
+    <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
+            ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
+            ng-model="contentListCtrl.selectedManualType"></select>
+    <button ng-if="contentListCtrl.canAddToList()"
+            title="Add content"
+            class="btn btn-default"
+            ng-click="contentListCtrl.launchContribute()">
+        <span class="glyphicon glyphicon-plus"></span>
+    </button>
+    <!--DEFAULT-->         
+    <div ng-if="contentListCtrl.usedContentTypes[0]=='5517c04245205ec708869bc6' " class="container" style="margin-top:75px;">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-9" style="padding-right:24px">
+                <div ng-attr-lr-infinite-scroll="loadMoreContents"
+                     ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
+                     ng-style="contentListCtrl.blockStyle" >
+                    <!--<div id="infiniteScrollCtrl">-->
+                    <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
+                        <div ng-class="contentListCtrl.columns" ng-repeat="content in columnContents track by $index"   ng-controller="ContentListDetailController as contentListDetailCtrl">
+                            <div class="row list">
+                                <div class="col-xs-12 col-sm-5">
+                                    <a ng-href="{{ content.detailPageUrl }}">
+                                        <img class="img-responsive pull-right" ng-if="content.fields.image && !contentListCtrl.titleOnly"
+                                            ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'500px',height:'220px',mode:'crop'}) }}"
+                                            alt="{{ content.fields.text }}"/>
+                                    </a>
+                                </div>
+                                <div class="col-xs-12 col-sm-7">
+                                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
+                                        <h4> {{content.fields.text}}</h4>
+                                        <p>{{content.fields.summary}}</p>
+                                    </a>
+                                    <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                                    <rubedo-field ng-if="fieldEditMode" field="{{content.type.summary}}"></rubedo-field>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden-xs col-sm-4 col-md-3">
+                <div class="row" ng-controller="FacebookController as fcbCtrl" style="margin-bottom:48px" ng-if="rubedo.current.page.locale !='pl' ">
+                    <div class="fb-page" data-href="https://www.facebook.com/festivalwelcometoparadise"
+                         data-width="300" data-hide-cover="false" data-show-facepile="true" data-show-posts="true" data-height="750">
+                            <div class="fb-xfbml-parse-ignore">
+                            </div>
+                    </div>
+                </div>
+                <div class="row" ng-controller="FacebookController as fcbCtrl" style="margin-bottom:48px" ng-if="rubedo.current.page.locale =='pl' ">
+                    <div class="fb-page" data-href="https://www.facebook.com/sdm.paradiseinthecity"
+                         data-width="300" data-hide-cover="false" data-show-facepile="true" data-show-posts="true" data-height="750">
+                            <div class="fb-xfbml-parse-ignore">
+                            </div>
+                    </div>
+                </div>
+                <div class="row" ng-init = "blockConfig={'theme':'normal','mode':'tweets','widgetId':'651025227502198784','account':'Festival_WTP','width':'300','options':['noHeader']}">
+                    <div ng-include="rubedo.blockTemplateResolver.getTemplate('twitter',blockConfig)"></div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    
+    <!--WORKSHOPS-->         
+    <div ng-if="block.code =='workshops' " ng-attr-id=" {{block.code}}" >
+       <div class="row">
+            <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
+        </div>
+       <div class="row table" ng-init="workshop={}; workshop.jour=0" >
+            <!--JOURS-->
+            <div  id="jour-container" class="col-md-2 col-sm-4" ng-repeat="columnContents in contentListCtrl.contentList track by $index">
+                
+                <div ng-repeat="content in columnContents track by $index" ng-class="{'not-checked' : workshop.jour==0}">
+                    <input type="radio" name="jour" ng-model="$parent.workshop.jour" ng-attr-value="{{$index}}" ng-attr-id="{{'jour-'+$index}}">
+                    <label ng-attr-for="{{'jour-'+$index}}"  class="date-workshops" ng-class="{ 'not-displayed' :$parent.workshop.jour<7 && $parent.workshop.jour != {{$index}} }">{{content.text}}</label>
+                </div>
+            </div>
+            <!--LISTE DES WORKSHOPS-->
+    
+             <div class="table-content col-md-10 col-sm-8" ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
+                <div class="table-workshops" ng-repeat="content in columnContents track by $index" ng-attr-id="{{'jour-'+$index}}" ng-class="{'displayed' : workshop.jour =={{$index}} , 'not-checked' : workshop.jour==10}">
+                    <!--<h3 class="closed" ng-click="$parent.workshop.jour=0">X</h3>-->
+                    <h3 class="workshop-nav pull-right" ng-click="$parent.workshop.jour= ($parent.workshop.jour +1)%columnContents.length">ì</h3>
+                    <h3 class="workshop-nav pull-left" ng-click="$parent.workshop.jour=($parent.workshop.jour -1)>-1 ? ($parent.workshop.jour -1)%columnContents.length :  ($parent.workshop.jour +columnContents.length-1)">Ø</h3>
+
+                    <div class="row">
+                        <div class="col-sm-6 padding-large" ng-if="content.fields.morning">
+                            <h3>{{rubedo.translate("WTP.morning","Morning")}}</h3>
+                            <div ng-repeat="detail in content.fields.morning.values">
+                                <p>{{detail.title}}</p>
+                                <p><em>{{detail.speaker}}</em></p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 padding-large" ng-if="content.fields.afternoon">
+                            <h3>{{rubedo.translate("WTP.afternoon","Afternoon")}}</h3>
+                            <div ng-repeat="detail in content.fields.afternoon.values">
+                                <p>{{detail.title}}</p>
+                                <p><em>{{detail.speaker}}</em></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+                    <div>
+                        <h3 class="closed" ng-click="$parent.workshop.jour=8">X</h3>
+                        <h3 class="workshop-nav pull-right" ng-click="$parent.workshop.jour= ($parent.workshop.jour +1)%columnContents.length">ì</h3>
+                        <h3 class="workshop-nav pull-left" ng-click="$parent.workshop.jour=($parent.workshop.jour -1)>-1 ? ($parent.workshop.jour -1)%columnContents.length :  ($parent.workshop.jour +columnContents.length-1)">Ø</h3>
+                        <div   ng-repeat="workshop in content.fields.workshop | split : '&&' ">
+                            <p ng-repeat="detail in workshop | split:'_' track by $index" ng-show="detail !='\n'" ng-if="$index!=2" toggleclass ng-attr-condition="{{$index==1}}">
+                                {{detail}}
+                                <span ng-repeat="detail2 in workshop | split:'_'  track by $index " ng-if="$index==2 && $parent.$index==1"> {{detail2}}</span>
+                            </p>
+                        </div>
+                    </div>-->
+                     
+                </div>
+            </div>
+                
+        </div>
+    </div>        
+
+    <!--SPORTS-->         
+    <div ng-if="block.code =='fit-fun' "  ng-attr-id=" {{block.code}}">
+       <div class="row">
+            <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
+        </div>
+       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList  track by $index">
+            <!--CARRES-->
+            <div class="col-sm-8 sport-container" ng-class="{'not-displayed' : selectContent >= 0, 'noclick':noclick }">
+                <div ng-repeat="content in columnContents | orderBy:'text' track by $index" class="square">
+                    <input type="radio" name="sport" ng-model="$parent.selectContent" ng-attr-value="{{$index}}" id="{{'sport-'+$index}}" >
+                    <label ng-attr-for="{{'sport-'+$index}}" ng-click="$parent.noclick = false">
+                        <p>{{content.fields.text}}</p>
+                        <span>{{content.fields.icon}}</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4" >
+                <div ng-repeat="content in columnContents | orderBy:'text' track by $index" class="table-tab" ng-class="{'displayed' : selectContent =={{$index}} , 'noclick':noclick }">
+                        <h3 class="closed" ng-click="$parent.selectContent=-1">X</h3>
+                        <h3 class="workshop-nav pull-right" ng-click="$parent.selectContent = ($parent.selectContent +1)%columnContents.length">ì</h3>
+                        <h3 class="workshop-nav pull-left" ng-click="$parent.selectContent =($parent.selectContent -1)>-1 ? ($parent.selectContent -1)%columnContents.length :  ($parent.selectContent +columnContents.length -1)">Ø</h3>
+                    <p>{{content.fields.text}}</p>
+                    <p>{{content.fields.subTitle}}</p>
+                    <p>{{content.fields.description}}</p>
+                    <p>{{content.fields.price}}</p>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+     <!--ATELIERS-->
+    <div ng-if=" block.code =='ateliers' " ng-attr-id=" {{block.code}}">
+       <div class="row">
+            <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
+        </div>
+       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList track by $index">
+            <!--CARRES-->
+            <div class="col-sm-8 sport-container" ng-class="{'not-displayed' : selectContent >= 0, 'noclick':noclick }">
+                <div ng-repeat="content in columnContents track by $index" class="square">
+                    <input type="radio" name="ateliers" ng-model="$parent.selectContent" ng-attr-value="{{$index}}" id="{{'atelier-'+$index}}" >
+                    <label ng-attr-for="{{'atelier-'+$index}}" ng-click="$parent.noclick = false">
+                        <p>{{content.fields.text}}</p>
+                        <span>{{content.fields.icon}}</span>
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4" >
+                <div ng-repeat="content in columnContents" class="table-tab" ng-class="{'displayed' : selectContent =={{$index}} , 'noclick':noclick }">
+                        <h3 class="closed" ng-click="$parent.selectContent=-1">X</h3>
+                        <h3 class="workshop-nav pull-right" ng-click="$parent.selectContent = ($parent.selectContent +1)%columnContents.length">ì</h3>
+                        <h3 class="workshop-nav pull-left" ng-click="$parent.selectContent =($parent.selectContent -1)>-1 ? ($parent.selectContent -1)%columnContents.length :  ($parent.selectContent +columnContents.length -1)">Ø</h3>
+                    <p>{{content.fields.text}}</p>
+                    <p>{{content.fields.subTitle}}</p>
+                    <p>{{content.fields.description}}</p>
+                    <p>{{content.fields.price}}</p>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+     
+     
+     <!---INTERVENANTS-->
+    <div ng-if=" block.code =='intervenants' " ng-controller="ContentListController as contentListCtrl" ng-attr-id=" {{block.code}}">
+       <div class="row">
+            <h4 ng-if="block.displayTitle" class="titre-details">{{block.title}}</h4>
+        </div>
+       <div class="row table" ng-init="selectContent=0 ; noclick = true"  ng-repeat="columnContents in contentListCtrl.contentList track by $index">
+            <!--CARRES-->
+            <div class="col-sm-8 sport-container" ng-class="{'not-displayed' : selectContent >= 0, 'noclick':noclick }">
+                <div ng-repeat="content in columnContents track by $index" class="square" ng-class="{'couple':content.fields.couple}">
+                    <input type="radio" name="intervenants" ng-model="$parent.selectContent" ng-attr-value="{{$index}}" id="{{'intervenants-'+$index}}" >
+                    <label ng-attr-for="{{'intervenants-'+$index}}" ng-click="$parent.noclick = false">
+                        <img class="media-object" ng-if="content.fields.image && !contentListCtrl.titleOnly"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image) }}"
+                             alt="{{ content.fields.text }}"
+                             style="width:100%"/>
+                        <span>{{content.fields.icon}}</span>
+                        
+                    </label>
+                </div>
+            </div>
+            <div class="col-sm-4" >
+                <div ng-repeat="content in columnContents track by $index" class="table-tab" ng-class="{'displayed' : selectContent =={{$index}} , 'noclick':noclick }">
+                        <h3 class="closed" ng-click="$parent.selectContent=-1">X</h3>
+                        <h3 class="workshop-nav pull-right" ng-click="$parent.selectContent = ($parent.selectContent +1)%columnContents.length">ì</h3>
+                        <h3 class="workshop-nav pull-left" ng-click="$parent.selectContent =($parent.selectContent -1)>-1 ? ($parent.selectContent -1)%columnContents.length :  ($parent.selectContent +columnContents.length -1)">Ø</h3>
+                    <p>{{content.fields.text}}</p>
+                    <p >{{content.fields.subTitle}}</p>
+                    <p >{{content.fields.description}}</p>
+                    <p >{{content.fields.price}}</p>
+                </div>
+            </div>
+                
+        </div>
+    </div>
+    
+    
+        
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

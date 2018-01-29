@@ -1,15 +1,21 @@
-
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoUsersService","$http","$route","$rootScope",function($scope, RubedoContentsService,RubedoSearchService,RubedoUsersService,$http,$route,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
-    $scope.isClient = false;
     var previousFields;
+    me.taxonomy=[];
+    me.gallery={}; // for album photo
+
+
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
 
     });
+    me.tooltips=function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    }
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
@@ -18,6 +24,23 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             }
         });
         return field;
+    };
+    me.getTermInTaxo=function(taxoKey,termId){
+        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
+        var term=null;
+        angular.forEach(me.taxo[taxoKey].terms,function(candidate, id){ // chercher l'id dans les taxonomies de ce type de contenu si 
+            if(!term){if(id==termId){term=candidate;}}
+         });
+         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherch�
+    return(term);
+    }
+    
+    me.search = function(taxoKey,termId){
+        RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+            if (response.data.success){
+                $location.url(response.data.url+'?taxonomies={"'+taxoKey+'":["'+termId+'"]}');
+            }
+        });        
     };
     me.getContentById = function (contentId){
         var options = {
@@ -29,8 +52,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
-                    console.log(me.content);
-                    $scope.fieldIdPrefix="contentDetail"+me.content.type.type;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
                             $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
@@ -38,48 +59,26 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if (me.content.fields.summary){
                             $scope.rubedo.setPageDescription(angular.copy(me.content.fields.summary));
                         }
+                        if(me.content.fields.image) {
+                            //$scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(response.data.content.fields.image,{width:'800px'});
+                            $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields['image']));
+                        }/*
                         var foundMeta=false;
                         angular.forEach(me.content.type.fields,function(field){
                             if(!foundMeta&&field.config&&field.config.useAsMetadata&&me.content.fields[field.config.name]&&me.content.fields[field.config.name]!=""){
                                 $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields[field.config.name]));
                                 foundMeta=true;
                             }
-                        });
+                        });*/
+                       
                     }
+                
+                    
+                    
+                    
                     $scope.fieldEntity=angular.copy(me.content.fields);
                     
-                    
-                    /*Vérifier les droits du client et limiter le texte si besoin pour les actualites et les articles FOI*/
-                    /*et seulement pour des articles publiés il y a moins de 3 mois*/
-                    var today = new Date();
-                    console.log((today.getTime() - me.content.createTime*1000)>1000*3600*24*90);
-																				
-																				if(me.content.type.code=="foi") {
-																								console.log("FOI");
-																								me.numero_issuu = me.content.fields.idIssuu;
-																								me.contenuSommaire();
-																				}
-																				
-																					if(me.content.type.code=="article_foi"){
-																								var date = new Date();
-																								me.currentDate = date.getTime();
-																								me.numeroFoi=me.content.fields.numero_foi;
-																								console.log('articleFoi');
-																								console.log(me.content);
-																								console.log('numeroFoi');
-																								console.log(me.numeroFoi);
-																								me.titreSommaire(me.numeroFoi);
-																								me.buildSommaire();
-																				}
-                    
-                    if((me.content.type.code=="actualites" || me.content.type.code=="article_foi") && (today.getTime() - me.content.createTime*1000)<1000*3600*24*90) me.isClient();
-                    
-                    me.oldArticle = true;
-                    if ((today.getTime() - me.content.createTime*1000)<1000*3600*24*90) {me.oldArticle=false;
-                    };
-                    console.log(me.oldArticle);
-                    
-                    
+
                     $scope.fieldLanguage=me.content.locale;
                     if (me.content.isProduct){
                         me.content.type.fields.unshift({
@@ -116,6 +115,53 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             }
                         });
                     }
+                    //Albums photos
+                    if (me.content.type.code=="album") {
+                        me.currentIndex=0;
+                        me.loadModal = function(index){
+                            me.currentIndex = index;
+                            me.currentImage = me.content.fields.images[me.currentIndex];
+                        };
+                        me.changeImage = function(side){
+                            if(side == 'left' && me.currentIndex > 0){
+                                me.currentIndex -= 1;
+                            } else if(side == 'right' && me.currentIndex < me.content.fields.images.length - 1) {
+                                me.currentIndex += 1;
+                            }
+                            me.currentImage = me.content.fields.images[me.currentIndex];
+                        };
+                        me.changeImageKey = function($event){
+                          console.log($event);
+                            if ($event.keyCode == 39) { 
+                               me.changeImage('right');
+                            }
+                        
+                            else if ($event.keyCode == 37) {
+                               me.changeImage('left');
+                            }
+                        };                        
+
+                    }
+                    
+                     
+
+                    
+                    if (me.content.fields.author_jmj) {
+                        me.auteur_jmj ={};
+                        var options_auteur = {
+                            siteId: $scope.rubedo.current.site.id,
+                            pageId: $scope.rubedo.current.page.id
+                        };
+                        RubedoContentsService.getContentById(me.content.fields.author_jmj, options_auteur).then(
+                            function(response){
+                                if(response.data.success){
+                                    me.auteur_jmj = response.data.content;
+                                }
+                            });
+                    };
+                    
+                    
+                    
                     if(me.customLayout){
                         me.content.type.fields.unshift({
                             cType:"textarea",
@@ -145,11 +191,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.fields=me.transformForFront(me.content.type.fields);
                             $scope.clearORPlaceholderHeight();
                         }
-                        //$http.get(themePath+'/templates/blocks/contentDetail/)
                     }
-                    if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
-                        $rootScope.$broadcast("ClickStreamEvent",{csEvent:me.content.clickStreamEvent});
+                    var allContentTerms=[];
+                    if (me.content.taxonomy){
+                        angular.forEach(me.content.taxonomy,function(value){
+                            if (angular.isString(value)&&value!=""){
+                                allContentTerms.push(value);
+                            } else if (angular.isArray(value)){
+                                allContentTerms=allContentTerms.concat(value);
+                            }
+                        });
                     }
+                    $rootScope.$broadcast("ClickStreamEvent",{csEvent:"contentDetailView",csEventArgs:{
+                        contentId:me.content.id,
+                        siteId:options.pageId,
+                        pageId:options.siteId,
+                        typeId:me.content.typeId,
+                        taxonomyTerms:allContentTerms
+                    }});
                 }
             }
         );
@@ -157,6 +216,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     if (config.contentId){
         me.getContentById(config.contentId);
     }
+    
     me.revertChanges=function(){
         $scope.fieldEntity=angular.copy(previousFields);
     };
@@ -174,7 +234,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         window.confirmContentContribution=function(){
             angular.element("#content-contribute-frame").empty();
             angular.element('#content-contribute-modal').modal('hide');
-            $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated"));
+            $scope.rubedo.addNotification("success","Success","Contents updated.");
             me.getContentById(me.content.id);
         };
         window.cancelContentContribution=function(){
@@ -190,14 +250,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             function(response){
                 if (response.data.success){
                     me.content.version = response.data.version;
-                    $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated"));
+                    $scope.rubedo.addNotification("success","Success","Content updated.");
                 } else {
-                    $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError"));
+                    $scope.rubedo.addNotification("danger","Error","Content update error.");
                 }
 
             },
             function(response){
-                $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError"));
+                $scope.rubedo.addNotification("danger","Error","Content update error.");
             }
         );
     };
@@ -253,90 +313,27 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
-    
-    
-    me.isClient = function (){
-        if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
-           $scope.isClient=true;
-           console.log($scope.rubedo.current.user);
+    /*pour albums photos*/
+    me.gallery.start = 0;
+    me.gallery.limit = config.pageSize?config.pageSize:9;
+    me.gallery.currentIndex = 0;
+    me.gallery.actualPage = 1;
+    me.gallery.nbImages = angular.copy(me.gallery.limit);
+    me.changePage = function(side){
+        if(side == 'left' && (me.gallery.start - me.gallery.limit  >= 0) ){
+            me.gallery.currentIndex= me.gallery.start-1;
+            me.gallery.start -= me.gallery.limit;
+        } else if(side == 'right' && (me.gallery.start + me.gallery.nbImages < me.gallery.count) ) {
+            me.gallery.start += me.gallery.nbImages;
+            me.gallery.currentIndex= me.gallery.start;
         }
-        else if ($scope.rubedo.current.user) {
-            RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
-                function(response){
-                    if(response.data.success){
-                        if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
-                            $scope.isClient=true;
-                        }
-                        else{
-                            var limit = $scope.fieldEntity['richText'].indexOf("</p>",$scope.fieldEntity['richText'].length*0.1)+4;
-                            $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit);
-                        }
-                    }
-                }
-            )
+        if (me.gallery.start + me.gallery.nbImages>=me.gallery.count) {
+            me.gallery.nbImages = me.gallery.count- me.gallery.start;
         }
-        else {
-             var limit = $scope.fieldEntity['richText'].indexOf("</p>",$scope.fieldEntity['richText'].length*0.1)+4;
-             $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit);
-        }
+        else{me.gallery.nbImages =me.gallery.limit ;}
     };
-				
-				
-				/*ARTICLE FOI*/
-																/*INFORMATIONS SUR LES ARTICLES*/
-																	me.buildSommaire = function(){
-																		var optionsSommaire = {
-																				constrainToSite:false,
-																				siteId: $scope.rubedo.current.site.id,
-																				pageId: $scope.rubedo.current.page.id,
-																				predefinedFacets:{"type":"5a114b5c396588e62456706b","numero_foi":me.numeroFoi},
-																				start:0,
-																				limit:50,
-																				orderby:'taxonomy.5a114f1b396588d22856706f',
-																				orderbyDirection:'asc',
-																				displayedFacets:"['all']"
-																		};
-																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
-																				if(response.data.success){
-																						me.accesArticles = response.data.results;
-																						console.log('accesArticles');
-																						console.log(response.data.results);
-																				} 
-																		});
-																};
-				
-																///*INFORMATIONS FOI*/
-																//me.titreSommaire = function(numeroFoi){
-																//				me.getContentById(numeroFoi);
-																//				me.foiContents = me.content;
-																//				console.log('infos FOI');
-																//				console.log(me.foiContents);
-																//};
+    me.showModal=function(id){
+        angular.element('#myModal'+id).appendTo('body').modal('show');
+    };
 
-				
-				
-				/*FOI*/
-																/*INFORMATIONS SUR LES ARTICLES*/ 
-																	me.contenuSommaire = function(){
-																		var optionsSommaire = {
-																				constrainToSite:false,
-																				siteId: $scope.rubedo.current.site.id,
-																				pageId: $scope.rubedo.current.page.id,
-																				predefinedFacets:{"type":"5a114b5c396588e62456706b","numero_foi":config.contentId},
-																				start:0,
-																				limit:50,
-																				orderby:'taxonomy.5a114f1b396588d22856706f',
-																				orderbyDirection:'asc',
-																				displayedFacets:"['all']"
-																		};
-																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
-																				if(response.data.success){
-																						me.infoArticles = response.data.results;
-																						console.log('infoArticles');
-																						console.log(response.data.results);
-																				} 
-																		});
-																};
-				
-				  
 }]);

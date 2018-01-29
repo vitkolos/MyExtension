@@ -255,6 +255,22 @@ return array(
 																				'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
             ),
+												'wtp18' => array(
+                'label' => 'WTP18',
+                'basePath' => realpath(__DIR__ . '/../theme/wtp18'),
+                'css' => array(
+                    '/css/wtp2018.css',
+                    '/css/ru.css'
+                ),
+                'js' => array(
+                    '/js/wtp.js',
+                     '../js/lazy-image.js',
+                ),
+                'angularModules' => array(
+                    'angularVideoBg' => '/lib/angular-video-bg.min.js',
+																				'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
+            ),
             'jmj2016' => array(
                 'label' => 'JMJ2016',
                 'basePath' => realpath(__DIR__ . '/../theme/jmj2016'),

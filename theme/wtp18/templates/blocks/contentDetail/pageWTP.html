@@ -1,0 +1,57 @@
+<a ng-if="block.code" ng-attr-name=" {{block.code | split:'/':1}}" ></a>
+<div ng-attr-id=" {{block.code | split:'/':1}}" >
+    <header class="parallax page" afkl-lazy-image-options='{"background": true}'
+                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['banner'],{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['banner'] ,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['banner']  ,{width:'1920px',mode:'boxed'})}} 1650w">
+        <div class="container">
+            <rubedo-field field= "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEntity['text']"></rubedo-field>
+        </div>
+    </header>
+
+    <div class="row text-bg">
+        <div class="container">
+            <div class="col-sm-12">
+                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('introduction')}}" ng-if="fieldEntity['introduction']" class="intro"></rubedo-field>
+                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('textOnBg')}}" ng-if="fieldEntity['textOnBg']" class="text-bg"></rubedo-field>
+                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('suite')}}" ng-if="fieldEntity['suite']" ></rubedo-field>
+            </div>
+        </div>
+    </div>
+
+    <div class="row bg-special"  ng-if="fieldEntity['informations'] || rubedo.current.page.id=='5853b210245640c3518bf525'" >
+        <div class="container paddingv">
+            <div clas="col-sm-12">
+                <!--<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 5)=='infos' && fieldEntity[field.config.name].title!=''" class="color"></rubedo-field>-->
+                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('informations')}}" ng-if="fieldEntity['informations']"></rubedo-field>
+                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('texteRiche')}}" ng-if="fieldEntity['texteRiche'] && rubedo.current.page.id=='5853b210245640c3518bf525' " ></rubedo-field>
+            </div>
+        </div>
+    </div>
+    <!--<div class="row" style="margin-bottom:24px" >
+            <div class="col-sm-12 hidden-xs">
+                <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="24:10"></jwplayer>
+            </div>
+            <div class="col-sm-12 visible-xs-block">
+                <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="16:9"></jwplayer>
+            </div>
+    </div>-->
+    <div class="video-block" ng-if="fieldEntity['video']&&  contentDetailCtrl.content.fields.video.url" ng-click="contentDetailCtrl.showModal(contentDetailCtrl.content.id)" >
+        <p>{{rubedo.translate("WTP.Video1", "Voir la")}} <span>ì</span>{{rubedo.translate("WTP.Video2", "vidéo")}} </p>
+    </div>
+
+<!-- Modal -->
+    <div class="modal fade" pause-on-close id="myModal{{contentDetailCtrl.content.id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body" >
+                    <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="16:9"></jwplayer>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+</div>
