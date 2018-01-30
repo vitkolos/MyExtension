@@ -1711,3 +1711,26 @@ ul.programme li:first-of-type:first-line{font-size:1.5em}
 }
 
 .equal-height-blocks:hover{background-color:#f4f4f2}
+
+/*CONTENT LIST*/
+.contentList{text-align: center; padding-top: 30px; padding-bottom: 30px;}
+.contentList>div{
+		display: inline-block; float: none;vertical-align: top; 
+}
+.pageList{
+	margin-bottom: 24px;
+	a{display: inline-block; position: relative}
+	div:first-of-type{
+		overflow: hidden;
+		background-color:rgba(31, 31, 46, 0.8);
+	}
+		div:last-of-type{
+		position: absolute;
+		top:50%; transform: translateY(-50%); width:100%;
+	}
+	a p, a h3{color:white; text-decoration: none;}
+	h3, h3{text-transform: uppercase; text-decoration: none;}
+	//a:hover h3 {color:@white}
+	img{margin: 0; width:100%; opacity: 0.9; transition: all 0.5s ease; }
+	a:hover img{transform: scale(1.05); opacity:0.5;}
+}
