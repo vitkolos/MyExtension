@@ -18,3 +18,4 @@ angular.module("rubedoBlocks").lazy.controller("PresentationController",['$scope
 	$scope.clearORPlaceholderHeight();		
 	
 }]);
+

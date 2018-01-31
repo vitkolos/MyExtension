@@ -6,11 +6,11 @@
 		</div>
 
 	</a>-->
-	<a ng-href="{{ presentationCtrl.pageLink }}" style="display:block;" class="google-btn" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" class="img-circle img-responsive" afkl-lazy-image-options='{"background": true}'
+	<header ng-href="{{ presentationCtrl.pageLink }}" style="display:block;" class="google-btn" ng-if="!rubedo.fieldEditMode && !presentationCtrl.pageLink" class="img-circle img-responsive" afkl-lazy-image-options='{"background": true}'
                 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'250px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1920px',mode:'boxed'})}} 1650w">
-            <div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
-    </a>
-	<div style="display:block;" class="google-btn" ng-if="!rubedo.fieldEditMode && !presentationCtrl.pageLink ">
+            <div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"></div>
+    </header>
+	<div style="display:block;" class="google-btn" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink ">
 		<img class="img-circle img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
                                                                      alt="{{ blockConfig.title }}"/>   
 		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
