@@ -6,7 +6,7 @@
 		</div>
 
 	</a>-->
-	<a ng-href="{{ presentationCtrl.pageLink }}" style="display:block;" class="google-btn" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" afkl-lazy-image-options='{"background": true}'
+	<a ng-href="{{ presentationCtrl.pageLink }}" style="display:block;" class="google-btn" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" class="img-circle img-responsive" afkl-lazy-image-options='{"background": true}'
                 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'250px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1920px',mode:'boxed'})}} 1650w">
             <div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
     </a>
