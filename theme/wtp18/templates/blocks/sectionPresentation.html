@@ -1,13 +1,13 @@
 <div ng-controller="PresentationController as presentationCtrl"   >
 	
 	<a ng-href="{{ presentationCtrl.pageLink }}" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" class="col-sm-12 col-md-6 google-btn" afkl-lazy-image-options='{"background": true}'
-                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {width:'480px',mode:'boxed'})}} 480w">
+                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1920px',mode:'boxed'})}} 1650w"">
             <div class="container" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 	    </div>
         </a>
 	<div style="display:block;" class="col-sm-12 col-md-6 google-btn img-responsive" ng-if="!presentationCtrl.pageLink "
 	     afkl-lazy-image-options='{"background": true}'
-                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {width:'480px',mode:'boxed'})}} 480w">
+                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1920px',mode:'boxed'})}} 1650w"">
 		<div class="container" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"
 		</div>
 	</div>
