@@ -1,20 +1,20 @@
 <div ng-controller="PresentationController as presentationCtrl"   >
-	<a ng-href="{{ presentationCtrl.pageLink }}" style="display:block;" class="col-sm-6 google-btn" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink">
-		<img class="img-circle img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
+	<a ng-href="{{ presentationCtrl.pageLink }}" style="display:block;" class="col-sm-6 col-md-4 google-btn" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink">
+		<img class="img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
                                                                      alt="{{ blockConfig.title }}"/>   
 		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 		</div>
 
 	</a>
-	<div style="display:block;" class="col-sm-6 google-btn" ng-if="!rubedo.fieldEditMode && !presentationCtrl.pageLink ">
-		<img class="img-circle img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
+	<div style="display:block;" class="col-sm-6 col-md-4 google-btn" ng-if="!rubedo.fieldEditMode && !presentationCtrl.pageLink ">
+		<img class="img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
                                                                      alt="{{ blockConfig.title }}"/>   
 		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 		</div>
 
 	</div>
-	<div  class="col-sm-6 google-btn" ng-if="rubedo.fieldEditMode">
-		<img class="img-circle img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
+	<div  class="col-sm-6 col-md-4 google-btn" ng-if="rubedo.fieldEditMode">
+		<img class="img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
                                                                      alt="{{ blockConfig.title }}"/>   
 		<div ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 		</div>
