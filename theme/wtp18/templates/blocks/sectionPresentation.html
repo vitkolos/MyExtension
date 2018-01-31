@@ -1,4 +1,26 @@
 <div ng-controller="PresentationController as presentationCtrl"   >
+	
+	<a ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" class="col-sm-12 col-md-6 google-btn" afkl-lazy-image-options='{"background": true}'
+                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}">
+            <div class="container" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
+	    </div>
+        </a>
+	<div style="display:block;" class="col-sm-12 col-md-6 google-btn img-responsive" ng-if="!rubedo.fieldEditMode && !presentationCtrl.pageLink "
+	     afkl-lazy-image-options='{"background": true}'
+                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}">
+		<div class="container" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"
+		</div>
+	</div>
+	<div  class="col-sm-12 col-md-6 google-btn img-responsive" ng-if="rubedo.fieldEditMode" afkl-lazy-image-options='{"background": true}'
+                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}>  
+		<div class="container" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"
+		</div>
+
+	</div>
+	
+	
+	
+	<!--
 	<a ng-href="{{ presentationCtrl.pageLink }}" style="display:block;" class="col-sm-12 col-md-6 google-btn" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink">
 		<img class="img-responsive" ng-if="blockConfig.imageFile" ng-src="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile, {height:'250px'}) }}"
                                                                      alt="{{ blockConfig.title }}"/>   
@@ -20,4 +42,5 @@
 		</div>
 
 	</div>
+	-->
 </div>
