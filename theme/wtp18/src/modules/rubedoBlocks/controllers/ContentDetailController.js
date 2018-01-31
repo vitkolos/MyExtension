@@ -179,6 +179,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html";
                                     $scope.fields=me.transformForFront(me.content.type.fields);
                                     $scope.clearORPlaceholderHeight();
+                                    console.log('me.detailTemplate');
+                                    console.log(me.detailTemplate);
                                 },
                                 function (response){
                                     me.detailTemplate=themePath+'/templates/blocks/contentDetail/default.html';
