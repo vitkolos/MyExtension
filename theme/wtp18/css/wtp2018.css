@@ -765,15 +765,12 @@ header.parallax.page h1 {
 }
 @media screen and (min-width: 768px) {
   .large .presentation-section.content {
-    line-height: 600px;
     height: 600px;
   }
   .presentation-section {
-    line-height: 400px;
     height: 400px;
   }
   .presentation-section.content {
-    line-height: 350px;
     height: 350px;
   }
   .presentation-section.content>div {
@@ -784,27 +781,22 @@ header.parallax.page h1 {
 }
 @media screen and (min-width: 500px) and (max-width: 768px) {
   .presentation-section {
-    line-height: 300px;
     height: 300px;
   }
   .presentation-section.content {
-    line-height: 250px;
     height: 250px;
   }
 }
 @media screen and (max-width: 500px) {
   .presentation-section {
-    line-height: 200px;
     height: 200px;
   }
   .presentation-section.content {
-    line-height: 180px;
     height: 180px;
   }
 }
 @media screen and (min-width: 1500px) {
   .presentation-section.content {
-    line-height: 500px;
     height: 500px;
   }
 }
