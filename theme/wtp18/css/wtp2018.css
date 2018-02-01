@@ -780,8 +780,9 @@ header.parallax.page h1 {
   }
 }
 @media screen and (max-width: 500px) {
-  .presentation-section.content.parallax {
-    background-attachment: scroll;
+  .col-xxs-6.content {
+    line-height: 200px;
+    height: 200px;
   }
 }
 @media screen and (min-width: 1500px) {
