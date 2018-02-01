@@ -755,7 +755,7 @@ header.parallax.page h1 {
 .presentation-section h5,
 .presentation-section p {
   color: white;
-  text-tranform: uppercase;
+  text-transform: uppercase;
 }
 .presentation-section.content>div {
   line-height: normal;
