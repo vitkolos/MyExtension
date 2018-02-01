@@ -779,7 +779,7 @@ header.parallax.page h1 {
   }
 }
 @media screen and (max-width: 500px) {
-  .col-xxs-6.content {
+  .presentation-section.content {
     line-height: 200px;
     height: 200px;
   }
