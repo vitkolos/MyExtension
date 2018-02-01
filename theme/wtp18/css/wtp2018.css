@@ -746,6 +746,7 @@ header.parallax.page h1 {
   background-size: cover;
   height: 320px;
   overflow-y: hidden;
+  padding: 20px;
 }
 .presentation-section h1,
 .presentation-section h2,
