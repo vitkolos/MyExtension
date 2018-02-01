@@ -768,9 +768,13 @@ header.parallax.page h1 {
     line-height: 600px;
     height: 600px;
   }
-  .presentation-section.content {
+  .presentation-section {
     line-height: 400px;
     height: 400px;
+  }
+  .presentation-section.content {
+    line-height: 350px;
+    height: 350px;
   }
   .presentation-section.content>div {
     text-align: left;
@@ -779,9 +783,13 @@ header.parallax.page h1 {
   }
 }
 @media screen and (max-width: 500px) {
-  .presentation-section.content {
+  .presentation-section {
     line-height: 200px;
     height: 200px;
+  }
+  .presentation-section.content {
+    line-height: 180px;
+    height: 180px;
   }
 }
 @media screen and (min-width: 1500px) {
