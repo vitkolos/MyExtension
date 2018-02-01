@@ -184,6 +184,7 @@ a {
   }
   .col-xxs-6 {
     width: 50%;
+    float: left;
   }
 }
 @media screen and (max-width: 768px) {
