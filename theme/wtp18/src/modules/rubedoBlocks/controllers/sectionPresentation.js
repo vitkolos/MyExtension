@@ -3,7 +3,7 @@ angular.module("rubedoBlocks").lazy.controller("PresentationController",['$scope
     var blockConfig=$scope.blockConfig;
     me.inputFields=[ ];
     $scope.fieldEntity={ };
-    /*me.columns = blockConfig.columns ? 'col-sm-'+(12/blockConfig.columns):'col-xs-6';*/
+    me.columns = blockConfig.columns ? 'col-sm-'+(12/blockConfig.columns):'col-xs-6';
 
     $scope.fieldInputMode=true;
     var fields=angular.copy($scope.fieldEntity);
