@@ -745,8 +745,6 @@ header.parallax.page h1 {
   background-attachment: scroll;
   background-size: cover;
   height: 320px;
-  margin-bottom: 24px;
-  line-height: 320px;
   overflow-y: hidden;
 }
 .presentation-section h1,
@@ -756,6 +754,7 @@ header.parallax.page h1 {
 .presentation-section h5,
 .presentation-section p {
   color: white;
+  text-tranform: uppercase;
 }
 .presentation-section.content>div {
   line-height: normal;
