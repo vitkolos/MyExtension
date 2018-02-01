@@ -745,7 +745,6 @@ header.parallax.page h1 {
   background-position: center center;
   background-attachment: scroll;
   background-size: cover;
-  height: 320px;
   overflow-y: hidden;
   padding: 20px;
 }
