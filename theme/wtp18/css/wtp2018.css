@@ -193,6 +193,7 @@ a {
   .container > .navbar-collapse,
   .container-fluid > .navbar-collapse {
     margin-left: 0;
+    max-height: 50px;
     margin-right: 0;
   }
 }
@@ -391,11 +392,11 @@ img.hover:hover {
 }
 .nav-item.follow {
   width: auto;
-  line-height: 45px;
+  line-height: 30px;
 }
 .nav-item.news {
   width: auto;
-  line-height: 45px;
+  line-height: 30px;
 }
 .nav-item.follow.tablet_menu {
   position: relative;
