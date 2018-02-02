@@ -468,7 +468,7 @@ button.submit {
   overflow-x: hidden;
   height: 100%;
   top: 0;
-  padding: 48px 0 0;
+  padding: 70px 60px 20px;
   position: fixed;
   background-color: #fff;
   z-index: 0;
