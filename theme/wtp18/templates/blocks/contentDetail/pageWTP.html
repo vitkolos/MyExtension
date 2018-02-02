@@ -7,7 +7,7 @@
         </div>
     </header>
 
-    <div class="row text-bg">
+    <!--<div class="row text-bg">
         <div class="container">
             <div class="col-sm-12">
                 <rubedo-field field= "{{contentDetailCtrl.getFieldByName('introduction')}}" ng-if="fieldEntity['introduction']" class="intro"></rubedo-field>
@@ -15,14 +15,14 @@
                 <rubedo-field field= "{{contentDetailCtrl.getFieldByName('suite')}}" ng-if="fieldEntity['suite']" ></rubedo-field>
             </div>
         </div>
-    </div>
+    </div>-->
 
-    <div class="row bg-special"  ng-if="fieldEntity['informations'] || rubedo.current.page.id=='5853b210245640c3518bf525'" >
+    <div class="row bg-special"  ng-if="fieldEntity['informations'] || rubedo.current.page.id=='5a7441ba396588375e7cb640'" >
         <div class="container paddingv">
             <div clas="col-sm-12">
-                <!--<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 5)=='infos' && fieldEntity[field.config.name].title!=''" class="color"></rubedo-field>-->
-                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('informations')}}" ng-if="fieldEntity['informations']"></rubedo-field>
-                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('texteRiche')}}" ng-if="fieldEntity['texteRiche'] && rubedo.current.page.id=='5853b210245640c3518bf525' " ></rubedo-field>
+                <!--<rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 5)=='infos' && fieldEntity[field.config.name].title!=''" class="color"></rubedo-field>
+                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('informations')}}" ng-if="fieldEntity['informations']"></rubedo-field>-->
+                <rubedo-field field= "{{contentDetailCtrl.getFieldByName('texteRiche')}}" ng-if="fieldEntity['texteRiche'] && rubedo.current.page.id=='5a7441ba396588375e7cb640' " ></rubedo-field>
             </div>
         </div>
     </div>
