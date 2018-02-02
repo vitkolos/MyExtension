@@ -321,13 +321,14 @@ img.hover:hover {
 }
 .home-button {
   font-family: 'hautecombe-2015regular';
+  padding-top: 25px;
 }
 .navbar-nav > li.home-button > a,
 .home-button>a {
   cursor: pointer;
   font-size: 2em;
   text-align: center;
-  padding: 15px 0;
+  padding: 25px 0;
   color: #472a72;
 }
 .dropdown-menu {
@@ -389,6 +390,7 @@ img.hover:hover {
   z-index: 1030;
   position: relative;
   display: inline-block;
+  margin-top: -7px;
 }
 .nav-item.follow {
   width: auto;
