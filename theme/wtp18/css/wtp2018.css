@@ -321,14 +321,13 @@ img.hover:hover {
 }
 .home-button {
   font-family: 'hautecombe-2015regular';
-  padding-top: 25px;
 }
 .navbar-nav > li.home-button > a,
 .home-button>a {
   cursor: pointer;
   font-size: 2em;
   text-align: center;
-  padding: 0px;
+  padding: 15px;
   color: #472a72;
 }
 .dropdown-menu {
@@ -397,7 +396,7 @@ img.hover:hover {
 }
 .nav-item.news {
   width: auto;
-  line-height: 0px;
+  line-height: 50px;
 }
 .nav-item.follow.tablet_menu {
   position: relative;
