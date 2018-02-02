@@ -328,7 +328,7 @@ img.hover:hover {
   cursor: pointer;
   font-size: 2em;
   text-align: center;
-  padding: 20px;
+  padding: 0px;
   color: #472a72;
 }
 .dropdown-menu {
@@ -394,11 +394,10 @@ img.hover:hover {
 }
 .nav-item.follow {
   width: auto;
-  line-height: 30px;
 }
 .nav-item.news {
   width: auto;
-  line-height: 30px;
+  line-height: 0px;
 }
 .nav-item.follow.tablet_menu {
   position: relative;
