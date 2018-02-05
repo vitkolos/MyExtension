@@ -413,6 +413,7 @@ img.hover:hover {
   text-decoration: none;
   cursor: pointer;
   font-family: 'Oswald SemiBold';
+  vertical-align: middle;
 }
 .nav-entree .date {
   font-family: 'Oswald Light';
