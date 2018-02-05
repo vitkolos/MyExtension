@@ -388,10 +388,16 @@ img.hover:hover {
     height: 800px;
     margin-top: -40px;
   }
+  .nav-entree .titre1 {
+    height: 50px;
+  }
 }
 @media screen and (min-width: 768px) {
   .nav-entree {
     padding-top: 400px;
+  }
+  .nav-entree .titre1 {
+    height: 120px;
   }
 }
 .nav-entree {
@@ -402,8 +408,8 @@ img.hover:hover {
 }
 .nav-entree .titre1 {
   margin: 0 50px 10px;
-  height: 120px;
   background-color: white;
+  color: rgba(0,0,0,0.5);
   text-decoration: none;
   cursor: pointer;
   font-family: 'Oswald SemiBold';
@@ -418,11 +424,11 @@ img.hover:hover {
   margin: 0 50px 10px;
 }
 .nav-entree a {
-  color: #000000;
+  color: rgba(0,0,0,0.01);
 }
 .nav-entree a:hover {
-  color: #000000;
-  font-size: 1.05em;
+  color: rgba(0,0,0,0.01);
+  font-size: 1.1em;
 }
 .nav-item {
   top: -50px;
