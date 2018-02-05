@@ -409,7 +409,7 @@ img.hover:hover {
 .nav-entree .titre1 {
   margin: 0 50px 10px;
   background-color: white;
-  color: rgba(0,0,0,0.5);
+  color: #472a72;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Oswald SemiBold';
@@ -424,11 +424,11 @@ img.hover:hover {
   margin: 0 50px 10px;
 }
 .nav-entree a {
-  color: rgba(0,0,0,0.01);
+  color: #472a72;
 }
 .nav-entree a:hover {
-  color: rgba(0,0,0,0.01);
-  font-size: 1.1em;
+  color: #472a72;
+  font-size: 1.05em;
 }
 .nav-item {
   top: -50px;
