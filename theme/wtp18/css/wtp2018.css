@@ -404,7 +404,11 @@ img.hover:hover {
 .nav-entree p {
   margin: 0 50px 10px;
 }
+.nav-entree a {
+  color: rgba(0,0,0,0.01);
+}
 .nav-entree a:hover {
+  color: rgba(0,0,0,0.01);
   font-size: 1.1em;
 }
 .nav-item {
