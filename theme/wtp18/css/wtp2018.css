@@ -382,12 +382,12 @@ img.hover:hover {
 }
 @media screen and (max-width: 768px) {
   .nav-entree {
-    padding-top: 500px;
+    padding-top: 300px;
   }
 }
 @media screen and (min-width: 768px) {
   .nav-entree {
-    padding-top: 800px;
+    padding-top: 500px;
   }
 }
 .nav-entree {
