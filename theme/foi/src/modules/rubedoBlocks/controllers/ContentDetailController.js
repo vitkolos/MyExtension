@@ -150,6 +150,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
                         $rootScope.$broadcast("ClickStreamEvent",{csEvent:me.content.clickStreamEvent});
                     }
+																				 var taxonomiesArray ={};
+                     var index=0;
+                     angular.forEach(me.content.taxonomy,function(value, taxo){
+                            if (taxo!='navigation'){
+                                taxonomiesArray[index] = taxo;
+                                index++;
+                            }
+                        });
+                    TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+                         if(response.data.success){
+                            var tax = response.data.taxo;
+                            me.taxo={};
+                            angular.forEach(tax, function(taxonomie){
+                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                            });
+                         }
+                         
+                     });
                 }
             }
         );
