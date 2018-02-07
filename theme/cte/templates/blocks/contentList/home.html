@@ -9,9 +9,11 @@
               <!--tout sauf video-->
               <div ng-if="!content.fields.video">
                   <div class="ratio_321" ng-if="content.fields.image">
-                  <img class="media-object pull-left padding-right"
-                               ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'330px',height:'250px',mode:'crop'})}}"
-                               alt="{{ content.fields.text }}"/>
+                  <a ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
+                        <img class="media-object pull-left padding-right"
+                                     ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'330px',height:'250px',mode:'crop'})}}"
+                                     alt="{{ content.fields.text }}"/>
+                  </a>
                   </div>
                   <img class="media-object pull-left padding-right" ng-if="content.fields.audio"
                                src="/theme/cte/img/icons/audio-thumb.jpg" style="width:160px"
