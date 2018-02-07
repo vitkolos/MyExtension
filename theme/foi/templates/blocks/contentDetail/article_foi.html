@@ -3,7 +3,7 @@
 			<!--<p class="categorie_article">{{contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f']}}</p>
 			<p class="categorie_article">{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f'][0])}}</p>-->
 <!--			<span ng-repeat="taxo in contentDetailCtrl.content['taxonomy.5a114f1b396588d22856706f'] track by $index" class="categorie_article">{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",taxo)}}</span>-->
-			<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f']">{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",taxonomy)}}</span>
+<!--			<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f']">{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",taxonomy)}}</span>-->
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" class="titre"></rubedo-field><!--Titre-->
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}" ng-if="fieldEntity['redacteur']" class="redacteur"></rubedo-field><!--Rédacteur-->
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" ng-if="fieldEntity['summary']" class="resume"></rubedo-field><!--Introduction-->
