@@ -1,6 +1,5 @@
 <div class="col-sm-6 col-sm-push-3" >
-		<p class="categorie_article" ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f']">{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",taxonomy)}}</p>
-		<p class="categorie_article">{{contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f']}}</p>
+		<p class="categorie_article">{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f'])}}</p>
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" class="titre"></rubedo-field><!--Titre-->
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}" class="redacteur"></rubedo-field><!--Rédacteur-->
 		<rubedo-field field = "{{contentDetailCtrl.getFieldByName('summary')}}" class="resume"></rubedo-field><!--Introduction-->
