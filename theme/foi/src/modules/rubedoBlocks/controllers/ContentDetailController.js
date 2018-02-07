@@ -68,7 +68,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								console.log(me.content);
 																								console.log('numeroFoi');
 																								console.log(me.numeroFoi);
-																								me.titreSommaire(me.numeroFoi);
+																								//me.titreSommaire(me.numeroFoi);
 																								me.buildSommaire();
 																				}
                     
