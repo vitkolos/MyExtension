@@ -1,5 +1,5 @@
-
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoPagesService","TaxonomyService","RubedoSearchService","RubedoUsersService","$http","$route","$rootScope",function($scope, RubedoContentsService,RubedoPagesService,TaxonomyService,RubedoSearchService,RubedoUsersService,$http,$route,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoPagesService","TaxonomyService","RubedoSearchService","RubedoUsersService","$http","$route","$rootScope",
+																																																																										function($scope, RubedoContentsService,RubedoPagesService,TaxonomyService,RubedoSearchService,RubedoUsersService,$http,$route,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
