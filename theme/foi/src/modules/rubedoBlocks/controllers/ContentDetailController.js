@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoPagesService","TaxonomyService","RubedoSearchService","RubedoUsersService","$http","$route","$rootScope",
-																																																																										function($scope, RubedoContentsService,RubedoPagesService,TaxonomyService,RubedoSearchService,RubedoUsersService,$http,$route,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoPagesService","RubedoSearchService","RubedoUsersService","$http","$route","$rootScope",
+																																																																										function($scope, RubedoContentsService,RubedoPagesService,RubedoSearchService,RubedoUsersService,$http,$route,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -20,18 +20,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field;
     };
-				me.getTermInTaxo=function(taxoKey,termId){
-        
-        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
-        var term=null;
-        angular.forEach(me.taxo[taxoKey],function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
-            if(!term){
-                if(candidate.id==termId){term=candidate.text;}
-            }
-         });
-         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
-    return(term);
-    }
     
     me.search = function(taxoKey,termId){
         RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
@@ -171,24 +159,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
                         $rootScope.$broadcast("ClickStreamEvent",{csEvent:me.content.clickStreamEvent});
                     }
-																				 var taxonomiesArray ={};
-                     var index=0;
-                     angular.forEach(me.content.taxonomy,function(value, taxo){
-                            if (taxo!='navigation'){
-                                taxonomiesArray[index] = taxo;
-                                index++;
-                            }
-                        });
-                    TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
-                         if(response.data.success){
-                            var tax = response.data.taxo;
-                            me.taxo={};
-                            angular.forEach(tax, function(taxonomie){
-                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
-                            });
-                         }
-                         
-                     });
                 }
             }
         );
