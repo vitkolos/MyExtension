@@ -118,7 +118,7 @@ class DonationResource extends AbstractResource
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         else if($don["fields"]["modePaiement"]=="paypal") {
 
-
+	    $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfig['fields'],$params['lang']->getLocale(),true);
             $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "paymentConfID" => $paymentConfID );
             
         }
