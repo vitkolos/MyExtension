@@ -1,9 +1,10 @@
 
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","TaxonomyService","RubedoSearchService","RubedoUsersService","$http","$route","$rootScope",function($scope, RubedoContentsService,TaxonomyService,RubedoSearchService,RubedoUsersService,$http,$route,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoPagesService","TaxonomyService","RubedoSearchService","RubedoUsersService","$http","$route","$rootScope",function($scope, RubedoContentsService,RubedoPagesService,TaxonomyService,RubedoSearchService,RubedoUsersService,$http,$route,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.isClient = false;
+				me.taxonomy=[];
     var previousFields;
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
@@ -19,6 +20,20 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field;
     };
+				me.getTermInTaxo=function(taxoKey,termId){
+        
+        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
+        var term=null;
+        angular.forEach(me.taxo[taxoKey],function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
+            if(!term){
+                if(candidate.id==termId){term=candidate.text;}
+            }
+         });
+         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
+    return(term);
+				console.log('term');
+				console.log(term);
+    } ;
     me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
@@ -358,18 +373,5 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				
 				 
 					
-					me.getTermInTaxo=function(taxoKey,termId){
-        
-        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
-        var term=null;
-        angular.forEach(me.taxo[taxoKey],function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
-            if(!term){
-                if(candidate.id==termId){term=candidate.text;}
-            }
-         });
-         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
-    return(term);
-				console.log('term');
-				console.log(term);
-    } 
+					
 }]);
