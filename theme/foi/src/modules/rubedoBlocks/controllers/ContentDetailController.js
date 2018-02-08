@@ -343,17 +343,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						me.infoArticles = response.data.results;
 																						console.log('infoArticles');
 																						console.log(response.data.results);
+																								var taxonomies ={};
+																									var index=0;
+																								angular.forEach(me.infoArticles.data,function(value, taxo){
+																																				taxonomies[index] = value.taxonomy;
+																																				index++;
+																																				console.log('taxonomies');
+																																				console.log(taxonomies);
+																								});
 																				} 
 																		});
 																		
-																var taxonomies ={};
-                var index=0;
-																angular.forEach(me.infoArticles.data,function(value, taxo){
-                                taxonomies[index] = value.taxonomy;
-                                index++;
-																																console.log('taxonomies');
-																																console.log(taxonomies);
-																});
+																
 																		
 																
 																};
