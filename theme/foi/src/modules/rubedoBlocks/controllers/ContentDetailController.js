@@ -348,7 +348,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						console.log(response.data.results);
 																							console.log(response.data.results.data);
 																								taxonomies[index]=me.infoArticles.data[index]['taxonomy.5a114f1b396588d22856706f'];
-																								if (taxonomies[index][0]==taxonomies[index-1][0] && index!==0) {
+																								if (taxonomies[index]==taxonomies[index-1] && index!==0) {
 																												$scope.displayTaxo= false;
 																								} else {
 																												$scope.displayTaxo= true;
