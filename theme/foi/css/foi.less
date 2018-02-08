@@ -1,6 +1,7 @@
 /*COLORS*/
 //@main: #ff3100;
-@main:#cd2d05;
+@main1:#cd2d05;
+@main:#7d2913;
 @bg: #dedede;
 @txt:#252525;
 @grey:#c2c2c2;
@@ -22,6 +23,11 @@ body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: 'PT Sans','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:@bg;}
 p{color:@txt; font-size:16px}
 .row.inner-row{margin-bottom: 30px}
+.capital, .text-article .capital, .capital p, .text-article .capital p{text-transform: uppercase; letter-spacing: 2px; font-size:14px; font-weight: normal; }
+.container-fluid{overflow-x:hidden;}
+.container-fluid{padding:0}
+.container-fluid > .row:nth-of-type(n+3){margin-right: 0; margin-left:0;}
+.container-fluid > .row.no-margin{margin-right: -15px; margin-left:-15px;}
 
 /*CLASSES UTILES*/
 .bg-main{background-color: @main}
