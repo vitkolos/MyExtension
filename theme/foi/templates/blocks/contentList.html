@@ -75,9 +75,10 @@
                             </div>
                             
                             <div class="complement col-sm-3">
-                                <p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
+                                <!--<p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>-->
                                 <h4 class="list-item-title capital"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
                                 </h4>
+                                <p class="chapeau">{{content.fields.summary}}</p>
                             </div>                   
                             
                         </a>
