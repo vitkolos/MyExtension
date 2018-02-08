@@ -356,6 +356,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																				$scope.displayTaxo= true;
 																																}
 																																index++;
+																																console.log('taxonomies[index]');
+																																console.log(taxonomies[index]);
 																																console.log('index');
 																																console.log(index);
 																																console.log('displayTaxo');
