@@ -343,16 +343,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						me.infoArticles = response.data.results;
 																						console.log('infoArticles');
 																						console.log(response.data.results);
-																							console.log(response.data.results.data);
-																							console.log(response.data.results.data[0]['taxonomy.5a114f1b396588d22856706f']);
-																								var taxonomies ={};
-																									var index=0;
-																								angular.forEach(me.infoArticles.data,function(value, taxo){
-																																				taxonomies[index]=response.data.results.data[index]['taxonomy.5a114f1b396588d22856706f']
-																																				index++;
-																																				console.log('taxonomies');
-																																				console.log(taxonomies);
-																								});
+																							//console.log(response.data.results.data);
+																							//console.log(response.data.results.data[0]['taxonomy.5a114f1b396588d22856706f']);
+																							//	var taxonomies ={};
+																							//		var index=0;
+																							//	angular.forEach(me.infoArticles.data,function(value, taxo){
+																							//													taxonomies[index]=response.data.results.data[index]['taxonomy.5a114f1b396588d22856706f']
+																							//													index++;
+																							//													console.log('taxonomies');
+																							//													console.log(taxonomies);
+																							//	});
 																				} 
 																		});
 																		
