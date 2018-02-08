@@ -5,7 +5,7 @@
 				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity[contentDetailCtrl.content.type.fields[1].config.name],{height:'420px',width:'300px',mode:'crop'}) }}"
 				 alt=""/>-->
 		<img class="media-object pull-right padding-top padding-right" ng-if="contentDetailCtrl.content.fields.image"
-				 ng-src="{{contentDetailCtrl.content.fields.image,{height:'420px',width:'300px',mode:'crop'}) }}"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{height:'420px',width:'300px',mode:'crop'}) }}"
 				 alt=""/>
 	</div>
 	<div class="col-xs-12 col-sm-6">

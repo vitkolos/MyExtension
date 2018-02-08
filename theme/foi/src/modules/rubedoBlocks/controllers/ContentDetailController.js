@@ -346,7 +346,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				} 
 																		});
 																};
-																if (me.infoArticles) {
+
 																				me.index = $scope.$index;
 																				console.log('me.index');
 																						console.log(me.index);
@@ -354,7 +354,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																												me.contentPrec = me.infoArticles.data[me.index-1];
 																												console.log(me.contentPrec);
 																								}
-																}
+																
 																							
 				
 				 
