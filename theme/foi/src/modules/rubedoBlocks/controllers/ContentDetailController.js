@@ -4,6 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.isClient = false;
+				$scope.displayTaxo= true;
 				me.taxonomy=[];
     var previousFields;
     $scope.fieldInputMode=false;
@@ -326,7 +327,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				
 				/*FOI*/
 																/*INFORMATIONS SUR LES ARTICLES*/ 
-																$scope.displayTaxo= true;
+																
 																	me.contenuSommaire = function(){
 																		var index=0;
 																		var taxonomies ={};
