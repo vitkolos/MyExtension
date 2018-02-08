@@ -351,7 +351,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																							angular.forEach(me.infoArticles.data,function(data, key){
 																									console.log('me.infoArticles.data[index][taxonomy.5a114f1b396588d22856706f]');
 																								console.log(me.infoArticles.data[index]['taxonomy.5a114f1b396588d22856706f']);
-																																taxonomies.push(me.infoArticles.data[index]['taxonomy.5a114f1b396588d22856706f']);
+																																taxonomies[index]=me.infoArticles.data[index]['taxonomy.5a114f1b396588d22856706f'][0];
 																																console.log('taxonomies');
 																																console.log(taxonomies);
 																																if (taxonomies[index]==taxonomies[index-1] && index!==0) {
