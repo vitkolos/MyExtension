@@ -349,6 +349,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																												return(null);
 																								}
 																								return(me.infoArticles.data[index-1]);
+																								console.log('index');
+																								console.log(index);
 																						};
 																				} 
 																		});
