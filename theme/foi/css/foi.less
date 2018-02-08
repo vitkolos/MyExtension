@@ -232,32 +232,43 @@ header.content>div{line-height: normal;display: inline-block;text-align:left; ve
 }
 
 /*LISTE ARTICLE*/
-.block{
-    padding-bottom: 15px;
+.list-item-title{
+  padding:0 12px;
+  color:black;p{color:@grey}
+  margin-bottom: 0;
+  min-height: 54px;
+  line-height: 54px;
+  position: relative; z-index:2;
+  span{line-height: 1em; display: inline-block; vertical-align: middle}
 }
-.image{
-   width:40%; 
-   float:left;
-			padding-top: 12px;
-}
-
-.articlePresentation{
-									height:150px;
-}
-.complement
-    {
-       width:60%; 
-       float:right;
-       padding-left: 10px;
-							color:black;
-
-    }
-.complement.chapeau{
+.list-item-title.chapeau{
+		position: relative;
+		z-index: 2;
+		text-align: center;
+		width:60%; 
+		float:right;
+		padding-left: 10px;
 		color:@grey;
 		height: 50px;
 		font-size: 12px;
   line-height: 13px;
+}	
+.list-item-img{
+		position:relative;
+		width:100%;
+		overflow:hidden;
+		float:left;
+			padding-top: 12px;
 }
+
+.block{
+    padding-bottom: 15px;
+}
+
+.articlePresentation{
+		height:150px;
+}
+
 
 /*PRESENTATION ARTICLE FOI*/
 
