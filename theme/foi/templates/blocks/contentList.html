@@ -26,18 +26,18 @@
                         <a ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
                             <div  style="position:relative;display: inline-block">
                                 <img class="media-object pull-left img-responsive" ng-if="content.fields.image"
-                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'450px',width:'400px',mode:'crop'}) }}"
+                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'250px',width:'400px',mode:'crop'}) }}"
                              alt="{{ content.fields.text }}"/>
                                 <div class="transparent">
                                     <h4 class="media-heading" ng-if="!fieldEditMode" >
                                             {{content.fields.text }}
                                     </h4>
                                     <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                                    <p>
+                                    <!--<p>
                                         <img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
                                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'50px',mode:'boxed'}) }}"
                                             alt=""/>
-                                    </p>
+                                    </p>-->
                                 </div>
                             </div>
                         </a>
