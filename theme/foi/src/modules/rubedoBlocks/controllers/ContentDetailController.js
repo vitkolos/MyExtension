@@ -345,15 +345,25 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						console.log(response.data.results);
 																				} 
 																		});
+																		
+																var taxonomies ={};
+                var index=0;
+																angular.forEach(me.infoArticles.data,function(value, taxo){
+                                taxonomies[index] = value.taxonomy;
+                                index++;
+																																console.log('taxonomies');
+																																console.log(taxonomies);
+																});
+																		
+																
 																};
 
-																				me.index = $scope.$index;
-																				console.log('me.index');
-																						console.log(me.index);
-																						if (me.index !== 0) {
-																												me.contentPrec = me.infoArticles.data[me.index-1];
-																												console.log(me.contentPrec);
-																								}
+																	
+																	
+																	
+																
+
+
 																
 																							
 				
