@@ -343,10 +343,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						me.infoArticles = response.data.results;
 																						console.log('infoArticles');
 																						console.log(response.data.results);
+																							console.log(response.data.results.data);
+																							console.log(response.data.results.data[0].taxonomy);
 																								var taxonomies ={};
 																									var index=0;
 																								angular.forEach(me.infoArticles.data,function(value, taxo){
-																																				taxonomies[index] = me.infoArticles.data.taxonomy;
+																																				taxonomies[index] = value.taxonomy;
 																																				index++;
 																																				console.log('taxonomies');
 																																				console.log(taxonomies);
