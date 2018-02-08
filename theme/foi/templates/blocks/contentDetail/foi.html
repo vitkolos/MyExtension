@@ -7,9 +7,9 @@
         <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{fieldEntity['text']}}</h3>
         <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
 		<div class="sommaire">	
-			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
-				<p><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
-				<p class="red-sub" ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index">{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}</p>
+			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index1">
+				<p class="red-sub" ng-repeat="taxo in content['taxonomy.5a114f1b396588d22856706f'] track by $index2" ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] !== taxoPrec($index1)['taxonomy.5a114f1b396588d22856706f'][0]">{{contentDetailCtrl.infoArticles.facetsLabels[taxo]}}</p>
+				<p><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>				
 			</div>
         </div>
 	</div>
