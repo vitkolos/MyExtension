@@ -345,8 +345,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						console.log(response.data.results);
 																						me.index = $scope.$index;
 																						console.log(me.index);
-																						if (index !== 0) {
-																												me.contentPrec = me.infoArticles.data[index-1];
+																						if (me.index !== 0) {
+																												me.contentPrec = me.infoArticles.data[me.index-1];
 																												console.log(me.contentPrec);
 																								}
 																				} 
