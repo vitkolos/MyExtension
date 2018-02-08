@@ -343,6 +343,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						me.infoArticles = response.data.results;
 																						console.log('infoArticles');
 																						console.log(response.data.results);
+																						me.index = $scope.$index;
+																						taxoPrec = function(index) {
+																								if (index==0) {
+																												return(null);
+																								}
+																								return(me.infoArticles.data[index-1]);
+																						};
 																				} 
 																		});
 																};

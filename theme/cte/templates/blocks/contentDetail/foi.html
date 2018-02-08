@@ -1,9 +1,12 @@
 <div class="container">
 <div class="row">
 	<div class="col-xs-12 col-sm-6">
-		<img class="media-object pull-right padding-top padding-right" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[1].config.name]"
+		<!--<img class="media-object pull-right padding-top padding-right" ng-if="fieldEntity[contentDetailCtrl.content.type.fields[1].config.name]"
 				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity[contentDetailCtrl.content.type.fields[1].config.name],{height:'420px',width:'300px',mode:'crop'}) }}"
-				 alt=""/>	
+				 alt=""/>-->
+		<img class="media-object pull-right padding-top padding-right" ng-if="contentDetailCtrl.content.fields.image"
+				 ng-src="{{contentDetailCtrl.content.fields.image,{height:'420px',width:'300px',mode:'crop'}) }}"
+				 alt=""/>
 	</div>
 	<div class="col-xs-12 col-sm-6">
 		<div style="max-width:400px">
