@@ -344,14 +344,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						console.log('infoArticles');
 																						console.log(response.data.results);
 																						me.index = $scope.$index;
-																						taxoPrec = function(index) {
-																								if (index==0) {
-																												return(null);
+																						console.log(me.index);
+																						if (index !== 0) {
+																												me.contentPrec = me.infoArticles.data[index-1];
+																												console.log(me.contentPrec);
 																								}
-																								return(me.infoArticles.data[index-1]);
-																								console.log('index');
-																								console.log(index);
-																						};
 																				} 
 																		});
 																};
