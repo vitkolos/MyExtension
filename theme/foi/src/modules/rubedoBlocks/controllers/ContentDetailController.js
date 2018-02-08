@@ -354,11 +354,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																taxonomies[index]=me.infoArticles.data[index]['taxonomy.5a114f1b396588d22856706f'][0];
 																																console.log('taxonomies');
 																																console.log(taxonomies);
-																																if (taxonomies[index]==taxonomies[index-1] && index!==0) {
-																																				$scope.displayTaxo= false;
-																																} else {
-																																				$scope.displayTaxo= true;
-																																}
+																																
 																																index++;
 																																console.log('taxonomies[index]');
 																																console.log(taxonomies[index]);
@@ -369,9 +365,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																							});
 																				} 
 																		});
+																		//me.index = $scope.$index;
+																		//if (taxonomies[me.index]==taxonomies[me.index-1] && me.index!==0) {
+																		//																		$scope.displayTaxo= false;
+																		//														} else {
+																		//																		$scope.displayTaxo= true;
+																		//														}
 																		
 																
-																		
+																		return(taxonomies);
 																
 																};
 
