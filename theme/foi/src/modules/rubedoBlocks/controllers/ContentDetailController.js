@@ -326,6 +326,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				
 				/*FOI*/
 																/*INFORMATIONS SUR LES ARTICLES*/ 
+																$scope.displayTaxo= true;
 																	me.contenuSommaire = function(){
 																		var index=0;
 																		var taxonomies ={};
@@ -346,10 +347,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						console.log('infoArticles');
 																						console.log(response.data.results);
 																							console.log(response.data.results.data);
-																								taxonomies[index]=me.infoArticles.data[index]['taxonomy.5a114f1b396588d22856706f']
+																								taxonomies[index]=me.infoArticles.data[index]['taxonomy.5a114f1b396588d22856706f'];
+																								if (taxonomies[index][0]==taxonomies[index-1][0] && index!==0) {
+																												$scope.displayTaxo= false;
+																								} else {
+																												$scope.displayTaxo= true;
+																								}
 																								index++;
-																								console.log('taxonomies');
-																								console.log(taxonomies);
+																								console.log('displayTaxo');
+																								console.log(displayTaxo);
 																				} 
 																		});
 																		
