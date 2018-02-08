@@ -343,15 +343,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																						me.infoArticles = response.data.results;
 																						console.log('infoArticles');
 																						console.log(response.data.results);
-																						me.index = $scope.$index;
+																				} 
+																		});
+																};
+																if (me.infoArticles) {
+																				me.index = $scope.$index;
 																						console.log(me.index);
 																						if (me.index !== 0) {
 																												me.contentPrec = me.infoArticles.data[me.index-1];
 																												console.log(me.contentPrec);
 																								}
-																				} 
-																		});
-																};
+																}
+																							
 				
 				 
 					
