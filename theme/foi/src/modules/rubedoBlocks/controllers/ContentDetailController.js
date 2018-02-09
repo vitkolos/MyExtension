@@ -4,6 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.isClient = false;
+				$scope.pageRevueEnCours = false;
 				$scope.taxonomies = {};
 				$scope.displayTaxo = {};
 				me.taxonomy=[];
@@ -67,6 +68,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				
 																				if(me.content.type.code=="foi") {
 																								console.log("FOI");
+																								 if ($scope.rubedo.current.page.id=="59146442396588252739f40b") {
+																												pageRevueEnCours=true;
+																									}
 																								me.numero_issuu = me.content.fields.idIssuu;
 																								me.contenuSommaire();
 																				}
