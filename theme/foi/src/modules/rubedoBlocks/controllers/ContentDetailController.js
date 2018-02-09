@@ -7,6 +7,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				$scope.pageRevueEnCours = false;
 				$scope.taxonomies = {};
 				$scope.displayTaxo = {};
+				$scope.nomCategorie = "rubrique";
 				me.taxonomy=[];
     var previousFields;
     $scope.fieldInputMode=false;

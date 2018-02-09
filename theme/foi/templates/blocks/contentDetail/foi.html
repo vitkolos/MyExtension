@@ -37,7 +37,7 @@
 				<div ng-show="!displayTaxo[$index] && displayTaxo[$index+1]">
 					<br/><br/>
 					<img class="img-responsive  padding-top padding-right"
-					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_rubrique(1)'],{height:'150px',mode:'boxed'}) }}"
+					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_{{nomCategorie}}'],{height:'150px',mode:'boxed'}) }}"
 					 alt=""/>
 				</div>
 			</div>
