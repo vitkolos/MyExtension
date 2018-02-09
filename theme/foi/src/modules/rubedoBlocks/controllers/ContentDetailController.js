@@ -5,6 +5,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.isClient = false;
 				$scope.taxonomies = {};
+				$scope.displayTaxo = {};
 				$scope.displayTaxo= true;
 				me.taxonomy=[];
     var previousFields;
@@ -356,9 +357,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																console.log($scope.taxonomies);
 																																me.index = $scope.$index;
 																																if ($scope.taxonomies[me.index]==$scope.taxonomies[me.index-1] && me.index!==0) {
-																																																		$scope.displayTaxo= false;
+																																																		$scope.displayTaxo[me.index]= false;
 																																														} else {
-																																																		$scope.displayTaxo= true;
+																																																		$scope.displayTaxo[me.index]= true;
 																																														}
 																																index++;
 																																console.log('$scope.taxonomies[index]');
