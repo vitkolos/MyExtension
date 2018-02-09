@@ -68,7 +68,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				
 																				if(me.content.type.code=="foi") {
 																								console.log("FOI");
-																								 if ($scope.rubedo.current.page.id=="59146442396588252739f40b") {
+																								 if ($scope.rubedo.current.page.id=="5a7dcda63965886233eefde7") {
 																												$scope.pageRevueEnCours=true;
 																									}
 																									console.log('$scope.rubedo.current.page.id');

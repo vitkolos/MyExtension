@@ -27,8 +27,8 @@
 <!--Présentation de la revue sur la page "REVUE EN COURS"-->
 <div class="row" ng-show="pageRevueEnCours">
     
-    <div class="col-sm-12">
-        <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{fieldEntity['text']}}</h3>
+    <div class="col-sm-8">
+        <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">{{fieldEntity['text']}}</h3>
         <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
 		<div class="sommaire">	
 			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
@@ -37,6 +37,18 @@
 				<div ng-show="!displayTaxo[$index] && displayTaxo[$index+1]"><br/><br/></div>
 			</div>
         </div>
+	</div>
+	
+	<div class="foiPresentation col-sm-4">
+		<div>
+			<img class="img-responsive" ng-if="content.fields.image"
+			 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
+			 alt="{{ content.fields.text }}"/>
+			<ul class="presentation">
+				<li><a ng-href="{{content.fields.link_revue}}" target="_blank">Acheter</a></li>
+				<li><a rubedo-page-link="58e51a9c245640db008bde81" target="_blank">S'abonner</a></li>
+			</ul>
+		</div>
 	</div>
 		 
 </div>
