@@ -344,45 +344,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																		};
 																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
 																				if(response.data.success){
-																						me.infoArticles = response.data.results;
-																						console.log('infoArticles');
-																						console.log(me.infoArticles);
-																							console.log(me.infoArticles.data);
-																							angular.forEach(me.infoArticles.data,function(data, key){
-																									console.log('me.infoArticles.data[ind][taxonomy.5a114f1b396588d22856706f]');
-																								console.log(me.infoArticles.data[ind]['taxonomy.5a114f1b396588d22856706f']);
+																								me.infoArticles = response.data.results;
+																								angular.forEach(me.infoArticles.data,function(data, key){
 																																$scope.taxonomies[ind]=me.infoArticles.data[ind]['taxonomy.5a114f1b396588d22856706f'][0];
-																																console.log('taxonomies');
-																																console.log($scope.taxonomies);
 																																if ($scope.taxonomies[ind]===$scope.taxonomies[ind-1] && ind!==0) {
 																																																		$scope.displayTaxo[ind]= false;
 																																														} else {
 																																																		$scope.displayTaxo[ind]= true;
 																																														}
 																																ind++;
-																																console.log('$scope.taxonomies[ind]');
-																																console.log($scope.taxonomies[ind]);
-																																console.log('ind');
-																																console.log(ind);
-																																console.log('displayTaxo');
-																																console.log($scope.displayTaxo);
 																							});
 																				} 
-																		});
-																		
-																
-																};
-
-																	
-																	
-																	
-																
-
-
-																
-																							
-				
-				 
-					
-					
+																		});														
+																};					
 }]);
