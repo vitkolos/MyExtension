@@ -69,8 +69,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				if(me.content.type.code=="foi") {
 																								console.log("FOI");
 																								 if ($scope.rubedo.current.page.id=="59146442396588252739f40b") {
-																												pageRevueEnCours=true;
+																												$scope.pageRevueEnCours=true;
 																									}
+																									console.log('$scope.rubedo.current.page.id');
+																									console.log($scope.rubedo.current.page.id);
+																									console.log("59146442396588252739f40b");
+																									console.log("$scope.pageRevueEnCours");
+																									console.log($scope.pageRevueEnCours);
 																								me.numero_issuu = me.content.fields.idIssuu;
 																								me.contenuSommaire();
 																				}
