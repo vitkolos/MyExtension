@@ -36,8 +36,8 @@
 				<p  class="article"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
 				<div ng-show="!displayTaxo[$index] && displayTaxo[$index+1]">
 					<br/><br/>
-					<img class="img-responsive  padding-top padding-right"
-					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{height:'200px',mode:'boxed'}) }}"
+					<img ng-if="fieldEntity['image_rubrique[0]']" class="img-responsive  padding-top padding-right"
+					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_rubrique[0]'],{height:'150px',mode:'boxed'}) }}"
 					 alt=""/>
 				</div>
 			</div>
