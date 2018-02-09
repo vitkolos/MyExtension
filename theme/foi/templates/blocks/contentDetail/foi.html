@@ -41,9 +41,9 @@
 	
 	<div class="foiPresentation col-sm-4">
 		<div>
-			<img class="img-responsive" ng-if="content.fields.image"
-			 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
-			 alt="{{ content.fields.text }}"/>
+			<img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'300px',mode:'boxed'}) }}"
+				 alt=""/>
 			<ul class="presentation">
 				<li><a ng-href="{{content.fields.link_revue}}" target="_blank">Acheter</a></li>
 				<li><a rubedo-page-link="58e51a9c245640db008bde81" target="_blank">S'abonner</a></li>
