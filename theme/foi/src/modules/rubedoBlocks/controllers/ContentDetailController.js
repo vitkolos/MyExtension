@@ -331,7 +331,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																/*INFORMATIONS SUR LES ARTICLES*/ 
 																
 																	me.contenuSommaire = function(){
-																		var index=0;
+																		var ind=0;
 																		var optionsSommaire = {
 																				constrainToSite:false,
 																				siteId: $scope.rubedo.current.site.id,
@@ -355,17 +355,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																$scope.taxonomies[index]=me.infoArticles.data[index]['taxonomy.5a114f1b396588d22856706f'][0];
 																																console.log('taxonomies');
 																																console.log($scope.taxonomies);
-																																me.index = $scope.$index;
-																																if ($scope.taxonomies[me.index]==$scope.taxonomies[me.index-1] && me.index!==0) {
-																																																		$scope.displayTaxo[me.index]= false;
+																																if ($scope.taxonomies[ind]===$scope.taxonomies[ind-1] && ind!==0) {
+																																																		$scope.displayTaxo[ind]= false;
 																																														} else {
-																																																		$scope.displayTaxo[me.index]= true;
+																																																		$scope.displayTaxo[ind]= true;
 																																														}
-																																index++;
-																																console.log('$scope.taxonomies[index]');
-																																console.log($scope.taxonomies[index]);
-																																console.log('index');
-																																console.log(index);
+																																ind++;
+																																console.log('$scope.taxonomies[ind]');
+																																console.log($scope.taxonomies[ind]);
+																																console.log('ind');
+																																console.log(ind);
 																																console.log('displayTaxo');
 																																console.log($scope.displayTaxo);
 																							});
