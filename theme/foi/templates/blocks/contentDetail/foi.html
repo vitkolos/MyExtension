@@ -38,12 +38,11 @@
 					 ng-show="displayTaxo[$index]"
 					 alt=""/>
 					
-					<img class="img-responsive  padding-top padding-right"
-					 
+					<header class="content"
 					 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_oecumenisme'] ,{height:'150px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_oecumenisme'] ,{width:'1200px',mode:'boxed'})}} 1200w"
 					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114f90396588c52956706b' "
-					 ng-show="displayTaxo[$index]"
-					 alt=""/> 
+					 ng-show="displayTaxo[$index]">
+					</header>
 					<img class="img-responsive  padding-top padding-right"
 					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_formation_chretienne'],{height:'100px',mode:'boxed'}) }}"
 					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114fa4396588b02956706c' "
@@ -57,7 +56,7 @@
 				<p class="red-sub" ng-show="displayTaxo[$index]" class="categorie">{{contentDetailCtrl.infoArticles.facetsLabels[content['taxonomy.5a114f1b396588d22856706f'][0]]}}</p>
 				<p  class="article"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
 				<div ng-show="!displayTaxo[$index] && displayTaxo[$index+1]">
-					<br/><br/>
+					<br/><br/> 
 				</div>
 			</div>
         </div>
