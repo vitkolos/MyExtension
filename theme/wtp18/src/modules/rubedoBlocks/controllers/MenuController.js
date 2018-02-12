@@ -36,10 +36,6 @@
 																				me.pagesBlocks[key]["id"] = page.id;
 																				me.pagesBlocks[key].blocks=[]; 
 																				var lang = $route.current.params.lang;
-																				console.log("langue");
-																				console.log(lang);
-																				console.log("page.blocks");
-																				console.log(page.blocks);
 																				angular.forEach(page.blocks, function(block, key2){
 																								if (block.bType=="contentDetail" && block.orderValue<=1) {
 																												if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
