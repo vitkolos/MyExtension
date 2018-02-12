@@ -32,26 +32,30 @@
         <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
 		<div class="sommaire">	
 			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
-				<p class="red-sub" ng-show="displayTaxo[$index]" class="categorie">{{contentDetailCtrl.infoArticles.facetsLabels[content['taxonomy.5a114f1b396588d22856706f'][0]]}}</p>
-				<p  class="article"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
-				<div ng-show="!displayTaxo[$index] && displayTaxo[$index+1]">
-					<br/><br/>
 					<img class="img-responsive  padding-top padding-right"
 					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_dossier'],{height:'100px',mode:'boxed'}) }}"
 					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114f62396588a52956706b' "
+					 ng-show="displayTaxo[$index]"
 					 alt=""/>
 					<img class="img-responsive  padding-top padding-right"
 					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_oecumenisme'],{height:'100px',mode:'boxed'}) }}"
 					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114f90396588c52956706b' "
+					 ng-show="displayTaxo[$index]"
 					 alt=""/>
 					<img class="img-responsive  padding-top padding-right"
 					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_formation_chretienne'],{height:'100px',mode:'boxed'}) }}"
 					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114fa4396588b02956706c' "
+					 ng-show="displayTaxo[$index]"
 					 alt=""/>
 					<img class="img-responsive  padding-top padding-right"
 					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_foi'],{height:'100px',mode:'boxed'}) }}"
 					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114fdf396588922956706d' "
+					 ng-show="displayTaxo[$index]"
 					 alt=""/>
+				<p class="red-sub" ng-show="displayTaxo[$index]" class="categorie">{{contentDetailCtrl.infoArticles.facetsLabels[content['taxonomy.5a114f1b396588d22856706f'][0]]}}</p>
+				<p  class="article"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
+				<div ng-show="!displayTaxo[$index] && displayTaxo[$index+1]">
+					<br/><br/>
 				</div>
 			</div>
         </div>
