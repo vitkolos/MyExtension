@@ -290,9 +290,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                         else{
                             var limit = $scope.fieldEntity['richText'].indexOf("<br />",$scope.fieldEntity['richText'].length*0.1)+6;
-                            $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "</p>";
+                            console.log("length0");
+																												console.log($scope.fieldEntity['richText'].length);
+																												console.log("$scope.fieldEntity['richText']   0   ");
+																												console.log($scope.fieldEntity['richText']);
+																												$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "</p>";
 																												console.log("length");
-																												console.log($scope.fieldEntity['richText'].length*0.1);
+																												console.log($scope.fieldEntity['richText'].length);
 																												console.log("limit");
 																												console.log(limit);
 																												console.log("$scope.fieldEntity['richText']");
@@ -305,8 +309,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         else {
              var limit = $scope.fieldEntity['richText'].indexOf("<br />",$scope.fieldEntity['richText'].length*0.1)+6;
              $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "</p>";
+													console.log("length0");
+																												console.log($scope.fieldEntity['richText'].length);
+																												console.log("$scope.fieldEntity['richText']   0   ");
+																												console.log($scope.fieldEntity['richText']);
+													$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "</p>";
 																												console.log("length");
-																												console.log($scope.fieldEntity['richText'].length*0.1);
+																												console.log($scope.fieldEntity['richText'].length);
 																												console.log("limit");
 																												console.log(limit);
 																												console.log("$scope.fieldEntity['richText']");
