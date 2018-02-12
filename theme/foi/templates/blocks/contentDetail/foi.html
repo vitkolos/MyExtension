@@ -37,9 +37,10 @@
 					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114f62396588a52956706b' "
 					 ng-show="displayTaxo[$index]"
 					 alt=""/>
-					<!--afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'768px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1200px',mode:'boxed'})}} 1200w"-->
+					
 					<img class="img-responsive  padding-top padding-right"
-					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_oecumenisme'],{width:'768px',mode:'boxed'}) }} 768w"
+					 
+					 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_oecumenisme'] ,{height:'150px',mode:'boxed'})}} 768w,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_oecumenisme'] ,{width:'1200px',mode:'boxed'})}} 1200w"
 					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114f90396588c52956706b' "
 					 ng-show="displayTaxo[$index]"
 					 alt=""/> 
