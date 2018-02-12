@@ -23,6 +23,8 @@
             });
         };
 	        me.currentLang = $route.current.params.lang;
+									console.log("currentLang");
+									console.log(me.currentLang);
 
         RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
