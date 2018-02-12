@@ -31,7 +31,7 @@
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}" ng-if="fieldEntity['redacteur']" class="redacteur"></rubedo-field><!--Rédacteur-->
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ng-if="fieldEntity['richText']" class="contenu_article"></rubedo-field>
 					
-							<div ng-if="!isClient && !contentDetailCtrl.oldArticle" class="col-md-12 bg-grey" style="text-align:center">
+							<div ng-if="!isClient && !contentDetailCtrl.oldArticle" class="col-md-12 bg-grey limitationArticle" style="text-align:center">
 								<h2 >Article réservé aux abonnés</h2>
 								<p>Il vous reste 80% de l'article à découvrir... Abonnez-vous pour poursuivre la lecture</p>
 								<div class="col-sm-6" ng-show="!rubedo.current.user">
