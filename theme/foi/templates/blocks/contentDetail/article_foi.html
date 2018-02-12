@@ -95,8 +95,8 @@
 		<h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;text-align:center;">Sommaire</h3>
 		<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
 		<div class="sommaire">	
-			<div ng-repeat="content in contentDetailCtrl.infoArticles.data track by $index">
-				<p class="red-sub" ng-show="displayTaxo[$index]" class="categorie">{{contentDetailCtrl.infoArticles.facetsLabels[content['taxonomy.5a114f1b396588d22856706f'][0]]}}</p>
+			<div ng-repeat="content in contentDetailCtrl.accesArticles.data track by $index">
+				<p class="red-sub" ng-show="displayTaxo[$index]" class="categorie">{{contentDetailCtrl.accesArticles.facetsLabels[content['taxonomy.5a114f1b396588d22856706f'][0]]}}</p>
 				<p  class="article"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
 				<div ng-show="!displayTaxo[$index] && displayTaxo[$index+1]"><br/><br/></div>
 			</div>
@@ -104,5 +104,5 @@
 	</div>
 </div>
  
-
+ 
 
