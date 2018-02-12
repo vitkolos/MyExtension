@@ -37,7 +37,20 @@
 				<div ng-show="!displayTaxo[$index] && displayTaxo[$index+1]">
 					<br/><br/>
 					<img class="img-responsive  padding-top padding-right"
-					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_rubrique'],{height:'100px',mode:'boxed'}) }}"
+					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_dossier'],{height:'100px',mode:'boxed'}) }}"
+					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114f62396588a52956706b' "
+					 alt=""/>
+					<img class="img-responsive  padding-top padding-right"
+					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_oecumenisme'],{height:'100px',mode:'boxed'}) }}"
+					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114f90396588c52956706b' "
+					 alt=""/>
+					<img class="img-responsive  padding-top padding-right"
+					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_formation_chretienne'],{height:'100px',mode:'boxed'}) }}"
+					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114fa4396588b02956706c' "
+					 alt=""/>
+					<img class="img-responsive  padding-top padding-right"
+					 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image_foi'],{height:'100px',mode:'boxed'}) }}"
+					 ng-if="content['taxonomy.5a114f1b396588d22856706f'][0] === '5a114fdf396588922956706d' "
 					 alt=""/>
 				</div>
 			</div>
