@@ -289,8 +289,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.isClient=true;
                         }
                         else{
-                            var limit = $scope.fieldEntity['richText'].indexOf("<br />",$scope.fieldEntity['richText'].length*0.1)+4;
-                            $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit);
+                            var limit = $scope.fieldEntity['richText'].indexOf("<br />",$scope.fieldEntity['richText'].length*0.1)+6;
+                            $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "</p>";
 																												console.log("length");
 																												console.log($scope.fieldEntity['richText'].length*0.1);
 																												console.log("limit");
@@ -303,8 +303,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             )
         }
         else {
-             var limit = $scope.fieldEntity['richText'].indexOf("<br />",$scope.fieldEntity['richText'].length*0.1)+4;
-             $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit);
+             var limit = $scope.fieldEntity['richText'].indexOf("<br />",$scope.fieldEntity['richText'].length*0.1)+6;
+             $scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "</p>";
 																												console.log("length");
 																												console.log($scope.fieldEntity['richText'].length*0.1);
 																												console.log("limit");
