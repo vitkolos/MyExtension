@@ -5,7 +5,7 @@
         <p>{{block.code | split:'/':1}}</p>
         
         <!-- Ajout d'un menu secondaire en haute de page -->
-<!--        <div ng-if="contentDetailCtrl.pagesBlocks[0]" >-->-->
+<!--        <div ng-if="contentDetailCtrl.pagesBlocks[0]" >-->
             <nav  role="navigation">
                 <ul>
                     <li ng-repeat="page in contentDetailCtrl.pagesBlocks" ng-class="{active:contentDetailCtrl.currentRouteleine.indexOf(page.url) > -1, dropdown:page.blocks.length>1}">
