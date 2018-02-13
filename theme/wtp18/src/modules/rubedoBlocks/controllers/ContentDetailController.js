@@ -32,7 +32,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 field=candidate;
             } 
         });
-        return field;
+        return field; 
     }; 
     
     
