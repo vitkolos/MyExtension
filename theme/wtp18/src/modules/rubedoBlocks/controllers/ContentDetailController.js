@@ -40,23 +40,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
-																				var lang = $route.current.params.lang;
-																				angular.forEach(me.pageBlock.blocks, function(block, key2){
-																								if (block.bType=="contentDetail" && block.orderValue<=1) {
-																												if(block.i18n[lang]) me.pagesBlock.blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
-																												else me.pagesBlock.blocks.push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+																var lang = $route.current.params.lang;
+                angular.forEach(me.pageBlock.blocks, function(block, key2){
+                    if (block.bType=="contentDetail" && block.orderValue<=1) {
+                        if(block.i18n[lang]) me.pagesBlock.blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+                        else me.pagesBlock.blocks.push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
 
-																												//if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
-																												//else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
-																								}
-																								else {}
-																				});
-																});
-																$scope.clearORPlaceholderHeight();
-                console.log("menu");
-                console.log(me.menu);
-                console.log("pageBlock");
-                console.log(me.pagesBlock);
+                        //if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+                        //else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
+                    }
+                    else {}
+                });
+            $scope.clearORPlaceholderHeight();
+            console.log("menu");
+            console.log(me.menu);
+            console.log("pageBlock");
+            console.log(me.pagesBlock);
             }
 												else {
                 me.menu={};
