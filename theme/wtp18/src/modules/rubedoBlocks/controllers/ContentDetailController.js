@@ -40,6 +40,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
+                console.log("menu");
+                console.log(me.menu);
 																angular.forEach(me.menu.pages, function(page, key) {
 																				me.pagesBlocks[key]={};
 																				me.pagesBlocks[key]["title"] = page.text;
@@ -59,7 +61,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				});
 																});
 																$scope.clearORPlaceholderHeight();
-
+                console.log("pagesBlocks");
+                console.log(me.pagesBlocks);
             }
 												else {
                 me.menu={};
