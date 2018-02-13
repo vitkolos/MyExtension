@@ -43,9 +43,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																var lang = $route.current.params.lang;
                 angular.forEach(me.menu.blocks, function(block, key2){
                     if (block.bType=="contentDetail" && block.orderValue<=1) {
-                        me.pageBlock[key2]={};
-                        if(block.i18n[lang]) me.pageBlock[key2].push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
-                        else me.pageBlock[key2].push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+                        me.pageBlock[key2]=[];
+                        //if(block.i18n[lang]) me.pageBlock[key2].push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+                        //else me.pageBlock[key2].push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
 
                         //if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
                         //else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
