@@ -5,6 +5,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
     me.menu={};
+    me.numeroBlock=0;
     me.pageBlock=[];
     me.taxonomy=[];
     me.gallery={}; // for album photo
@@ -38,6 +39,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     /*Pour ajouter un menu secondaire*/
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
+        if (me.numeroBlock=="1") {
+            me.numeroBlock++;
             if (response.data.success){
                 me.menu=response.data.menu;
 																var lang = $route.current.params.lang;
@@ -64,6 +67,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 me.menu={};
 																$scope.clearORPlaceholderHeight();
             }
+        }
     });
     
     me.getTermInTaxo=function(taxoKey,termId){
