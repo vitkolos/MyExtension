@@ -5,7 +5,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
     me.menu={};
-    me.pagesBlocks={};
+    me.pageBlock=[];
     me.taxonomy=[];
     me.gallery={}; // for album photo
     if (config.rootPage){
@@ -40,17 +40,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
-																angular.forEach(me.menu.pages, function(page, key) {
-																				me.pagesBlocks[key]={};
-																				me.pagesBlocks[key]["title"] = page.text;
-																				me.pagesBlocks[key]["url"] = page.url;
-																				me.pagesBlocks[key]["id"] = page.id;
-																				me.pagesBlocks[key].blocks=[]; 
 																				var lang = $route.current.params.lang;
-																				angular.forEach(page.blocks, function(block, key2){
+																				angular.forEach(me.pageBlock.blocks, function(block, key2){
 																								if (block.bType=="contentDetail" && block.orderValue<=1) {
-																												if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
-																												else me.pagesBlocks[key].blocks.push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+																												if(block.i18n[lang]) me.pagesBlock.blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+																												else me.pagesBlock.blocks.push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
 
 																												//if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
 																												//else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
@@ -61,8 +55,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																$scope.clearORPlaceholderHeight();
                 console.log("menu");
                 console.log(me.menu);
-                console.log("pagesBlocks");
-                console.log(me.pagesBlocks);
+                console.log("pageBlock");
+                console.log(me.pagesBlock);
             }
 												else {
                 me.menu={};
