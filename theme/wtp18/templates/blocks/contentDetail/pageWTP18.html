@@ -8,8 +8,8 @@
 <!--        <div ng-if="contentDetailCtrl.pagesBlocks[0]" >-->
             <nav  role="navigation">
                 <ul role="menu">
-                    <li ng-repeat="bloc in contentDetailCtrl.pageBlock.blocks | orderBy :'order' track by $index" class="" >
-                        <a  ng-href="{{page.url}}?page={{bloc.code}}">{{bloc.title | split:'//':0}}</a>
+                    <li ng-repeat="bloc in contentDetailCtrl.pageBlock | orderBy :'order' track by $index" class="" >
+                        <a  ng-href="{{contentDetailCtrl.menu.url}}?page={{bloc.code}}">{{bloc.title | split:'//':0}}</a>
                     </li>
                 </ul>
             </nav>
