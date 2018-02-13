@@ -33,7 +33,7 @@
 <div ng-attr-id=" {{block.code | split:'/':1}}" >
     <header class="parallax page" afkl-lazy-image-options='{"background": true}'
                 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['banner'],{height:'800px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['banner'] ,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['banner']  ,{width:'1920px',mode:'boxed'})}} 1650w">
-        <div ng-if="!contentDetailCtrl.content.fields.urlSegment:=='fit-fun' " class="container">
+        <div ng-if="!contentDetailCtrl.content.fields.urlSegment === 'fit-fun' " class="container">
             <rubedo-field field= "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEntity['text']"></rubedo-field>
         </div>
     </header>
