@@ -9,7 +9,7 @@
             <nav  role="navigation">
                 <ul role="menu">
                     <li ng-repeat="bloc in contentDetailCtrl.pageBlock | orderBy :'order' track by $index" class="" >
-                        <a  ng-href="{{contentDetailCtrl.menu.url}}?page={{bloc.code}}">{{bloc.title | split:'//':0}}</a>
+                        <a  ng-href="{{contentDetailCtrl.menu.url}}?page={{bloc[0].code}}">{{bloc[0].title | split:'//':0}}</a>
                     </li>
                 </ul>
             </nav>
