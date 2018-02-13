@@ -2,12 +2,14 @@
 
         
         <!-- Ajout d'un menu secondaire en haute de page -->
-<!--        <div ng-if="contentDetailCtrl.pagesBlocks[0]" >-->
+        <p>{{block.code | split:'/':0}}</p>
+        <div ng-if="{{block.code | split:'/':0}} == '1' " >
             <div class="row nav-sec col-xs-12 col-sm-4" style="background-color:#c3357b;">
                 <div ng-repeat="bloc in contentDetailCtrl.pageBlock | orderBy :'order' track by $index" class="" >
                     <a style="margin:15px;"  ng-href="{{contentDetailCtrl.menu.url}}?page={{bloc[0].code}}">{{bloc[0].title | split:'//':0}}</a>
                 </div>
             </div>
+        </div>
             
             
             
