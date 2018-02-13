@@ -1,4 +1,4 @@
-<div ng-controller="PresentationController as presentationCtrl"   >
+<div ng-controller="PresentationController as presentationCtrl"  ng-switch="blockConfig.columns" >
 	
 		<div ng-if="blockConfig.columns=='1'">
 			<a ng-href="{{ presentationCtrl.pageLink }}" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" class="col-sm-12 col-md-6 presentation-section" afkl-lazy-image-options='{"background": true}'
@@ -9,11 +9,11 @@
 			<div style="display:block;" class="col-sm-12 col-md-6 presentation-section" ng-if="!presentationCtrl.pageLink "
 			     afkl-lazy-image-options='{"background": true}'
 				afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1920px',mode:'boxed'})}} 1650w">
-				<div class="content" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"
+				<div class="content" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 				</div>
 			</div>
 		</div>	
-		<div ng-if="blockConfig.columns=='2'">
+		<div ng-switch-default>
 			<a ng-href="{{ presentationCtrl.pageLink }}" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" class="col-xxs-6 col-xs-6 col-md-6 presentation-section" afkl-lazy-image-options='{"background": true}'
 				afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'200px',mode:'boxed'})}} 480w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1920px',mode:'boxed'})}} 1650w">
 			    <div class="content" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
@@ -22,7 +22,7 @@
 			<div style="display:block;" class="col-xxs-6 col-xs-6 col-md-6 presentation-section" ng-if="!presentationCtrl.pageLink "
 			     afkl-lazy-image-options='{"background": true}'
 				afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'200px',mode:'boxed'})}} 480w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1920px',mode:'boxed'})}} 1650w">
-				<div class="content" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}"
+				<div class="content" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 				</div>
 			</div>
 		</div>
