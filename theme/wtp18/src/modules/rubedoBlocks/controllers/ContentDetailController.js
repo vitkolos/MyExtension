@@ -5,7 +5,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
     me.menu={};
-    me.numeroBlock=0;
+    me.numeroBlock=1;
     me.pageBlock=[];
     me.taxonomy=[];
     me.gallery={}; // for album photo
