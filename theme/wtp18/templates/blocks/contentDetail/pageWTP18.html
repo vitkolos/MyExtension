@@ -1,18 +1,29 @@
 <a ng-if="block.code" ng-attr-name=" {{block.code | split:'/':1}}" ></a>
 
-
-        <p>{{block.code | split:'/':0}}</p>
-        <p>{{block.code | split:'/':1}}</p>
         
         <!-- Ajout d'un menu secondaire en haute de page -->
 <!--        <div ng-if="contentDetailCtrl.pagesBlocks[0]" >-->
-            <nav  role="navigation">
-                <ul role="menu">
-                    <li ng-repeat="bloc in contentDetailCtrl.pageBlock | orderBy :'order' track by $index" class="" >
-                        <a  ng-href="{{contentDetailCtrl.menu.url}}?page={{bloc[0].code}}">{{bloc[0].title | split:'//':0}}</a>
-                    </li>
-                </ul>
-            </nav>
+            <div class="row nav-sec col-xs-12 col-sm-4" style="background-color:#c3357b;">
+                <div ng-repeat="bloc in contentDetailCtrl.pageBlock | orderBy :'order' track by $index" class="" >
+                    <a style="margin:15px;"  ng-href="{{contentDetailCtrl.menu.url}}?page={{bloc[0].code}}">{{bloc[0].title | split:'//':0}}</a>
+                </div>
+            </div>
+            
+            
+            
+<!--            <div class="row nav-sec">
+<div class="col-xs-12 col-sm-4" style="background-color:#c3357b;">
+<p style="margin:15px;"><a href="https://welcometoparadise.chemin-neuf.fr/fr/accueil/au-programme?page=intervenant">INTERVENANTS</a></p>
+</div>
+
+<div class="col-xs-12 col-sm-4" style="background-color:#472a72;">
+<p style="margin:15px;"><a href="https://welcometoparadise.chemin-neuf.fr/fr/accueil/au-programme?page=temps_forts">TEMPS FORTS</a></p>
+</div>
+
+<div class="col-xs-12 col-sm-4" style="background-color:#000000;">
+<p style="margin:15px;"><a href="https://welcometoparadise.chemin-neuf.fr/fr/accueil/au-programme?page=fitNfun">FIT&amp;FUN</a></p>
+</div>
+</div>-->
 
 
 
