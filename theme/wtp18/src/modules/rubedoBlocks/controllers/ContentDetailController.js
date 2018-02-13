@@ -55,7 +55,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             console.log("menu");
             console.log(me.menu);
             console.log("pageBlock");
-            console.log(me.pagesBlock);
+            console.log(me.pageBlock);
             }
 												else {
                 me.menu={};
