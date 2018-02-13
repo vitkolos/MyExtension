@@ -116,6 +116,31 @@ h2.titre:after{
 .nav input:-ms-input-placeholder { /* Internet Explorer 10-11 */
    color: white;
 }
+
+
+ ////////////////////////////////////////////////////
+    ///////////SECONDARY NAV///////////////////
+///////////////////////////////////////////////////
+.secondary-nav{
+  ul{list-style: none}
+  li{display: inline-block; max-width: 200px; vertical-align: middle; line-height: 1.5em; padding: 12px 16px}
+  .capital;
+  line-height: 1em;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 12px;
+  a{display: inline-block; box-shadow: none;}
+		a:active, a:hover{background-color: inherit}
+  margin-top: 50px;
+ li span[class*='ccn-']{font-size: 1.5em;}
+}
+.secondary-nav [class*='ccn-']:before, .secondary-nav [class*='fa-']:before{font-size: 3em}
+@media screen and (max-width: @min_sm) {
+  .secondary-nav li{max-width: 100%; width:100%}
+  .secondary-nav [class*='ccn-'], .secondary-nav [class*='fa-']{display: none}
+}
+ 
+ 
 /*AUTHENTICATION*/
 /*HOME PAGE*/
 .dossiers{

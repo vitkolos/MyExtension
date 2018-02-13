@@ -1,11 +1,20 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope",
-                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoMenuService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoMenuService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
+    me.menu={};
+    me.pagesBlocks={};
     me.taxonomy=[];
     me.gallery={}; // for album photo
+    if (config.rootPage){
+        var pageId=config.rootPage;
+    } else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
+        var pageId=$scope.rubedo.current.page.parentId;
+    } else {
+        var pageId=$scope.rubedo.current.page.id;
+    }
 
 
     $scope.fieldInputMode=false;
@@ -21,10 +30,43 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         angular.forEach(me.content.type.fields,function(candidate){
             if (candidate.config.name==name){
                 field=candidate;
-            }
+            } 
         });
         return field;
     };
+    
+    
+    /*Pour ajouter un menu secondaire*/
+    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
+            if (response.data.success){
+                me.menu=response.data.menu;
+																angular.forEach(me.menu.pages, function(page, key) {
+																				me.pagesBlocks[key]={};
+																				me.pagesBlocks[key]["title"] = page.text;
+																				me.pagesBlocks[key]["url"] = page.url;
+																				me.pagesBlocks[key]["id"] = page.id;
+																				me.pagesBlocks[key].blocks=[]; 
+																				var lang = $route.current.params.lang;
+																				angular.forEach(page.blocks, function(block, key2){
+																								if (block.bType=="contentDetail" && block.orderValue<=1) {
+																												if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+																												else me.pagesBlocks[key].blocks.push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+
+																												//if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+																												//else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
+																								}
+																								else {}
+																				});
+																});
+																$scope.clearORPlaceholderHeight();
+
+            }
+												else {
+                me.menu={};
+																$scope.clearORPlaceholderHeight();
+            }
+    });
+    
     me.getTermInTaxo=function(taxoKey,termId){
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
