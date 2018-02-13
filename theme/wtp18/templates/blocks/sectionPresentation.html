@@ -13,7 +13,7 @@
 				</div>
 			</div>
 		</div>	
-		<div ng-switch-default>
+		<div ng-if="blockConfig.columns=='2'">
 			<a ng-href="{{ presentationCtrl.pageLink }}" ng-if="!rubedo.fieldEditMode && presentationCtrl.pageLink" class="col-xxs-6 col-xs-6 col-md-6 presentation-section" afkl-lazy-image-options='{"background": true}'
 				afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'200px',mode:'boxed'})}} 480w,{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1920px',mode:'boxed'})}} 1650w">
 			    <div class="content" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
@@ -25,6 +25,9 @@
 				<div class="content" ng-if="blockConfig.text" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.text}">
 				</div>
 			</div>
+		</div>
+		
+		<div ng-switch-default>
 		</div>
 		
 	
