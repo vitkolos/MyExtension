@@ -103,7 +103,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             cType:"productBox",
                             config:{
                                 name:"productBox"
-                            }
+                            } 
                         });
                         $scope.productProperties=angular.copy(me.content.productProperties);
                         $scope.manageStock=angular.copy(me.content.type.manageStock);
@@ -276,7 +276,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
            $scope.isClient=true;
 											$scope.isVisiteur=true;
-           console.log($scope.rubedo.current.user);
         }
         else if ($scope.rubedo.current.user) {
             RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
@@ -286,7 +285,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.isClient=true;
 																												$scope.isVisiteur=true;
                         }
-																								else if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
+																								else if (response.data.user.groups.includes("55eb0c6445205e6c0648408e")){
                             $scope.isVisiteur=true;
                         }
                         else{
@@ -300,17 +299,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         else {
              /*var limit = $scope.fieldEntity['richText'].indexOf("<br />",$scope.fieldEntity['richText'].length*0.1)+6;*/
 													var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
-													console.log("length0");
-																												console.log($scope.fieldEntity['richText'].length);
-																												console.log("$scope.fieldEntity['richText']   0   ");
-																												console.log($scope.fieldEntity['richText']);
 													$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
-																												console.log("length");
-																												console.log($scope.fieldEntity['richText'].length);
-																												console.log("limit");
-																												console.log(limit);
-																												console.log("$scope.fieldEntity['richText']");
-																												console.log($scope.fieldEntity['richText']);
         }
     };
 				
