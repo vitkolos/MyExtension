@@ -21,7 +21,7 @@
             <!--<div id="infiniteScrollCtrl">-->
             <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" ng-switch="blockConfig.columns">
                 <!--Transparent BG--->
-                <div  ng-switch-when="2">
+                <div  ng-switch-when="4">
                     <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList col-xs-6 " ng-class="contentListCtrl.columns" >
                         <a ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
                             <div  style="position:relative;display: inline-block">
@@ -86,7 +86,7 @@
                 </div>
                 <!--PRESENTATION ARTICLES 2 COLONNES-->
                 <div  ng-switch-when="2">
-                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlePresentation col-sm-6" ng-class="contentListCtrl.columns" >
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlePresentation" ng-class="contentListCtrl.columns" >
                         <div class="col-sm-12" ng-if="$index<=3">
                             <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
                                 <div class="list-item-img col-sm-6">
@@ -96,7 +96,7 @@
                                 </div>
                                 
                                 <!--<p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>-->
-                                <h4 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span></h4>
+                                <h4 class="list-item-title"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span></h4>
                                     <p class="redacteur">{{content.fields.redacteur}}</p>
                                     <p class="chapeau">{{content.fields.summary}}</p>
                         </div>
@@ -111,12 +111,8 @@
                                     <!--<p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>-->
                                     <h4 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span></h4>
                                         <p class="redacteur">{{content.fields.redacteur}}</p>
-                                    
+                                </a>        
                         </div>
-                   
-                            
-                        </a>
-                        
                     </div>
                 </div>
                 <!--normal-->
