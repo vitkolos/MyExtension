@@ -2,6 +2,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
+				$scope.isArticle = false;
     var blockPagingIdentifier=$scope.block.bType+$scope.block.id.substring(21)+"Page";
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
@@ -76,6 +77,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
+																console.log("usedContentTypes");
+																console.log(me.usedContentTypes);
                 var columnContentList = [];
                 if (add){
                     angular.forEach(response.data.contents,function(newContent){
