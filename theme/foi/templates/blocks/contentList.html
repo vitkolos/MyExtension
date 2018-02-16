@@ -50,7 +50,7 @@
                 <div  ng-switch-when="1">
                     <!--PRESENTATION ARTICLES RECENTS-->
                     <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlePresentation" ng-class="contentListCtrl.columns" >
-                        <div ng-if="content.fields.typeId == '5a114b5c396588e62456706b' ">
+                        <div ng-if="isArticle">
                             <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
                                 <div class="list-item-img col-sm-6">
                                     <img class="img-responsive" ng-if="content.fields.image"
@@ -70,7 +70,7 @@
                     
                     <!--PRESENTATION FOI-->
                     <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="foiPresentation" ng-class="contentListCtrl.columns" >
-                        <div ng-if="content.fields.typeId == '552e2d0e45205eab168a64e7' ">
+                        <div ng-if="!isArticle">
                             <img class="img-responsive" ng-if="content.fields.image"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
                              alt="{{ content.fields.text }}"/>

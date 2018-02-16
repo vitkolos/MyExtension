@@ -77,8 +77,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
+																console.log("response.data");
+																console.log(response.data);
 																console.log("usedContentTypes");
 																console.log(me.usedContentTypes);
+																if (response.data.usedContentTypes=='5a114b5c396588e62456706b') {
+																				$scope.isArticle = true;
+																}
                 var columnContentList = [];
                 if (add){
                     angular.forEach(response.data.contents,function(newContent){
