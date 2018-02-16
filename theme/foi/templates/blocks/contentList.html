@@ -75,7 +75,7 @@
                             </div>
                             
                             <!--<p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>-->
-                            <h4 class="list-item-title col-md-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
+                            <h4 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
                                 <p class="chapeau">{{content.fields.redacteur}}</p>
                             </h4>
                    
@@ -96,9 +96,10 @@
                                 </div>
                                 
                                 <!--<p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>-->
-                                <h4 class="list-item-title"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span></h4>
+                                <h4 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
                                     <p class="redacteur">{{content.fields.redacteur}}</p>
                                     <p class="chapeau">{{content.fields.summary}}</p>
+                                </h4>
                         </div>
                         <div class="col-sm-6" ng-if="$index>3">
                                 <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
@@ -109,8 +110,9 @@
                                     </div>
                                     
                                     <!--<p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>-->
-                                    <h4 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span></h4>
+                                    <h4 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
                                         <p class="redacteur">{{content.fields.redacteur}}</p>
+                                    </h4>
                                 </a>        
                         </div>
                     </div>
