@@ -85,10 +85,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								var date = new Date();
 																								me.currentDate = date.getTime();
 																								me.numeroFoi=me.content.fields.numero_foi;
-																								console.log('articleFoi');
-																								console.log(me.content);
-																								console.log('numeroFoi');
-																								console.log(me.numeroFoi);
 																								//me.titreSommaire(me.numeroFoi);
 																								me.buildSommaire();
 																				}
@@ -98,7 +94,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     me.oldArticle = true;
                     if ((today.getTime() - me.content.createTime*1000)<1000*3600*24*90) {me.oldArticle=false;
                     };
-                    console.log(me.oldArticle);
                     
                     
                     $scope.fieldLanguage=me.content.locale;
