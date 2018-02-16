@@ -1,0 +1,33 @@
+<div ng-controller="SignUpController as signUpCtrl">
+    <div ng-if="blockConfig.introduction"
+         ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })"
+         ng-init="blockConfig = {contentId:blockConfig.introduction}"
+            >
+    </div>
+    <form ng-if="signUpCtrl.showForm" role="form" ng-submit="signUpCtrl.submit()" id="checkoutAccordion">
+        <rubedo-field ng-repeat="field in signUpCtrl.inputFields track by $index" ></rubedo-field>
+        <div ng-if="blockConfig.introNewsletters"
+             ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })"
+             ng-init="blockConfig = {contentId:blockConfig.introNewsletters}"
+                ></div>
+        <div ng-repeat="mailingList in signUpCtrl.mailingLists track by $index" class="checkbox">
+            <label>
+                <input ng-model="mailingList.checked" type="checkbox"> {{mailingList.name}}
+            </label>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div ng-if="signUpCtrl.signupError" ng-init="notification = {type:'error',text:signUpCtrl.signupError}">
+                    <rubedo-notification></rubedo-notification>
+                </div>
+                <button type="submit" class="btn btn-primary">{{rubedo.translate("Blocks.SignUp.label.signUp", "Sign up")}}</button>
+            </div>
+        </div>
+    </form>
+    <div ng-if="signUpCtrl.confirmMessage" ng-init="notification = {type:'success',text:rubedo.translate(signUpCtrl.confirmMessage,signUpCtrl.confirmMessageDefault)}">
+        <rubedo-notification></rubedo-notification>
+    </div>
+    <div ng-if="signUpCtrl.emailConfirmError" ng-init="notification = {type:'error',text:signUpCtrl.emailConfirmError}">
+        <rubedo-notification></rubedo-notification>
+    </div>
+</div>
