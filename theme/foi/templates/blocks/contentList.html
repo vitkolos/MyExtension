@@ -46,10 +46,31 @@
                         </a>
                     </div>
                 </div>
-                <!--PRESENTATION FOI-->
+
                 <div  ng-switch-when="1">
+                    <!--PRESENTATION ARTICLES RECENTS-->
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlePresentation" ng-class="contentListCtrl.columns" >
+                        <div ng-if="content.fields.typeId == '5a114b5c396588e62456706b' ">
+                            <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
+                                <div class="list-item-img col-sm-6">
+                                    <img class="img-responsive" ng-if="content.fields.image"
+                                        ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
+                                        alt="{{ content.fields.text }}"/>
+                                </div>
+                                
+                                <!--<p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>-->
+                                <h4 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
+                                    <p class="redacteur">{{content.fields.redacteur}}</p>
+                                    <p class="chapeau">{{content.fields.summary}}</p>
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    
+                    <!--PRESENTATION FOI-->
                     <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="foiPresentation" ng-class="contentListCtrl.columns" >
-                        <div>
+                        <div ng-if="content.fields.typeId == '552e2d0e45205eab168a64e7' ">
                             <img class="img-responsive" ng-if="content.fields.image"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
                              alt="{{ content.fields.text }}"/>
