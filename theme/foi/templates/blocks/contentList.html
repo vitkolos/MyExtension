@@ -49,10 +49,9 @@
 
                 <div  ng-switch-when="1">
                     <!--PRESENTATION ARTICLES RECENTS-->
-                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlePresentation" ng-class="contentListCtrl.columns" >
-                        <div ng-if="isArticle">
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" ng-if="isArticle" class="articlePresentation" ng-class="contentListCtrl.columns" >
                             <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
-                                <div class="list-item-img col-sm-6">
+                                <div class="list-item-img articleRecent col-sm-6">
                                     <img class="img-responsive" ng-if="content.fields.image"
                                         ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
                                         alt="{{ content.fields.text }}"/>
@@ -64,13 +63,11 @@
                                     <p class="chapeau">{{content.fields.summary}}</p>
                                 </h4>
                             </a>
-                        </div>
                     </div>
                     
                     
                     <!--PRESENTATION FOI-->
-                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="foiPresentation" ng-class="contentListCtrl.columns" >
-                        <div ng-if="!isArticle">
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" ng-if="!isArticle" class="foiPresentation" ng-class="contentListCtrl.columns" >
                             <img class="img-responsive" ng-if="content.fields.image"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
                              alt="{{ content.fields.text }}"/>
@@ -78,11 +75,7 @@
                             <ul class="presentation">
                                 <li><a ng-href="{{content.detailPageUrl}}" >Sommaire</a></li>
                                 <li><a ng-href="{{content.fields.link_revue}}" target="_blank">Acheter</a></li>
-                            </ul>
-                            
-                            
-                        </div>
-                        
+                            </ul>   
                     </div>
                 </div>
                 <!--PRESENTATION ARTICLES 3 COLONNES-->

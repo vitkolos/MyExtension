@@ -270,21 +270,23 @@ header.content>div{line-height: normal;display: inline-block;text-align:left; ve
 
 /*LISTE ARTICLE*/
 .list-item-title{
-  padding:0 12px;
   color:black;
 		margin-bottom: 0;
 		position: relative;
 		z-index:2;
+  border-top: 0.5px solid black;
+  padding-top: 10px;
 		p{
 				color:black;
 				text-align: left;
 				float:right;
-				height: 50px;
+				height: 100px;
 				font-size: 13px;
 				line-height: 14px;
 				overflow:hidden;
   }
 		span{line-height: 1em; display: inline-block; vertical-align: middle; margin-bottom:10px;}
+
 }
 
 .list-item-img{
@@ -293,6 +295,13 @@ header.content>div{line-height: normal;display: inline-block;text-align:left; ve
 		overflow:hidden;
 		float:left;
 			padding-top: 12px;
+}
+.articleRecent:hover img {
+		transform: scale(1.05);
+			-ms-transform: scale(1.05);
+			-webkit-transform: scale(1.05);
+			-o-transform: scale(1.05);
+			-moz-transform: scale(1.05);
 }
 
 .block{
@@ -303,6 +312,7 @@ header.content>div{line-height: normal;display: inline-block;text-align:left; ve
 		height: 250px;
   overflow-y: hidden;
   margin-bottom: 30px;
+		a:hover{text-decoration: none; color:@grey}
 }
 
 
