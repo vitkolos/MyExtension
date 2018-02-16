@@ -101,7 +101,7 @@
                 <!--PRESENTATION ARTICLES 2 COLONNES-->
                 <div  ng-switch-when="2">
                     <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlePresentation" ng-class="contentListCtrl.columns" >
-                                <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
+                                <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}" style="height:80px !important">
                                     <div class="list-item-img col-sm-6">
                                         <img class="img-responsive" ng-if="content.fields.image"
                                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
@@ -109,9 +109,9 @@
                                     </div>
                                     
                                     <!--<p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>-->
-                                    <h6 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
+                                    <h5 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
                                         <p class="redacteur">{{content.fields.redacteur}}</p>
-                                    </h6>
+                                    </h5>
                                 </a>        
                     </div>
                 </div>
