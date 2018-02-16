@@ -90,7 +90,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								me.buildSommaire();
 																				}
                     
-                    if((me.content.type.code=="actualites" || me.content.type.code=="article_foi") && (today.getTime() - me.content.createTime*1000)<1000*3600*24*2) me.isClient();
+                    if(me.content.type.code=="actualites" || me.content.type.code=="article_foi") {me.isClient();}
                     
                     me.oldArticle = true;
                     if ((today.getTime() - me.content.createTime*1000)<1000*3600*24*2) {me.oldArticle=false;
@@ -273,6 +273,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     
     me.isClient = function (){
+								console.log(" lancement fonction isClient");
         if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
            $scope.isClient=true;
 											$scope.isVisiteur=true;
@@ -300,6 +301,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
              /*var limit = $scope.fieldEntity['richText'].indexOf("<br />",$scope.fieldEntity['richText'].length*0.1)+6;*/
 													var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
 													$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
+													console.log("limit");
+													console.log(limit);
+													console.log("$scope.fieldEntity['richText'");
+													console.log($scope.fieldEntity['richText']);
         }
     };
 				
