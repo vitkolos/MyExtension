@@ -303,7 +303,12 @@ header.content>div{line-height: normal;display: inline-block;text-align:left; ve
 			-o-transform: scale(1.05);
 			-moz-transform: scale(1.05);
 }
-.articlesAnciens {height:80px !important;}
+.articlesAnciens {
+		height:80px;
+		overflow-y: hidden;
+  margin-bottom: 30px;
+		h5:hover{text-decoration: none; color:@grey}
+}
 .articlesAnciens:hover {
 		color:@grey;
 }
@@ -316,7 +321,7 @@ header.content>div{line-height: normal;display: inline-block;text-align:left; ve
 		height: 180px;
   overflow-y: hidden;
   margin-bottom: 30px;
-		a:hover{text-decoration: none; color:@grey}
+		h4:hover{text-decoration: none; color:@grey}
 }
 
 

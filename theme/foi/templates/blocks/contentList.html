@@ -100,8 +100,8 @@
                 </div>
                 <!--PRESENTATION ARTICLES 2 COLONNES-->
                 <div  ng-switch-when="2">
-                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlePresentation" ng-class="contentListCtrl.columns" >
-                                <a class="block articlesAnciens" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlesAnciens" ng-class="contentListCtrl.columns" >
+                                <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
                                     <div class="list-item-img col-sm-6">
                                         <img class="img-responsive" ng-if="content.fields.image"
                                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
