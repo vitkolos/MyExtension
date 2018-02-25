@@ -423,7 +423,7 @@ img.hover:hover {
   font-size: 1.1em;
   color: white;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 400px) {
   .nav-entree {
     padding-top: 300px;
   }
@@ -433,6 +433,18 @@ img.hover:hover {
   }
   .nav-entree .titre1 {
     height: 100px;
+  }
+}
+@media screen and (min-width: 400px) and (max-width: 768px) {
+  .nav-entree {
+    padding-top: 300px;
+  }
+  .nav-entree.header.content {
+    height: 800px;
+    margin-top: -40px;
+  }
+  .nav-entree .titre1 {
+    height: 50px;
   }
 }
 @media screen and (min-width: 768px) {
