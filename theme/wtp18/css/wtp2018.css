@@ -233,13 +233,20 @@ nav li a {
   color: #472a72;
   text-shadow: none;
 }
-nav {
+nav.top-navigation {
   margin-bottom: 0px;
 }
-nav:after {
+nav.top-navigation background-color:transparent .navbar-collapse {
+  background: #ffffff;
+}
+nav.top-navigation:after {
   content: '';
   display: block;
-  background-image: url('../img/vague.png');
+  background-image: url(../img/vague.png);
+  height: 36px;
+  background-repeat: repeat-x;
+  width: 100%;
+  background-size: 100px;
 }
 .shortsingle-rubedo .shortsingle-img-container {
   width: 100%;
