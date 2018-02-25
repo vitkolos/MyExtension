@@ -38,7 +38,7 @@
 					<a rubedo-page-link="5a630da239658886137fcea7">C</a>
 				</li>
 				<li class="home-button hidden-xs hidden-sm" target="_blank">
-					<a href="https://twitter.com/@Festival_WTP">ú</a>
+					<a href="https://twitter.com/@Festival_WTP" style="text-transform:none">ú</a>
 				</li>
 				<li class="home-button hidden-xs hidden-sm" target="_blank">
 					<a href="https://facebook.com/festivalwelcometoparadise">\</a>
@@ -46,23 +46,24 @@
 				<li class="home-button hidden-xs hidden-sm" target="_blank">
 					<a href="https://youtube.com/Jeunes1830ans">’</a>
 				</li>
+				<li ng-controller="LanguageMenuController as languageMenuCtrl">
+					<div  class="btn-group nav-item language">
+						<span>
+							<img  ng-src="{{languageMenuCtrl.getFlagUrl(languageMenuCtrl.currentLang.flagCode)}}" alt="{{languageMenuCtrl.currentLang.flagCode}}" style="vertical-align: top"/>
+						</span>
+						<div>
+						<a ng-repeat="lang in languageMenuCtrl.languages" ng-click="languageMenuCtrl.changeLang(lang.lang)" href ng-if="!languageMenuCtrl.isDisabled(lang.lang)">
+							<span ><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></span>
+						</a>
+					</div>
+				
+				</li>
 			</ul>
 
 
 	
 					
-					<!--<div ng-controller="LanguageMenuController as languageMenuCtrl">
-							<div  class="btn-group nav-item language">
-								<span>
-									<img  ng-src="{{languageMenuCtrl.getFlagUrl(languageMenuCtrl.currentLang.flagCode)}}" alt="{{languageMenuCtrl.currentLang.flagCode}}" style="vertical-align: top"/>
-								</span>
-								<div>
-								<a ng-repeat="lang in languageMenuCtrl.languages" ng-click="languageMenuCtrl.changeLang(lang.lang)" href ng-if="!languageMenuCtrl.isDisabled(lang.lang)">
-									<span ><img ng-src="{{languageMenuCtrl.getFlagUrl(lang.flagCode)}}" alt="{{lang.flagCode}}"/></span>
-								</a>
-							</div>
-						
-						</div>	-->
+					<!--	-->
 
 
         </div>

@@ -309,6 +309,11 @@ nav .nav > li > a:hover {
 .snap-content {
   transform: none;
 }
+@media (min-width: 768px) {
+  .navbar-nav.navbar-right:last-child {
+    margin-right: 0;
+  }
+}
 /*STYLING*/
 .h1 .h2 .h3 .h4 .h5 .p {
   padding: 20px;
@@ -458,7 +463,6 @@ img.hover:hover {
 }
 /*LANGUAGE MENU*/
 .nav-item {
-  top: -50px;
   width: 50px;
   text-align: center;
   overflow: hidden;
@@ -466,7 +470,6 @@ img.hover:hover {
   z-index: 1030;
   position: relative;
   display: inline-block;
-  margin-top: -7px;
 }
 .nav-item.follow {
   width: auto;

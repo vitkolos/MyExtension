@@ -167,7 +167,10 @@ nav{min-height:0;background-color: white}
 .navbar-fixed-top, .navbar-fixed-bottom{transform:none}
 nav .nav > li > a:hover{color:@txt_violet; background-color: inherit}
 .snap-content{transform:none}
-
+@media (min-width: 768px){
+.navbar-nav.navbar-right:last-child {
+    margin-right: 0; 
+}}
 /*STYLING*/
 .h1 .h2 .h3 .h4 .h5 .p{padding:20px}
 .padding{padding:5px}
@@ -258,7 +261,7 @@ display: block;
 .nav-entree a:hover{color:@txt_violet;font-size:1.05em;}
 /*LANGUAGE MENU*/
 .nav-item {
-    top:-50px;
+    //top:-50px;
     width: 50px;
     text-align: center;
     overflow: hidden;
@@ -266,7 +269,7 @@ display: block;
     z-index:1030;
     position: relative;
     display: inline-block;
-    margin-top: -7px;
+    //margin-top: -7px;
 }
 .nav-item.follow{width:auto}
 .nav-item.news{width:auto;line-height:50px}
