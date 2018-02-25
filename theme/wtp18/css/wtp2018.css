@@ -239,9 +239,10 @@ nav li a {
 }
 nav.top-navigation {
   margin-bottom: 0px;
+  background-color: transparent;
 }
-nav.top-navigation background-color:transparent .navbar-collapse {
-  background: #ffffff;
+nav.top-navigation .navbar-collapse {
+  background-color: #ffffff;
 }
 nav.top-navigation:after {
   content: '';
