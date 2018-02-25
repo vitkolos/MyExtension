@@ -241,7 +241,8 @@ nav.top-navigation {
   margin-bottom: 0px;
   background-color: transparent;
 }
-nav.top-navigation .navbar-collapse {
+nav.top-navigation .navbar-collapse,
+nav.top-navigation .navbar-header {
   background-color: #ffffff;
 }
 nav.top-navigation:after {
