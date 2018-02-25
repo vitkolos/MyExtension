@@ -181,7 +181,7 @@ nav .nav > li > a:hover{color:@txt_violet; background-color: inherit}
 .snap-content{transform:none}
 @media (min-width: 768px){
 .navbar-nav.navbar-right:last-child {
-    margin-right: 0; 
+    margin-right: 50px; 
 }}
 /*STYLING*/
 .h1 .h2 .h3 .h4 .h5 .p{padding:20px}
@@ -196,14 +196,16 @@ img.hover{
     opacity:1; transition:opacity 0.2s ease;
     &:hover{opacity:0.8}
 }
-.retourne{
-				transform:scale(1,-1) !important;
+.retourne {
+    transform:scale(1,-1) !important;
+    display:inline-block;
+    vertical-align:top; margin-top:4px;
 }
-.inverse {
-				transform:scale(-1,1) !important;  
+.inverse{
+    transform:scale(-1,1) !important;
+    display:inline-block;
 }
 //colors for secondary menu
-
 /*NAVBAR*/
 .home-button{font-family: 'hautecombe-2015regular'}
 .navbar-nav > li.home-button > a, .home-button>a{

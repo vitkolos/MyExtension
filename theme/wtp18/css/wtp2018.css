@@ -325,7 +325,7 @@ nav .nav > li > a:hover {
 }
 @media (min-width: 768px) {
   .navbar-nav.navbar-right:last-child {
-    margin-right: 0;
+    margin-right: 50px;
   }
 }
 /*STYLING*/
@@ -355,9 +355,13 @@ img.hover:hover {
 }
 .retourne {
   transform: scale(1, -1) !important;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 4px;
 }
 .inverse {
   transform: scale(-1, 1) !important;
+  display: inline-block;
 }
 /*NAVBAR*/
 .home-button {
