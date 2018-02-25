@@ -240,7 +240,7 @@ nav li a {
 nav {
   margin-bottom: 0px;
 }
-.welcome-page:before {
+nav:after {
   content: '';
   display: block;
   background-image: url('../img/vague.png');

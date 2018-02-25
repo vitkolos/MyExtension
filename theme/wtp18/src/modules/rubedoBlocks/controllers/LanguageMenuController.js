@@ -6,7 +6,6 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         var urlArray = [];
         var contentId = "";
         me.languages = $scope.rubedo.current.site.languages;
-        console.log("langues");console.log($scope.rubedo.current.site.languages);console.log($route.current.params.lang);
         me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
         me.getFlagUrl = function(flagCode){
             return themePath+'/img/flags/'+flagCode+'.png';
