@@ -240,9 +240,10 @@ nav li a {
 nav {
   margin-bottom: 0px;
 }
-nav:after {
+.welcome-page:before {
   content: '';
   display: block;
+  background-image: url('../img/vague.png');
 }
 .shortsingle-rubedo .shortsingle-img-container {
   width: 100%;
@@ -2869,4 +2870,13 @@ iframe {
 .pageList a:hover img {
   transform: scale(1.05);
   opacity: 0.5;
+}
+.form-group {
+  margin-bottom: 15px;
+}
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: 700;
 }
