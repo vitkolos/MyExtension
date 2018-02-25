@@ -1,3 +1,7 @@
+blocksConfig.imageBatchUpload={
+           "template": "/templates/blocks/imageBatchUpload.html",
+          "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
+};
 blocksConfig.buttonToPage={
            "template": "/templates/blocks/buttonToPage.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
