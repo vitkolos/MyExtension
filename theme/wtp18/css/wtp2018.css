@@ -384,6 +384,7 @@ img.hover:hover {
 }
 .home {
   float: left;
+  position: absolute;
 }
 .navbar-toggle {
   float: right;
