@@ -444,7 +444,7 @@ img.hover:hover {
     margin-top: -40px;
   }
   .nav-entree .titre1 {
-    height: 100px;
+    height: 80px;
   }
 }
 @media screen and (min-width: 400px) and (max-width: 768px) {
