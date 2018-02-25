@@ -179,6 +179,11 @@ a {
     width: 66.66666666%;
   }
 }
+@media screen and (max-width: 400px) {
+  .nav-entree{
+    font-size: 1.5em !important;
+  }
+}
 @media screen and (max-width: 500px) {
   .col-xs-4,
   .col-xs-6,
