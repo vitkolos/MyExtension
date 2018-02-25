@@ -393,7 +393,7 @@ img.hover:hover {
   transition: transform 0.5s ease;
 }
 .home img:hover {
-  transform: scale(1) 0.1;
+  transform: scale(1.1);
 }
 .navbar-toggle {
   float: right;
