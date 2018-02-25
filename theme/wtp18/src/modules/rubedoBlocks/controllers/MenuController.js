@@ -77,7 +77,8 @@
         var urlArray = [];
         var contentId = "";
         me.languages = $scope.rubedo.current.site.languages;
-        me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
+		me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
+		console.log($scope.rubedo.current.site.languages);
         if(!config.showCurrentLanguage){
             delete me.languages[$route.current.params.lang];
         }
