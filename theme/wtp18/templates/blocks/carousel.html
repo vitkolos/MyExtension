@@ -1,6 +1,6 @@
 <style></style>
 <div id="{{'block'+block.id}}" class="owl-carousel" ng-controller="CarouselController as carouselCtrl">
-    <div ng-repeat="content in carouselCtrl.contents track by $index" class="slide">
+    <div ng-repeat="content in carouselCtrl.contents track by $index" class="slide" ng-style="{'background-color':'#{{content.fields.color1}}'}">
         
             <!--<img class="lazyOwl" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"
                     alt="{{content.fields.text}}"
