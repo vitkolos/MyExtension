@@ -355,6 +355,12 @@ nav .nav > li > a:hover {
   padding-bottom: 50px;
   padding-top: 50px;
 }
+@media (min-width: 768px) {
+  .paddingv {
+    padding-right: 70px;
+    padding-left: 70px;
+  }
+}
 .style1 {
   color: #666666;
   text-align: justify;
