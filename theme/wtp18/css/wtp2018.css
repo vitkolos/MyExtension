@@ -235,7 +235,7 @@ a {
 .owl-theme .owl-controls .owl-page.active span,
 .owl-theme .owl-controls.clickable .owl-page:hover span {
   background-color: white;
-  opacity: 1;
+  opacity: 0.9;
   font-size: 1.1em;
 }
 .txt-2 {
