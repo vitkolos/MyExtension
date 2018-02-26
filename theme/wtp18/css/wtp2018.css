@@ -3,7 +3,9 @@
   src: url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.eot');
   src: url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.eot?#iefix') format('embedded-opentype'), url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.woff') format('woff'), url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.ttf') format('truetype'), url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.svg#hautecombe_2014_rondsregular') format('svg');
   font-weight: 400;
-  font-style: normal;/* regular */
+  font-style: normal;
+  
+  /* regular */
 }
 @font-face {
   font-family: 'hautecombe-2015regular';
@@ -688,7 +690,6 @@ input:checked + .push-menu-title:after {
   -o-transition: font-size 0.2s cubic-bezier(0.53, 2, 0.46, 1);
   transition: font-size 0.2s cubic-bezier(0.53, 2, 0.46, 1);
   /* improves performance issues on mobile*/
-
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
 }
@@ -701,7 +702,6 @@ input:checked + .push-menu-title:after {
 .dots.dots-active:before {
   content: '○';
   /*◉*/
-
 }
 .push-menu-button p {
   text-transform: uppercase;
@@ -723,7 +723,6 @@ input:checked + .push-menu-title:after {
   -o-transition: -o-transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
   transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
   /* improves performance issues on mobile*/
-
   -webkit-backface-visibility: hidden;
   overflow-x: hidden;
 }
@@ -2700,7 +2699,8 @@ iframe {
   width: 4.5em;
   background: #333333;
 }
-/*CAROUSEL*/.slide {
+/*CAROUSEL*/
+.slide {
   height: 400px;
   display: table;
   table-layout: fixed;
@@ -2727,17 +2727,18 @@ iframe {
 .slide-center h3 {
   text-transform: uppercase;
   margin-top: 0;
+  font-size: 40px;
   font-weight: bold;
   padding: 0px 48px;
 }
 .slide-center p.icone {
-  font-size: 4em;
+  font-size: 6em;
   font-family: 'hautecombe-2015regular';
   margin-bottom: 0;
 }
 .slide-center.title {
-  border-bottom: 2px solid red;
   position: relative;
+  margin-top: 50px;
 }
 .slide-center.title div {
   position: absolute;
@@ -2746,7 +2747,7 @@ iframe {
 }
 .slide-center:not(.title) {
   font-size: 1.3em;
-  font-style: italic;
+  text-transform: uppercase;
   padding: 12px 48px;
   text-align: left;
 }
