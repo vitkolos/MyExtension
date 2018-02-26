@@ -2941,5 +2941,5 @@ label {
 .parachute {
   top: -100vh;
   position: relative;
-  transform: 2s top ease ;
+  transition: 2s top ease ;
 }
