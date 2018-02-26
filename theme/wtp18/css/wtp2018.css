@@ -2933,6 +2933,9 @@ label {
 }
 .inView .parachute {
   position: relative;
+  left: 0;
+  opacity: 1;
+  top: 0;
   animation: parachute 3s;
 }
 .parachute {
