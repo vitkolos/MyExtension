@@ -3,7 +3,9 @@
   src: url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.eot');
   src: url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.eot?#iefix') format('embedded-opentype'), url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.woff') format('woff'), url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.ttf') format('truetype'), url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.svg#hautecombe_2014_rondsregular') format('svg');
   font-weight: 400;
-  font-style: normal;/* regular */
+  font-style: normal;
+  
+  /* regular */
 }
 @font-face {
   font-family: 'hautecombe-2015regular';
@@ -209,10 +211,16 @@ a {
   .container {
     width: 450px;
   }
+  .container2 {
+    width: 550px;
+  }
 }
 @media screen and (min-width: 1000px) {
   .container {
     width: 720px;
+  }
+  .container2 {
+    width: 1000px;
   }
 }
 /*slider controls*/
@@ -681,7 +689,6 @@ input:checked + .push-menu-title:after {
   -o-transition: font-size 0.2s cubic-bezier(0.53, 2, 0.46, 1);
   transition: font-size 0.2s cubic-bezier(0.53, 2, 0.46, 1);
   /* improves performance issues on mobile*/
-
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
 }
@@ -694,7 +701,6 @@ input:checked + .push-menu-title:after {
 .dots.dots-active:before {
   content: '○';
   /*◉*/
-
 }
 .push-menu-button p {
   text-transform: uppercase;
@@ -716,7 +722,6 @@ input:checked + .push-menu-title:after {
   -o-transition: -o-transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
   transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
   /* improves performance issues on mobile*/
-
   -webkit-backface-visibility: hidden;
   overflow-x: hidden;
 }
@@ -2693,7 +2698,8 @@ iframe {
   width: 4.5em;
   background: #333333;
 }
-/*CAROUSEL*/.slide {
+/*CAROUSEL*/
+.slide {
   height: 400px;
   display: table;
   table-layout: fixed;
