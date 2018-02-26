@@ -3,9 +3,7 @@
   src: url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.eot');
   src: url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.eot?#iefix') format('embedded-opentype'), url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.woff') format('woff'), url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.ttf') format('truetype'), url('/theme/wtp18/fonts/hautecombe-2014-ronds-webfont.svg#hautecombe_2014_rondsregular') format('svg');
   font-weight: 400;
-  font-style: normal;
-  
-  /* regular */
+  font-style: normal;/* regular */
 }
 @font-face {
   font-family: 'hautecombe-2015regular';
@@ -690,6 +688,7 @@ input:checked + .push-menu-title:after {
   -o-transition: font-size 0.2s cubic-bezier(0.53, 2, 0.46, 1);
   transition: font-size 0.2s cubic-bezier(0.53, 2, 0.46, 1);
   /* improves performance issues on mobile*/
+
   -webkit-backface-visibility: hidden;
   -webkit-perspective: 1000;
 }
@@ -702,6 +701,7 @@ input:checked + .push-menu-title:after {
 .dots.dots-active:before {
   content: '○';
   /*◉*/
+
 }
 .push-menu-button p {
   text-transform: uppercase;
@@ -723,6 +723,7 @@ input:checked + .push-menu-title:after {
   -o-transition: -o-transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
   transition: transform 0.2s cubic-bezier(0.16, 0.68, 0.43, 0.99);
   /* improves performance issues on mobile*/
+
   -webkit-backface-visibility: hidden;
   overflow-x: hidden;
 }
@@ -2699,8 +2700,7 @@ iframe {
   width: 4.5em;
   background: #333333;
 }
-/*CAROUSEL*/
-.slide {
+/*CAROUSEL*/.slide {
   height: 400px;
   display: table;
   table-layout: fixed;
@@ -2948,6 +2948,29 @@ label {
 .parachute {
   top: -100vh;
   position: relative;
-  transition: 2s all ease ;
+  animation: mymove 3s;
   opacity: 0;
+}
+/* Standard syntax */
+@keyframes parachute {
+  0% {
+    top: -100vh;
+    left: 0;
+    opacity: 0;
+  }
+  30% {
+    top: -70vh;
+    left: 60vw;
+    opacity: 0.5;
+  }
+  60% {
+    top: -40vh;
+    left: 30vw;
+    opacity: 0.8;
+  }
+  100% {
+    top: 0;
+    left: 50vw;
+    opacity: 1;
+  }
 }

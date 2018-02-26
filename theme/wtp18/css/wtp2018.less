@@ -1894,4 +1894,13 @@ label {
     top:0;
     opacity:1;
 }
-.parachute{top:-100vh; position:relative; transition: 2s all ease ; opacity:0}
+.parachute{top:-100vh; position:relative; animation: mymove 3s; opacity:0;}
+    
+
+/* Standard syntax */
+@keyframes parachute {
+    0% {top:-100vh; left:0; opacity:0}
+    30% {top:-70vh; left:60vw; opacity:0.5}
+    60% {top:-40vh; left:30vw; opacity:0.8}
+    100% {top:0; left:50vw; opacity:1}
+}
