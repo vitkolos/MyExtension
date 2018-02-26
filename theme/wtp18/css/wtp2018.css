@@ -516,7 +516,7 @@ img.hover:hover {
   width: 50px;
   text-align: center;
   overflow: hidden;
-  height: 60px;
+  height: 50px;
   z-index: 1030;
   position: relative;
   display: inline-block;
@@ -547,7 +547,7 @@ img.hover:hover {
   text-align: center;
   display: inline-block;
   width: 50px;
-  height: 50px;
+  height: 60px;
 }
 .nav-item span img {
   height: 100%;
