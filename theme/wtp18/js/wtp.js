@@ -158,7 +158,7 @@ angular.module('rubedoBlocks').directive('isInView', function($window) {
           var windowTop = windowEl.scrollTop();
           var windowBottom = windowEl.scrollTop()+windowEl.height();
           var elemPosition = Math.round( element.offset().top );
-          if(elemPosition<windowBottom && elemPosition>windowTop) {element.addClass("inView");console.log('in view');}
+          if(elemPosition+100<windowBottom && elemPosition>windowTop) {element.addClass("inView");console.log('in view');}
         }
         windowEl.on('scroll', scope.$apply.bind(scope, handler));
         handler();
