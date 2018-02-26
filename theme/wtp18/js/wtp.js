@@ -147,6 +147,25 @@ angular.module('rubedoBlocks').directive('toggleclass', function() {
     }
   };
 });
+angular.module('rubedoBlocks').directive('isInView', function($window) {
+    return {
+      scope: {
+        scroll: '=isInView'
+      },
+      link: function(scope, element, attrs) {
+        var windowEl = angular.element($window);
+        var handler = function() {
+          scope.scroll = windowEl.scrollTop();
+          scope.elemPosition = Math.round( element.offset().top );
+          console.log(scope.scroll);
+          console.log(scope.elemPosition);
+        }
+        windowEl.on('scroll', scope.$apply.bind(scope, handler));
+        handler();
+      }
+    };
+  });
+  
 	
 angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$http', function($timeout,$location,$http) {
   return {
