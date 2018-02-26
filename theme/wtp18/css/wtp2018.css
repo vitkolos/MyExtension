@@ -932,14 +932,14 @@ header.parallax.page h1 {
   .presentation-section {
     height: 400px;
   }
+  .presentation-section h4 {
+    font-size: 40px;
+  }
+  .presentation-section p {
+    font-size: 40px;
+  }
   .presentation-section.content {
     height: 350px;
-  }
-  .presentation-section.content h4 {
-    font-size: 40px;
-  }
-  .presentation-section.content p {
-    font-size: 40px;
   }
   .presentation-section.content > div {
     text-align: left;
@@ -951,28 +951,28 @@ header.parallax.page h1 {
   .presentation-section {
     height: 300px;
   }
-  .presentation-section.content {
-    height: 250px;
-  }
-  .presentation-section.content h4 {
+  .presentation-section h4 {
     font-size: 28px;
   }
-  .presentation-section.content p {
+  .presentation-section p {
     font-size: 20px;
+  }
+  .presentation-section.content {
+    height: 250px;
   }
 }
 @media screen and (max-width: 500px) {
   .presentation-section {
     height: 200px;
   }
-  .presentation-section.content {
-    height: 180px;
-  }
-  .presentation-section.content h4 {
+  .presentation-section h4 {
     font-size: 20px;
   }
-  .presentation-section.content p {
+  .presentation-section p {
     font-size: 15px;
+  }
+  .presentation-section.content {
+    height: 180px;
   }
 }
 @media screen and (min-width: 1500px) {
