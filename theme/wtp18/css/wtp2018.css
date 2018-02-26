@@ -516,7 +516,7 @@ img.hover:hover {
   width: 50px;
   text-align: center;
   overflow: hidden;
-  height: 50px;
+  height: 60px;
   z-index: 1030;
   position: relative;
   display: inline-block;
