@@ -2756,22 +2756,12 @@ iframe {
 .colLeft {
   display: table-cell;
   height: 100%;
-}
-.colLeft img,
-.colLeft div {
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 50%, 20% 75%, 0 50%);
-  clip-path: polygon(0 0, 100% 0, 100% 50%, 20% 75%, 0 50%);
-  float: right;
+  width: 200px;
 }
 .colRight {
   display: table-cell;
   height: 100%;
-}
-.colRight img,
-.colRight div {
-  -webkit-clip-path: polygon(400px 0, 400px 400px, 120px 400px, 0px 200px, 120px 0px);
-  clip-path: polygon(400px 0, 400px 400px, 120px 400px, 0px 200px, 120px 0px);
-  float: left;
+  width: 200px;
 }
 .rowTabled > div {
   vertical-align: top;
@@ -2795,6 +2785,7 @@ iframe {
   .slide .colLeft,
   .slide colRight {
     height: 300px;
+    width: 50px;
   }
 }
 .form-group {
