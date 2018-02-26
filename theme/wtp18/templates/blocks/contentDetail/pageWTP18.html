@@ -4,13 +4,13 @@
         <!-- Ajout d'un menu secondaire en haute de page -->
         <div class="nav-sec" ng-if="block.code=='1/intervenant' " style="margin-top:-30px">
             <div class="row col-xs-12 col-sm-4" ng-repeat="bloc in contentDetailCtrl.pageBlock | orderBy :'order' track by $index" class="" >
-                <p style="padding:15px; background-color:#c3357b;"  ng-if="bloc[0].color==0">
+                <p style="background-color:#c3357b;"  ng-if="bloc[0].color==0">
                     <a  ng-href="{{contentDetailCtrl.menu.url}}?page={{bloc[0].code}}">{{bloc[0].title | split:'//':0}}</a>
                 </p>
-                <p style="padding:15px; background-color:#472a72;"  ng-if="bloc[0].color==1">
+                <p style="background-color:#472a72;"  ng-if="bloc[0].color==1">
                     <a  ng-href="{{contentDetailCtrl.menu.url}}?page={{bloc[0].code}}">{{bloc[0].title | split:'//':0}}</a>
                 </p>
-                <p style="padding:15px; background-color:#000000;"  ng-if="bloc[0].color==2">
+                <p style="background-color:#000000;"  ng-if="bloc[0].color==2">
                     <a  ng-href="{{contentDetailCtrl.menu.url}}?page={{bloc[0].code}}">{{bloc[0].title | split:'//':0}}</a>
                 </p>
             </div>
