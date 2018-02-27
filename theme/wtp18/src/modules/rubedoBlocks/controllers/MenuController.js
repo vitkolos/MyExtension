@@ -4,9 +4,14 @@
         me.menu={};
         me.pagesBlocks={};
         me.currentRouteleine=$location.path();
+	me.siteWTP=false;
         var config=$scope.blockConfig;
 								var lang = $route.current.params.lang;
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
+	if ($scope.rubedo.current.site.id=='5a630da239658886137fce9b') { 
+		me.siteWTP=true;
+	}
+		
         if (config.rootPage){
             var pageId=config.rootPage;
         } else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
