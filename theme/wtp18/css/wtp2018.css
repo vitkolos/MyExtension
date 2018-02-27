@@ -431,7 +431,7 @@ img.hover:hover {
   text-transform: uppercase;
 }
 .nav-sec0 h2 {
-  font-size: 1.3em;
+  font-size: 3em;
 }
 @media screen and (max-width: 400px) {
   .nav-sec0 h2 {
@@ -457,6 +457,15 @@ img.hover:hover {
   color: white;
 }
 .nav-sec a:hover {
+  font-size: 1.1em;
+  color: white;
+}
+.nav-sec0 a {
+  text-decoration: none;
+  cursor: pointer;
+  color: white;
+}
+.nav-sec0 a:hover {
   font-size: 1.1em;
   color: white;
 }
