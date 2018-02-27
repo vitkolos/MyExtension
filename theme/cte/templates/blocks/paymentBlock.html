@@ -12,8 +12,8 @@
                 <ng-form name="proposition_choice">
                         <div  class="row">
 							<div class="col-xs-6 col-xs-push-3">
+								<p>Choisissez votre proposition dans la liste ci-dessous :</p>
 								<select style="border: 5px solid #c1573c;" ng-model="paymentCtrl.propositionId" name="proposition" required>
-									<option selected>Choisissez votre proposition</option>
 									<option ng-repeat="proposition in paymentCtrl.contents | orderBy : 'text' " value="{{proposition.id}}">{{proposition.text}}</option>
 								</select>
 
