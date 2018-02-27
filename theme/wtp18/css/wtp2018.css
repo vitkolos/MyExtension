@@ -2757,6 +2757,7 @@ iframe {
   }
   .slide-center h3 {
     font-size: 1.3em;
+    padding: 0;
   }
   .slide-center p {
     font-size: 0.9em;
@@ -2770,6 +2771,9 @@ iframe {
   .slide .colLeft,
   .slide colRight {
     height: 300px;
+  }
+  .slide-center:not(.title) {
+    padding: 0;
   }
 }
 .form-group {
