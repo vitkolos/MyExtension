@@ -2751,7 +2751,35 @@ iframe {
 .rowTabled>div {
   vertical-align: top;
 }
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 450px) and (max-width: 768px) {
+  .middle {
+    width: 100%;
+  }
+  .slide-center {
+    height: 50%;
+  }
+  .slide-center h3 {
+    font-size: 1.8em;
+    padding: 0;
+  }
+  .slide-center p {
+    font-size: 1em;
+  }
+  .slide-center p.icone {
+    font-size: 5em;
+  }
+  .slide {
+    height: 300px;
+  }
+  .slide .colLeft,
+  .slide colRight {
+    height: 300px;
+  }
+  .slide-center:not(.title) {
+    padding: 0;
+  }
+}
+@media screen and (max-width: 450px) {
   .middle {
     width: 100%;
   }
