@@ -17,7 +17,7 @@ CKEDITOR.stylesSet.add( 'default', [
     	{ name:'Lien rond blanc', element:'p', attributes:{'class':'linkbox-rond-blanc'}},
      { name:'Lien rond noir', element:'p', attributes:{'class':'linkbox-rond-noir'}},
      { name:'Retourne', element:'span', attributes:{'class':'retourne'}},
-     { name:'Renverse', element:'span', attributes:{'class':'renverse'}},
+     { name:'Renverse', element:'span', attributes:{'class':'inverse'}},
     {
 		name: 'Centered image',
 		element: 'img',
