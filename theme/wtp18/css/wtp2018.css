@@ -424,6 +424,20 @@ img.hover:hover {
 #push-button {
   float: right;
 }
+.nav-sec0 {
+  text-align: center;
+  color: white;
+  margin: 0;
+  text-transform: uppercase;
+}
+.nav-sec0 h2 {
+  font-size: 1.3em;
+}
+@media screen and (max-width: 400px) {
+  .nav-sec0 h2 {
+    font-size: 0.8em;
+  }
+}
 .nav-sec {
   font-size: 2em;
   text-align: center;
