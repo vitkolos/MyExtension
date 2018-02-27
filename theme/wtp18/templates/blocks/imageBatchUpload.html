@@ -9,11 +9,11 @@
     margin: 10px auto;
 }
 </style>
-<div ng-controller="ImageBatchUploadController as imgCtrl" ng-if="rubedo.current.user" class="texte" style="margin-top: 100px !important;">
+<div ng-controller="ImageBatchUploadController as imgCtrl" ng-if="rubedo.current.user" style="margin-top: 100px !important;">
         <form class="row">
                 <div class="form-group">
                         <label class="col-sm-12">Renommer les photos ?</label>
-                        <label class="control-label txt-red capital">Titre</label>
+                        <label class="control-label capital">Titre</label>
                         <div  class="col-sm-8 col-sm-offset-2">
                                 <input type="text" ng-model="imgCtrl.batchTitle">
                         </div>
@@ -48,6 +48,7 @@
                         </div>
                 </div>
         </form>
+ </div>
         
         <div ngf-drop ngf-select ng-model="files" class="drop-box" 
                 ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
