@@ -2772,7 +2772,7 @@ iframe {
     height: 300px;
   }
   .slide .colLeft,
-  .slide colRight {
+  .slide .colRight {
     height: 300px;
   }
   .slide-center:not(.title) {
@@ -2800,8 +2800,8 @@ iframe {
     height: 300px;
   }
   .slide .colLeft,
-  .slide colRight {
-    height: 300px;
+  .slide .colRight {
+    height: 400px;
   }
   .slide-center:not(.title) {
     padding: 0;
