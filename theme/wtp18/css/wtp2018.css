@@ -2795,8 +2795,8 @@ iframe {
   .slide-center p.icone {
     font-size: 3em;
   }
-  .slide-center .title {
-    margin-top: 30px;
+  .slide-center.title {
+    margin-top: 20px;
   }
   .slide {
     height: 300px;
