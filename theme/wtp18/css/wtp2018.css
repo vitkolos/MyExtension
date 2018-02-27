@@ -2791,17 +2791,20 @@ iframe {
     padding: 0;
   }
   .slide-center p {
-    font-size: 0.9em;
+    font-size: 0.85em;
   }
   .slide-center p.icone {
     font-size: 3em;
+  }
+  .slide-center .title {
+    margin-top: 30px;
   }
   .slide {
     height: 300px;
   }
   .slide .colLeft,
   .slide .colRight {
-    height: 400px;
+    height: 300px;
   }
   .slide-center:not(.title) {
     padding: 0;
