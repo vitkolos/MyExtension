@@ -165,7 +165,7 @@ angular.module('rubedoBlocks').directive('isInView', function($window) {
       }
     };
   });
-  
+   
 	
 angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$http', function($timeout,$location,$http) {
   return {
