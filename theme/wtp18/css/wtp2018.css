@@ -2687,12 +2687,12 @@ iframe {
 }
 .slide {
   height: 400px;
-  display: table;
+  display: table !important;
   table-layout: fixed;
   width: 100%;
 }
 .slide .colLeft,
-.slide colRight {
+.slide .colRight {
   height: 400px;
 }
 .colgroup {
