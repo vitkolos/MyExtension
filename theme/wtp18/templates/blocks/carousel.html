@@ -14,20 +14,22 @@
             <div class="rowTabled">
                 <div class="colLeft" style="overflow: hidden">
                     <img ng-if="content.fields.imageGauche && content.fields.imageGauche.imageCode !='' " style="height:400px; vertical-align: top" ng-src="{{content.fields.imageGauche.imageCode}}">
-                    <div ng-if="!content.fields.imageGauche || (content.fields.imageGauche&&content.fields.imageGauche.imageCode=='' )" style="height:400px;width: 200px;" ng-style="{'background-color':'#{{content.fields.color2}}'}"></div>
+                    <div ng-if="!content.fields.imageGauche || (content.fields.imageGauche&&content.fields.imageGauche.imageCode=='' )" style="height:400px;width: 20%;" ng-style="{'background-color':'#{{content.fields.color2}}'}"></div>
                 </div>
-                <div class="slide-center title"  ng-style="{'border-color':'#{{content.fields.icon_color}}'}">
-                    <div>
-                        <p class="icone"  ng-style="{'color':'#{{content.fields.icon_color}}'}">{{content.fields.icone}}</p>
-                        <h3 ng-style="{'color':'#{{content.fields.text_color}}'}">{{content.fields.text}}</h3>
+                <div style="height:400px;width: 60%;">
+                    <div class="slide-center title"  ng-style="{'border-color':'#{{content.fields.icon_color}}'}">
+                        <div>
+                            <p class="icone"  ng-style="{'color':'#{{content.fields.icon_color}}'}">{{content.fields.icone}}</p>
+                            <h3 ng-style="{'color':'#{{content.fields.text_color}}'}">{{content.fields.text}}</h3>
+                        </div>
                     </div>
-                </div>
-                <div class="slide-center">
-                    <p ng-style="{'color':'#{{content.fields.text_color}}'}">{{content.fields.summary}}</p>
+                    <div class="slide-center">
+                        <p ng-style="{'color':'#{{content.fields.text_color}}'}">{{content.fields.summary}}</p>
+                    </div>
                 </div>
                 <div class="colRight" style="overflow: hidden">
                      <img ng-if="content.fields.imageDroite &&content.fields.imageDroite.imageCode != '' " style="height:400px; vertical-align: top" ng-src="{{content.fields.imageDroite.imageCode}}">
-                    <div ng-if="!content.fields.imageDroite|| (content.fields.imageDroite&&content.fields.imageDroite.imageCode=='' )" style="height:400px;width: 200px;" ng-style="{'background-color':'#{{content.fields.color2}}'}"></div>
+                    <div ng-if="!content.fields.imageDroite|| (content.fields.imageDroite&&content.fields.imageDroite.imageCode=='' )" style="height:400px;width: 20%;" ng-style="{'background-color':'#{{content.fields.color2}}'}"></div>
                 </div>
             </div>
              
