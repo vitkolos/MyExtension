@@ -5,11 +5,18 @@
         me.pagesBlocks={};
         me.currentRouteleine=$location.path();
 	me.siteWTP=false;
+	console.log("me.siteWTP");
+	console.log(me.siteWTP);
+	console.log("current.site.id");
+	console.log($scope.rubedo.current.site.id);
+	console.log("5a630da239658886137fce9b");
         var config=$scope.blockConfig;
 								var lang = $route.current.params.lang;
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
 	if ($scope.rubedo.current.site.id=='5a630da239658886137fce9b') { 
 		me.siteWTP=true;
+		console.log("me.siteWTP");
+		console.log(me.siteWTP);
 	}
 		
         if (config.rootPage){
