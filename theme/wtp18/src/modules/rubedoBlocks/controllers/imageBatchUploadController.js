@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     me.files=[];
     me.progress = 0;
     me.processing=false;
-
+ 
     
     $scope.$watch('files', function () {
         $scope.upload($scope.files);
