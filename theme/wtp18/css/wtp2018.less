@@ -1783,7 +1783,23 @@ ul.programme li:first-of-type:first-line{font-size:1.5em}
 
 }
 .rowTabled>div{vertical-align: top;}
-@media screen and (max-width: @tablet) {
+@media screen (min-width: @mobile) and (max-width: @tablet) {
+	.middle{
+	  width:100%;
+	}
+	.slide-center{
+		h3{font-size: 1.8em; padding:0}
+		p{font-size:1em}
+		p.icone{font-size: 5em; }
+		height: 50%;
+	}
+	.slide{
+	height: 300px;
+	.colLeft, colRight{height: 300px;}
+	}
+	.slide-center:not(.title) {padding: 0;}
+}
+@media screen and (max-width: @mobile) {
 	.middle{
 	  width:100%;
 	}
