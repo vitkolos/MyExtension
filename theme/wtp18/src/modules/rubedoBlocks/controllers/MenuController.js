@@ -4,8 +4,6 @@
         me.menu={};
         me.pagesBlocks={};
         me.currentRouteleine=$location.path();
-	console.log("me.siteWTP");
-	console.log(me.siteWTP);
 	console.log("current.site.id");
 	console.log($scope.rubedo.current.site.id);
 	console.log("5a630da239658886137fce9b");
@@ -13,11 +11,11 @@
 								var lang = $route.current.params.lang;
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
 	if ($scope.rubedo.current.site.id=='5a630da239658886137fce9b') { 
-		me.siteWTP=true;
-		console.log("me.siteWTP");
-		console.log(me.siteWTP);
+		$scope.siteWTP=true;
+		console.log("$scope.siteWTP");
+		console.log($scope.siteWTP);
 	} else {
-		me.siteWTP=false;
+		$scope.siteWTP=false;
 	}
 		
         if (config.rootPage){
