@@ -4,7 +4,6 @@
         me.menu={};
         me.pagesBlocks={};
         me.currentRouteleine=$location.path();
-	me.siteWTP=false;
 	console.log("me.siteWTP");
 	console.log(me.siteWTP);
 	console.log("current.site.id");
@@ -17,6 +16,8 @@
 		me.siteWTP=true;
 		console.log("me.siteWTP");
 		console.log(me.siteWTP);
+	} else {
+		me.siteWTP=false;
 	}
 		
         if (config.rootPage){
