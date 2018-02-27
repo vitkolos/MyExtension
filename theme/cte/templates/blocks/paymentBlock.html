@@ -13,7 +13,7 @@
                         <div  class="row">
 							<div class="col-xs-6 col-xs-push-3">
 								<select style="border: 5px solid #c1573c;" ng-model="paymentCtrl.propositionId" name="proposition" required>
-									<option disabled selected>Choisissez votre proposition</option>
+									<option selected>Choisissez votre proposition</option>
 									<option ng-repeat="proposition in paymentCtrl.contents | orderBy : 'text' " value="{{proposition.id}}">{{proposition.text}}</option>
 								</select>
 
