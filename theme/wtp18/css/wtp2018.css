@@ -224,13 +224,12 @@ a {
 }
 .owl-theme .owl-controls .owl-page span {
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.2;
 }
 .owl-theme .owl-controls .owl-page.active span,
 .owl-theme .owl-controls.clickable .owl-page:hover span {
   background-color: white;
-  opacity: 0.9;
-  font-size: 1.1em;
+  opacity: 0.999;
 }
 .txt-2 {
   color: #444;
