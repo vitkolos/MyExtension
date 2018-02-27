@@ -2722,7 +2722,7 @@ iframe {
 }
 .slide-center.title {
   position: relative;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 .slide-center.title div {
   bottom: 0;
@@ -2755,7 +2755,7 @@ iframe {
     width: 100%;
   }
   .slide-center {
-    height: 50%;
+    height: 45%;
   }
   .slide-center h3 {
     font-size: 1.8em;
