@@ -225,7 +225,7 @@
             //],
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
-            font_names : 'Oswald Light;Oswald SemiBold;FontAwesome;',
+            font_names : 'Oswald Light;Oswald SemiBold;Summer Festival;FontAwesome;',
  
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
