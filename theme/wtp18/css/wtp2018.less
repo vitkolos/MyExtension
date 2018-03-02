@@ -525,11 +525,14 @@ input:checked + .push-menu-title:after{content:"c"}
     .accueil_vision h1:nth-of-type(2){font-variant: small-caps}
 	.accueil_vision p{ font-size: 1em;}
 }
-@media screen and (max-width: @tablet) {
-				.titre_summer h1{font-size:2.2em;}
+@media screen and (max-width: @mobile) {
+				.titre_summer h1{font-size:4em;}
+}
+@media screen and (min-width: @mobile) and (max-width: @tablet) {
+				.titre_summer h1{font-size:7em;}
 }
 @media screen and (min-width: @tablet) {
-				.titre_summer h1{font-size:5em;}
+				.titre_summer h1{font-size:10em;}
 }
 /* SECTION DETAIL*/
 .section{
