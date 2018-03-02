@@ -80,7 +80,7 @@
                                 <input type="radio"  name="paiement_maintenant" id="accompte2" value="{{formCtrl.content.fields.accompte2}}" ng-model="inscription.montantAPayerMaintenant" required>
                                         <label for="accompte2" class="sexe_label dons">{{formCtrl.content.fields.accompte2}}{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</label>
                                 <div class="donResult" style="margin-top:12px" ng-if="inscription.montantAPayerMaintenant == formCtrl.content.fields.accompte">
-                                        <rubedo-field  field =  "{{formCtrl.getFieldByName('desc_1')}}" ng-init="fieldInputMode=true"></rubedo-field>
+                                        <rubedo-field  field =  "{{formCtrl.getFieldByName('desc_1')}}" ng-init="fieldInputMode=false"></rubedo-field>
                                 </div>
                                 <div class="donResult" style="margin-top:12px" ng-if="inscription.montantAPayerMaintenant == formCtrl.content.fields.accompte2">
                                         <rubedo-field  field =  "{{formCtrl.getFieldByName('desc_2')}}" ng-init="fieldInputMode=false"></rubedo-field>
