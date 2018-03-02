@@ -73,7 +73,7 @@
                                 <input type="radio"  name="paiement_maintenant" id="accompte" ng-model="inscription.paiement_maintenant" checked="checked" value="accompte" required>
                                 <label for="accompte">{{contentDetailCtrl.getLabelByName('accompte')}} : {{formCtrl.content.fields.accompte}}{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</label> 
                             </div>
-                            <div class="col-xs-12" ng-if="formCtrl.content.fields.accompte > 0 && formCtrl.content.fields.accompte2 > 0" ng-init="inscription.montantAPayerMaintenant = contentDetailCtrl.content.fields.accompte">
+                            <div class="col-xs-12" ng-if="formCtrl.content.fields.accompte > 0 && formCtrl.content.fields.accompte2 > 0" ng-init="inscription.montantAPayerMaintenant = contentDetailCtrl.content.fields.accompte" ng-model="inscription.paiement_maintenant">
                                 <label for="accompte">{{contentDetailCtrl.getLabelByName('accompte')}} :</label>
                                 <input type="radio"  name="paiement_maintenant" id="accompte" checked="checked" value="{{formCtrl.content.fields.accompte}}" ng-model="inscription.montantAPayerMaintenant" required>
                                         <label for="accompte" class="sexe_label dons">{{formCtrl.content.fields.accompte}}{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</label>
@@ -97,7 +97,7 @@
                         </div>  
                    </div>
                    <!---CHOIX DU MODE DE PAIEMENT-->
-                   <div class="row border-bottom" ng-if="inscription.paiement_maintenant && inscription.paiement_maintenant !='rien' ">
+                   <div class="row border-bottom" ng-if="inscription.paiement_maintenant && inscription.paiement_maintenant !='rien'">
                         <div class="col-xs-6">
                             <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.ModePaiment")}}</label>
                         </div>
