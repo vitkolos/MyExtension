@@ -24,7 +24,8 @@ CKEDITOR.stylesSet.add( 'default', [
 		attributes: { 'style': 'margin:0 auto' }
 	},
 	{ name: 'Citation', element: 'blockquote', attributes: { 'class': 'center'} },
-	{ name: 'Bouton rouge', element: 'a;p', attributes: { 'class': 'button rouge'} }
+	{ name: 'Bouton rouge', element: 'a', attributes: { 'class': 'button rouge'} },
+ { name: 'Bouton Rouge', element: 'p', attributes: { 'class': 'buttonRouge'} }
 
 ] );
 
