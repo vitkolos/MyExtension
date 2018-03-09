@@ -314,6 +314,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																/*INFORMATIONS SUR LES ARTICLES*/
 																	me.buildSommaire = function(){
 																 var ind=0;
+																	var count=0;
 																		var optionsSommaire = {
 																				constrainToSite:false,
 																				siteId: $scope.rubedo.current.site.id,
@@ -337,8 +338,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																														} else {
 																																																		$scope.displayTaxo[ind]= true;
 																																														}
-																																if ($scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f'] && me.content.id!==data.id) {
+																																if ($scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f'] && me.content.id!==data.id && count<3) {
 																																																		$scope.displayLienArticle[ind]= true;
+																																																		count++;
 																																														} else {
 																																																		$scope.displayLienArticle[ind]= false;
 																																														}
