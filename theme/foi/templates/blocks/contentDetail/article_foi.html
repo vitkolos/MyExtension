@@ -3,6 +3,25 @@
 			<p class="categorie_article">{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f'][0])}}</p>-->
 <!--			<span ng-repeat="taxo in contentDetailCtrl.content['taxonomy.5a114f1b396588d22856706f'] track by $index" class="categorie_article">{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",taxo)}}</span>-->
 <!--			<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f']">{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",taxonomy)}}</span>-->
+			
+						
+			
+			<div class="container-fluid" ng-if="!blockConfig.contentOnly">
+				<div class="row">
+					<div class="col-xs-12 ">
+						<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+							<ol class="breadcrumb hidden-xs">
+								<li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-4 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+							</ol>
+							<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-4 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			
+			
 			<header class="container-fluid content" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 480w,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1600px',mode:'boxed'})}} 1200w"
 				ng-if="fieldEntity['image']"  afkl-lazy-image-options='{"background": true}'>
 			</header>
