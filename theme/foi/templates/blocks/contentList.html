@@ -102,21 +102,30 @@
                 </div>
                 <!--PRESENTATION ARTICLES 2 COLONNES-->
                 <div  ng-switch-when="2">
-                    <div ng-if="rubedo.current.site.id === '58df5d4d245640860f8b9290' ">
-                        <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList" ng-class="contentListCtrl.columns" >
-                                    <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
-                                        <div class="list-item-img col-sm-6">
-                                            <img class="img-responsive" ng-if="content.fields.image"
-                                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
-                                                alt="{{ content.fields.text }}"/>
-                                        </div>
-                                        
-                                        <!--<p class="list-tags" ng-repeat="taxo in content.taxonomy['5a114f1b396588d22856706f']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>-->
-                                        <h5 class="list-item-title col-sm-6"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
-                                            <p class="redacteur">{{content.fields.redacteur}}</p>
-                                        </h5>
-                                    </a>        
-                        </div>
+                    <div ng-if="rubedo.current.page.id === '58df5d4d245640860f8b9290' ">
+                        <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList col-xs-6 " ng-class="contentListCtrl.columns" >
+                            <a ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
+                                <div  style="position:relative;display: inline-block">
+                                    <img class="media-object pull-left img-responsive" ng-if="content.fields.image"
+                                    ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'250px',width:'400px',mode:'crop'}) }}"
+                                    alt="{{ content.fields.text }}"/>
+                                    <div class="transparent">
+                                        <h4 class="media-heading" ng-if="!fieldEditMode" >
+                                                {{content.fields.text }}
+                                        </h4>
+                                        <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                                        <!--<p>
+                                            <img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
+                                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'50px',mode:'boxed'}) }}"
+                                                alt=""/>
+                                        </p>-->
+                                    </div>
+                                </div>
+                            </a>
+                            <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                                {{rubedo.translate('Block.ContentList.Label.Preview','Preview detail')}}
+                            </a>
+                    </div>
                     </div> 
                     <div ng-if="rubedo.current.site.id !== '58df5d4d245640860f8b9290' ">
                         <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlesAnciens" ng-class="contentListCtrl.columns" >
