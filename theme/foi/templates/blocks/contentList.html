@@ -68,6 +68,7 @@
                     
                     <!--PRESENTATION FOI-->
                     <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" ng-if="!isArticle" class="foiPresentation" ng-class="contentListCtrl.columns" >
+                         <div>
                             <img class="img-responsive" ng-if="content.fields.image"
                              ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'400px',mode:'boxed'}) }}"
                              alt="{{ content.fields.text }}"/>
@@ -75,7 +76,8 @@
                             <ul class="presentation">
                                 <li><a ng-href="{{content.detailPageUrl}}" >Sommaire</a></li>
                                 <li><a ng-href="{{content.fields.link_revue}}" target="_blank">Acheter</a></li>
-                            </ul>   
+                            </ul>
+                        </div>   
                     </div>
                 </div>
                 <!--PRESENTATION ARTICLES 3 COLONNES-->
