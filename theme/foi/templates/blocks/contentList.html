@@ -124,10 +124,10 @@
                             </a>
                             <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
                                 {{rubedo.translate('Block.ContentList.Label.Preview','Preview detail')}}
-                            </a>
+                            </a> 
                     </div>
                     </div> 
-                    <div ng-if="rubedo.current.site.id !== '58df5d4d245640860f8b9290' ">
+                    <div ng-if="rubedo.current.page.id !== '58df5d4d245640860f8b9290' ">
                         <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlesAnciens" ng-class="contentListCtrl.columns" >
                                     <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
                                         <div class="list-item-img col-sm-6">
