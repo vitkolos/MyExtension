@@ -337,7 +337,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																														} else {
 																																																		$scope.displayTaxo[ind]= true;
 																																														}
-																																if ($scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f']) {
+																																if ($scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f'] && me.content.id!==data.id) {
 																																																		$scope.displayLienArticle[ind]= true;
 																																														} else {
 																																																		$scope.displayLienArticle[ind]= false;
