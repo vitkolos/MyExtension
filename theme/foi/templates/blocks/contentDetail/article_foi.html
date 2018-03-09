@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-xs-12 ">
 						<div ng-controller="BreadcrumbController as breadcrumbCtrl">
-							<ol class="breadcrumb hidden-xs">
+							<ol class="titre hidden-xs">
 								<li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-3 track by $index" ng-if="$index<1"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
 							</ol>
 							<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-3 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
@@ -168,16 +168,40 @@
 
 <div class="row">  
 	<div class="col-sm-8 col-sm-push-2">
-		<h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;text-align:center;">Sommaire</h3>
+		<h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;text-align:center;">Articles sur la même thématique</h3>
 		<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
 		<div class="sommaire">	
 			<div ng-repeat="content in contentDetailCtrl.accesArticles.data track by $index">
-				<p class="red-sub" ng-show="displayTaxo[$index]" class="categorie">{{contentDetailCtrl.accesArticles.facetsLabels[content['taxonomy.5a114f1b396588d22856706f'][0]]}}</p>
-				<p  class="article"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
-				<div ng-show="!displayTaxo[$index] && displayTaxo[$index+1]"><br/><br/></div>
+				<p  class="article" ng-if="content.taxonomy.5a114f1b396588d22856706f[0] === contentDetailCtrl.content.taxonomy.5a114f1b396588d22856706f[0]"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
 			</div>
 		</div>	
 	</div>
+	
+	<!--<div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList col-xs-6 " ng-class="contentListCtrl.columns" >
+		<a ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
+			<div  style="position:relative;display: inline-block">
+				<img class="media-object pull-left img-responsive" ng-if="content.fields.image"
+				ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'250px',width:'400px',mode:'crop'}) }}"
+				alt="{{ content.fields.text }}"/>
+				<div class="transparent">
+					<h4 class="media-heading" ng-if="!fieldEditMode" >
+							{{content.fields.text }}
+					</h4>
+					<rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+					<!--<p>
+						<img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
+							ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'50px',mode:'boxed'}) }}"
+							alt=""/>
+					</p>-->
+				</div>
+			</div>
+		</a>
+		<a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+			{{rubedo.translate('Block.ContentList.Label.Preview','Preview detail')}}
+		</a> 
+	</div>-->
+	
+	
 </div>
  
  
