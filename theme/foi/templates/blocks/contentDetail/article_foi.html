@@ -10,7 +10,7 @@
 				<div class="row">
 					<div class="col-xs-12 ">
 						<div ng-controller="BreadcrumbController as breadcrumbCtrl">
-							<ol class="titre hidden-xs">
+							<ol class="breadcrumb hidden-xs">
 								<li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-3 track by $index" ng-if="$index<1"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
 							</ol>
 							<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-3 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
@@ -170,11 +170,15 @@
 	<div class="col-sm-8 col-sm-push-2">
 		<h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;text-align:center;">Articles sur la même thématique</h3>
 		<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
-		<div class="sommaire">	
-			<div ng-repeat="content in contentDetailCtrl.accesArticles.data track by $index">
-				<p  class="article" ng-show="displayLienArticle[$index]"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
+		<div ng-repeat="content in contentDetailCtrl.accesArticles.data track by $index">
+			<div ng-show="displayLienArticle[$index]" class="col-sm-4">
+				<a ng-href="{{ content.url }}">
+					<p  class="article" >{{ content.text[0] }}</p>
+					<p  class="redacteur">{{ content.i18n.fr.fields.redacteur }}</p>
+					<br/>
+				</a>
 			</div>
-		</div>	
+		</div>
 	</div>
 	
 	<!--<div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articleList col-xs-6 " ng-class="contentListCtrl.columns" >
