@@ -8,6 +8,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				$scope.pageRevueEnCours = false;
 				$scope.taxonomies = {};
 				$scope.displayTaxo = {};
+				$scope.displayLienArticle = {};
 				$scope.nomCategorie = "rubrique";
 				me.taxonomy=[];
     var previousFields;
@@ -335,6 +336,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																																		$scope.displayTaxo[ind]= false;
 																																														} else {
 																																																		$scope.displayTaxo[ind]= true;
+																																														}
+																																if ($scope.taxonomies[ind]===me.content.taxonomy.5a114f1b396588d22856706f) {
+																																																		$scope.displayLienArticle[ind]= true;
+																																														} else {
+																																																		$scope.displayLienArticle[ind]= false;
 																																														}
 																																ind++;
 																							});
