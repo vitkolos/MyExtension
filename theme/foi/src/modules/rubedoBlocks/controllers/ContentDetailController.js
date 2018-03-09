@@ -338,13 +338,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																																		$scope.displayTaxo[ind]= true;
 																																														}
 																																														console.log("me.content");
-																																														console.log(me.content);
-																																if ($scope.taxonomies[ind]===me.content['taxonomy.5a114f1b396588d22856706f'][0]) {
+																																														console.log(me.content.taxonomy[1]);
+																																if ($scope.taxonomies[ind]===me.content.taxonomy[1]) {
 																																																		$scope.displayLienArticle[ind]= true;
 																																														} else {
 																																																		$scope.displayLienArticle[ind]= false;
 																																														}
-																																ind++;
+																																ind++; 
 																							});
 																				} 
 																		});
