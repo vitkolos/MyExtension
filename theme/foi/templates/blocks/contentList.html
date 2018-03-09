@@ -82,7 +82,7 @@
                 </div>
                 <!--PRESENTATION ARTICLES 3 COLONNES-->
                 <div  ng-switch-when="3">
-                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlePresentation col-sm-4" ng-class="contentListCtrl.columns" >
+                    <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index" class="articlePresentation_3col col-sm-4" ng-class="contentListCtrl.columns" >
                         <a class="block" ng-href="{{ fieldEditMode ? '' : content.detailPageUrl }}">
                             <div class="list-item-img col-sm-6">
                                 <img class="img-responsive" ng-if="content.fields.image"
