@@ -173,6 +173,7 @@
 		<div class="sommaire">	
 			<div ng-repeat="content in contentDetailCtrl.accesArticles.data track by $index">
 				<p>{{content.taxonomy.5a114f1b396588d22856706f}}</p>
+				<p  class="article"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
 				<!--<p>{{contentDetailCtrl.content.taxonomy.5a114f1b396588d22856706f}}</p>-->
 				<br/>
 				<p  class="article" ng-if="content.taxonomy.5a114f1b396588d22856706f[0] === contentDetailCtrl.content.taxonomy.5a114f1b396588d22856706f"><a ng-href="{{ content.url }}">{{ content.text[0] }}</a></p>
