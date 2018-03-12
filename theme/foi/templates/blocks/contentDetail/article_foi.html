@@ -182,10 +182,9 @@
 					<br/>
 				</a>-->
 				<a ng-href="{{content.url}}">
+					<img ng-if="content['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['image'],{width:'420px',height:'200px',mode:'crop'})}}" style="width:100%">
+					<img ng-if="!content['image']" src="/theme/cte/img/icons/video-thumb.jpg" style="height:'200px'">
 					<h4>{{ content.text[0] }}</h4>
-					<img ng-if="content['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['image'],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
-					<img ng-if="!content['image']" src="/theme/cte/img/icons/video-thumb.jpg" style="width:120px">
-					<p  class="redacteur">{{ content.redacteur}}</p>
 				</a>	
 			</div>
 		</div>
