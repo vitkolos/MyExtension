@@ -316,7 +316,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																/*INFORMATIONS SUR LES ARTICLES*/
 																	me.buildSommaire = function(){
 																 var ind=0;
-																	var ind2=0;
 																	var count=0;
 																		var optionsSommaire = {
 																				constrainToSite:false,
@@ -347,22 +346,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																														} else {
 																																																		$scope.displayLienArticle[ind]= false;
 																																														}
-																																ind++; 
-																							});
-																				}
-																				if(response.data.success){
-																						me.linkedArticles = response.data.results;
-																						angular.forEach(me.linkedArticles.data,function(data, key){
-																																$scope.taxonomies[ind2]=me.linkedArticles.data[ind2]['taxonomy.5a114f1b396588d22856706f'][0];
 																																if (me.content.id===data.id) {
-																																																		$scope.classementArticle= ind2;
-																																																		if (ind2===me.accesArticles.data.length) {
+																																																		$scope.classementArticle= ind;
+																																																		if (ind===me.accesArticles.data.length) {
 																																																				$scope.finListe=true;
 																																																		}
 																																}
-																																ind2++; 
+																																ind++; 
 																							});
-																				} 
+																				}
 																		});
 																};
 				
