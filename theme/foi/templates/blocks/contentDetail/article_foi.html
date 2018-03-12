@@ -13,7 +13,7 @@
 							<ol class="breadcrumb" vocab="http://schema.org/" typeof="BreadcrumbList">
 								<li property="itemListElement" typeof="ListItem" ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-3 track by $index" ng-if="$index<1"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
 							</ol>
-							<a property="item" typeof="WebPage" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-3 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
+							<!--<a property="item" typeof="WebPage" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-3 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>-->
 						</div>
 					</div>
 				</div>
@@ -181,7 +181,7 @@
 					<br/>
 				</a>-->
 				<a ng-href="{{content.url}}">
-					<img ng-if="content['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
+					<img ng-if="content['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['image'],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
 					<img ng-if="!content['image']" src="/theme/cte/img/icons/video-thumb.jpg" style="width:120px">
 					<p  class="article" >{{ content.text[0] }}</p>
 					<p  class="redacteur">{{ content.redacteur}}</p>
