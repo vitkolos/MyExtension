@@ -351,7 +351,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																if (me.content.id===data.id) {
 																																																		$scope.classementArticle= ind;
 																																}
-																																if (ind===me.accesArticles.data.length) {
+																																if (me.accesArticles.data.length===ind-1) {
 																																																				$scope.finListe=true;
 																																}
 																																ind++;
