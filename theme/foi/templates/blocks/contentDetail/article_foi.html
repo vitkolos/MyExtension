@@ -174,16 +174,16 @@
 		<h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;text-align:center;">Articles sur la même thématique</h3>
 		<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
 		<div ng-repeat="content in contentDetailCtrl.accesArticles.data track by $index">
-			<div ng-show="displayLienArticle[$index]" class="col-xs-12 col-sm-4 text-center">
+			<div ng-show="displayLienArticle[$index]" class="col-xs-12 col-sm-4 text-center article">
 				<!--<a ng-href="{{ content.url }}">
 					<p  class="article" >{{ content.text[0] }}</p>
 					<p  class="redacteur">{{ content.i18n.fr.fields.redacteur[0] }}</p>
 					<br/>
 				</a>-->
 				<a ng-href="{{content.url}}">
+					<p>{{ content.text[0] }}</p>
 					<img ng-if="content['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['image'],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
 					<img ng-if="!content['image']" src="/theme/cte/img/icons/video-thumb.jpg" style="width:120px">
-					<p  class="article" >{{ content.text[0] }}</p>
 					<p  class="redacteur">{{ content.redacteur}}</p>
 				</a>	
 			</div>
