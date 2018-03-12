@@ -359,8 +359,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																							});
 																						console.log("me.accesArticles.data.length");
 																						console.log(me.accesArticles.data.length);
-																						console.log("ind");
-																						console.log(ind);
+																						console.log("$scope.classementArticle");
+																						console.log($scope.classementArticle);
 																						console.log("me.content.taxonomy['5a114f1b396588d22856706f']");
 																						console.log(me.content.taxonomy['5a114f1b396588d22856706f']);
 																						console.log("$scope.taxonomies");
