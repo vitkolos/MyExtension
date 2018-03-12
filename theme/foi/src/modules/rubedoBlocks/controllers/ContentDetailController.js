@@ -346,6 +346,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																														} else {
 																																																		$scope.displayLienArticle[ind]= false;
 																																														}
+																																ind++; 
+																							});
+																				}
+																				if(response.data.success){
+																						me.linkedArticles = response.data.results;
+																						angular.forEach(me.linkedArticles.data,function(data, key){
+																																$scope.taxonomies[ind]=me.linkedArticles.data[ind]['taxonomy.5a114f1b396588d22856706f'][0];
 																																if (me.content.id===data.id) {
 																																																		$scope.classementArticle= ind;
 																																																		if (ind===me.accesArticles.data.length) {
