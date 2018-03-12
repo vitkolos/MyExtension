@@ -350,12 +350,16 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																}
 																																if (me.content.id===data.id) {
 																																																		$scope.classementArticle= ind;
-																																																		if (ind===me.accesArticles.data.length) {
+																																}
+																																if (ind===me.accesArticles.data.length) {
 																																																				$scope.finListe=true;
-																																																		}
 																																}
 																																ind++;
 																							});
+																						console.log("me.accesArticles.data.length");
+																						console.log(me.accesArticles.data.length);
+																						console.log("ind");
+																						console.log(ind);
 																						console.log("me.content.taxonomy['5a114f1b396588d22856706f']");
 																						console.log(me.content.taxonomy['5a114f1b396588d22856706f']);
 																						console.log("$scope.taxonomies");
