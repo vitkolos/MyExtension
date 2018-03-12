@@ -354,6 +354,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																}
 																																ind++; 
 																							});
+																						console.log("displayLienArticle");
+																						console.log($scope.displayLienArticle);
+																						console.log("count");
+																						console.log(count);
 																				}
 																		});
 																};
