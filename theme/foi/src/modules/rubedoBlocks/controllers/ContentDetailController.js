@@ -353,7 +353,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																}
 																																if (me.accesArticles.data.length===ind-1) {
 																																																				$scope.finListe=true;
-																																}
+																																} 
 																																ind++;
 																							});
 																						console.log("me.accesArticles.data.length");
