@@ -9,6 +9,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				$scope.taxonomies = {};
 				$scope.displayTaxo = {};
 				$scope.displayLienArticle = {};
+				$scope.classementArticle=0;
+				$scope.finListe=false;
 				$scope.nomCategorie = "rubrique";
 				me.taxonomy=[];
     var previousFields;
@@ -344,6 +346,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																														} else {
 																																																		$scope.displayLienArticle[ind]= false;
 																																														}
+																																if (me.content.id===data.id) {
+																																																		$scope.classementArticle= ind;
+																																																		if (ind===me.accesArticles.data.length) {
+																																																				$scope.finListe=true;
+																																																		}
+																																}
 																																ind++; 
 																							});
 																				} 

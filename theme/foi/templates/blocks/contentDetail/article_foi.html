@@ -164,8 +164,14 @@
 								</div>
 							</div>
 							
-						  
-						
+				<div ng-if="isVisiteur" style="margin-top:50px;">		  
+					<div class="col-sm-3">
+						<p style="text-align:center"  ng-if="classementArticle>0"><button  class="btn btn-default btn-abonne"><a ng-href="{{contentDetailCtrl.accesArticles.data[classementArticle-1].url}}">Article précédent</a></button></br></p>
+					</div>
+					<div class="col-sm-push-6 col-sm-3">
+						<p style="text-align:center" ng-if="!finListe"><button  class="btn btn-default btn-abonne"><a ng-href="{{contentDetailCtrl.accesArticles.data[classementArticle+1].url}}">Article suivant</a></button></br></p>
+					</div>
+				</div>
 			</div>
 </div>
 
@@ -181,7 +187,7 @@
 					<br/>
 				</a>-->
 				<a ng-href="{{content.url}}">
-					<p>{{ content.text[0] }}</p>
+					<h4>{{ content.text[0] }}</h4>
 					<img ng-if="content['image']" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['image'],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
 					<img ng-if="!content['image']" src="/theme/cte/img/icons/video-thumb.jpg" style="width:120px">
 					<p  class="redacteur">{{ content.redacteur}}</p>
