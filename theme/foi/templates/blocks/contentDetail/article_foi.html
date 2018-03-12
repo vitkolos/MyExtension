@@ -161,17 +161,17 @@
 							
 				<div ng-if="isVisiteur" style="margin-top:50px;">		  
 					<div class="col-sm-3">
-						<p style="text-align:center"  ng-if="classementArticle>0"><button  class="btn btn-default btn-abonne"><a ng-href="{{contentDetailCtrl.accesArticles.data[classementArticle-1].url}}">Article précédent</a></button></br></p>
+						<p style="text-align:center"  ng-if="classementArticle>0"><button  class="btn btn-default btn-abonne"><a ng-href="{{contentDetailCtrl.accesArticles.data[classementArticle-1].url}}"><i class="fa fa-angle-left" style="font-size:24px"> Article précédent</a></button></br></p>
 					</div>
 					<div class="col-sm-push-6 col-sm-3">
-						<p style="text-align:center" ng-if="!finListe"><button  class="btn btn-default btn-abonne"><a ng-href="{{contentDetailCtrl.accesArticles.data[classementArticle+1].url}}">Article suivant</a></button></br></p>
+						<p style="text-align:center" ng-if="!finListe"><button  class="btn btn-default btn-abonne"><a ng-href="{{contentDetailCtrl.accesArticles.data[classementArticle+1].url}}">Article suivant <i class="fa fa-angle-right" style="font-size:24px"></i></a></button></br></p>
 					</div>
 				</div>
 			</div>
 </div>
 
 <div class="row">  
-	<div class="col-sm-8 col-sm-push-2">
+	<div class="col-sm-8 col-sm-push-2"> 
 		<h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;text-align:center;">Articles sur la même thématique</h3>
 		<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
 		<div ng-repeat="content in contentDetailCtrl.accesArticles.data track by $index">
