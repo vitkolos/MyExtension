@@ -340,19 +340,21 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																														} else {
 																																																		$scope.displayTaxo[ind]= true;
 																																														}
-																																if ($scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f'][0] || $scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f'] && me.content.id!==data.id && count<3) {
+																																if ($scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f'][0] || $scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f']){
+																																				if(me.content.id!==data.id && count<3) {
 																																																		$scope.displayLienArticle[ind]= true;
 																																																		count++;
 																																														} else {
 																																																		$scope.displayLienArticle[ind]= false;
 																																														}
+																																}
 																																if (me.content.id===data.id) {
 																																																		$scope.classementArticle= ind;
 																																																		if (ind===me.accesArticles.data.length) {
 																																																				$scope.finListe=true;
 																																																		}
 																																}
-																																ind++; 
+																																ind++;
 																							});
 																						console.log("me.content.taxonomy['5a114f1b396588d22856706f']");
 																						console.log(me.content.taxonomy['5a114f1b396588d22856706f']);
