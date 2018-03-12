@@ -177,7 +177,7 @@
 					<p  class="redacteur">{{ content.i18n.fr.fields.redacteur[0] }}</p>
 					<br/>
 				</a>-->
-				<a ng-href="{{content.url |cleanUrl}}">
+				<a ng-href="{{content.url}}">
 					<img ng-if="content['fields.image'][0]" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
 					<img ng-if="!content['fields.image'][0]" src="/theme/cte/img/icons/video-thumb.jpg" style="width:120px">
 					<h3>{{content.title}}</h3>
