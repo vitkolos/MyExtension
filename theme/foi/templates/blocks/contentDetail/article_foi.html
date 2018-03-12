@@ -42,11 +42,6 @@
 						</div>
 					<p class='capital' style="text-align: right">{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
 			</div>
-			<header class="container-fluid" ng-if="!fieldEntity['image']">
-				<div class="text-article container">
-					<p class='capital' style="text-shadow: none">{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
-				</div>
-			</header>
 			
 			<div class="col-sm-8 col-sm-push-2 presentationArticle" >
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Titre-->
