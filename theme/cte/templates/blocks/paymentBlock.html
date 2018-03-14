@@ -5,14 +5,14 @@
                 {{contentDetailCtrl.getLabelByName('paf_text')}}
             </h2>
             <div class="row text-center"  ng-if="(contentDetailCtrl.content.fields.paimentOption).length==0"><p>{{contentDetailCtrl.content.fields.paf_text}}</p></div>-->
-            <h2 class="capital txt-red" ng-class="{'displayed' : paymentCtrl.currentStage==1}" ng-click="paymentCtrl.setCurrentStage(0,proposition_choice.$valid)">Choix de la proposition
+            <h2 class="capital txt-red" ng-class="{'displayed' : paymentCtrl.currentStage==1}" id="debut_procedure" ng-click="paymentCtrl.setCurrentStage(0,proposition_choice.$valid)">Choix de la proposition
                 <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="paymentCtrl.currentStage>1"></span>
             </h2>
             <div id="inscriptionStage1" class="collapse in">
                 <ng-form name="proposition_choice">
                         <div  class="row">
 							<div class="col-xs-6 col-xs-push-3">
-								<p>{{rubedo.translate("Block.Paiement.Acces","Ci-dessous, vous pouvez procéder au paiement : ")}}</p>
+								<p>{{rubedo.translate("Block.Paiement.Acces","Ci-dessous, choisissez votre voyage : ")}}</p>
 								<select style="border: 5px solid #c1573c;" ng-model="paymentCtrl.propositionId" name="proposition" required>
 									<option ng-repeat="proposition in paymentCtrl.contents | orderBy : 'text' " value="{{proposition.id}}">{{proposition.text}}</option>
 								</select>
