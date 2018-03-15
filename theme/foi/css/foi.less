@@ -394,13 +394,14 @@ p .resume {
 blockquote {
  font-weight:bold;
 	text-align: center;
- color: @main !important;
+ .txt-red;
  width:70%;
  border-top:5px solid white;
  border-bottom:5px solid white;
  border-left:none;
  margin: 30px auto;
 }
+blockquote p{.txt-red; text-align: center; font-size: 16px !important}
 @media screen and (min-width:@min_lg){
   blockquote:not(.center){width:60%; float:right; position: relative; left:30%; margin-left:-17.5%; margin-top:0; margin-bottom: 18px;}
   blockquote p{font-size: 16px !important; line-height: 1.6em !important}

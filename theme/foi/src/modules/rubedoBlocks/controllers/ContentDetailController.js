@@ -285,11 +285,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
                 function(response){
                     if(response.data.success){
-                        if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1", "5811a9422456404d018bcde0")){
+                        if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1")){
                             $scope.isClient=true;
-																												$scope.isVisiteur=true;
                         }
-																								else if (response.data.user.groups.includes("55eb0c6445205e6c0648408e")){
+																								else if (response.data.user.groups.includes("5a870ea739658802628b4567")){
                             $scope.isVisiteur=true;
                         }
                         else{
