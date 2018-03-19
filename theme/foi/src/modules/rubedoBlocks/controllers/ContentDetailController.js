@@ -313,6 +313,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         else{
                             var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
 																												$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
+																												console.log("Autre");
+																													console.log("Abonné : 596e2e483965889a1f7bf6d1");
+																												console.log("Visiteur : 5a870ea739658802628b4567");
+																												console.log(response.data.user.groups);
+																												console.log("isClient");
+																												console.log($scope.isClient);
+																												console.log("isVisiteur");
+																												console.log($scope.isVisiteur);
                         }
                     }
                 }
