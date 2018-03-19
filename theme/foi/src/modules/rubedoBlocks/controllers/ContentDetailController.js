@@ -300,7 +300,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																												console.log("isVisiteur");
 																												console.log($scope.isVisiteur);
                         }
-																								else if (response.data.user.groups.includes("5a870ea739658802628b4567")){
+																								else if (response.data.user.groups.includes("58e0b676245640ef008bb635")){
                             $scope.isVisiteur=true;
 																												console.log("Simple visiteur");
 																												console.log("5a870ea739658802628b4567");
