@@ -310,6 +310,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.isVisiteur=true;
 																												if (!oldArticle) {
 																															var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
+																															$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
 																															$scope.isOld=false;
 																															console.log("isOld");
 																															console.log($scope.isOld);
