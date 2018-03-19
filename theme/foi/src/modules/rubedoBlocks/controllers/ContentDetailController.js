@@ -295,7 +295,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
                 function(response){
                     if(response.data.success){
-                        if (response.data.user.type.fields.type==="Abonnés FOI"){
+                        if (esponse.data.user.groups.includes("596e2e483965889a1f7bf6d1")){
                             $scope.isClient=true;
 																												$scope.isVisiteur=true;
 																												console.log("Abonné FOI");
