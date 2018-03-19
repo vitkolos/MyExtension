@@ -1,0 +1,19 @@
+<div ng-controller="AddThisFollowController as addThisFollowCtrl" >
+    <!--Si Horizontal et large == dans le footer-->
+    <div ng-if="blockConfig.disposition == 'Horizontal' && blockConfig.small == 1" class="addthis_toolbox container">
+        <div class="col-sm-4">
+            <span class="capital">{{block.title}}</span>
+        </div>
+        <div ng-repeat = "network in addThisFollowCtrl.networks track by $index"  ng-if="network.id" class="col-sm-4 text-center">
+            <a ng-class="addThisFollowCtrl.networkClass(network)" addthis:userid="{{network.id}}">
+                <img class="hidden"><i ng-class="addThisFollowCtrl.networkIcon(network.name)"></i> {{network.name}}
+            </a>
+        </div>
+        
+    </div>
+</div>
+<!--
+	<a class="addthis_button_facebook txt-red"><img class="hidden"><i class="fa fa-facebook-official" data-toggle="tooltip" title="Partager sur Facebook"></i> </a>
+						<a class="addthis_button_twitter txt-red"><img  class="hidden"><i class="fa fa-twitter-square" data-toggle="tooltip" title="Partager sur Twitter"></i> </a>
+						<a class="addthis_button_email txt-red"><img class="hidden"><i class="fa fa-share-square" data-toggle="tooltip" title="Envoyer par mail"></i></a>
+						<a class="addthis_button_expanded txt-red"><img class="hidden"><i class="fa fa-plus-square" data-toggle="tooltip" title="Plus d'options"></i></a><br/>-->
