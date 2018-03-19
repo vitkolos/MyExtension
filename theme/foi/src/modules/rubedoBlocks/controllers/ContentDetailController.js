@@ -15,6 +15,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				$scope.finListe=false;
 				$scope.nomCategorie = "rubrique";
 				me.taxonomy=[];
+				me.tooltips=function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    }
     var previousFields;
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
