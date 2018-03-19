@@ -300,6 +300,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																												console.log("isVisiteur");
 																												console.log($scope.isVisiteur);
                         }
+																								/* 58e0b676245640ef008bb635 == groupe Revue FOI */
 																								else if (response.data.user.groups.includes("58e0b676245640ef008bb635")){
                             $scope.isVisiteur=true;
 																												console.log("Simple visiteur");
@@ -309,6 +310,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																												console.log($scope.isClient);
 																												console.log("isVisiteur");
 																												console.log($scope.isVisiteur);
+																												console.log("response.data.user");
+																												console.log(response.data.user);
                         }
                         else{
                             var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
