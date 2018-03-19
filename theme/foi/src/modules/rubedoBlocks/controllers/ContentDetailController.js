@@ -6,6 +6,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     $scope.isClient = false;
 				$scope.isVisiteur=true;
 				$scope.isOld=true;
+				$scope.isRestricted=false;
 				$scope.pageRevueEnCours = false;
 				$scope.taxonomies = {};
 				$scope.displayTaxo = {};
@@ -311,6 +312,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																												if (!oldArticle) {
 																															var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
 																															$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
+																																$scope.isRestricted=true;
 																															$scope.isOld=false;
 																															console.log("isOld");
 																															console.log($scope.isOld);
@@ -328,6 +330,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         else{
                             var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
 																												$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
+																													$scope.isRestricted=true;
 																												console.log("Autre");
 																													console.log("Abonné : 596e2e483965889a1f7bf6d1");
 																												console.log("Visiteur : 5a870ea739658802628b4567");
@@ -345,6 +348,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
              /*var limit = $scope.fieldEntity['richText'].indexOf("<br />",$scope.fieldEntity['richText'].length*0.1)+6;*/
 													var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
 													$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
+													$scope.isRestricted=true;
 													console.log("limit");
 													console.log(limit);
 													console.log("$scope.fieldEntity['richText'");
