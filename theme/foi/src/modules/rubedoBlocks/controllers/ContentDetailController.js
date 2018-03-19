@@ -92,12 +92,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								//me.titreSommaire(me.numeroFoi);
 																								me.buildSommaire();
 																				}
-                    
-                    if(me.content.type.code=="actualites" || me.content.type.code=="article_foi") {me.isClient();}
-                    
-                    me.oldArticle = true;
+																				
+																				me.oldArticle = true;
                     if ((today.getTime() - me.content.createTime*1000)<1000*3600*24*2) {me.oldArticle=false;
                     };
+                    
+                    if(me.content.type.code=="actualites" || me.content.type.code=="article_foi") {me.isClient(me.oldArticle);}
+                    
+                    
                     
                     
                     $scope.fieldLanguage=me.content.locale;
@@ -275,8 +277,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     $scope.registerFieldEditChanges=me.registerEditChanges;
     
     
-    me.isClient = function (){
+    me.isClient = function (oldArticle){
 								console.log("lancement fonction isClient");
+								console.log("oldArticle");
+								console.log(oldArticle);
         if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
            $scope.isClient=true;
 											$scope.isVisiteur=true;
@@ -301,7 +305,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																												console.log($scope.isVisiteur); 
                         }
 																								/* 58e0b676245640ef008bb635 == groupe Revue FOI */
-																								else if (response.data.user.groups.includes("58e0b676245640ef008bb635") && me.oldArticle){
+																								else if (response.data.user.groups.includes("58e0b676245640ef008bb635") && oldArticle){
                             $scope.isVisiteur=true;
 																												console.log("Simple visiteur");
 																												console.log("5a870ea739658802628b4567");
