@@ -276,7 +276,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     
     me.isClient = function (){
-								console.log(" lancement fonction isClient");
+								console.log("lancement fonction isClient");
         if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
            $scope.isClient=true;
 											$scope.isVisiteur=true;
@@ -287,9 +287,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     if(response.data.success){
                         if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1")){
                             $scope.isClient=true;
+																												$scope.isVisiteur=true;
+																												console.log("Abonné FOI");
+																												console.log("596e2e483965889a1f7bf6d1");
+																												console.log(response.data.user.groups);
+																												console.log("isClient");
+																												console.log($scope.isClient);
+																												console.log("isVisiteur");
+																												console.log($scope.isVisiteur);
                         }
 																								else if (response.data.user.groups.includes("5a870ea739658802628b4567")){
                             $scope.isVisiteur=true;
+																												console.log("Simple visiteur");
+																												console.log("5a870ea739658802628b4567");
+																												console.log(response.data.user.groups);
+																												console.log("isClient");
+																												console.log($scope.isClient);
+																												console.log("isVisiteur");
+																												console.log($scope.isVisiteur);
                         }
                         else{
                             var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
