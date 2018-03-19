@@ -101,9 +101,14 @@
 											</div>
 								  
 								</div> 
-								<div class="col-sm-6">
+								<div class="col-sm-6" ng-if="!isVisiteur">
 								  <p style="text-align:center"><button  class="btn btn-default btn-abonne"><a rubedo-page-link="58077629245640db008ba675">Je m'abonne</a></button></br></p>
 								</div>
+								
+								<div class="col-sm-12" ng-if="isVisiteur">
+								  <p style="text-align:center"><button  class="btn btn-default btn-abonne"><a rubedo-page-link="58077629245640db008ba675">Je m'abonne</a></button></br></p>
+								</div>
+								
 							</div>
 							
 							<!-- ACCES VISITEUR -->

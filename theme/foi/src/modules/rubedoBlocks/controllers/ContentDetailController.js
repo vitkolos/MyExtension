@@ -301,7 +301,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																												console.log($scope.isVisiteur); 
                         }
 																								/* 58e0b676245640ef008bb635 == groupe Revue FOI */
-																								else if (response.data.user.groups.includes("58e0b676245640ef008bb635")){
+																								else if (response.data.user.groups.includes("58e0b676245640ef008bb635") && me.oldArticle){
                             $scope.isVisiteur=true;
 																												console.log("Simple visiteur");
 																												console.log("5a870ea739658802628b4567");
