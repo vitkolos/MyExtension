@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.isClient = false;
-				$scope.isVisiteur=true;
+				$scope.isVisiteur=false;
 				$scope.isOld=true;
 				$scope.isRestricted=false;
 				$scope.pageRevueEnCours = false;
