@@ -280,6 +280,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
            $scope.isClient=true;
 											$scope.isVisiteur=true;
+											console.log("isClient");
+												console.log($scope.isClient);
+												console.log("isVisiteur");
+												console.log($scope.isVisiteur); 
         }
         else if ($scope.rubedo.current.user) {
             RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
