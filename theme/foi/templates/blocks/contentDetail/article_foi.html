@@ -43,7 +43,7 @@
 					<p class='capital' style="text-align: right">{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
 			</div>
 			
-			<div class="col-sm-8 col-sm-push-2 presentationArticle" >
+			<div class="col-xs-8 col-xs-push-2 presentationArticle" >
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Titre-->
 			<div class="redacteur">
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}" ng-if="fieldEntity['redacteur']"></rubedo-field><!--Rédacteur-->
@@ -55,7 +55,7 @@
 							<div ng-if="!isClient && !contentDetailCtrl.oldArticle" class="col-md-12 bg-grey limitationArticle" style="text-align:center">
 								<h2 >Article réservé aux abonnés</h2>
 								<p>Il vous reste 80% de l'article à découvrir... Abonnez-vous pour poursuivre la lecture</p>
-								<div class="col-sm-6" ng-show="!rubedo.current.user">
+								<div class="col-xs-6" ng-show="!rubedo.current.user">
 						
 											<button class="btn btn-default btn-connect" data-toggle="modal" data-target="#rubedoAuthModal">Je me connecte</button>
 											<div class="modal fade" id="rubedoAuthModal" tabindex="-1" role="dialog" aria-labelledby="rubedoAuthModalLabel" aria-hidden="true">
@@ -101,11 +101,11 @@
 											</div>
 								  
 								</div> 
-								<div class="col-sm-6" ng-if="!isVisiteur">
+								<div class="col-xs-6" ng-if="!isVisiteur">
 								  <p style="text-align:center"><button  class="btn btn-default btn-abonne"><a rubedo-page-link="58077629245640db008ba675">Je m'abonne</a></button></br></p>
 								</div>
 								
-								<div class="col-sm-12" ng-if="isVisiteur && !isOld">
+								<div class="col-xs-12" ng-if="isVisiteur && !isOld">
 								  <p style="text-align:center"><button  class="btn btn-default btn-abonne"><a rubedo-page-link="58077629245640db008ba675">Je m'abonne</a></button></br></p>
 								</div>
 								
@@ -115,7 +115,7 @@
 							<div ng-if="!isVisiteur && contentDetailCtrl.oldArticle" class="col-md-12 bg-grey limitationArticle" style="text-align:center">
 								<h2 >Accédez gratuitement à cet article en créant votre compte personnel</h2>
 								<p>Il vous reste 80% de l'article à découvrir... Inscrivez-vous gratuitement pour poursuivre la lecture</p>
-								<div class="col-sm-6" ng-show="!rubedo.current.user">
+								<div class="col-xs-6" ng-show="!rubedo.current.user">
 						
 											<button class="btn btn-default btn-connect" data-toggle="modal" data-target="#rubedoAuthModal">Je me connecte</button>
 											<div class="modal fade" id="rubedoAuthModal" tabindex="-1" role="dialog" aria-labelledby="rubedoAuthModalLabel" aria-hidden="true">
@@ -161,16 +161,16 @@
 											</div>
 								  
 								</div> 
-								<div class="col-sm-6">
+								<div class="col-xs-6">
 								  <p style="text-align:center"><button  class="btn btn-default btn-abonne"><a rubedo-page-link="58e1517824564049018bb0bf">Je m'inscris gratuitement</a></button></br></p>
 								</div>
 							</div>
 							
 				<div ng-if="isVisiteur" style="margin-top:50px;">		  
-					<div class="col-sm-3">
+					<div class="col-xs-3">
 						<p style="text-align:center"  ng-if="classementArticle>0 && !isRestricted"><button  class="btn btn-default btn-abonne"><a ng-href="{{contentDetailCtrl.accesArticles.data[classementArticle-1].url}}">Article précédent</a></button></br></p>
 					</div>
-					<div class="col-sm-push-6 col-sm-3">
+					<div class="col-xs-push-6 col-xs-3">
 						<p style="text-align:center" ng-if="!finListe && !isRestricted"><button  class="btn btn-default btn-abonne"><a ng-href="{{contentDetailCtrl.accesArticles.data[classementArticle+1].url}}">Article suivant</a></button></br></p>
 					</div>
 				</div>
@@ -178,11 +178,11 @@
 </div>
 
 <div class="row">  
-	<div class="col-sm-8 col-sm-push-2"> 
+	<div class="col-xs-8 col-xs-push-2"> 
 		<h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;text-align:center;">Articles sur la même thématique</h3>
 		<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
 		<div ng-repeat="content in contentDetailCtrl.accesArticles.data track by $index">
-			<div ng-show="displayLienArticle[$index]" class="col-xs-12 col-sm-4 text-center article">
+			<div ng-show="displayLienArticle[$index]" class="col-xs-12 col-xs-4 text-center article">
 				<!--<a ng-href="{{ content.url }}">
 					<p  class="article" >{{ content.text[0] }}</p>
 					<p  class="redacteur">{{ content.i18n.fr.fields.redacteur[0] }}</p>
