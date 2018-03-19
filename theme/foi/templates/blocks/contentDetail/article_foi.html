@@ -43,7 +43,7 @@
 					<p class='capital' style="text-align: right">{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
 			</div>
 			
-			<div class="col-xs-8 col-xs-push-2 presentationArticle" >
+			<div class="col-sm-8 col-sm-push-2 col-xs-10 col-xs-push-1 presentationArticle" >
 			<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Titre-->
 			<div class="redacteur">
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}" ng-if="fieldEntity['redacteur']"></rubedo-field><!--Rédacteur-->
