@@ -4,7 +4,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     $scope.isClient = false;
-				$scope.isVisiteur = false;
+				$scope.isVisiteur=true;
+				$scope.isOld=true;
 				$scope.pageRevueEnCours = false;
 				$scope.taxonomies = {};
 				$scope.displayTaxo = {};
@@ -305,8 +306,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																												console.log($scope.isVisiteur); 
                         }
 																								/* 58e0b676245640ef008bb635 == groupe Revue FOI */
-																								else if (response.data.user.groups.includes("58e0b676245640ef008bb635") && oldArticle){
+																								else if (response.data.user.groups.includes("58e0b676245640ef008bb635")){
                             $scope.isVisiteur=true;
+																												if (!oldArticle) {
+																															var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
+																															$scope.isOld=false;
+																												}
 																												console.log("Simple visiteur");
 																												console.log("5a870ea739658802628b4567");
 																												console.log(response.data.user.groups);
