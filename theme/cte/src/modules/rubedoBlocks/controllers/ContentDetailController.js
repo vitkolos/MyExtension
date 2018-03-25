@@ -10,7 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.isInscription = true; // pour les propositions, ne pas afficher les inscriptions si closes
 
     $scope.fieldInputMode=false;
-    $scope.page14_18=true;
+    $scope.page14_18=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
     });
@@ -191,6 +191,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 me.customLayout=layout;
                             }
                         });
+                    }
+                    
+                    //Ajout de formulaire sur page proposition 14-18
+                    if (me.content.canonicalUrl.includes('/fr/propositions/14-18-ans')) {
+                        $scope.page14_18=true;
                     }
                     
                     if (me.content.type.code=="proposition") {
