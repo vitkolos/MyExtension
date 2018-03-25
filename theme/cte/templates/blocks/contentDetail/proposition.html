@@ -152,7 +152,7 @@
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<p><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('infoInscription')}}"></rubedo-field></p><!--Contact-->
-						<p ng-if="page14_18">{{rubedo.translate("Block.Inscription.Formulaire.14-18", "Formulaire à renvoyer : ")}}
+						<p style="font-weight:bold;" ng-if="page14_18">{{rubedo.translate("Block.Inscription.Formulaire.14-18", "Formulaire à renvoyer : ")}}
 						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('formulaire_pdf')}}" ng-if="contentDetailCtrl.getFieldByName('formulaire_pdf')&& contentDetailCtrl.content.fields.formulaire_pdf &&(contentDetailCtrl.content.fields.formulaire_pdf!='')"></rubedo-field><!-- Formulaire-->
 						</p>
 					</div>
