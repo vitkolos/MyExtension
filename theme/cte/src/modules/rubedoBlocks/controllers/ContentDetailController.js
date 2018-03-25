@@ -196,8 +196,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     //Ajout de formulaire sur page proposition 14-18
                     if (me.content.canonicalUrl.includes('/fr/propositions/14-18-ans')) {
                         $scope.page14_18=true;
-                        console.log("page14-18");
-                        console.log($scope.page14_18);
                     }
                     
                     if (me.content.type.code=="proposition") {
