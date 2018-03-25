@@ -149,6 +149,9 @@
 				<div ng-if="fieldEntity['infoInscription']" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('infoInscription')}}</p>
+						<p ng-if="page14_18">{{rubedo.translate("Block.Inscription.Formulaire.14-18", "Formulaire à renvoyer : ")}}
+						<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('formulaire_pdf')}}" ng-if="contentDetailCtrl.getFieldByName('formulaire_pdf')&& contentDetailCtrl.content.fields.formulaire_pdf &&(contentDetailCtrl.content.fields.formulaire_pdf!='')"></rubedo-field><!-- Formulaire-->
+						</p>
 					</div>
 					<div class="col-xs-12 col-sm-8 ">
 						<p><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('infoInscription')}}"></rubedo-field></p><!--Contact-->

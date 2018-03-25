@@ -10,6 +10,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.isInscription = true; // pour les propositions, ne pas afficher les inscriptions si closes
 
     $scope.fieldInputMode=false;
+    $scope.page14_18=true;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
     });
