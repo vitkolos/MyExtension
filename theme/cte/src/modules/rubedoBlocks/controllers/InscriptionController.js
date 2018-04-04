@@ -26,6 +26,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
+												case 'personne-sans-enfant':
+                me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+                me.additional_infos = null;
+                break;
             case 'adulte':
                 me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
                 me.additional_infos = null;
@@ -42,7 +46,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
-	    case 'couple-avec-enfants':
+												case 'couple-avec-enfants':
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
