@@ -3,19 +3,13 @@
 		
 		<div class="row padding-large center-cols contact row-eq-height">
 
-			<div class="col-xs-12 col-sm-4 text-left" ng-if="fieldEntity['description']">
+			<div class="col-xs-12 col-sm-8 text-left" ng-if="fieldEntity['description']">
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field>
 			</div>
 
-			<div class="col-xs-12 col-sm-4 text-left" ng-if="fieldEntity['position']" ng-class="{'col-sm-pull-2':!fieldEntity['description']">
-				<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
-				<p>
-						<i class="fa fa-map-marker icon"></i>
-						<span>{{contentDetailCtrl.content.fields.position.address}}</span>
-				</p>
-			</div>
+			
 			<div class="col-xs-12 col-sm-4 text-left" >
-				<h3 style="font-style: italic">Contact</h3>
+				<h3>Contact</h3>
 				<div>
 						<i class="fa fa-envelope icon"></i>
 						<div ng-if="fieldEntity['email']" style="display: inline-block; margin-left:10px;" ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
@@ -29,6 +23,14 @@
 								<rubedo-field style="display:inline-block" ng-if="fieldEntity['telephone2']" field ="{{contentDetailCtrl.getFieldByName('telephone2')}}"></rubedo-field></span>
 				</p>
 				<p class="linkbox"><rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 9)=='linkfield' && fieldEntity[field.config.name].title!=''"></rubedo-field></p>
+				
+				<div ng-if="fieldEntity['position']" >
+						<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
+						<p>
+								<i class="fa fa-map-marker icon"></i>
+								<span>{{contentDetailCtrl.content.fields.position.address}}</span>
+						</p>
+				</div>
 				
 			</div>
 		</div>
