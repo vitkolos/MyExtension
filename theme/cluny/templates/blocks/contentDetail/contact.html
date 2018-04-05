@@ -3,7 +3,15 @@
 		
 		<div class="row padding-large center-cols contact row-eq-height">
 
-			<div class="col-xs-12 col-sm-8 text-left" ng-if="fieldEntity['description']">
+				<div class="col-xs-12 col-sm-4 text-left" ng-if="fieldEntity['position']" >
+						<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
+						<p>
+								<i class="fa fa-map-marker icon"></i>
+								<span>{{contentDetailCtrl.content.fields.position.address}}</span>
+						</p>
+				</div>
+			
+			<div class="col-xs-12 col-sm-4 text-left" ng-if="fieldEntity['description']">
 				<rubedo-field  field ="{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field>
 			</div>
 
@@ -26,13 +34,6 @@
 				</p>
 				<p class="linkbox"><rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 9)=='linkfield' && fieldEntity[field.config.name].title!=''"></rubedo-field></p>
 				
-				<div ng-if="fieldEntity['position']" >
-						<h3>{{contentDetailCtrl.getLabelByName('position')}}</h3>
-						<p>
-								<i class="fa fa-map-marker icon"></i>
-								<span>{{contentDetailCtrl.content.fields.position.address}}</span>
-						</p>
-				</div>
 				
 			</div>
 		</div>
