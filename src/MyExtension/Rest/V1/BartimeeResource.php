@@ -125,7 +125,7 @@ class BartimeeResource extends AbstractResource
             "taxonomies" => '{}'
        ];
         $params = [
-            "limit" => 50,
+            "limit" => 1000,
             "start" =>0,
             "orderby" => "lastUpdateTime",
             "lastupdatetime" => $lastDonation['lastUpdateTime']*1000,
