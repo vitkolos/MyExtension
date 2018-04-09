@@ -167,7 +167,7 @@
                          <input type="radio"  name="situationConjugale" id="mariage" value="{{rubedo.translate('Block.Inscription.SituationConjugale.Maries')}}" ng-model="inscription.situationConjugale" required>
                                  <label for="mariage">{{rubedo.translate('Block.Inscription.SituationConjugale.Maries')}}</label>
                                  
-                        <div class="dropdown col-xs-12" ng-if="inscription.situationConjugale == rubedo.translate('Block.Inscription.SituationConjugale.Maries') " style="margin-bottom: 12px">
+                        <div class="dropdown col-xs-12" ng-if="inscription.situationConjugale == rubedo.translate('Block.Inscription.SituationConjugale.Maries') && pageCANA" style="margin-bottom: 12px">
                             <label class="col-xs-12">{{rubedo.translate('Block.Inscription.Mariage')}}</label>
                             <a showtab class="dropdown-toggle" id="dropdowndateMar" role="button" data-toggle="dropdown" data-target="#" href="#">
                                 <div class="input-group">
