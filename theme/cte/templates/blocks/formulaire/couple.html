@@ -224,7 +224,7 @@
                 </div>
             </div>            
         </div>
-        <div class="col-xs-12" ng-if="inscription.public_type == 'couple'  ||  inscription.public_type == 'couple-avec-enfants' && !formCtrl.form.situation_conjugale && pageCANA">
+        <div class="col-xs-12" ng-if="pageCANA && (inscription.public_type == 'couple'  ||  inscription.public_type == 'couple-avec-enfants' && !formCtrl.form.situation_conjugale)">
             <h3 class="row">{{rubedo.translate("Block.Inscription.Mariage.Titre", "Mariage")}}</h3>
             <input type="hidden" name="situationConjugale" id="mariage" value="{{rubedo.translate('Block.Inscription.SituationConjugale.Maries')}}" ng-model="inscription.situationConjugale">
             <div class="row">
