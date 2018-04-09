@@ -94,6 +94,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 				if($scope.rubedo.current.page.maskId == '56743f423bc325811d8b457a'){
 								$scope.pageCANA=true;
 				}
+				console.log("$scope.pageCANA");
+				console.log($scope.pageCANA);
+				
 
 
     // vérifier les infos complémentaires pour le formulaire
