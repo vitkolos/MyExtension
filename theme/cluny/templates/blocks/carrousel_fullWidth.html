@@ -67,13 +67,16 @@
     text-align: center;
     color:white;
 }
-.homepage_txt h1{font-size: 4em;}
+@media screen and (min-width:500px){
+     .homepage_txt h1{font-size: 4em;}
+}
 .homepage_txt p, .homepage_txt h1{line-height: 0.9em; color:white; text-shadow: 2.5px 2.5px 2.5px rgba(0,0,0,.33)}
 .homepage_txt p:first-of-type{ font-size:1.3em;}
 
 
 
 @media screen and (max-width:500px){
+        .homepage_txt h1{font-size: 2em;}
         .carousel-inner{height:50vh}
         /*.homepage_txt p:nth-of-type(2){ font-size:25px}
         .homepage_txt p:nth-of-type(2){ font-size:30px; font-weight:bold;}
