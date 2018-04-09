@@ -90,12 +90,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.inscription.motivation = false;
     $scope.inscription.enfants=[];
     $scope.inscription.enfant={};
+				/*Gestion de l'affichage de la date de mariage dans les formulaires*/
 				$scope.pageCANA=false;
 				if($scope.rubedo.current.page.maskId == '56743f423bc325811d8b457a'){
 								$scope.pageCANA=true;
 				}
-				console.log("$scope.pageCANA");
-				console.log($scope.pageCANA);
 				
 
 
