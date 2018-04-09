@@ -228,7 +228,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     $scope.registerFieldEditChanges=me.registerEditChanges;
 				
 				//Albums photos
-				/*if (me.content.type.code=="album" || me.content.type.code=="actualites") {
+				if (me.content.type.code=="album" || me.content.type.code=="actualites") {
 								me.currentIndex=0;
 								me.loadModal = function(index,embedded){
 												me.currentIndex = index;
@@ -254,7 +254,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 												}
 								};
 
-				}*/
+				}
 			
 				
 				
