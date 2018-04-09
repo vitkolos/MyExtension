@@ -90,6 +90,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.inscription.motivation = false;
     $scope.inscription.enfants=[];
     $scope.inscription.enfant={};
+				$scope.pageCANA=false;
+				console.log("current.page");
+				console.log($scope.rubedo.current.page);
     // vérifier les infos complémentaires pour le formulaire
     if ((me.content.fields.questions1) && me.content.fields.questions1.questions1 && ((me.content.fields.questions1.questions1).length>0)) {
         if(typeof me.content.fields.questions1.questions1 =='string') {

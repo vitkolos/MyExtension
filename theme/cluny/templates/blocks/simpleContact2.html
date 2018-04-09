@@ -2,28 +2,34 @@
       contactCtrl.contactData.subject='Nouvelle réservation';
       contactCtrl.contactData.nbOfNights = 0;
       contactCtrl.param.prix = {
-        single: 210,
-        double: 130,
-        triple: 110,
-        meal: 60
+        single_shower: 50,
+        single: 42,
+        double_shower: 88,
+        double: 72,
+        triple_shower: 120,
+        quadruple_shower: 128,
+        quadruple: 120,
+        group_young_adults: 30,
+        taxe: 3.5
       };
       lg = rubedo.current.page.locale;
       moment.locale(rubedo.current.page.locale);
       contactCtrl.contactData.template='/theme/cte/templates/mails/reservationABFH.html';
       lang = {
         en: {
-          room: 'Room',
+          room: 'Room without bathroom',
+          roomSDB: 'Room with bathroom',
           price1night: 'Price for 1 night',
-          nbadults: 'Number of adults',
-          nbchild46: 'Number of children 4-6 years old',
-          nbchild712: 'Number of children 7-12 years old',
+          nbrooms: 'Number of rooms',
           price: 'Price',
           night: 'night',
           rsingle: 'Single room',
           rdouble: 'Double room (couple)',
-          rtwin: 'Double room (twin beds)',
-          rtriple: 'Triple or Quadruple room',
-          meal: 'Meal',
+          rtriple: 'Triple room',
+          rquadruple: 'Four-bed room',
+          group_young_adults: 'Rooms for youth groups',
+          taxe:'Tourist tax',
+          nb_adults:'Number of persons concerned',
           comments: 'Remarks',
           comments_placeholder: 'Write here additional details (food intolerance, allergies, smokers, animals, ...)',
           detailsroomsmeals: 'Details of rooms and meals',
@@ -34,179 +40,223 @@
       contactCtrl.param.joursCumul=[0,0,31,59,90,120,151,181,212,243,273,304,334,365];">
   <!-- https://github.com/nicolasrhone/MyExtension/blob/master/src/MyExtension/Rest/V1/MailResource.php -->
   <form name="abunaForm" class="container" role="form">
-    <h2 class="capital txt-red displayed">{{lang[lg]['inforesa'] || 'Informations sur la réservation'}}</h2>
-
-    <!-- =========== INFOS DE BASE =========== -->
-    <div class="row">
-      <div class="col-sm-5">
-        <label for="in_prenom" class="label_style left">{{rubedo.translate("Block.Inscription.Prenom","Prénom")}}*</label>
-        <input class="form-control myinput" ng-init="contactCtrl.contactData.surname = ''" id="in_prenom" ng-model="contactCtrl.contactData.surname" name="prenom" type="text" ng-change="" required>
-      </div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-5">
-        <label for="in_nom" class="label_style left">{{rubedo.translate("Block.Inscription.Nom","Nom")}}*</label>
-        <input class="form-control myinput" ng-init="contactCtrl.contactData.name = ''" id="in_nom" ng-model="contactCtrl.contactData.name" name="nom" type="text" ng-change="" required>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-5">
-        <label for="{{'startDate'+block.id}}" class="label_style left" style="width:100%">{{rubedo.translate("date.from", "Date d'arrivée")}}*</label>
-        <div class="dropdown">
-          <a showtab class="dropdown-toggle" id="{{'startDate'+block.id}}" role="button" data-toggle="dropdown" data-target="#" href="#">
-            <div class="input-group">
-              <input  readonly id="startDate"
-                      ng-model="contactCtrl.contactData.startDate"
-                      type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+    
+        <h3>{{rubedo.translate("Block.Inscription.InfosPerso")}}</h3><br />
+        <div class="row">
+            <div class="col-sm-6">
+                <label >{{rubedo.translate("Block.Inscription.Nom")}}*</label>
+                <input type="text" ng-model="contactCtrl.contactData.nom" class="form-control" id="{{'name'+block.id}}" required><br/>
             </div>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <datetimepicker data-ng-model="contactCtrl.contactData.startDate"
-                            data-datetimepicker-config="{dropdownSelector: '#startDate'+block.id, startView: 'year', minView:'day'}"
-                            data-on-set-time="contactCtrl.contactData.startDate = (contactCtrl.contactData.startDate |date:'dd/MM/yyyy');
-                                              d1=contactCtrl.contactData.startDate.split('/');d2=contactCtrl.contactData.endDate.split('/');
-                                              m1=(d1[1]|number:0);a1=(d1[2]/4|number:0);
-                                              m2=(d2[1]|number:0);a2=(d2[2]/4|number:0);
-                                              z1 = (m1>2 && (d1[2] - a1 * 4)==0) ? 1 : 0;
-                                              z2 = (m2>2 && (d2[2] - a2 * 4)==0) ? 1 : 0;
-                                              bis = (d1[2] == d2[2]) ? 0 : 365+z1;
-                                              c1=(m1>1) ? contactCtrl.param.joursCumul[m1]+z1+(d1[0]*1) : (d1[0]*1);
-                                              c2=(m2>1) ? contactCtrl.param.joursCumul[m2]+z2+(d2[0]*1)+bis : (d2[0]*1)+bis;
-                                              contactCtrl.contactData.nbOfNights = c2-c1;"
-                            ng-change=""
-            />
-          </ul>
-        </div>
-      </div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-5">
-        <label for="{{'endDate'+block.id}}" class="label_style left" style="width:100%">{{rubedo.translate("date.to", "Date de départ")}}*</label>
-        <div class="dropdown">
-          <a showtab class="dropdown-toggle" id="{{'endDate'+block.id}}" role="button" data-toggle="dropdown" data-target="#" href="#">
-            <div class="input-group">
-              <input readonly id="endDate"
-                ng-model="contactCtrl.contactData.endDate"
-                type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <div class="col-sm-6">
+                <label >{{rubedo.translate("Block.Inscription.Adresse")}}*</label>
+                <textarea class="form-control" ng-model="contactCtrl.contactData.adresse" rows="2"></textarea><br/>
             </div>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <datetimepicker data-ng-model="contactCtrl.contactData.endDate"
-                            data-datetimepicker-config="{dropdownSelector: '#endDate'+block.id, startView: 'year', minView:'day'}"
-                            data-on-set-time="contactCtrl.contactData.endDate = (contactCtrl.contactData.endDate |date:'dd/MM/yyyy');
-                                              moment.locale('fr');
-                                              d1=contactCtrl.contactData.startDate.split('/');d2=contactCtrl.contactData.endDate.split('/');
-                                              m1=(d1[1]|number:0);a1=(d1[2]/4|number:0);
-                                              m2=(d2[1]|number:0);a2=(d2[2]/4|number:0);
-                                              z1 = (m1>2 && (d1[2] - a1 * 4)==0) ? 1 : 0;
-                                              z2 = (m2>2 && (d2[2] - a2 * 4)==0) ? 1 : 0;
-                                              bis = (d1[2] == d2[2]) ? 0 : 365+z1;
-                                              c1=(m1>1) ? contactCtrl.param.joursCumul[m1]+z1+(d1[0]*1) : (d1[0]*1);
-                                              c2=(m2>1) ? contactCtrl.param.joursCumul[m2]+z2+(d2[0]*1)+bis : (d2[0]*1)+bis;
-                                              contactCtrl.contactData.nbOfNights = c2-c1;"
-                            ng-change=""
-            />
-          </ul>
         </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label >{{rubedo.translate("Block.Inscription.Prenom")}}*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.prenom" class="form-control"  required><br/>
+            </div>
+            <div class="col-sm-6">
+                <label>{{rubedo.translate("Block.Inscription.CodePostal")}}*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.codePostal" class="form-control"  required><br/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label>{{rubedo.translate("Block.Inscription.Email")}}*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.email" class="form-control"  required><br/>
+            </div>
+            <div class="col-sm-6">
+                <label >{{rubedo.translate("Block.Inscription.Ville")}}*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.ville" class="form-control"  required><br/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label>{{rubedo.translate("Block.Inscription.Telephone")}}*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.telephone" class="form-control"  required><br/>
+            </div>
+            <div class="col-sm-6">
+                <label>{{rubedo.translate("Block.Inscription.Pays")}}*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.telephone" class="form-control"  required><br/>
+            </div>
+            
+        </div><br />
+        <h3>{{rubedo.translate("Demande_De_Reservation")}}</h3><br />
+               
+      <div class="row">
+          <div class="col-sm-5">
+            <label for="{{'startDate'+block.id}}" class="label_style left" style="width:100%">{{rubedo.translate("Arrivee")}}*</label>
+            <div class="dropdown">
+              <a showtab class="dropdown-toggle" id="{{'startDate'+block.id}}" role="button" data-toggle="dropdown" data-target="#" href="#">
+                <div class="input-group">
+                  <input  readonly id="startDate"
+                          ng-model="contactCtrl.contactData.startDate"
+                          type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <datetimepicker data-ng-model="contactCtrl.contactData.startDate"
+                                data-datetimepicker-config="{dropdownSelector: '#startDate'+block.id, startView: 'year', minView:'day'}"
+                                data-on-set-time="contactCtrl.contactData.startDate = (contactCtrl.contactData.startDate |date:'dd/MM/yyyy');
+                                                  d1=contactCtrl.contactData.startDate.split('/');d2=contactCtrl.contactData.endDate.split('/');
+                                                  m1=(d1[1]|number:0);a1=(d1[2]/4|number:0);
+                                                  m2=(d2[1]|number:0);a2=(d2[2]/4|number:0);
+                                                  z1 = (m1>2 && (d1[2] - a1 * 4)==0) ? 1 : 0;
+                                                  z2 = (m2>2 && (d2[2] - a2 * 4)==0) ? 1 : 0;
+                                                  bis = (d1[2] == d2[2]) ? 0 : 365+z1;
+                                                  c1=(m1>1) ? contactCtrl.param.joursCumul[m1]+z1+(d1[0]*1) : (d1[0]*1);
+                                                  c2=(m2>1) ? contactCtrl.param.joursCumul[m2]+z2+(d2[0]*1)+bis : (d2[0]*1)+bis;
+                                                  contactCtrl.contactData.nbOfNights = c2-c1;"
+                                ng-change=""
+                />
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-5">
+            <label for="{{'endDate'+block.id}}" class="label_style left" style="width:100%">{{rubedo.translate("Depart")}}*</label>
+            <div class="dropdown">
+              <a showtab class="dropdown-toggle" id="{{'endDate'+block.id}}" role="button" data-toggle="dropdown" data-target="#" href="#">
+                <div class="input-group">
+                  <input readonly id="endDate"
+                    ng-model="contactCtrl.contactData.endDate"
+                    type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <datetimepicker data-ng-model="contactCtrl.contactData.endDate"
+                                data-datetimepicker-config="{dropdownSelector: '#endDate'+block.id, startView: 'year', minView:'day'}"
+                                data-on-set-time="contactCtrl.contactData.endDate = (contactCtrl.contactData.endDate |date:'dd/MM/yyyy');
+                                                  moment.locale('fr');
+                                                  d1=contactCtrl.contactData.startDate.split('/');d2=contactCtrl.contactData.endDate.split('/');
+                                                  m1=(d1[1]|number:0);a1=(d1[2]/4|number:0);
+                                                  m2=(d2[1]|number:0);a2=(d2[2]/4|number:0);
+                                                  z1 = (m1>2 && (d1[2] - a1 * 4)==0) ? 1 : 0;
+                                                  z2 = (m2>2 && (d2[2] - a2 * 4)==0) ? 1 : 0;
+                                                  bis = (d1[2] == d2[2]) ? 0 : 365+z1;
+                                                  c1=(m1>1) ? contactCtrl.param.joursCumul[m1]+z1+(d1[0]*1) : (d1[0]*1);
+                                                  c2=(m2>1) ? contactCtrl.param.joursCumul[m2]+z2+(d2[0]*1)+bis : (d2[0]*1)+bis;
+                                                  contactCtrl.contactData.nbOfNights = c2-c1;"
+                                ng-change=""
+                />
+              </ul>
+            </div>
+          </div>
       </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-5">
-        <label for="in_email" class="label_style left">{{rubedo.translate("Block.Inscription.Email", "Adresse email")}}*</label>
-        <input class="form-control myinput email" ng-init="contactCtrl.contactData.email = ''" id="in_email" ng-model="contactCtrl.contactData.email" name="email" type="email" ng-change="">
-      </div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-5">
-        <label for="in_phone" class="label_style left">{{rubedo.translate("Block.Inscription.Telephone", "Téléphone")}}*</label>
-        <input class="form-control myinput" ng-init="contactCtrl.contactData.pax = 0" id="in_phone" ng-model="contactCtrl.contactData.phone" name="phone" type="text" pattern="[0-9\(\)\-\s\+]+">
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-5">
-        <label for="in_city" class="label_style left">{{rubedo.translate("Block.Inscription.Ville", "Ville")}}*</label>
-        <input class="form-control myinput" ng-init="contactCtrl.contactData.city = ''" id="in_city" ng-model="contactCtrl.contactData.city" name="city" type="text" ng-change="">
-      </div>
-      <div class="col-sm-2"></div>
-      <div class="col-sm-5">
-        <label for="in_country" class="label_style left">{{rubedo.translate("Block.Inscription.Pays", "Pays")}}*</label>
-        <input class="form-control myinput" ng-init="contactCtrl.contactData.country = ''" id="in_country" ng-model="contactCtrl.contactData.country" name="country" type="text" ng-change="">
-      </div>
-    </div>
-
-    <h2 class="capital txt-red displayed">{{lang[lg]['detailsroomsmeals'] || 'Détail des chambres et repas'}}</h2>
+    
+    <br/><br/>
+    
     <input type="hidden" value="0" name="nbNights" id="nbNights" ng-model="contactCtrl.contactData.nbOfNights">
     <div class="row">
       <table class="rooms">
-        <tr class="headers">
-          <th>{{lang[lg]['room'] || 'Chambre'}}</th>
+        <!--<tr class="headers">
+          <th></th>
           <th>{{lang[lg]['price1night'] || 'Prix pour 1 nuit'}}</th>
-          <th>{{lang[lg]['nbadults'] || 'Nombre d\'adultes'}}</th>
-          <th>{{lang[lg]['nbchild46'] || 'Nombre d\'enfants 4-6 ans'}}</th>
-          <th>{{lang[lg]['nbchild712'] || 'Nombre d\'enfants 7-12 ans'}}</th>
-          <th>{{lang[lg]['price'] || 'Prix'}} ({{contactCtrl.contactData.nbOfNights}} {{lang[lg]['night'] || 'nuit'}}<span ng-if="contactCtrl.contactData.nbOfNights>1">s</span>) &#8362;</th>
+          <th>{{lang[lg]['nbrooms'] || 'Nombre de chambres'}}</th>
+          <th>{{lang[lg]['price1night'] || 'Prix pour 1 nuit'}}</th>
+          <th>{{lang[lg]['nbrooms'] || 'Nombre de chambres'}}</th>
+          <th>{{lang[lg]['price'] || 'Prix'}} ({{contactCtrl.contactData.nbOfNights}} {{lang[lg]['night'] || 'nuit'}}<span ng-if="contactCtrl.contactData.nbOfNights>1">s</span>) &#128;</th>
+        </tr>-->
+        <tr class="detail">
+          <td></td>
+          <td colspan="2">{{lang[lg]['room'] || 'Sans salle de bain'}}</td>
+          <td colspan="2">{{lang[lg]['roomSDB'] || 'Avec salle de bain'}}</d>
+          <td class="td_price">{{lang[lg]['price'] || 'Prix'}} ({{contactCtrl.contactData.nbOfNights}} {{lang[lg]['night'] || 'nuit'}}<span ng-if="contactCtrl.contactData.nbOfNights>1">s</span>) &#128;</td>
         </tr>
         <tr>
           <td class="room_type">{{lang[lg]['rsingle'] || 'Chambre simple'}}</td>
-          <td class="room_prix">{{contactCtrl.param.prix.single}} &#8362;/pers</td>
-          <td class="td_input"><input id="adults1" name="adults1" ng-model="contactCtrl.contactData.adults1" ng-init="contactCtrl.contactData.adults1 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_input"></td>
-          <td class="td_input"></td>
-          <td class="td_price">{{contactCtrl.contactData.price1 = contactCtrl.contactData.adults1 * contactCtrl.param.prix.single * contactCtrl.contactData.nbOfNights|number:2}}  &#8362;</td>
+          <td class="room_prix">{{contactCtrl.param.prix.single}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td class="td_input"><input id="rooms1" name="rooms1" ng-model="contactCtrl.contactData.rooms1" ng-init="contactCtrl.contactData.rooms1 = 0"  type="number" min="0" max="100" class="form-control"></td>
+          <td class="room_prix">{{contactCtrl.param.prix.single_shower}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td class="td_input"><input id="rooms1_shower" name="rooms1_shower" ng-model="contactCtrl.contactData.rooms1_shower" ng-init="contactCtrl.contactData.rooms1_shower = 0"  type="number" min="0" max="100" class="form-control"></td>
+          <td class="td_price">{{contactCtrl.contactData.price1 = (contactCtrl.contactData.rooms1 * contactCtrl.param.prix.single + contactCtrl.contactData.rooms1_shower * contactCtrl.param.prix.single_shower) * contactCtrl.contactData.nbOfNights|number:2}}  &#128;</td>
         </tr>
         <tr>
-          <td class="room_type">{{lang[lg]['rdouble'] || 'Chambre double (couple)'}}</td>
-          <td class="room_prix">{{contactCtrl.param.prix.double}} &#8362;/pers</td>
-          <td class="td_input"><input id="adults2" name="adults2" ng-model="contactCtrl.contactData.adults2" ng-init="contactCtrl.contactData.adults2 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_input"><input id="children2_50" name="children2_50" ng-model="contactCtrl.contactData.children2_50" ng-init="contactCtrl.contactData.children2_50 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_input"><input id="children2_25" name="children2_25" ng-model="contactCtrl.contactData.children2_25" ng-init="contactCtrl.contactData.children2_25 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_price">{{contactCtrl.contactData.price2 = (contactCtrl.contactData.adults2 +
-                                                                  contactCtrl.contactData.children2_50 * 0.5 +
-                                                                  contactCtrl.contactData.children2_25 * 0.75)
-                                                                  * contactCtrl.param.prix.double * contactCtrl.contactData.nbOfNights|number:2}}  &#8362;</td>
+          <td class="room_type">{{lang[lg]['rdouble'] || 'Chambre doucle (couple)'}}</td>
+          <td class="room_prix">{{contactCtrl.param.prix.double}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td class="td_input"><input id="rooms2" name="rooms2" ng-model="contactCtrl.contactData.rooms2" ng-init="contactCtrl.contactData.rooms2 = 0"  type="number" min="0" max="100" class="form-control"></td>
+          <td class="room_prix">{{contactCtrl.param.prix.double_shower}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td class="td_input"><input id="rooms2_shower" name="rooms2_shower" ng-model="contactCtrl.contactData.rooms2_shower" ng-init="contactCtrl.contactData.rooms2_shower = 0"  type="number" min="0" max="100" class="form-control"></td>
+          <td class="td_price">{{contactCtrl.contactData.price2 = (contactCtrl.contactData.rooms2 * contactCtrl.param.prix.double + contactCtrl.contactData.rooms2_shower * contactCtrl.param.prix.double_shower) * contactCtrl.contactData.nbOfNights|number:2}}  &#128;</td>
         </tr>
         <tr>
-          <td class="room_type">{{lang[lg]['rtwin'] || 'Chambre double (lits jumeaux)'}}</td>
-          <td class="room_prix">{{contactCtrl.param.prix.double}} &#8362;/pers</td>
-          <td class="td_input"><input id="adults21" name="adults21" ng-model="contactCtrl.contactData.adults21" ng-init="contactCtrl.contactData.adults21 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_input"><input id="children21_50" name="children21_50" ng-model="contactCtrl.contactData.children21_50" ng-init="contactCtrl.contactData.children21_50 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_input"><input id="children21_25" name="children21_25" ng-model="contactCtrl.contactData.children21_25" ng-init="contactCtrl.contactData.children21_25 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_price">{{contactCtrl.contactData.price21 = (contactCtrl.contactData.adults21 +
-                                                                    contactCtrl.contactData.children21_50 * 0.5 +
-                                                                    contactCtrl.contactData.children21_25 * 0.75)
-                                                                    * contactCtrl.param.prix.double * contactCtrl.contactData.nbOfNights|number:2}}  &#8362;</td>
+          <td class="room_type">{{lang[lg]['rtriple'] || 'Chambre triple'}}</td>
+          <td class="room_prix"></td>
+          <td class="td_input"></td>
+          <td class="room_prix">{{contactCtrl.param.prix.triple_shower}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td class="td_input"><input id="rooms3_shower" name="rooms3_shower" ng-model="contactCtrl.contactData.rooms3_shower" ng-init="contactCtrl.contactData.rooms3_shower = 0"  type="number" min="0" max="100" class="form-control"></td>
+          <td class="td_price">{{contactCtrl.contactData.price3 = contactCtrl.contactData.rooms3_shower * contactCtrl.param.prix.triple_shower * contactCtrl.contactData.nbOfNights|number:2}}  &#128;</td>
       </tr>
         <tr>
-          <td class="room_type">{{lang[lg]['rtriple'] || 'Chambre triple ou quadruple'}}</td>
-          <td class="room_prix">{{contactCtrl.param.prix.triple}} &#8362;/pers</td>
-          <td class="td_input"><input id="adults3" name="adults3" ng-model="contactCtrl.contactData.adults3" ng-init="contactCtrl.contactData.adults3 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_input"><input id="children3_50" name="children3_50" ng-model="contactCtrl.contactData.children3_50" ng-init="contactCtrl.contactData.children3_50 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_input"><input id="children3_25" name="children3_25" ng-model="contactCtrl.contactData.children3_25" ng-init="contactCtrl.contactData.children3_25 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_price">{{contactCtrl.contactData.price3 = (contactCtrl.contactData.adults3 +
-                                                                  contactCtrl.contactData.children3_50 * 0.5 +
-                                                                  contactCtrl.contactData.children3_25 * 0.75)
-                                                                  * contactCtrl.param.prix.triple * contactCtrl.contactData.nbOfNights|number:2}}  &#8362;</td>
-        </tr>
-        <tr>
-          <td class="room_type">{{lang[lg]['meal'] || 'Repas'}}</td>
-          <td class="room_prix">{{contactCtrl.param.prix.meal}} &#8362;/pers</td>
-          <td class="td_input"><input id="adults_meal" name="adults_meal" ng-model="contactCtrl.contactData.adults_meal" ng-init="contactCtrl.contactData.adults_meal = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_input"><input id="children_meal_50" name="children_meal_50" ng-model="contactCtrl.contactData.children_meal_50" ng-init="contactCtrl.contactData.children_meal_50 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_input"><input id="children_meal_25" name="children_meal_25" ng-model="contactCtrl.contactData.children_meal_25" ng-init="contactCtrl.contactData.children_meal_25 = 0"  type="number" min="0" max="100" class="form-control"></td>
-          <td class="td_price">{{contactCtrl.contactData.price_meals = (contactCtrl.contactData.adults_meal +
-                                                                        contactCtrl.contactData.children_meal_50 * 0.5 +
-                                                                        contactCtrl.contactData.children_meal_25 * 0.75)
-                                                                        * contactCtrl.param.prix.meal * contactCtrl.contactData.nbOfNights|number:2}}  &#8362;</td>
+          <td class="room_type">{{lang[lg]['rquadruple'] || 'Chambre quadruple'}}</td>
+          <td class="room_prix">{{contactCtrl.param.prix.quadruple}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td class="td_input"><input id="rooms4" name="rooms4" ng-model="contactCtrl.contactData.rooms4" ng-init="contactCtrl.contactData.rooms4 = 0"  type="number" min="0" max="100" class="form-control"></td>
+          <td class="room_prix">{{contactCtrl.param.prix.quadruple_shower}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td class="td_input"><input id="rooms4_shower" name="rooms4_shower" ng-model="contactCtrl.contactData.rooms4_shower" ng-init="contactCtrl.contactData.rooms4_shower = 0"  type="number" min="0" max="100" class="form-control"></td>
+          <td class="td_price">{{contactCtrl.contactData.price4 = (contactCtrl.contactData.rooms4 * contactCtrl.param.prix.quadruple + contactCtrl.contactData.rooms4_shower * contactCtrl.param.prix.quadruple_shower) * contactCtrl.contactData.nbOfNights|number:2}}  &#128;</td>
         </tr>
         <tr class="total">
-          <td class="td_total" colspan="5">TOTAL</td>
-          <td class="td_price">{{contactCtrl.contactData.total = (contactCtrl.contactData.price_meals
+          <td class="td_total" colspan="5">Sous-total</td>
+          <td class="td_price">{{contactCtrl.contactData.sous_total = (contactCtrl.contactData.price4
                                                                   + contactCtrl.contactData.price3
-                                                                  + contactCtrl.contactData.price21
                                                                   + contactCtrl.contactData.price2
-                                                                  + contactCtrl.contactData.price1|number:2)}} &#8362;</td>
+                                                                  + contactCtrl.contactData.price1|number:2)}} &#128;</td>
         </tr>
+        <tr class="detail">
+            <td colspan="2"></td>
+            <td>{{lang[lg]['nb_adults'] || 'Nombre de personnes'}}</td>
+            <td></d>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="room_type">{{lang[lg]['taxe'] || 'Taxe de séjour *'}}</td>
+            <td class="room_prix">{{contactCtrl.param.prix.taxe}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
+            <td class="td_input"><input id="nb_adults" name="nb_adults" ng-model="contactCtrl.contactData.nb_adults" ng-init="contactCtrl.contactData.nb_adults = 0"  type="number" min="0" max="100" class="form-control"></td>
+            <td colspan="2">* les enfants de moins de 10 ans en sont exempts</td>
+            <td class="td_price">{{contactCtrl.contactData.taxe = contactCtrl.contactData.nb_adults * contactCtrl.param.prix.taxe  * contactCtrl.contactData.nbOfNights|number:2}}  &#128;</td>
+          </tr>
+        <tr class="total">
+            <td class="td_total" colspan="5">Total</td>
+            <td class="td_price">{{contactCtrl.contactData.total = (contactCtrl.contactData.price4
+                                                                  + contactCtrl.contactData.price3
+                                                                  + contactCtrl.contactData.price2
+                                                                  + contactCtrl.contactData.price1
+                                                                  + contactCtrl.contactData.taxe|number:2)}} &#128;</td>
+          </tr>
       </table>
+      
+      <!--<button data-toggle="collapse" data-target="#groupe">Réservation pour un groupe</button>
+        <div id="groupe" class="collapse">
+          <table class="rooms">
+            <tr class="headers">
+              <th></th>
+              <th>{{lang[lg]['price1night'] || 'Prix pour 1 nuit'}}**</th>
+              <th>{{lang[lg]['nbadults'] || 'Nombre d\'adultes'}}</th>
+              <th></th>
+              <th></th>
+              <th>{{lang[lg]['price'] || 'Prix'}} ({{contactCtrl.contactData.nbOfNights}} {{lang[lg]['night'] || 'nuit'}}<span ng-if="contactCtrl.contactData.nbOfNights>1">s</span>) &#128;</th>
+            </tr>
+            <tr>
+              <td class="room_type">{{lang[lg]['group_young_adults'] || 'Chambres pour les groupes de jeunes'}}</td>
+              <td class="room_prix">{{contactCtrl.param.prix.group_young_adults}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
+              <td class="td_input"><input id="rooms5" name="rooms5" ng-model="contactCtrl.contactData.rooms5" ng-init="contactCtrl.contactData.rooms5 = 0"  type="number" min="0" max="100" class="form-control"></td>
+              <td></td>
+              <td></td>
+              <td class="td_price">{{contactCtrl.contactData.price5 = contactCtrl.contactData.rooms5 * contactCtrl.param.prix.group_young_adults  * contactCtrl.contactData.nbOfNights|number:2}}  &#128;</td>
+            </tr>
+            <tr class="total">
+              <td class="td_total" colspan="5">Sous-total</td>
+              <td class="td_price">{{contactCtrl.contactData.sous_total2 = (contactCtrl.contactData.price5
+                                                                      + contactCtrl.contactData.sous_total|number:2)}} &#128;</td>
+            </tr>
+          </table>
+        </div>-->
+        
+        <br/><br/>
+        
+      
     </div>
 
     <div class="row">
@@ -239,14 +289,18 @@
   }
   table.rooms {
     margin-bottom: 1em;
-    border-bottom: 1px solid #c1573c;
+    border-bottom: 1px solid #bc8923;
     font-family: Montserrat,Arimo,"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
+  tr.detail {
+    text-align: center;
+    font-size:1.2em;
+  }
   tr.headers {
-    border-bottom: 1px solid #c1573c;
+    border-bottom: 1px solid #bc8923;
   }
   tr.total {
-    background-color: #c1573c;
+    background-color: #bc8923;
     color: white;
   }
   tr {
@@ -262,11 +316,21 @@
 
   }
   td.td_price {
-    background-color: #c1573c;
+    background-color: #bc8923;
     color: white;
     text-align: right;
     padding-right: 1em;
     padding-left: 0.5em;
+  }
+  td.room_prix {
+    text-align: right;
+    padding-right: 1em;
+    padding-left: 1em;
+  }
+  td.td_input {
+    text-align: right;
+    padding-right: 1em;
+    padding-left: 1em;
   }
   td.td_total {
     padding: 0.5em;
