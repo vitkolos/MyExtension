@@ -1,0 +1,92 @@
+<!--mail pour la réservation à la pension Saint Joseph de Cluny-->
+<html><body>
+  <h3>Identification</h3>
+<table width="80%">
+<tr>
+  <td> 
+    Surname : { surname }<br/>
+    Family name : { name }<br/>
+    Email : { email }
+  </td>
+  <td> 
+    Phone : { phone }<br/>
+    City : { city }<br/>
+    Country : { country }
+  </td>
+ </tr>
+</table>
+<h3>Your demand</h3>
+<table width="80%">
+  <tr >
+    <td>
+      Start date: { startDate }<br/> 
+      Nights: { nbOfNights }<br/>
+      End date: { endDate }
+    </td>
+  </tr>
+  </table>
+<table style="width:80%">
+  <thead>
+          <tr>
+            <td style="border-bottom:1px solid grey"><b>Stay in:</b></td>
+            <td colspan="2" style="border-bottom:1px solid grey"><b>Room without bathroom</b></td>
+            <td colspan="2" style="border-bottom:1px solid grey"><b>Room with bathroom</b></td>
+            <td style="border-bottom:1px solid grey"><b>Price (€)</b></td>
+          </tr>
+      </thead>
+      <tr style="border-bottom:1px solid grey">
+          <td style="border-bottom:1px solid grey">Single room</td>
+          <td style="border-bottom:1px solid grey">42 €/night</td>
+          <td style="border-bottom:1px solid grey"> { rooms1 }</td>
+          <td style="border-bottom:1px solid grey">50 €/night</td>
+          <td style="border-bottom:1px solid grey"> { rooms1_shower }</td>
+          <td style="border-bottom:1px solid grey">{ price1 }</td>
+      </tr>
+      <tr style="border-bottom:1px solid grey" >
+          <td style="border-bottom:1px solid grey">Double room (couple)</td>
+          <td style="border-bottom:1px solid grey">72 €/night</td>
+          <td style="border-bottom:1px solid grey">{ rooms2 }</td>
+          <td style="border-bottom:1px solid grey">88 €/night</td>
+          <td style="border-bottom:1px solid grey">{ rooms2_shower }</td>
+          <td style="border-bottom:1px solid grey">{ price2 }</td>
+      </tr>
+      <tr style="border-bottom:1px solid grey" >
+          <td style="border-bottom:1px solid grey">Triple room (twin bed)</td>
+          <td style="border-bottom:1px solid grey"></td>
+          <td style="border-bottom:1px solid grey"></td>
+          <td style="border-bottom:1px solid grey">120 €/night</td>
+          <td style="border-bottom:1px solid grey">{ rooms3_shower }</td>
+          <td style="border-bottom:1px solid grey">{ price3 }</td>
+      </tr>
+      <tr style="border-bottom:1px solid grey">
+          <td style="border-bottom:1px solid grey">Quadruple room</td>
+          <td style="border-bottom:1px solid grey">120 €/night</td>
+          <td style="border-bottom:1px solid grey">{ rooms4 }</td>
+          <td style="border-bottom:1px solid grey">128 €/night</td>
+          <td style="border-bottom:1px solid grey"> { rooms4_shower }</td>
+          <td style="border-bottom:1px solid grey">{ price4 }</td>
+      </tr>
+      <tr style="border-bottom:1px solid grey">
+          <td style="border-bottom:1px solid grey">Rooms for youth groups</td>
+          <td style="border-bottom:1px solid grey">30 €/night</td>
+          <td style="border-bottom:1px solid grey">{ rooms5 }</td>
+          <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">Number of persons</td>
+          <td style="border-bottom:1px solid grey">{ price5 }</td>
+      </tr>
+      <tr style="border-bottom:1px solid grey">
+          <td style="border-bottom:1px solid grey">Tourist tax</td>
+          <td style="border-bottom:1px solid grey">3,5 €/night</td>
+          <td style="border-bottom:1px solid grey">{ nbadults }</td>
+          <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">Number of persons concerned *</td>
+          <td style="border-bottom:1px solid grey">{ taxe }</td>
+      </tr>
+  
+  </table>
+  <p>Comments : <br/>
+  { remarks }</p>
+  <p><b>Total price:</b> { total } €<br></p>
+  <p><em>
+    Free for a children under 4 years old<br/>
+    * Tourist tax for children over 10 years old<br/>
+
+</body></html>
