@@ -30,6 +30,9 @@
           group_young_adults: 'Rooms for youth groups',
           taxe:'Tourist tax',
           nb_adults:'Number of persons concerned',
+          nb_persons:'Indicate the number of people (more than 25)',
+          tax_children:'* children under 10 years are exempt',
+          subtotal:'Subtotal',
           comments: 'Remarks',
           comments_placeholder: 'Write here additional details (food intolerance, allergies, smokers, animals, ...)',
           detailsroomsmeals: 'Details of rooms and meals',
@@ -39,7 +42,7 @@
       };
       contactCtrl.param.joursCumul=[0,0,31,59,90,120,151,181,212,243,273,304,334,365];">
   <!-- https://github.com/nicolasrhone/MyExtension/blob/master/src/MyExtension/Rest/V1/MailResource.php -->
-  <form name="clunyForm" class="container" role="form">
+  <form name="clunyForm" class="container" role="form" ng-submit="contactCtrl.submit()">
     
         <h3>{{rubedo.translate("Block.Inscription.InfosPerso")}}</h3><br />
         <div class="row">
@@ -79,7 +82,7 @@
             </div>
             <div class="col-sm-6">
                 <label>{{rubedo.translate("Block.Inscription.Pays")}}*</label>
-                <input type="text"  ng-model="contactCtrl.contactData.telephone" class="form-control"  required><br/>
+                <input type="text"  ng-model="contactCtrl.contactData.country" class="form-control"  required><br/>
             </div>
             
         </div><br />
@@ -201,11 +204,11 @@
               <td class="room_type">{{lang[lg]['group_young_adults'] || 'Chambres pour les groupes de jeunes'}}</td>
               <td class="room_prix">{{contactCtrl.param.prix.group_young_adults}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
               <td class="td_input"><input id="rooms5" name="rooms5" ng-model="contactCtrl.contactData.rooms5" ng-init="contactCtrl.contactData.rooms5 = 0"  type="number" min="0" max="100" class="form-control"></td>
-              <td colspan="2">Indiquer le nombre de personnes (>25)</td>
+              <td colspan="2">{{lang[lg]['nb_persons'] || 'Indiquer le nombre de personnes (>25)'}}</td>
               <td class="td_price">{{contactCtrl.contactData.price5 = contactCtrl.contactData.rooms5 * contactCtrl.param.prix.group_young_adults  * contactCtrl.contactData.nbOfNights|number:2}}  &#128;</td>
             </tr>
         <tr class="total">
-          <td class="td_total" colspan="5">Sous-total</td>
+          <td class="td_total" colspan="5">{{lang[lg]['subtotal'] || 'Sous-total'}}</td>
           <td class="td_price">{{contactCtrl.contactData.sous_total = (contactCtrl.contactData.price5
                                                                   + contactCtrl.contactData.price4
                                                                   + contactCtrl.contactData.price3
@@ -222,7 +225,7 @@
             <td class="room_type">{{lang[lg]['taxe'] || 'Taxe de séjour *'}}</td>
             <td class="room_prix">{{contactCtrl.param.prix.taxe}} &#128;/{{lang[lg]['night'] || 'nuit'}}</td>
             <td class="td_input"><input id="nb_adults" name="nb_adults" ng-model="contactCtrl.contactData.nb_adults" ng-init="contactCtrl.contactData.nb_adults = 0"  type="number" min="0" max="100" class="form-control"></td>
-            <td colspan="2">* les enfants de moins de 10 ans en sont exempts</td>
+            <td colspan="2">{{lang[lg]['tax_children'] || '* les enfants de moins de 10 ans en sont exempts'}}</td>
             <td class="td_price">{{contactCtrl.contactData.taxe = contactCtrl.contactData.nb_adults * contactCtrl.param.prix.taxe  * contactCtrl.contactData.nbOfNights|number:2}}  &#128;</td>
           </tr>
         <tr class="total2">
@@ -274,8 +277,31 @@
         <textarea name="message" rows="5" placeholder="{{lang[lg]['comments_placeholder'] || 'Écrivez ici toute information utile pour vous accueillir au mieux :)&#10; (intolérances alimentaires, allergies, fumeurs, animaux, ...)'}}" ng-model="contactCtrl.contactData.remarks" class="form-control" id="message57e55560245640e4448b6f5b">                                            </textarea>
       </div>
     </div>
-
+    
+    
     <div class="row">
+            <div align= "right" class="sm-12">
+                <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
+                        <rubedo-notification></rubedo-notification>
+                    </div><br/>
+                    <button type="submit" class="btn btn-default btn-lg">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button><br/>
+
+            </div>
+        </div><br /><br />
+            
+        </form>
+                        
+
+    
+    
+    
+    <div class="container" ng-if="contactCtrl.showConfirmMessage" ng-init="notification = {type:'success',text:rubedo.translate('Blocks.Auth.Msg.EmailSent','Email has been sent')}">
+        <rubedo-notification></rubedo-notification>
+    </div>
+</div>
+    
+
+<!--    <div class="row">
       <div class="button" ng-init="confirmMsg=false;" ng-class="{rouge: clunyForm.$valid, disabled: clunyForm.$invalid, submit: clunyForm.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Réserver</div>
     </div>
 
@@ -284,7 +310,7 @@
       Ne considérez votre demande comme confirmée qu'à réception d'un mail de confirmation de notre part.
     </div>
   </form>
-</div>
+</div>-->
 
 <style>
   div.confirm {

@@ -46,6 +46,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
+												case 'couple_ephata':
+                me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
+                me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
+                break;
 												case 'couple-avec-enfants':
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
