@@ -9,9 +9,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var alreadyPersist = false;
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
 				me.showLoader = false;
-				me.contentsShowed = me.limit;
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
+    me.contentsShowed = me.limit;
     me.ismagic = config.magicQuery ? config.magicQuery : false;
     var options = {
         start: me.start,
