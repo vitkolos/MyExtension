@@ -1,8 +1,9 @@
 {
     "Block.Carte.Presence.Perm":"Countries where the Chemin Neuf Community has permanent presence",
     "Block.Carte.Presence.Ponct":"Countries where the Chemin Neuf Community has local events",
-				"Block.Carte.Presence.Perm.Cana":"CANA mission with permanent presence of Chemin Neuf Community",
+				"Block.Carte.Presence.Perm.Cana":"CANA mission with permanent presence of the Chemin Neuf Community",
     "Block.Carte.Presence.Ponct.Cana":"CANA mission with punctual presence of the Chemin Neuf Community",
+				"Block.Carte.Liste":"List of countries",
     "Missions.cana":"Cana - serving couples and families",
     "Missions.netforgod":"Net for God - The International Ecumenical Fraternity",
     "Missions.ados":"Youth Mission 14-18s",
