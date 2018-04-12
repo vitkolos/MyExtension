@@ -8,6 +8,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var siteId=$scope.rubedo.current.site.id;
     var alreadyPersist = false;
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
+				me.showLoader = false;
+				me.contentsShowed = me.limit;
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
     me.ismagic = config.magicQuery ? config.magicQuery : false;
@@ -17,7 +19,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         ismagic: me.ismagic,
         'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","subTitle"]
 
-    };
+    }; 
     if(config.singlePage){
         options.detailPageId = config.singlePage;
     }
@@ -36,10 +38,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.columns = config.columns && !config.infiniteScroll ? 'col-md-'+(12/config.columns):'col-md-12';
     me.showPaginator = config.showPager && !config.infiniteScroll;
     me.changePageAction = function(){
-        options.start = me.start;
-        $location.search(blockPagingIdentifier,(me.start/me.limit)+1);
-        me.getContents(config.query, pageId, siteId, options);
-    };
+        options.start += me.limit;
+        me.contentsShowed += me.limit;
+        me.showLoader=true;
+        me.getContents(config.query, pageId, siteId, options, true);
+    }; 
 				me.getVideoId = function(url){
 								var string = url.split("/");
 								var videoId = string[string.length-1];
