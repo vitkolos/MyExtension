@@ -1,3 +1,6 @@
+<style>
+    .pagination>li>a, .pagination>li>span {color:#92220c !important;}
+</style>
 <div ng-controller="ContentListController as contentListCtrl">
     <select ng-if="contentListCtrl.canAddToList()&&contentListCtrl.queryType=='manual'"
             ng-options="ct.id as ct.type for ct in contentListCtrl.creatableContentTypes"
