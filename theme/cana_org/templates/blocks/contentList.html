@@ -115,5 +115,10 @@
         </div>
     </div>
     
+    
+        <paginator ng-if="contentListCtrl.showPaginator" start="contentListCtrl.start" limit="contentListCtrl.limit"
+               count="contentListCtrl.count" change-page-action="contentListCtrl.changePageAction()"></paginator>
+
+    
 
 </div>
