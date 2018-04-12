@@ -38,11 +38,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.columns = config.columns && !config.infiniteScroll ? 'col-md-'+(12/config.columns):'col-md-12';
     me.showPaginator = config.showPager && !config.infiniteScroll;
     me.changePageAction = function(){
-        options.start += me.limit;
-        me.contentsShowed += me.limit;
-        me.showLoader=true;
-        me.getContents(config.query, pageId, siteId, options, true);
-    }; 
+        options.start = me.start;
+        me.getContents(config.query, pageId, siteId, options);
+    };
 				me.getVideoId = function(url){
 								var string = url.split("/");
 								var videoId = string[string.length-1];
