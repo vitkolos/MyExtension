@@ -49,8 +49,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         me.pageBlock[key2]=[];
                         console.log("block");
                         console.log(block);
-                        if(block.i18n[lang]) {me.pageBlock[key2].push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0],"color":key2%3});}
-                        else {me.pageBlock[key2].push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0],"color":key2%3});}
+                        if(block.i18n[lang]) {me.pageBlock[key2].push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});}
+                        else {me.pageBlock[key2].push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});}
 
                         //if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
                         //else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
