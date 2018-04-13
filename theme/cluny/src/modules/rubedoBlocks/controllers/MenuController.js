@@ -1,5 +1,5 @@
-    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','$route',
-								     function($scope,$location,RubedoMenuService,RubedoPagesService,$http,$route){
+    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$rootScope','$location','$route','RubedoMenuService','RubedoPagesService','$http',
+																																																																					function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService,$http){
         var me=this;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
