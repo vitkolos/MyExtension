@@ -265,9 +265,25 @@
 angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoMenuService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope",
                                                                           function($scope,RubedoContentsService, RubedoSearchService,RubedoMenuService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope){
     var me = this;
+				
+
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
+    me.menu={};
+    me.numeroBlock=1;
+    me.pageBlock=[];
+    me.taxonomy=[];
+    me.gallery={}; // for album photo
+    if (config.rootPage){
+        var pageId=config.rootPage;
+    } else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
+        var pageId=$scope.rubedo.current.page.parentId;
+    } else {
+        var pageId=$scope.rubedo.current.page.id;
+    }
+				
+				
     $scope.fieldInputMode=false;
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
