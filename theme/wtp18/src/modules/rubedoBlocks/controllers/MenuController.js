@@ -4,19 +4,14 @@
         me.menu={};
         me.pagesBlocks={};
         me.currentRouteleine=$location.path();
-	console.log("current.site.id");
-	console.log($scope.rubedo.current.site.id);
-	console.log("5a630da239658886137fce9b");
         var config=$scope.blockConfig;
 								var lang = $route.current.params.lang;
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
-	if ($scope.rubedo.current.site.id=='5a630da239658886137fce9b') { 
-		$scope.siteWTP=true;
-		console.log("$scope.siteWTP");
-		console.log($scope.siteWTP);
-	} else {
-		$scope.siteWTP=false;
-	}
+								if ($scope.rubedo.current.site.id=='5a630da239658886137fce9b') { 
+									$scope.siteWTP=true;
+								} else {
+									$scope.siteWTP=false;
+								}
 		
         if (config.rootPage){
             var pageId=config.rootPage;

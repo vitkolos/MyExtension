@@ -4,6 +4,7 @@
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
         var lang = $route.current.params.lang;
+								me.pagesBlocks={};
         me.currentRouteline=$location.path();
         var config=$scope.blockConfig;
 	
@@ -23,11 +24,40 @@
                 }
             });
         };
-        RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
+        //RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
+        //    if (response.data.success){
+        //        me.menu=response.data.menu;
+        //    } else {
+        //        me.menu={};
+        //    }
+        //});
+								RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
-            } else {
+																angular.forEach(me.menu.pages, function(page, key) {
+																				me.pagesBlocks[key]={};
+																				me.pagesBlocks[key]["title"] = page.text;
+																				me.pagesBlocks[key]["url"] = page.url;
+																				me.pagesBlocks[key]["id"] = page.id;
+																				me.pagesBlocks[key].blocks=[]; 
+																				var lang = $route.current.params.lang;
+																				angular.forEach(page.blocks, function(block, key2){
+																								if (block.bType=="contentDetail" && block.orderValue<=1) {
+																												if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+																												else me.pagesBlocks[key].blocks.push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+
+																												//if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+																												//else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
+																								}
+																								else {}
+																				});
+																});
+																$scope.clearORPlaceholderHeight();
+
+            }
+												else {
                 me.menu={};
+																$scope.clearORPlaceholderHeight();
             }
         });
 	
