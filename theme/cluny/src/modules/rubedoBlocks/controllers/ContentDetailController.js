@@ -281,6 +281,40 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         });
         return field;
     };
+				
+				/*Pour ajouter un menu secondaire*/
+    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
+        if (me.numeroBlock=="1") {
+            me.numeroBlock++;
+            if (response.data.success){
+                me.menu=response.data.menu;
+																var lang = $route.current.params.lang;
+                angular.forEach(me.menu.blocks, function(block, key2){
+                    if (block.bType=="contentDetail" && block.orderValue<=1) {
+                        me.pageBlock[key2]=[];
+                        console.log("block");
+                        console.log(block);
+                        if(block.i18n[lang]) {me.pageBlock[key2].push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0],"color":key2%3});}
+                        else {me.pageBlock[key2].push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0],"color":key2%3});}
+
+                        //if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+                        //else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
+                    }
+                    else {}
+                });
+            $scope.clearORPlaceholderHeight();
+            console.log("menu");
+            console.log(me.menu);
+            console.log("pageBlock");
+            console.log(me.pageBlock);
+            }
+												else {
+                me.menu={};
+																$scope.clearORPlaceholderHeight();
+            }
+        }
+    });
+				
 	me.getLabelByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
