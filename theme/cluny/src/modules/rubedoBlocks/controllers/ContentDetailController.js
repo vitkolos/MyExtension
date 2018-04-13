@@ -262,7 +262,8 @@
 //}]);
 
 
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","$http","$route","$rootScope",function($scope, RubedoContentsService,$http,$route,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoSearchService","RubedoMenuService","RubedoPagesService","TaxonomyService","$http","$route","$location","$filter","$rootScope",
+                                                                          function($scope,RubedoContentsService, RubedoSearchService,RubedoMenuService,RubedoPagesService,TaxonomyService,$http,$route,$location,$filter,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
