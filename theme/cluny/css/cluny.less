@@ -49,8 +49,11 @@ html,body{font-family: 'MyanmarText','Arimo', "Helvetica Neue",Helvetica,Arial,s
 @media screen and (min-width: @min_sm) {
 		li:hover>.dropdown-menu{display: block}
 }
+@media screen and (min-width: @min_xs) {
+		h1 {font-size:3em}
+}
 @media screen and (max-width: @min_xs) {
-		h2 {font-size:1.8em}
+		h1 {font-size:1.8em}
 		h2 {font-size:1.5em}
 		h3 {font-size:1.3em}
 		p{font-size:1em;}
@@ -129,8 +132,8 @@ header.content{
 				header.content h1{text-transform: uppercase;font-size:1.6em;}
 }
 .bethanien header.content.parallax{background-attachment: fixed;}
-header.content.full{height: 100vh; line-height: 100vh; img{max-width: 80%}h1{font-size:3em;text-transform: uppercase}p{font-size: 2em;};background-attachment: scroll; }
-header.content.standard{height: 65vh; line-height: 65vh; h1{font-size:3em;text-transform: uppercase}p{font-size: 1.3em;};background-attachment: scroll; }
+header.content.full{height: 100vh; line-height: 100vh; img{max-width: 80%}h1{text-transform: uppercase}p{font-size: 2em;};background-attachment: scroll; }
+header.content.standard{height: 65vh; line-height: 65vh; h1{text-transform: uppercase}p{font-size: 1.3em;};background-attachment: scroll; }
 header.content>div{line-height: normal;display: inline-block;text-align:center; vertical-align: middle;}
 /*@media screen and (min-width: @min_sm) {
     header.content{line-height: 600px; height:600px}
