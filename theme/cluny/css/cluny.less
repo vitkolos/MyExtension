@@ -117,6 +117,9 @@ header.content{
 		h1{font-size: 3em;}
 		p{font-size: 1.2em}
 }
+@media screen and (max-width: @min_xs){
+				header.content.h1{text-transform: uppercase;font-size:2em;}
+}
 .bethanien header.content.parallax{background-attachment: fixed;}
 header.content.full{height: 100vh; line-height: 100vh; img{max-width: 80%}h1{font-size:3em;text-transform: uppercase}p{font-size: 2em;};background-attachment: scroll; }
 header.content.standard{height: 65vh; line-height: 65vh; h1{font-size:3em;text-transform: uppercase}p{font-size: 1.3em;};background-attachment: scroll; }
@@ -252,4 +255,36 @@ p.linkbox a, p.linkbox a:hover{color: @grey; text-decoration: none; display: inl
 
 .panel-body {
 		font-size: 1em;
+}
+
+
+/*BACKGROUND-IMAGE BLOCK*/
+header.parallax{
+				background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    h1,h2,h3,h4,h5,p{color:white};
+    height: 65vh;
+    line-height: 65vh;
+    text-align: center;
+    background-color: white;
+    overflow-y:hidden;
+}
+@media screen and (max-width: @min_sm) {
+	header.parallax{background-attachment: scroll;}
+}
+header.parallax>div{line-height: 1.6em; font-size: 1.2em;display: inline-block;text-align:center; vertical-align: middle;}
+header.parallax.page{
+				background-attachment: scroll;
+	text-align: center;
+	h1{text-transform: uppercase; font-size: 3em;}
+}
+@media screen and (max-width: @min_sm) and (min-width: @min_xs){
+				header.parallax.page h1{text-transform: uppercase; font-size:3em;}
+				header.parallax.page{height: 65vh; line-height: 65vh;}
+}
+@media screen and (max-width: @min_xs){
+				header.parallax.page h1{text-transform: uppercase;font-size:2em;}
+				header.parallax.page{height: 65vh; line-height: 65vh;}
 }
