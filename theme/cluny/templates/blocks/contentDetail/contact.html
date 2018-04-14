@@ -17,7 +17,7 @@
 
 			
 			<div class="col-xs-12 col-sm-4 text-left" >
-				<h3>Contact</h3>
+				<h3>{{rubedo.translate("Block.Inscription.Contact","Contact")}}</h3>
 				<div>
 						<i class="fa fa-envelope icon"></i>
 						<div ng-if="fieldEntity['email']" style="display: inline-block; margin-left:10px;" ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'surname': contentDetailCtrl.content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
@@ -35,7 +35,7 @@
 				<p class="linkbox"><rubedo-field ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name] && (field.config.name).substring(0, 9)=='linkfield' && fieldEntity[field.config.name].title!=''"></rubedo-field></p>
 				
 				
-			</div>
+			</div> 
 		</div>
 
 		<div style="padding-top:24px" class=""></div>
