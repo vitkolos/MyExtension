@@ -52,6 +52,8 @@
 																								else {}
 																				});
 																});
+																console.log('pagesBlocks');
+																console.log(me.pagesBlocks);
 																$scope.clearORPlaceholderHeight();
 
             }
