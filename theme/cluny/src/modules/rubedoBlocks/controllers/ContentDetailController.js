@@ -47,7 +47,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 me.menu=response.data.menu;
 																var lang = $route.current.params.lang;
                 angular.forEach(me.menu.blocks, function(block, key2){
-                    if (block.bType=="contentDetail" && block.orderValue<=1) {
+																				/* SI SUR LA PAGE 'ACCUEIL' */
+                    if (block.bType=="contentDetail" && me.menu.id=="5ac8da58396588d65471b982" && block.orderValue<=1) {
                         me.pageBlock[key2]=[];
                         console.log("block");
                         console.log(block);
