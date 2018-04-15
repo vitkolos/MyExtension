@@ -113,14 +113,24 @@
                 <input type="text" ng-model="contactCtrl.contactData.nom" class="form-control" id="{{'name'+block.id}}" required><br/>
             </div>
             <div class="col-sm-6">
-                <label >{{rubedo.translate("Block.Inscription.Adresse")}}*</label>
-                <textarea class="form-control" ng-model="contactCtrl.contactData.adresse" rows="2"></textarea><br/>
+                <label >{{rubedo.translate("Block.Inscription.Prenom")}}*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.prenom" class="form-control"  required><br/>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+                <label>{{rubedo.translate("Block.Inscription.Email")}}*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.email" class="form-control"  required><br/>
+            </div>
+            <div class="col-sm-6">
+                <label>{{rubedo.translate("Block.Inscription.Telephone")}}*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.telephone" class="form-control"  required><br/>
             </div>
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <label >{{rubedo.translate("Block.Inscription.Prenom")}}*</label>
-                <input type="text"  ng-model="contactCtrl.contactData.prenom" class="form-control"  required><br/>
+                <label >{{rubedo.translate("Block.Inscription.Adresse")}}*</label>
+                <textarea class="form-control" ng-model="contactCtrl.contactData.adresse" rows="2"></textarea><br/>
             </div>
             <div class="col-sm-6">
                 <label>{{rubedo.translate("Block.Inscription.CodePostal")}}*</label>
@@ -129,25 +139,15 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
-                <label>{{rubedo.translate("Block.Inscription.Email")}}*</label>
-                <input type="text"  ng-model="contactCtrl.contactData.email" class="form-control"  required><br/>
-            </div>
-            <div class="col-sm-6">
                 <label >{{rubedo.translate("Block.Inscription.Ville")}}*</label>
                 <input type="text"  ng-model="contactCtrl.contactData.ville" class="form-control"  required><br/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <label>{{rubedo.translate("Block.Inscription.Telephone")}}*</label>
-                <input type="text"  ng-model="contactCtrl.contactData.telephone" class="form-control"  required><br/>
             </div>
             <div class="col-sm-6">
                 <label>{{rubedo.translate("Block.Inscription.Pays")}}*</label>
                 <input type="text"  ng-model="contactCtrl.contactData.country" class="form-control"  required><br/>
             </div>
-            
-        </div><br />
+        </div>
+        <br />
         <h3>{{rubedo.translate("Demande_De_Reservation")}}</h3><br />
                
       <div class="row">
@@ -214,8 +214,8 @@
     <br/><br/>
     
     <input type="hidden" value="0" name="nbNights" id="nbNights" ng-model="contactCtrl.contactData.nbOfNights">
-    <div class="row">
-      <table class="rooms container">
+<!--    <div class="row">
+      <table class="rooms container">-->
         <!--<tr class="headers">
           <th></th>
           <th>{{lang[lg]['price1night'] || 'Prix pour 1 nuit'}}</th>
@@ -224,7 +224,7 @@
           <th>{{lang[lg]['nbrooms'] || 'Nombre de chambres'}}</th>
           <th>{{lang[lg]['price'] || 'Prix'}} ({{contactCtrl.contactData.nbOfNights}} {{lang[lg]['night'] || 'nuit'}}<span ng-if="contactCtrl.contactData.nbOfNights>1">s</span>) &#128;</th>
         </tr>-->
-        <tr class="detail">
+  <!--      <tr class="detail">
           <td></td>
           <td colspan="2">{{lang[lg]['room'] || 'Sans salle de bain'}}</td>
           <td colspan="2">{{lang[lg]['roomSDB'] || 'Avec salle de bain'}}</d>
@@ -299,7 +299,7 @@
                                                                   + contactCtrl.contactData.price1
                                                                   + contactCtrl.contactData.taxe|number:2)}} &#128;</td>
           </tr>
-      </table>
+      </table>-->
       
       <!--<button data-toggle="collapse" data-target="#groupe">Réservation pour un groupe</button>
         <div id="groupe" class="collapse">
@@ -327,11 +327,11 @@
             </tr>
           </table>
         </div>-->
-        
+<!--        
         <br/><br/>
         
       
-    </div>
+    </div>-->
 
     <div class="row">
       <div class="col-sm-12">

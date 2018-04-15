@@ -40,7 +40,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     /*Pour ajouter un menu secondaire*/
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
         if (me.numeroBlock=="1") {
-            me.numeroBlock++;
+            console.log("numeroBlock");
+												console.log(me.numeroBlock);
+												me.numeroBlock++;
             if (response.data.success){
                 me.menu=response.data.menu;
 																var lang = $route.current.params.lang;
