@@ -38,40 +38,40 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     
     /*Pour ajouter un menu secondaire*/
-//    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
-//        if (me.numeroBlock=="1") {
-//            console.log("numeroBlock");
-//												console.log(me.numeroBlock);
-//												me.numeroBlock++;
-//            if (response.data.success){
-//                me.menu=response.data.menu;
-//																var lang = $route.current.params.lang;
-//                angular.forEach(me.menu.blocks, function(block, key2){
-//																				/* SI SUR LA PAGE 'ACCUEIL' */
-//                    if (block.bType=="contentDetail" && me.menu.id=="5ac8da58396588d65471b982" && block.orderValue<=1) {
-//                        me.pageBlock[key2]=[];
-//                        console.log("block");
-//                        console.log(block);
-//                        if(block.i18n[lang]) {me.pageBlock[key2].push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});}
-//                        else {me.pageBlock[key2].push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});}
-//
-//                        //if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
-//                        //else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
-//                    }
-//                    else {}
-//                });
-//            $scope.clearORPlaceholderHeight();
-//            console.log("menu");
-//            console.log(me.menu);
-//            console.log("pageBlock");
-//            console.log(me.pageBlock);
-//            }
-//												else {
-//                me.menu={};
-//																$scope.clearORPlaceholderHeight();
-//            }
-//        }
-//    });
+    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
+        if (me.numeroBlock=="1") {
+            console.log("numeroBlock");
+												console.log(me.numeroBlock);
+												me.numeroBlock++;
+            if (response.data.success){
+                me.menu=response.data.menu;
+																var lang = $route.current.params.lang;
+                angular.forEach(me.menu.blocks, function(block, key2){
+																				/* SI SUR LA PAGE 'ACCUEIL' */
+                    if (block.bType=="contentDetail" && me.menu.id=="5ac8da58396588d65471b982" && block.orderValue<=1) {
+                        me.pageBlock[key2]=[];
+                        console.log("block");
+                        console.log(block);
+                        if(block.i18n[lang]) {me.pageBlock[key2].push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});}
+                        else {me.pageBlock[key2].push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});}
+
+                        //if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+                        //else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
+                    }
+                    else {}
+                });
+            $scope.clearORPlaceholderHeight();
+            console.log("menu");
+            console.log(me.menu);
+            console.log("pageBlock");
+            console.log(me.pageBlock);
+            }
+												else {
+                me.menu={};
+																$scope.clearORPlaceholderHeight();
+            }
+        }
+    });
     
     me.getTermInTaxo=function(taxoKey,termId){
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
