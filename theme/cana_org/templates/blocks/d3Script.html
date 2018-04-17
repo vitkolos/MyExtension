@@ -45,7 +45,7 @@
                             <h4>{{rubedo.translate("Block.Carte.Presence.Perm.Cana","Mission CANA avec présence permanente de la Communauté du Chemin Neuf")}}</h4>
                             <ul class="f32">
                                 <li ng-repeat="country in d3ScriptCtrl.countryList |  orderBy:'name'" ng-if="country.fillKey== 'present'">
-                                    <span class="flag AR"></span>
+                                    <span class="flag {{country['id_iso']}}"></span>
                                     <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
                                 </li>
                             </ul>
@@ -54,7 +54,7 @@
                             <h4>{{rubedo.translate("Block.Carte.Presence.Ponct.Cana","Mission CANA avec présence ponctuelle de la Communauté du Chemin Neuf")}}</h4>
                              <ul class="f32">
                                 <li ng-repeat="country in d3ScriptCtrl.countryList | orderBy:'name'"  ng-if="country.fillKey== 'active'">
-                                    <span class="flag AR"></span>
+                                    <span class="flag {{country['id_iso']}}"></span>
                                     <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
                                 </li>
                             </ul>
