@@ -28,7 +28,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 																me.countryList = {};
 																angular.forEach(me.results, function(country){
 																				var id=country["fields.id"][0];
-																				var id_iso = id.substr(0, 2);
+																				var id_iso = id.substr(0, 2).toLowerCase();
 																				me.countryList[id] = {
 																								'name':country["title"],
 																								'fillKey':country["presence"],
