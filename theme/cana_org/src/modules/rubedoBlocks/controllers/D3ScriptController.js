@@ -28,9 +28,11 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 																me.countryList = {};
 																angular.forEach(me.results, function(country){
 																				var id=country["fields.id"][0];
+																				var id_iso = id.substr(0, 2);
 																				me.countryList[id] = {
 																								'name':country["title"],
 																								'fillKey':country["presence"],
+																								'id_iso':id_iso,
 																								'text':''
 																				};
 																				if (mapType!='cte') {
@@ -49,6 +51,8 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 																				
 																});
 																console.log(me.results);
+																console.log("countryList");
+																console.log(me.countryList);
                 successFunction(me.countryList);
             },
             function(response){
