@@ -43,16 +43,17 @@
                     <div class="modal-body row">
                         <div class="col-sm-6  regions-list">
                             <h4>{{rubedo.translate("Block.Carte.Presence.Perm.Cana","Mission CANA avec présence permanente de la Communauté du Chemin Neuf")}}</h4>
-                            <ul>
-                                <li ng-repeat="country in d3ScriptCtrl.countryList |  orderBy:'name'" ng-if="country.fillKey== 'present'">
+                            <ul class="f32">
+                                <li ng-repeat="country in d3ScriptCtrl.countryList |  orderBy:'name'" ng-if="country.fillKey== 'present'" class="flag ar">
                                     <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
                                 </li>
                             </ul>
                         </div>
                         <div class="col-sm-6  regions-list">
                             <h4>{{rubedo.translate("Block.Carte.Presence.Ponct.Cana","Mission CANA avec présence ponctuelle de la Communauté du Chemin Neuf")}}</h4>
-                             <ul>
+                             <ul class="f32">
                                 <li ng-repeat="country in d3ScriptCtrl.countryList | orderBy:'name'"  ng-if="country.fillKey== 'active'">
+                                    <span class="flag ar"></span>
                                     <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
                                 </li>
                             </ul>
