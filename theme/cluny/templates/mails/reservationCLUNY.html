@@ -7,16 +7,17 @@
   <td> 
     Nom : { nom }<br/>
     Prénom : { prenom }<br/>
-    E-mail : { email }
+    E-mail : { email }<br/>
+    Téléphone : { telephone }
   </td>
   <td> 
-    Téléphone : { telephone }<br/>
+    Adresse : { adresse }<br/>
     Ville : { ville }<br/>
     Pays : { country }
   </td>
  </tr>
 </table>
-<h3>Deamnde</h3>
+<h3>Demande</h3>
 <table width="80%">
   <tr >
     <td>
@@ -30,8 +31,8 @@
   <thead>
           <tr>
             <td style="border-bottom:1px solid grey"><b>Hébergement souhaité</b></td>
-            <td colspan="2" style="border-bottom:1px solid grey"><b>Sans salle de bain</b></td>
-            <td colspan="2" style="border-bottom:1px solid grey"><b>Avec salle de bain</b></td>
+            <td colspan="2" style="border-bottom:1px solid grey; text-align:center;"><b>Sans salle de bain</b></td>
+            <td colspan="2" style="border-bottom:1px solid grey; text-align:center;"><b>Avec salle de bain</b></td>
             <td style="border-bottom:1px solid grey"><b>Prix (€)</b></td>
           </tr>
       </thead>
@@ -77,16 +78,17 @@
       <tr style="border-bottom:1px solid grey">
           <td style="border-bottom:1px solid grey">Taxe de séjour *</td>
           <td style="border-bottom:1px solid grey">3,5 €/nuit</td>
-          <td style="border-bottom:1px solid grey">{ nbadults }</td>
+          <td style="border-bottom:1px solid grey">{ nb_adults }</td>
           <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">Nombres de personnes concernées par la taxe</td>
           <td style="border-bottom:1px solid grey">{ taxe }</td>
       </tr>
   
   </table>
+<p><em>
+    * les enfants de moins de 10 ans en sont exempts</p><br/><br/>
   <p>Commentaires<br/>
-  { message }</p>
+  { remarks }</p>
   <p><b>Total :</b> { total } €<br></p>
-  <p><em>
-    * les enfants de moins de 10 ans en sont exempts<br/>
+  
   </div>
 </body></html>
