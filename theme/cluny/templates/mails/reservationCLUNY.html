@@ -33,7 +33,7 @@
             <td style="border-bottom:1px solid grey"><b>Hébergement souhaité</b></td>
             <td colspan="2" style="border-bottom:1px solid grey; text-align:center;"><b>Sans salle de bain</b></td>
             <td colspan="2" style="border-bottom:1px solid grey; text-align:center;"><b>Avec salle de bain</b></td>
-            <td style="border-bottom:1px solid grey"><b>Prix (€)</b></td>
+            <td style="border-bottom:1px solid grey; text-align:center;"><b>Prix (€)</b></td>
           </tr>
       </thead>
       <tr style="border-bottom:1px solid grey">
@@ -69,11 +69,11 @@
           <td style="border-bottom:1px solid grey; text-align:center;">{ price4 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey">
-          <td style="border-bottom:1px solid grey; text-align:center;">Chambres pour les groupes de jeunes</td>
+          <td style="border-bottom:1px solid grey">Chambres pour les groupes de jeunes</td>
           <td style="border-bottom:1px solid grey; text-align:center;">30 €/nuit</td>
           <td style="border-bottom:1px solid grey; text-align:center;">{ rooms5 }</td>
           <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">Nombre de personnes</td>
-          <td style="border-bottom:1px solid grey">{ price5 }</td>
+          <td style="border-bottom:1px solid grey; text-align:center;">{ price5 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey">
           <td style="border-bottom:1px solid grey">Taxe de séjour *</td>
@@ -86,9 +86,11 @@
   </table>
 <p><em>
     * les enfants de moins de 10 ans en sont exempts</p><br/><br/>
+  
+  <p><b>Total :</b> { total } €<br><br></p>
   <p><b>Commentaires</b><br/>
   { remarks }</p>
-  <p><b>Total :</b> { total } €<br></p>
+  
   
   </div>
 </body></html>
