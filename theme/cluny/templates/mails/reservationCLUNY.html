@@ -1,197 +1,92 @@
 <!--mail pour la réservation à la pension Saint Joseph de Cluny-->
 <html><body>
-  <div ng-controller="ContactBlockController as contactCtrl" ng-init="
-      contactCtrl.contactData.subject='Nouvelle réservation';
-      contactCtrl.contactData.nbOfNights = 0;
-      contactCtrl.param.prix = {
-        single_shower: 50,
-        single: 42,
-        double_shower: 88,
-        double: 72,
-        triple_shower: 120,
-        quadruple_shower: 128,
-        quadruple: 120,
-        group_young_adults: 30,
-        taxe: 3.5
-      };
-      lg = rubedo.current.page.locale;
-      moment.locale(rubedo.current.page.locale);
-      contactCtrl.contactData.template='/theme/cluny/templates/mails/reservationCLUNY.html';
-      lang = {
-        en: {
-          room: 'Room without bathroom',
-          roomSDB: 'Room with bathroom',
-          price1night: 'Price for 1 night',
-          nbrooms: 'Number of rooms',
-          price: 'Price',
-          night: 'night',
-          rsingle: 'Single room',
-          rdouble: 'Double room (couple)',
-          rtriple: 'Triple room',
-          rquadruple: 'Four-bed room',
-          group_young_adults: 'Rooms for youth groups',
-          taxe:'Tourist tax',
-          nb_adults:'Number of persons concerned',
-          nb_persons:'Indicate the number of people (more than 25)',
-          tax_children:'* children under 10 years are exempt',
-          subtotal:'Subtotal',
-          comments: 'Remarks',
-          detailsroomsmeals: 'Details of rooms and meals',
-          inforesa: 'Information on the reservation'
-        },
-        de: {
-          room: 'Zimmer mit Bad',
-          roomSDB: 'Zimmer ohne Bad',
-          price1night: 'Preis für 1 Nacht',
-          nbrooms: 'Anzahl der Räume',
-          price: 'Preis',
-          night: 'Nacht',
-          rsingle: 'Einzelzimmer',
-          rdouble: 'Doppelzimmer (2 Einzelbetten oder Ehebett)',
-          rtriple: 'Dreibettzimmer',
-          rquadruple: 'Vierbettzimmer',
-          group_young_adults: 'Zimmer für Jugendgruppe',
-          taxe:'Kurtaxe',
-          nb_adults:'Personenzahl',
-          nb_persons:'Geben Sie die Anzahl der Personen an (mehr als 25)',
-          tax_children:'* Kinder unter 10 Jahren sind befreit',
-          subtotal:'Zwischensumme',
-          comments: 'Bemerkungen',
-          detailsroomsmeals: 'Details der Zimmer und Mahlzeiten',
-          inforesa: 'Informationen zur Reservierung'
-        },
-        it: {
-          room: 'Camere senza il bagno',
-          roomSDB: 'Camere con il bagno',
-          price1night: 'Prezzo per 1 notte',
-          nbrooms: 'Numero di stanze',
-          price: 'Prezzo',
-          night: 'notte',
-          rsingle: 'Camere singole',
-          rdouble: 'Camere doppie',
-          rtriple: 'Camere triple',
-          rquadruple: 'Camere quadruple',
-          group_young_adults: 'Camere per gruppi di giovani',
-          taxe:'Tassa di soggiorno',
-          nb_adults:'Numero di persone',
-          nb_persons:'Indicare il numero di persone (più di 25)',
-          tax_children:'* i bambini sotto i 10 anni sono esenti',
-          subtotal:'Totale parziale',
-          comments: 'Osservazioni',
-          detailsroomsmeals: 'Dettagli di camere e pasti',
-          inforesa: 'Informazioni sulla prenotazione'
-        },
-        pl: {
-          room: 'Pokoj bez łazienki',
-          roomSDB: 'Pokoj z łazienką',
-          price1night: 'Cena za 1 noc',
-          nbrooms: 'Liczba pokoi',
-          price: 'Cena',
-          night: 'noc',
-          rsingle: 'Pokoj pojedynczy',
-          rdouble: 'Pokój 2-osobowy (para)',
-          rtriple: 'Pokój 3-osobowy',
-          rquadruple: 'Pokój 4-osobowy',
-          group_young_adults: 'Pokoje wieloosobowe dla grup młodzieży',
-          taxe:'Opłata klimatyczna',
-          nb_adults:'Liczba zainteresowanych osób',
-          nb_persons:'Wskaż liczbę osób (więcej niż 25)',
-          tax_children:'* dzieci poniżej 10 lat są zwolnione z podatku',
-          subtotal:'Suma częściowa',
-          comments: 'Uwagi',
-          detailsroomsmeals: 'Szczegóły pokoi i posiłków',
-          inforesa: 'Informacje na temat rezerwacji'
-        },
-        fr: {}
-      };
-      contactCtrl.param.joursCumul=[0,0,31,59,90,120,151,181,212,243,273,304,334,365];">
-  <h3>{{rubedo.translate("Block.Inscription.InfosPerso")}}</h3>
+  <h3>Demande de réservation</h3><br/><br/>
+  <h3>Identification</h3>
 <table width="80%">
 <tr>
   <td> 
-    {{rubedo.translate("Block.Inscription.Nom")}} : { nom }<br/>
-    {{rubedo.translate("Block.Inscription.Prenom")}} : { prenom }<br/>
-    {{rubedo.translate("Block.Inscription.Email")}} : { email }
+    Nom : { nom }<br/>
+    Prénom : { prenom }<br/>
+    E-mail : { email }
   </td>
   <td> 
-    {{rubedo.translate("Block.Inscription.Telephone")}} : { telephone }<br/>
-    {{rubedo.translate("Block.Inscription.Ville")}} : { ville }<br/>
-    {{rubedo.translate("Block.Inscription.Pays")}} : { country }
+    Téléphone : { telephone }<br/>
+    Ville : { ville }<br/>
+    Pays : { country }
   </td>
  </tr>
 </table>
-<h3>Your demand</h3>
+<h3>Deamnde</h3>
 <table width="80%">
   <tr >
     <td>
-      {{rubedo.translate("Arrivee")}}: { startDate }<br/> 
-      { night }: { nbOfNights }<br/>
-      {{rubedo.translate("Depart")}}: { endDate }
+      Date prévue d'arrivée : { startDate }<br/> 
+      Nombre de nuits : { nbOfNights }<br/>
+      Date prévue de départ : { endDate }
     </td>
   </tr>
   </table>
 <table style="width:80%">
   <thead>
           <tr>
-            <td style="border-bottom:1px solid grey"><b>Stay in:</b></td>
-            <td colspan="2" style="border-bottom:1px solid grey"><b>{{lang[lg]['room'] || 'Sans salle de bain'}}</b></td>
-            <td colspan="2" style="border-bottom:1px solid grey"><b>{{lang[lg]['roomSDB'] || 'Avec salle de bain'}}</b></td>
-            <td style="border-bottom:1px solid grey"><b>{{lang[lg]['price'] || 'Prix'}}(€)</b></td>
+            <td style="border-bottom:1px solid grey"><b>Hébergement souhaité</b></td>
+            <td colspan="2" style="border-bottom:1px solid grey"><b>Sans salle de bain</b></td>
+            <td colspan="2" style="border-bottom:1px solid grey"><b>Avec salle de bain</b></td>
+            <td style="border-bottom:1px solid grey"><b>Prix (€)</b></td>
           </tr>
       </thead>
       <tr style="border-bottom:1px solid grey">
-          <td style="border-bottom:1px solid grey">{{lang[lg]['rsingle'] || 'Chambre simple'}}</td>
-          <td style="border-bottom:1px solid grey">{ single } €/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td style="border-bottom:1px solid grey">Chambre simple</td>
+          <td style="border-bottom:1px solid grey">{ single } €/nuit</td>
           <td style="border-bottom:1px solid grey"> { rooms1 }</td>
-          <td style="border-bottom:1px solid grey">{ single_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td style="border-bottom:1px solid grey">{ single_shower } €/nuit</td>
           <td style="border-bottom:1px solid grey"> { rooms1_shower }</td>
           <td style="border-bottom:1px solid grey">{ price1 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey" >
-          <td style="border-bottom:1px solid grey">{{lang[lg]['rdouble'] || 'Chambre double (couple)'}}</td>
-          <td style="border-bottom:1px solid grey">{ double } €/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td style="border-bottom:1px solid grey">Chambre double (couple)</td>
+          <td style="border-bottom:1px solid grey">{ double } €/nuit</td>
           <td style="border-bottom:1px solid grey">{ rooms2 }</td>
-          <td style="border-bottom:1px solid grey">{ double_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td style="border-bottom:1px solid grey">{ double_shower } €/nuit</td>
           <td style="border-bottom:1px solid grey">{ rooms2_shower }</td>
           <td style="border-bottom:1px solid grey">{ price2 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey" >
-          <td style="border-bottom:1px solid grey">{{lang[lg]['rtriple'] || 'Chambre triple'}}</td>
+          <td style="border-bottom:1px solid grey">Chambre triple</td>
           <td style="border-bottom:1px solid grey"></td>
           <td style="border-bottom:1px solid grey"></td>
-          <td style="border-bottom:1px solid grey">{ triple_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td style="border-bottom:1px solid grey">{ triple_shower } €/nuit</td>
           <td style="border-bottom:1px solid grey">{ rooms3_shower }</td>
           <td style="border-bottom:1px solid grey">{ price3 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey">
-          <td style="border-bottom:1px solid grey">{{lang[lg]['rquadruple'] || 'Chambre quadruple'}}</td>
-          <td style="border-bottom:1px solid grey">{ quadruple_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td style="border-bottom:1px solid grey">Chambre quadruple</td>
+          <td style="border-bottom:1px solid grey">{ quadruple_shower } €/nuit</td>
           <td style="border-bottom:1px solid grey">{ rooms4 }</td>
-          <td style="border-bottom:1px solid grey">{ quadruple_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td style="border-bottom:1px solid grey">{ quadruple_shower } €/nuit</td>
           <td style="border-bottom:1px solid grey"> { rooms4_shower }</td>
           <td style="border-bottom:1px solid grey">{ price4 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey">
-          <td style="border-bottom:1px solid grey">{{lang[lg]['group_young_adults'] || 'Chambres pour les groupes de jeunes'}}</td>
-          <td style="border-bottom:1px solid grey">{ group_young_adults } €/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td style="border-bottom:1px solid grey">Chambres pour les groupes de jeunes</td>
+          <td style="border-bottom:1px solid grey">{ group_young_adults } €/nuit</td>
           <td style="border-bottom:1px solid grey">{ rooms5 }</td>
-          <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">{{lang[lg]['nb_adults'] || 'Nombre de personnes'}}</td>
+          <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">Nombre de personnes</td>
           <td style="border-bottom:1px solid grey">{ price5 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey">
-          <td style="border-bottom:1px solid grey">{{lang[lg]['taxe'] || 'Taxe de séjour'}}</td>
-          <td style="border-bottom:1px solid grey">3,5 €/{{lang[lg]['night'] || 'nuit'}}</td>
+          <td style="border-bottom:1px solid grey">Taxe de séjour *</td>
+          <td style="border-bottom:1px solid grey">3,5 €/nuit</td>
           <td style="border-bottom:1px solid grey">{ nbadults }</td>
-          <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">Number of persons concerned *</td>
+          <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">Nombres de personnes concernées par la taxe</td>
           <td style="border-bottom:1px solid grey">{ taxe }</td>
       </tr>
   
   </table>
-  <p>{{lang[lg]['comments'] || 'Commentaires'}}<br/>
+  <p>Commentaires<br/>
   { remarks }</p>
   <p><b>Total :</b> { total } €<br></p>
   <p><em>
-    Free for a children under 4 years old<br/>
-    {{lang[lg]['tax_children'] || '* les enfants de moins de 10 ans en sont exempts'}}<br/>
+    * les enfants de moins de 10 ans en sont exempts<br/>
   </div>
 </body></html>
