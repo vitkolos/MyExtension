@@ -1,17 +1,17 @@
 <!--mail pour la réservation à la pension Saint Joseph de Cluny-->
 <html><body>
-  <h3>Identification</h3>
+  <h3>{{rubedo.translate("Block.Inscription.InfosPerso")}}</h3>
 <table width="80%">
 <tr>
   <td> 
-    Surname : { surname }<br/>
-    Family name : { name }<br/>
-    Email : { email }
+    {{rubedo.translate("Block.Inscription.Nom")}} : { nom }<br/>
+    {{rubedo.translate("Block.Inscription.Prenom")}} : { prenom }<br/>
+    {{rubedo.translate("Block.Inscription.Email")}} : { email }
   </td>
   <td> 
-    Phone : { phone }<br/>
-    City : { city }<br/>
-    Country : { country }
+    {{rubedo.translate("Block.Inscription.Telephone")}} : { telephone }<br/>
+    {{rubedo.translate("Block.Inscription.Ville")}} : { ville }<br/>
+    {{rubedo.translate("Block.Inscription.Pays")}} : { country }
   </td>
  </tr>
 </table>
@@ -19,9 +19,9 @@
 <table width="80%">
   <tr >
     <td>
-      Start date: { startDate }<br/> 
-      Nights: { nbOfNights }<br/>
-      End date: { endDate }
+      {{rubedo.translate("Arrivee")}}: { startDate }<br/> 
+      { night }: { nbOfNights }<br/>
+      {{rubedo.translate("Depart")}}: { endDate }
     </td>
   </tr>
   </table>
@@ -29,64 +29,64 @@
   <thead>
           <tr>
             <td style="border-bottom:1px solid grey"><b>Stay in:</b></td>
-            <td colspan="2" style="border-bottom:1px solid grey"><b>Room without bathroom</b></td>
-            <td colspan="2" style="border-bottom:1px solid grey"><b>Room with bathroom</b></td>
-            <td style="border-bottom:1px solid grey"><b>Price (€)</b></td>
+            <td colspan="2" style="border-bottom:1px solid grey"><b>{{lang[lg]['room'] || 'Sans salle de bain'}}</b></td>
+            <td colspan="2" style="border-bottom:1px solid grey"><b>{{lang[lg]['roomSDB'] || 'Avec salle de bain'}}</b></td>
+            <td style="border-bottom:1px solid grey"><b>{{lang[lg]['price'] || 'Prix'}}(€)</b></td>
           </tr>
       </thead>
       <tr style="border-bottom:1px solid grey">
-          <td style="border-bottom:1px solid grey">Single room</td>
-          <td style="border-bottom:1px solid grey">42 €/night</td>
+          <td style="border-bottom:1px solid grey">{{lang[lg]['rsingle'] || 'Chambre simple'}}</td>
+          <td style="border-bottom:1px solid grey">{ single } €/{{lang[lg]['night'] || 'nuit'}}</td>
           <td style="border-bottom:1px solid grey"> { rooms1 }</td>
-          <td style="border-bottom:1px solid grey">50 €/night</td>
+          <td style="border-bottom:1px solid grey">{ single_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
           <td style="border-bottom:1px solid grey"> { rooms1_shower }</td>
           <td style="border-bottom:1px solid grey">{ price1 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey" >
-          <td style="border-bottom:1px solid grey">Double room (couple)</td>
-          <td style="border-bottom:1px solid grey">72 €/night</td>
+          <td style="border-bottom:1px solid grey">{{lang[lg]['rdouble'] || 'Chambre double (couple)'}}</td>
+          <td style="border-bottom:1px solid grey">{ double } €/{{lang[lg]['night'] || 'nuit'}}</td>
           <td style="border-bottom:1px solid grey">{ rooms2 }</td>
-          <td style="border-bottom:1px solid grey">88 €/night</td>
+          <td style="border-bottom:1px solid grey">{ double_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
           <td style="border-bottom:1px solid grey">{ rooms2_shower }</td>
           <td style="border-bottom:1px solid grey">{ price2 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey" >
-          <td style="border-bottom:1px solid grey">Triple room (twin bed)</td>
+          <td style="border-bottom:1px solid grey">{{lang[lg]['rtriple'] || 'Chambre triple'}}</td>
           <td style="border-bottom:1px solid grey"></td>
           <td style="border-bottom:1px solid grey"></td>
-          <td style="border-bottom:1px solid grey">120 €/night</td>
+          <td style="border-bottom:1px solid grey">{ triple_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
           <td style="border-bottom:1px solid grey">{ rooms3_shower }</td>
           <td style="border-bottom:1px solid grey">{ price3 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey">
-          <td style="border-bottom:1px solid grey">Quadruple room</td>
-          <td style="border-bottom:1px solid grey">120 €/night</td>
+          <td style="border-bottom:1px solid grey">{{lang[lg]['rquadruple'] || 'Chambre quadruple'}}</td>
+          <td style="border-bottom:1px solid grey">{ quadruple_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
           <td style="border-bottom:1px solid grey">{ rooms4 }</td>
-          <td style="border-bottom:1px solid grey">128 €/night</td>
+          <td style="border-bottom:1px solid grey">{ quadruple_shower } €/{{lang[lg]['night'] || 'nuit'}}</td>
           <td style="border-bottom:1px solid grey"> { rooms4_shower }</td>
           <td style="border-bottom:1px solid grey">{ price4 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey">
-          <td style="border-bottom:1px solid grey">Rooms for youth groups</td>
-          <td style="border-bottom:1px solid grey">30 €/night</td>
+          <td style="border-bottom:1px solid grey">{{lang[lg]['group_young_adults'] || 'Chambres pour les groupes de jeunes'}}</td>
+          <td style="border-bottom:1px solid grey">{ group_young_adults } €/{{lang[lg]['night'] || 'nuit'}}</td>
           <td style="border-bottom:1px solid grey">{ rooms5 }</td>
-          <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">Number of persons</td>
+          <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">{{lang[lg]['nb_adults'] || 'Nombre de personnes'}}</td>
           <td style="border-bottom:1px solid grey">{ price5 }</td>
       </tr>
       <tr style="border-bottom:1px solid grey">
-          <td style="border-bottom:1px solid grey">Tourist tax</td>
-          <td style="border-bottom:1px solid grey">3,5 €/night</td>
+          <td style="border-bottom:1px solid grey">{{lang[lg]['taxe'] || 'Taxe de séjour'}}</td>
+          <td style="border-bottom:1px solid grey">3,5 €/{{lang[lg]['night'] || 'nuit'}}</td>
           <td style="border-bottom:1px solid grey">{ nbadults }</td>
           <td colspan="2" style="border-bottom:1px solid grey; font-style: italic;">Number of persons concerned *</td>
           <td style="border-bottom:1px solid grey">{ taxe }</td>
       </tr>
   
   </table>
-  <p>Comments : <br/>
+  <p>{{lang[lg]['comments'] || 'Commentaires'}}<br/>
   { remarks }</p>
-  <p><b>Total price:</b> { total } €<br></p>
+  <p><b>Total :</b> { total } €<br></p>
   <p><em>
     Free for a children under 4 years old<br/>
-    * Tourist tax for children over 10 years old<br/>
+    {{lang[lg]['tax_children'] || '* les enfants de moins de 10 ans en sont exempts'}}<br/>
 
 </body></html>
