@@ -50,6 +50,8 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.submit=function(){
         me.contactError=null;
         var contactSnap=angular.copy(me.contactData);
+								console.log("me.contactData");
+								console.log(me.contactData);
         var payload={
             to:config.email,
             from:me.contactData.email,
