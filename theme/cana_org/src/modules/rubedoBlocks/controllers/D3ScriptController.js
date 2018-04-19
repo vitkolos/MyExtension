@@ -29,11 +29,17 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 																angular.forEach(me.results, function(country){
 																				var id=country["fields.id"][0];
 																				var id_iso = id.substr(0, 2).toLowerCase();
-																				if (id_iso=="uk") {
+																				if (id=="UKR") {
 																							id_iso="ua";
 																				}
-																				if (id_iso=="po") {
+																				if (id=="POL") {
 																							id_iso="pl";
+																				}
+																				if (id=="MAU") {
+																							id_iso="mu";
+																				}
+																				if (id=="MAT") {
+																							id_iso="fr";
 																				}
 																				me.countryList[id] = {
 																								'name':country["title"],
