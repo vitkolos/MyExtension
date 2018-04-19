@@ -44,6 +44,9 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 																				if (id=="ISR") {
 																							id_iso="il";
 																				}
+																				if (id=="SYC") {
+																							id_iso="sc";
+																				}
 																				me.countryList[id] = {
 																								'name':country["title"],
 																								'fillKey':country["presence"],
