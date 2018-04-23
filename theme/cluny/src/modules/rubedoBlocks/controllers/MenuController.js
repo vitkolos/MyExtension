@@ -62,6 +62,10 @@
 																$scope.clearORPlaceholderHeight();
             }
         });
+								
+								$rootScope.toggleNav = "false";
+								$rootScope.ToggleNav = function(){$rootScope.toggleNav = !$rootScope.toggleNav};
+								
 	
         var lang = $route.current.params.lang;
 	/*Ajouter les traductions*/
