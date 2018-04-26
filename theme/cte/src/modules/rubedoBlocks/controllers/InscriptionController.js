@@ -411,13 +411,31 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             payload.infos=$scope.inscription;
                         }
                         PaymentService.payment(payload).then(function(response){
-                            if (response.data.success) {
-                                $scope.parametres = response.data.parametres;
-                                /*délai pour laisser le formulaire se remplir*/
-                                $timeout(function() {
-                                    $scope.processForm=false;
-                                    document.getElementById('payment').submit();
-                                }, 100);
+                            
+																												
+																												
+																												
+																												if (response.data.success) {
+																																 if($scope.don.modePaiement == 'carte') {
+                                    $scope.parametres = response.data.parametres;
+                                    /*délai pour laisser le formulaire se remplir*/
+                                    $timeout(function() {
+                                        $scope.processForm=false;
+                                        document.getElementById('payment').submit();
+                                    }, 100);
+                                }
+                                else if($scope.don.modePaiement == 'paypal'){
+                                    window.location.href= response.data.parametres;
+                                }
+																																
+																																
+																																
+                                //$scope.parametres = response.data.parametres;
+                                ///*délai pour laisser le formulaire se remplir*/
+                                //$timeout(function() {
+                                //    $scope.processForm=false;
+                                //    document.getElementById('payment').submit();
+                                //}, 100);
                             }
                             else {
                                 $scope.processForm=false;
