@@ -2,6 +2,7 @@
                                                                           function($scope,RubedoContentsService, RubedoSearchService,RubedoPagesService,TaxonomyService,$timeout,$http,$route,$location,$filter,$rootScope,RubedoPaymentMeansService,InscriptionService){
     var me = this;
     var config = $scope.blockConfig;
+    console.log(config);
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     me.inscriptionTemplate = themePath+'/templates/blocks/inscriptionFoyer.html';
     var previousFields;
@@ -108,6 +109,8 @@
                 if(response.data.success){
                     if(config.isAutoInjected) $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
+                    console.log("content");
+                    console.log(me.content);
                     //si contenu référence une autre page (interne ou externe)
                     if (me.content.fields.propositionReferencee && me.content.fields.propositionReferencee !="") {
                         window.location.href =  me.content.fields.propositionReferencee;
