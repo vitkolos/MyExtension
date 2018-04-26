@@ -416,7 +416,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 																												
 																												
 																												if (response.data.success) {
-																																 if($scope.don.modePaiement == 'carte') {
+																																 if($scope.inscription.modePaiement == 'carte') {
                                     $scope.parametres = response.data.parametres;
                                     /*délai pour laisser le formulaire se remplir*/
                                     $timeout(function() {
@@ -424,7 +424,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                                         document.getElementById('payment').submit();
                                     }, 100);
                                 }
-                                else if($scope.don.modePaiement == 'paypal'){
+                                else if($scope.inscription.modePaiement == 'paypal'){
                                     window.location.href= response.data.parametres;
                                 }
 																																
