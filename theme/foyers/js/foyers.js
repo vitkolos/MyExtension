@@ -91,6 +91,53 @@ angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  functi
         return serviceInstance;
     }]);
 	
+	/*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
+angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
+    return function(startDate, endDate, rangeFormat,from,to,lang){
+	//console.log($scope.rubedo);
+	var locale = lang || 'default';
+	var format = rangeFormat || 'long';
+	var formatOfDate =  'd MMM yyyy';
+	var isSameDay = false;
+	var start = new Date(startDate*1000);
+	var end = new Date(endDate*1000);
+	var longFormat="";//format complet de date
+	switch(locale){
+		case 'hu': longFormat = 'yyyy. MMM d.';break;
+		case 'de': longFormat = 'd. MMM yyyy';break;
+		default : longFormat = 'd MMM yyyy';
+	}
+	if (start.getFullYear() != end.getFullYear()) {
+	    formatOfDate = longFormat;
+	}
+	else if (start.getMonth() != end.getMonth()) {
+		if (locale=='de') formatOfDate = 'd. MMM';
+		else formatOfDate = 'd MMM';
+	}
+	else  if(start.getDate() == end.getDate()){
+		if (locale=='de') formatOfDate = 'd.';
+	    	else formatOfDate = 'd';
+	    	isSameDay=true;
+	}
+	else {
+		switch(locale){
+			case 'hu': formatOfDate = 'yyyy. MMM d';longFormat='d.';break;
+			case 'de': longFormat= 'd. MMM yyyy';formatOfDate='d.';break;
+			default : formatOfDate = 'd';
+		}
+	}
+	if (format == 'short') {
+		if(isSameDay) formattedDate= $filter('date')(end,longFormat);	  
+	    	else formattedDate= $filter('date')(start,formatOfDate) + "-"+$filter('date')(end,longFormat);	    
+	}
+	else {
+           if(isSameDay) formattedDate= $filter('date')(end,longFormat);	  
+	   else formattedDate= from +" "+$filter('date')(start,formatOfDate) + " "+to+" "+$filter('date')(end,longFormat);	    
+	}
+	return formattedDate;
+    }
+  });
+	
 	
 	angular.module('rubedoFields').filter('firstword', function() {
         return function(input, splitIndex) {
