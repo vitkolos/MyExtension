@@ -10,6 +10,75 @@ blocksConfig.bg_image={
            "template": "/templates/blocks/bg_image.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
 };
+angular.module('rubedoBlocks').filter('cleanUrl', function () {
+    return function (input) {
+        return input.replace("//","/");
+     };
+  });
+
+
+angular.module('rubedoBlocks').filter('cleanHour', function () {
+    return function (input) {
+    	var hour="";
+    	if(input.split('AM').length>1){
+    		hour=input.split('AM')[0];
+    	}
+    	else if(input.split('PM').length>1){
+    		var hours = input.split('PM')[0].split(':')[0];
+    		var mins = input.split('PM')[0].split(':')[1];
+    		hour=(parseInt(hours)+12)+":"+mins
+    		
+    	}  
+    	else hour = input;
+        return hour;
+     };
+  });
+angular.module('rubedoBlocks').filter('currentyear',['$filter',  function($filter) {
+    return function() {
+        return $filter('date')(new Date(), 'yyyy');
+    };
+}])
+angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  function($filter,$interval) {
+    return function(nextDate,format) {
+												/*var fireDigestEverySecond = function () {
+																						$timeout(function () {fireDigestEverySecond()}, 1000);
+																		};
+											
+											fireDigestEverySecond();*/
+												//$interval(function (){timeDiff()}, 1000);
+												var dateDiff = function(){
+																						var currentDate = new Date();
+																						var endDate = new Date(nextDate);
+																						var miliseconds = endDate-currentDate;
+																						/*if (format=='days') {
+																																	return window.Math.round(miliseconds/(1000*60*60));
+																						}
+																						else if (format=='min') {
+																																	return window.Math.round(miliseconds/(1000*60*60));
+																						}*/
+											
+																						var seconds = miliseconds/1000;
+																						var minutes = seconds/60;
+																						var hours = minutes/60;
+																						var days = window.Math.floor(miliseconds/(24*60*60*1000));
+																						var hours = window.Math.floor((miliseconds-days*(24*60*60*1000))/(60*60*1000));
+																						var min = window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000))/(60*1000));
+																						if (format=='day') {
+																																	return days;
+																						}
+																						else if (format=='hour') {
+																																	return hours;
+																						}
+																						else if (format=='min') {
+																																	return min;
+																						}
+																						else if (format=='sec') {
+																																	return window.Math.floor((miliseconds-days*(24*60*60*1000)-hours*(60*60*1000)-min*(60*1000))/(1000));
+																						}
+												};
+											return dateDiff();
+											};
+}])
 	angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
         var serviceInstance={};
         serviceInstance.sendMail=function(payload){
