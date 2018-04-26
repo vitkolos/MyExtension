@@ -137,6 +137,37 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	return formattedDate;
     }
   });
+
+angular.module('rubedoDataAccess').factory('TaxonomyService', ['$http',function($http) {
+        var serviceInstance={};
+	serviceInstance.getTaxonomyByVocabulary=function(vocabularies){
+            return ($http.get("/api/v1/taxonomies",{
+                params:{
+                    vocabularies:vocabularies
+                }
+            }));
+	};
+        return serviceInstance;
+    }]);
+angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
+    var serviceInstance={};
+    serviceInstance.inscrire=function(inscription,workspace,traductions){
+        return($http({
+                url:"/api/v1/inscription",
+                method:"POST",
+                data:{
+                    inscription:inscription,
+                    workspace: workspace
+                }
+            }));
+    };
+				serviceInstance.exportInscriptions=function(payload){
+											return ($http.get("/api/v1/inscription",{
+																		params: payload
+												}));
+							};
+    return serviceInstance;
+}]);
 	
 	
 	angular.module('rubedoFields').filter('firstword', function() {
