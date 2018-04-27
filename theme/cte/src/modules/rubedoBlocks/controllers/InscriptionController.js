@@ -11,6 +11,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
     me.paiment_complementaire= themePath+'/templates/blocks/formulaire/paiment_complementaire.html';
     me.content = angular.copy($scope.proposition);
+				console.log("$scope.inscription");
+				console.log($scope.inscription);
+				console.log("response.data");
+				console.log(response.data);
     
     getForms = function(public) {
         switch(public) {
@@ -386,10 +390,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if (response.data.success) {
                     // si paiement par Paybox
                     if ($scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
-                        console.log("$scope.inscription");
-																								console.log($scope.inscription);
-																								console.log("response.data");
-																								console.log(response.data);
+                        
 																								var payload = {
                             nom:$scope.inscription.nom,
                             prenom: $scope.inscription.surname,
