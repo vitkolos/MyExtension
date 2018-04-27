@@ -335,6 +335,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if(me.content.fields.dateDebut && me.content.fields.dateDebut!='') $scope.inscription.propositionDate = propositionDate;
             $scope.inscription.dateDebut = me.content.fields.dateDebut;
             $scope.inscription.propositionLieu = me.content.fields.positionName;
+												$scope.inscription.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
+												console.log("$scope.inscription.codeMonnaie");
+												console.log($scope.inscription.codeMonnaie);
             $scope.inscription.propositionUrl = me.content.canonicalUrl;
             $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
