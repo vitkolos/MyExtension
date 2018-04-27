@@ -11,10 +11,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
     me.paiment_complementaire= themePath+'/templates/blocks/formulaire/paiment_complementaire.html';
     me.content = angular.copy($scope.proposition);
-				console.log("$scope.inscription");
-				console.log($scope.inscription);
-				console.log("response.data");
-				console.log(response.data);
+				
     
     getForms = function(public) {
         switch(public) {
@@ -327,6 +324,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
             else if (step==5) {
                 me.toggleStage(6);
+																console.log("$scope.inscription");
+																console.log($scope.inscription);
+																console.log("response.data");
+																console.log(response.data);
             }
         }
         if (valide && step==6) {
