@@ -386,7 +386,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if (response.data.success) {
                     // si paiement par Paybox
                     if ($scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
-                        var payload = {
+                        console.log("$scope.inscription");
+																								console.log($scope.inscription);
+																								console.log("response.data");
+																								console.log(response.data);
+																								var payload = {
                             nom:$scope.inscription.nom,
                             prenom: $scope.inscription.surname,
                             email:$scope.inscription.email,
@@ -395,7 +399,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             idInscription: response.data.id,
                             paymentConfID:response.data.result.paymentConfID,
 																												paymentMeans:$scope.inscription.modePaiement,
-																												codeMonnaieAlpha:$scope.don.codeMonnaieAlpha,
+																												codeMonnaieAlpha:$scope.inscription.codeMonnaieAlpha,
 																												paymentType:'paf'
                         };
                         /*si ados, le mail indiqué pour le payement est celui du parent*/
