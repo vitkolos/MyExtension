@@ -324,10 +324,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
             else if (step==5) {
                 me.toggleStage(6);
-																console.log("$scope.inscription");
-																console.log($scope.inscription);
-																console.log("response.data");
-																console.log(response.data);
             }
         }
         if (valide && step==6) {
@@ -401,7 +397,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             idInscription: response.data.id,
                             paymentConfID:response.data.result.paymentConfID,
 																												paymentMeans:$scope.inscription.modePaiement,
-																												codeMonnaieAlpha:$scope.inscription.codeMonnaieAlpha,
+																												codeMonnaieAlpha:me.paymentmeans.nativePMConfig.codeMonnaieAlpha,
 																												paymentType:'paf'
                         };
                         /*si ados, le mail indiqué pour le payement est celui du parent*/
