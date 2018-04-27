@@ -395,6 +395,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             idInscription: response.data.id,
                             paymentConfID:response.data.result.paymentConfID,
 																												paymentMeans:$scope.inscription.modePaiement,
+																												codeMonnaieAlpha:$scope.don.codeMonnaieAlpha,
 																												paymentType:'paf'
                         };
                         /*si ados, le mail indiqué pour le payement est celui du parent*/
