@@ -198,7 +198,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         $scope.page14_18=true;
                     }
                     
-                    if (me.content.type.code=="proposition") {
+                    if (me.content.type.code=="propositionFoyer") {
                         //Propositions : déterminer si les inscriptions sont possibles
                         var today = new Date();
                         if (!me.content.fields.inscriptionState
