@@ -15,10 +15,9 @@
     <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
     
     
-    <div class="col-sm-12" ng-if="contentDetailCtrl.propDate!='passee'
-						&& (contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'
+    <div class="col-sm-12" ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'
 						|| contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription'
-						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente')">
+						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente' ">
 						<!--si un seul public accueilli-->
 						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">
 							<a href="#bottom">
