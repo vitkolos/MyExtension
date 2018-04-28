@@ -60,9 +60,9 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 //            default:me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
 //        }
 //    }
-    getForms($scope.contentDetailCtrl.content.public);
-    $scope.inscription={};
-    $scope.inscription.optionsPayantes={};
+    //getForms($scope.contentDetailCtrl.content.public);
+    //$scope.inscription={};
+    //$scope.inscription.optionsPayantes={};
 
 //get proposition
 //    var propositionId = me.content.id;
