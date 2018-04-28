@@ -387,6 +387,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     if (config.contentId){
         me.getContentById(config.contentId);
+        console.log(me.content);
     }
     
     
