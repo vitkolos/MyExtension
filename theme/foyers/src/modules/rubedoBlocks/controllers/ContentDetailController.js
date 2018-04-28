@@ -108,6 +108,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     if(config.isAutoInjected) $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
+                    console.log("me.content");
+                    console.log(me.content);
                     //si contenu référence une autre page (interne ou externe)
                     if (me.content.fields.propositionReferencee && me.content.fields.propositionReferencee !="") {
                         window.location.href =  me.content.fields.propositionReferencee;
