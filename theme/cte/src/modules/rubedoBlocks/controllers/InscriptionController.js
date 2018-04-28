@@ -393,7 +393,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             nom:$scope.inscription.nom,
                             prenom: $scope.inscription.surname,
                             email:$scope.inscription.email,
-                            montant:$scope.inscription.montantAPayerMaintenantAvecMonnaie,
+                            montant:$scope.inscription.montantAPayerMaintenant + me.paymentmeans.nativePMConfig.monnaie,
                             proposition:propositionTitle,
                             idInscription: response.data.id,
                             paymentConfID:response.data.result.paymentConfID,
@@ -401,7 +401,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 																												codeMonnaieAlpha:me.paymentmeans.nativePMConfig.codeMonnaieAlpha,
 																												paymentType:'paf'
                         };
-                        /*si ados, le mail indiqué pour le payement est celui du parent*/
+                        /*si ados, le mail indiqué pour le payement est celui du parent*/ 
                         if($scope.inscription.public_type == 'adolescent' && $scope.inscription.emailPers2 && $scope.inscription.emailPers2!=''){
                             payload.email = $scope.inscription.emailPers2;
                         }
