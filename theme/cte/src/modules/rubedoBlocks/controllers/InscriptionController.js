@@ -393,7 +393,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             nom:$scope.inscription.nom,
                             prenom: $scope.inscription.surname,
                             email:$scope.inscription.email,
-                            montant:$scope.inscription.montantAPayerMaintenant + me.paymentmeans.nativePMConfig.monnaie,
+                            montant:$scope.inscription.montantAPayerMaintenant,
                             proposition:propositionTitle,
                             idInscription: response.data.id,
                             paymentConfID:response.data.result.paymentConfID,
