@@ -4,7 +4,21 @@
                 <p class="capital">{{rubedo.translate("Block.Inscription.Fiche", "Fiche d'inscription")}}</p>
                 <h3>{{contentDetailCtrl.content.fields.text}}</h3>
                 <p ng-if="contentDetailCtrl.content.fields.dateDebut">{{contentDetailCtrl.content.fields.dateDebut | dateRange:contentDetailCtrl.content.fields.dateFin:'long':rubedo.translate("date.from", "od"):rubedo.translate("date.to", "do"):rubedo.current.page.locale }}</p>
-
+                
+                
+                
+                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==1}" ng-click="formCtrl.setCurrentStage(0,infos_personnelles.$valid)">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
+                        <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>1"></span>
+                </h2>
+                <div id="inscriptionStage1" class="collapse in">
+                    <ng-form name="infos_personnelles">
+                            <div  class="row" ng-include="formCtrl.general_infos"></div>
+                            <div class="row text-center">
+                                <div class="button submit" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                                <p ng-if="infos_personnelles.$invalid && infos_personnelles.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
+                            </div>
+                    </ng-form>
+                </div>
         </div> 
 
 
