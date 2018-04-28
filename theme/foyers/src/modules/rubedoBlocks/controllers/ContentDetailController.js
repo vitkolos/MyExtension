@@ -384,10 +384,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 }
             }
         );
+       console.log(me.content);
     };
     if (config.contentId){
         me.getContentById(config.contentId);
-        console.log(me.content);
     }
     
     
