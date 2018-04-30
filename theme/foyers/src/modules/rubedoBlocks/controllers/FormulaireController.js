@@ -19,9 +19,9 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				$scope.inscription.situationFamiliale="";
 				$scope.parentsEnsemble=false;
 				$scope.parentsSepares=false;
-				if ($scope.inscription.situationFamiliale=="ensemble") {
+				if ($scope.inscription.situationFamiliale=='ensemble') {
 								$scope.parentsEnsemble=true;
-				} else if ($scope.inscription.situationFamiliale=="separes") {
+				} else if ($scope.inscription.situationFamiliale=='separes') {
 								$scope.parentsSepares=true;
 				}
 				console.log("situationFamiliale");
