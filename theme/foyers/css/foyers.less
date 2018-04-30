@@ -1,4 +1,26 @@
-////VARIABLES
+//// VARIABLES COM
+@width_xxs:420px;
+@min_xs:500px;
+@min_sm:768px;
+@min_md:992px;
+@min_lg:1200px;
+@rouge:#c1573c;//rouge brique
+@rouge_shadow:#9e4232; // rouge brique sombre
+@txt_dark:#2e2c29;// couleur texte
+@txt_light:#898989; // texte gris clair
+@menu:#2e2c29;// couleur de fond du menu par défaut
+@beigeCCN:#f3eeea; // beige fond
+@marron:#d5c5b5 ; // beige plus sombre
+@rencontre:#7d77bf; //violet rencontres
+@lieux:#fbbd58; //jaune lieux communautaires
+@evenement:#f96847; //orange propositions;
+//@14-18:#59d3b6;
+@14-18:#1f2d5c;
+@cana:#26a95f;
+@bleu:#3CA6C1;
+
+
+//// VARIABLES FOYERS-ETUDIANTS.ORG
 @bg:#41a0c7;
 @txt_blue : #17789c;
 @txt_dark:#333;
@@ -486,3 +508,111 @@ header.bg-image{
   -webkit-animation-name: bounce;
   animation-name: bounce;
 }
+
+
+
+/* FORMULAIRE D'INSCRIPTION */
+.capital, .capital p{text-transform: uppercase; letter-spacing: 2px; font-size:14px; font-weight: normal; }
+label.label_style, .label_style label:not(.radio-inline){
+  float: right;
+  line-height: 1.5em;
+  .txt-red;
+  .capital;
+  text-align: right;
+  position: relative;
+  top:0.5em;
+}
+label.label_style.left, .label_style.left label{text-align:left; float:left}
+@media screen and (max-width:768px) {label.label_style{text-align:left; float:left}}
+
+
+/*Checkboxes and radio buttons*/
+
+.sans-serif{font-family: 'trend_sansone',Helvetica,Arial,sans-serif}
+  label.sexe_label{.sans-serif;}
+
+  input[type=radio],
+  input[type=checkbox] {
+	  display: none;
+  }
+  .radio-inline input[type=radio], .form-group input[type=radio],
+  .checkbox-inline input[type=checkbox],.form-group input[type=checkbox] {
+	  display: block;
+  }
+  input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:before {
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	position: absolute;
+	left: 0;
+	vertical-align: middle;
+	background-color: white;
+	border: 1px solid brown;
+  }
+
+  input[type=radio] +label:not(.sexe_label):before {
+	 border-radius: 10px;
+ }
+  input[type=checkbox] + label {
+	  margin-bottom: 10px;
+  }
+  input[type=checkbox] + label:before {
+      border-radius: 3px;
+  }
+
+  input[type=radio]:checked + label:not(.sexe_label):after {
+      content: "\2022";
+      color: red;
+      font-size: 44px;
+      text-align: center;
+      line-height: 28px;
+      position:absolute;
+      left:1px; top: -5px;
+  }
+  input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	padding-left: 25px;
+	margin-right: 15px;
+	font-weight: normal;
+  }
+
+  input[type=checkbox]:checked + label:before {
+	  content: "\f00c"; font-family: 'trend_sansone';
+	  text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+	  font-size: 20px;
+	  text-align: center;
+	line-height: 19px;
+	color:red;
+  }
+  select{
+    border: 2px solid white;
+    background-color: transparent;
+    width: 100%; padding: 6px;
+  }
+
+.txt-red{color:@rouge !important}
+
+ng-form[name="inscription_form"]{
+  .panel{background-color: transparent; border: none;-webkit-box-shadow: none; box-shadow:none}
+  h2.displayed{background-color: white}
+  //h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
+  ng-form .row{margin: 0 15px;margin-bottom:12px; }
+  //ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
+  .capital.txt-red{font-size:16px !important}
+
+  label.sexe_label, input.montant-dons{
+    background-color:transparent;
+    height: 36px; width:36px;
+    color:brown;
+    border: 2px white solid;
+    border-radius: 18px;
+    line-height: 32px;
+    .sans-serif;
+    text-align: center;
+    cursor: pointer;
+    margin-right:25px;
+  }}
