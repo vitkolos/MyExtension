@@ -585,6 +585,18 @@ h2.capital{text-align: center; padding:12px 0; border-bottom: 2px solid; margin-
 h2.displayed{background-color: white}
 h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
 ng-form .row{margin: 0 15px;margin-bottom:12px; }
+//////////////COLLAPSE////////////////////////
+.panel-group[id^=collapse]{
+		 .panel+.panel{margin-top:12px}
+		.panel-default>.panel-heading{cursor: pointer; a{display: inline-block; width: 100%;}}
+		.panel-body ul{list-style-type: initial; padding-left: 24px;}
+		font-size: 16px;
+		td{padding-right : 12px;}
+}
+
+@media screen and (max-width:@min_sm) {.panel-group[id^=collapse] .panel-body ul{padding-left: 12px}}
+
+
 //ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
 
 
