@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService',function($scope,$location,RubedoMenuService,RubedoPagesService){
+angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$http','$location','RubedoMenuService','RubedoPagesService',function($scope,$http,$location,RubedoMenuService,RubedoPagesService){
         var me=this;
         me.menu={};
         me.currentRouteline=$location.path();
