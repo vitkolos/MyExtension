@@ -15,17 +15,12 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 				me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
 				
-				$scope.inscription={};
-				$scope.inscription.situationFamiliale="";
-				$scope.parentsEnsemble=false;
-				$scope.parentsSepares=false;
-				if ($scope.inscription.situationFamiliale=='ensemble') {
-								$scope.parentsEnsemble=true;
-				} else if ($scope.inscription.situationFamiliale=='separes') {
-								$scope.parentsSepares=true;
-				}
-				console.log("situationFamiliale");
-				console.log($scope.inscription.situationFamiliale);
+				me.parentsEnsemble=false;
+				me.parentsSepares=false;
+				console.log("me.parentsEnsemble");
+				console.log(me.parentsEnsemble);
+				console.log("me.parentsSepares");
+				console.log(me.parentsSepares);
     
 //    getForms = function(public) {
 //        switch(public) {
