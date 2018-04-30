@@ -257,9 +257,9 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
     // VALIDATIONS ANGULAR
     
     //telephones
-    $scope.isTelephoneRequired = function () {
-            return  !($scope.inscription.tel); 
-    };
+    //$scope.isTelephoneRequired = function () {
+    //        return  !($scope.inscription.tel); 
+    //};
 
 // s'il y a des questions complémentaires, les récupérer
     if (me.content.fields.questions && (me.content.fields.questions).length>0) {
