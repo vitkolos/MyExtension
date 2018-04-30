@@ -258,7 +258,7 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
     
     //telephones
     $scope.isTelephoneRequired = function () {
-            return  !($scope.inscription.tel1 || $scope.inscription.tel2); // au moins téléphone fixe ou portable
+            return  !($scope.inscription.tel); 
     };
 
 // s'il y a des questions complémentaires, les récupérer
