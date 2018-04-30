@@ -568,8 +568,10 @@ ng-form[name=inscription_form] label.sexe_label {
 	border: 1px solid #fff;
   }
 		label.sexe_label.boite{
-    width: auto;
-    min-width: 75px; 
+    width: auto !important;
+    min-width: 75px;
+				padding-right: 12px;
+    padding-left: 12px;
   }
 
   input[type=radio] +label:not(.sexe_label):before {
@@ -588,7 +590,7 @@ ng-form[name=inscription_form] label.sexe_label {
   .button.submit.disabled{color:@marron; border: 2px solid @marron; cursor: default}
 /*Titre section*/
 h2.capital{text-align: center; padding:12px 0; border-bottom: 2px solid; margin-top:12px; margin-bottom:24px}
-h2.displayed{color:@bg;background-color: white}
+h2.displayed{color:@bg !important;background-color: white}
 h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
 ng-form .row{margin: 0 15px;margin-bottom:12px; }
 //////////////COLLAPSE////////////////////////
