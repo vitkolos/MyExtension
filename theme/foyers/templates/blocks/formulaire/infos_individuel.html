@@ -96,7 +96,7 @@
         </div>
     </div>
     <!--ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/"-->
-    <div class="row" ng-if="!personneConnue">
+    <div class="row" ng-if="!personneConnue"> 
         <div class="col-sm-4"><label for="tel" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
         <div class="col-sm-8"><input type="text" id="tel" name="tel" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}" ng-model="inscription.tel"  ng-required="isTelephoneRequired()"></div>
     </div>
