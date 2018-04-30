@@ -24,6 +24,8 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				} else if ($scope.inscription.situationFamiliale=="separes") {
 								$scope.parentsSepares=true;
 				}
+				console.log("situationFamiliale");
+				console.log($scope.inscription.situationFamiliale);
     
 //    getForms = function(public) {
 //        switch(public) {
