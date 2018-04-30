@@ -345,7 +345,10 @@ input, textarea {
 		text-decoration: none;
 		border: none;
 		width: 29%;
+		border: 2px solid #fff;
 }
+.button{&:hover{background: white; color:@bg}}
+button{border: 2px solid white; &:hover{background: white; color:@bg}}
 //menu
 .navbar.navbar-default{
 		position: fixed; top:0; width: 100%; z-index: 10;
@@ -548,6 +551,8 @@ ng-form[name=inscription_form] label.sexe_label {
     cursor: pointer;
     margin-right: 25px;
 }
+ng-form .row{margin: 0 15px;margin-bottom:12px; }
+ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
 
 
 

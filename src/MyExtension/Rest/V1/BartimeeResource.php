@@ -118,7 +118,7 @@ class BartimeeResource extends AbstractResource
             "displayMode" => "default",
             "displayedFacets" => '[{"name":"objectType","operator":"AND"},{"name":"lastupdatetime","operator":"AND"},{"name":"author","operator":"AND"}]',
             "lang" => "fr",
-            "limit" => 100,
+            "limit" => 1000,
             "start" =>0,
             "orderby" => "lastUpdateTime",
             "predefinedFacets" => '{"type":"5652dcb945205e0d726d6caf"}',
