@@ -526,17 +526,20 @@ label.label_style, .label_style label:not(.radio-inline) {
     font-family: Lato,Helvetica,Arial,sans-serif;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     text-align: right;
     position: relative;
-    top: .5em;
+    top: .7em;
 }
 ng-form[name=inscription_form] input[type=radio]:checked+label.sexe_label, ng-form[name=inscription_form] input[type=radio]+label.sexe_label:hover {
     color: @bg;
     background-color: white;
     border: none;
     line-height: 36px;
+}
+ng-form[name=inscription_form] h2 {
+				color:@bg !important;
 }
 ng-form[name=inscription_form] label.sexe_label {
     background-color: transparent;
@@ -567,6 +570,14 @@ ng-form[name=inscription_form] label.sexe_label {
   input[type=radio] +label:not(.sexe_label):before {
 	 border-radius: 10px;
  }
+	input[type=radio],
+  input[type=checkbox] {
+	  display: none;
+  }
+  .radio-inline input[type=radio], .form-group input[type=radio],
+  .checkbox-inline input[type=checkbox],.form-group input[type=checkbox] {
+	  display: block;
+  }
 	
 	
 /*Titre section*/
