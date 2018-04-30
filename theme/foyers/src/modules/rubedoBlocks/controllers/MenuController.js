@@ -29,4 +29,12 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$loca
                 $scope.clearORPlaceholderHeight();
             }
         });
-    }]);
+								/*Ajouter les traductions*/
+								$scope.rubedo.getCustomTranslations = function(){
+	        $http.get('/theme/cte/localization/'+lang+'/Texts.json').then(function(res){
+            	$scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
+          });	
+        }
+								$scope.rubedo.getCustomTranslations(); 
+	
+}]);
