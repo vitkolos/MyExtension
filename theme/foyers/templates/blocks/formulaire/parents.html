@@ -6,7 +6,7 @@
             <div class="col-sm-8">
                 <input type="radio"  name="situationFamiliale" id="ensemble" value="ensemble" ng-model="inscription.situationFamiliale" ng-click="formCtrl.parentsEnsemble = true; formCtrl.parentsSepares = false;" required>
                             <label for="ensemble" class="sexe_label">{{rubedo.translate("Block.InscriptionSituation.Familiale.Ensemble")}}</label>	
-                <input type="radio"  name="situationFamiliale" id="separes" value="separes" ng-model="inscription.situationFamiliale" ng-click="parentsEnsemble = false; parentsSepares = true;">
+                <input type="radio"  name="situationFamiliale" id="separes" value="separes" ng-model="inscription.situationFamiliale" ng-click="formCtrl.parentsEnsemble = false; formCtrl.parentsSepares = true;">
                             <label for="separes" class="sexe_label">{{rubedo.translate("Block.Inscription.Situation.Familiale.Separes")}}</label>
             </div>
         </div>
