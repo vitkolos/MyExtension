@@ -516,6 +516,41 @@ header.bg-image{
     ///////////FORMS///////////////////
 ///////////////////////////////////////////////////
 /*General*/
+label.label_style, .label_style label:not(.radio-inline) {
+    float: right;
+    line-height: 1.5em;
+    color: white!important;
+    font-family: Lato,Helvetica,Arial,sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: right;
+    position: relative;
+    top: .5em;
+}
+ng-form[name=inscription_form] input[type=radio]:checked+label.sexe_label, ng-form[name=inscription_form] input[type=radio]+label.sexe_label:hover {
+    color: @bg;
+    background-color: white;
+    border: none;
+    line-height: 36px;
+}
+ng-form[name=inscription_form] label.sexe_label {
+    background-color: transparent;
+    height: 36px;
+    width: 36px;
+    color: #fff;
+    border: 2px #fff solid;
+    border-radius: 18px;
+    line-height: 32px;
+    font-family: Lato,Helvetica,Arial,sans-serif;
+    text-align: center;
+    cursor: pointer;
+    margin-right: 25px;
+}
+
+
+
 //input[type=text], input[type=number],textarea, input[type=email], input[type=text].form-control, input[type=number].form-control,textarea.form-control, input[type=email].form-control {
 //  width:100%; border:3px solid white; background-color: transparent !important; font-family: 'trend_sansone'; font-size: 18px; padding:4px 12px;
 //}
