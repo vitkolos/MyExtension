@@ -14,6 +14,9 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
 				me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 				me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
+				
+				$scope.inscription={};
+				$scope.inscription.stituationFamiliale="";
     
 //    getForms = function(public) {
 //        switch(public) {
