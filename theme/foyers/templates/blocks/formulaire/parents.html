@@ -4,10 +4,10 @@
         <div class="row">
             <div class="col-sm-4"><label for="sexe" class="label_style">{{rubedo.translate("Block.Inscription.Situation.Familiale")}}*</label></div>
             <div class="col-sm-8">
-                <input type="radio"  name="situationFamiliale" id="ensemble" value="ensemble" ng-model="inscription.situationFamiliale" required>
-                            <label for="ensemble" class="sexe_label" ng-click="inscription.situationFamiliale = ensemble">{{rubedo.translate("Block.InscriptionSituation.Familiale.Ensemble")}}</label>	
-                <input type="radio"  name="situationFamiliale" id="separes" value="separes" ng-model="inscription.situationFamiliale">
-                            <label for="separes" class="sexe_label" ng-click="inscription.situationFamiliale = separes">{{rubedo.translate("Block.Inscription.Situation.Familiale.Separes")}}</label>
+                <input type="radio"  name="situationFamiliale" id="ensemble" value="ensemble" ng-model="inscription.situationFamiliale" ng-click="inscription.situationFamiliale = ensemble" required>
+                            <label for="ensemble" class="sexe_label">{{rubedo.translate("Block.InscriptionSituation.Familiale.Ensemble")}}</label>	
+                <input type="radio"  name="situationFamiliale" id="separes" value="separes" ng-model="inscription.situationFamiliale" ng-click="inscription.situationFamiliale = separes">
+                            <label for="separes" class="sexe_label">{{rubedo.translate("Block.Inscription.Situation.Familiale.Separes")}}</label>
             </div>
         </div>
     </div>
