@@ -567,7 +567,13 @@ ng-form[name=inscription_form] label.sexe_label {
   input[type=radio] +label:not(.sexe_label):before {
 	 border-radius: 10px;
  }
-//ng-form .row{margin: 0 15px;margin-bottom:12px; }
+	
+	
+/*Titre section*/
+h2.capital{text-align: center; padding:12px 0; border-bottom: 2px solid; margin-top:12px; margin-bottom:24px}
+h2.displayed{background-color: white}
+h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
+ng-form .row{margin: 0 15px;margin-bottom:12px; }
 //ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
 
 
