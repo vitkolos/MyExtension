@@ -29,6 +29,10 @@
                 <div class="col-sm-8"><input class="form-control" type="text" id="professionPere" ng-model="inscription.professionPere" name="professionPere"></div>
             </div>
             <div class="row">
+                <div class="col-sm-4"><label for="nationalitePere" class="label_style">{{rubedo.translate("Block.Inscription.Nationalite")}}*</label></div>
+                <div class="col-sm-8"><input class="form-control" type="nationalitePere" id="nationalitePere" name="nationalitePere"  ng-model="inscription.nationalitePere" required></div>
+            </div>  
+            <div class="row">
                 <div class="col-sm-4"><label for="emailPere" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
                 <div class="col-sm-8"><input class="form-control" type="emailPere" id="emailPere" name="emailPere"  ng-model="inscription.emailPere" placeholder="user@mydomain.com" required></div>
             </div>    
@@ -41,7 +45,7 @@
             </div>
             <div class="row" ng-if="!personneConnue">
                     <div class="col-sm-4"><label for="tel2Pere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
-                    <div class="col-sm-8"><input class="form-control" type="text" id="tel2Pere" name="tel2Pere" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}" ng-model="inscription.tel2Pere"  ng-required="isTelephoneRequired()">
+                    <div class="col-sm-8"><input class="form-control" type="text" id="tel1Pere" name="tel1Pere" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}" ng-model="inscription.tel1Pere"  ng-required="isTelephoneRequired()">
                     </div>
             </div>
             
@@ -67,7 +71,7 @@
                 <!--ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/"-->
                 <div class="row" ng-if="!personneConnue">
                     <div class="col-sm-4"><label for="tel1Pere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
-                    <div class="col-sm-8"><input class="form-control" type="text" id="tel1Pere" name="tel1Pere"  ng-model="inscription.tel1Pere" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}"   ng-required="isTelephoneRequired()"></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="tel2Pere" name="tel2Pere"  ng-model="inscription.tel2Pere" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}"   ng-required="isTelephoneRequired()"></div>
                 </div>
                 
             </div>    
@@ -89,6 +93,10 @@
                     <div class="col-sm-8"><input class="form-control" type="text" id="professionMere" ng-model="inscription.professionMere" name="professionMere"></div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-4"><label for="nationaliteMere" class="label_style">{{rubedo.translate("Block.Inscription.Nationalite")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="nationaliteMere" id="nationaliteMere" name="nationaliteMere"  ng-model="inscription.nationaliteMere" required></div>
+                </div> 
+                <div class="row">
                     <div class="col-sm-4"><label for="emailMere" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
                     <div class="col-sm-8"><input class="form-control" type="emailMere" id="emailMere" name="emailMere"  ng-model="inscription.emailMere" placeholder="user@mydomain.com" required></div>
                 </div>    
@@ -101,7 +109,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4"><label for="tel2Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
-                    <div class="col-sm-8"><input class="form-control" type="text" id="tel2Mere" name="tel2Mere" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}" ng-model="inscription.tel2Mere"  ng-required="isTelephoneRequired()">
+                    <div class="col-sm-8"><input class="form-control" type="text" id="tel1Mere" name="tel1Mere" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}" ng-model="inscription.tel1Mere"  ng-required="isTelephoneRequired()">
                     </div>
                 </div>
             
@@ -127,8 +135,8 @@
                     
                     <!--ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/"-->
                     <div class="row">
-                        <div class="col-sm-4"><label for="tel1Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
-                        <div class="col-sm-8"><input class="form-control" type="text" id="tel1Mere" name="tel1Mere"  ng-model="inscription.tel1Mere" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}"   ng-required="isTelephoneRequired()"></div>
+                        <div class="col-sm-4"><label for="tel2Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}**</label></div>
+                        <div class="col-sm-8"><input class="form-control" type="text" id="tel2Mere" name="tel2Mere"  ng-model="inscription.tel2Mere" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}"   ng-required="isTelephoneRequired()"></div>
                     </div>
                     
                 </div>

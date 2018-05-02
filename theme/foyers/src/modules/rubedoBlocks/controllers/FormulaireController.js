@@ -297,6 +297,9 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
             
             if (step==0) {me.toggleStage(1);}
             else if (step==1) {
+																if( $scope.inscription.email != $scope.inscription.email_verif){
+                    $scope.mailError = true;me.currentStage=1;
+                }
                 me.toggleStage(2);
 																//me.getContentById(me.propositionId);
             }
