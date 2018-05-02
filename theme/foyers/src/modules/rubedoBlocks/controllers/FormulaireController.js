@@ -14,6 +14,7 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
 				me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 				me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
+				me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
 				
 				$scope.inscription={};
 				me.parentsEnsemble=false;
@@ -22,6 +23,20 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				console.log(me.parentsEnsemble);
 				console.log("me.parentsSepares");
 				console.log(me.parentsSepares);
+				
+				    // ajouter freres et soeurs
+
+    me.addFrereSoeur = function(frere){
+
+        if (!$scope.inscription.frere_soeur) {
+            $scope.inscription.freres_soeurs=[];
+        }
+        $scope.inscription.freres_soeurs.push(angular.copy(frere_soeur));
+    }
+    // supprimer frere ou soeur
+    me.removeFrereSoeur = function(index){
+        $scope.inscription.freres_soeurs.splice(index, 1);
+    };
     
 //    getForms = function(public) {
 //        switch(public) {
@@ -154,19 +169,7 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 //            siteId: $scope.rubedo.current.site.id,
 //            pageId: $scope.rubedo.current.page.id
 //    };
-//    // ajouter freres et soeurs
-//
-//    me.addFrere = function(frere){
-//
-//        if (!$scope.inscription.freres) {
-//            $scope.inscription.freres=[];
-//        }
-//        $scope.inscription.freres.push(angular.copy(frere));
-//    }
-//    // supprimer frere ou soeur
-//    me.removeFrere = function(index){
-//        $scope.inscription.freres.splice(index, 1);
-//    };
+
 //    // préremplir les champs si l'utilisateur est connecté
 //    if ($scope.rubedo.current.user) {
 //								console.log($scope.rubedo.current.user);
