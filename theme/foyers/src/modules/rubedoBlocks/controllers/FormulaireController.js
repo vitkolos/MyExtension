@@ -302,13 +302,13 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 																if( $scope.inscription.email != $scope.inscription.email_verif){
                     $scope.mailError = true;me.currentStage=1;
                 }
-                me.toggleStage(2);
 																//me.getContentById(me.propositionId);
             }
-//            else if (step==2) {
-//																me.getInscription($scope.inscription.email);
-//																$scope.inscription.modePaiement = 'carte';
-//            }
+            else if (step==2) {
+																if( $scope.inscription.emailPere != $scope.inscription.emailPere_verif   || $scope.inscription.emailMere != $scope.inscription.emailMere_verif ){
+                    $scope.mailError = true;me.currentStage=2;
+                }
+            }
 //            else if (step==3) {
 //                me.toggleStage(4);
             //}
