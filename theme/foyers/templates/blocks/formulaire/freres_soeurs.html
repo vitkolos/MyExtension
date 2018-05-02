@@ -1,6 +1,6 @@
 <h3 class="row">{{rubedo.translate("Block.Inscription.FreresEtSoeurs")}}</h3>
     
-<div class="row" ng-repeat="frere in inscription.freres_soeurs track by $index" class="enfant">
+<div class="row" ng-repeat="frere_soeur in inscription.freres_soeurs track by $index" class="enfant">
     <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Nom.Different")}}</label>
         <input type="text" ng-model="inscription.freres_soeurs[$index].nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' readonly>
@@ -23,13 +23,17 @@
 <div class="row">
     <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Nom.Different")}}</label>
-        <input type="text" ng-model="inscription.freres_soeurs.nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' >
+        <input type="text" ng-model="inscription.frere_soeur.nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' >
     </div>
     <div class="col-md-3 col-sm-6">
         <label class="label_style left">{{rubedo.translate("Block.Inscription.Prenom")}}</label>
-        <input type="text" ng-model="inscription.freres_soeurs.prenom" placeholder='{{rubedo.translate("Block.Inscription.Prenom")}}'>
+        <input type="text" ng-model="inscription.frere_soeur.prenom" placeholder='{{rubedo.translate("Block.Inscription.Prenom")}}'>
     </div>
-    <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.addFrereSoeur(inscription.freres_soeurs);inscription.freres_soeurs={}">
+    <div class="col-md-3 col-sm-6">
+        <label class="label_style left">{{rubedo.translate("Block.Inscription.Age")}}</label>
+        <input type="text" ng-model="inscription.frere_soeur.age" placeholder='{{rubedo.translate("Block.Inscription.Age")}}' readonly>
+    </div>
+    <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.addFrereSoeur(inscription.frere_soeur);inscription.frere_soeur={}">
         <span class="glyphicon glyphicon-plus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.FrereSoeur.Ajouter","Ajouter")}}
     </p>
 </div>
