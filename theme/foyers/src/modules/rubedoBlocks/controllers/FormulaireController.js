@@ -15,6 +15,7 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 				me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
 				
+				$scope.inscription={};
 				me.parentsEnsemble=false;
 				me.parentsSepares=false;
 				console.log("me.parentsEnsemble");
@@ -286,6 +287,7 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
        angular.element("#inscriptionStage"+me.currentStage).collapse("hide");
        angular.element("#inscriptionStage"+newStage).collapse("show");
        me.currentStage = newStage;
+							
     }
     
     me.setCurrentStage = function(step, valide) {
