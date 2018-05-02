@@ -28,7 +28,7 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 
     me.addFrereSoeur = function(frere){
 
-        if (!$scope.inscription.frere_soeur) {
+        if (!$scope.inscription.freres_soeurs) {
             $scope.inscription.freres_soeurs=[];
         }
         $scope.inscription.freres_soeurs.push(angular.copy(frere_soeur));
