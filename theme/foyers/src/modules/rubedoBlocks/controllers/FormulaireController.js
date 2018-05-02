@@ -26,7 +26,7 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				
 				    // ajouter freres et soeurs
 
-    me.addFrereSoeur = function(frere){
+    me.addFrereSoeur = function(frere_soeur){
 
         if (!$scope.inscription.freres_soeurs) {
             $scope.inscription.freres_soeurs=[];
