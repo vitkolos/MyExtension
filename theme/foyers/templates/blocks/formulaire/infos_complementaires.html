@@ -1,0 +1,39 @@
+    <!--NOM-->
+    <div class="row" ng-if="!personneConnue">
+        <div class="col-sm-4"><label for="loisirs" class="label_style">{{rubedo.translate("Block.Inscription.Loisirs")}}</label></div>
+        <div class="col-sm-8"><textarea rows="3" id="loisirs" ng-model="inscription.loisirs" name="address"></textarea></div>
+    </div>
+    <div class="row" ng-if="!personneConnue">
+        <div class="col-sm-4"><label for="fumeur" class="label_style">{{rubedo.translate("Block.Inscription.Fumeur")}}*</label></div>
+        <div class="col-sm-8">
+            <input type="radio"  name="fumeur" id="fumeur" value="fumeur" ng-model="inscription.fumeur" required>
+                        <label for="fumeur" class="sexe_label">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
+            <input type="radio"  name="fumeur" id="non_fumeur" value="non_fumeur" ng-model="inscription.sexe.sexe">
+                        <label for="non_fumeur" class="sexe_label">{{rubedo.translate("Block.Inscription.Non")}}</label>
+        </div>
+    </div>
+    
+    <div class="row" ng-if="!personneConnue">
+        <div class="col-sm-4"><label for="origine" class="label_style">{{rubedo.translate("Block.Inscription.Connaissance.Foyer")}}*</label></div>
+        <div class="col-sm-8">
+            <input type="checkbox"  name="origine" id="relations" value="relations" ng-model="inscription.origine" required>
+                        <label for="relations">{{rubedo.translate("Block.Inscription.Relations")}}</label>
+            <input type="checkbox"  name="origine" id="tracts" value="tracts" ng-model="inscription.origine">
+                        <label for="tracts">{{rubedo.translate("Block.Inscription.Tracts")}}</label>
+            <input type="checkbox"  name="origine" id="site" value="site" ng-model="inscription.origine">
+                        <label for="site">{{rubedo.translate("Block.Inscription.Site")}}</label>
+            <input type="checkbox"  name="origine" id="annonces" value="annonces" ng-model="inscription.origine">
+                        <label for="site">{{rubedo.translate("Block.Inscription.Annonces")}}</label>
+            <div class="col-sm-3">
+                <input type="checkbox"  name="origine" id="autre" value="autre" ng-model="inscription.origine">
+                            <label for="autre">{{rubedo.translate("Block.Inscription.Autre")}}</label>
+            </div>
+            <div class="col-sm-5">
+                <input class="form-control" type="text" id="precisions" ng-model="inscription.precisions" name="precisions" placeholder="Préciser...">
+            </div>
+            
+                        
+        </div>
+    </div>
+    
+    
