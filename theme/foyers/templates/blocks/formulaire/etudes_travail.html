@@ -1,12 +1,12 @@
-    <div class="row" ng-if="inscription.public_type == 'etudiant' && !personneConnue">
+    <div class="row" ng-if="etudiant && !personneConnue">
         <div class="col-sm-4"><label for="etudes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="etudes" ng-model="inscription.etudes" name="etudes" required></div>
     </div>
-    <div class="row" ng-if="inscription.public_type == 'etudiant' && !personneConnue">
+    <div class="row" ng-if="etudiant && !personneConnue">
         <div class="col-sm-4"><label for="etablissementActuel" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Etablissement.Actuel")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="etablissementActuel" ng-model="inscription.etablissementActuel" name="etablissementActuel" required></div>
     </div>
-    <div class="row" ng-if="inscription.public_type == 'etudiant' && !personneConnue">
+    <div class="row" ng-if="etudiant && !personneConnue">
         <div class="col-sm-4"><label for="etablissementSuivant" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Etablissement.Prochain")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="etablissementSuivant" ng-model="inscription.etablissementSuivant" name="etablissementSuivant" required></div>
     </div>
@@ -14,7 +14,7 @@
         <div class="col-sm-4"><label for="diplomes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Diplomes")}}</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="diplomes" ng-model="inscription.diplomes" name="diplomes" required></div>
     </div>
-     <div class="row" ng-if="inscription.public_type == 'adulte' && !personneConnue">
+     <div class="row" ng-if="jeunePro && !personneConnue">
         <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}*</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="profession" ng-model="inscription.profession" name="profession" required></div>
     </div>

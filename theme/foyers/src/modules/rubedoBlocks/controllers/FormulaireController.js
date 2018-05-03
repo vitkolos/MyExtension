@@ -47,52 +47,21 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
     });
 
     
-//    getForms = function(public) {
-//        switch(public) {
-//            case 'adolescent':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
-//                me.additional_infos = null;
-//                break;
-//            case 'jeune-adulte':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
-//                me.additional_infos = null;
-//                break;
-//            case 'personne-avec-enfants':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
-//                me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
-//                break;
-//												case 'personne-sans-enfant':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
-//                me.additional_infos = null;
-//                break;
-//            case 'adulte':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
-//                me.additional_infos = null;
-//                break;
-//            case 'couple':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
-//                me.additional_infos = null;
-//                break;            
-//            case 'fiances':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
-//                me.additional_infos = null;
-//                break;   
-//            case 'famille':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
-//                me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
-//                break;
-//												case 'couple_ephata':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
-//                me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
-//                break;
-//												case 'couple-avec-enfants':
-//                me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
-//                me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
-//                break;
-//            default:me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
-//        }
-//    }
-    //getForms($scope.contentDetailCtrl.content.public);
+    getPublic = function(public) {
+        switch(public) {
+            case 'etudiant':
+                $scope.etudiant = true;
+																$scope.jeunePro = false;
+                break;
+            case 'jeunePro':
+                $scope.etudiant = false;
+																$scope.jeunePro = true;
+                break;
+        }
+    }
+    getPublic($scope.contentDetailCtrl.content.public);
+				console.log("$scope.contentDetailCtrl.content.public");
+								console.log($scope.contentDetailCtrl.content.public);
     //$scope.inscription={};
     //$scope.inscription.optionsPayantes={};
 
