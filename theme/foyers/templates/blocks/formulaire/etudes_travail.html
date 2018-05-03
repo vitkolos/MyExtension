@@ -21,10 +21,14 @@
     <div class="row" ng-if="etudiant && !personneConnue">
         <div class="col-sm-4"><label for="examensPrealables" class="label_style">{{rubedo.translate("Block.Inscription.Examens.Prealables")}} *</label></div>
         <div class="col-sm-8">
-            <input type="radio"  name="examensPrealables" id="oui" value="oui" ng-model="inscription.examensPrealables" required>
-                        <label for="oui">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
-            <input type="radio"  name="examensPrealables" id="non" value="non" ng-model="inscription.examensPrealables">
-                        <label for="non">{{rubedo.translate("Block.Inscription.Non")}}</label>   
+            <div class="row">
+                <input type="radio"  name="examensPrealables" id="oui" value="oui" ng-model="inscription.examensPrealables.examensPrealables" required>
+                            <label for="oui">{{rubedo.translate("Block.Inscription.Oui")}}</label>
+            </div>
+            <div class="row">
+                <input type="radio"  name="examensPrealables" id="non" value="non" ng-model="inscription.examensPrealables.examensPrealables">
+                            <label for="non">{{rubedo.translate("Block.Inscription.Non")}}</label>
+            </div>
         </div>
     </div>
     <div class="row" ng-if="inscription.examensPrealables='oui' && etudiant && !personneConnue">
