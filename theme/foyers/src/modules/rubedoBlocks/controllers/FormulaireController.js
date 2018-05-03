@@ -309,6 +309,17 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
             else if (step==3) {
                 me.toggleStage(4);
             }
+												else if (step==4) {
+                me.toggleStage(5);
+            }
+												else if (step==5) {
+                me.toggleStage(6);
+            }
+												else if (step==6) {
+                me.toggleStage(4);
+																$scope.processForm=true;
+            }
+												
         }
 //        if (!valide && step==0) {
 //            me.toggleStage(1);
