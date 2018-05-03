@@ -20,10 +20,7 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				$scope.inscription={};
 				me.parentsEnsemble=false;
 				me.parentsSepares=false;
-				console.log("me.parentsEnsemble");
-				console.log(me.parentsEnsemble);
-				console.log("me.parentsSepares");
-				console.log(me.parentsSepares);
+				me.examensPrealables=false;
 				
 				    // ajouter freres et soeurs
 
