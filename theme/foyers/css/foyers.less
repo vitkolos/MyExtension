@@ -555,7 +555,19 @@ ng-form[name=inscription_form] label.sexe_label {
     cursor: pointer;
     margin-right: 25px;
 }
- input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:before {
+ input[type=radio]+ label:not(.sexe_label):before{
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+	position: absolute;
+	left: 0;
+	vertical-align: middle;
+	background-color: white;
+	border: 1px solid #fff;
+  }
+ input[type=checkbox]+ label:not(.sexe_label):before{
 	content: "";
 	display: inline-block;
 	width: 20px;
@@ -574,7 +586,7 @@ ng-form[name=inscription_form] label.sexe_label {
     padding-left: 12px;
   }
 
-  input[type=radio] +label:not(.sexe_label):before {
+  input[type=radio] +label:not(.sexe_label):before, input[type=checkbox] +label:not(.sexe_label):before {
 	 border-radius: 10px;
  }
 	input[type=radio],

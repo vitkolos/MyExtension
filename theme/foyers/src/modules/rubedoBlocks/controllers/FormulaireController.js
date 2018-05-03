@@ -15,7 +15,9 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 				me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
 				me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
-				me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html'
+				me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html';
+				me.photo = themePath+'/templates/blocks/formulaire/photo.html';
+				me.lettre_motivation = themePath+'/templates/blocks/formulaire/lettre_motivation.html';
 				
 				$scope.inscription={};
 				me.parentsEnsemble=false;
