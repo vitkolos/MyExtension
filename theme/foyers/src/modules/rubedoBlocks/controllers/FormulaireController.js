@@ -37,6 +37,13 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
     me.removeFrereSoeur = function(index){
         $scope.inscription.freres_soeurs.splice(index, 1);
     };
+				
+				$scope.inscription.public_type=angular.copy(me.content.public);
+    //surveiller si le type de formulaire est changé pour changer le template
+    $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
+        $scope.inscription.public_type=newValue; getForms(newValue);
+    });
+
     
 //    getForms = function(public) {
 //        switch(public) {
@@ -310,17 +317,24 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 																} 
 																//me.getContentById(me.propositionId);
             }
-            else if (step==2) {
-																if( $scope.inscription.emailPere != $scope.inscription.emailPere_verif   || $scope.inscription.emailMere != $scope.inscription.emailMere_verif ){
-                    $scope.mailError = true;me.currentStage=2;
-                } else {
-																				$scope.mailError = false;
+            else if (step==2) {														
+																if( $scope.inscription.emailPere != $scope.inscription.emailPere_verif){
+                    $scope.mailError2 = true;me.currentStage=2;
+                }
+                else if ($scope.inscription.emailMere != $scope.inscription.emailMere_verif) {
+                    $scope.mailError2 = false;
+																				$scope.mailError3 = true;
+                    me.currentStage=2;
+                }
+																else {
+																				$scope.mailError2 = false;
+                    $scope.mailError2 = false;
 																				me.toggleStage(3);
 																}
             }
-//            else if (step==3) {
-//                me.toggleStage(4);
-            //}
+            else if (step==3) {
+                me.toggleStage(4);
+            }
         }
 //        if (!valide && step==0) {
 //            me.toggleStage(1);
