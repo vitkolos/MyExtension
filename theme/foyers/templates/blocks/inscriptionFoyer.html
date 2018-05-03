@@ -20,7 +20,7 @@
                             </ng-form>
                         </div>
                         
-                        <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==2}" ng-click="formCtrl.setCurrentStage(2,infos_familiales.$valid)">{{rubedo.translate("Block.Inscription.InfosFamiliales", "Informations familiales")}}
+                        <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==2}" ng-click="formCtrl.setCurrentStage(1,infos_familiales.$valid)">{{rubedo.translate("Block.Inscription.InfosFamiliales", "Informations familiales")}}
                                 <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>2"></span>
                         </h2>
                         <div id="inscriptionStage2" class="collapse">
@@ -34,10 +34,10 @@
                             </ng-form>
                         </div>
                         
-                        <h2 ng-if="etudiant" class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==3}" ng-click="formCtrl.setCurrentStage(3,infos_etudes.$valid)">{{rubedo.translate("Block.Inscription.Infos.Etudes", "Études")}}
+                        <h2 ng-if="etudiant" class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==3}" ng-click="formCtrl.setCurrentStage(2,infos_etudes.$valid)">{{rubedo.translate("Block.Inscription.Infos.Etudes", "Études")}}
                                 <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
                         </h2>
-                        <h2 ng-if="jeunePro" class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==3}" ng-click="formCtrl.setCurrentStage(3,infos_etudes.$valid)">{{rubedo.translate("Block.Inscription.Infos.Travail","Situation professionnelle")}}
+                        <h2 ng-if="jeunePro" class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==3}" ng-click="formCtrl.setCurrentStage(2,infos_etudes.$valid)">{{rubedo.translate("Block.Inscription.Infos.Travail","Situation professionnelle")}}
                                 <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
                         </h2>
                         

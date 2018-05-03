@@ -2,19 +2,78 @@
         <div class="col-sm-4"><label for="etudes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="etudes" ng-model="inscription.etudes" name="etudes" required></div>
     </div>
-    <div class="row" ng-if="etudiant && !personneConnue">
-        <div class="col-sm-4"><label for="etablissementActuel" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Etablissement.Actuel")}} *</label></div>
-        <div class="col-sm-8"><input class="form-control" type="text" id="etablissementActuel" ng-model="inscription.etablissementActuel" name="etablissementActuel" required></div>
-    </div>
-    <div class="row" ng-if="etudiant && !personneConnue">
-        <div class="col-sm-4"><label for="etablissementSuivant" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Etablissement.Prochain")}} *</label></div>
-        <div class="col-sm-8"><input class="form-control" type="text" id="etablissementSuivant" ng-model="inscription.etablissementSuivant" name="etablissementSuivant" required></div>
-    </div>
-   <div class="row" ng-if="!personneConnue">
-        <div class="col-sm-4"><label for="diplomes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Diplomes")}}</label></div>
-        <div class="col-sm-8"><input class="form-control" type="text" id="diplomes" ng-model="inscription.diplomes" name="diplomes" required></div>
-    </div>
-     <div class="row" ng-if="jeunePro && !personneConnue">
+    <div class="row" ng-if="jeunePro && !personneConnue">
         <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}*</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="profession" ng-model="inscription.profession" name="profession" required></div>
     </div>
+    <div class="row" ng-if="!personneConnue">
+        <div class="col-sm-4"><label for="diplomes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Diplomes")}}</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="diplomes" ng-model="inscription.diplomes" name="diplomes" required></div>
+    </div>
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="etablissementActuel" class="label_style">{{rubedo.translate("Block.Inscription.Etablissement.Actuel")}} *</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="etablissementActuel" ng-model="inscription.etablissementActuel" name="etablissementActuel" required></div>
+    </div>
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="etablissementSuivant" class="label_style">{{rubedo.translate("Block.Inscription.Etablissement.Prochain")}} *</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="etablissementSuivant" ng-model="inscription.etablissementSuivant" name="etablissementSuivant" required></div>
+    </div>
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="examensPrealables" class="label_style">{{rubedo.translate("Block.Inscription.Examens.Prealables")}} *</label></div>
+        <div class="col-sm-8">
+            <input type="radio"  name="examensPrealables" id="oui" value="oui" ng-model="inscription.examensPrealables" required>
+                        <label for="oui">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
+            <input type="radio"  name="examensPrealables" id="non" value="non" ng-model="inscription.examensPrealables">
+                        <label for="non">{{rubedo.translate("Block.Inscription.Non")}}</label>
+        </div>
+    </div>
+    <div class="row" ng-if="inscription.examensPrealables='oui' && etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="examensTypes" class="label_style">{{rubedo.translate("Block.Inscription.Examens.Types")}}</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="examensTypes" ng-model="inscription.examensTypes" name="examensTypes"></div>
+    </div>
+    <div class="row" ng-if="inscription.examensPrealables='oui' && etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="dateResultats" class="label_style">{{rubedo.translate("Block.Inscription.Date.Resultats")}}</label></div>
+        <div class="col-sm-8">
+            <div class="dropdown">
+                <a showtab class="dropdown-toggle" id="dropdowndateResultats" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group"><input readonly id="dateResultats" ng-model="inscription.dateResultats" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <datetimepicker data-ng-model="inscription.dateResultats"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateResultats', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateResultats = (inscription.birthdate |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                </ul> 
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" ng-if="!personneConnue">
+        <div class="col-sm-4"><label for="dateDebutAnnee" class="label_style">{{rubedo.translate("Block.Inscription.Date.Debut")}}</label></div>
+        <div class="col-sm-8">
+            <div class="dropdown">
+                <a showtab class="dropdown-toggle" id="dropdowndateDebutAnnee" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group"><input readonly id="dateDebutAnnee" ng-model="inscription.dateDebutAnnee" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <datetimepicker data-ng-model="inscription.dateDebutAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutAnnee', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateDebutAnnee = (inscription.birthdate |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                </ul> 
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" ng-if="!personneConnue">
+        <div class="col-sm-4"><label for="dateResultats" class="label_style">{{rubedo.translate("Block.Inscription.Date.Fin")}}</label></div>
+        <div class="col-sm-8">
+            <div class="dropdown">
+                <a showtab class="dropdown-toggle" id="dropdowndateFinAnnee" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group"><input readonly id="dateFinAnnee" ng-model="inscription.dateFinAnnee" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <datetimepicker data-ng-model="inscription.dateFinAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinAnnee', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateFinAnnee = (inscription.birthdate |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                </ul> 
+            </div>
+        </div>
+    </div>
+
+     
