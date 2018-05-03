@@ -8,7 +8,7 @@
     </div>
     <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="diplomes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Diplomes")}}</label></div>
-        <div class="col-sm-8"><input class="form-control" type="text" id="diplomes" ng-model="inscription.diplomes" name="diplomes" required></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="diplomes" ng-model="inscription.diplomes" name="diplomes"></div>
     </div>
     <div class="row" ng-if="etudiant && !personneConnue">
         <div class="col-sm-4"><label for="etablissementActuel" class="label_style">{{rubedo.translate("Block.Inscription.Etablissement.Actuel")}} *</label></div>
@@ -49,7 +49,7 @@
     </div>
     
     <div class="row" ng-if="!personneConnue">
-        <div class="col-sm-4"><label for="dateDebutAnnee" class="label_style">{{rubedo.translate("Block.Inscription.Date.Debut")}}</label></div>
+        <div class="col-sm-4"><label for="dateDebutAnnee" class="label_style">{{rubedo.translate("Block.Inscription.Date.Debut")}} *</label></div>
         <div class="col-sm-8">
             <div class="dropdown">
                 <a showtab class="dropdown-toggle" id="dropdowndateDebutAnnee" role="button" data-toggle="dropdown" data-target="#" href="#">
@@ -64,7 +64,7 @@
     </div>
     
     <div class="row" ng-if="!personneConnue">
-        <div class="col-sm-4"><label for="dateResultats" class="label_style">{{rubedo.translate("Block.Inscription.Date.Fin")}}</label></div>
+        <div class="col-sm-4"><label for="dateResultats" class="label_style">{{rubedo.translate("Block.Inscription.Date.Fin")}} *</label></div>
         <div class="col-sm-8">
             <div class="dropdown">
                 <a showtab class="dropdown-toggle" id="dropdowndateFinAnnee" role="button" data-toggle="dropdown" data-target="#" href="#">
