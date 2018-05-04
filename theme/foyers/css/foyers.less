@@ -533,7 +533,8 @@ label.label_style, .label_style label:not(.radio-inline) {
     top: .7em;
 }
 
-ng-form[name=inscription_form] input[type=radio]:checked+label.sexe_label, ng-form[name=inscription_form] input[type=radio]+label.sexe_label:hover {
+ng-form[name=inscription_form] input[type=radio]:checked+label.sexe_label, ng-form[name=inscription_form] input[type=radio]+label.sexe_label:hover,
+ng-form[name=inscription_form] input[type=checkbox]:checked+label.sexe_label, ng-form[name=inscription_form] input[type=checkbox]+label.sexe_label:hover{
     color: @bg;
     background-color: white;
     border: none;
@@ -554,6 +555,7 @@ ng-form[name=inscription_form] label.sexe_label {
     text-align: center;
     cursor: pointer;
     margin-right: 25px;
+				text-align: left;
 }
  input[type=radio]+ label:not(.sexe_label):before{
 	content: "";
@@ -566,6 +568,7 @@ ng-form[name=inscription_form] label.sexe_label {
 	vertical-align: middle;
 	background-color: white;
 	border: 1px solid #fff;
+	text-align: left;
   }
  input[type=checkbox]+ label:not(.sexe_label):before{
 	content: "";
@@ -578,12 +581,14 @@ ng-form[name=inscription_form] label.sexe_label {
 	vertical-align: middle;
 	background-color: white;
 	border: 1px solid #fff;
+	text-align: left;
   }
 		label.sexe_label.boite{
     width: auto !important;
     min-width: 75px;
 				padding-right: 12px;
     padding-left: 12px;
+				text-align: left;
   }
 
   input[type=radio] +label:not(.sexe_label):before, input[type=checkbox] +label:not(.sexe_label):before {
