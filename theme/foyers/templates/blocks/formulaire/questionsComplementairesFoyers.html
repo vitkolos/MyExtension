@@ -35,7 +35,7 @@
         </div>
         <div class="col-sm-8">
             <div ng-repeat="questionField in question.fields.reponses track by $index">
-                <div ng-if="!questionField.complement">
+                <div ng-if="!questionField.complement" style="display:inline-block;">
                     <input type="checkbox"  name="questions_{{$parent.$index}}" id="questions_{{$parent.$index}}_{{$index}}" ng-true-value="{{questionField.titre}}"
                                     ng-model="don['questions'][question.text][$index]['value']">
                             <label class="sexe_label boite" for="questions_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label>                  
