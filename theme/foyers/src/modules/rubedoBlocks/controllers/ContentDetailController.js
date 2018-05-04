@@ -222,12 +222,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         );
                         
                         //add list of inscriptions
-                        if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
+                        //if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
                             var optionsInscriptionsList = {
                                 constrainToSite:false,
                                 siteId: $scope.rubedo.current.site.id,
                                 pageId: $scope.rubedo.current.page.id,
-                                predefinedFacets:{"type":"561627c945205e41208b4581","proposition":config.contentId},
+                                predefinedFacets:{"type":"5addf3003965884a3f38d4c0","propositionFoyer":config.contentId},
                                 start:0,
                                 limit:500,
                                 orderby:'lastUpdateTime',
@@ -251,7 +251,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 //setTimeout(function(){target[0].click();},200);
                             });
                             
-                        }
+                        //}
 
                     }
 

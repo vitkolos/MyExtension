@@ -44,6 +44,48 @@
 		<div style="margin-top:24px"></div>
 		
 	</div>
+    
+    
+    	<div class="row"><!--ng-if="rubedo.current.user && rubedo.current.user.rights.canEdit && contentDetailCtrl.inscriptions">-->
+		<div class="text-article">
+			<div class="col-xs-12">
+				<h3>{{rubedo.translate("Inscriptions.Liste", "Liste des inscriptions")}} </h3>
+				<a ng-href="{{contentDetailCtrl.downloadUrl}}" download="inscriptions_{{fieldEntity['text']}}.csv" id="btnExport"  ><p><span class="glyphicon glyphicon-download-alt "></span> {{rubedo.translate("Inscriptions.Export", "Exporter en Excel")}}</p></a>
+			</div>
+		</div>
+		<!--<div class="col-xs-12" style="overflow-y: scroll">
+			<table style="font-size:0.8em;">
+				<tr>
+					<th>Numéro</th>
+					<th>Statut</th>
+					<th>Serviteur?</th>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Email</th>
+					<th>Date de naissance</th>
+					<th>Nom 2</th>
+					<th>Prénom 2</th>
+					<th>Email 2</th>
+					<th>Date de naissance 2</th>
+				</tr>
+				<tr ng-repeat="inscription in contentDetailCtrl.inscriptions track by $index" ng-class="{'bg-white':$even}">
+					<th class="padding">{{inscription.title}}</th>
+					<th>{{inscription.statut}}</th>
+					<th class="text-center"><span class="glyphicon glyphicon-ok txt-vert" ng-if="inscription.serviteur"></span></th>
+					<th>{{inscription.nom}}</th>
+					<th>{{inscription.surname}}</th>
+					<th>{{inscription.email}}</th>
+					<th>{{inscription.birthdate | date :'mediumDate'}}</th>
+					<th>{{inscription.nomPers2}}</th>
+					<th>{{inscription.prenomPers2}}</th>
+					<th>{{inscription.emailPers2}}</th>
+					<th>{{inscription.dateNaissPers2 | date :'mediumDate'}}</th>
+				</tr>
+			</table>
+ 
+		</div>-->
+		<div style="margin-top:24px"></div>
+	</div>
 
 	
 </div>
