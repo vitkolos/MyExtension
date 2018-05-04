@@ -19,6 +19,12 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				me.photo = themePath+'/templates/blocks/formulaire/photo.html';
 				me.lettre_motivation = themePath+'/templates/blocks/formulaire/lettre_motivation.html';
 				
+				
+				var options = {
+            siteId: $scope.rubedo.current.site.id,
+            pageId: $scope.rubedo.current.page.id
+    };
+				
 				//intégrer des questions supplémentaires
 				me.questionsComplementaires = themePath+'/templates/blocks/formulaire/questionsComplementairesFoyers.html';
 				me.questions=[];
@@ -284,10 +290,7 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
     //        return  !($scope.inscription.tel); 
     //};
 
-// s'il y a des questions complémentaires, les récupérer
-    if (me.content.fields.questions && (me.content.fields.questions).length>0) {
-        me.getQuestions();
-    }
+
     
     //informations sur les moyens de payement
     me.paymentmeans = $scope.contentDetailCtrl.paymentmeans;
