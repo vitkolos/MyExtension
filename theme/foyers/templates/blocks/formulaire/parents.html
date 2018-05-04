@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4"><label for="sexe" class="label_style">{{rubedo.translate("Block.Inscription.Situation.Familiale")}}*</label></div>
-            <div class="col-sm-8">
+            <div class="col-sm-8" class="display_right">
                 <input type="radio"  name="situationFamiliale" id="ensemble" value="ensemble" ng-model="inscription.situationFamiliale" ng-click="formCtrl.parentsEnsemble = true; formCtrl.parentsSepares = false;" required>
                             <label for="ensemble" class="sexe_label boite">{{rubedo.translate("Block.InscriptionSituation.Familiale.Ensemble")}}</label>	
                 <input type="radio"  name="situationFamiliale" id="separes" value="separes" ng-model="inscription.situationFamiliale" ng-click="formCtrl.parentsEnsemble = false; formCtrl.parentsSepares = true;">

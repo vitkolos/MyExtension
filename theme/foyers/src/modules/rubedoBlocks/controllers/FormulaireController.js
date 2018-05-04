@@ -19,6 +19,37 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				me.photo = themePath+'/templates/blocks/formulaire/photo.html';
 				me.lettre_motivation = themePath+'/templates/blocks/formulaire/lettre_motivation.html';
 				
+				//intégrer des questions supplémentaires
+				me.questionsComplementaires = themePath+'/templates/blocks/formulaire/questionsComplementairesFoyers.html';
+				me.questions=[];
+				    // récupérer les questions complémentaires
+    me.getQuestions = function() {
+        if(typeof $scope.contentDetailCtrl.content.fields.questions === 'string' || $scope.contentDetailCtrl.content.fields.questions instanceof String) {
+          RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.questions, options).then(function(response){
+                if (response.data.success){
+                    var questionReponse= response.data.content;
+                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":0}); me.isComplement = true;
+                }
+            });
+        }
+      else {
+        angular.forEach($scope.contentDetailCtrl.content.fields.questions, function(questionId, questionOrder){
+            RubedoContentsService.getContentById(questionId, options).then(function(response){
+                if (response.data.success){
+                    var questionReponse= response.data.content;
+                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isComplement = true;
+                }
+            });
+            
+        });
+      }
+      
+    };
+				// s'il y a des questions complémentaires, les récupérer
+    if ($scope.contentDetailCtrl.content.fields.questions && ($scope.contentDetailCtrl.content.fields.questions).length>0) {
+        me.getQuestions();
+    }
+				
 				$scope.inscription={};
 				me.parentsEnsemble=false;
 				me.parentsSepares=false;
