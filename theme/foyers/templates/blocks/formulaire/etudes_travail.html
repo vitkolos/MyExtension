@@ -24,7 +24,7 @@
                 <input type="radio"  name="examensPrealables" id="oui" value="oui" ng-model="inscription.examensPrealables" ng-click="formCtrl.examensPrealables = true;" required>
                             <label for="oui" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
                 <input type="radio"  name="examensPrealables" id="non" value="non" ng-model="inscription.examensPrealables" ng-click="formCtrl.examensPrealables = false;">
-                            <label for="non" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label>
+                            <label for="non" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label> 
         </div>
     </div>
     <div ng-if="formCtrl.examensPrealables && etudiant && !personneConnue"">
