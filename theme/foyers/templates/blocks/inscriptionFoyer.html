@@ -93,7 +93,7 @@
                             </ng-form>
                             
                             <div class="row text-center">
-                                <div class="button submit cursor-as-pointer" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.submit(inscription_form.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Valider","Valider")}}</div>
+                                <div class="button submit cursor-as-pointer" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(6,lettre_motivation.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Valider","Valider")}}</div>
                                 <img src="/theme/cte/img/loader.gif" ng-if="processForm">
                                 <p ng-if="finInscription">{{message}}</p>
                             </div>
