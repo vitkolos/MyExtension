@@ -88,12 +88,16 @@
                             <ng-form name="lettre_motivation">
                                     <div  class="row" ng-include="formCtrl.lettre_motivation"></div>
                                     <div class="row text-center">
-                                        <div class="button submit cursor-as-pointer" ng-class="{'disabled' : lettre_motivation.$invalid}" ng-click="formCtrl.setCurrentStage(6,lettre_motivation.$valid)" >{{rubedo.translate("Block.Inscription.Valider","Valider")}}</div>
                                         <p ng-if="lettre_motivation.$invalid && lettre_motivation.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
-                                                <img src="/theme/cte/img/loader.gif" ng-if="processForm">
-                                            <p ng-if="finInscription">{{message}}</p>
                                     </div>
                             </ng-form>
+                            
+                            <div class="row text-center">
+                                <div class="button submit cursor-as-pointer" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.submit(inscription_form.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Valider","Valider")}}</div>
+                                <img src="/theme/cte/img/loader.gif" ng-if="processForm">
+                                <p ng-if="finInscription">{{message}}</p>
+                            </div>
+
                         </div>
                         
                         
