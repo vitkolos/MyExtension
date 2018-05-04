@@ -30,15 +30,15 @@
     
     <!--checkboxes group-->
     <div ng-switch-when="checkbox_group" class="row">
-        <div class="col-sm-12 padding">
-            <label class="label_style left">{{question.fields.questionLabel}}</label>
+        <div class="col-sm-4">
+            <label class="label_style">{{question.fields.questionLabel}}</label>
         </div>
         <div class="col-sm-8 col-sm-push-2">
             <div class="col-xs-12" ng-repeat="questionField in question.fields.reponses track by $index">
                 <input type="checkbox"  name="questions_{{$parent.$index}}" id="questions_{{$parent.$index}}_{{$index}}" ng-true-value="{{questionField.titre}}"
                                 ng-model="don['questions'][question.text][$index]['value']">
-                        <label for="questions_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label>
-                        <input type="text" ng-if="questionField.complement" name="questions_{{$parent.$index}}_complement"
+                        <label class="sexe_label boite" for="questions_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label>
+                        <input class="form-control"  type="text" ng-if="questionField.complement" name="questions_{{$parent.$index}}_complement"
                                ng-model="don['questions'][question.fields.text][$index]['complement']" class="complement_text"
                                ng-disabled="don['questions'][question.text][$index]['value'] !=questionField.titre"/>
                         <label ng-if="questionField.complement && questionField.libelleApresComplement">{{questionField.libelleApresComplement}}</label>
