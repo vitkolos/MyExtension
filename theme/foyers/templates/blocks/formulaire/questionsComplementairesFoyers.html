@@ -34,11 +34,11 @@
             <label class="label_style">{{question.fields.questionLabel}}</label>
         </div>
         <div class="col-sm-8">
-            <div ng-repeat="questionField in question.fields.reponses track by $index" class="col-xs-12 display_left">
+            <div ng-repeat="questionField in question.fields.reponses track by $index" class="col-xs-12 display_left" style="display:inline:block !important">
                     <input type="checkbox"  name="questions_{{$parent.$index}}" id="questions_{{$parent.$index}}_{{$index}}" ng-true-value="{{questionField.titre}}"
                                     ng-model="don['questions'][question.text][$index]['value']">
                             <label class="sexe_label boite" for="questions_{{$parent.$index}}_{{$index}}">{{questionField.titre}}</label>
-                            <input class="form-control" style="width:auto !important;" type="text" ng-if="questionField.complement" name="questions_{{$parent.$index}}_complement"
+                            <input class="form-control" style="width:40% !important;" type="text" ng-if="questionField.complement" name="questions_{{$parent.$index}}_complement"
                                    ng-model="don['questions'][question.fields.text][$index]['complement']" class="complement_text"
                                    ng-disabled="don['questions'][question.text][$index]['value'] !=questionField.titre"/>
                             <label ng-if="questionField.complement && questionField.libelleApresComplement">{{questionField.libelleApresComplement}}</label>
@@ -57,7 +57,7 @@
                 <input type="number" ng-model="don['questions'][question.text]" name="questions_{{$parent.$index}}">
             </div>
         </div>
-    </div>
+    </div> 
     <!--text-->
     <div ng-switch-when="text" class="row">
         <div class="col-sm-4">
