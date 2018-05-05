@@ -1,10 +1,80 @@
-<div class="row" ng-if="!personneConnue">
+<!--<div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="photo" class="label_style">{{rubedo.translate("Block.Inscription.Photo.Importer")}} *</label></div>
         <div class="col-sm-8">
             <input type="file" ngf-select="upload($file)" ng-if="field.config.allowedDAMTypes=='545cd95245205e91168b45b1' " accept="image/*" ngf-pattern="'image/*'" ngf-resize="{width: 1800, quality: .7}" ngf-resize-if="$width >1800 || $file.size>1024*300" class="ng-scope">
             <img class="img-responsive" title="{{mediaFieldCtrl.media.title}}" alt="{{mediaFieldCtrl.media.title}}" ng-src="{{rubedo.imageUrl.getUrlByMediaId(mediaFieldCtrl.media.id, {mode:'crop'})}}"/>
     </div>
+</div>-->
+<div ng-controller="ContentContributionController as ccCtrl" >
+<rubedo-field>{{image}}</rubedo-field>
 </div>
+
+<!--<style>
+        .drop-box {
+    background: #F8F8F8;
+    border: 5px dashed #DDD;
+    width: 400px;
+    height: 150px;
+    text-align: center;
+    padding-top: 25px;
+    margin: 10px auto;
+}
+</style>
+<div ng-controller="ImageBatchUploadController as imgCtrl" class="texte">
+        <form class="row">
+                <div class="form-group">
+                        <label class="col-sm-12">Renommer les photos ?</label>
+                        <label class="control-label txt-red capital">Titre</label>
+                        <div  class="col-sm-8 col-sm-offset-2">
+                                <input type="text" ng-model="imgCtrl.batchTitle">
+                        </div>
+                        
+                </div>
+                <div class="col-sm-8 col-sm-offset-2" ng-init="imgCtrl.format=1800">
+                        <div class="col-sm-6">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1800" ng-model="imgCtrl.format">
+                                <label  for="inlineRadio1">Bandeau</label>
+                        </div>
+                        <div class="col-sm-6">
+                                <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1000" ng-model="imgCtrl.format">
+                                <label  for="inlineRadio2">Texte / Albums</label>
+                        </div>
+                </div>
+                <div class="col-sm-12" ng-show="files.length">
+                        <div ng-repeat="file in files">
+                                <span>{{file.name}}</span>
+                                (<span ng-switch="file.size > 1024*1024">
+                                    <span ng-switch-when="true">{{file.size / 1024 / 1024 | number:2}} MB</span>
+                                    <span ng-switch-default>{{file.size / 1024 | number:2}} kB</span>
+                                </span>)
+                                <span class="glyphicon glyphicon-ok txt-vert" ng-if="file.success"></span>
+                        </div>
+                </div>
+                <div class="form-group">
+                        
+                        <div class="progress" ng-show="imgCtrl.progress>0">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{imgCtrl.progress}}"  ng-style="{ width : imgCtrl.progress+'%' }">
+                                        <span class="sr-only">{{imgCtrl.progress}}% Complete </span>
+                                </div>
+                        </div>
+                </div>
+        </form>
+        
+        <div ngf-drop ngf-select ng-model="files" class="drop-box" 
+                ngf-drag-over-class="'dragover'" ngf-multiple="true" ngf-allow-dir="true"
+                accept="image/*" 
+                ngf-pattern="'image/*'"
+                ngf-resize="{width: imgCtrl.format, quality: .7}"
+                ngf-resize-if="$width > imgCtrl.format || $file.size>1024*200"
+                ng-disabled="imgCtrl.processing">
+                <span ng-if="!imgCtrl.processing">Drop images here or click to upload</span>
+                <img src="/theme/cte/img/loader.gif" ng-if="imgCtrl.processing">
+        </div>
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+</div>-->
+
+        
+
 
 
      

@@ -101,9 +101,15 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
     }
     getPublic($scope.contentDetailCtrl.content.public);
 				console.log("$scope.contentDetailCtrl.content.public");
-								console.log($scope.contentDetailCtrl.content.public);
+				console.log($scope.contentDetailCtrl.content.public);
     //$scope.inscription={};
     //$scope.inscription.optionsPayantes={};
+				
+				
+				
+				
+				
+				
 
 //get proposition
 //    var propositionId = me.content.id;

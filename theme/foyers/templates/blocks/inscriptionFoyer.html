@@ -12,7 +12,7 @@
                         </h2>
                         <div id="inscriptionStage1" class="collapse in"> 
                             <ng-form name="infos_personnelles">
-                                    <div  class="row" ng-include="formCtrl.general_infos"></div>
+                                    <!--<div  class="row" ng-include="formCtrl.general_infos"></div>-->
                                     <div class="row text-center">
                                         <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_personnelles.$invalid}" ng-click="formCtrl.setCurrentStage(1,infos_personnelles.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                                         <p ng-if="infos_personnelles.$invalid && infos_personnelles.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
@@ -25,8 +25,8 @@
                         </h2>
                         <div id="inscriptionStage2" class="collapse">
                             <ng-form name="infos_familiales">
-                                    <div  class="row" ng-include="formCtrl.family_infos"></div>
-                                    <div  class="row" ng-include="formCtrl.freres_soeurs_infos"></div>
+                                    <!--<div  class="row" ng-include="formCtrl.family_infos"></div>
+                                    <div  class="row" ng-include="formCtrl.freres_soeurs_infos"></div>-->
                                     <div class="row text-center">
                                         <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_familiales.$invalid}" ng-click="formCtrl.setCurrentStage(2,infos_familiales.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                                         <p ng-if="infos_familiales.$invalid && infos_familiales.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
@@ -43,7 +43,7 @@
                         
                         <div id="inscriptionStage3" class="collapse">
                             <ng-form name="infos_travail">
-                                    <div  class="row" ng-include="formCtrl.travail_infos"></div>
+                                    <!--<div  class="row" ng-include="formCtrl.travail_infos"></div>-->
                                     <div class="row text-center">
                                         <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_travail.$invalid}" ng-click="formCtrl.setCurrentStage(3,infos_travail.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                                         <p ng-if="infos_travail.$invalid && infos_travail.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
@@ -56,7 +56,7 @@
                         </h2>
                         
                         <div id="inscriptionStage4" class="collapse">
-                            <ng-form name="infos_complementaires">
+                            <!--<ng-form name="infos_complementaires">-->
                                     <div  class="row" ng-include="formCtrl.complement_infos"></div>
                                     <div class="row text-center">
                                         <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(4,infos_complementaires.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
@@ -72,7 +72,7 @@
                         
                         <div id="inscriptionStage5" class="collapse"> 
                             <ng-form name="photo">
-                                    <div  class="row" ng-include="formCtrl.photo"></div>
+                                    <!--<div  class="row" ng-include="formCtrl.photo"></div>-->
                                     <div class="row text-center">
                                         <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(5,photo.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                                         <p ng-if="photo.$invalid && photo.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
@@ -92,11 +92,20 @@
                                     </div>
                             </ng-form>
                             
-                            <div class="row text-center">
+                            <!--<div class="row text-center">
                                 <div class="button submit cursor-as-pointer" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(6,lettre_motivation.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Valider","Valider")}}</div>
                                 <img src="/theme/cte/img/loader.gif" ng-if="processForm">
                                 <p ng-if="finInscription">{{message}}</p>
+                            </div>-->
+                            
+                            <div class="row text-center">
+                                <div class="button submit cursor-as-pointer" id="btn_inscription" ng-click="formCtrl.register()" ng-class="{'disabled' : inscription_form.$invalid}" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Valider","Valider")}}</div>
+                                <img src="/theme/cte/img/loader.gif" ng-if="processForm">
+                                <p ng-show="processForm">Processing the form... please wait...</p>
+                                <p ng-show="inscription_form.$invalid">Tu as oublié de renseigner certains champs obligatoires...</p>
+                                <p ng-if="finInscription">{{message}}</p>
                             </div>
+                            
 
                         </div>
                         
