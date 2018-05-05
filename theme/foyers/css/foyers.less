@@ -334,6 +334,7 @@ input, textarea {
   }
 		.button {
 		display: inline-block;
+		min-width: 200px;
 		font-family: "trend_sansone";
 		color: white;
 		font-size: 18px;
@@ -531,7 +532,9 @@ label.label_style, .label_style label:not(.radio-inline) {
     text-align: right;
     position: relative;
     top: .7em;
+				margin-bottom:10px;
 }
+@media screen and (max-width:@min_sm) {label.label_style{text-align:left; float:left}}
 
 .display_left {text-align:left !important;}
 
@@ -547,7 +550,7 @@ ng-form[name=inscription_form] h2 {
 }
 ng-form[name=inscription_form] label.sexe_label {
     background-color: transparent;
-    height: 36px;
+    min-height: 36px;
     width: 36px;
     color: #fff;
     border: 2px #fff solid;
