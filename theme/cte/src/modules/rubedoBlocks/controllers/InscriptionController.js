@@ -23,11 +23,15 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
                 me.additional_infos = null;
                 break;
-            case 'personne-avec-enfants':
+												 case 'parent-seul-avec-enfants':
                 me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
-												case 'personne-sans-enfant':
+            case 'esperance-avec-enfants':
+                me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+                me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
+                break;
+												case 'esperance-sans-enfant':
                 me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
                 me.additional_infos = null;
                 break;
