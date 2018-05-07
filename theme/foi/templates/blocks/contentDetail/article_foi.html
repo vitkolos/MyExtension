@@ -45,10 +45,7 @@
 			</div>
 			
 			<div class="col-sm-8 col-sm-push-2 col-xs-10 col-xs-push-1 presentationArticle" >
-				<div field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="!fieldEditMode">
-					<h1 class="presentationArticle">{{fieldEntity['text']}}</h1>
-				</div>
-				<rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
+				<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
 				<div class="redacteur">
 					<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}" ng-if="fieldEntity['redacteur']"></rubedo-field><!--Rédacteur-->
 				</div>
