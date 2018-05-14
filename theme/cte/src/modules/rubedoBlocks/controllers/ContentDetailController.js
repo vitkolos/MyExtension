@@ -344,10 +344,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 });
                             }
                         });
-                        $scope.afficheDate=true;
-                        if (me.content.fields.afficheDate=false) {
-                            $scope.afficheDate=false;
-                        }
                     }
                     
                     

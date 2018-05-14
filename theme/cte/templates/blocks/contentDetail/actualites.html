@@ -155,7 +155,7 @@
 <header class="container-fluid content" afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'768px',mode:'boxed'})}} 480w,{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1600px',mode:'boxed'})}} 1200w"
 	ng-if="fieldEntity['image']"  afkl-lazy-image-options='{"background": true}'>
 	<div class="text-article container">
-		<p class='capital' ng-if="afficheDate">{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</p>
+		<p class='capital'><span>{{rubedo.translate("Block.Actus.Publier", "Publié le ")}}</span><span>{{contentDetailCtrl.content.createTime*1000 | date:'longDate'}}</span></p>
 		<div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
 			<h1 class="balance-text" ng-if="!fieldEditMode" itemprop="headline">{{fieldEntity['text']}}</h1>
 			<h1 ng-if="fieldEditMode"
