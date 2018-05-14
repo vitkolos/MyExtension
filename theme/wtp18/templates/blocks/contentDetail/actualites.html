@@ -14,7 +14,7 @@
 						<ol class="breadcrumb hidden-xs">
 							<li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
 						</ol>
-						<div class="breadcrumb">
+						<div class="breadcrumb visible-xs">
 							<a class="visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
 						</div>
 					</div>
