@@ -360,58 +360,58 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 												// validations préliminaires
             $scope.processForm=true;
             
-//            $scope.inscription.proposition=  propositionId;
-//            $scope.inscription.propositionTitre=  propositionTitle;
-//            if(me.content.fields.dateDebut && me.content.fields.dateDebut!='') $scope.inscription.propositionDate = propositionDate;
-//            $scope.inscription.dateDebut = me.content.fields.dateDebut;
-//            $scope.inscription.propositionLieu = me.content.fields.positionName;
-//            $scope.inscription.propositionUrl = me.content.canonicalUrl;
-//            $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
-//            $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
-//            $scope.inscription.contact = me.content.fields.contact;
-//            if (me.content.fields.mails_secretariat && me.content.fields.mails_secretariat.length>0) {
-//                $scope.inscription.mails_secretariat = me.content.fields.mails_secretariat;
-//            }
-//            if(me.content.fields.codeOnesime) $scope.inscription.codeOnesime = me.content.fields.codeOnesime;
-//            $scope.inscription.mailInscription = me.content.fields.mailInscription;
-//            $scope.inscription.mailInscriptionService = me.content.fields.mailInscriptionService;
-//            
-//            $scope.inscription.personneConnue = me.form.personneConnue;
-//            $scope.inscription.entretien = me.form.entretien;
-//            $scope.inscription.motivation = me.form.motivation;
-//            /*enfant*/
-//            if($scope.inscription.enfant && $scope.inscription.enfant !={} && $scope.inscription.enfant.prenom && $scope.inscription.enfant.prenom!='') {
-//              me.addChild($scope.inscription.enfant);
-//            }
-//
-//            if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
-//            else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
-//												else if($scope.inscription.paiement_maintenant == 'accompte2'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte2}
-//            else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
-//            $scope.inscription.isPayment = me.isPaiement;
-//            /*STATUS DE L'INSCRIPTION*/
-//            switch(me.content.fields.inscriptionState.inscriptionState) {
-//                case "attente":
-//                    $scope.inscription.statut = "liste_attente";
-//                    break;
-//                case 'preinscription':
-//                    $scope.inscription.statut = "preinscrit";
-//                    break;
-//                default:
-//                    if (me.isPaiement) {
-//                        /*pas de paiement maintenant*/
-//                        if ($scope.inscription.paiement_maintenant =="rien") {
-//                            $scope.inscription.statut = 'inscrit_sans_accompte';
-//                        }
-//                        else{
-//                            $scope.inscription.statut = "attente_paiement_"+$scope.inscription.modePaiement;
-//                        }
-//                        $scope.inscription.montantAPayerMaintenantAvecMonnaie = ($scope.inscription.montantAPayerMaintenant).toString() + me.paymentmeans.nativePMConfig.monnaie;
-//                        if($scope.inscription.montantTotalAPayer && $scope.inscription.montantTotalAPayer>0) $scope.inscription.montantTotalAPayerAvecMonnaie=($scope.inscription.montantTotalAPayer).toString() + me.paymentmeans.nativePMConfig.monnaie;
-//                        if($scope.inscription.accompte>0) $scope.inscription.accompteAvecMonnaie=($scope.inscription.accompte).toString() + me.paymentmeans.nativePMConfig.monnaie;
-//                    }
-//                    
-//            }
+            $scope.inscription.proposition=  propositionId;
+            $scope.inscription.propositionTitre=  propositionTitle;
+            if(me.content.fields.dateDebut && me.content.fields.dateDebut!='') $scope.inscription.propositionDate = propositionDate;
+            $scope.inscription.dateDebut = me.content.fields.dateDebut;
+            $scope.inscription.propositionLieu = me.content.fields.positionName;
+            $scope.inscription.propositionUrl = me.content.canonicalUrl;
+            $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
+            //$scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
+            $scope.inscription.contact = me.content.fields.contact;
+            if (me.content.fields.mails_secretariat && me.content.fields.mails_secretariat.length>0) {
+                $scope.inscription.mails_secretariat = me.content.fields.mails_secretariat;
+            }
+            //if(me.content.fields.codeOnesime) $scope.inscription.codeOnesime = me.content.fields.codeOnesime;
+            $scope.inscription.mailInscription = me.content.fields.mailInscription;
+            $scope.inscription.mailInscriptionService = me.content.fields.mailInscriptionService;
+            
+            $scope.inscription.personneConnue = me.form.personneConnue;
+            $scope.inscription.entretien = me.form.entretien;
+            $scope.inscription.motivation = me.form.motivation;
+            ///*enfant*/
+            //if($scope.inscription.enfant && $scope.inscription.enfant !={} && $scope.inscription.enfant.prenom && $scope.inscription.enfant.prenom!='') {
+            //  me.addChild($scope.inscription.enfant);
+            //}
+
+            if($scope.inscription.paiement_maintenant == 'rien'){$scope.inscription.montantAPayerMaintenant=0}
+            else if($scope.inscription.paiement_maintenant == 'accompte'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte}
+												else if($scope.inscription.paiement_maintenant == 'accompte2'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte2}
+            else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
+            $scope.inscription.isPayment = me.isPaiement;
+            /*STATUS DE L'INSCRIPTION*/
+            switch(me.content.fields.inscriptionState.inscriptionState) {
+                case "attente":
+                    $scope.inscription.statut = "liste_attente";
+                    break;
+                case 'preinscription':
+                    $scope.inscription.statut = "preinscrit";
+                    break;
+                default:
+                    if (me.isPaiement) {
+                        /*pas de paiement maintenant*/
+                        if ($scope.inscription.paiement_maintenant =="rien") {
+                            $scope.inscription.statut = 'inscrit_sans_accompte';
+                        }
+                        else{
+                            $scope.inscription.statut = "attente_paiement_"+$scope.inscription.modePaiement;
+                        }
+                        $scope.inscription.montantAPayerMaintenantAvecMonnaie = ($scope.inscription.montantAPayerMaintenant).toString() + me.paymentmeans.nativePMConfig.monnaie;
+                        if($scope.inscription.montantTotalAPayer && $scope.inscription.montantTotalAPayer>0) $scope.inscription.montantTotalAPayerAvecMonnaie=($scope.inscription.montantTotalAPayer).toString() + me.paymentmeans.nativePMConfig.monnaie;
+                        if($scope.inscription.accompte>0) $scope.inscription.accompteAvecMonnaie=($scope.inscription.accompte).toString() + me.paymentmeans.nativePMConfig.monnaie;
+                    }
+                    
+            }
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
                 $scope.message="";
                 if (response.data.success) {
