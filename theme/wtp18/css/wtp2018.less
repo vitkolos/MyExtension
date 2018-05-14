@@ -1962,3 +1962,15 @@ label {
     60% {top:-40vh; left:-30vw; opacity:0.8}
     100% {top:0; left:0vw; opacity:1}
 }
+
+////////////////////////////////////////////////////
+    ///////////BREADCRUMB///////////////////
+///////////////////////////////////////////////////
+.breadcrumb a{color:@txt_violet; box-shadow: none !important}
+.breadcrumb li a:hover, .breadcrumb li a:active{background-color: inherit}
+.breadcrumb>li+li:before{
+  content: "\f0da";
+  font-family: 'Oswald SemiBold';
+  color:@txt_violet
+}
+
