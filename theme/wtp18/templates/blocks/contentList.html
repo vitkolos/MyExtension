@@ -26,10 +26,10 @@
                                             alt="{{ content.fields.text }}"/>
                                     </a>
                                 </div>-->
-                                <div class="col-xs-12 col-sm-12">
+                                <div class="col-xs-12 col-sm-10">
                                     <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
                                         <h4> {{content.fields.text}}</h4>
-                                        <p>{{content.fields.summary}}</p>
+                                        <p>{{content.fields.summary}}</p> 
                                     </a>
                                     <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                                     <rubedo-field ng-if="fieldEditMode" field="{{content.type.summary}}"></rubedo-field>
