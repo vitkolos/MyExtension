@@ -8,62 +8,63 @@
             ng-click="contentListCtrl.launchContribute()">
         <span class="glyphicon glyphicon-plus"></span>
     </button>
-    <!--DEFAULT-->         
-    <div ng-if="contentListCtrl.usedContentTypes[0]=='5517c04245205ec708869bc6' " class="container" style="margin-top:75px;background-color: white;">
-        <div class="row">
-            <div class="col-xs-12 col-sm-8 col-md-9" style="padding-right:24px">
-                <div ng-attr-lr-infinite-scroll="loadMoreContents"
-                     ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
-                     ng-style="contentListCtrl.blockStyle" >
-                    <!--<div id="infiniteScrollCtrl">-->
-                    <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
-                        <div ng-class="contentListCtrl.columns" ng-repeat="content in columnContents track by $index"   ng-controller="ContentListDetailController as contentListDetailCtrl">
-                            <div class="row list">
-                                <div class="col-xs-12 col-sm-5">
-                                    <a ng-href="{{ content.detailPageUrl }}">
-                                        <img class="img-responsive pull-right" ng-if="content.fields.image && !contentListCtrl.titleOnly"
-                                            ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'500px',height:'220px',mode:'crop'}) }}"
-                                            style="margin-top:10px;"
-                                            alt="{{ content.fields.text }}"/>
-                                    </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-7">
-                                    <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
-                                        <h4> {{content.fields.text}}</h4>
-                                        <p>{{content.fields.summary}}</p> 
-                                    </a>
-                                    <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-                                    <rubedo-field ng-if="fieldEditMode" field="{{content.type.summary}}"></rubedo-field>
+    <!--DEFAULT-->
+    <div style="background-color: white;">
+        <div ng-if="contentListCtrl.usedContentTypes[0]=='5517c04245205ec708869bc6' " class="container" style="margin-top:75px;">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-9" style="padding-right:24px">
+                    <div ng-attr-lr-infinite-scroll="loadMoreContents"
+                         ng-attr-scroll-threshold="{{ contentListCtrl.scrollThreshold }}" ng-attr-time-threshold="{{ contentListCtrl.timeThreshold }}"
+                         ng-style="contentListCtrl.blockStyle" >
+                        <!--<div id="infiniteScrollCtrl">-->
+                        <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
+                            <div ng-class="contentListCtrl.columns" ng-repeat="content in columnContents track by $index"   ng-controller="ContentListDetailController as contentListDetailCtrl">
+                                <div class="row list">
+                                    <div class="col-xs-12 col-sm-5">
+                                        <a ng-href="{{ content.detailPageUrl }}">
+                                            <img class="img-responsive pull-right" ng-if="content.fields.image && !contentListCtrl.titleOnly"
+                                                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'500px',height:'220px',mode:'crop'}) }}"
+                                                style="margin-top:10px;"
+                                                alt="{{ content.fields.text }}"/>
+                                        </a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-7">
+                                        <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
+                                            <h4> {{content.fields.text}}</h4>
+                                            <p>{{content.fields.summary}}</p> 
+                                        </a>
+                                        <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                                        <rubedo-field ng-if="fieldEditMode" field="{{content.type.summary}}"></rubedo-field>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="hidden-xs col-sm-4 col-md-3">
-                <div class="row" ng-controller="FacebookController as fcbCtrl" style="margin-bottom:48px" ng-if="rubedo.current.page.locale !='pl' ">
-                    <div class="fb-page" data-href="https://www.facebook.com/festivalwelcometoparadise"
-                         data-width="300" data-hide-cover="false" data-show-facepile="true" data-show-posts="true" data-height="750">
-                            <div class="fb-xfbml-parse-ignore">
-                            </div>
+                <div class="hidden-xs col-sm-4 col-md-3">
+                    <div class="row" ng-controller="FacebookController as fcbCtrl" style="margin-bottom:48px" ng-if="rubedo.current.page.locale !='pl' ">
+                        <div class="fb-page" data-href="https://www.facebook.com/festivalwelcometoparadise"
+                             data-width="300" data-hide-cover="false" data-show-facepile="true" data-show-posts="true" data-height="750">
+                                <div class="fb-xfbml-parse-ignore">
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-controller="FacebookController as fcbCtrl" style="margin-bottom:48px" ng-if="rubedo.current.page.locale =='pl' ">
+                        <div class="fb-page" data-href="https://www.facebook.com/sdm.paradiseinthecity"
+                             data-width="300" data-hide-cover="false" data-show-facepile="true" data-show-posts="true" data-height="750">
+                                <div class="fb-xfbml-parse-ignore">
+                                </div>
+                        </div>
+                    </div>
+                    <div class="row" ng-init = "blockConfig={'theme':'normal','mode':'tweets','widgetId':'651025227502198784','account':'Festival_WTP','width':'300','options':['noHeader']}">
+                        <div ng-include="rubedo.blockTemplateResolver.getTemplate('twitter',blockConfig)"></div>
                     </div>
                 </div>
-                <div class="row" ng-controller="FacebookController as fcbCtrl" style="margin-bottom:48px" ng-if="rubedo.current.page.locale =='pl' ">
-                    <div class="fb-page" data-href="https://www.facebook.com/sdm.paradiseinthecity"
-                         data-width="300" data-hide-cover="false" data-show-facepile="true" data-show-posts="true" data-height="750">
-                            <div class="fb-xfbml-parse-ignore">
-                            </div>
-                    </div>
-                </div>
-                <div class="row" ng-init = "blockConfig={'theme':'normal','mode':'tweets','widgetId':'651025227502198784','account':'Festival_WTP','width':'300','options':['noHeader']}">
-                    <div ng-include="rubedo.blockTemplateResolver.getTemplate('twitter',blockConfig)"></div>
-                </div>
             </div>
+            
+            
         </div>
-        
-        
     </div>
-    
     <!--AUTRES-->
     <!--<div ng-style="contentListCtrl.blockStyle" ng-switch-default  ng-class="{'container' : blockConfig.container}">
             <div class="col-sm-6 col-xs-12" ng-class="contentListCtrl.columns" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents" ng-switch="content.typeId">                
