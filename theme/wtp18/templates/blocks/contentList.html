@@ -19,14 +19,14 @@
                     <div ng-repeat="columnContents in contentListCtrl.contentList track by $index" >
                         <div ng-class="contentListCtrl.columns" ng-repeat="content in columnContents track by $index"   ng-controller="ContentListDetailController as contentListDetailCtrl">
                             <div class="row list">
-                                <div class="col-xs-12 col-sm-5">
+                                <!--<div class="col-xs-12 col-sm-5">
                                     <a ng-href="{{ content.detailPageUrl }}">
                                         <img class="img-responsive pull-right" ng-if="content.fields.image && !contentListCtrl.titleOnly"
                                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'500px',height:'220px',mode:'crop'}) }}"
                                             alt="{{ content.fields.text }}"/>
                                     </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-7">
+                                </div>-->
+                                <div class="col-xs-12 col-sm-12">
                                     <a ng-if="!fieldEditMode" ng-href="{{ content.detailPageUrl }}">
                                         <h4> {{content.fields.text}}</h4>
                                         <p>{{content.fields.summary}}</p>
