@@ -17,10 +17,10 @@
 				</div>
 			</div>
 		</div>
-	</div>
+	</div>  
 	
 	<div class="container article">
-		<div class="row">
+		<div class="row">  
 			<!--<div class=" col-xs-12">
 				<div data-addthis-toolbox  data-title="{{rubedo.current.page.title}}" data-summary="{{contentDetailCtrl.content.fields.summary}}"  class="addthis_toolbox socials-share" >
 					<div class="col-xs-6 col-sm-4">
@@ -38,10 +38,21 @@
 				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ></rubedo-field><!--Texte-->
 			</div>
 			<div class="hidden-xs col-sm-4 col-md-3">
-                <div class="row" ng-init = "blockConfig={'theme':'normal','mode':'tweets','widgetId':'651025227502198784','account':'Festival_WTP','width':'300','options':['noHeader']}">
-                    <div ng-include="rubedo.blockTemplateResolver.getTemplate('twitter',blockConfig)"></div>
+                <div class="row" ng-controller="FacebookController as fcbCtrl" style="margin-bottom:48px" ng-if="rubedo.current.page.locale !='pl' ">
+                    <div class="fb-page" data-href="https://www.facebook.com/festivalwelcometoparadise"
+                         data-width="300" data-hide-cover="false" data-show-facepile="true" data-show-posts="true" data-height="750">
+                            <div class="fb-xfbml-parse-ignore">
+                            </div>
+                    </div>
                 </div>
-            </div> 
+                <div class="row" ng-controller="FacebookController as fcbCtrl" style="margin-bottom:48px" ng-if="rubedo.current.page.locale =='pl' ">
+                    <div class="fb-page" data-href="https://www.facebook.com/sdm.paradiseinthecity"
+                         data-width="300" data-hide-cover="false" data-show-facepile="true" data-show-posts="true" data-height="750">
+                            <div class="fb-xfbml-parse-ignore">
+                            </div>
+                    </div>
+                </div>
+            </div>
 		</div>
 	</div>
 </div>
