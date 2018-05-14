@@ -65,10 +65,10 @@
     </div>
     
     <!--AUTRES-->
-    <div ng-style="contentListCtrl.blockStyle" ng-switch-default  ng-class="{'container' : blockConfig.container}">
+    <!--<div ng-style="contentListCtrl.blockStyle" ng-switch-default  ng-class="{'container' : blockConfig.container}">
             <div class="col-sm-6 col-xs-12" ng-class="contentListCtrl.columns" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents" ng-switch="content.typeId">                
                 <!--LINK TO PAGE-->
-                <div ng-switch-when="56ab6e94c445ecde138b4e2b" class="pageList">
+                <!--<div ng-switch-when="56ab6e94c445ecde138b4e2b" class="pageList">
                     <a ng-href="{{ content.contentLinkUrl }}">
                         <div>
                             <img  ng-if="content.fields.image"
@@ -79,12 +79,12 @@
                             <h3>{{content.fields.text}}</h3>
                             <p>{{content.fields.summary}}</p>
                         <!-- <p><a ng-href="{{ content.contentLinkUrl }}">{{content.fields.subTitle}}</a></p>-->
-                        </div>
+                        <!--</div>
                     </a>
                 </div>
 
             </div>
-    </div>
+    </div>-->
     
     
     <!--WORKSHOPS-->         
