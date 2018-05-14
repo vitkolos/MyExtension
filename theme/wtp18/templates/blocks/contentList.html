@@ -23,6 +23,7 @@
                                     <a ng-href="{{ content.detailPageUrl }}">
                                         <img class="img-responsive pull-right" ng-if="content.fields.image && !contentListCtrl.titleOnly"
                                             ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'500px',height:'220px',mode:'crop'}) }}"
+                                            style="margin-top:10px;"
                                             alt="{{ content.fields.text }}"/>
                                     </a>
                                 </div>
