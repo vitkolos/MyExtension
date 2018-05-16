@@ -46,19 +46,22 @@
 			
 			<div class="col-sm-8 col-sm-push-2 col-xs-10 col-xs-push-1 presentationArticle" >
 				<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
-				<div class="redacteur" ng-if="fieldEntity['redacteur'] && !fieldEntity['photoRedacteur']">
-					<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}"></rubedo-field><!--Rédacteur-->
-				</div>
-				<div class="redacteur" ng-if="fieldEntity['redacteur'] && fieldEntity['photoRedacteur']">
-					<div class="col-sm-2 detail-img">
-						<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['photoRedacteur']) }}" alt=""/>
+				<div class="row">
+					<div class="redacteur" ng-if="fieldEntity['redacteur'] && !fieldEntity['photoRedacteur']">
+						<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}"></rubedo-field><!--Rédacteur-->
 					</div>
-					<div class="col-sm-9">
-						<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}"></rubedo-field><!--Rédacteur--> 
+					<div class="redacteur" ng-if="fieldEntity['redacteur'] && fieldEntity['photoRedacteur']">
+						<div class="col-sm-2 detail-img">
+							<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['photoRedacteur']) }}" alt=""/>
+						</div>
+						<div class="col-sm-10">
+							<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}"></rubedo-field><!--Rédacteur--> 
+						</div>
 					</div>
 				</div>
-				<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ng-if="fieldEntity['richText']" class="contenu_article"></rubedo-field>
-						
+				<div class="row">
+					<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ng-if="fieldEntity['richText']" class="contenu_article"></rubedo-field>
+				</div>		
 								<!-- ACCES ABONNE -->
 								<div ng-if="!isClient && !contentDetailCtrl.oldArticle" class="col-md-12 bg-grey limitationArticle" style="text-align:center">
 									<h2 >Article réservé aux abonnés</h2>
