@@ -275,12 +275,12 @@ angular.module("rubedo").directive("ascensor2",['$document',function($document){
 																						restrict: "A",
 																						template:'<div id="ascensor2Building"><div ng-repeat="column in row.columns track by $index" id="floor{{$index}}" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
 																						link: function(scope,element, attrs) {
-																																	var targetElSelector="#ascensorBuilding";
+																																	var targetElSelector="#ascensor2Building";
 																																	var ascensor2 = angular.element(targetElSelector);
 																																	angular.element(targetElSelector).css( "visibility", "hidden" );
-																																	var initAscensor = function(){
-																																												var ascensor = angular.element(targetElSelector);
-																																												ascensor.css("visibility", "visible");
+																																	var initAscensor2 = function(){
+																																												var ascensor2 = angular.element(targetElSelector);
+																																												ascensor2.css("visibility", "visible");
 																																												var options={
 																																																							direction: [[0,0],[1,0]],
 																																																							time: 1900,
@@ -298,11 +298,11 @@ angular.module("rubedo").directive("ascensor2",['$document',function($document){
 																																												}
 																																	}
 																																	setTimeout(function(){
-																																												initAscensor();
+																																												initAscensor2();
 																																								},400);
 																																	scope.slideTo = function(direction){
-																																												var ascensorInstance = angular.element(targetElSelector).data('ascensor2');   // Access instance
-																																												ascensorInstance.scrollToDirection(direction);
+																																												var ascensor2Instance = angular.element(targetElSelector).data('ascensor2');   // Access instance
+																																												ascensor2Instance.scrollToDirection(direction);
 																																	}
 																						}
 											}
