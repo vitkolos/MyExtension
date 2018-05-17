@@ -9,7 +9,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
-				$scope.international=false;
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
         me.start=(urlCurrentPage-1)*me.limit;
@@ -101,9 +100,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     }
                 }
 																angular.forEach(response.data.contents,function(content){
-																				if (content.taxonomy.navigation=="591b1eac396588986c346ebe" && content.fields.summary) {
+																				if (content.taxonomy.navigation=="591b1eac396588986c346ebe" && content.fields.summary!=="") {
 																								$scope.international=true;	
+																				} else {
+																								$scope.international=false;	
 																				}
+																				console.log("international");
+																				console.log($scope.international);
 																	});
             }
             $scope.clearORPlaceholderHeight();
