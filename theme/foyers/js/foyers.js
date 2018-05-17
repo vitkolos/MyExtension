@@ -282,7 +282,7 @@ angular.module("rubedo").directive("ascensor2",['$document',function($document){
 																																												var ascensor = angular.element(targetElSelector);
 																																												ascensor.css("visibility", "visible");
 																																												var options={
-																																																							direction: [[0,0],[0,1],[1,0],[1,1]],
+																																																							direction: [[0,0],[1,0],[0,1],[1,1]],
 																																																							time: 1900,
 																																																								easing: 'easeInOutCubic',
 																																																								swipeNavigation : true,
