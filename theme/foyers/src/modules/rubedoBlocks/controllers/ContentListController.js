@@ -103,10 +103,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 																				if (content.taxonomy.navigation=="591b1eac396588986c346ebe" && content.fields.summary=="int") {
 																								content.fields.international=true;	
 																				} 
-																				console.log("content.fields.international");
-																				console.log(content.fields.international);
-																				console.log("summary");
-																				console.log(content.fields.summary);
 																	});
             }
             $scope.clearORPlaceholderHeight();
