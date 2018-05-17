@@ -9,6 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
+				$scope.international=false;
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
         me.start=(urlCurrentPage-1)*me.limit;
@@ -79,6 +80,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.usedContentTypes=response.data.usedContentTypes;
                 var columnContentList = [];
                 me.contents = response.data.contents;
+																console.log("me.contents");
+																console.log(me.contents);
                 if (add){
                     angular.forEach(response.data.contents,function(newContent){
                         columnContentList.push(newContent);
@@ -97,6 +100,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         me.contentList.push(columnContentList);
                     }
                 }
+																//if (me.contents) {
+																//				//code
+																//}
             }
             $scope.clearORPlaceholderHeight();
         },
