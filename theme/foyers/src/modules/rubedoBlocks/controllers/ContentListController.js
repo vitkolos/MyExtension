@@ -232,7 +232,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
     }
 }]);
-angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService',function($scope,$compile,RubedoContentsService){
+angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService','RubedoPagesService',function($scope,$compile,RubedoContentsService,RubedoPagesService){
     var me = this;
     me.index = $scope.$index;
     me.parentIndex = $scope.columnIndex;
@@ -244,6 +244,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
         $scope.fieldEditMode=$scope.content.content&&me.content.readOnly ? false : newValue;
 
     });
+				if ($scope.content.fields.propositionReferenceeInterne && $scope.content.fields.propositionReferenceeInterne !=""){
+        RubedoPagesService.getPageById($scope.content.fields.propositionReferenceeInterne).then(function(response){
+                if (response.data.success){
+                    $scope.content.contentLinkUrl = response.data.url;
+                }
+            }); 
+    }
+    else if ($scope.content.fields.propositionReferencee && $scope.content.fields.propositionReferencee !="") {
+            $scope.content.contentLinkUrl = $scope.content.fields.propositionReferencee;
+            $scope.content.isExternal=true;
+    }
+    else $scope.content.contentLinkUrl = $scope.content.detailPageUrl;
     $scope.$watch('content', function(newValue) {
         me.initCT();
         me.content = newValue;
