@@ -107,6 +107,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 																				}
 																				console.log("international");
 																				console.log($scope.international);
+																				console.log("summary");
+																				console.log(content.fields.summary);
 																	});
             }
             $scope.clearORPlaceholderHeight();
