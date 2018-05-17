@@ -104,7 +104,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 																				if (content.taxonomy.navigation=="591b1eac396588986c346ebe" && content.fields.summary) {
 																								$scope.international=true;	
 																				}
-																	}
+																	});
             }
             $scope.clearORPlaceholderHeight();
         },
