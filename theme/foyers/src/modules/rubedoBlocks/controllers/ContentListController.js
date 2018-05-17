@@ -101,12 +101,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 }
 																angular.forEach(response.data.contents,function(content){
 																				if (content.taxonomy.navigation=="591b1eac396588986c346ebe" && content.fields.summary=="int") {
-																								$scope.international=true;	
-																				} else {
-																								$scope.international=false;	
-																				}
-																				console.log("international");
-																				console.log($scope.international);
+																								content.fields.international=true;	
+																				} 
+																				console.log("content.fields.international");
+																				console.log(content.fields.international);
 																				console.log("summary");
 																				console.log(content.fields.summary);
 																	});
