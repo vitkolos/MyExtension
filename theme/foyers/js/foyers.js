@@ -270,6 +270,43 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																						}
 											}
 }]);
+angular.module("rubedo").directive("ascensor2",['$document',function($document){
+											return {
+																						restrict: "A",
+																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" id="floor{{$index}}" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
+																						link: function(scope,element, attrs) {
+																																	var targetElSelector="#ascensorBuilding";
+																																	var ascensor = angular.element(targetElSelector);
+																																	angular.element(targetElSelector).css( "visibility", "hidden" );
+																																	var initAscensor = function(){
+																																												var ascensor = angular.element(targetElSelector);
+																																												ascensor.css("visibility", "visible");
+																																												var options={
+																																																							direction: [[0,0],[1,0]],
+																																																							time: 1900,
+																																																								easing: 'easeInOutCubic',
+																																																								swipeNavigation : true,
+																																																								wheelNavigation :true
+																																												};
+																																												ascensor.ascensor(options);
+																																												//sur un réseau lent, l'initialisation ne se fait pas bien -> les élements ne sont pas dimensionnés. dans ce cas faire un refresh 
+																																												if (!angular.element(targetElSelector + " #floor1" ).css("width")) {
+
+																																																							setTimeout(function(){
+																																																																		angular.element(targetElSelector).data('ascensor2').refresh();
+																																																														},400);
+																																												}
+																																	}
+																																	setTimeout(function(){
+																																												initAscensor();
+																																								},400);
+																																	scope.slideTo = function(direction){
+																																												var ascensorInstance = angular.element(targetElSelector).data('ascensor2');   // Access instance
+																																												ascensorInstance.scrollToDirection(direction);
+																																	}
+																						}
+											}
+}]); 
 angular.module("rubedo").directive("swiper",[function(){
 											return {
 																						restrict: "A",

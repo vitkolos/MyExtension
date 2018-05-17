@@ -1,0 +1,29 @@
+<style>
+    @media screen and (max-width:768px) {
+    		header.bg-image{height:400px; line-height: 250px;};
+    }
+    @media screen and (min-width:1200px) {
+    		header.bg-image{height:800px; line-height: 500px;};
+    }
+</style>
+<div ng-controller="BgImageController as imageCtrl" class="image" style="overflow-x:hidden">
+        <header class="bg-image" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile)}}');"  >
+            <div ng-if="blockConfig.pageTitle" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.pageTitle}">
+        </header>
+        <div ng-controller="ImageController as imageCtrl" id="shell">
+
+	<!--Page 1-->
+
+    
+	<img src="/theme/foyers/img/nuage1.png"  data-xrange="-30" data-yrange="-30" id="nuage1" class="plaxImg"/>
+    <img src="/theme/foyers/img/nuage2.png"  data-xrange="40" data-yrange="30" id="nuage2" class="plaxImg"/>
+    <img src="/theme/foyers/img/nuage3.png"  data-xrange="-10" data-yrange="20" id="nuage3" class="plaxImg"/>
+    <img src="/theme/foyers/img/nuage4.png"  data-xrange="-45" data-yrange="-20" id="nuage3" class="plaxImg"/>
+    <img src="/theme/foyers/img/nuage5.png"  data-xrange="-60" data-yrange="-20" id="nuage1" class="plaxImg" />
+    <img src="/theme/foyers/img/nuage6.png"  data-xrange="50" data-yrange="-20" id="nuage2" class="plaxImg"/>
+    <plax activityTarget="#shell" />
+
+    
+</div>
+</div>
+</div>
