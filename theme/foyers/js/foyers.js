@@ -273,36 +273,36 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 angular.module("rubedo").directive("ascensor2",['$document',function($document){
 											return {
 																						restrict: "A",
-																						template:'<div id="ascensor2Building"><div ng-repeat="column in row.columns track by $index" id="floor{{$index}}" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
+																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" id="floor{{$index}}" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
 																						link: function(scope,element, attrs) {
-																																	var targetElSelector="#ascensor2Building";
-																																	var ascensor2 = angular.element(targetElSelector);
+																																	var targetElSelector="#ascensorBuilding";
+																																	var ascensor = angular.element(targetElSelector);
 																																	angular.element(targetElSelector).css( "visibility", "hidden" );
-																																	var initAscensor2 = function(){
-																																												var ascensor2 = angular.element(targetElSelector);
-																																												ascensor2.css("visibility", "visible");
+																																	var initAscensor = function(){
+																																												var ascensor = angular.element(targetElSelector);
+																																												ascensor.css("visibility", "visible");
 																																												var options={
-																																																							direction: [[0,0],[1,0]],
+																																																							direction: [[0,0],[0,1],[1,0],[1,1]],
 																																																							time: 1900,
 																																																								easing: 'easeInOutCubic',
 																																																								swipeNavigation : true,
 																																																								wheelNavigation :true
 																																												};
-																																												ascensor2.ascensor2(options);
+																																												ascensor.ascensor(options);
 																																												//sur un réseau lent, l'initialisation ne se fait pas bien -> les élements ne sont pas dimensionnés. dans ce cas faire un refresh 
 																																												if (!angular.element(targetElSelector + " #floor1" ).css("width")) {
 
 																																																							setTimeout(function(){
-																																																																		angular.element(targetElSelector).data('ascensor2').refresh();
+																																																																		angular.element(targetElSelector).data('ascensor').refresh();
 																																																														},400);
 																																												}
 																																	}
 																																	setTimeout(function(){
-																																												initAscensor2();
+																																												initAscensor();
 																																								},400);
 																																	scope.slideTo = function(direction){
-																																												var ascensor2Instance = angular.element(targetElSelector).data('ascensor2');   // Access instance
-																																												ascensor2Instance.scrollToDirection(direction);
+																																												var ascensorInstance = angular.element(targetElSelector).data('ascensor');   // Access instance
+																																												ascensorInstance.scrollToDirection(direction);
 																																	}
 																						}
 											}
