@@ -100,9 +100,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         me.contentList.push(columnContentList);
                     }
                 }
-																//if (me.contents) {
-																//				//code
-																//}
+																angular.forEach(response.data.contents,function(content){
+																				if (content.taxonomy.navigation=="591b1eac396588986c346ebe" && content.fields.summary) {
+																								$scope.international=true;	
+																				}
+																	}
             }
             $scope.clearORPlaceholderHeight();
         },
