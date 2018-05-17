@@ -273,10 +273,10 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 angular.module("rubedo").directive("ascensor2",['$document',function($document){
 											return {
 																						restrict: "A",
-																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" id="floor{{$index}}" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
+																						template:'<div id="ascensor2Building"><div ng-repeat="column in row.columns track by $index" id="floor{{$index}}" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
 																						link: function(scope,element, attrs) {
 																																	var targetElSelector="#ascensorBuilding";
-																																	var ascensor = angular.element(targetElSelector);
+																																	var ascensor2 = angular.element(targetElSelector);
 																																	angular.element(targetElSelector).css( "visibility", "hidden" );
 																																	var initAscensor = function(){
 																																												var ascensor = angular.element(targetElSelector);
@@ -288,7 +288,7 @@ angular.module("rubedo").directive("ascensor2",['$document',function($document){
 																																																								swipeNavigation : true,
 																																																								wheelNavigation :true
 																																												};
-																																												ascensor.ascensor(options);
+																																												ascensor2.ascensor2(options);
 																																												//sur un réseau lent, l'initialisation ne se fait pas bien -> les élements ne sont pas dimensionnés. dans ce cas faire un refresh 
 																																												if (!angular.element(targetElSelector + " #floor1" ).css("width")) {
 
