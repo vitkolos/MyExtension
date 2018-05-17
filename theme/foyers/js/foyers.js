@@ -357,7 +357,7 @@ angular.module("rubedoBlocks").directive('openModal', ['$document', function($do
     link: function (scope, elem, attrs) {
       elem.bind('click', function(){
 											$document.find("#modalblock_contact").modal();
-											})
+											}) 
     }
   };
 }]);
