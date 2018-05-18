@@ -312,7 +312,6 @@ angular.module("rubedo").directive("swiper",[function(){
 																						restrict: "A",
 																						link: function(scope,element, attrs) {
 																																	var initCarousel=function(){
-																																												var targetElSelector="#block"+$scope.block.id;
 																																												var owlOptions={
 																																												slideSpeed : 200,
 																																																//responsiveBaseWidth:targetElSelector,
@@ -325,8 +324,8 @@ angular.module("rubedo").directive("swiper",[function(){
 																																																//navigationText: ['<span class="arrow back"><a></a></span>','<span class="arrow forward"><a></a></span>'],
 																																																lazyLoad:false
 																																												};
-																																												//element.owlCarousel(owlOptions);
-																																												angular.element(targetElSelector).owlCarousel(owlOptions);
+																																												element.owlCarousel(owlOptions);
+																																												//angular.element(targetElSelector).owlCarousel(owlOptions);
 																																												//var owl = element.data('owlCarousel');
 																																	}																																																				
 																																	setTimeout(function(){
