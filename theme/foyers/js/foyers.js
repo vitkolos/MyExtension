@@ -233,7 +233,7 @@ angular.module('rubedoDataAccess').factory('RubedoPaymentMeansService',['$http',
 
 
 
-angular.module("rubedo").directive("ascensor",['$document',function($document){
+angular.module("rubedo").directive("ascensor2",['$document',function($document){
 											return {
 																						restrict: "A",
 																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" id="floor{{$index}}" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
@@ -270,7 +270,7 @@ angular.module("rubedo").directive("ascensor",['$document',function($document){
 																						}
 											}
 }]);
-angular.module("rubedo").directive("ascensor2",['$document',function($document){
+angular.module("rubedo").directive("ascensor",['$document',function($document){
 											return {
 																						restrict: "A",
 																						template:'<div id="ascensorBuilding"><div ng-repeat="column in row.columns track by $index" id="floor{{$index}}" ng-include="rubedo.componentsService.getColumnTemplate(column.customTemplate)"></div></div>',
@@ -343,42 +343,6 @@ angular.module("rubedo").directive("swiper",[function(){
 																						}
 											}
 }]);
-//angular.module("rubedo").directive("swiper2",[function(){
-//											return {
-//																						restrict: "A",
-//																						link: function(scope,element2, attrs) {
-//																																	var initCarousel2=function(){
-//																																												var owlOptions2={
-//																																												slideSpeed : 200,
-//																																																//responsiveBaseWidth:targetElSelector,
-//																																																singleItem:true,
-//																																																pagination:false,
-//																																																navigation: false,
-//																																																autoPlay: false, 
-//																																																//stopOnHover: blockConfig.stopOnHover,
-//																																																//paginationNumbers:blockConfig.showPagingNumbers,
-//																																																//navigationText: ['<span class="arrow back"><a></a></span>','<span class="arrow forward"><a></a></span>'],
-//																																																lazyLoad:false
-//																																												};
-//																																												element2.owlCarousel2(owlOptions2);
-//																																												console.log("element2");
-//																																												console.log(element2);
-//																																												console.log("element.owlCarousel(owlOptions)");
-//																																												console.log(element.owlCarousel2(owlOptions2));
-//																																												console.log("owlOptions2");
-//																																												console.log(owlOptions2);
-//																																												//angular.element(targetElSelector).owlCarousel(owlOptions);
-//																																												//var owl = element.data('owlCarousel');
-//																																	}																																																				
-//																																	setTimeout(function(){
-//																																												initCarousel2();
-//																																								},400);
-//																																	scope.goToSlide = function(index){
-//																																												element2.data('owlCarousel').goTo(index);
-//																																	}
-//																						}
-//											}
-//}]);
 angular.module("rubedo").directive('hide', function() {
     return {
 											scope: true,
