@@ -137,7 +137,8 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 																paymentMeans:$scope.inscription.modePaiement,
 																paymentType:'paf'
 												};
-												
+												console.log("me.content");
+												console.log(me.content);
 												if (me.proposition.fields.lieuCommunautaire) {
 																payload.placeID=me.content.fields.lieuCommunautaire;
 												}
