@@ -6,7 +6,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
     var alreadyPersist = false;
-				me.content = angular.copy($scope.proposition);
+				
    
     var options = {
         start: 0,
@@ -36,6 +36,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
             function(response){
                 if(response.data.success){
                     me.proposition=response.data.content;
+																				me.content = angular.copy(me.proposition);
                     console.log(me.proposition);
                 }
             }
