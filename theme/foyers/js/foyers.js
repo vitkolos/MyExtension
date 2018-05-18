@@ -343,6 +343,42 @@ angular.module("rubedo").directive("swiper",[function(){
 																						}
 											}
 }]);
+angular.module("rubedo").directive("swiper2",[function(){
+											return {
+																						restrict: "A",
+																						link: function(scope,element, attrs) {
+																																	var initCarousel2=function(){
+																																												var owlOptions2={
+																																												slideSpeed : 200,
+																																																//responsiveBaseWidth:targetElSelector,
+																																																singleItem:true,
+																																																pagination:false,
+																																																navigation: false,
+																																																autoPlay: false, 
+																																																//stopOnHover: blockConfig.stopOnHover,
+																																																//paginationNumbers:blockConfig.showPagingNumbers,
+																																																//navigationText: ['<span class="arrow back"><a></a></span>','<span class="arrow forward"><a></a></span>'],
+																																																lazyLoad:false
+																																												};
+																																												element.owlCarousel(owlOptions2);
+																																												console.log("element");
+																																												console.log(element);
+																																												console.log("element.owlCarousel(owlOptions)");
+																																												console.log(element.owlCarousel(owlOptions2));
+																																												console.log("owlOptions2");
+																																												console.log(owlOptions2);
+																																												//angular.element(targetElSelector).owlCarousel(owlOptions);
+																																												//var owl = element.data('owlCarousel');
+																																	}																																																				
+																																	setTimeout(function(){
+																																												initCarousel2();
+																																								},400);
+																																	scope.goToSlide = function(index){
+																																												element.data('owlCarousel').goTo(index);
+																																	}
+																						}
+											}
+}]);
 angular.module("rubedo").directive('hide', function() {
     return {
 											scope: true,
