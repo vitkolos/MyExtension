@@ -318,7 +318,7 @@ angular.module("rubedo").directive("swiper",[function(){
 																																																singleItem:true,
 																																																pagination:false,
 																																																navigation: false,
-																																																autoPlay: false,
+																																																autoPlay: false, 
 																																																//stopOnHover: blockConfig.stopOnHover,
 																																																//paginationNumbers:blockConfig.showPagingNumbers,
 																																																//navigationText: ['<span class="arrow back"><a></a></span>','<span class="arrow forward"><a></a></span>'],
@@ -327,6 +327,8 @@ angular.module("rubedo").directive("swiper",[function(){
 																																												element.owlCarousel(owlOptions);
 																																												console.log("element");
 																																												console.log(element);
+																																												console.log("element.owlCarousel(owlOptions)");
+																																												console.log(element.owlCarousel(owlOptions));
 																																												console.log("owlOptions");
 																																												console.log(owlOptions);
 																																												//angular.element(targetElSelector).owlCarousel(owlOptions);
