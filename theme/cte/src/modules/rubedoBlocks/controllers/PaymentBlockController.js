@@ -6,6 +6,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
     var alreadyPersist = false;
+				me.content = angular.copy($scope.proposition);
    
     var options = {
         start: 0,
@@ -141,6 +142,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
 												console.log(me.content);
 												if (me.proposition.fields.lieuCommunautaire) {
 																payload.placeID=me.content.fields.lieuCommunautaire;
+																//payload.placeID=me.proposition.fields.lieuCommunautaire;
 												}
 												if(window.ga) {
 																window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantTotalAPayer);
