@@ -245,16 +245,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
         RubedoPagesService.getPageById($scope.content.fields.propositionReferenceeInterne).then(function(response){
                 if (response.data.success){
                     $scope.content.contentLinkUrl = response.data.url;
-																				console.log("lien interne");
-																				console.log(response.data.url);
                 }
             }); 
     }
     else if ($scope.content.fields.propositionReferencee && $scope.content.fields.propositionReferencee !="") {
             $scope.content.contentLinkUrl = $scope.content.fields.propositionReferencee;
             $scope.content.isExternal=true;
-												console.log("lien externe");
-												console.log($scope.content.fields.propositionReferencee);
     }
     else $scope.content.contentLinkUrl = $scope.content.detailPageUrl;
     $scope.$watch('content', function(newValue) {
