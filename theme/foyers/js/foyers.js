@@ -324,7 +324,7 @@ angular.module("rubedo").directive("swiper",[function(){
 																																																//navigationText: ['<span class="arrow back"><a></a></span>','<span class="arrow forward"><a></a></span>'],
 																																																lazyLoad:false
 																																												};
-																																												element.owlCarousel(owlOptions);
+																																												//element.owlCarousel(owlOptions);
 																																												//angular.element(targetElSelector).owlCarousel(owlOptions);
 																																												//var owl = element.data('owlCarousel');
 																																	}																																																				
