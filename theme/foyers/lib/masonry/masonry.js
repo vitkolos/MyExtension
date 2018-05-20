@@ -1,8 +1,8 @@
 angular.module('rubedoBlocks').controller('MasonryCtrl', [
     '$scope',
-    '$elements',
+    '$element',
     '$timeout',
-    function controller($scope, $elements, $timeout) {
+    function controller($scope, $element, $timeout) {
       var bricks = {};
       var schedule = [];
       var destroyed = false;
@@ -20,7 +20,7 @@ angular.module('rubedoBlocks').controller('MasonryCtrl', [
         }
       };
       // Make sure it's only executed once within a reasonable time-frame in
-      // case multiple elementss are removed or added at once.
+      // case multiple elements are removed or added at once.
       this.scheduleMasonry = function scheduleMasonry() {
         if (timeout) {
           $timeout.cancel(timeout);
@@ -31,33 +31,33 @@ angular.module('rubedoBlocks').controller('MasonryCtrl', [
             return;
           }
           schedule.forEach(function scheduleForEach(args) {
-            $elements.masonry.apply($elements, args);
+            $element.masonry.apply($element, args);
           });
           schedule = [];
         }, 30);
       };
-      function defaultLoaded($elements) {
-        $elements.addClass('loaded');
+      function defaultLoaded($element) {
+        $element.addClass('loaded');
       }
-      this.appendBrick = function appendBrick(elements, id) {
+      this.appendBrick = function appendBrick(element, id) {
         if (destroyed) {
           return;
         }
         function _append() {
           if (Object.keys(bricks).length === 0) {
-            $elements.masonry('resize');
+            $element.masonry('resize');
           }
           if (bricks[id] === undefined) {
-            // Keep track of added elementss.
+            // Keep track of added elements.
             bricks[id] = true;
-            defaultLoaded(elements);
-            $elements.masonry('appended', elements, true);
+            defaultLoaded(element);
+            $element.masonry('appended', element, true);
           }
         }
         function _layout() {
           // I wanted to make this dynamic but ran into huuuge memory leaks
           // that I couldn't fix. If you know how to dynamically add a
-          // callback so one could say <masonry loaded="callback($elements)">
+          // callback so one could say <masonry loaded="callback($element)">
           // please submit a pull request!
           self.scheduleMasonryOnce('layout');
         }
@@ -66,33 +66,33 @@ angular.module('rubedoBlocks').controller('MasonryCtrl', [
           _layout();
         } else if (self.preserveOrder) {
           _append();
-          elements.imagesLoaded(_layout);
+          element.imagesLoaded(_layout);
         } else {
-          elements.imagesLoaded(function imagesLoaded() {
+          element.imagesLoaded(function imagesLoaded() {
             _append();
             _layout();
           });
         }
       };
-      this.removeBrick = function removeBrick(id, elements) {
+      this.removeBrick = function removeBrick(id, element) {
         if (destroyed) {
           return;
         }
         delete bricks[id];
-        $elements.masonry('remove', elements);
+        $element.masonry('remove', element);
         this.scheduleMasonryOnce('layout');
       };
       this.destroy = function destroy() {
         destroyed = true;
-        if ($elements.data('masonry')) {
+        if ($element.data('masonry')) {
           // Gently uninitialize if still present
-          $elements.masonry('destroy');
+          $element.masonry('destroy');
         }
         $scope.$emit('masonry.destroyed');
         bricks = {};
       };
       this.reload = function reload() {
-        $elements.masonry();
+        $element.masonry();
         $scope.$emit('masonry.reloaded');
       };
     }
@@ -101,14 +101,14 @@ angular.module('rubedoBlocks').controller('MasonryCtrl', [
       restrict: 'AE',
       controller: 'MasonryCtrl',
       link: {
-        pre: function preLink(scope, elements, attrs, ctrl) {
+        pre: function preLink(scope, element, attrs, ctrl) {
           var attrOptions = scope.$eval(attrs.masonry || attrs.masonryOptions);
           var options = angular.extend({
               itemSelector: attrs.itemSelector || '.masonry-brick',
               columnWidth: parseInt(attrs.columnWidth, 10) || attrs.columnWidth
             }, attrOptions || {});
-          elements.masonry(options);
-          scope.masonryContainer = elements[0];
+          element.masonry(options);
+          scope.masonryContainer = element[0];
           var loadImages = scope.$eval(attrs.loadImages);
           ctrl.loadImages = loadImages !== false;
           var preserveOrder = scope.$eval(attrs.preserveOrder);
@@ -116,7 +116,7 @@ angular.module('rubedoBlocks').controller('MasonryCtrl', [
           var reloadOnShow = scope.$eval(attrs.reloadOnShow);
           if (reloadOnShow !== false && attrs.reloadOnShow !== undefined) {
             scope.$watch(function () {
-              return elements.prop('offsetParent');
+              return element.prop('offsetParent');
             }, function (isVisible, wasVisible) {
               if (isVisible && !wasVisible) {
                 ctrl.reload();
@@ -131,7 +131,7 @@ angular.module('rubedoBlocks').controller('MasonryCtrl', [
               }
             });
           }
-          scope.$emit('masonry.created', elements);
+          scope.$emit('masonry.created', element);
           scope.$on('$destroy', ctrl.destroy);
         }
       }
@@ -142,11 +142,11 @@ angular.module('rubedoBlocks').controller('MasonryCtrl', [
       require: '^masonry',
       scope: true,
       link: {
-        pre: function preLink(scope, elements, attrs, ctrl) {
+        pre: function preLink(scope, element, attrs, ctrl) {
           var id = scope.$id, index;
-          ctrl.appendBrick(elements, id);
-          elements.on('$destroy', function () {
-            ctrl.removeBrick(id, elements);
+          ctrl.appendBrick(element, id);
+          element.on('$destroy', function () {
+            ctrl.removeBrick(id, element);
           });
           scope.$on('masonry.reload', function () {
             ctrl.scheduleMasonryOnce('reloadItems');
