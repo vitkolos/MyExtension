@@ -93,9 +93,6 @@
                     <div ng-switch-default>
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
                             <div class="media-body" >
-                                
-                                <h4 class="list-item-title uppercase"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
-                                </h4>
 
                                 <div class="list-item-img" ng-class="{'no-img':!content.fields.image}">
                                     <img class="media-object pull-left" ng-if="content.fields.image"
@@ -103,8 +100,11 @@
                                                  alt="{{ content.fields.text }}"/>
                                     
                                 </div>
+								
+								<h4 class="list-item-title uppercase"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
+                                </h4>
 
-                                <h4 class="list-item-title date-lieu uppercase" ng-if="content.fields.positionName && !content.fields.subTitle">
+                                <!--<h4 class="list-item-title date-lieu uppercase" ng-if="content.fields.positionName && !content.fields.subTitle">
                                     <p class="list-tags" ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
                                     <span>
                                         <span ng-if="!blockConfig.hidePlace">{{content.fields.positionName}}</span><span ng-if="!blockConfig.hidePlace && content.fields.dateDebut"> - </span>
@@ -119,7 +119,7 @@
                                 </h4>
                                 <p  class="text-center" style="margin-top:10px; height: 85px; overflow-y: hidden" ng-if="!contentListCtrl.titleOnly">
                                     <rubedo-field field="{{content.type.summary}}"></rubedo-field>
-                                </p>
+                                </p>-->
                                 <a ng-if="contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}">
                                         <button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
                                 </a>
