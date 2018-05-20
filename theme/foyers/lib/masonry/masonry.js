@@ -1,7 +1,7 @@
 angular.module('rubedoBlocks').controller('MasonryCtrl', [
     '$scope',
     '$element',
-    '$timeout',
+    '$timeout', 
     function controller($scope, $element, $timeout) {
       var bricks = {};
       var schedule = [];
