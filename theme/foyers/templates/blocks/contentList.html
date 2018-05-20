@@ -43,7 +43,7 @@
                         <div class="media-body">
                             <jwplayer video-url="{{content.fields.video.url}}"></jwplayer>
                             <a ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}">
-                                <h4 class="list-item-title capital"><span>
+                                <h4 class="list-item-title uppercase"><span>
                                         {{content.fields.text}}
                                     </span>
                                 </h4>
@@ -54,7 +54,7 @@
                    </div>
 			<!---NET FOR GOD FILMS-->
 		<div ng-switch-when="54cb447145205e7d09db0590" class="padding" ng-init="url= content.fields.text | encodeURIComponent">
-			<p class="capital">{{content.fields.date*1000 | date :'MMMM yyyy' }}</p>
+			<p class="uppercase">{{content.fields.date*1000 | date :'MMMM yyyy' }}</p>
 			<a  ng-href="{{content.detailPageUrl == '#' ? 'https://www.netforgod.tv/en/home/films/'+content.id+'/' +url : content.detailPageUrl}}" target="_blank">
 							<img class="img-responsive" ng-if="content.fields.affiche" style="margin:0 auto"
 												ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
@@ -67,7 +67,7 @@
 		</div>
 			<!--CONTACTS-->
 		<div ng-switch-when="560d2bf445205e816041ea7f">
-			<h4 class="capital">{{content.fields.text}}</h4>
+			<h4 class="uppercase">{{content.fields.text}}</h4>
 			<p ng-if="content.fields.telephone"><i class="fa fa-phone icon"></i> {{content.fields.telephone}}</p>
 			<p ng-if="content.fields.position"><i class="fa fa-map-marker icon"></i> {{content.fields.position.address}}</p>
 			<p ng-if="content.fields.email">
@@ -94,7 +94,7 @@
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
                             <div class="media-body" >
                                 
-                                <h4 class="list-item-title capital"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
+                                <h4 class="list-item-title uppercase"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
                                 </h4>
 
                                 <div class="list-item-img" ng-class="{'no-img':!content.fields.image}">
@@ -104,7 +104,7 @@
                                     
                                 </div>
 
-                                <h4 class="list-item-title date-lieu capital" ng-if="content.fields.positionName && !content.fields.subTitle">
+                                <h4 class="list-item-title date-lieu uppercase" ng-if="content.fields.positionName && !content.fields.subTitle">
                                     <p class="list-tags" ng-repeat="taxo in content.taxonomy['555f3bc445205edc117e689b']" ng-if="contentListCtrl.getTermInTaxo(taxo)">{{contentListCtrl.getTermInTaxo(taxo)}}</p>
                                     <span>
                                         <span ng-if="!blockConfig.hidePlace">{{content.fields.positionName}}</span><span ng-if="!blockConfig.hidePlace && content.fields.dateDebut"> - </span>
@@ -112,7 +112,7 @@
                                         <time ng-if="!content.fields.dateDebut && content.fields.complement_date">{{content.fields.complement_date}}</time>
                                     </span>
                                 </h4>
-                                <h4 class="list-item-title date-lieu capital" ng-if="content.fields.subTitle">
+                                <h4 class="list-item-title date-lieu uppercase" ng-if="content.fields.subTitle">
                                     <span>
                                         {{content.fields.subTitle}}
                                     </span>
@@ -130,7 +130,7 @@
                         </a>
 
                         <div class="media-body" ng-if="fieldEditMode">
-                            <h4 class="list-item-title capital">
+                            <h4 class="list-item-title uppercase">
                                 <span><rubedo-field  field="{{content.type.title}}"></rubedo-field></span>
                             </h4>
                             <div class="list-item-img">
@@ -139,7 +139,7 @@
                                                  alt="{{ content.fields.text }}"/>
                             </div>
 
-                            <h4 class="list-item-title date-lieu capital" ng-if="content.fields.positionName">
+                            <h4 class="list-item-title date-lieu uppercase" ng-if="content.fields.positionName">
                                 <span>
                                     {{content.fields.positionName}}
                                     <time ng-if="content.fields.dateDebut">- {{content.fields.dateDebut|dateRange:content.fields.dateFin:'short'}}</time>
