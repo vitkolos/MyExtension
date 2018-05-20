@@ -690,6 +690,51 @@ ng-form .row{margin: 0 15px;margin-bottom:12px; }
 .contentList > div > div{text-align: left; float: none; display: inline-block; vertical-align: top}
 
 
+
+////////////////////////////////////////////////////
+    ///////////CONTENUS///////////////////
+///////////////////////////////////////////////////
+.contentDetail{min-height: 90vh}
+header.content{
+  background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover;
+    h1,h2,h3,h4,h5,p{color:white};
+    height:320px;
+    box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
+    margin-bottom:24px;
+    line-height: 320px;
+    text-align: center;
+    background-image: url('/theme/cte/img/logo_ccn.jpg');
+    overflow-y:hidden;
+}
+header.content.parallax{background-attachment: fixed;}
+header.content.no-filter{box-shadow: none;}
+ .no-filter header.content{box-shadow:inset 0 0 0 1000px rgba(84,84,84,.1);}
+header.content>div{line-height: normal;display: inline-block;text-align:center; vertical-align: middle;}
+@media screen and (min-width: @min_sm) {
+    .large header.content{line-height: 600px; height:600px}
+    header.content{line-height: 400px; height:400px}
+    header.content>div{text-align: left; vertical-align: bottom; padding-bottom: 24px}
+}
+@media screen and (max-width:@min_xs){
+  header.content.parallax{background-attachment: scroll;}
+}
+@media screen and (min-width: 1500px) {header.content{line-height: 500px; height:500px}}
+header.content.prop>div{text-align: center; vertical-align: middle; padding-bottom: 0}
+.socials {font-size:30px; width: 100%;text-align: center; margin-bottom:12px}
+@media  screen and (min-width:@min_sm) {.socials:not(.center){text-align:right; width:auto; padding-left: 24px;}}
+.addthis_counter a.atc_s{display:none !important}
+.socials .addthis_counter .addthis_button_expanded, .socials .addthis_counter .addthis_button_expanded a {
+  .uppercase;
+  background: none;
+  width:auto
+  }
+  .socials .addthis_counter {.uppercase; width: auto; margin-right: 3px;
+  }
+  .addthis_toolbox a:hover{text-decoration: none} 
+
 //ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
 
 
