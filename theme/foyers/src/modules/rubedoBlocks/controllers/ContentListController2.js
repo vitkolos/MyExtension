@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,$location){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -9,23 +9,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
     me.start = config.resultsSkip?config.resultsSkip:0;
     me.limit = config.pageSize?config.pageSize:12;
-    var themePath="/theme/"+window.rubedoConfig.siteTheme;
-    me.template_actus_fr = themePath+"/templates/blocks/contentList/actus_fr.html";
-    me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
-    me.template_foi = themePath+"/templates/blocks/contentList/foi.html";
-    me.template_home = themePath+"/templates/blocks/contentList/home.html";
-    me.query="";
-    me.taxoFilter="";
-    me.filter = function(taxoTerm){
-        if(me.taxoFilter != taxoTerm) me.taxoFilter = taxoTerm;
-        else me.taxoFilter = "";
-        options['start'] += options['limit'];
-        options['limit'] = 100;
-        if (!me.count || me.count > options['start']) {
-            me.getContents(config.query, pageId, siteId, options, true);
-        }
-        
-    }
     var urlCurrentPage=$location.search()[blockPagingIdentifier];
     if (urlCurrentPage){
         me.start=(urlCurrentPage-1)*me.limit;
@@ -33,20 +16,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var options = {
         start: me.start,
         limit: me.limit,
-        'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","dateDebut","dateFin","positionName","complement_date","video","subTitle","date"]
+        'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne"]
+
     };
     if(config.singlePage){
         options.detailPageId = config.singlePage;
     }
-    if(config.showPastDates) {
-        options.date=Math.round(new Date().getTime()/1000);
-        options.dateFieldName="dateDebut";
-        options.endDate = Math.round( (new Date().getTime() + 2*(3600000*24*365))/1000); //ajouter 2 ans pour la date de fin
-        options.endDateFieldName="dateFin";
-    }
-    if(config.enableFOContrib&&$scope.rubedo.current.user&&$scope.rubedo.current.user.rights.canEdit){
-        //options.foContributeMode = true;   ENABLE to filter contents by user
-        options.useDraftMode=true;
+    if(config.enableFOContrib&&$scope.rubedo.current.user){
+        options.foContributeMode = true;
         me.isFOContributeMode=true;
         if (config.editorPageId){
             RubedoPagesService.getPageById(config.editorPageId).then(function(response){
@@ -64,7 +41,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         $location.search(blockPagingIdentifier,(me.start/me.limit)+1);
         me.getContents(config.query, pageId, siteId, options);
     };
-    $scope.$on('$routeUpdate', function(){window.location.reload();});
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         alreadyPersist = false;
         me.showPaginator = newValue ? false : config.showPager && !config.infiniteScroll;
@@ -95,31 +71,21 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             'overflow-y': 'visible'
         };
     }
-    me.getTermInTaxo=function(termId){
-        if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
-        var term=null;
-        angular.forEach(me.taxo,function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
-            if(!term){
-                if(candidate.id==termId && candidate.parentId!='root'){term=candidate.text;}
-            }
-         });
-        return(term);
-    }
-
     me.getContents = function (queryId, pageId, siteId, options, add){
         RubedoContentsService.getContents(queryId,pageId,siteId, options).then(function(response){
             if (response.data.success){
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
-                me.contents = response.data.contents;
                 var columnContentList = [];
+                me.contents = response.data.contents;
+																console.log("me.contents");
+																console.log(me.contents);
                 if (add){
                     angular.forEach(response.data.contents,function(newContent){
                         columnContentList.push(newContent);
                     });
                     me.contentList.push(columnContentList);
-                    $scope.clearORPlaceholderHeight();
                 } else {
                     me.contentList=[];
                     angular.forEach(response.data.contents,function(newContent, key){
@@ -132,25 +98,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
                     }
-                    $scope.clearORPlaceholderHeight();
                 }
-                /*taxonomies pour propositions*/
-                if (me.usedContentTypes[0]=="54dc614245205e1d4a8b456b") {
-                     var taxonomiesArray ={};
-                     taxonomiesArray[0]="555f3bc445205edc117e689b";// taxcnomie de propositions
-                    TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
-                         if(response.data.success){
-                            var tax = response.data.taxo;
-                            
-                            me.taxo={};
-                            angular.forEach(tax, function(taxonomie){
-                                me.taxo = taxonomie.terms;
-                            });
-                         }
-                         
-                     });
-                }
+																angular.forEach(response.data.contents,function(content){
+																				if (content.taxonomy.navigation=="591b1eac396588986c346ebe" && content.fields.summary=="int") {
+																								content.fields.international=true;	
+																				} 
+																	});
             }
+            $scope.clearORPlaceholderHeight();
+        },
+        function(failedResponse){
+            $scope.clearORPlaceholderHeight();
         });
     };
     me.canAddToList=function(){
@@ -245,6 +203,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     detectedId=segment;
                 }
             });
+            
+            if(detectedId === null && $scope.rubedo.current.page.blocks) {
+                var blocks = $scope.rubedo.current.page.blocks;
+                for(var key in blocks) {
+                    if(blocks[key].blockData.bType == "contentDetail" && typeof blocks[key].blockData.configBloc.contentId !== "undefined") {
+                        detectedId = blocks[key].blockData.configBloc.contentId;
+                        break;
+                    }
+                }
+            }
+            
             if (detectedId){
                 options.contextContentId=detectedId;
                 options["contextualTaxonomy[]"]=config.contextualTaxonomy;
@@ -258,84 +227,70 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             $location.url(me.editorPageUrl);
         }
     }
-    me.getTaxonomyTerms = function(vocId){
-        var taxonomiesArray ={};
-        taxonomiesArray[0]=vocId;
-        TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
-            if(response.data.success){
-                me.taxonomyTerms = {};
-                angular.forEach(response.data.taxo, function(taxonomie){
-                    me.taxonomyTerms["name"] = taxonomie.vocabulary.name;
-                    me.taxonomyTerms["terms"] = taxonomie.terms;
-                });
-                return true;
-            }
-            else return false
-                         
-        });
-        
-    }
-    
-    
-    
 }]);
 angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$scope','$compile','RubedoContentsService','RubedoPagesService',function($scope,$compile,RubedoContentsService,RubedoPagesService){
     var me = this;
     me.index = $scope.$index;
     me.parentIndex = $scope.columnIndex;
     me.content = $scope.content;
-    $scope.fieldEntity=angular.copy(me.content.fields);
+    $scope.fieldEntity=$scope.content.fields;
     $scope.fieldLanguage=me.content.locale;
     $scope.fieldInputMode=false;
+				
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         $scope.fieldEditMode=$scope.content.content&&me.content.readOnly ? false : newValue;
 
     });
-    me.registerEditChanges=function(){
-        $scope.rubedo.registerEditCtrl(me);
-    };
-    me.persistChanges = function(){
-        me.content.fields = angular.copy($scope.fieldEntity);
-        $scope.$parent.$parent.$parent.persistAllChanges();
-    };
-    me.revertChanges = function(){
-      $scope.fieldEntity = angular.copy(me.content.fields);
-    };
-
-    if ($scope.content.fields.propositionReferenceeInterne && $scope.content.fields.propositionReferenceeInterne !=""){
+				if ($scope.content.fields.propositionReferenceeInterne && $scope.content.fields.propositionReferenceeInterne !=""){
         RubedoPagesService.getPageById($scope.content.fields.propositionReferenceeInterne).then(function(response){
                 if (response.data.success){
                     $scope.content.contentLinkUrl = response.data.url;
                 }
-            });
+            }); 
     }
     else if ($scope.content.fields.propositionReferencee && $scope.content.fields.propositionReferencee !="") {
             $scope.content.contentLinkUrl = $scope.content.fields.propositionReferencee;
             $scope.content.isExternal=true;
     }
     else $scope.content.contentLinkUrl = $scope.content.detailPageUrl;
-    
-    $scope.content.type = {
-        title:
-        {
-            cType:"textfield",
-            config:{
-                name:"text",
-                fieldLabel:"Title",
-                allowBlank:false
-            }
-        },
-        summary:
-        {
-            cType:"textarea",
-            config:{
-                name:"summary",
-                fieldLabel:"Summary",
-                allowBlank:false
-            }
-        }
+    $scope.$watch('content', function(newValue) {
+        me.initCT();
+        me.content = newValue;
+        $scope.fieldEntity = newValue.fields;
+    });
+    me.registerEditChanges=function(){
+        $scope.rubedo.registerEditCtrl(me);
     };
+    me.initCT=function() {
+        $scope.content.type = {
+            title: {
+                cType: "textfield",
+                config: {
+                    name: "text",
+                    fieldLabel: "Title",
+                    allowBlank: false
+                }
+            },
+            summary: {
+                cType: "textarea",
+                config: {
+                    name: "summary",
+                    fieldLabel: "Summary",
+                    allowBlank: false
+                }
+            }
+        };
+    };
+    me.persistChanges = function(){
+        me.content.fields = angular.copy($scope.fieldEntity);
+        $scope.$parent.$parent.$parent.persistAllChanges();
+        me.initCT();
+    };
+    me.revertChanges = function(){
+        $scope.fieldEntity = angular.copy(me.content.fields);
+        me.initCT();
+    };
+    me.initCT();
     $scope.registerFieldEditChanges = me.registerEditChanges;
 
 }]);
-
