@@ -47,7 +47,17 @@ html,body{font-family: "Lato","Helvetica Neue", Arial, Helvetica, sans-serif; he
 		h1{font-size: 26px;}
 }
 .uppercase{text-transform: uppercase}
+.media-body{min-width:200px;}
+.contentList .media-body{margin-bottom: 24px; min-width:0}
 
+@media screen and (max-width: @min_xs){
+    [class*="col-xs-"]{width:100%;}
+     [class*="col-xs-pull-"]{right:0;}
+     [class*="col-xs-push-"]{left:0;}
+}
+@media screen and (min-width: @min_xs) and (max-width: @min_sm){
+    .container{width:@width_xxs}
+}
 
 /*ACCUEIL*/
 img#foyer {

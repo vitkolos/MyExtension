@@ -52,6 +52,65 @@
                             
                         </div>
                    </div>
+					
+					<!---TEMOIGNAGES-->
+					<div ng-switch-when="5b031552396588af658b4567" class="padding" ng-init="url= content.fields.text | encodeURIComponent">
+						<div class="row bg-videos padding-tb" >
+							<div ng-style="contentListCtrl.blockStyle" class="container">
+								<!--<div id="infiniteScrollCtrl">-->
+								<div class="videos-list" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
+									<div class="text-center col-xxs-6 col-xs-6 col-sm-4 col-md-3" ng-controller="ContentListDetailController as contentListDetailCtrl" 
+									ng-repeat="content in columnContents" 
+									style="margin-bottom:25px; padding: 0 12px">
+										<div class="cursor-as-pointer" data-toggle="modal" data-target="#intervenant_{{$index}}_{{$parent.$parent.$index}}">
+											<img class="img-circle hover" ng-if="content.fields.image"
+												 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'150px', width:'150px', mode:'crop'}) }}"
+												 alt="{{ content.fields.text }}" style="margin:30px 3px 10px"/>
+											<div ng-style="{'height':contentListCtrl.contentHeight}">
+												<b>
+													<p ng-if="!fieldEditMode" style="margin:10px 0 2px">{{content.fields.text}}</p>
+												</b>
+												<p class="hidden-xxs" style="margin:10px 3px 40px">
+													{{content.fields.summary}}
+												</p>
+											</div>
+											
+										</div>
+									<div id="intervenant_{{$index}}_{{$parent.$parent.$index}}" class="modal fade" role="dialog">
+										  <div class="modal-dialog">
+										
+											<!-- Modal content-->
+											<div class="modal-content">
+											  <div class="modal-header">
+												<button type="button" class="close" data-dismiss="modal">&times;</button>
+												<h3 class="modal-title">{{content.fields.text}}</h3>
+											  </div>
+											  <div class="modal-body text-left" >
+											  <p><i><b>{{content.fields.summary}}</b></i></p>
+											  <p style="text-align: justify; font-style:italic;">{{content.fields.age}}</p>
+											  <p style="text-align: justify;">{{content.fields.temoignage}}</p>
+											  
+											  </div>
+											  <div class="modal-footer">
+												<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											  </div>
+											</div>
+										
+										  </div>
+										</div>
+										
+					
+									</div>
+								</div>
+							</div>
+						</div>
+					
+						<!--<div class="row bg-videos text-center" ng-if="contentListCtrl.count>0" style="padding-bottom:50px">
+							<h2><span class="font-jmj prev" style="margin-right:50px" ng-click="contentListCtrl.prevPersons()"></span> {{rubedo.translate("Block.Page", "Page")}} {{contentListCtrl.pageNb}}<span style="margin-left:50px" ng-click="contentListCtrl.nextPersons()" class="font-jmj next"></span></h2>
+						</div>-->
+					</div>
+					
+					
 			<!---NET FOR GOD FILMS-->
 		<div ng-switch-when="54cb447145205e7d09db0590" class="padding" ng-init="url= content.fields.text | encodeURIComponent">
 			<p class="uppercase">{{content.fields.date*1000 | date :'MMMM yyyy' }}</p>
