@@ -132,6 +132,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                     if (columnContentList.length > 0){
                         me.contentList.push(columnContentList);
                     }
+																				angular.forEach(response.data.contents,function(content){
+																				if (content.taxonomy.navigation=="591b1eac396588986c346ebe" && content.fields.summary=="int") {
+																								content.fields.international=true;	
+																				} 
+																	});
                     $scope.clearORPlaceholderHeight();
                 }
                 /*taxonomies pour propositions*/
