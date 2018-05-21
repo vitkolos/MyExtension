@@ -54,7 +54,7 @@
                    </div>
 					
 					<!---TEMOIGNAGES-->
-					<div ng-switch-when="5b031552396588af658b4567" class="padding" ng-init="url= content.fields.text | encodeURIComponent">
+					<div ng-switch-when="5b031552396588af658b4567">
 						<div class="row bg-videos padding-tb" >
 							<div ng-style="contentListCtrl.blockStyle" class="container">
 								<!--<div id="infiniteScrollCtrl">-->
@@ -68,7 +68,7 @@
 												 alt="{{ content.fields.text }}" style="margin:30px 3px 10px"/>
 											<div ng-style="{'height':contentListCtrl.contentHeight}">
 												<b>
-													<p ng-if="!fieldEditMode" style="margin:10px 0 2px">{{content.fields.text}}</p>
+													<p ng-if="!fieldEditMode" style="margin:10px 0 2px; font-family: trend_sansone;">{{content.fields.text}}</p>
 												</b>
 												<p class="hidden-xxs" style="margin:10px 3px 40px">
 													{{content.fields.summary}}
