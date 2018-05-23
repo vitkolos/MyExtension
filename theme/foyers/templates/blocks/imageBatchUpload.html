@@ -1,13 +1,16 @@
 <style>
         .drop-box {
-    background: #F8F8F8;
+    background: #1287ec;
     border: 5px dashed #DDD;
     width: 400px;
     height: 150px;
     text-align: center;
     padding-top: 25px;
     margin: 10px auto;
+    color:white;
 }
+.form-group{color:white;}
+.texte{margin-top:100px;}
 </style>
 <div ng-controller="ImageBatchUploadController as imgCtrl" ng-if="rubedo.current.user" class="texte">
         <form class="row">
@@ -15,11 +18,11 @@
                         <label class="col-sm-12">Renommer les photos ?</label>
                         <label class="control-label txt-red capital">Titre</label>
                         <div  class="col-sm-8 col-sm-offset-2">
-                                <input type="text" ng-model="imgCtrl.batchTitle">
+                                <input type="text" class="form-control" ng-model="imgCtrl.batchTitle">
                         </div>
                         
                 </div>
-                <div class="col-sm-8 col-sm-offset-2" ng-init="imgCtrl.format=1800">
+                <!--<div class="col-sm-8 col-sm-offset-2" ng-init="imgCtrl.format=1800">
                         <div class="col-sm-6">
                                 <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1800" ng-model="imgCtrl.format">
                                 <label  for="inlineRadio1">Bandeau</label>
@@ -28,7 +31,7 @@
                                 <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="1000" ng-model="imgCtrl.format">
                                 <label  for="inlineRadio2">Texte / Albums</label>
                         </div>
-                </div>
+                </div>-->
                 <div class="col-sm-12" ng-show="files.length">
                         <div ng-repeat="file in files">
                                 <span>{{file.name}}</span>

@@ -54,15 +54,15 @@
                    </div>
 					
 					<!---TEMOIGNAGES-->
-					<div ng-switch-when="5b031552396588af658b4567">
-						<div class="row bg-videos padding-tb" >
+					<div ng-switch-when="5b031552396588af658b4567" class="row bg-videos padding-tb" >
+						<!--<div class="row bg-videos padding-tb" >
 							<div ng-style="contentListCtrl.blockStyle" class="container">
 								<!--<div id="infiniteScrollCtrl">-->
-								<div class="videos-list" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
+								<!--<div class="videos-list" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-switch="content.typeId"  class="col-xs-6 col-xxs-12" ng-class="contentListCtrl.columns" >
 									<div class="text-center col-xxs-6 col-xs-6 col-sm-4 col-md-3" ng-controller="ContentListDetailController as contentListDetailCtrl" 
-									ng-repeat="content in columnContents" 
-									style="margin-bottom:25px; padding: 0 12px">
-										<div class="cursor-as-pointer" data-toggle="modal" data-target="#intervenant_{{$index}}_{{$parent.$parent.$index}}">
+									ng-repeat="content in columnContents" ng-switch="content.typeId"  class="col-xs-6 col-xxs-12" ng-class="contentListCtrl.columns"
+									style="margin-bottom:25px; padding: 0 12px">-->
+										<div class="cursor-as-pointer" data-toggle="modal" data-target="#intervenant_{{$index}}_{{$parent.$parent.$index}}" style="margin-bottom:25px; padding: 0 12px">
 											<img class="img-circle hover" ng-if="content.fields.image"
 												 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'150px', width:'150px', mode:'crop'}) }}"
 												 alt="{{ content.fields.text }}" style="margin:30px 3px 10px"/>
@@ -97,13 +97,13 @@
 											</div>
 										
 										  </div>
-										</div>
+									</div>
 										
 					
-									</div>
+									<!--</div>
 								</div>
 							</div>
-						</div>
+						</div>-->
 					
 						<!--<div class="row bg-videos text-center" ng-if="contentListCtrl.count>0" style="padding-bottom:50px">
 							<h2><span class="font-jmj prev" style="margin-right:50px" ng-click="contentListCtrl.prevPersons()"></span> {{rubedo.translate("Block.Page", "Page")}} {{contentListCtrl.pageNb}}<span style="margin-left:50px" ng-click="contentListCtrl.nextPersons()" class="font-jmj next"></span></h2>
