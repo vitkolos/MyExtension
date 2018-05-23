@@ -100,6 +100,38 @@ angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  functi
         return serviceInstance;
     }]);
 	
+	angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$location','$http', function($timeout,$location,$http) {
+  return {
+    restrict : 'A',
+	  transclude : true,
+	  replace : true,
+	  template : '<div ng-transclude></div>',
+	  link : function($scope, element, attrs) {
+		$timeout(function () {
+                      addthis.init();
+                      var contentUrl = $location.absUrl();
+                      addthis.toolbox(angular.element('.addthis_toolbox').get(), {}, {
+                                 url: contentUrl,
+                                 title : attrs.title,
+                                 description : attrs.summary
+                      });
+		/*if ($window.addthis.layers && $window.addthis.layers.refresh) {
+                        $window.addthis.layers.refresh();
+                    }*/
+		$scope.nbOfLikes=0;
+		$http({method: 'GET',url: 'https://graph.facebook.com/?id='+contentUrl})
+		.then(function successCallback(response) {
+			$scope.nbOfLikes += response.data.shares;
+		},
+		function errorCallback(response) {
+		});
+		
+
+		});
+	    }
+	};
+}]);
+	
 	/*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
 angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     return function(startDate, endDate, rangeFormat,from,to,lang){
