@@ -473,7 +473,7 @@ header.bg-image{
     margin: 24px auto;
 				&:hover{background: white; color:@bg !important}
 }
-.bloc-icone>div a{
+.bloc-icone>div a:first-of-type{
 		font-family: FontAwesome;
     font-size: 50px;
     height: 100px;
@@ -482,7 +482,10 @@ header.bg-image{
     line-height: 90px;
     width: 100px;
     margin: 24px auto;
-				&:hover{border: 3px solid white;}
+				color:white;
+				&:hover{-moz-transform: scale(1.05);
+																-webkit-transform: scale(1.05);
+																transform: scale(1.05);}
 }
 .bloc-icone>div{padding:30px;}
 .bloc-icone>div p{
