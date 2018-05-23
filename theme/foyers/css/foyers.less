@@ -693,12 +693,15 @@ ng-form .row{margin: 0 15px;margin-bottom:12px; }
   right: 0;
   width:100%;
   padding-right: 0;
+  transition-property: transform;
+  transition-duration: 0.4s;
+		transition-delay: 0.1s; /* Démarre au bout de 0,4s */
+		transition-timing-function: ease; /* Transition de type ease */ 
 }
 .list-item-img:hover img{
   -moz-transform: scale(1.05);
   -webkit-transform: scale(1.05);
   transform: scale(1.05);
-		transition: transform .3s;
 }
 .list-tags{position: absolute; top:-3em; color: white; opacity: 0.9; right: 5px;}
 @media screen and (min-width:@min_sm){
