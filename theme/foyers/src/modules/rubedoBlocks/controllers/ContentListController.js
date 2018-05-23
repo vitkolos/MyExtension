@@ -33,7 +33,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var options = {
         start: me.start,
         limit: me.limit,
-        'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","dateDebut","dateFin","positionName","complement_date","video","subTitle","date"]
+        'fields[]' : ["text","summary","image","annee","temoignage","propositionReferencee","propositionReferenceeInterne","dateDebut","dateFin","positionName","complement_date","video","subTitle","date"]
     };
     if(config.singlePage){
         options.detailPageId = config.singlePage;
@@ -289,6 +289,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
     me.index = $scope.$index;
     me.parentIndex = $scope.columnIndex;
     me.content = $scope.content;
+				console.log("Affichage du contenu :");
+				console.log(me.content);
     $scope.fieldEntity=angular.copy(me.content.fields);
     $scope.fieldLanguage=me.content.locale;
     $scope.fieldInputMode=false;
