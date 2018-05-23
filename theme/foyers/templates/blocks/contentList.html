@@ -85,10 +85,9 @@
 												<button type="button" class="close" data-dismiss="modal">&times;</button>
 												<h3 class="modal-title">{{content.fields.text}}</h3>
 											  </div>
-											  <div class="modal-body text-left" >
-											  <p><i><b>{{content.fields.summary}}</b></i></p>
-											  <p style="text-align: justify; font-style:italic;">{{content.fields.annee}}</p>
-											  <p style="text-align: justify;">{{content.fields.temoignage}}</p>
+											  <div class="modal-body text-left" style="color:#41a0c7;" >
+											  <p ng-if="content.fields.summary"><i><b>{{content.fields.summary}} <span ng-if="content.fields.annee"><span ng-if="content.fields.annee && content.fields.summary">- </span>{{content.fields.annee}}</span></b></i></p>
+											  <p style="text-align: justify;" ng-if="content.fields.temoignage">{{content.fields.temoignage}}</p>
 											  
 											  </div>
 											  <div class="modal-footer">
