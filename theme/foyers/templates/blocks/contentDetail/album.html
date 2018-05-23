@@ -178,7 +178,7 @@
 <div class="container">
   <header class="container-fluid" style="margin-top:100px; margin-bottom: 48px" ng-if="!blockConfig.contentOnly">
 	  <div class="text-article container">
-		  <p class='capital txt-white' style="text-shadow: none; font-style:italic;" ng-if="fieldEntity['date']">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}} - {{fieldEntity['lieu']}}</p>
+		  <p class='capital txt-white' style="text-shadow: none; font-style:italic;" ng-if="fieldEntity['date'] && !fieldEditMode">{{contentDetailCtrl.content.fields.date*1000 | date:'longDate'}} - {{fieldEntity['lieu']}}</p>
 		  <rubedo-field field = "{{contentDetailCtrl.getFieldByName('date')}}" ng-if="fieldEditMode"></rubedo-field>
 		  <rubedo-field field = "{{contentDetailCtrl.getFieldByName('lieu')}}" ng-if="fieldEditMode"></rubedo-field>
 		  <div field = "{{contentDetailCtrl.getFieldByName('text')}}" >
