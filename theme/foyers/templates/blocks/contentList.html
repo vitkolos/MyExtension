@@ -62,7 +62,7 @@
 									<div class="text-center col-xxs-6 col-xs-6 col-sm-4 col-md-3" ng-controller="ContentListDetailController as contentListDetailCtrl" 
 									ng-repeat="content in columnContents" ng-switch="content.typeId"  class="col-xs-6 col-xxs-12" ng-class="contentListCtrl.columns"
 									style="margin-bottom:25px; padding: 0 12px">-->
-										<div class="cursor-as-pointer" data-toggle="modal" data-target="#intervenant_{{$index}}_{{$parent.$parent.$index}}" style="margin-bottom:25px; padding: 0 12px">
+										<div class="cursor-as-pointer text-center" data-toggle="modal" data-target="#intervenant_{{$index}}_{{$parent.$parent.$index}}" style="margin-bottom:25px; padding: 0 12px">
 											<img class="img-circle hover" ng-if="content.fields.image"
 												 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'150px', width:'150px', mode:'crop'}) }}"
 												 alt="{{ content.fields.text }}" style="margin:30px 3px 10px"/>
