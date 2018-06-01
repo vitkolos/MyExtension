@@ -1,0 +1,94 @@
+<script async src="/theme/foyers/src/modules/rubedoBlocks/controllers/FormulaireController.js"></script>
+
+<div class="text-center content_border"  itemscope itemtype="http://schema.org/Event">
+
+  <!--<meta itemprop="image" content="{{'https://www.foyersetudiants.org' + rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'768px',mode:'boxed'}) }}" />-->
+  <!--<meta itemprop="name" content="{{fieldEntity['text']}}">-->
+<!--  <meta itemprop="startDate" content="{{contentDetailCtrl.content.fields.dateDebut *1000 | date:'yyyy-MM-ddTHH:mm:ssZ' }}">
+  <meta ng-if="contentDetailCtrl.content.fields.dateFin" itemprop="endDate" content="{{contentDetailCtrl.content.fields.dateFin *1000 | date:'yyyy-MM-ddTHH:mm:ssZ' }}">
+	<meta itemprop="description" content="{{contentDetailCtrl.content.fields.summary}}">-->
+
+    
+    <div field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="!fieldEditMode">
+					<h1 class="balance-text">{{fieldEntity['text']}}</h1>
+    </div>
+    <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field>
+    
+    
+    <div ng-if="contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'ouverte'
+						|| contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'preinscription'
+						||  contentDetailCtrl.content.fields.inscriptionState.inscriptionState == 'attente' ">
+						<!--si un seul public accueilli-->
+						<div  ng-if="(contentDetailCtrl.content.fields.publics).length==1 && contentDetailCtrl.content.fields.publics[0]">
+							<div ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.publics[0];contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription = true">
+								{{rubedo.translate("Inscription", "S'inscrire")}}
+							</div>
+						</div>
+						<!--si un plusieurs types de public accueillis-->
+						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1" >
+							<div style="margin-bottom:12px" >{{rubedo.translate("Block.Inscription.Inscrire.Comme","S'inscrire comme")}}:</div>
+							        <!--Type de public -->
+								<div ng-repeat="public in contentDetailCtrl.content.fields.publics track by $index" >
+	
+									<p><a class="cursor-as-pointer" ng-click="contentDetailCtrl.content.public = public; contentDetailCtrl.showInscription =true">- {{rubedo.translate(public,public)}} </a></p><!--Attention, ce label dépend du format de type de contenu-->
+								</div>
+						</div>
+    </div>
+    
+    <!--<p><a ng-click="contentDetailCtrl.content.service = false; contentDetailCtrl.showInscription =true">- Push </a></p>-->
+    
+    <div class="container-fluid" ng-if="contentDetailCtrl.showInscription" >
+		<div ng-init="proposition = contentDetailCtrl.content" class="row padding-large" ng-include="contentDetailCtrl.inscriptionTemplate">
+		</div>
+		
+		<div style="margin-top:24px"></div>
+		
+	</div>
+    
+    
+    	<div class="row"><!--ng-if="rubedo.current.user && rubedo.current.user.rights.canEdit && contentDetailCtrl.inscriptions">-->
+		<div class="text-article">
+			<div class="col-xs-12">
+				<h3>{{rubedo.translate("Inscriptions.Liste", "Liste des inscriptions")}} </h3>
+				<a ng-href="{{contentDetailCtrl.downloadUrl}}" download="inscriptions_{{fieldEntity['text']}}.csv" id="btnExport"  ><p><span class="glyphicon glyphicon-download-alt "></span> {{rubedo.translate("Inscriptions.Export", "Exporter en Excel")}}</p></a>
+			</div>
+		</div>
+		<!--<div class="col-xs-12" style="overflow-y: scroll">
+			<table style="font-size:0.8em;">
+				<tr>
+					<th>Numéro</th>
+					<th>Statut</th>
+					<th>Serviteur?</th>
+					<th>Nom</th>
+					<th>Prénom</th>
+					<th>Email</th>
+					<th>Date de naissance</th>
+					<th>Nom 2</th>
+					<th>Prénom 2</th>
+					<th>Email 2</th>
+					<th>Date de naissance 2</th>
+				</tr>
+				<tr ng-repeat="inscription in contentDetailCtrl.inscriptions track by $index" ng-class="{'bg-white':$even}">
+					<th class="padding">{{inscription.title}}</th>
+					<th>{{inscription.statut}}</th>
+					<th class="text-center"><span class="glyphicon glyphicon-ok txt-vert" ng-if="inscription.serviteur"></span></th>
+					<th>{{inscription.nom}}</th>
+					<th>{{inscription.surname}}</th>
+					<th>{{inscription.email}}</th>
+					<th>{{inscription.birthdate | date :'mediumDate'}}</th>
+					<th>{{inscription.nomPers2}}</th>
+					<th>{{inscription.prenomPers2}}</th>
+					<th>{{inscription.emailPers2}}</th>
+					<th>{{inscription.dateNaissPers2 | date :'mediumDate'}}</th>
+				</tr>
+			</table>
+ 
+		</div>-->
+		<div style="margin-top:24px"></div>
+	</div>
+
+	
+</div>
+
+
+

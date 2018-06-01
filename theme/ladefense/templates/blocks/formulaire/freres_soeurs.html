@@ -1,0 +1,43 @@
+<div ng-if="formCtrl.parentsEnsemble || formCtrl.parentsSepares">
+    <h3 class="row">{{rubedo.translate("Block.Inscription.FreresEtSoeurs")}}</h3>
+        
+    <div class="row" ng-repeat="frere_soeur in inscription.freres_soeurs track by $index" class="enfant">
+        <div class="col-md-3 col-sm-6">
+            <label class="label_style left">{{rubedo.translate("Block.Inscription.Nom.Different")}}</label>
+            <input class="form-control" type="text" ng-model="inscription.freres_soeurs[$index].nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' readonly>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <label class="label_style left">{{rubedo.translate("Block.Inscription.Prenom")}}</label>
+            <input class="form-control" type="text" ng-model="inscription.freres_soeurs[$index].prenom" placeholder='{{rubedo.translate("Block.Inscription.Prenom")}}' readonly>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <label class="label_style left">{{rubedo.translate("Block.Inscription.Age")}}</label>
+            <input class="form-control" type="number" ng-model="inscription.freres_soeurs[$index].age" placeholder='{{rubedo.translate("Block.Inscription.Age")}}' readonly>
+        </div>
+        <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.removeFrereSoeur($index)">
+            <span class="glyphicon glyphicon-minus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.FrereSoeur.Supprimer")}}
+        </p>
+        
+        
+    </div>
+    
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <label class="label_style left">{{rubedo.translate("Block.Inscription.Nom.Different")}}</label>
+            <input class="form-control" type="text" ng-model="inscription.frere_soeur.nom" placeholder='{{rubedo.translate("Block.Inscription.Nom")}}' >
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <label class="label_style left">{{rubedo.translate("Block.Inscription.Prenom")}}</label>
+            <input class="form-control" type="text" ng-model="inscription.frere_soeur.prenom" placeholder='{{rubedo.translate("Block.Inscription.Prenom")}}'>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <label class="label_style left">{{rubedo.translate("Block.Inscription.Age")}}</label>
+            <input class="form-control" type="number" ng-model="inscription.frere_soeur.age" placeholder='{{rubedo.translate("Block.Inscription.Age")}}'>
+        </div>
+        <p class="txt-red pull-right cursor-as-pointer" ng-click="formCtrl.addFrereSoeur(inscription.frere_soeur);inscription.frere_soeur={}">
+            <span class="glyphicon glyphicon-plus-sign txt-red cursor-as-pointer"></span>{{rubedo.translate("Block.Inscription.FrereSoeur.Ajouter","Ajouter")}}
+        </p>
+    </div>
+</div>
+
+  

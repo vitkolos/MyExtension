@@ -1,0 +1,26 @@
+<div class="container">
+    <div id="{{'block'+block.id}}" class="slider owl-carousel" ng-controller="CarouselController as carouselCtrl" >
+        <div ng-repeat="content in carouselCtrl.contents track by $index" ng-if="content.fields[blockConfig.imageField]" class="row no-margin">
+                <div class="col-sm-6">
+                    <img ng-if="!isArray(content.fields[blockConfig.imageField])" class="lazyOwl img-responsive" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}"
+                        alt="{{content.fields.text}}"
+                        title="{{content.fields.text}}">
+                    <img ng-if="isArray(content.fields[blockConfig.imageField])" class="lazyOwl img-responsive" data-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField][0],carouselCtrl.getImageOptions())}}"
+                            alt="{{content.fields.text}}"
+                            title="{{content.fields.text}}">
+                </div>
+                <div class="col-sm-6 text-container">
+                    <h1>{{content.fields.text}}</h1>
+                    <div ng-bind-html="content.fields.texte | unsafe"></div>
+                </div>
+                
+                   
+        </div>
+    </div>
+</div>
+<div class="goToList"><p>Accéder à la liste des foyers</p></div>
+    <img src="/theme/foyers/img/flechebas.png" class="fleche" ng-click="slideTo('down')" id="flecheDown" hide></div>
+    <img src="/theme/foyers/img/flechegauche.png" class="fleche" ng-click="slideTo('left')" id="flecheLeft" hide></div>
+
+
+

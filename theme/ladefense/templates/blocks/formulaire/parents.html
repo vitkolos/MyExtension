@@ -1,0 +1,177 @@
+    
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4"><label for="sexe" class="label_style">{{rubedo.translate("Block.Inscription.Situation.Familiale")}}*</label></div>
+            <div class="col-sm-8 display_left">
+                <input type="radio"  name="situationFamiliale" id="ensemble" value="ensemble" ng-model="inscription.situationFamiliale" ng-click="formCtrl.parentsEnsemble = true; formCtrl.parentsSepares = false;" required>
+                            <label for="ensemble" class="sexe_label boite">{{rubedo.translate("Block.InscriptionSituation.Familiale.Ensemble")}}</label>	
+                <input type="radio"  name="situationFamiliale" id="separes" value="separes" ng-model="inscription.situationFamiliale" ng-click="formCtrl.parentsEnsemble = false; formCtrl.parentsSepares = true;">
+                            <label for="separes" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Situation.Familiale.Separes")}}</label>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container" ng-if="formCtrl.parentsEnsemble || formCtrl.parentsSepares ">
+        <!--PERE-->
+        <div class="col-md-6 col-sm-12">
+            <h3 class="row">{{rubedo.translate("Block.Inscription.Pere")}}</h3>
+            <div class="row">
+                <div class="col-sm-4"><label for="nomPere" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}*</label></div>
+                <div class="col-sm-8"><input class="form-control" type="text" id="nomPere" ng-model="inscription.nomPere" name="namePere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !inscription.nomPers2)"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="prenomPere" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}*</label></div>
+                <div class="col-sm-8"><input class="form-control" type="text" id="prenomPere" ng-model="inscription.surnamePere" name="surnamePere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !inscription.prenomPers2)"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="professionPere" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
+                <div class="col-sm-8"><input class="form-control" type="text" id="professionPere" ng-model="inscription.professionPere" name="professionPere"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="nationalitePere" class="label_style">{{rubedo.translate("Block.Inscription.Nationalite")}}*</label></div>
+                <div class="col-sm-8"><input class="form-control" type="nationalitePere" id="nationalitePere" name="nationalitePere"  ng-model="inscription.nationalitePere" required></div>
+            </div>  
+            <div class="row">
+                <div class="col-sm-4"><label for="emailPere" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
+                <div class="col-sm-8"><input class="form-control" type="emailPere" id="emailPere" name="emailPere"  ng-model="inscription.emailPere" placeholder="user@mydomain.com" required></div>
+            </div>    
+            <div class="row">
+                <div class="col-sm-4"><label for="email_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}*</label></div>
+                <div class="col-sm-8">
+                    <input type="email" class="form-control" id="emailPere_verif" name="emailPere_verif" placeholder="user@mydomain.com" ng-model="inscription.emailPere_verif" ng-required="inscription.emailPere">
+                    <p ng-if="mailError2" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
+                </div>
+            </div>
+            <div class="row" ng-if="!personneConnue">
+                    <div class="col-sm-4"><label for="tel2Pere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="tel1Pere" name="tel1Pere" ng-model="inscription.tel1Pere"  required>
+                    </div>
+            </div>
+            
+            
+            <div ng-if="formCtrl.parentsSepares">
+                <div class="row">
+                    <div class="col-sm-4"><label for="adressePere" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
+                    <div class="col-sm-8"><textarea class="form-control" rows="3" id="adressePere" ng-model="inscription.addressPere" name="addressPere" placeholder="" required></textarea></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><label for="cpPere" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="cpPere" ng-model="inscription.cpPere" name="cpPere"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><label for="cityPere" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="cityPere" ng-model="inscription.cityPere" name="cityPere" required></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><label for="paysPere" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="paysPere" ng-model="inscription.countryPere" name="countryPere"></div>
+                </div>
+                
+                <!--ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/"-->
+                <div class="row" ng-if="!personneConnue">
+                    <div class="col-sm-4"><label for="tel1Pere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="tel2Pere" name="tel2Pere"  ng-model="inscription.tel2Pere" required></div>
+                </div>
+                
+            </div>    
+        </div>
+     
+        <!--MERE-->  
+        <div class="col-md-6 col-sm-12">
+                <h3 class="row">{{rubedo.translate("Block.Inscription.Mere")}}</h3>
+                <div class="row">
+                    <div class="col-sm-4"><label for="nomMere" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="nomMere" ng-model="inscription.nomMere" name="nameMere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !inscription.nomPers2)"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><label for="prenomMere" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="prenomMere" ng-model="inscription.surnameMere" name="surnameMere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !inscription.prenomPers2)"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><label for="professionMere" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="professionMere" ng-model="inscription.professionMere" name="professionMere"></div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><label for="nationaliteMere" class="label_style">{{rubedo.translate("Block.Inscription.Nationalite")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="nationaliteMere" id="nationaliteMere" name="nationaliteMere"  ng-model="inscription.nationaliteMere" required></div>
+                </div> 
+                <div class="row">
+                    <div class="col-sm-4"><label for="emailMere" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="emailMere" id="emailMere" name="emailMere"  ng-model="inscription.emailMere" placeholder="user@mydomain.com" required></div>
+                </div>    
+                <div class="row">
+                    <div class="col-sm-4"><label for="email_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}*</label></div>
+                    <div class="col-sm-8">
+                        <input class="form-control" type="email" id="email_verif" name="email_verif" placeholder="user@mydomain.com" ng-model="inscription.emailMere_verif" ng-required="inscription.emailMere">
+                        <p ng-if="mailError3" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4"><label for="tel2Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="tel1Mere" name="tel1Mere" ng-model="inscription.tel1Mere"  required>
+                    </div>
+                </div>
+            
+                <div ng-if="formCtrl.parentsSepares">
+                    <div class="row">
+                        <div class="col-sm-4"><label for="adresseMere" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
+                        <div class="col-sm-8"><textarea class="form-control" rows="3" id="adresseMere" ng-model="inscription.addressMere" name="addressMere" placeholder="" required></textarea></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><label for="cpMere" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
+                        <div class="col-sm-8"><input class="form-control" type="text" id="cpMere" ng-model="inscription.cpMere" name="cpMere"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><label for="cityMere" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
+                        <div class="col-sm-8"><input class="form-control" type="text" id="cityMere" ng-model="inscription.cityMere" name="cityMere" required></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4"><label for="paysMere" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
+                        <div class="col-sm-8"><input class="form-control" type="text" id="paysMere" ng-model="inscription.countryMere" name="countryMere"></div>
+                    </div>
+                    <!---->
+                      
+                    
+                    <!--ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/"-->
+                    <div class="row">
+                        <div class="col-sm-4"><label for="tel2Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}*</label></div>
+                        <div class="col-sm-8"><input class="form-control" type="text" id="tel2Mere" name="tel2Mere"  ng-model="inscription.tel2Mere" required></div>
+                    </div>
+                    
+                </div>
+        </div>
+        
+        
+        
+        <div class="col-xs-12" ng-if="!personneConnue && formCtrl.parentsEnsemble">
+            <h3 class="row">{{rubedo.translate("Block.Inscription.Domicile.Familial", "Domicile familial")}}</h3>
+        
+            <div class="row">
+                <div class="col-sm-4"><label for="adressePere" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
+                <div class="col-sm-8"><textarea class="form-control" rows="3" id="adressePere" ng-model="inscription.addressPere" name="addressPere" placeholder="" required></textarea></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="cpPere" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
+                <div class="col-sm-8"><input class="form-control" type="text" id="cpPere" ng-model="inscription.cpPere" name="cpPere"></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="cityPere" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
+                <div class="col-sm-8"><input class="form-control" type="text" id="cityPere" ng-model="inscription.cityPere" name="cityPere" required></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4"><label for="paysPere" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
+                <div class="col-sm-8"><input class="form-control" type="text" id="paysPere" ng-model="inscription.countryPere" name="countryPere"></div>
+            </div>
+            <!--ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/"-->
+            <div class="row" ng-if="!personneConnue">
+                <div class="col-sm-4"><label for="tel2Pere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}*</label></div>
+                <div class="col-sm-8"><input class="form-control" type="text" id="tel2Pere" name="tel2Pere"  ng-model="inscription.tel2Pere" required></div>
+            </div>
+            
+ 
+        </div>
+        
+        
+    </div>
+

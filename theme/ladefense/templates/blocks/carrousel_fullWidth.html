@@ -1,0 +1,133 @@
+<style>
+
+ .carousel-indicators li,.carousel-indicators li.active{margin:4px 6px; border-radius:0; border: none}
+ .carousel-indicators li{
+    background: white; opacity: 0.5; transition: opacity 0.2s;
+ }
+ .carousel-indicators li:hover, .carousel-indicators li.active{opacity: 0.9; width: 10px; height: 10px;}
+  .carousel-indicators{
+    left: 50px;
+    bottom: 50px;
+    width: 30px;
+    margin-left:0px;
+  }
+.carousel-inner .item {
+    transition-property: opacity;
+}
+        
+.carousel-inner .item,
+.carousel-inner .active.left,
+.carousel-inner .active.right {
+    opacity: 0;
+}
+
+.carousel-inner .active,
+.carousel-inner .next.left,
+.carousel-inner .prev.right {
+    opacity: 1;
+}
+
+.carousel-inner .next,
+.carousel-inner .prev,
+.carousel-inner .active.left,
+.carousel-inner .active.right {
+    left: 0;
+    transform: translate3d(0, 0, 0);
+}
+
+
+  .carousel,
+.item,
+.active {
+    height: 100%;
+}
+
+.carousel-inner {
+    height: 80vh;
+    background-color: white;
+}
+
+/* Background images are set within the HTML using inline CSS, not here */
+
+.fill {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.dotted:after {
+    background: url('/theme/foyers/img/pattern_dot.png') repeat left top rgba(0,0,0,0.5);
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+}
+.homepage_txt {
+    position: absolute;
+    top: 40%;
+    width:100%;
+    margin:0 ; padding: 50px 0;
+    text-align: center;
+    color:white;
+    font-family: "trend_sansone";
+    h1{font-size: 60px;}
+}
+
+
+
+@media screen and (max-width:500px){
+        .homepage_txt h1{font-size: 30px;}
+        .carousel-indicators{display: none;}
+        .carousel-inner {height: 100vh;}
+}
+.link{position:absolute; bottom: 30px;width:100%; text-align: center}
+.link a{
+ border: 1px solid white; font-family: "trend_sansone"; color:white; padding: 12px;
+}
+.link a:hover{color: white; text-decoration: none;}
+
+
+</style>
+
+<div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl">
+  <ol class="carousel-indicators">
+    <li ng-repeat="content in carouselCtrl.contents" 
+      ng-if="content.fields[blockConfig.imageField]" 
+      data-target="{{'block'+block.id}}"
+      data-slide-to="{{$index}}"
+      ng-class="{'active':$first}"
+      ng-click="carouselCtrl.slideTo($index)">
+    </li>
+  </ol>
+
+  <div class="carousel-inner">
+      <div class="item" 
+            ng-repeat="content in carouselCtrl.contents" 
+            ng-if="content.fields[blockConfig.imageField]"
+            ng-class="{'active':$first}">
+          <!-- Set the first background image using inline CSS below. -->
+          <div class="fill dotted" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField])}}');"></div>
+          <div class="homepage_txt" >
+              <h1>{{rubedo.current.page.text | firstword : 0}}<br>{{rubedo.current.page.text | firstword : 1}}</h1>
+          </div>
+          <!--<div class="link visible-xs-block" ng-if="carouselCtrl.detailPageId">
+           <a rubedo-page-link="{{carouselCtrl.detailPageId}}">Présentation</a>
+          </div>-->
+      </div>
+  </div>
+       <!-- Controls -->
+
+  
+</div>
+
+ 

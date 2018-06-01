@@ -1,0 +1,4 @@
+<div ng-controller="RichTextController as richTextCtrl" class="{{blockConfig.displayMode}}" ng-if="!blockConfig.private || (blockConfig.private && rubedo.current.user && rubedo.current.user.rights.canEdit)">
+    <rubedo-field ng-repeat="field in richTextCtrl.content.type.fields track by $index" ng-if="fieldEntity[field.config.name]"></rubedo-field>
+    <div class="clearfix"></div>
+</div>

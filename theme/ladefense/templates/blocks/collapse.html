@@ -1,0 +1,43 @@
+<style>
+.nav-tabs li{
+		background-color: #41a0c7;  		
+		font-family: 'trend_sansone'; border: 1px solid white; border-bottom:none;
+		width: 50%;
+		height:50px;
+		a{color: #41a0c7 !important}
+		max-width:100% !important;
+}
+.nav-tabs>li.active,.nav-tabs>li:hover{
+
+        
+        background: #E8EEF1 !important;
+		a{background-color: transparent !important; border: 0 !important; font-size: 14px; text-align: center; color: white !important;}
+}
+.tab-content{
+		background-color: transparent !important; padding: 12px;
+		h3{text-transform: uppercase; font-weight: bold; font-size: 14px; margin-bottom:0px}
+		p, h1,h3 {color: #17789c}
+}
+}
+</style>
+<ul class="nav nav-tabs" role="tablist" ng-init="tabIndex=0">
+        <!--<li role="presentation" ng-class="{'active':contentListCtrl.tabIndex==$index}" ng-repeat="content in contentListCtrl.contents track by $index">
+            <a ng-click="contentListCtrl.tabIndex=$index">{{content.text}}</a>-->
+        <li role="presentation" ng-class="{'active':tabIndex==0}">
+            <p class="col-xs-6"><a ng-click="tabIndex=0">En France</a></p>
+        </li>
+        <li role="presentation" ng-class="{'active':tabIndex==1}">
+            <p class="col-xs-6"><a ng-click="tabIndex=1">A l&#39;International</a></p>
+        </li>
+     </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div ng-class="{'active':tabIndex==0}" class="tab-pane">
+       <p>Kikou</p> 
+    </div>
+    <div ng-class="{'active':tabIndex==1}" class="tab-pane">
+       <p>Kikou2</p> 
+    </div>
+
+  </div>
