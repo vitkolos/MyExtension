@@ -430,6 +430,21 @@ return array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
             ),
+											'ladefense' => array(
+                'label' => 'Foyer "La Défense"',
+                'basePath' => realpath(__DIR__ . '/../theme/ladefense'),
+                'css' => array(
+                    '/css/ladefense.css',
+                    //'/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '/js/ladefense.js',
+                    /*'../js/blocks.js'*/
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
+            ),
 											'baskerville' => array(
                  'label' => 'Baskerville',
                 'basePath' => realpath(__DIR__ . '/../theme/baskerville'),
