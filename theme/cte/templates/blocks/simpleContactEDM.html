@@ -6,7 +6,7 @@
       contactCtrl.contactData.template='/theme/cte/templates/mails/reservationEDM.html';
       contactCtrl.param.joursCumul=[0,0,31,59,90,120,151,181,212,243,273,304,334,365];">
 
-        <form role="form" ng-submit="contactCtrl.submit()">
+        <form name="edmForm" role="form" ng-submit="contactCtrl.submit()">
         <div class="row">
             <h3>Informations personnelles</h3>
         </div>
@@ -19,7 +19,7 @@
                 <label >Prénom*</label>
                 <input type="text"  ng-model="contactCtrl.contactData.prenom" class="form-control"  required>
             </div>
-        </div>
+        </div><br/>
         <div class="row">
             <div class="col-sm-6">
                 <label >Email*</label>
@@ -30,7 +30,7 @@
                 <input type="text"  ng-model="contactCtrl.contactData.telephone" class="form-control"  required>
             </div>
             
-        </div>
+        </div><br/>
         <div class="row">
             <div class="col-sm-6">
                 <label >Adresse*</label>
@@ -41,7 +41,7 @@
                 <input type="text"  ng-model="contactCtrl.contactData.codePostal" class="form-control"  required>
             </div>
             
-        </div>
+        </div><br/>
         <div class="row">
             <div class="col-sm-6">
                 <label >Ville*</label>
@@ -119,7 +119,7 @@
     
     <br/><br/>
         
-        <!--<div class="row">
+        <div class="row">
             <div class="col-sm-4">
                 <label>Type d'hébergement*</label>
             </div>
@@ -135,7 +135,7 @@
                     <label for="pension_complete">Pension complète</label>
                 </div>
             </div>
-        </div>-->
+        </div><br/><br/>
         
         
         
@@ -150,11 +150,7 @@
                 <label>Pour un groupe de jeunes (nombre envisagé)</label>
                 <input type="number"  ng-model="contactCtrl.contactData.nombreJeunes" class="form-control"  >
             </div>
-            <div class="col-sm-6">
-                <label>Pour venir en individuel (nombre envisagé)</label>
-                <input type="number"  ng-model="contactCtrl.contactData.nombreIndividuel" class="form-control"  >
-            </div>
-        </div>
+        </div><br/>
         <div class="row">
             <div class="col-sm-12">
                 <label class="text-center">Préciser, en quelques mots, l'objet de votre demande *</label><br/>
@@ -163,9 +159,9 @@
             </div>
                 
 
-        </div>
+        </div><br/>
         
-        <div class="row">
+       <!-- <div class="row">
             <div class="sm-12">
                 <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
                         <rubedo-notification></rubedo-notification>
@@ -173,7 +169,17 @@
                     <button type="submit" class="button rouge">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
 
             </div>
+        </div>-->
+        
+        
+        <div class="row">
+            <div class="button" ng-init="confirmMsg=false;" ng-class="{rouge: edmForm.$valid, disabled: edmForm.$invalid, submit: edmForm.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Réserver</div>
+        </div><br/>
+      
+        <div class="row confirm" ng-if="confirmMsg">
+            Réservation envoyée avec succès !<br> Ne considérez votre demande comme confirmée qu'à réception d'un mail de confirmation de notre part.
         </div>
+        
             
         </form>
                         
@@ -181,7 +187,20 @@
     
     
     
-    <div ng-if="contactCtrl.showConfirmMessage" ng-init="notification = {type:'success',text:rubedo.translate('Blocks.Auth.Msg.EmailSent','Email has been sent')}">
+    <!--<div ng-if="contactCtrl.showConfirmMessage" ng-init="notification = {type:'success',text:rubedo.translate('Blocks.Auth.Msg.EmailSent','Email has been sent')}">
         <rubedo-notification></rubedo-notification>
-    </div>
+    </div>-->
 </div>
+
+
+<style>
+  div.confirm {
+    margin-top: 1em;
+    padding: 1em;
+    background-color: #b9d5b9;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 3px 4px 0px #a8c1a0;
+    font-family: Montserrat, Arimo, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+</style>
