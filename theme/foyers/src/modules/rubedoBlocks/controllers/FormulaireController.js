@@ -60,6 +60,9 @@ angular.module("rubedoBlocks").lazy.controller("FormulaireController",['$scope',
 				me.parentsEnsemble=false;
 				me.parentsSepares=false;
 				me.examensPrealables=false;
+				me.stageouCDD=false;
+				me.pbsMedicaux=false;
+				me.suiviMedical=false;
 				
 				    // ajouter freres et soeurs
 

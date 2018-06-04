@@ -4,16 +4,38 @@
         <div class="col-sm-8"><textarea class="form-control" rows="3" id="loisirs" ng-model="inscription.loisirs" name="loisirs"></textarea></div>
     </div>
     <div class="row" ng-if="!personneConnue">
-        <div class="col-sm-4"><label for="fumeur" class="label_style">{{rubedo.translate("Block.Inscription.Fumeur")}}*</label></div>
+        <div class="col-sm-4"><label for="pbsMedicaux" class="label_style">{{rubedo.translate("Block.Inscription.Problemes.Medicaux")}} *</label></div>
         <div class="col-sm-8 display_left">
-            <input type="radio"  name="fumeur" id="fumeur" value="fumeur" ng-model="inscription.fumeur.fumeur" required>
-                        <label for="fumeur" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
-            <input type="radio"  name="fumeur" id="non_fumeur" value="non_fumeur" ng-model="inscription.fumeur.fumeur">
-                        <label for="non_fumeur" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label>
+            <input type="radio"  name="pbsMedicaux" id="pbsMedicaux" value="pbsMedicaux" ng-model="inscription.pbsMedicaux.pbsMedicaux" ng-click="formCtrl.pbsMedicaux = true;" required>
+                        <label for="pbsMedicaux" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
+            <input type="radio"  name="pbsMedicaux" id="non_pbsMedicaux" value="non_pbsMedicaux" ng-model="inscription.pbsMedicaux.pbsMedicaux" ng-click="formCtrl.pbsMedicaux = false;" >
+                        <label for="non_pbsMedicaux" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label>
+        </div>
+    </div>
+    <div ng-if="formCtrl.pbsMedicaux && !personneConnue"">
+        <div class="row">
+            <div class="col-sm-4"><label for="detailsPbsMedicaux" class="label_style">{{rubedo.translate("Block.Inscription.Preciser")}}</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" rows="2" id="detailsPbsMedicaux" ng-model="inscription.detailsPbsMedicaux" name="detailsPbsMedicaux"></div>
+        </div>
+    </div>
+    <div class="row" ng-if="!personneConnue">
+        <div class="col-sm-4"><label for="suiviMedical" class="label_style">{{rubedo.translate("Block.Inscription.Suivi.Medical")}} *</label></div>
+        <div class="col-sm-8 display_left">
+            <input type="radio"  name="suiviMedical" id="suiviMedical" value="suiviMedical" ng-model="inscription.suiviMedical.suiviMedical" ng-click="formCtrl.suiviMedical = true;" required>
+                        <label for="suiviMedical" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
+            <input type="radio"  name="suiviMedical" id="non_suiviMedical" value="non_suiviMedical" ng-model="inscription.suiviMedical.suiviMedical" ng-click="formCtrl.suiviMedical = false;" >
+                        <label for="non_suiviMedical" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label>
+        </div>
+    </div>
+    <div ng-if="formCtrl.suiviMedical && !personneConnue"">
+        <div class="row">
+            <div class="col-sm-4"><label for="detailsSuiviMedical" class="label_style">{{rubedo.translate("Block.Inscription.Preciser")}}</label></div>
+            <div class="col-sm-8"><input class="form-control" rows="2" type="text" id="detailsPbsMedicaux" ng-model="inscription.detailsSuiviMedical" name="detailsSuiviMedical"></div>
         </div>
     </div>
     
-    <!--<div class="row" ng-if="!personneConnue">
+    
+    <div class="row" ng-if="!personneConnue">
         <div class="col-sm-4"><label for="origine" class="label_style">{{rubedo.translate("Block.Inscription.Connaissance.Foyer")}}*</label></div>
         <div class="col-sm-8">
             <input type="checkbox"  name="origine" id="relations" value="relations" ng-model="inscription.origine.origine" required>
@@ -34,7 +56,7 @@
             
                         
         </div>
-    </div>-->
+    </div>
 
     <div class="row" ng-repeat="question in formCtrl.questions | orderBy:'order' track by $index">
             <ng-include src="formCtrl.questionsComplementaires"></ng-include>
