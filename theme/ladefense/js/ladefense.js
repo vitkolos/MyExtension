@@ -88,6 +88,40 @@ angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  functi
 											return dateDiff();
 											};
 }])
+
+angular.module('rubedoBlocks').directive('scrollPosition', function($window) {
+  return {
+    scope: {
+      scroll: '=scrollPosition'
+    },
+    link: function(scope, element, attrs) {
+      var windowEl = angular.element($window);
+      var handler = function() {
+        scope.scroll = windowEl.scrollTop();
+      }
+      windowEl.on('scroll', scope.$apply.bind(scope, handler));
+      handler();
+    }
+  };
+});
+angular.module('rubedoBlocks').directive('isInView', function($window) {
+    return {
+      scope: {
+        scroll: '=isInView'
+      },
+      link: function(scope, element, attrs) {
+        var windowEl = angular.element($window);
+        var handler = function() {
+          var windowTop = windowEl.scrollTop();
+          var windowBottom = windowEl.scrollTop()+windowEl.height();
+          var elemPosition = Math.round( element.offset().top );
+          if(elemPosition+100<windowBottom && elemPosition>windowTop) {element.addClass("inView");console.log('in view');}
+        }
+        windowEl.on('scroll', scope.$apply.bind(scope, handler));
+        handler();
+      }
+    };
+  });
 	angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
         var serviceInstance={};
         serviceInstance.sendMail=function(payload){

@@ -1,7 +1,7 @@
 <!--mail pour la réservation à l'Étoile de la Mer-->
 <html><body>
   <h2>Demande de réservation</h2><br/>
-  <h3>Identification</h3>
+  <h3>1) Identification</h3>
 <table width="80%">
 <tr>
   <td> 
@@ -18,24 +18,26 @@
   </td>
  </tr>
 </table>
-<h3>Demande</h3>
+<h3>2) Demande</h3>
 <table width="80%">
   <tr >
     <td>
       Date prévue d'arrivée : { startDate }<br/> 
-      Nombre de nuits : { nbOfNights }<br/>
-      Date prévue de départ : { endDate }<br/><br/>  
+      Date prévue de départ : { endDate }<br/><br/>
+      Nombre de nuits : { nbOfNights }<br/><br/>
+      Type d'hébergement : <b>{ hebergement }</b><br/>
     </td>
     <td>
-      Type d'hébergement : { hebergement }<br/>
-      Groupe d'adultes (nombre envisagé) : { nombreAdultes }<br/> 
-      Groupe de jeunes (nombre envisagé) : { nombreJeunes }<br/>
+      <b>Nombres de personnes</b><br/>
+      - Adultes : { nombreAdultes }<br/> 
+      - Jeunes : { nombreJeunes }<br/>
     </td>   
   </tr>
   </table><br/>
 
-  <p><b>Commentaires</b><br/>
-  { message }</p>
+  <h3>3) Commentaires</h3>
+  <p style="font-style:italic;">(dont le type de chambre demandé)</p><br/>
+  <p>{ message }</p>
   
   
   </div>
