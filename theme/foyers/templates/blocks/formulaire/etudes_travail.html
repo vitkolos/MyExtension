@@ -29,7 +29,7 @@
                         <label for="demandeur" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Demandeur.Emploi")}}</label>              
         </div>
     </div>
-    <div class="row" ng-if="formCtrl.stageouCDD && !personneConnue">
+    <div class="row" ng-if="jeunePro && formCtrl.stageouCDD && !personneConnue">
         <div class="col-sm-4"><label for="dateDebutContrat" class="label_style">{{rubedo.translate("Block.Inscription.Date.Debut.Contrat")}} *</label></div>
         <div class="col-sm-8">
             <div class="dropdown">
@@ -44,7 +44,7 @@
         </div>
     </div>
     
-    <div class="row" ng-if="formCtrl.stageouCDD && !personneConnue">
+    <div class="row" ng-if="jeunePro && formCtrl.stageouCDD && !personneConnue">
         <div class="col-sm-4"><label for="dateFinContrat" class="label_style">{{rubedo.translate("Block.Inscription.Date.Fin.Contrat")}} *</label></div>
         <div class="col-sm-8">
             <div class="dropdown">
