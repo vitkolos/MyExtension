@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','$filter','RubedoMailService',function($scope,$location,$filter,RubedoMailService){
+angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope','$location','RubedoMailService','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService',function($scope,$location,RubedoMailService,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService) {
     var me = this;
     var config = $scope.blockConfig;
     me.contactData={ };
@@ -8,6 +8,42 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         console.log($filter('number')((end-start)/(3600*24*1000),0));
         return $filter('number')((end-start)/(3600*24*1000),0);
     }
+				
+				
+				 var themePath='/theme/'+window.rubedoConfig.siteTheme;
+				me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+//    me.couple = themePath+'/templates/blocks/formulaire/couple.html';
+//    me.questions = themePath+'/templates/blocks/formulaire/questions.html';
+//    me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
+//    me.infosFin = themePath+'/templates/blocks/formulaire/infosFin.html';
+//    me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
+//				me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+//				me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
+//				me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
+//				me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
+//				me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html';
+//				me.photo = themePath+'/templates/blocks/formulaire/photo.html';
+//				me.lettre_motivation = themePath+'/templates/blocks/formulaire/lettre_motivation.html';
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
     me.submit=function(){
         me.contactError=null;
         var contactSnap=angular.copy(me.contactData);
