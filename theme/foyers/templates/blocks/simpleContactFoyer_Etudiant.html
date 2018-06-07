@@ -7,7 +7,7 @@
       contactCtrl.contactData.template='/theme/cte/templates/mails/reservationEDM.html';
       contactCtrl.param.joursCumul=[0,0,31,59,90,120,151,181,212,243,273,304,334,365];">
 
-        <form name="inscription_form" role="form" ng-submit="contactCtrl.submit()">
+        <ng-form name="inscription_form" role="form" ng-submit="contactCtrl.submit()">
         
              
             <div>
@@ -37,7 +37,7 @@
                                     </ng-form>
                                 </div>
                                 
-                                <!--<h2 class="capital txt-red" ng-class="{'displayed' : contactCtrl.currentStage==2}" ng-click="contactCtrl.setCurrentStage(1,infos_familiales.$valid)">{{rubedo.translate("Block.Inscription.InfosFamiliales", "Informations familiales")}}
+                                <h2 class="capital txt-red" ng-class="{'displayed' : contactCtrl.currentStage==2}" ng-click="contactCtrl.setCurrentStage(1,infos_familiales.$valid)">{{rubedo.translate("Block.Inscription.InfosFamiliales", "Informations familiales")}}
                                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="contactCtrl.currentStage>2"></span>
                                 </h2>
                                 <div id="inscriptionStage2" class="collapse">
@@ -128,12 +128,12 @@
                             
                                             
                 
-                                </div>-->
+                                </div>
                         </div>   
                     </div>
                 </div>    
                                 
-            </form>
+            </ng-form>
 </div>                        
             
             
