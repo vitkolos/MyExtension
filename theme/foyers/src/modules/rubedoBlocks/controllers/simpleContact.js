@@ -146,9 +146,9 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
                 break;
         }
     }
-    getPublic($scope.contactCtrl.public);
-				console.log("$scope.contactCtrl.public");
-				console.log($scope.contactCtrl.public);
+    getPublic($scope.public);
+				console.log("$scope.public");
+				console.log($scope.public);
     //$scope.inscription={};
     //$scope.inscription.optionsPayantes={};
  

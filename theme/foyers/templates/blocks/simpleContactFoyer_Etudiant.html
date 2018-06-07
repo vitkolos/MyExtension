@@ -15,8 +15,8 @@
                             <!--Type de public -->
                      
               
-                      <p><a class="cursor-as-pointer" ng-click="contactCtrl.public = etudiant; contactCtrl.showInscription =true">- Étudiant </a></p>
-                      <p><a class="cursor-as-pointer" ng-click="contactCtrl.public = jeunePro; contactCtrl.showInscription =true">- Jeune Pro </a></p><!--Attention, ce label dépend du format de type de contenu-->
+                      <p><a class="cursor-as-pointer" ng-click="public='etudiant'; contactCtrl.showInscription =true">- Étudiant </a></p>
+                      <p><a class="cursor-as-pointer" ng-click="public='jeunePro'; contactCtrl.showInscription =true">- Jeune Pro </a></p><!--Attention, ce label dépend du format de type de contenu-->
 
             </div>
             <div ng-if="contactCtrl.showInscription" >
