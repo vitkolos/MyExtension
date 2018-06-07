@@ -129,8 +129,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 payLoad.fields=formData;
 																console.log("payLoad.fields");
 																console.log(payLoad.fields);
-																console.log("createResponse");
-																console.log(createResponse);
                 if (me.imagesForAlbum && me.imagesForAlbum.length>0) {
                     payLoad.fields.images=angular.copy(me.imagesForAlbum);
                 }
@@ -143,6 +141,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 RubedoContentsService.createNewContent(payLoad).then(
                     function(createResponse){
                         if (createResponse.data.success){
+																												console.log("createResponse");
+																												console.log(createResponse);
                             $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success", "Success !"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentCreated", "Content created"));
                             $scope.fieldEntity={
                                 taxonomy:{}
