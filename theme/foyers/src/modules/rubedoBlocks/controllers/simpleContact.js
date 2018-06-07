@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope','$location','RubedoMailService','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService',function($scope,$location,RubedoMailService,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService) {
+angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','$filter','RubedoMailService',function($scope,$location,$filter,RubedoMailService){
     var me = this;
     var config = $scope.blockConfig;
     me.contactData={ };
@@ -12,6 +12,7 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
 				
 				 var themePath='/theme/'+window.rubedoConfig.siteTheme;
 				me.infos_individuel = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+				console.log(me.infos_individuel);
 //    me.couple = themePath+'/templates/blocks/formulaire/couple.html';
 //    me.questions = themePath+'/templates/blocks/formulaire/questions.html';
 //    me.questionDetail = themePath+'/templates/blocks/formulaire/questionDetail.html';
