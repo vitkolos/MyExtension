@@ -1,11 +1,9 @@
 <div ng-controller="ContactBlockController as contactCtrl" class="container" ng-init="
       contactCtrl.contactData.subject='Nouvelle réservation';
-      contactCtrl.contactData.nbOfNights = 0;
       contactCtrl.showInscription = false;
       lg = rubedo.current.page.locale;
       moment.locale(rubedo.current.page.locale);
-      contactCtrl.contactData.template='/theme/cte/templates/mails/reservationEDM.html';
-      contactCtrl.param.joursCumul=[0,0,31,59,90,120,151,181,212,243,273,304,334,365];">
+      contactCtrl.contactData.template='/theme/foyers/templates/mails/reservationEDM.html';">
 
         <ng-form name="inscription_form" role="form" ng-submit="contactCtrl.submit()">
         
