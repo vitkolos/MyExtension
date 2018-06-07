@@ -18,7 +18,6 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
 				me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html';
 				me.photo = themePath+'/templates/blocks/formulaire/photo.html';
 				me.lettre_motivation = themePath+'/templates/blocks/formulaire/lettre_motivation.html';
-				$scope.contactCtrl.etudiant=true;
 				
 				var options = {
             siteId: $scope.rubedo.current.site.id,
@@ -146,9 +145,9 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
                 break;
         }
     }
-    getPublic($scope.contactCtrl.etudiant);
-				console.log("$scope.contactCtrl.etudiant");
-				console.log($scope.contactCtrl.etudiant);
+    getPublic($scope.etudiant);
+				console.log("$scope.etudiant");
+				console.log($scope.etudiant);
     //$scope.inscription={};
     //$scope.inscription.optionsPayantes={};
  
