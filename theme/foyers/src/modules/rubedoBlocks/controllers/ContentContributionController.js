@@ -123,8 +123,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                     typeId:me.contentType.id,
                     taxonomy:formData.taxonomy
                 };
-																console.log("payLoad");
-																console.log(payLoad);
                 delete (formData.taxonomy);
                 payLoad.fields=formData;
 																console.log("payLoad.fields");
@@ -134,14 +132,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 }
                 if (me.embeddedImages && me.embeddedImages.length>0) {
                     payLoad.fields.embeddedImages=angular.copy(me.embeddedImages);
-                }
-                
+                }   
                 payLoad.taxonomy.navigation = [];
                 payLoad.taxonomy.navigation[0] = config.listPageId ? config.listPageId : $scope.rubedo.current.page.id;
                 RubedoContentsService.createNewContent(payLoad).then(
                     function(createResponse){
-																								console.log("createResponse");
-																												console.log(createResponse);
                         if (createResponse.data.success){
                             $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success", "Success !"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentCreated", "Content created"));
                             $scope.fieldEntity={
