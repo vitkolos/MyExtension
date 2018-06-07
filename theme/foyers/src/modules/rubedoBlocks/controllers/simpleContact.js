@@ -122,13 +122,13 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
         $scope.inscription.freres_soeurs.splice(index, 1);
     };
 				
-				$scope.inscription.public_type=angular.copy($scope.public);
+				$scope.inscription.public_type=angular.copy($scope.contactCtrl.etudiant);
 				console.log("$scope.inscription.public_type");
 				console.log($scope.inscription.public_type);
     //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("$scope.public", function(newValue, oldValue) {
         $scope.inscription.public_type=newValue;
-								getPublic($scope.public);
+								getPublic($scope.contactCtrl.etudiant);
 								console.log("new value");
 									console.log($scope.inscription.public_type);
     });
@@ -136,19 +136,19 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
     
     getPublic = function(public) {
         switch(public) {
-            case 'etudiant':
+            case 'true':
                 $scope.etudiant = true;
 																$scope.jeunePro = false;
                 break;
-            case 'jeunePro':
+            case 'false':
                 $scope.etudiant = false;
 																$scope.jeunePro = true;
                 break;
         }
     }
-    getPublic($scope.public);
-				console.log("$scope.public");
-				console.log($scope.public);
+    getPublic($scope.contactCtrl.etudiant);
+				console.log("$scope.contactCtrl.etudiant");
+				console.log($scope.contactCtrl.etudiant);
     //$scope.inscription={};
     //$scope.inscription.optionsPayantes={};
  
