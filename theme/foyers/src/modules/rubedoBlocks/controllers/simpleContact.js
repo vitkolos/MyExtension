@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
 				me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html';
 				me.photo = themePath+'/templates/blocks/formulaire/photo.html';
 				me.lettre_motivation = themePath+'/templates/blocks/formulaire/lettre_motivation.html';
-				$scope.public="etudiant";
+				//$scope.public="etudiant";
 				
 				var options = {
             siteId: $scope.rubedo.current.site.id,
@@ -122,13 +122,13 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
         $scope.inscription.freres_soeurs.splice(index, 1);
     };
 				
-				$scope.inscription.public_type=angular.copy(me.public);
+				$scope.inscription.public_type=angular.copy($scope.public);
 				console.log("$scope.inscription.public_type");
 				console.log($scope.inscription.public_type);
     //surveiller si le type de formulaire est changé pour changer le template
-    $scope.$watch("contactCtrl.public", function(newValue, oldValue) {
+    $scope.$watch("$scope.public", function(newValue, oldValue) {
         $scope.inscription.public_type=newValue;
-								getPublic($scope.contactCtrl.public);
+								getPublic($scope.public);
 								console.log("new value");
 									console.log($scope.inscription.public_type);
     });
