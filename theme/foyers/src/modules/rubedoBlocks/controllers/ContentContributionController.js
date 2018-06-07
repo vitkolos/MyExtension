@@ -123,8 +123,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                     typeId:me.contentType.id,
                     taxonomy:formData.taxonomy
                 };
+																console.log("payLoad");
+																console.log(payLoad);
                 delete (formData.taxonomy);
                 payLoad.fields=formData;
+																console.log("payLoad.fields");
+																console.log(payLoad.fields);
+																console.log("createResponse");
+																console.log(createResponse);
                 if (me.imagesForAlbum && me.imagesForAlbum.length>0) {
                     payLoad.fields.images=angular.copy(me.imagesForAlbum);
                 }
