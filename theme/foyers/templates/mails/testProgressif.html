@@ -3,7 +3,7 @@
       contactCtrl.contactData.nbOfNights = 0;
       lg = rubedo.current.page.locale;
       moment.locale(rubedo.current.page.locale);
-      contactCtrl.contactData.template='/theme/cte/templates/mails/reservationEDM.html';
+      contactCtrl.contactData.template='/theme/foyers/templates/mails/reservationEDM.html';
       contactCtrl.param.joursCumul=[0,0,31,59,90,120,151,181,212,243,273,304,334,365];">
 
         <form name="edmForm" role="form" ng-submit="contactCtrl.submit()">
@@ -20,7 +20,7 @@
                 <input type="text"  ng-model="contactCtrl.contactData.prenom" class="form-control"  required>
             </div>
         </div><br/>
-        <div class="row">
+        <!--<div class="row">
             <div class="col-sm-6">
                 <label >Email*</label>
                 <input type="text" ng-model="contactCtrl.contactData.email" class="form-control" required>
@@ -159,7 +159,7 @@
             </div>
                 
 
-        </div><br/>
+        </div><br/>-->
         
        <!-- <div class="row">
             <div class="sm-12">
