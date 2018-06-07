@@ -6,11 +6,11 @@
         <div class="col-sm-4"><label for="metier" class="label_style">{{rubedo.translate("Block.Inscription.MetierEnvisage")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="metier" ng-model="contactCtrl.contactData.metier" name="metier" required></div>
     </div>
-    <div class="row" ng-if="jeunePro && !personneConnue">
+    <div class="row" ng-if="!etudiant && !personneConnue">
         <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}*</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="profession" ng-model="contactCtrl.contactData.profession" name="profession" required></div>
     </div>
-    <div class="row" ng-if="jeunePro && !personneConnue">
+    <div class="row" ng-if="!etudiant && !personneConnue">
         <div class="col-sm-4"><label for="contrat" class="label_style">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat")}}*</label></div>
         <div class="col-sm-8">
             <input type="radio"  name="contrat" id="cdi" value="cdi" ng-model="contactCtrl.contactData.contrat.contrat" ng-click="formCtrl.stageouCDD = false;">
@@ -29,7 +29,7 @@
                         <label for="demandeur" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Demandeur.Emploi")}}</label>              
         </div>
     </div>
-    <div class="row" ng-if="jeunePro && formCtrl.stageouCDD && !personneConnue">
+    <div class="row" ng-if="!etudiant && formCtrl.stageouCDD && !personneConnue">
         <div class="col-sm-4"><label for="dateDebutContrat" class="label_style">{{rubedo.translate("Block.Inscription.Date.Debut.Contrat")}} *</label></div>
         <div class="col-sm-8">
             <div class="dropdown">
@@ -44,7 +44,7 @@
         </div>
     </div>
     
-    <div class="row" ng-if="jeunePro && formCtrl.stageouCDD && !personneConnue">
+    <div class="row" ng-if="!etudiant && formCtrl.stageouCDD && !personneConnue">
         <div class="col-sm-4"><label for="dateFinContrat" class="label_style">{{rubedo.translate("Block.Inscription.Date.Fin.Contrat")}} *</label></div>
         <div class="col-sm-8">
             <div class="dropdown">
@@ -58,19 +58,19 @@
             </div>
         </div>
     </div>
-    <div class="row" ng-if="jeunePro && !personneConnue">
+    <div class="row" ng-if="!etudiant && !personneConnue">
         <div class="col-sm-4"><label for="employeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="employeur" ng-model="contactCtrl.contactData.employeur" name="employeur" required></div>
     </div>
-    <div class="row" ng-if="jeunePro && !personneConnue">
+    <div class="row" ng-if="!etudiant && !personneConnue">
         <div class="col-sm-4"><label for="adresseEmployeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur.Adresse")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" rows="3" id="adresseEmployeur" ng-model="contactCtrl.contactData.adresseEmployeur" name="adresseEmployeur" required></div>
     </div>
-    <div class="row" ng-if="jeunePro && !personneConnue">
+    <div class="row" ng-if="!etudiant && !personneConnue">
         <div class="col-sm-4"><label for="telephoneEmployeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur.Telephone")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" rows="3" id="telephoneEmployeur" ng-model="contactCtrl.contactData.telephoneEmployeur" name="telephoneEmployeur" required></div>
     </div>
-    <div class="row" ng-if="jeunePro && !personneConnue">
+    <div class="row" ng-if="!etudiant && !personneConnue">
         <div class="col-sm-4"><label for="salaire" class="label_style">{{rubedo.translate("Block.Inscription.Salaire")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="number" id="salaire" ng-model="contactCtrl.contactData.salaire" name="salaire" required></div>
     </div>
