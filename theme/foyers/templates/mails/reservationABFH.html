@@ -1,0 +1,92 @@
+<!--mail pour la réservation à Abuna Faraj Pilgrim House (Nazareth)-->
+<html><body>
+  <h3>Identification</h3>
+<table width="80%">
+<tr>
+  <td> 
+    Surname : { surname }<br/>
+    Family name : { name }<br/>
+    Email : { email }
+  </td>
+  <td> 
+    Phone : { phone }<br/>
+    City : { city }<br/>
+    Country : { country }
+  </td>
+ </tr>
+</table>
+<h3>Your demand</h3>
+<table width="80%">
+  <tr >
+    <td>
+      Start date: { startDate }<br/> 
+      Nights: { nbOfNights }<br/>
+      End date: { endDate }
+    </td>
+  </tr>
+  </table>
+<table style="width:80%">
+  <thead>
+          <tr>
+            <td style="border-bottom:1px solid grey"><b>Stay in:</b></td>
+            <td style="border-bottom:1px solid grey"><b>Price for 1 night</b></td>
+            <td style="border-bottom:1px solid grey"><b>Quantity of adults</b></td>
+            <td style="border-bottom:1px solid grey"><b>Quantity of children (4-6)</b></td>
+            <td style="border-bottom:1px solid grey"><b>Quantity of children (7-12)</b></td>
+            <td style="border-bottom:1px solid grey"><b>Price (ILS)</b></td>
+          </tr>
+      </thead>
+      <tr style="border-bottom:1px solid grey">
+          <td style="border-bottom:1px solid grey">Single room</td>
+          <td style="border-bottom:1px solid grey">230 ILS /pers</td>
+          <td style="border-bottom:1px solid grey"> { adults1 }</td>
+          <td style="border-bottom:1px solid grey"></td>
+          <td style="border-bottom:1px solid grey"></td>
+          <td style="border-bottom:1px solid grey">{ price1 }</td>
+      </tr>
+      <tr style="border-bottom:1px solid grey" >
+          <td style="border-bottom:1px solid grey">Double room (couple)</td>
+          <td style="border-bottom:1px solid grey">140 ILS /pers</td>
+          <td style="border-bottom:1px solid grey">{ adults2 }</td>
+          <td style="border-bottom:1px solid grey">{ children2_50 }</td>
+          <td style="border-bottom:1px solid grey">{ children2_25 }</td>
+          <td style="border-bottom:1px solid grey">{ price2 }</td>
+      </tr>
+      <tr style="border-bottom:1px solid grey" >
+          <td style="border-bottom:1px solid grey">Double room (twin bed)</td>
+          <td style="border-bottom:1px solid grey">140 ILS /pers</td>
+          <td style="border-bottom:1px solid grey">{ adults21 }</td>
+          <td style="border-bottom:1px solid grey">{ children21_50 }</td>
+          <td style="border-bottom:1px solid grey">{ children21_25 }</td>
+          <td style="border-bottom:1px solid grey">{ price21 }</td>
+      </tr>
+      <tr style="border-bottom:1px solid grey">
+          <td style="border-bottom:1px solid grey">Triple or quadruple room</td>
+          <td style="border-bottom:1px solid grey">120 ILS /pers</td>
+          <td style="border-bottom:1px solid grey">{ adults3 }</td>
+          <td style="border-bottom:1px solid grey">{ children3_50 }</td>
+          <td style="border-bottom:1px solid grey">{ children3_25 }</td>
+          <td style="border-bottom:1px solid grey">{ price3 }</td>
+      </tr>
+      <tr style="border-bottom:1px solid grey">
+          <td style="border-bottom:1px solid grey">Meals</td>
+          <td style="border-bottom:1px solid grey">65 ILS /pers</td>
+          <td style="border-bottom:1px solid grey">{ adults_meal }</td>
+          <td style="border-bottom:1px solid grey">{ children_meal_50 }</td>
+          <td style="border-bottom:1px solid grey">{ children_meal_25 }</td>
+          <td style="border-bottom:1px solid grey">{ price_meals }</td>
+      </tr>
+  
+  </table>
+  <p>Comments : <br/>
+  { remarks }</p>
+  <p><b>Total price:</b> { total } ILS<br></p>
+  <p><em>
+    Free for a children under 3 years old<br/>
+        Free meal for a  children under 3 years old<br/>
+        50% for a children 4-6 years old<br/>
+        50% for the meal for a children 4-6 years old<br/>
+        25% for a children 7-12 years old<br/>
+        25% for the meal for a children 7-12 years old</em></p>
+
+</body></html>

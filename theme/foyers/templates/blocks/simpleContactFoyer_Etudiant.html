@@ -54,7 +54,7 @@
                                 <h2 ng-if="etudiant" class="capital txt-red" ng-class="{'displayed' : contactCtrl.currentStage==3}" ng-click="contactCtrl.setCurrentStage(2,infos_travail.$valid)">{{rubedo.translate("Block.Inscription.Infos.Etudes", "Études")}}
                                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="contactCtrl.currentStage>3"></span>
                                 </h2>
-                                <h2 ng-if="jeunePro" class="capital txt-red" ng-class="{'displayed' : contactCtrl.currentStage==3}" ng-click="contactCtrl.setCurrentStage(2,infos_travail.$valid)">{{rubedo.translate("Block.Inscription.Infos.Travail","Situation professionnelle")}}
+                                <h2 ng-if="!etudiant" class="capital txt-red" ng-class="{'displayed' : contactCtrl.currentStage==3}" ng-click="contactCtrl.setCurrentStage(2,infos_travail.$valid)">{{rubedo.translate("Block.Inscription.Infos.Travail","Situation professionnelle")}}
                                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="contactCtrl.currentStage>3"></span>
                                 </h2>
                                 

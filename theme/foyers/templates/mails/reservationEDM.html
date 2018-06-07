@@ -1,0 +1,70 @@
+<!--mail pour la réservation à l'Étoile de la Mer-->
+<html><body>
+  <h2>Demande de réservation</h2><br/>
+  <h3>1) Identification</h3>
+<!--<table width="80%">
+<tr>
+  <td> 
+    Nom : { nom }<br/>
+    Prénom : { prenom }<br/>
+    E-mail : { email }<br/>
+    Téléphone : { telephone }
+  </td>
+  <td> 
+    Adresse : { adresse }<br/>
+    Code Postal : { codePostal }<br/>
+    Ville : { ville }<br/>
+    Pays : { country }
+  </td>
+ </tr>
+</table>-->
+<br/>
+
+
+<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Nom</i></td><td width=67%>{ nom }</td></tr>
+    <!--else if($nbInscrits ==2)
+        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_personnes_inscrites"] . "</i></td><td width=67%>" .  $nomClient . "</td></tr>";
+    if(isset($inscription['enfants_org'])){
+        $nomsEnfants = "";
+        foreach ($inscription['enfants_org'] as $index => $enfant){
+            if($index>0) $nomsEnfants .= ", ";
+            $nomsEnfants .= $enfant['prenom'];
+        }
+        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_enfants"] . "</i></td><td width=67%>" .  $nomsEnfants . "</td></tr>";
+    }
+    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_proposition"] . "</i></td><td width=67%>" .  $inscription['propositionTitre'] . "</td></tr>";
+    if(isset($inscription['propositionDate']) && $inscription['propositionDate'] != "") $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_date"] . "</i></td><td width=67%>" .  $inscription['propositionDate'] . "</td></tr>";
+    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_lieu"] . "</i></td><td width=67%>" .  $inscription['propositionLieu'] . "</td></tr>";
+    $url="http://". $_SERVER['HTTP_HOST'] . $inscription['propositionUrl'];
+    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_page_web"] . "</i></td><td width=67%><a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a></td></tr>";
+    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_contact"] . "</i></td><td width=67%>" . $contactSecretariat  ."</td></tr>";
+    $messageClient .= "</table>";
+    //OPTIONS ET QUESTIONS DIVERSES
+    $messageClient .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
+    if(isset($inscription['logement'])) {
+       $messageClient .= $this->questionToRecap($inscription['logement_org']);
+    }
+    if(isset($inscription['transport'])) {
+       $messageClient .= $this->questionToRecap($inscription['transport_org']);
+    }
+    if(isset($inscription['complementaire'])) {
+       $messageClient .= $this->questionToRecap($inscription['complementaire_org']);
+    }        
+    if(isset($inscription['jai_connu'])){
+       $messageClient .= $this->questionToRecap($inscription['jai_connu_org']);
+    }
+    if(isset($inscription['situation']) && !isset($inscription['autreSituation'])) {
+        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['situation'] . "</td></tr>";
+    }
+    if(isset($inscription['autreSituation'])){
+       $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['autreSituation'] . "</td></tr>";
+    }
+    if(isset($inscription['remarques'])) {
+       $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_form_remarques"] . "</i></td><td width=67%>" .  $inscription['remarques'] . "</td></tr>";
+        
+    }-->
+    
+</table><br/><br/>
+
+</body></html>
