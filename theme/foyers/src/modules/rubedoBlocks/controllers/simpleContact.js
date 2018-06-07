@@ -63,148 +63,150 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
             }
         );
     };
-				
-				
-				
-				
-				
-//				//intégrer des questions supplémentaires
-//				me.questionsComplementaires = themePath+'/templates/blocks/formulaire/questionsComplementairesFoyers.html';
-//				me.questions=[];
-//				    // récupérer les questions complémentaires
-//    me.getQuestions = function() {
-//        if(typeof $scope.contentDetailCtrl.content.fields.questions === 'string' || $scope.contentDetailCtrl.content.fields.questions instanceof String) {
-//          RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.questions, options).then(function(response){
-//                if (response.data.success){
-//                    var questionReponse= response.data.content;
-//                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":0}); me.isComplement = true;
-//                }
-//            });
+//				
+//				
+//				
+//				
+//				
+////				//intégrer des questions supplémentaires
+////				me.questionsComplementaires = themePath+'/templates/blocks/formulaire/questionsComplementairesFoyers.html';
+////				me.questions=[];
+////				    // récupérer les questions complémentaires
+////    me.getQuestions = function() {
+////        if(typeof $scope.contentDetailCtrl.content.fields.questions === 'string' || $scope.contentDetailCtrl.content.fields.questions instanceof String) {
+////          RubedoContentsService.getContentById($scope.contentDetailCtrl.content.fields.questions, options).then(function(response){
+////                if (response.data.success){
+////                    var questionReponse= response.data.content;
+////                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":0}); me.isComplement = true;
+////                }
+////            });
+////        }
+////      else {
+////        angular.forEach($scope.contentDetailCtrl.content.fields.questions, function(questionId, questionOrder){
+////            RubedoContentsService.getContentById(questionId, options).then(function(response){
+////                if (response.data.success){
+////                    var questionReponse= response.data.content;
+////                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isComplement = true;
+////                }
+////            });
+////            
+////        });
+////      }
+////      
+////    };
+////				// s'il y a des questions complémentaires, les récupérer
+////    if ($scope.contentDetailCtrl.content.fields.questions && ($scope.contentDetailCtrl.content.fields.questions).length>0) {
+////        me.getQuestions();
+////    }
+//				
+//				$scope.inscription={};
+//				me.parentsEnsemble=false;
+//				me.parentsSepares=false;
+//				me.examensPrealables=false;
+//				me.stageouCDD=false;
+//				me.pbsMedicaux=false;
+//				me.suiviMedical=false;
+//				
+//				    // ajouter freres et soeurs
+//
+//    me.addFrereSoeur = function(frere_soeur){
+//
+//        if (!$scope.inscription.freres_soeurs) {
+//            $scope.inscription.freres_soeurs=[];
 //        }
-//      else {
-//        angular.forEach($scope.contentDetailCtrl.content.fields.questions, function(questionId, questionOrder){
-//            RubedoContentsService.getContentById(questionId, options).then(function(response){
-//                if (response.data.success){
-//                    var questionReponse= response.data.content;
-//                    me.questions.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder}); me.isComplement = true;
-//                }
-//            });
-//            
-//        });
-//      }
-//      
-//    };
-//				// s'il y a des questions complémentaires, les récupérer
-//    if ($scope.contentDetailCtrl.content.fields.questions && ($scope.contentDetailCtrl.content.fields.questions).length>0) {
-//        me.getQuestions();
+//        $scope.inscription.freres_soeurs.push(angular.copy(frere_soeur));
 //    }
-				
-				$scope.inscription={};
-				me.parentsEnsemble=false;
-				me.parentsSepares=false;
-				me.examensPrealables=false;
-				me.stageouCDD=false;
-				me.pbsMedicaux=false;
-				me.suiviMedical=false;
-				
-				    // ajouter freres et soeurs
-
-    me.addFrereSoeur = function(frere_soeur){
-
-        if (!$scope.inscription.freres_soeurs) {
-            $scope.inscription.freres_soeurs=[];
-        }
-        $scope.inscription.freres_soeurs.push(angular.copy(frere_soeur));
-    }
-    // supprimer frere ou soeur
-    me.removeFrereSoeur = function(index){
-        $scope.inscription.freres_soeurs.splice(index, 1);
-    };
-				
-				$scope.inscription.public_type=angular.copy($scope.etudiant);
-				console.log("$scope.inscription.public_type");
-				console.log($scope.inscription.public_type);
-    //surveiller si le type de formulaire est changé pour changer le template
-    $scope.$watch("$scope.etudiant", function(newValue, oldValue) {
-        $scope.inscription.public_type=newValue;
-								getPublic($scope.etudiant);
-								console.log("new value");
-									console.log($scope.inscription.public_type);
-    });
-
-    
-    getPublic = function(public) {
-        switch(public) {
-            case 'true':
-                $scope.etudiant = true;
-																$scope.jeunePro = false;
-                break;
-            case 'false':
-                $scope.etudiant = false;
-																$scope.jeunePro = true;
-                break;
-        }
-    }
-    getPublic($scope.etudiant);
-				console.log("$scope.etudiant");
-				console.log($scope.etudiant);
-    //$scope.inscription={};
-    //$scope.inscription.optionsPayantes={};
- 
-   
-    
-    
-    
-    me.currentStage = 1;
- // affichage des sections du formulaire
-    me.toggleStage = function(newStage){
-       angular.element("#inscriptionStage"+me.currentStage).collapse("hide");
-       angular.element("#inscriptionStage"+newStage).collapse("show");
-       me.currentStage = newStage;
-							
-    }
-    
-    me.setCurrentStage = function(step, valide) {
-
-        if (!valide && step==0) {
-            me.toggleStage(1);
-        }
-        if (valide && (me.currentStage >= step)) {
-            
-            if (step==0) {me.toggleStage(1);}
-            else if (step==1) {
-																if( $scope.inscription.email != $scope.inscription.email_verif){
-                    $scope.mailError = true;me.currentStage=1;
-                } else {
-																				$scope.mailError = false;
-																				me.toggleStage(2);
-																} 
-																//me.getContentById(me.propositionId);
-            }
-            else if (step==2) {														
-																if( $scope.inscription.emailPere != $scope.inscription.emailPere_verif){
-                    $scope.mailError2 = true;me.currentStage=2;
-                }
-                else if ($scope.inscription.emailMere != $scope.inscription.emailMere_verif) {
-                    $scope.mailError2 = false;
-																				$scope.mailError3 = true;
-                    me.currentStage=2;
-                }
-																else {
-																				$scope.mailError2 = false;
-                    $scope.mailError2 = false;
-																				me.toggleStage(3);
-																}
-            }
-            else if (step==3) {
-                me.toggleStage(4);
-            }
-												else if (step==4) {
-                me.toggleStage(5);
-            }
-												else if (step==5) {
-                me.toggleStage(6);
-            }
+//    // supprimer frere ou soeur
+//    me.removeFrereSoeur = function(index){
+//        $scope.inscription.freres_soeurs.splice(index, 1);
+//    };
+//				
+//				$scope.inscription.public_type=angular.copy($scope.etudiant);
+//				console.log("$scope.inscription.public_type");
+//				console.log($scope.inscription.public_type);
+//    //surveiller si le type de formulaire est changé pour changer le template
+//    $scope.$watch("$scope.etudiant", function(newValue, oldValue) {
+//        $scope.inscription.public_type=newValue;
+//								getPublic($scope.etudiant);
+//								console.log("new value");
+//									console.log($scope.inscription.public_type);
+//    });
+//
+//    
+//    getPublic = function(public) {
+//        switch(public) {
+//            case 'true':
+//                $scope.etudiant = true;
+//																$scope.jeunePro = false;
+//                break;
+//            case 'false':
+//                $scope.etudiant = false;
+//																$scope.jeunePro = true;
+//                break;
+//        }
+//    }
+//    getPublic($scope.etudiant);
+//				console.log("$scope.etudiant");
+//				console.log($scope.etudiant);
+//    //$scope.inscription={};
+//    //$scope.inscription.optionsPayantes={};
+// 
+//   
+//    
+//    
+//    
+//    me.currentStage = 1;
+// // affichage des sections du formulaire
+//    me.toggleStage = function(newStage){
+//       angular.element("#inscriptionStage"+me.currentStage).collapse("hide");
+//       angular.element("#inscriptionStage"+newStage).collapse("show");
+//       me.currentStage = newStage;
+//							
+//    }
+//    
+//    me.setCurrentStage = function(step, valide) {
+//
+//        if (!valide && step==0) {
+//            me.toggleStage(1);
+//        }
+//        if (valide && (me.currentStage >= step)) {
+//            
+//            if (step==0) {me.toggleStage(1);}
+//            else if (step==1) {
+//																if( $scope.inscription.email != $scope.inscription.email_verif){
+//                    $scope.mailError = true;me.currentStage=1;
+//                } else {
+//																				$scope.mailError = false;
+//																				me.toggleStage(2);
+//																} 
+//																//me.getContentById(me.propositionId);
+//            }
+//            else if (step==2) {														
+//																if( $scope.inscription.emailPere != $scope.inscription.emailPere_verif){
+//                    $scope.mailError2 = true;me.currentStage=2;
+//                }
+//                else if ($scope.inscription.emailMere != $scope.inscription.emailMere_verif) {
+//                    $scope.mailError2 = false;
+//																				$scope.mailError3 = true;
+//                    me.currentStage=2;
+//                }
+//																else {
+//																				$scope.mailError2 = false;
+//                    $scope.mailError2 = false;
+//																				me.toggleStage(3);
+//																}
+//            }
+//            else if (step==3) {
+//                me.toggleStage(4);
+//            }
+//												else if (step==4) {
+//                me.toggleStage(5);
+//            }
+//												else if (step==5) {
+//                me.toggleStage(6);
+//            }
+//        }
+//				}
 //												else if (step==6) {
 //
 //												// validations préliminaires
@@ -336,8 +338,7 @@ angular.module("rubedoBlocks").lazy.controller("ContactBlockController",['$scope
 //            })
 //            }
 												
-        }
-				}
+
 
 
 

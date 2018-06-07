@@ -1,0 +1,206 @@
+<div ng-controller="ContactBlockController as contactCtrl" class="container" ng-init="
+      contactCtrl.contactData.subject='Nouvelle réservation';
+      contactCtrl.contactData.nbOfNights = 0;
+      lg = rubedo.current.page.locale;
+      moment.locale(rubedo.current.page.locale);
+      contactCtrl.contactData.template='/theme/cte/templates/mails/reservationEDM.html';
+      contactCtrl.param.joursCumul=[0,0,31,59,90,120,151,181,212,243,273,304,334,365];">
+
+        <form name="edmForm" role="form" ng-submit="contactCtrl.submit()">
+        <div class="row">
+            <h3>Informations personnelles</h3>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="{{'name'+block.id}}" >{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name*")}}</label>
+                <input type="text" ng-model="contactCtrl.contactData.nom" class="form-control" id="{{'name'+block.id}}" required>
+            </div>
+            <div class="col-sm-6">
+                <label >Prénom*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.prenom" class="form-control"  required>
+            </div>
+        </div><br/>
+        <div class="row">
+            <div class="col-sm-6">
+                <label >Email*</label>
+                <input type="text" ng-model="contactCtrl.contactData.email" class="form-control" required>
+            </div>
+            <div class="col-sm-6">
+                <label>Téléphone*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.telephone" class="form-control"  required>
+            </div>
+            
+        </div><br/>
+        <div class="row">
+            <div class="col-sm-6">
+                <label >Adresse*</label>
+                <textarea class="form-control" ng-model="contactCtrl.contactData.adresse" rows="2"></textarea>
+            </div>
+            <div class="col-sm-6">
+                <label>Code postal*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.codePostal" class="form-control"  required>
+            </div>
+            
+        </div><br/>
+        <div class="row">
+            <div class="col-sm-6">
+                <label >Ville*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.ville" class="form-control"  required>
+            </div>
+            <div class="col-sm-6">
+                <label>Pays*</label>
+                <input type="text"  ng-model="contactCtrl.contactData.country" class="form-control"  required>
+            </div>
+            
+        </div><br/><br/>
+        <div class="row">
+            <h3>Demande de réservation</h3>
+        </div>
+        <div class="row">
+          <div class="col-sm-5">
+            <label for="{{'startDate'+block.id}}" class="left" style="width:100%">{{rubedo.translate("Arrivee")}}*</label>
+            <div class="dropdown">
+              <a showtab class="dropdown-toggle" id="{{'startDate'+block.id}}" role="button" data-toggle="dropdown" data-target="#" href="#">
+                <div class="input-group">
+                  <input  readonly id="startDate"
+                          ng-model="contactCtrl.contactData.startDate"
+                          type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <datetimepicker data-ng-model="contactCtrl.contactData.startDate"
+                                data-datetimepicker-config="{dropdownSelector: '#startDate'+block.id, startView: 'year', minView:'day'}"
+                                data-on-set-time="contactCtrl.contactData.startDate = (contactCtrl.contactData.startDate |date:'dd/MM/yyyy');
+                                                  d1=contactCtrl.contactData.startDate.split('/');d2=contactCtrl.contactData.endDate.split('/');
+                                                  m1=(d1[1]|number:0);a1=(d1[2]/4|number:0);
+                                                  m2=(d2[1]|number:0);a2=(d2[2]/4|number:0);
+                                                  z1 = (m1>2 && (d1[2] - a1 * 4)==0) ? 1 : 0;
+                                                  z2 = (m2>2 && (d2[2] - a2 * 4)==0) ? 1 : 0;
+                                                  bis = (d1[2] == d2[2]) ? 0 : 365+z1;
+                                                  c1=(m1>1) ? contactCtrl.param.joursCumul[m1]+z1+(d1[0]*1) : (d1[0]*1);
+                                                  c2=(m2>1) ? contactCtrl.param.joursCumul[m2]+z2+(d2[0]*1)+bis : (d2[0]*1)+bis;
+                                                  contactCtrl.contactData.nbOfNights = c2-c1;"
+                                ng-change=""
+                />
+              </ul>
+            </div>
+          </div>
+          <div class="col-sm-2"></div>
+          <div class="col-sm-5">
+            <label for="{{'endDate'+block.id}}" class="left" style="width:100%">{{rubedo.translate("Depart")}}*</label>
+            <div class="dropdown">
+              <a showtab class="dropdown-toggle" id="{{'endDate'+block.id}}" role="button" data-toggle="dropdown" data-target="#" href="#">
+                <div class="input-group">
+                  <input readonly id="endDate"
+                    ng-model="contactCtrl.contactData.endDate"
+                    type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                </div>
+              </a>
+              <ul class="dropdown-menu" role="menu">
+                <datetimepicker data-ng-model="contactCtrl.contactData.endDate"
+                                data-datetimepicker-config="{dropdownSelector: '#endDate'+block.id, startView: 'year', minView:'day'}"
+                                data-on-set-time="contactCtrl.contactData.endDate = (contactCtrl.contactData.endDate |date:'dd/MM/yyyy');
+                                                  moment.locale('fr');
+                                                  d1=contactCtrl.contactData.startDate.split('/');d2=contactCtrl.contactData.endDate.split('/');
+                                                  m1=(d1[1]|number:0);a1=(d1[2]/4|number:0);
+                                                  m2=(d2[1]|number:0);a2=(d2[2]/4|number:0);
+                                                  z1 = (m1>2 && (d1[2] - a1 * 4)==0) ? 1 : 0;
+                                                  z2 = (m2>2 && (d2[2] - a2 * 4)==0) ? 1 : 0;
+                                                  bis = (d1[2] == d2[2]) ? 0 : 365+z1;
+                                                  c1=(m1>1) ? contactCtrl.param.joursCumul[m1]+z1+(d1[0]*1) : (d1[0]*1);
+                                                  c2=(m2>1) ? contactCtrl.param.joursCumul[m2]+z2+(d2[0]*1)+bis : (d2[0]*1)+bis;
+                                                  contactCtrl.contactData.nbOfNights = c2-c1;"
+                                ng-change=""
+                />
+              </ul>
+            </div>
+          </div>
+      </div>
+    
+    <br/><br/>
+        
+        <div class="row">
+            <div class="col-sm-4">
+                <label>Type d'hébergement*</label>
+            </div>
+            <div class="col-sm-8">
+                <div class="col-xs-12">
+                    <input type="radio" required name="hebergement" id="demi_pension"
+                           ng-value=' "Demi-pension" ' ng-model="contactCtrl.contactData.hebergement">
+                    <label for="demi_pension">Demi-pension</label>
+                </div>
+                <div class="col-xs-12">
+                    <input type="radio" required name="hebergement" id="pension_complete"
+                           ng-value=' "Pension complète" ' ng-model="contactCtrl.contactData.hebergement">
+                    <label for="pension_complete">Pension complète</label>
+                </div>
+            </div>
+        </div><br/><br/>
+        
+        
+        
+        
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Pour un groupe d'adultes (nombre envisagé)</label>
+                <input type="number"  ng-model="contactCtrl.contactData.nombreAdultes" class="form-control"  >
+            </div>
+            <div class="col-sm-6">
+                <label>Pour un groupe de jeunes (nombre envisagé)</label>
+                <input type="number"  ng-model="contactCtrl.contactData.nombreJeunes" class="form-control"  >
+            </div>
+        </div><br/>
+        <div class="row">
+            <div class="col-sm-12">
+                <label class="text-center">Préciser, en quelques mots, l'objet de votre demande *</label><br/>
+                <label class="text-center" style="font-style:italic;">Merci de préciser le type de chambre que vous désirez (individuelle, double ou familiale)</label>
+                <textarea class="form-control" ng-model="contactCtrl.contactData.message" rows="2" required></textarea>
+            </div>
+                
+
+        </div><br/>
+        
+       <!-- <div class="row">
+            <div class="sm-12">
+                <div ng-if="contactCtrl.contactError" ng-init="notification = {type:'error',text:contactCtrl.contactError}">
+                        <rubedo-notification></rubedo-notification>
+                    </div>
+                    <button type="submit" class="button rouge">{{rubedo.translate("Blocks.Contact.Input.Submit.Label","Submit")}}</button>
+
+            </div>
+        </div>-->
+        
+        
+        <div class="row">
+            <div class="button" ng-init="confirmMsg=false;" ng-class="{rouge: edmForm.$valid, disabled: edmForm.$invalid, submit: edmForm.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Réserver</div>
+        </div><br/>
+      
+        <div class="row confirm" ng-if="confirmMsg">
+            Réservation envoyée avec succès !<br> Ne considérez votre demande comme confirmée qu'à réception d'un mail de confirmation de notre part.
+        </div>
+        
+            
+        </form>
+                        
+
+    
+    
+    
+    <!--<div ng-if="contactCtrl.showConfirmMessage" ng-init="notification = {type:'success',text:rubedo.translate('Blocks.Auth.Msg.EmailSent','Email has been sent')}">
+        <rubedo-notification></rubedo-notification>
+    </div>-->
+</div>
+
+
+<style>
+  div.confirm {
+    margin-top: 1em;
+    padding: 1em;
+    background-color: #b9d5b9;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0px 3px 4px 0px #a8c1a0;
+    font-family: Montserrat, Arimo, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+</style>
