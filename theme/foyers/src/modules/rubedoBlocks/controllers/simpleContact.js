@@ -4,6 +4,10 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.contactData={ };
     me.contactError=null;
 		
+		
+		 var themePath='/theme/'+window.rubedoConfig.siteTheme;
+   me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+		
       me.contactData.subject='Nouvelle réservation';
 						me.contactData.message=' ';
       //lg = rubedo.current.page.locale;
