@@ -2,14 +2,13 @@
       contactCtrl.contactData.subject='Nouvelle réservation';
       contactCtrl.showInscription = false;
       lg = rubedo.current.page.locale;
-      moment.locale(rubedo.current.page.locale);
-      contactCtrl.contactData.template='/theme/foyers/templates/mails/reservationEDM.html';">
+      moment.locale(rubedo.current.page.locale);">
 
-        <ng-form name="inscription_form" role="form" ng-submit="contactCtrl.submit()">
-        <div class="row">
-        <div class="col-sm-4"><label for="nom" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}*</label></div>
-        <div class="col-sm-8"><input class="form-control" type="text" id="nom" ng-model="contactCtrl.contactData.nom" name="name" required></div>
-    </div>
+        <form name="edmForm" role="form" ng-submit="contactCtrl.submit()">
+            <div class="col-sm-6">
+                <label for="{{'name'+block.id}}" >{{rubedo.translate("Blocks.Contact.Input.Name.Label","Name*")}}</label>
+                <input type="text" ng-model="contactCtrl.contactData.nom" class="form-control" id="{{'name'+block.id}}" required>
+            </div>
 <!--             
             <div>
                     <div style="margin-bottom:12px" >{{rubedo.translate("Block.Inscription.Inscrire.Comme","S'inscrire comme")}}:</div>
@@ -37,7 +36,7 @@
                                             </div>
                                     </ng-form>
                                 </div>-->
-                                -->-->
+
                                 <!--<h2 class="capital txt-red" ng-class="{'displayed' : contactCtrl.currentStage==2}" ng-click="contactCtrl.setCurrentStage(1,infos_familiales.$valid)">{{rubedo.translate("Block.Inscription.InfosFamiliales", "Informations familiales")}}
                                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="contactCtrl.currentStage>2"></span>
                                 </h2>
@@ -131,11 +130,11 @@
                 
 <!--                                </div>-->
                         
-                                    <div class="row text-center">                          
+                                    <!--<div class="row text-center">                          
                                         <div class="row">
-                                                <div class="button" ng-init="confirmMsg=false;" ng-class="{rouge: inscription_form.$valid, disabled: inscription_form.$invalid, submit: inscription_form.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">{{rubedo.translate("Block.Inscription.Valider","Valider")}}</div>
+                                                <div class="button" ng-init="confirmMsg=false;" ng-class="{rouge: inscriptionForm.$valid, disabled: inscriptionForm.$invalid, submit: inscriptionForm.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">{{rubedo.translate("Block.Inscription.Valider","Valider")}}</div>
                                         </div><br/>
-                                        <p ng-show="inscription_form.$invalid">Tu as oublié de renseigner certains champs obligatoires...</p>
+                                        <p ng-show="inscriptionForm.$invalid">Tu as oublié de renseigner certains champs obligatoires...</p>
                                       
                                         <div class="row confirm" ng-if="confirmMsg">
                                             Réservation envoyée avec succès !<br> Ne considérez votre demande comme confirmée qu'à réception d'un mail de confirmation de notre part.
@@ -149,8 +148,30 @@
                     </div>
                 </div>    -->
                                 
-            </ng-form>
-</div>                        
+<!--            </form>
+</div>-->
+
+
+
+            <div class="row">
+            <div class="button" ng-init="confirmMsg=false;" ng-class="{rouge: edmForm.$valid, disabled: edmForm.$invalid, submit: edmForm.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Réserver</div>
+        </div><br/>
+      
+        <div class="row confirm" ng-if="confirmMsg">
+            Réservation envoyée avec succès !<br> Ne considérez votre demande comme confirmée qu'à réception d'un mail de confirmation de notre part.
+        </div>
+        
+            
+        </form>
+                        
+
+    
+    
+    
+    <!--<div ng-if="contactCtrl.showConfirmMessage" ng-init="notification = {type:'success',text:rubedo.translate('Blocks.Auth.Msg.EmailSent','Email has been sent')}">
+        <rubedo-notification></rubedo-notification>
+    </div>-->
+</div>
             
             
             
