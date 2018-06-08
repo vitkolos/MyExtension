@@ -5,6 +5,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.contactError=null;
 		
       me.contactData.subject='Nouvelle réservation';
+						me.contactData.message=' ';
       //lg = rubedo.current.page.locale;
       //moment.locale(rubedo.current.page.locale);
       me.contactData.template='/theme/foyers/templates/mails/reservationEDM.html';
