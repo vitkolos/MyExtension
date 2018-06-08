@@ -74,6 +74,8 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             
             if (step==0) {me.toggleStage(1);}
             else if (step==1) {
+																concole.log($scope.contactCtrl.contactData.email);
+																concole.log($scope.contactCtrl.contactData.email_verif);
 																if( $scope.contactCtrl.contactData.email != $scope.contactCtrl.contactData.email_verif){
                     $scope.mailError = true;me.currentStage=1;
                 } else {
