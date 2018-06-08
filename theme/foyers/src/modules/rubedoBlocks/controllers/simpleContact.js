@@ -55,4 +55,59 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             }
         );
     };
+				
+				   me.currentStage = 1;
+ // affichage des sections du formulaire
+    me.toggleStage = function(newStage){
+       angular.element("#inscriptionStage"+me.currentStage).collapse("hide");
+       angular.element("#inscriptionStage"+newStage).collapse("show");
+       me.currentStage = newStage;
+							
+    }
+    
+    me.setCurrentStage = function(step, valide) {
+
+        if (!valide && step==0) {
+            me.toggleStage(1);
+        }
+        if (valide && (me.currentStage >= step)) {
+            
+            if (step==0) {me.toggleStage(1);}
+            else if (step==1) {
+																if( $scope.contactCtrl.contactData.email != $scope.contactCtrl.contactData.email_verif){
+                    $scope.mailError = true;me.currentStage=1;
+                } else {
+																				$scope.mailError = false;
+																				me.toggleStage(2);
+																} 
+																//me.getContentById(me.propositionId);
+            }
+            else if (step==2) {														
+																if( $scope.contactCtrl.contactData.contactData.emailPere != $scope.contactCtrl.contactData.emailPere_verif){
+                    $scope.mailError2 = true;me.currentStage=2;
+                }
+                else if ($scope.contactCtrl.contactData.emailMere != $scope.contactCtrl.contactData.emailMere_verif) {
+                    $scope.mailError2 = false;
+																				$scope.mailError3 = true;
+                    me.currentStage=2;
+                }
+																else {
+																				$scope.mailError2 = false;
+                    $scope.mailError2 = false;
+																				me.toggleStage(3);
+																}
+            }
+            else if (step==3) {
+                me.toggleStage(4);
+            }
+												else if (step==4) {
+                me.toggleStage(5);
+            }
+												else if (step==5) {
+                me.toggleStage(6);
+            }
+								}
+				}
+				
+				
 }]);
