@@ -3,6 +3,11 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     var config = $scope.blockConfig;
     me.contactData={ };
     me.contactError=null;
+		
+      me.contactData.subject='Nouvelle réservation';
+      lg = rubedo.current.page.locale;
+      moment.locale(rubedo.current.page.locale);
+      me.contactData.template='/theme/foyers/templates/mails/reservationEDM.html';
     $scope.clearORPlaceholderHeight();
     me.dateDiffence = function(start,end){
         console.log($filter('number')((end-start)/(3600*24*1000),0));
