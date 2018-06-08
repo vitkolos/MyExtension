@@ -5,41 +5,41 @@
     <div class="container">
         <!--PERE-->
         <div class="col-md-6 col-sm-12">
-            <h3 class="row">{{rubedo.translate("Block.Inscription.Pere")}}</h3>
+            <h3 class="row">{{rubedo.translate("Block.ContactCtrl.contactData.Pere")}}</h3>
             <div class="row">
-                <div class="col-sm-4"><label for="nomPere" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}*</label></div>
-                <div class="col-sm-8"><input class="form-control" type="text" id="nomPere" ng-model="contactCtrl.contactData.nomPere" name="namePere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !inscription.nomPers2)"></div>
+                <div class="col-sm-4"><label for="nomPere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Nom")}}*</label></div>
+                <div class="col-sm-8"><input class="form-control" type="text" id="nomPere" ng-model="contactCtrl.contactData.namePere" name="namePere" required></div>
             </div>
             <div class="row">
-                <div class="col-sm-4"><label for="prenomPere" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}*</label></div>
-                <div class="col-sm-8"><input class="form-control" type="text" id="prenomPere" ng-model="contactCtrl.contactData.surnamePere" name="surnamePere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !inscription.prenomPers2)"></div>
+                <div class="col-sm-4"><label for="prenomPere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Prenom")}}*</label></div>
+                <div class="col-sm-8"><input class="form-control" type="text" id="prenomPere" ng-model="contactCtrl.contactData.surnamePere" name="surnamePere" required></div>
             </div>
             <div class="row">
-                <div class="col-sm-4"><label for="professionPere" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
+                <div class="col-sm-4"><label for="professionPere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Profession")}}</label></div>
                 <div class="col-sm-8"><input class="form-control" type="text" id="professionPere" ng-model="contactCtrl.contactData.professionPere" name="professionPere"></div>
             </div>
             <div class="row">
-                <div class="col-sm-4"><label for="nationalitePere" class="label_style">{{rubedo.translate("Block.Inscription.Nationalite")}}*</label></div>
+                <div class="col-sm-4"><label for="nationalitePere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Nationalite")}}*</label></div>
                 <div class="col-sm-8"><input class="form-control" type="nationalitePere" id="nationalitePere" name="nationalitePere"  ng-model="contactCtrl.contactData.nationalitePere" required></div>
             </div>  
             <div class="row">
-                <div class="col-sm-4"><label for="emailPere" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
+                <div class="col-sm-4"><label for="emailPere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Email")}}*</label></div>
                 <div class="col-sm-8"><input class="form-control" type="emailPere" id="emailPere" name="emailPere"  ng-model="contactCtrl.contactData.emailPere" placeholder="user@mydomain.com" required></div>
             </div>    
             <div class="row">
-                <div class="col-sm-4"><label for="email_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}*</label></div>
+                <div class="col-sm-4"><label for="emailPere_verif" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Email.Verification")}}*</label></div>
                 <div class="col-sm-8">
-                    <input type="email" class="form-control" id="emailPere_verif" name="emailPere_verif" placeholder="user@mydomain.com" ng-model="contactCtrl.contactData.emailPere_verif" ng-required="inscription.emailPere">
-                    <p ng-if="mailError2" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
+                    <input type="email" class="form-control" id="emailPere_verif" name="emailPere_verif" placeholder="user@mydomain.com" ng-model="contactCtrl.contactData.emailPere_verif" ng-required="contactCtrl.contactData.emailPere">
+                    <p ng-if="mailError2" class="infos_validation txt-red">{{rubedo.translate("Block.ContactCtrl.contactData.Email.Error.Different")}}</p>
                 </div>
             </div>
-            <div class="row" ng-if="!personneConnue">
-                    <div class="col-sm-4"><label for="tel1Pere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}*</label></div>
+            <div class="row">
+                    <div class="col-sm-4"><label for="tel1Pere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Telephone.Portable")}}*</label></div>
                     <div class="col-sm-8"><input class="form-control" type="text" id="tel1Pere" name="tel1Pere" ng-model="contactCtrl.contactData.tel1Pere"  required>
                     </div>
             </div>
-            <div class="row" ng-if="!personneConnue">
-                    <div class="col-sm-4"><label for="tel3Pere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Professionnel")}}</label></div>
+            <div class="row">
+                    <div class="col-sm-4"><label for="tel3Pere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Telephone.Professionnel")}}</label></div>
                     <div class="col-sm-8"><input class="form-control" type="text" id="tel3Pere" name="tel3Pere" ng-model="contactCtrl.contactData.tel3Pere" >
                     </div>
             </div>
@@ -47,25 +47,25 @@
             
             <div>
                 <div class="row">
-                    <div class="col-sm-4"><label for="adressePere" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
+                    <div class="col-sm-4"><label for="adressePere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Adresse")}}*</label></div>
                     <div class="col-sm-8"><textarea class="form-control" rows="3" id="adressePere" ng-model="contactCtrl.contactData.addressPere" name="addressPere" placeholder="" required></textarea></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4"><label for="cpPere" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
+                    <div class="col-sm-4"><label for="cpPere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.CodePostal")}}</label></div>
                     <div class="col-sm-8"><input class="form-control" type="text" id="cpPere" ng-model="contactCtrl.contactData.cpPere" name="cpPere"></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4"><label for="cityPere" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
+                    <div class="col-sm-4"><label for="cityPere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Ville")}}*</label></div>
                     <div class="col-sm-8"><input class="form-control" type="text" id="cityPere" ng-model="contactCtrl.contactData.cityPere" name="cityPere" required></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4"><label for="paysPere" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
+                    <div class="col-sm-4"><label for="paysPere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Pays")}}</label></div>
                     <div class="col-sm-8"><input class="form-control" type="text" id="paysPere" ng-model="contactCtrl.contactData.countryPere" name="countryPere"></div>
                 </div>
                 
                 <!--ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/"-->
-                <div class="row" ng-if="!personneConnue">
-                    <div class="col-sm-4"><label for="tel2Pere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}*</label></div>
+                <div class="row">
+                    <div class="col-sm-4"><label for="tel2Pere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Telephone.Fixe")}}*</label></div>
                     <div class="col-sm-8"><input class="form-control" type="text" id="tel2Pere" name="tel2Pere"  ng-model="contactCtrl.contactData.tel2Pere" required></div>
                 </div>
                 
@@ -74,69 +74,69 @@
      
         <!--MERE-->  
         <div class="col-md-6 col-sm-12">
-                <h3 class="row">{{rubedo.translate("Block.Inscription.Mere")}}</h3>
+                <h3 class="row">{{rubedo.translate("Block.ContactCtrl.contactData.Mere")}}</h3>
                 <div class="row">
-                    <div class="col-sm-4"><label for="nomMere" class="label_style">{{rubedo.translate("Block.Inscription.Nom")}}*</label></div>
-                    <div class="col-sm-8"><input class="form-control" type="text" id="nomMere" ng-model="contactCtrl.contactData.nomMere" name="nameMere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !inscription.nomPers2)"></div>
+                    <div class="col-sm-4"><label for="nomMere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Nom")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="nomMere" ng-model="contactCtrl.contactData.nameMere" name="nameMere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !contactCtrl.contactData.nomPers2)"></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4"><label for="prenomMere" class="label_style">{{rubedo.translate("Block.Inscription.Prenom")}}*</label></div>
-                    <div class="col-sm-8"><input class="form-control" type="text" id="prenomMere" ng-model="contactCtrl.contactData.surnameMere" name="surnameMere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !inscription.prenomPers2)"></div>
+                    <div class="col-sm-4"><label for="prenomMere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Prenom")}}*</label></div>
+                    <div class="col-sm-8"><input class="form-control" type="text" id="prenomMere" ng-model="contactCtrl.contactData.surnameMere" name="surnameMere" ng-required="!allowOneParentOnly || (allowOneParentOnly && !contactCtrl.contactData.prenomPers2)"></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4"><label for="professionMere" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}</label></div>
+                    <div class="col-sm-4"><label for="professionMere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Profession")}}</label></div>
                     <div class="col-sm-8"><input class="form-control" type="text" id="professionMere" ng-model="contactCtrl.contactData.professionMere" name="professionMere"></div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4"><label for="nationaliteMere" class="label_style">{{rubedo.translate("Block.Inscription.Nationalite")}}*</label></div>
+                    <div class="col-sm-4"><label for="nationaliteMere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Nationalite")}}*</label></div>
                     <div class="col-sm-8"><input class="form-control" type="nationaliteMere" id="nationaliteMere" name="nationaliteMere"  ng-model="contactCtrl.contactData.nationaliteMere" required></div>
                 </div> 
                 <div class="row">
-                    <div class="col-sm-4"><label for="emailMere" class="label_style">{{rubedo.translate("Block.Inscription.Email")}}*</label></div>
+                    <div class="col-sm-4"><label for="emailMere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Email")}}*</label></div>
                     <div class="col-sm-8"><input class="form-control" type="emailMere" id="emailMere" name="emailMere"  ng-model="contactCtrl.contactData.emailMere" placeholder="user@mydomain.com" required></div>
                 </div>    
                 <div class="row">
-                    <div class="col-sm-4"><label for="emailMere_verif" class="label_style">{{rubedo.translate("Block.Inscription.Email.Verification")}}*</label></div>
+                    <div class="col-sm-4"><label for="emailMere_verif" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Email.Verification")}}*</label></div>
                     <div class="col-sm-8">
-                        <input class="form-control" type="email" id="emailMere_verif" name="emailMere_verif" placeholder="user@mydomain.com" ng-model="contactCtrl.contactData.emailMere_verif" ng-required="inscription.emailMere">
-                        <p ng-if="mailError3" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
+                        <input class="form-control" type="email" id="emailMere_verif" name="emailMere_verif" placeholder="user@mydomain.com" ng-model="contactCtrl.contactData.emailMere_verif" ng-required="contactCtrl.contactData.emailMere">
+                        <p ng-if="mailError3" class="infos_validation txt-red">{{rubedo.translate("Block.ContactCtrl.contactData.Email.Error.Different")}}</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4"><label for="tel1Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}*</label></div>
+                    <div class="col-sm-4"><label for="tel1Mere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Telephone.Portable")}}*</label></div>
                     <div class="col-sm-8"><input class="form-control" type="text" id="tel1Mere" name="tel1Mere" ng-model="contactCtrl.contactData.tel1Mere"  required>
                     </div>
                 </div>
-                <div class="row" ng-if="!personneConnue">
-                    <div class="col-sm-4"><label for="tel3Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Professionnel")}}</label></div>
+                <div class="row">
+                    <div class="col-sm-4"><label for="tel3Mere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Telephone.Professionnel")}}</label></div>
                     <div class="col-sm-8"><input class="form-control" type="text" id="tel3Mere" name="tel3Mere" ng-model="contactCtrl.contactData.tel3Mere">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4"><label for="sexe" class="label_style">{{rubedo.translate("Block.Inscription.Situation.Familiale")}}*</label></div>
+                    <div class="col-sm-4"><label for="sexe" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Situation.Familiale")}}*</label></div>
                     <div class="col-sm-8 display_left">
-                        <input type="radio"  name="situationFamiliale" id="ensemble" value="ensemble" ng-model="contactCtrl.contactData.situationFamiliale" ng-click="formCtrl.parentsEnsemble = true; formCtrl.parentsSepares = false;" required>
-                                    <label for="ensemble" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
-                        <input type="radio"  name="situationFamiliale" id="separes" value="separes" ng-model="contactCtrl.contactData.situationFamiliale" ng-click="formCtrl.parentsEnsemble = false; formCtrl.parentsSepares = true;">
-                                    <label for="separes" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label>
+                        <input type="radio"  name="situationFamiliale" id="ensemble" value="ensemble" ng-model="contactCtrl.contactData.situationFamiliale" ng-click="contactCtrl.parentsEnsemble = true; contactCtrl.parentsSepares = false;" required>
+                                    <label for="ensemble" class="sexe_label boite">{{rubedo.translate("Block.ContactCtrl.contactData.Oui")}}</label>	
+                        <input type="radio"  name="situationFamiliale" id="separes" value="separes" ng-model="contactCtrl.contactData.situationFamiliale" ng-click="contactCtrl.parentsEnsemble = false; contactCtrl.parentsSepares = true;">
+                                    <label for="separes" class="sexe_label boite">{{rubedo.translate("Block.ContactCtrl.contactData.Non")}}</label>
                     </div>
                 </div>
             
-                <div ng-if="formCtrl.parentsSepares">
+                <div ng-if="contactCtrl.parentsSepares">
                     <div class="row">
-                        <div class="col-sm-4"><label for="adresseMere" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
+                        <div class="col-sm-4"><label for="adresseMere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Adresse")}}*</label></div>
                         <div class="col-sm-8"><textarea class="form-control" rows="3" id="adresseMere" ng-model="contactCtrl.contactData.addressMere" name="addressMere" placeholder="" required></textarea></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4"><label for="cpMere" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}}</label></div>
+                        <div class="col-sm-4"><label for="cpMere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.CodePostal")}}</label></div>
                         <div class="col-sm-8"><input class="form-control" type="text" id="cpMere" ng-model="contactCtrl.contactData.cpMere" name="cpMere"></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4"><label for="cityMere" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}}*</label></div>
+                        <div class="col-sm-4"><label for="cityMere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Ville")}}*</label></div>
                         <div class="col-sm-8"><input class="form-control" type="text" id="cityMere" ng-model="contactCtrl.contactData.cityMere" name="cityMere" required></div>
                     </div>
                     <div class="row">
-                        <div class="col-sm-4"><label for="paysMere" class="label_style">{{rubedo.translate("Block.Inscription.Pays")}}</label></div>
+                        <div class="col-sm-4"><label for="paysMere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Pays")}}</label></div>
                         <div class="col-sm-8"><input class="form-control" type="text" id="paysMere" ng-model="contactCtrl.contactData.countryMere" name="countryMere"></div>
                     </div>
                     <!---->
@@ -144,7 +144,7 @@
                     
                     <!--ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/"-->
                     <div class="row">
-                        <div class="col-sm-4"><label for="tel2Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}*</label></div>
+                        <div class="col-sm-4"><label for="tel2Mere" class="label_style">{{rubedo.translate("Block.ContactCtrl.contactData.Telephone.Fixe")}}*</label></div>
                         <div class="col-sm-8"><input class="form-control" type="text" id="tel2Mere" name="tel2Mere"  ng-model="contactCtrl.contactData.tel2Mere" required></div>
                     </div>
                     
