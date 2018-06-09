@@ -74,8 +74,10 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				/* GESTION DES TEMPLATES POUR LES MAILS */
 				if ($scope.jeunePro) {
 								me.contactData.template='/theme/foyers/templates/mails/reservationJeunePro.html';
+								console.log(me.contactData.template);
 				} else {
 								me.contactData.template='/theme/foyers/templates/mails/reservationEtudiant.html';
+								console.log(me.contactData.template);
 				}
     $scope.clearORPlaceholderHeight();
     me.dateDifference = function(start,end){
