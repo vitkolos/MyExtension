@@ -18,12 +18,18 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.tel2Mere='idem';
 				me.examensTypes=' ';
 				me.dateResultats=' ';
+				me.dateDebutContrat=' ';
+				me.dateFinContrat=' ';
+				me.diplomes=' ';
 				me.nombreFreresSoeurs=' ';
 				me.ageFreresSoeurs=' ';
 				me.examensTypes=' ';
     me.dateResultats=' ';
 				me.dateDebutContrat=' ';
 				me.dateFinContrat=' ';
+				me.detailsPbsMedicaux='Rien à signaler';
+    me.detailsSuiviMedical='Rien à signaler';
+    me.precisions=' ';
     
 				
 				
@@ -35,6 +41,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
    me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
+			me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html';
 
 		
 				

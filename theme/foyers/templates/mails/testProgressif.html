@@ -5,7 +5,7 @@
                
         
         <div class="row" class="text-center">
-            <div style="margin-bottom:12px" ><h4></h4>{{rubedo.translate("Block.Inscription.Inscrire.Comme","S'inscrire comme")}}:</h4></div>
+            <div style="margin-bottom:12px" ><h4>{{rubedo.translate("Block.Inscription.Inscrire.Comme","S'inscrire comme")}}:</h4></div>
             <div>
                 <input type="radio"  name="statut" id="etudiant" value="etudiant" ng-model="contactCtrl.contactData.statut" ng-click="showFormulaire = true;etudiant=true;jeunePro=false">
                             <label for="etudiant" class="sexe_label boite">{{rubedo.translate("etudiant")}}</label>
@@ -63,6 +63,16 @@
                                 <p ng-if="infos_travail.$invalid && infos_travail.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
                             </div>
                     </ng-form>
+                </div>
+                
+                <div id="inscriptionStage4" class="collapse">
+                            <ng-form name="infos_complementaires">
+                                    <div  class="row" ng-include="contactCtrl.complement_infos"></div>
+                                    <div class="row text-center">
+                                        <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_complementaires.$invalid}" ng-click="formCtrl.setCurrentStage(4,infos_complementaires.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                                        <p ng-if="infos_complementaires.$invalid && infos_complementaires.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
+                                    </div>
+                            </ng-form>
                 </div>
                 
                 
