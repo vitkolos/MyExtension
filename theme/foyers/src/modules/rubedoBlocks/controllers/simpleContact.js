@@ -27,8 +27,14 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 								var ageDate = new Date(ageDifMs); // miliseconds from epoch
 								return Math.abs(ageDate.getUTCFullYear() - 1970);
 				}
+				//surveiller si le type de formulaire est changé pour changer le template
+    $scope.$watch("contactCtrl.contactData.birthdate", function(newValue, oldValue) {
+								me.contactData.age=calculateAge(newValue);
+								console.log("me.contactData.age");
+								console.log(me.contactData.age);
+    });
 				if ($scope.contactCtrl.contactData.birthdate) {
-								console.log("me.contactData.birthdate");
+								console.log("me.contactData.birthdate"); 
 								console.log(me.contactData.birthdate);
 								me.contactData.age=calculateAge(me.contactData.birthdate);
 								console.log("me.contactData.age");
