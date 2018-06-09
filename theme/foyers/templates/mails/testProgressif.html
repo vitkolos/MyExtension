@@ -25,7 +25,7 @@
         <div id="inscriptionStage2" class="collapse">
                             <ng-form name="infos_familiales">
                                     <div  class="row" ng-include="contactCtrl.family_infos"></div>
-                                    <div  class="row" ng-include="contactCtrl.freres_soeurs_infos"></div>
+                                    <!--<div  class="row" ng-include="contactCtrl.freres_soeurs_infos"></div>-->
                                     <!--<div  class="row" ng-include="contactCtrl.freres_soeurs_infos"></div>-->
                                     <div class="row text-center">
                                         <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_familiales.$invalid}" ng-click="contactCtrl.setCurrentStage(2,infos_familiales.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
