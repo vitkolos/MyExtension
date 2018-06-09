@@ -16,8 +16,11 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.cpMere=' ';
 				me.contactData.cityMere=' ';
 				me.contactData.tel2Mere=' ';
+				me.ageFreresSoeurs=' ';
 				me.examensTypes=' ';
     me.dateResultats=' ';
+				me.dateDebutContrat=' ';
+				me.dateFinContrat=' ';
     
 				
 				
@@ -29,8 +32,8 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
    me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
-			$scope.etudiant=true;
-			$scope.jeunePro=false;
+			$scope.etudiant=false;
+			$scope.jeunePro=true;
 		
 				
 		  me.parentsEnsemble=false;
@@ -43,7 +46,11 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.message=' ';
     //lg = rubedo.current.page.locale;
     //moment.locale(rubedo.current.page.locale);
-    me.contactData.template='/theme/foyers/templates/mails/reservationEDM.html';
+				if ($scope.jeunePro) {
+								me.contactData.template='/theme/foyers/templates/mails/reservationJeunePro.html';
+				} else {
+								me.contactData.template='/theme/foyers/templates/mails/reservationEtudiant.html';
+				}
     $scope.clearORPlaceholderHeight();
     me.dateDifference = function(start,end){
         console.log($filter('number')((end-start)/(3600*24*1000),0));
