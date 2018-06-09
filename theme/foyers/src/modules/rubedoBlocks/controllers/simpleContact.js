@@ -22,37 +22,15 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         console.log($filter('number')((end-start)/(3600*24*1000),0));
         return $filter('number')((end-start)/(3600*24*1000),0);
     }
-				var today = new Date();
-				var ageDate = today.getTime(); // miliseconds from epoch
-    	var date=Math.abs(ageDate.getUTCFullYear() - 1970);
-					console.log("date");
-					console.log(date);
-					
-//				calculateAge = function (birthdate) { // birthdate is a date
-//								var ageDifMs = today.getTime() - birthdate.getTime();
-//								var ageDate = new Date(ageDifMs); // miliseconds from epoch
-//								return Math.abs(ageDate.getUTCFullYear() - 1970);
-//				}
-//				//surveiller si le type de formulaire est changé pour changer le template
-//    $scope.$watch("contactCtrl.contactData.birthdate", function(newValue, oldValue) {
-//								me.contactData.age=calculateAge(newValue);
-//								console.log("me.contactData.age");
-//								console.log(me.contactData.age);
-//    });
-				//if ($scope.contactCtrl.contactData.birthdate) {
-				//				console.log("me.contactData.birthdate"); 
-				//				console.log(me.contactData.birthdate);
-				//				me.contactData.age=calculateAge(me.contactData.birthdate);
-				//				console.log("me.contactData.age");
-				//				console.log(me.contactData.age);
-				//}
-				
-				
 
 				me.contactData.parentsEnsemble=true;
 				console.log("me.contactData.parentsEnsemble");
 				console.log(me.contactData.parentsEnsemble);
-
+				var today = new Date();
+    console.log((today.getTime()));
+    getAge = function getAge(birthdate){ // avec dates passées par strtotime (ie timestamp)
+        return floor((birthdate-$dateDebut) / (365*60*60*24));
+    }
 				
     me.submit=function(){
         me.contactError=null;
