@@ -1,5 +1,5 @@
 angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','$filter','RubedoMailService',function($scope,$location,$filter,RubedoMailService){
-    var me = this;
+    var me = this; 
     var config = $scope.blockConfig;
     me.contactData={ };
 				me.contactData.tel3Pere=' ';
@@ -11,7 +11,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.cityMere=' ';
 				me.contactData.tel2Mere=' ';
     me.contactError=null;
-		
+		  
 		
 		 var themePath='/theme/'+window.rubedoConfig.siteTheme;
    me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
