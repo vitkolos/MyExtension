@@ -30,10 +30,12 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.birthdate=0;
     console.log(((today.getTime()/(3600*24*365))-1970));
     getAge = function (birthdate){ // avec dates passées par strtotime (ie timestamp)
-        return (birthdate-today);
+        var date = new Date(me.contactData.birthdate);
+								console.log(date);
+								return (today-date);
     }
 				$scope.$watch("contactCtrl.contactData.birthdate", function(newValue, oldValue) {
-								console.log(me.contactData.birthdate);
+								
 								me.contactData.age=getAge(newValue);
 								console.log("me.contactData.age");
 								console.log(me.contactData.age);
