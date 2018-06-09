@@ -23,49 +23,25 @@
     <tr><td bgcolor='#8CACBB' width=33%><i>Nationalité</i></td><td width=67%>{ nationality }</td></tr>
     <tr><td bgcolor='#8CACBB' width=33%><i>Numéro de téléphone</i></td><td width=67%>{ tel }</td></tr>
     <tr><td bgcolor='#8CACBB' width=33%><i>Email</i></td><td width=67%>{ email }</td></tr>
-    
-    <!--else if($nbInscrits ==2)
-        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_personnes_inscrites"] . "</i></td><td width=67%>" .  $nomClient . "</td></tr>";
-    if(isset($inscription['enfants_org'])){
-        $nomsEnfants = "";
-        foreach ($inscription['enfants_org'] as $index => $enfant){
-            if($index>0) $nomsEnfants .= ", ";
-            $nomsEnfants .= $enfant['prenom'];
-        }
-        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_enfants"] . "</i></td><td width=67%>" .  $nomsEnfants . "</td></tr>";
-    }
-    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_proposition"] . "</i></td><td width=67%>" .  $inscription['propositionTitre'] . "</td></tr>";
-    if(isset($inscription['propositionDate']) && $inscription['propositionDate'] != "") $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_date"] . "</i></td><td width=67%>" .  $inscription['propositionDate'] . "</td></tr>";
-    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_lieu"] . "</i></td><td width=67%>" .  $inscription['propositionLieu'] . "</td></tr>";
-    $url="http://". $_SERVER['HTTP_HOST'] . $inscription['propositionUrl'];
-    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_page_web"] . "</i></td><td width=67%><a href='" . $url . "'>" . $inscription['propositionTitre'] . "</a></td></tr>";
-    $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_contact"] . "</i></td><td width=67%>" . $contactSecretariat  ."</td></tr>";
-    $messageClient .= "</table>";
-    //OPTIONS ET QUESTIONS DIVERSES
-    $messageClient .= "<table width=100% style='border: 1px solid #000000' frame='box' rules='all'>";
-    if(isset($inscription['logement'])) {
-       $messageClient .= $this->questionToRecap($inscription['logement_org']);
-    }
-    if(isset($inscription['transport'])) {
-       $messageClient .= $this->questionToRecap($inscription['transport_org']);
-    }
-    if(isset($inscription['complementaire'])) {
-       $messageClient .= $this->questionToRecap($inscription['complementaire_org']);
-    }        
-    if(isset($inscription['jai_connu'])){
-       $messageClient .= $this->questionToRecap($inscription['jai_connu_org']);
-    }
-    if(isset($inscription['situation']) && !isset($inscription['autreSituation'])) {
-        $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['situation'] . "</td></tr>";
-    }
-    if(isset($inscription['autreSituation'])){
-       $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_label_situation"] . "</i></td><td width=67%>" .  $inscription['autreSituation'] . "</td></tr>";
-    }
-    if(isset($inscription['remarques'])) {
-       $messageClient .= "<tr><td bgcolor='#8CACBB' width=33%><i>" . $trad["ccn_form_remarques"] . "</i></td><td width=67%>" .  $inscription['remarques'] . "</td></tr>";
-        
-    }-->
-    
 </table><br/><br/>
+
+<table width=60% style='border: 1px solid #000000' frame='box' rules='all'>
+    <tr><td width=33%><i>Nom</i></td><td width=34%><b>Père</b></td><td width=33%><b>Mère</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Nom</i></td><td width=34%><b>{ namePere }</b></td><td width=33%><b>{ nameMere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Prénom</i></td><td width=34%><b>{ surnamePere }</b></td><td width=33%><b>{ surnameMere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Profession</i></td><td width=34%><b>{ professionPere }</b></td><td width=33%><b>{ professionMere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Nationalité</i></td><td width=34%><b>{ nationalitePere }</b></td><td width=33%><b>{ nationaliteMere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Email</i></td><td width=34%><b>{ emailPere }</b></td><td width=33%><b>{ emailMere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Téléphone portable</i></td><td width=34%><b>{ tel1Pere }</b></td><td width=33%><b>{ tel1Mere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Téléphone professionel</i></td><td width=34%><b>{ tel3Pere }</b></td><td width=33%><b>{ tel3Mere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Adresse</i></td><td width=34%><b>{ addressPere }</b></td><td width=33%><b>{ addressMere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Code Postal</i></td><td width=34%><b>{ cpPere }</b></td><td width=33%><b>{ cpMere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Ville</i></td><td width=34%><b>{ cityPere }</b></td><td width=33%><b>{ cityMere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Pays</i></td><td width=34%><b>{ countryPere }</b></td><td width=33%><b>{ countryMere }</b></td></tr>
+    <tr><td bgcolor="#8CACBB" width=33%><i>Téléphone fixe</i></td><td width=34%><b>{ tel2Pere }</b></td><td width=33%><b>{ tel2Mere }</b></td></tr>
+
+</table><br/><br/>
+    
+
 
 </body></html>
