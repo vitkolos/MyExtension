@@ -22,7 +22,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         console.log($filter('number')((end-start)/(3600*24*1000),0));
         return $filter('number')((end-start)/(3600*24*1000),0);
     }
-				me.calculateAge = function calculateAge(birthdate) { // birthdate is a date
+				calculateAge = function calculateAge(birthdate) { // birthdate is a date
 								var ageDifMs = Date.now() - birthdate.getTime();
 								var ageDate = new Date(ageDifMs); // miliseconds from epoch
 								return Math.abs(ageDate.getUTCFullYear() - 1970);
