@@ -66,8 +66,8 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																$scope.jeunePro = true;
                 break;
         }
-    }
-
+    } 
+  
 				
 				
 				
@@ -81,7 +81,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.dateDifference = function(start,end){
         console.log($filter('number')((end-start)/(3600*24*1000),0));
         return $filter('number')((end-start)/(3600*24*1000),0);
-    }
+    }   
 
 				me.contactData.parentsEnsemble=true;
 				console.log("me.contactData.parentsEnsemble");
