@@ -43,7 +43,7 @@
                         </div>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <datetimepicker data-ng-model="contactCtrl.contactData.dateResultats"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateResultats', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateResultats = (inscription.dateResultats |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                        <datetimepicker data-ng-model="contactCtrl.contactData.dateResultats"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateResultats', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateResultats = (contactCtrl.contactData.dateResultats |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                     </ul> 
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <datetimepicker data-ng-model="contactCtrl.contactData.dateDebutAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutAnnee', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateDebutAnnee = (inscription.dateDebutAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateDebutAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutAnnee', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateDebutAnnee = (contactCtrl.contactData.dateDebutAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                 </ul> 
             </div>
         </div>
@@ -74,7 +74,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinAnnee', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateFinAnnee = (inscription.dateFinAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinAnnee', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateFinAnnee = (contactCtrl.contactData.dateFinAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                 </ul> 
             </div>
         </div>
@@ -114,7 +114,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <datetimepicker data-ng-model="contactCtrl.contactData.dateDebutContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutContrat', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateDebutContrat = (inscription.dateDebutContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateDebutContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutContrat', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateDebutContrat = (contactCtrl.contactData.dateDebutContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                 </ul> 
             </div>
         </div>
@@ -129,7 +129,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinContrat', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateFinContrat = (inscription.dateFinContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinContrat', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateFinContrat = (contactCtrl.contactData.dateFinContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                 </ul> 
             </div>
         </div>

@@ -12,10 +12,11 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.countryMere=' ';
 				me.contactData.professionPere=' ';
 				me.contactData.professionMere=' ';
-				me.contactData.addressMere=' ';
-				me.contactData.cpMere=' ';
-				me.contactData.cityMere=' ';
-				me.contactData.tel2Mere=' ';
+				me.contactData.addressMere='idem';
+				me.contactData.cpMere='idem';
+				me.contactData.cityMere='idem';
+				me.contactData.tel2Mere='idem';
+				me.nombreFreresSoeurs=' ';
 				me.ageFreresSoeurs=' ';
 				me.examensTypes=' ';
     me.dateResultats=' ';
@@ -32,8 +33,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
    me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
-			$scope.etudiant=false;
-			$scope.jeunePro=true;
+
 		
 				
 		  me.parentsEnsemble=false;
@@ -46,6 +46,32 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.message=' ';
     //lg = rubedo.current.page.locale;
     //moment.locale(rubedo.current.page.locale);
+				
+				
+				
+				/* GESTION DES TYPES DE PUBLIC */
+				 //surveiller si le type de formulaire est changé pour changer le template
+    $scope.$watch("contactCtrl.contactData.statut", function(newValue, oldValue) {
+								getPublic(newValue);
+    });
+
+    getPublic = function(public) {
+        switch(public) {
+            case 'etudiant':
+                $scope.etudiant = true;
+																$scope.jeunePro = false;
+                break;
+            case 'jeunePro':
+                $scope.etudiant = false;
+																$scope.jeunePro = true;
+                break;
+        }
+    }
+
+				
+				
+				
+				/* GESTION DES TEMPLATES POUR LES MAILS */
 				if ($scope.jeunePro) {
 								me.contactData.template='/theme/foyers/templates/mails/reservationJeunePro.html';
 				} else {
