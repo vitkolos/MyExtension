@@ -15,7 +15,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.addressMere=' ';
 				me.contactData.cpMere=' ';
 				me.contactData.cityMere=' ';
-				me.contactData.tel2Mere=' ';
+				me.contactData.tel2Mere=' ';  
     
 				
 				
@@ -28,7 +28,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
    me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
 			$scope.etudiant=true;
-			$scope.jeunePro=true;
+			$scope.jeunePro=false;
 		
 				
 		  me.parentsEnsemble=false;
