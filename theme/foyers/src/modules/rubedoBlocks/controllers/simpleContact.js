@@ -75,8 +75,8 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             $scope.contactCtrl.contactData.freres_soeurs=[];
         }
         $scope.contactCtrl.contactData.freres_soeurs.push(angular.copy(frere_soeur));
-								console.log("contactCtrl.contactData.freres_soeurs");
-								console.log(contactCtrl.contactData.freres_soeurs);
+								console.log("$scope.contactCtrl.contactData.freres_soeurs");
+								console.log($scope.contactCtrl.contactData.freres_soeurs);
     }
     // supprimer frere ou soeur
     me.removeFrereSoeur = function(index){
