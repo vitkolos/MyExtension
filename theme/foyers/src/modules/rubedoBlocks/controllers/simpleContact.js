@@ -15,7 +15,9 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.addressMere=' ';
 				me.contactData.cpMere=' ';
 				me.contactData.cityMere=' ';
-				me.contactData.tel2Mere=' ';  
+				me.contactData.tel2Mere=' ';
+				me.examensTypes=' ';
+    me.dateResultats=' ';
     
 				
 				
@@ -33,6 +35,10 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				
 		  me.parentsEnsemble=false;
 				me.parentsSepares=false;
+				me.examensPrealables=false;
+				me.stageouCDD=false;
+				me.pbsMedicaux=false;
+				me.suiviMedical=false;
     me.contactData.subject='Nouvelle réservation';
 				me.contactData.message=' ';
     //lg = rubedo.current.page.locale;
