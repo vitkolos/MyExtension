@@ -1,6 +1,6 @@
 <div ng-controller="ContactBlockController as contactCtrl" class="container">
 
-        <form name="edmForm" role="form" ng-submit="contactCtrl.submit()">
+        <ng-form name="inscription_form" role="form" ng-submit="contactCtrl.submit()">
         <div class="row">
             <h3>Informations personnelles</h3>
         </div>
@@ -35,7 +35,7 @@
         
         
         <div class="row">
-            <div class="button" ng-init="confirmMsg=false;" ng-class="{rouge: edmForm.$valid, disabled: edmForm.$invalid, submit: edmForm.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Réserver</div>
+            <div class="button" ng-init="confirmMsg=false;" ng-class="{rouge: inscription_form.$valid, disabled: inscription_form.$invalid, submit: inscription_form.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Réserver</div>
         </div><br/>
       
         <div class="row confirm" ng-if="confirmMsg">
@@ -43,7 +43,7 @@
         </div>
         
             
-        </form>
+        </ng-form>
                         
 
     
