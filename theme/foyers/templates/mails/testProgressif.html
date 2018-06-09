@@ -25,6 +25,7 @@
         <div id="inscriptionStage2" class="collapse">
                             <ng-form name="infos_familiales">
                                     <div  class="row" ng-include="contactCtrl.family_infos"></div>
+                                    <div  class="row" ng-include="contactCtrl.freres_soeurs_infos"></div>
                                     <!--<div  class="row" ng-include="contactCtrl.freres_soeurs_infos"></div>-->
                                     <div class="row text-center">
                                         <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_familiales.$invalid}" ng-click="contactCtrl.setCurrentStage(2,infos_familiales.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
@@ -33,19 +34,18 @@
                             </ng-form>
         </div>
         
-        <h2 ng-if="etudiant" class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==3}" ng-click="formCtrl.setCurrentStage(2,infos_travail.$valid)">{{rubedo.translate("Block.Inscription.Infos.Etudes", "Études")}}
-                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
+        <h2 ng-if="etudiant" class="capital txt-red" ng-class="{'displayed' : contactCtrl.currentStage==3}" ng-click="contactCtrl.setCurrentStage(2,infos_travail.$valid)">{{rubedo.translate("Block.Inscription.Infos.Etudes", "Études")}}
+                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="contactCtrl.currentStage>3"></span>
         </h2>
-        <h2 ng-if="jeunePro" class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==3}" ng-click="formCtrl.setCurrentStage(2,infos_travail.$valid)">{{rubedo.translate("Block.Inscription.Infos.Travail","Situation professionnelle")}}
-                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>3"></span>
+        <h2 ng-if="jeunePro" class="capital txt-red" ng-class="{'displayed' : contactCtrl.currentStage==3}" ng-click="contactCtrl.setCurrentStage(2,infos_travail.$valid)">{{rubedo.translate("Block.Inscription.Infos.Travail","Situation professionnelle")}}
+                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="contactCtrl.currentStage>3"></span>
         </h2>
         
         <div id="inscriptionStage3" class="collapse">
             <ng-form name="infos_travail">
-                    <div  class="row" ng-include="formCtrl.travail_infos"></div>
-                    <div  class="row" ng-include="formCtrl.freres_soeurs_infos"></div>
+                    <div  class="row" ng-include="contactCtrl.travail_infos"></div>
                     <div class="row text-center">
-                        <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_travail.$invalid}" ng-click="formCtrl.setCurrentStage(3,infos_travail.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
+                        <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_travail.$invalid}" ng-click="contactCtrl.setCurrentStage(3,infos_travail.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                         <p ng-if="infos_travail.$invalid && infos_travail.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
                     </div>
             </ng-form>
