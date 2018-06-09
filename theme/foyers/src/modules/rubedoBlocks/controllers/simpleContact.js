@@ -28,7 +28,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				console.log(me.contactData.parentsEnsemble);
 				var today = new Date();
 				me.contactData.birthdate=0;
-    console.log(((today.getTime()/(1000*3600*24*365))-1970));
+    console.log(((today.getTime()/(3600*24*365))-1970));
     getAge = function (birthdate){ // avec dates passées par strtotime (ie timestamp)
         return (birthdate-today);
     }
