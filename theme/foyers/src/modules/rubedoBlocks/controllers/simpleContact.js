@@ -27,11 +27,14 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 								var ageDate = new Date(ageDifMs); // miliseconds from epoch
 								return Math.abs(ageDate.getUTCFullYear() - 1970);
 				}
-				console.log("me.contactData.birthdate");
+				if (me.contactData.birthdate) {
+								console.log("me.contactData.birthdate");
 								console.log(me.contactData.birthdate);
 								me.contactData.age=calculateAge(me.contactData.birthdate);
 								console.log("me.contactData.age");
 								console.log(me.contactData.age);
+				}
+				
 				
 
 				me.contactData.parentsEnsemble=true;
