@@ -60,25 +60,18 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             case 'etudiant':
                 $scope.etudiant = true;
 																$scope.jeunePro = false;
+																me.contactData.template='/theme/foyers/templates/mails/reservationEtudiant.html';
+																console.log(me.contactData.template);
                 break;
             case 'jeunePro':
                 $scope.etudiant = false;
 																$scope.jeunePro = true;
+																me.contactData.template='/theme/foyers/templates/mails/reservationJeunePro.html';
+																console.log(me.contactData.template);
                 break;
         }
     } 
   
-				
-				
-				
-				/* GESTION DES TEMPLATES POUR LES MAILS */
-				if ($scope.jeunePro) {
-								me.contactData.template='/theme/foyers/templates/mails/reservationJeunePro.html';
-								console.log(me.contactData.template);
-				} else {
-								me.contactData.template='/theme/foyers/templates/mails/reservationEtudiant.html';
-								console.log(me.contactData.template);
-				}
     $scope.clearORPlaceholderHeight();
     me.dateDifference = function(start,end){
         console.log($filter('number')((end-start)/(3600*24*1000),0));
