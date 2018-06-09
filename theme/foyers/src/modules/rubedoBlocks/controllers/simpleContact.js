@@ -1,7 +1,10 @@
 angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','$filter','RubedoMailService',function($scope,$location,$filter,RubedoMailService){
     var me = this; 
     var config = $scope.blockConfig;
-    me.contactData={ };
+    
+				
+				/* GESTION DES CASES VIDES DANS L'ENVOI DU MAIL */
+				me.contactData={ };
 				me.contactData.nationality=' ';
 				me.contactData.tel3Pere=' ';
 				me.contactData.tel3Mere=' ';
@@ -13,21 +16,28 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.cpMere=' ';
 				me.contactData.cityMere=' ';
 				me.contactData.tel2Mere=' ';
-    me.contactError=null;
-		  
-		
+    
+				
+				
+				me.contactError=null;
+				
+					/* LIENS VERS LES SECTIONS DU FORMULAIRE */
 		 var themePath='/theme/'+window.rubedoConfig.siteTheme;
    me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
+			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
+   me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
+			$scope.etudiant=true;
+			$scope.jeunePro=true;
 		
 				
-		 me.parentsEnsemble=false;
+		  me.parentsEnsemble=false;
 				me.parentsSepares=false;
-      me.contactData.subject='Nouvelle réservation';
-						me.contactData.message=' ';
-      //lg = rubedo.current.page.locale;
-      //moment.locale(rubedo.current.page.locale);
-      me.contactData.template='/theme/foyers/templates/mails/reservationEDM.html';
+    me.contactData.subject='Nouvelle réservation';
+				me.contactData.message=' ';
+    //lg = rubedo.current.page.locale;
+    //moment.locale(rubedo.current.page.locale);
+    me.contactData.template='/theme/foyers/templates/mails/reservationEDM.html';
     $scope.clearORPlaceholderHeight();
     me.dateDifference = function(start,end){
         console.log($filter('number')((end-start)/(3600*24*1000),0));
@@ -37,6 +47,8 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.parentsEnsemble=true;
 				console.log("me.contactData.parentsEnsemble");
 				console.log(me.contactData.parentsEnsemble);
+				
+				/* CALCUL DE L'AGE DU CANDIDAT*/
 				var today = new Date();
 				//me.contactData.birthdate=0;
     console.log(today.getTime());
@@ -53,6 +65,29 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 								console.log("me.contactData.age");
 								console.log(me.contactData.age);
     });
+				
+				
+				
+				/* GESTION DES FRERES ET SOEURS */
+    me.addFrereSoeur = function(frere_soeur){
+
+        if (!$scope.contactCtrl.contactData.freres_soeurs) {
+            $scope.contactCtrl.contactData.freres_soeurs=[];
+        }
+        $scope.contactCtrl.contactData.freres_soeurs.push(angular.copy(frere_soeur));
+    }
+    // supprimer frere ou soeur
+    me.removeFrereSoeur = function(index){
+        $scope.contactCtrl.contactData.freres_soeurs.splice(index, 1);
+    };
+				
+				
+				
+				
+				
+				
+				
+				/* SUBMIT FORMULAIRE */
 				
     me.submit=function(){
         me.contactError=null;
