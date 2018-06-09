@@ -33,13 +33,13 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 								console.log("me.contactData.age");
 								console.log(me.contactData.age);
     });
-				if ($scope.contactCtrl.contactData.birthdate) {
-								console.log("me.contactData.birthdate"); 
-								console.log(me.contactData.birthdate);
-								me.contactData.age=calculateAge(me.contactData.birthdate);
-								console.log("me.contactData.age");
-								console.log(me.contactData.age);
-				}
+				//if ($scope.contactCtrl.contactData.birthdate) {
+				//				console.log("me.contactData.birthdate"); 
+				//				console.log(me.contactData.birthdate);
+				//				me.contactData.age=calculateAge(me.contactData.birthdate);
+				//				console.log("me.contactData.age");
+				//				console.log(me.contactData.age);
+				//}
 				
 				
 
