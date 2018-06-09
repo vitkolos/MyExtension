@@ -23,12 +23,10 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         return $filter('number')((end-start)/(3600*24*1000),0);
     }
 				var today = new Date();
-				console.log("Date(today.getTime())");
-    console.log(Date(today.getTime()));
-				var ageDate = new Date(today.getTime()); // miliseconds from epoch
-    	var Date=Math.abs(ageDate.getUTCFullYear() - 1970);
-					console.log("Date");
-					console.log(Date);
+				var ageDate = today.getTime(); // miliseconds from epoch
+    	var date=Math.abs(ageDate.getUTCFullYear() - 1970);
+					console.log("date");
+					console.log(date);
 					
 //				calculateAge = function (birthdate) { // birthdate is a date
 //								var ageDifMs = today.getTime() - birthdate.getTime();
