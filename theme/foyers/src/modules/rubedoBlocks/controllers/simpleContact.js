@@ -9,7 +9,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
    me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 		
-		
+				
 		 me.parentsEnsemble=false;
 				me.parentsSepares=false;
       me.contactData.subject='Nouvelle réservation';
@@ -18,10 +18,24 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
       //moment.locale(rubedo.current.page.locale);
       me.contactData.template='/theme/foyers/templates/mails/reservationEDM.html';
     $scope.clearORPlaceholderHeight();
-    me.dateDiffence = function(start,end){
+    me.dateDifference = function(start,end){
         console.log($filter('number')((end-start)/(3600*24*1000),0));
         return $filter('number')((end-start)/(3600*24*1000),0);
     }
+				me.calculateAge = function calculateAge(birthday) { // birthday is a date
+								var ageDifMs = Date.now() - birthday.getTime();
+								var ageDate = new Date(ageDifMs); // miliseconds from epoch
+								return Math.abs(ageDate.getUTCFullYear() - 1970);
+				}
+				if (me.contactData.birthday) {
+								me.contactData.age=calculateAge(me.contactData.birthday);
+								console.log("me.contactData.age");
+								console.log(me.contactData.age);
+				}
+				if (me.parentsEnsemble) {
+								me.contactData.parentsEnsemble=true;
+				}
+				
     me.submit=function(){
         me.contactError=null;
         var contactSnap=angular.copy(me.contactData);
@@ -89,7 +103,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																//me.getContentById(me.propositionId);
             }
             else if (step==2) {														
-																if( $scope.contactCtrl.contactData.contactData.emailPere != $scope.contactCtrl.contactData.emailPere_verif){
+																if( $scope.contactCtrl.contactData.emailPere != $scope.contactCtrl.contactData.emailPere_verif){
                     $scope.mailError2 = true;me.currentStage=2;
                 }
                 else if ($scope.contactCtrl.contactData.emailMere != $scope.contactCtrl.contactData.emailMere_verif) {
@@ -99,7 +113,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
                 }
 																else {
 																				$scope.mailError2 = false;
-                    $scope.mailError2 = false;
+                    $scope.mailError3 = false;
 																				me.toggleStage(3);
 																}
             }
