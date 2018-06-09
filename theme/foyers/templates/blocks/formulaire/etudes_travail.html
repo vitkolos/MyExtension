@@ -59,7 +59,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <datetimepicker data-ng-model="contactCtrl.contactData.dateDebutAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutAnnee', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateDebutAnnee = (contactCtrl.contactData.dateDebutAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateDebutAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutAnnee', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateDebutAnnee = (contactCtrl.contactData.dateDebutAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                 </ul> 
             </div>
         </div>
@@ -74,7 +74,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinAnnee', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateFinAnnee = (contactCtrl.contactData.dateFinAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinAnnee', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateFinAnnee = (contactCtrl.contactData.dateFinAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                 </ul> 
             </div>
         </div>
@@ -120,6 +120,7 @@
         </div>
     </div>
     
+    
     <div class="row" ng-if="!etudiant && contactCtrl.stageouCDD && !personneConnue">
         <div class="col-sm-4"><label for="dateFinContrat" class="label_style">{{rubedo.translate("Block.Inscription.Date.Fin.Contrat")}} *</label></div>
         <div class="col-sm-8">
@@ -129,7 +130,7 @@
                     </div>
                 </a>
                 <ul class="dropdown-menu" role="menu">
-                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinContrat', startView: 'year', minView:'day'}" data-on-set-time="inscription.dateFinContrat = (contactCtrl.contactData.dateFinContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinContrat', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateFinContrat = (contactCtrl.contactData.dateFinContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
                 </ul> 
             </div>
         </div>
