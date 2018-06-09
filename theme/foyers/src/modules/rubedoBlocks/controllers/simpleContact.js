@@ -33,6 +33,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         return (birthdate-today);
     }
 				$scope.$watch("contactCtrl.contactData.birthdate", function(newValue, oldValue) {
+								console.log(contactCtrl.contactData.birthdate);
 								me.contactData.age=getAge(newValue);
 								console.log("me.contactData.age");
 								console.log(me.contactData.age);
