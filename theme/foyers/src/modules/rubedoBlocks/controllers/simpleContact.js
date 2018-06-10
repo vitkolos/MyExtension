@@ -12,10 +12,10 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.countryMere=' ';
 				me.contactData.professionPere=' ';
 				me.contactData.professionMere=' ';
-				me.contactData.addressMere='idem';
-				me.contactData.cpMere='idem';
-				me.contactData.cityMere='idem';
-				me.contactData.tel2Mere='idem';
+				me.contactData.addressMere=' ';
+				me.contactData.cpMere=' ';
+				me.contactData.cityMere=' ';
+				me.contactData.tel2Mere=' ';
 				me.contactData.examensTypes=' ';
 				me.contactData.dateFinContrat=' ';
 				me.contactData.diplomes=' ';
