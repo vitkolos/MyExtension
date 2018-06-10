@@ -111,10 +111,6 @@
                     </div>
                 </div>
                 <div class="row">
-                        <div class="col-sm-4"><label for="tel2Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}*</label></div>
-                        <div class="col-sm-8"><input class="form-control" type="text" id="tel2Mere" name="tel2Mere"  ng-model="contactCtrl.contactData.tel2Mere" required></div>
-                </div>
-                <div class="row">
                     <div class="col-sm-4"><label for="sexe" class="label_style">{{rubedo.translate("Block.Inscription.Situation.Familiale")}}*</label></div>
                     <div class="col-sm-8 display_left">
                         <input type="radio"  name="situationFamiliale" id="ensemble" value="ensemble" ng-model="contactCtrl.contactData.situationFamiliale" ng-click="contactCtrl.parentsEnsemble = true; contactCtrl.parentsSepares = false;" required>
@@ -125,6 +121,10 @@
                 </div>
             
                 <div ng-if="contactCtrl.parentsSepares">
+                    <div class="row">
+                        <div class="col-sm-4"><label for="tel2Mere" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}}*</label></div>
+                        <div class="col-sm-8"><input class="form-control" type="text" id="tel2Mere" name="tel2Mere"  ng-model="contactCtrl.contactData.tel2Mere" required></div>
+                    </div>
                     <div class="row">
                         <div class="col-sm-4"><label for="adresseMere" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}}*</label></div>
                         <div class="col-sm-8"><textarea class="form-control" rows="3" id="adresseMere" ng-model="contactCtrl.contactData.addressMere" name="addressMere" placeholder="" required></textarea></div>
