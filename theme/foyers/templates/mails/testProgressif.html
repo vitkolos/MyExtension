@@ -65,6 +65,10 @@
                     </ng-form>
                 </div>
                 
+                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==4}" ng-click="formCtrl.setCurrentStage(3,infos_complementaires.$valid)">{{rubedo.translate("Block.Inscription.Infos.Complementaires","Informations complémentaires")}}
+                                <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>4"></span>
+                </h2>
+                
                 <div id="inscriptionStage4" class="collapse">
                             <ng-form name="infos_complementaires">
                                     <div  class="row" ng-include="contactCtrl.complement_infos"></div>
@@ -73,6 +77,20 @@
                                         <p ng-if="infos_complementaires.$invalid && infos_complementaires.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
                                     </div>
                             </ng-form>
+                </div>
+                
+                
+                <h2 class="capital txt-red" ng-class="{'displayed' : formCtrl.currentStage==5}" ng-click="formCtrl.setCurrentStage(4,lettre_motivation.$valid)">{{rubedo.translate("Block.Inscription.Motivation","Lettre de motivation")}}
+                        <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="formCtrl.currentStage>4"></span>
+                </h2>
+                
+                <div id="inscriptionStage5" class="collapse">
+                    <ng-form name="lettre_motivation">
+                            <div  class="row" ng-include="contactCtrl.lettre_motivation"></div>
+                            <div class="row text-center">
+                                <p ng-if="lettre_motivation.$invalid && lettre_motivation.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
+                            </div>
+                    </ng-form>
                 </div>
                 
                 

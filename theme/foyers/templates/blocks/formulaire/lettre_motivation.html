@@ -1,6 +1,18 @@
 <div class="container">
-        <div class="row" ng-if="!personneConnue">
-            <div class="col-sm-4"><label for="motivation" class="label_style">{{rubedo.translate("Block.Inscription.Motivation")}}*</label></div>
-            <div class="col-sm-8"><textarea class="form-control" rows="20" id="motivation" ng-model="inscription.motivation" name="motivation" placeholder="Présentez-vous brièvement et expliquez votre intérêt pour le foyer" required></textarea></div>
+        <div class="row">
+            <div class="col-sm-4"><label for="motivation" class="label_style">{{rubedo.translate("Block.Inscription.Motivation.Presentation")}} *</label></div>
+            <div class="col-sm-8"><textarea class="form-control" rows="5" id="motivation" ng-model="inscription.motivation" name="motivation" placeholder="Présente-toi brièvement (loisirs, études demandées...)" required></textarea></div>
+        </div>
+</div>
+<div class="container">
+        <div class="row">
+            <div class="col-sm-4"><label for="engagements" class="label_style">{{rubedo.translate("Block.Inscription.Motivation.Engagements")}} *</label></div>
+            <div class="col-sm-8"><textarea class="form-control" rows="5" id="engagements" ng-model="contactCtrl.contactData.engagements" name="engagements" required></textarea></div>
+        </div>
+</div>
+<div class="container">
+        <div class="row">
+            <div class="col-sm-4"><label for="desir" class="label_style">{{rubedo.translate("Block.Inscription.Motivation.Desir")}} *</label></div>
+            <div class="col-sm-8"><textarea class="form-control" rows="5" id="desir" ng-model="contactCtrl.contactData.desir" name="desir" required></textarea></div>
         </div>
 </div>

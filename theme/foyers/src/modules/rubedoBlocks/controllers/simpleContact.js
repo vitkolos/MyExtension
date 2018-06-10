@@ -42,6 +42,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
    me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
 			me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html';
+			me.lettre_motivation = themePath+'/templates/blocks/formulaire/lettre_motivation.html';
 
 		
 				
