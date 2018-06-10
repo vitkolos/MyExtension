@@ -17,7 +17,6 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.cityMere=' ';
 				me.contactData.tel2Mere=' ';
 				me.contactData.examensTypes=' ';
-				me.contactData.dateFinContrat=' ';
 				me.contactData.diplomes=' ';
 				me.contactData.nombreFreresSoeurs=' ';
 				me.contactData.ageFreresSoeurs=' ';
