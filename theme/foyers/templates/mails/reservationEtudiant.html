@@ -1,11 +1,14 @@
-<!--mail pour la réservation à l'Étoile de la Mer-->
+<!--mail pour la rcandidature des étudiants-->
 <html><body>
-<div>
-  <h3 style='font-style:italic'>Candidature pour le foyer</h3><br/>
-  <h1><span style='text-transform:capitalize'>{ prenom }</span> <span style='text-transform:uppercase'>{ nom }</span></h1>
-  <h3>{ age } ans (à ce jour)</h3>
-  <h3><b>Étudiant</b> : { etudes } </h3>
-</div>
+<div class="row">
+  <div class="col-sm-6 text-center">
+    <h3 style='font-style:italic'>Candidature pour le foyer</h3><br/>
+    <h1><span style='text-transform:capitalize'>{ prenom }</span> <span style='text-transform:uppercase'>{ nom }</span></h1>
+    <h3>{ age } ans (à ce jour)</h3>
+    <h3><b>Étudiant</b> : { etudes } </h3>
+  </div>
+</div><br/>
+
 <table width=50% style='border: 1px solid #000000' frame='box' rules='all'>
     <tr><td bgcolor='#8CACBB' width=100% colspan=3 style='text-align:center;font-size:1.2em;'><i>1) Présentation générale et intérêt porté pour le foyer</i></td></tr>
     <tr><td bgcolor="#B5D4E2" style='text-align:center' width=34%><b>Présentation du jeune</b></td><td bgcolor="#B5D4E2" style='text-align:center' width=34%><b>Ses engagements (personnels, associatifs, dans l'Église...)</b></td><td bgcolor="#B5D4E2"  style='text-align:center' width=33%><b>Pourquoi il désire rejoindre le foyer</td></tr>
@@ -61,15 +64,46 @@
 </table><br/><br/>
 
 <table width=50% style='border: 1px solid #000000' frame='box' rules='all'>
-    <tr><td bgcolor='#8CACBB' width=100% colspan=2 style='text-align:center;font-size:1.2em;'><i>5) Informations complémentaires</i></td></tr>
+    <tr><td bgcolor='#8CACBB' width=100% colspan=3 style='text-align:center;font-size:1.2em;'><i>5) Informations complémentaires</i></td></tr>
     <tr><td bgcolor="#8CACBB" width=33%><i>Loisirs</i></td><td width=67%>{ loisirs }</td></tr>
-    <tr><td bgcolor='#8CACBB' width=33%><i>Comment le jeune a-t-il connu le foyer?</i></td><td width=34%>{ origine }</td><td width=33%>{ precisions }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Comment le jeune a-t-il connu le foyer?</i></td><td width=67%>{ origine }</td></tr>
     <tr><td bgcolor='#8CACBB' width=33%><i>Problèmes médicaux</i></td><td width=67%>{ detailsPbsMedicaux }</td></tr>
     <tr><td bgcolor='#8CACBB' width=33%><i>Suivi médical</i></td><td width=67%>{ detailsSuiviMedical }</td></tr>
 </table><br/><br/>
 
 
+<p>************************************************************************************************************************************************</p>
+<p><b>Pour transférer les données vers un tableur Excel</b></p><br/>
 
+<table style='border: 1px solid #000000' frame='box' rules='all'>
+    <tr bgcolor='#8CACBB'><td><td><i>Statut</i></td><i>Nom</i></td><td><i>Prénom</i></td><td><i>Sexe</i></td><td><i>Date de naissance</i></td><td><i>Email</i></td><td><i>Téléphone</i></td><td><i>Nationalité</i></td></tr>
+    <tr><td><i>Étudiant</i></td><td>{ nom }</td><td>{ prenom }</td><td>{ sexe }</td><<td>{ birthdate }</td><td>{ email }</td><td>{ tel }</td><td>{ nationality }</td></tr>
+</table><br/>
+
+<table style='border: 1px solid #000000' frame='box' rules='all'>
+    <tr bgcolor='#8CACBB'><td><i>Nom (père)</i></td><td><i>Prénom (père)</i></td><td><i>Profession (père)</i></td><td><i>Email (père)</i></td><td><i>Tel. port. (père)</i></td><td><i>Tel prof. (père)</i></td><td><i>Tel. fixe (père)</i></td><td><i>Adresse (père)</i></td><td><i>Code postale (père)</i></td><td><i>Ville (père)</i></td><td><i>Pays (père)</i></td><td><i>Nationalité (père)</i></td></tr>
+    <tr><td><i>{ namePere }</i></td><td>{ surnamePere }</td><td>{ professionPere }</td><td>{ emailPere }</td><<td>{ tel1Pere }</td><td>{ tel3Pere }</td><td>{ tel2Pere }</td><td>{ addressPere }</td><td>{ cpPere }</td><td>{ cityPere }</td><td>{ countryPere }</td><td>{ nationalitePere }</td></tr>
+</table>
+
+<table style='border: 1px solid #000000' frame='box' rules='all'>
+    <tr bgcolor='#8CACBB'><td><i>Nom (mère)</i></td><td><i>Prénom (mère)</i></td><td><i>Profession (mère)</i></td><td><i>Email (mère)</i></td><td><i>Tel. port. (mère)</i></td><td><i>Tel prof. (mère)</i></td><td><i>Tel. fixe (mère)</i></td><td><i>Adresse (mère)</i></td><td><i>Code postale (mère)</i></td><td><i>Ville (mère)</i></td><td><i>Pays (mère)</i></td><td><i>Nationalité (mère)</i></td></tr> 
+    <tr><td><i>{ nameMere }</i></td><td>{ surnameMere }</td><td>{ professionMere }</td><td>{ emailMere }</td><<td>{ tel1Mere }</td><td>{ tel3Mere }</td><td>{ tel2Mere }</td><td>{ addressMere }</td><td>{ cpMere }</td><td>{ cityMere }</td><td>{ countryMere }</td><td>{ nationaliteMere }</td></tr>
+</table><br/>
+
+<table style='border: 1px solid #000000' frame='box' rules='all'>
+    <tr bgcolor='#8CACBB'><td><i>Études</i></td><td><i>Métier envisagé</i></td><td><i>Diplômes obtenus</i></td><td><i>Établissement actuel</i></td><td><i>Établissement suivant</i></td><td><i>Examens préalables?</i></td><td><i>Type d'examens</i></td><td><i>Date des résultats</i></td><td><i>Date de la rentrée scolaire</i></td><td><i>Date de la fin de l'année scolaire</i></td></tr>
+    <tr><td><i>{ etudes }</i></td><td>{ metier }</td><td>{ diplomes }</td><td>{ etablissementActuel }</td><<td>{ etablissementSuivant }</td><td>{ examensPrealables }</td><td>{ examensTypes }</td><td>{ dateResultats }</td><td>{ dateDebutAnnee }</td><td>{ dateFinAnnee }</td></tr>
+</table>
+
+<table style='border: 1px solid #000000' frame='box' rules='all'>
+    <tr bgcolor='#8CACBB'><td><i>Loisirs</i></td><td><i>Problèmes médicaux</i></td><td><i>Suivi médical</i></td><td><i>Comment le jeune a-t-il connu le foyer?</i></td></tr>
+    <tr><td><i>{ loisirs }</i></td><td>{ detailsPbsMedicaux }</td><td>{ detailsSuiviMedical }</td><td>{ origine }</td></tr>
+</table><br/>
+
+<table style='border: 1px solid #000000' frame='box' rules='all'>
+    <tr bgcolor='#8CACBB'><td><i>Présentation du jeune</i></td><td><i>Engagements (associatifs, dans l'Église...)</i></td><td><i>Raisons de sa candidature</i></td></tr>
+    <tr><td><i>{ motivation }</i></td><td>{ engagements }</td><td>{ desir }</td></tr>
+</table>
     
 
 
