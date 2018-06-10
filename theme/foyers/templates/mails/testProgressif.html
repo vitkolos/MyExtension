@@ -91,27 +91,20 @@
                                 <p ng-if="lettre_motivation.$invalid && lettre_motivation.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
                             </div>
                     </ng-form>
+                    <div class="row">
+                        <div class="button submit cursor-as-pointer" ng-init="confirmMsg=false;" ng-class="{rouge: inscription_form.$valid, disabled: inscription_form.$invalid, submit: inscription_form.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Postuler</div>
+                    </div><br/>
+                  
+                    <div class="row confirm" ng-if="confirmMsg">
+                        Réservation envoyée avec succès !<br> Ne considérez votre demande comme confirmée qu'à réception d'un mail de confirmation de notre part.
+                    </div>
+                    
                 </div>
-                
-                
-                <div class="row">
-                    <div class="button" ng-init="confirmMsg=false;" ng-class="{rouge: inscription_form.$valid, disabled: inscription_form.$invalid, submit: inscription_form.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Réserver</div>
-                </div><br/>
-              
-                <div class="row confirm" ng-if="confirmMsg">
-                    Réservation envoyée avec succès !<br> Ne considérez votre demande comme confirmée qu'à réception d'un mail de confirmation de notre part.
-                </div>
+ 
         </div>
             
         </ng-form>
-                        
 
-    
-    
-    
-    <!--<div ng-if="contactCtrl.showConfirmMessage" ng-init="notification = {type:'success',text:rubedo.translate('Blocks.Auth.Msg.EmailSent','Email has been sent')}">
-        <rubedo-notification></rubedo-notification>
-    </div>-->
 </div>
 
 
