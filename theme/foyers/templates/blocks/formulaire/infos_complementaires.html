@@ -38,19 +38,19 @@
     <div class="row">
         <div class="col-sm-4"><label for="origine" class="label_style">{{rubedo.translate("Block.Inscription.Connaissance.Foyer")}}*</label></div>
         <div class="col-sm-8">
-            <input type="radio"  name="relations" id="relations" value="relations" ng-model="contactCtrl.contactData.origine" required>
+            <input type="radio"  name="relations" id="relations" value="RELATIONS" ng-model="contactCtrl.contactData.origine" required>
                         <label for="relations" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Relations")}}</label>
-            <input type="radio"  name="tracts" id="tracts" value="tracts" ng-model="contactCtrl.contactData.origine">
+            <input type="radio"  name="tracts" id="tracts" value="TRACTS" ng-model="contactCtrl.contactData.origine">
                         <label for="tracts" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Tracts")}}</label>
-            <input type="radio"  name="site" id="site" value="site" ng-model="contactCtrl.contactData.origine">
+            <input type="radio"  name="site" id="site" value="SITE INTERNET" ng-model="contactCtrl.contactData.origine">
                         <label for="site" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Site")}}</label>
-            <input type="radio"  name="annonces" id="annonces" value="annonces" ng-model="contactCtrl.contactData.origine">
+            <input type="radio"  name="annonces" id="annonces" value="ANNONCES" ng-model="contactCtrl.contactData.origine">
                         <label for="annonces" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Annonces")}}</label>
             <div class="col-sm-3">
-                <input type="radio" name="autre" id="autre" value="autre" ng-model="contactCtrl.contactData.autre">
+                <input type="radio" name="autre" id="autre" value="autre" ng-model="contactCtrl.contactData.autre" ng-click="showDetail=true">
                             <label for="autre" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Autre")}}</label>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-5" ng-if="showDetail">
                 <input class="form-control" type="text" id="precisions" ng-model="contactCtrl.contactData.origine" name="precisions" placeholder="Préciser...">
             </div>
             
