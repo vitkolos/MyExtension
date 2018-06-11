@@ -1,21 +1,21 @@
 <div ng-controller="ContactBlockController as contactCtrl" class="container">
 
-        <ng-form name="inscription_form" role="form" ng-submit="contactCtrl.submit()">
+        <ng-form name="inscription_form" role="form" ng-submit="contactCtrl.submit()" ng-if="formulaire">
         
+        
+        <!-- Pour faire descendre le formulaire lors du choix du type de public-->
+        <a name="bottom"></a>
                
         <div class="text-center">
                 <h1 class="enTete">{{rubedo.translate("Block.Inscription.Fiche", "Formulaire de candidature")}}</h1><br/><br/><br/>
         </div>
         <div class="row text-center" style="margin-bottom:50px;">
             <div style="margin-bottom:12px;color:white;font-weight:bold;font-size:1.1em;" ><h4>{{rubedo.translate("Block.Inscription.Inscrire.Comme","S'inscrire comme")}}:</h4></div>
-            <!--<div class="row">
+            <div class="row">
                 <input type="radio"  name="statut" id="etudiant" value="etudiant" ng-model="contactCtrl.contactData.statut" ng-click="showFormulaire = true;etudiant=true;jeunePro=false">
                             <label for="etudiant" class="sexe_label boite">{{rubedo.translate("etudiant")}}</label>
-            </div>-->
-            
-            <a href="#bottom" ng-click="showFormulaire = true;etudiant=true;jeunePro=false"><label for="etudiant" class="sexe_label boite">{{rubedo.translate("etudiant")}}</label></a>
-            
-            
+            </div>
+           
             <div class="row">
                 <input type="radio"  name="jeunePro" id="jeunePro" value="jeunePro" ng-model="contactCtrl.contactData.statut" ng-click="showFormulaire = true;etudiant=false;jeunePro=true" required>
                         <label for="jeunePro" class="sexe_label boite">{{rubedo.translate("jeunePro")}}</label>
@@ -25,8 +25,7 @@
 
         <div ng-if="showFormulaire">
                 
-                <!-- Pour faire descendre le formulaire lors du choix du type de public-->
-                <a name="bottom"></a>
+                
                 
                 
                 <h2  class="capital txt-red" ng-class="{'displayed' : contactCtrl.currentStage==1}" ng-click="contactCtrl.setCurrentStage(0,infos_personnelles.$valid)">{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
