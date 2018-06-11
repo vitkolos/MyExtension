@@ -24,6 +24,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				
 					/* LIENS VERS LES SECTIONS DU FORMULAIRE */
 		 var themePath='/theme/'+window.rubedoConfig.siteTheme;
+			me.formulaireTemplate = themePath+'/templates/blocks/simpleContactFoyers.html';
    me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
