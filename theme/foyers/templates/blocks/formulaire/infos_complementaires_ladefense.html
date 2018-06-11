@@ -1,0 +1,90 @@
+    <!--NOM-->
+    <div class="row" >
+            <div class="col-sm-4"><label for="dateRentreeSouhaitee" class="label_style">{{rubedo.translate("Block.Inscription.Date.Entree.Souhaitee")}}*</label></div>
+            <div class="col-sm-8">
+                <div class="dropdown">
+                    <a showtab class="dropdown-toggle" id="dropdowndateRentreeSouhaitee" role="button" data-toggle="dropdown" data-target="#" href="#">
+                        <div class="input-group"><input readonly id="dateNaiss" ng-model="contactCtrl.contactData.dateRentreeSouhaitee" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <datetimepicker data-ng-model="contactCtrl.contactData.dateRentreeSouhaitee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateRentreeSouhaitee', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateRentreeSouhaitee = (contactCtrl.contactData.dateRentreeSouhaitee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    </ul> 
+                </div>
+            </div>
+    </div>
+    <div class="row" >
+            <div class="col-sm-4"><label for="dateSortieSouhaitee" class="label_style">{{rubedo.translate("Block.Inscription.Date.Sortie.Souhaitee")}}*</label></div>
+            <div class="col-sm-8">
+                <div class="dropdown">
+                    <a showtab class="dropdown-toggle" id="dropdowndateSortieSouhaitee" role="button" data-toggle="dropdown" data-target="#" href="#">
+                        <div class="input-group"><input readonly id="dateNaiss" ng-model="contactCtrl.contactData.dateSortieSouhaitee" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <datetimepicker data-ng-model="contactCtrl.contactData.dateSortieSouhaitee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateSortieSouhaitee', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateSortieSouhaitee = (contactCtrl.contactData.dateSortieSouhaitee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    </ul> 
+                </div>
+            </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"><label for="loisirs" class="label_style">{{rubedo.translate("Block.Inscription.Loisirs")}} *</label></div>
+        <div class="col-sm-8"><textarea class="form-control" rows="3" id="loisirs" ng-model="contactCtrl.contactData.loisirs" name="loisirs" required></textarea></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"><label for="pbsMedicaux" class="label_style">{{rubedo.translate("Block.Inscription.Problemes.Medicaux")}} *</label></div>
+        <div class="col-sm-8 display_left">
+            <input type="radio"  name="pbsMedicaux" id="pbsMedicaux" value="pbsMedicaux" ng-model="contactCtrl.contactData.pbsMedicaux" ng-click="contactCtrl.pbsMedicaux = true;" required>
+                        <label for="pbsMedicaux" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
+            <input type="radio"  name="pbsMedicaux" id="non_pbsMedicaux" value="non_pbsMedicaux" ng-model="contactCtrl.contactData.pbsMedicaux" ng-click="contactCtrl.pbsMedicaux = false;" >
+                        <label for="non_pbsMedicaux" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label>
+        </div>
+    </div>
+    <div ng-if="contactCtrl.pbsMedicaux">
+        <div class="row">
+            <div class="col-sm-4"><label for="detailsPbsMedicaux" class="label_style">{{rubedo.translate("Block.Inscription.Preciser")}}</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" rows="2" id="detailsPbsMedicaux" ng-model="contactCtrl.contactData.detailsPbsMedicaux" name="detailsPbsMedicaux"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4"><label for="suiviMedical" class="label_style">{{rubedo.translate("Block.Inscription.Suivi.Medical")}} *</label></div>
+        <div class="col-sm-8 display_left">
+            <input type="radio"  name="suiviMedical" id="suiviMedical" value="suiviMedical" ng-model="contactCtrl.contactData.suiviMedical" ng-click="contactCtrl.suiviMedical = true;" required>
+                        <label for="suiviMedical" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
+            <input type="radio"  name="suiviMedical" id="non_suiviMedical" value="non_suiviMedical" ng-model="contactCtrl.contactData.suiviMedical" ng-click="contactCtrl.suiviMedical = false;" >
+                        <label for="non_suiviMedical" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label>
+        </div>
+    </div>
+    <div ng-if="contactCtrl.suiviMedical">
+        <div class="row">
+            <div class="col-sm-4"><label for="detailsSuiviMedical" class="label_style">{{rubedo.translate("Block.Inscription.Preciser")}}</label></div>
+            <div class="col-sm-8"><input class="form-control" rows="2" type="text" id="detailsPbsMedicaux" ng-model="contactCtrl.contactData.detailsSuiviMedical" name="detailsSuiviMedical"></div>
+        </div>
+    </div>
+    
+    
+    <div class="row">
+        <div class="col-sm-4"><label for="origine" class="label_style">{{rubedo.translate("Block.Inscription.Connaissance.Foyer")}}*</label></div>
+        <div class="col-sm-8">
+            <input type="radio"  name="relations" id="relations" value="RELATIONS" ng-model="contactCtrl.contactData.origine" required>
+                        <label for="relations" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Relations")}}</label>
+            <input type="radio"  name="tracts" id="tracts" value="TRACTS" ng-model="contactCtrl.contactData.origine">
+                        <label for="tracts" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Tracts")}}</label>
+            <input type="radio"  name="site" id="site" value="SITE INTERNET" ng-model="contactCtrl.contactData.origine">
+                        <label for="site" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Site")}}</label>
+            <input type="radio"  name="annonces" id="annonces" value="ANNONCES" ng-model="contactCtrl.contactData.origine">
+                        <label for="annonces" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Annonces")}}</label>
+            <div class="col-sm-3">
+                <input type="radio" name="autre" id="autre" value="autre" ng-model="contactCtrl.contactData.autre" ng-click="showDetail=true">
+                            <label for="autre" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Autre")}}</label>
+            </div>
+            <div class="col-sm-5" ng-if="showDetail">
+                <input class="form-control" type="text" id="precisions" ng-model="contactCtrl.contactData.origine" name="precisions" placeholder="Préciser...">
+            </div>
+            
+                        
+        </div>
+    </div>
+
+    
+    

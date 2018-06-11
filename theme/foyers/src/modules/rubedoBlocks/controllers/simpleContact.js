@@ -29,6 +29,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
    me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
+			me.revenus_infos = themePath+'/templates/blocks/formulaire/infos_revenus_ladefense.html';
 			me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html';
 			me.lettre_motivation = themePath+'/templates/blocks/formulaire/lettre_motivation.html';
 
@@ -209,9 +210,10 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             }
 												else if (step==4) {
                 me.toggleStage(5);
-																console.log("me.contactData.dateResultats");
-																console.log(me.contactData.dateResultats);
-																
+            }
+												else if (step==5) {
+                me.toggleStage(6);
+		
 																/* Gestion des parametres indéfinis */
 																if (me.contactData.dateResultats === undefined) {
 																				me.contactData.dateResultats =' ';
@@ -231,15 +233,21 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																if (me.contactData.detailsSuiviMedical === undefined) {
 																				me.contactData.detailsSuiviMedical ='rien à signaler';
 																}
+																if (me.contactData.bourse === undefined) {
+																				me.contactData.bourse = ' ';
+																}
+																if (me.contactData.nature === undefined) {
+																				me.contactData.nature = ' ';
+																}
+																if (me.contactData.bourse === undefined) {
+																				me.contactData.autresRevenus = ' ';
+																}
 																if (me.parentsEnsemble) {
 																				me.contactData.addressMere='idem';
 																				me.contactData.cpMere='idem';
 																				me.contactData.cityMere='idem';
 																				me.contactData.tel2Mere='idem';
 																}
-            }
-												else if (step==5) {
-                me.toggleStage(6);
             }
 								}
 				}
