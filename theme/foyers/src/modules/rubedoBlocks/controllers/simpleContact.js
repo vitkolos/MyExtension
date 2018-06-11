@@ -216,6 +216,11 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
                 me.toggleStage(5);
 																console.log("me.contactData.dateResultats");
 																console.log(me.contactData.dateResultats);
+																if (me.contactData.dateResultats === undefined) {
+																				me.contactData.dateResultats =' ';
+																				console.log("me.contactData.dateResultats");
+																				console.log(me.contactData.dateResultats);
+																}
             }
 												else if (step==5) {
                 me.toggleStage(6);
