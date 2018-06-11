@@ -1,6 +1,15 @@
 <div ng-controller="ContactBlockController as contactCtrl" class="container">
-
-        <ng-form name="inscription_form" role="form" ng-submit="contactCtrl.submit()" ng-if="formulaire">
+        
+        
+        
+        <div class="row bloc-icone">
+            <div class="col-xs-12 text-center">
+                <p><a href="#bottom" ng-click="candidater=true;showFormulaire=false"></a></p>
+                <h4>Je candidate!</h3>
+            </div>
+        </div>
+        
+        <ng-form name="inscription_form" role="form" ng-submit="contactCtrl.submit()" ng-if="candidater">
         
         
         <!-- Pour faire descendre le formulaire lors du choix du type de public-->
@@ -20,6 +29,8 @@
                 <input type="radio"  name="jeunePro" id="jeunePro" value="jeunePro" ng-model="contactCtrl.contactData.statut" ng-click="showFormulaire = true;etudiant=false;jeunePro=true" required>
                         <label for="jeunePro" class="sexe_label boite">{{rubedo.translate("jeunePro")}}</label>
             </div>
+        </div>
+        <div ng-if="!showFormulaire" style="height: 430px;">
         </div>
         
 
@@ -96,17 +107,25 @@
                     <ng-form name="lettre_motivation">
                             <div  class="row" ng-include="contactCtrl.lettre_motivation"></div>
                             <div class="row text-center">
+                                <div class="button submit cursor-as-pointer" ng-class="{'disabled' : lettre_motivation.$invalid}" ng-click="contactCtrl.setCurrentStage(5,lettre_motivation.$valid);postuler=true" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                                 <p ng-if="lettre_motivation.$invalid && lettre_motivation.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
                             </div>
                     </ng-form>
-                    <div class="row text-center">
-                        <div class="button submit cursor-as-pointer" ng-init="confirmMsg=false;" ng-class="{rouge: inscription_form.$valid, disabled: inscription_form.$invalid, submit: inscription_form.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Postuler</div>
+                    
+                    
+                    
+                    
+                </div>
+                <div ng-if="postuler">
+                    <div class="row text-center" style="margin-top:100px">
+                        <h3>Bravo tu es allé au bout du formulaire, il ne te reste plus qu'à envoyer ta candidature</h3>
+                        <p style="font-family: FontAwesome;font-size: 50px;margin:50px;"></p>
+                        <div class="button submit cursor-as-pointer" ng-init="confirmMsg=false;" ng-class="{rouge: inscription_form.$valid, disabled: inscription_form.$invalid, submit: inscription_form.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Je postule!</div>
                     </div><br/>
                   
                     <div class="row confirm" ng-if="confirmMsg">
                         Réservation envoyée avec succès !<br> Ne considérez votre demande comme confirmée qu'à réception d'un mail de confirmation de notre part.
                     </div>
-                    
                 </div>
  
         </div>
