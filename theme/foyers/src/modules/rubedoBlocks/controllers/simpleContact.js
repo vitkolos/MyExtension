@@ -12,17 +12,11 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.contactData.countryMere=' ';
 				me.contactData.professionPere=' ';
 				me.contactData.professionMere=' ';
-				me.contactData.addressMere=' ';
-				me.contactData.cpMere=' ';
-				me.contactData.cityMere=' ';
-				me.contactData.tel2Mere=' ';
 				me.contactData.examensTypes=' ';
 				me.contactData.diplomes=' ';
 				me.contactData.nombreFreresSoeurs=' ';
 				me.contactData.ageFreresSoeurs=' ';
-				me.contactData.detailsPbsMedicaux=' ';
-    me.contactData.detailsSuiviMedical=' ';
-    me.contactData.precisions=' ';
+
     
 				
 				
@@ -216,10 +210,31 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
                 me.toggleStage(5);
 																console.log("me.contactData.dateResultats");
 																console.log(me.contactData.dateResultats);
+																
+																/* Gestion des parametres indéfinis */
 																if (me.contactData.dateResultats === undefined) {
 																				me.contactData.dateResultats =' ';
-																				console.log("me.contactData.dateResultats");
-																				console.log(me.contactData.dateResultats);
+																}
+																if (me.contactData.dateDebutContrat === undefined) {
+																				me.contactData.dateDebutContrat =' ';
+																}
+																if (me.contactData.dateFinContrat === undefined) {
+																				me.contactData.dateFinContrat =' ';
+																}
+																if (me.contactData.dateFinContrat === undefined) {
+																				me.contactData.dateFinContrat =' ';
+																}
+																if (me.contactData.detailsPbsMedicaux === undefined) {
+																				me.contactData.detailsPbsMedicaux ='rien à signaler';
+																}
+																if (me.contactData.detailsSuiviMedical === undefined) {
+																				me.contactData.detailsSuiviMedical ='rien à signaler';
+																}
+																if (me.parentsEnsemble) {
+																				me.contactData.addressMere='idem';
+																				me.contactData.cpMere='idem';
+																				me.contactData.cityMere='idem';
+																				me.contactData.tel2Mere='idem';
 																}
             }
 												else if (step==5) {
