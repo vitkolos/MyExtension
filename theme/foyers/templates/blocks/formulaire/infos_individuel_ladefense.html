@@ -58,24 +58,26 @@
         <div class="row">
         <div class="col-sm-4"><label for="coordonnees" class="label_style">{{rubedo.translate("Block.Inscription.Coordonnees.Actuelles.Type")}} *</label></div>
         <div class="col-sm-8">
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <input type="radio"  name="coordonnees" id="parents" value="Chez les parents" ng-model="contactCtrl.contactData.coordonnees" ng-click="showLogement=true">
                         <label for="parents" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Coordonnees.Actuelles.Parents")}}</label>
             </div>
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <input type="radio"  name="coordonnees" id="autonome" value="Logement autonome" ng-model="contactCtrl.contactData.coordonnees" ng-click="showLogement=true" required>
                         <label for="autonome" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Coordonnees.Actuelles.Autonome")}}</label>
             </div>
-            <div class="col-sm-3">
-                <input type="radio"  name="coordonnees" id="tiers" value="Chez un tiers (autre que parents)" ng-model="contactCtrl.contactData.coordonnees" ng-click="showLogement=true">
+            <div class="col-sm-4">
+                <input type="radio"  name="coordonnees" id="tiers" value="Chez un tiers" ng-model="contactCtrl.contactData.coordonnees" alt="Famille (autre que parents) ou amis" ng-click="showLogement=true">
                         <label for="tiers" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Coordonnees.Actuelles.Tiers")}}</label>
             </div>
-            <div class="col-sm-3">
-                <input type="radio" name="autre" id="autre" value="autre" ng-model="contactCtrl.contactData.autre" ng-click="showAutre=true;showLogement=true">
-                            <label for="autre" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Autre")}}</label>
-            </div>
-            <div class="col-sm-5" ng-if="showAutre">
-                <input class="form-control" type="text" id="precisionsLogement" ng-model="contactCtrl.contactData.coordonnees" name="precisionsLogement" placeholder="Préciser..." required>
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="radio" name="autre" id="autre" value="autre" ng-model="contactCtrl.contactData.autre" ng-click="showAutre=true;showLogement=true">
+                                <label for="autre" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Autre")}}</label>
+                </div>
+                <div class="col-sm-5" ng-if="showAutre">
+                    <input class="form-control" type="text" id="precisionsLogement" ng-model="contactCtrl.contactData.coordonnees" name="precisionsLogement" placeholder="Préciser..." required>
+                </div>
             </div>
         </div>
     </div>
