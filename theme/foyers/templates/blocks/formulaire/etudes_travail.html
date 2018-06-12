@@ -8,7 +8,7 @@
     </div>
     
     
-    <div class="row" ng-if="!personneConnue">
+    <div class="row" ng-if="etudiant && !personneConnue">
         <div class="col-sm-4"><label for="diplomes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Diplomes")}}</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" id="diplomes" ng-model="contactCtrl.contactData.diplomes" name="diplomes"></div>
     </div>
@@ -147,9 +147,9 @@
         <div class="col-sm-4"><label for="telephoneEmployeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur.Telephone")}} *</label></div>
         <div class="col-sm-8"><input class="form-control" type="text" rows="3" id="telephoneEmployeur" ng-model="contactCtrl.contactData.telephoneEmployeur" name="telephoneEmployeur" required></div>
     </div>
-    <!--<div class="row" ng-if="!etudiant && !personneConnue">
-        <div class="col-sm-4"><label for="salaire" class="label_style">{{rubedo.translate("Block.Inscription.Salaire")}} *</label></div>
-        <div class="col-sm-8"><input class="form-control" type="number" id="salaire" ng-model="contactCtrl.contactData.salaire" name="salaire" required></div>
-    </div>-->
+    <div class="row" ng-if="!etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="diplomes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Diplomes")}}</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="diplomes" ng-model="contactCtrl.contactData.diplomes" name="diplomes"></div>
+    </div>
 
      
