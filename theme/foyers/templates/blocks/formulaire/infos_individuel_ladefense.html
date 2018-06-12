@@ -72,8 +72,8 @@
             </div>
             <div class="row">
                 <div class="col-sm-3">
-                    <input type="radio" name="autre" id="autre" value="autre" ng-model="contactCtrl.contactData.autre" ng-click="showAutre=true;showLogement=true">
-                                <label for="autre" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Autre")}}</label>
+                    <input type="radio" name="autreLogement" id="autreLogement" value="autreLogement" ng-model="contactCtrl.contactData.autreLogement" ng-click="showAutre=true;showLogement=true">
+                                <label for="autreLogement" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Autre")}}</label>
                 </div>
                 <div class="col-sm-5" ng-if="showAutre">
                     <input class="form-control" type="text" id="precisionsLogement" ng-model="contactCtrl.contactData.coordonnees" name="precisionsLogement" placeholder="Préciser..." required>
