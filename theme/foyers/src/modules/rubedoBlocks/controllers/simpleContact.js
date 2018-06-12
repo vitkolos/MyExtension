@@ -30,6 +30,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
    me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
+			me.travail_infos_ladefense = themePath+'/templates/blocks/formulaire/etudes_travail_ladefense.html';
 			me.revenus_infos = themePath+'/templates/blocks/formulaire/infos_revenus_ladefense.html';
 			me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html';
 			me.complement_infos_ladefense = themePath+'/templates/blocks/formulaire/infos_complementaires_ladefense.html';

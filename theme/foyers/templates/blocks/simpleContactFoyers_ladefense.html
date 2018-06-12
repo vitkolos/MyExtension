@@ -76,7 +76,7 @@
                 
                 <div id="inscriptionStage3" class="collapse">
                     <ng-form name="infos_travail">
-                            <div  class="row" ng-include="contactCtrl.travail_infos"></div>
+                            <div  class="row" ng-include="contactCtrl.travail_infos_ladefense"></div>
                             <div class="row text-center">
                                 <div class="button submit cursor-as-pointer" ng-class="{'disabled' : infos_travail.$invalid}" ng-click="contactCtrl.setCurrentStage(3,infos_travail.$valid)" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
                                 <p ng-if="infos_travail.$invalid && infos_travail.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
