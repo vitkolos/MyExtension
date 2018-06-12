@@ -41,6 +41,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.parentsSepares=false;
 				me.examensPrealables=false;
 				me.stageouCDD=false;
+				me.stageouformationPro=false;
 				me.pbsMedicaux=false;
 				me.suiviMedical=false;
     me.contactData.subject='Nouvelle réservation';
@@ -235,9 +236,6 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																if (me.contactData.dateFinContrat === undefined) {
 																				me.contactData.dateFinContrat =' ';
 																}
-																if (me.contactData.dateFinContrat === undefined) {
-																				me.contactData.dateFinContrat =' ';
-																}
 																if (me.contactData.detailsPbsMedicaux === undefined) {
 																				me.contactData.detailsPbsMedicaux ='rien à signaler';
 																}
@@ -250,7 +248,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																if (me.contactData.nature === undefined) {
 																				me.contactData.nature = ' ';
 																}
-																if (me.contactData.bourse === undefined) {
+																if (me.contactData.autresRevenus === undefined) {
 																				me.contactData.autresRevenus = ' ';
 																}
 																if (me.parentsEnsemble) {
@@ -259,9 +257,22 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																				me.contactData.cityMere='idem';
 																				me.contactData.tel2Mere='idem';
 																}
+																if (me.contactData.employeur === undefined) {
+																				me.contactData.employeur = ' ';
+																				me.contactData.adresseEmployeur = ' ';
+																				me.contactData.telephoneEmployeur = ' ';
+																				me.contactData.dateDebutContrat = ' ';
+																				me.contactData.dateFinContrat = ' ';
+																}
+																if ($scope.etudiant && !me.stageouformationPro) {
+																				me.contactData.salaire = ' ';
+																				me.contactData.autresRevenus = ' ';
+																				me.contactData.nature = ' ';
+																				me.contactData.totalRessources = ' ';
+																				me.contactData.revenuFiscal = ' ';
+																}
             }
 								}
 				}
-				
 				
 }]);

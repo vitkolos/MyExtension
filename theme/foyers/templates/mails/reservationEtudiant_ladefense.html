@@ -2,10 +2,11 @@
 <html><body>
 <table width=100%><tr>
   <div style='text-align:center'>
-    <h3 style='font-style:italic'>Candidature pour le foyer Paris - La Défense</h3><br/>
+    <h2 style='font-style:italic'>Candidature pour le foyer Paris - La Défense</h2><br/>
     <h1><span style='text-transform:capitalize'>{ prenom }</span> <span style='text-transform:uppercase'>{ nom }</span></h1>
     <h3>{ age } ans (à ce jour)</h3>
-    <h3><span style="text-decoration: underline;"><b>Étudiant :</span> { etudes } </h3><br/>
+    <h3><span style="text-decoration: underline;"><b>Étudiant :</span> { etudes } </h3>
+    <h3 style='font-style:italic'>{ contrat }</h3><br/>
     <h4>Date d'entrée au foyer souhaitée : { dateRentreeSouhaitee }</h4>
     <h4>Date de sortie du foyer souhaitée : { dateSortieSouhaitee }</h4>
   </div>
@@ -68,6 +69,12 @@
     <tr><td bgcolor='#8CACBB' width=33%><i>Date des résultats</i></td><td width=67%>{ dateResultats }</td></tr>
     <tr><td bgcolor='#8CACBB' width=33%><i>Date de début d'année scolaire</i></td><td width=67%>{ dateDebutAnnee }</td></tr>
     <tr><td bgcolor='#8CACBB' width=33%><i>Date de fin d'année scolaire</i></td><td width=67%>{ dateDebutAnnee }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Type de contrat</i></td><td width=67%>{ contrat }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Nom de l'employeur</i></td><td width=67%>{ employeur }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Adresse de l'employeur</i></td><td width=67%>{ adresseEmployeur }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Téléphone de l'employeur</i></td><td width=67%>{ telephoneEmployeur }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Date de début du contrat</i></td><td width=67%>{ dateDebutContrat }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Date de fin du contrat</i></td><td width=67%>{ dateFinContrat }</td></tr>
 </table><br/><br/>
 
 <table width=80% style='border: 1px solid #000000;margin: auto;' frame='box' rules='all'>
@@ -75,6 +82,11 @@
     <tr><td bgcolor='#8CACBB' width=33%><i>Le loyer sera payé par : </i></td><td width=67%>{ paiementLoyer }</td></tr>
     <tr><td bgcolor='#8CACBB' width=33%><i>Etudiant boursier?</i></td><td width=67%>{ boursier }</td></tr>
     <tr><td bgcolor='#8CACBB' width=33%><i>Montant de la bourse (€)</i></td><td width=67%>{ bourse }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Salaire net ou revenu d’activité (€/mois)</i></td><td width=67%>{ salaire }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Autres revenus (€/mois)</i></td><td width=67%>{ autresRevenus }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Nature (€/mois)</i></td><td width=67%>{ nature }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Total des ressources (€/mois)</i></td><td width=67%>{ totalRessources }</td></tr>
+    <tr><td bgcolor='#8CACBB' width=33%><i>Revenu fiscal de référence (€/mois)</i></td><td width=67%>{ revenuFiscal }</td></tr>
 </table><br/><br/>
 
 <table width=80% style='border: 1px solid #000000;margin: auto;' frame='box' rules='all'>
@@ -105,13 +117,14 @@
 </table><br/>
 
 <table style='border: 1px solid #000000' frame='box' rules='all'>
-    <tr bgcolor='#8CACBB'><td><i>Études</i></td><td><i>Métier envisagé</i></td><td><i>Diplômes obtenus</i></td><td><i>Établissement actuel</i></td><td><i>Établissement suivant</i></td><td><i>Examens préalables?</i></td><td><i>Type d'examens</i></td><td><i>Date des résultats</i></td><td><i>Date de la rentrée scolaire</i></td><td><i>Date de la fin de l'année scolaire</i></td></tr>
-    <tr><td><i>{ etudes }</i></td><td>{ metier }</td><td>{ diplomes }</td><td>{ etablissementActuel }</td><td>{ etablissementSuivant }</td><td>{ examensPrealables }</td><td>{ examensTypes }</td><td>{ dateResultats }</td><td>{ dateDebutAnnee }</td><td>{ dateFinAnnee }</td></tr>
+    <tr bgcolor='#8CACBB'><td><i>Études</i></td><td><i>Métier envisagé</i></td><td><i>Diplômes obtenus</i></td><td><i>Établissement actuel</i></td><td><i>Établissement suivant</i></td><td><i>Examens préalables?</i></td><td><i>Type d'examens</i></td><td><i>Date des résultats</i></td><td><i>Date de la rentrée scolaire</i></td><td><i>Date de la fin de l'année scolaire</i></td><td><i>Type de contrat</i></td><td><i>Nom de l'employeur</i></td><td><i>Adresse de l'employeur</i></td><td><i>Téléphone de l'employeur</i></td><td><i>Date de début du contrat</i></td><td><i>Date de fin du contrat</i></td></tr>
+    <tr><td><i>{ etudes }</i></td><td>{ metier }</td><td>{ diplomes }</td><td>{ etablissementActuel }</td><td>{ etablissementSuivant }</td><td>{ examensPrealables }</td><td>{ examensTypes }</td><td>{ dateResultats }</td><td>{ dateDebutAnnee }</td><td>{ dateFinAnnee }</td><td>{ contrat }</td><td>{ employeur }</td><td>{ adresseEmployeur }</td><td>{ telephoneEmployeur }</td><td>{ dateDebutContrat }</td><td>{ dateFinContrat }</td></tr>
 </table><br/>
 
+
 <table style='border: 1px solid #000000' frame='box' rules='all'>
-    <tr bgcolor='#8CACBB'><td><i>Le loyer sera payé par :</i></td><td><i>Etudiant boursier?</i></td><td><i>Montant de la bourse (€/mois))</i></td></tr>
-    <tr><td><i>{ paiementLoyer }</i></td><td>{ boursier }</td><td>{ bourse }</td></tr>
+    <tr bgcolor='#8CACBB'><td><i>Le loyer sera payé par :</i></td><td><i>Etudiant boursier?</i></td><td><i>Montant de la bourse (€/mois))</i></td><td><i>Salaire net ou revenu d’activité (€/mois)</i></td><td><i>Autres revenus (€/mois)</i></td><td><i>Nature (€/mois)</i></td><td><i>Total des ressources (€/mois)</i></td><td><i>Revenu fiscal de référence (€/mois)</i></td></tr>
+    <tr><td><i>{ paiementLoyer }</i></td><td>{ boursier }</td><td>{ bourse }</td><td>{ salaire }</td><td>{ autresRevenus }</td><td><i>{ nature }</i></td><td>{ totalRessources }</td><td>{ revenuFiscal }</td></tr>
 </table><br/>
 
 <table style='border: 1px solid #000000' frame='box' rules='all'>

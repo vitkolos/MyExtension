@@ -1,0 +1,216 @@
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="etudes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes")}} *</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="etudes" ng-model="contactCtrl.contactData.etudes" name="etudes" required></div>
+    </div>
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="metier" class="label_style">{{rubedo.translate("Block.Inscription.MetierEnvisage")}} *</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="metier" ng-model="contactCtrl.contactData.metier" name="metier" required></div>
+    </div>
+    
+    
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="diplomes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Diplomes")}}</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="diplomes" ng-model="contactCtrl.contactData.diplomes" name="diplomes"></div>
+    </div>
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="etablissementActuel" class="label_style">{{rubedo.translate("Block.Inscription.Etablissement.Actuel")}} *</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="etablissementActuel" ng-model="contactCtrl.contactData.etablissementActuel" name="etablissementActuel" required></div>
+    </div>
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="etablissementSuivant" class="label_style">{{rubedo.translate("Block.Inscription.Etablissement.Prochain")}} *</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="etablissementSuivant" ng-model="contactCtrl.contactData.etablissementSuivant" name="etablissementSuivant" required></div>
+    </div>
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="examensPrealables" class="label_style">{{rubedo.translate("Block.Inscription.Examens.Prealables")}} *</label></div>
+        <div class="col-sm-8 display_left">
+                <input type="radio"  name="examensPrealables" id="oui" value="oui" ng-model="contactCtrl.contactData.examensPrealables" ng-click="contactCtrl.examensPrealables = true;" required>
+                            <label for="oui" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
+                <input type="radio"  name="examensPrealables" id="non" value="non" ng-model="contactCtrl.contactData.examensPrealables" ng-click="contactCtrl.examensPrealables = false;">
+                            <label for="non" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label> 
+        </div>
+    </div>
+    <div ng-if="contactCtrl.examensPrealables && etudiant && !personneConnue"">
+        <div class="row">
+            <div class="col-sm-4"><label for="examensTypes" class="label_style">{{rubedo.translate("Block.Inscription.Examens.Types")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" id="examensTypes" ng-model="contactCtrl.contactData.examensTypes" name="examensTypes" required></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label for="dateResultats" class="label_style">{{rubedo.translate("Block.Inscription.Date.Resultats")}}</label></div>
+            <div class="col-sm-8">
+                <div class="dropdown">
+                    <a showtab class="dropdown-toggle" id="dropdowndateResultats" role="button" data-toggle="dropdown" data-target="#" href="#">
+                        <div class="input-group"><input readonly id="dateResultats" ng-model="contactCtrl.contactData.dateResultats" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <datetimepicker data-ng-model="contactCtrl.contactData.dateResultats"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateResultats', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateResultats = (contactCtrl.contactData.dateResultats |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="dateDebutAnnee" class="label_style">{{rubedo.translate("Block.Inscription.Date.Debut")}} *</label></div>
+        <div class="col-sm-8">
+            <div class="dropdown">
+                <a showtab class="dropdown-toggle" id="dropdowndateDebutAnnee" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group"><input readonly id="dateDebutAnnee" ng-model="contactCtrl.contactData.dateDebutAnnee" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateDebutAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutAnnee', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateDebutAnnee = (contactCtrl.contactData.dateDebutAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                </ul> 
+            </div>
+        </div>
+    </div>
+    
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="dateFinAnnee" class="label_style">{{rubedo.translate("Block.Inscription.Date.Fin")}} *</label></div>
+        <div class="col-sm-8">
+            <div class="dropdown">
+                <a showtab class="dropdown-toggle" id="dropdowndateFinAnnee" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group"><input readonly id="dateFinAnnee" ng-model="contactCtrl.contactData.dateFinAnnee" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinAnnee"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinAnnee', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateFinAnnee = (contactCtrl.contactData.dateFinAnnee |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                </ul> 
+            </div>
+        </div>
+    </div>
+    
+    
+       
+    <div class="row" ng-if="!etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="profession" class="label_style">{{rubedo.translate("Block.Inscription.Profession")}}*</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="profession" ng-model="contactCtrl.contactData.profession" name="profession" required></div>
+    </div>
+    <div class="row" ng-if="!etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="contrat" class="label_style">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat")}}*</label></div>
+        <div class="col-sm-8">
+            <input type="radio"  name="contrat" id="cdi" value="CDI" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouCDD = false;">
+                        <label for="cdi" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.CDI")}}</label>
+            <input type="radio"  name="contrat" id="cdd" value="CDD" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouCDD = true;" required>
+                        <label for="cdd" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.CDD")}}</label>
+            <!--<input type="radio"  name="contrat" id="stage" value="STAGE" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouCDD = true;">
+                        <label for="stage" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Stage")}}</label>
+            <input type="radio"  name="contrat" id="alternance" value="ALTERANCE" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouCDD = false;">
+                        <label for="alternance" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Alternance")}}</label>
+            <input type="radio"  name="contrat" id="apprentissage" value="APPRENTISSAGE" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouCDD = false;">
+                        <label for="apprentissage" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Apprentissage")}}</label>-->
+            <input type="radio"  name="contrat" id="interim" value="INTERIM" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouCDD = false;">
+                        <label for="interim" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Interim")}}</label>
+            <input type="radio"  name="contrat" id="demandeur" value="DEMANDEUR D'EMPLOI" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouCDD = false;">
+                        <label for="demandeur" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Demandeur.Emploi")}}</label>              
+        </div>
+    </div>
+    <div class="row" ng-if="!etudiant && contactCtrl.stageouCDD && !personneConnue">
+        <div class="col-sm-4"><label for="dateDebutContrat" class="label_style">{{rubedo.translate("Block.Inscription.Date.Debut.Contrat")}} *</label></div>
+        <div class="col-sm-8">
+            <div class="dropdown">
+                <a showtab class="dropdown-toggle" id="dropdowndateDebutContrat" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group"><input readonly id="dateDebutContrat" ng-model="contactCtrl.contactData.dateDebutContrat" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateDebutContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutContrat', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateDebutContrat = (contactCtrl.contactData.dateDebutContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="row" ng-if="!etudiant && contactCtrl.stageouCDD && !personneConnue">
+        <div class="col-sm-4"><label for="dateFinContrat" class="label_style">{{rubedo.translate("Block.Inscription.Date.Fin.Contrat")}} *</label></div>
+        <div class="col-sm-8">
+            <div class="dropdown">
+                <a showtab class="dropdown-toggle" id="dropdowndateFinContrat" role="button" data-toggle="dropdown" data-target="#" href="#">
+                    <div class="input-group"><input readonly id="dateFinContrat" ng-model="contactCtrl.contactData.dateFinContrat" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                    </div>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <datetimepicker data-ng-model="contactCtrl.contactData.dateFinContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinContrat', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateFinContrat = (contactCtrl.contactData.dateFinContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                </ul> 
+            </div>
+        </div>
+    </div>
+    <div class="row" ng-if="!etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="employeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur")}} *</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="employeur" ng-model="contactCtrl.contactData.employeur" name="employeur" required></div>
+    </div>
+    <div class="row" ng-if="!etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="adresseEmployeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur.Adresse")}} *</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" rows="3" id="adresseEmployeur" ng-model="contactCtrl.contactData.adresseEmployeur" name="adresseEmployeur" required></div>
+    </div>
+    <div class="row" ng-if="!etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="telephoneEmployeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur.Telephone")}} *</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" rows="3" id="telephoneEmployeur" ng-model="contactCtrl.contactData.telephoneEmployeur" name="telephoneEmployeur" required></div>
+    </div>
+    <div class="row" ng-if="!etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="diplomes" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Diplomes")}}</label></div>
+        <div class="col-sm-8"><input class="form-control" type="text" id="diplomes" ng-model="contactCtrl.contactData.diplomes" name="diplomes"></div>
+    </div>
+    
+    
+    
+    <!-- POUR LES STAGIAIRES OU LES JEUNES EN FORMATION PROFESSIONNELLE -->
+    
+    <div class="row" ng-if="etudiant && !personneConnue">
+        <div class="col-sm-4"><label for="contrat" class="label_style">{{rubedo.translate("Block.Inscription.Etudes.Type")}} *</label></div>
+        <div class="col-sm-8">
+            <input type="radio"  name="contrat" id="alternance" value="ALTERNANCE" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouformationPro = true;" required>
+                        <label for="alternance" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Alternance")}}</label>
+            <input type="radio"  name="contrat" id="apprentissage" value="APPRENTISSAGE" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouformationPro = true;">
+                        <label for="apprentissage" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Apprentissage")}}</label>
+            <input type="radio"  name="contrat" id="stage" value="STAGE" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouformationPro = true;">
+                        <label for="stage" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Profession.Type.Contrat.Stage")}}</label>
+            <input type="radio"  name="contrat" id="classique" value="CLASSIQUE" ng-model="contactCtrl.contactData.contrat" ng-click="contactCtrl.stageouformationPro = false;">
+                        <label for="classique" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Etudes.Type.Classique")}}</label>
+        </div>
+    </div>
+    <div ng-if="etudiant && contactCtrl.stageouformationPro">
+        <div class="row">
+            <div class="col-sm-4"><label for="dateDebutContrat" class="label_style">{{rubedo.translate("Block.Inscription.Date.Debut.Contrat")}} *</label></div>
+            <div class="col-sm-8">
+                <div class="dropdown">
+                    <a showtab class="dropdown-toggle" id="dropdowndateDebutContrat" role="button" data-toggle="dropdown" data-target="#" href="#">
+                        <div class="input-group"><input readonly id="dateDebutContrat" ng-model="contactCtrl.contactData.dateDebutContrat" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <datetimepicker data-ng-model="contactCtrl.contactData.dateDebutContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateDebutContrat', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateDebutContrat = (contactCtrl.contactData.dateDebutContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="row">
+            <div class="col-sm-4"><label for="dateFinContrat" class="label_style">{{rubedo.translate("Block.Inscription.Date.Fin.Contrat")}} *</label></div>
+            <div class="col-sm-8">
+                <div class="dropdown">
+                    <a showtab class="dropdown-toggle" id="dropdowndateFinContrat" role="button" data-toggle="dropdown" data-target="#" href="#">
+                        <div class="input-group"><input readonly id="dateFinContrat" ng-model="contactCtrl.contactData.dateFinContrat" type="text" class="form-control" required><span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <datetimepicker data-ng-model="contactCtrl.contactData.dateFinContrat"  data-datetimepicker-config="{dropdownSelector: '#dropdowndateFinContrat', startView: 'year', minView:'day'}" data-on-set-time="contactCtrl.contactData.dateFinContrat = (contactCtrl.contactData.dateFinContrat |date:'dd/MM/yyyy'); moment.locale('fr')"/>
+                    </ul> 
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label for="employeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" id="employeur" ng-model="contactCtrl.contactData.employeur" name="employeur" required></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label for="adresseEmployeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur.Adresse")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" rows="3" id="adresseEmployeur" ng-model="contactCtrl.contactData.adresseEmployeur" name="adresseEmployeur" required></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4"><label for="telephoneEmployeur" class="label_style">{{rubedo.translate("Block.Inscription.Employeur.Telephone")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" rows="3" id="telephoneEmployeur" ng-model="contactCtrl.contactData.telephoneEmployeur" name="telephoneEmployeur" required></div>
+        </div>
+    </div>
+     
