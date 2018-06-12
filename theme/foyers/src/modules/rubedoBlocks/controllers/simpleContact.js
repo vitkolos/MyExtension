@@ -45,6 +45,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.suiviMedical=false;
     me.contactData.subject='Nouvelle réservation';
 				me.contactData.message=' ';
+				$scope.isLadefense=false;
     //lg = rubedo.current.page.locale;
     //moment.locale(rubedo.current.page.locale);
 				
@@ -61,13 +62,21 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             case 'etudiant':
                 $scope.etudiant = true;
 																$scope.jeunePro = false;
-																me.contactData.template='/theme/foyers/templates/mails/reservationEtudiant.html';
+																if ($scope.isLadefense) {
+																			me.contactData.template='/theme/foyers/templates/mails/reservationEtudiant_ladefense.html';
+																} else {
+																				me.contactData.template='/theme/foyers/templates/mails/reservationEtudiant.html';
+																}
 																console.log(me.contactData.template);
                 break;
             case 'jeunePro':
                 $scope.etudiant = false;
 																$scope.jeunePro = true;
-																me.contactData.template='/theme/foyers/templates/mails/reservationJeunePro.html';
+																if ($scope.isLadefense) {
+																			me.contactData.template='/theme/foyers/templates/mails/reservationJeunePro_ladefense.html';
+																} else {
+																				me.contactData.template='/theme/foyers/templates/mails/reservationJeunePro.html';
+																}
 																console.log(me.contactData.template);
                 break;
         }
