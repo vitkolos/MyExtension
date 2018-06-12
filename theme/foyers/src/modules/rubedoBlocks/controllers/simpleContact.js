@@ -26,11 +26,13 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 		 var themePath='/theme/'+window.rubedoConfig.siteTheme;
 			me.formulaireTemplate = themePath+'/templates/blocks/simpleContactFoyers.html';
    me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
+			me.general_infos_ladefense= themePath+'/templates/blocks/formulaire/infos_individuel_ladefense.html';
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
 			me.freres_soeurs_infos = themePath+'/templates/blocks/formulaire/freres_soeurs.html';
    me.travail_infos = themePath+'/templates/blocks/formulaire/etudes_travail.html';
 			me.revenus_infos = themePath+'/templates/blocks/formulaire/infos_revenus_ladefense.html';
 			me.complement_infos = themePath+'/templates/blocks/formulaire/infos_complementaires.html';
+			me.complement_infos_ladefense = themePath+'/templates/blocks/formulaire/infos_complementaires_ladefense.html';
 			me.lettre_motivation = themePath+'/templates/blocks/formulaire/lettre_motivation.html';
 
 		
