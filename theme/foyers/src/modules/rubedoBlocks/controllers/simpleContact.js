@@ -266,7 +266,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																				me.contactData.dateFinContrat = ' ';
 																}
 																if ($scope.etudiant && !me.stageouformationPro) {
-																				me.contactData.salaire = ' ';
+																				me.contactData.salaire = 'pas de revenus';
 																				me.contactData.autresRevenus = ' ';
 																				me.contactData.nature = ' ';
 																				me.contactData.totalRessources = ' ';
