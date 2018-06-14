@@ -1280,6 +1280,19 @@ label.label_style.left, .label_style.left label{text-align:left; float:left}
 }
 @media screen and (max-width:@min_sm) {.panel-group[id^=collapse] .panel-body ul{padding-left: 12px}}
 
+//Cas des services civiques//
+#jeunes .panel-group{
+  .panel-default{border-color:@txt_dark}
+  .panel-default>.panel-heading{background-color: @txt_dark; color:white; .capital;}
+  .panel-title{padding-right: 15px}
+  li{padding-bottom: 2px;}
+  a:hover{color:white}
+  .panel{border-radius:0px !important}
+  .panel-heading{border-top-left-radius:0px; border-top-right-radius:0px;.downarrow();}
+  .panel-heading:after{margin-top: -1.5em}
+}
+@media screen and (max-width:@min_sm) {.panel-group .panel-body ul{padding-left: 12px}}
+
 /////////DONS/////////////////
 .dons-progress{
   border: 2px solid @beigeCCN; height: 35px; margin-bottom: 12px; 
