@@ -113,11 +113,12 @@
 				</div>
 			</div>			
 			
-		</div> 
+		</div>
+		<div style="margin-top:24px;border-top: solid 2px #d5c5b5;" ng-if="contentDetailCtrl.linkedContents[0]">
+		</div>
 		
 	</div>
-	<div class="row border-top bg-white" style="margin-top:24px;border-top: solid 2px #d5c5b5;" ng-if="contentDetailCtrl.linkedContents[0]">
-	</div>
+	
 	<div class="row"ng-if="contentDetailCtrl.linkedContents[0]">
 		<h3 class="text-center" style="margin-bottom:24px">{{rubedo.translate("Block.Service.Opportunites", "D'autres opportunités...")}}</h3>
 		<div class="col-xs-12 col-sm-4 text-center" ng-repeat="content in contentDetailCtrl.linkedContents">
