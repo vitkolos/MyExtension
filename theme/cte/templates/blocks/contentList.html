@@ -79,13 +79,15 @@
 					</div>
 					<!--SERVICE CIVIQUE-->
 					<div ng-switch-when="5b2218d9396588063f4adfef">
-						<div class="panel-group">
-							<div class="panel panel-default">
-									<div class="panel-heading">
-										<div class="panel-title"><a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">{{content.fields.text}}</a></div>
-									</div>
+						<a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
+							<div class="panel-group">
+								<div class="panel panel-default">
+										<div class="panel-heading">
+											<div class="panel-title">{{content.fields.text}}</div>
+										</div>
+								</div>
 							</div>
-						</div>
+						</a>
 						<!--<div class="panel-group" id="collapse1498815559196">
 							<div class="panel panel-default">
 									<div class="panel-heading" id="heading1498815559196_0">
