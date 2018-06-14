@@ -55,13 +55,50 @@
                 <p ng-if="mailError" class="infos_validation txt-red">{{rubedo.translate("Block.Inscription.Email.Error.Different")}}</p>
             </div>
         </div>
-    
+        <div class="row">
+        <div class="col-sm-4"><label for="coordonnees" class="label_style">{{rubedo.translate("Block.Inscription.Coordonnees.Actuelles.Type")}} *</label></div>
+        <div class="col-sm-8">
+            <div class="col-sm-4">
+                <input type="radio"  name="coordonnees" id="parents" value="Chez les parents" ng-model="contactCtrl.contactData.coordonnees" ng-click="showLogement=true">
+                        <label for="parents" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Coordonnees.Actuelles.Parents")}}</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="radio"  name="coordonnees" id="autonome" value="Logement autonome" ng-model="contactCtrl.contactData.coordonnees" ng-click="showLogement=true" required>
+                        <label for="autonome" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Coordonnees.Actuelles.Autonome")}}</label>
+            </div>
+            <div class="col-sm-4">
+                <input type="radio"  name="coordonnees" id="tiers" value="Chez un tiers" ng-model="contactCtrl.contactData.coordonnees" alt="Famille (autre que parents) ou amis" ng-click="showLogement=true">
+                        <label for="tiers" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Coordonnees.Actuelles.Tiers")}}</label>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="radio" name="autreLogement" id="autreLogement" value="autreLogement" ng-model="contactCtrl.contactData.autreLogement" ng-click="showAutre=true;showLogement=true">
+                                <label for="autreLogement" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Autre")}}</label>
+                </div>
+                <div class="col-sm-5" ng-if="showAutre">
+                    <input class="form-control" type="text" id="precisionsLogement" ng-model="contactCtrl.contactData.coordonnees" name="precisionsLogement" placeholder="Préciser..." required>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-if="showLogement">
+        <div class="row" >
+            <div class="col-sm-4"><label for="adresse" class="label_style">{{rubedo.translate("Block.Inscription.Adresse")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" id="adresse" ng-model="contactCtrl.contactData.adresse" name="adresse" required></div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-4"><label for="cp" class="label_style">{{rubedo.translate("Block.Inscription.CodePostal")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" id="cp" ng-model="contactCtrl.contactData.cp" name="cp" required></div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-4"><label for="ville" class="label_style">{{rubedo.translate("Block.Inscription.Ville")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" id="ville" ng-model="contactCtrl.contactData.ville" name="ville" required></div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-4"><label for="telFixe" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Fixe")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="text" id="telFixe" ng-model="contactCtrl.contactData.telFixe" name="telFixe" required></div>
+        </div>
+    </div>
     
 
-    
-    <!--ng-pattern="/^(0|\+33|0033){1}\/?[1-9]\s?([0-9]\s?){8}$/"-->
-    <!--<div class="row" > 
-        <div class="col-sm-4"><label for="tel" class="label_style">{{rubedo.translate("Block.Inscription.Telephone.Portable")}}**</label></div>
-        <div class="col-sm-8"><input type="text" id="tel" name="tel" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}" ng-model="contactCtrl.contactData.tel"  ng-required="isTelephoneRequired()"></div>
-    </div>-->
 

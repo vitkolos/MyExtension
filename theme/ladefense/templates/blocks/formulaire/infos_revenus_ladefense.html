@@ -1,0 +1,50 @@
+    <div class="row">
+        <div class="col-sm-4"><label for="paiementLoyer" class="label_style">{{rubedo.translate("Block.Inscription.Paiement.Loyer")}} *</label></div>
+        <div class="col-sm-8 display_left">
+            <input type="radio"  name="paiementLoyer" id="parParents" value="Les parents" ng-model="contactCtrl.contactData.paiementLoyer" required>
+                        <label for="parParents" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Paiement.Loyer.Parents")}}</label>	
+            <input type="radio"  name="paiementLoyer" id="resident" value="Le résident lui-même" ng-model="contactCtrl.contactData.paiementLoyer" >
+                        <label for="resident" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Paiement.Loyer.Resident")}}</label>	
+        </div>
+    </div>
+    <div ng-if="etudiant">
+        <div class="row">
+            <div class="col-sm-4"><label for="boursier" class="label_style">{{rubedo.translate("Block.Inscription.Boursier")}} *</label></div>
+            <div class="col-sm-8 display_left">
+                <input type="radio"  name="boursier" id="boursier" value="oui" ng-model="contactCtrl.contactData.boursier" ng-click="estBoursier=true" required>
+                            <label for="boursier" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Oui")}}</label>	
+                <input type="radio"  name="boursier" id="non_boursier" value="non" ng-model="contactCtrl.contactData.boursier" >
+                            <label for="non_boursier" class="sexe_label boite">{{rubedo.translate("Block.Inscription.Non")}}</label>	
+            </div>
+        </div>
+        <div class="row" ng-if="estBoursier">
+            <div class="col-sm-4"><label for="bourse" class="label_style">{{rubedo.translate("Block.Inscription.Bourse")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="number" id="bourse" ng-model="contactCtrl.contactData.bourse" name="bourse" required></div>
+        </div>
+    </div>
+    <div ng-if="!etudiant || contactCtrl.stageouformationPro">
+        <div class="row" >
+            <div class="col-sm-4"><label for="salaire" class="label_style">{{rubedo.translate("Block.Inscription.Salaire")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="number" id="salaire" ng-model="contactCtrl.contactData.salaire" name="salaire" required></div>
+        </div>
+        <div class="row" > 
+            <div class="col-sm-4"><label for="autresRevenus" class="label_style">{{rubedo.translate("Block.Inscription.Autres.Revenus")}}</label></div>
+            <div class="col-sm-8"><input class="form-control" type="number" id="autresRevenus" ng-model="contactCtrl.contactData.autresRevenus" name="autresRevenus"></div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-4"><label for="nature" class="label_style">{{rubedo.translate("Block.Inscription.Nature")}}</label></div>
+            <div class="col-sm-8"><input class="form-control" type="number" id="nature" ng-model="contactCtrl.contactData.nature" name="nature" placehoder="Par exemple l'aide des parents…"></div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-4"><label for="totalRessources" class="label_style">{{rubedo.translate("Block.Inscription.Total.Ressources")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="number" id="totalRessources" ng-model="contactCtrl.contactData.totalRessources" name="totalRessources" required></div>
+        </div>
+        <div class="row" >
+            <div class="col-sm-4"><label for="revenuFiscal" class="label_style">{{rubedo.translate("Block.Inscription.Revenu.Fiscal")}} *</label></div>
+            <div class="col-sm-8"><input class="form-control" type="number" id="revenuFiscal" ng-model="contactCtrl.contactData.revenuFiscal" name="revenuFiscal" required></div>
+        </div>
+    </div>
+    
+    
+    
+    
