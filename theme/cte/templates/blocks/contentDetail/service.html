@@ -71,6 +71,14 @@
 				</div>
 				<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
 			</div>
+			<div ng-if="fieldEntity['documentDetaille']" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital text-left">{{contentDetailCtrl.getLabelByName('documentDetaille')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<p><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('documentDetaille')}}"></rubedo-field></p><!--Contact-->
+				</div>
+			</div>
 			<div ng-if="fieldEntity['nom']" class="col-xs-12">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 					<p class="capital">{{contentDetailCtrl.getLabelByName('nom')}}</p>
@@ -84,15 +92,6 @@
 					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user.rights.canEdit">(visible car vous êtes connectés)</span>
 				</div>
 			</div>
-			<div ng-if="fieldEntity['documentDetaille']" class="col-xs-12">
-				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
-					<p class="capital text-left">{{contentDetailCtrl.getLabelByName('documentDetaille')}}</p>
-				</div>
-				<div class="col-xs-12 col-sm-8 ">
-					<p><rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('documentDetaille')}}"></rubedo-field></p><!--Contact-->
-				</div>
-			</div>
-			
 			<div ng-if="fieldEntity['website']" class="col-xs-12">
 				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 					<p class="capital">{{contentDetailCtrl.getLabelByName('website')}}</p>
