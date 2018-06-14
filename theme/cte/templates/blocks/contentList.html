@@ -51,34 +51,60 @@
                             <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
                             
                         </div>
-                   </div>
-			<!---NET FOR GOD FILMS-->
-		<div ng-switch-when="54cb447145205e7d09db0590" class="padding" ng-init="url= content.fields.text | encodeURIComponent">
-			<p class="capital">{{content.fields.date*1000 | date :'MMMM yyyy' }}</p>
-			<a  ng-href="{{content.detailPageUrl == '#' ? 'https://www.netforgod.tv/en/home/films/'+content.id+'/' +url : content.detailPageUrl}}" target="_blank">
-							<img class="img-responsive" ng-if="content.fields.affiche" style="margin:0 auto"
-												ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
-												alt="{{ content.fields.text }}"/>
-			</a>
-
-			<a class="site-link" ng-href="{{content.detailPageUrl == '#' ? 'https://www.netforgod.tv/en/home/films/'+content.id+'/' +url : content.detailPageUrl}}" target="_blank"> 
-							{{content.fields.text}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
-			</a>
-		</div>
-			<!--CONTACTS-->
-		<div ng-switch-when="560d2bf445205e816041ea7f">
-			<h4 class="capital">{{content.fields.text}}</h4>
-			<p ng-if="content.fields.telephone"><i class="fa fa-phone icon"></i> {{content.fields.telephone}}</p>
-			<p ng-if="content.fields.position"><i class="fa fa-map-marker icon"></i> {{content.fields.position.address}}</p>
-			<p ng-if="content.fields.email">
-				<i class="fa fa-envelope icon"></i>
-				<span style="display:inline-block" ng-init="blockConfig={'email':content.fields.email, 'name':content.fields.nom,'surname': content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
-					<span ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></span>
-				</span>
-			</p>
-				
+					</div>
+						<!---NET FOR GOD FILMS-->
+					<div ng-switch-when="54cb447145205e7d09db0590" class="padding" ng-init="url= content.fields.text | encodeURIComponent">
+						<p class="capital">{{content.fields.date*1000 | date :'MMMM yyyy' }}</p>
+						<a  ng-href="{{content.detailPageUrl == '#' ? 'https://www.netforgod.tv/en/home/films/'+content.id+'/' +url : content.detailPageUrl}}" target="_blank">
+										<img class="img-responsive" ng-if="content.fields.affiche" style="margin:0 auto"
+															ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.affiche,{height:'400px',width:'284px',mode:'crop'}) }}"
+															alt="{{ content.fields.text }}"/>
+						</a>
 			
-		</div>
+						<a class="site-link" ng-href="{{content.detailPageUrl == '#' ? 'https://www.netforgod.tv/en/home/films/'+content.id+'/' +url : content.detailPageUrl}}" target="_blank"> 
+										{{content.fields.text}} <span class="glyphicon glyphicon-circle-arrow-right"></span>
+						</a>
+					</div>	
+						<!--CONTACTS-->
+					<div ng-switch-when="560d2bf445205e816041ea7f">
+						<h4 class="capital">{{content.fields.text}}</h4>
+						<p ng-if="content.fields.telephone"><i class="fa fa-phone icon"></i> {{content.fields.telephone}}</p>
+						<p ng-if="content.fields.position"><i class="fa fa-map-marker icon"></i> {{content.fields.position.address}}</p>
+						<p ng-if="content.fields.email">
+							<i class="fa fa-envelope icon"></i>
+							<span style="display:inline-block" ng-init="blockConfig={'email':content.fields.email, 'name':content.fields.nom,'surname': content.fields.prenom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
+								<span ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></span>
+							</span>
+						</p>
+					</div>
+					<!--SERVICE CIVIQUE-->
+					<div ng-switch-when="5b2218d9396588063f4adfef">
+						<div class="panel-group">
+							<div class="panel panel-default">
+									<div class="panel-heading">
+										<div class="panel-title"><a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">{{content.fields.title}}</a></div>
+									</div>
+							</div>
+						</div>
+						<!--<div class="panel-group" id="collapse1498815559196">
+							<div class="panel panel-default">
+									<div class="panel-heading" id="heading1498815559196_0">
+										<div class="panel-title"><a class="collapsed" data-target="#collapse1498815559196_0" data-toggle="collapse">{{content.fields.title}}</a></div>
+									</div>
+									
+									<div class="panel-collapse collapse" id="collapse1498815559196_0">
+										<div class="panel-body">
+											<div ng-if="content.fields.subTitle">{{content.fields.subTitle}}</div>
+											<a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
+												<div ng-if="content.fields.documentDetaille">Voir plus</div>
+											</a>
+										</div>
+									</div>
+							</div>
+						</div>-->
+					</div>
+
+		
 		
 		<!--INTERVENANTS--PLUS
 		<div ng-if="block.code =='intervenants' " ng-controller="ContentListController as contentListCtrl" ng-attr-id=" {{block.code}}">
