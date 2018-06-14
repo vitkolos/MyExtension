@@ -47,6 +47,14 @@
 	text-transform: none;
     }
 }
+.rightarrow() {
+    &:after{
+    font-family:'FontAwesome';
+    content:'\f04b';
+	float: right;
+	text-transform: none;
+    }
+}
 
 
 body{font-size:16px; min-height:100%; line-height: 1.4em }
@@ -1288,7 +1296,7 @@ label.label_style.left, .label_style.left label{text-align:left; float:left}
   li{padding-bottom: 2px;}
   a:hover{color:white}
   .panel{border-radius:0px !important}
-  .panel-heading{border-top-left-radius:0px; border-top-right-radius:0px;.downarrow();}
+  .panel-heading{border-top-left-radius:0px; border-top-right-radius:0px;.rightarrow();}
   .panel-heading:after{margin-top: -1.5em}
 }
 @media screen and (max-width:@min_sm) {.panel-group .panel-body ul{padding-left: 12px}}
