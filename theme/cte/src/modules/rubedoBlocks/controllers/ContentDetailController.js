@@ -346,6 +346,41 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     
+                    //Services civiques : 3 autres propositions
+                    if (me.content.type.code=="service") {
+                        
+                        var actusTaxonomy ={};
+                        actusTaxonomy['5b221eb63965887f474adfe1'] = me.content.taxonomy['5b221eb63965887f474adfe1'];
+                        actusTaxonomy['navigation'] = [$scope.rubedo.current.page.id];
+                       var displayedFacets = [];
+                       displayedFacets.push({"name":"5b221eb63965887f474adfe1","operator":"OR"});
+                        var options3 = {
+                            siteId: $scope.rubedo.current.site.id,
+                            pageId: $scope.rubedo.current.page.id,
+                            start:0,
+                            limit:4,
+                            constrainToSite: true,
+                            orderby:'lastUpdateTime',
+                            taxonomies: actusTaxonomy,
+                            type:me.content.type.id,
+                            displayedFacets: JSON.stringify(displayedFacets) // pour la taxonomie d'actus, recherche additive
+                        };
+                        
+                        RubedoSearchService.searchByQuery(options3).then(function(response){
+                            if (response.data.success) {
+                                var results = response.data.results.data;
+                                var counter=0;
+                                me.linkedContents={};
+                                angular.forEach(results, function(content, key){
+                                    if (content.id != me.content.id && counter <3) {
+                                        me.linkedContents[counter] = content;
+                                        counter++;
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    
                     
                     
                     if(me.customLayout){

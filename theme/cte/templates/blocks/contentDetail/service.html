@@ -1,0 +1,117 @@
+<div  ng-class="{'content_border':!blockConfig.contentOnly}">
+	<div class="container-fluid" ng-if="!blockConfig.contentOnly">
+		<div class="row">
+			<div class="col-xs-12 ">
+				<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+					<ol class="breadcrumb hidden-xs">
+					    <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
+					</ol>
+					<a class="header_link visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="container-fluid bg-white" ng-if="!blockConfig.contentOnly">
+	<header class="content prop " ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
+	</header>
+</div>
+
+
+<div class="container-fluid">
+	<div class="row bg-white">
+		<div class="text-article" >
+			<rubedo-field class="txt-light text-left" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Titre-->
+			<rubedo-field class="txt-light capital" field =  "{{contentDetailCtrl.getFieldByName('subTitle')}}"></rubedo-field><!--Sous-titre-->
+			<a href="#infos_pratiques" class="button rouge">{{rubedo.translate("InfosPratiques", "Infos pratiques")}}</a><br/>
+			<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('description')}}"></rubedo-field><!--Description-->
+			<div class="row" >
+				<div class="text-article">
+					<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['5b221eb63965887f474adfe1']" class="capital tags">
+						{{contentDetailCtrl.getTermInTaxo("5b221eb63965887f474adfe1",taxonomy)}}
+					</span>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<div class="row" id="infos_pratiques">
+		<div class="text-article infos">
+			<div class="co-sm-12"><h3>{{rubedo.translate("InfosPratiques", "Infos pratiques")}}</h3></div>
+			<div ng-if="fieldEntity['annonces']" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">{{contentDetailCtrl.getLabelByName('annonces')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('annonces')}}"></rubedo-field>
+				</div>
+			</div>
+			<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">{{contentDetailCtrl.getLabelByName('position')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<p>{{contentDetailCtrl.content.fields.position.address}}</p>
+					<p ng-click="showMap= !showMap"><a href="" >{{rubedo.translate("Block.Inscription.VoirPlan", "Voir le plan")}}</a></p>
+				</div>
+				<rubedo-field ng-if="showMap" class="col-xs-12"  field =  "{{contentDetailCtrl.getFieldByName('position')}}"></rubedo-field><!--Plan-->
+			</div>
+			<div ng-if="fieldEntity['nom']" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">{{contentDetailCtrl.getLabelByName('nom')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('nom')}}" ng-if="fieldEntity['nom']"></rubedo-field>
+					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('telephone')}}" ng-if="fieldEntity['telephone']"></rubedo-field>
+					<div ng-if="fieldEntity['email']" ng-init="blockConfig={'email':contentDetailCtrl.content.fields.email, 'name':contentDetailCtrl.content.fields.nom,'email_txt':rubedo.translate('Block.Mail.SendMail','Envoyer un mail')}">
+						<div ng-include="rubedo.blockTemplateResolver.getTemplate('simpleContact',blockConfig)"></div>
+					</div>
+					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('email')}}"></rubedo-field><span ng-if="rubedo.current.user.rights.canEdit">(visible car vous êtes connectés)</span>
+				</div>
+			</div>
+			<div ng-if="fieldEntity['website']" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">{{contentDetailCtrl.getLabelByName('documentDetaille')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<p><a ng-href="{{contentDetailCtrl.content.fields.website}}" >{{contentDetailCtrl.content.fields.documentDetaille}}</a></p>
+					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('documentDetaille')}}"></rubedo-field>
+
+				</div>
+			</div>
+			<div ng-if="fieldEntity['website']" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">{{contentDetailCtrl.getLabelByName('website')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<p><a ng-href="{{contentDetailCtrl.content.fields.website}}" >{{contentDetailCtrl.content.fields.website}}</a></p>
+					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('website')}}"></rubedo-field>
+				</div>
+			</div>
+			<div ng-if="fieldEntity['facebook']" class="col-xs-12">
+				<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+					<p class="capital">{{contentDetailCtrl.getLabelByName('facebook')}}</p>
+				</div>
+				<div class="col-xs-12 col-sm-8 ">
+					<p><a ng-href="{{contentDetailCtrl.content.fields.facebook}}" >{{contentDetailCtrl.content.fields.facebook}}</a></p>
+					<rubedo-field  ng-if="rubedo.current.user.rights.canEdit" field ="{{contentDetailCtrl.getFieldByName('facebook')}}"></rubedo-field>
+				</div>
+			</div>			
+			
+		</div>
+		
+	</div>
+	<div class="row border-top" style="margin-top:24px" ng-if="contentDetailCtrl.linkedContents[0]">
+		<h3 class="text-center" style="margin-bottom:24px">{{rubedo.translate("Block.Service.Opportunites", "D'autres opportunités :")}}</h3>
+		<div class="col-xs-12 col-sm-4 text-center" ng-repeat="content in contentDetailCtrl.linkedContents">
+			<a ng-href="{{content.url |cleanUrl}}">
+				<img ng-if="content['fields.image'][0]" ng-src="{{rubedo.imageUrl.getUrlByMediaId(content['fields.image'][0],{width:'420px',height:'200px',mode:'crop'})}}" style="width:90%">
+				<img ng-if="!content['fields.image'][0]" src="/theme/cte/img/icons/video-thumb.jpg" style="width:120px">
+				<h3>{{content.title}}</h3>
+			</a>	
+		</div>
+	</div>
+</div>
+
+<div style="margin-top:24px"></div>
+</div>
+
