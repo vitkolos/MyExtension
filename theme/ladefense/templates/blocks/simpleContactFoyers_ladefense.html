@@ -21,14 +21,14 @@
         <div class="row text-center" style="margin-bottom:50px;">
             <div style="margin-bottom:12px;color:white;font-weight:bold;font-size:1.1em;" ><h4>{{rubedo.translate("Block.Inscription.Inscrire.Comme","S'inscrire comme")}}:</h4></div>
             <div class="row">
-                <input type="radio"  name="statut" id="etudiant" value="etudiant" ng-model="contactCtrl.contactData.statut" ng-click="showFormulaire = true;etudiant=true;jeunePro=false">
-                            <label for="etudiant" class="sexe_label boite">{{rubedo.translate("etudiant")}}</label>
-            </div>
-           
-            <div class="row">
                 <input type="radio"  name="jeunePro" id="jeunePro" value="jeunePro" ng-model="contactCtrl.contactData.statut" ng-click="showFormulaire = true;etudiant=false;jeunePro=true" required>
                         <label for="jeunePro" class="sexe_label boite">{{rubedo.translate("jeunePro")}}</label>
             </div>
+            <div class="row">
+                <input type="radio"  name="statut" id="etudiant" value="etudiant" ng-model="contactCtrl.contactData.statut" ng-click="showFormulaire = true;etudiant=true;jeunePro=false">
+                            <label for="etudiant" class="sexe_label boite">{{rubedo.translate("etudiant")}}</label>
+            </div>
+
         </div>
         <div ng-if="!showFormulaire" style="height: 430px;">
         </div>
