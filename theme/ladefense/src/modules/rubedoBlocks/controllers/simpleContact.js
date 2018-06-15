@@ -204,12 +204,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																				var p = me.contactData.birthdate.split("/");
 																				console.log("p");
 																				console.log(p);
-																				var dateb = new Date( parseInt(p[2], 10),
-                   parseInt(p[1], 10)-1,
-                   parseInt(p[2], 10),
-                   parseInt('00', 10),
-                   parseInt('00', 10),
-                   parseInt('00', 10));
+																				var dateb = new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));
 																				console.log("dateb");
 																				console.log(dateb); 
 																				
