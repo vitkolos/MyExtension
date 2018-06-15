@@ -270,6 +270,9 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																if (me.contactData.subject === undefined) {
 																				me.contactData.subject='Nouvelle réservation';
 																}
+																if (me.contactData.age === undefined) {
+																				me.contactData.age=getAge(me.contactData.birthday);
+																}
             }
 												else if (step==5) {
                 me.toggleStage(6);
