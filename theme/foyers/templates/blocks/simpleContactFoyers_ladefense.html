@@ -121,28 +121,19 @@
                 <div id="inscriptionStage6" class="collapse">
                     <ng-form name="lettre_motivation">
                             <div  class="row" ng-include="contactCtrl.lettre_motivation"></div>
-                            <div class="row text-center">
-                                <div class="button submit cursor-as-pointer" ng-class="{'disabled' : lettre_motivation.$invalid}" ng-click="contactCtrl.setCurrentStage(6,lettre_motivation.$valid);postuler=true" >{{rubedo.translate("Blocks.Checkout.Button.Continue")}}</div>
-                                <p ng-if="lettre_motivation.$invalid && lettre_motivation.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
-                            </div>
+                            
                     </ng-form>
-                    
-                    
-                    
-                    
-                </div>
-                <div ng-if="postuler">
-                    <div class="row text-center" style="margin-top:100px">
-                        <h3>Bravo tu es allé au bout du formulaire, il ne te reste plus qu'à envoyer ta candidature</h3>
+                    <div class="row text-center">
                         <p style="font-family: FontAwesome;font-size: 50px;margin:50px;"></p>
                         <div class="button submit cursor-as-pointer" ng-init="confirmMsg=false;" ng-class="{rouge: inscription_form.$valid, disabled: inscription_form.$invalid, submit: inscription_form.$invalid}" ng-click="contactCtrl.submit();confirmMsg=true;">Je postule!</div>
-                    </div><br/>
-                  
+                        <p ng-if="lettre_motivation.$invalid && lettre_motivation.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs","Merci de bien remplir tous les champs obligatoires")}}</p>
+                    </div>
+
                     <div class="row confirm" ng-if="confirmMsg">
                         Réservation envoyée avec succès !<br> Ne considérez votre demande comme confirmée qu'à réception d'un mail de confirmation de notre part.
                     </div>
-                </div>
- 
+          
+                </div>            
         </div>
             
         </ng-form>
