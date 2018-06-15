@@ -198,7 +198,19 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																console.log(me.contactData.age);
 																if (isNaN(me.contactData.age)) {
 																				console.log(Date.parse(me.contactData.birthdate));
-																				me.contactData.age=getAge(Date.parse(me.contactData.birthdate));
+																				
+																				
+																				var str = "2013-01-14-14-09-49";
+																				var p = me.contactData.birthdate.split("/");
+																				console.log("p");
+																				console.log(p);
+																				var date = new Date(p[2],p[1],p[0],'00','00','00');
+																				console.log("dateb");
+																				console.log(dateb); 
+																				
+																				
+																				
+																				me.contactData.age=getAge(dateb);
 																				console.log("Age after");
 																				console.log(me.contactData.age);
 																}
