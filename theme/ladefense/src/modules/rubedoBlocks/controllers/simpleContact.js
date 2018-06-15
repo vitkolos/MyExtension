@@ -196,7 +196,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																console.log($scope.contactCtrl.contactData.email_verif);
 																console.log("Age before");
 																console.log(me.contactData.age);
-																if (!angular.isNumber(me.contactData.age)) {
+																if (isNaN(me.contactData.age)) {
 																				me.contactData.age=getAge(me.contactData.birthdate);
 																				console.log("Age after");
 																				console.log(me.contactData.age);
