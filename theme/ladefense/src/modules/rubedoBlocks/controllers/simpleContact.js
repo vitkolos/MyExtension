@@ -24,7 +24,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				
 					/* LIENS VERS LES SECTIONS DU FORMULAIRE */
 		 var themePath='/theme/'+window.rubedoConfig.siteTheme;
-			me.formulaireTemplate = themePath+'/templates/blocks/simpleContactFoyers.html';
+			me.formulaireTemplate_ladefense = themePath+'/templates/blocks/simpleContactFoyers_ladefense.html';
    me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
 			me.general_infos_ladefense= themePath+'/templates/blocks/formulaire/infos_individuel_ladefense.html';
 			me.family_infos = themePath+'/templates/blocks/formulaire/parents.html';
@@ -38,7 +38,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 
 		
 				
-		  me.parentsEnsemble=false;
+		  me.parentsEnsemble=false; 
 				me.parentsSepares=false;
 				me.examensPrealables=false;
 				me.stageouCDD=false;
