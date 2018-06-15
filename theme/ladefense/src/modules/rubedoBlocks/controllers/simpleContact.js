@@ -192,27 +192,10 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             
             if (step==0) {me.toggleStage(1);}
             else if (step==1) {
-																console.log($scope.contactCtrl.contactData.email);
-																console.log($scope.contactCtrl.contactData.email_verif);
-																console.log("Age before");
-																console.log(me.contactData.age);
 																if (isNaN(me.contactData.age)) {
-																				console.log(Date.parse(me.contactData.birthdate));
-																				
-																				
-																				var str = "2013-01-14-14-09-49";
 																				var p = me.contactData.birthdate.split("/");
-																				console.log("p");
-																				console.log(p);
 																				var dateb = new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));
-																				console.log("dateb");
-																				console.log(dateb); 
-																				
-																				
-																				
 																				me.contactData.age=Math.trunc((today-dateb)/(1000*365*3600*24));
-																				console.log("Age after");
-																				console.log(me.contactData.age);
 																}
 																if( $scope.contactCtrl.contactData.email != $scope.contactCtrl.contactData.email_verif){
                     $scope.mailError = true;me.currentStage=1;

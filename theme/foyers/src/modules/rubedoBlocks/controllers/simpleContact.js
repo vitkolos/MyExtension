@@ -192,8 +192,11 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             
             if (step==0) {me.toggleStage(1);}
             else if (step==1) {
-																console.log($scope.contactCtrl.contactData.email);
-																console.log($scope.contactCtrl.contactData.email_verif);
+																if (isNaN(me.contactData.age)) {
+																				var p = me.contactData.birthdate.split("/");
+																				var dateb = new Date(parseInt(p[2]),parseInt(p[1])-1,parseInt(p[0]));
+																				me.contactData.age=Math.trunc((today-dateb)/(1000*365*3600*24));
+																}
 																if( $scope.contactCtrl.contactData.email != $scope.contactCtrl.contactData.email_verif){
                     $scope.mailError = true;me.currentStage=1;
                 } else {
@@ -269,9 +272,6 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																}
 																if (me.contactData.subject === undefined) {
 																				me.contactData.subject='Nouvelle réservation';
-																}
-																if (me.contactData.age === undefined) {
-																				me.contactData.age=getAge(me.contactData.birthday);
 																}
             }
 												else if (step==5) {
