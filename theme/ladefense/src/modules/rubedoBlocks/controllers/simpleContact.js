@@ -210,7 +210,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																				
 																				
 																				
-																				me.contactData.age=getAge(dateb);
+																				me.contactData.age=Math.trunc((today-dateb)/(1000*365*3600*24));
 																				console.log("Age after");
 																				console.log(me.contactData.age);
 																}
