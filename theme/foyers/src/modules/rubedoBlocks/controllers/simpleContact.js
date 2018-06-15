@@ -222,10 +222,6 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             }
 												else if (step==4) {
                 me.toggleStage(5);
-            }
-												else if (step==5) {
-                me.toggleStage(6);
-		
 																/* Gestion des parametres indéfinis */
 																if (me.contactData.dateResultats === undefined) {
 																				me.contactData.dateResultats =' ';
@@ -274,6 +270,10 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																if (me.contactData.subject === undefined) {
 																				me.contactData.subject='Nouvelle réservation';
 																}
+            }
+												else if (step==5) {
+                me.toggleStage(6);
+
             }
 								}
 				}
