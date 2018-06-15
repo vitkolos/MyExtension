@@ -45,7 +45,6 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 				me.stageouformationPro=false;
 				me.pbsMedicaux=false;
 				me.suiviMedical=false;
-    me.contactData.subject='Nouvelle réservation';
 				me.contactData.message=' ';
 				$scope.isLadefense=false;
     //lg = rubedo.current.page.locale;
@@ -271,6 +270,9 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
 																				me.contactData.nature = ' ';
 																				me.contactData.totalRessources = ' ';
 																				me.contactData.revenuFiscal = ' ';
+																}
+																if (me.contactData.subject === undefined) {
+																				me.contactData.subject='Nouvelle réservation';
 																}
             }
 								}
