@@ -51,10 +51,10 @@
 						<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}"></rubedo-field><!--Rédacteur-->
 					</div>
 					<div class="redacteur" ng-if="fieldEntity['redacteur'] && fieldEntity['photoRedacteur']">
-						<div class="col-xs-2 detail-img">
+						<div class="col-xs-2 col-sm-2 detail-img">
 							<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['photoRedacteur']) }}" alt=""/>
 						</div>
-						<div class="col-xs-push-1 col-xs-6 col-sm-5">
+						<div class="col-xs-6 col-sm-5">
 							<rubedo-field field = "{{contentDetailCtrl.getFieldByName('redacteur')}}"></rubedo-field><!--Rédacteur--> 
 						</div>
 					</div>
