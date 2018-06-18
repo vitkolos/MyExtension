@@ -100,11 +100,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								 if ($scope.rubedo.current.page.id=="5a7dcda63965886233eefde7") {
 																												$scope.pageRevueEnCours=true;
 																									}
-																									console.log('$scope.rubedo.current.page.id');
-																									console.log($scope.rubedo.current.page.id);
-																									console.log("59146442396588252739f40b");
-																									console.log("$scope.pageRevueEnCours");
-																									console.log($scope.pageRevueEnCours);
 																								me.numero_issuu = me.content.fields.idIssuu;
 																								me.contenuSommaire();
 																				}
@@ -431,18 +426,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																} 
 																																ind++;
 																							});
-																						console.log("me.accesArticles.data.length");
-																						console.log(me.accesArticles.data.length);
-																						console.log("$scope.classementArticle");
-																						console.log($scope.classementArticle);
-																						console.log("me.content.taxonomy['5a114f1b396588d22856706f']");
-																						console.log(me.content.taxonomy['5a114f1b396588d22856706f']);
-																						console.log("$scope.taxonomies");
-																						console.log($scope.taxonomies);
-																						console.log("displayLienArticle");
-																						console.log($scope.displayLienArticle);
-																						console.log("count");
-																						console.log(count);
 																				}
 																		});
 																};
