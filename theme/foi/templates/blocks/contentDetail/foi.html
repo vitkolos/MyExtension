@@ -3,7 +3,13 @@
 <!--Présentation du Sommaire de la revue classique-->
 <div class="row" ng-show="!pageRevueEnCours">
     
-    <div class="col-sm-9 col-sm-push-3">
+    <div class="col-sm-3"> 
+        <img style="margin:auto" class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
+				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'300px',mode:'boxed'}) }}"
+				 alt=""/>	
+    </div>
+	
+	<div class="col-sm-9">
         <h3 ng-if="!fieldEditMode" style="border-bottom: 1px solid;padding-bottom: 12px;">Sommaire - {{fieldEntity['text']}}</h3>
         <rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('text')}}"></rubedo-field><!--Plan-->
 		<div class="sommaire">	
@@ -15,11 +21,6 @@
         </div>
 	</div>
 		
-    <div class="col-sm-3 col-sm-pull-9"> 
-        <img class="img-responsive  padding-top padding-right" ng-if="fieldEntity['image']"
-				 ng-src="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'300px',mode:'boxed'}) }}"
-				 alt=""/>	
-    </div>
 	
 </div>
 
