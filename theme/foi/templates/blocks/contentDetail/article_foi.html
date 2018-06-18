@@ -60,9 +60,9 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
-						<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ng-if="fieldEntity['richText']" class="contenu_article"></rubedo-field>
-					</div>		
+					
+					<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ng-if="fieldEntity['richText']" class="contenu_article"></rubedo-field>
+					
 									<!-- ACCES ABONNE -->
 									<div ng-if="!isClient && !contentDetailCtrl.oldArticle" class="col-md-12 bg-grey limitationArticle" style="text-align:center">
 										<h2 >Article réservé aux abonnés</h2>
