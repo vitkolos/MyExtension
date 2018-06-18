@@ -176,7 +176,23 @@
 										</div>
 									</div>
 									
+						<div ng-if="isVisiteur" style="margin-top:20px;">
+								<div class="text-article">
+									<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['5524db6945205e627a8d8c4e']" class="capital tags">
+										{{contentDetailCtrl.getTermInTaxo("5524db6945205e627a8d8c4e",taxonomy)}}
+									</span>
+								</div>
+								
+						</div>
 						<div ng-if="isVisiteur" style="margin-top:50px;">		  
+							<div class="row" >
+								<div class="text-article">
+									<span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['5a114f1b396588d22856706f']" class="capital tags">
+										{{contentDetailCtrl.getTermInTaxo("5a114f1b396588d22856706f",taxonomy)}}
+									</span>
+								</div>
+								
+							</div>
 							<div class="col-xs-4">
 								<p style="text-align:center"  ng-if="classementArticle>0 && !isRestricted"><button  class="btn btn-default btn-abonne"><a ng-href="{{contentDetailCtrl.accesArticles.data[classementArticle-1].url}}">Article précédent</a></button></br></p>
 							</div>
