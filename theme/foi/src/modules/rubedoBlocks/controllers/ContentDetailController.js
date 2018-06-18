@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoPagesService","RubedoSearchService","RubedoUsersService","$http","$route","$rootScope",
-																																																																										function($scope, RubedoContentsService,RubedoPagesService,RubedoSearchService,RubedoUsersService,$http,$route,$rootScope){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoPagesService","TaxonomyService","RubedoSearchService","RubedoUsersService","$http","$route","$rootScope",
+																																																																										function($scope, RubedoContentsService,RubedoPagesService,TaxonomyService,RubedoSearchService,RubedoUsersService,$http,$route,$rootScope){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -69,6 +69,25 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });
                     }
                     $scope.fieldEntity=angular.copy(me.content.fields);
+																				
+																				var taxonomiesArray ={};
+                     var index=0;
+                     angular.forEach(me.content.taxonomy,function(value, taxo){
+                            if (taxo!='navigation'){
+                                taxonomiesArray[index] = taxo;
+                                index++;
+                            }
+                        });
+                    TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
+                         if(response.data.success){
+                            var tax = response.data.taxo;
+                            me.taxo={};
+                            angular.forEach(tax, function(taxonomie){
+                                me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
+                            });
+                         }
+                         
+                     });
                     
                     
                     /*Vérifier les droits du client et limiter le texte si besoin pour les actualites et les articles FOI*/
