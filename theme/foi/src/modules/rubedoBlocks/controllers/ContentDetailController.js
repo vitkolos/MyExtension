@@ -77,16 +77,20 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 taxonomiesArray[index] = taxo;
                                 index++;
                             }
-																												console.log("taxonomy");
-																												console.log(me.content.taxonomy);
+																												console.log("taxonomiesArray");
+																												console.log(taxonomiesArray);
                         });
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
                          if(response.data.success){
                             var tax = response.data.taxo;
+																												console.log("tax");
+																												console.log(tax);
                             me.taxo={};
                             angular.forEach(tax, function(taxonomie){
                                 me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
                             });
+																												console.log("me.taxo");
+																												console.log(me.taxo);
                          }
                          
                      });
