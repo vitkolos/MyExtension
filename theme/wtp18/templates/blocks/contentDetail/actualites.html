@@ -51,6 +51,30 @@
 				</div>
 			</div>
 		</div>
+								<!---ANCIENS ALBUMS (non embedded images)-->
+		<div ng-if="contentDetailCtrl.content.fields.images && contentDetailCtrl.content.fields.images.length>0" class="row">
+						<div class="grid" masonry masonry-options="{ gutter: '.gutter-sizer',percentPosition: true }" reload-on-resize>
+										<div class="masonry-brick" ng-repeat="image in contentDetailCtrl.content.fields.images track by $index"  >
+														<img ng-src="{{rubedo.imageUrl.getUrlByMediaId(image,{width:'900',height:'600',mode:'boxed'})}}" style="width:100%"/>
+														<div class="img-description hidden-xs" data-toggle="modal" data-target="#rubedoGalleryDetailModal{{contentDetailCtrl.content.id}}" ng-click="contentDetailCtrl.loadModal($index,false)">
+																		<i class="fa fa-expand"></i>
+														</div>
+										</div>
+										<div class="gutter-sizer"></div>
+						</div>
+				<!-- The modal dialog, which will be used to wrap the lightbox content -->
+						<div class="modal fade hidden-xs rubedoGalleryDetailModal" id="rubedoGalleryDetailModal{{contentDetailCtrl.content.id}}" tabindex="1" ng-keydown="contentDetailCtrl.changeImageKey($event,false)">
+										<a class="prev" ng-click="contentDetailCtrl.changeImage('left',false)" ng-if="contentDetailCtrl.currentIndex>0">‹</a>
+										<a class="next" ng-click="contentDetailCtrl.changeImage('right',false)" ng-if="contentDetailCtrl.currentIndex<(contentDetailCtrl.content.fields.images).length-1">›</a>
+										<a class="close" data-dismiss="modal">×</a>
+										<div class="modal-dialog modal-lg">
+														<div class="modal-body">
+																		<img class="img-responsive" ng-src="{{rubedo.imageUrl.getUrlByMediaId(contentDetailCtrl.currentImage,{width:'900',height:'600',mode:'boxed'})}}">
+													</div>
+				
+										</div>
+						</div>
+		</div>
 	</div>
 </div>
 
