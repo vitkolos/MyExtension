@@ -77,6 +77,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 taxonomiesArray[index] = taxo;
                                 index++;
                             }
+																												console.log("taxonomy");
+																												console.log(me.content.taxonomy);
                         });
                     TaxonomyService.getTaxonomyByVocabulary(taxonomiesArray).then(function(response){
                          if(response.data.success){
