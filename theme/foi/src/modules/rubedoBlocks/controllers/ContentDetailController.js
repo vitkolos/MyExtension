@@ -35,7 +35,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
 				me.getTermInTaxo=function(taxoKey,termId){
         console.log("me.taxo");
-console.log(me.taxo);
+								console.log(me.taxo);
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
         angular.forEach(me.taxo[taxoKey],function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
@@ -44,9 +44,9 @@ console.log(me.taxo);
             }
          });
          if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
-    return(term);
-console.log("term");
-console.log(term);
+								return(term);
+								console.log("term");
+								console.log(term);
     };
     
     me.search = function(taxoKey,termId){
@@ -101,7 +101,6 @@ console.log(term);
                                 me.taxo[taxonomie.vocabulary.id] = taxonomie.terms;
                             });
                          }
-                         
                      });
                     
                     
