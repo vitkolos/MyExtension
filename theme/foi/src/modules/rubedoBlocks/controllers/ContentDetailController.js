@@ -44,6 +44,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
          });
          if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
     return(term);
+console.log("term");
+console.log(term);
     }
     
     me.search = function(taxoKey,termId){
