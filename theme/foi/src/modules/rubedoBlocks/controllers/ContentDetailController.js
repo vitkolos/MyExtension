@@ -47,7 +47,7 @@ console.log(me.taxo);
     return(term);
 console.log("term");
 console.log(term);
-    }
+    };
     
     me.search = function(taxoKey,termId){
         RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
