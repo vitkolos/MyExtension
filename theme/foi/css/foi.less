@@ -376,12 +376,13 @@ a:hover .redacteur{
 .detail-img img{
     margin-top: 50px;
 				max-height: 100px;
+				text-align:center;
   }
 		@media screen and (min-width:@min_xs){
-				max-height: 100px;
+				.detail-img img{max-height: 100px;}
 		}
 		@media screen and (max-width:@min_xs){
-				max-width: 100%;
+				.detail-img img{max-width: 100%;}
 		}
 
 
@@ -401,9 +402,20 @@ p .resume {
 
 .presentationArticle{
 		background-color: @beige;
-		padding-right: 25px !important;
-  padding-left: 25px !important;
 }
+@media screen and (max-width:@min_xs){
+				.presentationArticle{
+						padding-right: 45px !important;
+						padding-left: 45px !important;
+				}
+		}
+		@media screen and (min-width:@min_xs){
+				.presentationArticle{
+						padding-right: 25px !important;
+      padding-left: 25px !important;
+				}
+		}
+
 
 /*Citation*/
 blockquote {
