@@ -414,15 +414,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
 																				if(response.data.success){
 																						me.accesArticles = response.data.results;
-																						console.log('accesArticles');
-																						console.log(response.data.results);
 																						angular.forEach(me.accesArticles.data,function(data, key){
 																																$scope.taxonomies[ind]=me.accesArticles.data[ind]['taxonomy.5a114f1b396588d22856706f'][0];
 																																if ($scope.taxonomies[ind]===$scope.taxonomies[ind-1] && ind!==0) {
-																																																		$scope.displayTaxo[ind]= false;
-																																														} else {
-																																																		$scope.displayTaxo[ind]= true;
-																																														}
+																																				$scope.displayTaxo[ind]= false;
+																																} else {
+																																				$scope.displayTaxo[ind]= true;
+																																}
 																																if ($scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f'][0] || $scope.taxonomies[ind]===me.content.taxonomy['5a114f1b396588d22856706f']){
 																																				if(me.content.id!==data.id && count<3) {
 																																																		$scope.displayLienArticle[ind]= true;
