@@ -117,6 +117,34 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         });*/
                        
                     }
+																				//Albums photos
+                    if (me.content.type.code=="album" || me.content.type.code=="actualites") {
+                        me.currentIndex=0;
+                        me.loadModal = function(index,embedded){
+                            me.currentIndex = index;
+                            if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex];
+                            else me.currentImage = me.content.fields.images[me.currentIndex];
+                        };
+                        me.changeImage = function(side,embedded){
+                            if(side == 'left' && me.currentIndex > 0){
+                                me.currentIndex -= 1;
+                            } else if(side == 'right'){
+                                me.currentIndex += 1;
+                            }
+                            if(embedded) me.currentImage = me.content.fields.embeddedImages[me.currentIndex]; 
+                            else me.currentImage = me.content.fields.images[me.currentIndex];
+                        };
+                        me.changeImageKey = function($event,embedded){
+                            if ($event.keyCode == 39) { 
+                               me.changeImage('right',embedded);
+                            }
+                        
+                            else if ($event.keyCode == 37) {
+                               me.changeImage('left',embedded);
+                            }
+                        };
+
+                    }
                 
                     
                     
