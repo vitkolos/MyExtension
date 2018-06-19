@@ -31,6 +31,11 @@ blocksConfig.sectionPresentation={
            "template": "/templates/blocks/sectionPresentation.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/sectionPresentation.js"]
 };
+blocksConfig.contentDetail = {
+            "template": "/templates/blocks/contentDetail.html",
+            "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js','//cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js','//cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/3.2.0/imagesloaded.pkgd.min.js'],
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/controllers/simpleContact.js","/lib/masonry/masonry.js",]
+};
 
 
 
@@ -223,7 +228,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 				
 				
 				
-				angular.module('rubedoBlocks').controller('MasonryCtrl', [
+angular.module('rubedoBlocks').controller('MasonryCtrl', [
     '$scope',
     '$element',
     '$timeout',
@@ -241,7 +246,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
             return item[0] === args[0];
           }).length > 0;
         if (!found) {
-          this.scheduleMasonry.apply(null, arguments); 
+          this.scheduleMasonry.apply(null, arguments);
         }
       };
       // Make sure it's only executed once within a reasonable time-frame in
