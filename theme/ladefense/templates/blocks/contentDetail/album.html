@@ -234,7 +234,7 @@
 								  </div>
 				  </div>
   </div>
-  <div class="container-fluid">
+  <div class="container-fluid" style="margin-top:50px">
 			<div class="row">
 				<div class="col-xs-12 ">
 					<div ng-controller="BreadcrumbController as breadcrumbCtrl">
@@ -242,10 +242,10 @@
 							<li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
 						</ol>-->
 						  <p class="uppercase" style="text-align:center;">
-							<a class="bouton-suite visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">Toutes les News</a>
+							<a class="bouton-suite" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">Toutes les News</a>
 						  </p>
 
-					</div>
+					</div> 
 				</div>
 			</div>
 		</div>  
