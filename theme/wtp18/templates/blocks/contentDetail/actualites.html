@@ -1,3 +1,167 @@
+<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+	<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<style>
+.modal.rubedoGalleryDetailModal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal.rubedoGalleryDetailModal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px; /* Adjusts for spacing */
+}
+
+.modal.rubedoGalleryDetailModal .modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+.modal.rubedoGalleryDetailModal .prev,
+.modal.rubedoGalleryDetailModal .next {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  margin-top: -23px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 30px;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 0 2px #000;
+  text-align: center;
+  background: #222;
+  background: rgba(0, 0, 0, 0.5);
+  -webkit-box-sizing: content-box;
+     -moz-box-sizing: content-box;
+          box-sizing: content-box;
+  border: 3px solid #fff;
+  -webkit-border-radius: 23px;
+     -moz-border-radius: 23px;
+          border-radius: 23px;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.modal.rubedoGalleryDetailModal  .next {
+  left: auto;
+  right: 15px;
+}
+
+.modal.rubedoGalleryDetailModal .prev:hover,
+.modal.rubedoGalleryDetailModal .next:hover,
+.modal.rubedoGalleryDetailModal .close{padding: 20px; color:white; font-size: 50px; font-weight: 400;}
+.modal.rubedoGalleryDetailModal .close:hover{opacity: 1; color:white}
+
+.modal.rubedoGalleryDetailModal .modal-body {
+	position: relative;
+	text-align: center;
+	padding: 0 0 100vh 0;
+	overflow: hidden;
+	cursor: pointer;
+}
+.modal.rubedoGalleryDetailModal .modal-footer {
+	margin: 0;
+}
+.modal.rubedoGalleryDetailModal .modal-body img {
+	max-width: 100%;
+	max-height: 100%;
+	margin: auto;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.modal.rubedoGalleryDetailModal .modal-dialog{min-width:300px}
+.modal.rubedoGalleryDetailModal{background-color:black}
+@media screen and (min-width: 768px) {
+  .modal.rubedoGalleryDetailModal .modal-dialog {
+    max-width: 1200px;
+  }
+}
+.modal.in.rubedoGalleryDetailModal{z-index:1056}
+.grid{max-width:1200px; margin: 0 auto; display: block}
+/* fluid 5 columns */
+.masonry-brick { width: 100%;margin-bottom: 5px; cursor: pointer}
+.gutter-sizer{width:0%}
+@media screen and (min-width: 400px) {.masonry-brick { width: 49%; }.gutter-sizer{width:2%}}
+@media screen and (min-width: 768px) {.masonry-brick { width: 32%; }.gutter-sizer{width:2%}}
+@media screen and (min-width: 1200px) {.masonry-brick { width: 24.25%; } .gutter-sizer{width:1%}}
+
+.img-description {
+    background: #fff;
+    background: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    bottom: 20px;
+    right: 20px;
+    text-align: center;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    opacity: 0;
+    -webkit-transition: opacity 0.4s ease-in-out;
+    -moz-transition: opacity 0.4s ease-in-out;
+    -ms-transition: opacity 0.4s ease-in-out;
+    -o-transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out;
+}
+.img-description:before, .img-description i {
+    display: inline-block;
+    vertical-align: middle;
+}
+.img-description:before {
+    content: '';
+    height: 100%;
+}
+.masonry-brick:hover .img-description{opacity:1}
+.masonry-brick:not(.loaded) .img-description{display: none}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -60px;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+
+
+</style>
+
 <div>
 	
 	<header class="parallax page" afkl-lazy-image-options='{"background": true}'
