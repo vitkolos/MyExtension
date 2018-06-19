@@ -241,8 +241,8 @@
 						<!--<ol class="breadcrumb hidden-xs">
 							<li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
 						</ol>-->
-						  <p class="uppercase" style="text-align:center;">
-							<a class="bouton-suite" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">Toutes les News</a>
+						  <p class="uppercase" style="text-align:center;line-height: 3em;">
+							<a class="bouton-suite" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first"><span style="font-family:FontAwesome"></span> Toutes les News</a>
 						  </p>
 
 					</div> 
