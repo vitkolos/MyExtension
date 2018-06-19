@@ -238,12 +238,13 @@
 			<div class="row">
 				<div class="col-xs-12 ">
 					<div ng-controller="BreadcrumbController as breadcrumbCtrl">
-						<ol class="breadcrumb hidden-xs">
+						<!--<ol class="breadcrumb hidden-xs">
 							<li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">{{page.title}}</a><span ng-if="!page.url">{{page.title}}</span></li>
-						</ol>
-						<div class="breadcrumb visible-xs"> 
-							<a class="visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">{{page.title}}</a>
-						</div>
+						</ol>-->
+						  <p class="uppercase" style="text-align:center;">
+							<a class="bouton-suite visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-2 track by $index" ng-href="{{page.url}}" ng-if="$first">Toutes les News</a>
+						  </p>
+
 					</div>
 				</div>
 			</div>
