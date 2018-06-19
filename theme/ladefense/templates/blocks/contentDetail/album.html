@@ -234,22 +234,23 @@
 								  </div>
 				  </div>
   </div>
+  <div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-12 ">
+			<div ng-controller="BreadcrumbController as breadcrumbCtrl">
+				<ol class="breadcrumb hidden-xs">
+					<li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-1 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">Voir d'autres NEWS</a><span ng-if="!page.url">Voir d'autres NEWS</span></li>
+				</ol>
+				<div class="breadcrumb visible-xs"> 
+					<a class="visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-1 track by $index" ng-href="{{page.url}}" ng-if="$first">Voir d'autres NEWS</a>
+				</div>
+			</div>
+		</div>
+	</div>
+  </div>  
 </div>
 
-<div class="container-fluid">
-  <div class="row">
-	  <div class="col-xs-12 ">
-		  <div ng-controller="BreadcrumbController as breadcrumbCtrl">
-			  <ol class="breadcrumb hidden-xs">
-				  <li ng-class="{'active': !page.url}" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-1 track by $index"><a ng-if="page.url" ng-href="{{page.url}}">Voir d'autres NEWS</a><span ng-if="!page.url">Voir d'autres NEWS</span></li>
-			  </ol>
-			  <div class="breadcrumb visible-xs"> 
-				  <a class="visible-xs" ng-repeat="page in rubedo.current.breadcrumb | limitTo:-1 track by $index" ng-href="{{page.url}}" ng-if="$first">Voir d'autres NEWS</a>
-			  </div>
-		  </div>
-	  </div>
-  </div>
-</div>  
+
 
 
 

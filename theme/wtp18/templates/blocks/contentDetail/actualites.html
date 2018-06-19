@@ -167,8 +167,8 @@
 	<header class="parallax page" afkl-lazy-image-options='{"background": true}'
                 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{height:'400px',mode:'boxed'})}} 768w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{height:'600px',mode:'boxed'})}} 972w, {{rubedo.imageUrl.getUrlByMediaId(fieldEntity['image']  ,{width:'1920px',mode:'boxed'})}} 1650w">
         <div class="container">
-          <!--  <rubedo-field field= "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEditMode && fieldEntity['text']"></rubedo-field>-->
-			<h2 ng-if="fieldEntity['text']">{{contentDetailCtrl.content.fields.text}}</h2>
+          <rubedo-field field= "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEditMode && fieldEntity['text']"></rubedo-field>
+		  <h2 ng-if="!fieldEditMode && fieldEntity['text']">{{contentDetailCtrl.content.fields.text}}</h2>
         </div>
     </header>
 	<div style="background-color: white;">
