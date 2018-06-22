@@ -482,6 +482,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																											console.log(me.infoArticles.data[ind-1].lastUpdateTime);
 																																											console.log(me.infoArticles.data[ind].text);
 																																											console.log(me.infoArticles.data[ind].lastUpdateTime);
+																																											console.log("Différence AVANT");
+																																											console.log(me.infoArticles.data[ind].lastUpdateTime-me.infoArticles.data[ind-1].lastUpdateTime);
 																																											
 																																											var temp=me.infoArticles.data[ind-1];
 																																											me.infoArticles.data[ind-1]=me.infoArticles.data[ind];
@@ -492,6 +494,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																											console.log(me.infoArticles.data[ind-1].lastUpdateTime);
 																																											console.log(me.infoArticles.data[ind].text);
 																																											console.log(me.infoArticles.data[ind].lastUpdateTime);
+																																											console.log("Différence APRES");
+																																											console.log(me.infoArticles.data[ind].lastUpdateTime-me.infoArticles.data[ind-1].lastUpdateTime);
 																																											
 																																								}
 																																								$scope.displayTaxo[ind]= false;
