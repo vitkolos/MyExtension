@@ -108,6 +108,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								 if ($scope.rubedo.current.page.id=="5a7dcda63965886233eefde7") {
 																												$scope.pageRevueEnCours=true;
 																									}
+																									console.log("Contenu FOI");
+																									console.log(me.content);
 																								me.numero_issuu = me.content.fields.idIssuu;
 																								me.contenuSommaire();
 																				}
@@ -403,9 +405,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 				
 				
 				/*FOI*/
-																/*INFORMATIONS SUR LES ARTICLES*/ 
+																/*INFORMATIONS SUR LES ARTICLES*/
 																
-																	me.contenuSommaire = function(){
+																me.contenuSommaire = function(){
 																		var ind=0;
 																		var optionsSommaire = {
 																				constrainToSite:false,
@@ -432,5 +434,34 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																								});
 																				} 
 																		});														
-																};					
+																};			
+																
+																//	me.contenuSommaire = function(){
+																//		var ind=0;
+																//		var optionsSommaire = {
+																//				constrainToSite:false,
+																//				siteId: $scope.rubedo.current.site.id,
+																//				pageId: $scope.rubedo.current.page.id,
+																//				predefinedFacets:{"type":"5a114b5c396588e62456706b","numero_foi":config.contentId},
+																//				start:0, 
+																//				limit:50,
+																//				orderby:'taxonomy.5a114f1b396588d22856706f',
+																//				orderbyDirection:'asc',
+																//				displayedFacets:"['all']"
+																//		};
+																//		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
+																//				if(response.data.success){
+																//								me.infoArticles = response.data.results;
+																//								angular.forEach(me.infoArticles.data,function(data, key){
+																//																$scope.taxonomies[ind]=me.infoArticles.data[ind]['taxonomy.5a114f1b396588d22856706f'][0];
+																//																if ($scope.taxonomies[ind]===$scope.taxonomies[ind-1] && ind!==0) {
+																//																								$scope.displayTaxo[ind]= false;
+																//																				} else {
+																//																								$scope.displayTaxo[ind]= true;
+																//																				}
+																//																ind++;
+																//								});
+																//				} 
+																//		});														
+																//};					
 }]);
