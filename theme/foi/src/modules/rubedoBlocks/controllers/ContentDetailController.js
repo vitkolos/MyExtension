@@ -417,7 +417,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																				predefinedFacets:{"type":"5a114b5c396588e62456706b","numero_foi":config.contentId},
 																				start:0, 
 																				limit:50,
-																				orderby:'ordre',
+																				orderby:'taxonomy.5a114f1b396588d22856706f',
 																				orderbyDirection:'asc',
 																				displayedFacets:"['all']"
 																		};
