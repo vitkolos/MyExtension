@@ -477,12 +477,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																$scope.taxonomies[ind]=me.infoArticles.data[ind]['taxonomy.5a114f1b396588d22856706f'][0];
 																																if ($scope.taxonomies[ind]===$scope.taxonomies[ind-1] && ind!==0) {
 																																								if (me.infoArticles.data[ind-1].lastUpdateTime>me.infoArticles.data[ind].lastUpdateTime) {
+																																											console.log("Inversion AVANT");
+																																											console.log(me.infoArticles.data[ind-1].text);
+																																											console.log(me.infoArticles.data[ind-1].lastUpdateTime);
+																																											console.log(me.infoArticles.data[ind].text);
+																																											console.log(me.infoArticles.data[ind].lastUpdateTime);
+																																											
 																																											var temp=me.infoArticles.data[ind-1];
 																																											me.infoArticles.data[ind-1]=me.infoArticles.data[ind];
 																																											me.infoArticles.data[ind]=temp;
-																																											console.log(me.infoArticles.data[ind-1]);
-																																											console.log(me.infoArticles.data[ind]);
-																																											console.log("Inversion");
+																																											
+																																											console.log("Inversion APRES");
+																																											console.log(me.infoArticles.data[ind-1].text);
+																																											console.log(me.infoArticles.data[ind-1].lastUpdateTime);
+																																											console.log(me.infoArticles.data[ind].text);
+																																											console.log(me.infoArticles.data[ind].lastUpdateTime);
+																																											
 																																								}
 																																								$scope.displayTaxo[ind]= false;
 																																				} else {
