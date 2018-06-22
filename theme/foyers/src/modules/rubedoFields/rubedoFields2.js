@@ -231,7 +231,7 @@
             templates_files: [ '/theme/'+rubedoConfig.siteTheme+'/ckeditor/default.js' ],
             templates_replaceContent : false,
             customConfig: "/theme/"+rubedoConfig.siteTheme+"/ckeditor/config.js",
-            font_names : 'Merriweather;Montserrat;FontAwesome; cheminneuf',
+            font_names : 'trend_sansone;Lato;FontAwesome;',
         };
         if ($scope.field.cType!="CKEField"&&$scope.field.cType!="Rubedo.view.CKEField"){
             editorOptions.removePlugins= 'colorbutton,find,flash,font,' + 'forms,iframe,image,newpage,removeformat' + 'smiley,specialchar,stylescombo,templates,wsc';
@@ -257,7 +257,7 @@
                         newValue="<div>"+newValue+"</div>";
                     }
                     me.html=jQuery.htmlClean(newValue, {
-                        allowedAttributes:[["style"],["id"],["rubedo-page-link"],["target"],["align"],["width"],["height"],["data-toggle"],["data-target"],["allowfullscreen"],["rubedo-event"]],
+                        allowedAttributes:[["style"],["id"],["rubedo-page-link"],["target"],["align"],["width"],["height"],["data-toggle"],["data-target"],["allowfullscreen"]],
                         allowedTags: ['table','tbody','tr','td','th','iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br','u','sup'],
                         removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike"],                        
                         allowEmpty :["p","i","span"],
@@ -270,7 +270,7 @@
                         newValue="";
                     }
                     me.html=$sce.trustAsHtml(jQuery.htmlClean(newValue, {
-                        allowedAttributes:[["style"],["rubedo-page-link"],["align"],["width"],["height"],["allowfullscreen"],["rubedo-event"]],
+                        allowedAttributes:[["style"],["rubedo-page-link"],["align"],["width"],["height"],["allowfullscreen"]],
                         allowedTags: ['iframe','p','div','a','span','img','b','strong','em','h1','h2','h3','h4','h5','h6','ul','li','blockquote','br'],
                         removeTags:["basefont","center","dir","font","frame","frameset","isindex","menu","noframes","s","strike","u"],
                         allowEmpty :["p","i","span"],
