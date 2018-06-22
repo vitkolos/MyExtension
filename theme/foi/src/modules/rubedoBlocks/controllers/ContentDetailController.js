@@ -423,6 +423,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
 																				if(response.data.success){
 																								me.infoArticles = response.data.results;
+																								console.log("me.infoArticles");
+																								console.log(me.infoArticles);
 																								angular.forEach(me.infoArticles.data,function(data, key){
 																																$scope.taxonomies[ind]=me.infoArticles.data[ind]['taxonomy.5a114f1b396588d22856706f'][0];
 																																if ($scope.taxonomies[ind]===$scope.taxonomies[ind-1] && ind!==0) {
@@ -436,32 +438,4 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																		});														
 																};			
 																
-																//	me.contenuSommaire = function(){
-																//		var ind=0;
-																//		var optionsSommaire = {
-																//				constrainToSite:false,
-																//				siteId: $scope.rubedo.current.site.id,
-																//				pageId: $scope.rubedo.current.page.id,
-																//				predefinedFacets:{"type":"5a114b5c396588e62456706b","numero_foi":config.contentId},
-																//				start:0, 
-																//				limit:50,
-																//				orderby:'taxonomy.5a114f1b396588d22856706f',
-																//				orderbyDirection:'asc',
-																//				displayedFacets:"['all']"
-																//		};
-																//		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
-																//				if(response.data.success){
-																//								me.infoArticles = response.data.results;
-																//								angular.forEach(me.infoArticles.data,function(data, key){
-																//																$scope.taxonomies[ind]=me.infoArticles.data[ind]['taxonomy.5a114f1b396588d22856706f'][0];
-																//																if ($scope.taxonomies[ind]===$scope.taxonomies[ind-1] && ind!==0) {
-																//																								$scope.displayTaxo[ind]= false;
-																//																				} else {
-																//																								$scope.displayTaxo[ind]= true;
-																//																				}
-																//																ind++;
-																//								});
-																//				} 
-																//		});														
-																//};					
 }]);
