@@ -63,16 +63,33 @@
 									ng-repeat="content in columnContents" ng-switch="content.typeId"  class="col-xs-6 col-xxs-12" ng-class="contentListCtrl.columns"
 									style="margin-bottom:25px; padding: 0 12px">-->
 										<div class="cursor-as-pointer text-center" data-toggle="modal" data-target="#intervenant_{{$index}}_{{$parent.$parent.$index}}" style="margin-bottom:25px; padding: 0 12px">
-											<img class="img-circle hover" ng-if="content.fields.image"
-												 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'150px', width:'150px', mode:'crop'}) }}"
-												 alt="{{ content.fields.text }}" style="margin:30px 3px 10px"/>
-											<div ng-style="{'height':contentListCtrl.contentHeight}">
-												<b>
-													<p ng-if="!fieldEditMode" style="margin:10px 0 2px; font-family: trend_sansone;">{{content.fields.text}}</p>
-												</b>
-												<p class="hidden-xxs" style="margin:10px 3px 40px">
-													{{content.fields.summary}}
-												</p>
+											<!-- Si photo du jeune-->
+											<div ng-if="content.fields.image">
+												<img class="img-circle hover" 
+													 ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{height:'150px', width:'150px', mode:'crop'}) }}"
+													 alt="{{ content.fields.text }}" style="margin:30px 3px 10px"/>
+												<div ng-style="{'height':contentListCtrl.contentHeight}">
+													<b>
+														<p ng-if="!fieldEditMode" style="margin:10px 0 2px; font-family: trend_sansone;">{{content.fields.text}}</p>
+													</b>
+													<p class="hidden-xxs" style="margin:10px 3px 40px">
+														{{content.fields.summary}}
+													</p>
+												</div>
+											</div>
+											
+											<!-- Si photo du jeune-->
+											<div ng-if="!content.fields.image">
+												<div ng-style="{'height':contentListCtrl.contentHeight}">
+													<b>
+														<div style="border: 2px solid white;width: 150px;height: 150px;margin: auto;vertical-align: middle;border-radius: 50%;">
+															<p ng-if="!fieldEditMode" style="margin:10px 0 2px; font-family: trend_sansone;">{{content.fields.text}}</p>
+														</div>
+													</b>
+													<p class="hidden-xxs" style="margin:10px 3px 40px">
+														{{content.fields.summary}}
+													</p>
+												</div>
 											</div>
 											
 										</div>
