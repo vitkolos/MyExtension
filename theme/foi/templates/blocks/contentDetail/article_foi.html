@@ -60,7 +60,7 @@
 							</div>
 						</div>
 					</div>
-					<p class="summary">{{contentDetailCtrl.content.fields.summary}}</p>
+					<p class="intro" ng-if="contentDetailCtrl.content.fields.summary">{{contentDetailCtrl.content.fields.summary}}</p>
 					<rubedo-field field = "{{contentDetailCtrl.getFieldByName('richText')}}" ng-if="fieldEntity['richText']" class="contenu_article"></rubedo-field>
 					
 									<!-- ACCES ABONNE -->
