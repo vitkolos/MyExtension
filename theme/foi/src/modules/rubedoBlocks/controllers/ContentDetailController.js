@@ -479,7 +479,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																								if (me.infoArticles.data[ind-1].lastUpdateTime>me.infoArticles.data[ind].lastUpdateTime) {
 																																											var temp=me.infoArticles.data[ind-1];
 																																											me.infoArticles.data[ind-1]=me.infoArticles.data[ind];
-																																											me.infoArticles.data[ind]=temp; 
+																																											me.infoArticles.data[ind]=temp;
+																																											console.log("Inversion");
 																																								}
 																																								$scope.displayTaxo[ind]= false;
 																																				} else {
