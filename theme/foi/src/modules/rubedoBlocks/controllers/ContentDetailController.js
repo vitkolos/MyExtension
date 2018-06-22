@@ -480,6 +480,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																																											var temp=me.infoArticles.data[ind-1];
 																																											me.infoArticles.data[ind-1]=me.infoArticles.data[ind];
 																																											me.infoArticles.data[ind]=temp;
+																																											console.log(me.infoArticles.data[ind-1]);
+																																											console.log(me.infoArticles.data[ind]);
 																																											console.log("Inversion");
 																																								}
 																																								$scope.displayTaxo[ind]= false;
