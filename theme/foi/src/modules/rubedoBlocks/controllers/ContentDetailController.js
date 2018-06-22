@@ -471,20 +471,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
 																				if(response.data.success){
 																								me.infoArticles = response.data.results;
-																								console.log(me.infoArticles);
+																								console.log("me.infoArticles BEFORE");
 																								console.log(me.infoArticles);
 																								angular.forEach(me.infoArticles.data,function(data, key){
 																																$scope.taxonomies[ind]=me.infoArticles.data[ind]['taxonomy.5a114f1b396588d22856706f'][0];
 																																if ($scope.taxonomies[ind]===$scope.taxonomies[ind-1] && ind!==0) {
-																																				//if (me.infoArticles.data[ind]) {
-																																				//				//code
-																																				//}
-																																																		$scope.displayTaxo[ind]= false;
-																																														} else {
-																																																		$scope.displayTaxo[ind]= true;
-																																														}
+																																								if (me.infoArticles.data[ind-1].lastUpdateTime>me.infoArticles.data[ind].lastUpdateTime) {
+																																											var temp=me.infoArticles.data[ind-1];
+																																											me.infoArticles.data[ind-1]=me.infoArticles.data[ind];
+																																											me.infoArticles.data[ind]=temp; 
+																																								}
+																																								$scope.displayTaxo[ind]= false;
+																																				} else {
+																																								$scope.displayTaxo[ind]= true;
+																																				}
 																																ind++;
-																							});
+																								});
+																								console.log("infoArticles AFTER");
+																								console.log(me.infoArticles);
 																				} 
 																		});														
 																};					
