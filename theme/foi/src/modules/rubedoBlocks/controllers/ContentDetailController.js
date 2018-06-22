@@ -34,8 +34,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return field;
     };
 				me.getTermInTaxo=function(taxoKey,termId){
-        console.log("me.taxo");
-								console.log(me.taxo);
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
         angular.forEach(me.taxo[taxoKey],function(candidate){ // chercher l'id dans les taxonomies de ce type de contenu si 
@@ -45,8 +43,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
          });
          if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherché
 								return(term);
-								console.log("term");
-								console.log(term);
     };
     
     me.search = function(taxoKey,termId){
@@ -66,7 +62,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
-                    console.log(me.content);
                     $scope.fieldIdPrefix="contentDetail"+me.content.type.type;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
@@ -107,10 +102,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     /*Vérifier les droits du client et limiter le texte si besoin pour les actualites et les articles FOI*/
                     /*et seulement pour des articles publiés il y a moins de 3 mois*/
                     var today = new Date();
-                    console.log((today.getTime() - me.content.createTime*1000)>1000*3600*24*90);
 																				
 																				if(me.content.type.code=="foi") {
-																								console.log("FOI");
+
 																								 if ($scope.rubedo.current.page.id=="5a7dcda63965886233eefde7") {
 																												$scope.pageRevueEnCours=true;
 																									}
@@ -311,16 +305,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     
     me.isClient = function (oldArticle){
-								console.log("lancement fonction isClient");
-								console.log("oldArticle");
-								console.log(oldArticle);
         if ($scope.rubedo.current.user && $scope.rubedo.current.user.rights.canEdit) {
            $scope.isClient=true;
 											$scope.isVisiteur=true;
-											console.log("isClient");
-												console.log($scope.isClient);
-												console.log("isVisiteur");
-												console.log($scope.isVisiteur); 
         }
         else if ($scope.rubedo.current.user) {
             RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
@@ -329,13 +316,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         if (response.data.user.groups.includes("596e2e483965889a1f7bf6d1")){
                             $scope.isClient=true;
 																												$scope.isVisiteur=true;
-																												console.log("Abonné FOI");
-																												console.log("596e2e483965889a1f7bf6d1");
-																												console.log(response.data.user.groups);
-																												console.log("isClient");
-																												console.log($scope.isClient);
-																												console.log("isVisiteur");
-																												console.log($scope.isVisiteur); 
                         }
 																								/* 58e0b676245640ef008bb635 == groupe Revue FOI */
 																								else if (response.data.user.groups.includes("58e0b676245640ef008bb635")){
@@ -345,31 +325,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																															$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
 																																$scope.isRestricted=true;
 																															$scope.isOld=false;
-																															console.log("isOld");
-																															console.log($scope.isOld);
 																												}
-																												console.log("Simple visiteur");
-																												console.log("5a870ea739658802628b4567");
-																												console.log(response.data.user.groups);
-																												console.log("isClient");
-																												console.log($scope.isClient);
-																												console.log("isVisiteur");
-																												console.log($scope.isVisiteur);
-																												console.log("response.data.user");
-																												console.log(response.data.user);
                         }
                         else{
                             var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
 																												$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
 																													$scope.isRestricted=true;
-																												console.log("Autre");
-																													console.log("Abonné : 596e2e483965889a1f7bf6d1");
-																												console.log("Visiteur : 5a870ea739658802628b4567");
-																												console.log(response.data.user.groups);
-																												console.log("isClient");
-																												console.log($scope.isClient);
-																												console.log("isVisiteur");
-																												console.log($scope.isVisiteur);
                         }
                     }
                 }
@@ -380,17 +341,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 													var limit = Math.trunc($scope.fieldEntity['richText'].length*0.2);
 													$scope.fieldEntity['richText'] =$scope.fieldEntity['richText'].substring(0,limit) + "...</p>";
 													$scope.isRestricted=true;
-													console.log("limit");
-													console.log(limit);
-													console.log("$scope.fieldEntity['richText'");
-													console.log($scope.fieldEntity['richText']);
-													console.log(" Encore autre");
-												console.log("Abonné : 596e2e483965889a1f7bf6d1");
-											console.log("Visiteur : 5a870ea739658802628b4567");
-											console.log("isClient");
-											console.log($scope.isClient);
-											console.log("isVisiteur");
-											console.log($scope.isVisiteur);
         }
     };
 				
@@ -471,41 +421,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 																		RubedoSearchService.searchByQuery(optionsSommaire).then(function(response){
 																				if(response.data.success){
 																								me.infoArticles = response.data.results;
-																								console.log("me.infoArticles BEFORE");
-																								console.log(me.infoArticles);
 																								angular.forEach(me.infoArticles.data,function(data, key){
 																																$scope.taxonomies[ind]=me.infoArticles.data[ind]['taxonomy.5a114f1b396588d22856706f'][0];
 																																if ($scope.taxonomies[ind]===$scope.taxonomies[ind-1] && ind!==0) {
-																																								if (me.infoArticles.data[ind-1].lastUpdateTime>me.infoArticles.data[ind].lastUpdateTime) {
-																																											console.log("Inversion AVANT");
-																																											console.log(me.infoArticles.data[ind-1].text);
-																																											console.log(me.infoArticles.data[ind-1].lastUpdateTime);
-																																											console.log(me.infoArticles.data[ind].text);
-																																											console.log(me.infoArticles.data[ind].lastUpdateTime);
-																																											console.log("Différence AVANT");
-																																											console.log(me.infoArticles.data[ind].lastUpdateTime-me.infoArticles.data[ind-1].lastUpdateTime);
-																																											
-																																											var temp=me.infoArticles.data[ind-1];
-																																											me.infoArticles.data[ind-1]=me.infoArticles.data[ind];
-																																											me.infoArticles.data[ind]=temp;
-																																											
-																																											console.log("Inversion APRES");
-																																											console.log(me.infoArticles.data[ind-1].text);
-																																											console.log(me.infoArticles.data[ind-1].lastUpdateTime);
-																																											console.log(me.infoArticles.data[ind].text);
-																																											console.log(me.infoArticles.data[ind].lastUpdateTime);
-																																											console.log("Différence APRES");
-																																											console.log(me.infoArticles.data[ind].lastUpdateTime-me.infoArticles.data[ind-1].lastUpdateTime);
-																																											
-																																								}
 																																								$scope.displayTaxo[ind]= false;
 																																				} else {
 																																								$scope.displayTaxo[ind]= true;
 																																				}
 																																ind++;
 																								});
-																								console.log("infoArticles AFTER");
-																								console.log(me.infoArticles);
 																				} 
 																		});														
 																};					
