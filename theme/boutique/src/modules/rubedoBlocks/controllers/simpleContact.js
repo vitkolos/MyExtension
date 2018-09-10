@@ -5,13 +5,13 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.contactError=null;
     $scope.adressOfTopics=[
         {adr:'acnenligne@gmail.com',
-            topic:'Service client'},
+            topic:'[Ateliers du Chemin Neuf] Votre boutique en ligne'},
         {adr:'ame@chemin-neuf.org',
             topic:'Service expédition'},
         {adr:'web@chemin-neuf.org',
             topic:'Webmaster'}]    ;
 
-    $scope.selectedTopic= {adr:'acnenligne@gmail.com', topic:'Service client'};
+    $scope.selectedTopic= {adr:'acnenligne@gmail.com', topic:'[Ateliers du Chemin Neuf] Votre boutique en ligne'};
 
     $scope.clearORPlaceholderHeight();
     me.submit=function(){
