@@ -544,6 +544,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         PaymentService.payment(payload).then(function(response){
             
         	if (response.data.success) {
+        						console.log("paymentmeans.paymentModes");
+        						console.log(me.paymentmeans.paymentModes);
+        						console.log("paymentmeans.paymentModes.indexOf('carte')");
+        						console.log(me.paymentmeans.paymentModes.indexOf('carte'));
 								if(me.paymentmeans.paymentModes.indexOf('carte')!==-1) {
                                     $scope.parametres = response.data.parametres;
                                     /*délai pour laisser le formulaire se remplir*/
