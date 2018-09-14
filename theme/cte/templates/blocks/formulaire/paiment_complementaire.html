@@ -83,7 +83,7 @@
             <p ng-if="finInscription">{{message}}</p>
     </div>    
     
-    <form ng-if="formCtrl.inscriptionsCount>0 && inscription.modePaiement=='carte'" id="payment" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
+    <form ng-if="formCtrl.inscriptionsCount>0 && formCtrl.paymentmeans.paymentModes.indexOf('carte')!==-1" id="payment" name="payment"  method="POST" action="https://tpeweb.paybox.com/cgi/MYchoix_pagepaiement.cgi" style="visibility:hidden">
             <input type="hidden" name="PBX_TYPEPAIEMENT" value="{{parametres.typePaiement}}">
             <input type="hidden" name="PBX_TYPECARTE" value="{{parametres.typeCarte}}">
             <input type="hidden" name="PBX_SITE" value="{{parametres.payboxSite}}">
