@@ -248,7 +248,7 @@ return array(
                 ),
                 'js' => array(
                     '/js/wtp.js',
-                     '../cte/js/lazy-image.js',
+                     '/../cte/js/lazy-image.js',
                 ),
                 'angularModules' => array(
                     'angularVideoBg' => '/lib/angular-video-bg.min.js',
@@ -264,7 +264,7 @@ return array(
                 ),
                 'js' => array(
                     '/js/wtp.js',
-                     '../cte/js/lazy-image.js',
+                     '/../cte/js/lazy-image.js',
                 ),
                 'angularModules' => array(
                     'angularVideoBg' => '/lib/angular-video-bg.min.js',
@@ -279,7 +279,7 @@ return array(
                 ),
                 'js' => array(
                     '/js/jmj.js',
-                    '../js/cte/lazy-image.js',
+                    '/../js/cte/lazy-image.js',
                 ),
             ),
             'netforgod' => array(
@@ -333,7 +333,7 @@ return array(
                     '/css/font-awesome.css'
                 ),  
                 'js' => array(
-                     '../js/cte/lazy-image.js',
+                     '/../js/cte/lazy-image.js',
                     '/js/boutique.js'
                 ),
                 'angularModules' => array(
@@ -348,7 +348,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '../js/cte/lazy-image.js',
+                    '/../js/cte/lazy-image.js',
                     '/js/cana.js'
                 ),
                 'angularModules' => array(
@@ -363,7 +363,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '../js/cte/lazy-image.js',
+                    '/../js/cte/lazy-image.js',
                     '/js/cana.js'
                 ),
                 'angularModules' => array(
@@ -378,7 +378,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '../js/cte/lazy-image.js',
+                    '/../js/cte/lazy-image.js',
                     '/js/bethanien.js'
                 ),
                 'angularModules' => array(
@@ -393,7 +393,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '../js/cte/lazy-image.js',
+                    '/../js/cte/lazy-image.js',
                     '/js/cluny.js'
                 ),
                 'angularModules' => array(
@@ -408,7 +408,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '../js/cte/lazy-image.js',
+                    '/../js/cte/lazy-image.js',
                     '/js/foi.js',
                 ),
                 'angularModules' => array(
