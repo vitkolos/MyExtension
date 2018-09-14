@@ -423,8 +423,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 																												
 																												
 																												
-																												if (response.data.success) {
-																																 if($scope.inscription.modePaiement == 'carte') {
+						if (response.data.success) {
+								if($scope.inscription.modePaiement == 'carte') {
                                     $scope.parametres = response.data.parametres;
                                     /*délai pour laisser le formulaire se remplir*/
                                     $timeout(function() {
@@ -531,8 +531,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             montant:$scope.inscription.montantAPayerMaintenant,
             proposition:propositionTitle,
             idInscription: me.lastInscription.fields.text,
-												paymentConfID:me.paymentmeans.nativePMConfig.conf_paf,
-												paymentMeans:'carte',
+			paymentConfID:me.paymentmeans.nativePMConfig.conf_paf,
+			paymentMeans:$scope.inscription.modePaiement,
             paymentType:'paf'
         };
         if (me.content.fields.lieuCommunautaire) {
@@ -542,13 +542,19 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             window.ga('send', 'event', 'inscription', 'payement carte', 'paiement complementaire', $scope.inscription.montantAPayerMaintenant);
         }
         PaymentService.payment(payload).then(function(response){
-            if (response.data.success) {
-                $scope.parametres = response.data.parametres;
-                /*délai pour laisser le formulaire se remplir*/
-                $timeout(function() {
-                    $scope.processForm=false;
-                    document.getElementById('payment').submit();
-                }, 100);
+            
+        	if (response.data.success) {
+				if($scope.inscription.modePaiement == 'carte') {
+                                    $scope.parametres = response.data.parametres;
+                                    /*délai pour laisser le formulaire se remplir*/
+                                    $timeout(function() {
+                                        $scope.processForm=false;
+                                        document.getElementById('payment').submit();
+                                    }, 100);
+                                }
+                                else if($scope.inscription.modePaiement == 'paypal'){
+                                    window.location.href= response.data.parametres;
+                                }
             }
             else {
                 $scope.processForm=false;
