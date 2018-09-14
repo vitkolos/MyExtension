@@ -18,7 +18,7 @@ blocksConfig.footer={
 blocksConfig.contentDetail = {
             "template": "/templates/blocks/contentDetail.html",
             "externalDependencies":['//s7.addthis.com/js/300/addthis_widget.js'],
-            "internalDependencies":["/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
+            "internalDependencies":["/src/modules/rubedoBlocks/controllers/BreadcrumbController.js","/src/modules/rubedoBlocks/controllers/ContentDetailController.js","/src/modules/rubedoBlocks/directives/DisqusDirective.js","/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
 blocksConfig.sectionPresentation={
            "template": "/templates/blocks/sectionPresentation.html",
@@ -39,13 +39,13 @@ angular.module('rubedo').filter('ligneNonVide', function () {
                       var filtered = [];
 		      var contentDisplay = false;
                       angular.forEach(input, function(row, index) {
-				// si la 1re colonne est terminale et non vide
+				// si la 1ï¿½re colonne est terminale et non vide
                                  if (row.columns[0].isTerminal&&row.columns[0].blocks) {
-				    // toujours afficher la 1re ligne (menu) et la dernire (footer)
+				    // toujours afficher la 1ï¿½re ligne (menu) et la derniï¿½re (footer)
 				    if (index ==0 || index >= input.length-1) {
 					filtered.push(row);
 				    }
-				    // si la page sert ˆ afficher un contenu (en 2me ligne) on n'affiche pas les autres lignes
+				    // si la page sert ï¿½ afficher un contenu (en 2ï¿½me ligne) on n'affiche pas les autres lignes
 				    else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
 					filtered.push(row);
 					contentDisplay = true;
