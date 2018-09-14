@@ -546,9 +546,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         	if (response.data.success) {
         						console.log("paymentmeans.paymentModes");
         						console.log(me.paymentmeans.paymentModes);
-        						console.log("paymentmeans.paymentModes.indexOf('carte')");
-        						console.log(me.paymentmeans.paymentModes.indexOf('carte'));
-								if(me.paymentmeans.paymentModes.indexOf('carte')!==-1) {
+        						console.log("paymentmeans.paymentModes.carte");
+        						console.log(me.paymentmeans.paymentModes.carte);
+								if(me.paymentmeans.paymentModes.carte) {
                                     $scope.parametres = response.data.parametres;
                                     /*délai pour laisser le formulaire se remplir*/
                                     $timeout(function() {
@@ -556,7 +556,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                                         document.getElementById('payment').submit();
                                     }, 100);
                                 }
-                                else if(me.paymentmeans.paymentModes.indexOf('paypal')!==-1){
+                                else if(me.paymentmeans.paymentModes.paypal){
                                     window.location.href= response.data.parametres;
                                 }
             }
