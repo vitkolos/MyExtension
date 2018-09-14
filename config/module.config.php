@@ -221,8 +221,8 @@ return array(
                 ),
                 'js' => array(
                     '/js/cte.js',
-                    '../js/lazy-image.js',
-                    '../js/blocks.js',
+                    '/../js/lazy-image.js',
+                    '/../js/blocks.js',
                 ),
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
