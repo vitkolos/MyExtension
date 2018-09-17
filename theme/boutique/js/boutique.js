@@ -1,6 +1,6 @@
 blocksConfig.boutiqueTop={
     "template":  "/templates/blocks/boutiqueTop.html",
-    "internalDependencies":['/src/modules/rubedoBlocks/controllers/ShoppingCartController.js','/src/modules/rubedoBlocks/controllers/ImageController.js','/src/modules/rubedoBlocks/controllers/SearchFormController.js']
+    "internalDependencies":['/src/modules/rubedoBlocks/controllers/SearchFormController.js']
 };
 blocksConfig.imageBatchUpload={
            "template": "/templates/blocks/imageBatchUpload.html",
