@@ -334,7 +334,7 @@ return array(
                 ),  
                 'js' => array(
 		     '/js/boutique.js',
-                     '/../js/cte/lazy-image.js'
+                     '/js/lazy-image.js'
                     
                 ),
                 'angularModules' => array(
