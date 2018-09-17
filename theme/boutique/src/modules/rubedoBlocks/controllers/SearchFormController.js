@@ -2,11 +2,11 @@ angular.module("rubedoBlocks").lazy.controller("SearchFormController",['$scope',
     var me = this;
     var config = $scope.blockConfig;
     me.show = config.searchPage;
-				me.searchQuery="";
+me.searchQuery="";
     me.placeholder = config.placeholder;
 				var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
-				var options = {
+	var options = {
         start: 0,
         limit: 1000,
         'fields[]' : ["text"]
@@ -19,13 +19,4 @@ angular.module("rubedoBlocks").lazy.controller("SearchFormController",['$scope',
             }
         });
     };
-				me.getProducts = function (queryId, pageId, siteId, options){
-        RubedoProductsService.getContents(queryId,pageId,siteId, options).then(function(response){
-            if (response.data.success){
-																$scope.products = response.data.contents;
-                
-            }
-        });
-    };
-				//me.getProducts("5899fa6f9b1bdee822000029", pageId, siteId, options);
 }]);
