@@ -1,3 +1,7 @@
+blocksConfig.boutiqueTop={
+    "template":  "/templates/blocks/boutiqueTop.html",
+    "internalDependencies":['/src/modules/rubedoBlocks/controllers/ShoppingCartController.js','/src/modules/rubedoBlocks/controllers/ImageController.js','/src/modules/rubedoBlocks/controllers/SearchFormController.js']
+};
 blocksConfig.imageBatchUpload={
            "template": "/templates/blocks/imageBatchUpload.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
@@ -20,10 +24,6 @@ blocksConfig.bg_image={
 blocksConfig.ordersList={
            "template": "/templates/blocks/ordersList.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/OrdersListController.js"]
-};
-blocksConfig.boutiqueTop={
-  "template":  "/templates/blocks/boutiqueTop.html",
-  "internalDependencies":['/src/modules/rubedoBlocks/controllers/SearchFormController.js','/src/modules/rubedoBlocks/controllers/ShoppingCartController.js','/src/modules/rubedoBlocks/controllers/ImageController.js']
 };
 blocksConfig.simpleContact={
     "template": "/templates/blocks/simpleContact.html",

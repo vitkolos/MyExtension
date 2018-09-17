@@ -127,7 +127,7 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/facebook.json'
         ),
-							 'form' => array(
+        'form' => array(
             'maxlifeTime' => -1,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/survey_form.json'
         ),
@@ -207,7 +207,7 @@ return array(
             'maxlifeTime' => 60,
             'definitionFile' => realpath(__DIR__ . "/blocks/") . '/chatbot.json'
         ),
-				),
+    ),
 
     'templates' => array(
         'themes' => array(
