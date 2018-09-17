@@ -1,6 +1,6 @@
 <div class="col-sm-offset-6 btq-top" >
-    <span class="col-sm-12 " style="padding-left: 0;" ng-init="blockConfig={searchPage:'55c8777145205ef317c62e31'}">
-        <span  ng-controller="SearchFormController as searchFormCtrl" class="input-group-btn">
+    <!--<span class="col-sm-12 " style="padding-left: 0;" ng-init="blockConfig={searchPage:'55c8777145205ef317c62e31'}">
+        <span ng-controller="SearchFormController as searchFormCtrl" class="input-group-btn">
             <form  ng-submit="searchFormCtrl.onSubmit()" role="form" class="input-group col-md-10">
                 <span  ng-if="searchFormCtrl.show">
                     <input class="form-control" type="text" ng-model="searchFormCtrl.query" placeholder="{{searchFormCtrl.placeholder}}"/>
@@ -9,16 +9,9 @@
                     </button>
                 </span>
             </form>
-            <!--<select 
-                        chosen
-                        class="form-control"
-                        data-placeholder="{{rubedo.translate('Taxonomy.Picker.Label.Select')}}"
-                        no-results-text="'{{rubedo.translate('Taxonomy.Picker.Label.NoResults','No result found. Press enter to add ')}}'"
-                        ng-options="s.id as s.text for s in products | orderBy:'text' "
-                        ng-model="searchFormCtrl.searchQuery"
-                        ></select>-->
+            
         </span>
-    </span>
+    </span>-->
     <span class="col-sm-12 top-hover" ng-init="blockConfig={displayMode:'pop-in' , redirectOnConnection:false , profilePage:'56bdb65dc445ec56018b531c',signUpPage:'56a79674c445eccb008b464c',commandPage:'56bdb7adc445ec56018b532e'}">
         <span ng-controller="AuthenticationController as authCtrl">
             <!--<span ng-if="rubedo.current.user" class="btn-group">-->
