@@ -23,7 +23,7 @@ blocksConfig.ordersList={
 };
 blocksConfig.boutiqueTop={
   "template":  "/templates/blocks/boutiqueTop.html",
-  "internalDependencies":['/src/modules/rubedoBlocks/controllers/SearchFormController.js','/src/modules/rubedoBlocks/controllers/ShoppingCartController.js','/src/modules/rubedoBlocks/controllers/ImageController.js','/src/modules/rubedoBlocks/controllers/AuthenticationController.js']
+  "internalDependencies":['/src/modules/rubedoBlocks/controllers/SearchFormController.js','/src/modules/rubedoBlocks/controllers/ShoppingCartController.js','/src/modules/rubedoBlocks/controllers/ImageController.js']
 };
 blocksConfig.simpleContact={
     "template": "/templates/blocks/simpleContact.html",
