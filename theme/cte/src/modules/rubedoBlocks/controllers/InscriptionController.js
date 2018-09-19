@@ -551,12 +551,14 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 								if(me.paymentmeans.paymentModes.carte) {
                                     $scope.parametres = response.data.parametres;
                                     /*délai pour laisser le formulaire se remplir*/
-                                    $timeout(function() {
+                                    /*$timeout(function() {
                                         $scope.processForm=false;
                                         document.getElementById('payment').submit();
-                                    }, 100);
+                                    }, 100);*/
                                     console.log("paymentmeans.paymentModes.carte");
         							console.log(me.paymentmeans.paymentModes.carte);
+        							console.log("response.data.parametres");
+        							console.log(response.data.parametres);
                                 }
                                 else if(me.paymentmeans.paymentModes.paypal){
                                     payload.paymentMeans='paypal';
