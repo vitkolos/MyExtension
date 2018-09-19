@@ -75,6 +75,10 @@ class SitesConfigCcn extends AbstractCollection
             case "mq.chemin-neuf.org" :
                     $accountName="martinique";
                     break;
+            //GUADELOUPE
+            case "gp.chemin-neuf.org" :
+                    $accountName="guadeloupe";
+                    break;
             //CANADA
             case "www.chemin-neuf.ca" :
                     $accountName="canada";
@@ -92,38 +96,36 @@ class SitesConfigCcn extends AbstractCollection
                     $accountName="de";
                     break;
             //BRESIL
-            case "br2.chemin-neuf.org" :
             case "br.chemin-neuf.org" :
                     $accountName="bresil";
                     break;
             //SUISSE
-            case "ch.chemin-neuf.org" :
             case "www.chemin-neuf.ch" :
                     $accountName="suisse";
                     break;
              //TCHEQUIE
-            case "cz.chemin-neuf.org" :
             case "www.chemin-neuf.cz" :
                     $accountName="tchequie";
                     break;
             //PAYS BAS
-            case "nl.chemin-neuf.org" :
             case "www.chemin-neuf.nl" :
                     $accountName="nl";
                     break;
             //MAURICE
-            case "mu.chemin-neuf.org" :
+            case "ile-maurice.chemin-neuf.org" :
                     $accountName="maurice";
                     break;
             //TCHAD
             case "td.chemin-neuf.org" :
-            case "td2.chemin-neuf.org" :
                     $accountName="tchad";
                     break;
-            //TCHAD
+            //COTE D'IVOIRE
             case "ci.chemin-neuf.org" :
-            case "ci2.chemin-neuf.org" :
                     $accountName="ci";
+                    break;
+            //MADAGASCAR
+            case "mg.chemin-neuf.org" :
+                    $accountName="madagascar";
                     break;
         }
         $paymentConfig=Manager::getService("PaymentConfigs")->getConfigForPM($accountName);
