@@ -195,46 +195,7 @@ class PaymentResource extends AbstractResource {
             $parametres["chk"] = hash('sha256',$chk);
         }
         
-        /*SI CHEQUE, PAIEMENT PAR PAYPAL (voir paymentcomplementaire() dans InscriptionController.js) */
-        /*if($onlinePaymentMeans == "cheque") {
-            // récupérer l'id de la configuration de payement
-            $id = $params['paymentConfID'];
-            // récupérer les infos du compte
-            $wasFiltered = AbstractCollection::disableUserFilter(true);
-            $contentsService = Manager::getService("Contents");
-            $paymentInfos = $contentsService->findById($id,false,false)['fields'];
-            $wasFiltered = AbstractCollection::disableUserFilter(false);
-            $paypalAccount = $paymentInfos['paypal'];
-
-
-            $query = array();
-            $query['currency_code'] = $params['codeMonnaieAlpha']; //devise
-            $query['lc'] = strtoupper($params['lang']->getLocale()); // langue
-            $query['business'] = $paypalAccount; //compte Paypal
-            $query['item_name'] = $params['proposition']; //nom du projet
-            $query['item_number'] = $idInscription;//id du don
-            $query['amount'] = $params['montant'];//montant du don
-            $query['notify_url'] = "https://" . $_SERVER['HTTP_HOST']. "/api/v1/PaypalIpnCcn/"; // adresse de l'IPN ? 
-            $query['cancel_return'] = "https://" . $_SERVER['HTTP_HOST']; // page d'annulation de commande
-            $query['return'] = "https://" . $_SERVER['HTTP_HOST']; // page de confirmation et remerciement
-            $query['cmd'] = "_xclick";
-            //infos de la personne
-            //$query['address_override'] = '1';
-            $query['first_name'] = $prenom;
-            $query['last_name'] =$nom;
-            $query['email'] =$email;
-            $query['address1'] = $params['facturation']['address'];
-            //$query['city'] = $params['facturation']['city'];
-            //$query['zip'] = $params['facturation']['cp'];
-            /*if($params['facturation']['telephone'][0] == 0) {
-                $query['night_phone_b'] = substr($params['facturation']['telephone'],1);
-            }
-            else {
-                $query['night_phone_b'] = $params['facturation']['telephone'];
-            }*/
-            /*$query_string = http_build_query($query);
-            $parametres = 'https://www.paypal.com/cgi-bin/webscr?' . $query_string;
-        }*/
+        
          /*PAIEMENT PAR PAYPAL */
         if($onlinePaymentMeans == "paypal") {
             // récupérer l'id de la configuration de payement
