@@ -532,10 +532,15 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             proposition:propositionTitle,
             idInscription: me.lastInscription.fields.text,
 			paymentConfID:me.paymentmeans.nativePMConfig.conf_paf,
-			paymentMeans:me.lastInscription.fields.modePaiement,
 			codeMonnaieAlpha:me.paymentmeans.nativePMConfig.codeMonnaieAlpha,
             paymentType:'paf'
         };
+        if (me.paymentmeans.paymentModes.paypal && !me.paymentmeans.paymentModes.carte) {
+            payload.paymentMeans='paypal'; //cas où l'on désire que les paiements soient effectués sur Paypal et non sur Paybox
+        }
+        else {
+        	payload.paymentMeans=me.lastInscription.fields.modePaiement;
+        }
         if (me.content.fields.lieuCommunautaire) {
             payload.placeID=me.content.fields.lieuCommunautaire;
         }
@@ -555,7 +560,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                                     }, 100);
                                 }
                                 else if(me.paymentmeans.paymentModes.paypal){
-                                    payload.paymentMeans='paypal';
+                                   
                                     //window.location.href= response.data.parametres;
                                     console.log("payload");
                                     console.log(payload);
