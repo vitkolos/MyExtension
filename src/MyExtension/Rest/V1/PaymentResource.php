@@ -194,8 +194,9 @@ class PaymentResource extends AbstractResource {
                     .$parametres["country"];
             $parametres["chk"] = hash('sha256',$chk);
         }
-         /*PAIEMENT PAR PAYPAL */
-        if($onlinePaymentMeans == "paypal") {
+        
+        /*SI CHEQUE, PAIEMENT PAR PAYPAL (voir paymentcomplementaire() dans InscriptionController.js) */
+        if($onlinePaymentMeans == "cheque") {
             // récupérer l'id de la configuration de payement
             $id = $params['paymentConfID'];
             // récupérer les infos du compte
@@ -234,8 +235,8 @@ class PaymentResource extends AbstractResource {
             $query_string = http_build_query($query);
             $parametres = 'https://www.paypal.com/cgi-bin/webscr?' . $query_string;
         }
-        /*PAIEMENT PAR PAYPAL -> CHEQUE */
-        if($onlinePaymentMeans == "cheque") {
+         /*PAIEMENT PAR PAYPAL */
+        if($onlinePaymentMeans == "paypal") {
             // récupérer l'id de la configuration de payement
             $id = $params['paymentConfID'];
             // récupérer les infos du compte
