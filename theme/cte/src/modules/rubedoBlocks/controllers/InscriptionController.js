@@ -545,8 +545,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         PaymentService.payment(payload).then(function(response){
             
         	if (response.data.success) {
-        						console.log("paymentmeans.paymentModes");
-        						console.log(me.paymentmeans.paymentModes);
         						
 								if(me.paymentmeans.paymentModes.carte) {
                                     $scope.parametres = response.data.parametres;
@@ -557,13 +555,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                                     }, 100);
                                 }
                                 else if(me.paymentmeans.paymentModes.paypal){
-                                    payload.paymentMeans='paypal';
-                                    //window.location.href= response.data.parametres;
-
-                                    console.log("paymentmeans.paymentModes.paypal");
-        							console.log(me.paymentmeans.paymentModes.paypal);
-        							console.log("response");
-        							console.log(response);
+                                    
+                                    window.location.href= response.data.parametres;
                                 }
             }
             else {
