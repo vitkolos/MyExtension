@@ -43,13 +43,13 @@
                 
                 <p>{{rubedo.translate("Block.PaimentComplementaire.MontantPaye", "Lors de votre inscription en ligne, vous aviez payé")}}
                 <!--si paiement cheque ou paiement carte valide-->
-                    <span ng-if="formCtrl.lastInscription.fields.modePaiement=='cheque' || (formCtrl.lastInscription.fields.modePaiement=='carte' && formCtrl.lastInscription.fields.statut=='paiement_carte_valide') ">{{formCtrl.lastInscription.fields.montantAPayerMaintenant}}<b>{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</b></span>
+                    <span ng-if="formCtrl.lastInscription.fields.modePaiement=='cheque' || (formCtrl.lastInscription.fields.modePaiement=='carte' && formCtrl.lastInscription.fields.statut=='paiement_carte_valide') ">{{formCtrl.lastInscription.fields.montantAPayerMaintenant}}{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</span>
                  <!--si paiement carte non valide-->
-                   <span ng-if="formCtrl.lastInscription.fields.modePaiement=='carte' && formCtrl.lastInscription.fields.statut!='paiement_carte_valide' ">0<b>{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</b></span>
+                   <span ng-if="formCtrl.lastInscription.fields.modePaiement=='carte' && formCtrl.lastInscription.fields.statut!='paiement_carte_valide' ">0{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</span>
                     <span ng-if="formCtrl.lastInscription.fields.modePaiement=='carte' ">{{rubedo.translate("Block.Inscription.Paf.Carte")}}</span>
                     <span ng-if="formCtrl.lastInscription.fields.modePaiement=='cheque' ">{{rubedo.translate("Block.Inscription.Paf.Cheque")}}</span>
                 </p>
-                <p ng-if="formCtrl.lastInscription.fields.montantTotalAPayer">{{rubedo.translate("Block.PaimentComplementaire.MontantAPayer", "Lors de votre inscription, vous aviez indiqué vouloir payer")}} {{formCtrl.lastInscription.fields.montantTotalAPayer}}<b>{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</b></p>
+                <p ng-if="formCtrl.lastInscription.fields.montantTotalAPayer">{{rubedo.translate("Block.PaimentComplementaire.MontantAPayer", "Lors de votre inscription, vous aviez indiqué vouloir payer")}} {{formCtrl.lastInscription.fields.montantTotalAPayer}}{{formCtrl.paymentmeans.nativePMConfig.monnaie}}</p>
                 <p ng-if="!formCtrl.lastInscription.fields.montantTotalAPayer && contentDetailCtrl.content.fields.paf_text !='' ">{{rubedo.translate("Block.PaimentComplementaire.Paf", "La participation aux frais demandée pour cette proposition est :")}} {{contentDetailCtrl.content.fields.paf_text}}</p>
 </div> 
     
