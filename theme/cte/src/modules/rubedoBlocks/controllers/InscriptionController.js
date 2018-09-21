@@ -555,7 +555,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                                     }, 100);
                                 }
                                 else if(me.paymentmeans.paymentModes.paypal){
-                                    
+                                    payload.paymentMeans:'paypal';
                                     //window.location.href= response.data.parametres;
                                     console.log("payload");
                                     console.log(payload);
