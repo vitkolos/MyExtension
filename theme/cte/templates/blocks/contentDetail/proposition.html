@@ -228,7 +228,7 @@
 							</div>
 						</div>
 						<div class="col-sm-12 padding" ng-if="(contentDetailCtrl.content.fields.paimentOption.paimentOption).indexOf('complement') > -1">
-							<p>Effectuer un <a href="#bottom" ng-click="contentDetailCtrl.paimentComplementaire =true; contentDetailCtrl.showInscription =false">paiement complémentaire</a> </p>
+							<p>{{rubedo.translate("Block.Inscription.Effectuer", "Effectuer un ")}}<a href="#bottom" ng-click="contentDetailCtrl.paimentComplementaire =true; contentDetailCtrl.showInscription =false">{{rubedo.translate("Block.Inscription.Paiement.Complementaire", "paiement complémentaire")}}</a> </p>
 						</div>
 					</div>
 				</div>
