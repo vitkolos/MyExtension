@@ -349,8 +349,9 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '/../js/cte/lazy-image.js',
-                    '/js/cana.js'
+                    
+                    '/js/cana.js',
+		    '/js/lazy-image.js',
                 ),
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
