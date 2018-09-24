@@ -28,8 +28,8 @@ blocksConfig.redirect={
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/redirectController.js"]
 };
 blocksConfig.carrousel2={
-           "template": "/templates/blocks/carrousel_fullWidth.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
+  "template": "/templates/blocks/carrousel_fullWidth.html",
+ "internalDependencies":["/src/modules/rubedoBlocks/controllers/carrousel_fullWidth.js"]
 };
 blocksConfig.sectionPresentation={
            "template": "/templates/blocks/sectionPresentation.html",
