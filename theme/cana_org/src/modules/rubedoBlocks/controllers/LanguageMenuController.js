@@ -28,6 +28,8 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
                 RubedoModuleConfigService.changeLang(lang);
+		          console.log("lang");
+                  console.log(lang);
                 if ($scope.rubedo.current.site.locStrategy == 'fallback'){
                     RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
                 }
@@ -37,6 +39,8 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             // Get content id
                             urlArray = $route.current.params.routeline.split("/");
                             contentId = urlArray[urlArray.length-2];
+                            console.log("urlArray");
+                            console.log(urlArray);
 
                             // Redirect without title
                             //window.location.href = response.data.url + "/" + contentId + "/title";
@@ -46,13 +50,18 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                 if (contentResponse.data.success){
                                     //console.log(contentResponse.data.content);
                                     var contentSegment=contentResponse.data.content.text;
-                                    if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
-                                        contentSegment=contentResponse.data.content.fields.urlSegment;
+                                        if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
+                                            contentSegment=contentResponse.data.content.fields.urlSegment;
+                                        }
+                                        //window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                                        console.log("response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"))");
+                                        console.log(response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-")));
+                                    } 
+                                    else {
+                                        //window.location.href =  response.data.url;
+                                        console.log("response.data.url");
+                                        console.log(response.data.url);
                                     }
-                                    window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                                } else {
-                                    window.location.href =  response.data.url;
-                                }
                             },
                             function(){
                                 window.location.href =  response.data.url;
@@ -60,6 +69,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                         } else {
                             var currentParams = angular.element.param($location.search());
                             var url = response.data.url;
+                            
 
                             if(currentParams != "") {
                                 if(response.data.url.indexOf("?") > -1) {
@@ -68,8 +78,10 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                     url = response.data.url + "?" + currentParams;
                                 }
                             }
+                            console.log("url");
+                            console.log(url);
 
-                            window.location.href =  url;
+                            //window.location.href =  url;
                         }
                     }
                 });
