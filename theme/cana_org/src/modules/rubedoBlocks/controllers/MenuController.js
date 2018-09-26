@@ -116,7 +116,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             console.log("window.location.href");
                             
 
-                            window.location.href =  url;
+                            window.location.href =  me.currentRouteline + url;
                         }
                     }
                 });
