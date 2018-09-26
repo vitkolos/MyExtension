@@ -113,7 +113,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
 
                             console.log("url");
                             console.log(url);
-                            console.log(""www.cana.org" + url");
+                            console.log("www.cana.org + url");
                             console.log("www.cana.org" + url);
                             
 
