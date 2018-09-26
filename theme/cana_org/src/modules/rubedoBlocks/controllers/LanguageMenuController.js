@@ -39,9 +39,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             // Get content id
                             urlArray = $route.current.params.routeline.split("/");
                             contentId = urlArray[urlArray.length-2];
-                            console.log("urlArray");
-                            console.log(urlArray);
-
+                            
                             // Redirect without title
                             //window.location.href = response.data.url + "/" + contentId + "/title";
 
@@ -53,14 +51,12 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                         if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
                                             contentSegment=contentResponse.data.content.fields.urlSegment;
                                         }
-                                        //window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                                        console.log("response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"))");
-                                        console.log(response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-")));
+                                        window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                                        
                                     } 
                                     else {
-                                        //window.location.href =  response.data.url;
-                                        console.log("response.data.url");
-                                        console.log(response.data.url);
+                                        window.location.href =  response.data.url;
+                                    
                                     }
                             },
                             function(){
@@ -81,7 +77,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             console.log("url");
                             console.log(url);
                             console.log("window.location.href");
-                            console.log(window.location.href);
+                            
 
                             window.location.href =  url;
 
