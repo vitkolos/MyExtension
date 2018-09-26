@@ -70,8 +70,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
                 RubedoModuleConfigService.changeLang(lang);
-                  console.log("lang");
-                  console.log(lang);
+                  
                 if ($scope.rubedo.current.site.locStrategy == 'fallback'){
                     RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
                 }
@@ -116,12 +115,8 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                     url = response.data.url + "?" + currentParams;
                                 }
                             }
-                            console.log("url");
-                            console.log(url);
-                            console.log("window.location.href");
-                            
-                            
-
+                           
+                           
                             window.location.href = url;
 
                         }
