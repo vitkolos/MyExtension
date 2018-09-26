@@ -4,8 +4,9 @@
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
         var lang = $route.current.params.lang;
-        console.log("me.currentLang");
-        console.log(me.currentLang);
+        me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
+        console.log("$route.current");
+        console.log($route.current);
         me.currentRouteline=$location.path();
         console.log("me.currentRouteline");
         console.log(me.currentRouteline);
