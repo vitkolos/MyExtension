@@ -8,9 +8,9 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
         me.mode = config.displayAs == "select";
         me.showFlags = config.showFlags;
-        me.isDisabled =  function(lang){
+        /*me.isDisabled =  function(lang){
             return me.currentLang.lang == lang;
-        };
+        };*/
         if(!config.showCurrentLanguage){
             delete me.languages[$route.current.params.lang];
         }
@@ -81,7 +81,9 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             console.log("url");
                             console.log(url);
 
-                            //window.location.href =  url;
+                            window.location.href =  url;
+                            console.log("window.location.href");
+                            console.log(window.location.href);
                         }
                     }
                 });
