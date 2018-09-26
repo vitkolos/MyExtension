@@ -6,11 +6,13 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         var contentId = "";
         me.languages = $scope.rubedo.current.site.languages;
         me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
+        console.log("me.currentLang");
+        console.log(me.currentLang);
         me.mode = config.displayAs == "select";
         me.showFlags = config.showFlags;
-        /*me.isDisabled =  function(lang){
+        me.isDisabled =  function(lang){
             return me.currentLang.lang == lang;
-        };*/
+        };
         if(!config.showCurrentLanguage){
             delete me.languages[$route.current.params.lang];
         }
