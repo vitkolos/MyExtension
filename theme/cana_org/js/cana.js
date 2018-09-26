@@ -7,10 +7,6 @@ blocksConfig.simpleContact={
            "template": "/templates/blocks/simpleContact.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/simpleContact.js"]
 };
-blocksConfig.languageMenu={
-            "template": "/templates/blocks/languageMenu.html",
-           "internalDependencies":["/src/modules/rubedoBlocks/controllers/LanguageMenuController.js"]
- };
 blocksConfig.facebook={
            "template": "/templates/blocks/facebook.html",
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/FacebookController.js"]
