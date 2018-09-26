@@ -380,8 +380,8 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '/../js/cte/lazy-image.js',
-                    '/js/bethanien.js'
+                    '/js/bethanien.js',
+		    '/js/lazy-image.js'
                 ),
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
