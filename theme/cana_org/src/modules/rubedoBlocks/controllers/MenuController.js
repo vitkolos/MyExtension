@@ -119,10 +119,10 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             console.log("url");
                             console.log(url);
                             console.log("window.location.href");
-                            var pointe="www.cana.org" + url;
+                            
                             
 
-                            window.location.href = pointe;
+                            window.location.href = url;
 
                         }
                     }
