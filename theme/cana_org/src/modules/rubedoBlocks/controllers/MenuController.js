@@ -4,7 +4,11 @@
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
         var lang = $route.current.params.lang;
+        console.log("me.currentLang");
+        console.log(me.currentLang);
         me.currentRouteline=$location.path();
+        console.log("me.currentRouteline");
+        console.log(me.currentRouteline);
         var config=$scope.blockConfig;
 	
         me.searchEnabled = (config.useSearchEngine && config.searchPage);
@@ -106,10 +110,16 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                 }
                             }
 
+                            console.log("url");
+                            console.log(url);
+                            console.log("window.location.href");
+                            
+
                             window.location.href =  url;
                         }
                     }
                 });
             }
         };
+        $scope.clearORPlaceholderHeight();
     }]);
