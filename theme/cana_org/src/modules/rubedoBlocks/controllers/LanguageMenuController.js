@@ -80,10 +80,11 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             }
                             console.log("url");
                             console.log(url);
-
-                            window.location.href =  url;
                             console.log("window.location.href");
                             console.log(window.location.href);
+
+                            window.location.href =  url;
+
                         }
                     }
                 });
