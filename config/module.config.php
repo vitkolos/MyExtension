@@ -387,7 +387,7 @@ return array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
             ),
-            'bethanien' => array(
+            '9media' => array(
                 'label' => '9media',
                 'basePath' => realpath(__DIR__ . '/../theme/9media'),
                 'css' => array(
