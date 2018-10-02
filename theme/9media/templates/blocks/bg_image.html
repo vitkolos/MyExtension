@@ -1,0 +1,7 @@
+<div ng-controller="BgImageController as imageCtrl" >
+        <header class="content {{block.code}}" style="width:100%;" ng-class="{'standard':blockConfig.displayMode=='title', 'parallax':blockConfig.displayMode=='parallax'}"
+                afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'768px',mode:'boxed'})}} 480w , {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile )}} 1500w"
+                afkl-lazy-image-options='{"background": true}'>
+            <div ng-if="blockConfig.pageTitle" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.pageTitle}" class="text-article">
+        </header>
+</div>

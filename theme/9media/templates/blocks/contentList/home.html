@@ -1,0 +1,52 @@
+
+<div class="row border-top">
+    <div class="col-sm-12">
+
+      <div ng-class="contentListCtrl.columns" ng-repeat="columnContents in contentListCtrl.contentList track by $index" ng-init="columnIndex = $index" >
+          <div class="resultData search-result" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in columnContents track by $index">
+              <!--tout sauf video-->
+              <div ng-if="!content.fields.video">
+                  <div class="ratio_321" ng-if="content.fields.image">
+                  <img class="media-object pull-left padding-right"
+                               ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'330px',height:'250px',mode:'crop'})}}"
+                               alt="{{ content.fields.text }}"/>
+                  </div>
+                  <img class="media-object pull-left padding-right" ng-if="content.fields.audio"
+                               src="/theme/cte/img/icons/audio-thumb.jpg" style="width:160px"
+                               alt="{{ content.fields.text }}"/>
+       
+      
+                  <div>
+                  <!--<p class="capital">{{content.createTime * 1000 | date}} <span class="pull-right tags" ng-if="content.fields.audio">audio</span></p>-->
+                  <a ng-href="{{content.detailPageUrl}}"><h4>{{content.fields.text }}</h4>
+                  <p class="summary">{{content.fields.summary}}</p></a>
+                  <div ng-init="audioFileId = content.fields.audio" ng-if="content.fields.audio" style="display:inline-block">
+                      <div ng-controller="AudioFileController as audioCtrl">
+                          <div id="{{'audio'+audioCtrl.media.originalFileId}}"></div>
+                      </div>
+                  </div>
+                  </div>
+  
+              </div>
+              <!--vidéos-->
+              <div ng-if="content.fields.video">
+                  <div class="col-sm-4">
+                      <p class="capital tags">vidéo</p>
+                      <h4><a  ng-href="{{content.detailPageUrl}}">{{content.fields.text}}</a></h4>
+                      <p style="margin-top: 30px">{{content.fields.summary}}</p>
+                      <!--<p class="capital">{{content.createTime * 1000 | date}} </p>-->
+                  </div>
+                  <div class="col-sm-8">
+                      <jwplayer video-url="{{content.fields.video}}"></jwplayer>
+                  </div>
+              </div>
+              <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">
+                      <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}
+              </a>
+              <a ng-if="contentListCtrl.isFOContributeMode" class="pull-right" ng-href="{{ content.detailPageUrl+'?preview=true&preview_draft=true' }}">
+                  {{rubedo.translate('Block.ContentList.Label.Preview','Preview detail')}}
+              </a>
+          </div>
+      </div>
+    </div>
+</div>

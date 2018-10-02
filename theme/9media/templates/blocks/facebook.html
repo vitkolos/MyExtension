@@ -1,0 +1,11 @@
+<div ng-controller="FacebookController as fcbCtrl">
+    <div class="fb-page" data-href="https://www.facebook.com/{{blockConfig.account}}"
+         data-width="500" data-height="800" data-hide-cover="{{fcbCtrl.hideCover}}" data-show-facepile="{{fcbCtrl.showFaces}}" data-show-posts="{{fcbCtrl.showPosts}}" >
+            <div class="fb-xfbml-parse-ignore">
+            </div>
+    </div>
+</div>
+<style>
+    .fb_iframe_widget span{width:500px !important;height:800px !important}
+    .fb_iframe_widget iframe{height:100% !important; width: 100% !important}
+</style>

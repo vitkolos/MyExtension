@@ -1,0 +1,56 @@
+<div ng-controller="D3ScriptController as d3ScriptCtrl" class="paddingv">
+    <img src="/theme/cte/img/loader.gif" ng-if="d3ScriptCtrl.loading">
+    <div class="container ">
+        <div class="button rouge hidden-xs" style="min-width: 50px;" data-toggle="modal" data-target="#countryListModal">
+            <i class="fa fa-list" aria-hidden="true" ></i>
+        </div>
+    </div>
+    <ng-include src="d3ScriptCtrl.ccnMap" class="hidden-xs"></ng-include>
+    <div class="visible-xs-block regions-list">
+        <h3>{{rubedo.translate("Block.Carte.Presence.Perm","Pays où la Communauté assure une présence permanente")}}</h3>
+        <ul>
+            <li ng-repeat="country in d3ScriptCtrl.countryList  | orderBy:'name'" ng-if="country.fillKey== 'present'">
+                <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
+            </li>
+        </ul>
+        <h3>{{rubedo.translate("Block.Carte.Presence.Ponct","Pays où la Communauté assure une présence ponctuelle")}}</h3>
+        <ul>
+            <li ng-repeat="country in d3ScriptCtrl.countryList  | orderBy:'name'"  ng-if="country.fillKey== 'active'">
+                <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
+            </li>
+        </ul>
+    </div>
+    <div class="modal fade" id="countryListModal" tabindex="-1" role="dialog" aria-labelledby="countryListModal" aria-hidden="false">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only ng-binding">{{rubedo.translate("Label.Close","Close")}}</span></button>
+                        <h4 class="modal-title ng-binding" id="countryListModalLAbel">Liste des pays</h4>
+                    </div>
+                    <div class="modal-body row">
+                        <div class="col-sm-6  regions-list">
+                            <h4>{{rubedo.translate("Block.Carte.Presence.Perm","Pays où la Communauté assure une présence permanente")}}</h4>
+                            <ul>
+                                <li ng-repeat="country in d3ScriptCtrl.countryList |  orderBy:'name'" ng-if="country.fillKey== 'present'">
+                                    <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-6  regions-list">
+                            <h4>{{rubedo.translate("Block.Carte.Presence.Ponct","Pays où la Communauté assure une présence ponctuelle")}}</h4>
+                             <ul>
+                                <li ng-repeat="country in d3ScriptCtrl.countryList | orderBy:'name'"  ng-if="country.fillKey== 'active'">
+                                    <a ng-href="{{country['url']}}" target="_blank">{{country.name}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                            
+                            
+                           
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+</div>

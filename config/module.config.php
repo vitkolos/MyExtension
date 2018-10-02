@@ -371,8 +371,8 @@ return array(
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
-           ),
-           'bethanien' => array(
+            ),
+            'bethanien' => array(
                 'label' => 'Bethanien',
                 'basePath' => realpath(__DIR__ . '/../theme/bethanien'),
                 'css' => array(
@@ -381,13 +381,28 @@ return array(
                 ),
                 'js' => array(
                     '/js/bethanien.js',
-		    '/js/lazy-image.js'
+		            '/js/lazy-image.js'
                 ),
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
-           ),
-											'cluny' => array(
+            ),
+            'bethanien' => array(
+                'label' => '9media',
+                'basePath' => realpath(__DIR__ . '/../theme/9media'),
+                'css' => array(
+                    '/css/9media.css',
+                    '/css/font-awesome.css'
+                ),
+                'js' => array(
+                    '/js/9media.js',
+		            '/js/lazy-image.js'
+                ),
+                'angularModules' => array(
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ),
+            ),
+			'cluny' => array(
                 'label' => 'Cluny',
                 'basePath' => realpath(__DIR__ . '/../theme/cluny'),
                 'css' => array(
@@ -401,7 +416,7 @@ return array(
                 'angularModules' => array(
                     'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
-           ),
+            ),
             'foi' => array(
                 'label' => 'F.O.I.',
                 'basePath' => realpath(__DIR__ . '/../theme/foi'),
