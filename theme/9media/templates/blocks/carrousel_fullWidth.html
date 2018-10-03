@@ -1,5 +1,10 @@
 <style>
-
+ .carousel-indicators {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    margin: 0;
+}
  .carousel-indicators li,.carousel-indicators li.active{margin:1px 6px}        
         .carousel-control{
     background-image: none; 
@@ -58,6 +63,8 @@
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
 }
 .homepage_txt {
     position: absolute;
@@ -66,6 +73,12 @@
     margin:0 ;
     text-align: center;
     color:white;
+    .h2 {
+      text-transform: uppercase;
+      margin: 0 10% 0 10%;
+      font-size: 30px;
+      opacity: 0.96;
+    }
 }
 @media screen and (min-width:500px){
      .homepage_txt h1{font-size: 4em;}
@@ -106,8 +119,7 @@
           <!-- Set the first background image using inline CSS below. -->
           <div class="fill" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields[blockConfig.imageField],carouselCtrl.getImageOptions())}}');"></div>
           <div class="homepage_txt" ng-if="blockConfig.showCaption">
-              <h1>{{content.fields.text}}</h1>
-              <p>{{content.fields.titre2}}</p>
+              <h2>{{content.fields.titre2}}</h2>
               <p ng-repeat="text in content.fields.subTitle">{{text}}</p>
           </div>
       </div>
