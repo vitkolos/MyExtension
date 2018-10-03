@@ -1,4 +1,10 @@
 @font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Oswald Regular'), local('Oswald-Regular'), url(https://fonts.gstatic.com/s/oswald/v16/TK3iWkUHHAIjg752GT8D.ttf) format('truetype');
+}
+@font-face {
   font-family: Hautecombe;
   src: url(/theme/9media/fonts/Hautecombe-2014.eot);
   src: url(/theme/9media/fonts/Hautecombe-2014.eot) format('embedded-opentype'), url(/theme/9media/fonts/Hautecombe-2014.woff) format('woff'), url(/theme/9media/fonts/Hautecombe-2014.ttf) format('truetype'), url(/theme/9media/fonts/Hautecombe-2014.svg) format('svg');
@@ -39,6 +45,9 @@
   src: url(/theme/9media/fonts/RaananaBold.eot);
   src: url(/theme/9media/fonts/RaananaBold.eot) format('embedded-opentype'), url(/theme/9media/fonts/RaananaBold.woff) format('woff'), url(/theme/9media/fonts/RaananaBold.ttf) format('truetype'), url(/theme/9media/fonts/RaananaBold.svg) format('svg');
   font-style: normal;
+}
+.top-navigation {
+  display: flex;
 }
 body {
   font-size: 16px;
