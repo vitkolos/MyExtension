@@ -105,6 +105,25 @@ angular.module('rubedoBlocks').directive('toggleclass', function() {
   };
 });
 
+angular.module('rubedoBlocks').directive('isInView', function($window) {
+  return {
+    scope: {
+      scroll: '=isInView'
+    },
+    link: function(scope, element, attrs) {
+      var windowEl = angular.element($window);
+      var handler = function() {
+        var windowTop = windowEl.scrollTop();
+        var windowBottom = windowEl.scrollTop()+windowEl.height();
+        var elemPosition = Math.round( element.offset().top );
+        if(elemPosition+100<windowBottom && elemPosition>windowTop) {element.addClass("inView");console.log('in view');}
+      }
+      windowEl.on('scroll', scope.$apply.bind(scope, handler));
+      handler();
+    }
+  };
+});
+
 angular.module('rubedoBlocks').filter('title', function() {
   return function(input){
     var delimiter = '//';
