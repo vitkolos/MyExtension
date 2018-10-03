@@ -2,29 +2,15 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
     function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsService, $route, $location) {
         var me = this;
         var config = $scope.blockConfig;
+        var themePath="/theme/"+window.rubedoConfig.siteTheme;
         var urlArray = [];
         var contentId = "";
         me.languages = $scope.rubedo.current.site.languages;
         me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
-        me.mode = config.displayAs == "select";
-        me.showFlags = config.showFlags;
-        me.isDisabled =  function(lang){
-            return me.currentLang.lang == lang;
-        };
-        if(!config.showCurrentLanguage){
-            delete me.languages[$route.current.params.lang];
-        }
-        me.isTranslated = function(lang){
-            if ($scope.rubedo.current.site.locStrategy=="fallback") {
-                return true;
-            }
-            else if($scope.rubedo.current.page.i18n) return $scope.rubedo.current.page.i18n.hasOwnProperty(lang);
-												else if ($scope.rubedo.current.page.parentId=='root' ) return true;
-            else return false;
-        };
         me.getFlagUrl = function(flagCode){
-            return '/assets/flags/16/'+flagCode+'.png';
+            return themePath+'/img/flags/'+flagCode+'.png';
         };
+ 
         me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
                 RubedoModuleConfigService.changeLang(lang);
@@ -44,7 +30,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             //Redirect with title
                             RubedoContentsService.getContentById(contentId).then(function(contentResponse){
                                 if (contentResponse.data.success){
-                                    //console.log(contentResponse.data.content);
+                                    console.log(contentResponse.data.content);
                                     var contentSegment=contentResponse.data.content.text;
                                     if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
                                         contentSegment=contentResponse.data.content.fields.urlSegment;
@@ -57,7 +43,8 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             function(){
                                 window.location.href =  response.data.url;
                             });
-                        } else {
+                        }                        
+                        else{
                             var currentParams = angular.element.param($location.search());
                             var url = response.data.url;
 
@@ -76,4 +63,5 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
             }
         };
         $scope.clearORPlaceholderHeight();
-    }]);
+    }]);       
+

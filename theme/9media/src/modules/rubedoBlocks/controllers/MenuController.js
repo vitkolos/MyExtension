@@ -1,76 +1,95 @@
-    angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$location','RubedoMenuService','RubedoPagesService','$http','$route',
-								     function($scope,$location,RubedoMenuService,RubedoPagesService,$http,$route){
-        var me=this;
-        var themePath="/theme/"+window.rubedoConfig.siteTheme;
-        me.menu={};
-        var lang = $route.current.params.lang;
-        me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
-        console.log("$route.current");
-        console.log($route.current);
-        me.currentRouteline=$location.path();
-        console.log("me.currentRouteline");
-        console.log(me.currentRouteline);
-        var config=$scope.blockConfig;
+angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$rootScope','$location','$route','RubedoMenuService','RubedoPagesService','$http',
+		function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService,$http){
+	var me=this;
+	me.menu={};
+	me.pagesBlocks={};
+	me.currentRouteleine=$location.path();console.log($location.path());
+	var config=$scope.blockConfig;
+	var lang = $route.current.params.lang;
+	me.searchEnabled = (config.useSearchEngine && config.searchPage);
+	if ($scope.rubedo.current.site.id=='5a630da239658886137fce9b') { 
+		$scope.siteWTP=true;
+	} else {
+		$scope.siteWTP=false;
+	}
 	
-        me.searchEnabled = (config.useSearchEngine && config.searchPage);
-        if (config.rootPage){
-            var pageId=config.rootPage;
-        } else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
-            var pageId=$scope.rubedo.current.page.parentId;
-        } else {
-            var pageId=$scope.rubedo.current.page.id;
-        }
-        me.onSubmit = function(){
-            var paramQuery = me.query?'?query='+me.query:'';
-            RubedoPagesService.getPageById(config.searchPage).then(function(response){
-                if (response.data.success){
-                    $location.url(response.data.url+paramQuery);
-                }
-            });
-        };
-        RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
-            if (response.data.success){
-                me.menu=response.data.menu;
-            } else {
-                me.menu={};
-            }
-        });
-	
-        var lang = $route.current.params.lang;
+	if (config.rootPage){
+		var pageId=config.rootPage;
+	} else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
+		var pageId=$scope.rubedo.current.page.parentId;
+	} else {
+		var pageId=$scope.rubedo.current.page.id;
+	}
+	me.onSubmit = function(){
+		var paramQuery = me.query?'?query='+me.query:'';
+		RubedoPagesService.getPageById(config.searchPage).then(function(response){
+			if (response.data.success){
+				$location.url(response.data.url+paramQuery);
+			}
+		});
+	};
+	me.currentLang = $route.current.params.lang;
+
+	RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
+		if (response.data.success){
+			me.menu=response.data.menu;
+			angular.forEach(me.menu.pages, function(page, key) {
+							me.pagesBlocks[key]={};
+							me.pagesBlocks[key]["title"] = page.text;
+							me.pagesBlocks[key]["url"] = page.url;
+							me.pagesBlocks[key]["id"] = page.id;
+							me.pagesBlocks[key].blocks=[]; 
+							var lang = $route.current.params.lang;
+							angular.forEach(page.blocks, function(block, key2){
+								if (block.bType=="contentDetail" && block.orderValue<=1) {
+												if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+												else me.pagesBlocks[key].blocks.push({"title":block.title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+
+												//if(block.i18n[lang]) me.pagesBlocks[key].blocks.push({"title":block.i18n[lang].title,"code":(block.code).split("/")[1],"order":(block.code).split("/")[0]});
+												//else me.pagesBlocks[key].blocks.push({"title":block.i18n.fr.title});
+								}
+								else {}
+							});
+			});
+			$scope.clearORPlaceholderHeight();
+		}
+		else {
+			me.menu={};
+			$scope.clearORPlaceholderHeight();
+		}
+	});
+
+	$rootScope.toggleNav = "false";
+	$rootScope.ToggleNav = function(){$rootScope.toggleNav = !$rootScope.toggleNav};
 	/*Ajouter les traductions*/
 	$scope.rubedo.getCustomTranslations = function(){
-	        $http.get('/theme/cte/localization/'+lang+'/Texts.json').then(function(res){
-            	$scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
-          });	
-        }
-      $scope.rubedo.getCustomTranslations(); 
-	
+		$http.get('/theme/'+window.rubedoConfig.siteTheme+'/localization/'+lang+'/Texts.json').then(function(res){
+			$scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
+		});	
+	}
+	$scope.rubedo.getCustomTranslations();
+
 }]);
-    
-    
+
+
+	
+
 angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scope', 'RubedoPagesService','RubedoModuleConfigService', 'RubedoContentsService', '$route', '$location',
     function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsService, $route, $location) {
         var me = this;
         var config = $scope.blockConfig;
+        var themePath="/theme/"+window.rubedoConfig.siteTheme;
         var urlArray = [];
         var contentId = "";
         me.languages = $scope.rubedo.current.site.languages;
         me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
-        me.mode = config.displayAs == "select";
-        me.showFlags = config.showFlags;
-        me.isDisabled =  function(lang){
-            return me.currentLang.lang == lang;
-        };
-        if(!config.showCurrentLanguage){
-            delete me.languages[$route.current.params.lang];
-        }
         me.getFlagUrl = function(flagCode){
-            return '/assets/flags/16/'+flagCode+'.png';
+            return themePath+'/img/flags/'+flagCode+'.png';
         };
+ 
         me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
                 RubedoModuleConfigService.changeLang(lang);
-                  
                 if ($scope.rubedo.current.site.locStrategy == 'fallback'){
                     RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
                 }
@@ -80,33 +99,30 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             // Get content id
                             urlArray = $route.current.params.routeline.split("/");
                             contentId = urlArray[urlArray.length-2];
-                            
+
                             // Redirect without title
                             //window.location.href = response.data.url + "/" + contentId + "/title";
 
                             //Redirect with title
                             RubedoContentsService.getContentById(contentId).then(function(contentResponse){
                                 if (contentResponse.data.success){
-                                    //console.log(contentResponse.data.content);
+                                    console.log(contentResponse.data.content);
                                     var contentSegment=contentResponse.data.content.text;
-                                        if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
-                                            contentSegment=contentResponse.data.content.fields.urlSegment;
-                                        }
-                                        window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                                        
-                                    } 
-                                    else {
-                                        window.location.href =  response.data.url;
-                                    
+                                    if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
+                                        contentSegment=contentResponse.data.content.fields.urlSegment;
                                     }
+                                    window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                                } else {
+                                    window.location.href =  response.data.url;
+                                }
                             },
                             function(){
                                 window.location.href =  response.data.url;
                             });
-                        } else {
+                        }                        
+                        else{
                             var currentParams = angular.element.param($location.search());
                             var url = response.data.url;
-                            
 
                             if(currentParams != "") {
                                 if(response.data.url.indexOf("?") > -1) {
@@ -115,15 +131,13 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                     url = response.data.url + "?" + currentParams;
                                 }
                             }
-                           
-                           
-                            window.location.href = url;
 
+                            window.location.href =  url;
                         }
                     }
                 });
             }
         };
         $scope.clearORPlaceholderHeight();
-        
-    }]);
+    }]);       
+
