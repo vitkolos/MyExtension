@@ -7,11 +7,6 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
 	var config=$scope.blockConfig;
 	var lang = $route.current.params.lang;
 	me.searchEnabled = (config.useSearchEngine && config.searchPage);
-	if ($scope.rubedo.current.site.id=='5a630da239658886137fce9b') { 
-		$scope.siteWTP=true;
-	} else {
-		$scope.siteWTP=false;
-	}
 	
 	if (config.rootPage){
 		var pageId=config.rootPage;
@@ -32,6 +27,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
 
 	RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
 		if (response.data.success){
+            console.log('OK RubedoMeuService.getMenu', response)
 			me.menu=response.data.menu;
 			angular.forEach(me.menu.pages, function(page, key) {
 							me.pagesBlocks[key]={};
@@ -54,6 +50,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
 			$scope.clearORPlaceholderHeight();
 		}
 		else {
+            console.log('ERROR in RubedoMenuService.getMenu', response)
 			me.menu={};
 			$scope.clearORPlaceholderHeight();
 		}
