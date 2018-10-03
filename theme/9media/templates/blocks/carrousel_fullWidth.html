@@ -120,7 +120,7 @@
 
 <div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl">
   <ol class="carousel-indicators">
-    <span class="fleche gauche" ng-click="carouselCtrl.slideTo((carouselCtrl.currentSlideIndex-1)%(carouselCtrl.contents.length))">e</span>
+    <span class="fleche gauche" ng-click="carouselCtrl.slideTo(carouselCtrl.currentSlideIndex-1)">e</span>
     <li ng-repeat="content in carouselCtrl.contents" 
       ng-if="content.fields[blockConfig.imageField]" 
       data-target="{{'block'+block.id}}"
@@ -128,7 +128,7 @@
       ng-class="{'active':$first}"
       ng-click="carouselCtrl.slideTo($index)">
     </li>
-    <span class="fleche droite" ng-click="carouselCtrl.slideTo((carouselCtrl.currentSlideIndex+1)%(carouselCtrl.contents.length+1))">d</span>
+    <span class="fleche droite" ng-click="carouselCtrl.slideTo(carouselCtrl.currentSlideIndex+1)">d</span>
   </ol>
 
   <div class="carousel-inner">
