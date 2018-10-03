@@ -44,8 +44,8 @@
       opacity: 0.8;
       color: white;
  }
- .carousel-indicators .gauche {left:10%}
- .carousel-indicators .droite {right: 10%;width: 0%; margin-left:0%;}
+ .carousel-indicators .gauche {margin-right:30%;}
+ .carousel-indicators .droite {margin-left:30%;}
 
 .carousel,
 .item,
@@ -73,6 +73,7 @@
     -o-background-size: cover;
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
+    opacity:0.9;
 }
 .homepage_txt {
     position: absolute;
@@ -119,7 +120,7 @@
 
 <div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl">
   <ol class="carousel-indicators">
-    <span class="fleche gauche" ng-click="carouselCtrl.slideTo($index-1)">e</span>
+    <span class="fleche gauche" ng-click="carouselCtrl.slideTo((carouselCtrl.currentSlideIndex-1)%(carouselCtrl.contents.length))">e</span>
     <li ng-repeat="content in carouselCtrl.contents" 
       ng-if="content.fields[blockConfig.imageField]" 
       data-target="{{'block'+block.id}}"
@@ -127,7 +128,7 @@
       ng-class="{'active':$first}"
       ng-click="carouselCtrl.slideTo($index)">
     </li>
-    <span class="fleche droite" ng-click="carouselCtrl.slideTo($index+1)">d</span>
+    <span class="fleche droite" ng-click="carouselCtrl.slideTo((carouselCtrl.currentSlideIndex+1)%(carouselCtrl.contents.length))">d</span>
   </ol>
 
   <div class="carousel-inner">
