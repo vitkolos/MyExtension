@@ -38,7 +38,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         if (index==0) {
             index=me.contents.length;
         }
-        else if (index==me.contents.length) {
+        else if (index==me.contents.length+1) {
             index=1;
         }
         var targetElSelector="#block"+$scope.block.id;
