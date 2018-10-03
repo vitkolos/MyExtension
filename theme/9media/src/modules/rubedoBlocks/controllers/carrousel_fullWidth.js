@@ -1,6 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
     var me=this;
     me.contents=[];
+    me.currentSlideIndex=0;
     var blockConfig=$scope.blockConfig;
     var queryOptions={
         start: blockConfig.resultsSkip ? blockConfig.resultsSkip : 0,
@@ -36,6 +37,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
     me.slideTo=function(index){
         var targetElSelector="#block"+$scope.block.id;
         angular.element(targetElSelector).carousel(index);
+        me.currentSlideIndex=index;
         
     }
     me.getImageOptions=function(){
