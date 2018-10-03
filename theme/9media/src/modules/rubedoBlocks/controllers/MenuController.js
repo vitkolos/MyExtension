@@ -7,13 +7,18 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
 	var config=$scope.blockConfig;
 	var lang = $route.current.params.lang;
 	me.searchEnabled = (config.useSearchEngine && config.searchPage);
-	
+    
+    console.log("parentid",$scope.rubedo.current.page.parentId)
+    console.log("currpageid",$scope.rubedo.current.page.id)
 	if (config.rootPage){
-		var pageId=config.rootPage;
+        var pageId=config.rootPage;
+        console.log('1', pageId)
 	} else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
-		var pageId=$scope.rubedo.current.page.parentId;
+        var pageId=$scope.rubedo.current.page.parentId;
+        console.log('2', pageId)
 	} else {
-		var pageId=$scope.rubedo.current.page.id;
+        var pageId=$scope.rubedo.current.page.id;
+        console.log('3', pageId)
 	}
 	me.onSubmit = function(){
 		var paramQuery = me.query?'?query='+me.query:'';
