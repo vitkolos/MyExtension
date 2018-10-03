@@ -39,6 +39,7 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         var targetElSelector="#block"+$scope.block.id;
         angular.element(targetElSelector).carousel(index);
         me.currentSlideIndex=index;
+        console.log(me.currentSlideIndex);
 
         
     }
