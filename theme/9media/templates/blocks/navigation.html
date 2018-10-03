@@ -13,7 +13,7 @@
             <li ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(menuCtrl.url) > -1}">
                     <a class="menu_entry" ng-href="{{menuCtrl.currentRouteline}}">ACCUEIL</a>
             </li>
-            <li ng-repeat="page in menuCtrl.pagesBlocks" ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(page.url) > -1}">
+            <li ng-repeat="page in menuCtrl.pagesBlocks" class="lborder" ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(page.url) > -1}">
                 <a ng-href="{{page.url}}">{{page.title | uppercase}}</a>
             </li>
         </ul>
@@ -23,13 +23,13 @@
             <li class="social_link hidden-xs" >
                 <a rubedo-page-link="5a630da239658886137fcea7"><i class="fa fa-envelope"></i></a>
             </li>
-            <li class="social_link hidden-xs hidden-sm lborder" target="_blank">
+            <li class="social_link hidden-xs hidden-sm" target="_blank">
                 <a href="https://twitter.com/@9media"><i class="fa fa-twitter"></i></a>
             </li>
-            <li class="social_link hidden-xs hidden-sm lborder" target="_blank">
+            <li class="social_link hidden-xs hidden-sm" target="_blank">
                 <a href="https://facebook.com/9media"><i class="fa fa-facebook"></i></a>
             </li>
-            <li class="social_link hidden-xs hidden-sm lborder" target="_blank">
+            <li class="social_link hidden-xs hidden-sm" target="_blank">
                 <a href="https://youtube.com/9media"><i class="fa fa-youtube"></i></a>
             </li>
         </ul>

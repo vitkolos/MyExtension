@@ -62,9 +62,10 @@
   align-items: center;
   justify-content: space-between;
   color: #333;
+  height: 8vh;
 }
 .logo_menu_home {
-  margin-left: 1rem;
+  margin-left: 2rem;
 }
 .logo_menu_home > div {
   color: #333;
@@ -83,6 +84,9 @@ img.logo {
   margin-left: 1rem;
   letter-spacing: 4px;
 }
+.menu_social {
+  margin-right: 2rem;
+}
 .menu_entry {
   cursor: pointer;
 }
@@ -97,10 +101,7 @@ img.logo {
 }
 ul.liens_menu a {
   color: #333;
-  height: 3vh;
-  line-height: 3vh;
-  border-left: 1px solid #333;
-  padding: 0 2rem;
+  padding: 0 2.2rem;
 }
 .lborder {
   border-left: 1px solid #333;
