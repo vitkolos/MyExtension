@@ -2,15 +2,16 @@
 	<nav  role="navigation" class="menu">
         <!-- Bouton home 9media -->
 		<div class="logo_menu_home">
-			<a ng-href="menuCtrl.currentRouteline" class="ng-scope">
-			<img alt="" class="img-responsive logo" ng-src="/dam?media-id=5bb4c837396588895d5ef67f">
-			</a>
+			<div ng-click="{{menuCtrl.currentRouteline}}" class="ng-scope">
+                <img alt="" class="img-responsive logo" ng-src="/dam?media-id=5bb4c837396588895d5ef67f">
+                <div class="neuf_media"><span style="font-weight:bold">NEUF.</span>MEDIA</div>
+            </div>
 		</div>
 
         <!-- Liens vers les pages de niveau 1 -->
-        <ul class="nav navbar-nav">
+        <ul class="nav navbar-nav liens_menu">
             <li ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(menuCtrl.url) > -1}">
-                    <a class="menu_entry" ng-href="{{menuCtrl.url}}">ACCUEIL</a>
+                    <a class="menu_entry" ng-href="{{menuCtrl.currentRouteline}}">ACCUEIL</a>
             </li>
             <li ng-repeat="page in menuCtrl.pagesBlocks" ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(page.url) > -1}">
                 <a ng-href="{{page.url}}">{{page.title | uppercase}}</a>
@@ -22,13 +23,13 @@
             <li class="social_link hidden-xs" >
                 <a rubedo-page-link="5a630da239658886137fcea7"><i class="fa fa-envelope"></i></a>
             </li>
-            <li class="social_link hidden-xs hidden-sm" target="_blank">
+            <li class="social_link hidden-xs hidden-sm lborder" target="_blank">
                 <a href="https://twitter.com/@9media"><i class="fa fa-twitter"></i></a>
             </li>
-            <li class="social_link hidden-xs hidden-sm" target="_blank">
+            <li class="social_link hidden-xs hidden-sm lborder" target="_blank">
                 <a href="https://facebook.com/9media"><i class="fa fa-facebook"></i></a>
             </li>
-            <li class="social_link hidden-xs hidden-sm" target="_blank">
+            <li class="social_link hidden-xs hidden-sm lborder" target="_blank">
                 <a href="https://youtube.com/9media"><i class="fa fa-youtube"></i></a>
             </li>
         </ul>
