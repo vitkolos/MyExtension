@@ -1,7 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope","RubedoContentsService",function($scope,RubedoContentsService){
     var me=this;
     me.contents=[];
-    me.currentSlideIndex=0;
+    me.currentSlideIndex=1;
     var blockConfig=$scope.blockConfig;
     var queryOptions={
         start: blockConfig.resultsSkip ? blockConfig.resultsSkip : 0,
@@ -35,9 +35,17 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         $scope.clearORPlaceholderHeight();
     };
     me.slideTo=function(index){
+        if (index==0) {
+            index=me.contents.length;
+        }
+        else if (index==me.contents.length+1) {
+            index=1;
+        }
         var targetElSelector="#block"+$scope.block.id;
         angular.element(targetElSelector).carousel(index);
         me.currentSlideIndex=index;
+        console.log(me.currentSlideIndex);
+
         
     }
     me.getImageOptions=function(){
