@@ -7,7 +7,7 @@
   border-radius: 2em;
 }
  }        
-        .carousel-control{
+.carousel-control{
     background-image: none; 
 }
 .carousel-control span{top:45%}
@@ -38,9 +38,16 @@
             left: 0;
             transform: translate3d(0, 0, 0);
         }
+ .carousel-indicators .fleche {
+      font-family:hautecombe;
+      font-size: 3.5em;
+      opacity: 0.8;
+      color: white;
+ }
+ .carousel-indicators .gauche {left:10%}
+ .carousel-indicators .droite {right: 10%;width: 0%; margin-left:0%;}
 
-
-  .carousel,
+.carousel,
 .item,
 .active {
     height: 100%;
@@ -103,6 +110,8 @@
         .homepage_txt p:nth-of-type(2){ font-size:30px; font-weight:bold;}
         .homepage_txt p:nth-of-type(3), p:nth-of-type(4){font-size:18px; }*/
 }
+ 
+
 
 
 
@@ -110,6 +119,7 @@
 
 <div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl">
   <ol class="carousel-indicators">
+    <span class="fleche gauche" ng-click="carouselCtrl.slideTo($index-1)">e</span>
     <li ng-repeat="content in carouselCtrl.contents" 
       ng-if="content.fields[blockConfig.imageField]" 
       data-target="{{'block'+block.id}}"
@@ -117,6 +127,7 @@
       ng-class="{'active':$first}"
       ng-click="carouselCtrl.slideTo($index)">
     </li>
+    <span class="fleche droite" ng-click="carouselCtrl.slideTo($index+1)">d</span>
   </ol>
 
   <div class="carousel-inner">
