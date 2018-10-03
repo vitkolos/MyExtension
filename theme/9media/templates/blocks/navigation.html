@@ -1,16 +1,16 @@
 <div ng-controller="MenuController as menuCtrl" >
-	<nav  role="navigation" class="top-navigation">
+	<nav  role="navigation" class="menu">
         <!-- Bouton home 9media -->
-		<div class="home">
+		<div class="logo_menu_home">
 			<a ng-href="$location.path()" class="ng-scope">
-			<img alt="" style="height:90px;" class="img-responsive" ng-src="/dam?media-id=5bb4c4d3396588495a5ef64d&amp;">
+			<img alt="" class="img-responsive logo" ng-src="/dam?media-id=5bb4c837396588895d5ef67f&amp;">
 			</a>
 		</div>
 
         <!-- Liens vers les pages de niveau 1 -->
         <ul class="nav navbar-nav">
             <li ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(menuCtrl.url) > -1}">
-                    <a ng-href="{{menuCtrl.url}}">ACCUEIL</a>
+                    <a class="menu_entry" ng-href="{{menuCtrl.url}}">ACCUEIL</a>
             </li>
             <li ng-repeat="page in menuCtrl.pagesBlocks" ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(page.url) > -1}">
                 <a ng-href="{{page.url}}">{{page.title | uppercase}}</a>
@@ -18,18 +18,18 @@
         </ul>
             
         <!-- Liens vers les réseaux sociaux -->
-        <ul class="nav navbar-nav navbar-right" ng-controller="LanguageMenuController as languageMenuCtrl" style="position:absolute; right:0">
-            <li class="home-button hidden-xs" >
-                <a rubedo-page-link="5a630da239658886137fcea7">C</a>
+        <ul class="nav navbar-nav menu_social" ng-controller="LanguageMenuController as languageMenuCtrl">
+            <li class="social_link hidden-xs" >
+                <a rubedo-page-link="5a630da239658886137fcea7"><i class="fa fa-envelope"></i></a>
             </li>
-            <li class="home-button hidden-xs hidden-sm" target="_blank">
-                <a href="https://twitter.com/@9media">ú</a>
+            <li class="social_link hidden-xs hidden-sm" target="_blank">
+                <a href="https://twitter.com/@9media"><i class="fa fa-twitter"></i></a>
             </li>
-            <li class="home-button hidden-xs hidden-sm" target="_blank">
-                <a href="https://facebook.com/9media">\</a>
+            <li class="social_link hidden-xs hidden-sm" target="_blank">
+                <a href="https://facebook.com/9media"><i class="fa fa-facebook"></i></a>
             </li>
-            <li class="home-button hidden-xs hidden-sm" target="_blank">
-                <a href="https://youtube.com/9media">’</a>
+            <li class="social_link hidden-xs hidden-sm" target="_blank">
+                <a href="https://youtube.com/9media"><i class="fa fa-youtube"></i></a>
             </li>
         </ul>
     </nav>
