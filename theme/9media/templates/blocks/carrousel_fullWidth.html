@@ -103,6 +103,14 @@
         .homepage_txt p:nth-of-type(2){ font-size:30px; font-weight:bold;}
         .homepage_txt p:nth-of-type(3), p:nth-of-type(4){font-size:18px; }*/
 }
+ 
+ .carousel-indicators .fleche {
+      font-family:hautecombe;
+      font-size: 3.5em;
+      opacity: 0.8;
+ }
+ .carousel-indicators .fleche .gauche {left:10%}
+ .carousel-indicators .fleche .droite {right: 10%;width: 0%; margin-left:0%;}
 
 
 
@@ -110,6 +118,7 @@
 
 <div id="{{'block'+block.id}}" class="carousel slide carousel-fade" ng-controller="FWCarouselController as carouselCtrl">
   <ol class="carousel-indicators">
+    <span class="fleche gauche">e</span>
     <li ng-repeat="content in carouselCtrl.contents" 
       ng-if="content.fields[blockConfig.imageField]" 
       data-target="{{'block'+block.id}}"
@@ -117,6 +126,7 @@
       ng-class="{'active':$first}"
       ng-click="carouselCtrl.slideTo($index)">
     </li>
+    <span class="fleche droite">d</span>
   </ol>
 
   <div class="carousel-inner">
