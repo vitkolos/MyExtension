@@ -64,6 +64,31 @@ blocksConfig.imageBatchUpload={
     };
 }]);
 
+angular.module('rubedoBlocks').directive('loadModal', function () {
+  return {
+      restrict: 'A',
+      link: function(scope, $elm, attrs) {
+          $elm.bind('click', function(event) {
+              event.preventDefault();
+              /*angular.element('#myModal iframe').attr('src', src);*/
+              angular.element('#myModal').appendTo('body').modal('show');
+          });
+      }
+  }
+});
+
+angular.module('rubedoBlocks').directive('toggleclass', function() {
+  return {
+            restrict: 'A',
+            link: function(scope, elm, attrs) {
+                       var element = $(elm);
+                        element.bind('click', function(event) {
+                                  element.next().toggleClass("displayed");
+                       });
+            }
+ }
+});
+
 	angular.module('rubedoBlocks').directive('scrollPosition', function($window) {
   return {
     scope: {
@@ -80,6 +105,43 @@ blocksConfig.imageBatchUpload={
   };
 });
 
+angular.module('rubedoBlocks').filter('title', function() {
+  return function(input){
+    var delimiter = '//';
+    return input.split(delimiter)[0];
+  }
+});
+angular.module('rubedoBlocks').filter('section', function() {
+  return function(input){
+    var delimiter = '//';
+    return input.split(delimiter)[1];
+  }
+});
+angular.module('rubedoBlocks').filter('homepage', function() {
+  return function(input){
+    var delimiter = '/';
+    var array = input.split(delimiter);
+                var url ="";
+                for (i = 0; i < array.length-2; i++) {url = url + array[i]+'/'}
+                return url;
+  }
+});
+
+
+angular.module('rubedoFields').filter('split', function() {
+      return function(input, splitChar, splitIndex) {
+          // do some bounds checking here to ensure it has that index
+                    if (!splitChar) {
+                                      splitChar = "_";
+                    }
+                    if (input && input !='') {
+                                        return input.split(splitChar)[splitIndex];
+                    }
+                    else return "";
+          
+          
+      }
+  });
 
 
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
