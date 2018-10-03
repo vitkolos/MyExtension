@@ -128,7 +128,7 @@
       ng-class="{'active':$first}"
       ng-click="carouselCtrl.slideTo($index)">
     </li>
-    <span class="fleche droite" ng-click="carouselCtrl.slideTo((carouselCtrl.currentSlideIndex+1)%(carouselCtrl.contents.length))">d</span>
+    <span class="fleche droite" ng-click="carouselCtrl.slideTo((carouselCtrl.currentSlideIndex+1)%(carouselCtrl.contents.length+1))">d</span>
   </ol>
 
   <div class="carousel-inner">
