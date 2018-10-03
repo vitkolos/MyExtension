@@ -35,7 +35,12 @@ angular.module("rubedoBlocks").lazy.controller("FWCarouselController",["$scope",
         $scope.clearORPlaceholderHeight();
     };
     me.slideTo=function(index){
-        if (index==0) index=me.contents.length;
+        if (index==0) {
+            index=me.contents.length;
+        }
+        else if (index==me.contents.length) {
+            index=1;
+        }
         var targetElSelector="#block"+$scope.block.id;
         angular.element(targetElSelector).carousel(index);
         me.currentSlideIndex=index;
