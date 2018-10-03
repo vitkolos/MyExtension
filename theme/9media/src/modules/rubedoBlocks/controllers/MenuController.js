@@ -1,5 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$rootScope','$location','$route','RubedoMenuService','RubedoPagesService','$http',
-		function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService,$http){
+	function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService,$http){
+        var DEBUG = true;
+        var log = function(msg, o) {if(DEBUG) console.log(msg,o)}
 	var me=this;
 	me.menu={};
 	me.pagesBlocks={};
@@ -8,17 +10,17 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
 	var lang = $route.current.params.lang;
 	me.searchEnabled = (config.useSearchEngine && config.searchPage);
     
-    console.log("parentid",$scope.rubedo.current.page.parentId)
-    console.log("currpageid",$scope.rubedo.current.page.id)
+    log("parentid",$scope.rubedo.current.page.parentId)
+    log("currpageid",$scope.rubedo.current.page.id)
 	if (config.rootPage){
         var pageId=config.rootPage;
-        console.log('1', pageId)
+        log('1', pageId)
 	} else if (config.fallbackRoot&&config.fallbackRoot=="parent"&&mongoIdRegex.test($scope.rubedo.current.page.parentId)){
         var pageId=$scope.rubedo.current.page.parentId;
-        console.log('2', pageId)
+        log('2', pageId)
 	} else {
         var pageId=$scope.rubedo.current.page.id;
-        console.log('3', pageId)
+        log('3', pageId)
 	}
 	me.onSubmit = function(){
 		var paramQuery = me.query?'?query='+me.query:'';
@@ -28,7 +30,8 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
 			}
 		});
 	};
-	me.currentLang = $route.current.params.lang;
+    me.currentLang = $route.current.params.lang;
+    log("$route.current", $route.current)
 
 	RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
 		if (response.data.success){
@@ -52,7 +55,8 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
 								else {}
 							});
 			});
-			$scope.clearORPlaceholderHeight();
+            $scope.clearORPlaceholderHeight();
+            console.log('DEBUG', me)
 		}
 		else {
             console.log('ERROR in RubedoMenuService.getMenu', response)
@@ -140,6 +144,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                 });
             }
         };
+        log('DEBUG LANG', me)
         $scope.clearORPlaceholderHeight();
     }]);       
 
