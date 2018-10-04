@@ -20,6 +20,11 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
             var pageId=$scope.rubedo.current.page.id;
             log('3', pageId)
         }
+
+        me.go = function ( path ) {
+            $location.path( path );
+          };
+
         me.onSubmit = function(){
             var paramQuery = me.query?'?query='+me.query:'';
             RubedoPagesService.getPageById(config.searchPage).then(function(response){
