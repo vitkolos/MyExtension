@@ -85,6 +85,49 @@
 @gray:#777;
 @primary:#333;
 
+////////////////////////////////////////////////
+    /////// LEGACY ////////////////
+////////////////////////////////////////////////
+
+body{
+    font-size:16px; 
+    min-height:100%; 
+    line-height: 1.4em 
+}
+html,body{
+    font-family: 'OswaldLight','NexaLight', "Helvetica Neue",Helvetica,Arial,sans-serif; 
+    height: 100%; 
+    overflow: auto;
+    background-color:@bg; 
+    color:@primary
+}
+.container-fluid{
+		padding: 0; overflow: hidden;
+}
+.first{margin-top:70px;}
+.paddingv{padding-top:30px; padding-bottom:30px;}
+@media screen and (min-width: @min_sm) {
+		li:hover>.dropdown-menu{display: block}
+}
+
+/*FIXES*/
+.rubedo-block-contentContribution{min-height:0 !important}
+
+@media screen and (min-width: @min_md) and(max-width:@min_lg){.navbar>.container .navbar-brand, .navbar>.container-fluid .navbar-brand{margin-left:12px;}
+}
+.dropdown-menu{min-width: 0;background-color: white}
+@media screen and (min-width: @min_md) {
+		.navbar-collapse{text-align: center; .navbar-nav{float: none; display: inline-block; margin-bottom: -9px;}}
+		.navbar-right .dropdown-menu {
+    		right: auto; 
+			left: 0;
+			min-width: 100%;
+		}
+}
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus{
+	background: transparent !important;
+}
+
 
 ////////////////////////////////////////////////
     /////// MENU ////////////////
