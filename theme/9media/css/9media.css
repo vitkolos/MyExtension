@@ -1,3 +1,13 @@
+/* .clearfix() {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+} */
 @font-face {
   font-family: 'Oswald';
   font-style: normal;
