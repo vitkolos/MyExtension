@@ -22,6 +22,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         }
 
         me.go = function ( path ) {
+            console.log("Going to url ", path)
             $location.path( path );
           };
 

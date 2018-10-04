@@ -11,7 +11,7 @@
         <!-- Liens vers les pages de niveau 1 -->
         <ul class="nav navbar-nav liens_menu">
             <li ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(menuCtrl.url) > -1}">
-                    <a class="menu_entry" ng-href="/{{menuCtrl.currentLang}}/">ACCUEIL</a>
+                <a class="menu_entry" ng-href="/{{menuCtrl.currentLang}}/">ACCUEIL</a>
             </li>
             <li ng-repeat="page in menuCtrl.pagesBlocks" class="lborder" ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(page.url) > -1}">
                 <a ng-href="{{page.url}}">{{page.title | uppercase}}</a>
