@@ -981,7 +981,7 @@ header.content.parallax{
 
 /* added this to overwrite .content.parallax rule that breaks parallax on firefox */
 .content.parallax {
-  transform: none;
+  transform: none !important; /* TODO voir pk il faut faire !important pr que ça marche, c pas propre */
 }
 
 header.content.no-filter{box-shadow: none;}
