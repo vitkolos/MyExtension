@@ -3,7 +3,8 @@
         <div ng-style="contentListCtrl.blockStyle">
             <div class="media" ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
                 
-                <div class="image_container" ng-class="{'pair': $even}" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:\'800px\',mode:\'boxed\'})}}');">
+                <div class="image_container" ng-class="{'pair': $even}" 
+                    style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:'800px',mode:'boxed'})}}')">
                     <h4>
                         {{content.fields.text}}
                     </h4>
