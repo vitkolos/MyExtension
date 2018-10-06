@@ -86,30 +86,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
-																me.contents = response.data.contents;
-                var columnContentList = [];
-                if (add){
-                    angular.forEach(response.data.contents,function(newContent){
-                        columnContentList.push(newContent);
-                    });
-                    me.contentList.push(columnContentList);
-                } else {
-                    me.contentList=[];
-                    angular.forEach(response.data.contents,function(newContent, key){
-                        columnContentList.push(newContent);
-                        if(config.columns && (key+1) % (Math.ceil(response.data.contents.length/config.columns)) == 0){
-                            me.contentList.push(columnContentList);
-                            columnContentList = [];
-                        }
-                    });
-                    if (columnContentList.length > 0){
-                        me.contentList.push(columnContentList);
-                    }
-                }
-
+                me.contents = response.data.contents;
             }
         });
     };
+
     me.canAddToList=function(){
         return ($scope.rubedo.fieldEditMode&&me.queryType&&(me.queryType=="simple"||me.queryType=="manual"));
     };
