@@ -44,6 +44,9 @@ class DonationResource extends AbstractResource
             ),
             "en" =>array(
                 "fields" => array("text"=>$content["fields"]["text"])
+            ),
+            "nl" =>array(
+                "fields" => array("text"=>$content["fields"]["text"])
             )
         );
 
