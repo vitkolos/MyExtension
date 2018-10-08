@@ -67,8 +67,8 @@
                                                 <a ng-if="page.pages&&blockConfig.menuLevel>1 && !blockConfig.disableLevelOne" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
                                                 <span ng-if="page.pages&&blockConfig.menuLevel>1&& blockConfig.disableLevelOne" class="capital">{{page.text}}</span>
                                                 <a ng-repeat="subpage in page.pages track by $index" ng-if="subpage.blocks[0].bType=='redirect' && subpage.blocks[0].configBloc.url && subpage.blocks[0].configBloc.url !='' " class="subpage" ng-href="{{subpage.blocks[0].configBloc.url}}" target="_blank">{{subpage.text}}</a>
-                                                <a ng-repeat="subpage in page.pages track by $index" ng-if="subpage.blocks[0].bType=='redirect' && subpage.blocks[0].configBloc.linkedPage && subpage.blocks[0].configBloc.linkedPage !='' " class="subpage" rubedo-page-link="{{subpage.blocks[0].configBloc.linkedPage}}">{{subpage.text}}</a>
-                                                <a ng-repeat="subpage in page.pages track by $index" ng-if="subpage.blocks[0].bType!='redirect'" class="subpage" ng-href="{{subpage.url}}">{{subpage.text}}</a>
+                                                <a ng-repeat="subpage in page.pages track by $index" ng-if="subpage.blocks[0].bType=='redirect' && subpage.blocks[0].configBloc.linkedPage && subpage.blocks[0].configBloc.linkedPage !='' " class="subpage linkedpage" rubedo-page-link="{{subpage.blocks[0].configBloc.linkedPage}}">{{subpage.text}}</a>
+                                                <a ng-repeat="subpage in page.pages track by $index" ng-if="subpage.blocks[0].bType!='redirect'" class="subpage notredirect" ng-href="{{subpage.url}}">{{subpage.text}}</a>
                                              </div>
                                           </div>
                                        </div>
