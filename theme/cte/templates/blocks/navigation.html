@@ -39,6 +39,7 @@
                                             <div ng-include="rubedo.blockTemplateResolver.getTemplate('footer',{ })" ng-if="menuCtrl.isFrance"></div>
                                             <div class="row" ng-if="!menuCtrl.isFrance">
                                                 <div class="col-md-3 col-xs-6" ng-repeat="page in menuCtrl.menuPrincipal.pages track by $index">
+                                                    <input type="hidden" value="{{menuCtrl.menuPrincipal.pages}}">
                                                     <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
                                                     <a ng-if="page.pages&&blockConfig.menuLevel>1 && !blockConfig.disableLevelOne" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
                                                     <span ng-if="page.pages&&blockConfig.menuLevel>1&& blockConfig.disableLevelOne" class="capital">{{page.text}}</span>
