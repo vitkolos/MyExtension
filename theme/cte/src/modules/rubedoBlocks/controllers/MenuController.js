@@ -26,7 +26,6 @@
 	me.getMenu = function(){
 	    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
 		if (response.data.success){
-			console.log('DEBGU MENU', response)
 		    me.menu=response.data.menu;
 		    $scope.clearORPlaceholderHeight();
 		} else {
@@ -95,6 +94,7 @@
 	if (!me.isFrance) {
 	    RubedoMenuService.getMenu(config.rootPage, config.menuLevel).then(function(response){
 		if (response.data.success){
+			console.log("DEBGU MENU", response)
 		    me.menuPrincipal=response.data.menu;
 		} else {
 		    me.menu={};
