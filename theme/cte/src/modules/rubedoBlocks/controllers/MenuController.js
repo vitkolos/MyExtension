@@ -161,6 +161,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                 }
                 RubedoPagesService.getPageById($scope.rubedo.current.page.id,true).then(function(response){
                     if (response.data.success){
+						console.log("DEBUG", response)
                         if($scope.rubedo.current.page.contentCanonicalUrl) {
                             // Get content id
                             urlArray = $route.current.params.routeline.split("/");
