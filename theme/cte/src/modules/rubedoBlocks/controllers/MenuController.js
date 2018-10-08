@@ -113,7 +113,6 @@
         
 	me.showMenu =function(){
 		$scope.menu = !$scope.menu;
-		console.log('DEBUG MENU', me)
 	    if($scope.menu) angular.element('#menuModal').modal('show');
 	    else angular.element('#menuModal').modal('hide');
 	};
