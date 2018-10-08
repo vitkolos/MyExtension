@@ -51,7 +51,7 @@
                                        
                                        <div class="menuTab cursor-as-pointer" ng-if="menuCtrl.menuTab" data-toggle="collapse" href="#menuBis">
                                           <span class="menu_header" >
-                                                <a><h4>{{menuCtrl.menu.text}}</h4><h4>{{menuCtrl.menu.text}}</h4></a>
+                                                <a><h4>{{menuCtrl.menu.text}}</h4></a>
                                                   <span  class="menuToggle glyphicon" style="top:7px"></span>
                                           </span>
                                        </div>
@@ -63,7 +63,6 @@
                                             </div>
                                           <div class="row">
                                              <div class="col-md-3 col-xs-6" ng-repeat="page in menuCtrl.menu.pages track by $index">
-                                                    <div class="coco" ng-click="console.log(menuCtrl.menuPrincipal.pages)">aa</div>
                                                 <a ng-if="!page.pages||blockConfig.menuLevel<=1" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
                                                 <a ng-if="page.pages&&blockConfig.menuLevel>1 && !blockConfig.disableLevelOne" ng-href="{{page.url}}" class="capital">{{page.text}}</a>
                                                 <span ng-if="page.pages&&blockConfig.menuLevel>1&& blockConfig.disableLevelOne" class="capital">{{page.text}}</span>
