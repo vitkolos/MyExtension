@@ -31,7 +31,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     // ===================================================
 
     const CONTENT_TYPES = {
-        '560d2bf445205e816041ea7f': {
+        '56ab6e94c445ecde138b4e2b': {
             name: 'Lien vers page',
             path: 'contentList/LienVersPageTemplate.html'
         }
