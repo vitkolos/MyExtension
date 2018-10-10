@@ -98,7 +98,6 @@ h1{
 @media screen and (min-width: @min_sm){h1{font-size: 48px}}
 
 h2{
-    font-weight: bold;
     font-size: 24px;
 }
 @media screen and (min-width: @min_xs) and (max-width:@min_sm){h2{font-size: 32px}}
@@ -159,6 +158,10 @@ html,body{
 
 h2.img_title {
     color: white;
+}
+
+h2.img_title > div:nth-child(2) {
+    font-weight: bold;
 }
 
 .image_container:nth-child(odd) > h2 {
