@@ -1,5 +1,16 @@
 <!--<div ng-controller="ContentListController as contentListCtrl">-->
-    <div class="row" ng-include="contentList/LienVersPageTemplate.html">
-        
+    <div class="row" >
+        <div ng-controller="ContentListController as contentListCtrl"
+            class="col-xs-12 col-md-6 image_container" ng-class="{'pair': $even}" 
+            style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:'800px',mode:'boxed'})}}')"
+            ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
+            <h2 class="img_title">
+                <div>{{content.fields.text.split('§')[0].toUpperCase()}}</div>
+                <div ng-if="content.fields.text.split('§').length > 1">{{content.fields.text.split('§')[1].toUpperCase()}}</div>
+            </h2>
+            <p>
+                {{content.fields.summary.toUpperCase()}}
+            </p>
+        </div>
     </div>
 <!--</div>-->
