@@ -1,7 +1,6 @@
-<!--<div ng-controller="ContentListController as contentListCtrl">-->
-    <div class="row" >
-        <div ng-controller="ContentListController as contentListCtrl"
-            class="col-xs-12 col-md-6 image_container" ng-class="{'pair': $even}" 
+<div ng-controller="ContentListController as contentListCtrl">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 image_container" ng-class="{'pair': $even}" 
             style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:'800px',mode:'boxed'})}}')"
             ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
             <h2 class="img_title">
@@ -13,4 +12,4 @@
             </p>
         </div>
     </div>
-<!--</div>-->
+</div>
