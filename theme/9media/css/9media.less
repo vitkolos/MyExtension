@@ -158,14 +158,17 @@ html,body{
 
 h2.img_title {
     color: white;
+    margin: 0.5rem;
 }
 
 h2.img_title > div:nth-child(2) {
     font-weight: bold;
 }
 
-.image_container:nth-child(odd) > h2 {
-    text-align: right;
+@media screen and (min-width: @min_sm){
+    .image_container:nth-child(odd) > h2 {
+        text-align: right;
+    }
 }
 
 .image_container {
