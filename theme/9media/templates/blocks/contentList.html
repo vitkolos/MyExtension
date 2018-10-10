@@ -4,8 +4,8 @@
             style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:'800px',mode:'boxed'})}}')"
             ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
             <h2 class="img_title">
-                {{content.fields.text.split('§')[0]}}
-                <span ng-if="content.fields.text.split('§').length > 1"><br>{{content.fields.text.split('§')[1]}}</span>
+                <div>{{content.fields.text.split('§')[0]}}</div>
+                <div ng-if="content.fields.text.split('§').length > 1">{{content.fields.text.split('§')[1]}}</div>
             </h2>
             <p ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
                 {{content.fields.summary}}
