@@ -1,7 +1,6 @@
 angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location","$sce",
 	function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$sce){
 
-    
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -20,6 +19,30 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","subTitle"]
 
     };
+
+    // construit la bonne url vers un template à partir du chemin local vers le template
+    me.buildTemplateUrl = function(relative_path_template) {
+        let themePath = "/theme/" + window.rubedoConfig.siteTheme +"/templates/blocks/";
+        return themePath + relative_path_template;
+    }
+
+    // ===================================================
+    // GESTION DES TYPES DE CONTENUS et TEMPLATES
+    // ===================================================
+
+    me.currContentType = "545dd53145205e83348b456d"; // = Lien vers page
+    if (me.contents.length > 0) me.currContentType = me.contents[0].typeId;
+    const CONTENT_TYPES = {
+        'sdfsdfsq32154sdf65s': {
+            name: 'Lien vers page',
+            path: 'contentList/LienVersPageTemplate.html'
+        }
+    }
+    me.templateUrl = me.buildTemplateUrl(CONTENT_TYPES[me.currContentType].path)
+
+    // ===================================================
+
+
     if(config.singlePage){
         options.detailPageId = config.singlePage;
     }
@@ -49,12 +72,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                         videoId=url.split("watch?v=")[1];
         }
         return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+videoId+"?showinfo=0");
-    }
-
-    // construit la bonne url vers un template à partir du chemin local vers le template
-    me.buildTemplateUrl = function(relative_path_template) {
-        let themePath = "/theme/" + window.rubedoConfig.siteTheme +"/templates/blocks/";
-        return themePath + relative_path_template;
     }
 
     $scope.$on('$routeUpdate', function(){window.location.reload();});
