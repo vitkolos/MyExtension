@@ -1,5 +1,5 @@
 <div ng-controller="ContentListController as contentListCtrl">
-    <div class="row">
+    <!-- <div class="row">
         <div class="col-xs-12 col-md-6 image_container" ng-class="{'pair': $even}" 
             style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:'800px',mode:'boxed'})}}')"
             ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
@@ -11,11 +11,11 @@
                 {{content.fields.summary.toUpperCase()}}
             </p>
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <h1>TEST</h1>
     </div>
     <div class="row">
-        <div ng-include="contentList/LienVersPageTemplate.html"></div>
+        <div ng-include="LienVersPageTemplate.html"></div>
     </div>
 </div>
