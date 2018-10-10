@@ -91,8 +91,11 @@
 
 /*TYPO*/
 h1{
-    font-weight: bold; 
-    font-size:24px
+    font-size:24px;
+    letter-spacing: 1rem;
+    margin-top: 7rem;
+    margin-bottom: 3rem;
+    color: #444;
 }
 @media screen and (min-width: @min_xs) and (max-width:@min_sm){h1{font-size: 32px}}
 @media screen and (min-width: @min_sm){h1{font-size: 48px}}
@@ -150,6 +153,19 @@ html,body{
 }
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus{
 	background: transparent !important;
+}
+
+////////////////////////////////////////////////
+/////////// TEXTE RICHE CLIENTS  ///////////////
+/////////// (dans ckeditor > source le p a une class spécifique rentrée à la main)
+////////////////////////////////////////////////
+
+p.client_img_container {
+    display: flex;
+    justify-content: center;
+}
+p.client_img_container > img {
+    margin: 0.5rem 1rem;
 }
 
 ////////////////////////////////////////////////
