@@ -20,6 +20,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 
     };
 
+    // pour faire des liens avec ng-click="go('/fr/')"
+    me.go = function ( path ) {
+        console.log("Going to url ", path)
+        $location.path( path );
+    }
+
     // construit la bonne url vers un template à partir du chemin local vers le template
     me.buildTemplateUrl = function(relative_path_template) {
         let themePath = "/theme/" + window.rubedoConfig.siteTheme +"/templates/blocks/";
