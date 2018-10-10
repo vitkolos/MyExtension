@@ -16,6 +16,7 @@
         <h1>TEST</h1>
     </div>
     <div class="row">
-        <div ng-include="contentListCtrl.buildTemplateUrl('LienVersPageTemplate.html')"></div>
+        <p>riri{{contentListCtrl.buildTemplateUrl('LienVersPageTemplate.html')}}</p>
+        <div ng-include="{{contentListCtrl.buildTemplateUrl('LienVersPageTemplate.html')}}"></div>
     </div>
 </div>
