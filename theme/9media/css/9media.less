@@ -90,10 +90,20 @@
 ////////////////////////////////////////////////
 
 /*TYPO*/
-h1{font-weight: bold; font-size:24px}
+h1{
+    font-weight: bold; 
+    font-size:24px
+}
 @media screen and (min-width: @min_xs) and (max-width:@min_sm){h1{font-size: 32px}}
 @media screen and (min-width: @min_sm){h1{font-size: 48px}}
-h2{font-weight: bold}
+
+h2{
+    font-weight: bold;
+    font-size: 24px;
+}
+@media screen and (min-width: @min_xs) and (max-width:@min_sm){h2{font-size: 32px}}
+@media screen and (min-width: @min_sm){h2{font-size: 48px}}
+
 @media screen and (min-width: @min_sm){
     h3{
         font-size:28px;
@@ -146,6 +156,14 @@ html,body{
 ////////////////////////////////////////////////
     /////// CONTENTLIST ACCUEIL ////////////////
 ////////////////////////////////////////////////
+
+h2.img_title {
+    color: white;
+}
+
+.image_containh2.img_title:nth-child(even) {
+    text-align: right;
+}
 
 .image_container {
     height: 200px;

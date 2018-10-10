@@ -3,9 +3,10 @@
         <div class="col-xs-12 col-md-6 image_container" ng-class="{'pair': $even}" 
             style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:'800px',mode:'boxed'})}}')"
             ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents track by $index">
-            <h4>
-                {{content.fields.text}}
-            </h4>
+            <h2>
+                {{content.fields.text.split('§')[0]}}
+                <span ng-if="content.fields.text.split('§').length > 1"><br>{{content.fields.text.split('§')[1]}}</span>
+            </h2>
             <p ng-if="!contentListCtrl.titleOnly&&!fieldEditMode">
                 {{content.fields.summary}}
             </p>
