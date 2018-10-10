@@ -30,15 +30,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     // GESTION DES TYPES DE CONTENUS et TEMPLATES
     // ===================================================
 
-    me.currContentType = "545dd53145205e83348b456d"; // = Lien vers page
-    if (me.contents.length > 0) me.currContentType = me.contents[0].typeId;
     const CONTENT_TYPES = {
         'sdfsdfsq32154sdf65s': {
             name: 'Lien vers page',
             path: 'contentList/LienVersPageTemplate.html'
         }
     }
-    me.templateUrl = me.buildTemplateUrl(CONTENT_TYPES[me.currContentType].path)
+
+    me.templateUrl = "NON_DEFINI";
+    me.initTemplates = function() {
+        me.currContentType = "545dd53145205e83348b456d"; // = Lien vers page
+        if (me.contents && me.contents.length > 0) me.currContentType = me.contents[0].typeId;
+        if (CONTENT_TYPES[me.currContentType]) {
+            me.templateUrl = me.buildTemplateUrl(CONTENT_TYPES[me.currContentType].path);
+        } else {
+            console.log("ERREUR : le type de contenu " + me.currContentType + " n'a pas de template HTML défini. Rendons gloire à Dieu en toutes circonstances !")
+            me.templateUrl = "TYPE_DE_CONTENU_NON_PRIS_EN_CHARGE"
+        }
+    }
 
     // ===================================================
 
@@ -113,6 +122,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
                 me.contents = response.data.contents;
+                me.initTemplates()
             }
         });
     };
