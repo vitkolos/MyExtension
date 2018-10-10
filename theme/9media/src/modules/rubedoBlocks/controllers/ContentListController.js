@@ -1,5 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location","$sce",
-																																																																								function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$sce){
+	function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$sce){
+
+    
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -40,14 +42,21 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         $location.search(blockPagingIdentifier,(me.start/me.limit)+1);
         me.getContents(config.query, pageId, siteId, options);
     };
-				me.getVideoId = function(url){
-								var string = url.split("/");
-								var videoId = string[string.length-1];
-								if (videoId.length>12) {
-												videoId=url.split("watch?v=")[1];
-								}
-								return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+videoId+"?showinfo=0");
-				}
+    me.getVideoId = function(url){
+        var string = url.split("/");
+        var videoId = string[string.length-1];
+        if (videoId.length>12) {
+                        videoId=url.split("watch?v=")[1];
+        }
+        return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+videoId+"?showinfo=0");
+    }
+
+    // construit la bonne url vers un template à partir du chemin local vers le template
+    me.buildTemplateUrl = function(relative_path_template) {
+        let themePath = "/theme/" + window.rubedoConfig.siteTheme + +"/templates/blocks/";
+        return themePath + relative_path_template;
+    }
+
     $scope.$on('$routeUpdate', function(){window.location.reload();});
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         alreadyPersist = false;
