@@ -166,9 +166,14 @@ h2.img_title > div:nth-child(2) {
 }
 
 @media screen and (min-width: @min_sm){
-    .image_container:nth-child(odd) > h2 {
+    .image_container:nth-child(odd) > h2, .image_container:nth-child(odd) > p {
         text-align: right;
     }
+}
+
+.image_container > p {
+    color: #ddd;
+    margin: 1rem 0.5rem;
 }
 
 .image_container {
