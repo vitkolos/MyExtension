@@ -41,6 +41,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.initTemplates = function() {
         me.currContentType = "56ab6e94c445ecde138b4e2b"; // = Lien vers page
         if (me.contents && me.contents.length > 0) me.currContentType = me.contents[0].typeId;
+        console.log('template debug', me.currContentType, CONTENT_TYPES, CONTENT_TYPES[me.currContentType])
         if (CONTENT_TYPES[me.currContentType]) {
             me.templateUrl = me.buildTemplateUrl(CONTENT_TYPES[me.currContentType].path);
         } else {
