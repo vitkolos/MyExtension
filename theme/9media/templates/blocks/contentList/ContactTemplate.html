@@ -1,16 +1,22 @@
-<div class="col-xs-12 col-md-6 contact_container"
-    ng-repeat="content in contentListCtrl.contents track by $index">
+<div class="row contentList_contacts">
+    <div class="col-xs-12 col-md-6 contact_container"
+        ng-repeat="content in contentListCtrl.contents track by $index">
 
-    <div class="photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
-        <div class="flag"></div>
+        <div class="photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
+            <div class="flag"></div>
+        </div>
+
+        <p class="nom">
+            {{content.fields.prenom.toUpperCase()}} {{content.fields.nom.toUpperCase()}}
+        </p>
+
+        <p class="role">
+            {{content.fields.text.toUpperCase()}}
+        </p>
+
+        <p class="xp">
+            {{content.fields.summary.toUpperCase()}}
+        </p>
+
     </div>
-
-    <p>
-        {{content.fields.text.toUpperCase()}}
-    </p>
-
-    <p>
-        {{content.fields.summary.toUpperCase()}}
-    </p>
-
 </div>
