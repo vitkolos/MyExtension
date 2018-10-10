@@ -53,7 +53,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 
     // construit la bonne url vers un template à partir du chemin local vers le template
     me.buildTemplateUrl = function(relative_path_template) {
-        let themePath = "/theme/" + window.rubedoConfig.siteTheme + +"/templates/blocks/";
+        let themePath = "/theme/" + window.rubedoConfig.siteTheme +"/templates/blocks/";
         return themePath + relative_path_template;
     }
 
