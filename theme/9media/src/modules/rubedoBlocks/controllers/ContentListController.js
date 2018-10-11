@@ -67,6 +67,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     // ===================================================
 
     me.parseContacts = function() {
+        console.log('debug parsecontacts ', me.contents)
         for (let i = 0; i < me.contents.length; i++) {
             if (me.contents[i].summary) {
                 let res = /@[A-Z]{2}/g.exec(me.contents[i].summary)
@@ -149,6 +150,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.usedContentTypes=response.data.usedContentTypes;
                 me.contents = response.data.contents;
                 me.initTemplates()
+                console.log('debug getcontents : received ', response.data.contents, me.contents)
                 me.parseContents()
             }
         });
