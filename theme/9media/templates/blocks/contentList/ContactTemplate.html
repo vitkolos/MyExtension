@@ -3,23 +3,27 @@
         <!-- this clearfix div is meant to keep only 3 elements per line even if each column has a col-sm-3 ! -->
         <div class="clearfix" ng-if="$index % 3 == 0"></div>
 
-        <div class="col-xs-12 col-sm-3 contact_container">
-            <div class="center-block photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
+        <div class="col-xs-12 col-sm-4 contact_container">
+            <div class="row center-block photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
             </div>
 
-            <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode, 32)}}">
+            <div class="row">
+                <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode, 32)}}">
+            </div>
 
-            <p class="nom">
-                {{content.fields.prenom.toUpperCase()}} {{content.fields.nom.toUpperCase()}}
-            </p>
+            <div class="row">
+                <div class="col-md-12 nom">
+                    {{content.fields.prenom.toUpperCase()}} {{content.fields.nom.toUpperCase()}}
+                </div>
 
-            <p class="role">
-                {{content.fields.text.toUpperCase()}}
-            </p>
+                <div class="col-md-12 role">
+                    {{content.fields.text.toUpperCase()}}
+                </div>
 
-            <p class="xp">
-                <span ng-repeat="texte in content.fields.summary.toUpperCase().split('\n')">{{texte}}<br></span>
-            </p>
+                <div class="col-md-12 xp">
+                    <span ng-repeat="texte in content.fields.summary.toUpperCase().split('\n')">{{texte}}<br></span>
+                </div>
+            </div>
         </div>
 
     </div>
