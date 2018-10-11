@@ -1,28 +1,24 @@
 <div class="row contentList_contacts">
-    <div ng-repeat="content in contentListCtrl.contents track by $index">
-        <!-- this clearfix div is meant to keep only 3 elements per line even if each column has a col-sm-3 ! -->
-        <div class="clearfix" ng-if="$index % 3 == 0"></div>
+    <div class="col-xs-12 col-sm-4 contact_container" ng-repeat="content in contentListCtrl.contents track by $index">
 
-        <div class="col-xs-12 col-sm-4 contact_container">
-            <div class="row center-block photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
+        <div class="row center-block photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
+        </div>
+
+        <div class="row">
+            <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode, 32)}}">
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 nom">
+                {{content.fields.prenom.toUpperCase()}} {{content.fields.nom.toUpperCase()}}
             </div>
 
-            <div class="row">
-                <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode, 32)}}">
+            <div class="col-md-12 role">
+                {{content.fields.text.toUpperCase()}}
             </div>
 
-            <div class="row">
-                <div class="col-md-12 nom">
-                    {{content.fields.prenom.toUpperCase()}} {{content.fields.nom.toUpperCase()}}
-                </div>
-
-                <div class="col-md-12 role">
-                    {{content.fields.text.toUpperCase()}}
-                </div>
-
-                <div class="col-md-12 xp">
-                    <span ng-repeat="texte in content.fields.summary.toUpperCase().split('\n')">{{texte}}<br></span>
-                </div>
+            <div class="col-md-12 xp">
+                <span ng-repeat="texte in content.fields.summary.toUpperCase().split('\n')">{{texte}}<br></span>
             </div>
         </div>
 
