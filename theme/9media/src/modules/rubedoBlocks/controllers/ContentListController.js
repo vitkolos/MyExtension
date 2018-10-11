@@ -69,10 +69,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.parseContacts = function() {
         console.log('debug parsecontacts ', me.contents)
         for (let i = 0; i < me.contents.length; i++) {
-            if (me.contents[i].summary) {
-                let res = /@[A-Z]{2}/g.exec(me.contents[i].summary)
-                if (res && res.length) me.contents[i].flagCode = res[0].substring(1);
-                me.contents[i].summary = me.contents[i].summary.replace(/@[A-Z]{2}/g, '').trim()
+            if (me.contents[i].fields.summary) {
+                let res = /@[A-Z]{2}/g.exec(me.contents[i].fields.summary)
+                if (res && res.length) me.contents[i].fields.flagCode = res[0].substring(1);
+                me.contents[i].fields.summary = me.contents[i].fields.summary.replace(/@[A-Z]{2}/g, '').trim()
             }
         }
     }
