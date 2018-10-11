@@ -27,8 +27,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     }
 
     // pour avoir l'image du drapeau d'un pays
-    me.getFlagUrl = function(flagCode){
-        return '/assets/flags/16/'+flagCode+'.png';
+    me.getFlagUrl = function(flagCode, size = 16){
+        return `/assets/flags/${size}/${flagCode}.png`;
     };
 
     // ===================================================

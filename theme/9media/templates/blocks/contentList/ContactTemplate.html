@@ -5,7 +5,7 @@
         <div class="photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
         </div>
 
-        <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode)}}">
+        <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode, 32)}}">
 
         <p class="nom">
             {{content.fields.prenom.toUpperCase()}} {{content.fields.nom.toUpperCase()}}
