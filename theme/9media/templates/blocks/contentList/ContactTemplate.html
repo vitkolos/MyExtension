@@ -3,15 +3,16 @@
         ng-repeat="content in contentListCtrl.contents track by $index">
 
         <div class="photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
-            <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode)}}">
         </div>
+
+        <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode)}}">
 
         <p class="nom">
             {{content.fields.prenom.toUpperCase()}} {{content.fields.nom.toUpperCase()}}
         </p>
 
         <p class="role">
-            {{content.fields.text.toUpperCase()}} flagCode={{content.flagCode}}
+            {{content.fields.text.toUpperCase()}}
         </p>
 
         <p class="xp">
