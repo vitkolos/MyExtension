@@ -165,12 +165,19 @@ html,body{
 
 .expertise {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: baseline;
+    flex-direction: column;
+}
 
-    div {
-        margin: 0 2rem;
+@media screen and (min-width: @min_md) and(max-width:@min_lg) {
+    .expertise {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: baseline;
+
+        div {
+            margin: 1rem 2rem;
+        }
     }
 }
 
