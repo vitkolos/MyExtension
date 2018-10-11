@@ -52,9 +52,22 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             me.templateUrl = "TYPE_DE_CONTENU_NON_PRIS_EN_CHARGE"
         }
     }
+    // appelée après avoir fait un getcontent
+    me.parseContents = function() {
+        me.parseContacts()
+    }
 
     // ===================================================
+    //        PARSING SPECIFIQUE POUR les contacts
+    // ===================================================
 
+    me.parseContacts = function() {
+        for (let i = 0; i < me.contents.length; i++) {
+            me[i].flagCode = "FR"
+        }
+    }
+
+    // ===================================================
 
     if(config.singlePage){
         options.detailPageId = config.singlePage;
@@ -127,6 +140,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.usedContentTypes=response.data.usedContentTypes;
                 me.contents = response.data.contents;
                 me.initTemplates()
+                me.parseContents()
             }
         });
     };
