@@ -63,7 +63,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 
     me.parseContacts = function() {
         for (let i = 0; i < me.contents.length; i++) {
-            me[i].flagCode = "FR"
+            me.contents[i].flagCode = "FR"
         }
     }
 
