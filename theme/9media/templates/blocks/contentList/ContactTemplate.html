@@ -1,8 +1,8 @@
 <div class="row contentList_contacts">
-    <div class="col-xs-12 col-md-6 contact_container"
+    <div class="col-xs-12 col-sm-3 contact_container"
         ng-repeat="content in contentListCtrl.contents track by $index">
 
-        <div class="photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
+        <div class="center-block photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
         </div>
 
         <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode, 32)}}">
