@@ -1,23 +1,26 @@
 <div class="row contentList_contacts">
-    <div class="col-xs-12 col-sm-3 contact_container"
-        ng-repeat="content in contentListCtrl.contents track by $index">
+    <div ng-repeat="content in contentListCtrl.contents track by $index">
+        <!-- this clearfix div is meant to keep only 3 elements per line even if each column has a col-sm-3 ! -->
+        <div class="clearfix" ng-if="$index % 3 == 0"></div>
 
-        <div class="center-block photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
+        <div class="col-xs-12 col-sm-3 contact_container">
+            <div class="center-block photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
+            </div>
+
+            <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode, 32)}}">
+
+            <p class="nom">
+                {{content.fields.prenom.toUpperCase()}} {{content.fields.nom.toUpperCase()}}
+            </p>
+
+            <p class="role">
+                {{content.fields.text.toUpperCase()}}
+            </p>
+
+            <p class="xp">
+                <span ng-repeat="texte in content.fields.summary.toUpperCase().split('\n')">{{texte}}<br></span>
+            </p>
         </div>
-
-        <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode, 32)}}">
-
-        <p class="nom">
-            {{content.fields.prenom.toUpperCase()}} {{content.fields.nom.toUpperCase()}}
-        </p>
-
-        <p class="role">
-            {{content.fields.text.toUpperCase()}}
-        </p>
-
-        <p class="xp">
-            {{content.fields.summary.toUpperCase()}}
-        </p>
 
     </div>
 </div>
