@@ -3,7 +3,7 @@
         ng-repeat="content in contentListCtrl.contents track by $index">
 
         <div class="photo" style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.photoContact, {width:'170px',mode:'boxed'})}}')">
-            <img ng-if="content.flagCode" class="flag" ng-src="contentListCtrl.getFlagUrl(content.flagCode)">
+            <img ng-if="content.flagCode" class="flag" ng-src="{{contentListCtrl.getFlagUrl(content.flagCode)}}">
         </div>
 
         <p class="nom">
