@@ -71,7 +71,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         for (let i = 0; i < me.contents.length; i++) {
             if (me.contents[i].fields.summary) {
                 let res = /@[A-Z]{2}/g.exec(me.contents[i].fields.summary)
-                if (res && res.length) me.contents[i].fields.flagCode = res[0].substring(1);
+                if (res && res.length) me.contents[i].flagCode = res[0].substring(1);
                 me.contents[i].fields.summary = me.contents[i].fields.summary.replace(/@[A-Z]{2}/g, '').trim()
             }
         }
