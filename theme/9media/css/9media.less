@@ -176,7 +176,7 @@ html,body{
 }
 
 .expertise > div {
-    margin: 1rem 2rem;
+    margin: 1rem -1rem;
 }
 
 p.expertise_label {
@@ -187,15 +187,14 @@ p.expertise_label {
 }
 
 p.expertise_icon {
-    display: flex;
-    align-items: center;
+    display: none;
 }
 
 p.expertise_icon:after, p.expertise_icon:before {
     content: "";
     display: inline-block;
     border-top: 2px solid #9c9c9c;
-    width: 70px;
+    width: 57px;
     margin: 0 1rem;
     transform: translateY(15px);
 }
@@ -212,6 +211,10 @@ img.expertise_icon {
         flex-wrap: wrap;
         justify-content: center;
         align-items: baseline;
+    }
+    p.expertise_icon {
+        display: flex;
+        align-items: center;
     }
 }
 
