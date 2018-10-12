@@ -166,15 +166,42 @@ html,body{
 /////// Carrés Nos Neuf Services ///////////////
 ////////////////////////////////////////////////
 
-.squareContainerFlex {
+ul.squareContainerFlex {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
+    list-style: none;
+    margin: 5vw;
+    padding: 0;
 }
 
-.squareContainerFlex > div {
-    height: 5vw;
-    width: 5vw;
-    margin: 1rem;
+ul.squareContainerFlex > li {
+    height: 60vw;
+    width: 60vw;
+    margin: 3vw;
+    background: #d8d8d8;
+    word-break: break-word;
+    padding: 1.2rem;
+    max-width: 250px;
+    max-height: 250px;
+    font-size: 3rem;
+    line-height: 3rem;
+}
+
+@media screen and (min-width: @min_sm) and(max-width:@min_md) {
+    ul.squareContainerFlex > li {
+        height: 30vw;
+        width: 30vw;
+        margin: 2vw;
+    }
+}
+
+@media screen and (min-width: @min_md) and(max-width:@min_md) {
+    ul.squareContainerFlex > li {
+        height: 20vw;
+        width: 20vw;
+        margin: 2vw;
+    }
 }
 
 
