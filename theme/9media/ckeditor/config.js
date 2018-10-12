@@ -22,9 +22,8 @@ CKEDITOR.stylesSet.add( 'default', [
 		element: 'img',
 		attributes: { 'style': 'margin:0 auto' }
     },
-	{ name:'Titre', element:'h2', attributes:{'class':'titre-block'}
-}
-
+	{ name:'Titre', element:'h2', attributes:{'class':'titre-block'}},
+	{ name: 'Carrés flex', element: 'ul', attributes: { 'class': "squareContainerFlex" }}
 ] );
 
 

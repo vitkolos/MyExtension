@@ -161,6 +161,23 @@ html,body{
 	background: transparent !important;
 }
 
+
+////////////////////////////////////////////////
+/////// Carrés Nos Neuf Services ///////////////
+////////////////////////////////////////////////
+
+.squareContainerFlex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.squareContainerFlex > div {
+    height: 5vw;
+    width: 5vw;
+    margin: 1rem;
+}
+
+
 ////////////////////////////////////////////////
 /////// STYLES POUR LES ICÔNES 9MEDIA/Accueil //
 ////////////////////////////////////////////////
@@ -328,7 +345,11 @@ h2.img_title > div:nth-child(2) {
 	align-items: center;
 	justify-content: space-between;
 	color: @primary;
-	height: 8vh;
+    height: 8vh;
+    position: fixed;
+    z-index: 1000;
+    width: 100vw;
+    box-shadow: #bdbdbd 0 1px 10px 0px;
 }
 
 .logo_menu_home {
