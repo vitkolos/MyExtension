@@ -80,6 +80,7 @@
 @min_sm:768px;
 @min_md:992px;
 @min_lg:1200px;
+@min_xl:1500px;
 
 @bg:#fff;
 @gray:#777;
@@ -173,7 +174,6 @@ ul.squareContainerFlex {
     list-style: none;
     margin: 5vw;
     padding: 0;
-    max-width: 1300px;
 }
 
 ul.squareContainerFlex > li {
@@ -213,6 +213,12 @@ ul.squareContainerFlex > li {
         height: 20vw;
         width: 20vw;
         margin: 2vw;
+    }
+}
+
+@media screen and (min-width: @min_xl) {
+    ul.squareContainerFlex {
+        margin: 5vw 15vw;
     }
 }
 
