@@ -196,11 +196,18 @@ ul.squareContainerFlex > li {
     }
 }
 
-@media screen and (min-width: @min_md) and(max-width:@min_md) {
+@media screen and (min-width: @min_md) and(max-width:@min_lg) {
     ul.squareContainerFlex > li {
         height: 20vw;
         width: 20vw;
         margin: 2vw;
+    }
+}
+
+@media screen and (min-width: @min_lg) {
+    ul.squareContainerFlex {
+        max-width: 1300px;
+        margin-left: 130px;
     }
 }
 
