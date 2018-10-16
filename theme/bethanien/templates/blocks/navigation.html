@@ -29,6 +29,7 @@
                             </li>
                         </ul>
                     </li>
+                    <!-- Partie choix de la langue -->
                     <li ng-controller="LanguageMenuController as languageMenuCtrl" class="languageMenu">
                         <a  class="dropdown-toggle cursor-as-pointer" data-toggle="dropdown" >{{languageMenuCtrl.currentLang.lang |uppercase}} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
@@ -41,12 +42,17 @@
                         </ul>
                     </li>
                 </ul>
+
+                <!-- Logo CCN -->
+                <img ng-src="{{rubedo.imageUrl.getUrlByMediaId('5954bcb73965886261c47040' ,{height:'60px',mode:'boxed'})}}" ng-if="rubedo.current.page.id==blockConfig.rootPage&&scroll2<500"/>
+
                 <ul class="nav navbar-nav navbar-right">
                     <form class="navbar-form" ng-if="menuCtrl.searchEnabled" ng-submit="menuCtrl.onSubmit()" role="form">
                         <div class="input-group">
                             <input class="form-control" type="text" ng-model="menuCtrl.query" ng-attr-placeholder="{{rubedo.translate('Search.Label.Search','Search')}}"/>
                                 <span class="input-group-btn"><button class="btn btn-default" type="submit">
-                                    <span class="glyphicon glyphicon-search"></span></button></span>
+                                    <span class="glyphicon glyphicon-search"></span></button>
+                                </span>
                         </div>
                     </form>
                 </ul>
