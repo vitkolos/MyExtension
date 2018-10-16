@@ -1,4 +1,15 @@
-<nav class="navbar navbar-fixed-top" role="navigation" ng-controller="MenuController as menuCtrl"  scroll-position="scroll" ng-class="{'transparent':(rubedo.current.page.id==blockConfig.rootPage && scroll<500)}">
+<nav class="navbar navbar-fixed-top" role="navigation" 
+    ng-controller="MenuController as menuCtrl"  scroll-position="scroll" 
+    ng-class="{'transparent':(rubedo.current.page.id==blockConfig.rootPage && scroll<500)}"
+    ng-init="
+        lg = rubedo.current.page.locale;
+        lang = {
+            de: {
+                ccn: 'Gemeinschaft Chemin Neuf'
+            },
+            fr: {}
+        }
+    ">
         <div class="container-fluid" style="overflow: visible">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -13,7 +24,7 @@
                 </a>
                 
                  <!-- Logo CCN -->
-                <a ng-href="https://www.chemin-neuf.org/en/" ><img class="xs-hidden" style="margin: 5px 17px;" title="{{rubedo.translate('ccn','Communauté du Chemin Neuf')}}" ng-src="{{rubedo.imageUrl.getUrlByMediaId('56abde8dc445eccc138b507e',{height:'60px',mode:'boxed'})}}"/></a>
+                <a ng-href="https://www.chemin-neuf.org/en/" ><img class="xs-hidden" style="margin: 5px 17px;" title="{{lang[lg]['ccn'] || 'Communauté du Chemin Neuf'}}" ng-src="{{rubedo.imageUrl.getUrlByMediaId('56abde8dc445eccc138b507e',{height:'60px',mode:'boxed'})}}"/></a>
             </div>
             <div class="container">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
