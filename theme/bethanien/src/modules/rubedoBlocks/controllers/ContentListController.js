@@ -17,7 +17,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         start: me.start,
         limit: me.limit,
         ismagic: me.ismagic,
-        'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","subTitle"]
+        'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","subTitle", "dateDebut", "dateFin"]
 
     };
 
