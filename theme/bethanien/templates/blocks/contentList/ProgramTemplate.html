@@ -19,7 +19,7 @@
                 <rubedo-field ng-if="fieldEditMode" field="{{content.type.summary}}"></rubedo-field>
             </p> 
             
-            <div class="program_dates">{{content.fields.dateDebutPretty}}</div>
+            <div class="program_date">{{content.fields.dateDebutPretty}}</div>
         </div>   
 
     </div>
@@ -27,12 +27,27 @@
 </div>
 
 <style>
+.program_date {
+    font-variant: small-caps;
+    background: #467098;
+    width: 110px;
+    height: 20px;
+    line-height: 27px;
+    font-size: 1.4rem;
+    text-align: center;
+    color: white;
+    border-radius: 7px;
+    position: relative;
+    float: right;
+}
+
 img.program {
     border-radius: 7px;
 }
 
 .program_text {
     margin: 14px;
+    width: 100%;
 }
 
 .program_text h3 {

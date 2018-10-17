@@ -21,6 +21,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 
     };
 
+    // on définit la langue de moment pour afficher les dates dans la bonne langue
+    moment.locale($scope.rubedo.current.page.locale);
+
     // construit la bonne url vers un template à partir du chemin local vers le template
     me.buildTemplateUrl = function(relative_path_template) {
         let themePath = "/theme/" + window.rubedoConfig.siteTheme +"/templates/blocks/";
