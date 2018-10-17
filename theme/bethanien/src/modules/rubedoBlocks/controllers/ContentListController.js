@@ -7,7 +7,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     var blockPagingIdentifier=$scope.block.bType+$scope.block.id.substring(21)+"Page";
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
-    console.log('My List Controller Bethanien', $scope.block.code, $scope.rubedo, $scope.block);
+    //console.log('My List Controller Bethanien', $scope.block.code, $scope.rubedo, $scope.block);
     var alreadyPersist = false;
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
     me.start = config.resultsSkip?config.resultsSkip:0;
@@ -34,7 +34,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     const TEMPLATE_RULES = [
         {
             nom: 'template page Programme',
-            fn: (truc_a_definir) => false,
+            fn: () => /@programme/.test($scope.block.code),
             template: 'contentList/ProgramTemplate.html'
         },
         {
@@ -56,6 +56,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         if (!me.templateUrl) {
             console.log('Unable to find a template in ContentListController.js > initTemplates. Falling back to default template')
             me.templateUrl = me.buildTemplateUrl('contentList/contentList.html');
+        } else {
+            console.log('Chose ContentList template = ', me.templateUrl)
         }
     }
 
