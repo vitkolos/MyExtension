@@ -44,7 +44,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
     ]
 
-    me.templateUrl = 'contentList/contentList.html';
+    me.templateUrl = me.buildTemplateUrl('contentList/contentList.html');
     me.initTemplates = function() {
         if (me.contents && me.contents.length > 0) me.currContentType = me.contents[0].typeId;
         for (let rule of TEMPLATE_RULES) {
