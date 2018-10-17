@@ -1,11 +1,11 @@
 <div class="row program_row_container">
 
-    <div class="col-xs-12 col-md-6 container"
+    <div class="col-xs-12 col-md-6 program_col_container"
         ng-repeat="content in contentListCtrl.contents track by $index">
         
         <img class="img-responsive no-margin" ng-if="content.fields.image"
-                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'250px',height:'150px',mode:'crop'}) }}"
-                onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=250px&height=150px&mode=crop'"
+                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'200px',height:'150px',mode:'crop'}) }}"
+                onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=200px&height=150px&mode=crop'"
                 alt="{{ content.fields.text }}"/> 
 
         <h3>
@@ -28,11 +28,24 @@
     align-items: center;
 }
 
-.program_row_container > .container {
+.program_col_container {
     display: flex;
     padding: 2rem 0;
     margin: 0;
-    border-top: 1px solid #006ba8;
-    width: 70vw;
+    border-top: 1px solid hsla(208, 56%, 30%, 1);
+    width: 60vw;
+}
+
+.program_col_container h3 {
+    margin: 4px 3rem;
+    color: hsla(208, 56%, 41%, 1);
+}
+
+.program_col_container a {
+    color: hsla(208, 56%, 41%, 1);
+}
+.program_col_container a:hover {
+    text-decoration: none;
+    color: hsla(208, 56%, 30%, 1);
 }
 </style>
