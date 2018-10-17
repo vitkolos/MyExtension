@@ -150,7 +150,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.usedContentTypes=response.data.usedContentTypes;
                 me.contents = response.data.contents;
                 me.initTemplates()
-                console.log('debug getcontents : received ', response.data.contents, me.contents)
+                //console.log('debug getcontents : received ', response.data.contents, me.contents)
                 me.parseContents()
             }
         });

@@ -1,11 +1,13 @@
 angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location","$sce",
-																																																																								function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$sce){
+    function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$sce){
+    
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
     var blockPagingIdentifier=$scope.block.bType+$scope.block.id.substring(21)+"Page";
     var pageId=$scope.rubedo.current.page.id;
     var siteId=$scope.rubedo.current.site.id;
+    console.log('My List Controller Bethanien', $scope.block.code, $scope.rubedo, $scope.block);
     var alreadyPersist = false;
     me.contentHeight = config.summaryHeight?config.summaryHeight:80;
     me.start = config.resultsSkip?config.resultsSkip:0;
@@ -18,6 +20,47 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         'fields[]' : ["text","summary","image","propositionReferencee","propositionReferenceeInterne","subTitle"]
 
     };
+
+    // construit la bonne url vers un template à partir du chemin local vers le template
+    me.buildTemplateUrl = function(relative_path_template) {
+        let themePath = "/theme/" + window.rubedoConfig.siteTheme +"/templates/blocks/";
+        return themePath + relative_path_template;
+    }
+
+    // ===================================================
+    // GESTION DES TEMPLATES CONTENT_LIST
+    // ===================================================
+
+    const TEMPLATE_RULES = [
+        {
+            nom: 'template page Programme',
+            fn: (truc_a_definir) => false,
+            template: 'contentList/ProgramTemplate.html'
+        },
+        {
+            nom: 'template par défaut',
+            fn: (a) => true,
+            template: 'contentList/contentList.html'
+        }
+    ]
+
+    me.templateUrl = "NON_DEFINI";
+    me.initTemplates = function() {
+        if (me.contents && me.contents.length > 0) me.currContentType = me.contents[0].typeId;
+        for (let rule of TEMPLATE_RULES) {
+            if (rule.fn(null)) {
+                me.templateUrl = me.buildTemplateUrl(rule.template);
+                break;
+            }
+        }
+        if (!me.templateUrl) {
+            console.log('Unable to find a template in ContentListController.js > initTemplates. Falling back to default template')
+            me.templateUrl = me.buildTemplateUrl('contentList/contentList.html');
+        }
+    }
+
+
+
     if(config.singlePage){
         options.detailPageId = config.singlePage;
     }
@@ -40,14 +83,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         $location.search(blockPagingIdentifier,(me.start/me.limit)+1);
         me.getContents(config.query, pageId, siteId, options);
     };
-				me.getVideoId = function(url){
-								var string = url.split("/");
-								var videoId = string[string.length-1];
-								if (videoId.length>12) {
-												videoId=url.split("watch?v=")[1];
-								}
-								return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+videoId+"?showinfo=0");
-				}
+    me.getVideoId = function(url) {
+        var string = url.split("/");
+        var videoId = string[string.length-1];
+        if (videoId.length>12) {
+                        videoId=url.split("watch?v=")[1];
+        }
+        return $sce.trustAsResourceUrl("https://www.youtube.com/embed/"+videoId+"?showinfo=0");
+    }
     $scope.$on('$routeUpdate', function(){window.location.reload();});
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
         alreadyPersist = false;
@@ -86,7 +129,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.count = response.data.count;
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
-																me.contents = response.data.contents;
+                me.contents = response.data.contents;
+                me.initTemplates()
+
                 var columnContentList = [];
                 if (add){
                     angular.forEach(response.data.contents,function(newContent){
