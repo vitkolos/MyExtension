@@ -4,8 +4,8 @@
         ng-repeat="content in contentListCtrl.contents track by $index">
         
         <img class="img-responsive no-margin" ng-if="content.fields.image"
-                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'200px',mode:'crop'}) }}"
-                onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=400px&height=200px&mode=crop'"
+                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'300px',height:'200px',mode:'crop'}) }}"
+                onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=400px&height=300px&mode=crop'"
                 alt="{{ content.fields.text }}"/> 
 
         <h3>
