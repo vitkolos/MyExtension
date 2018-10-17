@@ -1,12 +1,13 @@
-<div class="row">
+<div class="row program_row_container">
 
     <div class="col-xs-12 col-md-6 container"
         ng-repeat="content in contentListCtrl.contents track by $index">
         
         <img class="img-responsive no-margin" ng-if="content.fields.image"
-                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'700px',height:'350px',mode:'crop'}) }}"
+                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'200px',mode:'crop'}) }}"
+                onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=400px&height=200px&mode=crop'"
                 alt="{{ content.fields.text }}"/> 
-                                                                  
+
         <h3>
             <a ng-if="!fieldEditMode"  ng-href="{{ !fieldEditMode ? content.contentLinkUrl : ''}}">{{content.fields.text}}</a>
             <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
