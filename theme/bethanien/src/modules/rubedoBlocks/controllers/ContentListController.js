@@ -44,7 +44,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
     ]
 
-    me.templateUrl = "NON_DEFINI";
+    me.templateUrl = 'contentList/contentList.html';
     me.initTemplates = function() {
         if (me.contents && me.contents.length > 0) me.currContentType = me.contents[0].typeId;
         for (let rule of TEMPLATE_RULES) {
@@ -53,12 +53,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 break;
             }
         }
-        if (!me.templateUrl) {
-            console.log('Unable to find a template in ContentListController.js > initTemplates. Falling back to default template')
-            me.templateUrl = me.buildTemplateUrl('contentList/contentList.html');
-        } else {
-            console.log('Chose ContentList template = ', me.templateUrl)
-        }
+        console.log('Chose ContentList template = ', me.templateUrl)
     }
 
 
