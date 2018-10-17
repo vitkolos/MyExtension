@@ -27,6 +27,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         return themePath + relative_path_template;
     }
 
+    function prettyDate(unix_time) {
+        return moment.unix(unix_time).format('DD MMM YYYY')
+    }
+
     // ===================================================
     // GESTION DES TEMPLATES CONTENT_LIST
     // ===================================================
@@ -127,6 +131,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 me.queryType=response.data.queryType;
                 me.usedContentTypes=response.data.usedContentTypes;
                 me.contents = response.data.contents;
+                for (let i = 0; i < me.contents.length; i++) {
+                    me.contents[i].fields.dateDebutPretty = prettyDate(me.contents[i].fields.dateDebut)
+                }
                 me.initTemplates()
 
                 var columnContentList = [];
