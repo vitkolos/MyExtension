@@ -8,7 +8,7 @@
                 onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=200px&height=150px&mode=crop'"
                 alt="{{ content.fields.text }}"/> 
 
-        <div class="texte">
+        <div class="programme_texte">
             <h3>
                 <a ng-if="!fieldEditMode"  ng-href="{{ !fieldEditMode ? content.contentLinkUrl : ''}}">{{content.fields.text}}</a>
                 <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
@@ -25,9 +25,14 @@
 </div>
 
 <style>
+.programme_text {
+    margin: 1rem 3rem;
+}
+
 .program_row_container {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    flex-direction: row;
     align-items: center;
 }
 
@@ -41,13 +46,8 @@
 
 @media screen and (min-width: 700px) {
 	.program_col_container {
-        width: 60vw;
+        width: 40vw;
     }
-}
-
-.program_col_container h3 {
-    margin: 4px 3rem;
-    color: hsla(208, 56%, 41%, 1);
 }
 
 .program_col_container a {
