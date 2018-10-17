@@ -8,15 +8,17 @@
                 onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=200px&height=150px&mode=crop'"
                 alt="{{ content.fields.text }}"/> 
 
-        <h3>
-            <a ng-if="!fieldEditMode"  ng-href="{{ !fieldEditMode ? content.contentLinkUrl : ''}}">{{content.fields.text}}</a>
-            <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
-        </h3>
+        <div class="texte">
+            <h3>
+                <a ng-if="!fieldEditMode"  ng-href="{{ !fieldEditMode ? content.contentLinkUrl : ''}}">{{content.fields.text}}</a>
+                <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+            </h3>
 
-        <p ng-if="!contentListCtrl.titleOnly">
-            {{content.fields.summary}}
-            <rubedo-field ng-if="fieldEditMode" field="{{content.type.summary}}"></rubedo-field>
-        </p>      
+            <p ng-if="!contentListCtrl.titleOnly">
+                {{content.fields.summary}}
+                <rubedo-field ng-if="fieldEditMode" field="{{content.type.summary}}"></rubedo-field>
+            </p>   
+        </div>   
 
     </div>
 
