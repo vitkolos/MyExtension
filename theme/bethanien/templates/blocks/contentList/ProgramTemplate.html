@@ -1,1 +1,24 @@
-<div>Program template TODO</div>
+<div class="row">
+
+    <div class="col-xs-12 col-md-6 container"
+        ng-repeat="content in contentListCtrl.contents track by $index">
+
+        <a ng-if="!fieldEditMode"  ng-href="{{ !fieldEditMode ? content.contentLinkUrl : ''}}">
+            <!-- <div class="col-sm-8 col-xs-12"> -->
+                <img class="img-responsive no-margin" ng-if="content.fields.image"
+                        ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'700px',height:'350px',mode:'crop'}) }}"
+                        alt="{{ content.fields.text }}"/>                                                   
+            <!-- </div> -->
+            <!-- <div class="col-sm-4 col-xs-12"> -->
+                <h3>
+                    {{content.fields.text}}
+                    <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
+                </h3>
+                <p ng-if="!contentListCtrl.titleOnly">
+                    <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+                </p>
+            <!-- </div>    -->                 
+        </a>
+    </div>
+
+</div>
