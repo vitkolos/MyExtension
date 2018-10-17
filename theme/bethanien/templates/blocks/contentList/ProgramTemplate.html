@@ -13,8 +13,9 @@
             <rubedo-field ng-if="fieldEditMode" field="{{content.type.title}}"></rubedo-field>
         </h3>
 
-        <p>{{contentListCtrl.titleOnly}}
-            <rubedo-field field="{{content.type.summary}}"></rubedo-field>
+        <p ng-if="!contentListCtrl.titleOnly">
+            {{content.type.summary}}
+            <rubedo-field ng-if="fieldEditMode" field="{{content.type.summary}}"></rubedo-field>
         </p>      
 
     </div>
