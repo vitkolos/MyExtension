@@ -1,6 +1,6 @@
-<div class="row program_row_container">
+<div class="program_row_container">
 
-    <div class="col-xs-12 col-md-6 program_col_container"
+    <div class="program_col_container"
         ng-repeat="content in contentListCtrl.contents track by $index">
         
         <img class="img-responsive no-margin" ng-if="content.fields.image"
@@ -25,36 +25,36 @@
 </div>
 
 <style>
-.programme_text {
-    margin: 1rem 3rem;
-}
-
-.program_row_container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-}
-
-.program_col_container {
-    display: flex;
-    padding: 2rem 0;
-    margin: 0;
-    border-top: 1px solid hsla(208, 56%, 30%, 1);
-    width: 100vw;
-}
-
-@media screen and (min-width: 700px) {
-	.program_col_container {
-        width: 40vw;
+    .programme_text {
+        margin: 1rem 3rem;
     }
-}
 
-.program_col_container a {
-    color: hsla(208, 56%, 41%, 1);
-}
-.program_col_container a:hover {
-    text-decoration: none;
-    color: hsla(208, 56%, 30%, 1);
-}
+    .program_row_container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .program_col_container {
+        display: flex;
+        padding: 2rem 0;
+        margin: 0 3rem;
+        border-top: 1px solid hsla(208, 56%, 30%, 1);
+        width: 100vw;
+    }
+
+    @media screen and (min-width: 700px) {
+        .program_col_container {
+            width: 40vw;
+        }
+    }
+
+    .program_col_container a {
+        color: hsla(208, 56%, 41%, 1);
+    }
+    .program_col_container a:hover {
+        text-decoration: none;
+        color: hsla(208, 56%, 30%, 1);
+    }
 </style>
