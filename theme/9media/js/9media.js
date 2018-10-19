@@ -45,7 +45,7 @@ angular.module('rubedoBlocks').directive('neuf9', function() {
     restrict: 'AC',
     link: function(scope, elm, attrs) {
       var element = $(elm);
-      let new_html = element.html().replace(/(\s)NEUF(\s)/g, "$1N<span class='9mediaE'>_E_</span>UF$2");
+      let new_html = element.html().replace(/(\s)NEUF(\s)/g, "$1N<img class='media9E' src='/dam?media-id=5bb4c837396588895d5ef67f'>UF$2");
       console.log('debug neuf9 AC', new_html)
       element.html(new_html)
     }
