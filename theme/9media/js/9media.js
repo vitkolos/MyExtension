@@ -40,6 +40,15 @@ blocksConfig.imageBatchUpload={
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
 };
 
+angular.module('rubedoBlocks').directive('toggleclass', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, elm, attrs) {
+      var element = $(elm);
+      element.replaceWith(element.html().replace(/ NEUF /g, " N<span class='9mediaE'>_E_</span>UF "))
+    }
+ }
+});;
 
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {
