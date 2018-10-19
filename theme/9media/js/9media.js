@@ -47,7 +47,7 @@ angular.module('rubedoBlocks').directive('neuf9', function() {
       var element = $(elm);
       console.log('debug neuf9 AC', elm, element)
       // element.html().replace(/ NEUF /g, " N<span class='9mediaE'>_E_</span>UF ")
-      element.replaceWith("coco")
+      element.html("<div>coco</div>")
     }
  }
 });;
