@@ -42,7 +42,7 @@ blocksConfig.imageBatchUpload={
 
 angular.module('rubedoBlocks').directive('neuf9', function() {
   return {
-    restrict: 'A',
+    restrict: 'AC',
     link: function(scope, elm, attrs) {
       var element = $(elm);
       element.replaceWith(element.html().replace(/ NEUF /g, " N<span class='9mediaE'>_E_</span>UF "))
