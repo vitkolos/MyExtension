@@ -67,7 +67,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     // ===================================================
 
     me.parseContacts = function() {
-        console.log('debug parsecontacts ', me.contents)
         for (let i = 0; i < me.contents.length; i++) {
             if (me.contents[i].fields.summary) {
                 let res = /@[A-Z]{2}/g.exec(me.contents[i].fields.summary)
