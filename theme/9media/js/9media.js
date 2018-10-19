@@ -40,7 +40,7 @@ blocksConfig.imageBatchUpload={
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/imageBatchUploadController.js"]
 };
 
-angular.module('rubedoBlocks').directive('toggleclass', function() {
+angular.module('rubedoBlocks').directive('neuf9', function() {
   return {
     restrict: 'A',
     link: function(scope, elm, attrs) {
