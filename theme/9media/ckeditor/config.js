@@ -10,7 +10,8 @@ CKEDITOR.editorConfig = function( config ) {
         config.colorButton_colors = 'c1573c,2e2c29,d5c5b5,898989,ffffff';
         config.colorButton_enableMore = false;
 
-config.extraAllowedContent = 'p(*)[*]{*}';
+		config.extraAllowedContent = 'p(*)[*]{*}';
+		config.extraAllowedContent = 'h1(*)[*]{*}';
 
 
 };
