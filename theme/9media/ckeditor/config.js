@@ -11,7 +11,7 @@ CKEDITOR.editorConfig = function( config ) {
         config.colorButton_enableMore = false;
 
 		config.extraAllowedContent = 'p(*)[*]{*}';
-		config.extraAllowedContent = 'h1(*)[*]{*}';
+		config.extraAllowedContent = 'h1[neuf9]';
 
 
 };
