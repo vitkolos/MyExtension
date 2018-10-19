@@ -13,7 +13,7 @@
             <li ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(menuCtrl.url) > -1}">
                 <a class="menu_entry" ng-href="/{{menuCtrl.currentLang}}/">ACCUEIL</a>
             </li>
-            <li ng-repeat="page in menuCtrl.pagesBlocks" class="lborder" ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(page.url) > -1}">
+            <li ng-repeat="page in menuCtrl.pagesBlocks" class="lborder" ng-if="!['Blog'].includes(page.title)" ng-class="{menupage_active:menuCtrl.currentRouteline.indexOf(page.url) > -1}">
                 <a ng-href="{{page.url}}">{{page.title | uppercase}}</a>
             </li>
         </ul>
