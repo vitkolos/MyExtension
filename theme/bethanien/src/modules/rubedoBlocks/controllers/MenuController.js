@@ -16,12 +16,47 @@
         } else {
             var pageId=$scope.rubedo.current.page.id;
         }
+
+        me.urls = {}
         me.getUrlById = function(page_id) {
             console.log('getUrlById going to ', page_id)
             RubedoPagesService.getPageById(page_id, true).then(function(response){
-                console.log('getUrlById', response)
+                console.log('getUrlById', response.data)
                 if (response.data.success){
-                    window.location.href = page_id
+                    if($scope.rubedo.current.page.contentCanonicalUrl) {
+                        // Get content id
+                        urlArray = $route.current.params.routeline.split("/");
+                        contentId = urlArray[urlArray.length-2];
+                        //Redirect with title
+                        RubedoContentsService.getContentById(contentId).then(function(contentResponse){
+                            if (contentResponse.data.success){
+                                console.log('getUtlById', contentResponse)
+                                //console.log(contentResponse.data.content);
+                                var contentSegment=contentResponse.data.content.text;
+                                    if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
+                                        contentSegment=contentResponse.data.content.fields.urlSegment;
+                                    }
+                                    me.urls(page_id) = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                                } 
+                                else {
+                                    me.urls(page_id) = response.data.url;
+                                }
+                        },
+                        function(){
+                            me.urls(page_id) = response.data.url;
+                        });
+                    } else {
+                        var currentParams = angular.element.param($location.search());
+                        var url = response.data.url;
+                        if(currentParams != "") {
+                            if(response.data.url.indexOf("?") > -1) {
+                                url = response.data.url + currentParams;
+                            } else {
+                                url = response.data.url + "?" + currentParams;
+                            }
+                        }
+                        me.urls(page_id) = url;
+                    }
                 }
             })
         }
