@@ -36,14 +36,14 @@
                                     if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
                                         contentSegment=contentResponse.data.content.fields.urlSegment;
                                     }
-                                    me.urls(page_id) = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                                    me.urls[page_id] = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
                                 } 
                                 else {
-                                    me.urls(page_id) = response.data.url;
+                                    me.urls[page_id] = response.data.url;
                                 }
                         },
                         function(){
-                            me.urls(page_id) = response.data.url;
+                            me.urls[page_id] = response.data.url;
                         });
                     } else {
                         var currentParams = angular.element.param($location.search());
@@ -55,7 +55,7 @@
                                 url = response.data.url + "?" + currentParams;
                             }
                         }
-                        me.urls(page_id) = url;
+                        me.urls[page_id] = url;
                     }
                 }
             })
