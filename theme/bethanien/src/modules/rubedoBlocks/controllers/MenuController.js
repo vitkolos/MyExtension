@@ -63,6 +63,14 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         me.getFlagUrl = function(flagCode){
             return '/assets/flags/16/'+flagCode+'.png';
         };
+        me.getUrlById = function(page_id) {
+            RubedoPagesService.getPageById($scope.rubedo.current.page.id,true).then(function(response){
+                console.log('getUrlById', response)
+                if (response.data.success){
+                    
+                }
+            })
+        }
         me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
                 RubedoModuleConfigService.changeLang(lang);
