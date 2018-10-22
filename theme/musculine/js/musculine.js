@@ -12,14 +12,14 @@ angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',f
     var serviceInstance={};
     serviceInstance.paymentService=function(produits, facturation, content){
         return($http({
-                url:"/api/v1/musculinepayment",
-                method:"POST",
-                data:{
-                    products:produits,
-                    facturation:facturation,
-                    content: content
-                }
-            }));
+            url:"/api/v1/musculinepayment",
+            method:"POST",
+            data:{
+                products: produits,
+                facturation: facturation,
+                content: content
+            }
+        }));
     };
     return serviceInstance;
 }]);

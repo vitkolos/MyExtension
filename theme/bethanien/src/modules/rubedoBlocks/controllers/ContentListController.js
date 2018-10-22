@@ -60,7 +60,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
                 break;
             }
         }
-        console.log('Chose ContentList template = ', me.templateUrl)
+        //console.log('Chose ContentList template = ', me.templateUrl)
     }
 
 
@@ -79,7 +79,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             });
         }
     }
-    me.titleOnly = config.showOnlyTitle; console.log('titleOnly=', me.titleOnly, config)
+    me.titleOnly = config.showOnlyTitle; //console.log('titleOnly=', me.titleOnly, config)
     me.columns = config.columns && !config.infiniteScroll ? 'col-md-'+(12/config.columns):'col-md-12';
     me.showPaginator = config.showPager && !config.infiniteScroll;
     me.changePageAction = function(){

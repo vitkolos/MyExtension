@@ -22,9 +22,7 @@
         // va stocker l'url relative correspondant à page_id (id d'une page) dans me.urls[page_id]
         // on peut l'utiliser comme ça : faire un ng-init="menuCtrl.getUrlById('12345')" puis on insère un <a ng-href="{{menuCtrl.urls['12345']}}"">link</a>
         me.getUrlById = function(page_id) { 
-            console.log('getUrlById going to ', page_id)
             RubedoPagesService.getPageById(page_id, true).then(function(response){
-                console.log('getUrlById', response.data)
                 if (!response.data.success) throw "Error1 in MenuController > getUrlById";
                 me.urls[page_id] = response.data.url;
             })

@@ -92,30 +92,30 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
         else {
             me.loading=true;
              var payLoad={
-                    status:"published",
-                    typeId:"56c33483c445ecff008b6409",
-                    writeWorkspace:"552d2a2845205eb02d8a64e9",
-                    target:"552d2a2845205eb02d8a64e9",
-                    fields: {
-                        "text":"Commande "+me.facture.surname+" "+me.facture.name,
-                        "summary":"",
-                        "name":me.facture.name,
-                        "surname":me.facture.surname,
-                        "address":me.facture.address,
-                        "city":me.facture.city,
-                        "cp":me.facture.cp,
-                        "telephone":me.facture.telephone,
-                        "email":me.facture.email,
-																								"MUS250T":me.small_trad,
-																								"MUS250O": me.small_or,
-																								"MUS700T": me.big_trad,
-																								"MUS700O": me.big_or,
-																								"totalPrice":me.totalPrice()
-                    }
+                status:"published",
+                typeId:"56c33483c445ecff008b6409",
+                writeWorkspace:"552d2a2845205eb02d8a64e9",
+                target:"552d2a2845205eb02d8a64e9",
+                fields: {
+                    "text":"Commande "+me.facture.surname+" "+me.facture.name,
+                    "summary":"",
+                    "name":me.facture.name,
+                    "surname":me.facture.surname,
+                    "address":me.facture.address,
+                    "city":me.facture.city,
+                    "cp":me.facture.cp,
+                    "telephone":me.facture.telephone,
+                    "email":me.facture.email,
+                    "MUS250T":me.small_trad,
+                    "MUS250O": me.small_or,
+                    "MUS700T": me.big_trad,
+                    "MUS700O": me.big_or,
+                    "totalPrice":me.totalPrice()
+                }
             };
-												if (me.facture.codePromo && me.facture.codePromo != '') {
-																payLoad.fields.codePromo = me.facture.codePromo;
-												}
+            if (me.facture.codePromo && me.facture.codePromo != '') {
+                payLoad.fields.codePromo = me.facture.codePromo;
+            }
            
             MusculinePaymentService.paymentService(me.contents, me.facture, payLoad).then(function(response){
                 if (response.data.success) {
@@ -129,42 +129,42 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
         }
        
     }
-				if ($scope.rubedo.current.user) {
-								RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
-												function(response){
-																if (response.data.success){
-																				me.currentUser=response.data.user;
-																				if (angular.element.isEmptyObject(me.currentUser.fields.address)){
-																								me.currentUser.fields.address={};
-																				}
-																				if (angular.element.isEmptyObject(me.currentUser.fields.billingAddress)){
-																								me.currentUser.fields.billingAddress={};
-																				}
-																				if (angular.element.isEmptyObject(me.currentUser.fields.shippngAddress)){
-																								me.currentUser.fields.shippingAddress={};
-																				}
-																}
-																console.log(me.currentUser);
-																if (me.currentUser.fields.address.address1) {
-																				me.facture.address = me.currentUser.fields.address.address1;
-																}
-																if (me.currentUser.fields.address.city) {
-																				me.facture.city = me.currentUser.fields.address.city;
-																}
-																if (me.currentUser.fields.address.postCode) {
-																				me.facture.cp = me.currentUser.fields.address.postCode;
-																}
-																me.facture.name = me.currentUser.fields.nom;
-																me.facture.surname = me.currentUser.fields.surname;
-																me.facture.email = me.currentUser.fields.email;
-																if (me.currentUser.fields.tel1) {
-																				me.facture.telephone = me.currentUser.fields.tel1;
-																}
-												}
+    if ($scope.rubedo.current.user) {
+        RubedoUsersService.getUserById($scope.rubedo.current.user.id).then(
+            function(response){
+                if (response.data.success){
+                    me.currentUser=response.data.user;
+                    if (angular.element.isEmptyObject(me.currentUser.fields.address)){
+                        me.currentUser.fields.address={};
+                    }
+                    if (angular.element.isEmptyObject(me.currentUser.fields.billingAddress)){
+                        me.currentUser.fields.billingAddress={};
+                    }
+                    if (angular.element.isEmptyObject(me.currentUser.fields.shippngAddress)){
+                        me.currentUser.fields.shippingAddress={};
+                    }
+                }
+                console.log(me.currentUser);
+                if (me.currentUser.fields.address.address1) {
+                    me.facture.address = me.currentUser.fields.address.address1;
+                }
+                if (me.currentUser.fields.address.city) {
+                    me.facture.city = me.currentUser.fields.address.city;
+                }
+                if (me.currentUser.fields.address.postCode) {
+                    me.facture.cp = me.currentUser.fields.address.postCode;
+                }
+                me.facture.name = me.currentUser.fields.nom;
+                me.facture.surname = me.currentUser.fields.surname;
+                me.facture.email = me.currentUser.fields.email;
+                if (me.currentUser.fields.tel1) {
+                    me.facture.telephone = me.currentUser.fields.tel1;
+                }
+            }
 
-								);
-				}
-				me.updateUser=function(){
+        );
+    }
+    me.updateUser=function(){
         /*var payload=angular.copy(me.currentUser);
         payload.fields=angular.copy($scope.fieldEntity);
         delete (payload.type);
