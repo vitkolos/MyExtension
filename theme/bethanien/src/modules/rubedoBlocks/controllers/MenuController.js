@@ -19,7 +19,7 @@
         }
 
         me.urls = {}
-        // va stocker l'url relative correspondant à page_id (id d'une page ou d'un contenu) dans me.urls[page_id]
+        // va stocker l'url relative correspondant à page_id (id d'une page) dans me.urls[page_id]
         // on peut l'utiliser comme ça : faire un ng-init="menuCtrl.getUrlById('12345')" puis on insère un <a ng-href="{{menuCtrl.urls['12345']}}"">link</a>
         me.getUrlById = function(page_id) { 
             console.log('getUrlById going to ', page_id)
@@ -27,18 +27,6 @@
                 console.log('getUrlById', response.data)
                 if (!response.data.success) throw "Error1 in MenuController > getUrlById";
                 me.urls[page_id] = response.data.url;
-            }).catch(err => {
-                RubedoContentsService.getContentById(page_id).then(contentResponse => {
-                    console.log('getUrlById2', page_id, contentResponse)
-                    if (!contentResponse.data.success) throw "Error2 in MenuController > getUrlById";
-                    var contentSegment = contentResponse.data.content.text;
-                    if (contentResponse.data.content.fields.urlSegment && contentResponse.data.content.fields.urlSegment != ""){
-                        contentSegment = contentResponse.data.content.fields.urlSegment;
-                    }
-                    let root = (me.rootUrl) ? me.rootUrl: $location.path();
-                    console.log('getUrlById3', root)
-                    me.urls[page_id] = root + "/" + page_id + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                })
             })
         }
         me.onSubmit = function(){

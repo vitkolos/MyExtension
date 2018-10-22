@@ -2,7 +2,7 @@
     ng-controller="MenuController as menuCtrl"  scroll-position="scroll" 
     ng-class="{'transparent':(rubedo.current.page.id==blockConfig.rootPage && scroll<500)}"
     ng-init="
-        menuCtrl.getUrlById('5bc9c6f1396588944af179f4');
+        menuCtrl.getUrlById('596489e0396588da41cd2a56'); /* https://www.haus-bethanien.ch/fr/accueil/locaux/restaurant */
         lg = rubedo.current.page.locale;
         lang = {
             de: {
@@ -31,6 +31,7 @@
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
                         <li ng-if="blockConfig.displayRootPage"><a ng-if="blockConfig.displayRootPage" ng-href="{{menuCtrl.menu.url}}">{{menuCtrl.menu.text}}</a></li>
+                        <!-- page du resto ajoutée à la main -->
                         <li><a ng-href="{{menuCtrl.urls['596489e0396588da41cd2a56']}}">Restaurant</a></li>
                         <li ng-repeat="page in menuCtrl.menu.pages track by $index"
                             ng-class="{active:menuCtrl.currentRouteline.indexOf(page.url+'/') > -1 ||  menuCtrl.currentRouteline.indexOf(page.url,menuCtrl.currentRouteline.length-page.url.length) > -1, dropdown:page.pages&&blockConfig.menuLevel>1}">
