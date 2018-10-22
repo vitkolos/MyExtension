@@ -31,8 +31,8 @@
                 contentId = urlArray[urlArray.length-2];
                 //Redirect with title
                 RubedoContentsService.getContentById(page_id).then(function(contentResponse){
+                    console.log('getUtlById', contentResponse)
                     if (contentResponse.data.success){
-                        console.log('getUtlById', contentResponse)
                         //console.log(contentResponse.data.content);
                         var contentSegment=contentResponse.data.content.text;
                         if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
