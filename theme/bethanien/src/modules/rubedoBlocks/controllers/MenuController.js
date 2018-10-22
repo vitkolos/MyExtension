@@ -64,6 +64,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
             return '/assets/flags/16/'+flagCode+'.png';
         };
         me.getUrlById = function(page_id) {
+            console.log('getUrlById going to ', page_id)
             RubedoPagesService.getPageById(page_id, true).then(function(response){
                 console.log('getUrlById', response)
                 if (response.data.success){
