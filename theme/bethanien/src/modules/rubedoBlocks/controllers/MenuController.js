@@ -71,6 +71,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                 }
             })
         }
+        me.getUrlById('596489e0396588da41cd2a56')
         me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
                 RubedoModuleConfigService.changeLang(lang);
