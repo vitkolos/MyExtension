@@ -4,6 +4,7 @@
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
         me.menu={};
         var lang = $route.current.params.lang;
+        me.rootUrl = ""; // sera chargé dans RubedoMenuService.getMenu
         me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
         me.currentRouteline=$location.path();
         var config=$scope.blockConfig;
@@ -18,53 +19,25 @@
         }
 
         me.urls = {}
-        me.getUrlById = function(page_id) {
+        // va stocker l'url relative correspondant à page_id (id d'une page ou d'un contenu) dans me.urls[page_id]
+        // on peut l'utiliser comme ça : faire un ng-init="menuCtrl.getUrlById('12345')" puis on insère un <a ng-href="{{menuCtrl.urls['12345']}}"">link</a>
+        me.getUrlById = function(page_id) { 
             console.log('getUrlById going to ', page_id)
             RubedoPagesService.getPageById(page_id, true).then(function(response){
                 console.log('getUrlById', response.data)
-                if (response.data.success) {
-                    me.urls[page_id] = response.data.url;
-                    return
-                } 
-                // Get content id
-                urlArray = $route.current.params.routeline.split("/");
-                contentId = urlArray[urlArray.length-2];
-                //Redirect with title
-                RubedoContentsService.getContentById(page_id).then(function(contentResponse){
-                    console.log('getUtlById', contentResponse)
-                    if (contentResponse.data.success){
-                        //console.log(contentResponse.data.content);
-                        var contentSegment=contentResponse.data.content.text;
-                        if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
-                            contentSegment=contentResponse.data.content.fields.urlSegment;
-                        }
-                        me.urls[page_id] = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                    } 
-                    else {
-                        me.urls[page_id] = response.data.url;
-                    }
-                },
-                function(){
-                    me.urls[page_id] = response.data.url;
-                });
+                if (!response.data.success) throw "Error1 in MenuController > getUrlById";
+                me.urls[page_id] = response.data.url;
             }).catch(err => {
                 RubedoContentsService.getContentById(page_id).then(contentResponse => {
                     console.log('getUrlById2', contentResponse)
-                    if (contentResponse.data.success){
-                        //console.log(contentResponse.data.content);
-                        var contentSegment=contentResponse.data.content.text;
-                        if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
-                            contentSegment=contentResponse.data.content.fields.urlSegment;
-                        }
-                        me.urls[page_id] = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                    } 
-                    else {
-                        me.urls[page_id] = response.data.url;
+                    if (!contentResponse.data.success) throw "Error2 in MenuController > getUrlById";
+                    var contentSegment = contentResponse.data.content.text;
+                    if (contentResponse.data.content.fields.urlSegment && contentResponse.data.content.fields.urlSegment != ""){
+                        contentSegment = contentResponse.data.content.fields.urlSegment;
                     }
-                },
-                function(){
-                    me.urls[page_id] = response.data.url;
-                });
+                    let root = (me.rootUrl) ? me.rootUrl: $location.path();
+                    me.urls[page_id] = root + "/" + page_id + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                })
             })
         }
         me.onSubmit = function(){
@@ -78,6 +51,7 @@
         RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
+                me.rootUrl = me.menu.url;
             } else {
                 me.menu={};
             }
