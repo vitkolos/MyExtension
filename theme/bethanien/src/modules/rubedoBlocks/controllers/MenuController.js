@@ -47,6 +47,24 @@
                 function(){
                     me.urls[page_id] = response.data.url;
                 });
+            }).catch(err => {
+                RubedoContentsService.getContentById(page_id).then(contentResponse => {
+                    console.log('getUrlById2', contentResponse)
+                    if (contentResponse.data.success){
+                        //console.log(contentResponse.data.content);
+                        var contentSegment=contentResponse.data.content.text;
+                        if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
+                            contentSegment=contentResponse.data.content.fields.urlSegment;
+                        }
+                        me.urls[page_id] = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                    } 
+                    else {
+                        me.urls[page_id] = response.data.url;
+                    }
+                },
+                function(){
+                    me.urls[page_id] = response.data.url;
+                });
             })
         }
         me.onSubmit = function(){
