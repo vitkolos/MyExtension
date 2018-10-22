@@ -23,7 +23,9 @@
             RubedoPagesService.getPageById(page_id, true).then(function(response){
                 console.log('getUrlById', response.data)
                 if (response.data.success){
-                    if($scope.rubedo.current.page.contentCanonicalUrl) {
+                    if (!$scope.rubedo.current.page.contentCanonicalUrl) {
+                        me.urls[page_id] = response.data.url;
+                    } else {
                         // Get content id
                         urlArray = $route.current.params.routeline.split("/");
                         contentId = urlArray[urlArray.length-2];
@@ -45,17 +47,6 @@
                         function(){
                             me.urls[page_id] = response.data.url;
                         });
-                    } else {
-                        var currentParams = angular.element.param($location.search());
-                        var url = response.data.url;
-                        if(currentParams != "") {
-                            if(response.data.url.indexOf("?") > -1) {
-                                url = response.data.url + currentParams;
-                            } else {
-                                url = response.data.url + "?" + currentParams;
-                            }
-                        }
-                        me.urls[page_id] = url;
                     }
                 }
             })
