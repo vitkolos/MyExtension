@@ -22,33 +22,31 @@
             console.log('getUrlById going to ', page_id)
             RubedoPagesService.getPageById(page_id, true).then(function(response){
                 console.log('getUrlById', response.data)
-                if (response.data.success){
-                    if (!$scope.rubedo.current.page.contentCanonicalUrl) {
+                if (response.data.success) {
+                    me.urls[page_id] = response.data.url;
+                    return
+                } 
+                // Get content id
+                urlArray = $route.current.params.routeline.split("/");
+                contentId = urlArray[urlArray.length-2];
+                //Redirect with title
+                RubedoContentsService.getContentById(page_id).then(function(contentResponse){
+                    if (contentResponse.data.success){
+                        console.log('getUtlById', contentResponse)
+                        //console.log(contentResponse.data.content);
+                        var contentSegment=contentResponse.data.content.text;
+                        if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
+                            contentSegment=contentResponse.data.content.fields.urlSegment;
+                        }
+                        me.urls[page_id] = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                    } 
+                    else {
                         me.urls[page_id] = response.data.url;
-                    } else {
-                        // Get content id
-                        urlArray = $route.current.params.routeline.split("/");
-                        contentId = urlArray[urlArray.length-2];
-                        //Redirect with title
-                        RubedoContentsService.getContentById(contentId).then(function(contentResponse){
-                            if (contentResponse.data.success){
-                                console.log('getUtlById', contentResponse)
-                                //console.log(contentResponse.data.content);
-                                var contentSegment=contentResponse.data.content.text;
-                                    if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
-                                        contentSegment=contentResponse.data.content.fields.urlSegment;
-                                    }
-                                    me.urls[page_id] = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                                } 
-                                else {
-                                    me.urls[page_id] = response.data.url;
-                                }
-                        },
-                        function(){
-                            me.urls[page_id] = response.data.url;
-                        });
                     }
-                }
+                },
+                function(){
+                    me.urls[page_id] = response.data.url;
+                });
             })
         }
         me.onSubmit = function(){
