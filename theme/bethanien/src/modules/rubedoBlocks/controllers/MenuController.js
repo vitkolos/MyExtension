@@ -29,7 +29,7 @@
                 me.urls[page_id] = response.data.url;
             }).catch(err => {
                 RubedoContentsService.getContentById(page_id).then(contentResponse => {
-                    console.log('getUrlById2', contentResponse)
+                    console.log('getUrlById2', pageId, contentResponse)
                     if (!contentResponse.data.success) throw "Error2 in MenuController > getUrlById";
                     var contentSegment = contentResponse.data.content.text;
                     if (contentResponse.data.content.fields.urlSegment && contentResponse.data.content.fields.urlSegment != ""){
