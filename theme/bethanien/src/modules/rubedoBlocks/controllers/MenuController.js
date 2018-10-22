@@ -16,6 +16,15 @@
         } else {
             var pageId=$scope.rubedo.current.page.id;
         }
+        me.getUrlById = function(page_id) {
+            console.log('getUrlById going to ', page_id)
+            RubedoPagesService.getPageById(page_id, true).then(function(response){
+                console.log('getUrlById', response)
+                if (response.data.success){
+                    window.location.href = page_id
+                }
+            })
+        }
         me.onSubmit = function(){
             var paramQuery = me.query?'?query='+me.query:'';
             RubedoPagesService.getPageById(config.searchPage).then(function(response){
@@ -63,15 +72,6 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         me.getFlagUrl = function(flagCode){
             return '/assets/flags/16/'+flagCode+'.png';
         };
-        me.getUrlById = function(page_id) {
-            console.log('getUrlById going to ', page_id)
-            RubedoPagesService.getPageById(page_id, true).then(function(response){
-                console.log('getUrlById', response)
-                if (response.data.success){
-                    window.location.href = page_id
-                }
-            })
-        }
         
         me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
