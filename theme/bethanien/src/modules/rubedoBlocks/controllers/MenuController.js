@@ -36,6 +36,7 @@
                         contentSegment = contentResponse.data.content.fields.urlSegment;
                     }
                     let root = (me.rootUrl) ? me.rootUrl: $location.path();
+                    console.log('getUrlById3', root)
                     me.urls[page_id] = root + "/" + page_id + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
                 })
             })
