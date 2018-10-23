@@ -125,7 +125,7 @@
                                 <h4 class="list-item-title capital"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
                                 </h4>
 
-                                <div class="list-item-img" ng-class="{'no-img':!content.fields.image}">
+                                <div class="list-item-img" ><!--ng-class="{'no-img':!content.fields.image}"-->
                                     <img class="media-object pull-left" ng-if="content.fields.image"
                                                  ng-src="{{ rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>
