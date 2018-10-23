@@ -129,7 +129,7 @@
                                     <img class="media-object pull-left" ng-if="content.fields.image"
                                                  ng-src="{{ rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>
-                                    <img class="media-object pull-left" ng-else 
+                                    <img class="media-object pull-left" ng-if="!content.fields.image"
                                                 ng-src="{{ rubedo.imageUrl.getUrlByMediaId('57175694c445ecda008c4b31',{width:'400px',height:'266px',mode:'crop'}) }}"
                                                 alt="{{ content.fields.text }}"/>
                                 </div>
