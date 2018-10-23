@@ -302,18 +302,18 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
 
     me.handleStage3Submit=function(){
         me.stage3Error=null;
-								if(window.ga) {
-																window.ga('send', 'event', 'Checkout process', 'Facturation et expéditions');
-								}
+        if(window.ga) {
+            window.ga('send', 'event', 'Checkout process', 'Facturation et expéditions');
+        }
         me.persistUserChanges(me.stage3Error);
 								
     };
 
     me.handleStage4Submit=function(){
         me.stage4Error=null;
-								if(window.ga) {
-																window.ga('send', 'event', 'Checkout process', 'Livraison');
-								}
+        if(window.ga) {
+            window.ga('send', 'event', 'Checkout process', 'Livraison');
+        }
         me.persistUserChanges(me.stage4Error,true);
     };
 
@@ -323,9 +323,9 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             me.stage5Error=$scope.rubedo.translate("Blocks.Checkout.Label.ChooseShipper","Please choose a shipper");
         } else {
             me.setCurrentStage(me.currentStage+1);
-												if(window.ga) {
-																window.ga('send', 'event', 'Checkout process', 'Expéditeurs');
-								}
+            if(window.ga) {
+                window.ga('send', 'event', 'Checkout process', 'Expéditeurs');
+            }
         }
     };
 
@@ -348,8 +348,8 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
             function(response){
                 if (response.data.success){
                     var myOrderId=response.data.order.id;
-																				if(window.ga) {
-                            window.ga('send', 'event', 'Commandes', 'Création', myOrderId, response.data.order.finalPrice);
+                    if(window.ga) {
+                        window.ga('send', 'event', 'Commandes', 'Création', myOrderId, response.data.order.finalPrice);
                     }
                     $location.url(me.orderDetailPageUrl+"?order="+myOrderId);
                     //$scope.rubedo.sendGaEvent('/form/', 'order');

@@ -128,6 +128,7 @@
                                 <div class="list-item-img" ng-class="{'no-img':!content.fields.image}">
                                     <img class="media-object pull-left" ng-if="content.fields.image"
                                                  ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
+                                                 onerror="this.src='https://www.chemin-neuf.fr/dam?media-id=57175694c445ecda008c4b31&width=400px&height=266px&mode=crop'"
                                                  alt="{{ content.fields.text }}"/>
                                     
                                 </div>

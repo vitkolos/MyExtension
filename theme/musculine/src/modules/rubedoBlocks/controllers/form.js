@@ -10,18 +10,19 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
         }
     );
     $scope.Math = Math;
-    me.facture={};
+    me.facture = {
+        countryname: "FRANCE",
+        country: "FR",
+    };
     me.user={};
-    me.facture.countryname="FRANCE";
-    me.facture.country="FR";
     me.expedition={};
     // get prices of products
     me.stprice = 0;
     me.soprice = 0;
-    me.btprice =0;
+    me.btprice = 0;
     me.boprice = 0;
-    var pageId=$scope.rubedo.current.page.id;
-    var siteId=$scope.rubedo.current.site.id;
+    var pageId = $scope.rubedo.current.page.id;
+    var siteId = $scope.rubedo.current.site.id;
     var queryId = "5604067145205eb9346e124b";
     RubedoProductsService.getContents(queryId,pageId,siteId).then(function(response){
         if (response.data.success){
@@ -72,10 +73,10 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
         }
         return fraisExp;
     }
+
     me.tva = function(){
         return (me.small_trad*me.stprice + me.small_or*me.soprice + me.big_trad*me.btprice + me.big_or*me.boprice)*0.055;
     }
-    
 
     me.payment = function(valide){
         me.contents['MUS250T'].quantite = me.small_trad;
@@ -119,7 +120,7 @@ angular.module("rubedoBlocks").lazy.controller('FormController',['$scope','Rubed
            
             MusculinePaymentService.paymentService(me.contents, me.facture, payLoad).then(function(response){
                 if (response.data.success) {
-                    window.location.href= response.data.url;
+                    window.location.href = response.data.url;
                 }
                 else {
                     me.loading = false;

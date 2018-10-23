@@ -120,35 +120,33 @@ class PaypalIpnCcnResource extends AbstractResource
                 }
             }  
             else {
-            $mailerService = Manager::getService('Mailer');
-            $mailerObject = $mailerService->getNewMessage();
-            $destinataires=array("web@chemin-neuf.org");
-            $replyTo="web@chemin-neuf.org";
-            $from="web@chemin-neuf.org";
-            $sujet = "Test";
-            $body="retour de paypal : payement status unconfirmed\n";
-            foreach ($_POST as $key => $value) {
-                
-                $body .= $key . " : " . $value . "\n";
-            }
-            $mailerObject->setTo($destinataires);
-            $mailerObject->setFrom($from);
-            $mailerObject->setSubject($sujet);
-            $mailerObject->setReplyTo($replyTo);
-            $mailerObject->setBody($body);
-            $mailerService->sendMessage($mailerObject, $errors);
+                $mailerService = Manager::getService('Mailer');
+                $mailerObject = $mailerService->getNewMessage();
+                $destinataires=array("web@chemin-neuf.org");
+                $replyTo="web@chemin-neuf.org";
+                $from="web@chemin-neuf.org";
+                $sujet = "Test";
+                $body="retour de paypal : payement status unconfirmed\n";
+                foreach ($_POST as $key => $value) {
+                    $body .= $key . " : " . $value . "\n";
+                }
+                $mailerObject->setTo($destinataires);
+                $mailerObject->setFrom($from);
+                $mailerObject->setSubject($sujet);
+                $mailerObject->setReplyTo($replyTo);
+                $mailerObject->setBody($body);
+                $mailerService->sendMessage($mailerObject, $errors);
             }
             
             // check that payment_amount/payment_currency are correct
             // process the notification
             
-            
-            return array("success"=>true);
+            return array("success" => true);
         } 
         else if (strcmp ($res, "INVALID") == 0) {
             $mailerService = Manager::getService('Mailer');
             $mailerObject = $mailerService->getNewMessage();
-            $destinataires=array("nicolas.rhone@chemin-neuf.org");
+            $destinataires=array("nicolas.rhone@chemin-neuf.org", "web@chemin-neuf.org");
             $replyTo="web@chemin-neuf.org";
             $from="web@chemin-neuf.org";
             $sujet = "Test";

@@ -8,17 +8,11 @@ use Zend\View\Model\JsonModel;
 use Rubedo\Collection\AbstractLocalizableCollection;
 use Rubedo\Services\Manager;
 use WebTales\MongoFilters\Filter;
-
-
-
 use Rubedo\Interfaces\Collection\IAbstractCollection;
 
 class MusculinepaymentResource extends AbstractResource {
 
-
-    
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this
             ->definition
@@ -50,71 +44,67 @@ class MusculinepaymentResource extends AbstractResource {
                     ;
             });
     }
+
     public function postAction($params) {
-
-    
-    $query = array();
-    $query['currency_code'] = 'EUR'; //devise
-    $query['lc'] = 'FR'; // langue
-    
-    
-
-    /*infos de facturation*/
-
-
+        $query = array();
+        $query['currency_code'] = 'EUR'; //devise
+        $query['lc'] = 'FR'; // langue
         
-    $query['return'] = 'http://musculine.fr';
+        /*infos de facturation*/
+        $query['return'] = 'http://www.musculine.fr';
 
-    $query['notify_url'] = 'http://musculine.fr';
-    $query['cmd'] = '_cart';
-    $query['upload'] = '1';
-    $query['business'] ='ateliers.dombes@chemin-neuf.org';
-    $query['address_override'] = '1';
-    $query['first_name'] = $params['facturation']['surname'];
-    $query['last_name'] =$params['facturation']['name'];
-    $query['email'] =$params['facturation']['email'];
-    $query['address1'] = $params['facturation']['address'];
-    $query['city'] = $params['facturation']['city'];
-    $query['country'] = $params['facturation']['country'];
-    //$query['tax_cart']= 55;
-    /*$query['state'] = $params['facturation']['state'];*/
-    $query['zip'] = $params['facturation']['cp'];
-    if($params['facturation']['telephone'][0] == 0) {
-        $query['night_phone_b'] = substr($params['facturation']['telephone'],1);
-    }
-    else {
-        $query['night_phone_b'] = $params['facturation']['telephone'];
-    }
-    $isPromo=false;
-    if(isset($params['facturation']['codePromo'])) {
-        $query['custom'] =$params['facturation']['codePromo'];
-        $isPromo = false;
-        $wasFiltered = AbstractCollection::disableUserFilter(true);
-        $contentsService = Manager::getService("ContentsCcn");
-        $codePromos = $contentsService->findById("58dd015024564055068b82c7",false,false)['fields'];
-        foreach ($codePromos["multi"] as $codePromo){
-            if($codePromo == $params['facturation']['codePromo']) {$isPromo=true; break;}
+        $query['notify_url'] = 'http://www.musculine.fr';
+        $query['cmd'] = '_cart';
+        $query['upload'] = '1';
+        $query['business'] = 'ateliers.dombes@chemin-neuf.org';//'magasin.henri4@chemin-neuf.org';
+        $query['address_override'] = '1';
+        $query['first_name'] = $params['facturation']['surname'];
+        $query['last_name'] = $params['facturation']['name'];
+        $query['email'] = $params['facturation']['email'];
+        $query['address1'] = $params['facturation']['address'];
+        $query['city'] = $params['facturation']['city'];
+        $query['country'] = $params['facturation']['country'];
+        //$query['tax_cart']= 55;
+        /*$query['state'] = $params['facturation']['state'];*/
+        $query['zip'] = $params['facturation']['cp'];
+        if($params['facturation']['telephone'][0] == 0) {
+            $query['night_phone_b'] = substr($params['facturation']['telephone'],1);
+        }
+        else {
+            $query['night_phone_b'] = $params['facturation']['telephone'];
+        }
+
+        // === GESTION CODES PROMO ===
+        $isPromo=false;
+        if(isset($params['facturation']['codePromo'])) {
+            $query['custom'] =$params['facturation']['codePromo'];
+            $isPromo = false;
+            $wasFiltered = AbstractCollection::disableUserFilter(true);
+            $contentsService = Manager::getService("ContentsCcn");
+            $codePromos = $contentsService->findById("58dd015024564055068b82c7",false,false)['fields'];
+            foreach ($codePromos["multi"] as $codePromo){
+                if($codePromo == $params['facturation']['codePromo']) {$isPromo=true; break;}
+            }
+            
+            $wasFiltered = AbstractCollection::disableUserFilter(false);
         }
         
-        $wasFiltered = AbstractCollection::disableUserFilter(false);
-    }
-    
-        /*quantités et prix des produits*/
-    $counter = 1;
-    $poids = 0;
-    foreach ($params['products'] as $sku => $product) {
-        if($product["quantite"]>0){
-            $query['item_name_'.$counter] = $product["titre"] ;
-            $query['quantity_'.$counter] =$product["quantite"];
-            $query['amount_'.$counter] = round($product["prix"],2);
-            $poids+= $product["quantite"] * $product["poids"];
-            $query['tax_rate_'.$counter] = 5.5;
-            if($isPromo) $query['discount_rate_'.$counter] = 10;
-            $counter++;
+        // === quantités et prix des produits ===
+        $counter = 1;
+        $poids = 0;
+        foreach ($params['products'] as $sku => $product) {
+            if($product["quantite"]>0){
+                $query['item_name_'.$counter] = $product["titre"] ;
+                $query['quantity_'.$counter] =$product["quantite"];
+                $query['amount_'.$counter] = round($product["prix"],2);
+                $poids+= $product["quantite"] * $product["poids"];
+                $query['tax_rate_'.$counter] = 5.5;
+                if($isPromo) $query['discount_rate_'.$counter] = 10;
+                $counter++;
+            };
         };
-    };
     
-    /*frais d'expédition*/
+        // === frais d'expédition ===
         $fraisExp = 0;
         if ($poids>0 AND $poids<=500) {
            $fraisExp = 6.13;
@@ -131,44 +121,41 @@ class MusculinepaymentResource extends AbstractResource {
         elseif ($poids>2000) {
             $fraisExp =10.93;
         }
-    $query['shipping_1'] = $fraisExp;
+        $query['shipping_1'] = $fraisExp;
 
-    // Prepare query string
-    $query_string = http_build_query($query);
+        // === Prepare query string ===
+        $query_string = http_build_query($query);
 
-    $data = $params['content'];
-    $data['online'] = false;
-    $data['text'] = $data['fields']['text'];
-    $data['nativeLanguage'] = $params['lang']->getLocale();
-    $data['i18n'] =  array(
-        $params['lang']->getLocale() => array(
-            "fields" => array(
-                "text"=>$data['text'] 
+        $data = $params['content'];
+        $data['online'] = false;
+        $data['text'] = $data['fields']['text'];
+        $data['nativeLanguage'] = $params['lang']->getLocale();
+        $data['i18n'] =  array(
+            $params['lang']->getLocale() => array(
+                "fields" => array(
+                    "text"=>$data['text'] 
+                )
             )
-        )
-    );
-    $data['startPublicationDate'] = ""; $data['endPublicationDate'] = "";
-    $data['online'] = false;
-    $wasFiltered = AbstractCollection::disableUserFilter(true);
-    $contentsService = Manager::getService("ContentsCcn");
-    $resultcreate = $contentsService->create($data, array(),false);
+        );
+        $data['startPublicationDate'] = ""; $data['endPublicationDate'] = "";
+        $data['online'] = false;
+        $wasFiltered = AbstractCollection::disableUserFilter(true);
+        $contentsService = Manager::getService("ContentsCcn");
+        $resultcreate = $contentsService->create($data, array(),false);
 
-    $wasFiltered = AbstractCollection::disableUserFilter(false);
+        $wasFiltered = AbstractCollection::disableUserFilter(false);
      
-    return array(
+        return array(
             'success' => true,
             'url' =>'https://www.paypal.com/cgi-bin/webscr?' . $query_string,
             'message' => $resultcreate['success']
         );
 
     }
-    protected function subTokenFilter(&$token)
-    {
+
+    protected function subTokenFilter(&$token) {
         return array_intersect_key($token, array_flip(array('access_token', 'refresh_token', 'lifetime', 'createTime')));
     }
-
-    
-     
     
     public function getPaymentMeans($id){
             $contentId = (string)$id;

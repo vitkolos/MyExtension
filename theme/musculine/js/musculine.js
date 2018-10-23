@@ -25,13 +25,13 @@ angular.module('rubedoDataAccess').factory('MusculinePaymentService', ['$http',f
 }]);
 
 angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
-				var serviceInstance={};
-				serviceInstance.sendMail=function(payload){
-								return ($http({
-												url:"api/v1/mail",
-												method:"POST",
-												data : payload
-								}));
-				};
-				return serviceInstance;
+    var serviceInstance={};
+    serviceInstance.sendMail=function(payload){
+        return ($http({
+            url:"api/v1/mail",
+            method:"POST",
+            data : payload
+        }));
+    };
+    return serviceInstance;
 }]);

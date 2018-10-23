@@ -21,21 +21,21 @@ angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope'
                         );
                     }
                   // si c'est une commande de l'admin, il doit la voir comme un client normal !
-                    if($scope.rubedo.current.user && response.data.order.createUser.id != $scope.rubedo.current.user.id) me.isAdmin= response.data.isAdmin;
-                    if(me.order.status=="pendingPayment" && !me.isAdmin){
+                    if ($scope.rubedo.current.user && response.data.order.createUser.id != $scope.rubedo.current.user.id) me.isAdmin= response.data.isAdmin;
+                    if (me.order.status=="pendingPayment" && !me.isAdmin) {
                         RubedoPaymentService.getPaymentInformation(orderId).then(
-                            function(pmResponse){
-                                if (pmResponse.data.success&&pmResponse.data.paymentInstructions){
-                                    if(pmResponse.data.paymentInstructions.whatToDo=="displayRichText"&&pmResponse.data.paymentInstructions.richText){
-                                        me.paymentRichText=pmResponse.data.paymentInstructions.richText;
-                                    }else if(pmResponse.data.paymentInstructions.whatToDo=="redirectToUrl"&&pmResponse.data.paymentInstructions.url){
-                                        me.showPaymentButton=true;
-                                        me.handlePaymentButtonClick=function(){
-                                            window.location.href=pmResponse.data.paymentInstructions.url;
+                            function(pmResponse) {
+                                if (pmResponse.data.success && pmResponse.data.paymentInstructions) {
+                                    if (pmResponse.data.paymentInstructions.whatToDo == "displayRichText" && pmResponse.data.paymentInstructions.richText) {
+                                        me.paymentRichText = pmResponse.data.paymentInstructions.richText;
+                                    } else if(pmResponse.data.paymentInstructions.whatToDo == "redirectToUrl" && pmResponse.data.paymentInstructions.url) {
+                                        me.showPaymentButton = true;
+                                        me.handlePaymentButtonClick = function() {
+                                            window.location.href = pmResponse.data.paymentInstructions.url;
                                         };
                                     }
-                                    else if (pmResponse.data.paymentInstructions.whatToDo=="submitForm"&&pmResponse.data.paymentInstructions.url) {
-                                        me.showPaymentForm=true;
+                                    else if (pmResponse.data.paymentInstructions.whatToDo == "submitForm" && pmResponse.data.paymentInstructions.url) {
+                                        me.showPaymentForm = true;
                                         $scope.parametres = pmResponse.data.paymentInstructions.url;
                                     }
                                     else if (pmResponse.data.paymentInstructions.whatToDo=="submitPaypalForm") {
