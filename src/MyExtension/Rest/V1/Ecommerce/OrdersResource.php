@@ -52,7 +52,7 @@ class OrdersResource extends AbstractResource
         $start=isset($params['start']) ? $params['start'] : 0;
         $limit=isset($params['limit']) ? $params['limit'] : null;
         //pour les admins boutique, ne pas limiter la liste de commandes à l'utilisateur, si on est sur le bloc "Liste de commandes"
-        if($this->getAclService()->hasAccess('write.ui.orders')&& isset($params['allCommands']) && $params['allCommands']) {
+        if($this->getAclService()->hasAccess('write.ui.orders') && isset($params['allCommands']) && $params['allCommands']) {
             $orders = $this->getOrdersCollection()->getList(null, array(array('property' => 'createTime', 'direction' => 'desc')),$start,$limit);            
         }
         else {
