@@ -275,15 +275,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         });
         
     }
-    me.putOffline = function(event, content) {
-        console.log('putoffline', event, content)
-        console.log(Object.getOwnPropertyNames(event))
-        console.log(event.originalEvent)
+    me.putOffline = async function(event, content) {
+        console.log('putoffline', content)
         event.preventDefault();
-        //event.stopPropagation();
-        //event.originalEvent.preventDefault();
-        //event.originalEvent.stopPropagation();
         if (!confirm("Press a button!")) return;
+        let content_full = await RubedoContentsService.getContentById(content.id);
+        console.log('PO', content_full)
     }
     
     
