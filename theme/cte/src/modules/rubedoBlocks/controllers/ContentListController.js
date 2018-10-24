@@ -276,9 +276,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         
     }
     me.putOffline = function(event, content) {
+        console.log('putoffline', event, content)
         event.originalEvent.stopPropagation();
         if (!confirm("Press a button!")) return;
-        console.log('putoffline', event, content)
     }
     
     
