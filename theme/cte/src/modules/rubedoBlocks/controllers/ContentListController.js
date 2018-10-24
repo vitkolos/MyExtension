@@ -275,12 +275,36 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         });
         
     }
-    me.putOffline = async function(event, content) {
-        console.log('putoffline', content)
+    // fonction pour mettre un contenu hors-ligne
+    me.putOffline = async function(event, content_id) {
         event.preventDefault();
-        if (!confirm("Press a button!")) return;
-        let content_full = await RubedoContentsService.getContentById(content.id);
-        console.log('PO', content_full)
+        if (!confirm("Es-tu sûr(e) de vouloir mettre ce contenu offline ?")) return;
+        // on récupère le contenu tout frais
+        let res;
+        try {
+            res = await RubedoContentsService.getContentById(content_id);
+        } catch(e) {
+            console.log("Erreur dans putOffline en essayant de récupérer le contenu " + content_id)
+            $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
+            return
+        }
+        console.log('PO', res)
+        if (!res.data.success) {
+            console.log("PutOffline erreur", content_id, res)
+            $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
+            return
+        }
+        // on le met à jour avec online = false;
+        let content_full = angular.copy(res.data.content);
+        try {
+            // content_full.online = false;
+            res = await RubedoContentsService.updateContent(content_full);
+            $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success", "Success !"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated", "Content updated"));
+        } catch(e) {
+            $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
+            return
+        }
+        console.log("putoffline success", res);
     }
     
     
