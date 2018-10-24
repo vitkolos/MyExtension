@@ -122,7 +122,9 @@
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
                             <div class="media-body" ng-class="{contentbox: rubedo.current.user && rubedo.current.user.rights.canEdit}" >
                                 <!-- Icône "X" pour mettre offline le contenu -->
-                                <i ng-if="rubedo.current.user && rubedo.current.user.rights.canEdit" class="fa fa-times put_offline"></i>
+                                <i  ng-if="rubedo.current.user && rubedo.current.user.rights.canEdit" 
+                                    ng-click="contentListCtrl.putOffline(content)"
+                                    class="fa fa-times put_offline"></i>
                                 
                                 <h4 class="list-item-title capital"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
                                 </h4>
@@ -205,6 +207,7 @@
 
     div.contentbox:hover i.put_offline {
         visibility: visible;
+        transition: all 0.3s;
     }
 
     i.put_offline {
