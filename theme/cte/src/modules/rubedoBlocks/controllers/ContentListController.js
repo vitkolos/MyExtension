@@ -297,7 +297,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         // on le met à jour avec online = false;
         let content_full = angular.copy(res.data.content);
         try {
-            // content_full.online = false;
+            content_full.online = false;
             res = await RubedoContentsService.updateContent(content_full);
             $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success", "Success !"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated", "Content updated"));
         } catch(e) {
