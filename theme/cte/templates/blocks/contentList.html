@@ -123,7 +123,7 @@
                             <div class="media-body" ng-class="{contentbox: rubedo.current.user && rubedo.current.user.rights.canEdit}" >
                                 <!-- Icône "X" pour mettre offline le contenu -->
                                 <i  ng-if="rubedo.current.user && rubedo.current.user.rights.canEdit" 
-                                    ng-click="contentListCtrl.putOffline($event, content)"
+                                    ng-click="contentListCtrl.putOffline($event, content); $event.stopPropagation();"
                                     class="fa fa-times put_offline"></i>
                                 
                                 <h4 class="list-item-title capital"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
