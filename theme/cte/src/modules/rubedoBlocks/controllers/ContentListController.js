@@ -279,10 +279,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         console.log('putoffline', event, content)
         console.log(Object.getOwnPropertyNames(event))
         console.log(event.originalEvent)
-        event.preventDefault();
+        //event.preventDefault();
         event.stopPropagation();
-        event.originalEvent.preventDefault();
-        event.originalEvent.stopPropagation();
+        //event.originalEvent.preventDefault();
+        //event.originalEvent.stopPropagation();
         if (!confirm("Press a button!")) return;
     }
     
