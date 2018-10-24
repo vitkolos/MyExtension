@@ -120,15 +120,19 @@
         <!--DEFAUT-->
                     <div ng-switch-default>
                         <a  ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}" target="{{content.isExternal ? '_blank' : '_self'}}">
-                            <div class="media-body" >
+                            <div class="media-body contentbox" >
+                                <!-- Icône "X" pour mettre offline le contenu -->
+                                <i ng-if="rubedo.current.user && rubedo.current.user.rights.canEdit" class="fa fa-times put_offline"></i>
                                 
                                 <h4 class="list-item-title capital"><span>{{content.fields.text}} <span ng-if="contentListCtrl.isFOContributeMode">( {{rubedo.translate("Label." + content.status.toLowerCase())}} )</span></span>
                                 </h4>
 
                                 <div class="list-item-img" ><!--ng-class="{'no-img':!content.fields.image}"-->
+                                    <!-- si le contenu a une image, on l'affiche dans la vignette -->
                                     <img class="media-object pull-left" ng-if="content.fields.image"
                                                  ng-src="{{ rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
                                                  alt="{{ content.fields.text }}"/>
+                                    <!-- si le contenu n'a pas d'image définie, on affiche une image par défaut -->
                                     <img class="media-object pull-left" ng-if="!content.fields.image"
                                                 ng-src="{{ rubedo.imageUrl.getUrlByMediaId('57175694c445ecda008c4b31',{width:'400px',height:'266px',mode:'crop'}) }}"
                                                 alt="{{ content.fields.text }}"/>
@@ -193,3 +197,27 @@
 
 	<div ng-if="blockConfig.display == 'blog' " ng-include="contentListCtrl.template_actus"  ng-class="{'container' : blockConfig.container}"></div>
 </div>
+
+<style>
+    div.contentbox {
+        margin-top: -22px;
+    }
+
+    div.contentbox:hover i.put_offline {
+        visibility: visible;
+    }
+
+    i.put_offline {
+        display: inline;
+        position: relative;
+        top: 30px;
+        left: 89%;
+        background: hsla(120, 100%, 25%, 1);
+        z-index: 4000;
+        text-align: center;
+        padding: 4px;
+        border-radius: 100%;
+        color: white;
+        cursor: pointer;
+    }
+</style>
