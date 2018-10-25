@@ -16,7 +16,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
     $http({
         url: '/backoffice/mailing-lists/get-users',
         method: "GET",
-        data: {
+        params: {
             _dc: '1540472371822',
             id: '54de19cc45205ec61c8b4568',
             page: 1,
