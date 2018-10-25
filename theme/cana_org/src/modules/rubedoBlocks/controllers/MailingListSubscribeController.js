@@ -25,7 +25,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
         }
     }).then(r => console.log('$http res', r)).catch(err => console.log('$http err', err)) */
     $http({
-        url:'current-user/get-token',
+        url:'https://www.cana.org/backoffice/current-user/get-token',
         method:"GET"
     }).then(r => console.log('$http res', r)).catch(err => console.log('$http err', err))
 
