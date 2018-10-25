@@ -8,7 +8,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
     $scope.fieldEntity={ };
     $scope.fieldInputMode=true;
     $scope.isBasic = true;
-   RubedoMailingListService.getAllMailingList().then(function(response){
+    RubedoMailingListService.getAllMailingList().then(function(response){
         if(response.data.success){
             me.userType = response.data.userType;
             $scope.fieldIdPrefix=me.prefix+me.userType.type;
@@ -63,7 +63,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
                 });
 
                 console.log(me.email);
-                angular.forEach(me.mailingLists, function(mailingList){
+                /* angular.forEach(me.mailingLists, function(mailingList){
                     var message={ mail:me.email, name:me.name, newsletter:mailingList.name};                    
                     var payload={
                         from:me.email,
@@ -89,7 +89,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
                      );
                 });
                 me.email = '';
-                me.name = '';
+                me.name = ''; */
 
                 
                  

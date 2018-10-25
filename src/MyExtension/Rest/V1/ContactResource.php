@@ -93,6 +93,7 @@ class ContactResource extends AbstractResource
      */
     public function postAction($params)
     {
+        file_put_contents("/var/log/php_custom_log.txt", "test from ContactResource.php POST\n");
         /** @var \Rubedo\Interfaces\Collection\IMailingList $mailingListsService */
         $mailingListsService = Manager::getService('MailingList');
         /** @var \Rubedo\Interfaces\Mail\IMailer $mailerService */
