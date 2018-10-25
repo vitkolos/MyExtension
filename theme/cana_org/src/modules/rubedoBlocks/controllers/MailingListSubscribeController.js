@@ -31,9 +31,9 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
         if (me.email && me.name) {
             var mailingListsSuscribe = [];
             angular.forEach(me.mailingLists, function(mailingList){
-                if(mailingList.checked){
+                //if(mailingList.checked){
                     mailingListsSuscribe.push(mailingList.id);
-                }
+                //}
             });
             if(mailingListsSuscribe.length > 0){
                 var options={
@@ -44,6 +44,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
                 if($scope.fieldEntity){
                     options.fields = $scope.fieldEntity;
                 }
+                console.log("OPT", options)
                 RubedoMailingListService.subscribeToMailingLists(options).then(function(response){
                     $scope.fieldEntity = {};
                     if(response.data.success){
