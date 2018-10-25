@@ -27,6 +27,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
         }
     });
     me.submit = function(){
+        console.log("SUBMIT !", me, $scope.fieldEntity)
         if (me.email && me.name) {
             var mailingListsSuscribe = [];
             angular.forEach(me.mailingLists, function(mailingList){
