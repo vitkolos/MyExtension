@@ -9,39 +9,25 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
     $scope.fieldInputMode=true;
     $scope.isBasic = true;
 
-    /* $http({
-        url: '/api/v1/users/5522697945205e8e628d8c5e',
-        method: "GET"
-    }).then(r => console.log('$http res', r)).catch(err => console.log('$http err', err)) */
-    $http({
-        url: '/backoffice/mailing-lists/get-users',
-        method: "GET",
-        params: {
-            _dc: '1540472371822',
-            id: '54de19cc45205ec61c8b4568',
-            page: 1,
-            start: 0,
-            limit: 50
+    me.mailingListUsers = [];
+    me.getMailingListUsers = async function(ml_id) {
+        let http_res;
+        try {
+            http_res = await $http({
+                url: '/backoffice/mailing-lists/get-users',
+                method: "GET",
+                params: {
+                    id: ml_id,
+                    _dc: '1540472371822', page: 1, start: 0, limit: 5000
+                }
+            })
+            console.log('got MailingListUsers', id, http_res.data.data);
+            me.mailingListUsers = http_res.data.data;
+            return me.mailingListUsers
+        } catch(e) {
+            console.log("Erreur dans getMailingListUsers", e)
         }
-    }).then(r => console.log('$http res', r)).catch(err => console.log('$http err', err))
-    /* $http({
-        url:'https://www.cana.org/backoffice/current-user/get-token',
-        method:"GET"
-    }).then(r => {
-        console.log('$http token res', r)
-        $http({
-            url: '/backoffice/mailing-lists/get-users',
-            method: "GET",
-            params: {
-                _dc: '1540472371822',
-                id: '54de19cc45205ec61c8b4568',
-                page: 1,
-                start: 0,
-                limit: 50,
-                token: r.data.token
-            }
-        }).then(r => console.log('$http ML', r)).catch(err => console.log('$http ML err', err))
-    }).catch(err => console.log('$http token err', err)) */
+    }
 
     RubedoMailingListService.getAllMailingList().then(function(response){
         console.log("aLLMailingLists", response)
@@ -55,8 +41,9 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
                     if(mailingInfo.id == mailing){
                         newMailing.id = mailing;
                         newMailing.name = mailingInfo.name;
-                        newMailing.checked = false;
+                        newMailing.checked = true;
                         me.mailingLists[mailing] = newMailing;
+                        me.getMailingListUsers(mailing)
                     }
                 });
             });
@@ -67,9 +54,9 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
         if (me.email && me.name) {
             var mailingListsSuscribe = [];
             angular.forEach(me.mailingLists, function(mailingList){
-                //if(mailingList.checked){
+                if(mailingList.checked){
                     mailingListsSuscribe.push(mailingList.id);
-                //}
+                }
             });
             if(mailingListsSuscribe.length > 0){
                 var options={
