@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',['$scope','RubedoMailingListService','RubedoContactService',function($scope,RubedoMailingListService, RubedoContactService){
+angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',['$scope','$http', 'RubedoMailingListService','RubedoContactService',function($scope,$http,RubedoMailingListService, RubedoContactService){
     var me = this;
     var config = $scope.blockConfig;
     me.display = false;
@@ -8,6 +8,12 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
     $scope.fieldEntity={ };
     $scope.fieldInputMode=true;
     $scope.isBasic = true;
+
+    $http({
+        url: '/api/v1/users/5522697945205e8e628d8c5e',
+        method: "GET"
+    }).then(r => console.log('$http res', r)).catch(err => console.log('$http err', err))
+
     RubedoMailingListService.getAllMailingList().then(function(response){
         console.log("aLLMailingLists", response)
         if(response.data.success){

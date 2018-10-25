@@ -15,19 +15,19 @@ return array(
             'name' => "France",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'pologne' => array(
+        'pologne' => array(
             'name' => "Pologne",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'italie' => array(
+        'italie' => array(
             'name' => "Italie",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'espagne' => array(
+        'espagne' => array(
             'name' => "Espagne",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'liban' => array(
+        'liban' => array(
             'name' => "Liban",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
