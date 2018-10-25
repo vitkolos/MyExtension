@@ -38,7 +38,8 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
         downloadLink[0].click();
     };
     me.downloadUserList = function() {
-        me.downloadData('liste_utilisateurs.txt', me.mailingListUsers)
+        let data = 'Nom;Email;Langue\n' + me.mailingListUsers.map(u => `${name};${email};${language}`).join("\n");
+        me.downloadData('liste_utilisateurs.csv', data)
     }
 
     RubedoMailingListService.getAllMailingList().then(function(response){
