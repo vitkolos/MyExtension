@@ -48,7 +48,7 @@ class MailinglistsResource extends AbstractResource
      */
     public function getAction($params)
     {
-        file_put_contents("/var/log/php_custom_log.txt", "test from MailingListResource.php GET\n");
+        //file_put_contents("/var/log/php_custom_log.txt", "test from MailingListResource.php GET\n");
         $mailinglists = $this->getMailingListCollection()->getList()['data'];
         foreach ($mailinglists as &$mailingList) {
             $mailingList = $this->filterMailingList($mailingList);
