@@ -29,15 +29,17 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
         }
     }
 
-    me.downloadData = function (data) {
-        console.log("DOWNLOAD DATA")
+    me.downloadData = function (filename, data) {
+        console.log("DOWNLOAD DATA", data)
         var blob = new Blob([data], { type:"application/json;charset=utf-8;" });			
         var downloadLink = angular.element('<a></a>');
         downloadLink.attr('href',window.URL.createObjectURL(blob));
-        downloadLink.attr('download', 'fileName.json');
+        downloadLink.attr('download', filename);
         downloadLink[0].click();
     };
-    me.downloadData("Bonjour!\n");
+    me.downloadUserList = function() {
+        me.downloadData('liste_utilisateurs.txt', me.mailingListUsers)
+    }
 
     RubedoMailingListService.getAllMailingList().then(function(response){
         //console.log("aLLMailingLists", response)
