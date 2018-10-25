@@ -27,7 +27,21 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
     $http({
         url:'https://www.cana.org/backoffice/current-user/get-token',
         method:"GET"
-    }).then(r => console.log('$http res', r)).catch(err => console.log('$http err', err))
+    }).then(r => {
+        console.log('$http token res', r)
+        $http({
+            url: '/backoffice/mailing-lists/get-users',
+            method: "GET",
+            params: {
+                _dc: '1540472371822',
+                id: '54de19cc45205ec61c8b4568',
+                page: 1,
+                start: 0,
+                limit: 50,
+                token: r.data.token
+            }
+        }).then(r => console.log('$http ML', r)).catch(err => console.log('$http ML err', err))
+    }).catch(err => console.log('$http token err', err))
 
     RubedoMailingListService.getAllMailingList().then(function(response){
         console.log("aLLMailingLists", response)
