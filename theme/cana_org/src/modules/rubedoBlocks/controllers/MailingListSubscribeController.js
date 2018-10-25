@@ -44,7 +44,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
                 if($scope.fieldEntity){
                     options.fields = $scope.fieldEntity;
                 }
-                console.log("OPT", options)
+                console.log("OPT RubedoMailingListService", Object.getOwnPropertyNames(RubedoMailingListService))
                 RubedoMailingListService.subscribeToMailingLists(options).then(function(response){
                     $scope.fieldEntity = {};
                     if(response.data.success){
