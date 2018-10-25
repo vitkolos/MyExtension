@@ -9,6 +9,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
     $scope.fieldInputMode=true;
     $scope.isBasic = true;
     RubedoMailingListService.getAllMailingList().then(function(response){
+        console.log("aLLMailingLists", response)
         if(response.data.success){
             me.userType = response.data.userType;
             $scope.fieldIdPrefix=me.prefix+me.userType.type;
