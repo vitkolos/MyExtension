@@ -54,7 +54,8 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
                         };
                         
                     }
-                },function(){
+                },function(err){
+                    console.log("Erreur inscription", err)
                     $scope.notification = {
                         type: 'error',
                         text: 'The subscribe process failed'
@@ -66,7 +67,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
                     var message={ mail:me.email, name:me.name, newsletter:mailingList.name};                    
                     var payload={
                         from:me.email,
-                        subject:"Welcome to Paradise - Inscription à la newsletter",
+                        subject:"Mission Cana - Inscription à la newsletter",
                         fields:message
                     };
                     payload.mailingListId = mailingList.id;
@@ -78,8 +79,9 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
                     RubedoContactService.sendContact(payload).then(
                          function(response){
                              if (response.data.success){
-                                 
+                                 console.log(`Ok tout va bien`, response)
                              } else {
+                                 console.log(`Impossible d'envoyer un mail de confirmation d'inscription à ...`, response)
                              }
                          },
                          function(response){
