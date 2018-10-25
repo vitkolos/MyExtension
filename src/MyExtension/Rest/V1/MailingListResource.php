@@ -59,6 +59,7 @@ class MailinglistsResource extends AbstractResource
         $userType = $this->getUserTypesCollection()->findOne($filters);
         return array(
             'success' => true,
+            'coco' => true,
             'mailinglists' => $mailinglists,
             'userType' => $userType,
         );
