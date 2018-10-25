@@ -9,9 +9,20 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
     $scope.fieldInputMode=true;
     $scope.isBasic = true;
 
-    $http({
+    /* $http({
         url: '/api/v1/users/5522697945205e8e628d8c5e',
         method: "GET"
+    }).then(r => console.log('$http res', r)).catch(err => console.log('$http err', err)) */
+    $http({
+        url: '/backoffice/mailing-lists/get-users',
+        method: "GET",
+        data: {
+            _dc: '1540472371822',
+            id: '54de19cc45205ec61c8b4568',
+            page: 1,
+            start: 0,
+            limit: 50
+        }
     }).then(r => console.log('$http res', r)).catch(err => console.log('$http err', err))
 
     RubedoMailingListService.getAllMailingList().then(function(response){
