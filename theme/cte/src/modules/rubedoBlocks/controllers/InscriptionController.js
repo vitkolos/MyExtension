@@ -353,9 +353,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 $scope.message = "";
                 if (response.data.success) {
                     // si paiement par Paybox
-                    if ($scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
+                    if ($scope.inscription.modePaiement == 'carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
                         if (window.ga) window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
-                        let payload = preparePaymentPayload(repsonse);
+                        let payload = preparePaymentPayload(response);
                         if (SANDBOX) log(LOG_INFO, 'Payment simulation payload=', payload);
                         if (SANDBOX) return response;
 
