@@ -16,6 +16,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var me = this;
     var themePath = '/theme/'+window.rubedoConfig.siteTheme;
     me.form = {};
+    me.content = angular.copy($scope.proposition);
 
     // on initialise les moyens de paiement autorisés (carte ou chèque)
     initMoyensPaiement()
@@ -570,7 +571,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         me.infosFin = themePath+'/templates/blocks/formulaire/infosFin.html';
         me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
         me.paiment_complementaire= themePath+'/templates/blocks/formulaire/paiment_complementaire.html';
-        me.content = angular.copy($scope.proposition);
 
         switch(public) {
             case 'adolescent':
