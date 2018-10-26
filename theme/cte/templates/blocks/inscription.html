@@ -97,7 +97,7 @@
                         </div>  
                    </div>
                    <!---CHOIX DU MODE DE PAIEMENT-->
-                   <div class="row border-bottom" ng-if="inscription.paiement_maintenant && inscription.paiement_maintenant !='rien' && contentDetailCtrl.content.fields.moyens_paiement.length != 1">
+                   <div class="row border-bottom" ng-if="inscription.paiement_maintenant && inscription.paiement_maintenant !='rien' && (typeof contentDetailCtrl.content.fields.moyens_paiement) != 'string'">
                         <div class="col-xs-6">
                             <label class="label_style">{{rubedo.translate("Block.Inscription.Paf.ModePaiment")}}</label>
                         </div>

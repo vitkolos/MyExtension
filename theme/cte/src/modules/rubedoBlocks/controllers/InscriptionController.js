@@ -15,8 +15,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     window.$http = $http;
 
     console.log("CONTENT1", me.content);
+    if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement) me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement;
     if (me.content.fields && !me.content.fields.moyens_paiement) me.content.fields.moyens_paiement = [];
-    if (me.content.fields.moyens_paiement.length == 1) me.inscription.modePaiement = me.content.fields.moyens_paiement[0];
+    if (typeof me.content.fields.moyens_paiement == 'string') me.inscription.modePaiement = me.content.fields.moyens_paiement;
     console.log("CONTENT2", me.content);
     
     getForms = function(public) {
