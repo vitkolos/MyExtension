@@ -105,6 +105,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         }
         RubedoContentsService.getContentById(contentId, options).then(
             function(response){
+                console.log("CONTENT RAW", response)
                 if(response.data.success){
                     if(config.isAutoInjected) $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content=response.data.content;
