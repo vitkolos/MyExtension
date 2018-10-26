@@ -12,6 +12,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.paiment_complementaire= themePath+'/templates/blocks/formulaire/paiment_complementaire.html';
     me.content = angular.copy($scope.proposition);
 
+    if (me.content.fields && !me.content.fields.moyens_paiement) me.content.fields.moyens_paiement = [];
     if (me.content.fields.moyens_paiement.length == 1) me.inscription.modePaiement = me.content.fields.moyens_paiement[0];
     console.log("CONTENTS", me.contents);
     
