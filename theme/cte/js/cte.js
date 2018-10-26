@@ -362,11 +362,11 @@ angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',functi
                 }
             }));
     };
-				serviceInstance.exportInscriptions=function(payload){
-											return ($http.get("/api/v1/inscription",{
-																		params: payload
-												}));
-							};
+    serviceInstance.exportInscriptions=function(payload){
+      return ($http.get("/api/v1/inscription",{
+        params: payload
+      }));
+    };
     return serviceInstance;
 }]);
 angular.module('rubedoDataAccess').factory('DonationService', ['$http',function($http) {

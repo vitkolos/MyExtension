@@ -20,10 +20,9 @@ class InscriptionResource extends AbstractResource
         $this->define();
     }
 				
-				public function getAction($params)
-				{
-								$typeId = "561627c945205e41208b4581";
-								//$params = $this->params()->fromQuery();
+    public function getAction($params) {
+        $typeId = "561627c945205e41208b4581";
+        //$params = $this->params()->fromQuery();
         $filters = Filter::factory();
         if (!empty($params['startDate'])) {
             $filters->addFilter(
@@ -198,14 +197,14 @@ class InscriptionResource extends AbstractResource
             fputcsv($csvResource, $csvLine, ';');
         }
         $content = file_get_contents($filePath);
-								//header("Content-type: text/x-csv");
-								//header("Content-Disposition: attachment; filename=".$fileName."");
-								//echo($content);
-								return [
+        //header("Content-type: text/x-csv");
+        //header("Content-Disposition: attachment; filename=".$fileName."");
+        //echo($content);
+        return [
             'success' => true,
             'path' => $content
         ];
-				}
+    }
 
 				
 				
@@ -220,18 +219,18 @@ class InscriptionResource extends AbstractResource
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] +=1;
         $content['i18n'] =  array(
-                            "fr" =>array("fields" => array("text"=>$content["fields"]["text"])),
-		"en" =>array("fields" => array("text"=>$content["fields"]["text"])),
-		"de" =>array("fields" => array("text"=>$content["fields"]["text"])),
-                            "pl" =>array("fields" => array("text"=>$content["fields"]["text"])),
-                            "es" =>array("fields" => array("text"=>$content["fields"]["text"])),
-                    "hu" =>array("fields" => array("text"=>$content["fields"]["text"])),
-                    "it" =>array("fields" => array("text"=>$content["fields"]["text"]) ),
-                    "pt" =>array("fields" => array("text"=>$content["fields"]["text"])),
-                    "pt-BR" =>array("fields" => array("text"=>$content["fields"]["text"])),
-                    "ar" =>array("fields" => array("text"=>$content["fields"]["text"])),
-                    "nl" =>array("fields" => array("text"=>$content["fields"]["text"])),
-                    "cs" =>array("fields" => array("text"=>$content["fields"]["text"]))
+            "fr" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "en" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "de" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "pl" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "es" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "hu" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "it" =>array("fields" => array("text"=>$content["fields"]["text"]) ),
+            "pt" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "pt-BR" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "ar" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "nl" =>array("fields" => array("text"=>$content["fields"]["text"])),
+            "cs" =>array("fields" => array("text"=>$content["fields"]["text"]))
 		);
 	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         $result = $contentsService->update($content, array(),false);
@@ -248,8 +247,9 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['writeWorkspace'] = $params['workspace'];
         $inscriptionForm['typeId'] = "561627c945205e41208b4581";
         $inscriptionForm['fields'] = $this->processInscription($inscriptionForm['fields']);
-                //GET SECRETARIAT
-        if($inscriptionForm['fields']['contact']){
+        
+        //GET SECRETARIAT
+        if($inscriptionForm['fields']['contact']) {
             $mailSecretariat = $contentsService->findById($inscriptionForm['fields']['contact'],false,false);
             $inscriptionForm['fields']['mailSecretariat'] = $mailSecretariat['fields']['email'];
             $inscriptionForm['fields']['contact'] = $mailSecretariat['fields'];
@@ -267,16 +267,14 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
         $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);
-        
-        
 
         //GET PAYEMENT INFOS
         if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
             $paymentMeansId = $siteConfig['conf_paf'];
             $paymentMeans = $contentsService->findById($paymentMeansId,false,false);
             $inscriptionForm['fields']['paymentInfos'] =$paymentMeans['fields'];
-												 //return payement conf id in response
-												$resultInscription['paymentConfID'] = $paymentMeansId;
+            //return payement conf id in response
+            $resultInscription['paymentConfID'] = $paymentMeansId;
         }
         
         

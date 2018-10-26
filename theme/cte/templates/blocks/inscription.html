@@ -1,6 +1,6 @@
 <div class="container" ng-controller="InscriptionController as formCtrl">
         <div class="text-center">
-                <p class="capital" ng-if="!inscription.serviteur">{{rubedo.translate("Block.Inscription.Fiche", "Fiche d'inscription")}} - {{formCtrl.moyens_paiement_multiples}}</p>
+                <p class="capital" ng-if="!inscription.serviteur">{{rubedo.translate("Block.Inscription.Fiche", "Fiche d'inscription")}} - {{$scope.inscription.modePaiement}}</p>
                 <p class="capital" ng-if="inscription.serviteur">{{rubedo.translate("Block.Inscription.Fiche.Service", "Fiche d'inscription au service")}}</p>
                 <h3>{{contentDetailCtrl.content.fields.text}}</h3>
                 <p ng-if="contentDetailCtrl.content.fields.dateDebut">{{contentDetailCtrl.content.fields.dateDebut | dateRange:contentDetailCtrl.content.fields.dateFin:'long':rubedo.translate("date.from", "od"):rubedo.translate("date.to", "do"):rubedo.current.page.locale }}<br/><!--Description-->
