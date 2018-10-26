@@ -354,7 +354,7 @@ angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',functi
     var serviceInstance={};
 
     serviceInstance.inscrire = function(inscription, workspace, traductions) {
-        if (inscription.__SANDBOX__) return Promise.resolve({success: true, sandbox: true, id: '12345', result: {}});
+        if (inscription.__SANDBOX__) return Promise.resolve({data:{success: true, sandbox: true, id: '12345', result: {paymentConfID: 'paymentConfID12345'}}});
         return($http({
             url:"/api/v1/inscription",
             method:"POST",
