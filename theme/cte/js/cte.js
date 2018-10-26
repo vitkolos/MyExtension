@@ -139,39 +139,39 @@ angular.module('rubedoBlocks').filter('timediff',['$filter','$interval',  functi
 											};
 }])
 angular.module('rubedo').filter('ligneNonVide', function () {
-           return function (input) {
-                      var filtered = [];
-																						var contentDisplay = false;
-																																	angular.forEach(input, function(row, index) {
-																																												// si la 1re colonne est terminale et non vide
-																																												if (row.columns[0].isTerminal&&row.columns[0].blocks) {
-																																												// toujours afficher la 1re ligne (menu) et les 2 dernires (footer)
-																																																							if (index ==0 || index >= input.length-2) {
-																																																																		filtered.push(row);
-																																																							}
-																																																							// si la page sert à afficher un contenu (en 2me ligne) on n'affiche pas les autres lignes
-																																																							else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
-																																																																		filtered.push(row);
-																																																																		contentDisplay = true;
-																																																							}
-																																																							//si la ligne a un bloc de détail en premier, on affiche seulement le bloc détail dans la ligne
-																																																							else if (row.columns[0].blocks[0].bType=="contentDetail" && !contentDisplay) {
-																																																																		row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
-																																																																		filtered.push(row);
-																																																							}
-																																																							// sinon on affiche tout
-																																																							else if(!contentDisplay) {
-																																																																		filtered.push(row);
-																																																							}
-																																												}
-																																												// si la colonne a des lignes à l'intérieur
-																																												else if (row.columns[0].rows) {
-																																																							filtered.push(row);
-																																												}
-																																	});
-                      return filtered;
-		    
-           };
+    return function (input) {
+      var filtered = [];
+      var contentDisplay = false;
+      angular.forEach(input, function(row, index) {
+        // si la 1re colonne est terminale et non vide
+        if (row.columns[0].isTerminal&&row.columns[0].blocks) {
+          // toujours afficher la 1re ligne (menu) et les 2 dernires (footer)
+          if (index ==0 || index >= input.length-2) {
+            filtered.push(row);
+          }
+          // si la page sert à afficher un contenu (en 2me ligne) on n'affiche pas les autres lignes
+          else if (row.columns[0].blocks[0].configBloc.isAutoInjected)  {
+            filtered.push(row);
+            contentDisplay = true;
+          }
+          //si la ligne a un bloc de détail en premier, on affiche seulement le bloc détail dans la ligne
+          else if (row.columns[0].blocks[0].bType=="contentDetail" && !contentDisplay) {
+            row.columns[0].blocks = {0 : row.columns[0].blocks[0]};
+            filtered.push(row);
+          }
+          // sinon on affiche tout
+          else if(!contentDisplay) {
+            filtered.push(row);
+          }
+        }
+        // si la colonne a des lignes à l'intérieur
+        else if (row.columns[0].rows) {
+          filtered.push(row);
+        }
+      });
+      return filtered;
+
+    };
   });
 angular.module('rubedoBlocks').filter('tags', function() {
     return function(contents, tag) {

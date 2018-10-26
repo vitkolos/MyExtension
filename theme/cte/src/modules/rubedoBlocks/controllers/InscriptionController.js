@@ -11,7 +11,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.enfants = themePath+'/templates/blocks/formulaire/enfants.html';
     me.paiment_complementaire= themePath+'/templates/blocks/formulaire/paiment_complementaire.html';
     me.content = angular.copy($scope.proposition);
-				
+
+    if (me.content.fields.moyens_paiement.length == 1) me.inscription.modePaiement = me.content.fields.moyens_paiement[0];
+    console.log("CONTENTS", me.contents);
     
     getForms = function(public) {
         switch(public) {
@@ -23,7 +25,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
                 me.additional_infos = null;
                 break;
-												 case 'parent-seul-avec-enfants':
+            case 'parent-seul-avec-enfants':
                 me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
@@ -31,7 +33,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
-												case 'esperance-sans-enfant':
+            case 'esperance-sans-enfant':
                 me.general_infos = themePath+'/templates/blocks/formulaire/infos_individuel.html';
                 me.additional_infos = null;
                 break;
@@ -51,11 +53,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
-												case 'couple_ephata':
+            case 'couple_ephata':
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
-												case 'couple-avec-enfants':
+            case 'couple-avec-enfants':
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
                 me.additional_infos = themePath+'/templates/blocks/formulaire/enfants.html';
                 break;
@@ -99,11 +101,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.inscription.motivation = false;
     $scope.inscription.enfants=[];
     $scope.inscription.enfant={};
-				/*Gestion de l'affichage de la date de mariage dans les formulaires*/
-				$scope.pageCANA=false;
-				if($scope.rubedo.current.page.maskId == '56743f423bc325811d8b457a'){
-								$scope.pageCANA=true;
-				}
+    /*Gestion de l'affichage de la date de mariage dans les formulaires*/
+    $scope.pageCANA=false;
+    if($scope.rubedo.current.page.maskId == '56743f423bc325811d8b457a'){
+        $scope.pageCANA=true;
+    }
 				
 
 
@@ -140,13 +142,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         me.content.fields.paimentOption.paimentOption = {0 : me.content.fields.paimentOption.paimentOption};
     }          
     
-    
-    
-    
-    
     var options = {
-            siteId: $scope.rubedo.current.site.id,
-            pageId: $scope.rubedo.current.page.id
+        siteId: $scope.rubedo.current.site.id,
+        pageId: $scope.rubedo.current.page.id
     };
     // ajouter enfants
 
@@ -163,7 +161,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     };
     // préremplir les champs si l'utilisateur est connecté
     if ($scope.rubedo.current.user) {
-								console.log($scope.rubedo.current.user);
+        //console.log($scope.rubedo.current.user);
         $scope.inscription=angular.copy($scope.rubedo.current.user.fields);
         $scope.inscription.email = $scope.rubedo.current.user.email;
         $scope.inscription.email_verif = $scope.rubedo.current.user.email;
@@ -539,10 +537,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             payload.paymentMeans='paypal'; //cas où l'on désire que les paiements soient effectués sur Paypal et non sur Paybox
         }
         else {
-        	payload.paymentMeans=me.lastInscription.fields.modePaiement;
+        	payload.paymentMeans = me.lastInscription.fields.modePaiement;
         }
         if (me.content.fields.lieuCommunautaire) {
-            payload.placeID=me.content.fields.lieuCommunautaire;
+            payload.placeID = me.content.fields.lieuCommunautaire;
         }
         if(window.ga) {
             window.ga('send', 'event', 'inscription', 'payement carte', 'paiement complementaire', $scope.inscription.montantAPayerMaintenant);
