@@ -98,6 +98,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         var options = {
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id,
+            'fields[]' : ["infoInscription", "moyens_paiement"],
             includeTermLabels:true
         };
         if ($location.search()["preview_draft"] && $location.search()["preview"] && $scope.rubedo.current.user.rights.canEdit) {
