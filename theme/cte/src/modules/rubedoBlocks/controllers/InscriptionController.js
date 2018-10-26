@@ -4,7 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     //                INIT SANDBOX PARAMS
     // ==============================================================================
 
-    let SANDBOX = true;
+    let SANDBOX = false;
 
     let LOG_INFO = 1; let LOG_WARN = 2; let LOG_ERR = 3; let LOG_LEVELS = [0, 'INFO', 'WARNING', 'ERROR'];
     let log = (niveau, msg, ...arg_list) => (SANDBOX) ? console.log(niveau, msg, ...arg_list): '';
