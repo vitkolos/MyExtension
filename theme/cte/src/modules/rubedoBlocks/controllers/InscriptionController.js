@@ -9,7 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     let LOG_INFO = 1; let LOG_WARN = 2; let LOG_ERR = 3; let LOG_LEVELS = [0, 'INFO', 'WARNING', 'ERROR'];
     let log = (niveau, msg, ...arg_list) => (SANDBOX) ? console.log(niveau, msg, ...arg_list): '';
     if (SANDBOX) {
-        console.log('%c === SANDBOX MODE IS ON ===', 'background: #c1573c;color: white;')
+        console.log('%c === SANDBOX MODE IS ON 4 InscriptionController === ', 'background: #c1573c;color: white;')
     }
     // ==============================================================================
     
@@ -29,17 +29,15 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     //get proposition
     var propositionId = me.content.id;
     var propositionTitle = me.content.text;
-    var propositionDate = $scope.rubedo.translate("date.from", "du")+ " " +$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate');
+    var propositionDate = $scope.rubedo.translate("date.from", "du") + " " +$filter('date')(me.content.fields.dateDebut* 1000, 'fullDate');
     if (me.content.fields.heureDebut) {
-        propositionDate += " "+$scope.rubedo.translate("Time.At", "à")+" " + me.content.fields.heureDebut ;
+        propositionDate += " " + $scope.rubedo.translate("Time.At", "à")+" " + me.content.fields.heureDebut ;
     }
-    propositionDate +=  " "+$scope.rubedo.translate("date.to", "au")+" " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate');
+    propositionDate +=  " " + $scope.rubedo.translate("date.to", "au") + " " + $filter('date')(me.content.fields.dateFin* 1000, 'fullDate');
     if (me.content.fields.heureFin) {
-        propositionDate +=  " "+$scope.rubedo.translate("Time.At", "à")+" " + me.content.fields.heureFin;
+        propositionDate +=  " " + $scope.rubedo.translate("Time.At", "à") + " " + me.content.fields.heureFin;
     }
     
-
-                    
     $scope.inscription.public_type=angular.copy(me.content.public);
     $scope.inscription.serviteur=angular.copy(me.content.service);
     $scope.inscription.positionName = me.content.fields.positionName;
@@ -193,11 +191,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         case "logement": me.form.questions.logement.push({"text":questionReponse.text, "fields":questionReponse.fields,"order":questionOrder});me.isLogement = true;  break;
                         //case "generale": me.form.questions.generale.push({"text":questionReponse.text, "fields":questionReponse.fields}); break;
                     };
-                  
-
                 }
-            });
-            
+            });           
         });
     };
     /*récupérer le formulaire pour l'inscription*/
@@ -223,21 +218,16 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         else
             return  !($scope.inscription.tel1 || $scope.inscription.tel2); // au moins téléphone fixe ou portable
     };
-
-// s'il y a des questions complémentaires, les récupérer
+        
+    // s'il y a des questions complémentaires, les récupérer
     if (me.content.fields.questions && (me.content.fields.questions).length>0) {
         me.getQuestions();
     }
     
     //informations sur les moyens de payement
     me.paymentmeans = $scope.contentDetailCtrl.paymentmeans;
-
-    
-    
-    
-    
     me.currentStage = 1;
- // affichage des sections du formulaire
+    // affichage des sections du formulaire
     me.toggleStage = function(newStage){
        angular.element("#inscriptionStage"+me.currentStage).collapse("hide");
        angular.element("#inscriptionStage"+newStage).collapse("show");
@@ -325,6 +315,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if($scope.inscription.paiement_maintenant == 'accompte2'){$scope.inscription.montantAPayerMaintenant=me.content.fields.accompte2}
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
             $scope.inscription.isPayment = me.isPaiement;
+            if (!me.moyens_paiement_multiples) $scope.inscription.modePaiement = me.content.fields.moyens_paiement; // on force le moyen de paiement si jamais il n'y a pas le choix
             
             /*STATUS DE L'INSCRIPTION*/
             log(LOG_INFO, 'step6 --> niveau ', me.content.fields.inscriptionState.inscriptionState, me.isPaiement, $scope.inscription.paiement_maintenant);
