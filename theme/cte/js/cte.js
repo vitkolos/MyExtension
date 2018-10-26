@@ -352,18 +352,20 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
     }]);
 angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
     var serviceInstance={};
-    serviceInstance.inscrire=function(inscription,workspace,traductions){
-        if (inscription.__SANDBOX__) return ({success: true, sandbox: true, id: '12345', result: {}});
+
+    serviceInstance.inscrire = function(inscription, workspace, traductions) {
+        if (inscription.__SANDBOX__) return Promise.resolve({success: true, sandbox: true, id: '12345', result: {}});
         return($http({
-                url:"/api/v1/inscription",
-                method:"POST",
-                data:{
-                    inscription:inscription,
-                    workspace: workspace
-                }
-            }));
+            url:"/api/v1/inscription",
+            method:"POST",
+            data:{
+                inscription:inscription,
+                workspace: workspace
+            }
+        }));
     };
-    serviceInstance.exportInscriptions=function(payload){
+
+    serviceInstance.exportInscriptions = function(payload) {
       return ($http.get("/api/v1/inscription",{
         params: payload
       }));
