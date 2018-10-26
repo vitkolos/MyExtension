@@ -12,13 +12,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.paiment_complementaire= themePath+'/templates/blocks/formulaire/paiment_complementaire.html';
     me.content = angular.copy($scope.proposition);
 
-    console.log("CONTENT1", me.content);
+    console.log("CONTENT1", me.content, $scope.inscription);
     if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement) me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement;
     if (me.content.fields && !me.content.fields.moyens_paiement) me.content.fields.moyens_paiement = [];
     me.moyens_paiement_multiples = true;
     if (me.content.fields.moyens_paiement.length == 1 || typeof me.content.fields.moyens_paiement == "string") {
         console.log('single payment mean detected')
-        me.inscription.modePaiement = me.content.fields.moyens_paiement;
         me.moyens_paiement_multiples = false;
     }
     console.log("CONTENT2", me.moyens_paiement_multiples, me.content);
@@ -93,6 +92,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.inscription.public_type=angular.copy(me.content.public);
     $scope.inscription.serviteur=angular.copy(me.content.service);
     $scope.inscription.positionName = me.content.fields.positionName;
+    if (!me.moyens_paiement_multiples) $scope.inscription.modePaiement = me.content.fields.moyens_paiement;
 
     //surveiller si le type de formulaire est changé pour changer le template
     $scope.$watch("contentDetailCtrl.content.public", function(newValue, oldValue) {
