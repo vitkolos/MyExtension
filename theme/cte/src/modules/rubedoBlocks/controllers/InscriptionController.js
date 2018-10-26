@@ -20,7 +20,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         me.inscription.modePaiement = me.content.fields.moyens_paiement;
         me.moyens_paiement_multiples = false;
     }
-    console.log("CONTENT2", me.content);
+    console.log("CONTENT2", me.moyens_paiement_multiples, me.content);
     
     getForms = function(public) {
         switch(public) {
