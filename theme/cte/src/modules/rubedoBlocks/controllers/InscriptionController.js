@@ -13,10 +13,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.content = angular.copy($scope.proposition);
 
     console.log("CONTENT1", me.content);
-    if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement) me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement;
+    //if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement) me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement;
     if (me.content.fields && !me.content.fields.moyens_paiement) me.content.fields.moyens_paiement = [];
     me.moyens_paiement_multiples = true;
-    if (typeof me.content.fields.moyens_paiement == 'string') {
+    if (me.content.fields.moyens_paiement.length == 1) {
         me.inscription.modePaiement = me.content.fields.moyens_paiement;
         me.moyens_paiement_multiples = false;
     }
