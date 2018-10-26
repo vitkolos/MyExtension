@@ -341,12 +341,16 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     }
                     
             }
+
             log(LOG_INFO, 'Inscription simulation', $scope.inscription, $scope.rubedo.current.page.workspace);
             log(LOG_INFO, 'Payment simulation : paiement par carte ?', $scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal')
-            if (SANDBOX) log(LOG_INFO, 'Payment simulation payload=', preparePaymentPayload);
-            if (SANDBOX) return;
+            if (SANDBOX) $scope.inscription.__SANDBOX__ = true;
+
+            // =======================================================================
+            //              ON LANCE L'INSCRIPTION
+            // =======================================================================
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
-                $scope.message="";
+                $scope.message = "";
                 if (response.data.success) {
                     // si paiement par Paybox
                     if ($scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
@@ -375,6 +379,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         if ($scope.inscription.modePaiement=='dotpay') {
                             payload.infos=$scope.inscription;
                         }
+                        if (SANDBOX) log(LOG_INFO, 'Payment simulation payload=', preparePaymentPayload(response), payload);
+                        if (SANDBOX) return response;
+
+                        // =========================================================================
+                        //          ON LANCE LE PAIEMENT
+                        // =========================================================================
                         PaymentService.payment(payload).then(function(response){																						
 						    if (response.data.success) {
 								if($scope.inscription.modePaiement == 'carte') {

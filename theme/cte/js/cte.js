@@ -353,6 +353,7 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
 angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
     var serviceInstance={};
     serviceInstance.inscrire=function(inscription,workspace,traductions){
+        if (inscription.__SANDBOX__) return ({success: true, sandbox: true, id: '12345', result: {}});
         return($http({
                 url:"/api/v1/inscription",
                 method:"POST",
@@ -396,24 +397,24 @@ angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($
     return serviceInstance;
 }]);
 angular.module('rubedoDataAccess').factory('RubedoPaymentMeansService',['$http',function($http){
-           var serviceInstance = {};
-           serviceInstance.getPaymentMeansDons=function(){
-               return ($http.get("/api/v1/ecommerce/paymentmeans",{
-                      params: {
-                         filter_by_site:true,
-                         type:"dons"
-                      }
-                }));
-           };
-           serviceInstance.getPaymentMeansPaf=function(){
-               return ($http.get("/api/v1/ecommerce/paymentmeans",{
-                      params: {
-                         filter_by_site:true,
-                         type:"paf"
-                      }
-                }));
-           };
-           return serviceInstance;
+  var serviceInstance = {};
+  serviceInstance.getPaymentMeansDons=function(){
+      return ($http.get("/api/v1/ecommerce/paymentmeans",{
+            params: {
+                filter_by_site:true,
+                type:"dons"
+            }
+      }));
+  };
+  serviceInstance.getPaymentMeansPaf=function(){
+      return ($http.get("/api/v1/ecommerce/paymentmeans",{
+            params: {
+                filter_by_site:true,
+                type:"paf"
+            }
+      }));
+  };
+  return serviceInstance;
 }]);
 
 /*pour page "autour de vous*/
