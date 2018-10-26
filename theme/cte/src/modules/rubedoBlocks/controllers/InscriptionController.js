@@ -354,32 +354,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 if (response.data.success) {
                     // si paiement par Paybox
                     if ($scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
-                        var payload = {
-                            nom:$scope.inscription.nom,
-                            prenom: $scope.inscription.surname,
-                            email:$scope.inscription.email,
-                            montant:$scope.inscription.montantAPayerMaintenant,
-                            proposition:propositionTitle,
-                            idInscription: response.data.id,
-                            paymentConfID:response.data.result.paymentConfID,
-                            paymentMeans:$scope.inscription.modePaiement,
-                            codeMonnaieAlpha:me.paymentmeans.nativePMConfig.codeMonnaieAlpha,
-                            paymentType:'paf'
-                        };
-                        /*si ados, le mail indiqué pour le payement est celui du parent*/ 
-                        if ($scope.inscription.public_type == 'adolescent' && $scope.inscription.emailPers2 && $scope.inscription.emailPers2!=''){
-                            payload.email = $scope.inscription.emailPers2;
-                        }
-                        if (me.content.fields.lieuCommunautaire) {
-                            payload.placeID=me.content.fields.lieuCommunautaire;
-                        }
-                        if(window.ga) {
-                            window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
-                        }
-                        if ($scope.inscription.modePaiement=='dotpay') {
-                            payload.infos=$scope.inscription;
-                        }
-                        if (SANDBOX) log(LOG_INFO, 'Payment simulation payload=', preparePaymentPayload(response), payload);
+                        if (window.ga) window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
+                        let payload = preparePaymentPayload(repsonse);
+                        if (SANDBOX) log(LOG_INFO, 'Payment simulation payload=', payload);
                         if (SANDBOX) return response;
 
                         // =========================================================================
@@ -398,12 +375,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                                 else if($scope.inscription.modePaiement == 'paypal'){
                                     window.location.href= response.data.parametres;
                                 }																						
-                                //$scope.parametres = response.data.parametres;
-                                ///*délai pour laisser le formulaire se remplir*/
-                                //$timeout(function() {
-                                //    $scope.processForm=false;
-                                //    document.getElementById('payment').submit();
-                                //}, 100);
                             }
                             else {
                                 $scope.processForm=false;
@@ -413,7 +384,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                             }     
                         });
                     }
-                    // pas de paiement par carte
+                    // sinon pas de paiement par carte
                     else {
                         if(window.ga) window.ga('send', 'event', 'inscription', 'pas de payment', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
                         $scope.processForm=false;
@@ -467,48 +438,48 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             }
         });
     }
+
     me.payementComplementaire = function(){
-        $scope.processForm=true;	
+        $scope.processForm = true;	
 								
         var payload = {
-            nom:me.lastInscription.fields.nom,
-            prenom: me.lastInscription.fields.surname,
-            email:$scope.inscription.email,
-            montant:$scope.inscription.montantAPayerMaintenant,
-            proposition:propositionTitle,
-            idInscription: me.lastInscription.fields.text,
-			paymentConfID:me.paymentmeans.nativePMConfig.conf_paf,
+            nom:            me.lastInscription.fields.nom,
+            prenom:         me.lastInscription.fields.surname,
+            email:          $scope.inscription.email,
+            montant:        $scope.inscription.montantAPayerMaintenant,
+            proposition:    propositionTitle,
+            idInscription:  me.lastInscription.fields.text,
+			paymentConfID:  me.paymentmeans.nativePMConfig.conf_paf,
 			codeMonnaieAlpha:me.paymentmeans.nativePMConfig.codeMonnaieAlpha,
-            paymentType:'paf'
+            paymentType:    'paf'
         };
         if (me.paymentmeans.paymentModes.paypal && !me.paymentmeans.paymentModes.carte) {
-            payload.paymentMeans='paypal'; //cas où l'on désire que les paiements soient effectués sur Paypal et non sur Paybox
-        }
-        else {
+            payload.paymentMeans = 'paypal'; //cas où l'on désire que les paiements soient effectués sur Paypal et non sur Paybox
+        } else {
         	payload.paymentMeans = me.lastInscription.fields.modePaiement;
         }
-        if (me.content.fields.lieuCommunautaire) {
-            payload.placeID = me.content.fields.lieuCommunautaire;
-        }
-        if(window.ga) {
-            window.ga('send', 'event', 'inscription', 'payement carte', 'paiement complementaire', $scope.inscription.montantAPayerMaintenant);
-        }
+        if (me.content.fields.lieuCommunautaire) payload.placeID = me.content.fields.lieuCommunautaire;
+        if (window.ga) window.ga('send', 'event', 'inscription', 'payement carte', 'paiement complementaire', $scope.inscription.montantAPayerMaintenant);
+
+        if (SANDBOX) log(LOG_INFO, 'Payment complémentaire simulation payload=', payload);
+        if (SANDBOX) return;
+        
+        // =========================================================================
+        //          ON LANCE LE PAIEMENT COMPLÉMENTAIRE
+        // =========================================================================
         PaymentService.payment(payload).then(function(response){
-            
-        	if (response.data.success) {
-        						
-								if(me.paymentmeans.paymentModes.carte) {
-                                    $scope.parametres = response.data.parametres;
-                                    /*délai pour laisser le formulaire se remplir*/
-                                    $timeout(function() {
-                                        $scope.processForm=false;
-                                        document.getElementById('payment').submit();
-                                    }, 100);
-                                }
-                                else if(me.paymentmeans.paymentModes.paypal){
-                                   
-                                    window.location.href= response.data.parametres;
-                                }
+        	if (response.data.success) {					
+                if (me.paymentmeans.paymentModes.carte) {
+                    $scope.parametres = response.data.parametres;
+                    /*délai pour laisser le formulaire se remplir*/
+                    $timeout(function() {
+                        $scope.processForm=false;
+                        document.getElementById('payment').submit();
+                    }, 100);
+                }
+                else if (me.paymentmeans.paymentModes.paypal) {
+                    window.location.href= response.data.parametres;
+                }
             }
             else {
                 $scope.processForm=false;
@@ -516,7 +487,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 $scope.inscription={};
                 $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
             }
-            
         });        
     }
 				
