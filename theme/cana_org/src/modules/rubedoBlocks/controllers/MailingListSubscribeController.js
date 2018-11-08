@@ -8,6 +8,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
     $scope.fieldEntity={ };
     $scope.fieldInputMode=true;
     $scope.isBasic = true;
+    if (!$scope.block.code) $scope.block.code = "modal_newsletter";
     console.log('mailinglist config', $scope.block, $scope.blockConfig);
 
     me.mailingListUsers = [];
