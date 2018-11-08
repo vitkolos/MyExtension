@@ -1,0 +1,77 @@
+<div class="container-fullwidth" ng-if="block.displayTitle">
+    <!-- Bouton d'inscription à la newsletter -->
+    <a href="" class="capital button rouge fa-button" data-toggle="modal" data-target="#modal_newsletter" ng-if="!blockConfig.email_txt">
+        <span class="fa fa-envelope-o"></span>&nbsp;&nbsp;inscrivez-vous à notre newsletter
+    </a>
+</div>
+
+<!-- Modale affichée en cliquant sur le link ci-dessus -->
+<div id="{{block.code}}" class="modal fade" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+            
+                <div ng-controller="MailingListSuscribeController as mailingListSusCtrl">
+                    <h4>Newsletter</h4>
+                    <div ng-if="mailingListSusCtrl.display && mailingListSusCtrl.userType">
+                        <rubedo-notification ng-if="notification"></rubedo-notification>
+                        <form role="form" ng-submit="mailingListSusCtrl.submit()" ng-if="mailingListSusCtrl.display">
+                            <div class="form-group">
+                                <label ng-attr-for="{{mailingListSusCtrl.prefix+'email'}}">{{rubedo.translate("Label.Email", "Email")}}</label>
+                                <input ng-model="mailingListSusCtrl.email" type="email" class="form-control" ng-attr-id="{{mailingListSusCtrl.prefix+'email'}}" placeholder="{{rubedo.translate('Label.Email', 'Email')}}" required>
+                            </div>
+                            <div class="form-group">
+                                <label ng-attr-for="{{mailingListSusCtrl.prefix+'name'}}">{{rubedo.translate("Blocks.SignUp.label.name", "Name")}}</label>
+                                <input ng-model="mailingListSusCtrl.name" type="text" class="form-control" ng-attr-id="{{mailingListSusCtrl.prefix+'name'}}" placeholder="{{rubedo.translate('Blocks.SignUp.label.name', 'Name')}}" required>
+                            </div>
+                            <rubedo-field ng-repeat="field in mailingListSusCtrl.userType.fields track by $index"></rubedo-field>
+                
+                            <h4 style="display:none">{{rubedo.translate('Blocks.SignUp.label.mailingList', 'Subscribe to the following mailing lists')}}</h4>
+                            <div style="display:none" ng-repeat="mailingList in mailingListSusCtrl.mailingLists track by $index" class="checkbox">
+                                <label>
+                                    <input ng-model="mailingList.checked" type="checkbox"> {{mailingList.name}}
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">{{rubedo.translate("Block.Inscription.Valider", "S'inscrire")}}</button>
+                            
+                            <!-- Bouton pour télécharger la liste des inscrits si jamais on est connecté en admin -->
+                            <a class="download_subscribers" ng-if="rubedo.current.user && rubedo.current.user.rights.canEdit" ng-click="mailingListSusCtrl.downloadUserList()">
+                                <i class="fa fa-download"></i>&nbsp;&nbsp;
+                                Télécharger la liste des inscrits à la newsletter ({{mailingListSusCtrl.mailingListUsers.length}} inscrits) (visible car tu es connecté ;)
+                            </a>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    div.container-fullwidth {
+        width: 100vw;
+        margin: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    a.fa-button {
+        display: flex;
+        align-items: center;
+        margin-right: 3rem;
+    }
+    a.fa-button > span.fa {
+        font-size: 2.3rem;
+    }
+    a.download_subscribers {
+        cursor: pointer;
+        font-size: 13px;
+        display: block;
+        margin: 2rem 1rem 0;
+    }
+    a.download_subscribers:hover {
+        color: #c1573c;
+    }
+</style>
