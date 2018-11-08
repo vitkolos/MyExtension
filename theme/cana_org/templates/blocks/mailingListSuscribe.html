@@ -6,13 +6,13 @@
 </div>
 
 <!-- Modale affichée en cliquant sur le link ci-dessus -->
-<div  id="modal_newsletter" class="modal fade" aria-hidden="true">
+<div id="{{block.code || modal_newsletter}}" class="modal fade" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-body">
             
                 <div ng-controller="MailingListSuscribeController as mailingListSusCtrl">
-                    <h4>{{block.title}}</h4>
+                    <h4>Newsletter</h4>
                     <div ng-if="mailingListSusCtrl.display && mailingListSusCtrl.userType">
                         <rubedo-notification ng-if="notification"></rubedo-notification>
                         <form role="form" ng-submit="mailingListSusCtrl.submit()" ng-if="mailingListSusCtrl.display">
