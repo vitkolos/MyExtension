@@ -461,7 +461,15 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 	};
 }]);
 
-
+angular.module('rubedoBlocks').directive('faBefore', function() {
+  return {
+    restrict: 'A',
+    link: function(scope, elm, attrs) {
+      console.log('directive faBefore : ', elm, attrs);
+      $(elm).html(`<i class="fa fa-globe"></i>${$(elm).html()}`);
+    }
+  }
+})
 
 
 

@@ -1,5 +1,6 @@
 angular.module("rubedoBlocks").lazy.controller('OrderDetailController',['$scope','RubedoOrdersService','$location','RubedoMediaService','RubedoPaymentService','$timeout','$http','RubedoUsersService',
-                                                                        function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService,$timeout,$http,RubedoUsersService){
+function($scope,RubedoOrdersService,$location,RubedoMediaService,RubedoPaymentService,$timeout,$http,RubedoUsersService){
+
     var me = this;
     var config = $scope.blockConfig;
     var orderId=$location.search().order;

@@ -212,7 +212,7 @@ class InscriptionResource extends AbstractResource
     {
         
         //GET NUMERO D'INSCRIPTION ACTUEL
-        $id = "57e1a814245640fc008ba8a8"; // id du contenu "Numéro d'inscription"
+        $id = "57e1a814245640fc008ba8a8"; // id du contenu "Numéro d'inscription CCN" c'est ici qu'on note le dernier numéro d'inscription, qu'on incrémente de 1 à chaque inscription
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
@@ -234,9 +234,9 @@ class InscriptionResource extends AbstractResource
 		);
 	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         $result = $contentsService->update($content, array(),false);
-        $inscriptionNumber= $content["fields"]["value"];
-								//GET SITE CONFIG
-								$siteConfig = Manager::getService("SitesConfigCcn")->getConfig()['paymentConfig']['nativePMConfig'];
+        $inscriptionNumber = $content["fields"]["value"];
+        //GET SITE CONFIG
+        $siteConfig = Manager::getService("SitesConfigCcn")->getConfig()['paymentConfig']['nativePMConfig'];
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
         $inscriptionForm['fields'] =  $params['inscription'];

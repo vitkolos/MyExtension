@@ -55,9 +55,9 @@
                 <input type="hidden" name="PBX_HMAC" value="{{parametres.empreinteHasheeHex}}">
                 <input type="submit" class="btn-default" style="    padding: 12px 24px;    font-size: x-large;    margin-bottom: 30px;" value="Payer la commande">
             </form>
-            <form ng-if="orderDetailCtrl.showPaypalForm" id="paypalPayment" name="paypalPayment"  method="POST" action="https://www.sandbox.paypal.com/cgi-bin/webscr">
+            <form ng-if="orderDetailCtrl.showPaypalForm" id="paypalPayment" name="paypalPayment"  method="POST" action="https://www.paypal.com/cgi-bin/webscr">
                 <!--<input type="hidden" name="cmd" value="_cart">-->
-                        <input type="hidden" name="{{name}}" value="{{value}}" ng-repeat="(name, value) in parametres">
+                <input type="hidden" name="{{name}}" value="{{value}}" ng-repeat="(name, value) in parametres">
                         
                 <input type="submit" class="btn-default" style="padding: 12px 24px; margin-bottom: 30px;" value="Payer la commande">
             </form>

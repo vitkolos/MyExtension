@@ -184,7 +184,7 @@ class OrdersResource extends AbstractResource
                 $mailerObject2 = $mailerService->getNewMessage();
                 $bodyClient = "";
                 $mailerObject2->setTo(array($registeredOrder['data']['userEmail'] => $registeredOrder['data']['userName']));
-                $mailerObject2->setBcc(array("nicolas.rhone@gmail.com", "siteweb.ccn@gmail.com"));
+                $mailerObject2->setBcc(array("siteweb.ccn@gmail.com"));
                 $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
                 $mailerObject2->setFrom(array("ame@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
                 $mailerObject2->setCharset('utf-8');
