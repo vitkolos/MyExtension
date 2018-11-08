@@ -1,4 +1,4 @@
-<div class="container-fullwidth">
+<div class="container-fullwidth" ng-if="block.displayTitle">
     <!-- Bouton d'inscription à la newsletter -->
     <a href="" class="capital button rouge fa-button" data-toggle="modal" data-target="#modal_newsletter" ng-if="!blockConfig.email_txt">
         <span class="fa fa-envelope-o"></span>&nbsp;&nbsp;inscrivez-vous à notre newsletter
@@ -12,7 +12,7 @@
             <div class="modal-body">
             
                 <div ng-controller="MailingListSuscribeController as mailingListSusCtrl">
-                    <h4>Newsletter</h4>
+                    <h4>{{block.title}}</h4>
                     <div ng-if="mailingListSusCtrl.display && mailingListSusCtrl.userType">
                         <rubedo-notification ng-if="notification"></rubedo-notification>
                         <form role="form" ng-submit="mailingListSusCtrl.submit()" ng-if="mailingListSusCtrl.display">
