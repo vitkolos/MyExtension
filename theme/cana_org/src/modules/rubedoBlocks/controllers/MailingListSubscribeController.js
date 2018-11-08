@@ -8,6 +8,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
     $scope.fieldEntity={ };
     $scope.fieldInputMode=true;
     $scope.isBasic = true;
+    console.log('mailinglist config', $scope.block, $scope.blockConfig);
 
     me.mailingListUsers = [];
     me.getMailingListUsers = async function(ml_id) {
@@ -21,7 +22,7 @@ angular.module("rubedoBlocks").lazy.controller('MailingListSuscribeController',[
                     _dc: '1540472371822', page: 1, start: 0, limit: 5000
                 }
             })
-            console.log('got MailingListUsers', ml_id, http_res.data.data);
+            //console.log('got MailingListUsers', ml_id, http_res.data.data);
             me.mailingListUsers = http_res.data.data;
             return me.mailingListUsers
         } catch(e) {
