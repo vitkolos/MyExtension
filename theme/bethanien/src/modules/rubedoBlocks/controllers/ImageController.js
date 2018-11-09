@@ -4,7 +4,12 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
     me.imageTitle = "";
     console.log('image config', $scope.block, $scope.blockConfig)
 
-    // Si on a spécifié un lien quand on clique sur l'image, on le charge
+    // Detect Media type (image default, or pdf, ...)
+    me.mediaType = 'image';
+    if (/pdf/gi.test(config.code)) me.mediaType = 'pdf';
+    console.log("media type", me.mediaType);
+
+    // Si on a spécifié un lien quand on clique sur le media, on le charge
     if (config.externalURL){
         me.url=config.externalURL;
     } else if (config.imageLink && mongoIdRegex.test(config.imageLink)){
@@ -15,7 +20,7 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
         });
     }
     
-    // On charge l'image depuis l'API media
+    // On charge le media depuis l'API media
     if(config.imageFile) {
         $http.get("/api/v1/media/" + config.imageFile).then(
             function(response) {
