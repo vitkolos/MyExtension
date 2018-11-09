@@ -25,7 +25,7 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
                 console.log('media api result', response)
                 if(response.data.success) {
                     let media = response.data.media;
-                    me.imageTitle = response.data.media.fields.title;
+                    me.imageTitle = (media.fields && media.fields.title) ? media.fields.title: media.title;
                     $scope.clearORPlaceholderHeight();
                     // if it's a PDF
                     if (media.typeId == '55530a0a45205eac0c368078') {

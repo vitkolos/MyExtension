@@ -12,7 +12,7 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
     $scope.upload = function(files) {
         var batch = false;
 
-        if (me.batchTitle && me.batchTitle!="") {
+        if (me.batchTitle && me.batchTitle!="" && files.length > 1) {
             batch = true;
         }
         //var nbOfImages = files.length;
@@ -20,12 +20,11 @@ angular.module("rubedoBlocks").lazy.controller('ImageBatchUploadController',['$s
             me.processing=true;
             var nbOfImages = files.length;
             for (var i = 0; i < nbOfImages; i++) {
-                var imgTitle=""; var counter=0;
+                var imgTitle = ""; var counter = 0;
                 if (!batch) {
                     imgTitle=files[i].name;
-                }
-                else {
-                    imgTitle=me.batchTitle + '_'+i;
+                } else {
+                    imgTitle=me.batchTitle + '_' + i;
                 }
                 Upload.upload({
                     url: '/api/v1/media',
