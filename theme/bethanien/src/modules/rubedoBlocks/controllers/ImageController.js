@@ -27,8 +27,11 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
                     let media = response.data.media;
                     me.imageTitle = response.data.media.fields.title;
                     $scope.clearORPlaceholderHeight();
-                    // get media type
-                    if (media.typeId == '55530a0a45205eac0c368078') me.mediaType = 'pdf'; // PDF
+                    // if it's a PDF
+                    if (media.typeId == '55530a0a45205eac0c368078') {
+                        me.mediaType = 'pdf';
+                        me.url = '/file?file-id=' + media.originalFileId;
+                    }
                 }
             }
         );
