@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$http","RubedoPagesService", function($scope,$http,RubedoPagesService){
+angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$http","RubedoPagesService","Upload", function($scope,$http,RubedoPagesService,Upload){
     var me = this;
     var config = $scope.blockConfig;
     me.imageTitle = "";
@@ -37,13 +37,9 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
         );
     }
 
-    me.fileread = "";
-    $scope.$watch('fileread', function(newValue, oldValue) {
-        console.log('fileread change', oldValue, newValue, $scope.fileread);
-        me.uploadFile()
-    });
-    me.uploadFile = function() {
-        console.log("file upload", me.fileread)
+    me.file = "";
+    me.upload = function(file) {
+        console.log("file upload", me.file, file)
     }
 
 }]);
