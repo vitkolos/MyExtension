@@ -38,11 +38,12 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
     }
 
     me.fileread = "";
-    me.uploadFile = function(e) {
-        console.log("file upload", me.fileread, e)
-    }
     $scope.$watch('fileread', function(newValue, oldValue) {
-        console.log('fileread change', oldValue, newValue);
+        console.log('fileread change', oldValue, newValue, $scope.fileread);
+        me.uploadFile()
     });
+    me.uploadFile = function() {
+        console.log("file upload", me.fileread)
+    }
 
 }]);
