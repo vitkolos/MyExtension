@@ -80,6 +80,24 @@ blocksConfig.imageBatchUpload={
   };
 });
 
+angular.module('rubedoBlocks').directive("fileread", [function () {
+  return {
+      scope: {
+          fileread: "="
+      },
+      link: function (scope, element, attributes) {
+          console.log("fileread link", attributes)
+          element.bind("change", function (changeEvent) {
+              scope.$apply(function () {
+                  scope.fileread = changeEvent.target.files[0];
+                  // or all selected files:
+                  // scope.fileread = changeEvent.target.files;
+              });
+          });
+      }
+  }
+}]);
+
 
 
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
