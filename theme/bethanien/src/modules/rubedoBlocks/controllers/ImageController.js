@@ -37,8 +37,9 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
         );
     }
 
+    me.file_to_upload = "";
     me.uploadFile = function(e) {
-        console.log("file upload", e)
+        console.log("file upload", me.file_to_upload, e)
     }
 
 }]);
