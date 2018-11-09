@@ -19,7 +19,7 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
     if(config.imageFile) {
         $http.get("/api/v1/media/" + config.imageFile).then(
             function(response) {
-                console.log('media api result', result)
+                console.log('media api result', response)
                 if(response.data.success) {
                     me.imageTitle = response.data.media.fields.title;
                     $scope.clearORPlaceholderHeight();
