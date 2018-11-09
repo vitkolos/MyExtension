@@ -89,6 +89,7 @@ angular.module('rubedoBlocks').directive("fileread", [function () {
           console.log("fileread link", attributes)
           element.bind("change", function (changeEvent) {
               scope.$apply(function () {
+                  console.log("fileread directive change triggered", changeEvent);
                   scope.fileread = changeEvent.target.files[0];
                   // or all selected files:
                   // scope.fileread = changeEvent.target.files;
