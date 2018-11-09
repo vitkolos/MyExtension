@@ -4,10 +4,8 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
     me.imageTitle = "";
     console.log('image config', $scope.block, $scope.blockConfig)
 
-    // Detect Media type (image default, or pdf, ...)
+    // default media type is image, this will be updated after media query
     me.mediaType = 'image';
-    if (/pdf/gi.test(config.code)) me.mediaType = 'pdf';
-    console.log("media type", me.mediaType);
 
     // Si on a spécifié un lien quand on clique sur le media, on le charge
     if (config.externalURL){
@@ -26,8 +24,11 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
             function(response) {
                 console.log('media api result', response)
                 if(response.data.success) {
+                    let media = response.data.media;
                     me.imageTitle = response.data.media.fields.title;
                     $scope.clearORPlaceholderHeight();
+                    // get media type
+                    if (media.typeId == '55530a0a45205eac0c368078') me.mediaType = 'pdf'; // PDF
                 }
             }
         );
