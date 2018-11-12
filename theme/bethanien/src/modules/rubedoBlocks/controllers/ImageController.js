@@ -68,6 +68,8 @@ angular.module("rubedoBlocks").lazy.controller("ImageController",["$scope","$htt
             headers: {'Content-Type': file.type}
         }).then(function (resp) {
             console.log('upload ok', resp)
+            // maintenant on update le fichier courant
+            
         }, function (resp) {
             console.log('Error status: ' + resp.status);
         });
