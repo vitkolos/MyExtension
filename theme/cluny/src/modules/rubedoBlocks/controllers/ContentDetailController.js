@@ -40,14 +40,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     /*Pour ajouter un menu secondaire*/
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
         if (me.numeroBlock=="1") {
-            console.log("numeroBlock");
-												console.log(me.numeroBlock);
-												me.numeroBlock++;
+            me.numeroBlock++;
             if (response.data.success){
                 me.menu=response.data.menu;
-																var lang = $route.current.params.lang;
+				var lang = $route.current.params.lang;
                 angular.forEach(me.menu.blocks, function(block, key2){
-																				/* SI SUR LA PAGE 'ACCUEIL' */
+					/* SI SUR LA PAGE 'ACCUEIL' */
                     if (block.bType=="contentDetail" && me.menu.id=="5ac8da58396588d65471b982" && block.orderValue<=1) {
                         me.pageBlock[key2]=[];
                         console.log("block");
@@ -79,7 +77,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         angular.forEach(me.taxo[taxoKey].terms,function(candidate, id){ // chercher l'id dans les taxonomies de ce type de contenu si 
             if(!term){if(id==termId){term=candidate;}}
          });
-         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherchŽ
+         if(!term) term = termId; //pour les taxos extensibles, l'id est le terme cherchï¿½
     return(term);
     }
     

@@ -49,8 +49,6 @@ function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService
                     else {}
                 });
             });
-            console.log('pagesBlocks');
-            console.log(me.pagesBlocks);
             $scope.clearORPlaceholderHeight();
         } else {
             me.menu={};
