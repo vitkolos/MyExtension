@@ -25,11 +25,15 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         });
     };
     
-    console.log("$scope", me.menu.pages)
-    me.changeLang = async function(lang) {
-        let l = await me.getLangUrl(lang);
-        window.location.href = l;
-    }
+    // setup urls of the current page in other languages
+    me.langUrls = {}
+    me.languages = $scope.rubedo.current.site.languages;
+    let plang = []
+    for (let lang of me.languages) plang.push(me.getLangUrl(lang.lang));
+    let langUrls = await Promise.all(plang);
+    for (let i = 0; i < me.languages.length; i++) me.langUrls[me.languages[i].lang] = langUrls[i];
+
+
     me.getLangUrl = async function(lang) {
         let currentLang = $route.current.params.lang;
         if(lang == currentLang) return me.currentRouteline;
@@ -44,7 +48,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         if (!response.data.success) {console.log("Error in menuCtrl.changeLangUrl", response); return}
 
         // si la page courante est un contenu
-        /* if ($scope.rubedo.current.page.contentCanonicalUrl) {
+        if ($scope.rubedo.current.page.contentCanonicalUrl) {
             // Ici c'est l'énorme bidouille LOL à revoir
             // Get content id
             urlArray = $route.current.params.routeline.split("/");
@@ -71,7 +75,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         if(currentParams != "") {
             if(response.data.url.indexOf("?") > -1) return response.data.url + currentParams;
             return response.data.url + "?" + currentParams;
-        } */
+        }
         return response.data.url
     }
 
@@ -141,6 +145,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
         return '/assets/flags/16/'+flagCode+'.png';
     };
     me.changeLang = function (lang) {
+        console.log("clicked LanguageController !")
         if(lang == me.currentLang.lang) return;
         RubedoModuleConfigService.changeLang(lang);
         if ($scope.rubedo.current.site.locStrategy == 'fallback'){
