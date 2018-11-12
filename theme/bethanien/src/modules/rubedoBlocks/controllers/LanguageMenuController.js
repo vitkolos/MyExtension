@@ -53,9 +53,9 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                     if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
                                         contentSegment=contentResponse.data.content.fields.urlSegment;
                                     }
-                                    window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                                    //window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
                                 } else {
-                                    window.location.href =  response.data.url;
+                                    //window.location.href =  response.data.url;
                                 }
                             },
                             function(){
@@ -76,7 +76,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                 }
                             }
 
-                            window.location.href =  url;
+                            //window.location.href =  url;
                         }
                     }
                 });
