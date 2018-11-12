@@ -97,20 +97,15 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
         return '/assets/flags/16/'+flagCode+'.png';
     };
     me.changeLang = function (lang) {
-        console.log('--in change lang1')
         if(lang == me.currentLang.lang) return;
-        console.log('--in change lang2')
         RubedoModuleConfigService.changeLang(lang);
         if ($scope.rubedo.current.site.locStrategy == 'fallback'){
-            console.log('--in fallback')
             RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
         }
         RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
             if (response.data.success){
-                console.log('--getpageId success')
                 if($scope.rubedo.current.page.contentCanonicalUrl) {
                     // Get content id
-                    console.log('--cano url')
                     urlArray = $route.current.params.routeline.split("/");
                     contentId = urlArray[urlArray.length-2];
 
@@ -120,7 +115,6 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
                     //Redirect with title
                     RubedoContentsService.getContentById(contentId).then(function(contentResponse){
                         if (contentResponse.data.success){
-                            console.log('--getcontentbyid success')
                             //console.log(contentResponse.data.content);
                             var contentSegment=contentResponse.data.content.text;
                             if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
@@ -132,21 +126,16 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
                         }
                     },
                     function(){
-                        console.log('--in changelang3')
                         window.location.href =  response.data.url;
                     });
                 } else {
-                    console.log('--in changelang4')
                     var currentParams = angular.element.param($location.search());
                     var url = response.data.url;
 
                     if(currentParams != "") {
-                        console.log('--in changelang5')
                         if(response.data.url.indexOf("?") > -1) {
-                            console.log('--in changelang6')
                             url = response.data.url + currentParams;
                         } else {
-                            console.log('--in changelang7')
                             url = response.data.url + "?" + currentParams;
                         }
                     }
