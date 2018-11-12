@@ -154,7 +154,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
     me.getFlagUrl = function(flagCode){
         return '/assets/flags/16/'+flagCode+'.png';
     };
-    console.log("RBCS", RubedoModuleConfigService)
+    
     me.changeLang = function (lang) {
         console.log("clicked LanguageController !")
         if(lang == me.currentLang.lang) return;
@@ -164,6 +164,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
         }
         RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
             if (response.data.success){
+                console.log("new current page", response.data)
                 if($scope.rubedo.current.page.contentCanonicalUrl) {
                     // Get content id
                     urlArray = $route.current.params.routeline.split("/");
@@ -180,13 +181,13 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
                             if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
                                 contentSegment=contentResponse.data.content.fields.urlSegment;
                             }
-                            window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                            //window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
                         } else {
-                            window.location.href =  response.data.url;
+                            //window.location.href =  response.data.url;
                         }
                     },
                     function(){
-                        window.location.href =  response.data.url;
+                        //window.location.href =  response.data.url;
                     });
                 } else {
                     var currentParams = angular.element.param($location.search());
@@ -199,7 +200,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
                             url = response.data.url + "?" + currentParams;
                         }
                     }
-                    window.location.href =  url;
+                    //window.location.href =  url;
                 }
             }
         })
