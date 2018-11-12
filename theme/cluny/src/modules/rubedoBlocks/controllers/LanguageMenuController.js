@@ -4,6 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         var config = $scope.blockConfig;
         var urlArray = [];
         var contentId = "";
+        console.log("$scope", $scope)
         me.languages = $scope.rubedo.current.site.languages;
         me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
         me.mode = config.displayAs == "select";
@@ -25,11 +26,12 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         me.getFlagUrl = function(flagCode){
             return '/assets/flags/16/'+flagCode+'.png';
         };
-        me.changeLang = function(lang) {
-            if (lang == me.currentLang.lang) return;
-            console.log('changeLang')
+
+        me.changeLangUrl = function(lang) {
+            if(lang != me.currentLang.lang) return 
         }
-        me.changeLang2 = function (lang) {
+        
+        me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
                 RubedoModuleConfigService.changeLang(lang);
                 if ($scope.rubedo.current.site.locStrategy == 'fallback'){
