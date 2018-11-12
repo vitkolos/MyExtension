@@ -410,7 +410,7 @@ return array(
                     '/css/font-awesome.css'
                 ),
                 'js' => array(
-                    '/../js/cte/lazy-image.js',
+                    '/js/lazy-image.js',
                     '/js/cluny.js'
                 ),
                 'angularModules' => array(
