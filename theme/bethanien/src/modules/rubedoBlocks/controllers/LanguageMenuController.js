@@ -25,7 +25,11 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         me.getFlagUrl = function(flagCode){
             return '/assets/flags/16/'+flagCode+'.png';
         };
-        me.changeLang = function (lang) {
+        me.changeLang = function(lang) {
+            if (lang == me.currentLang.lang) return;
+            console.log('LANG', lang, me.currentLang)
+        }
+        me.changeLang2 = function (lang) {
             if(lang != me.currentLang.lang){
                 console.log('--in lang1')
                 RubedoModuleConfigService.changeLang(lang);
