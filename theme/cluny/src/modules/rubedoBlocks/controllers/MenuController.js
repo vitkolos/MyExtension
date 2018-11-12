@@ -28,6 +28,7 @@ function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService
     console.log("$scope", $scope, $route, $location)
     me.getLangUrl = async (lang) => {
         if(lang == $route.current.params.lang) return me.currentRouteline;
+        //RubedoModuleConfigService.changeLang(lang);
 
         // fallback strategy
         if ($scope.rubedo.current.site.locStrategy == 'fallback') RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
@@ -156,15 +157,13 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
     };
     
     me.changeLang = function (lang) {
-        console.log("clicked LanguageController !", RubedoPagesService, RubedoModuleConfigService);
         if(lang == me.currentLang.lang) return;
         RubedoModuleConfigService.changeLang(lang);
-        $http.get("/api/v1/pages/"+$scope.rubedo.current.page.id).then(r => console.log("$http get", r))
+        
         if ($scope.rubedo.current.site.locStrategy == 'fallback'){
-            console.log("in fallback")
             RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
         }
-        $http.get("/api/v1/pages/"+$scope.rubedo.current.page.id).then(r => console.log("$http get", r))
+        
         RubedoPagesService.getPageById($scope.rubedo.current.page.id, true).then(function(response){
             if (response.data.success){
                 console.log("new current page", response.data)
@@ -172,9 +171,6 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
                     // Get content id
                     urlArray = $route.current.params.routeline.split("/");
                     contentId = urlArray[urlArray.length-2];
-
-                    // Redirect without title
-                    //window.location.href = response.data.url + "/" + contentId + "/title";
 
                     //Redirect with title
                     RubedoContentsService.getContentById(contentId).then(function(contentResponse){
@@ -184,13 +180,13 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
                             if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
                                 contentSegment=contentResponse.data.content.fields.urlSegment;
                             }
-                            //window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                            window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
                         } else {
-                            //window.location.href =  response.data.url;
+                            window.location.href =  response.data.url;
                         }
                     },
                     function(){
-                        //window.location.href =  response.data.url;
+                        window.location.href =  response.data.url;
                     });
                 } else {
                     var currentParams = angular.element.param($location.search());
@@ -203,7 +199,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
                             url = response.data.url + "?" + currentParams;
                         }
                     }
-                    //window.location.href =  url;
+                    window.location.href =  url;
                 }
             }
         })
