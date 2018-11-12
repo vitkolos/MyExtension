@@ -1,5 +1,5 @@
 angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$rootScope','$location','$route','RubedoMenuService','RubedoPagesService','$http',
-                                                                                                                                                                                                                                                                                function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService,$http){
+function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService,$http){
     var me = this;
     var themePath = "/theme/"+window.rubedoConfig.siteTheme;
     me.menu = {};
@@ -135,8 +135,8 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
 }]);
 
 
-angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scope', 'RubedoPagesService','RubedoModuleConfigService', 'RubedoContentsService', '$route', '$location',
-function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsService, $route, $location) {
+angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scope', 'RubedoPagesService','RubedoModuleConfigService', 'RubedoContentsService', '$route', '$location', '$http',
+function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsService, $route, $location, $http) {
     var me = this;
     var config = $scope.blockConfig;
     var urlArray = [];
