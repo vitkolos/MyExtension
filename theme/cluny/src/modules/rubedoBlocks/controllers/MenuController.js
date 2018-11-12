@@ -25,7 +25,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         });
     };
     
-    console.log("$scope", $scope)
+    console.log("$scope", $scope, $route)
     me.changeLangUrl = function(lang) {
         if(lang != me.currentLang.lang) return;
     }
