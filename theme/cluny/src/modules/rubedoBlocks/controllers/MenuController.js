@@ -30,7 +30,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         let currentLang = $route.current.params.lang;
         if(lang == currentLang) return me.currentRouteline;
         let re = new RegExp("^/" + currentLang + "/", "gi");
-        console.log("new path : ", $location.path().replace(re, `/${lang}/`))
+        console.log("new path : ", lang, $location.path(), $location.path().replace(re, `/${lang}/`))
         return $location.path().replace(re, `/${lang}/`)
     }
 
