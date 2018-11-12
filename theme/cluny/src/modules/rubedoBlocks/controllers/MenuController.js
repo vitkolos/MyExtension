@@ -156,52 +156,48 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
         return '/assets/flags/16/'+flagCode+'.png';
     };
     
-    me.changeLang = function (lang) {
+    me.changeLang = async function (lang) {
         if(lang == me.currentLang.lang) return;
         RubedoModuleConfigService.changeLang(lang);
         
-        if ($scope.rubedo.current.site.locStrategy == 'fallback'){
-            RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
-        }
+        if ($scope.rubedo.current.site.locStrategy == 'fallback') RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
         
-        RubedoPagesService.getPageById($scope.rubedo.current.page.id, true).then(function(response){
-            if (response.data.success){
-                console.log("new current page", response.data)
-                if($scope.rubedo.current.page.contentCanonicalUrl) {
-                    // Get content id
-                    urlArray = $route.current.params.routeline.split("/");
-                    contentId = urlArray[urlArray.length-2];
+        let response = await RubedoPagesService.getPageById($scope.rubedo.current.page.id, true);
+        if (!response.data.success) {console.log("in languageCtrl.changeLang : could not find page with id " + $scope.rubedo.current.page.id);return}
+        
+        if($scope.rubedo.current.page.contentCanonicalUrl) {
+            // Get content id
+            urlArray = $route.current.params.routeline.split("/");
+            contentId = urlArray[urlArray.length-2];
 
-                    //Redirect with title
-                    RubedoContentsService.getContentById(contentId).then(function(contentResponse){
-                        if (contentResponse.data.success){
-                            //console.log(contentResponse.data.content);
-                            var contentSegment=contentResponse.data.content.text;
-                            if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
-                                contentSegment=contentResponse.data.content.fields.urlSegment;
-                            }
-                            window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                        } else {
-                            window.location.href =  response.data.url;
-                        }
-                    },
-                    function(){
-                        window.location.href =  response.data.url;
-                    });
-                } else {
-                    var currentParams = angular.element.param($location.search());
-                    var url = response.data.url;
-
-                    if(currentParams != "") {
-                        if(response.data.url.indexOf("?") > -1) {
-                            url = response.data.url + currentParams;
-                        } else {
-                            url = response.data.url + "?" + currentParams;
-                        }
+            //Redirect with title
+            RubedoContentsService.getContentById(contentId).then(function(contentResponse){
+                if (contentResponse.data.success){
+                    //console.log(contentResponse.data.content);
+                    var contentSegment=contentResponse.data.content.text;
+                    if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
+                        contentSegment=contentResponse.data.content.fields.urlSegment;
                     }
-                    window.location.href =  url;
+                    window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                } else {
+                    window.location.href =  response.data.url;
                 }
-            }
-        })
+            },
+            function(){
+                window.location.href =  response.data.url;
+            });
+        }
+
+        // if normal page
+        let currentParams = angular.element.param($location.search());
+
+        if(currentParams == "") {
+            window.location.href =  response.data.url; return
+        }
+        if(response.data.url.indexOf("?") > -1) {
+            window.location.href = response.data.url + currentParams; return
+        } else {
+            window.location.href = response.data.url + "?" + currentParams; return
+        }
     }
 }])
