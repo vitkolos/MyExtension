@@ -27,10 +27,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
     
     console.log("$scope", $scope, $route, $location)
     me.getLangUrl = async (lang) => {
-        let currentLang = $route.current.params.lang;
-        if(lang == currentLang) return me.currentRouteline;
-        /* let re = new RegExp("^/" + currentLang + "/", "gi");
-        return $location.path().replace(re, `/${lang}/`) */
+        if(lang == $route.current.params.lang) return me.currentRouteline;
 
         // fallback strategy
         if ($scope.rubedo.current.site.locStrategy == 'fallback') RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
@@ -68,7 +65,10 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
             if(response.data.url.indexOf("?") > -1) return response.data.url + currentParams;
             return response.data.url + "?" + currentParams;
         }
-        return response.data.url
+        
+        // à la barbare
+        let re = new RegExp("^/" + $route.current.params.lang + "/", "gi");
+        return $location.path().replace(re, `/${lang}/`)
     }
 
     // setup urls of the current page in other languages
