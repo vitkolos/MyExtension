@@ -59,14 +59,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     else {}
                 });
             $scope.clearORPlaceholderHeight();
-            console.log("menu");
-            console.log(me.menu);
-            console.log("pageBlock");
-            console.log(me.pageBlock);
-            }
-												else {
+            } else {
                 me.menu={};
-																$scope.clearORPlaceholderHeight();
+                $scope.clearORPlaceholderHeight();
             }
         }
     });
