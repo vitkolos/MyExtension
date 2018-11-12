@@ -1,12 +1,12 @@
 angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$rootScope','$location','$route','RubedoMenuService','RubedoPagesService','$http',
                                                                                                                                                                                                                                                                                 function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService,$http){
-    var me=this;
-    var themePath="/theme/"+window.rubedoConfig.siteTheme;
-    me.menu={};
+    var me = this;
+    var themePath = "/theme/"+window.rubedoConfig.siteTheme;
+    me.menu = {};
     var lang = $route.current.params.lang;
-                            me.pagesBlocks={};
-    me.currentRouteline=$location.path();
-    var config=$scope.blockConfig;
+    me.pagesBlocks={};
+    me.currentRouteline = $location.path();
+    var config = $scope.blockConfig;
 
     me.searchEnabled = (config.useSearchEngine && config.searchPage);
     if (config.rootPage){
@@ -25,9 +25,9 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         });
     };
     
-    console.log("$scope", $scope, $route)
+    console.log("$scope", $scope, $route, $location)
     me.changeLangUrl = function(lang) {
-        if(lang != me.currentLang.lang) return;
+        if(lang != me.currentLang.lang) return me.currentRouteline;
     }
 
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
