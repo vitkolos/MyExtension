@@ -156,7 +156,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
     };
     
     me.changeLang = function (lang) {
-        console.log("clicked LanguageController !", RubedoPagesService)
+        console.log("clicked LanguageController !", RubedoPagesService, RubedoModuleConfigService)
         if(lang == me.currentLang.lang) return;
         RubedoModuleConfigService.changeLang(lang);
         if ($scope.rubedo.current.site.locStrategy == 'fallback'){
