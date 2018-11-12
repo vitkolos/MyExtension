@@ -28,7 +28,8 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
     // setup urls of the current page in other languages
     me.langUrls = {}
     me.setupLangs = async function() {
-        me.languages = $scope.rubedo.current.site.languages;
+        me.languages = [];
+        for (let lang in $scope.rubedo.current.site.languages) me.languages.push(lang.lang);
         console.log("languages", me.languages)
         let plang = []
         for (let lang of me.languages) plang.push(me.getLangUrl(lang.lang));
