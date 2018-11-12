@@ -102,11 +102,9 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                             contentSegment=contentResponse.data.content.fields.urlSegment;
                                         }
                                         window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                                        
                                     } 
                                     else {
                                         window.location.href =  response.data.url;
-                                    
                                     }
                             },
                             function(){
@@ -116,7 +114,6 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             var currentParams = angular.element.param($location.search());
                             var url = response.data.url;
                             
-
                             if(currentParams != "") {
                                 if(response.data.url.indexOf("?") > -1) {
                                     url = response.data.url + currentParams;
@@ -124,10 +121,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                     url = response.data.url + "?" + currentParams;
                                 }
                             }
-                           
-                           
                             window.location.href = url;
-
                         }
                     }
                 });
