@@ -24,68 +24,6 @@ function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService
             }
         });
     };
-    
-    console.log("$scope", $scope, $route, $location)
-    me.getLangUrl = async (lang) => {
-        if(lang == $route.current.params.lang) return me.currentRouteline;
-        //RubedoModuleConfigService.changeLang(lang);
-
-        // fallback strategy
-        if ($scope.rubedo.current.site.locStrategy == 'fallback') RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
-
-        // on récupère la page courante
-        let response = await RubedoPagesService.getPageById($scope.rubedo.current.page.id, true);
-        if (!response.data.success) {console.log("Error in menuCtrl.changeLangUrl", response); return}
-
-        // si la page courante est un contenu
-        if ($scope.rubedo.current.page.contentCanonicalUrl && $route.current.params.routeline) {
-            // Ici c'est l'énorme bidouille LOL à revoir
-            // Get content id
-            urlArray = $route.current.params.routeline.split("/");
-            contentId = urlArray[urlArray.length-2];
-
-            // get content object
-            try {
-                let contentResponse = await RubedoContentsService.getContentById(contentId);
-                if (!contentResponse.data.success) return response.data.url;
-
-                var contentSegment = contentResponse.data.content.text;
-                if (contentResponse.data.content.fields.urlSegment && contentResponse.data.content.fields.urlSegment != "") {
-                    contentSegment=contentResponse.data.content.fields.urlSegment;
-                }
-                return response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-            } catch(e) {
-                console.log("WARNING in menuCtrl.changeLangUrl", e);
-                return response.data.url
-            }
-        }
-
-        // si la page courante n'est pas un contenu mais une page "normale"
-        let currentParams = angular.element.param($location.search());
-        if(currentParams != "") {
-            if(response.data.url.indexOf("?") > -1) return response.data.url + currentParams;
-            return response.data.url + "?" + currentParams;
-        }
-        
-        // à la barbare
-        let re = new RegExp("^/" + $route.current.params.lang + "/", "gi");
-        return $location.path().replace(re, `/${lang}/`)
-    }
-
-    // setup urls of the current page in other languages
-    me.langUrls = {}
-    me.setupLangs = async () => {
-        me.languages = [];
-        console.log('languages', $scope.rubedo.current.site.languages)
-        for (let lang in $scope.rubedo.current.site.languages) me.languages.push(lang);
-        console.log("languages", me.languages)
-        let plang = []
-        for (let lang of me.languages) plang.push(me.getLangUrl(lang));
-        let langUrls = await Promise.all(plang);
-        console.log("langurls", langUrls)
-        for (let i = 0; i < me.languages.length; i++) me.langUrls[me.languages[i]] = langUrls[i];
-    }
-    me.setupLangs()
 
     //==============================
     // Get Menu
@@ -165,36 +103,31 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
         let response = await RubedoPagesService.getPageById($scope.rubedo.current.page.id, true);
         if (!response.data.success) {console.log("in languageCtrl.changeLang : could not find page with id " + $scope.rubedo.current.page.id);return}
         
+        // if this is a content
         if($scope.rubedo.current.page.contentCanonicalUrl) {
-            // Get content id
             urlArray = $route.current.params.routeline.split("/");
             contentId = urlArray[urlArray.length-2];
+            try {
+                let contentResponse = await RubedoContentsService.getContentById(contentId);
+                if (!contentResponse.data.success) {window.location.href = response.data.url; return}
 
-            //Redirect with title
-            RubedoContentsService.getContentById(contentId).then(function(contentResponse){
-                if (contentResponse.data.success){
-                    //console.log(contentResponse.data.content);
-                    var contentSegment=contentResponse.data.content.text;
-                    if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
-                        contentSegment=contentResponse.data.content.fields.urlSegment;
-                    }
-                    window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
-                } else {
-                    window.location.href =  response.data.url;
+                let contentSegment = contentResponse.data.content.text;
+                if (contentResponse.data.content.fields.urlSegment && contentResponse.data.content.fields.urlSegment != ""){
+                    contentSegment = contentResponse.data.content.fields.urlSegment;
                 }
-            },
-            function(){
-                window.location.href =  response.data.url;
-            });
+                window.location.href = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-")); return
+            } catch(e) {
+                window.location.href =  response.data.url; return
+            }
         }
 
-        // if normal page
+        // if this is a normal page
         let currentParams = angular.element.param($location.search());
 
-        if(currentParams == "") {
+        if (currentParams == "") {
             window.location.href =  response.data.url; return
         }
-        if(response.data.url.indexOf("?") > -1) {
+        if (response.data.url.indexOf("?") > -1) {
             window.location.href = response.data.url + currentParams; return
         } else {
             window.location.href = response.data.url + "?" + currentParams; return
