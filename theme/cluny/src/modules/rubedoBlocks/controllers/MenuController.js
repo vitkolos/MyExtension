@@ -165,7 +165,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
             RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
         }
         $http.get("/api/v1/pages/"+$scope.rubedo.current.page.id).then(r => console.log("$http get", r))
-        RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
+        RubedoPagesService.getPageById($scope.rubedo.current.page.id, true).then(function(response){
             if (response.data.success){
                 console.log("new current page", response.data)
                 if($scope.rubedo.current.page.contentCanonicalUrl) {
