@@ -24,13 +24,12 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
             }
         });
     };
-    //RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
-    //    if (response.data.success){
-    //        me.menu=response.data.menu;
-    //    } else {
-    //        me.menu={};
-    //    }
-    //});
+    
+    console.log("$scope", $scope)
+    me.changeLangUrl = function(lang) {
+        if(lang != me.currentLang.lang) return;
+    }
+
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
         if (response.data.success){
             me.menu=response.data.menu;
