@@ -30,7 +30,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
     me.setupLangs = async function() {
         me.languages = [];
         console.log('languages', $scope.rubedo.current.site.languages)
-        for (let lang in $scope.rubedo.current.site.languages) me.languages.push(lang.lang);
+        for (let lang in $scope.rubedo.current.site.languages) me.languages.push(lang);
         console.log("languages", me.languages)
         let plang = []
         for (let lang of me.languages) plang.push(me.getLangUrl(lang));
