@@ -156,10 +156,11 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
     };
     
     me.changeLang = function (lang) {
-        console.log("clicked LanguageController !")
+        console.log("clicked LanguageController !", RubedoPagesService)
         if(lang == me.currentLang.lang) return;
         RubedoModuleConfigService.changeLang(lang);
         if ($scope.rubedo.current.site.locStrategy == 'fallback'){
+            console.log("in fallback")
             RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
         }
         RubedoPagesService.getPageById($scope.rubedo.current.page.id).then(function(response){
