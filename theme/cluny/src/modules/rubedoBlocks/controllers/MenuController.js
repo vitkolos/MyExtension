@@ -40,7 +40,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         if (!response.data.success) {console.log("Error in menuCtrl.changeLangUrl", response); return}
 
         // si la page courante est un contenu
-        if ($scope.rubedo.current.page.contentCanonicalUrl) {
+        /* if ($scope.rubedo.current.page.contentCanonicalUrl) {
             // Ici c'est l'énorme bidouille LOL à revoir
             // Get content id
             urlArray = $route.current.params.routeline.split("/");
@@ -67,7 +67,7 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         if(currentParams != "") {
             if(response.data.url.indexOf("?") > -1) return response.data.url + currentParams;
             return response.data.url + "?" + currentParams;
-        }
+        } */
         return response.data.url
     }
 
