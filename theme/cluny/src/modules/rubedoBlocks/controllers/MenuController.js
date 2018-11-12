@@ -25,21 +25,6 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         });
     };
     
-    // setup urls of the current page in other languages
-    me.langUrls = {}
-    me.setupLangs = async () => {
-        me.languages = [];
-        console.log('languages', $scope.rubedo.current.site.languages)
-        for (let lang in $scope.rubedo.current.site.languages) me.languages.push(lang);
-        console.log("languages", me.languages)
-        let plang = []
-        for (let lang of me.languages) plang.push(me.getLangUrl(lang));
-        let langUrls = await Promise.all(plang);
-        for (let i = 0; i < me.languages.length; i++) me.langUrls[me.languages[i]] = langUrls[i];
-    }
-    me.setupLangs()
-
-
     me.getLangUrl = async function(lang) {
         let currentLang = $route.current.params.lang;
         if(lang == currentLang) return me.currentRouteline;
@@ -85,6 +70,23 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
         return response.data.url
     }
 
+    // setup urls of the current page in other languages
+    me.langUrls = {}
+    me.setupLangs = async () => {
+        me.languages = [];
+        console.log('languages', $scope.rubedo.current.site.languages)
+        for (let lang in $scope.rubedo.current.site.languages) me.languages.push(lang);
+        console.log("languages", me.languages)
+        let plang = []
+        for (let lang of me.languages) plang.push(me.getLangUrl(lang));
+        let langUrls = await Promise.all(plang);
+        for (let i = 0; i < me.languages.length; i++) me.langUrls[me.languages[i]] = langUrls[i];
+    }
+    me.setupLangs()
+
+    //==============================
+    // Get Menu
+    //==============================
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
         if (response.data.success){
             me.menu=response.data.menu;
