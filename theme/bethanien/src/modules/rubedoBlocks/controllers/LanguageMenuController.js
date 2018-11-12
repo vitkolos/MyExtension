@@ -25,21 +25,15 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         me.getFlagUrl = function(flagCode){
             return '/assets/flags/16/'+flagCode+'.png';
         };
-        me.changeLang = function(lang) {
-            if (lang == me.currentLang.lang) return;
-            console.log('LANG', lang, me.currentLang)
-        }
-        me.changeLang2 = function (lang) {
+
+        me.changeLang = function (lang) {
             if(lang != me.currentLang.lang){
-                console.log('--in lang1')
                 RubedoModuleConfigService.changeLang(lang);
                 if ($scope.rubedo.current.site.locStrategy == 'fallback'){
-                    console.log('--in lang fallback')
                     RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
                 }
                 RubedoPagesService.getPageById($scope.rubedo.current.page.id,true).then(function(response){
                     if (response.data.success){
-                        console.log('--in lang getpagebyid success')
                         if($scope.rubedo.current.page.contentCanonicalUrl) {
                             // Get content id
                             urlArray = $route.current.params.routeline.split("/");
@@ -51,28 +45,24 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                             //Redirect with title
                             RubedoContentsService.getContentById(contentId).then(function(contentResponse){
                                 if (contentResponse.data.success){
-                                    console.log('--in lang getcontentbyid success')
                                     //console.log(contentResponse.data.content);
                                     var contentSegment=contentResponse.data.content.text;
                                     if (contentResponse.data.content.fields.urlSegment&&contentResponse.data.content.fields.urlSegment!=""){
                                         contentSegment=contentResponse.data.content.fields.urlSegment;
                                     }
-                                    //window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+                                    window.location.href =response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
                                 } else {
-                                    //window.location.href =  response.data.url;
+                                    window.location.href =  response.data.url;
                                 }
                             },
                             function(){
-                                console.log('--in lang3')
                                 window.location.href =  response.data.url;
                             });
                         } else {
-                            console.log('--in lang4')
                             var currentParams = angular.element.param($location.search());
                             var url = response.data.url;
 
                             if(currentParams != "") {
-                                console.log('--in lang5')
                                 if(response.data.url.indexOf("?") > -1) {
                                     url = response.data.url + currentParams;
                                 } else {
@@ -80,7 +70,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
                                 }
                             }
 
-                            //window.location.href =  url;
+                            window.location.href =  url;
                         }
                     }
                 });

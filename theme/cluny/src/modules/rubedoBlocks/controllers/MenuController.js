@@ -154,6 +154,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
     me.getFlagUrl = function(flagCode){
         return '/assets/flags/16/'+flagCode+'.png';
     };
+    console.log("RBCS", RubedoModuleConfigService)
     me.changeLang = function (lang) {
         console.log("clicked LanguageController !")
         if(lang == me.currentLang.lang) return;
