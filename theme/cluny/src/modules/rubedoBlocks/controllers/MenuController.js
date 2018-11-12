@@ -26,11 +26,49 @@ angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$root
     };
     
     console.log("$scope", me.menu.pages)
-    me.changeLangUrl = function(lang) {
+    me.changeLangUrl = async function(lang) {
         let currentLang = $route.current.params.lang;
         if(lang == currentLang) return me.currentRouteline;
-        let re = new RegExp("^/" + currentLang + "/", "gi");
-        return $location.path().replace(re, `/${lang}/`)
+        /* let re = new RegExp("^/" + currentLang + "/", "gi");
+        return $location.path().replace(re, `/${lang}/`) */
+
+        // fallback strategy
+        if ($scope.rubedo.current.site.locStrategy == 'fallback') RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
+
+        // on récupère la page courante
+        let response = await RubedoPagesService.getPageById($scope.rubedo.current.page.id, true);
+        if (!response.data.success) {console.log("Error in menuCtrl.changeLangUrl", response); return}
+
+        // si la page courante est un contenu
+        if ($scope.rubedo.current.page.contentCanonicalUrl) {
+            // Ici c'est l'énorme bidouille LOL à revoir
+            // Get content id
+            urlArray = $route.current.params.routeline.split("/");
+            contentId = urlArray[urlArray.length-2];
+
+            // get content object
+            try {
+                let contentResponse = await RubedoContentsService.getContentById(contentId);
+                if (!contentResponse.data.success) return response.data.url;
+
+                var contentSegment = contentResponse.data.content.text;
+                if (contentResponse.data.content.fields.urlSegment && contentResponse.data.content.fields.urlSegment != "") {
+                    contentSegment=contentResponse.data.content.fields.urlSegment;
+                }
+                return response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-"));
+            } catch(e) {
+                console.log("WARNING in menuCtrl.changeLangUrl", e);
+                return response.data.url
+            }
+        }
+
+        // si la page courante n'est pas un contenu mais une page "normale"
+        let currentParams = angular.element.param($location.search());
+        if(currentParams != "") {
+            if(response.data.url.indexOf("?") > -1) return response.data.url + currentParams;
+            return response.data.url + "?" + currentParams;
+        }
+        return response.data.url
     }
 
     RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
