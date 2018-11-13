@@ -93,9 +93,9 @@ angular.module('rubedoBlocks').directive('menuentry', function() {
           let menu_devise = re_prix[1];
           let menu_price = re_prix[2];
           let menu_name = ligne.replace(/\s+(CHF|EUR|USD)\s*[0-9\.]+\s*$/gi, '').trim();
-          new_html.append(`<tr><td class="menu_name">${menu_name}</td><td class="menu_price">${menu_devise} ${menu_price}</td></tr>`)
+          new_html.append(`<tr><td class="menu_name"><span>${menu_name}</span></td><td class="menu_price">${menu_devise} ${menu_price}</td></tr>`)
         } else {
-          new_html.append(`<tr><td class="menu_name">${ligne}</td><td class="menu_price"></td></tr>`)
+          new_html.append(`<tr><td class="menu_name"><span>${ligne}</span></td><td class="menu_price"></td></tr>`)
         }
       }
       element.html(new_html)
