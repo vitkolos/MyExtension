@@ -84,6 +84,7 @@ angular.module('rubedoBlocks').directive('menu_entry', function() {
   return {
     restrict: 'AC',
     link: function(scope, elm, attrs) {
+      console.log('entered menu_entry')
       var element = $(elm);
       let lignes = element.html().split(/\<br\s*\/?\s*\>/gi);
       console.log('debug menu_entry lignes', lignes)
