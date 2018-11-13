@@ -99,6 +99,14 @@ angular.module('rubedoBlocks').directive('menuentry', function() {
         }
       }
       element.html(new_html)
+      // on load le css de menu
+      $("head").append("<link>");
+      var css = $("head").children(":last");
+      css.attr({
+            rel:  "stylesheet",
+            type: "text/css",
+            href: "../css/menu.css"
+      });
     }
  }
 });
