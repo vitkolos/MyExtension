@@ -91,7 +91,7 @@ angular.module('rubedoBlocks').directive('menuentry', function() {
       let new_html = $("<table class='menu'></table>")
       for (let ligne of lignes) {
         let re_prix = /CHF\s*([0-9\.]+)\s*$/gi.exec(ligne);
-        if (re_prix && rep_prix.length > 1) {
+        if (re_prix && re_prix.length > 1) {
           let menu_price = re_prix[1];
           let menu_name = ligne.replace(re_prix, '').trim();
           console.log('debug menu_entry AC', menu_price, menu_name, ligne)
