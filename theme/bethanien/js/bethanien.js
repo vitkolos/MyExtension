@@ -80,7 +80,7 @@ blocksConfig.imageBatchUpload={
   };
 });
 
-angular.module('rubedoBlocks').directive('menu_entry', function() {
+angular.module('rubedoBlocks').directive('menuentry', function() {
   return {
     restrict: 'AC',
     link: function(scope, elm, attrs) {
