@@ -105,7 +105,7 @@ angular.module('rubedoBlocks').directive('menuentry', function() {
       css.attr({
             rel:  "stylesheet",
             type: "text/css",
-            href: "../css/menu.css"
+            href: "/theme/bethanien/css/menu.css"
       });
     }
  }
