@@ -86,6 +86,7 @@ angular.module('rubedoBlocks').directive('menu_entry', function() {
     link: function(scope, elm, attrs) {
       var element = $(elm);
       let lignes = element.html().split(/\<br\s*\/?\s*\>/gi);
+      console.log('debug menu_entry lignes', lignes)
       let new_html = $("<table class='menu'></table>")
       for (let ligne of lignes) {
         let re_prix = /CHF\s*([0-9\.]+)\s*$/gi.exec(ligne);
@@ -98,7 +99,7 @@ angular.module('rubedoBlocks').directive('menu_entry', function() {
           new_html.append(`<tr><td class="menu_name">${ligne}</td><td class="menu_price"></td></tr>`)
         }
       }
-      console.log('debug menu_entry AC', lignes, new_html)
+      console.log('debug menu_entry AC', new_html)
       element.html(new_html)
     }
  }
