@@ -51,7 +51,7 @@ angular.module('rubedoBlocks').directive('neuf9', function() {
       element.html(new_html)
     }
  }
-});;
+});
 
  angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($compile) {
     return {

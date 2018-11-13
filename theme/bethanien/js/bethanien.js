@@ -80,6 +80,30 @@ blocksConfig.imageBatchUpload={
   };
 });
 
+angular.module('rubedoBlocks').directive('menu_entry', function() {
+  return {
+    restrict: 'AC',
+    link: function(scope, elm, attrs) {
+      var element = $(elm);
+      let lignes = element.html().split(/\<br\s*\/?\s*\>/gi);
+      let new_html = $("<table class='menu'></table>")
+      for (let ligne of lignes) {
+        let re_prix = /CHF\s*([0-9\.]+)\s*$/gi.exec(ligne);
+        if (re_prix && rep_prix.length > 1) {
+          let menu_price = re_prix[1];
+          let menu_name = ligne.replace(re_prix, '').trim();
+          console.log('debug menu_entry AC', menu_price, menu_name, ligne)
+          new_html.append(`<tr><td class="menu_name">${menu_name}</td><td class="menu_price">${menu_price}</td></tr>`)
+        } else {
+          new_html.append(`<tr><td class="menu_name">${ligne}</td><td class="menu_price"></td></tr>`)
+        }
+      }
+      console.log('debug menu_entry AC', lignes, new_html)
+      element.html(new_html)
+    }
+ }
+});
+
 
 
 /*filtre pour renvoyer le format de la date de début d'une proposition bien formatée*/
