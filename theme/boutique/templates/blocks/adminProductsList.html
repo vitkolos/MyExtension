@@ -1,8 +1,11 @@
 <div ng-if="rubedo.current.user" ng-controller="AdminProductsListController as ctrl">
     
     <div class="search_container">
-        <select ng-model="ctrl.search_field">
+        <select ng-model="ctrl.search_field" class="search field">
             <option ng-repeat="field in ctrl.fields" ng-value="field.id">{{field.label}}</option>
+        </select>
+        <select ng-if="ctrl.search_field == 'typeId'" ng-model="ctrl.search_product_type" class="search field_product_type">
+            <option ng-repeat="field in ctrl.productTypes" ng-value="field.id">{{field.label}}</option>
         </select>
         <input name="search" type="text" ng-model="ctrl.search_text" ng-keypress="ctrl.search($event)">
     </div>
@@ -23,7 +26,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="item in ctrl.products track by $index">
-                    <td><!-- <img ng-src="{{rubedo.imageUrl.getUrlByMediaId(item.fields.image ,{width:'50px',mode:'boxed'})}}" alt="product img"> --></td>
+                    <td><img ng-if="ctrl.products.length < 70" ng-src="{{rubedo.imageUrl.getUrlByMediaId(item.fields.image ,{width:'50px',mode:'boxed'})}}" alt="product img"></td>
                     <td>{{ item.text }}</td>
                     <td>{{ item.status }}</td>
                     <td>{{ item.lastUpdateTime*1000| date: "shortDate" }}</td>
