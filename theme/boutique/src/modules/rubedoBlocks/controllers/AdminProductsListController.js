@@ -91,7 +91,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
         // on récupère les infos générales des produits
         let plist = typeid_list.map(tid => {
-            return $http({url:'/backoffice/contents', method:"GET", params: {_dc:'1542644195712', tFilter:[{"property":"typeId","value":tid}],page:1,start:0,limit:50, sort:[{"property":"lastUpdateTime","direction":"DESC"}],workingLanguage:'fr'}})
+            return $http.get('/backoffice/contents?_dc=1542644195712&tFilter=%5B%7B"property"%3A"typeId"%2C"value"%3A"'+tid+'"%7D%5D&page=1&start=0&limit=50&sort=%5B%7B"property"%3A"lastUpdateTime"%2C"direction"%3A"DESC"%7D%5D&workingLanguage=fr')
         })
         /* let result = await $http({
             url: '/api/v1/ecommerce/products',
