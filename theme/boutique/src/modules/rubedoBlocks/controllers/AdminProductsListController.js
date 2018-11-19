@@ -56,5 +56,5 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         });
         return result
     }
-    me.getProductsByType().then(res => console.log('products', res, me)).catch(err => console.log('err products', err));
+    me.getProductsByType('5810a72f24564001018bc024').then(res => console.log('products', res, me)).catch(err => console.log('err products', err));
 }]);
