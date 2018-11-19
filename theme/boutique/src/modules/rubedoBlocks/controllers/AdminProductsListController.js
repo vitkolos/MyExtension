@@ -142,8 +142,15 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     }
     me.getProducts().then(res => console.log('products', me)).catch(err => console.log('err products', err));
 
+    // trie les produits par ...
+    me.sortProducts = function(field) {
+        me.products = _.sortBy(me.products, pr => getAttr(pr, field))
+        console.log("sorted by " + field, me.products)
+    }
+
     // redirige vers la page de détail du produit avec l'id contentId
-    me.goToContentPage = async function(contentId) {
+    me.goToContentPage = async function(contentId, enligne) {
+        if (!enligne) return console.log("ce contenu est hors ligne");
         let response = await RubedoPagesService.getPageById($scope.rubedo.current.page.id, true);
         if (!response.data.success) return console.log("in languageCtrl.changeLang : could not find page with id " + $scope.rubedo.current.page.id);
         try {
