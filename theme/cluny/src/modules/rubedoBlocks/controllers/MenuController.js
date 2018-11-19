@@ -99,7 +99,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
         if ($scope.rubedo.current.site.locStrategy == 'fallback') RubedoModuleConfigService.addFallbackLang($scope.rubedo.current.site.defaultLanguage);
         
         let response = await RubedoPagesService.getPageById($scope.rubedo.current.page.id, true);
-        if (!response.data.success) {console.log("in languageCtrl.changeLang : could not find page with id " + $scope.rubedo.current.page.id);return}
+        if (!response.data.success) return console.log("in languageCtrl.changeLang : could not find page with id " + $scope.rubedo.current.page.id);
         
         // if this is a content
         if($scope.rubedo.current.page.contentCanonicalUrl) {

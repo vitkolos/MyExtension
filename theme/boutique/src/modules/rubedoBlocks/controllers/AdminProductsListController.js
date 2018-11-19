@@ -144,6 +144,8 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
     // redirige vers la page de détail du produit avec l'id contentId
     me.goToContentPage = async function(contentId) {
+        let response = await RubedoPagesService.getPageById($scope.rubedo.current.page.id, true);
+        if (!response.data.success) return console.log("in languageCtrl.changeLang : could not find page with id " + $scope.rubedo.current.page.id);
         try {
             let contentResponse = await RubedoContentsService.getContentById(contentId);
             if (!contentResponse.data.success) return console.log('error in redirect', contentResponse)
@@ -154,7 +156,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             }
             window.location.href = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-")); return
         } catch(e) {
-            window.location.href =  response.data.url; return
+            console.log('erreur redirect', e)
         }
     }
 
