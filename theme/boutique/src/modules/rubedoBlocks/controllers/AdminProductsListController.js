@@ -87,7 +87,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             return $http({url: '/backoffice/contents/get-stock', method:'GET', params: {_dc:'1542638855666', 'type-id':tid, 'page':1,'start':0,'limit':100000,'workingLanguage':'fr'}})
         })
         let stock_list = await Promise.all(plist);
-        stock_list = flatten(stock_list);
+        stock_list = flatten(stock_list.map(res => res.data.data));
         console.log('stocks', stock_list)
 
         me.allProducts = mergeList(result.data.contents, 'stock', stock_list, 'id');
