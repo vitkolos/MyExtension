@@ -25,8 +25,8 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             url: '/api/v1/ecommerce/products',
             method: "GET",
             params: {
-                pageId: '55c8777145205ef317c62e2a',
-                queryId: '5a201ce3396588ec3c3fb24c',
+                //pageId: '55c8777145205ef317c62e2a',
+                queryId: '5bf289d439658803678022b7',
                 siteId: '55c8777145205ef317c62e09',
                 specialOffersOnly: false,
                 page: 1,
