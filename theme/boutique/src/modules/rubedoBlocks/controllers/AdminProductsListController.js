@@ -3,10 +3,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     console.log("$http", $http)
     
     me.fields = [
-        //{id: 'all', label: 'Tout'}, 
         {id: 'text', label: 'Nom de produit'}, 
         {id: 'typeId', label: 'Type de produit'},
         {id: 'status', label: 'Statut'},
+        {id: 'details/stock', label: "Stock"},
     ]
     me.subfields = {
         typeId: [
@@ -22,7 +22,15 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         status: [
             {id: 'published', label: "Publié"},
             {id: 'draft', label: "Brouillon"},
+        ],
+        'details/stock': [
+            {id: '=', label: '='},
+            {id: '<', label: '<'},
+            {id: '>', label: '>'},
         ]
+    }
+    me.field_types = {
+        'details/stock': 'quantity'
     }
 
     me.products = [];
@@ -49,8 +57,14 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
         if (me.subfields[me.search_field] && me.search_subfield) {
             console.log('in subfield search fun')
-            let texte = RemoveAccents(me.search_text);
-            me.products = me.allProducts.filter(el => el[me.search_field] && el[me.search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(el['text'])));
+            if (me.field_types[me.search_field] && me.field_types[me.search_field] == 'quantity') {
+                if (me.search_subfield == '=') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) && getAttr(el, me.search_field) == me.search_text);
+                if (me.search_subfield == '>') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) && getAttr(el, me.search_field) > me.search_text);
+                if (me.search_subfield == '<') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) && getAttr(el, me.search_field) < me.search_text);
+            } else {
+                let texte = RemoveAccents(me.search_text);
+                me.products = me.allProducts.filter(el => el[me.search_field] && el[me.search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(el['text'])));
+            }
         } else if (me.search_field != 'all') {
             console.log('in field normal')
             let texte = RemoveAccents(me.search_text);
@@ -119,6 +133,13 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             else newarr.push(arr[i]);
         }
         return newarr;
+    }
+
+    function getAttr(o, attr) {
+        if (!o) return o;
+        if (attr.indexOf('/') < 0) return o[attr];
+        let fields = attr.split('/');
+        return getAttr(o[fields[0]], fields.slice(1).join('/'));
     }
 
     function RemoveAccents(str) {
