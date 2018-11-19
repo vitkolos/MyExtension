@@ -4,7 +4,7 @@
         <select ng-model="ctrl.search_field">
             <option ng-repeat="field in ctrl.fields" ng-value="field.id">{{field.label}}</option>
         </select>
-        <input name="search" type="text" ng-model="ctrl.search_text">
+        <input name="search" type="text" ng-model="ctrl.search_text" ng-keypress="ctrl.search($event)">
     </div>
     <i class="fa fa-spinner fa-pulse" ng-if="ctrl.loading"></i>
     
