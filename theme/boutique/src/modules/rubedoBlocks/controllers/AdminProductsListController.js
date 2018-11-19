@@ -142,10 +142,11 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     }
     me.getProducts().then(res => console.log('products', me)).catch(err => console.log('err products', err));
 
+    // redirige vers la page de détail du produit avec l'id contentId
     me.goToContentPage = async function(contentId) {
         try {
             let contentResponse = await RubedoContentsService.getContentById(contentId);
-            if (!contentResponse.data.success) {window.location.href = response.data.url; return}
+            if (!contentResponse.data.success) return console.log('error in redirect', contentResponse)
 
             let contentSegment = contentResponse.data.content.text;
             if (contentResponse.data.content.fields.urlSegment && contentResponse.data.content.fields.urlSegment != ""){
