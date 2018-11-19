@@ -18,6 +18,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     console.log($scope.rubedo.current.user);
     options.allCommands = true;
 
+    $scope.$watch('me.search_text', () => {
+        console.log('search text', me.search_field, me.search_text);
+    })
+
     me.getProducts = async function() {
         me.loading = true;
         let result = await $http({
