@@ -13,6 +13,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             {id: "56014a7d45205e42506e124b", label: "Musculine"},
             {id: "55c87ae245205e8019c62e08", label: "20 Produits boutique"},
             {id: "56bcb849c445ec56018b5051", label: "Pdf Boutique"},
+            {id: "575e74b124564068118bfd42", label: "5.5 Librairie"},
+            {id: "57c93550245640eb2b8c0cba", label: "2.1 Revue FOI"},
+            {id: "580b29be24564092558b95fd", lable: "20 Films Net for God"},
+            {id: "5810a72f24564001018bc024", label: "5.5 Epicerie"},
         ],
         status: [
             {id: 'published', label: "Publié"},
@@ -54,6 +58,8 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         }
         console.log("new product list", me.products.length, me.products);
     }
+
+    $http.get('https://www.laboutique-chemin-neuf.com/backoffice/contents/get-stock?_dc=1542638855666&type-id=55c87ae245205e8019c62e08&page=1&start=0&limit=100000&workingLanguage=fr&token=2f3e3188a8392ba1d5d3d750c6fb45357f294d927ad51a18c0deafaf35c978af6262ef7166ce7aa5cef12f9b94c57c687627e6e5aae12a7c2bb12e1691fba582').then(res => console.log('sku', res)).catch(err => console.log('sku err', err))
 
     me.getProducts = async function() {
         me.loading = true;
