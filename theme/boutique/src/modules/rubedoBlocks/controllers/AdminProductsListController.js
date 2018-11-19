@@ -90,7 +90,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         stock_list = flatten(stock_list.map(res => res.data.data));
         console.log('stocks', stock_list)
 
-        me.allProducts = mergeList(result.data.contents, 'stock', stock_list, 'id');
+        me.allProducts = mergeList(result.data.contents, 'id', 'details', stock_list, 'productId');
         me.products = me.allProducts.slice(0, 10);
 
         me.loading = false;
@@ -104,9 +104,9 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     // ==========================================================
 
     // merge l2 in l1 on id_attr : l1[i][attr] = l2[j]
-    function mergeList(l1, attr, l2, id_attr) {
+    function mergeList(l1, id_attr1, attr, l2, id_attr2) {
         for (let i = 0; i < l1.length; i++) {
-            let el2 = l2.find(el => el[id_attr] == l1[i][id_attr]);
+            let el2 = l2.find(el => el[id_attr2] == l1[i][id_attr1]);
             if (el2) l1[i][attr] = el2;
         }
         return l1
