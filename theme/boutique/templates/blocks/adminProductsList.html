@@ -1,5 +1,14 @@
 <div ng-if="rubedo.current.user" ng-controller="AdminProductsListController as ctrl">
     <div class="panel panel-default">
+
+        <div class="search_container">
+            <select>
+                <option ng-repeat="field in ctrl.fields"></option>
+            </select>
+            <input name="search" type="text" ng-model="ctrl.search_text">
+        </div>
+        <i class="fa fa-spinner fa-spin" ng-if="ctrl.loading"></i>
+
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
