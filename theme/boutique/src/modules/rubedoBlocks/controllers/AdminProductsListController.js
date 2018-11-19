@@ -108,7 +108,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         }); */
         let http_result = await Promise.all(plist);
         console.log('http resultproducts', http_result)
-        me.allProducts = flatten(http_result.map(res => res.contents.data));
+        me.allProducts = flatten(http_result.map(res => res.data.data));
         me.products = me.allProducts.slice(0, 20);
 
         // on récupère les niveaux de stock
