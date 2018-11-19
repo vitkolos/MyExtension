@@ -1,7 +1,7 @@
 <div ng-if="rubedo.current.user" ng-controller="AdminProductsListController as ctrl">
     
     <div class="raccourcis_container">
-        <div class="raccourcis" ng-repeat="raccourci in ctrl.raccourcis" ng-click="ctrl.setRaccourci(raccourci)">{{ raccourci.label }}</div>
+        <div class="raccourci" ng-repeat="raccourci in ctrl.raccourcis" ng-attr-id="{{ 'raccourci_' + raccourci.id }}" ng-click="ctrl.setRaccourci(raccourci)">{{ raccourci.label }}</div>
     </div>
 
     <div class="search_container">
@@ -40,3 +40,28 @@
 
     <div class="loading" ng-if="ctrl.loading"><i class="fa fa-spinner fa-pulse"></i></div>
 </div>
+
+
+<style>
+/* ================================ */
+/*          RACCOURCIS              */
+/* ================================ */
+
+div.raccourcis_container {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+div.raccourci {
+    background-color: #d5c5b5;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: calibri;
+    box-shadow: #6f6860 0 1px 3px;
+}
+/* ================================ */
+/* ================================ */
+</style>
