@@ -25,7 +25,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             {id: "5a7ae7233965886b6d43ef80", label: "20 Pâques"},
             {id: "5bb3d8443965887e43c2b459", label: "Abonnement FOI"},
         ],
-        status: [
+        online: [
             {id: 'true', label: "En ligne"},
             {id: 'false', label: "Hors ligne"},
         ],
