@@ -69,10 +69,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
     // lance une recherche à partir du raccourci en paramètre
     me.setRaccourci = function(raccourci) {
-        console.log("jquery", $('div.raccourci'))
         $('div.raccourci').removeClass('raccourci_active');
         console.log('setting raccourci', raccourci)
         me.search_field = raccourci.rule.search_field;
+        $scope.search_field = raccourci.rule.search_field;
         me.search_subfield = raccourci.rule.search_subfield;
         me.search_text = raccourci.rule.search_text;
         me.search('skip')
