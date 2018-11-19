@@ -120,19 +120,6 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         let plist = typeid_list.map(tid => {
             return $http.get('/backoffice/contents?_dc=1542644195712&tFilter=%5B%7B"property"%3A"typeId"%2C"value"%3A"'+tid+'"%7D%5D&page=1&start=0&limit=50&sort=%5B%7B"property"%3A"lastUpdateTime"%2C"direction"%3A"DESC"%7D%5D&workingLanguage=fr')
         })
-        /* let result = await $http({
-            url: '/api/v1/ecommerce/products',
-            method: "GET",
-            params: {
-                queryId: '5bf289d439658803678022b7',
-                siteId: '55c8777145205ef317c62e09',
-                specialOffersOnly: false,
-                preview_draft: true,
-                page: 1,
-                start: 0,
-                limit: 1000
-            }
-        }); */
         let http_result = await Promise.all(plist);
         console.log('http resultproducts', http_result)
         me.allProducts = flatten(http_result.map(res => res.data.data));
@@ -155,6 +142,20 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     }
     me.getProducts().then(res => console.log('products', me)).catch(err => console.log('err products', err));
 
+    me.goToContentPage = async function(contentId) {
+        try {
+            let contentResponse = await RubedoContentsService.getContentById(contentId);
+            if (!contentResponse.data.success) {window.location.href = response.data.url; return}
+
+            let contentSegment = contentResponse.data.content.text;
+            if (contentResponse.data.content.fields.urlSegment && contentResponse.data.content.fields.urlSegment != ""){
+                contentSegment = contentResponse.data.content.fields.urlSegment;
+            }
+            window.location.href = response.data.url + "/" + contentId + "/" + angular.lowercase(contentSegment.replace(/ /g, "-")); return
+        } catch(e) {
+            window.location.href =  response.data.url; return
+        }
+    }
 
     // ==========================================================
     //                  HELPER FUNCTIONS
