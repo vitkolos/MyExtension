@@ -144,7 +144,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
     // trie les produits par ...
     me.sortProducts = function(field) {
-        let sorted = _.sortBy(me.products, pr => getAttr(pr, field));
+        let sorted = _.sortBy(me.products, pr => RemoveAccents(getAttr(pr, field)));
         if (sorted.slice(0,4).map(e => e.id).join(',,') == me.products.slice(0,4).map(e => e.id).join(',,')) me.products = sorted.reverse();
         else me.products = sorted;
         console.log("sorted by " + field, me.products)
@@ -208,6 +208,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     }
 
     function RemoveAccents(str) {
+        if (typeof str !== 'string') return str;
         var accents    = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
         var accentsOut = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
         str = str.split('');
