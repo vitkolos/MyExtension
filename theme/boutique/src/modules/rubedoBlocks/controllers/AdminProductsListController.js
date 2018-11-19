@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$scope', '$http', 'RubedoOrdersService',function($scope, $http, RubedoOrdersService){
+angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$scope', '$http', 'RubedoPagesService', 'RubedoContentsService', 'RubedoOrdersService',function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersService){
     var me = this;
     console.log("$http", $http)
     
