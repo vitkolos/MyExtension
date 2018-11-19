@@ -5,7 +5,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     me.fields = [
         {id: 'text', label: 'Nom de produit'}, 
         {id: 'typeId', label: 'Type de produit'},
-        {id: 'status', label: 'Statut'},
+        {id: 'online', label: 'Statut'},
         {id: 'details/stock', label: "Stock"},
     ]
     me.subfields = {
@@ -26,8 +26,8 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             {id: "5bb3d8443965887e43c2b459", label: "Abonnement FOI"},
         ],
         status: [
-            {id: 'published', label: "Publié"},
-            {id: 'draft', label: "Brouillon"},
+            {id: 'true', label: "En ligne"},
+            {id: 'false', label: "Hors ligne"},
         ],
         'details/stock': [
             {id: '=', label: '='},
