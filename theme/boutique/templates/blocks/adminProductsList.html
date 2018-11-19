@@ -22,10 +22,10 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Nom du produit</th>
-                    <th>SKU</th>
+                    <th ng-click="ctrl.sortProducts('text')">Nom du produit</th>
+                    <th ng-click="ctrl.sortProducts('details/sku')">SKU</th>
                     <th ng-click="ctrl.sortProducts('details/stock')">Stock</th>
-                    <th>{{ rubedo.translate('Blocks.UserOrders.Status') }}</th>
+                    <th ng-click="ctrl.sortProducts('online')">{{ rubedo.translate('Blocks.UserOrders.Status') }}</th>
                 </tr>
             </thead>
             <tbody>

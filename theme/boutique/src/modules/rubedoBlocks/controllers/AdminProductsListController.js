@@ -144,7 +144,9 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
     // trie les produits par ...
     me.sortProducts = function(field) {
-        me.products = _.sortBy(me.products, pr => getAttr(pr, field))
+        let sorted = _.sortBy(me.products, pr => getAttr(pr, field));
+        if (sorted == me.products) me.products = sorted.reverse();
+        else me.products = sorted;
         console.log("sorted by " + field, me.products)
     }
 
