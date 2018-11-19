@@ -51,7 +51,8 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
                 workingLanguage: 'fr',
                 page: 1,
                 start: 0,
-                limit: 1000
+                limit: 1000,
+                token: '2f3e3188a8392ba1d5d3d750c6fb45357f294d927ad51a18c0deafaf35c978af6262ef7166ce7aa5cef12f9b94c57c687627e6e5aae12a7c2bb12e1691fba582',
             }
         });
         return result
