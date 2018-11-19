@@ -18,6 +18,12 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             {id: "57c93550245640eb2b8c0cba", label: "2.1 Revue FOI"},
             {id: "580b29be24564092558b95fd", label: "20 Films Net for God"},
             {id: "5810a72f24564001018bc024", label: "5.5 Epicerie"},
+            {id: "58145fd82456401c4b8b45a2", label: "20 Icônes"},
+            {id: "581626ab2456408a078bd480", label: "20 Crèches"},
+            {id: "59d7a1273965886f2d16e08a", label: "20 Artisanat"},
+            {id: "59d8966b39658885019527f3", label: "20 Avent/Noël"},
+            {id: "5a7ae7233965886b6d43ef80", label: "20 Pâques"},
+            {id: "5bb3d8443965887e43c2b459", label: "Abonnement FOI"},
         ],
         status: [
             {id: 'published', label: "Publié"},
