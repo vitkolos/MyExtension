@@ -18,7 +18,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     console.log($scope.rubedo.current.user);
     options.allCommands = true;
 
-    me.search = function(event) {
+    me.search = function($event) {
         let keyCode = $event.which || $event.keyCode;
         if (keyCode !== 13) return;
 
@@ -43,7 +43,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             }
         });
         me.loading = false;
-        me.products = result.data.contents;
+        me.products = result.data.contents.slice(10);
         me.allProducts = result.data.contents;
         return result;
     }
