@@ -19,7 +19,7 @@
                     <th></th>
                     <th>Nom du produit</th>
                     <th>SKU</th>
-                    <th data-toggle="tooltip" title="Some text">Stock</th>
+                    <th>Stock</th>
                     <th>{{ rubedo.translate('Blocks.UserOrders.Status') }}</th>
                 </tr>
             </thead>
@@ -28,7 +28,7 @@
                     <td><img ng-if="ctrl.products.length < 70 && item.fields.image" ng-src="{{rubedo.imageUrl.getUrlByMediaId(item.fields.image ,{width:'50px',mode:'boxed'})}}" alt="product img"></td>
                     <td>{{ item.text }}</td>
                     <td>{{ item.productProperties.sku }}</td>
-                    <td>{{ item.details.stock }}</td>
+                    <td data-toggle="tooltip" title="{{ item.productProperties.sku }}">{{ item.details.stock }}</td>
                     <td>{{ item.status }}</td>
                 </tr>
             </tbody>

@@ -60,9 +60,9 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             if (me.field_types[me.search_field] && me.field_types[me.search_field] == 'quantity') {
                 let qte = parseInt(me.search_text);
                 console.log('quantity', qte, me.search_subfield);
-                if (me.search_subfield == '=') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) && getAttr(el, me.search_field) == qte);
-                if (me.search_subfield == '>') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) && getAttr(el, me.search_field) > qte);
-                if (me.search_subfield == '<') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) && getAttr(el, me.search_field) < qte);
+                if (me.search_subfield == '=') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) == qte);
+                if (me.search_subfield == '>') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) > qte);
+                if (me.search_subfield == '<') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) < qte);
             } else {
                 let texte = RemoveAccents(me.search_text);
                 me.products = me.allProducts.filter(el => el[me.search_field] && el[me.search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(el['text'])));
