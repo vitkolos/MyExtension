@@ -7,6 +7,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     me.allProducts = [];
     me.loading = false;
     me.search_text = "";
+    me.search_field = "text";
 
     
     var config = $scope.blockConfig;
