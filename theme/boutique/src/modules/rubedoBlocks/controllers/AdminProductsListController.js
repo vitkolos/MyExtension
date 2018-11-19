@@ -49,10 +49,12 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
         if (me.subfields[me.search_field] && me.search_subfield) {
             console.log('in subfield search fun')
-            me.products = me.allProducts.filter(el => el[me.search_field] && el[me.search_field] == me.search_subfield && (!el['text'] || el['text'].indexOf(me.search_text) >= 0));
+            let texte = RemoveAccents(me.search_text);
+            me.products = me.allProducts.filter(el => el[me.search_field] && el[me.search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(el['text'])));
         } else if (me.search_field != 'all') {
             console.log('in field normal')
-            me.products = me.allProducts.filter(el => el[me.search_field] && new RegExp(me.search_text, 'gi').test(el[me.search_field]));
+            let texte = RemoveAccents(me.search_text);
+            me.products = me.allProducts.filter(el => el[me.search_field] && new RegExp(texte, 'gi').test(RemoveAccents(el[me.search_field])));
         } else {
             // search_field == all
 
@@ -60,7 +62,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         console.log("new product list", me.products.length, me.products);
     }
 
-    $http.get('https://www.laboutique-chemin-neuf.com/backoffice/contents/get-stock?_dc=1542638855666&type-id=55c87ae245205e8019c62e08&page=1&start=0&limit=100000&workingLanguage=fr&token=2f3e3188a8392ba1d5d3d750c6fb45357f294d927ad51a18c0deafaf35c978af6262ef7166ce7aa5cef12f9b94c57c687627e6e5aae12a7c2bb12e1691fba582').then(res => console.log('sku', res)).catch(err => console.log('sku err', err))
+    $http({url: '/backoffice/contents/get-stock', method:'GET', params: {_dc:'1542638855666', 'type-id':'55c87ae245205e8019c62e08','page':1,'start':0,'limit':100000,'workingLanguage':'fr'}}).then(res => console.log('sku', res)).catch(err => console.log('sku err', err))
 
     me.getProducts = async function() {
         me.loading = true;
@@ -83,4 +85,18 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         return result;
     }
     me.getProducts().then(res => console.log('products', res, me)).catch(err => console.log('err products', err));
+
+    function RemoveAccents(str) {
+        var accents    = 'ÀÁÂÃÄÅàáâãäåÒÓÔÕÕÖØòóôõöøÈÉÊËèéêëðÇçÐÌÍÎÏìíîïÙÚÛÜùúûüÑñŠšŸÿýŽž';
+        var accentsOut = "AAAAAAaaaaaaOOOOOOOooooooEEEEeeeeeCcDIIIIiiiiUUUUuuuuNnSsYyyZz";
+        str = str.split('');
+        var strLen = str.length;
+        var i, x;
+        for (i = 0; i < strLen; i++) {
+          if ((x = accents.indexOf(str[i])) != -1) {
+            str[i] = accentsOut[x];
+          }
+        }
+        return str.join('');
+      }
 }]);
