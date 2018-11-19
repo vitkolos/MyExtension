@@ -86,8 +86,14 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
     me.getProducts = async function() {
         me.loading = true;
-        // on récupère tous les produits
-        let result = await $http({
+        // on récupère tous les types de produits
+        let typeid_list = me.subfields.typeId.map(el => el.id).filter(el => !!el);
+
+        // on récupère les infos générales des produits
+        let plist = typeid_list.map(tid => {
+            return $http({url:'/backoffice/contents', method:"GET", params:{_dc:'1542644195712',tFilter:'[{"property":"typeId","value":"59d7a1273965886f2d16e08a"}]',page:1,start:0,limit:50, sort:'[{"property":"lastUpdateTime","direction":"DESC"}]',workingLanguage:'fr'}})
+        })
+        /* let result = await $http({
             url: '/api/v1/ecommerce/products',
             method: "GET",
             params: {
@@ -99,21 +105,22 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
                 start: 0,
                 limit: 1000
             }
-        });
-        me.products = result.data.contents.slice(0, 10);
-        me.allProducts = result.data.contents;
+        }); */
+        let http_result = await Promise.all(plist);
+        console.log('http resultproducts', http_result)
+        me.allProducts = flatten(http_result.map(res => res.contents.data));
+        me.products = me.allProducts.slice(0, 20);
 
-        // on récupère les niveaux de stock pour chaque type de produit
-        let typeid_list = me.subfields.typeId.map(el => el.id).filter(el => !!el);
-        let plist = typeid_list.map(tid => {
+        // on récupère les niveaux de stock
+        plist = typeid_list.map(tid => {
             return $http({url: '/backoffice/contents/get-stock', method:'GET', params: {_dc:'1542638855666', 'type-id':tid, 'page':1,'start':0,'limit':100000,'workingLanguage':'fr'}})
         })
         let stock_list = await Promise.all(plist);
         stock_list = flatten(stock_list.map(res => res.data.data));
         console.log('stocks', stock_list)
 
-        me.allProducts = mergeList(result.data.contents, 'id', 'details', stock_list, 'productId');
-        me.products = me.allProducts.slice(0, 10);
+        me.allProducts = mergeList(me.allProducts, 'id', 'details', stock_list, 'productId');
+        me.products = me.allProducts.slice(0, 20);
 
         me.loading = false;
         return result;
