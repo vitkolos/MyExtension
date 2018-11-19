@@ -31,7 +31,7 @@
                     <td><img ng-if="ctrl.products.length < 70 && item.fields.image" ng-src="{{rubedo.imageUrl.getUrlByMediaId(item.fields.image ,{width:'50px',mode:'boxed'})}}" alt="product img"></td>
                     <td>{{ item.text }}</td>
                     <td>{{ item.productProperties.sku }}</td>
-                    <td data-toggle="tooltip" title="{{ item.productProperties.sku }}" ng-click="{{ ctrl.copyToClipboard(item.productProperties.sku) }}">{{ item.details.stock }}</td>
+                    <td data-toggle="tooltip" title="{{ item.productProperties.sku }}" ng-click="ctrl.copyToClipboard(item.productProperties.sku)">{{ item.details.stock }}</td>
                     <td>{{ item.online }}</td>
                 </tr>
             </tbody>
