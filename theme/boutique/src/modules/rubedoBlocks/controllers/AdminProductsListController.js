@@ -110,6 +110,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         console.log('http resultproducts', http_result)
         me.allProducts = flatten(http_result.map(res => res.data.data));
         me.products = me.allProducts.slice(0, 20);
+        console.log('products1', me.allProducts.length, me.allProducts)
 
         // on récupère les niveaux de stock
         plist = typeid_list.map(tid => {
@@ -123,9 +124,9 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         me.products = me.allProducts.slice(0, 20);
 
         me.loading = false;
-        return result;
+        return me.allProducts;
     }
-    me.getProducts().then(res => console.log('products', res, me)).catch(err => console.log('err products', err));
+    me.getProducts().then(res => console.log('products', me)).catch(err => console.log('err products', err));
 
 
     // ==========================================================
