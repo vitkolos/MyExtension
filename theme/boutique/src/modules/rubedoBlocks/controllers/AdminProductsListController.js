@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$scope','RubedoOrdersService',function($scope,RubedoOrdersService){
+angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$scope', '$http', 'RubedoOrdersService',function($scope, $http, RubedoOrdersService){
     var me = this;
     me.lodatedio = "Lodate Dio !";
     var config = $scope.blockConfig;
