@@ -44,7 +44,8 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             console.log('in subfield search fun')
             me.products = me.allProducts.filter(el => el[me.search_field] && el[me.search_field] == me.search_subfield && (!el['text'] || el['text'].indexOf(me.search_text) >= 0));
         } else if (me.search_field != 'all') {
-            me.products = me.allProducts.filter(el => el[me.search_field] && new RegExp(me.search_text, 'gi').test(el[me.search_field]) >= 0);
+            console.log('in field normal')
+            me.products = me.allProducts.filter(el => el[me.search_field] && new RegExp(me.search_text, 'gi').test(el[me.search_field]));
         } else {
             // search_field == all
 
@@ -68,7 +69,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             }
         });
         me.loading = false;
-        me.products = result.data.contents.slice(10);
+        me.products = result.data.contents.slice(0, 10);
         me.allProducts = result.data.contents;
         return result;
     }
