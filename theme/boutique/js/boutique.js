@@ -22,8 +22,12 @@ blocksConfig.bg_image={
           "internalDependencies":["/src/modules/rubedoBlocks/controllers/BgImageController.js"]
 };
 blocksConfig.ordersList={
-           "template": "/templates/blocks/ordersList.html",
-          "internalDependencies":["/src/modules/rubedoBlocks/controllers/OrdersListController.js"]
+    "template": "/templates/blocks/ordersList.html",
+    "internalDependencies":["/src/modules/rubedoBlocks/controllers/OrdersListController.js"]
+};
+blocksConfig.adminProductsList={
+    "template": "/templates/blocks/adminProductsList.html",
+    "internalDependencies":["/src/modules/rubedoBlocks/controllers/AdminProductsListController.js"]
 };
 blocksConfig.simpleContact={
     "template": "/templates/blocks/simpleContact.html",

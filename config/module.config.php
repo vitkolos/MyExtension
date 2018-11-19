@@ -31,59 +31,59 @@ return array(
             'name' => "Liban",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'israel' => array(
+        'israel' => array(
             'name' => "Israël",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'belgique' => array(
+        'belgique' => array(
             'name' => "Belgique",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'martinique' => array(
+        'martinique' => array(
             'name' => "Martinique",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-									'canada' => array(
+        'canada' => array(
             'name' => "Canada",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'hongrie' => array(
+        'hongrie' => array(
             'name' => "Hongrie",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'uk' => array(
+        'uk' => array(
             'name' => "Royaume-Uni",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'de' => array(
+		'de' => array(
             'name' => "Allemagne",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'bresil' => array(
+        'bresil' => array(
             'name' => "Brésil",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'suisse' => array(
+        'suisse' => array(
             'name' => "Suisse",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'tchequie' => array(
+        'tchequie' => array(
             'name' => "Tchéquie",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'nl' => array(
+        'nl' => array(
             'name' => "Pays Bas",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'maurice' => array(
+        'maurice' => array(
             'name' => "Maurice",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'tchad' => array(
+        'tchad' => array(
             'name' => "Tchad",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         ),
-								'ci' => array(
+        'ci' => array(
             'name' => "Côte d'Ivoire",
             'definitionFile' => realpath(__DIR__ . "/paymentMeans/") . '/siteConfig.json'
         )

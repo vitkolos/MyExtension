@@ -1,0 +1,33 @@
+<div ng-if="rubedo.current.user" ng-controller="AdminProductsListController as userOrdersCtrl">
+    <div class="panel panel-default">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>{{ rubedo.translate('Blocks.UserOrders.OrderNumber') }} {{userOrdersCtrl.lodatedio}}</th>
+                    <th>{{ rubedo.translate('Blocks.OrderDetails.Table.Name') }}</th>
+                    <th>{{ rubedo.translate('Blocks.UserOrders.Date') }}</th>
+                    <th>{{ rubedo.translate('Blocks.UserOrders.Price') }}</th>
+                    <th>{{ rubedo.translate('Blocks.UserOrders.Shipper') }}</th>
+                    <th>{{ rubedo.translate('Blocks.UserOrders.PaymentMeans') }}</th>
+                    <th>{{ rubedo.translate('Blocks.UserOrders.Status') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in userOrdersCtrl.orders track by $index">
+                    <td>{{ item.orderNumber }}</td>
+                    <td>{{ item.userName }}</td>
+                    <td>{{ item.createTime*1000| date: "shortDate" }}</td>
+                    <td>{{ item.finalPrice|number : 2 }} €</td>
+                    <td>{{ item.shipper.name }}</td>
+                    <td>{{ rubedo.translate('Payment.Means.'+ item.paymentMeans, item.paymentMeans) }}</td>
+                    <td> {{ rubedo.translate('Blocks.UserOrders.Status.'+item.status,item.status) }}</td>
+                    <td ng-if="userOrdersCtrl.orderDetailPageUrl">
+                        <a ng-href="{{ userOrdersCtrl.orderDetailPageUrl }}?order={{ item.id }}" >
+                            <button ng-click="handleCSEvent('orderClick')" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span> {{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
