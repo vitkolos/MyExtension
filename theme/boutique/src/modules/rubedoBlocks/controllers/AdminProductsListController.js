@@ -40,6 +40,17 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         'details/stock': 'quantity',
     }
 
+    me.raccourcis = [
+        {
+            label: 'Produits en rupture de stock',
+            rule: {
+                search_field: 'details/stock',
+                search_subfield: '=',
+                search_text: '0'
+            }
+        },
+    ]
+
     me.products = [];
     me.allProducts = [];
     me.loading = false;
@@ -55,6 +66,14 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     }
     console.log($scope.rubedo.current.user);
     options.allCommands = true;
+
+    // lance une recherche à partir du raccourci en paramètre
+    me.setRaccourci = function(raccourci) {
+        me.search_field = raccourci.search_field;
+        me.search_subfield = raccourci.search_subfield;
+        me.search_text = raccourci.search_text;
+        me.search('skip')
+    }
 
     me.search = function($event) {
         if ($event !== "skip") {

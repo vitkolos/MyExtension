@@ -1,5 +1,9 @@
 <div ng-if="rubedo.current.user" ng-controller="AdminProductsListController as ctrl">
     
+    <div class="raccourcis_container">
+        <div class="raccourcis" ng-repeat="raccourci in ctrl.raccourcis" ng-click="ctrl.setRaccourci(raccourci)">{{ raccourci.label }}</div>
+    </div>
+
     <div class="search_container">
         <select ng-model="ctrl.search_field" class="search field">
             <option ng-repeat="field in ctrl.fields" ng-value="field.id">{{field.label}}</option>
