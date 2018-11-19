@@ -40,7 +40,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     }
     //me.getProducts().then(res => console.log('products', res, me)).catch(err => console.log('err products', err));
 
-    me.getProductsByType = function(typeid) {
+    me.getProductsByType = async function(typeid) {
         let result = await $http({
             url: '/backoffice/contents',
             method: "GET",
