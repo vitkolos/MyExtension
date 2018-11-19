@@ -38,6 +38,23 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         me.products = result.data.contents;
         return result;
     }
-    me.getProducts().then(res => console.log('products', res, me)).catch(err => console.log('err products', err));
+    //me.getProducts().then(res => console.log('products', res, me)).catch(err => console.log('err products', err));
 
+    me.getProductsByType = function(typeid) {
+        let result = await $http({
+            url: '/backoffice/contents',
+            method: "GET",
+            params: {
+                _dc: '1542632894911',
+                tFilter: [{"property":"typeId","value":typeid}],
+                sort: [{"property":"lastUpdateTime","direction":"DESC"}],
+                workingLanguage: 'fr',
+                page: 1,
+                start: 0,
+                limit: 1000
+            }
+        });
+        return result
+    }
+    me.getProductsByType().then(res => console.log('products', res, me)).catch(err => console.log('err products', err));
 }]);
