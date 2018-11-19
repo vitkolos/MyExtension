@@ -35,7 +35,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
                 limit: 1000
             }
         });
-        me.products = [];
+        me.products = result;
         return result;
     }
     me.getProducts().then(res => console.log('products', res)).catch(err => console.log('err products', err));
