@@ -31,7 +31,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
                 specialOffersOnly: false,
                 page: 1,
                 start: 0,
-                limit: 100
+                limit: 1000
             }
         });
         return result;
