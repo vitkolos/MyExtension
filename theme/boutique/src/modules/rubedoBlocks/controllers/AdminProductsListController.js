@@ -1,5 +1,6 @@
 angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$scope', '$http', 'RubedoOrdersService',function($scope, $http, RubedoOrdersService){
     var me = this;
+    console.log("$http", $http)
     
     me.fields = [
         //{id: 'all', label: 'Tout'}, 
