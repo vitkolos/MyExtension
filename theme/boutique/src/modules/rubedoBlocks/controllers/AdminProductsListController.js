@@ -70,9 +70,9 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     // lance une recherche à partir du raccourci en paramètre
     me.setRaccourci = function(raccourci) {
         console.log('setting raccourci', raccourci)
-        me.search_field = raccourci.search_field;
-        me.search_subfield = raccourci.search_subfield;
-        me.search_text = raccourci.search_text;
+        me.search_field = raccourci.rule.search_field;
+        me.search_subfield = raccourci.rule.search_subfield;
+        me.search_text = raccourci.rule.search_text;
         me.search('skip')
     }
 
