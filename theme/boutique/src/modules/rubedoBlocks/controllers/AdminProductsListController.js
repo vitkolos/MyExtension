@@ -37,8 +37,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     options.allCommands = true;
 
     me.search = function($event) {
-        let keyCode = $event.which || $event.keyCode;
-        if (keyCode !== 13) return;
+        if ($event !== "skip") {
+            let keyCode = $event.which || $event.keyCode;
+            if (keyCode !== 13) return;
+        }
 
         if (me.subfields[me.search_field] && me.search_subfield) {
             console.log('in subfield search fun')

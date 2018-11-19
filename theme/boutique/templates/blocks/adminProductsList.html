@@ -4,7 +4,7 @@
         <select ng-model="ctrl.search_field" class="search field">
             <option ng-repeat="field in ctrl.fields" ng-value="field.id">{{field.label}}</option>
         </select>
-        <select ng-if="ctrl.search_field && ctrl.subfields[ctrl.search_field]" ng-model="ctrl.search_subfield" class="search subfield">
+        <select ng-if="ctrl.search_field && ctrl.subfields[ctrl.search_field]" ng-model="ctrl.search_subfield" class="search subfield" ng-change="ctrl.search('skip')">
             <option ng-repeat="field in ctrl.subfields[ctrl.search_field]" ng-value="field.id">{{field.label}}</option>
         </select>
         <input name="search" type="text" ng-model="ctrl.search_text" ng-keypress="ctrl.search($event)">
