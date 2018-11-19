@@ -42,6 +42,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
     me.raccourcis = [
         {
+            id: 'tout', label: 'Tous les produits',
+            rule: {search_field: 'text', search_subfield: '', search_text: ''}
+        },
+        {
             id: 'rupture_stock', label: 'En rupture de stock',
             rule: {search_field: 'details/stock', search_subfield: '=', search_text: '0'}
         },
