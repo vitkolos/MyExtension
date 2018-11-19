@@ -137,6 +137,15 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     //                  HELPER FUNCTIONS
     // ==========================================================
 
+    me.copyToClipboard = str => {
+        const el = document.createElement('textarea');
+        el.value = str;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+      };
+
     // merge l2 in l1 on id_attr : l1[i][attr] = l2[j]
     function mergeList(l1, id_attr1, attr, l2, id_attr2) {
         for (let i = 0; i < l1.length; i++) {
