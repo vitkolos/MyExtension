@@ -1,5 +1,5 @@
 {
-    "type": "Liste de produits",
+    "type": "Admin - Liste de produits",
     "description": "Bloc pour les administrateurs de la Boutique - pour voir et éditer les produits",
     "isECommerce": true,
     "configBasique": {
