@@ -7,7 +7,7 @@
 
     <h2>Recherche avancée</h2>
     <div class="search_container">
-        <select ng-model="search_field" class="search field first" ng-options="field.label for field in ctrl.fields">
+        <select ng-model="search_field" class="search field first" ng-options="field.value as field.label for field in ctrl.fields">
             <option></option>
         </select>
         <select ng-if="search_field && ctrl.subfields[search_field]" ng-model="ctrl.search_subfield" class="search field" ng-change="ctrl.search('skip')">
