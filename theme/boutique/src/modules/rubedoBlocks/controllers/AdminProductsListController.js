@@ -106,6 +106,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             }
         } else if (me.search_field != 'all') {
             console.log('in field normal')
+            if (me.search_text == "") return me.products = me.allProducts;
             let texte = RemoveAccents(me.search_text);
             me.products = me.allProducts.filter(el => el[me.search_field] && new RegExp(texte, 'gi').test(RemoveAccents(el[me.search_field])));
         } else {
