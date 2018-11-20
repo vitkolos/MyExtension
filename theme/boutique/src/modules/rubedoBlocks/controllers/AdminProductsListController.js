@@ -3,10 +3,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     console.log("scope",$scope)
     
     me.fields = [
-        {id: 'text', label: 'Nom de produit'}, 
-        {id: 'typeId', label: 'Type de produit'},
-        {id: 'online', label: 'Statut'},
-        {id: 'details/stock', label: "Stock"},
+        {value: 'text', label: 'Nom de produit'}, 
+        {value: 'typeId', label: 'Type de produit'},
+        {value: 'online', label: 'Statut'},
+        {value: 'details/stock', label: "Stock"},
     ]
     me.subfields = {
         typeId: [
