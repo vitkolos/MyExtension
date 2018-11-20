@@ -74,7 +74,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     // lance une recherche à partir du raccourci en paramètre
     me.setRaccourci = function(raccourci) {
         console.log('setting raccourci', raccourci)
-        //me.search_field = raccourci.rule.search_field;
+        //search_field = raccourci.rule.search_field;
         $scope.search_field = raccourci.rule.search_field;
         me.search_subfield = raccourci.rule.search_subfield;
         me.search_text = raccourci.rule.search_text;
@@ -91,24 +91,24 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
         if (me.subfields[$scope.search_field] && me.search_subfield) {
             console.log('in subfield search fun')
-            if (me.field_types[me.search_field] == 'quantity') {
+            if (me.field_types[search_field] == 'quantity') {
                 let qte = parseInt(me.search_text);
                 console.log('quantity', qte, me.search_subfield);
-                if (me.search_subfield == '=') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) == qte);
-                if (me.search_subfield == '>') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) > qte);
-                if (me.search_subfield == '<') return me.products = me.allProducts.filter(el => getAttr(el, me.search_field) < qte);
-            } else if (me.field_types[me.search_field] == 'boolean') {
+                if (me.search_subfield == '=') return me.products = me.allProducts.filter(el => getAttr(el, search_field) == qte);
+                if (me.search_subfield == '>') return me.products = me.allProducts.filter(el => getAttr(el, search_field) > qte);
+                if (me.search_subfield == '<') return me.products = me.allProducts.filter(el => getAttr(el, search_field) < qte);
+            } else if (me.field_types[search_field] == 'boolean') {
                 let v = (me.search_subfield == 'true') ? true: false;
-                me.products = me.allProducts.filter(el => el[me.search_field] == v)
+                me.products = me.allProducts.filter(el => el[search_field] == v)
             } else {
                 let texte = RemoveAccents(me.search_text);
-                me.products = me.allProducts.filter(el => el[me.search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(RemoveAccents(el['text']))));
+                me.products = me.allProducts.filter(el => el[search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(RemoveAccents(el['text']))));
             }
-        } else if (me.search_field != 'all') {
+        } else if (search_field != 'all') {
             console.log('in field normal')
             if (me.search_text == "") return me.products = me.allProducts;
             let texte = RemoveAccents(me.search_text);
-            me.products = me.allProducts.filter(el => el[me.search_field] && new RegExp(texte, 'gi').test(RemoveAccents(el[me.search_field])));
+            me.products = me.allProducts.filter(el => el[search_field] && new RegExp(texte, 'gi').test(RemoveAccents(el[search_field])));
         } else {
             // search_field == all
 
@@ -127,9 +127,9 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         })
         let http_result = await Promise.all(plist);
         console.log('http resultproducts', http_result)
-        me.allProducts = flatten(http_result.map(res => res.data.data));
+        /* me.allProducts = flatten(http_result.map(res => res.data.data));
         me.products = me.allProducts.slice(0, 20);
-        console.log('products1', me.allProducts.length, me.allProducts)
+        console.log('products1', me.allProducts.length, me.allProducts) */
 
         // on récupère les niveaux de stock
         plist = typeid_list.map(tid => {
