@@ -74,7 +74,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     // lance une recherche à partir du raccourci en paramètre
     me.setRaccourci = function(raccourci) {
         console.log('setting raccourci', raccourci)
-        //search_field = raccourci.rule.search_field;
+        //$scope.search_field = raccourci.rule.search_field;
         $scope.search_field = raccourci.rule.search_field;
         me.search_subfield = raccourci.rule.search_subfield;
         me.search_text = raccourci.rule.search_text;
@@ -91,24 +91,24 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
         if (me.subfields[$scope.search_field] && me.search_subfield) {
             console.log('in subfield search fun')
-            if (me.field_types[search_field] == 'quantity') {
+            if (me.field_types[$scope.search_field] == 'quantity') {
                 let qte = parseInt(me.search_text);
                 console.log('quantity', qte, me.search_subfield);
-                if (me.search_subfield == '=') return me.products = me.allProducts.filter(el => getAttr(el, search_field) == qte);
-                if (me.search_subfield == '>') return me.products = me.allProducts.filter(el => getAttr(el, search_field) > qte);
-                if (me.search_subfield == '<') return me.products = me.allProducts.filter(el => getAttr(el, search_field) < qte);
-            } else if (me.field_types[search_field] == 'boolean') {
+                if (me.search_subfield == '=') return me.products = me.allProducts.filter(el => getAttr(el, $scope.search_field) == qte);
+                if (me.search_subfield == '>') return me.products = me.allProducts.filter(el => getAttr(el, $scope.search_field) > qte);
+                if (me.search_subfield == '<') return me.products = me.allProducts.filter(el => getAttr(el, $scope.search_field) < qte);
+            } else if (me.field_types[$scope.search_field] == 'boolean') {
                 let v = (me.search_subfield == 'true') ? true: false;
-                me.products = me.allProducts.filter(el => el[search_field] == v)
+                me.products = me.allProducts.filter(el => el[$scope.search_field] == v)
             } else {
                 let texte = RemoveAccents(me.search_text);
-                me.products = me.allProducts.filter(el => el[search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(RemoveAccents(el['text']))));
+                me.products = me.allProducts.filter(el => el[$scope.search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(RemoveAccents(el['text']))));
             }
-        } else if (search_field != 'all') {
+        } else if ($scope.search_field != 'all') {
             console.log('in field normal')
             if (me.search_text == "") return me.products = me.allProducts;
             let texte = RemoveAccents(me.search_text);
-            me.products = me.allProducts.filter(el => el[search_field] && new RegExp(texte, 'gi').test(RemoveAccents(el[search_field])));
+            me.products = me.allProducts.filter(el => el[$scope.search_field] && new RegExp(texte, 'gi').test(RemoveAccents(el[$scope.search_field])));
         } else {
             // search_field == all
 
