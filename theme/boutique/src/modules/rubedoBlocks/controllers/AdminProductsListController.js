@@ -59,7 +59,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     me.allProducts = [];
     me.loading = false;
     me.search_text = "";
-    $scope.search_field = "";
+    $scope.search_field = "text";
     me.search_subfield = "";
 
     
