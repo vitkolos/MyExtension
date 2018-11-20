@@ -1,6 +1,6 @@
 angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$scope', '$http', 'RubedoPagesService', 'RubedoContentsService', 'RubedoOrdersService',function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersService){
     var me = this;
-    console.log("$http", $http)
+    console.log("scope",$scope)
     
     me.fields = [
         {id: 'text', label: 'Nom de produit'}, 
@@ -59,7 +59,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     me.allProducts = [];
     me.loading = false;
     me.search_text = "";
-    me.search_field = "";
+    $scope.search_field = "";
     me.search_subfield = "";
 
     
@@ -74,7 +74,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     // lance une recherche à partir du raccourci en paramètre
     me.setRaccourci = function(raccourci) {
         console.log('setting raccourci', raccourci)
-        me.search_field = raccourci.rule.search_field;
+        //me.search_field = raccourci.rule.search_field;
         $scope.search_field = raccourci.rule.search_field;
         me.search_subfield = raccourci.rule.search_subfield;
         me.search_text = raccourci.rule.search_text;
@@ -89,7 +89,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             if (keyCode !== 13) return;
         }
 
-        if (me.subfields[me.search_field] && me.search_subfield) {
+        if (me.subfields[$scope.search_field] && me.search_subfield) {
             console.log('in subfield search fun')
             if (me.field_types[me.search_field] == 'quantity') {
                 let qte = parseInt(me.search_text);
@@ -102,7 +102,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
                 me.products = me.allProducts.filter(el => el[me.search_field] == v)
             } else {
                 let texte = RemoveAccents(me.search_text);
-                me.products = me.allProducts.filter(el => el[me.search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(el['text'])));
+                me.products = me.allProducts.filter(el => el[me.search_field] == me.search_subfield && (!el['text'] || new RegExp(texte, 'gi').test(RemoveAccents(el['text']))));
             }
         } else if (me.search_field != 'all') {
             console.log('in field normal')

@@ -7,14 +7,14 @@
 
     <h2>Recherche avancée</h2>
     <div class="search_container">
-        <select ng-model="ctrl.search_field" class="search field first">
+        <select ng-model="search_field" class="search field first">
             <option ng-repeat="field in ctrl.fields" ng-value="field.id">{{field.label}}</option>
         </select>
         <select ng-if="ctrl.search_field && ctrl.subfields[ctrl.search_field]" ng-model="ctrl.search_subfield" class="search field" ng-change="ctrl.search('skip')">
             <option ng-repeat="field in ctrl.subfields[ctrl.search_field]" ng-value="field.id">{{field.label}}</option>
         </select>
         <input ng-if="ctrl.field_types[ctrl.search_field] != 'boolean'" class="field" name="search" type="text" ng-model="ctrl.search_text" ng-keypress="ctrl.search($event)">
-        <button ng-click="ctrl.search('skip')"><i class="fa fa-arrow-right"></i></button>
+        <button class="btn btn-primary field fa fa-arrow-right" ng-click="ctrl.search('skip')"></button>
     </div>
     
     <div class="info" ng-if="!ctrl.loading">{{ctrl.products.length}} / {{ctrl.allProducts.length}} produits</div>
@@ -94,6 +94,7 @@ select.field {
     padding-left: 0.7rem;
     border: none;
     background-color: #d5c5b5;
+    cursor: pointer;
 }
 
 select.first {
@@ -120,5 +121,9 @@ th {
     font-size: 3rem;
     text-align: center;
     margin: auto;
+}
+
+.badge-success {
+    background-color: green;
 }
 </style>
