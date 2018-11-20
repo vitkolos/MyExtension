@@ -10,8 +10,12 @@
         <select ng-model="search_field" class="search field first" ng-options="field.value as field.label for field in ctrl.fields">
             <option></option>
         </select>
-        <select ng-if="search_field && ctrl.subfields[search_field]" ng-model="ctrl.search_subfield" class="search field" ng-change="ctrl.search('skip')">
-            <option ng-repeat="field in ctrl.subfields[search_field]" ng-value="field.id">{{field.label}}</option>
+        <select ng-if="search_field && ctrl.subfields[search_field]" 
+                ng-model="ctrl.search_subfield" 
+                class="search field" 
+                ng-options="field.id as field.label for field in ctrl.subfields[search_field]"
+                ng-change="ctrl.search('skip')">
+            <option></option>
         </select>
         <input ng-if="ctrl.field_types[search_field] != 'boolean'" class="field" name="search" type="text" ng-model="ctrl.search_text" ng-keypress="ctrl.search($event)">
         <button class="btn btn-primary field fa fa-arrow-right" ng-click="ctrl.search('skip')"></button>
