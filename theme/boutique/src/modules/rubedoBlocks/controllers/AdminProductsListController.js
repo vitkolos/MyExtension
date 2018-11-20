@@ -73,7 +73,6 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
     // lance une recherche à partir du raccourci en paramètre
     me.setRaccourci = function(raccourci) {
-        $('div.raccourci').removeClass('raccourci_active');
         console.log('setting raccourci', raccourci)
         me.search_field = raccourci.rule.search_field;
         $scope.search_field = raccourci.rule.search_field;
@@ -84,6 +83,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     }
 
     me.search = function($event) {
+        $('div.raccourci').removeClass('raccourci_active');
         if ($event !== "skip") {
             let keyCode = $event.which || $event.keyCode;
             if (keyCode !== 13) return;
