@@ -6,7 +6,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         {value: 'text', label: 'Nom de produit'}, 
         {value: 'typeId', label: 'Type de produit'},
         {value: 'online', label: 'Statut'},
-        {value: 'details/stock', label: "Stock"},
+        {value: 'details/stock/min', label: "Stock"},
     ]
     me.subfields = {
         typeId: [
@@ -29,7 +29,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             {id: 'true', label: "En ligne"},
             {id: 'false', label: "Hors ligne"},
         ],
-        'details/stock': [
+        'details/stock/min': [
             {id: '=', label: '='},
             {id: '<', label: '<'},
             {id: '>', label: '>'},
@@ -37,7 +37,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     }
     me.field_types = {
         online: 'boolean',
-        'details/stock': 'quantity',
+        'details/stock/min': 'quantity',
     }
 
     me.raccourcis = [
@@ -47,7 +47,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         },
         {
             id: 'rupture_stock', label: 'En rupture de stock',
-            rule: {search_field: 'details/stock', search_subfield: '=', search_text: '0'}
+            rule: {search_field: 'details/stock/min', search_subfield: '=', search_text: '0'}
         },
         {
             id: 'hors_ligne', label: 'Hors ligne',
