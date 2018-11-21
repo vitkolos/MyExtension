@@ -159,7 +159,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         event.preventDefault();
         event.stopPropagation();
         let new_status = (online_or_offline == 'online');
-        if (!confirm("Es-tu sûr(e) de vouloir mettre ce contenu hors ligne ?")) return;
+        if (!confirm(`Es-tu sûr(e) de vouloir mettre ce contenu ${(online_or_offline == 'online') ? 'en': 'hors'} ligne ?`)) return;
         me.updateProduct(event, content_id, {online: new_status});
     }
 
@@ -196,7 +196,15 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             res = await $http({
                 url: '/backoffice/contents/update?_dc=1542806010167',
                 method: 'POST',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+                transformRequest: function(obj) {
+                    var str = [];
+                    for(var p in obj)
+                    str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    return str.join("&");
+                },
                 data: {
+                    tFilter: [{"property":" typeId", "value": content_full.typeId}],
                     workingLanguage: 'fr',
                     data: content_full
                 }
