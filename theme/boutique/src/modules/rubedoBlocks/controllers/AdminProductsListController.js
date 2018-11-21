@@ -129,19 +129,29 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         let http_result = await Promise.all(plist);
         console.log('http resultproducts', http_result)
         me.allProducts = flatten(http_result.map(res => res.data.data));
-        me.products = me.allProducts.slice(0, 20);
-        console.log('products1', me.allProducts.length, me.allProducts)
 
-        // on récupère les niveaux de stock
-        plist = typeid_list.map(tid => {
+        // on ajoute quelques meta-données dans 'details'
+        for (let i = 0; i < me.allProducts; i++) {
+            let stocks = me.allProducts[i].productProperties.variations.map(el => el.stock);
+            me.allProducts[i].details = {
+                stock: {
+                    min: Math.min(...stocks),
+                    max: Math.max(...stocks),
+                }
+            }
+        }
+
+        /* plist = typeid_list.map(tid => {
             return $http({url: '/backoffice/contents/get-stock', method:'GET', params: {_dc:'1542638855666', 'type-id':tid, 'page':1,'start':0,'limit':100000,'workingLanguage':'fr'}})
         })
         let stock_list = await Promise.all(plist);
         stock_list = flatten(stock_list.map(res => res.data.data));
         console.log('stocks', stock_list)
 
-        me.allProducts = mergeList(me.allProducts, 'id', 'details', stock_list, 'productId');
+        me.allProducts = mergeList(me.allProducts, 'id', 'details', stock_list, 'productId');*/
+
         me.products = me.allProducts.slice(0, 20);
+        console.log('products1', me.allProducts.length, me.allProducts)
 
         me.loading = false;
         return me.allProducts;
