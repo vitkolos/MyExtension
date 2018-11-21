@@ -170,7 +170,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         // on récupère le contenu du produit tout frais
         let res;
         try {
-            res = await RubedoContentsService.getContentById(content_id);
+            res = await $http({url: '/backoffice/contents/find-one', method: 'GET', params: {_dc: '1542808296999', id: content_id, page: 1, start: 0, limit: 25, workingLanguage: 'fr'}});
         } catch(e) {
             console.log("Erreur lors de la mise à jour du produit (impossible de trouver le produit " + content_id + ")", e)
             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
