@@ -38,7 +38,7 @@
                     <td><img ng-if="ctrl.products.length < 70 && item.fields.image" ng-src="{{rubedo.imageUrl.getUrlByMediaId(item.fields.image ,{width:'50px',mode:'boxed'})}}" alt="product img"></td>
                     <td class="clickable" ng-click="ctrl.goToContentPage(item.id, item.online)">
                         {{ item.text }}
-                        <span class="badge badge-success" ng-if="item.online">en ligne</span>
+                        <span class="badge badge-success" ng-if="item.online" ng-click="ctrl.putOffline($event, item.id)">en ligne</span>
                         <span class="badge" ng-if="!item.online">hors ligne</span>
                     </td>
                     <td>{{ item.productProperties.sku }}</td>

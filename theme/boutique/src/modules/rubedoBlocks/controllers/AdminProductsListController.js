@@ -155,6 +155,49 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         console.log("sorted by " + field, me.products)
     }
 
+    me.putOffline = function(event, content_id) {
+        event.preventDefault();
+        event.stopPropagation();
+        if (!confirm("Es-tu sûr(e) de vouloir mettre ce contenu hors ligne ?")) return;
+        me.updateProduct(event, content_id, {online: false})
+    }
+
+    // met à jour le produit avec l'id @content_id avec les éléments dans new_content (e.g. new_content = {online: false} pour mettre offline)
+    me.updateProduct = async function(event, content_id, new_content) {
+        event.preventDefault();
+
+        // on récupère le contenu du produit tout frais
+        let res;
+        try {
+            res = await RubedoContentsService.getContentById(content_id);
+        } catch(e) {
+            console.log("Erreur lors de la mise à jour du produit (impossible de trouver le produit " + content_id + ")", e)
+            $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
+            return
+        }
+        console.log('PO', res)
+        if (!res.data.success) {
+            console.log("PutOffline erreur", content_id, res)
+            $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error..."));
+            return
+        }
+
+        // on le met à jour avec les données de new_content
+        let content_full = angular.copy(res.data.content);
+        content_full = updateAssign(content_full, new_content);
+        console.log("update product", res.data.content, content_full)
+        try {
+            content_full.online = false;
+            res = await RubedoContentsService.updateContent(content_full);
+            $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success", "Success !"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated", "Content updated"));
+        } catch(e) {
+            console.log("Erreur lors de la mise à jour du produit " + content_id, e)
+            $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
+            return
+        }
+        console.log("putoffline success", res);
+    }
+
     // redirige vers la page de détail du produit avec l'id contentId
     me.goToContentPage = async function(contentId, enligne) {
         if (!enligne) return console.log("ce contenu est hors ligne");
@@ -186,6 +229,20 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         document.execCommand('copy');
         document.body.removeChild(el);
       };
+
+    // comme Object.assign mais plus intelligent
+    function updateAssign(o1, o2) {
+        for (let attr in o2) {
+            if (typeof o2[attr] === 'object' && !Array.isArray(o2[attr])) {
+                if (!o1[attr]) o1[attr] = {};
+                let sub_o = updateAssign(o1[attr], o2[attr]);
+                o1[attr] = sub_o
+            } else {
+                o1[attr] = o2[attr]
+            }
+        }
+        return o1
+    }
 
     // merge l2 in l1 on id_attr : l1[i][attr] = l2[j]
     function mergeList(l1, id_attr1, attr, l2, id_attr2) {
