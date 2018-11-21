@@ -229,10 +229,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         me.allProducts[ind] = content_full;
         ind = me.products.findIndex(pr => pr.id == content_id);
         if (ind >= 0) me.products[ind] = content_full;
+        me.loading_one = '';
         $scope.$apply();
 
         console.log("update success", res_update);
-        me.loading_one = '';
         return content_full
     }
 
