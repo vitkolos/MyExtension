@@ -186,7 +186,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         let ind = me.allProducts.findIndex(pr => pr.id == content_id);
         if (ind < 0) return console.log('Impossible de trouver le produit ' + content_id + ' dans les objets locaux !')
 
-        let content_full = angular.copy(res.data.content);
+        let content_full = angular.copy(res.data.data);
         content_full = updateAssign(content_full, new_content);
         console.log("updating product...",res.data.content, content_full)
 
@@ -213,7 +213,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             $scope.rubedo.addNotification("danger", $scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
             return
         }
-        if (!res_update.data.success) {
+        if (!res_update.data.success && !res_update.data.succes) {
             console.log("Erreur lors de la mise à jour du produit " + content_id, res_update)
             $scope.rubedo.addNotification("danger", $scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
             return
