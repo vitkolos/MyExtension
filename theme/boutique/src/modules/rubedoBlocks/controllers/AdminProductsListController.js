@@ -190,9 +190,9 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         content_full = updateAssign(content_full, new_content);
         console.log("updating product...",res.data.content, content_full)
 
-        let res;
+        let res_update;
         try {
-            res = await $http({
+            res_update = await $http({
                 url: '/backoffice/contents/update?_dc=1542806010167',
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
@@ -213,8 +213,8 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             $scope.rubedo.addNotification("danger", $scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
             return
         }
-        if (!res.data.success) {
-            console.log("Erreur lors de la mise à jour du produit " + content_id, res)
+        if (!res_update.data.success) {
+            console.log("Erreur lors de la mise à jour du produit " + content_id, res_update)
             $scope.rubedo.addNotification("danger", $scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
             return
         }
@@ -236,7 +236,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         if (ind >= 0) me.products[ind] = content_full;
         $scope.$apply();
 
-        console.log("update success", res);
+        console.log("update success", res_update);
         return content_full
     }
 
