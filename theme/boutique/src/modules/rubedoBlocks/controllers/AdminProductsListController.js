@@ -168,7 +168,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         event.preventDefault();
 
         // on récupère le contenu du produit tout frais
-        let res;
+       /*  let res;
         try {
             res = await RubedoContentsService.getContentById(content_id);
         } catch(e) {
@@ -181,13 +181,31 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             console.log("PutOffline erreur", content_id, res)
             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error..."));
             return
+        } */
+        
+        let ind = me.allProducts.findIndex(pr => pr.id == content_id);
+        if (ind < 0) return console.log('Impossible de trouver le produit ' + content_id + ' dans les objets locaux !')
+
+        let content_full = angular.copy(me.allProducts[ind]);
+        content_full = updateAssign(content_full, new_content);
+        console.log("updating product...", me.allProducts[ind], content_full)
+
+        let res = await $http({
+            url: '/backoffice/contents/update?_dc=1542806010167',
+            method: 'POST',
+            params: {
+                workingLanguage: 'fr',
+                data: content_full
+            }
+        })
+        if (!res.success) {
+            console.log("Erreur lors de la mise à jour du produit " + content_id, res)
+            $scope.rubedo.addNotification("danger", $scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
+            return
         }
 
         // on le met à jour avec les données de new_content
-        let content_full = angular.copy(res.data.content);
-        content_full = updateAssign(content_full, new_content);
-        console.log("update product", res.data.content, content_full)
-        try {
+        /* try {
             content_full.online = false;
             res = await RubedoContentsService.updateContent(content_full);
             $scope.rubedo.addNotification("success",$scope.rubedo.translate("Block.Success", "Success !"),$scope.rubedo.translate("Blocks.Contrib.Status.ContentUpdated", "Content updated"));
@@ -195,11 +213,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             console.log("Erreur lors de la mise à jour du produit " + content_id, e)
             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
             return
-        }
+        } */
 
         // on met à jour les listes de produits locales
-        let ind = me.allProducts.findIndex(pr => pr.id == content_id);
-        if (ind >= 0) me.allProducts[ind] = content_full;
+        me.allProducts[ind] = content_full;
         ind = me.products.findIndex(pr => pr.id == content_id);
         if (ind >= 0) me.products[ind] = content_full;
 
