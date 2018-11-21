@@ -30,7 +30,6 @@
                     <th ng-click="ctrl.sortProducts('text')">Nom du produit</th>
                     <th ng-click="ctrl.sortProducts('details/sku')">SKU</th>
                     <th ng-click="ctrl.sortProducts('details/stock')">Stock</th>
-                    <th ng-click="ctrl.sortProducts('online')">{{ rubedo.translate('Blocks.UserOrders.Status') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -45,8 +44,11 @@
                         <span class="badge" ng-if="!item.online" ng-click="ctrl.changeStatus($event, item.id, 'online')">hors ligne</span>
                     </td>
                     <td>{{ item.productProperties.sku }}</td>
-                    <td data-toggle="tooltip" title="{{ item.productProperties.sku }}" ng-click="ctrl.copyToClipboard(item.productProperties.sku)">{{ item.details.stock }}</td>
-                    <td>{{ item.online }}</td>
+                    <td class="stock clickable">
+                        <span ng-if="item.productProperties.variations.length == 1" data-toggle="tooltip" title="{{ item.productProperties.sku }}" ng-click="ctrl.copyToClipboard(item.productProperties.sku)">{{ item.productProperties.variations[0].stock }}</span>
+                        <span ng-if="item.productProperties.variations.length > 1">{{ Math.min(...item.productProperties.variations.map(el => el.stock)) }} à {{ Math.max(...item.productProperties.variations.map(el => el.stock)) }}</span>
+                    </td>
+                    <!-- <td data-toggle="tooltip" title="{{ item.productProperties.sku }}" ng-click="ctrl.copyToClipboard(item.productProperties.sku)">{{ item.details.stock }}</td> -->
                 </tr>
             </tbody>
         </table>
