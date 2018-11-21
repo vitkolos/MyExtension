@@ -168,7 +168,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         event.preventDefault();
 
         // on récupère le contenu du produit tout frais
-       /*  let res;
+        let res;
         try {
             res = await RubedoContentsService.getContentById(content_id);
         } catch(e) {
@@ -178,18 +178,17 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         }
         console.log('PO', res)
         if (!res.data.success) {
-            console.log("PutOffline erreur", content_id, res)
+            console.log("updateProduct erreur", content_id, res)
             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error..."));
             return
-        } */
+        }
         
         let ind = me.allProducts.findIndex(pr => pr.id == content_id);
         if (ind < 0) return console.log('Impossible de trouver le produit ' + content_id + ' dans les objets locaux !')
 
-        let content_full = angular.copy(me.allProducts[ind]);
+        let content_full = angular.copy(res.data.content);
         content_full = updateAssign(content_full, new_content);
-        delete content_full['details'];
-        console.log("updating product...", me.allProducts[ind], content_full)
+        console.log("updating product...",res.data.content, content_full)
 
         let res;
         try {
@@ -235,6 +234,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         me.allProducts[ind] = content_full;
         ind = me.products.findIndex(pr => pr.id == content_id);
         if (ind >= 0) me.products[ind] = content_full;
+        $scope.$apply();
 
         console.log("update success", res);
         return content_full
