@@ -63,7 +63,9 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
     $scope.search_field = "text";
     me.search_subfield = "";
 
-    
+
+
+
     var config = $scope.blockConfig;
     var options={};
     if (config.orderDetailPage){
@@ -133,7 +135,13 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         // on ajoute quelques meta-données dans 'details'
         for (let i = 0; i < me.allProducts.length; i++) {
             let stocks = me.allProducts[i].productProperties.variations.map(el => el.stock);
+            let prices = me.allProducts[i].productProperties.variations.map(el => el.price);
+            
             me.allProducts[i].details = {
+                price: {
+                    min: Math.min(...prices),
+                    max: Math.max(...prices),
+                },
                 stock: {
                     min: Math.min(...stocks),
                     max: Math.max(...stocks),
