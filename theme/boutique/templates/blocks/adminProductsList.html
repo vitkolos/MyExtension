@@ -47,7 +47,7 @@
                         <span ng-if="item.details.price.min == item.details.price.max">{{ item.productProperties.variations[0].price }} €</span>
                         <span ng-if="item.details.price.min != item.details.price.max">{{ item.details.price.min }} à {{ item.details.price.max }} €</span>
                     </td>
-                    <td class="stock clickable">
+                    <td class="stock clickable" data-toggle="modal" data-target="#modal_stocks" ng-click="ctrl.current_product = item.id">
                         <span ng-if="item.details.stock.min == item.details.stock.max" data-toggle="tooltip" title="{{ item.productProperties.sku }}" ng-click="ctrl.copyToClipboard(item.productProperties.sku)">{{ item.productProperties.variations[0].stock }}</span>
                         <span ng-if="item.details.stock.min != item.details.stock.max">{{ item.details.stock.min }} à {{ item.details.stock.max }}</span>
                     </td>
@@ -58,6 +58,20 @@
     </div>
 
     <div class="loading" ng-if="ctrl.loading"><i class="fa fa-spinner fa-pulse loading"></i></div>
+
+
+    <!-- ================================= -->
+    <div id="modal_stocks" class="modal fade" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body">
+
+                    coco {{ctrl.current_product}}
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 
