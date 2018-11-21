@@ -177,7 +177,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             return
         }
         console.log('PO', res)
-        if (!res.data.success) {
+        if (!res.data.success && !res.data.succes) {
             console.log("updateProduct erreur", content_id, res)
             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error..."));
             return
