@@ -131,7 +131,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         me.allProducts = flatten(http_result.map(res => res.data.data));
 
         // on ajoute quelques meta-données dans 'details'
-        for (let i = 0; i < me.allProducts; i++) {
+        for (let i = 0; i < me.allProducts.length; i++) {
             let stocks = me.allProducts[i].productProperties.variations.map(el => el.stock);
             me.allProducts[i].details = {
                 stock: {
