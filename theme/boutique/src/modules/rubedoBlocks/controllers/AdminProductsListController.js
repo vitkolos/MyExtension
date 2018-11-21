@@ -155,11 +155,12 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         console.log("sorted by " + field, me.products)
     }
 
-    me.putOffline = function(event, content_id) {
+    me.changeStatus = function(event, content_id, online_or_offline) {
         event.preventDefault();
         event.stopPropagation();
+        let new_status = (online_or_offline == 'online');
         if (!confirm("Es-tu sûr(e) de vouloir mettre ce contenu hors ligne ?")) return;
-        me.updateProduct(event, content_id, {online: false});
+        me.updateProduct(event, content_id, {online: new_status});
     }
 
     // met à jour le produit avec l'id @content_id avec les éléments dans new_content (e.g. new_content = {online: false} pour mettre offline)
