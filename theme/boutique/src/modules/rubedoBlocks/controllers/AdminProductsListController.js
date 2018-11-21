@@ -159,7 +159,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         event.preventDefault();
         event.stopPropagation();
         if (!confirm("Es-tu sûr(e) de vouloir mettre ce contenu hors ligne ?")) return;
-        me.updateProduct(event, content_id, {online: false})
+        me.updateProduct(event, content_id, {online: false});
     }
 
     // met à jour le produit avec l'id @content_id avec les éléments dans new_content (e.g. new_content = {online: false} pour mettre offline)
@@ -195,7 +195,15 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             $scope.rubedo.addNotification("danger",$scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
             return
         }
-        console.log("putoffline success", res);
+
+        // on met à jour les listes de produits locales
+        let ind = me.allProducts.findIndex(pr => pr.id == content_id);
+        if (ind >= 0) me.allProducts[ind] = content_full;
+        ind = me.products.findIndex(pr => pr.id == content_id);
+        if (ind >= 0) me.products[ind] = content_full;
+
+        console.log("update success", res);
+        return content_full
     }
 
     // redirige vers la page de détail du produit avec l'id contentId
