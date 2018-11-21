@@ -190,15 +190,19 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         content_full = updateAssign(content_full, new_content);
         console.log("updating product...", me.allProducts[ind], content_full)
 
-        let res = await $http({
-            url: '/backoffice/contents/update?_dc=1542806010167',
-            method: 'POST',
-            params: {
-                workingLanguage: 'fr',
-                data: content_full
-            }
-        })
-        if (!res.success) {
+        let res;
+        try {
+            res = await $http({
+                url: '/backoffice/contents/update?_dc=1542806010167',
+                method: 'POST',
+                params: content_full
+            })
+        } catch(e) {
+            console.log("Erreur lors de la mise à jour de " + content_id, e)
+            $scope.rubedo.addNotification("danger", $scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
+            return
+        }
+        if (!res.data.success) {
             console.log("Erreur lors de la mise à jour du produit " + content_id, res)
             $scope.rubedo.addNotification("danger", $scope.rubedo.translate("Block.Error", "Error !"),$scope.rubedo.translate("Blocks.Contrib.Status.UpdateError", "Content update error"));
             return
