@@ -149,15 +149,6 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             }
         }
 
-        /* plist = typeid_list.map(tid => {
-            return $http({url: '/backoffice/contents/get-stock', method:'GET', params: {_dc:'1542638855666', 'type-id':tid, 'page':1,'start':0,'limit':100000,'workingLanguage':'fr'}})
-        })
-        let stock_list = await Promise.all(plist);
-        stock_list = flatten(stock_list.map(res => res.data.data));
-        console.log('stocks', stock_list)
-
-        me.allProducts = mergeList(me.allProducts, 'id', 'details', stock_list, 'productId');*/
-
         me.products = me.allProducts.slice(0, 20);
         console.log('products1', me.allProducts.length, me.allProducts)
 
