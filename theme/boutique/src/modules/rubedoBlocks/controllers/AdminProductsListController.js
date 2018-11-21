@@ -197,12 +197,12 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
                 url: '/backoffice/contents/update?_dc=1542806010167',
                 method: 'POST',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-                transformRequest: function(obj) {
+                /* transformRequest: function(obj) {
                     var str = [];
                     for(var p in obj)
                     str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
                     return str.join("&");
-                },
+                }, */
                 data: {
                     tFilter: [{"property":" typeId", "value": content_full.typeId}],
                     workingLanguage: 'fr',
