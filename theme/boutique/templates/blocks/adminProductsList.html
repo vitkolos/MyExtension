@@ -47,7 +47,7 @@
                         <span ng-if="item.details.price.min == item.details.price.max">{{ item.productProperties.variations[0].price }} €</span>
                         <span ng-if="item.details.price.min != item.details.price.max">{{ item.details.price.min }} à {{ item.details.price.max }} €</span>
                     </td>
-                    <td class="stock clickable" data-toggle="modal" data-target="#modal_stocks" ng-click="ctrl.current_product = item.id">
+                    <td class="stock clickable" data-toggle="modal" data-target="#modal_stocks" ng-click="ctrl.current_product = item">
                         <span ng-if="item.details.stock.min == item.details.stock.max" data-toggle="tooltip" title="{{ item.productProperties.sku }}" ng-click="ctrl.copyToClipboard(item.productProperties.sku)">{{ item.productProperties.variations[0].stock }}</span>
                         <span ng-if="item.details.stock.min != item.details.stock.max">{{ item.details.stock.min }} à {{ item.details.stock.max }}</span>
                     </td>
@@ -66,7 +66,20 @@
             <div class="modal-content">
                 <div class="modal-body">
 
-                    coco {{ctrl.current_product}}
+                    <table class="stocks">
+                        <thead>
+                            <th>SKU</th>
+                            <th>Prix</th>
+                            <th>Stock</th>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="variation in ctrl.current_product.productProperties.variations track by $index">
+                                <td>{{ variation.sku }}</td>
+                                <td>{{ variation.price }} €</td>
+                                <td>{{ variation.stock }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
 
                 </div>
             </div>
