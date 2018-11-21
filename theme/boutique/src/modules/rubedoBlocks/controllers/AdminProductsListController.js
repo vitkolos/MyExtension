@@ -188,6 +188,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
 
         let content_full = angular.copy(me.allProducts[ind]);
         content_full = updateAssign(content_full, new_content);
+        delete content_full['details'];
         console.log("updating product...", me.allProducts[ind], content_full)
 
         let res;
