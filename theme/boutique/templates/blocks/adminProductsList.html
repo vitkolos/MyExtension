@@ -46,7 +46,7 @@
                     <td>{{ item.productProperties.sku }}</td>
                     <td class="stock clickable">
                         <span ng-if="item.productProperties.variations.length == 1" data-toggle="tooltip" title="{{ item.productProperties.sku }}" ng-click="ctrl.copyToClipboard(item.productProperties.sku)">{{ item.productProperties.variations[0].stock }}</span>
-                        <span ng-if="item.productProperties.variations.length > 1">{{ Math.min(...item.productProperties.variations.map(el => el.stock)) }} à {{ Math.max(...item.productProperties.variations.map(el => el.stock)) }}</span>
+                        <span ng-if="item.productProperties.variations.length > 1">{{ Math.min.apply(null, item.productProperties.variations.map(el => el.stock)) }} à {{ Math.max.apply(null, item.productProperties.variations.map(el => el.stock)) }}</span>
                     </td>
                     <!-- <td data-toggle="tooltip" title="{{ item.productProperties.sku }}" ng-click="ctrl.copyToClipboard(item.productProperties.sku)">{{ item.details.stock }}</td> -->
                 </tr>
