@@ -196,7 +196,10 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
             res = await $http({
                 url: '/backoffice/contents/update?_dc=1542806010167',
                 method: 'POST',
-                data: content_full
+                data: {
+                    workingLanguage: 'fr',
+                    data: content_full
+                }
             })
         } catch(e) {
             console.log("Erreur lors de la mise à jour de " + content_id, e)
