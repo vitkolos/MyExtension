@@ -3,10 +3,10 @@
     <div class="col-xs-12 col-sm-4"
         ng-repeat="content in contentListCtrl.contents track by $index">
         
-        <div class="card" style="width: 18rem;">
+        <div class="card proposition">
             <img class="card-img-top" 
-                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'200px',height:'150px',mode:'crop'}) }}"
-                onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=200px&height=150px&mode=crop'"
+                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:400px',height:'200px',mode:'crop'}) }}"
+                onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=400px&height=200px&mode=crop'"
                 alt="{{ content.fields.text }}">
             <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -20,5 +20,9 @@
 </div>
 
 <style>
-
+div.card.proposition {
+    width: 400px;
+    text-align: center;
+    border: 2px solid black;
+}
 </style>
