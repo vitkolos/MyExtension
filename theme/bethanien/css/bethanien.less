@@ -307,7 +307,116 @@ p.linkbox a, p.linkbox a:hover{color: @grey; text-decoration: none; display: inl
 .panel-body {
 		font-size: 1em;
 }
+.capital {font-variant: small-caps}
+
+// ========================================================================================
+// ========================================================================================
+// ========================================================================================
+// ========================================================================================
+// ========================================================================================
 
 
-// ===================================================================
+////////////////////////////////////////////////////
+    ///////////BREADCRUMB///////////////////
+///////////////////////////////////////////////////
+.breadcrumb a{.capital; color:@rouge; box-shadow: none !important}
+.breadcrumb li a:hover, .breadcrumb li a:active{background-color: inherit}
+.breadcrumb a, .breadcrumb span{.capital;}
+.breadcrumb>li+li:before{
+  content: "\f0da";
+  font-family: 'FontAwesome';
+  color:@rouge
+}
+.breadcrumb{background: transparent}
 
+////////////////////////////////////////////////////
+    ///////////LISTE///////////////////
+///////////////////////////////////////////////////
+
+.prev-page a, .next-page a{width:30px; height: 30px; border-radius: 30px; background:@bleu_dark; color:white; padding:6px}
+.prev-page{position:absolute; left:0; top:42%}
+.next-page{position:absolute; right:0; top:42%}
+
+//////////CALENDRIER///////////
+.rwd-table{margin:0 auto}
+.rwd-table tr:not(:last-of-type){border-bottom: 1px solid @bleu_dark}
+.rwd-table tr:first-of-type{border-top: 2px solid @bleu_dark}
+@media screen and (max-width: @min_xs) {
+  .rwd-table tbody th:before {
+      content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
+      font-weight: bold;
+      // optional stuff to make it look nicer
+      width: 6.5em; // magic number :( adjust according to your own content
+      display: inline-block;
+      // end options
+  
+  }
+  table.rwd-table:not(.year-view){
+    thead{display: none}
+    tr,th{display: block;}
+  }
+}
+.rwd-table{
+  th{padding: 6px 12px}
+  tr,th{font-weight: normal}
+  .cal-date{text-transform: uppercase; .sans-serif;}
+}
+span.public{
+  .capital2;
+  //.txt-marron;
+}
+span.public+span.public:before{content:','; margin-right:3px;margin-left: -4px} // virgule après un tag
+////////////////////////////////////////////////////
+    ///////////CONTENUS///////////////////
+///////////////////////////////////////////////////
+.contentDetail{min-height: 90vh}
+header.content{
+  background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: scroll;
+    background-size: cover;
+    h1,h2,h3,h4,h5,p{color:white};
+    height:320px;
+    box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25);
+    margin-bottom:24px;
+    line-height: 320px;
+    text-align: center;
+    background-color: @beigeCCN;
+    background-image: url('/theme/cte/img/logo_ccn.jpg');
+    overflow-y:hidden;
+}
+header.content.parallax{
+  background-attachment: fixed;
+  /* transform: translate3d(0px, 0px, 0px); */ /* commented because parallax effect stops working on firefox with this line */
+}
+
+/* added this to overwrite .content.parallax rule that breaks parallax on firefox */
+.content.parallax {
+  transform: none !important; /* TODO voir pk il faut faire !important pr que ça marche, c pas propre */
+}
+
+header.content.no-filter{box-shadow: none;}
+ .no-filter header.content{box-shadow:inset 0 0 0 1000px rgba(84,84,84,.1);}
+header.content>div{line-height: normal;display: inline-block;text-align:center; vertical-align: middle;}
+@media screen and (min-width: @min_sm) {
+    .large header.content{line-height: 600px; height:600px}
+    header.content{line-height: 400px; height:400px}
+    header.content>div{text-align: left; vertical-align: bottom; padding-bottom: 24px}
+}
+@media screen and (max-width:@min_xs){
+  header.content.parallax{background-attachment: scroll;}
+}
+@media screen and (min-width: 1500px) {header.content{line-height: 500px; height:500px}}
+header.content.prop>div{text-align: center; vertical-align: middle; padding-bottom: 0}
+.socials {font-size:30px; width: 100%;text-align: center; margin-bottom:12px}
+@media  screen and (min-width:@min_sm) {.socials:not(.center){text-align:right; width:auto; padding-left: 24px;}}
+.addthis_counter a.atc_s{display:none !important}
+.socials .addthis_counter .addthis_button_expanded, .socials .addthis_counter .addthis_button_expanded a {
+  .txt-red; .capital;
+  background: none;
+  .sans-serif !important;
+  width:auto
+  }
+  .socials .addthis_counter {.txt-red; .capital; width: auto; margin-right: 3px;
+  }
+  .addthis_toolbox a:hover{text-decoration: none}
