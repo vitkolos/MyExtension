@@ -85,6 +85,23 @@ p.small, .small p{font-size: 12px !important}
  
 .bg-white blockquote{border-top:2px solid @bleu_dark;border-bottom:2px solid @bleu_dark;}
 
+blockquote p{text-align: center; font-size: 14px !important}
+@media screen and (max-width:@min_xs){
+  .text-article{text-align:left; }
+}
+@media screen and (min-width:@min_xs){.content_border{margin-top:0px}}
+@media screen and (min-width:@min_sm){
+  .text-article p, .text-article li{font-size:18px; line-height: 1.7em}
+  .header_link{float:left}
+  .text-article p img.right{margin-right: -200px; margin-left: 12px; float: right}
+  .text-article p img.left{margin-left: -200px; margin-right: 12px; float: left}
+  }
+@media screen and (min-width:@min_md){.text-article{max-width:680px}}
+@media screen and (min-width:@min_lg){
+  blockquote:not(.center){width:60%; float:right; position: relative; left:30%; margin-left:-17.5%; margin-top:0; margin-bottom: 18px;}
+  blockquote p{font-size: 16px !important; line-height: 1.6em !important}
+}
+
 /*FIXES*/
 .rubedo-block-contentContribution{min-height:0 !important}
 /*NAVIGATION*/
