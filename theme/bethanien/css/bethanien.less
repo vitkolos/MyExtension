@@ -9,6 +9,30 @@
     clear: both;
   }
 }
+.uparrow() {
+    &:after{
+    font-family:'FontAwesome';
+    content:'\f077';
+	float: right;
+	text-transform: none;
+    }
+}
+.downarrow() {
+    &:after{
+    font-family:'FontAwesome';
+    content:'\f078';
+	float: right;
+	text-transform: none;
+    }
+}
+.rightarrow() {
+    &:after{
+    font-family:'FontAwesome';
+    content:'\f04b';
+	float: right;
+	text-transform: none;
+    }
+}
 @font-face {
 	font-family: 'MyanmarText';
 	src: url('../fonts/mmrtext.eot');
@@ -38,6 +62,12 @@
 @bleu_bethanien:#006ba8;
 @bleu_dark: #003b78;
 @bleu_light: rgb(187, 208, 255);
+@txt_dark: #003b78;
+@bleu_shadow: #003b78;
+
+@14-18:#1f2d5c;
+@cana:#26a95f;
+@bleu:#3CA6C1;
 
 
 .txt-red{color:@bleu_dark !important}
@@ -65,9 +95,9 @@ h2.titre-block:before, h2.titre-block:after{
 }
 .no-padding-blocks{padding: 0}
 
-.button:hover{opacity:0.8;}
+/* .button:hover{opacity:0.8;}
 .button.rouge{background: @bleu_bethanien;box-shadow: 0px 2px @grey; color:white}
-.buttonRouge{background: @rouge;box-shadow: 0px 2px @grey; color:white}
+.buttonRouge{background: @rouge;box-shadow: 0px 2px @grey; color:white} */
 .button.submit{border: 2px solid @bleu_dark; color:@bleu_dark;}
 .button.submit.disabled, .button.rouge.disabled{color:@bleu_dark; border: 2px solid @bleu_dark; cursor: default}
 
@@ -439,3 +469,320 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
   .socials .addthis_counter {.txt-red; .capital; width: auto; margin-right: 3px;
   }
   .addthis_toolbox a:hover{text-decoration: none}
+
+  ////////////////////////////////////////////////////
+    ///////////FORMS///////////////////
+///////////////////////////////////////////////////
+/*General*/
+input[type=text], input[type=number],textarea, input[type=email], input[type=text].form-control, input[type=number].form-control,textarea.form-control, input[type=email].form-control {
+	width:100%; border:3px solid white; background-color: transparent !important; font-family: Merriweather; font-size: 18px; padding:4px 12px;
+  }
+  input[type=text].ng-dirty.ng-invalid,input[type=number].ng-dirty.ng-invalid,  textarea.ng-dirty.ng-invalid,input[type=email].ng-dirty.ng-invalid{border:3px solid @rouge}
+  input[type=text].ng-invalid:not(.ng-dirty),input[type=number].ng-invalid:not(.ng-dirty),  textarea.ng-invalid:not(.ng-dirty),input[type=email].ng-invalid:not(.ng-dirty){border:3px solid white}
+  .bg-white {
+	input[type=text].ng-invalid:not(.ng-dirty),input[type=number].ng-invalid:not(.ng-dirty),  textarea.ng-invalid:not(.ng-dirty),input[type=email].ng-invalid:not(.ng-dirty){border:2px solid @bleu_dark}
+	input[type=text]{border-color:@bleu_dark}
+  }
+  
+  
+  input[type=text].number{text-align: center; font-size: 20px; font-weight: bold;width:100px}
+  input:-webkit-autofill, textarea#adresse:-webkit-autofill, select:-webkit-autofill{background-color: @bleu_light !important; color:@txt_dark !important}
+  input:-webkit-autofill {
+	  -webkit-box-shadow:0 0 0 50px @bleu_light inset; /* Change the color to your own background color */
+	  -webkit-text-fill-color: @txt_dark;
+  }
+  input:-moz-placeholder,
+  input:focus {
+	  box-shadow:none !important;
+  }
+  
+  input[type=checkbox]:disabled + label,input[type=radio]:disabled + label{color:@bleu_dark}
+  textarea:focus{outline:none}
+  input[type=text]:focus:not(.ng-invalid), textarea:focus, input[type=email]:focus, input[type=number]:focus{border-color:@bleu_dark !important; border-width: 2px}
+  
+  .chosen-container .chosen-results li.highlighted{background-color:@bleu_dark}
+  .btn-primary{background-color:@rouge; border:none}
+  .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary{background-color: @bleu_shadow}
+  
+  h2.capital{text-align: center; padding:12px 0; border-bottom: 2px solid; margin-top:12px; margin-bottom:24px}
+  /*Checkboxes and radio buttons*/
+	input[type=radio],
+	input[type=checkbox] {
+		display: none;
+	}
+	.radio-inline input[type=radio], .form-group input[type=radio],
+	.checkbox-inline input[type=checkbox],.form-group input[type=checkbox] {
+		display: block;
+	}
+	input[type=radio]+ label:not(.sexe_label):before, input[type=checkbox]+ label:before {
+	  content: "";
+	  display: inline-block;
+	  width: 20px;
+	  height: 20px;
+	  margin-right: 10px;
+	  position: absolute;
+	  left: 0;
+	  vertical-align: middle;
+	  background-color: white;
+	  border: 1px solid @bleu_dark;
+	}
+  
+	input[type=radio] +label:not(.sexe_label):before {
+	   border-radius: 10px;
+   }
+	input[type=checkbox] + label {
+		margin-bottom: 10px;
+	}
+	input[type=checkbox] + label:before {
+		border-radius: 3px;
+	}
+  
+	input[type=radio]:checked + label:not(.sexe_label):after {
+		content: "\2022";
+		color: @rouge;
+		font-size: 44px;
+		text-align: center;
+		line-height: 28px;
+		position:absolute;
+		left:1px; top: -5px;
+	}
+	input[type=radio]+ label:not(.sexe_label), input[type=checkbox]+ label {
+	  display: inline-block;
+	  cursor: pointer;
+	  position: relative;
+	  padding-left: 25px;
+	  margin-right: 15px;
+	  font-weight: normal;
+	}
+  
+	input[type=checkbox]:checked + label:before {
+		content: "\f00c"; font-family: 'FontAwesome';
+		text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+		font-size: 20px;
+		text-align: center;
+	  line-height: 19px;
+	  color:@rouge;
+	}
+	select{
+	  border: 2px solid white;
+	  background-color: transparent;
+	  width: 100%; padding: 6px;
+	}
+  
+  
+  
+  ng-form[name="inscription_form"]{
+	.panel{background-color: transparent; border: none;-webkit-box-shadow: none; box-shadow:none}
+	h2.displayed{background-color: white}
+	//h2.displayed + ng-form .row{max-height:300px; transition: max-height 0.8s ease-out; margin-bottom:12px; overflow: visible;}
+	ng-form .row{margin: 0 15px;margin-bottom:12px; }
+	//ng-form .row{max-height: 0; transition: max-height 0.8s ease-out; display: block; overflow: hidden; margin: 0 15px; padding: 0; border: 0}
+	.capital.txt-red{font-size:16px !important}
+  
+	label.sexe_label, input.montant-dons{
+	  background-color:transparent;
+	  height: 36px; width:36px;
+	  color:@bleu_dark;
+	  border: 2px white solid;
+	  border-radius: 18px;
+	  line-height: 32px;
+	  .sans-serif;
+	  text-align: center;
+	  cursor: pointer;
+	  margin-right:25px;
+	}
+	label.sexe_label.dons{
+	  width: auto;
+	  min-width: 75px; 
+	}
+	input.montant-dons{
+	  width:0; transition: all 0.3s ease-out ;border: 0;
+	}
+	input.montant-dons.displayed{
+	  width:100px;  transition: all ease-out 0.3s; border:3px solid #fff;
+	}
+	input.montant-dons.displayed.ng-invalid {
+	  border-color:@rouge;
+	}
+	  
+	input.montant-dons::-webkit-input-placeholder {
+		 color: @bleu_dark;
+	}
+	  
+	input.montant-dons:-moz-placeholder { /* Firefox 18- */
+		 color: @bleu_dark;  
+	}
+	 
+	input.montant-dons::-moz-placeholder {  /* Firefox 19+ */
+		 color: @bleu_dark;  
+	}
+	  
+	input.montant-dons:-ms-input-placeholder {  
+		 color: @bleu_dark;  
+	}
+  
+  
+	input[type=radio]:checked + label.sexe_label,input[type=radio] + label.sexe_label:hover {
+	  color:white; background-color: @txt_dark; border: none; line-height: 36px;
+	}
+  
+  
+	.enfant{border-bottom: 3px solid white; margin-bottom:12px}
+  }
+  input[type=text].complement_text{max-width:100%; width:auto !important; margin-bottom:12px; border-width:2px; border-color:white}
+  .infos_validation{margin-top:6px}
+  /*AUTOFILLS*/
+  
+  label.label_style, .label_style label:not(.radio-inline){
+	float: right;
+	line-height: 1.5em;
+	.txt-red;
+	.capital;
+	text-align: right;
+	position: relative;
+	top:0.5em;
+  }
+  label.label_style.left, .label_style.left label{text-align:left; float:left}
+  @media screen and (max-width:@min_sm) {label.label_style{text-align:left; float:left}}
+  //////////////COLLAPSE////////////////////////
+  .panel-group[id^=collapse]{
+		   .panel+.panel{margin-top:12px}
+		  .panel-default>.panel-heading{cursor: pointer; a{display: inline-block; width: 100%;}}
+		  .panel-body ul{list-style-type: initial; padding-left: 24px;}
+		  font-size: 16px;
+		  td{padding-right : 12px;}
+  }
+  #jeunes .panel-group[id^=collapse]{
+	.panel-default{border-color:@txt_dark}
+	.panel-default>.panel-heading{background-color: @txt_dark; color:white; .capital;}
+	.panel-title{padding-right: 15px}
+	li{padding-bottom: 2px;}
+	a:hover{color:white}
+	.panel{border-radius:0px !important}
+	.panel-heading{border-top-left-radius:0px; border-top-right-radius:0px;.downarrow();}
+	.panel-heading:after{margin-top: -1.5em}
+  }
+  @media screen and (max-width:@min_sm) {.panel-group[id^=collapse] .panel-body ul{padding-left: 12px}}
+  
+  //Cas des services civiques//
+  #jeunes .panel-group{
+	.panel-default{border-color:@txt_dark}
+	.panel-default>.panel-heading{background-color: @txt_dark; color:white; .capital;}
+	.panel-title{padding-right: 15px}
+	li{padding-bottom: 2px;}
+	a:hover{color:white}
+	.panel{border-radius:0px !important}
+	.panel-heading{border-top-left-radius:0px; border-top-right-radius:0px;.rightarrow();}
+	.panel-heading:after{margin-top: -1.5em}
+  }
+  @media screen and (max-width:@min_sm) {.panel-group .panel-body ul{padding-left: 12px}}
+  
+  /////////DONS/////////////////
+  .dons-progress{
+	border: 2px solid @bleu_light; height: 35px; margin-bottom: 12px; 
+	.progress-bar-success{
+	  background: rgba(195,87,60,1);
+	  background: -moz-linear-gradient(left, rgba(195,87,60,1) 0%, rgba(165,69,52,1) 84%, rgba(159,66,50,1) 100%);
+	  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(195,87,60,1)), color-stop(84%, rgba(165,69,52,1)), color-stop(100%, rgba(159,66,50,1)));
+	  background: -webkit-linear-gradient(left, rgba(195,87,60,1) 0%, rgba(165,69,52,1) 84%, rgba(159,66,50,1) 100%);
+	  background: -o-linear-gradient(left, rgba(195,87,60,1) 0%, rgba(165,69,52,1) 84%, rgba(159,66,50,1) 100%);
+	  background: -ms-linear-gradient(left, rgba(195,87,60,1) 0%, rgba(165,69,52,1) 84%, rgba(159,66,50,1) 100%);
+	  background: linear-gradient(to right, rgba(195,87,60,1) 0%, rgba(165,69,52,1) 84%, rgba(159,66,50,1) 100%);
+	  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c3573c', endColorstr='#9f4232', GradientType=1 );
+	  border-radius: 0 4px 4px 0;
+	  -webkit-border-radius: 0 4px 4px 0;
+	  max-width: 100%;
+	  }
+  }
+  
+  .cruche {
+	float: left;
+	margin-right: 18px; margin-bottom: 24px;
+	 -moz-animation-name: fillCruche;
+	  -moz-animation-iteration-count: 1;
+	  -moz-animation-timing-function: ease-in;
+	  -moz-animation-duration: 1.5s;
+  
+	  -webkit-animation-name: fillCruche;
+	  -webkit-animation-iteration-count: 1;
+	  -webkit-animation-timing-function: ease-in;
+	  -webkit-animation-duration: 1.5s;
+  
+	  animation-name: fillCruche;
+	  animation-iteration-count: 1;
+	  animation-timing-function: ease-in;
+	  animation-duration: 1.5s;
+	}
+  
+  @-moz-keyframes fillCruche {
+	  0% {
+		  background-size: 100% 300%;
+	  }
+	  100% {
+		  background-size: 100% 100%;
+	  }
+  }
+  @-webkit-keyframes fillCruche {
+	  0% {
+		  background-size: 100% 300%;
+	  }
+	  100% {
+		  background-size: 100% 100%;
+	  }
+  }
+  @keyframes fillCruche {
+	  0% {
+		  background-size: 100% 300%;
+	  }
+	  100% {
+		  background-size: 100% 100%;
+	  }
+  }
+  .ruban-termine{
+		  position: absolute;
+		  top:0; left: 0;
+		  width:150px; height: 150px; overflow:hidden; margin-left:15px;
+		  div{background-color: @rouge; color:white; top:40px; right:60px;width:240px; text-transform: uppercase; position: relative; padding: 7px 0; text-align: center; font-family: 'Montserrat'; font-size: 0.85em;
+			  -webkit-transform: rotate(-45deg);
+	  -moz-transform: rotate(-45deg);
+	  -ms-transform: rotate(-45deg);
+	  -o-transform: rotate(-45deg);
+	  transform: rotate(-45deg);}
+  }
+  
+  .loader-container{text-align: center; margin: 64px auto}
+  .accueil p,.accueil h1,.accueil h3{color:white;}
+  .accueil h3{font-family:'Montserrat';}
+  .accueil h3:after{display:block;content:'';width:70%;border-bottom:2px solid white;margin-left:15%; margin-top:6px;}
+  .accueil h4{text-transform:uppercase;font-size:1.0em; background-color:white; font-family:'Monterrat'; color: @bleu_dark;padding:6px 12px;font-weight:400;margin:12px 6px;}
+  .accueil .regions-list li{border-color:white;color:white;}
+  .accueil .regions-list li a{color:white;}
+  .accueil p a{box-shadow: inset 0 -2px 0 white; transition: background 0.3s ease; color:white;}
+  .accueil p a:hover,.accueil p a:active{background-color:white; color: @bleu_dark;}
+  
+  ////////////////////////////////////////////////////
+	  ///////////MISSIONS///////////////////
+  ///////////////////////////////////////////////////
+  
+  
+  .fc-event{background-color:@txt_dark;}
+  .list-item-title{  background-color:@txt_dark;}
+  .list-item-title.date-lieu{  background-color:white; color: @txt_dark}
+  .carousel-caption{background-color: @txt_dark}
+  .menuTab {color: @txt_dark; background:white; .menu_header a,a{color: @txt_dark; margin-bottom:0}}
+  .menuTab.noTab{background: @txt_dark; a{color: white; margin-bottom: 24px;}}
+  #ados{
+	  .fc-event{background-color:@14-18;}
+	  .list-item-title{  background-color:@14-18;}
+	  .list-item-img{border:solid @14-18; border-width: 0 2px;}
+	  .list-item-title.date-lieu{  background-color:white; color: @14-18}
+	  .carousel-caption{background-color: @14-18}
+  }
+   .menu1418 .menuTab{color: @14-18; background:white; a{color: @14-18; margin-bottom:0}}
+  .menu1418.modal .footer, .menu1418.modal .modal-dialog {background-color: @14-18}
+  .modal.in.menu1418 + nav.navbar-fixed-top li{background: @14-18;}
+  @media screen and (max-width: @min_xs) {
+	.menu1418.modal{background-color: @14-18}
+  }
+  
+  body .container-fluid#jeunes {.sans-serif;}
