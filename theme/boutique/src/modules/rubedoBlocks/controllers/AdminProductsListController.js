@@ -153,6 +153,7 @@ angular.module("rubedoBlocks").lazy.controller('AdminProductsListController',['$
         console.log('products1', me.allProducts.length, me.allProducts)
 
         me.loading = false;
+        $scope.apply();
         return me.allProducts;
     }
     me.getProducts().then(res => console.log('products', me)).catch(err => console.log('err products', err));
