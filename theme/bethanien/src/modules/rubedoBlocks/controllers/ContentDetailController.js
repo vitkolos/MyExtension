@@ -120,7 +120,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             $scope.clearORPlaceholderHeight();
                         }
                         //$http.get(themePath+'/templates/blocks/contentDetail/)
-                        console.log("my contentDetail template", me.detailTemplate)
+                        console.log("my contentDetail template2", me.detailTemplate)
                     }
                     
                     if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
