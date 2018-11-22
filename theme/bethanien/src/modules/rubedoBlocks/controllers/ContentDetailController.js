@@ -98,7 +98,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 allowBlank:false
                             }
                         });
-                        me.detailTemplate=me.customLayout.customTemplate?themePath+'/templates/blocks/contentDetail/customTemplate.html':themePath+'/templates/blocks/contentDetail/customLayout.html';
+                        me.detailTemplate = me.customLayout.customTemplate ? themePath+'/templates/blocks/contentDetail/customTemplate.html' : themePath+'/templates/blocks/contentDetail/customLayout.html';
                     } else {
                         if(me.content.type.code&&me.content.type.code!=""){
                             $http.get(themePath+'/templates/blocks/contentDetail/'+me.content.type.code+".html").then(
@@ -120,6 +120,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                         //$http.get(themePath+'/templates/blocks/contentDetail/)
                     }
+                    console.log("My Template", me.detailTemplate)
                     if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
                         $rootScope.$broadcast("ClickStreamEvent",{csEvent:me.content.clickStreamEvent});
                     }
