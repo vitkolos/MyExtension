@@ -37,9 +37,10 @@
 @rouge:#92220c;
 @bleu_bethanien:#006ba8;
 @bleu_dark: #003b78;
+@bleu_light: rgb(187, 208, 255);
 
 
-
+.txt-red{color:@bleu_dark !important}
 body{font-size:16px; min-height:100%; line-height: 1.4em }
 html,body{font-family: 'MyanmarText','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif; height: 100%; overflow: auto;background-color:@bg; color:@txt}
 .container-fluid{
@@ -315,6 +316,24 @@ p.linkbox a, p.linkbox a:hover{color: @grey; text-decoration: none; display: inl
 // ========================================================================================
 // ========================================================================================
 
+.sans-serif{font-family: 'Montserrat','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif}
+.sans-serif-pl{font-family: 'Lato','Arimo', "Helvetica Neue",Helvetica,Arial,sans-serif}
+.capital, .text-article .capital, .capital p, .text-article .capital p{.sans-serif; text-transform: uppercase; letter-spacing: 2px; font-size:14px; font-weight: normal; }
+:lang(pl) {
+  .capital, .text-article .capital, .capital p, .text-article .capital p, .button{.sans-serif-pl;  }
+  .capital2, .linkbox, .navbar-fixed-top.language .btn,.cal-date, .socials .addthis_counter .addthis_button_expanded, .socials .addthis_counter .addthis_button_expanded a {.sans-serif-pl;}
+  label.sexe_label, input.montant-dons, body .container-fluid#jeunes, nav.navbar-fixed-top li{.sans-serif-pl;}
+  input[type=radio]:checked+label:not(.sexe_label):after{font-size:40px;line-height: 20px;left: 2px; top:0px}
+}
+.text-article div.pull-right{
+  float: none !important;
+}
+@media screen and (min-width: @min_sm) {
+  .text-article div.pull-right{margin-right: -50px;float:right !important}
+}
+@media screen and (min-width: @min_lg) {
+  .text-article div.pull-right{margin-right: -200px;}
+}
 
 ////////////////////////////////////////////////////
     ///////////BREADCRUMB///////////////////
@@ -362,7 +381,7 @@ p.linkbox a, p.linkbox a:hover{color: @grey; text-decoration: none; display: inl
   .cal-date{text-transform: uppercase; .sans-serif;}
 }
 span.public{
-  .capital2;
+  .capital;
   //.txt-marron;
 }
 span.public+span.public:before{content:','; margin-right:3px;margin-left: -4px} // virgule après un tag
@@ -381,7 +400,7 @@ header.content{
     margin-bottom:24px;
     line-height: 320px;
     text-align: center;
-    background-color: @beigeCCN;
+    background-color: @bleu_light;
     background-image: url('/theme/cte/img/logo_ccn.jpg');
     overflow-y:hidden;
 }
@@ -412,7 +431,7 @@ header.content.prop>div{text-align: center; vertical-align: middle; padding-bott
 @media  screen and (min-width:@min_sm) {.socials:not(.center){text-align:right; width:auto; padding-left: 24px;}}
 .addthis_counter a.atc_s{display:none !important}
 .socials .addthis_counter .addthis_button_expanded, .socials .addthis_counter .addthis_button_expanded a {
-  .txt-red; .capital;
+  .txt-red; .capital; 
   background: none;
   .sans-serif !important;
   width:auto
