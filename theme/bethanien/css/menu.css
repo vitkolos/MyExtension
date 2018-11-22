@@ -1,6 +1,6 @@
 /* le conteneur du menu */
 ng-include.ng-scope > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
-  background-image: url("/dam?media-id=5bf6a796396588d3585e5a8b"), url("https://drive.google.com/uc?id=1GCtAS-MDQzjEqGsm79AzeFaB1uVw7zol&export=view");
+  background-image: url("/dam?media-id=5bf6a796396588d3585e5a8b"), url("/dam?media-id=5bf6aa2d396588eb5c5e5a92");
   background-origin: left bottom, left top;
   background-size: contain, contain;
   background-repeat: no-repeat, repeat;
@@ -59,13 +59,14 @@ table.menu {
 
 table.menu td.menu_name {
   font-weight: 300;
+  width: 100%;
   
-  /* pour crÃÂ©er les points de conduite */
+  /* pour creer les points de conduite */
   vertical-align:bottom;
-    background-image:radial-gradient(black 1px, white 0px);
-    background-size: 8px 8px;
-    background-repeat:repeat-x;
-    background-position: left bottom;
+  background-image:radial-gradient(black 1px, white 0px);
+  background-size: 8px 8px;
+  background-repeat:repeat-x;
+  background-position: left bottom;
 }
 
 td.menu_name span {
