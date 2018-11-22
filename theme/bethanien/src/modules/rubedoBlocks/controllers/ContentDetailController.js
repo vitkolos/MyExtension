@@ -121,8 +121,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                         //$http.get(themePath+'/templates/blocks/contentDetail/)
                         console.log("my contentDetail template2", me.detailTemplate)
-                        if (!me.detailTemplate) me.detailTemplate = themePath + '/templates/blocks/contentDetail.html';
-                        console.log("my contentDetail fallback to ", me.detailTemplate)
+                        /* if (!me.detailTemplate) me.detailTemplate = themePath + '/templates/blocks/contentDetail.html';
+                        console.log("my contentDetail fallback to ", me.detailTemplate) */
                     }
                     
                     if(me.content.clickStreamEvent&&me.content.clickStreamEvent!=""){
