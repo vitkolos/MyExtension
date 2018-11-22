@@ -80,6 +80,7 @@ blocksConfig.imageBatchUpload={
   };
 });
 
+// directive qui gère le rendu du menu du restaurant de Bethanien
 angular.module('rubedoBlocks').directive('menuentry', function() {
   return {
     restrict: 'AC',
@@ -146,7 +147,28 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
     }
   });
 
+angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
+  var serviceInstance={};
 
+  serviceInstance.inscrire = function(inscription, workspace, traductions) {
+      if (inscription.__SANDBOX__) return Promise.resolve({data:{success: true, sandbox: true, id: 'testid12345', result: {paymentConfID: 'paymentConfTestId12345'}}});
+      return($http({
+          url: "/api/v1/inscription",
+          method: "POST",
+          data: {
+              inscription:inscription,
+              workspace: workspace
+          }
+      }));
+  };
+
+  serviceInstance.exportInscriptions = function(payload) {
+    return ($http.get("/api/v1/inscription",{
+      params: payload
+    }));
+  };
+  return serviceInstance;
+}]);
 
     angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
         var serviceInstance={};
