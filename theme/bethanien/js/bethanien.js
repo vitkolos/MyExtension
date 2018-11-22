@@ -170,28 +170,76 @@ angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',functi
   return serviceInstance;
 }]);
 
-    angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
-        var serviceInstance={};
-        serviceInstance.sendMail=function(payload){
-            return ($http({
-                url:"api/v1/mail",
-                method:"POST",
-                data : payload
-            }));
-        };
-        return serviceInstance;
-    }]);
-    angular.module('rubedoDataAccess').factory('TaxonomyService', ['$http',function($http) {
-        var serviceInstance={};
+angular.module('rubedoDataAccess').factory('DonationService', ['$http',function($http) {
+  var serviceInstance={};
+  serviceInstance.donate=function(don, account){
+   return ($http({
+       url:"api/v1/donation",
+       method:"POST",
+       data : {
+           don:don,
+           account : account
+       }
+   }));
+};
+return serviceInstance;
+}]);
+
+angular.module('rubedoDataAccess').factory('PaymentService', ['$http',function($http) {
+  var serviceInstance={};
+  serviceInstance.payment=function(payload){
+  return($http({
+        url:"/api/v1/payment",
+        method:"POST",
+        data:payload
+    }));
+  };
+  return serviceInstance;
+}]);
+
+angular.module('rubedoDataAccess').factory('RubedoPaymentMeansService',['$http',function($http){
+  var serviceInstance = {};
+  serviceInstance.getPaymentMeansDons=function(){
+    return ($http.get("/api/v1/ecommerce/paymentmeans",{
+      params: {
+          filter_by_site:true,
+          type:"dons"
+      }
+    }));
+  };
+  serviceInstance.getPaymentMeansPaf=function(){
+    return ($http.get("/api/v1/ecommerce/paymentmeans",{
+      params: {
+          filter_by_site:true,
+          type:"paf"
+      }
+    }));
+  };
+  return serviceInstance;
+}]);
+
+angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {
+    var serviceInstance={};
+    serviceInstance.sendMail=function(payload){
+        return ($http({
+            url:"api/v1/mail",
+            method:"POST",
+            data : payload
+        }));
+    };
+    return serviceInstance;
+}]);
+angular.module('rubedoDataAccess').factory('TaxonomyService', ['$http',function($http) {
+  var serviceInstance={};
 	serviceInstance.getTaxonomyByVocabulary=function(vocabularies){
-            return ($http.get("/api/v1/taxonomies",{
-                params:{
-                    vocabularies:vocabularies
-                }
-            }));
+    return ($http.get("/api/v1/taxonomies",{
+        params:{
+            vocabularies:vocabularies
+        }
+    }));
 	};
-        return serviceInstance;
-    }]);
+  return serviceInstance;
+}]);
 
 
 
