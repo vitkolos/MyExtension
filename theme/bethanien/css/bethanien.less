@@ -58,7 +58,7 @@
 @txt:#1b1b1b;
 @grey:#bfbfbf;
 @txt_grey:#707070;
-@rouge:#92220c;
+@rouge:#003b78;
 @bleu_bethanien:#006ba8;
 @bleu_dark: #003b78;
 @bleu_light: rgb(187, 208, 255);
@@ -114,8 +114,8 @@ h2.titre-block:before, h2.titre-block:after{
 /*.button.rouge{background: @bleu_bethanien;box-shadow: 0px 2px @grey; color:white}
 .buttonRouge{background: @rouge;box-shadow: 0px 2px @grey; color:white} */
 .button.submit{border: 2px solid @bleu_dark; color:@bleu_dark;}
-.button.submit.disabled, .button.rouge.disabled{color:@bleu_dark; border: 2px solid @bleu_dark; cursor: default}
-.button.submit.disabled:hover, .button.rouge.disabled:hover{color:@bleu_light; border: 2px solid @bleu_light; cursor: default; font-style: italic;}
+.button.submit.disabled:hover, .button.rouge.disabled:hover{opacity:1;cursor: default}
+.button.submit.disabled, .button.rouge.disabled{color:@bleu_light; border: 2px solid @bleu_light; cursor: default; font-style: italic;}
 
 .border-top-red{border-top:solid 1px @bleu_bethanien; margin-top:0;}
 
