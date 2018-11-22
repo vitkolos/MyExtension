@@ -60,7 +60,7 @@ table.menu td.menu_name {
   
   /* pour crÃÂ©er les points de conduite */
   vertical-align:bottom;
-    background-image:radial-gradient(black 1px, #EEEEEE 0px);
+    background-image:radial-gradient(black 1px, white 0px);
     background-size: 8px 8px;
     background-repeat:repeat-x;
     background-position: left bottom;
