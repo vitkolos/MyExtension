@@ -1,61 +1,77 @@
 /* le titre du menu */
+ng-include.ng-scope > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
+  background-image: url("https://drive.google.com/uc?id=1vuNgrpTVbwHXwv25Gc57u7PxWMv0kAVB&export=view"), url("https://drive.google.com/uc?id=1GCtAS-MDQzjEqGsm79AzeFaB1uVw7zol&export=view");
+  background-origin: left bottom, left top;
+  background-size: contain, contain;
+  background-repeat: no-repeat, repeat;
+}
+
+.texte {
+  padding: 1px 70px;
+  max-width: 860px;
+  font-size: 1.1em;
+  line-height: 1.4em;
+  margin: 200px auto;
+  background-color: white;
+}
+
 h1 {
-    margin-top: 10rem;
-    padding-bottom: 5rem;
-  }
+  margin-top: 10rem;
+  padding-bottom: 5rem;
+}
+
+h1::after {
+  content: "";
+  display: block;
+  position: relative;
+  left: 38%;
+  top: 10px;
+  width: 24%;
+  height: 3px;
+  background-color: #006BA8;
+}
+
+/* Le texte d'intro du menu */
+h1 + p {
+  color: #777;
+  font-family: Calibri;
+  font-style: italic;
+  text-indent: 24px;
+  padding-bottom: 7rem;
+}
+
+/* sous-titres */
+h2 {
+  color: #006BA8;
+  font-size: 2.7rem;
+}
+
+table.menu {
+  margin-bottom: 5rem;
+  font-family: Calibri;
+  width: 100%;
+  overflow-x: hidden;
+  border-collapse: separate;
+  border-spacing: 1.5rem;
+}
+
+table.menu td.menu_name {
+  font-weight: 300;
   
-  h1::after {
-    content: "";
-    display: block;
-    position: relative;
-    left: 38%;
-    top: 10px;
-    width: 24%;
-    height: 3px;
-    background-color: #006BA8;
-  }
-  
-  /* Le texte d'intro du menu */
-  h1 + p {
-    color: #777;
-    font-family: Calibri;
-    font-style: italic;
-    text-indent: 24px;
-    padding-bottom: 7rem;
-  }
-  
-  /* sous-titres */
-  h2 {
-    color: #006BA8;
-    font-size: 2.7rem;
-  }
-  
-  table.menu {
-    margin-bottom: 5rem;
-    font-family: Calibri;
-    width: 100%;
-    overflow-x: hidden;
-    border-collapse: separate;
-    border-spacing: 1.5rem;
-  }
-  
-  table.menu td.menu_name {
-    font-weight: 300;
-    
-    /* pour crÃÂ©er les points de conduite */
-    vertical-align:bottom;
-      background-image:radial-gradient(black 1px, #EEEEEE 0px);
-      background-size: 8px 8px;
-      background-repeat:repeat-x;
-      background-position: left bottom;
-  }
-  
-  td.menu_name span {
-    background-color: #eee;
-    padding-right: 0.5rem;
-  }
-  
-  td.menu_price {
-    padding-left: 1rem;
-    min-width: 90px;
-  }
+  /* pour crÃÂ©er les points de conduite */
+  vertical-align:bottom;
+    background-image:radial-gradient(black 1px, #EEEEEE 0px);
+    background-size: 8px 8px;
+    background-repeat:repeat-x;
+    background-position: left bottom;
+}
+
+td.menu_name span {
+  background-color: #eee;
+  padding-right: 0.5rem;
+}
+
+td.menu_price {
+  padding-left: 1rem;
+  min-width: 90px;
+}
