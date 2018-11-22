@@ -1,28 +1,37 @@
 <div class="row">
 
-    <div class="col-xs-12 col-sm-4"
-        ng-repeat="content in contentListCtrl.contents track by $index">
-        
-        <div class="card proposition">
-            <img class="card-img-top" 
-                ng-src="{{rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'200px',mode:'crop'}) }}"
-                onerror="this.src='https://www.haus-bethanien.ch/dam?media-id=57175694c445ecda008c4b31&width=400px&height=200px&mode=crop'"
-                alt="{{ content.fields.text }}">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
+        <div class="media-body" ng-class="{contentbox: rubedo.current.user &amp;&amp; rubedo.current.user.rights.canEdit}"><!-- ngIf: !fieldEditMode --><a ng-if="!fieldEditMode" ng-href="/fr/accueil/nos-propositions/priere-et-montagne/5bc9c6f1396588944af179f4/priere-et-montagne-du-29-septembre-au-5-octobre-2019" target="_self" class="ng-scope" href="/fr/accueil/nos-propositions/priere-et-montagne/5bc9c6f1396588944af179f4/priere-et-montagne-du-29-septembre-au-5-octobre-2019">
+            <!-- Icône "X" pour mettre offline le contenu -->
+            <!-- ngIf: rubedo.current.user && rubedo.current.user.rights.canEdit -->
+            
+            <h4 class="list-item-title capital"><span class="ng-binding">Prière et Montagne du 29 septembre au 5 octobre 2019 <!-- ngIf: contentListCtrl.isFOContributeMode --></span>
+            </h4>
 
-    </div>
+            <div class="list-item-img"><!--ng-class="{'no-img':!content.fields.image}"-->
+                <!-- si le contenu a une image, on l'affiche dans la vignette -->
+                <!-- ngIf: content.fields.image --><img class="media-object pull-left ng-scope" ng-if="content.fields.image" ng-src="/dam?media-id=595678643965880108178183&amp;width=400px&amp;height=266px&amp;mode=crop" alt="Prière et Montagne du 29 septembre au 5 octobre 2019" src="/dam?media-id=595678643965880108178183&amp;width=400px&amp;height=266px&amp;mode=crop"><!-- end ngIf: content.fields.image -->
+                <!-- si le contenu n'a pas d'image définie, on affiche une image par défaut -->
+                <!-- ngIf: !content.fields.image -->
+            </div>
+
+            <!-- ngIf: content.fields.positionName && !content.fields.subTitle --><h4 class="list-item-title date-lieu capital ng-scope" ng-if="content.fields.positionName &amp;&amp; !content.fields.subTitle">
+                <!-- ngRepeat: taxo in content.taxonomy['555f3bc445205edc117e689b'] -->
+                <span>
+                    <!-- ngIf: !blockConfig.hidePlace --><span ng-if="!blockConfig.hidePlace" class="ng-binding ng-scope">Maison d'accueil Kloster Bethanien</span><span ng-if="!blockConfig.hidePlace &amp;&amp; content.fields.dateDebut" class="ng-scope"> - </span>
+                    <!-- ngIf: content.fields.dateDebut --><time ng-if="content.fields.dateDebut" class="ng-binding ng-scope">29 sept.-5 oct. 2019</time>
+                </span>
+            </h4>
+            </a>
+        </div>
 
 </div>
 
 <style>
 div.card.proposition {
-    width: 400px;
+    max-width: 400px;
     text-align: center;
     border: 2px solid black;
+    overflow: hidden;
+    margin: 3rem;
 }
 </style>
