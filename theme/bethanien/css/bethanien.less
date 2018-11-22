@@ -95,7 +95,7 @@ h2.titre-block:before, h2.titre-block:after{
 }
 .no-padding-blocks{padding: 0}
 
-.button:hover{opacity:0.8;}
+.button:hover{opacity:0.8;transition:all 0.2s;}
 .button {
 	min-width: 200px;
     padding: 12px 24px;
@@ -108,12 +108,14 @@ h2.titre-block:before, h2.titre-block:after{
     margin: 12px 3px 0;
     transition: .3s ease opacity;
     display: inline-block;
-    border-radius: 5px;
+	border-radius: 5px;
+	cursor: pointer;
 }
 /*.button.rouge{background: @bleu_bethanien;box-shadow: 0px 2px @grey; color:white}
 .buttonRouge{background: @rouge;box-shadow: 0px 2px @grey; color:white} */
 .button.submit{border: 2px solid @bleu_dark; color:@bleu_dark;}
 .button.submit.disabled, .button.rouge.disabled{color:@bleu_dark; border: 2px solid @bleu_dark; cursor: default}
+.button.submit.disabled:hover, .button.rouge.disabled:hover{color:@bleu_light; border: 2px solid @bleu_light; cursor: default; font-style: italic;}
 
 .border-top-red{border-top:solid 1px @bleu_bethanien; margin-top:0;}
 
