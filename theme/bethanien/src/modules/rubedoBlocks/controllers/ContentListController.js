@@ -39,11 +39,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     // ===================================================
 
     const TEMPLATE_RULES = [
-        {
+        /* {
             nom: 'template page Programme',
             fn: () => /@programme/.test($scope.block.code),
             template: 'contentList/ProgramTemplate.html'
-        },
+        }, */
         {
             nom: 'template par défaut',
             fn: (a) => true,
