@@ -17,12 +17,12 @@ ng-include.ng-scope > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > d
 }
 
 /* le titre du menu */
-h1 {
+h1.menu {
   margin-top: 10rem;
   padding-bottom: 5rem;
 }
 
-h1::after {
+h1.menu::after { /* le trait bleu sous le titre */
   content: "";
   display: block;
   position: relative;

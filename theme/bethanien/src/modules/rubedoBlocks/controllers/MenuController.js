@@ -2,6 +2,7 @@
 								     function($scope,$location,RubedoMenuService,RubedoPagesService,RubedoContentsService,$http,$route){
         var me=this;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
+        $("link[href='/theme/bethanien/css/menu.css']").remove();
         me.menu={};
         var lang = $route.current.params.lang;
         me.rootUrl = ""; // sera chargé dans RubedoMenuService.getMenu
