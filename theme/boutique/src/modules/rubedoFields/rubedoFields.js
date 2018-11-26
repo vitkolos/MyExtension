@@ -731,7 +731,7 @@
     module.controller("ProductBoxController",['$scope','RubedoShoppingCartService','$rootScope','$timeout',function($scope,RubedoShoppingCartService,$rootScope,$timeout){
         var me=this;
         me.productProperties = $scope.productProperties;
-        me.productFields = $scope.fields; console.log("productbox fields", $scope)
+        me.productFields = $scope.fields; console.log("productbox fields", $scope, $rootScope)
         me.manageStock = $scope.manageStock;
         me.productId=$scope.productId;
         me.excludedVariationFields=["id","price","sku","stock","specialOffers","weight"];
