@@ -731,7 +731,7 @@
     module.controller("ProductBoxController",['$scope','RubedoShoppingCartService','$rootScope','$timeout',function($scope,RubedoShoppingCartService,$rootScope,$timeout){
         var me=this;
         me.productProperties = $scope.productProperties;
-        me.productFields = $scope.fields; console.log("productbox fields", $scope, $rootScope)
+        me.productFields = $scope.productFields; console.log("productbox fields", me.productFields);
         me.manageStock = $scope.manageStock;
         me.productId=$scope.productId;
         me.excludedVariationFields=["id","price","sku","stock","specialOffers","weight"];
@@ -811,6 +811,7 @@
         };
         me.setCurrentVariation(me.productProperties.variations[0]);
         me.canOrder=function(){
+            console.log("canorder", me.productFields, moment.unix(me.productFields.date).isAfter(moment()))
             return !(me.manageStock && (me.productProperties.canOrderNotInStock=="false") && (me.currentVariation.stock < me.productProperties.outOfStockLimit)) ;
         };
         me.getProductAvailabilityText=function(){                   

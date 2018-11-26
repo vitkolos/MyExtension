@@ -57,6 +57,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                                 name:"productBox"
                             }
                         });
+                        $scope.productFields = angular.copy(me.content.fields);
                         $scope.productProperties=angular.copy(me.content.productProperties);
                         $scope.manageStock=angular.copy(me.content.type.manageStock);
                         $scope.productId=angular.copy(me.content.id);
