@@ -15,7 +15,7 @@
                 </select>
             </div>
         </form>
-        <button class="btn btn-default" ng-disabled="!productBoxCtrl.canOrder()" ng-click="productBoxCtrl.addToCart()" style="padding: 12px 24px" ng-if="!productBoxCtrl.isProductAdded">
+        <button class="btn btn-default" ng-disabled="!productBoxCtrl.canOrder() || (productBoxCtrl.fields.date && moment.unix(productBoxCtrl.fields.date).isAfter(moment()))" ng-click="productBoxCtrl.addToCart()" style="padding: 12px 24px" ng-if="!productBoxCtrl.isProductAdded">
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}
         </button>
         <button class="btn btn-default" style="padding: 12px 24px" ng-if="productBoxCtrl.isProductAdded">
@@ -25,6 +25,7 @@
     <!--<div ng-if="manageStock && !productBoxCtrl.productProperties.canOrderNotInStock" class="panel-footer">{{productBoxCtrl.getProductAvailabilityText()}}</div>-->
     <div ng-if="!productBoxCtrl.canOrder()" class="panel-footer">{{ rubedo.translate("Product.Dispo","Nous n\'avons plus ce produit en stock. La livraison peut prendre jusqu\'à 3 semaines")}}</div>
     <div ng-if="productBoxCtrl.canOrder() && productBoxCtrl.productProperties.canOrderNotInStock=='false' " class="panel-footer">{{productBoxCtrl.getProductAvailabilityText()}}</div>
+    <div ng-if="productBoxCtrl.fields.date && moment.unix(productBoxCtrl.fields.date).isAfter(moment())" class="panel-footer">Ce produit sera disponible {{moment.unix(productBoxCtrl.fields.date).fromNow()}} ({{moment.unix(productBoxCtrl.fields.date).format("DD MMMM YYYY")}})</div>
     
     <div class="modal fade" id="notEnoughInStock" tabindex="-1" role="dialog" aria-labelledby="notEnoughInStock" aria-hidden="true">
         <div class="modal-dialog modal-md">
