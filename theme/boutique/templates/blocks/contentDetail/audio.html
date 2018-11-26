@@ -43,7 +43,7 @@
             <span ng-class="{'text-danger':content.productProperties.lowestFinalPrice!=content.productProperties.lowestNoSoPrice}">{{content.productProperties.lowestFinalPrice|number:2}} €</span></h4>
         <button ng-if="content.productProperties.variations.length==1"
                 ng-click="contentDetailCtrl.addToCart(content)"
-                ng-disabled="!contentDetailCtrl.canOrder(content)"
+                ng-disabled="!contentDetailCtrl.canOrder(content) || (contentDetailCtrl.fields.date && moment.unix(contentDetailCtrl.fields.date).isBefore(moment()))"
                 class="btn btn-default">
             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> {{ rubedo.translate('Label.AddToCart')}}
         </button>
