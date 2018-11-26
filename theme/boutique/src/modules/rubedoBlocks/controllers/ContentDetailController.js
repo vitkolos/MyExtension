@@ -4,14 +4,17 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
     var previousFields;
     $scope.fieldInputMode=false;
+
+    console.log("ContentDetailCtrler : ", $scope, moment);
+
     $scope.$watch('rubedo.fieldEditMode', function(newValue) {
-        $scope.fieldEditMode=me.content&&me.content.readOnly ? false : newValue;
+        $scope.fieldEditMode = me.content && me.content.readOnly ? false : newValue;
 
     });
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach(me.content.type.fields,function(candidate){
-            if (candidate.config.name==name){
+            if (candidate.config.name == name){
                 field=candidate;
             }
         });
@@ -27,8 +30,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
             function(response){
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
-                    me.content=response.data.content;
-                    $scope.fieldIdPrefix="contentDetail"+me.content.type.type;
+                    me.content = response.data.content;
+                    console.log('got my content : ', me.content)
+                    $scope.fieldIdPrefix="contentDetail" + me.content.type.type;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){
                             $scope.rubedo.setPageTitle(angular.copy(me.content.fields.text));
@@ -38,9 +42,9 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                         var foundMeta=false;
                         angular.forEach(me.content.type.fields,function(field){
-                            if(!foundMeta&&field.config&&field.config.useAsMetadata&&me.content.fields[field.config.name]&&me.content.fields[field.config.name]!=""){
+                            if(!foundMeta && field.config && field.config.useAsMetadata && me.content.fields[field.config.name] && me.content.fields[field.config.name] != ""){
                                 $scope.rubedo.setPageMetaImage(angular.copy(me.content.fields[field.config.name]));
-                                foundMeta=true;
+                                foundMeta = true;
                             }
                         });
                     }
@@ -74,18 +78,18 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                         }
                     });
                     $scope.rubedo.current.breadcrumb.push({title:response.data.content.text});
-                    if (me.content.type.activateDisqus&&$scope.rubedo.current.site.disqusKey){
-                        me.activateDisqus=true;
-                        me.disqusShortname=$scope.rubedo.current.site.disqusKey;
-                        me.disqusIdentifier=me.content.id;
-                        me.disqusUrl=window.location.href;
-                        me.disqusTitle=me.content.text;
+                    if (me.content.type.activateDisqus && $scope.rubedo.current.site.disqusKey){
+                        me.activateDisqus = true;
+                        me.disqusShortname = $scope.rubedo.current.site.disqusKey;
+                        me.disqusIdentifier = me.content.id;
+                        me.disqusUrl = window.location.href;
+                        me.disqusTitle = me.content.text;
                     }
                     me.customLayout=null;
                     if (angular.isArray(me.content.type.layouts)){
                         angular.forEach(me.content.type.layouts,function(layout){
-                            if (layout.active&&layout.site==$scope.rubedo.current.site.id){
-                                me.customLayout=layout;
+                            if (layout.active && layout.site == $scope.rubedo.current.site.id){
+                                me.customLayout = layout;
                             }
                         });
                     }

@@ -1,13 +1,13 @@
 <div class="row detail" itemscope itemtype="http://schema.org/Product">
-   <meta itemprop="brand" content="Ateliers du Chemin Neuf">
-   <meta itemprop="name" content="{{fieldEntity['text']}}">
-   <meta itemprop="image" content="{{'https://www.laboutique-chemin-neuf.com' + rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'400px',mode:'boxed'})}}"> 
-   <meta itemprop="description" content="{{fieldEntity['description']}}">
-   <meta itemprop="sku" content="{{contentDetailCtrl.content.productProperties.sku}}">
-  <span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-	<meta itemprop="priceCurrency" content="EUR" />
-	<meta itemprop="price" content="{{contentDetailCtrl.content.productProperties.basePriceTTC}}" />
-  </span>
+	<meta itemprop="brand" content="Ateliers du Chemin Neuf">
+	<meta itemprop="name" content="{{fieldEntity['text']}}">
+	<meta itemprop="image" content="{{'https://www.laboutique-chemin-neuf.com' + rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'],{width:'400px',mode:'boxed'})}}"> 
+	<meta itemprop="description" content="{{fieldEntity['description']}}">
+	<meta itemprop="sku" content="{{contentDetailCtrl.content.productProperties.sku}}">
+	<span itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+		<meta itemprop="priceCurrency" content="EUR" />
+		<meta itemprop="price" content="{{contentDetailCtrl.content.productProperties.basePriceTTC}}" />
+	</span>
 
   <div class="col-sm-4">
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('productBox')}}"></rubedo-field><!--prix et déclinaisons-->
