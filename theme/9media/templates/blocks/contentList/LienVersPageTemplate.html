@@ -4,7 +4,7 @@
         ng-repeat="content in contentListCtrl.contents track by $index"
         ng-class="{'pair': $even}" 
         style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:'800px',mode:'boxed'})}}')"
-        ng-click="goToPage('www.google.fr')">
+        ng-click="contentListCtrl.goToPage('www.google.fr')">
 
             <h2 class="img_title">
                 <div>{{content.fields.text.split('§')[0].toUpperCase()}}</div>
