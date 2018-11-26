@@ -33,8 +33,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
 
     // navigue vers l'url
     me.goToPage = function(url) {
-        console.log("gotopage", url)
-        window.location.href = url;
+        if (url) window.location.href = url;
     }
 
     // ===================================================
