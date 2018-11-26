@@ -31,6 +31,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         return `/assets/flags/${size}/${flagCode}.png`;
     };
 
+    // navigue vers l'url
     me.goToPage = function(url) {
         console.log("gotopage", url)
         window.location.href = url;
