@@ -732,6 +732,8 @@
         var me=this;
         me.productProperties = $scope.productProperties;
         me.productFields = $scope.productFields; console.log("productbox fields", me.productFields);
+        me.publishDatePretty = (me.productFields.date) ? moment.unix(me.productFields.date).format("DD MMMM YYYY") : ''; // date de publication du produit à afficher si besoin (e.g. "3 décembre 2018")
+        me.publishDateHuman = (me.productFields.date) ? moment.unix(me.productFields.date).fromNow() : ''; // date de publication du produit à afficher en mode "humain" si besoin (e.g. "dans 3 jours")
         me.manageStock = $scope.manageStock;
         me.productId=$scope.productId;
         me.excludedVariationFields=["id","price","sku","stock","specialOffers","weight"];
@@ -814,7 +816,6 @@
             return !(me.manageStock && (me.productProperties.canOrderNotInStock=="false") && (me.currentVariation.stock < me.productProperties.outOfStockLimit)) ;
         };
         me.isPublished = function() { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
-            console.log("ispublished", me.productFields, moment.unix(me.productFields.date).isSameOrBefore(moment()))
             return (!me.productFields.date || moment.unix(me.productFields.date).isSameOrBefore(moment()))
         }
         me.getProductAvailabilityText=function(){                   

@@ -25,7 +25,7 @@
     <!--<div ng-if="manageStock && !productBoxCtrl.productProperties.canOrderNotInStock" class="panel-footer">{{productBoxCtrl.getProductAvailabilityText()}}</div>-->
     <div ng-if="productBoxCtrl.isPublished() && !productBoxCtrl.canOrder()" class="panel-footer">{{ rubedo.translate("Product.Dispo","Nous n\'avons plus ce produit en stock. La livraison peut prendre jusqu\'à 3 semaines")}}</div>
     <div ng-if="productBoxCtrl.isPublished() && productBoxCtrl.canOrder() && productBoxCtrl.productProperties.canOrderNotInStock=='false' " class="panel-footer">{{productBoxCtrl.getProductAvailabilityText()}}</div>
-    <div ng-if="!productBoxCtrl.isPublished()" class="panel-footer">Ce produit sera disponible {{moment.unix(productBoxCtrl.productFields.date).fromNow()}} ({{moment.unix(productBoxCtrl.productFields.date).format("DD MMMM YYYY")}})</div>
+    <div ng-if="!productBoxCtrl.isPublished()" class="panel-footer">Ce produit sera disponible {{productBoxCtrl.publishDateHuman}} ({{productBoxCtrl.publishDatePretty}})</div>
     
     <div class="modal fade" id="notEnoughInStock" tabindex="-1" role="dialog" aria-labelledby="notEnoughInStock" aria-hidden="true">
         <div class="modal-dialog modal-md">
