@@ -810,7 +810,7 @@
         };
         me.setCurrentVariation(me.productProperties.variations[0]);
         me.canOrder=function(){
-            return !(me.manageStock&&(me.productProperties.canOrderNotInStock=="false")&&(me.currentVariation.stock < me.productProperties.outOfStockLimit)) ;
+            return !((!me.fields.date || moment.unix(me.fields.date).isSameOrAfter(moment())) && me.manageStock && (me.productProperties.canOrderNotInStock=="false") && (me.currentVariation.stock < me.productProperties.outOfStockLimit)) ;
         };
         me.getProductAvailabilityText=function(){                   
            if (me.canOrder() && me.productProperties.canOrderNotInStock=="false") {
