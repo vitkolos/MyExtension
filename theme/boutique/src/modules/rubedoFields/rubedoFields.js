@@ -811,9 +811,12 @@
         };
         me.setCurrentVariation(me.productProperties.variations[0]);
         me.canOrder=function(){
-            console.log("canorder", me.productFields, moment.unix(me.productFields.date).isAfter(moment()))
             return !(me.manageStock && (me.productProperties.canOrderNotInStock=="false") && (me.currentVariation.stock < me.productProperties.outOfStockLimit)) ;
         };
+        me.isPublished = function() { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
+            console.log("ispublished", me.productFields, moment.unix(me.productFields.date).isSameOrBefore(moment()))
+            return (!me.productFields.date || moment.unix(me.productFields.date).isSameOrBefore(moment()))
+        }
         me.getProductAvailabilityText=function(){                   
            if (me.canOrder() && me.productProperties.canOrderNotInStock=="false") {
                 return $scope.rubedo.translate("Fields.User.Label.InStock", "In stock") + " : " + me.currentVariation.stock ;
