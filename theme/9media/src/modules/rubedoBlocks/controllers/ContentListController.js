@@ -31,12 +31,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         return `/assets/flags/${size}/${flagCode}.png`;
     };
 
-    // se rend à l'url @path
-    me.go = function ( path ) {
-        console.log("Going to url ", path)
-        $location.path( path );
-    }
-
     // ===================================================
     // GESTION DES TYPES DE CONTENUS et TEMPLATES
     // ===================================================

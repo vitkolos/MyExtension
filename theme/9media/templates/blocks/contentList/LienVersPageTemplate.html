@@ -3,17 +3,19 @@
     <div class="col-xs-12 col-md-6 image_container" 
         ng-repeat="content in contentListCtrl.contents track by $index"
         ng-class="{'pair': $even}" 
-        style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:'800px',mode:'boxed'})}}')"
-        ng-click="go('https://www.google.fr')">
+        style="background-image:url('{{rubedo.imageUrl.getUrlByMediaId(content.fields.image, {width:'800px',mode:'boxed'})}}')">
+        <a class="link_container" href="www.google.fr">
 
-        <h2 class="img_title">
-            <div>{{content.fields.text.split('§')[0].toUpperCase()}}</div>
-            <div ng-if="content.fields.text.split('§').length > 1">{{content.fields.text.split('§')[1].toUpperCase()}}</div>
-        </h2>
+            <h2 class="img_title">
+                <div>{{content.fields.text.split('§')[0].toUpperCase()}}</div>
+                <div ng-if="content.fields.text.split('§').length > 1">{{content.fields.text.split('§')[1].toUpperCase()}}</div>
+            </h2>
 
-        <p>
-            {{content.fields.summary.toUpperCase()}}
-        </p>
+            <p>
+                {{content.fields.summary.toUpperCase()}}
+            </p>
+
+        </a>
     </div>
 
 </div>
