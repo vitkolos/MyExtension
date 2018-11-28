@@ -421,7 +421,7 @@ protected function sendInscriptionMail($inscription,$lang){
         }
         
         else if($inscription['modePaiement'] == 'carte') {
-            //Nous allons vérifier le succès de ton paiement en ligne de 60€ et tu recevras un mail de confirmation de ton paiement.
+            //Nous allons vérifier le succès de ton paiement en ligne de 60€.
             $messageClient .= $trad["ccn_mail_27_".$tuOuVous] . $inscription['montantAPayerMaintenantAvecMonnaie'] . $trad["ccn_mail_27_1_".$tuOuVous] ."<br/><br/>";
             if($inscription['paiement_maintenant'] != 'accompte') {
                 //Attention, ton inscription ne sera complète que quand ton paiement en ligne aura été confirmé.
