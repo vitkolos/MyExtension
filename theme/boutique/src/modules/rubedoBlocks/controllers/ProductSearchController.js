@@ -124,7 +124,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         };
         me.disabled = function(term){
             var disabled = false;
-            angular.forEach(me.notRemovableTerms,function(notRemovableTerm){
+            angular.forEach(me.notRemovableTerms, function(notRemovableTerm){
                 disabled = notRemovableTerm.term == term;
             });
         };
@@ -140,10 +140,11 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             options.query = me.query;
             options.orderBy = me.orderBy;
             options.orderbyDirection = me.orderByDirection;
+            console.log("onsubmit", me, options);
             $location.search('query',me.query);
         };
-        me.changeOrderBy = function(orderBy){
-            if(me.orderBy != orderBy){
+        me.changeOrderBy = function(orderBy) {
+            if(me.orderBy != orderBy) {
                 me.orderBy = orderBy;
                 me.displayOrderBy = resolveOrderBy[orderBy];
                 me.start = 0;
