@@ -20,12 +20,10 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         }
         me.imageResizeMode= config.imageResizeMode ? config.imageResizeMode : "boxed";
         me.canOrder = function(content){
-            console.log("prdsearchctrl canOrder", content);
             return !(content.productProperties.manageStock && (content.productProperties.canOrderNotInStock == "false") && (content.productProperties.variations[0].stock < content.productProperties.outOfStockLimit)) ;
         };
-        me.isPublishedd = function(content) { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
-            console.log("prdsearchctrl isPublished", content);
-            return false;// (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
+        me.isPublished = function(content) { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
+            return true;// (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
         }
        
         me.addToCart=function(content){
