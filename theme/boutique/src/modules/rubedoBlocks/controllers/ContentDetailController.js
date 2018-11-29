@@ -31,7 +31,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                 if(response.data.success){
                     $scope.rubedo.current.page.contentCanonicalUrl = response.data.content.canonicalUrl;
                     me.content = response.data.content;
-                    console.log('got my content : ', me.content.fields.date, moment.unix(me.content.fields.date).format('DD-MM-YYYY'), moment.unix(me.content.fields.date).isAfter(moment()))
                     $scope.fieldIdPrefix="contentDetail" + me.content.type.type;
                     if (config.isAutoInjected){
                         if (me.content.fields.text){

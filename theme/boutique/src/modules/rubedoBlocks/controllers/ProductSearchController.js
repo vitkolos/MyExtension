@@ -75,6 +75,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             displayMode: config.displayMode,
             displayedFacets: config.displayedFacets,
             orderby: me.orderBy,
+            'fields[]' : ["text","summary", me.imageField, 'date'],
             orderbyDirection:me.orderByDirection,
             pageId: $scope.rubedo.current.page.id,
             siteId: $scope.rubedo.current.site.id
