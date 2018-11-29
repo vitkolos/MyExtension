@@ -819,7 +819,7 @@
             console.log('rubedo fields ispublished', me)
             return (!me.productFields.date || moment.unix(me.productFields.date).isSameOrBefore(moment()))
         }
-        me.getProductAvailabilityText=function(){                   
+        me.getProductAvailabilityText = function(){                   
            if (me.canOrder() && me.productProperties.canOrderNotInStock=="false") {
                 return $scope.rubedo.translate("Fields.User.Label.InStock", "In stock") + " : " + me.currentVariation.stock ;
             }
