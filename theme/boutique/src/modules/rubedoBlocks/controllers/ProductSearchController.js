@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scope","$location","$routeParams","$compile","RubedoSearchService","RubedoShoppingCartService","$rootScope","$route",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,RubedoShoppingCartService,$rootScope,$route){
+angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scope","$location","$routeParams","$compile","RubedoSearchService","RubedoShoppingCartService", "RubedoContentsService", "$rootScope","$route",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,RubedoShoppingCartService,RubedoContentsService,$rootScope,$route){
         var me = this;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -20,10 +20,13 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         }
         me.imageResizeMode= config.imageResizeMode ? config.imageResizeMode : "boxed";
         me.canOrder = function(content){
+            console.log("prdsearchctrl canOrder", content);
+            RubedoContentsService.getContentById(content_id).then(r => console.log("product", r)).catch(err => console.log("err product", err))
             return !(content.productProperties.manageStock && (content.productProperties.canOrderNotInStock == "false") && (content.productProperties.variations[0].stock < content.productProperties.outOfStockLimit)) ;
         };
         me.isPublishedd = function(content) { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
             console.log("productsearchcontroller isPublished", content);
+            RubedoContentsService.getContentById(content_id).then(r => console.log("product2", r)).catch(err => console.log("err product2", err))
             return false;// (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
         }
        
