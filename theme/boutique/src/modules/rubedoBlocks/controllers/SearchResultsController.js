@@ -225,4 +225,9 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         };
         parseQueryParamsToOptions();
         me.searchByQuery(options);
+
+        me.isPublishedd = function(content) {
+            console.log('publishedd', content, me, $scope);
+            return true;
+        }
     }]);
