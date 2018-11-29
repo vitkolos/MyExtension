@@ -80,7 +80,7 @@
 
                         <button ng-if="content.productProperties.variations.length==1 && (content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock) "
                                 ng-click="searchResultsCtrl.addToCart(content);content.isProductAdded = !content.isProductAdded"
-                                ng-disabled="!searchResultsCtrl.canOrder(content) "
+                                ng-disabled="!searchResultsCtrl.canOrder(content) || !searchResultsCrtl.isPublished( content )"
                                 class="btn btn-default col-xs-4">
                             <span class="glyphicon glyphicon-shopping-cart" ng-if="!content.isProductAdded" aria-hidden="true"></span>
                             <span class="glyphicon glyphicon-ok" ng-if="content.isProductAdded" aria-hidden="true"></span>

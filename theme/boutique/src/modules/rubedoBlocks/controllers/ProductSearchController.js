@@ -59,13 +59,13 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         };
 
 
-        me.displayMode=config.displayMode ? config.displayMode : "default";
-        me.productDisplayMode=config.productDisplayMode ? config.productDisplayMode : "grid";       
+        me.displayMode = config.displayMode ? config.displayMode : "default";
+        me.productDisplayMode = config.productDisplayMode ? config.productDisplayMode : "grid";       
         me.displayOrderBy = $routeParams.orderby?resolveOrderBy[$routeParams.orderby]:$scope.rubedo.translate('Blocks.Search.Label.OrderByTitle');
 
 
         me.template = themePath+"/templates/blocks/productSearch/"+me.displayMode+".html";
-        var predefinedFacets = !config.predefinedFacets?{}:JSON.parse(config.predefinedFacets);
+        var predefinedFacets = !config.predefinedFacets? {} : JSON.parse(config.predefinedFacets);
         var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
         var defaultOptions = {
             start: me.start,
