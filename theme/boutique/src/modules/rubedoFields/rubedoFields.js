@@ -816,6 +816,7 @@
             return !(me.manageStock && (me.productProperties.canOrderNotInStock=="false") && (me.currentVariation.stock < me.productProperties.outOfStockLimit)) ;
         };
         me.isPublished = function() { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
+            console.log('rubedo fields ispublished', me)
             return (!me.productFields.date || moment.unix(me.productFields.date).isSameOrBefore(moment()))
         }
         me.getProductAvailabilityText=function(){                   
