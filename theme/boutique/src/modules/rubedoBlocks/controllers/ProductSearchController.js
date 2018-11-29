@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scope","$location","$routeParams","$compile","RubedoSearchService","RubedoShoppingCartService", "$rootScope","$route",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,RubedoShoppingCartService,$rootScope,$route){
+angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scope","$location","$routeParams","$compile","RubedoSearchService","RubedoShoppingCartService","RubedoContentsService", "$rootScope","$route",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,RubedoShoppingCartService,RubedoContentsService,$rootScope,$route){
         var me = this;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -232,13 +232,17 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             options.start = me.start;
         };
 
-        me.searchByQuery = function(options){
+        me.publicationDate = {}
+
+        me.searchByQuery = async function(options){
             console.log('rubedosearch', options)
             RubedoSearchService.searchProducts(options).then(function(response){
                 if(response.data.success){
                     me.query = response.data.results.query;
                     me.count = response.data.count;
                     me.data =  response.data.results.data;
+                    // on récupère la date de publication !
+                    let plist = me.data.map(pr => RubedoContentsService.getContentById(pr.id).then(res => me.publicationDate[pr.id] = res));
                     me.facets = response.data.results.facets;
                     me.notRemovableTerms = [];
                     me.activeTerms = [];
@@ -264,6 +268,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
                             });
                         }
                     });
+                    Promise.all(plist).then(r => console.log("all Date", r))
                 }
             });
         };
