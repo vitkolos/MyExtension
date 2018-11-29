@@ -27,7 +27,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductListController",['$scope'
         limit: me.limit,
         orderByTitle: config.orderByTitle,
         specialOffersOnly:config.showOnlyTitle,
-        'fields[]' : ["text","summary",me.imageField]
+        'fields[]' : ["text","summary", me.imageField, 'date']
     };
     /*if(config.singlePage){*/
     //afficher le produit dans la même page / sauf pour page d'accueil
