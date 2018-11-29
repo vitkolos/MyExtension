@@ -22,7 +22,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         me.displayOrderByDirection = $routeParams.orderbyDirection?$routeParams.orderbyDirection:$scope.rubedo.translate('Search.Label.OrderByPrice');
         me.template = themePath+"/templates/blocks/searchResults/"+config.displayMode+".html";
         var predefinedFacets = !config.predefinedFacets?{}:JSON.parse(config.predefinedFacets);
-        var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query'];
+        var facetsId = ['objectType','type','damType','userType','author','userName','lastupdatetime','price','inStock','query','date'];
         var defaultOptions = {
             start: me.start,
             limit: me.limit,
