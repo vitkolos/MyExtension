@@ -24,7 +24,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         };
         me.isPublishedd = function(content) { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
             console.log("productsearchcontroller isPublished", content);
-            return true;// (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
+            return false;// (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
         }
        
         me.addToCart=function(content){
