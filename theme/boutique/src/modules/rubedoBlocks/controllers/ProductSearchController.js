@@ -234,6 +234,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         };
 
         me.searchByQuery = function(options){
+            console.log('rubedosearch', options)
             RubedoSearchService.searchProducts(options).then(function(response){
                 if(response.data.success){
                     me.query = response.data.results.query;
