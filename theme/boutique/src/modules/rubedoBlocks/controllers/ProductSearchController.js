@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scope","$location","$routeParams","$compile","RubedoSearchService","RubedoShoppingCartService", "RubedoContentsService", "$rootScope","$route",
-    function($scope,$location,$routeParams,$compile,RubedoSearchService,RubedoShoppingCartService,RubedoContentsService,$rootScope,$route){
+angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scope","$location","$routeParams","$compile","RubedoSearchService","RubedoShoppingCartService", "$rootScope","$route",
+    function($scope,$location,$routeParams,$compile,RubedoSearchService,RubedoShoppingCartService,$rootScope,$route){
         var me = this;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -25,7 +25,6 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         };
         me.isPublishedd = function(content) { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
             console.log("productsearchcontroller isPublished", content);
-            //RubedoContentsService.getContentById(content.id).then(r => console.log("product2", r)).catch(err => console.log("err product2", err))
             return false;// (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
         }
        
