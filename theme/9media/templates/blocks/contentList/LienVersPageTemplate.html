@@ -11,9 +11,8 @@
                 <div ng-if="content.fields.text.split('§').length > 1">{{content.fields.text.split('§')[1].toUpperCase()}}</div>
             </h2>
 
-            <p>
-                {{content.fields.summary.toUpperCase()}}
-            </p>
+            <p>{{content.fields.summary.split('§')[0].toUpperCase()}}</p>
+            <p ng-if="content.fields.summary.split('§').length > 1">{{content.fields.summary.split('§')[1].toUpperCase()}}</p>
 
     </div>
 
