@@ -3,6 +3,7 @@ angular.module("rubedoBlocks").lazy.controller("SearchResultsController",["$scop
         var me = this;
         var config = $scope.blockConfig;
         var themePath="/theme/"+window.rubedoConfig.siteTheme;
+        console.log("searchresultscontroller", me, $scope)
         me.data = [];
         me.facets = [];
         me.activeFacets = [];

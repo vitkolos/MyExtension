@@ -65,7 +65,7 @@
                         <a ng-href="{{ content.url }}"><button class="btn btn-default">{{ rubedo.translate('Blocks.UserOrders.ViewDetails')}}</button></a>
                         <button ng-if="content.productProperties.variations.length==1 && (content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock)"
                                 ng-click="searchResultsCtrl.addToCart(content)"
-                                ng-disabled="!searchResultsCtrl.canOrder(content)"
+                                ng-disabled="!searchResultsCtrl.canOrder(content) || !searchResultsCtrl.isPublished(content)"
                                 class="btn btn-default col-md-4">
                             <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                         </button>
