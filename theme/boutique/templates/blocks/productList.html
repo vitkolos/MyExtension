@@ -54,7 +54,7 @@
                                 </a>
                                 <button ng-if="content.productProperties.variations.length==1 && (content.productProperties.variations.0.stock>0 || content.productProperties.canOrderNotInStock) "
                                     ng-click="contentListDetailCtrl.addToCart(content);content.isProductAdded = true"
-                                    ng-disabled="!contentListDetailCtrl.canOrder(content) || !contentListDetailCtrl.isPublished(content)"
+                                    ng-disabled="!contentListDetailCtrl.canOrder(content) || !contentListDetailCtrl.isPublished(content )"
                                     class="btn btn-default col-xs-4">
                                     <span class="glyphicon glyphicon-shopping-cart" ng-if="!content.isProductAdded" aria-hidden="true"></span>
                                     <span class="glyphicon glyphicon-ok" ng-if="content.isProductAdded" aria-hidden="true"></span>
