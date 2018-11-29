@@ -10,18 +10,22 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             me.summaryStyle['height']=me.contentHeight+"px";
             me.summaryStyle['overflow']="hidden";
         }
-        me.imageField= config.imageField ? config.imageField : "image";
-        me.imageHeight= config.imageHeight ? config.imageHeight : null;
-        me.imageWidth= config.imageWidth ? config.imageWidth : null;
-        me.imageStyle={};
-        if (me.imageHeight){
+        me.imageField = config.imageField ? config.imageField : "image";
+        me.imageHeight = config.imageHeight ? config.imageHeight : null;
+        me.imageWidth = config.imageWidth ? config.imageWidth : null;
+        me.imageStyle = {};
+        if (me.imageHeight) {
             me.imageStyle['height']=me.imageHeight+"px";
             me.imageStyle['overflow']="hidden";
         }
         me.imageResizeMode= config.imageResizeMode ? config.imageResizeMode : "boxed";
-        me.canOrder=function(content){
-            return !(content.productProperties.manageStock&&(content.productProperties.canOrderNotInStock=="false")&&(content.productProperties.variations[0].stock < content.productProperties.outOfStockLimit)) ;
+        me.canOrder = function(content){
+            return !(content.productProperties.manageStock && (content.productProperties.canOrderNotInStock == "false") && (content.productProperties.variations[0].stock < content.productProperties.outOfStockLimit)) ;
         };
+        me.isPublished = function(content) { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
+            console.log("productsearchcontroller isPublished", content)
+            return (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
+        }
        
         me.addToCart=function(content){
             var options={

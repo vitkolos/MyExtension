@@ -207,19 +207,22 @@ angular.module("rubedoBlocks").lazy.controller("ProductListDetailController",['$
     me.canOrder=function(content){
         return !(me.content.productProperties.manageStock&&(me.content.productProperties.canOrderNotInStock=="false")&&(me.content.productProperties.variations[0].stock < me.content.productProperties.outOfStockLimit)) ;
     };
+    me.isPublished = function() { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
+        return (!me.content.fields.date || moment.unix(me.content.fields.date).isSameOrBefore(moment()))
+    }
 				
-				me.addToCart=function(content){
-            var options={
-                productId:content.id,
-                variationId:content.productProperties.variations[0].id,
-                amount:1
-            };
-            RubedoShoppingCartService.addToCart(options).then(
-                function(response){
-                    $rootScope.$broadcast("shoppingCartUpdated",{emitter:"listProductBox"});
-                }
-            );
+    me.addToCart=function(content){
+        var options={
+            productId:content.id,
+            variationId:content.productProperties.variations[0].id,
+            amount:1
         };
+        RubedoShoppingCartService.addToCart(options).then(
+            function(response){
+                $rootScope.$broadcast("shoppingCartUpdated",{emitter:"listProductBox"});
+            }
+        );
+    };
     $scope.fieldEntity=angular.copy(me.content.fields);
     $scope.fieldLanguage=me.content.locale;
     $scope.fieldInputMode=false;
