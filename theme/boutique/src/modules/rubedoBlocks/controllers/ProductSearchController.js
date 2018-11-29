@@ -235,14 +235,13 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         };
 
         me.searchByQuery = async function(options){
-            console.log('rubedosearch', options)
             RubedoSearchService.searchProducts(options).then(function(response){
                 if(response.data.success){
                     me.query = response.data.results.query;
                     me.count = response.data.count;
                     me.data =  response.data.results.data;
-                    // on récupère la date de publication !
-                    let plist = me.data.map(pr => RubedoContentsService.getContentById(pr.id).then(res => me.publicationDates[pr.id] = res.data.content.fields.date));
+                    // on récupère la date de publication du produit
+                    me.data.map(pr => RubedoContentsService.getContentById(pr.id).then(res => me.publicationDates[pr.id] = res.data.content.fields.date));
                     me.facets = response.data.results.facets;
                     me.notRemovableTerms = [];
                     me.activeTerms = [];
@@ -268,7 +267,6 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
                             });
                         }
                     });
-                    Promise.all(plist).then(r => console.log("all Dates", me.publicationDates, r))
                 }
             });
         };
