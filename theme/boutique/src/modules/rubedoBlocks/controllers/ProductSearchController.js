@@ -24,7 +24,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             return !(content.productProperties.manageStock && (content.productProperties.canOrderNotInStock == "false") && (content.productProperties.variations[0].stock < content.productProperties.outOfStockLimit)) ;
         };
         me.isPublishedd = function(content) { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
-            console.log("productsearchcontroller isPublished", content);
+            console.log("prdsearchctrl isPublished", content);
             return false;// (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
         }
        
