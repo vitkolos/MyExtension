@@ -22,8 +22,10 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
         me.canOrder = function(content){
             return !(content.productProperties.manageStock && (content.productProperties.canOrderNotInStock == "false") && (content.productProperties.variations[0].stock < content.productProperties.outOfStockLimit)) ;
         };
+        me.publicationDates = {}
         me.isPublished = function(content) { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
-            return true;// (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
+            if (!me.publicationDates) return true;
+            return (!me.publicationDates[content.id] || moment.unix(me.publicationDates[content.id]).isSameOrBefore(moment()))
         }
        
         me.addToCart=function(content){
@@ -232,8 +234,6 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             options.start = me.start;
         };
 
-        me.publicationDate = {}
-
         me.searchByQuery = async function(options){
             console.log('rubedosearch', options)
             RubedoSearchService.searchProducts(options).then(function(response){
@@ -242,7 +242,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
                     me.count = response.data.count;
                     me.data =  response.data.results.data;
                     // on récupère la date de publication !
-                    let plist = me.data.map(pr => RubedoContentsService.getContentById(pr.id).then(res => me.publicationDate[pr.id] = res));
+                    let plist = me.data.map(pr => RubedoContentsService.getContentById(pr.id).then(res => me.publicationDates[pr.id] = res.data.content.fields.date));
                     me.facets = response.data.results.facets;
                     me.notRemovableTerms = [];
                     me.activeTerms = [];
@@ -268,7 +268,7 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
                             });
                         }
                     });
-                    Promise.all(plist).then(r => console.log("all Date", r))
+                    Promise.all(plist).then(r => console.log("all Dates", me.publicationDates, r))
                 }
             });
         };
