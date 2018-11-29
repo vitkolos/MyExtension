@@ -259,7 +259,7 @@ return array(
 																				'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
             ),
-												'wtp18' => array(
+            'wtp18' => array(
                 'label' => 'WTP18',
                 'basePath' => realpath(__DIR__ . '/../theme/wtp18'),
                 'css' => array(
@@ -274,6 +274,21 @@ return array(
                     'angularVideoBg' => '/lib/angular-video-bg.min.js',
 																				'ngFileUpload' => '/lib/ngFileUpload.js'
                 ),
+            ),
+            'wtp19' => array(
+                'label' => 'WTP19',
+                'basePath' => realpath(__DIR__ . '/../theme/wtp19'),
+                'css' => array(
+                    '/css/wtp19.css'
+                ),
+                'js' => array(
+                    '/js/wtp19.js',
+                     '/../cte/js/lazy-image.js',
+                ),
+                /* 'angularModules' => array(
+                    'angularVideoBg' => '/lib/angular-video-bg.min.js',
+                    'ngFileUpload' => '/lib/ngFileUpload.js'
+                ), */
             ),
             'jmj2016' => array(
                 'label' => 'JMJ2016',
