@@ -204,12 +204,10 @@ angular.module("rubedoBlocks").lazy.controller("ProductListDetailController",['$
     me.index = $scope.$index;
     me.parentIndex = $scope.columnIndex;
     me.content = $scope.content;
-    console.log("productlistdetailcontroller", me, $scope)
     me.canOrder=function(content){
         return !(me.content.productProperties.manageStock&&(me.content.productProperties.canOrderNotInStock=="false")&&(me.content.productProperties.variations[0].stock < me.content.productProperties.outOfStockLimit)) ;
     };
     me.isPublished = function(content) { // dit si le produit a été publié (= il a une date de publication définie et qu'elle est dans le passé)
-        console.log("productlistdetailcontroller isPublished", content)
         return (!content.fields.date || moment.unix(content.fields.date).isSameOrBefore(moment()))
     }
 				

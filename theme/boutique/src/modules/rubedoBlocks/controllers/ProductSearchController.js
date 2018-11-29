@@ -140,7 +140,6 @@ angular.module("rubedoBlocks").lazy.controller("ProductSearchController",["$scop
             options.query = me.query;
             options.orderBy = me.orderBy;
             options.orderbyDirection = me.orderByDirection;
-            console.log("onsubmit", me, options);
             $location.search('query',me.query);
         };
         me.changeOrderBy = function(orderBy) {
