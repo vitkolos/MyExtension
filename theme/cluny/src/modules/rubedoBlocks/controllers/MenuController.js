@@ -104,7 +104,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
         // if this is a content
         if($scope.rubedo.current.page.contentCanonicalUrl) {
             // si on est sur l'url root, .routeline n'est pas défini, on renvoie just "/[la_langue]"
-            if (!$route.current.param.routeline) return `/${lang}/`;
+            if (!$route.current || !$route.current.param || !$route.current.param.routeline) return `/${lang}/`;
 
             urlArray = $route.current.params.routeline.split("/");
             contentId = urlArray[urlArray.length-2];
