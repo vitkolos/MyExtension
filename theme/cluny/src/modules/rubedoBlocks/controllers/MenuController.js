@@ -1,7 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("MenuController",['$scope','$rootScope','$location','$route','RubedoMenuService','RubedoPagesService','$http',
 function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService,$http){
     var me = this;
-    var themePath = "/theme/"+window.rubedoConfig.siteTheme;
+    var themePath = "/theme/" + window.rubedoConfig.siteTheme;
     me.menu = {};
     var lang = $route.current.params.lang;
     me.pagesBlocks={};
@@ -63,7 +63,7 @@ function($scope,$rootScope,$location,$route,RubedoMenuService,RubedoPagesService
     var lang = $route.current.params.lang;
     /*Ajouter les traductions*/
     $scope.rubedo.getCustomTranslations = function(){
-        $http.get('/theme/cte/localization/'+lang+'/Texts.json').then(function(res){
+        $http.get('/theme/cte/localization/' + lang + '/Texts.json').then(function(res){
             $scope.rubedo.translations = JSON.parse((JSON.stringify($scope.rubedo.translations) + JSON.stringify(res.data)).replace(/}{/g,","))
         });	
     }
@@ -103,6 +103,7 @@ function ($scope, RubedoPagesService,RubedoModuleConfigService, RubedoContentsSe
         
         // if this is a content
         if($scope.rubedo.current.page.contentCanonicalUrl) {
+            console.log("$route", $route);
             urlArray = $route.current.params.routeline.split("/");
             contentId = urlArray[urlArray.length-2];
             try {
