@@ -136,7 +136,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 
                 payLoad.taxonomy.navigation = [];
                 payLoad.taxonomy.navigation[0] = config.listPageId ? config.listPageId : $scope.rubedo.current.page.id;
-                console.log("debug new content2", payload)
+                console.log("debug new content2", payLoad)
                 RubedoContentsService.createNewContent(payLoad).then(
                     function(createResponse){
                         if (createResponse.data.success){
