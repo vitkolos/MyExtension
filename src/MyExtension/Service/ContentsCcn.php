@@ -382,7 +382,7 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
             && !in_array($obj['writeWorkspace'], $contentType['workspaces'])
             && !in_array('all', $contentType['workspaces'])
         ) {
-            throw new Access('You can not assign this content type to this workspace', "Exception37");
+            throw new Access('You can not assign this content type (...) to this workspace', "Exception37");
         }
         $contentTypeFields = $contentType['fields'];
         foreach ($contentTypeFields as $fieldConfig) {
