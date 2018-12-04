@@ -87,8 +87,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 payload.taxonomy=formData.taxonomy;
                 delete (formData.taxonomy);
                 payload.fields=formData;
-                payload.typeId = me.contentType.id;
-                console.log("debug new content2", payload)
                 RubedoContentsService.updateContent(payload).then(
                     function(response){
                         if (response.data.success){
@@ -124,7 +122,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 var payLoad={
                     status:me.submitStatus,
                     typeId:me.contentType.id,
-                    taxonomy:formData.taxonomy
+                    taxonomy:formData.taxonomy,
+                    typeId: me.contentType.id
                 };
                 delete (formData.taxonomy);
                 payLoad.fields=formData;
@@ -137,6 +136,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 
                 payLoad.taxonomy.navigation = [];
                 payLoad.taxonomy.navigation[0] = config.listPageId ? config.listPageId : $scope.rubedo.current.page.id;
+                console.log("debug new content2", payload)
                 RubedoContentsService.createNewContent(payLoad).then(
                     function(createResponse){
                         if (createResponse.data.success){
