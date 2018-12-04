@@ -87,6 +87,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
                 payload.taxonomy=formData.taxonomy;
                 delete (formData.taxonomy);
                 payload.fields=formData;
+                payload.typeId = me.contentType.id;
+                console.log("debug new content2", payload)
                 RubedoContentsService.updateContent(payload).then(
                     function(response){
                         if (response.data.success){
