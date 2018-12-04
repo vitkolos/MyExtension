@@ -76,6 +76,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentContributionController",[
         me.loadContentType(config.contentType);
     }
     me.submitNewContent=function(){
+        console.log("debug new content", me, me.contentType)
         if(me.contentType&&me.submitStatus){
             me.createError=null;
             var formData=angular.copy($scope.fieldEntity);
