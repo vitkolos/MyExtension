@@ -553,7 +553,6 @@
         if (contentId&&contentId!=""){
             RubedoContentsService.getContentById(contentId, options).then(
                 function(response){
-                    console.log("contentLinkController", contentId, options, response)
                     if (response.data.success){
                         me.contentUrl=response.data.content.canonicalUrl;
                         me.contentTitle=response.data.content.fields.text;

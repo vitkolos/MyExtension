@@ -553,12 +553,11 @@
         if (contentId&&contentId!=""){
             RubedoContentsService.getContentById(contentId, options).then(
                 function(response){
-                    console.log("contentLinkController", contentId, options, response, me, $scope)
                     if (response.data.success){
                         me.contentUrl=response.data.content.canonicalUrl;
                         me.contentTitle=response.data.content.fields.text;
+                        // la ligne suivante bugfixe quand .canonicalUrl = vide ou "#"
                         if (me.contentUrl.length < 2) {
-                            console.log("breadcrumb", $scope.rubedo.current.breadcrumb);
                             me.contentUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-2].url + '/' + contentId + '/content'
                         }
                     }
