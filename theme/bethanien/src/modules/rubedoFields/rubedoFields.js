@@ -559,7 +559,7 @@
                         me.contentTitle=response.data.content.fields.text;
                         if (me.contentUrl.length < 2) {
                             console.log("breadcrumb", $scope.rubedo.current.breadcrumb);
-                            me.contentUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url + '/' + contentId + '/content'
+                            me.contentUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-2].url + '/' + contentId + '/content'
                         }
                     }
                 }
