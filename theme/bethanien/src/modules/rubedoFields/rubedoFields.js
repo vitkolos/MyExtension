@@ -557,6 +557,9 @@
                     if (response.data.success){
                         me.contentUrl=response.data.content.canonicalUrl;
                         me.contentTitle=response.data.content.fields.text;
+                        if (me.contentUrl.length < 2) {
+                            me.contentUrl = $scope.rubedo.current.breadcrumb[$scope.rubedo.current.breadcrumb.length-1].url + '/' + contentId + '/content'
+                        }
                     }
                 }
             );
