@@ -105,6 +105,7 @@ class OrdersResource extends AbstractResource
     {
         $pmConfig = $this->getConfigService()['paymentMeans'];
         if (!isset($pmConfig[$params['paymentMeans']])) {
+            sendMailError("Unknown payment method", "<p>Erreur dans OrdersResource.php, fonction postAction, Unknown payment method (params['paymentMeans']).</p><h3>params :</h3><p>".(json_encode($params))."</p>");
             throw new APIRequestException('Unknown payment method', 400);
         }
         
@@ -115,10 +116,12 @@ class OrdersResource extends AbstractResource
             $myCart = $this->getShoppingCartCollection()->getCurrentCart();
         }
         if (empty($myCart)) {
+            sendMailError("Shopping cart empty", "<p>Erreur dans OrdersResource.php, fonction postAction, Shopping cart is empty.</p><h3>params :</h3><p>".(json_encode($params))."</p>");
             throw new APIAuthException('Shopping cart is empty', 404);
         }
         $currentUser = $this->getCurrentUserAPIService()->getCurrentUser();
         if (!(isset($currentUser['shippingAddress']) && isset($currentUser['shippingAddress']['country']))) {
+            sendMailError("Missing shipping address country", "<p>Erreur dans OrdersResource.php, fonction postAction, Missing shipping address country.</p><h3>params :</h3><p>".(json_encode($params))."</p>");
             throw new APIAuthException('Missing shipping address country');
         }
         $order = array();
@@ -143,6 +146,7 @@ class OrdersResource extends AbstractResource
             }
         }
         if (!$shipperFound) {
+            sendMailError("ERREUR lors de la commande d'un client boutique H4", "<p>Erreur dans OrdersResource.php, fonction postAction, impossible de trouver le bon shipper.</p><h3>params :</h3><p>".(json_encode($params))."</p><h3>myShippers :</h3><p>".(json_encode($myShippers))."</p>");
             throw new APIEntityException('Shipper not found', 404);
         }
         $order['detailedCart'] = $this->addCartInfos(
@@ -192,6 +196,9 @@ class OrdersResource extends AbstractResource
                 $mailerObject2->setBody($this->getMailConfirmation($registeredOrder['data']), 'text/html', 'utf-8');
                 $mailerService->sendMessage($mailerObject2,$errors);
             }
+        } else { 
+            // registering order has failed, send email to admin
+            sendMailError("getOrdersCollection()->createOrder(order) a échoué", "<p>Dans OrdersResource.php, fonction postAction, la fonction getOrdersCollection()->createOrder(order) a échoué.</p><h3>params : </h3><p>".(json_encode($params))."</p><h3>order : </h3><p>".(json_encode($order))."</p>");
         }
         return array(
             'success' => $registeredOrder['success'],
@@ -254,6 +261,18 @@ class OrdersResource extends AbstractResource
         $body .='</table></td></tr>';
         $body .="</table></td></tr></table>";
         return $body;
+    }
+
+    function sendMailError($objet, $body) {
+        $mailerService = Manager::getService('Mailer');
+        $mailerObject2 = $mailerService->getNewMessage();
+        $mailerObject2->setTo(array("web@chemin-neuf.org" => "Admin Web CCN"));
+        $mailerObject2->setReplyTo(array("acnenligne@gmail.com" => "Les Ateliers du Chemin Neuf"));
+        $mailerObject2->setFrom(array("ame@chemin-neuf.org" => "Les Ateliers du Chemin Neuf"));
+        $mailerObject2->setCharset('utf-8');
+        $mailerObject2->setSubject("[ERROR BOUTIQUE] ".$objet);
+        $mailerObject2->setBody($body, 'text/html', 'utf-8');
+        $mailerService->sendMessage($mailerObject2,$errors);
     }
     
     

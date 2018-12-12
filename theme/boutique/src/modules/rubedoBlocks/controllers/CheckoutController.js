@@ -236,9 +236,9 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
                                     mailingListsSuscribe.push(mailingList.id);
                                 }
                             });
-																												if(window.ga) {
-																																window.ga('send', 'event', 'Compte client', 'Création', newUserFields.email);
-																												}
+                            if(window.ga) {
+                                window.ga('send', 'event', 'Compte client', 'Création', newUserFields.email);
+                            }
                             if (mailingListsSuscribe.length>0){
                                 var mloptions = {
                                     mailingLists: mailingListsSuscribe,

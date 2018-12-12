@@ -34,10 +34,11 @@ class PaypalIpnCcnResource extends AbstractResource
     }
     public function postAction($params)
     {
-// STEP 1: read POST data
-// Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
-// Instead, read raw POST data from the input stream.
+        // STEP 1: read POST data
+        // Reading POSTed data directly from $_POST causes serialization issues with array data in the POST.
+        // Instead, read raw POST data from the input stream.
         $raw_post_data = file_get_contents('php://input');
+        error_log ('DEBUG PaypalIpnResource.php postAction just entered : '.$raw_post_data . '\n', 3);
         $raw_post_array = explode('&', $raw_post_data);
         $myPost = array();
         foreach ($raw_post_array as $keyval) {

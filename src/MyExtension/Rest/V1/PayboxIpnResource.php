@@ -85,6 +85,7 @@ class PayboxIpnResource extends AbstractResource {
             });
     }
     function getAction($params) {
+        error_log ('DEBUG PayboxIpnResource.php getAction just entered : '.json_encode($params) . '\n', 3);
         $securite = true; $autorisation = false;$erreurStatus = true; $erreurMessage="";
         //VERIFICATIONS PAYBOX
         //code d'erreur
