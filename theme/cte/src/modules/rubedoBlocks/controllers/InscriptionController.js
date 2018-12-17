@@ -349,6 +349,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             // =======================================================================
             //              ON LANCE L'INSCRIPTION
             // =======================================================================
+            console.log("lancement de l'inscription avec les params suivants : ", $scope.inscription, $scope.rubedo.current.page.workspace);
             InscriptionService.inscrire($scope.inscription, $scope.rubedo.current.page.workspace).then(function(response){
                 $scope.message = "";
                 if (response.data.success) {
