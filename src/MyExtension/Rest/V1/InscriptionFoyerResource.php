@@ -7,7 +7,7 @@ use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use WebTales\MongoFilters\Filter;
 use Zend\Json\Json;
-class InscriptionResource extends AbstractResource
+class InscriptionFoyerResource extends AbstractResource
 {
     /**
      * native config for this payment means
