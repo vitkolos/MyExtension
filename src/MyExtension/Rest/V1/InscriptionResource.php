@@ -295,12 +295,14 @@ class InscriptionResource extends AbstractResource
         }
         AbstractCollection::disableUserFilter(false);
 
+        error_log('Inscription success in InscriptionResource.php > postAction for : ' . json_encode($resultInscription), 3);
         return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
         
    }
    
    
 protected function sendInscriptionMail($inscription,$lang){
+    error_log('In InscriptionResource.php > sendInscriptionMail sending inscription email for ' . json_encode($inscription), 3);
    $trad = json_decode(file_get_contents('http://' . $_SERVER['HTTP_HOST'] .'/theme/cte/elements/'.$lang.'.json'),true);
     //tutoyement pour ados ou jeunes ou personnes connues
     $tutoyer = 0;
