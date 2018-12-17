@@ -296,6 +296,7 @@ class InscriptionResource extends AbstractResource
         AbstractCollection::disableUserFilter(false);
 
         error_log('Inscription success in InscriptionResource.php > postAction for : ' . json_encode($resultInscription), 3);
+        file_put_contents('./custom_debug.log', 'Inscription success in InscriptionResource.php > postAction for : ' . json_encode($resultInscription), FILE_APPEND | LOCK_EX);
         return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
         
    }
