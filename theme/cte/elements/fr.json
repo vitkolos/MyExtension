@@ -149,7 +149,7 @@
     "ccn_don_7":"Votre don à la Communauté du Chemin Neuf",
     "ccn_don_8":"Merci de reporter ce numéro au dos de votre chèque et de le rappeler dans vos correspondances.",
     "ccn_don_13":"Merci de rappeler ce numéro dans vos correspondances.",
-    "ccn_don_14":"Après encaissement du versement, nous vous enverrons un reçu fiscal.",
+    "ccn_don_14":"Après encaissement du versement et comptabilisation, nous vous enverrons un reçu fiscal.",
     "ccn_don_15":"Vous devez vous connecter à votre banque (service de virement en ligne) et effectuer un virement sur notre compte :<br> %coordonnes_compte% </br> dont l'intitulé est <em>%nom_compte%</em>. ",
     "ccn_don_16":"Merci de reporter ce numero dans le champ 'commentaire' ou 'remarque' de votre virement bancaire.",
     "ccn_don_18_part1":"Vous devez télécharger et imprimer le ",
