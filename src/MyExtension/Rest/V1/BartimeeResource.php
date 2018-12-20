@@ -91,6 +91,7 @@ class BartimeeResource extends AbstractResource
         
         $dataService->init("Contents");
         $lastDonation = $dataService->findByName($inputs['lastinbartimee']);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'Bartimee got the content !' . json_encode($lastDonation) . "\n", FILE_APPEND | LOCK_EX);
         if (empty($lastDonation)) {
             throw new APIEntityException('Donation not found', 404);
         }
