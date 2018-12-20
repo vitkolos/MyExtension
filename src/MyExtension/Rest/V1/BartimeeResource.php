@@ -112,7 +112,7 @@ class BartimeeResource extends AbstractResource
         $rightsSubRequest = $this->getContext()->forward()->dispatch('RubedoAPI\\Frontoffice\\Controller\\Api', $route);
         $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
         
-        
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP1\n", FILE_APPEND | LOCK_EX);
         
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
@@ -138,11 +138,14 @@ class BartimeeResource extends AbstractResource
             ]
         ];
         $query = $this->getElasticDataSearchService();
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP2\n", FILE_APPEND | LOCK_EX);
         //$query::setIsFrontEnd(true);
         $query->init();
         $results = $query->search($params, $this->searchOption);
         $this->injectDataInResults($results, $queryParams);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP3\n", FILE_APPEND | LOCK_EX);
         $wasFiltered = AbstractCollection::disableUserFilter(false);
+
         return [
             'success' => true,
             'results' => $results['data'],
