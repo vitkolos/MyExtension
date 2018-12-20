@@ -84,7 +84,7 @@ class BartimeeResource extends AbstractResource
      */
     public function getAction($inputs)
     {
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' start getAction in BartimeeResource.php : ' . json_encode($inputs) . "\n", FILE_APPEND | LOCK_EX);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' -- start getAction in BartimeeResource.php : ' . json_encode($inputs) . "\n", FILE_APPEND | LOCK_EX);
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         /*Get last donation registered in Bartimee by name*/
         $dataService= Manager::getService('MongoDataAccess');
@@ -92,8 +92,13 @@ class BartimeeResource extends AbstractResource
         $dataService->init("Contents");
         $lastDonation = $dataService->findByName($inputs['lastinbartimee']);
         if (empty($lastDonation)) {
-            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'in BartimeeResource.php > getAction : Donations not found ($lastDonation='.json_encode($lastDonation).') : ' . json_encode($inputs) . " \n", FILE_APPEND | LOCK_EX);
-            throw new APIEntityException('Donation not found', 404);
+            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' -- Error in BartimeeResource.php > getAction : Donations not found ($lastDonation='.json_encode($lastDonation).') : ' . json_encode($inputs) . " \n", FILE_APPEND | LOCK_EX);
+            //throw new APIEntityException('Donation not found', 404);
+            return [
+                'success' => false,
+                'error' => 'DONATION_NOT_FOUND',
+                'message' => 'Last donation with name "' . $inputs['lastinbartimee'] . '" could not be found in Contents'
+            ]
         }
         //$response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);        
         
@@ -111,8 +116,6 @@ class BartimeeResource extends AbstractResource
         $this->getCurrentUserAPIService()->setAccessToken($output['token']['access_token']);
         $rightsSubRequest = $this->getContext()->forward()->dispatch('RubedoAPI\\Frontoffice\\Controller\\Api', $route);
         $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
-        
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "Bartimee.php STEP1 ". json_encode($lastDonation) ."\n", FILE_APPEND | LOCK_EX);
         
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
@@ -138,15 +141,21 @@ class BartimeeResource extends AbstractResource
             ]
         ];
         $query = $this->getElasticDataSearchService();
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP2\n", FILE_APPEND | LOCK_EX);
         //$query::setIsFrontEnd(true);
         $query->init();
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP3 ".json_encode($params)."\n", FILE_APPEND | LOCK_EX);
-        $results = $query->search($params, $this->searchOption);
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP4 ".json_encode($queryParams)."\n", FILE_APPEND | LOCK_EX);
+        try {
+            $results = $query->search($params, $this->searchOption);
+        } catch (Exception $e) {
+            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- ERROR in BartimeeResource.php > getAction : failed Elasticsearch Query ".json_encode($params)." -------- ERROR = " . $e->getMessage() . "\n", FILE_APPEND | LOCK_EX);
+            return [
+                'success' => false,
+                'error' => 'ELASTICSEARCH_QUERY_FAILED',
+                'message' => $e->getMessage()
+            ]
+        }
         $this->injectDataInResults($results, $queryParams);
         $wasFiltered = AbstractCollection::disableUserFilter(false);
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP5\n", FILE_APPEND | LOCK_EX);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " Success in BartimeeRessource.php\n", FILE_APPEND | LOCK_EX);
 
         return [
             'success' => true,
