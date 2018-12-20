@@ -94,11 +94,11 @@ class BartimeeResource extends AbstractResource
         if (empty($lastDonation)) {
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' -- Error in BartimeeResource.php > getAction : Donations not found ($lastDonation='.json_encode($lastDonation).') : ' . json_encode($inputs) . " \n", FILE_APPEND | LOCK_EX);
             //throw new APIEntityException('Donation not found', 404);
-            return [
+            /* return [
                 'success' => false,
                 'error' => 'DONATION_NOT_FOUND',
                 'message' => 'Last donation with name "' . $inputs['lastinbartimee'] . '" could not be found in Contents'
-            ]
+            ] */
         }
         //$response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);        
         
@@ -146,12 +146,12 @@ class BartimeeResource extends AbstractResource
         try {
             $results = $query->search($params, $this->searchOption);
         } catch (Exception $e) {
-            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- ERROR in BartimeeResource.php > getAction : failed Elasticsearch Query ".json_encode($params)." -------- ERROR = " . $e->getMessage() . "\n", FILE_APPEND | LOCK_EX);
-            return [
+            //file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- ERROR in BartimeeResource.php > getAction : failed Elasticsearch Query ".json_encode($params)." -------- ERROR = " . $e->getMessage() . "\n", FILE_APPEND | LOCK_EX);
+            return /* [
                 'success' => false,
                 'error' => 'ELASTICSEARCH_QUERY_FAILED',
                 'message' => $e->getMessage()
-            ]
+            ] */
         }
         $this->injectDataInResults($results, $queryParams);
         $wasFiltered = AbstractCollection::disableUserFilter(false);
