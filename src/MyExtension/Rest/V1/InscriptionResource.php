@@ -241,7 +241,7 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm=[];
         $inscriptionForm['fields'] =  $params['inscription'];
         $codePays = $siteConfig['codePays'];
-								$inscriptionForm['fields']['text'] = "". $codePays . str_pad($inscriptionNumber, 6, '0', STR_PAD_LEFT);
+        $inscriptionForm['fields']['text'] = "". $codePays . str_pad($inscriptionNumber, 6, '0', STR_PAD_LEFT);
         $inscriptionForm['text'] = $inscriptionForm['fields']['text'];
         $inscriptionForm['target'] = $params['workspace'];
         $inscriptionForm['writeWorkspace'] = $params['workspace'];
