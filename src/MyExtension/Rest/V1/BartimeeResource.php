@@ -141,10 +141,12 @@ class BartimeeResource extends AbstractResource
         file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP2\n", FILE_APPEND | LOCK_EX);
         //$query::setIsFrontEnd(true);
         $query->init();
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP3 ".json_encode($params)."\n", FILE_APPEND | LOCK_EX);
         $results = $query->search($params, $this->searchOption);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP4 ".json_encode($queryParams)."\n", FILE_APPEND | LOCK_EX);
         $this->injectDataInResults($results, $queryParams);
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP3\n", FILE_APPEND | LOCK_EX);
         $wasFiltered = AbstractCollection::disableUserFilter(false);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP5\n", FILE_APPEND | LOCK_EX);
 
         return [
             'success' => true,
