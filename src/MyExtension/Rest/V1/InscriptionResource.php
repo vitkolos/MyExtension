@@ -295,7 +295,7 @@ class InscriptionResource extends AbstractResource
         }
         AbstractCollection::disableUserFilter(false);
 
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'Inscription success in InscriptionResource.php > postAction for : ' . json_encode($resultInscription), FILE_APPEND | LOCK_EX);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'Inscription success in InscriptionResource.php > postAction for : ' . json_encode($resultInscription) . "\n", FILE_APPEND | LOCK_EX);
         error_log('Inscription success in InscriptionResource.php > postAction for : ' . json_encode($resultInscription), 3);
         return array('success' => $result['success'], 'id' =>$inscriptionForm['fields']['text'],'result'=>$resultInscription);
         
