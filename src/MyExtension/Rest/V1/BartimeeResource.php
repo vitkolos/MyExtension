@@ -95,6 +95,7 @@ class BartimeeResource extends AbstractResource
         if (empty($lastDonation)) {
             throw new APIEntityException('Donation not found', 404);
         }
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'STEP1\n', FILE_APPEND | LOCK_EX);
         //$response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);        
         
         //if($response['user']['id'] !='58ada957245640d7008b5ffc') throw new APIEntityException('Non identified application', 404);
@@ -102,15 +103,19 @@ class BartimeeResource extends AbstractResource
         $output = array('success' => true);
         $response = $this->getAuthAPIService()->APIAuth($inputs['login'], $inputs['passwd']);
         $output['token'] = $this->subTokenFilter($response['token']);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'STEP2\n', FILE_APPEND | LOCK_EX);
         $this->subUserFilter($response['user']);
         $route = $this->getContext()->params()->fromRoute();
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'STEP3\n', FILE_APPEND | LOCK_EX);
         $route['api'] = array('auth');
         $route['method'] = 'GET';
         $route['access_token'] = $output['token']['access_token'];
         //Hack Refresh currentUser
         $this->getCurrentUserAPIService()->setAccessToken($output['token']['access_token']);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'STEP4\n', FILE_APPEND | LOCK_EX);
         $rightsSubRequest = $this->getContext()->forward()->dispatch('RubedoAPI\\Frontoffice\\Controller\\Api', $route);
         $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'STEP5\n', FILE_APPEND | LOCK_EX);
         
         
         
@@ -138,10 +143,13 @@ class BartimeeResource extends AbstractResource
             ]
         ];
         $query = $this->getElasticDataSearchService();
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'STEP6\n', FILE_APPEND | LOCK_EX);
         //$query::setIsFrontEnd(true);
         $query->init();
         $results = $query->search($params, $this->searchOption);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'STEP7\n', FILE_APPEND | LOCK_EX);
         $this->injectDataInResults($results, $queryParams);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'STEP8\n', FILE_APPEND | LOCK_EX);
         $wasFiltered = AbstractCollection::disableUserFilter(false);
         return [
             'success' => true,
