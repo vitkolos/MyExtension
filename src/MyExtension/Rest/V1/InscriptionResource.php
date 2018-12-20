@@ -210,7 +210,7 @@ class InscriptionResource extends AbstractResource
 				
     public function postAction($params)
     {
-        
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription start in InscriptionResource.php > postAction for : ' . json_encode($params) . "\n", FILE_APPEND | LOCK_EX);
         //GET NUMERO D'INSCRIPTION ACTUEL
         $id = "57e1a814245640fc008ba8a8"; // id du contenu "Numéro d'inscription CCN" c'est ici qu'on note le dernier numéro d'inscription, qu'on incrémente de 1 à chaque inscription
 

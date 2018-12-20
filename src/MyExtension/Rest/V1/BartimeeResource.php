@@ -84,7 +84,7 @@ class BartimeeResource extends AbstractResource
      */
     public function getAction($inputs)
     {
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', 'start getAction in BartimeeResource.php : ' . json_encode($inputs) . "\n", FILE_APPEND | LOCK_EX);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' start getAction in BartimeeResource.php : ' . json_encode($inputs) . "\n", FILE_APPEND | LOCK_EX);
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         /*Get last donation registered in Bartimee by name*/
         $dataService= Manager::getService('MongoDataAccess');
@@ -112,7 +112,7 @@ class BartimeeResource extends AbstractResource
         $rightsSubRequest = $this->getContext()->forward()->dispatch('RubedoAPI\\Frontoffice\\Controller\\Api', $route);
         $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
         
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "STEP1\n", FILE_APPEND | LOCK_EX);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', "Bartimee.php STEP1 ". json_encode($lastDonation) ."\n", FILE_APPEND | LOCK_EX);
         
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
