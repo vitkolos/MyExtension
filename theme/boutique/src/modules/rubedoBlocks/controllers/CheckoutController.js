@@ -265,6 +265,7 @@ angular.module("rubedoBlocks").lazy.controller("CheckoutController",["$scope","R
     me.refreshShippers=function(){
         RubedoShippersService.getShippers().then(
             function(response){
+                console.log('shipper response', response)
                 me.shippersArray=response.data.shippers;
                 me.currentShipper=response.data.shippers[0];
                 me.setCurrentStage(me.currentStage+1);
