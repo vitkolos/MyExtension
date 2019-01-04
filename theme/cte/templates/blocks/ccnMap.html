@@ -86,6 +86,7 @@
             },
             done: function(map) {
               map.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
+                  console.log('debug map', map, geography)
                   if(map.options.data[geography.id] && map.options.data[geography.id].url) 
                     window.location.href = map.options.data[geography.id].url;
               });
@@ -93,6 +94,7 @@
            
             
         });
+        console.log("mymap", map);
         angular.element("#map_container").scope().loading=false;
         console.log(angular.element("#map_container").scope().loading);
         //resize with d3
