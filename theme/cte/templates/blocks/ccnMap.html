@@ -110,6 +110,6 @@
         });
         
     };
-    angular.element("#map_container").scope().retrieveData({searchMode:'default'},function(a){processData(a);}, function(b,c){});
+    angular.element("#map_container").scope().retrieveData({searchMode:'default'},function(a){console.log('received map data', a);processData(a);}, function(b,c){});
 
 </script>
