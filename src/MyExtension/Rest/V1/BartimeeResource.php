@@ -15,6 +15,7 @@
  * @license    http://www.gnu.org/licenses/gpl.html Open Source GPL 3.0 license
  */
 namespace RubedoAPI\Rest\V1;
+use Rubedo\Collection\AbstractLocalizableCollection; // added for debug purpose
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use Zend\Json\Json;
@@ -116,6 +117,10 @@ class BartimeeResource extends AbstractResource
         $this->getCurrentUserAPIService()->setAccessToken($output['token']['access_token']);
         $rightsSubRequest = $this->getContext()->forward()->dispatch('RubedoAPI\\Frontoffice\\Controller\\Api', $route);
         $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
+
+        // test request contents directly
+        $contextualContent=$this->getContentsCollection()->findById($params["contextContentId"], true, false);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ".json_encode($contextualContent)."\n", FILE_APPEND | LOCK_EX);            
         
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
@@ -144,7 +149,6 @@ class BartimeeResource extends AbstractResource
         //$query::setIsFrontEnd(true);
         $query->init();
         try {
-            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > getAction : start Elasticsearch Query ".json_encode($params)."\n", FILE_APPEND | LOCK_EX);            
             $results = $query->search($params, $this->searchOption);
         } catch (Exception $e) {
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- ERROR in BartimeeResource.php > getAction : failed Elasticsearch Query ".json_encode($params)." -------- ERROR = " . $e->getMessage() . "\n", FILE_APPEND | LOCK_EX);
