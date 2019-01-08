@@ -144,7 +144,7 @@ class BartimeeResource extends AbstractResource
         //$query::setIsFrontEnd(true);
         $query->init();
         try {
-            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > getAction : start Elasticsearch Query ".json_encode($params)." -------- ERROR = " . $e->getMessage() . "\n", FILE_APPEND | LOCK_EX);            
+            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > getAction : start Elasticsearch Query ".json_encode($params)."\n", FILE_APPEND | LOCK_EX);            
             $results = $query->search($params, $this->searchOption);
         } catch (Exception $e) {
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- ERROR in BartimeeResource.php > getAction : failed Elasticsearch Query ".json_encode($params)." -------- ERROR = " . $e->getMessage() . "\n", FILE_APPEND | LOCK_EX);
