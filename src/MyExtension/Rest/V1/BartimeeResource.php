@@ -119,7 +119,9 @@ class BartimeeResource extends AbstractResource
         $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
 
         // test request contents directly
-        $contextualContent=$this->getContentsCollection()->getByType("5652dcb945205e0d726d6caf");
+        $filter = array();
+        $sort = array(["property"=>"text","direction"=>"DESC"]);
+        $contextualContent=$this->getContentsCollection()->getOrderedList(); //getByType("5652dcb945205e0d726d6caf");
         file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ".json_encode($contextualContent)."\n", FILE_APPEND | LOCK_EX);            
 
         $this->_dataService = Manager::getService('ContentTypes');
