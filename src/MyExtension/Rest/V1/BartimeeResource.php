@@ -15,7 +15,7 @@
  * @license    http://www.gnu.org/licenses/gpl.html Open Source GPL 3.0 license
  */
 namespace RubedoAPI\Rest\V1;
-use Rubedo\Collection\AbstractLocalizableCollection; // added for debug purpose
+//use Rubedo\Collection\AbstractLocalizableCollection; // added for debug purpose
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use Zend\Json\Json;
@@ -119,8 +119,10 @@ class BartimeeResource extends AbstractResource
         $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
 
         // test request contents directly
-        $contextualContent=$this->getContentsCollection()->findById("5652dcb945205e0d726d6caf", true, false);
+        $contextualContent=$this->getContentsCollection()->findById("54818dd345205e1f538b456c", true, false);
         file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ".json_encode($contextualContent)."\n", FILE_APPEND | LOCK_EX);            
+
+        $this->_dataService = Manager::getService('ContentTypes');
         
         /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
         $queryParams = [
