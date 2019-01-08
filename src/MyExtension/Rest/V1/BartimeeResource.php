@@ -126,9 +126,13 @@ class BartimeeResource extends AbstractResource
             //$query=$this->getQueriesCollection()->findById("56502ef945205ea962ebefd0");
             //$myfilter = Filter::factory('Value')->setName('typeId')->setValue("5652dcb945205e0d726d6caf");
             $query = [
-                "contentTypes" => [
-                    "5652dcb945205e0d726d6caf"
+                "type" => "simple",
+                "query" => [
+                    "contentTypes" => [
+                        "5652dcb945205e0d726d6caf"
+                    ],
                 ],
+                "queryName" => "",
             ];
             $filters = $this->getQueriesCollection()->getFilterArrayByQuery($query);
             $filters["sort"] = array(["property"=>"text","direction"=>"ASC"]);
