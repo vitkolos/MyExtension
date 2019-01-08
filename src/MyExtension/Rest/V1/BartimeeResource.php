@@ -129,12 +129,16 @@ class BartimeeResource extends AbstractResource
                 "type" => "simple",
                 "query" => [
                     "contentTypes" => [
-                        "5652dcb945205e0d726d6caf"
+                        "5652dcb945205e0d726d6caf" // on ne veut que les contenus de type "Dons"
                     ],
                 ],
                 "queryName" => "",
             ];
             $filters = $this->getQueriesCollection()->getFilterArrayByQuery($query);
+            $posterieurs_a_lastdonation = Filter::factory('OperatorTovalue')->setName('lastUpdateTime')
+                                            ->setOperator('$gte')
+                                            ->setValue($lastDonation['lastUpdateTime']);
+            $filters["filter"]->addFilter($posterieurs_a_lastdonation);
             $filters["sort"] = array(["property"=>"text","direction"=>"ASC"]);
             $contents = $this->getContentsCollection()->getOnlineList($filters["filter"], $filters["sort"], 0, 10, false); //$this->getContentsCollection()->getOrderedList($filters['filter'], $filters['sort']); //getByType("5652dcb945205e0d726d6caf");
             return [
