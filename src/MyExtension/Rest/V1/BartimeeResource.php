@@ -126,6 +126,11 @@ class BartimeeResource extends AbstractResource
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ".json_encode($contextualContent)."\n", FILE_APPEND | LOCK_EX);    
         } catch (Exception $e) {
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ERROR \n", FILE_APPEND | LOCK_EX);
+            return [
+                'success' => false,
+                'errno' => 'CUSTOM_QUERY_FAILED',
+                'message' => $e->getMessage()
+            ];
         }        
 
         $this->_dataService = Manager::getService('ContentTypes');
