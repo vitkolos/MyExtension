@@ -123,8 +123,8 @@ class BartimeeResource extends AbstractResource
         //$filter = array();
         //$sort = array(["property"=>"text","direction"=>"DESC"]);
         try {
-            $myfilter = Filter::factory('And')
-                ->addFilter(Filter::factory('Value')->setName('typeId')->setValue("5652dcb945205e0d726d6caf"));
+            $query=$this->getQueriesCollection()->findById("56502ef945205ea962ebefd0");
+            $myfilter = Filter::factory('Value')->setName('typeId')->setValue("5652dcb945205e0d726d6caf");
             $contextualContent=$this->getContentsCollection()->getOrderedList($myfilter); //getByType("5652dcb945205e0d726d6caf");
             return [
                 'success' => false,
