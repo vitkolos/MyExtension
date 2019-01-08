@@ -141,7 +141,7 @@ class BartimeeResource extends AbstractResource
             ]
         ];
         $query = $this->getElasticDataSearchService();
-        $query::setIsFrontEnd(true);
+        //$query::setIsFrontEnd(true);
         $query->init();
         try {
             $results = $query->search($params, $this->searchOption);
