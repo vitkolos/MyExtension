@@ -140,10 +140,18 @@ class BartimeeResource extends AbstractResource
                                             ->setValue($lastDonation['lastUpdateTime']);
             $filters["filter"]->addFilter($posterieurs_a_lastdonation);
             $filters["sort"] = array(["property"=>"text","direction"=>"ASC"]);
-            $contents = $this->getContentsCollection()->getOnlineList($filters["filter"], $filters["sort"], 0, 10, false); //$this->getContentsCollection()->getOrderedList($filters['filter'], $filters['sort']); //getByType("5652dcb945205e0d726d6caf");
+            $result = $this->getContentsCollection()->getOnlineList($filters["filter"], $filters["sort"], 0, 1000, false); //$this->getContentsCollection()->getOrderedList($filters['filter'], $filters['sort']); //getByType("5652dcb945205e0d726d6caf");
+
+            // on parse les résultats pour qu'ils soient exploitables par Bartimée
+            $data = [];
+            foreach($result['data'] as $don) {
+                array_push($data, $don['fields']);
+            }
+
             return [
                 'success' => false,
-                'results' => $contents
+                'results' => $data,
+                'count' => count($data)
             ];
             //file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ".json_encode($contextualContent)."\n", FILE_APPEND | LOCK_EX);    
         } catch (Exception $e) {
