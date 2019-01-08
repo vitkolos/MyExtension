@@ -16,6 +16,7 @@
  */
 namespace RubedoAPI\Rest\V1;
 use Rubedo\Collection\AbstractLocalizableCollection; // added for debug purpose
+use WebTales\MongoFilters\Filter; // added for debug purpose
 use RubedoAPI\Entities\API\Definition\FilterDefinitionEntity;
 use RubedoAPI\Entities\API\Definition\VerbDefinitionEntity;
 use Zend\Json\Json;
@@ -122,8 +123,13 @@ class BartimeeResource extends AbstractResource
         //$filter = array();
         //$sort = array(["property"=>"text","direction"=>"DESC"]);
         try {
-            $a=1;
-            //$contextualContent=$this->getContentsCollection()->getOrderedList(); //getByType("5652dcb945205e0d726d6caf");
+            $myfilter = Filter::factory('And')
+                ->addFilter(Filter::factory('Value')->setName('typeId')->setValue("5652dcb945205e0d726d6caf"));
+            $contextualContent=$this->getContentsCollection()->getOrderedList($myfilter); //getByType("5652dcb945205e0d726d6caf");
+            return [
+                'success' => false,
+                'results' => $contextualContent
+            ];
             //file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ".json_encode($contextualContent)."\n", FILE_APPEND | LOCK_EX);    
         } catch (Exception $e) {
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ERROR \n", FILE_APPEND | LOCK_EX);
