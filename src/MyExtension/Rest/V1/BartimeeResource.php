@@ -119,12 +119,8 @@ class BartimeeResource extends AbstractResource
         $rightsSubRequest = $this->getContext()->forward()->dispatch('RubedoAPI\\Frontoffice\\Controller\\Api', $route);
         $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
 
-        // test request contents directly
-        //$filter = array();
-        //$sort = array(["property"=>"text","direction"=>"DESC"]);
+        // == 1. == On prépare la requête pour récupérer l'array des dons
         try {
-            //$query=$this->getQueriesCollection()->findById("56502ef945205ea962ebefd0");
-            //$myfilter = Filter::factory('Value')->setName('typeId')->setValue("5652dcb945205e0d726d6caf");
             $query = [
                 "type" => "simple",
                 "query" => [
@@ -140,32 +136,45 @@ class BartimeeResource extends AbstractResource
                                             ->setValue($lastDonation['lastUpdateTime']);
             $filters["filter"]->addFilter($posterieurs_a_lastdonation);
             $filters["sort"] = array(["property"=>"text","direction"=>"ASC"]);
-            $result = $this->getContentsCollection()->getOnlineList($filters["filter"], $filters["sort"], 0, 1000, false); //$this->getContentsCollection()->getOrderedList($filters['filter'], $filters['sort']); //getByType("5652dcb945205e0d726d6caf");
-
-            // on parse les résultats pour qu'ils soient exploitables par Bartimée
-            $data = [];
-            foreach($result['data'] as $don) {
-                array_push($data, $don['fields']);
-            }
-
-            return [
-                'success' => false,
-                'results' => $data,
-                'count' => count($data)
-            ];
-            //file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ".json_encode($contextualContent)."\n", FILE_APPEND | LOCK_EX);    
         } catch (Exception $e) {
-            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query ERROR \n", FILE_APPEND | LOCK_EX);
+            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query preparation ERROR ".($e->getMessage())." \n", FILE_APPEND | LOCK_EX);
             return [
                 'success' => false,
-                'errno' => 'CUSTOM_QUERY_FAILED',
+                'errno' => 'CONTENTS_QUERY_FAILED',
                 'message' => $e->getMessage()
             ];
-        }        
+        }
 
-        $this->_dataService = Manager::getService('ContentTypes');
+        // == 2. == On lance la requête
+        try {
+            $result = $this->getContentsCollection()->getOnlineList($filters["filter"], $filters["sort"], 0, 1000, false);
+        } catch (Exception $e) {
+            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- BartimeeResource.php > contents query execution ERROR ".($e->getMessage())." \n", FILE_APPEND | LOCK_EX);
+            return [
+                'success' => false,
+                'errno' => 'CONTENTS_QUERY_FAILED',
+                'message' => $e->getMessage()
+            ];
+        }
+
+        // == 3. == On parse les résultats pour qu'ils soient exploitables par Bartimée
+        $data = [];
+        foreach($result['data'] as $don) {
+            $don['fields']['title'] = $don['fields']['text'];
+            array_push($data, $don['fields']);
+        }
+
+        // == 4. == on renvoie le résultat
+        return [
+            'success' => true,
+            'results' => $data,
+            'count' => count($data)
+        ];
+                
+
+        /* $this->_dataService = Manager::getService('ContentTypes');
         
-        /*Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']*/
+        //Launch search in results with lastUpdateTime >  $lastDonation['lastUpdateTime']
         $queryParams = [
             "constrainToSite" => false,
             "displayMode" => "default",
@@ -209,7 +218,7 @@ class BartimeeResource extends AbstractResource
             'success' => true,
             'results' => $results['data'],
             'count' => $results['total']
-        ];
+        ]; */
     }
     /**
      * init params
