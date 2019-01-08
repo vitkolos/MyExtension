@@ -96,7 +96,7 @@ class BartimeeResource extends AbstractResource
             //throw new APIEntityException('Donation not found', 404);
             return [
                 'success' => false,
-                'error' => 'DONATION_NOT_FOUND',
+                'errno' => 'DONATION_NOT_FOUND',
                 'message' => 'Last donation with name "' . $inputs['lastinbartimee'] . '" could not be found in Contents'
             ];
         }
@@ -149,7 +149,7 @@ class BartimeeResource extends AbstractResource
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " -- ERROR in BartimeeResource.php > getAction : failed Elasticsearch Query ".json_encode($params)." -------- ERROR = " . $e->getMessage() . "\n", FILE_APPEND | LOCK_EX);
             return [
                 'success' => false,
-                'error' => 'ELASTICSEARCH_QUERY_FAILED',
+                'errno' => 'ELASTICSEARCH_QUERY_FAILED',
                 'message' => $e->getMessage()
             ];
         }
