@@ -119,7 +119,9 @@ class BartimeeResource extends AbstractResource
         $rightsSubRequest = $this->getContext()->forward()->dispatch('RubedoAPI\\Frontoffice\\Controller\\Api', $route);
         $output['currentUser'] = $rightsSubRequest->getVariables()['currentUser'];
 
+        // =======================================================================================
         // == 1. == On prépare la requête pour récupérer l'array des dons
+        // =======================================================================================
         try {
             $query = [
                 "type" => "simple",
@@ -145,7 +147,9 @@ class BartimeeResource extends AbstractResource
             ];
         }
 
+        // =======================================================================================
         // == 2. == On lance la requête
+        // =======================================================================================
         try {
             $result = $this->getContentsCollection()->getOnlineList($filters["filter"], $filters["sort"], 0, 1000, false);
         } catch (Exception $e) {
@@ -157,10 +161,13 @@ class BartimeeResource extends AbstractResource
             ];
         }
 
+        // =======================================================================================
         // == 3. == On parse les résultats pour qu'ils soient exploitables par Bartimée
+        // =======================================================================================
         $data = [];
         foreach($result['data'] as $don) {
             $don['fields']['title'] = $don['fields']['text'];
+            $don['fields']['lastUpdateTime'] = $don['lastUpdateTime'];
             array_push($data, $don['fields']);
         }
 
