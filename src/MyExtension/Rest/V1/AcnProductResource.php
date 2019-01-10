@@ -79,8 +79,9 @@ class AcnproductResource extends AbstractResource
 			$filter = Filter::factory()
 				->addFilter(Filter::factory('OperatorTovalue')->setName('orderNumber')->setOperator('$gte')->setValue($params["codeBarre"]));
             $content = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),0,null);
-            $user = $this->getUsersCollection()->findById('56bdb533c445ec56018b5319');
 			foreach($content['data'] as &$order) {
+                $user = $this->getUsersCollection()->findById($order['userId']);
+                $order['billingAddress']['tel'] = $user;
 				foreach($order['detailedCart']['cart'] as &$product) {
 					$productDetail = $contentsService->findById($product['productId'], true, false);
 					$product['sku'] = $productDetail['productProperties']['sku'];
