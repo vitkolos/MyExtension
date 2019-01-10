@@ -81,14 +81,14 @@ class AcnproductResource extends AbstractResource
             $content = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),0,null);
 			foreach($content['data'] as &$order) {
                 $user = $this->getUsersCollection()->findById($order['userId']);
-                $order['billingAddress']['tel'] = $user;
 				foreach($order['detailedCart']['cart'] as &$product) {
-					$productDetail = $contentsService->findById($product['productId'], true, false);
+                    $productDetail = $contentsService->findById($product['productId'], true, false);
 					$product['sku'] = $productDetail['productProperties']['sku'];
 					foreach($productDetail['productProperties']['variations'] as $variation) {
-						if($variation['id']==$product['variationId']) $product['variationSKU']=$variation['sku'];
+                        if($variation['id']==$product['variationId']) $product['variationSKU']=$variation['sku'];
 					}
 				}
+                $order['billingAddress']['tel'] = $user;
 			}
 		}
         
