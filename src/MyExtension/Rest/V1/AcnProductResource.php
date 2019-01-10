@@ -53,7 +53,7 @@ class AcnproductResource extends AbstractResource
     public function getAction($params)
     {
 	    $contentsService = Manager::getService('Contents');
-				if(!isset($params["orders"])) {//retourner les propriétés du produit
+		if(!isset($params["orders"])) {//retourner les propriétés du produit
 			
 	
 			$codeBarre=$params['codeBarre'];
@@ -78,7 +78,8 @@ class AcnproductResource extends AbstractResource
 		else {//retourner la liste des dernières commandes
 			$filter = Filter::factory()
 				->addFilter(Filter::factory('OperatorTovalue')->setName('orderNumber')->setOperator('$gte')->setValue($params["codeBarre"]));
-			$content = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),0,null);     
+            $content = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),0,null);
+            $user = $this->getUsersCollection()->findById('56bdb533c445ec56018b5319');
 			foreach($content['data'] as &$order) {
 				foreach($order['detailedCart']['cart'] as &$product) {
 					$productDetail = $contentsService->findById($product['productId'], true, false);
