@@ -96,7 +96,7 @@ class AcnproductResource extends AbstractResource
         
         return [
             'success' => true,
-            'content' => $content,
+            'content' => array('Louez le seigneur !'),//$content,
         ];
     }
  
