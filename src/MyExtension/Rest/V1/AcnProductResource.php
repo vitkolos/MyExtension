@@ -88,7 +88,7 @@ class AcnproductResource extends AbstractResource
                         if($variation['id']==$product['variationId']) $product['variationSKU']=$variation['sku'];
 					}
 				}
-                $order['billingAddress']['tel'] = $user;
+                $order['billingAddress']['tel'] = $user['fields']['tel1'];
 			}
 		}
         
