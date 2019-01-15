@@ -17,7 +17,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
                 url: '/backoffice/contents',
                 method: "GET",
                 params: {
-					tFilter: [{"property":"typeId","value":"55e86ef445205e8a1848409f"}],
+					tFilter: '[{"property":"typeId","value":"55e86ef445205e8a1848409f"}]',
 					workingLanguage: 'fr',
                     _dc: '1540472371822', page: 1, start: 0, limit: 5000
                 }
