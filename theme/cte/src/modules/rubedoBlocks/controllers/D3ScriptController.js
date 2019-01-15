@@ -6,9 +6,10 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
     var d3Code = config.d3Code ? config.d3Code : "";
     $scope.predefinedFacets = config.predefinedFacets ? config.predefinedFacets : "{ }";
     $scope.pageSize = config.pageSize ? config.pageSize : 5000;
-				$scope.loading = true;
-				var mapType = config.mapType ? config.mapType : 'cte';
-				//$scope.clearORPlaceholderHeight();
+	$scope.loading = true;
+	var mapType = config.mapType ? config.mapType : 'cte';
+	
+	// Fonction de récupération des données des pays (Contents > Z_Pays)
 	$scope.retrieveData = async function(params, successFunction, failureFunction) {
 		console.log('retrieveData params : ', params);
 		let http_res;
@@ -22,15 +23,19 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
                     _dc: '1540472371822', page: 1, start: 0, limit: 5000
                 }
             })
-            console.log('res = ', http_res);
+			console.log('res = ', http_res);
+
+			// une fois les données récupérées, on les parse dans le bon format pour la carte intéractive
             parseMapData(http_res.data.data);
 			successFunction(me.countryList);
 			return;
         } catch(e) {
-			console.log("Erreur dans getMailingListUsers", e);
+			console.log("Erreur dans retrieveData lors de la récupération des données des pays", e);
 			failureFunction(e);
         }
 	}
+
+	// fonction de parsing des données des pays pour les mettre dans le bon format pour la carte interactive
 	function parseMapData(data) {
 		me.countryList = {};
 		for (let country of data) {
@@ -55,7 +60,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 			}
 		}
 	}
-    $scope.retrieveData2=function(params, successFunction, failureFunction ){
+    /* $scope.retrieveData2=function(params, successFunction, failureFunction ){
         var options={
             start: 0,
             limit: $scope.pageSize,
@@ -103,7 +108,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
                 failureFunction(response.data);
             }
         );
-    };
+    }; */
     me.html=$sce.trustAsHtml(d3Code);
 
 }]);
