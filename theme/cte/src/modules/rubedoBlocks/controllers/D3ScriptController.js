@@ -11,7 +11,6 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 	
 	// Fonction de récupération des données des pays (Contents > Z_Pays)
 	$scope.retrieveData = async function(params, successFunction, failureFunction) {
-		console.log('retrieveData params : ', params);
 		let http_res;
         try {
             http_res = await $http({
@@ -23,7 +22,6 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
                     _dc: '1540472371822', page: 1, start: 0, limit: 5000
                 }
             })
-			console.log('res = ', http_res);
 
 			// une fois les données récupérées, on les parse dans le bon format pour la carte intéractive
             parseMapData(http_res.data.data);

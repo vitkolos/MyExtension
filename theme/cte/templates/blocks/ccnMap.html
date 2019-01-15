@@ -71,6 +71,7 @@
                 borderWidth: 1,
                 borderColor: 'grey',
                 popupTemplate: function(geography, data) { //this function should just return a string
+                    console.log('details', geography, data)
                     var name = "", text="";
                     if(!data) return '<div class="hoverinfo"><strong>'+geography.properties.name
                                         +'</strong></div>';
@@ -86,7 +87,6 @@
             },
             done: function(map) {
               map.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-                  console.log('debug map', map, geography)
                   if(map.options.data[geography.id] && map.options.data[geography.id].url) 
                     window.location.href = map.options.data[geography.id].url;
               });
@@ -110,6 +110,6 @@
         });
         
     };
-    angular.element("#map_container").scope().retrieveData({searchMode:'default'},function(a){console.log('received map data', a);processData(a);}, function(b,c){});
+    angular.element("#map_container").scope().retrieveData({searchMode:'default'},function(a){processData(a);}, function(b,c){});
 
 </script>
