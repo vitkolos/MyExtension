@@ -23,13 +23,37 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
                 }
             })
             console.log('res = ', http_res);
-            me.countryList = http_res.data.data;
+            me.countryList = parseMapData(http_res.data.data);
 			successFunction(me.countryList);
 			return;
         } catch(e) {
 			console.log("Erreur dans getMailingListUsers", e);
 			failureFunction(e);
         }
+	}
+	function parseMapData(data) {
+		me.countryList = {};
+		for (let country of data) {
+			let id = country.fields.id;
+			me.countryList[id] = {
+				name: country.text,
+				fillKey: country.fields.presence,
+				text: ''
+			}
+			if (mapType != 'cte') {
+				if (country.fields[mapType] && country.fields[mapType] != "") me.countryList[id].url = country.fields[mapType][0];
+				else if (country.fields.presence == "active") me.countryList[id]['fillKey'] = 'not';
+			}
+			else {
+				if (country.fields.url) me.countryList[id].url = country.fields.url;
+				let missions = ["cana","1418","1830","foyers","jet","netforgod"];
+				for (let i = 0; i < missions.length; i++) {
+					if (country.fields[missions[i]] && country.fields[missions[i]]!="") {
+						me.countryList[id]['text'] += translations['Missions.'+missions[i]]+'<br/>';
+					}
+				}
+			}
+		}
 	}
     $scope.retrieveData2=function(params, successFunction, failureFunction ){
         var options={
