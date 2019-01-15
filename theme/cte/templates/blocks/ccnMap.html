@@ -71,8 +71,7 @@
                 borderWidth: 1,
                 borderColor: 'grey',
                 popupTemplate: function(geography, data) { //this function should just return a string
-                    console.log('details', geography, data)
-                    var name = "", text="";
+                    let name = "", text="";
                     if(!data) return '<div class="hoverinfo"><strong>'+geography.properties.name
                                         +'</strong></div>';
                     else  return '<div class="hoverinfo"><strong>' + data.name
