@@ -23,7 +23,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
                 }
             })
             console.log('res = ', http_res);
-            me.countryList = parseMapData(http_res.data.data);
+            parseMapData(http_res.data.data);
 			successFunction(me.countryList);
 			return;
         } catch(e) {
