@@ -53,7 +53,7 @@ class AcnproductResource extends AbstractResource
     public function getAction($params)
     {
 	    $contentsService = Manager::getService('Contents');
-				if(!isset($params["orders"])) {//retourner les propriétés du produit
+		if(!isset($params["orders"])) {//retourner les propriétés du produit
 			
 	
 			$codeBarre=$params['codeBarre'];
@@ -78,15 +78,17 @@ class AcnproductResource extends AbstractResource
 		else {//retourner la liste des dernières commandes
 			$filter = Filter::factory()
 				->addFilter(Filter::factory('OperatorTovalue')->setName('orderNumber')->setOperator('$gte')->setValue($params["codeBarre"]));
-			$content = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),0,null);     
+            $content = $this->getOrdersCollection()->getList($filter, array(array('property' => 'createTime', 'direction' => 'desc')),0,null);
 			foreach($content['data'] as &$order) {
+                $user = $this->getUsersCollection()->findById($order['userId']);
 				foreach($order['detailedCart']['cart'] as &$product) {
-					$productDetail = $contentsService->findById($product['productId'], true, false);
+                    $productDetail = $contentsService->findById($product['productId'], true, false);
 					$product['sku'] = $productDetail['productProperties']['sku'];
 					foreach($productDetail['productProperties']['variations'] as $variation) {
-						if($variation['id']==$product['variationId']) $product['variationSKU']=$variation['sku'];
+                        if($variation['id']==$product['variationId']) $product['variationSKU']=$variation['sku'];
 					}
 				}
+                $order['billingAddress']['tel1'] = $user['fields']['tel1'];
 			}
 		}
         
