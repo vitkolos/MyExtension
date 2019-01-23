@@ -30,7 +30,6 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 
 			// une fois les données récupérées, on les parse dans le bon format pour la carte intéractive
 			parseMapData(http_res.data.contents);
-			//console.log('countryList1', me.countryList);
 			successFunction(me.countryList);
 			return;
         } catch(e) {
@@ -42,21 +41,13 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 	// fonction de parsing des données des pays pour les mettre dans le bon format pour la carte interactive
 	function parseMapData(data) {
 		me.countryList = {};
-		/* let country_iso = {
-			UKR: 'ua',
-			POL: 'pl',
-			MAU: 'mu',
-			MAT: 'fr',
-			ISR: 'il',
-			SYC: 'sc',
-		} */
+	
 		for (let country of data) {
 			let id = country.fields.id;
-			//let id_iso = id.substr(0, 2).toLowerCase();
+
 			me.countryList[id] = {
 				name: country.text,
 				fillKey: country.fields.presence,
-				//id_iso: (country_iso[id_iso]) ? country_iso[id_iso] : id_iso,
 				text: ''
 			}
 			if (mapType != 'cte') {
