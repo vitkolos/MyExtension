@@ -60,7 +60,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 				text: ''
 			}
 			if (mapType != 'cte') {
-				if (country.fields[mapType] && country.fields[mapType] != "") me.countryList[id].url = country.fields[mapType][0];
+				if (country.fields[mapType] && country.fields[mapType] != "") me.countryList[id].url = country.fields[mapType];
 				else if (country.fields.presence == "active") me.countryList[id]['fillKey'] = 'not';
 			}
 			else {
