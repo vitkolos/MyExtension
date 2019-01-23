@@ -31,7 +31,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 					limit: 1000,
 				}
 			});
-			console.log('HTTP RES', htt_pres);
+			console.log('HTTP RES', http_res);
 
 			// une fois les données récupérées, on les parse dans le bon format pour la carte intéractive
             parseMapData(http_res.data.data);
