@@ -13,7 +13,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 	$scope.retrieveData = async function(params, successFunction, failureFunction) {
 		let http_res;
         try {
-            http_res = await $http({
+            /* http_res = await $http({
                 url: '/backoffice/contents',
                 method: "GET",
                 params: {
@@ -21,7 +21,17 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 					workingLanguage: 'fr',
                     _dc: '1540472371822', page: 1, start: 0, limit: 5000
                 }
-            })
+			}) */
+			http_res = await $http({
+				url: '/api/v1/contents',
+				method: "GET",
+				params: {
+					queryId: '5c4826b03965883c72f64c93', // la query enregistrée pour récupérer les contenus Z_pays
+					start: 0,
+					limit: 1000,
+				}
+			});
+			console.log('HTTP RES', htt_pres);
 
 			// une fois les données récupérées, on les parse dans le bon format pour la carte intéractive
             parseMapData(http_res.data.data);
