@@ -65,9 +65,8 @@
             },
             done: function(map) {
               map.svg.selectAll('.datamaps-subunit').on('click', function(geography) {
-                  console.log('geography', geography, map);
-                  /* if(map.options.data[geography.id] && map.options.data[geography.id].url) 
-                    window.location.href = map.options.data[geography.id].url; */
+                  if(map.options.data[geography.id] && map.options.data[geography.id].url) 
+                    window.location.href = map.options.data[geography.id].url;
               });
             }
            
