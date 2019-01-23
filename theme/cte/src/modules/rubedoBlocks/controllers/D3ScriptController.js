@@ -22,8 +22,11 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
                     _dc: '1540472371822', page: 1, start: 0, limit: 5000
                 }
 			}) */
+			let fields = ['1418', '1830', 'id', 'presence', 'url', 'cana', 'foyers', 'jet', 'netforgod'];
+			let fields_url_params = 'fields%5B%5D=' + fields.join('&fields%5B%5D=');
+			
 			http_res = await $http({
-				url: '/api/v1/contents?fields%5B%5D=1418&fields%5B%5D=1830&fields%5B%5D=netforgod',
+				url: '/api/v1/contents?' + fields_url_params,
 				method: "GET",
 				params: {
 					queryId: '5c4826b03965883c72f64c93', // la query enregistrée pour récupérer les contenus Z_pays
