@@ -27,6 +27,7 @@ angular.module("rubedoBlocks").lazy.controller('D3ScriptController',['$scope','$
 				method: "GET",
 				params: {
 					queryId: '5c4826b03965883c72f64c93', // la query enregistrée pour récupérer les contenus Z_pays
+					'fields[]': '1418',
 					start: 0,
 					limit: 1000,
 				}
