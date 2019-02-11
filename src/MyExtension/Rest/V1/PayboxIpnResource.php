@@ -93,11 +93,11 @@ class PayboxIpnResource extends AbstractResource {
         else $erreurMessage = $this->getErrorMessage($params['erreur']);
           
         //autorisation
-       if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
+        if($params['autorisation'] && $params['autorisation']!="") $autorisation = true;
         else $erreurMessage .= " Pas d'autorisation de Paybox. ";
 
 
-if(!($erreurStatus) && $securite && $autorisation) {
+        if(!($erreurStatus) && $securite && $autorisation) {
             // ENREGISTRER LE PAIEMENT DANS LA BASE DE DONNEES
             //pour inscription, on récupère le contenu inscription et on change le statut
             $commande = explode("|", $params['commande']); // $codeCompta . "|" .$idInscription . "|" . $proposition . "|" . $prenom . "|" . $nom . "|" . $email; 
@@ -227,7 +227,11 @@ if(!($erreurStatus) && $securite && $autorisation) {
     }
 
 
-
+    protected function writeLog($title, $msg) {
+        if (gettype($msg) != 'string') $msg = json_encode($msg);
+        $msg = $title.' :: '.$msg;
+        file_put_contents('/var/www/html/rubedo/log/custom_debug_paybox_ipn.log', date("Y-m-d H:i") . $msg . "\n", FILE_APPEND | LOCK_EX);
+    }
     
     
 

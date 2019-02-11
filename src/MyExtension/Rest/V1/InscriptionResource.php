@@ -46,15 +46,15 @@ class InscriptionResource extends AbstractResource
             );
         }
 								/*only get registrations in the default workspace of the user for security*/
-								$writeWorkspaces = Manager::getService('CurrentUser')->getWriteWorkspaces();
+        $writeWorkspaces = Manager::getService('CurrentUser')->getWriteWorkspaces();
 								/*$filters->addFilter(
                 Filter::factory('Value')->setName('writeWorkspace')
 																				->setValue((string)$mainWorkspace['id'])
         );*/
-								$filters->addFilter(
-												Filter::factory('In')->setName('writeWorkspace')
-																->setValue($writeWorkspaces)
-								);
+        $filters->addFilter(
+            Filter::factory('In')->setName('writeWorkspace')
+                            ->setValue($writeWorkspaces)
+        );
         $contentType = Manager::getService("ContentTypes")->findById($typeId);
         $filters->addFilter(
             Filter::factory('Value')->setName('typeId')
