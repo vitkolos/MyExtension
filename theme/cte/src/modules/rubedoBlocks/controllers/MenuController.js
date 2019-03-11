@@ -26,7 +26,8 @@
 	me.getMenu = function(){
 	    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
 		if (response.data.success){
-		    me.menu=response.data.menu;
+			me.menu=response.data.menu;
+			console.log('menu', me.menu)
 		    $scope.clearORPlaceholderHeight();
 		} else {
 		    me.menu={};
