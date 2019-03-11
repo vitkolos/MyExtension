@@ -160,8 +160,8 @@
                 <div class="col-sm-8"><input type="text" id="tel1" name="tel1"  ng-model="inscription.tel1" placeholder="{{formCtrl.paymentmeans.nativePMConfig.format_telephone}}"   ng-required="isTelephoneRequired()"></div>
                 <p ng-class=" {'txt-red' : isTelephoneRequired()}" class="infos_validation">** {{rubedo.translate("Block.Inscription.Telephone.Condition")}}</p>
             </div>   
-            <p>date mariage ? {{(formCtrl.form.situation_conjugale)?'yes':'no'}} & {{pageCANA}} = {{(formCtrl.form.situation_conjugale && pageCana)?'yes':'no'}}</p>
-            <div class="row" ng-if="formCtrl.form.situation_conjugale && pageCana">
+            <p>date mariage ? {{formCtrl.form.situation_conjugale}} & {{pageCANA}} = {{(formCtrl.form.situation_conjugale && pageCANA)?'yes':'no'}}</p>
+            <div class="row" ng-if="formCtrl.form.situation_conjugale && pageCANA">
                     <p>YES!!!</p>
                  <div class="col-sm-4"><label for="classe" class="label_style">{{rubedo.translate("Block.Inscription.SituationConjugale")}}</label></div>
                  <div class="col-sm-8">
