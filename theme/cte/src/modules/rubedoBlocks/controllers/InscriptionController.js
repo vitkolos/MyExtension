@@ -195,7 +195,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 }
             });           
         });
-        console.log('form questions loaded, me.form=', me.form)
+        console.log('form questions loaded, me=', me)
     };
     /*récupérer le formulaire pour l'inscription*/
     if (me.content.fields.formulaire_pdf && me.content.fields.formulaire_pdf!="") {
