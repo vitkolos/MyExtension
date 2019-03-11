@@ -9,7 +9,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     let LOG_INFO = 1; let LOG_WARN = 2; let LOG_ERR = 3; let LOG_LEVELS = [0, 'INFO', 'WARNING', 'ERROR'];
     let log = (niveau, msg, ...arg_list) => (SANDBOX) ? console.log(niveau, msg, ...arg_list): '';
     if (SANDBOX) {
-        console.log('%c === SANDBOX MODE IS ON 4 InscriptionController === ', 'background: #c1573c;color: white;')
+        console.log('%c === SANDBOX MODE IS ON for InscriptionController === ', 'background: #c1573c;color: white;')
     }
     // ==============================================================================
     
@@ -62,6 +62,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     if($scope.rubedo.current.page.maskId == '56743f423bc325811d8b457a'){
         $scope.pageCANA=true;
     }
+    console.log('pageCana ?', $scope.pageCANA)
 				
 
 
