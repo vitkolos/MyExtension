@@ -1,7 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService) {
     
     // ==============================================================================
-    //                INIT SANDBOX PARAMS
+    //                INIT SANDBOX PARAMS FOR DEBUG
     // ==============================================================================
 
     let SANDBOX = false;
@@ -62,7 +62,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     if($scope.rubedo.current.page.maskId == '56743f423bc325811d8b457a'){
         $scope.pageCANA=true;
     }
-    console.log('pageCana ?', $scope.pageCANA)
 				
 
 
@@ -197,6 +196,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         });
         console.log('form questions loaded, me=', me, $scope.pageCANA, $scope)
     };
+
     /*récupérer le formulaire pour l'inscription*/
     if (me.content.fields.formulaire_pdf && me.content.fields.formulaire_pdf!="") {
         RubedoMediaService.getMediaById(me.content.fields.formulaire_pdf).then(
@@ -228,7 +228,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     //informations sur les moyens de payement
     me.paymentmeans = $scope.contentDetailCtrl.paymentmeans;
-    console.log("ME", me);
     me.currentStage = 1;
     // affichage des sections du formulaire
     me.toggleStage = function(newStage){
@@ -255,11 +254,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     $scope.mailError = false;
                     me.currentStage=1;
                 }
-                else if (me.isComplement) {me.toggleStage(2);$scope.mailError = false;$scope.mailError2 = false;}
-                else if (me.isTransport) {me.toggleStage(3);$scope.mailError = false;$scope.mailError2 = false;}
-                else if (me.isLogement) {me.toggleStage(4);$scope.mailError = false;$scope.mailError2 = false;}
-                else if(me.isPaiement) {me.toggleStage(5);$scope.mailError = false;$scope.mailError2 = false;}
-                else {me.toggleStage(6);$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isComplement)   {me.toggleStage(2);$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isTransport)    {me.toggleStage(3);$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isLogement)     {me.toggleStage(4);$scope.mailError = false;$scope.mailError2 = false;}
+                else if(me.isPaiement)      {me.toggleStage(5);$scope.mailError = false;$scope.mailError2 = false;}
+                else                        {me.toggleStage(6);$scope.mailError = false;$scope.mailError2 = false;}
             }
             else if (step==2) {
                 log(LOG_INFO, 'STEP 2');
