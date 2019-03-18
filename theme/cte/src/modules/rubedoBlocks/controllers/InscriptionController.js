@@ -228,6 +228,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     //informations sur les moyens de payement
     me.paymentmeans = $scope.contentDetailCtrl.paymentmeans;
+    console.log("ME", me);
     me.currentStage = 1;
     // affichage des sections du formulaire
     me.toggleStage = function(newStage){
