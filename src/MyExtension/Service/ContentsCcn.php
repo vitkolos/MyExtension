@@ -263,14 +263,11 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
      */
     public function update(array $obj, $options = array(), $live = true)
     {
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn entered, finding by id : ".json_encode($obj)."\n", FILE_APPEND | LOCK_EX);
         $origObj = $this->findById($obj['id'], $live, false);
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn entered, found by id : ".json_encode($origObj)."\n", FILE_APPEND | LOCK_EX);
         if (!self::isUserFilterDisabled()) {
             if (isset($origObj['readOnly']) && $origObj['readOnly']) {
                 $aclServive = Manager::getService('Acl');
                 $currentUser=Manager::getService('CurrentUser')->getCurrentUser();
-                file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn Got current user \n", FILE_APPEND | LOCK_EX);
                 if (!$aclServive->hasAccess("write.fo.contents.".$obj["status"])||$currentUser['id']!=$origObj['createUser']['id']) {
                     throw new Access('No rights to update this content', "Exception33");
                 }
@@ -290,7 +287,7 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
         $obj = $this->_filterInputData($obj);
         
         if ($this->_isValidInput) {
-            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn before update : ".json_encode($obj)."\n", FILE_APPEND | LOCK_EX);
+            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn before update : ".json_encode($obj)." ### ".json_encode($options)." ## ".json_encode($live)."\n", FILE_APPEND | LOCK_EX);
             $returnArray = parent::update($obj, $options, $live);
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn after update : ".json_encode($returnArray)."\n", FILE_APPEND | LOCK_EX);
         } else {
