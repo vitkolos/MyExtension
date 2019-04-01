@@ -234,8 +234,9 @@ class InscriptionResource extends AbstractResource
             "cs" =>array("fields" => array("text"=>$content["fields"]["text"]))
 		);
         $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription updating content : ' . $content . "\n", FILE_APPEND | LOCK_EX);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription updating content : ' . json_encode($content) . "\n", FILE_APPEND | LOCK_EX);
         $result = $contentsService->update($content, array(),false);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription content updated : ' . json_encode($result) . "\n", FILE_APPEND | LOCK_EX);
         $inscriptionNumber = $content["fields"]["value"];
         //GET SITE CONFIG
         file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription getting site config : ' . json_encode($inscriptionForm) . "\n", FILE_APPEND | LOCK_EX);
