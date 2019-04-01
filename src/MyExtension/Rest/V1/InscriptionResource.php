@@ -266,7 +266,9 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['online'] = true;
         $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription just before creation : ' . json_encode($inscriptionForm) . "\n", FILE_APPEND | LOCK_EX);
         $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription just after creation : ' . json_encode($resultInscription) . "\n", FILE_APPEND | LOCK_EX);
 
         //GET PAYEMENT INFOS
         if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {
