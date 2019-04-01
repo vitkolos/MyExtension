@@ -216,6 +216,7 @@ class InscriptionResource extends AbstractResource
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription finding content by id : ' . $id . "\n", FILE_APPEND | LOCK_EX);
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] +=1;
         $content['i18n'] =  array(
@@ -232,10 +233,12 @@ class InscriptionResource extends AbstractResource
             "nl" =>array("fields" => array("text"=>$content["fields"]["text"])),
             "cs" =>array("fields" => array("text"=>$content["fields"]["text"]))
 		);
-	    $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
+        $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription updating content : ' . $content . "\n", FILE_APPEND | LOCK_EX);
         $result = $contentsService->update($content, array(),false);
         $inscriptionNumber = $content["fields"]["value"];
         //GET SITE CONFIG
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription getting site config : ' . json_encode($inscriptionForm) . "\n", FILE_APPEND | LOCK_EX);
         $siteConfig = Manager::getService("SitesConfigCcn")->getConfig()['paymentConfig']['nativePMConfig'];
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
