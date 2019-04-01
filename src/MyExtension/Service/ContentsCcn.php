@@ -270,6 +270,7 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
             if (isset($origObj['readOnly']) && $origObj['readOnly']) {
                 $aclServive = Manager::getService('Acl');
                 $currentUser=Manager::getService('CurrentUser')->getCurrentUser();
+                file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn Got current user \n", FILE_APPEND | LOCK_EX);
                 if (!$aclServive->hasAccess("write.fo.contents.".$obj["status"])||$currentUser['id']!=$origObj['createUser']['id']) {
                     throw new Access('No rights to update this content', "Exception33");
                 }
@@ -287,7 +288,9 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
             $obj['target'][] = $obj['writeWorkspace'];
         }
         $obj = $this->_filterInputData($obj);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn before validation : ".json_encode($this->_isValidInput)."\n", FILE_APPEND | LOCK_EX);
         if ($this->_isValidInput) {
+            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn before update : ".json_encode($obj)."\n", FILE_APPEND | LOCK_EX);
             $returnArray = parent::update($obj, $options, $live);
         } else {
             $returnArray = array(
