@@ -263,7 +263,9 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
      */
     public function update(array $obj, $options = array(), $live = true)
     {
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn entered, finding by id : ".json_encode($obj)."\n", FILE_APPEND | LOCK_EX);
         $origObj = $this->findById($obj['id'], $live, false);
+        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn entered, found by id : ".json_encode($origObj)."\n", FILE_APPEND | LOCK_EX);
         if (!self::isUserFilterDisabled()) {
             if (isset($origObj['readOnly']) && $origObj['readOnly']) {
                 $aclServive = Manager::getService('Acl');
