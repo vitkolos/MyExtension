@@ -235,11 +235,12 @@ class InscriptionResource extends AbstractResource
 		);
         $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
         file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription updating content : ' . json_encode($content) . "\n", FILE_APPEND | LOCK_EX);
+        $result = null;
         try {
             $result = $contentsService->update($content, array(),false);
         } catch(\Exception $e) {
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' ERROR Inscription content update failed : ' . json_encode($e) . " -- " . $e->getMessage() . "\n", FILE_APPEND | LOCK_EX);
-            throw new \Exception('Unable to update inscription number special content');
+            return array('success' => false,'error'=> 'Inscription failed, unable to update inscription number');
         }
         file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription content updated : ' . json_encode($result) . "\n", FILE_APPEND | LOCK_EX);
         $inscriptionNumber = $content["fields"]["value"];
