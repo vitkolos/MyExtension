@@ -216,7 +216,6 @@ class InscriptionResource extends AbstractResource
 
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         $contentsService = Manager::getService("ContentsCcn");
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription finding content by id : ' . $id . "\n", FILE_APPEND | LOCK_EX);
         $content = $contentsService->findById($id,false,false);
         $content["fields"]["value"] +=1;
         $content['i18n'] =  array(
@@ -234,7 +233,6 @@ class InscriptionResource extends AbstractResource
             "cs" =>array("fields" => array("text"=>$content["fields"]["text"]))
 		);
         $content['i18n'][$params['lang']->getLocale()]['fields']['text'] = $content["fields"]["text"];
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription updating content : ' . json_encode($content) . "\n", FILE_APPEND | LOCK_EX);
         $result = null;
         try {
             $result = $contentsService->update($content, array(),false);
@@ -242,10 +240,8 @@ class InscriptionResource extends AbstractResource
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' ERROR Inscription content update failed : ' . json_encode($e) . " -- " . $e->getMessage() . "\n", FILE_APPEND | LOCK_EX);
             return array('success' => false,'error'=> 'Inscription failed, unable to update inscription number');
         }
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription content updated : ' . json_encode($result) . "\n", FILE_APPEND | LOCK_EX);
         $inscriptionNumber = $content["fields"]["value"];
         //GET SITE CONFIG
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription getting site config : ' . json_encode($inscriptionForm) . "\n", FILE_APPEND | LOCK_EX);
         $siteConfig = Manager::getService("SitesConfigCcn")->getConfig()['paymentConfig']['nativePMConfig'];
         //PREPARE INSCRIPTION
         $inscriptionForm=[];
@@ -276,9 +272,7 @@ class InscriptionResource extends AbstractResource
         $inscriptionForm['online'] = true;
         $inscriptionForm['startPublicationDate'] = ""; $inscriptionForm['endPublicationDate'] = "";
         $inscriptionForm['nativeLanguage'] = $params['lang']->getLocale();
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription just before creation : ' . json_encode($inscriptionForm) . "\n", FILE_APPEND | LOCK_EX);
         $resultInscription = $contentsService->create($inscriptionForm, array(),false,false);
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' Inscription just after creation : ' . json_encode($resultInscription) . "\n", FILE_APPEND | LOCK_EX);
 
         //GET PAYEMENT INFOS
         if($inscriptionForm['fields']['montantAPayerMaintenant']>0) {

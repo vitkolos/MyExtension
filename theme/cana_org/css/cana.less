@@ -275,11 +275,58 @@ p.linkbox a, p.linkbox a:hover{color: @grey; text-decoration: none; display: inl
 
 /*SLIDER*/
 
-.carousel-control{
+/* .carousel-control{
 	background-image: none !important; cursor: pointer;width:10%;opacity:0.9;
 	span{
 		position: relative;font-size: 1.5em;
 		width: 35px; height: 35px; border: 1px solid white; border-radius: 5px;
 		&:hover{border-color: @bleu_bethanien; background-color: @bleu_bethanien}
+	}
+} */
+
+.rubedo-block-carrousel {
+  margin-top: 30px;
+}
+
+.owl-item a, .owl-item img {
+  display: block;
+  width: 73vw;
+}
+
+.rubedo-caption {
+  background-color: #2e2c29;
+  padding: 50px;
+  padding-top: 100px;
+  text-align: left;
+  opacity: 1;
+  width: 27vw;
+  height: 100%;
+  margin-left: 73vw;
+  position: absolute;
+  right:0px!important;
+}
+
+.rubedo-caption h3 {
+  border-bottom: 1px solid #fff;
+  padding-bottom: 12px;
+  margin-top: 0;
+}
+
+.owl-theme .owl-controls {
+    position: absolute;
+    right: 0;
+    margin-top: -30px!important;
+    margin-right: 10px;
+}
+
+.owl-theme .owl-controls .owl-page.active span {
+    background: #c1573c;
+}
+
+@media screen and (min-width: 992px) {
+	.rubedo-caption {
+			width: 32%;
+			height: 100%;
+			margin-left: 68%;
 	}
 }

@@ -287,7 +287,6 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
         $obj = $this->_filterInputData($obj);
         
         if ($this->_isValidInput) {
-            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn before update : ".json_encode($obj)." ### ".json_encode($options)." ## ".json_encode($live)."\n", FILE_APPEND | LOCK_EX);
             $returnArray = parent::update($obj, $options, $live);
             file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn after update : ".json_encode($returnArray)."\n", FILE_APPEND | LOCK_EX);
         } else {
@@ -297,7 +296,6 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
                 'inputErrors' => $this->_inputDataErrors
             );
         }
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn returning success I think\n", FILE_APPEND | LOCK_EX);
         if ($returnArray["success"] && $live) {
             $this->_indexContent($returnArray['data']);
         }
