@@ -31,6 +31,7 @@
         RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
+                console.log('menuctrl', me);
             } else {
                 me.menu={};
             }
