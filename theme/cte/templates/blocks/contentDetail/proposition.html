@@ -205,7 +205,7 @@
 						</div>
 						<!--si un plusieurs types de public accueillis-->
 						<div ng-if="(contentDetailCtrl.content.fields.publics).length>1" class="col-sm-6 text-center">
-							<div class="button rouge cursor-as-pointer"   style="margin-bottom:12px" >{{rubedo.translate("Block.Inscription.Inscrire.Comme","S'inscrire comme")}}:</div>
+							<div class="button rouge cursor-as-pointer"   style="margin-bottom:12px" >{{rubedo.translate("Block.Inscription.Inscrire.Comme","S'inscrire comme")}}</div>
 							        <!--Type de public -->
 								<div ng-repeat="public in contentDetailCtrl.content.fields.publics track by $index" class="text-center">
 	
@@ -220,7 +220,7 @@
 						</div>
 						<!--si un plusieurs types de public au service-->
 						<div ng-if="(contentDetailCtrl.content.fields.public_service).length>1" class="col-sm-6" ng-init="showTypeServiteurs=false">
-							<div class="button rouge cursor-as-pointer" ng-click="showTypeServiteurs= !showTypeServiteurs" style="margin-bottom:12px" >{{rubedo.translate("Block.Inscription.Inscrire.Service", "S'inscrire au service")}}:</div>
+							<div class="button rouge cursor-as-pointer" ng-click="showTypeServiteurs= !showTypeServiteurs" style="margin-bottom:12px" >{{rubedo.translate("Block.Inscription.Inscrire.Service", "S'inscrire au service")}}</div>
 							        <!--Type de public -->
 							<div ng-repeat="public in contentDetailCtrl.content.fields.public_service track by $index" class="text-center"><!-- ng-if="showTypeServiteurs" -->
 
