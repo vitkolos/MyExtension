@@ -393,7 +393,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         $scope.processForm=false;
                         $scope.finInscription=true; 
                         $scope.inscription={};
-                        $scope.message += $scope.rubedo.translate("Block.Inscription.Success","Votre inscription a bien été prise en compte. Merci et à bientôt !");
+                        $scope.message += $scope.rubedo.translate("Block.Inscription.Succes","Votre inscription a bien été prise en compte. Merci et à bientôt !");
                     }
                 }
                 else {
