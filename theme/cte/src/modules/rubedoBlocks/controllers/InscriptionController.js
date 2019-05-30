@@ -336,7 +336,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (!me.moyens_paiement_multiples) $scope.inscription.modePaiement = me.content.fields.moyens_paiement; // on force le moyen de paiement si jamais il n'y a pas le choix
 
             // on ajoute la date d'acceptation de la politique de confidentialité rgpd
-            $scope.inscription.date_rgpd_accepted = Date.now();
+            $scope.inscription.date_rgpd_accepted = Date.now()/1000;
             
             /*STATUS DE L'INSCRIPTION*/
             log(LOG_INFO, 'step6 --> niveau ', me.content.fields.inscriptionState.inscriptionState, me.isPaiement, $scope.inscription.paiement_maintenant);
