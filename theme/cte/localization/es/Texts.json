@@ -104,7 +104,7 @@
 	"Block.Inscription.Mariage": "Fecha de matrimonio:",
 	"Block.Inscription.Mariage.Fiances": "Fecha de matrimonio si la saben:",
 	"Block.Inscription.Fiances": "Proyecto de matrimonio",
-	"Block.Inscription.Inscrire.Service": "Inscribirse en el servicio",
+	"Block.Inscription.Inscrire.Service": "Inscribirse al servicio",
 	"Block.Inscription.Paf": "Participación en los gastos:",
 	"Block.Inscription.Paf.Problemes": "El dinero no debe ser un obstáculo",
 	"Block.Inscription.Paf.Montant": "Importe",
@@ -123,7 +123,7 @@
 	"Block.Inscription.Motivation": "Para que la inscripción sea completa, gracias por enviar una carta de motivación à la dirección de la secretaría indicada más arriba.",
 	"Block.Inscription.Formulaire_": "Para que su inscripción sea completa, por favor imprimir y rellenar a mano el formulario complementario siguiente y enviarlo a la dirección de la secretaria indicada más arriba.",
 	"Block.Inscription.FormulaireEtMotiv": "Para que su inscripción sea completa, por favor escribir una carta de motivación, imprimir el formulario complementario siguiente, rellenarlo a mano et enviar esos dos documentos a la dirección de la secretaria indicada más arriba.",
-	"Block.Inscription.Succes": "Su inscripción ha sido recibida. Gracias.",
+	"Block.Inscription.Succes": "Su inscripción ha sido registrada",
 	"Block.Inscription.PaimentComplementaire": "",
 	"Block.Inscription.PaimentComplementaire.Intro": "",
 	"Block.Inscription.PaimentComplementaire.Email": "",
@@ -169,5 +169,7 @@
 	"Block.Paiement.Acces": "",
 	"ccn": "",
 	"Time.de": "",
-	"couple_ephata": ""
+	"couple_ephata": "",
+	"Block.Inscription.PolitiqueRgpd": "la política de privacidad de la comunidad Chemin Neuf",
+	"Block.Inscription.Jaccepte": "Acepto"
 }

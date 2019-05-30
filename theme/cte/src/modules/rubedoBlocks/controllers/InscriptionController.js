@@ -12,12 +12,16 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         console.log('%c === SANDBOX MODE IS ON for InscriptionController === ', 'background: #c1573c;color: white;')
     }
     // ==============================================================================
+    // ==============================================================================
     
     var me = this;
     var themePath = '/theme/'+window.rubedoConfig.siteTheme;
     me.form = {};
     me.content = angular.copy($scope.proposition);
 
+    // =======================================================
+    //                  RGPD
+    // =======================================================
     // les différentes politiques de confidentialité par langue
     // (ce sont les ids des medias PDF correspondants)
     me.rgpd_links = {
@@ -25,6 +29,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         'cz': '5c9beca0396588b17af4b4ca',
         'cs': '5c9beca0396588b17af4b4ca',
     }
+    // on met le lien vers la bonne politique RGPD
+    $scope.parameters = {}
+    $scope.parameters.rgpd_media_id = me.rgpd_links["fr"];
+    if (me.content && me.content.locale && me.rgpd_links[me.content.locale]) $scope.parameters.rgpd_media_id = me.rgpd_links[me.content.locale];
+    // =======================================================
+    // =======================================================
 
     // on initialise les moyens de paiement autorisés (carte ou chèque)
     initMoyensPaiement()
@@ -33,13 +43,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     getForms($scope.contentDetailCtrl.content.public);
     $scope.inscription={};
     $scope.inscription.optionsPayantes={};
-    
-    // on met le lien vers la bonne politique RGPD
-    $scope.parameters = {}
-    $scope.parameters.rgpd_media_id = me.rgpd_links["fr"];
-    console.log("rgpd_media_id", $scope.parameters.rgpd_media_id)
-    if (me.content && me.content.locale && me.rgpd_links[me.content.locale]) $scope.parameters.rgpd_media_id = me.rgpd_links[me.content.locale];
-    console.log("rgpd_media_id", $scope.parameters.rgpd_media_id)
 
     //get proposition
     var propositionId = me.content.id;

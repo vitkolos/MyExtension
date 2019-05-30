@@ -169,5 +169,7 @@
 	"Block.Paiement.Acces": "",
 	"ccn": "",
 	"Time.de": "from",
-	"couple_ephata": "Couple"
+	"couple_ephata": "Couple",
+	"Block.Inscription.PolitiqueRgpd": "the privacy policy of the Chemin Neuf Community",
+	"Block.Inscription.Jaccepte": "I accept"
 }

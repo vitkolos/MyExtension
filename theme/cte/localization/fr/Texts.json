@@ -37,8 +37,6 @@
 	"Block.Inscription.Enfant.Fille": "Fille",
 	"Block.Inscription.Enfant.Garçon": "Garçon",
 	"Block.Inscription.Couple": "Le couple",
-	"Block.Inscription.Jaccepte": "J'accepte",
-	"Block.Inscription.PolitiqueRgpd": "la politique de confidentialité de la Communauté du Chemin Neuf",
 	"Block.Inscription.VoirPlan": "Voir le plan",
 	"Block.Inscription.Statut.Libre": "Accès libre, pas d'inscription nécessaire",
 	"Block.Inscription.Statut.Close": "Inscriptions fermées",
@@ -171,5 +169,7 @@
 	"Block.Paiement.Acces": "Ci-dessous, vous pouvez procéder au paiement : ",
 	"ccn": "Communauté du Chemin Neuf",
 	"Time.de": "de",
-	"couple_ephata": "Couple"
+	"couple_ephata": "Couple",
+	"Block.Inscription.PolitiqueRgpd": "la politique de confidentialité de la Communauté du Chemin Neuf",
+	"Block.Inscription.Jaccepte": "J'accepte"
 }
