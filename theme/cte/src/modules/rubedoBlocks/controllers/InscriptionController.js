@@ -18,6 +18,15 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.form = {};
     me.content = angular.copy($scope.proposition);
 
+    // les différentes politiques de confidentialité par langue
+    // (ce sont les ids des medias PDF correspondants)
+    me.rgpd_links = {
+        'fr': '5cada77739658847463d67dc',
+        'cz': '5c9beca0396588b17af4b4ca',
+        'cs': '5c9beca0396588b17af4b4ca',
+    }
+    me.rgpd_media_id = me.rgpd_links.fr;
+
     // on initialise les moyens de paiement autorisés (carte ou chèque)
     initMoyensPaiement()
     
