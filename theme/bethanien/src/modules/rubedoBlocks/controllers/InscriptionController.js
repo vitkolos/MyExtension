@@ -18,6 +18,22 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.form = {};
     me.content = angular.copy($scope.proposition);
 
+    // =======================================================
+    //                  RGPD
+    // =======================================================
+    // les différentes politiques de confidentialité par langue
+    // (ce sont les ids des medias PDF correspondants)
+    me.rgpd_links = {
+        'fr': '5cada77739658847463d67dc',
+    }
+    // on met le lien vers la bonne politique RGPD
+    $scope.parameters = {}
+    $scope.parameters.rgpd_media_id = me.rgpd_links["fr"];
+    if (me.content && me.content.locale && me.rgpd_links[me.content.locale]) $scope.parameters.rgpd_media_id = me.rgpd_links[me.content.locale];
+    // =======================================================
+    // =======================================================
+
+
     // on initialise les moyens de paiement autorisés (carte ou chèque)
     initMoyensPaiement()
     
