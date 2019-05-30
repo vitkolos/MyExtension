@@ -35,8 +35,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.inscription.optionsPayantes={};
     
     // on met le lien vers la bonne politique RGPD
-    $scope.inscription.rgpd_media_id = me.rgpd_links.fr;
+    $scope.inscription.rgpd_media_id = me.rgpd_links["fr"];
+    console.log("rgpd_media_id", $scope.inscription.rgpd_media_id)
     if (me.content && me.content.locale && me.rgpd_links[me.content.locale]) $scope.inscription.rgpd_media_id = me.rgpd_links[me.content.locale];
+    console.log("rgpd_media_id", $scope.inscription.rgpd_media_id)
 
     //get proposition
     var propositionId = me.content.id;
