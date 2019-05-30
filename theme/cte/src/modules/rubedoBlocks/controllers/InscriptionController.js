@@ -25,7 +25,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         'cz': '5c9beca0396588b17af4b4ca',
         'cs': '5c9beca0396588b17af4b4ca',
     }
-    me.rgpd_media_id = me.rgpd_links.fr;
 
     // on initialise les moyens de paiement autorisés (carte ou chèque)
     initMoyensPaiement()
@@ -34,6 +33,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     getForms($scope.contentDetailCtrl.content.public);
     $scope.inscription={};
     $scope.inscription.optionsPayantes={};
+    $scope.inscription.rgpd_media_id = me.rgpd_links.fr; // on met le lien vers la bonne politique RGPD
 
     //get proposition
     var propositionId = me.content.id;
