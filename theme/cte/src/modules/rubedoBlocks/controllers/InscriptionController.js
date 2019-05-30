@@ -26,8 +26,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     // (ce sont les ids des medias PDF correspondants)
     me.rgpd_links = {
         'fr': '5cada77739658847463d67dc',
-        'cz': '5c9beca0396588b17af4b4ca',
-        'cs': '5c9beca0396588b17af4b4ca',
     }
     // on met le lien vers la bonne politique RGPD
     $scope.parameters = {}
