@@ -139,12 +139,13 @@
             <div ng-include="formCtrl.infosFin"></div>
 
 
-            <!-- Accept RGPD -->
+            <!-- Checkbox accept RGPD -->
             <div class="row text-center">
-                <input type="checkbox" name="accept_rgpd" id="accept_rgpd" ng-true-value='rgpd_accepted' ng-model='inscription.rgpd'>
+                <input type="checkbox" name="accept_rgpd" id="accept_rgpd" ng-true-value='rgpd_accepted' ng-model='inscription.rgpd' required>
                 <label for="accept_rgpd">J'accepte la <a href="/dam?media-id=5cada77739658847463d67dc">politique de confidentialité de la Communauté du Chemin Neuf</a></label>
             </div>
             
+            <!-- Bouton de soumission du formulaire d'inscription -->
             <div class="row text-center">
                 <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(6,inscription_form.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Valider","S'inscrire")}}</div><!----inscription_form.$valid)-->
                 <img src="/theme/cte/img/loader.gif" ng-if="processForm">
