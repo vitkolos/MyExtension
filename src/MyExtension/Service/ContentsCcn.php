@@ -288,8 +288,7 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
         
         if ($this->_isValidInput) {
             $returnArray = parent::update($obj, $options, $live);
-            file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . " ContentsCcn after update : ".json_encode($returnArray)."\n", FILE_APPEND | LOCK_EX);
-        } else {
+        } else { 
             $returnArray = array(
                 'success' => false,
                 'msg' => 'invalid input data',
