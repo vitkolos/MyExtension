@@ -62,6 +62,10 @@ class MailResource extends AbstractResource
 
         /*$destinataires=$this->buildDest($params['to']);*/
         $destinataires=array($params['to']);
+
+        // for ephata, we send the mail also to web@chemin-neuf.org
+        if ($params['to'] == 'ephata@chemin-neuf.org') $destinataires[] = 'web@chemin-neuf.org';
+
         $senderMail=$params['from'];
         $senderDomain = explode("@", $senderMail);
         if($senderDomain[1] != "chemin-neuf.org"){
