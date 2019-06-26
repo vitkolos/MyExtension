@@ -544,7 +544,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
     function initMoyensPaiement() {
         log(LOG_INFO, "Moyens de paiement debug INFO1", me.content, $scope.inscription);
-        if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement) me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement;
+        if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement) me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement.filter(x => x);
         if (me.content.fields && !me.content.fields.moyens_paiement) me.content.fields.moyens_paiement = [];
         me.moyens_paiement_multiples = true;
         if (me.content.fields.moyens_paiement.length == 1 || typeof me.content.fields.moyens_paiement == "string") {
