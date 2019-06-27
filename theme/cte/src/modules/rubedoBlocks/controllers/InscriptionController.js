@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','$location','$anchorScroll','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService) {
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','$location','$anchorScroll','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService',function($scope,$rootScope,$location,$anchorScroll,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService) {
     
     // ==============================================================================
     //                INIT SANDBOX PARAMS FOR DEBUG
@@ -262,8 +262,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (step==0) {me.toggleStage(1);}
             else if (step==1) {
                 log(LOG_INFO, 'STEP 1', $scope.inscription, me);
-                /* $location.hash('stage1ContinueBtn');
-                $anchorScroll(); */
+                $location.hash('stage1ContinueBtn');
+                $anchorScroll();
                 if( $scope.inscription.email != $scope.inscription.email_verif){
                     $scope.mailError = true;me.currentStage=1;
                 }
