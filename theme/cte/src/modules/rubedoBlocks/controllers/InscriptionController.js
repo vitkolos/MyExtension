@@ -262,8 +262,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (step==0) {me.toggleStage(1);}
             else if (step==1) {
                 log(LOG_INFO, 'STEP 1', $scope.inscription, me);
-                $location.hash('stage1ContinueBtn');
-                $anchorScroll();
+                /* $location.hash('stage1ContinueBtn');
+                $anchorScroll(); */
+                $('html, body').animate({
+                    scrollTop: ($('#inscriptionStage1').offset().top)
+                },200);
                 if( $scope.inscription.email != $scope.inscription.email_verif){
                     $scope.mailError = true;me.currentStage=1;
                 }
