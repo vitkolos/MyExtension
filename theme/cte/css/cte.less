@@ -269,10 +269,10 @@ span.font_icon{
 
 .loop(@value) when (@value > 0) {
     .loop((@value - 1));
-    .mt-@{value} {margin-top: ~"@{value}em";}
-    .mb-@{value} {margin-bottom: ~"@{value}em";}
-    .mt-n@{value} {margin-top: ~"-@{value}em";}
-    .mb-n@{value} {margin-bottom: ~"-@{value}em";}
+    .mt-@{value} {margin-top: ~"@{value}em" !important;}
+    .mb-@{value} {margin-bottom: ~"@{value}em" !important;}
+    .mt-n@{value} {margin-top: ~"-@{value}em" !important;}
+    .mb-n@{value} {margin-bottom: ~"-@{value}em" !important;}
 }
 .loop(5);
 
