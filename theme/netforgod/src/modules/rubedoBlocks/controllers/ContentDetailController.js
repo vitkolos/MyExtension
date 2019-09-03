@@ -499,7 +499,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     $scope.registerFieldEditChanges=me.registerEditChanges;
     
     
-    
     me.generatePdf = function(){
 
         var title = me.content.text +".pdf";
