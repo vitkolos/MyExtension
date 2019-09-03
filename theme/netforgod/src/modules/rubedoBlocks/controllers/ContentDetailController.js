@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoContentTypesService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope","$timeout","$sceDelegateProvider",
-                                                                          function($scope,RubedoContentsService, RubedoContentTypesService,RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope,$timeout,$sceDelegateProvider){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoContentTypesService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope","$timeout","$sce",
+                                                                          function($scope,RubedoContentsService, RubedoContentTypesService,RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope,$timeout,$sce){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -244,7 +244,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     else if ($scope.fieldEntity['trailer']) {
                         me.watch = 'trailer';
                         $scope.fieldEntity['trailer'].id = /[^\/]+?$/.exec($scope.fieldEntity['trailer'].url)[0];
-                        $scope.fieldEntity['trailer'].embed_url = $sceDelegateProvider.trustAsResourceUrl('http://www.youtube.com/embed/' + fieldEntity['trailer'].id + '?autoplay=0');
+                        $scope.fieldEntity['trailer'].embed_url = $sce.trustAsResourceUrl('http://www.youtube.com/embed/' + fieldEntity['trailer'].id + '?autoplay=0');
                         console.log("youtube url", $scope.fieldEntity['trailer'])
                         $scope.rubedo.current.page.video = response.data.content.fields.trailer.url;
                     }
