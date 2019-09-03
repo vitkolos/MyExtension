@@ -244,6 +244,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     else if ($scope.fieldEntity['trailer']) {
                         me.watch = 'trailer';
                         $scope.fieldEntity['trailer'].id = /[^\/]+?$/.exec($scope.fieldEntity['trailer'].url)[0];
+                        console.log("youtube url", $scope.fieldEntity['trailer'])
                         $scope.rubedo.current.page.video = response.data.content.fields.trailer.url;
                     }
                     else me.watch='no';
