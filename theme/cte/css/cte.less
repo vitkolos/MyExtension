@@ -263,6 +263,19 @@ span.font_icon{
 }
 .linkbox a:hover{border-color: rgb(137,137,137)}
 
+////////////////////////////////////////////////
+    ///////classes utiles spacing////////////////
+////////////////////////////////////////////////
+
+.loop(@value) when (@value > 0) {
+    .loop((@value - 1));
+    .mt-@{value} {margin-top: ~"@{value}em";}
+    .mb-@{value} {margin-bottom: ~"@{value}em";}
+    .mt-n@{value} {margin-top: ~"-@{value}em";}
+    .mb-n@{value} {margin-bottom: ~"-@{value}em";}
+}
+.loop(5);
+
 ////////////////////////////////////////////////////
     ///////////MENU///////////////////
 ///////////////////////////////////////////////////
