@@ -543,13 +543,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 
    //generic field directive
   angular.module("rubedoBlocks").lazy.controller("RECFieldFilmController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
-      var me=this;
-      $scope.fields=[];
-      var config=$scope.field.config;
-      if (!$scope.fieldEntity[config.name]&&$scope.fieldInputMode){
-          $scope.fieldEntity[config.name]={ };
-      }
-      $scope.fieldEntity=$scope.fieldEntity[config.name];
+    var me = this;
+    $scope.fields = [];
+    var config = $scope.field.config;
+    if (!$scope.fieldEntity[config.name]&&$scope.fieldInputMode){
+        $scope.fieldEntity[config.name]={ };
+    }
+    $scope.fieldEntity=$scope.fieldEntity[config.name];
+    console.log("FE", $scope.fieldentity);
+
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach($scope.fields,function(candidate){
