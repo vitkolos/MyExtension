@@ -55,26 +55,9 @@
 
 				<div ng-if="contentDetailCtrl.watch =='trailer'">
 					<!-- <jwplayer video-url="{{fieldEntity['trailer'].url}}"  title="{{contentDetailCtrl.content.text + '_trailer'}}" sous-titre="{{contentDetailCtrl.subs_trailer}}"></jwplayer> -->
-					<div id="ytplayer"></div>
-					<script>
-						// Load the IFrame Player API code asynchronously.
-						var tag = document.createElement('script');
-						tag.src = 'https://www.youtube.com/watch?v=qGUuzWeJOQc'; //fieldEntity['trailer'].url;
-						console.log('fieldEntity', contentDetailCtrl);
-						var firstScriptTag = document.getElementsByTagName('script')[0];
-						firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-						// Replace the 'ytplayer' element with an <iframe> and
-						// YouTube player after the API code downloads.
-						var player;
-						function onYouTubePlayerAPIReady() {
-							player = new YT.Player('ytplayer', {
-							height: '360',
-							width: '640',
-							videoId: 'M7lc1UVf-VE'
-							});
-						}
-					</script>
+					<iframe id="ytplayer" type="text/html" width="640" height="360"
+						src="{{fieldEntity['trailer'].url}}"
+						frameborder="0"/>
 				</div>
 
 				<!-- boutons partager / devenir volontaire etc. -->
