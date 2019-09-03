@@ -56,7 +56,7 @@
 				<div ng-if="contentDetailCtrl.watch =='trailer'">
 					<!-- <jwplayer video-url="{{fieldEntity['trailer'].url}}"  title="{{contentDetailCtrl.content.text + '_trailer'}}" sous-titre="{{contentDetailCtrl.subs_trailer}}"></jwplayer> -->
 					<iframe id="ytplayer" type="text/html" width="640" height="360"
-						src="{{trustAsJs('http://www.youtube.com/embed/' + fieldEntity['trailer'].id + '?autoplay=0')}}"
+						src="{{$scope.fieldEntity['trailer'].embed_url}}"
 						frameborder="0"/>
 				</div>
 
