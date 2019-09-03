@@ -550,7 +550,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         $scope.fieldEntity[config.name]={ };
     }
     $scope.fieldEntity=$scope.fieldEntity[config.name];
-    console.log("FE", $scope.fieldentity);
 
     me.getFieldByName=function(name){
         var field=null;
