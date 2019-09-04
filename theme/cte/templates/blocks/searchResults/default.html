@@ -87,7 +87,11 @@
                     <!--<p class="capital">{{content.lastUpdateTime * 1000 | date}} </p>-->
                 </div>
                 <div class="col-sm-8">
-                    <jwplayer video-url="{{content['fields.video'][0]}}"></jwplayer>
+                    <!-- <jwplayer video-url="{{content['fields.video'][0]}}"></jwplayer> -->
+                    <div class="youtube-embed-wrapper ng-scope" style="padding-bottom:56.25%;padding-top:30px;height:0;">
+                        <iframe height="360" ng-src="{{content['fields.video'][0]}}" style="width:100%;height:100%;" width="640">
+                        </iframe>
+                    </div>
                 </div>
            </div>
         </div>
