@@ -306,6 +306,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         }
         console.log("putoffline success", res);
     }
+
+    // For Youtube videos player
+    $scope.get_youtube_embed_url = function(url) {
+        let res = /[^\/]+?$/.exec(url);
+        if (!res.length) return url;
+        let id = res[0];
+        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + id + '?autoplay=0');
+    }
     
     
 }]);
@@ -366,14 +374,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
         }
     };
     $scope.registerFieldEditChanges = me.registerEditChanges;
-
-    // Youtube videos
-    $scope.get_youtube_embed_url = function(url) {
-        let res = /[^\/]+?$/.exec(url);
-        if (!res.length) return url;
-        let id = res[0];
-        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + id + '?autoplay=0');
-    }
 
 }]);
 
