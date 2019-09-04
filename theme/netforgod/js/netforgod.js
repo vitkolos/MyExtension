@@ -154,6 +154,37 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
     };
 }]);
 
+angular.module('rubedoBlocks').directive('youtube', function($window) {
+    return {
+      restrict: "E",
+  
+      scope: {
+        height:   "@",
+        width:    "@",
+        videoid:  "@"  
+      },
+  
+      template: '<div></div>',
+  
+      link: function(scope, element) {
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        
+        var player;
+  
+        $window.onYouTubeIframeAPIReady = function() {
+          player = new YT.Player(element.children()[0], {
+            height: scope.height,
+            width: scope.width,
+            videoId: scope.videoid
+          });
+        };
+      },  
+    }
+  });
+
 
 
 angular.module('rubedoBlocks').directive('ngCopyable', function() {
