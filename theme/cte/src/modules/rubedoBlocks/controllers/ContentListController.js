@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location","$sce",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$sce){
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -366,6 +366,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentListDetailController",['$
         }
     };
     $scope.registerFieldEditChanges = me.registerEditChanges;
+
+    // Youtube videos
+    $scope.get_youtube_embed_url = function(url) {
+        let res = /[^\/]+?$/.exec(url);
+        if (!res.length) return url;
+        let id = res[0];
+        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + id + '?autoplay=0');
+    }
 
 }]);
 
