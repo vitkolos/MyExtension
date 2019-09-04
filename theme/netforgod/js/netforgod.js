@@ -177,7 +177,7 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
         var player;
   
         $window.onYouTubeIframeAPIReady = function() {
-          player = new YT.Player(element.children()[0], {
+          player = new YT.Player(element.children()[1], {
             height: scope.height,
             width: scope.width,
             videoId: scope.videoid
