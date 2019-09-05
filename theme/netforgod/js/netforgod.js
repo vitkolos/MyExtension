@@ -174,7 +174,6 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         let res = /([^\/]+?)(\?.+)?$/.exec(vid);
         if (res.length < 2) return 'could not guess youtube id from ' + vid;
         options.videoId = res[1];
-        console.info("video id guessed : ", options.videoId);
 
         // find other options (like ?t=46s to start the video after 46s)
         if (res && res.length >= 3 && res[2]) {
@@ -187,7 +186,6 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
                 if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
                 else options[arr[0]] = arr[1];
             })
-            console.info("guessed player options", options);
         }
 
         return options;
@@ -239,7 +237,6 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         scope.$watch(_ => scope.video, function(newValue, oldValue) {
             if (!oldValue || oldValue==newValue) return;
             if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
-            console.log("film url changed", oldValue, newValue);
             options = prepare_video_options(scope.video);
             newvid_options = {videoId: options.videoId}
             if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
@@ -248,7 +245,6 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
 
         // reload YT player when the visibility status changes
         scope.$watch(function() { return element.is(':visible') }, function() {
-            console.log("reloading yt video visibility watch...")
             options = prepare_video_options(scope.video);
             if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
             newvid_options = {videoId: options.videoId}

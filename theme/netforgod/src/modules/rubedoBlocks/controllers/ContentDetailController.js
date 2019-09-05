@@ -499,14 +499,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
-    
-    // called when you click on "film" or "trailer" in n4g video page (filmNFG.html)
-    // TODO delete this
-    /* me.watch_video = function(film_or_trailer) {
-        console.log("switching video...")
-        me.watch = film_or_trailer;
-        $scope.$broadcast('YT_RELOAD', 'reload my vid plz');
-    } */
+
     
     me.generatePdf = function(){
 
