@@ -179,15 +179,27 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
         let player;
-        let other_options = {};
 
         // fix videoid if it's not an id but a youtube url
-        if (/^https?:\/\//.test(scope.video)) {
-            if (!/youtu\.?be/.test(scope.video)) return 'not a youtube url : ' + scope.video;
-            let res = /([^\/]+?)(\?.+)?$/.exec(scope.video);
-            if (res.length < 2) return 'could not guess youtube id from ' + scope.video;
-            scope.video = res[1];
-            console.log("video id guessed : ", scope.video);
+        // and prepare the video options for youtube player
+        function prepare_video_options(vid) {
+            let options = {
+                height: scope.height,
+                width: scope.width,
+                videoId: vid,
+                autoplay: 0,
+            }
+            
+            if (!/^https?:\/\//.test(vid)) return options;
+            if (!/youtu\.?be/.test(vid)) {
+                console.error('This is not a youtube url : ' + vid);
+                return options;
+            }
+
+            let res = /([^\/]+?)(\?.+)?$/.exec(vid);
+            if (res.length < 2) return 'could not guess youtube id from ' + vid;
+            options.videoId = res[1];
+            console.info("video id guessed : ", options.videoId);
 
             // find other options (like ?t=46s to start the video after 46s)
             if (res.length >= 3 && res[2].length > 0) {
@@ -196,27 +208,33 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
 
                 raw_other_options.map(function(el) {
                     let arr = el.split('=');
-                    if (arr.length < 2 || !corresp[arr[0]]) return;
-                    other_options[corresp[arr[0]]] = arr[1];
+                    if (arr.length < 2) return;
+                    if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
+                    else options[arr[0]] = arr[1];
                 })
-                console.log("guessed player options", other_options);
+                console.info("guessed player options", options);
             }
+
+            return options;
         }
 
         // prepare options
-        let options = {
-            height: scope.height,
-            width: scope.width,
-            videoId: scope.video,
-            autoplay: 0,
-        }
-        options = Object.assign(options, other_options);
+        let options = prepare_video_options(scope.video);
   
         // load youtube player
         $window.onYouTubeIframeAPIReady = function() {
           player = new YT.Player(document.getElementById(id), options);
         };
-      },  
+
+        // watch for film change
+        scope.$watch(_ => scope.video, function(newValue, oldValue) {
+            if (!oldValue || oldValue==newValue) return;
+            console.log("film url changed", oldValue, newValue);
+            options = prepare_video_options(scope.video);
+            player = new YT.Player(document.getElementById(id), options);
+        });
+
+      }, // -- end link
     }
   });
 
