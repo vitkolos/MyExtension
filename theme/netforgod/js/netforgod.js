@@ -246,8 +246,17 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
             //player = new YT.Player(document.getElementById(id), options);
         });
 
-        scope.$on('YT_RELOAD', function() {
+        scope.$on('YT_RELOAD...', function() {
+            if (!player) return console.log("no player", element.);
             console.log("reloading yt video in link...")
+            options = prepare_video_options(scope.video);
+            newvid_options = {videoId: options.videoId}
+            if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+            player.loadVideoById(newvid_options);
+        });
+
+        $scope.$watch(function() { return angular.element(scrollElement).is(':visible') }, function() {
+            console.log("reloading yt video visibility watch...")
             options = prepare_video_options(scope.video);
             newvid_options = {videoId: options.videoId}
             if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
