@@ -181,7 +181,7 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
         var player;
 
         // fix videoid if it's not an id but a youtube url
-        if (/^http:\/\//.test(scope.video)) {
+        if (/^https?:\/\//.test(scope.video)) {
             let res = /[^\/=&]+?$/.exec(scope.video);
             scope.video = res[0];
         }
