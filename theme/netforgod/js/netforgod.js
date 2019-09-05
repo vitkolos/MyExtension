@@ -155,7 +155,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
 }]);
 
 angular.module('rubedoBlocks').directive('youtube', function($window) {
-    let id = id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
+    let id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
     return {
       restrict: "E",
   
