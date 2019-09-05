@@ -58,7 +58,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         
         return value;
     };
-    me.getTermInTaxo=function(taxoKey,termId){
+    me.getTermInTaxo = function(taxoKey,termId){
         
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
@@ -500,6 +500,10 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
     
+    // called when you click on "film" or "trailer" in n4g video page (filmNFG.html)
+    me.watch_video = function(film_or_trailer) {
+        // TODO
+    }
     
     me.generatePdf = function(){
 
@@ -538,15 +542,6 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         
 
         
-    }
-
-    // For Youtube videos player
-    $scope.get_youtube_embed_url = function(url) {
-        if (!/youtu\.?be/.test(url)) return 'This not a youtube url : ' + url;
-        let res = /[^\/=&]+?$/.exec(url);
-        if (!res.length) return url;
-        let id = res[0];
-        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + id + '?autoplay=0');
     }
 
 }]);
