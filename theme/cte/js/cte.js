@@ -311,36 +311,108 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
     };
 }]);
 
-angular.module('rubedoBlocks').directive('youtube', function($window) {
+angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', function($window, $compile) {
+  // fix videoid if it's not an id but a youtube url
+  // and prepare the video options for youtube player
+  function prepare_video_options(vid, height = 360, width = 640) {
+      let options = {
+          height: height,
+          width: width,
+          videoId: vid,
+          autoplay: 0,
+      }
+      
+      if (!/^https?:\/\//.test(vid)) return options;
+      if (!/youtu\.?be/.test(vid)) {
+          console.error('This is not a youtube url : ' + vid);
+          return options;
+      }
+
+      let res = /([^\/]+?)(\?.+)?$/.exec(vid);
+      if (res.length < 2) return 'could not guess youtube id from ' + vid;
+      options.videoId = res[1];
+
+      // find other options (like ?t=46s to start the video after 46s)
+      if (res && res.length >= 3 && res[2]) {
+          let corresp = {'t': 'start'};
+          let raw_other_options = res[2].substr(1).split("&");
+
+          raw_other_options.map(function(el) {
+              let arr = el.split('=');
+              if (arr.length < 2) return;
+              if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
+              else options[arr[0]] = arr[1];
+          })
+      }
+
+      return options;
+  }
+
   return {
     restrict: "E",
 
     scope: {
       height:   "@",
       width:    "@",
-      videoid:  "@"  
+      video:    "@"  
     },
 
-    template: '<div></div>',
-
     link: function(scope, element) {
-      var tag = document.createElement('script');
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-      
-      var player;
+      let player;
+      // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
 
+      // we load the youtube script if not already loaded
+      let youtube_script_url = "https://www.youtube.com/iframe_api";
+      let scripts = Array
+          .from(document.querySelectorAll('script'))
+          .map(scr => scr.src);
+      if (!scripts.includes(youtube_script_url)) {
+          let tag = document.createElement('script');
+          tag.src = youtube_script_url;
+          let firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }
+      
+
+      // prepare html of element
+      let id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
+      element.html(`<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
+          <div id="${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
+          </div>`
+      );
+      $compile(element.contents())(scope);
+
+      // prepare options
+      let options = prepare_video_options(scope.video);
+
+      // load youtube player
       $window.onYouTubeIframeAPIReady = function() {
-        player = new YT.Player(element.children()[0], {
-          height: scope.height,
-          width: scope.width,
-          videoId: scope.videoid
-        });
+        player = new YT.Player(document.getElementById(id), options);
       };
-    },  
+
+      // watch for film change
+      scope.$watch(_ => scope.video, function(newValue, oldValue) {
+          if (!oldValue || oldValue==newValue) return;
+          if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
+          options = prepare_video_options(scope.video);
+          newvid_options = {videoId: options.videoId}
+          if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+          player.loadVideoById(newvid_options);
+      });
+
+      // reload YT player when the visibility status changes
+      scope.$watch(function() { return element.is(':visible') }, function() {
+          options = prepare_video_options(scope.video);
+          if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
+          newvid_options = {videoId: options.videoId}
+          if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+          player.loadVideoById(newvid_options);
+      });
+
+    }, // -- end link
+
   }
-});
+}]);
 
  angular.module('rubedoBlocks').directive('balanceText', function ($timeout) {
     return {
