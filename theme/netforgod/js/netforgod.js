@@ -230,20 +230,20 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         $compile(element.contents())(scope);
 
         // prepare options
-        let options = prepare_video_options(scope.video);
+        this.options = prepare_video_options(scope.video);
   
         // load youtube player
         $window.onYouTubeIframeAPIReady = function() {
-          player = new YT.Player(document.getElementById(id), options);
+          player = new YT.Player(document.getElementById(id), this.options);
         };
 
         // watch for film change
         scope.$watch(_ => scope.video, function(newValue, oldValue) {
             if (!oldValue || oldValue==newValue) return;
             console.log("film url changed", oldValue, newValue);
-            options = prepare_video_options(scope.video);
-            newvid_options = {videoId: options.videoId}
-            if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+            this.options = prepare_video_options(scope.video);
+            newvid_options = {videoId: this.options.videoId}
+            if (this.options['start'] && this.options['start'].substr(-1) == 's') newvid_options.startSeconds = this.options.start.substr(0, this.options.start.length-1);
             player.loadVideoById(newvid_options);
             //player = new YT.Player(document.getElementById(id), options);
         });
@@ -326,7 +326,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 		$scope.nbOfLikes=0;
 		$http({method: 'GET',url: 'https://graph.facebook.com/?id='+contentUrl})
 		.then(function successCallback(response) {
-			$scope.nbOfLikes += response.data.share.share_count;
+			if (response.data.share && response.data.share.share_count) $scope.nbOfLikes += response.data.share.share_count;
 		},
 		function errorCallback(response) {
 		});
