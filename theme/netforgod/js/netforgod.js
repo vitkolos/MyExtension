@@ -163,7 +163,6 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
             width: width,
             videoId: vid,
             autoplay: 0,
-            origin: 'www.netforgod.tv',
         }
         
         if (!/^https?:\/\//.test(vid)) return options;
@@ -260,7 +259,14 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         scope.$watch(function() { return element.is(':visible') }, function() {
             console.log("reloading yt video visibility watch...")
             options = prepare_video_options(scope.video);
-            if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
+            if (!player) {
+                element.html(`<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
+                    <div id="${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
+                    </div>`
+                );
+                $compile(element.contents())(scope);
+                return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
+            }
             newvid_options = {videoId: options.videoId}
             if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
             player.loadVideoById(newvid_options);
