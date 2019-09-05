@@ -257,7 +257,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         }); */
 
         scope.$watch(function() { return element.is(':visible') }, function() {
-            console.log("reloading yt video visibility watch...", YTready)
+            console.log("reloading yt video visibility watch...")
             options = prepare_video_options(scope.video);
             if (!player) return ($window.YT) ? new $window.YT.Player(document.getElementById(id), options) : false;
             newvid_options = {videoId: options.videoId}
