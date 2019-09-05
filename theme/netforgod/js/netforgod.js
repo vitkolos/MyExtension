@@ -171,13 +171,21 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         </div>`, */
   
       link: function(scope, element) {
-        // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
-        let tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
-        let firstScriptTag = document.getElementsByTagName('script')[0];
-        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-        
         let player;
+        // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
+        
+        // we load the youtube script if not already loaded
+        let youtube_script_url = "https://www.youtube.com/iframe_api";
+        let scripts = Array
+            .from(document.querySelectorAll('script'))
+            .map(scr => scr.src);
+        if (!scripts.includes(youtube_script_url)) {
+            let tag = document.createElement('script');
+            tag.src = youtube_script_url;
+            let firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+        
 
         // prepare html of element
         let id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
