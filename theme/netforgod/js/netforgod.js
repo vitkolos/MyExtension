@@ -204,6 +204,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
   
       link: function(scope, element) {
         let player;
+        let YTready = false;
         // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
 
         // we load the youtube script if not already loaded
@@ -232,13 +233,14 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
   
         // load youtube player
         $window.onYouTubeIframeAPIReady = function() {
+          YTready = true;
           player = new YT.Player(document.getElementById(id), options);
         };
 
         // watch for film change
         scope.$watch(_ => scope.video, function(newValue, oldValue) {
             if (!oldValue || oldValue==newValue) return;
-            if (!player) return new YT.Player(document.getElementById(id), options);
+            if (!player && YTready) return new YT.Player(document.getElementById(id), options);
             console.log("film url changed", oldValue, newValue);
             options = prepare_video_options(scope.video);
             newvid_options = {videoId: options.videoId}
@@ -259,7 +261,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         scope.$watch(function() { return element.is(':visible') }, function() {
             console.log("reloading yt video visibility watch...")
             options = prepare_video_options(scope.video);
-            if (!player) return new YT.Player(document.getElementById(id), options);
+            if (!player && YTready) return new YT.Player(document.getElementById(id), options);
             newvid_options = {videoId: options.videoId}
             if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
             player.loadVideoById(newvid_options);
