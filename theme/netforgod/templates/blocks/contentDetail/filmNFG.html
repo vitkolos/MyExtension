@@ -34,7 +34,7 @@
 				</div>
 
 				<!-- fenêtre principale de la vidéo -->
-				<div ng-if="contentDetailCtrl.watch =='film'">
+				<div ng-hide="contentDetailCtrl.watch !='film'">
 					<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
 						<div ng-controller="RECFieldFilmController as recCtrl" >
 							<div class="dropdown pull-right lang-selection">
