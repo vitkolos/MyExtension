@@ -177,7 +177,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         console.info("video id guessed : ", options.videoId);
 
         // find other options (like ?t=46s to start the video after 46s)
-        if (res.length >= 3 && res[2].length > 0) {
+        if (res && res.length >= 3 && res[2].length > 0) {
             let corresp = {'t': 'start'};
             let raw_other_options = res[2].substr(1).split("&");
 
