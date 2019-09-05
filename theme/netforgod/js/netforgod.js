@@ -199,6 +199,7 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
                     if (arr.length < 2 || !corresp[arr[0]]) return;
                     other_options[corresp[arr[0]]] = arr[1];
                 })
+                console.log("guessed player options", other_options);
             }
         }
 
