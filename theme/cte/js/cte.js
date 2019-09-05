@@ -334,6 +334,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
 
       // find other options (like ?t=46s to start the video after 46s)
       if (res && res.length >= 3 && res[2]) {
+          console.log("original = ", vid)
           let corresp = {'t': 'start', 'v': 'videoId'};
           let raw_other_options = res[2].substr(1).split("&");
 
@@ -343,6 +344,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
               if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
               else options[arr[0]] = arr[1];
           })
+          console.log("parsed options", options)
       }
 
       return options;
