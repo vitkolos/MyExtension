@@ -155,7 +155,6 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
 }]);
 
 angular.module('rubedoBlocks').directive('youtube', function($window) {
-    let id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
     return {
       restrict: "E",
   
@@ -167,9 +166,9 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
   
       // all the styling here below is ugly but necessary to display the yt iframe correctly (found on the web)
       // the youtube iframe will be displayed in the inner div
-      template: `<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
+      /* template: `<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
         <div id="${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
-        </div>`,
+        </div>`, */
   
       link: function(scope, element) {
         // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
@@ -179,6 +178,14 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
         let player;
+
+        // prepare html of element
+        let id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
+        element.html(`<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
+            <div id="${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
+            </div>`
+        );
+        $compile(element.contents())(scope);
 
         // fix videoid if it's not an id but a youtube url
         // and prepare the video options for youtube player
