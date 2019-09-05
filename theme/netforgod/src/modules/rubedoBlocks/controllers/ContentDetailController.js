@@ -502,6 +502,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     
     // called when you click on "film" or "trailer" in n4g video page (filmNFG.html)
     me.watch_video = function(film_or_trailer) {
+        console.log("switching video...")
         me.watch = film_or_trailer;
         $scope.$emit('YT_RELOAD', 'reload my vid plz');
     }
