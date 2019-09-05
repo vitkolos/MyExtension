@@ -163,6 +163,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
             width: width,
             videoId: vid,
             autoplay: 0,
+            origin: 'www.netforgod.tv',
         }
         
         if (!/^https?:\/\//.test(vid)) return options;
