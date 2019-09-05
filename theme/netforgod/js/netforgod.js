@@ -258,6 +258,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         scope.$watch(function() { return element.is(':visible') }, function() {
             console.log("reloading yt video visibility watch...")
             options = prepare_video_options(scope.video);
+            if (!player) return new YT.Player(document.getElementById(id), options);
             newvid_options = {videoId: options.videoId}
             if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
             player.loadVideoById(newvid_options);
