@@ -155,43 +155,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
 }]);
 
 angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', function($window, $compile) {
-    // fix videoid if it's not an id but a youtube url
-    // and prepare the video options for youtube player
-    function prepare_video_options(vid) {
-        let options = {
-            height: scope.height,
-            width: scope.width,
-            videoId: vid,
-            autoplay: 0,
-        }
-        
-        if (!/^https?:\/\//.test(vid)) return options;
-        if (!/youtu\.?be/.test(vid)) {
-            console.error('This is not a youtube url : ' + vid);
-            return options;
-        }
-
-        let res = /([^\/]+?)(\?.+)?$/.exec(vid);
-        if (res.length < 2) return 'could not guess youtube id from ' + vid;
-        options.videoId = res[1];
-        console.info("video id guessed : ", options.videoId);
-
-        // find other options (like ?t=46s to start the video after 46s)
-        if (res.length >= 3 && res[2].length > 0) {
-            let corresp = {'t': 'start'};
-            let raw_other_options = res[2].substr(1).split("&");
-
-            raw_other_options.map(function(el) {
-                let arr = el.split('=');
-                if (arr.length < 2) return;
-                if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
-                else options[arr[0]] = arr[1];
-            })
-            console.info("guessed player options", options);
-        }
-
-        return options;
-    }
+    
 
     return {
       restrict: "E",
@@ -206,6 +170,44 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         let player;
         // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
         
+        // fix videoid if it's not an id but a youtube url
+        // and prepare the video options for youtube player
+        function prepare_video_options(vid) {
+            let options = {
+                height: scope.height,
+                width: scope.width,
+                videoId: vid,
+                autoplay: 0,
+            }
+            
+            if (!/^https?:\/\//.test(vid)) return options;
+            if (!/youtu\.?be/.test(vid)) {
+                console.error('This is not a youtube url : ' + vid);
+                return options;
+            }
+
+            let res = /([^\/]+?)(\?.+)?$/.exec(vid);
+            if (res.length < 2) return 'could not guess youtube id from ' + vid;
+            options.videoId = res[1];
+            console.info("video id guessed : ", options.videoId);
+
+            // find other options (like ?t=46s to start the video after 46s)
+            if (res.length >= 3 && res[2].length > 0) {
+                let corresp = {'t': 'start'};
+                let raw_other_options = res[2].substr(1).split("&");
+
+                raw_other_options.map(function(el) {
+                    let arr = el.split('=');
+                    if (arr.length < 2) return;
+                    if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
+                    else options[arr[0]] = arr[1];
+                })
+                console.info("guessed player options", options);
+            }
+
+            return options;
+        }
+
         // we load the youtube script if not already loaded
         let youtube_script_url = "https://www.youtube.com/iframe_api";
         let scripts = Array
