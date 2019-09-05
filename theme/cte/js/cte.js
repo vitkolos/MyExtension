@@ -389,31 +389,31 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
 
       // load youtube players
       // TODO describe better what happens here
-      if (!controller['yt_players']) controller['yt_players'] = {};
-      if (!controller.yt_players[id]) controller.yt_players[id] = {id, options, player}
+      if (!$window['yt_players']) $window['yt_players'] = {};
+      if (!$window.yt_players[id]) $window.yt_players[id] = {id, options, player}
       $window.onYouTubeIframeAPIReady = function() {
-        for (some_id in controller.yt_players) {
-          controller.yt_players[some_id].player = new YT.Player(document.getElementById(some_id), controller.yt_players[some_id].options);
+        for (some_id in $window.yt_players) {
+          $window.yt_players[some_id].player = new YT.Player(document.getElementById(some_id), $window.yt_players[some_id].options);
         }
       };
 
       // watch for film change
       scope.$watch(_ => scope.video, function(newValue, oldValue) {
           if (!oldValue || oldValue==newValue) return;
-          if (!controller.yt_players[id].player) return ($window.YT) ? controller.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
+          if (!$window.yt_players[id].player) return ($window.YT) ? $window.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
           options = prepare_video_options(scope.video);
           newvid_options = {videoId: options.videoId}
           if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
-          controller.yt_players[id].player.loadVideoById(newvid_options);
+          $window.yt_players[id].player.loadVideoById(newvid_options);
       });
 
       // reload YT player when the visibility status changes
       scope.$watch(function() { return element.is(':visible') }, function() {
           options = prepare_video_options(scope.video);
-          if (!controller.yt_players[id].player) return ($window.YT) ? controller.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
+          if (!$window.yt_players[id].player) return ($window.YT) ? $window.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
           newvid_options = {videoId: options.videoId}
           if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
-          controller.yt_players[id].player.loadVideoById(newvid_options);
+          $window.yt_players[id].player.loadVideoById(newvid_options);
       });
 
     }, // -- end link
