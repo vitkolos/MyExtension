@@ -155,6 +155,44 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
 }]);
 
 angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', function($window, $compile) {
+    // fix videoid if it's not an id but a youtube url
+    // and prepare the video options for youtube player
+    function prepare_video_options(vid) {
+        let options = {
+            height: scope.height,
+            width: scope.width,
+            videoId: vid,
+            autoplay: 0,
+        }
+        
+        if (!/^https?:\/\//.test(vid)) return options;
+        if (!/youtu\.?be/.test(vid)) {
+            console.error('This is not a youtube url : ' + vid);
+            return options;
+        }
+
+        let res = /([^\/]+?)(\?.+)?$/.exec(vid);
+        if (res.length < 2) return 'could not guess youtube id from ' + vid;
+        options.videoId = res[1];
+        console.info("video id guessed : ", options.videoId);
+
+        // find other options (like ?t=46s to start the video after 46s)
+        if (res.length >= 3 && res[2].length > 0) {
+            let corresp = {'t': 'start'};
+            let raw_other_options = res[2].substr(1).split("&");
+
+            raw_other_options.map(function(el) {
+                let arr = el.split('=');
+                if (arr.length < 2) return;
+                if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
+                else options[arr[0]] = arr[1];
+            })
+            console.info("guessed player options", options);
+        }
+
+        return options;
+    }
+
     return {
       restrict: "E",
   
@@ -163,12 +201,6 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         width:    "@",
         video:    "@"  
       },
-  
-      // all the styling here below is ugly but necessary to display the yt iframe correctly (found on the web)
-      // the youtube iframe will be displayed in the inner div
-      /* template: `<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
-        <div id="${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
-        </div>`, */
   
       link: function(scope, element) {
         let player;
@@ -195,44 +227,6 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         );
         $compile(element.contents())(scope);
 
-        // fix videoid if it's not an id but a youtube url
-        // and prepare the video options for youtube player
-        function prepare_video_options(vid) {
-            let options = {
-                height: scope.height,
-                width: scope.width,
-                videoId: vid,
-                autoplay: 0,
-            }
-            
-            if (!/^https?:\/\//.test(vid)) return options;
-            if (!/youtu\.?be/.test(vid)) {
-                console.error('This is not a youtube url : ' + vid);
-                return options;
-            }
-
-            let res = /([^\/]+?)(\?.+)?$/.exec(vid);
-            if (res.length < 2) return 'could not guess youtube id from ' + vid;
-            options.videoId = res[1];
-            console.info("video id guessed : ", options.videoId);
-
-            // find other options (like ?t=46s to start the video after 46s)
-            if (res.length >= 3 && res[2].length > 0) {
-                let corresp = {'t': 'start'};
-                let raw_other_options = res[2].substr(1).split("&");
-
-                raw_other_options.map(function(el) {
-                    let arr = el.split('=');
-                    if (arr.length < 2) return;
-                    if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
-                    else options[arr[0]] = arr[1];
-                })
-                console.info("guessed player options", options);
-            }
-
-            return options;
-        }
-
         // prepare options
         let options = prepare_video_options(scope.video);
   
@@ -255,11 +249,12 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
       }, // -- end link
 
       controller: function($scope) {
-        // on reload
+        let _that = this;
+        // on reload (this is called when the controller sends sthg like $scope.$broadcast('YT_RELOAD'))
         $scope.$on('YT_RELOAD', function() {
             console.log("reloading yt video...")
-            newvid_options = {videoId: options.videoId}
-            if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+            newvid_options = {videoId: _that.options.videoId}
+            if (_that.options['start'] && _that.options['start'].substr(-1) == 's') newvid_options.startSeconds = _that.options.start.substr(0, _that.options.start.length-1);
             player.loadVideoById(newvid_options);
         });
       }
