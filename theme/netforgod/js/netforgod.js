@@ -155,6 +155,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
 }]);
 
 angular.module('rubedoBlocks').directive('youtube', function($window) {
+    let id = id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
     return {
       restrict: "E",
   
@@ -165,7 +166,7 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
       },
   
       template: `<div class="youtube-embed-wrapper ng-scope" style="padding-bottom:56.25%;padding-top:30px;height:0;">
-        <div style="width:100%;height:100%;"></div>
+        <div id="${id}" style="width:100%;height:100%;"></div>
         </div>`,
   
       link: function(scope, element) {
@@ -177,7 +178,7 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
         var player;
   
         $window.onYouTubeIframeAPIReady = function() {
-          player = new YT.Player(element.children()[1], {
+          player = new YT.Player(document.getElementById(id), {
             height: scope.height,
             width: scope.width,
             videoId: scope.videoid
