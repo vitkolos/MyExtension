@@ -238,7 +238,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         // watch for film change
         scope.$watch(_ => scope.video, function(newValue, oldValue) {
             if (!oldValue || oldValue==newValue) return;
-            if (!player) return ($window.YT) ? new $window.YT.Player(document.getElementById(id), options) : false;
+            if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
             console.log("film url changed", oldValue, newValue);
             options = prepare_video_options(scope.video);
             newvid_options = {videoId: options.videoId}
@@ -259,7 +259,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         scope.$watch(function() { return element.is(':visible') }, function() {
             console.log("reloading yt video visibility watch...")
             options = prepare_video_options(scope.video);
-            if (!player) return ($window.YT) ? new $window.YT.Player(document.getElementById(id), options) : false;
+            if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
             newvid_options = {videoId: options.videoId}
             if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
             player.loadVideoById(newvid_options);
