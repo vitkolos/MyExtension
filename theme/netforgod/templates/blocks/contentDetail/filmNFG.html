@@ -29,8 +29,8 @@
 
 				<!-- boutons regarder film / trailer -->
 				<div class="film-controls" >
-					<p><span class="hidden-xxs">{{rubedo.translate('NFG.Watch','Watch')}}</span><span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch =='film'">film </span>
-						<span ng-if="fieldEntity['trailer'] && fieldEntity['trailer'].url!='' " ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch =='trailer'">trailer</span></p>
+					<p><span class="hidden-xxs">{{rubedo.translate('NFG.Watch','Watch')}}</span><span ng-if="fieldEntity['filmYT']"  ng-class="{'active':contentDetailCtrl.watch =='film' }" ng-click="contentDetailCtrl.watch = 'film' ">film </span>
+						<span ng-if="fieldEntity['trailer'] && fieldEntity['trailer'].url!='' " ng-class="{'active':contentDetailCtrl.watch =='trailer' }" ng-click="contentDetailCtrl.watch = 'trailer' ">trailer</span></p>
 				</div>
 
 				<!-- fenêtre principale de la vidéo film -->
@@ -57,7 +57,7 @@
 				<!-- fenêtre principale de la vidéo trailer -->
 				<div ng-if="contentDetailCtrl.watch == 'trailer'">
 					<!-- <jwplayer video-url="{{fieldEntity['trailer'].url}}"  title="{{contentDetailCtrl.content.text + '_trailer'}}" sous-titre="{{contentDetailCtrl.subs_trailer}}"></jwplayer> -->
-					<youtube video="{{fieldEntity['trailer'].id}}"></youtube>
+					<youtube video="{{fieldEntity['trailer'].url}}"></youtube>
 				</div>
 
 				<!-- boutons partager / devenir volontaire etc. -->
