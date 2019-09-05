@@ -255,13 +255,13 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
         });
 
         // reload YT player when the visibility status changes
-        /* scope.$watch(function() { return element.is(':visible') }, function() {
+        scope.$watch(function() { return element.is(':visible') }, function() {
             options = prepare_video_options(scope.video);
             if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
             newvid_options = {videoId: options.videoId}
             if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
             player.loadVideoById(newvid_options);
-        }); */
+        });
 
       }, // -- end link
 
