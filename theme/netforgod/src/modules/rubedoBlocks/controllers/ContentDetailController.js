@@ -504,7 +504,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
     me.watch_video = function(film_or_trailer) {
         console.log("switching video...")
         me.watch = film_or_trailer;
-        $scope.$emit('YT_RELOAD', 'reload my vid plz');
+        $scope.$broadcast('YT_RELOAD', 'reload my vid plz');
     }
     
     me.generatePdf = function(){
