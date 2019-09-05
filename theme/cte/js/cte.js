@@ -388,7 +388,8 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
       let options = prepare_video_options(scope.video);
 
       // load youtube players
-      // TODO describe better what happens here
+      // the function onYoutubeIframeAPIReady is called once. 
+      // So we need to register all players before calling it
       if (!$window['yt_players']) $window['yt_players'] = {};
       if (!$window.yt_players[id]) $window.yt_players[id] = {id, options, player}
       $window.onYouTubeIframeAPIReady = function() {
@@ -402,15 +403,6 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
           if (!oldValue || oldValue==newValue) return;
           if (!$window.yt_players[id].player) return ($window.YT) ? $window.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
           options = prepare_video_options(scope.video);
-          newvid_options = {videoId: options.videoId}
-          if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
-          $window.yt_players[id].player.loadVideoById(newvid_options);
-      });
-
-      // reload YT player when the visibility status changes
-      scope.$watch(function() { return element.is(':visible') }, function() {
-          options = prepare_video_options(scope.video);
-          if (!$window.yt_players[id].player) return ($window.YT) ? $window.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
           newvid_options = {videoId: options.videoId}
           if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
           $window.yt_players[id].player.loadVideoById(newvid_options);
