@@ -154,7 +154,7 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
     };
 }]);
 
-angular.module('rubedoBlocks').directive('youtube', function($window) {
+angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', function($window, $compile) {
     return {
       restrict: "E",
   
@@ -246,7 +246,7 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
 
       }, // -- end link
     }
-  });
+  }]);
 
 
 
