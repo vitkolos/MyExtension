@@ -165,8 +165,8 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
         videoid:  "@"  
       },
   
-      template: `<div class="youtube-embed-wrapper ng-scope" style="padding-bottom:56.25%;padding-top:30px;height:0;">
-        <div id="${id}" style="width:100%;height:100%;"></div>
+      template: `<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
+        <div id="${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
         </div>`,
   
       link: function(scope, element) {
