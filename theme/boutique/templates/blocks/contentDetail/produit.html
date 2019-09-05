@@ -13,7 +13,8 @@
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('productBox')}}"></rubedo-field><!--prix et déclinaisons-->
   	<rubedo-field class="detail-img" field = "{{contentDetailCtrl.getFieldByName('image')}}" ng-if="fieldEntity['image']"></rubedo-field><!--image-->
 	<h3 ng-if="fieldEntity['trailer']">Trailer</h3>
-	<jwplayer video-url="{{fieldEntity['trailer']}}"  ng-if="fieldEntity['trailer']" ></jwplayer>
+	<!-- <jwplayer video-url="{{fieldEntity['trailer']}}"  ng-if="fieldEntity['trailer']" ></jwplayer> -->
+	<youtube video="{{fieldEntity['trailer']}}" ng-if="fieldEntity['trailer']"></youtube>
   </div>
   <div class="col-sm-8">
   	<rubedo-field field = "{{contentDetailCtrl.getFieldByName('text')}}" ng-if="fieldEntity['text']"></rubedo-field><!--titre-->
@@ -29,7 +30,7 @@
 		  <td width="50" class="play-button" style="text-align: center" ng-click="state = !state">
 			<div ng-if="piste.url"><span class="glyphicon"  ng-class="{'glyphicon-pause':state, 'glyphicon-play':!state}"></span></div>
 		  </td>
-		  <td><span ng-if="$index<9">0</span>{{$index+1}} - {{piste.title}}<audioplayer class="audio-player" video-url="{{piste.url}}" play="{{state}}" ng-if="piste.url"></jwplayer></td>
+		  <td><span ng-if="$index<9">0</span>{{$index+1}} - {{piste.title}}<audioplayer class="audio-player" video-url="{{piste.url}}" play="{{state}}" ng-if="piste.url"><!-- </jwplayer> --></td>
 		  <td><span ng-show="piste.duration>0">{{(piste.duration%3600)*1000 | date : 'mm:ss'}}</span></td>
 		</tr>
 	  </table>

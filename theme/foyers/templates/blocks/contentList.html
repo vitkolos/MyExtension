@@ -41,7 +41,8 @@
                     <div ng-switch-when="56094a2245205e0e2541ea77">
                     
                         <div class="media-body">
-                            <jwplayer video-url="{{content.fields.video.url}}"></jwplayer>
+							<!-- <jwplayer video-url="{{content.fields.video.url}}"></jwplayer> -->
+							<youtube video="{{content.fields.video.url}}"></youtube>
                             <!--<a ng-if="!fieldEditMode" ng-href="{{ content.contentLinkUrl }}">-->
                                 <h4 class="list-item-title uppercase"><span>
                                         {{content.fields.text}}
