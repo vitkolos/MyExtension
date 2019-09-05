@@ -243,7 +243,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                     else if ($scope.fieldEntity['trailer']) {
                         me.watch = 'trailer';
-                        $scope.fieldEntity['trailer'].id = /[^\/]+?$/.exec($scope.fieldEntity['trailer'].url)[0];
+                        $scope.fieldEntity['trailer'].id = /[^\/=]+?$/.exec($scope.fieldEntity['trailer'].url)[0];
                         $scope.fieldEntity['trailer'].embed_url = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + $scope.fieldEntity['trailer'].id + '?autoplay=0');
                         $scope.rubedo.current.page.video = response.data.content.fields.trailer.url;
                     }
@@ -538,6 +538,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         
 
         
+    }
+
+    // For Youtube videos player
+    $scope.get_youtube_embed_url = function(url) {
+        if (!/youtu\.?be/.test(url)) return 'This not a youtube url : ' + url;
+        let res = /[^\/=&]+?$/.exec(url);
+        if (!res.length) return url;
+        let id = res[0];
+        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + id + '?autoplay=0');
     }
 
 }]);

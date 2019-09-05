@@ -47,12 +47,8 @@
 								  <p ng-repeat="field in fields track by $index" ng-if="fieldEntity[field.config.name]&&field.config.name!=contentDetailCtrl.lang" ng-click="$parent.$parent.contentDetailCtrl.lang = field.config.name">{{field.config.fieldLabel}}</li>
 								</div>
 							</div>
-							<jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" title="{{contentDetailCtrl.content.text + '_'+contentDetailCtrl.lang}}"  sous-titre="{{contentDetailCtrl.film_subs}}"></jwplayer>
-							<!-- <div style="position:relative;width:100%;padding-bottom:56.25%;height:0">
-								<iframe id="ytplayer" type="text/html" 
-									ng-src="{{fieldEntity['trailer'].embed_url}}"
-									frameborder="0" style="position:absolute;top:0;left:0;width:100%;height:100%;" >
-							</div> -->
+							<!-- <jwplayer video-url="{{fieldEntity[contentDetailCtrl.lang].url}}" title="{{contentDetailCtrl.content.text + '_'+contentDetailCtrl.lang}}"  sous-titre="{{contentDetailCtrl.film_subs}}"></jwplayer> -->
+							<youtube videoid="{{get_youtube_embed_url(fieldEntity[contentDetailCtrl.lang].url)}}"></youtube>
 						</div>
 					</div>
 		
