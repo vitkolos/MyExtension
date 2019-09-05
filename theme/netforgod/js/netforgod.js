@@ -231,7 +231,10 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
             if (!oldValue || oldValue==newValue) return;
             console.log("film url changed", oldValue, newValue);
             options = prepare_video_options(scope.video);
-            player = new YT.Player(document.getElementById(id), options);
+            newvid_options = {videoId: options.videoId}
+            if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+            player.loadVideoById(newvid_options);
+            //player = new YT.Player(document.getElementById(id), options);
         });
 
       }, // -- end link
