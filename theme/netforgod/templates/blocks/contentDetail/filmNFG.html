@@ -34,7 +34,7 @@
 				</div>
 
 				<!-- fenêtre principale de la vidéo -->
-				<div ng-hide="contentDetailCtrl.watch != 'film'">
+				<div ng-if="contentDetailCtrl.watch == 'film'">
 					<div  ng-init = "field = contentDetailCtrl.getFieldByName('filmYT')">
 						<div ng-controller="RECFieldFilmController as recCtrl" >
 							<div class="dropdown pull-right lang-selection">
@@ -54,7 +54,7 @@
 		
 				</div>
 
-				<div ng-hide="contentDetailCtrl.watch != 'trailer'">
+				<div ng-if="contentDetailCtrl.watch == 'trailer'">
 					<!-- <jwplayer video-url="{{fieldEntity['trailer'].url}}"  title="{{contentDetailCtrl.content.text + '_trailer'}}" sous-titre="{{contentDetailCtrl.subs_trailer}}"></jwplayer> -->
 					<youtube video="{{fieldEntity['trailer'].id}}"></youtube>
 				</div>
