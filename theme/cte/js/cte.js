@@ -359,7 +359,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
       video:    "@"  
     },
 
-    link: function(scope, element) {
+    link: function(scope, element, attrs, controller) {
       let player;
       // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
 
@@ -389,31 +389,31 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
 
       // load youtube players
       // TODO describe better what happens here
-      if (!scope['yt_players']) scope['yt_players'] = {};
-      if (!scope.yt_players[id]) scope.yt_players[id] = {id, options, player}
+      if (!controller['yt_players']) controller['yt_players'] = {};
+      if (!controller.yt_players[id]) controller.yt_players[id] = {id, options, player}
       $window.onYouTubeIframeAPIReady = function() {
-        for (some_id in scope.yt_players) {
-          scope.yt_players[some_id].player = new YT.Player(document.getElementById(some_id), scope.yt_players[some_id].options);
+        for (some_id in controller.yt_players) {
+          controller.yt_players[some_id].player = new YT.Player(document.getElementById(some_id), controller.yt_players[some_id].options);
         }
       };
 
       // watch for film change
       scope.$watch(_ => scope.video, function(newValue, oldValue) {
           if (!oldValue || oldValue==newValue) return;
-          if (!scope.yt_players[id].player) return ($window.YT) ? scope.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
+          if (!controller.yt_players[id].player) return ($window.YT) ? controller.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
           options = prepare_video_options(scope.video);
           newvid_options = {videoId: options.videoId}
           if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
-          scope.yt_players[id].player.loadVideoById(newvid_options);
+          controller.yt_players[id].player.loadVideoById(newvid_options);
       });
 
       // reload YT player when the visibility status changes
       scope.$watch(function() { return element.is(':visible') }, function() {
           options = prepare_video_options(scope.video);
-          if (!scope.yt_players[id].player) return ($window.YT) ? scope.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
+          if (!controller.yt_players[id].player) return ($window.YT) ? controller.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
           newvid_options = {videoId: options.videoId}
           if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
-          scope.yt_players[id].player.loadVideoById(newvid_options);
+          controller.yt_players[id].player.loadVideoById(newvid_options);
       });
 
     }, // -- end link
