@@ -162,9 +162,11 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
       scope: {
         height:   "@",
         width:    "@",
-        video:  "@"  
+        video:    "@"  
       },
   
+      // all the styling here below is ugly but necessary to display the yt iframe correctly (found on the web)
+      // the youtube iframe will be displayed in the inner div
       template: `<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
         <div id="${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
         </div>`,
@@ -178,10 +180,10 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
         
         var player;
 
-        // fix video if it's not an id but a youtube url
-        if (/^http:\/\//.test(video)) {
-            let res = /[^\/=&]+?$/.exec(video);
-            video = res[0];
+        // fix videoid if it's not an id but a youtube url
+        if (/^http:\/\//.test(scope.video)) {
+            let res = /[^\/=&]+?$/.exec(scope.video);
+            scope.video = res[0];
         }
   
         // load youtube player
