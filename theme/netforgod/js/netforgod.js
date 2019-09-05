@@ -162,7 +162,7 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
       scope: {
         height:   "@",
         width:    "@",
-        videoid:  "@"  
+        video:  "@"  
       },
   
       template: `<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
@@ -170,18 +170,26 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
         </div>`,
   
       link: function(scope, element) {
+        // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
         var player;
+
+        // fix video if it's not an id but a youtube url
+        if (/^http:\/\//.test(video)) {
+            let res = /[^\/=&]+?$/.exec(video);
+            video = res[0];
+        }
   
+        // load youtube player
         $window.onYouTubeIframeAPIReady = function() {
           player = new YT.Player(document.getElementById(id), {
             height: scope.height,
             width: scope.width,
-            videoId: scope.videoid
+            videoId: scope.video
           });
         };
       },  
