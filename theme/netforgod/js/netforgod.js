@@ -173,26 +173,47 @@ angular.module('rubedoBlocks').directive('youtube', function($window) {
   
       link: function(scope, element) {
         // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
-        var tag = document.createElement('script');
+        let tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
+        let firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
         
-        var player;
+        let player;
+        let other_options = {};
 
         // fix videoid if it's not an id but a youtube url
         if (/^https?:\/\//.test(scope.video)) {
-            let res = /[^\/=&]+?$/.exec(scope.video);
-            scope.video = res[0];
+            if (!/youtu\.?be/.test(scope.video)) return 'not a youtube url : ' + scope.video;
+            let res = /([^\/]+?)(\?.+)?$/.exec(scope.video);
+            if (res.length < 2) return 'could not guess youtube id from ' + scope.video;
+            scope.video = res[1];
+            console.log("video id guessed : ", scope.video);
+
+            // find other options (like ?t=46s to start the video after 46s)
+            if (res.length >= 3 && res[2].length > 0) {
+                let corresp = {'t': 'start'};
+                let raw_other_options = res[2].substr(1).split("&");
+
+                raw_other_options.map(function(el) {
+                    let arr = el.split('=');
+                    if (arr.length < 2 || !corresp[arr[0]]) return;
+                    other_options[corresp[arr[0]]] = arr[1];
+                })
+            }
         }
+
+        // prepare options
+        let options = {
+            height: scope.height,
+            width: scope.width,
+            videoId: scope.video,
+            autoplay: 0,
+        }
+        options = Object.assign(options, other_options);
   
         // load youtube player
         $window.onYouTubeIframeAPIReady = function() {
-          player = new YT.Player(document.getElementById(id), {
-            height: scope.height,
-            width: scope.width,
-            videoId: scope.video
-          });
+          player = new YT.Player(document.getElementById(id), options);
         };
       },  
     }
