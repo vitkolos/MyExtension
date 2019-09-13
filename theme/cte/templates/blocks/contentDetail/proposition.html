@@ -160,8 +160,8 @@
 				<div class="col-sm-12" ng-if="fieldEditMode">
 					<p>{{contentDetailCtrl.getLabelByName('publics')}} :</p>
 					<rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('publics')}}"></rubedo-field>
-					<p ng-if="!contentDetailCtrl.content.fields.public_service.includes('aucun')">{{contentDetailCtrl.getLabelByName('public_service')}} :</p>
-					<rubedo-field ng-if="!contentDetailCtrl.content.fields.public_service.includes('aucun')" field =  "{{contentDetailCtrl.getFieldByName('public_service')}}"></rubedo-field>
+					<p>{{contentDetailCtrl.getLabelByName('public_service')}} :</p>
+					<rubedo-field field =  "{{contentDetailCtrl.getFieldByName('public_service')}}"></rubedo-field>
 				</div>
 				
 			</div>
@@ -213,7 +213,7 @@
 								</div>
 						</div>						
 						<!--si un seul public au service-->
-						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.public_service).length==1 && contentDetailCtrl.content.fields.public_service[0]">
+						<div class="col-sm-6" ng-if="(contentDetailCtrl.content.fields.public_service).length==1 && contentDetailCtrl.content.fields.public_service[0] && !contentDetailCtrl.content.fields.public_service.includes('aucun')">
 							<div class="button rouge cursor-as-pointer"  ng-click="contentDetailCtrl.content.public = contentDetailCtrl.content.fields.public_service[0];contentDetailCtrl.content.service = true; contentDetailCtrl.showInscription = true" >
 								<a href="#bottom">{{rubedo.translate("Block.Inscription.Inscrire.Service", "S'inscrire au service")}}</a>
 							</div>
