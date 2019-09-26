@@ -62,6 +62,17 @@
 							</p>
 						</div>
 					</div>
+
+					<!--Date création projet-->
+					<div class="container-fluid" ng-if="fieldEntity['website']">
+						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('date_creation_projet')}}</p>
+						</div>
+						<div class="col-xs-12 col-sm-8 ">
+							<p class="small"><a ng-href="{{contentDetailCtrl.content.fields.website}}" target="_blank">{{contentDetailCtrl.content.fields.date_creation_projet}}</a></p>
+
+						</div>
+					</div>
 					
 					<!--Site web-->
 					<div class="container-fluid" ng-if="fieldEntity['website']">
