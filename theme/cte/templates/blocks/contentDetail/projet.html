@@ -69,7 +69,7 @@
 							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('date_creation_projet')}}</p>
 						</div>
 						<div class="col-xs-12 col-sm-8 ">
-							<p class="small"><a ng-href="{{contentDetailCtrl.content.fields.date_creation_projet}}" target="_blank">{{contentDetailCtrl.content.fields.date_creation_projet}}</a></p>
+							<p class="small">{{contentDetailCtrl.content.fields.date_creation_projet | date:'yyyy-MM-ddTHH:mm:ssZ'}}</p>
 
 						</div>
 					</div>
