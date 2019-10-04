@@ -14,6 +14,8 @@
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==1}" ng-click="donsCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Block.Dons.Titre", "Mon don")}}
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>1"></span>
                 </h2>
+
+                <!-- Inscription Stage 1 : MY DONATION -->
                 <div id="inscriptionStage1" class="collapse in">
                         <ng-form name="infos_dons">
                                 <div class="row" ng-if="donsCtrl.fiscalitesCount>1">
@@ -31,6 +33,8 @@
                                                 </div>
                                         </div>
                                 </div>
+
+                                <!-- Amount of my donation -->
                                 <div class="row">
                                         <div class="col-sm-4 col-xs-12"><label for="nom" class="label_style">{{rubedo.translate("Block.Dons.Montant", "Montant du don")}} *</label></div>
                                         <div class="col-sm-8" ng-init="don.montant = contentDetailCtrl.content.fields.montant_1">                                          
@@ -68,20 +72,22 @@
                                         </div>
                                 </div>
                                 
-                                <div class="row">
+                                <!-- Monthly / Quaterly -->
+                                <div class="row" ng-if="contentDetailCtrl.content.fields.don_frequences.don_frequences.includes('monthly')">
                                         <div class="col-sm-4 col-xs-12"><label for="nom" class="label_style"></label></div>
                                         <div class="col-sm-8">
                                                 <input type="checkbox"  name="mensuel" id="mensuel"  ng-model="don.mensuel">
                                                 <label for="mensuel">{{rubedo.translate("Block.Dons.Mensuel", "Rendre ce don mensuel")}}</label>
                                         </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" ng-if="contentDetailCtrl.content.fields.don_frequences.don_frequences.includes('quaterly')">
                                         <div class="col-sm-4 col-xs-12"><label for="nom" class="label_style"></label></div>
                                         <div class="col-sm-8">
                                                 <input type="checkbox"  name="trimestriel" id="trimestriel"  ng-model="don.trimestriel">
-                                                            <label for="trimestriel">{{rubedo.translate("Block.Dons.Trimestriel", "Rendre ce don trimestriel")}}</label>
+                                                <label for="trimestriel">{{rubedo.translate("Block.Dons.Trimestriel", "Rendre ce don trimestriel")}}</label>
                                         </div>
                                 </div>
+
                                 <!---GITF AID for the UK-->
                                 <div class="row" ng-if="donsCtrl.paymentmeans.paymentMeans=='uk' ">
                                         <div class="col-sm-4 col-xs-12"><label class="label_style">Gift Aid</label></div>

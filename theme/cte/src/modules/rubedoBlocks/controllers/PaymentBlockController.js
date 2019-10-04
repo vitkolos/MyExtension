@@ -27,7 +27,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
             }
         });
     };
-				me.getContentById = function (contentId){
+	me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id
@@ -36,7 +36,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
             function(response){
                 if(response.data.success){
                     me.proposition=response.data.content;
-																				me.content = angular.copy(me.proposition);
+                    me.content = angular.copy(me.proposition);
                     console.log(me.proposition);
                 }
             }
