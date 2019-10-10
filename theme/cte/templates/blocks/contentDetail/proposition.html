@@ -267,6 +267,7 @@
 			<table style="font-size:0.8em;">
 				<tr>
 					<th>Numéro</th>
+					<th>Date</th>
 					<th>Statut</th>
 					<th>Serviteur?</th>
 					<th>Nom</th>
@@ -280,6 +281,7 @@
 				</tr>
 				<tr ng-repeat="inscription in contentDetailCtrl.inscriptions track by $index" ng-class="{'bg-white':$even}">
 					<th class="padding">{{inscription.title}}</th>
+					<th>{{inscription.createTime}}</th>
 					<th>{{inscription.statut}}</th>
 					<th class="text-center"><span class="glyphicon glyphicon-ok txt-vert" ng-if="inscription.serviteur"></span></th>
 					<th>{{inscription.nom}}</th>
