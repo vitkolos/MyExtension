@@ -236,7 +236,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             };
                             RubedoSearchService.searchByQuery(optionsInscriptionsList).then(function(response){
                               if(response.data.success){
-                                $timeout(function(){me.inscriptions = response.data.results.data;},100);
+                                $timeout(function(){me.inscriptions = response.data.results.data; console.log('inscriptions', me.inscriptions);},100);
                               } 
                             });
                             /*Get inscriptions list for dowlonad as csv */
