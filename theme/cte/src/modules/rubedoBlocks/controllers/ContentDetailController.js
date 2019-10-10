@@ -236,7 +236,11 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             };
                             RubedoSearchService.searchByQuery(optionsInscriptionsList).then(function(response){
                               if(response.data.success){
-                                $timeout(function(){me.inscriptions = response.data.results.data; console.log('inscriptions', me.inscriptions);},100);
+                                $timeout(function(){
+                                    me.inscriptions = response.data.results.data; 
+                                    for (let i = 0; i < me.inscriptions.length; i++) me.inscriptions[i].date_inscription = window.moment(me.inscription[i].lastUpdateTime).format("DD/MM/YYYY hh:mm");
+                                    console.log('inscriptions', me.inscriptions);
+                                },100);
                               } 
                             });
                             /*Get inscriptions list for dowlonad as csv */
