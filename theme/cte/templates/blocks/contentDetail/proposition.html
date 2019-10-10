@@ -281,7 +281,7 @@
 				</tr>
 				<tr ng-repeat="inscription in contentDetailCtrl.inscriptions track by $index" ng-class="{'bg-white':$even}">
 					<th class="padding">{{inscription.title}}</th>
-					<th>{{inscription.lastUpdateTime}} {{moment(inscription.lastUpdateTime.format(DD/MM/YYYY hh:mm))}}</th>
+					<th>{{inscription.lastUpdateTime}} {{moment(inscription.lastUpdateTime).format(DD/MM/YYYY hh:mm)}}</th>
 					<th>{{inscription.statut}}</th>
 					<th class="text-center"><span class="glyphicon glyphicon-ok txt-vert" ng-if="inscription.serviteur"></span></th>
 					<th>{{inscription.nom}}</th>
