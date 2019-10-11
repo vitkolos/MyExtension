@@ -99,7 +99,7 @@
                             <li>
                                 <span style="line-height:1em">
                                     <a ng-if="!blockConfig.donationPage" ng-href="http://www.chemin-neuf.fr/aidez-nous/faire-un-don?from={{encodeURIComponent($location.absUrl())}}">{{rubedo.translate("FaireUnDon" , "Faire un don")}}</a>
-                                    <a ng-if="blockConfig.donationPage" rubedo-page-link="{{blockConfig.donationPage + '?from=' + encodeURIComponent($location.absUrl())}}">{{rubedo.translate("FaireUnDon" , "Faire un don")}}</a>
+                                    <a ng-if="blockConfig.donationPage" rubedo-page-link="{{blockConfig.donationPage + '?from=' + encodeURIComponent('http://coco/riri')}}">{{rubedo.translate("FaireUnDon" , "Faire un don")}}</a>
                                 </span>
                             </li>
             
