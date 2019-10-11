@@ -157,8 +157,11 @@ class MailResource extends AbstractResource
     protected function buildEmailFromTemplate($fields,$template,$subject)
     {
         $url = 'http://' . $_SERVER['HTTP_HOST'] . $template;
-        $this->log("template url found : ".$url);
-        $body = file_get_contents($url);
+        $ctx = stream_context_create([
+            'ssl' => ['verify_peer' => false], // verify_peer = false means "don't verify the SSL certificate"
+            'http' => ['ignore_errors' => true],
+        ]);
+        $body = file_get_contents($url, FALSE, $ctx);
         $this->log("template body : ".$body);
         foreach ($fields as $name => $content) {
             $body = preg_replace('{{ '.$name.' }}', $content, $body);
