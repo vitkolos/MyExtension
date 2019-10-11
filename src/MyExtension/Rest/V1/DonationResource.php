@@ -109,7 +109,7 @@ class DonationResource extends AbstractResource
         $don['online'] = true;
         $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
         $don['nativeLanguage'] = $params['lang']->getLocale();
-        $this->log("Nouveau don : ".json_encode($don));
+        // $this->log("Nouveau don : ".json_encode($don));
         $resultcreate = $contentsService->create($don, array(),false);                
         AbstractCollection::disableUserFilter(false);
         
