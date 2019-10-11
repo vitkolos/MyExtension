@@ -166,6 +166,7 @@
                         page_id = page_id.substr(0, 24);
                         params = attrs.rubedoPageLink.substr(24);
                     }
+                    console.log("rubedoPageLink", attrs, page_id, params);
 
                     RubedoPagesService.getPageById(attrs.rubedoPageLink).then(function(response){
                         if (response.data.success){
