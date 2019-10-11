@@ -55,6 +55,7 @@ class MailResource extends AbstractResource
      */
     public function postAction($params)
     {
+        $this->log("starting new email params = " . json_encode($params));
         /** @var \Rubedo\Interfaces\Mail\IMailer $mailerService */
         $mailerService = Manager::getService('Mailer');
 
@@ -78,8 +79,15 @@ class MailResource extends AbstractResource
         $mailerObject->setFrom($from);
         $mailerObject->setCharset('utf-8');
         $mailerObject->setSubject($params['subject']);
-        if (!$params['template']) $mailerObject->setBody($this->buildEmail($params['fields']), 'text/html', 'utf-8');
-        else $mailerObject->setBody($this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']), 'text/html', 'utf-8');
+        if (!$params['template']) {
+            $myBody = $this->buildEmail($params['fields']);
+            $mailerObject->setBody($myBody, 'text/html', 'utf-8');
+            $this->log("no email template specified message body = " . str_replace("\n", "@@", $myBody));
+        } else {
+            $myBody = $this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']);
+            $this->log("email template from ".$params['template'].". Message body = " . str_replace("\n", "  ", $myBody));
+            $mailerObject->setBody($myBody, 'text/html', 'utf-8');
+        }
         // Send e-mail
         $errors = [];
         if ($mailerService->sendMessage($mailerObject, $errors)) {
@@ -269,7 +277,13 @@ class MailResource extends AbstractResource
                             ->setRequired()
                             ->setDescription('Traductions')
                     );
-    }    
+    }
+
+    private function log($msg) {
+        $log_file_path = '/var/www/html/rubedo/log/mailer_resource.log';
+        if (gettype($msg) != 'string') $msg = json_encode($msg);
+        file_put_contents($log_file_path, date("Y-m-d H:i") . ' ' . $msg . "\n", FILE_APPEND | LOCK_EX);
+    }
    
     
     
