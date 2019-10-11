@@ -85,7 +85,7 @@ class MailResource extends AbstractResource
             $this->log("no email template specified message body = " . str_replace("\n", "@@", $myBody));
         } else {
             $myBody = $this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']);
-            $this->log("email template from ".$params['template'].". Message body = " . str_replace("\n", "  ", $myBody));
+            $this->log("email template from ".$params['template']);
             $mailerObject->setBody($myBody, 'text/html', 'utf-8');
         }
         // Send e-mail
@@ -162,7 +162,6 @@ class MailResource extends AbstractResource
             'http' => ['ignore_errors' => true],
         ]);
         $body = file_get_contents($url, FALSE, $ctx);
-        $this->log("template body : ".$body);
         foreach ($fields as $name => $content) {
             $body = preg_replace('{{ '.$name.' }}', $content, $body);
         }
