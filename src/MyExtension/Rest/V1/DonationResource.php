@@ -93,7 +93,7 @@ class DonationResource extends AbstractResource
         $don['fields'] = $this->processDon($don['fields']);
         if(isset($accountInfos['codeCompta'])) $don['fields']['codeCompta'] = $accountInfos['codeCompta'];
         $don['fields']['text'] = $siteConfig['codePays'] . "_" . date("Y") . "_" . str_pad($donationNumber, 6, '0', STR_PAD_LEFT) ;
-        $don['fields']['date_rgpd_accepted'] = $donationInfo['date_rgpd_accepted'];
+        $don['fields']['date_rgpd_accepted'] = $params["don"]['date_rgpd_accepted'];
         $don['text'] =$don['fields']['text'] ;
         $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
         $don['target'] = "57237282c445ecf3008c7ddc";
@@ -109,6 +109,7 @@ class DonationResource extends AbstractResource
         $don['online'] = true;
         $don['startPublicationDate'] = ""; $don['endPublicationDate'] = "";
         $don['nativeLanguage'] = $params['lang']->getLocale();
+        $this->log("Nouveau don : ".json_encode($don));
         $resultcreate = $contentsService->create($don, array(),false);                
         AbstractCollection::disableUserFilter(false);
         
@@ -830,6 +831,12 @@ class DonationResource extends AbstractResource
                             ->setDescription("message d'erreur de l'envoi de mail")
                             ->setKey('errors')
                     );
+    }
+
+    private function log($msg) {
+        $log_file_path = '/var/www/html/rubedo/log/donation_resource.log';
+        if (gettype($msg) != 'string') $msg = json_encode($msg);
+        file_put_contents($log_file_path, date("Y-m-d H:i") . ' ' . $msg . "\n", FILE_APPEND | LOCK_EX);
     }
 
         
