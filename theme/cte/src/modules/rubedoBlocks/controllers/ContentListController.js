@@ -63,7 +63,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
      * If we set blockConfig.enableContext to true, we display the contentList only if
      * 
      */
-    me.fromUrl = $location.search()['from'];
+    me.fromUrl = $location.search()['from'].replace(/https?\:\/\/[^\/]+\//, "/");
     console.log("contentListCtrl", me);
     me.contextUrl = "";
     RubedoPagesService.getPageById(config.singlePage).then(function(response){
