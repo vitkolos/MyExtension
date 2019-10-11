@@ -5,7 +5,7 @@
             ng-click="contentListCtrl.launchFOContribute()">
         <span class="glyphicon glyphicon-plus"></span> {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}}
     </button>
-    <div class="row contentList" ng-switch="blockConfig.columns" ng-if="!blockConfig.display || blockConfig.display == 'default'">
+    <div class="row contentList" ng-switch="blockConfig.columns" ng-if="(!blockConfig.display || blockConfig.display == 'default') && (!blockConfig.enableContext || contentListCtrl.fromUrl == contentListCtrl.contextUrl)">
        <!--POUR 1 COLONNE-->
         <div ng-style="contentListCtrl.blockStyle" ng-switch-when="1" class="padding-" >
             <!--<div id="infiniteScrollCtrl">-->            

@@ -56,6 +56,24 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             });
         }
     }
+
+    // ====================================================================
+    /**
+     * Here we prepare special display condition :
+     * If we set blockConfig.enableContext to true, we display the contentList only if
+     * 
+     */
+    me.fromUrl = $location.search()['from'];
+    console.log("contentListCtrl", me);
+    me.contextUrl = "";
+    RubedoPagesService.getPageById(config.singlePage).then(function(response){
+        if (response.data.success){
+            me.contextUrl = response.data.url;
+            console.log("got config singlepage : ", response.data)
+        }
+    });
+    // ====================================================================
+
     me.titleOnly = config.showOnlyTitle;
     me.columns = config.columns && !config.infiniteScroll ? 'col-md-'+(12/config.columns):'col-md-12';
     me.showPaginator = config.showPager && !config.infiniteScroll;
