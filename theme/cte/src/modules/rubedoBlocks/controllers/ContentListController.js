@@ -69,7 +69,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     RubedoPagesService.getPageById(config.singlePage).then(function(response){
         if (response.data.success){
             me.contextUrl = response.data.url;
-            console.log("got config singlepage : ", response.data)
+            console.log("got config page associée : ", response.data)
         }
     });
     // ====================================================================

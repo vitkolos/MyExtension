@@ -111,10 +111,12 @@
                                     <p ng-if="infos_dons.$invalid && infos_dons.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs", "Merci de remplir les champs obligatoires")}}</p>
                                 </div>
                         </ng-form>
-                                        </div>
+                </div>
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==2}" >{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>2" ng-click="donsCtrl.setCurrentStage(2,true)"></span>
                 </h2>
+
+                <!-- INFOS PERSO -->
                 <div id="inscriptionStage2" class="collapse">
                         <ng-form name="infos_personnelles">
                                 <div class="row">
@@ -197,17 +199,10 @@
                                             <rubedo-notification></rubedo-notification>
                                         </div>
                                 </div>
-
-                                
-                                
-
-                              
-                                
-                                
-                                
-                                
                         </ng-form>
                 </div>
+
+                <!-- COMPLEMENTARY QUESTIONS -->
                 <h2 class="capital txt-red" ng-if="donsCtrl.questions.length>0" ng-class="{'displayed' : donsCtrl.currentStage==3}" >{{contentDetailCtrl.getLabelByName('questions')}}
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>3" ng-click="donsCtrl.setCurrentStage(3,true)"></span>
                 </h2>
@@ -221,6 +216,8 @@
                                 </div>
                         </ng-form>
                 </div>
+
+                <!-- PAYMENT -->
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==4}" >{{rubedo.translate("Block.Paiment","Mon paiement")}} 
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>4" ng-click="donsCtrl.setCurrentStage(4,true)"></span>
                 </h2>
@@ -281,7 +278,16 @@
                                                 </div>
                                         </div>  
                                        
-                                </div>                                
+                                </div>
+                                
+                                <!-- Checkbox accept RGPD -->
+                                <div class="row text-center">
+                                        <div class="col-xs-12">
+                                                <input type="checkbox" name="accept_rgpd" id="accept_rgpd" ng-model='don.rgpd' required>
+                                                <label for="accept_rgpd">{{rubedo.translate("Block.Inscription.Jaccepte", "I accept")}} <a target="_blank" ng-href="/dam?media-id={{parameters.rgpd_media_id}}">{{rubedo.translate("Block.Inscription.PolitiqueRgpd", "the privacy policy of the Chemin Neuf community")}}</a></label>
+                                        </div>
+                                </div>
+
                                 <div class="row text-center">
                                         <div class="col-sm-12">
                                                 <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="donsCtrl.submit(inscription_form.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Dons.Donner","Donner")}}</div><!----inscription_form.$valid)-->

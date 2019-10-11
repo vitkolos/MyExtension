@@ -36,6 +36,20 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
        me.currentStage = newStage;
     }
 
+    // =======================================================
+    //                  RGPD
+    // =======================================================
+    // les différentes politiques de confidentialité par langue
+    // (ce sont les ids des medias PDF correspondants)
+    me.rgpd_links = {
+        'fr': '5cada77739658847463d67dc',
+    }
+    // on met le lien vers la bonne politique RGPD
+    $scope.parameters = {}
+    $scope.parameters.rgpd_media_id = me.rgpd_links["fr"];
+    if ($scope.contentDetailCtrl.content && $scope.contentDetailCtrl.content.locale && me.rgpd_links[$scope.contentDetailCtrl.content.locale]) $scope.parameters.rgpd_media_id = me.rgpd_links[$scope.contentDetailCtrl.content.locale];
+    // =======================================================
+
 
     
     RubedoPaymentMeansService.getPaymentMeansDons().then(
@@ -198,7 +212,10 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
                 $scope.don.conditionId = me.fiscalites[$scope.don.condition].id;
             }
             if($scope.contentDetailCtrl.content.fields.codeAna) $scope.don.codeAna = $scope.contentDetailCtrl.content.fields.codeAna;
-												
+
+            // on ajoute la date d'acceptation de la politique de confidentialité rgpd
+            $scope.don.date_rgpd_accepted = Math.round(Date.now()/1000);
+            
             DonationService.donate($scope.don, me.account).then(function(response){
                 if (response.data.success) {
 
