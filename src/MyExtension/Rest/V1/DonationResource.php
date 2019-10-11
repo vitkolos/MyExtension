@@ -93,6 +93,7 @@ class DonationResource extends AbstractResource
         $don['fields'] = $this->processDon($don['fields']);
         if(isset($accountInfos['codeCompta'])) $don['fields']['codeCompta'] = $accountInfos['codeCompta'];
         $don['fields']['text'] = $siteConfig['codePays'] . "_" . date("Y") . "_" . str_pad($donationNumber, 6, '0', STR_PAD_LEFT) ;
+        $don['fields']['date_rgpd_accepted'] = $donationInfo['date_rgpd_accepted'];
         $don['text'] =$don['fields']['text'] ;
         $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
         $don['target'] = "57237282c445ecf3008c7ddc";
