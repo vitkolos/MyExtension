@@ -156,15 +156,13 @@ class MailResource extends AbstractResource
      */
     protected function buildEmailFromTemplate($fields,$template,$subject)
     {
-        
-         $body =file_get_contents('http://' . $_SERVER['HTTP_HOST']  .$template);
-          foreach ($fields as $name => $content) {
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . $template;
+        $this->log("template url found : ".$url);
+        $body = file_get_contents($url);
+        $this->log("template body : ".$body);
+        foreach ($fields as $name => $content) {
             $body = preg_replace('{{ '.$name.' }}', $content, $body);
         }
-       
-        /*foreach ($fields as $name => $content) {
-            $lines[] = $name . ' : ' . $content;
-        }*/
         return $body;
     }
     
