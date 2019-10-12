@@ -21,6 +21,36 @@ class GraphResource extends AbstractResource
      * @var int
      */
     public $cacheLifeTime=60;
+    /**
+     * @var array
+     */
+    protected $toExtractFromFields = array('text');
+    /**
+     * @var array
+     */
+    protected $otherLocalizableFields = array('text', 'summary');
+    /**
+     * @var array
+     */
+    protected $returnedEntityFields = array(
+        'id',
+        'text',
+        'version',
+        'createUser',
+        'lastUpdateUser',
+        'fields',
+        'taxonomy',
+        'status',
+        'pageId',
+        'maskId',
+        'locale',
+        'readOnly',
+        'createTime',
+        'lastUpdateTime',
+        'clickStreamEvent',
+        'isProduct',
+        'productProperties'
+    );
 
     /**
      * { @inheritdoc }
