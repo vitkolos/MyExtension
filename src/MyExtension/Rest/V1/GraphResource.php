@@ -38,7 +38,10 @@ class GraphResource extends AbstractResource
      * @throws \RubedoAPI\Exceptions\APIEntityException
      */
     public function getAction($params) {
-        return "coco";
+        return [
+            "success" => true,
+            "data" => "coco"
+        ];
     }
 
     /**
