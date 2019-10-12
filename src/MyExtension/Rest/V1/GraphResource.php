@@ -81,7 +81,7 @@ class GraphResource extends AbstractResource
     {
         $this
             ->definition
-            ->setName('Contents')
+            ->setName('Graphs')
             ->setDescription('Deal with contents')
             ->editVerb('get', function (VerbDefinitionEntity &$definition) {
                 $this->defineGet($definition);
@@ -94,7 +94,7 @@ class GraphResource extends AbstractResource
             });
         $this
             ->entityDefinition
-            ->setName('Content')
+            ->setName('Graph')
             ->setDescription('Works on single content')
             ->editVerb('get', function (VerbDefinitionEntity &$definition) {
                 $this->defineEntityGet($definition);
