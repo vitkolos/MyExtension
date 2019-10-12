@@ -85,6 +85,13 @@ class ContentsResource extends AbstractResource
      */
     public function getAction($params)
     {
+        if ($params['CCN'] == 'LSemb') {
+            return [
+                "success" => true,
+                "data" => "Grazie Signore !"
+            ];
+        }
+
         if (isset($params['useDraftMode'])||isset($params['foContributeMode'])){
             Context::setIsDraft(true);
         }
