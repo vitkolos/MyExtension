@@ -28,7 +28,7 @@ class GraphResource extends AbstractResource
     public function __construct()
     {
         parent::__construct();
-        $this->define();
+        //$this->define();
     }
     /**
      * Get to contents
@@ -41,6 +41,7 @@ class GraphResource extends AbstractResource
         return "coco";
     }
 
+    
 }
 
 ?>
