@@ -70,6 +70,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
         if (response.data.success){
             me.contextUrl = response.data.url;
             console.log("got config page associée : ", response.data)
+            console.log("conditional display = ", !config.enableContext || me.fromUrl == me.contextUrl)
         }
     });
     // ====================================================================
