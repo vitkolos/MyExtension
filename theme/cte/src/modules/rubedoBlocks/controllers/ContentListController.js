@@ -63,12 +63,12 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
      * If we set blockConfig.enableContext to true, we display the contentList only if
      * 
      */
-    me.fromUrl = ($location.search()['from'] || '').replace(/https?\:\/\/[^\/]+\//, "/");
+    me.fromUrl = ($location.search()['from'] || '').replace(/https?\:\/\/[^\/]+\//, "/").replace(/\/$/, "");;
     console.log("contentListCtrl", me);
     me.contextUrl = "";
     RubedoPagesService.getPageById(config.singlePage).then(function(response){
         if (response.data.success){
-            me.contextUrl = response.data.url;
+            me.contextUrl = response.data.url.replace(/\/$/, "");
             console.log("got config page associée : ", response.data)
             console.log("conditional display = ", !config.enableContext || me.fromUrl == me.contextUrl)
         }
