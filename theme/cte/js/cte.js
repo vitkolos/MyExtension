@@ -434,7 +434,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
 
 angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($http) {
   return {
-    getPolitiqueConfidentialiteUrl: function (lang = 'fr') {
+    getPolitiqueConfidentialiteId: function (lang = 'fr') {
       return $http.get("api/v1/media", {
         params: {
           query: {'DAMTypes': ['5da5c314396588215cde8b40']}, // this the damtype id of "Politique e confidentiatlié"
