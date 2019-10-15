@@ -257,10 +257,6 @@ angular.module('rubedoBlocks').filter('isAfter', function ($filter) {
 });
 
 
-angular.module('rubedoBlocks').filter('encodeURIComponent', function($window) {
-    return $window.encodeURIComponent;
-});
-
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
         var me=this;
         var mediaId=$scope.audioFileId;
@@ -436,7 +432,41 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
 });
 
 
+angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($http) {
+  return {
+    getPolitiqueConfidentialiteUrl = function (lang = 'fr') {
+      return $http.get({
+        url: "api/v1/media?query=%7B%22DAMTypes%22%3A%5B%225da5c314396588215cde8b40%22%5D%7D&pageWorkspace=545cd94b45205e91168b4567"
 
+      }).then(function (resp) {
+        // on error
+        if (!resp['success']) {
+          console.error("Error in RgpdService", resp);
+          return "";
+        }
+
+        // on success
+        console.log("Rgpd", resp);
+        let found_medias = resp.media.data.filter(el => nativeLanguage == lang.toLocaleLowerCase());
+        if (found_medias.length == 0) {
+          console.warn("Did not find politique de confidentialité for language " + lang + " fallback to FR");
+          found_medias = resp.media.data.filter(el => nativeLanguage == 'fr');
+        }
+        if (found_medias.length == 0) {
+          console.error('Could not find the politique de confidentialité')
+          return "";
+        }
+        console.log("Rgpd found", found_medias[0]);
+        return found_medias[0].id;
+
+      }, function (data) {
+        // on error
+        console.error("Error in RgpdService", data);
+        return "";
+      })
+    }
+  }
+}]);
 
 
     angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {

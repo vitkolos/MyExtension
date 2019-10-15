@@ -1,4 +1,4 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService) {
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService','RgpdService',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService,RgpdService) {
     
     // ==============================================================================
     //                INIT SANDBOX PARAMS FOR DEBUG
@@ -31,6 +31,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     $scope.parameters = {}
     $scope.parameters.rgpd_media_id = me.rgpd_links["fr"];
     if (me.content && me.content.locale && me.rgpd_links[me.content.locale]) $scope.parameters.rgpd_media_id = me.rgpd_links[me.content.locale];
+
+    RgpdService.getPolitiqueConfidentialiteUrl('fr').then(id => {
+        $scope.parameters.rgpd_media_id = id;
+    })
     // =======================================================
     // =======================================================
 
