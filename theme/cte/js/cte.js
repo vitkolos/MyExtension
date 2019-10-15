@@ -436,12 +436,11 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
   return {
     getPolitiqueConfidentialiteUrl: function (lang = 'fr') {
       return $http.get("api/v1/media", {
-        //?query=%7B%22DAMTypes%22%3A%5B%225da5c314396588215cde8b40%22%5D%7D&pageWorkspace=545cd94b45205e91168b4567",
         params: {
           query: {'DAMTypes': ['5da5c314396588215cde8b40']},
           pageWorkspace: '545cd94b45205e91168b4567'
         }
-      })/* .then(function (resp) {
+      }).then(function (resp) {
         // on error
         if (!resp || !resp.success) {
           console.log("Error1 in RgpdService", resp);
@@ -467,7 +466,7 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
         // on error
         console.log("Error2 in RgpdService", data);
         return "";
-      }) */
+      })
     }
   }
 }]);
