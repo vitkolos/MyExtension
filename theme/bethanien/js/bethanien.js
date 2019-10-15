@@ -259,7 +259,7 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
         params: {
           query: {'DAMTypes': ['5da5c314396588215cde8b40']}, // this the damtype id of "Politique e confidentiatlié"
           pageWorkspace: '545cd94b45205e91168b4567',
-          lang: 'de|de'
+          lang: 'de|fr'
         }
       }).then(function (resp) {
         // on error
