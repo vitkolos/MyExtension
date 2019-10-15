@@ -1,8 +1,16 @@
-angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','RubedoMailService',function($scope,$location,RubedoMailService){
+angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','RubedoMailService', 'RgpdService',function($scope,$location,RubedoMailService, RgpdService){
     var me = this;
     var config = $scope.blockConfig;
     me.contactData={ };
     me.contactError=null;
+
+    // RGPD
+    console.log("Init RGPD")
+    $scope.parameters = {'rgpd_media_id': ''}
+    lang = (me.content && me.content.locale) ? me.content.locale : 'fr';
+    RgpdService.getPolitiqueConfidentialiteId(lang).then(id => {
+        $scope.parameters.rgpd_media_id = id;
+    })
     
     me.submit=function($scope){
         me.contactError=null;
