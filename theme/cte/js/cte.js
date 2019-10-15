@@ -444,7 +444,7 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
       }).then(function (resp) {
         // on error
         if (!resp['success']) {
-          console.error("Error1 in RgpdService", resp);
+          console.log("Error1 in RgpdService", resp);
           return "";
         }
 
@@ -465,7 +465,7 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
 
       }, function (data) {
         // on error
-        console.error("Error in RgpdService", data);
+        console.log("Error2 in RgpdService", data);
         return "";
       })
     }
