@@ -437,7 +437,7 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
     getPolitiqueConfidentialiteUrl: function (lang = 'fr') {
       return $http.get("api/v1/media", {
         params: {
-          query: {'DAMTypes': ['5da5c314396588215cde8b40']},
+          query: {'DAMTypes': ['5da5c314396588215cde8b40']}, // this the damtype id of "Politique e confidentiatlié"
           pageWorkspace: '545cd94b45205e91168b4567'
         }
       }).then(function (resp) {
