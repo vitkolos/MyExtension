@@ -441,16 +441,16 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
           query: {'DAMTypes': ['5da5c314396588215cde8b40']},
           pageWorkspace: '545cd94b45205e91168b4567'
         }
-      }).then(function (resp) {
+      })/* .then(function (resp) {
         // on error
-        if (!resp['success']) {
+        if (!resp || !resp.success) {
           console.log("Error1 in RgpdService", resp);
           return "";
         }
 
         // on success
         console.log("Rgpd", resp);
-        /* let found_medias = resp.media.data.filter(el => el.nativeLanguage == lang.toLocaleLowerCase());
+        let found_medias = resp.media.data.filter(el => el.nativeLanguage == lang.toLocaleLowerCase());
         if (found_medias.length == 0) {
           console.warn("Did not find politique de confidentialité for language " + lang + " fallback to FR");
           found_medias = resp.media.data.filter(el => el.nativeLanguage == 'fr');
@@ -460,14 +460,14 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
           return "";
         }
         console.log("Rgpd found", found_medias[0]);
-        return found_medias[0].id; */
+        return found_medias[0].id;
         return "success";
 
       }, function (data) {
         // on error
         console.log("Error2 in RgpdService", data);
         return "";
-      })
+      }) */
     }
   }
 }]);
