@@ -435,8 +435,8 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
 angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($http) {
   return {
     getPolitiqueConfidentialiteUrl: function (lang = 'fr') {
-      return $http.get({
-        url: "api/v1/media", //?query=%7B%22DAMTypes%22%3A%5B%225da5c314396588215cde8b40%22%5D%7D&pageWorkspace=545cd94b45205e91168b4567",
+      return $http.get("api/v1/media", {
+        //?query=%7B%22DAMTypes%22%3A%5B%225da5c314396588215cde8b40%22%5D%7D&pageWorkspace=545cd94b45205e91168b4567",
         params: {
           query: {'DAMTypes': ['5da5c314396588215cde8b40']},
           pageWorkspace: '545cd94b45205e91168b4567'
