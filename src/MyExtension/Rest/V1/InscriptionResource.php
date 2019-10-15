@@ -38,30 +38,30 @@ class InscriptionResource extends AbstractResource
                     ->setValue((int)$params['endDate'])
             );
         }
-								/*Filter by propositionId*/
-								if (!empty($params['propositionId'])) {
+        /*Filter by propositionId*/
+        if (!empty($params['propositionId'])) {
             $filters->addFilter(
                 Filter::factory('In')->setName('fields.proposition')
-																				->setValue([(string)$params['propositionId'], '*'])
+                                    ->setValue([(string)$params['propositionId'], '*'])
             );
         }
-								/*only get registrations in the default workspace of the user for security*/
+		/*only get registrations in the default workspace of the user for security*/
         $writeWorkspaces = Manager::getService('CurrentUser')->getWriteWorkspaces();
-								/*$filters->addFilter(
-                Filter::factory('Value')->setName('writeWorkspace')
-																				->setValue((string)$mainWorkspace['id'])
+        /*$filters->addFilter(
+            Filter::factory('Value')->setName('writeWorkspace')
+                                    ->setValue((string)$mainWorkspace['id'])
         );*/
-        $filters->addFilter(
+        /* $filters->addFilter(
             Filter::factory('In')->setName('writeWorkspace')
                             ->setValue($writeWorkspaces)
-        );
+        ); */
         $contentType = Manager::getService("ContentTypes")->findById($typeId);
         $filters->addFilter(
             Filter::factory('Value')->setName('typeId')
                 ->setValue($typeId)
         );
         $contents = Manager::getService('Contents')->getOnlineList($filters);
-								//var_dump($contents);
+        //var_dump($contents);
         $fileName = 'export_rubedo_contents_' . $contentType['type'] . '_' . time() . '.csv';
         $filePath = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $fileName;
         $csvResource = fopen($filePath, 'w+');

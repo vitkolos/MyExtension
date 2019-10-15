@@ -244,13 +244,13 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                               } 
                             });
                             /*Get inscriptions list for dowlonad as csv */
-                            var payload={
+                            var payload = {
                                 propositionId:me.content.id
                             };
                             InscriptionService.exportInscriptions(payload).then(function(response){
                                 var csvData =  'data:application/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(response.data.path);
                                 $timeout(function(){me.downloadUrl=  csvData;},100);
-                               /* var target = angular.element("#btnExport");
+                                /* var target = angular.element("#btnExport");
                                 target.attr({'href': csvData,'target': '_blank'});*/
                                 //setTimeout(function(){target[0].click();},200);
                             });
