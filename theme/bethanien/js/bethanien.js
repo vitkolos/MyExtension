@@ -268,7 +268,7 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
           return default_rgpd_id;
         }
         if (resp.data.count == 0) {
-          console.error("Error1.1 in RgpdService : could not find rgpd policy file for this language, default to FR")
+          console.warn("in RgpdService : could not find rgpd policy file for this language, fallback to FR")
           return default_rgpd_id;
         }
 

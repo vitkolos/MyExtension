@@ -25,9 +25,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     // we get the good RGPD policy
     $scope.parameters = {'rgpd_media_id': ''}
-    lang = (me.content && me.content.locale) ? me.content.locale : 'fr';
-
-    RgpdService.getPolitiqueConfidentialiteId(lang).then(id => {
+    RgpdService.getPolitiqueConfidentialiteId().then(id => {
         $scope.parameters.rgpd_media_id = id;
     })
     // =======================================================

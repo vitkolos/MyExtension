@@ -432,33 +432,30 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
 });
 
 
+// This service is useful to retrieve the appropriate Rgpd policy
 angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($http) {
   return {
-    getPolitiqueConfidentialiteId: function (lang = 'fr') {
+    getPolitiqueConfidentialiteId: function () {
+      let default_rgpd_id = "5da5c3c1396588b95dde8b45";
       return $http.get("api/v1/media", {
         params: {
           query: {'DAMTypes': ['5da5c314396588215cde8b40']}, // this the damtype id of "Politique e confidentiatlié"
-          pageWorkspace: '545cd94b45205e91168b4567'
+          pageWorkspace: '545cd94b45205e91168b4567',
         }
       }).then(function (resp) {
         // on error
         if (!resp || !resp.data || !resp.data.success) {
           console.log("Error1 in RgpdService", resp);
-          return "";
+          return default_rgpd_id;
+        }
+        if (resp.data.count == 0) {
+          console.warn("in RgpdService : could not find rgpd policy file for this language, fallback to FR")
+          return default_rgpd_id;
         }
 
         // on success
-        let found_medias = resp.data.media.data.filter(el => el.nativeLanguage == lang.toLocaleLowerCase());
-        if (found_medias.length == 0) {
-          console.warn("Did not find politique de confidentialité for language " + lang + " fallback to FR");
-          found_medias = resp.data.media.data.filter(el => el.nativeLanguage == 'fr');
-        }
-        if (found_medias.length == 0) {
-          console.error('Could not find the politique de confidentialité')
-          return "";
-        }
-        console.log("Rgpd found", found_medias[0]);
-        return found_medias[0].id;
+        console.log("Rgpd found", resp.data.media.data[0]);
+        return resp.data.media.data[0].id;
 
       }, function (data) {
         // on error
