@@ -3027,20 +3027,20 @@ body .container-fluid#jeunes {
 /* Vim sunburst theme by David Leibovic */
 pre .str,
 code .str {
-  color: #65B042;
+  color: hsl(18, 44%, 64%);
 }
-/* string  - green */
+/* string  - green #65B042; */
 pre .kwd,
 code .kwd {
-  color: #E28964;
+  color: #4a99e9;
 }
-/* keyword - dark pink */
+/* keyword - dark pink #E28964; */
 pre .com,
 code .com {
-  color: #AEAEAE;
+  color: hsl(108, 65%, 32%);
   font-style: italic;
 }
-/* comment - gray */
+/* comment - gray #AEAEAE; */
 pre .typ,
 code .typ {
   color: #89bdff;
@@ -3084,10 +3084,11 @@ code .dec {
 pre.prettyprint,
 code.prettyprint {
   background-color: #000;
-  border-radius: 8px;
+  border-radius: 0px;
+  border: none;
 }
 pre.prettyprint {
-  width: 95%;
+  width: 100%;
   margin: 1em auto;
   padding: 1em;
   white-space: pre-wrap;
