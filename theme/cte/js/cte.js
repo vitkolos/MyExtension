@@ -1,3 +1,6 @@
+// Load the code prettyfier for docs.chemin-neuf.org
+PR.prettyPrint();
+
 blocksConfig.buttonToPage={
   "template": "/templates/blocks/buttonToPage.html",
  "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
