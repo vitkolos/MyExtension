@@ -1,5 +1,5 @@
 // Load the code prettyfier for docs.chemin-neuf.org
-window.onload(function(ev) {
+$(document).ready(function(ev) {
   if (PR && PR.prettyPrint) PR.prettyPrint();
   else console.error("Cannot find code prettifyer", PR);
 })
