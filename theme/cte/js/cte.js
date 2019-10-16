@@ -1,9 +1,3 @@
-// Load the code prettyfier for docs.chemin-neuf.org
-$(document).ready(function(ev) {
-  if (window.PR && window.PR.prettyPrint) window.PR.prettyPrint();
-  else console.error("Cannot find code prettifyer", window.PR);
-})
-
 blocksConfig.buttonToPage={
   "template": "/templates/blocks/buttonToPage.html",
  "internalDependencies":["/src/modules/rubedoBlocks/controllers/buttonToPage.js"]
