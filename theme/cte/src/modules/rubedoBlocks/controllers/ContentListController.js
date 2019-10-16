@@ -1,6 +1,6 @@
 angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location","$sce",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$sce){
     // load prettyprint to display code nicely
-    PR.prettyPrint();
+    if (PR && PR.prettyPrint) PR.prettyPrint();
     
     var me = this;
     me.contentList=[];
