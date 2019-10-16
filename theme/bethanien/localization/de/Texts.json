@@ -167,5 +167,7 @@
 	"Block.Inscription.Formulaire.Fin": "Um Ihre Anfrage fortzusetzen, bitten wir Sie, das folgende Dokument auszufüllen und senden Sie es (vorzugsweise per Post) an das in der Mail angegebene Sekretariat, das Ihnen zugesandt wird",
 	"Découvrir la revue FOI": "",
 	"Block.Paiement.Acces": "",
-	"ccn": "Gemeinschaft Chemin Neuf"
+	"ccn": "Gemeinschaft Chemin Neuf",
+	"Block.Inscription.PolitiqueRgpd": "die Datenschutzbestimmungen der Gemeinschaft Chemin Neuf",
+	"Block.Inscription.Jaccepte": "Ich akzeptiere"
 }
