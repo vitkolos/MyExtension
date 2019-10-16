@@ -1,7 +1,7 @@
 // Load the code prettyfier for docs.chemin-neuf.org
 $(document).ready(function(ev) {
   if (window.PR && window.PR.prettyPrint) window.PR.prettyPrint();
-  else console.error("Cannot find code prettifyer", PR);
+  else console.error("Cannot find code prettifyer", window.PR);
 })
 
 blocksConfig.buttonToPage={
