@@ -434,6 +434,7 @@ angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', func
 
 // This service is useful to retrieve the appropriate Rgpd policy
 angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($http) {
+  let debug = false;
   return {
     getPolitiqueConfidentialiteId: function () {
       let default_rgpd_id = "5da5c3c1396588b95dde8b45";
@@ -445,21 +446,21 @@ angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($ht
       }).then(function (resp) {
         // on error
         if (!resp || !resp.data || !resp.data.success) {
-          console.log("Error1 in RgpdService", resp);
+          console.error("Error1 in RgpdService", resp);
           return default_rgpd_id;
         }
         if (resp.data.count == 0) {
-          console.warn("in RgpdService : could not find rgpd policy file for this language, fallback to FR")
+          if (debug) console.warn("in RgpdService : could not find rgpd policy file for this language, fallback to FR")
           return default_rgpd_id;
         }
 
         // on success
-        console.log("Rgpd found", resp.data.media.data[0]);
+        if (debug) console.log("Rgpd found", resp.data.media.data[0]);
         return resp.data.media.data[0].id;
 
       }, function (data) {
         // on error
-        console.log("Error2 in RgpdService", data);
+        console.error("Error2 in RgpdService", data);
         return "";
       })
     }
