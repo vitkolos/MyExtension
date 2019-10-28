@@ -201,7 +201,8 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
       let menus = [];
       let curr_menuday = {date:null, title:'', price: ' ', entries: []}
       for (ligne of lignes) {
-        if (ligne.trim() == '') continue;
+        ligne = ligne.trim();
+        if (ligne == '') continue;
         if (/\d{1,2}[\.\-\_\;\s\/]\d{1,2}[\.\-\_\;\s\/]\d{2,4}/.test(ligne)) { // ligne 19.10.2019
           if (curr_menuday.date) {
             menus.push(curr_menuday)
@@ -217,7 +218,7 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
         }
         console.log("ligne titre", ligne, /^(titel|title|titre)\s*\:/gi.test(ligne));
         if (/^(titel|title|titre)\s*\:/gi.test(ligne))
-          curr_menuday.title = /^(titel|title|titre)\s*\:\s*(.+)$/gi.exec(ligne.trim())[2].trim();
+          curr_menuday.title = /^(titel|title|titre)\s*\:\s*(.+)$/gi.exec(ligne)[2].trim();
         else if (!curr_menuday.title) curr_menuday.title = ligne.trim();
         else if (/^[\s\*]+$/.test(ligne)) curr_menuday.entries.push('<p class="menusep">***</p>');
         else curr_menuday.entries.push('<p class="entry">' + ligne.trim() + '</p>');
