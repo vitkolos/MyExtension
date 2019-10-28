@@ -240,6 +240,17 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
         </div>`))
       }
 
+      // load specific css
+      if (!$('head').children("link[href='/theme/bethanien/css/menu.css']").length) {
+        $("head").append("<link>");
+        var css = $("head").children(":last");
+        css.attr({
+              rel:  "stylesheet",
+              type: "text/css",
+              href: "/theme/bethanien/css/menu.css"
+        });
+      }
+
     }
   }
 });
