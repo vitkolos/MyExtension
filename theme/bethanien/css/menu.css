@@ -9,7 +9,6 @@ ng-include.ng-scope > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > d
 }
 
 .texte {
-  padding: 1px 70px;
   max-width: 860px;
   font-size: 1.1em;
   line-height: 1.4em;
@@ -91,13 +90,15 @@ td.menu_price {
   position: relative;
   background-color: hsl(42, 74%, 86%);
   box-shadow: hsl(225, 75%, 7%) 0 2px 3px;
-  padding: 3rem 1rem;
+  padding: 3rem 1rem 6rem 1rem;
   margin: 2rem;
 }
 .menuday .menuprice {
   position: relative;
   top: 0;
   left: -24px;
+  height: 29px;
+  font-size: 15px;
   background-color: rgb(72, 91, 43);
   color: white;
   font-family: Consolas;
@@ -111,8 +112,8 @@ td.menu_price {
   border-width: 0px 15px 7px 0;
   border-color: transparent hsla(84, 36%, 14%, 1) transparent transparent;
   position: absolute;
-  left: 0px;
-  top: 26px;
+  left: -1px;
+  top: 29px;
 }
 .menuday h2 {
   font-family: 'Freestyle Script';
@@ -122,7 +123,9 @@ td.menu_price {
 }
 .menuday p {
   font-family: Consolas;
+  font-size: 1.4rem;
   color: rgb(127, 127, 127);
+  margin-bottom: 0px;
 }
 .menuday p.menusep {
   color: black;
