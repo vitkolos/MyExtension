@@ -8,9 +8,6 @@ ng-include.ng-scope > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > d
   background-repeat: repeat;
 }
 
-body {
-  color: white;
-}
 
 .texte {
   max-width: 860px;
@@ -20,10 +17,13 @@ body {
 }
 
 /* le titre du menu */
-h1 {
+h1, h2, h3, h4 {
   margin-top: 10rem;
   padding-bottom: 5rem;
   font-family: 'Playfair Display', Consolas;
+  color: white;
+}
+h1 {
   font-size: 5rem;
 }
 
@@ -49,7 +49,7 @@ h1 + p {
 
 /* sous-titres */
 h2 {
-  color: #006BA8;
+  font-family: 'Playfair Display', Consolas;
   font-size: 2.7rem;
 }
 

@@ -204,6 +204,7 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
       let curr_menuday = {date:null, title:'', price: ' ', entries: []}
       for (ligne of lignes) {
         if (ligne.trim() == '') continue;
+        console.log("ligne", ligne, /\d{1,2}[\.\-\_\;\s\/]\d{1,2}[\.\-\_\;\s\/]\d{2,4}/.test(ligne));
         if (/\d{1,2}[\.\-\_\;\s\/]\d{1,2}[\.\-\_\;\s\/]\d{2,4}/.test(ligne)) { // ligne 19.10.2019
           if (curr_menuday.date) {
             menus.push(curr_menuday)
@@ -228,7 +229,7 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
       // build templates
       element.html('');
       for (menu of menus) {
-        element.append($(`<div class="col col-xs-12 col-md-5 menuday">
+        element.append($(`<div class="col col-xs-10 col-md-5 menuday">
             <div class="menuprice">${menu.price}</div>
             <h2>${menu.title||moment(menu.date, 'YYYYMMDD').format('dddd')}</h2>
             <img src="/theme/bethanien/img/olivier.png" alt="olivetree" class="olivier1">
