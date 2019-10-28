@@ -219,7 +219,7 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
           continue;
         }
         if (/(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|christus könig|himmelfahrt|mari[aä] himmelfahrt|allerheiligen|weinachten|ostern|pfingsten)/gi.test(ligne))
-          curr_menuday.title = /(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|christus könig|himmelfahrt|mari[aä] himmelfahrt|allerheiligen|weinachten|ostern|pfingsten)/gi.exec(ligne)[0]
+          curr_menuday.title = /(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|christus könig|himmelfahrt|mari[aä] himmelfahrt|allerheiligen|weinachten|ostern|pfingsten)([\s\,a-z]{0,4}\d+\.?)?/gi.exec(ligne)[0]
         else if (/^[\s\*]+$/.test(ligne)) curr_menuday.entries.push('<p class="menusep">***</p>');
         else curr_menuday.entries.push('<p class="entry">' + ligne.trim() + '</p>');
       }
