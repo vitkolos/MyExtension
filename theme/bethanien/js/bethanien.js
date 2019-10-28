@@ -201,17 +201,18 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
       
       // build menu structure from lines
       let menus = [];
-      let curr_menuday = {date:null, title:'', price: '', entries: []}
+      let curr_menuday = {date:null, title:'', price: ' ', entries: []}
       for (ligne of lignes) {
         if (/\d{1,2}[\.\-\_\;\s\/]\d{1,2}[\.\-\_\;\s\/]\d{2,4}/.test(ligne)) { // ligne 19.10.2019
           if (curr_menuday.date) {
             menus.push(curr_menuday)
-            curr_menuday = {date:null, title:'', price: '', entries: []}
+            curr_menuday = {date:null, title:'', price: ' ', entries: []}
           } else {
             let date = /(\d{1,2})([\.\-\_\;\s\/])(\d{1,2})[\.\-\_\;\s\/](\d{2,4})/.exec(ligne)
             curr_menuday.date = window.moment(date[0], "D".repeat(date[1].length) + date[2] + "M".repeat(date[3].length) + date[2] + "Y".repeat(date[4].length)).format('YYYYMMDD');
           }
         }
+        if (/((CHF|EUR|USD|€)\s*[0-9\.\,\s]+|[0-9\.\,\s]+\s*(CHF|EUR|USD|€))/.test(ligne)) curr_menuday.price = ligne.trim();
         if (/(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|christus könig|himmelfahrt|mari[aä] himmelfahrt|allerheiligen|weinachten|ostern|pfingsten)/gi.test(ligne))
           curr_menuday.title = /(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|christus könig|himmelfahrt|mari[aä] himmelfahrt|allerheiligen|weinachten|ostern|pfingsten)/gi.exec(ligne)[0]
         else if (/^[\s\*]+$/.test(ligne)) curr_menuday.entries.push('<p class="menusep">***</p>');
@@ -225,7 +226,7 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
       for (menu of menus) {
         element.append($(`<div class="col col-xs-12 col-md-6 menuday">
             <div class="menuprice">${menu.price}</div>
-            <h2>${menu.title|moment(menu.date, 'YYYYMMDD').format('dddd')}</h2>
+            <h2>${menu.title||moment(menu.date, 'YYYYMMDD').format('dddd')}</h2>
             <img src="/theme/bethanien/img/olivier.png" alt="olivetree" class="olivier1">
             <div class="menuentries">
                 ${menu.entries.join("\n")}
