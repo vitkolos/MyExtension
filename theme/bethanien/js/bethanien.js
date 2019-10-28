@@ -195,7 +195,7 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
       // get the info lines
       let lignes = [];
       element.children().each(function() {
-        lignes.push(this.text())
+        lignes.push($(this).text())
       })
       console.log('lignes', lignes)
       
