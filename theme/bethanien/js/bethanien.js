@@ -215,8 +215,9 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
           curr_menuday.price = ligne.trim();
           continue;
         }
-        if (/^(titel|title|titre)\:/gi.test(ligne))
-          curr_menuday.title = /^(titel|title|titre)\:(.+)$/gi.exec(ligne.trim())[2];
+        if (/^(titel|title|titre)\s*\:/gi.test(ligne))
+          curr_menuday.title = /^(titel|title|titre)\s*\:\s*(.+)$/gi.exec(ligne.trim())[2].trim();
+        else if (!curr_menuday.title) curr_menuday.title = ligne.trim();
         else if (/^[\s\*]+$/.test(ligne)) curr_menuday.entries.push('<p class="menusep">***</p>');
         else curr_menuday.entries.push('<p class="entry">' + ligne.trim() + '</p>');
       }
