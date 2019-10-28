@@ -210,10 +210,9 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
             menus.push(curr_menuday)
             curr_menuday = {date:null, title:'', price: ' ', entries: []}
             console.log("new menus", menus);
-          } else {
-            let date = /(\d{1,2})([\.\-\_\;\s\/])(\d{1,2})[\.\-\_\;\s\/](\d{2,4})/.exec(ligne)
-            curr_menuday.date = window.moment(date[0], "D".repeat(date[1].length) + date[2] + "M".repeat(date[3].length) + date[2] + "Y".repeat(date[4].length)).format('YYYYMMDD');
           }
+          let date = /(\d{1,2})([\.\-\_\;\s\/])(\d{1,2})[\.\-\_\;\s\/](\d{2,4})/.exec(ligne)
+          curr_menuday.date = window.moment(date[0], "D".repeat(date[1].length) + date[2] + "M".repeat(date[3].length) + date[2] + "Y".repeat(date[4].length)).format('YYYYMMDD');
         }
         if (/((CHF|EUR|USD|€)\s*[0-9\.\,\s]+|[0-9\.\,\s]+\s*(CHF|EUR|USD|€))/.test(ligne)) {
           curr_menuday.price = ligne.trim();
