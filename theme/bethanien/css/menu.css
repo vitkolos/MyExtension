@@ -4,7 +4,7 @@ ng-include.ng-scope > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > d
   background-origin: left bottom, left top;
   background-size: contain, contain;
   background-repeat: no-repeat, repeat; */
-  background-image: url("https://i.pinimg.com/600x315/12/cd/08/12cd083547cbafbb4794e6bd825c6f89.jpg");
+  background-image: url("/theme/bethanien/img/texture_blue_velvet.jpg");
   background-repeat: repeat;
 }
 
