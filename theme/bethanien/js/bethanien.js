@@ -223,7 +223,7 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
       // build templates
       element.html('');
       for (menu of menus) {
-        element.append($(`<div class="col col-xs-12 col-md-3 menuday">
+        element.append($(`<div class="col col-xs-12 col-md-6 menuday">
             <div class="menuprice">${menu.price}</div>
             <h2>${menu.title|moment(menu.date, 'YYYYMMDD').format('dddd')}</h2>
             <img src="/theme/bethanien/img/olivier.png" alt="olivetree" class="olivier1">
