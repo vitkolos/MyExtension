@@ -215,6 +215,7 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
           curr_menuday.price = ligne.trim();
           continue;
         }
+        console.log("ligne titre", ligne, /^(titel|title|titre)\s*\:/gi.test(ligne));
         if (/^(titel|title|titre)\s*\:/gi.test(ligne))
           curr_menuday.title = /^(titel|title|titre)\s*\:\s*(.+)$/gi.exec(ligne.trim())[2].trim();
         else if (!curr_menuday.title) curr_menuday.title = ligne.trim();
