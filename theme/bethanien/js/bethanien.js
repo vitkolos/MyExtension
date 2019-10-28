@@ -184,6 +184,45 @@ angular.module('rubedo').filter('ligneNonVide', function () {
   };
 });
 
+// this directives shows the menu of each day
+angular.module('rubedoBlocks').directive('menuweek', function() {
+  return {
+    restrict: 'AC',
+    link: function(scope, elm, attrs) {
+      let element = $(elm);
+      console.log('root', element);
+      
+      // get the info lines
+      let lignes = [];
+      element.children().each(function() {
+        lignes.push(this.text())
+      })
+      console.log('lignes', lignes)
+      
+      // build menu structure from lines
+      let menus = [];
+      let curr_menuday = {date:null, title:'', entries: []}
+      for (ligne of lignes) {
+        if (/\d{1,2}[\.\-\_\;\s\/]\d{1,2}[\.\-\_\;\s\/]\d{2,4}/.test(ligne)) { // ligne 19.10.2019
+          if (curr_menuday.date) {
+            menus.push(curr_menuday)
+            curr_menuday = {}
+          } else {
+            let date = /(\d{1,2})([\.\-\_\;\s\/])(\d{1,2})[\.\-\_\;\s\/](\d{2,4})/.exec(ligne)
+            curr_menuday.date = window.moment(date[0], "D".repeat(date[1].length) + date[2] + "M".repeat(date[3].length) + date[2] + "Y".repeat(date[4].length)).format('YYYYMMDD');
+          }
+        }
+        if (/(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|christus könig|himmelfahrt|mari[aä] himmelfahrt|allerheiligen|weinachten|ostern|pfingsten)/gi.test(ligne))
+          curr_menuday.title = /(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|christus könig|himmelfahrt|mari[aä] himmelfahrt|allerheiligen|weinachten|ostern|pfingsten)/gi.exec(ligne)[0]
+        else curr_menuday.entries.push(ligne.trim())
+      }
+      menus.push(curr_menuday)
+      console.log('menus', menus)
+
+    }
+  }
+});
+
 // directive qui gère le rendu du menu du restaurant de Bethanien
 angular.module('rubedoBlocks').directive('menuentry', function() {
   return {
