@@ -209,6 +209,7 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
           }
           let date = /(\d{1,2})([\.\-\_\;\s\/])(\d{1,2})[\.\-\_\;\s\/](\d{2,4})/.exec(ligne)
           curr_menuday.date = window.moment(date[0], "D".repeat(date[1].length) + date[2] + "M".repeat(date[3].length) + date[2] + "Y".repeat(date[4].length)).format('YYYYMMDD');
+          if (/^\s*\d{1,2}[\.\-\_\;\s\/]\d{1,2}[\.\-\_\;\s\/]\d{2,4}\s*$/.test(ligne)) continue;
         }
         if (/((CHF|EUR|USD|€)\s*[0-9\.\,\s]+|[0-9\.\,\s]+\s*(CHF|EUR|USD|€))/.test(ligne)) {
           curr_menuday.price = ligne.trim();
