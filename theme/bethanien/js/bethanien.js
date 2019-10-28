@@ -214,10 +214,26 @@ angular.module('rubedoBlocks').directive('menuweek', function() {
         }
         if (/(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|christus könig|himmelfahrt|mari[aä] himmelfahrt|allerheiligen|weinachten|ostern|pfingsten)/gi.test(ligne))
           curr_menuday.title = /(montag|dienstag|mittwoch|donnerstag|freitag|samstag|sonntag|christus könig|himmelfahrt|mari[aä] himmelfahrt|allerheiligen|weinachten|ostern|pfingsten)/gi.exec(ligne)[0]
-        else curr_menuday.entries.push(ligne.trim())
+        else if (/^[\s\*]+$/.test(ligne)) curr_menuday.entries.push('<p class="menusep">***</p>');
+        else curr_menuday.entries.push('<p class="entry">' + ligne.trim() + '</p>');
       }
       menus.push(curr_menuday)
       console.log('menus', menus)
+
+      // build templates
+      element.html('');
+      for (menu of menus) {
+        element.append($(`<div class="col col-xs-12 col-md-3 menuday">
+            <div class="menuprice">${menu.price}</div>
+            <h2>${menu.title|}</h2>
+            <img src="/theme/bethanien/img/olivier.png" alt="olivetree" class="olivier1">
+            <div class="menuentries">
+                ${menu.entries.join("\n")}
+            </div>
+            <img src="/theme/bethanien/img/olivier.png" alt="olivetree" class="olivier2">
+            <img src="/theme/bethanien/img/olivier.png" alt="olivetree" class="olivier3">
+        </div>`))
+      }
 
     }
   }

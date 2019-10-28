@@ -802,3 +802,76 @@ input[type=text], input[type=number],textarea, input[type=email], input[type=tex
   }
   
   body .container-fluid#jeunes {.sans-serif;}
+
+
+    ////////////////////////////////////////////////////
+	  /////////// MENUS ///////////////////
+  ///////////////////////////////////////////////////
+
+  .menuweek {
+	text-align: center;
+	margin: 50px;
+}
+.menuday {
+	position: relative;
+	background-color: hsl(42, 74%, 86%);
+	box-shadow: hsl(42, 56%, 64%) 0 2px 3px;
+	padding: 3rem 1rem;
+	margin: 2rem;
+}
+.menuday .menuprice {
+	position: relative;
+	top: 0;
+	left: -24px;
+	background-color: rgb(72, 91, 43);
+	color: white;
+	font-family: Consolas;
+	padding: 3px;
+	width: 97px;
+	box-shadow: #7c857c 1px 1px 2px;
+}
+.menuday .menuprice::before {
+	content: "\A";
+	border-style: solid;
+	border-width: 0px 15px 7px 0;
+	border-color: transparent hsla(84, 36%, 14%, 1) transparent transparent;
+	position: absolute;
+	left: 0px;
+	top: 26px;
+}
+.menuday h2 {
+	font-family: 'Freestyle Script';
+	color: rgb(72, 91, 43);
+	font-size: 4rem;
+	margin-bottom: 3rem;
+}
+.menuday p {
+	font-family: Consolas;
+	color: rgb(127, 127, 127);
+}
+.menuday p.menusep {
+	color: black;
+	margin: 2rem 0;
+}
+.olivier1 {
+	position: absolute;
+	top: 0px;
+	right: -3px;
+	width: 71px;
+	transform: rotate(114deg);
+}
+.olivier2 {
+	position: absolute;
+	bottom: 11px;
+	left: 21px;
+	width: 61px;
+	transform: rotate(-64deg);
+}
+.olivier3 {
+	position: absolute;
+	bottom: -18px;
+	right: -3px;
+	width: 68px;
+	-webkit-transform: scaleX(-1);
+	transform: scaleX(-1) rotate(-60deg);
+}
