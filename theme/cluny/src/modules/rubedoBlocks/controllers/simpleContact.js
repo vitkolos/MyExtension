@@ -43,6 +43,14 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.contactData={ };
     me.contactError=null;
     $scope.clearORPlaceholderHeight();
+
+    // RGPD
+    console.log("Init RGPD")
+    $scope.parameters = {'rgpd_media_id': ''}
+    RgpdService.getPolitiqueConfidentialiteId().then(id => {
+        $scope.parameters.rgpd_media_id = id;
+    })
+
     me.dateDiffence = function(start,end){
         console.log($filter('number')((end-start)/(3600*24*1000),0));
         return $filter('number')((end-start)/(3600*24*1000),0);
