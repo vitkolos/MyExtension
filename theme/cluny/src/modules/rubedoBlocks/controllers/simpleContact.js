@@ -37,7 +37,7 @@
 //}]);
 
 
-angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','$filter','RubedoMailService',function($scope,$location,$filter,RubedoMailService){
+angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope','$location','$filter','RubedoMailService','RgpdService',function($scope,$location,$filter,RubedoMailService, RgpdService){
     var me = this;
     var config = $scope.blockConfig;
     me.contactData={ };
