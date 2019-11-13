@@ -15,7 +15,7 @@
                             "type": "Ext.ux.TreePicker",
                             "config": {
                                 "fieldLabel": "#ext-gen1443#",
-                                "name": "adminProductsDetailPage"
+                                "name": "uploadXlsDetailPage"
                             }
                         }
 
