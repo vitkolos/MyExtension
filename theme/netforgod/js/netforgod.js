@@ -26,6 +26,10 @@ blocksConfig.footer_fr={
 blocksConfig.footer_en={
            "template": "/templates/blocks/footer_en.html"
 };
+blocksConfig.uploadXls={
+    "template": "/templates/blocks/uploadXls.html",
+    "internalDependencies":["/src/modules/rubedoBlocks/controllers/uploadXlsController.js"]
+};
 
 angular.module('rubedoBlocks').filter('firstUpper', function() {
     return function(input, lang) {
@@ -41,15 +45,15 @@ angular.module('rubedoBlocks').filter('nfgDate', function($filter) {
     return function(input, format, locale) {
            var date = "";
            switch(locale){
-                      case 'pl':
-                                 if(format=="MMMM yyyy") {
-                                            var months = ["styczeń","luty","marzec","	kwiecień","maj","czerwiec","lipiec","	sierpień","wrzesień","październik","listopad","grudzień"];
-                                            var formattedDate =  new Date(input);
-                                            date = months[formattedDate.getMonth()] + " " + formattedDate.getFullYear();
-                                 }
-                                 else date = $filter('date')(input, format);
-                                 break;
-                      default : date = $filter('date')(input, format);
+                case 'pl':
+                    if(format=="MMMM yyyy") {
+                            var months = ["styczeń","luty","marzec","	kwiecień","maj","czerwiec","lipiec","	sierpień","wrzesień","październik","listopad","grudzień"];
+                            var formattedDate =  new Date(input);
+                            date = months[formattedDate.getMonth()] + " " + formattedDate.getFullYear();
+                    }
+                    else date = $filter('date')(input, format);
+                    break;
+                default : date = $filter('date')(input, format);
            }
         return date;
     }
