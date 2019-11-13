@@ -1,7 +1,7 @@
 {
     "type": "Upload fichiers Excel/csv",
     "description": "Bloc pour les admins, pour pouvoir mettre à jour Rubedo par un fichier Excel",
-    "isECommerce": true,
+    "isECommerce": false,
     "configBasique": {
         "title": "Upload fichiers Excel/csv",
         "bType": "uploadXls",
