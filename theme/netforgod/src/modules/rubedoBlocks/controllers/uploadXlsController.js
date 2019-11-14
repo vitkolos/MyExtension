@@ -22,6 +22,6 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             window.data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
         }
 
-        r.readAsText(f);
+        r.readAsArrayBuffer(f);
     }
 }]);
