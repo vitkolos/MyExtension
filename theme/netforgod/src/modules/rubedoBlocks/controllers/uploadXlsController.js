@@ -20,8 +20,16 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             let wb = XLSX.read(r.result, {type:"array"});
             window.workbook = wb;
             window.data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+
+            // we get netforgod PN list
+            window.rubedoContents = RubedoContentsService;
+
         }
 
         r.readAsArrayBuffer(f);
     }
+
+    /* async function getRubedoPN($pn_id) {
+        return RubedoContentsService.getContentById($pn_id);
+    } */
 }]);
