@@ -2,6 +2,8 @@ angular.module("rubedoBlocks").lazy.controller('uploadXlsController',['$scope', 
 function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersService){
     console.log("UploadXlsController")
 
+    $scope.workbook = null;
+
     $scope.uploadXLS = function() {
         let f = document.getElementById('file').files[0],
         r = new FileReader();
@@ -15,6 +17,8 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
 
         r.onload = function () {
             console.log(r.result);
+            window.result = r.result;
+            window.workbook = XLSX.read(r.result, {type:"array"});
         }
 
         r.readAsText(f);
