@@ -5,12 +5,14 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     $scope.workbook = null;
     let me = this;
     me.logs = [];
+    $scope.loading = false;
 
     $scope.uploadXLS = function() {
         let f = document.getElementById('file').files[0],
         r = new FileReader();
 
         r.onload = function () {
+            $scope.loading = true;
             window.result = r.result;
             let wb = XLSX.read(r.result, {type:"array"});
             window.workbook = wb;
@@ -19,7 +21,9 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
 
             // we get netforgod PN list
             window.rubedoContents = RubedoContentsService;
-            updatePNs($scope.onesime_pns);
+            await updatePNs($scope.onesime_pns);
+
+            $scope.loading = false;
         }
         
         r.readAsArrayBuffer(f);
@@ -28,12 +32,13 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     async function updatePNs(onesime_pns) {
         // the id below is the id of the Rubedo Query called "Points Net", it returns all Points Net in Rubedo
         let rubedo_pns = await RubedoContentsService.getContents("5dcdbf568e707529379d34b1",null,null,{limit:20000});
+        window.rubedo_pns = rubedo_pns;
         if (rubedo_pns.status != 200) return log("error", rubedo_pns);
         if (!rubedo_pns.data.success) return log("error", rubedo_pns);
         rubedo_pns = rubedo_pns.data.contents;
 
         for (let i = 0; i < onesime_pns.length; i++) {
-            let o_pn = onesime_pns[0];
+            let o_pn = onesime_pns[i];
             log('info', `updating PN ${o_pn['Code PN']}`);
             let r_pn = rubedo_pns.filter(pn => pn.fields.pointNetId == o_pn['Code PN']);
             if (r_pn.length == 0) {
