@@ -3,7 +3,8 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     console.log("UploadXlsController")
 
     $scope.workbook = null;
-    this.logs = [];
+    let me = this;
+    me.logs = [];
 
     $scope.uploadXLS = function() {
         let f = document.getElementById('file').files[0],
@@ -51,7 +52,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     function log(level, data) {
         level = level.toLowerCase();
         let data_s = (typeof data == 'string') ? data: JSON.stringify(data);
-        this.logs.push({level, msg: data_s});
+        me.logs.push({level, msg: data_s});
         if (level == "error" || level == "err") console.error(data);
         else if (level == "warning" || level == 'warn') console.warn(data);
         else console.log(data);
