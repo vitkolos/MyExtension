@@ -11,7 +11,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         let f = document.getElementById('file').files[0],
         r = new FileReader();
 
-        r.onload = function () {
+        r.onload = async function () {
             $scope.loading = true;
             window.result = r.result;
             let wb = XLSX.read(r.result, {type:"array"});
