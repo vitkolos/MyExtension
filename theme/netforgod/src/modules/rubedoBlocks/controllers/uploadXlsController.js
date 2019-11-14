@@ -16,9 +16,10 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         } */
 
         r.onload = function () {
-            console.log(r.result);
             window.result = r.result;
-            window.workbook = XLSX.read(r.result, {type:"array"});
+            let wb = XLSX.read(r.result, {type:"array"});
+            window.workbook = wb;
+            window.data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
         }
 
         r.readAsText(f);
