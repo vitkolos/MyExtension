@@ -3,7 +3,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     console.log("UploadXlsController")
 
     $scope.workbook = null;
-    $scope.logs = [];
+    this.logs = [];
 
     $scope.uploadXLS = function() {
         let f = document.getElementById('file').files[0],
@@ -31,23 +31,27 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         if (!rubedo_pns.data.success) return log("error", rubedo_pns);
         rubedo_pns = rubedo_pns.data.contents;
 
-        let o_pn = onesime_pns[0];
-        log('info', `updating PN ${o_pn['Code PN']}`);
-        let r_pn = rubedo_pns.filter(pn => pn.fields.pointNetId == o_pn['Code PN']);
-        if (r_pn.length == 0) {
-            log('info', `PN ${o_pn['Code PN']} does not exist yet`);
-        } else if (r_pn.length > 1) {
-            log('warning', `There are ${r_pn.length} PN with the code ${o_pn['Code PN']}. All will be updated`);
-        } else {
-            
+        for (let i = 0; i < onesime_pns.length; i++) {
+            let o_pn = onesime_pns[0];
+            log('info', `updating PN ${o_pn['Code PN']}`);
+            let r_pn = rubedo_pns.filter(pn => pn.fields.pointNetId == o_pn['Code PN']);
+            if (r_pn.length == 0) {
+                log('info', `PN ${o_pn['Code PN']} does not exist yet`);
+            } else if (r_pn.length > 1) {
+                log('warning', `There are ${r_pn.length} PN with the code ${o_pn['Code PN']}. All will be updated`);
+            } else {
+                
+            }
+            console.log(o_pn, r_pn);
+
+            if (i> 4) return;
         }
-        console.log(o_pn, r_pn);
     }
 
     function log(level, data) {
         level = level.toLowerCase();
         let data_s = (typeof data == 'string') ? data: JSON.stringify(data);
-        $scope.logs.push({level, msg: data_s});
+        this.logs.push({level, msg: data_s});
         if (level == "error" || level == "err") console.error(data);
         else if (level == "warning" || level == 'warn') console.warn(data);
         else console.log(data);
