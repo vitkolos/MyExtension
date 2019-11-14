@@ -46,11 +46,11 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             } else if (r_pn.length > 1) {
                 log('warning', `There are ${r_pn.length} PN with the code ${o_pn['Code PN']}. All will be updated`);
             } else {
-                
+                log('info', 'ok');
             }
             console.log(o_pn, r_pn);
 
-            if (i> 4) return;
+            //if (i> 4) return;
         }
     }
 
