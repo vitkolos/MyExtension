@@ -14,7 +14,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         }
 
         r.onload = function () {
-            console.log(reader.result);
+            console.log(r.result);
         }
 
         r.readAsBinaryString(f);
