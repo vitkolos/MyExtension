@@ -2,4 +2,10 @@
     Coucou Upload Excel
     <input type="file" id="file" name="file"/>
     <button ng-click="uploadXLS()">Add</button>
+
+    <div class="logs">
+        <div ng-repeat="el in ctrl.logs">
+            {{el.level}} {{el.msg}}
+        </div>
+    </div>
 </div>
