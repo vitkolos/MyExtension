@@ -17,6 +17,6 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             console.log(r.result);
         }
 
-        r.readAsBinaryString(f);
+        r.readAsText(f);
     }
 }]);
