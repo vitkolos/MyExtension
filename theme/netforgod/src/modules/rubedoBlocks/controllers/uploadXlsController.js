@@ -45,7 +45,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     }
 
     function log(level, data) {
-        level = levle.toLowerCase();
+        level = level.toLowerCase();
         let data_s = (typeof data == 'string') ? data: JSON.stringify(data);
         $scope.logs.push({level, msg: data_s});
         if (level == "error" || level == "err") console.error(data);
