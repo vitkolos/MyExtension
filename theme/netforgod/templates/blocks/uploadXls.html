@@ -28,7 +28,7 @@
                 Il y a <b>{{rubedo_pns.length}}</b> Points Net sur Rubedo.
             </div>
 
-            <select name="rubedo_pn" ng-options="pn as pn.fields.pointNetId+' '+pn.text for pn in rubedo_pns track by pn.fields.pointNetId" ng-model="current_r_pn" ng-change="loadPN('rubedo')">
+            <select name="rubedo_pn" ng-options="pn as pn.fields.pointNetId+' '+pn.text for pn in rubedo_pns track by pn.fields.pointNetId | orderBy:pointNetId" ng-model="current_r_pn" ng-change="loadPN('rubedo')">
                 <!-- <option ng-repeat="pn in rubedo_pns" ng-value="pn.fields.pointNetId">{{pn.fields.pointNetId}}</option> -->
             </select>
             

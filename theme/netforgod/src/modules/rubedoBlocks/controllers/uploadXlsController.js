@@ -7,6 +7,8 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     $scope.logs = [];
     $scope.loading = false;
     $scope.excel_imported = false;
+    $scope.rubedo_pns = [];
+    $scope.onesime_pns = [];
 
     // get all PNs from Rubedo
     // the id below in getContents arguments, is the id of the Rubedo Query called "Points Net", it returns all Points Net in Rubedo
@@ -31,7 +33,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             if ($scope.rubedo_pns) $scope.current_r_pn = $scope.rubedo_pns.find(pn => pn.fields.pointNetId == $scope.current_o_pn['Code PN']);
         }
         console.log('o', $scope.current_o_pn, 'r', $scope.current_r_pn);
-        $scope.$apply();
+        //$scope.$apply();
     }
 
     // get all PNs from pointsnet.ccn/onesime XLS export
@@ -44,9 +46,9 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             window.result = r.result;
             let wb = XLSX.read(r.result, {type:"array"});
             window.workbook = wb;
-            window.data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
-            window.data.sort((a,b) => a['Code PN'] < b['Code PN'] ? -1 : 1);
-            $scope.onesime_pns = window.data;
+            $scope.onesime_pns = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+            $scope.onesime_pns.sort((a,b) => a['Code PN'] < b['Code PN'] ? -1 : 1);
+            window.data = $scope.onesime_pns;
 
             // we get netforgod PN list
             window.rubedoContents = RubedoContentsService;
