@@ -2,9 +2,21 @@
     Coucou Upload Excel
     <input type="file" id="file" name="file"/>
     <button ng-click="uploadXLS()">
-        <i class="fa fa-spinner fa-spin" ng-if="loading"></i>
+        <span ng-if="loading">...</span>
         <span ng-else>Upload XLS file</span>
     </button>
+
+    <div class="one_pn">
+        <div class="onesime_pn">
+            <select name="onesime_pn" id="">
+                <option ng-repeat="pn in onesime_pns" ng-value="pn['Code PN']">{{pn['Code PN']}}</option>
+            </select>
+        </div>
+
+        <div class="rubedo_pn">
+
+        </div>
+    </div>
 
     <div class="logs">
         <div ng-repeat="el in ctrl.logs">

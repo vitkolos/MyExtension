@@ -36,6 +36,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         if (rubedo_pns.status != 200) return log("error", rubedo_pns);
         if (!rubedo_pns.data.success) return log("error", rubedo_pns);
         rubedo_pns = rubedo_pns.data.contents;
+        $scope.rubedo_pns = rubedo_pns.data.contents;
 
         for (let i = 0; i < onesime_pns.length; i++) {
             let o_pn = onesime_pns[i];
@@ -47,7 +48,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
                 log('warning', `There are ${r_pn.length} PN with the code ${o_pn['Code PN']}. All will be updated`);
             } else {
                 r_pn = r_pn[0];
-                log('info', `${o_pn['Adr1 PN'] + ' ' + o_pn['Adr2 PN']} == ${r_pn.fields.position.address}<br>${o_pn['Mail 1']} == ${r_pn.fields.email}`);
+                log('info', `${o_pn['Adr1'] + ' ' + o_pn['Adr2']} == ${r_pn.fields.position.address}<br>${o_pn['Mail 1']} == ${r_pn.fields.email}`);
             }
 
             //if (i> 4) return;
