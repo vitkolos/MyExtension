@@ -6,6 +6,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     let me = this;
     $scope.logs = [];
     $scope.loading = false;
+    $scope.excel_imported = false;
 
     // get all PNs from Rubedo
     // the id below in getContents arguments, is the id of the Rubedo Query called "Points Net", it returns all Points Net in Rubedo
@@ -18,6 +19,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         console.log("Rubedo PNs loaded ! Grazie Signore !")
     });
 
+    $scope.current_pn_id = null;
     $scope.current_o_pn = null;
     $scope.current_r_pn = null;
     $scope.loadPN = function() {
@@ -47,6 +49,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             //await updatePNs($scope.onesime_pns);
 
             $scope.loading = false;
+            $scope.excel_imported = true;
         }
         
         $scope.loading = true;

@@ -7,7 +7,7 @@
     </button>
 
     <div class="pn_compare">
-        <div class="pn_container onesime_pn">
+        <div class="pn_container onesime_pn" ng-if="excel_imported">
             <div class="info onesime_info">
                     Il y a <b>{{onesime_pns.length}}</b> Points Net importés depuis le fichier Excel.
             </div>
@@ -16,7 +16,7 @@
                 <!-- <option ng-repeat="pn in onesime_pns" ng-value="pn['Code PN']">{{pn['Code PN']}}</option> -->
             </select>
 
-            <table class="pn_fiche onesime_pn_fiche" ng-if="current_pn_id">
+            <table class="pn_fiche onesime_pn_fiche" ng-if="current_pn_id != null">
                 <tr ng-repeat="(key, value) in current_o_pn">
                     <td>{{key}}</td>
                     <td>{{value}}</td>
