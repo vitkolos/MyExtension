@@ -30,7 +30,8 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             console.log('from Onesime', $scope.current_o_pn);
             if ($scope.rubedo_pns) $scope.current_r_pn = $scope.rubedo_pns.find(pn => pn.fields.pointNetId == $scope.current_o_pn['Code PN']);
         }
-        console.log('o', $scope.current_o_pn, 'r', '$scope.current_r_pn');
+        console.log('o', $scope.current_o_pn, 'r', $scope.current_r_pn);
+        $scope.$apply();
     }
 
     // get all PNs from pointsnet.ccn/onesime XLS export
