@@ -23,6 +23,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     $scope.current_o_pn = null;
     $scope.current_r_pn = null;
     $scope.loadPN = function() {
+        console.log('loadPN', $scope);
         if ($scope.current_o_pn_id) {
             console.log("loading PN")
             $scope.current_o_pn = $scope.onesime_pns.find(pn => pn['Code PN'] == $scope.current_pn_id);
