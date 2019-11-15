@@ -30,10 +30,11 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
 
     // get all PNs from pointsnet.ccn/onesime XLS export
     $scope.uploadXLS = function() {
+        console.log("loading and parsing XLS file")
         let f = document.getElementById('file').files[0],
         r = new FileReader();
 
-        r.onload = function () {
+        r.onload = function() {
             window.result = r.result;
             let wb = XLSX.read(r.result, {type:"array"});
             window.workbook = wb;

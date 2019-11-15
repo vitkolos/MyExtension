@@ -8,9 +8,14 @@
 
     <div class="pn_compare">
         <div class="pn_container onesime_pn">
+            <div class="info onesime_info">
+                    Il y a <b>{{onesime_pns.length}}</b> Points Net importés depuis le fichier Excel.
+            </div>
+
             <select name="onesime_pn" ng-model="current_pn_id" ng-change="loadPN()">
                 <option ng-repeat="pn in onesime_pns" ng-value="pn['Code PN']">{{pn['Code PN']}}</option>
             </select>
+
             <table class="pn_fiche onesime_pn_fiche" ng-if="current_pn_id">
                 <tr ng-repeat="(key, value) in current_o_pn">
                     <td>{{key}}</td>
@@ -20,9 +25,14 @@
         </div>
 
         <div class="pn_container rubedo_pn">
+            <div class="info rubedo_info">
+                Il y a <b>{{rubedo_pns.length}}</b> Points Net sur Rubedo.
+            </div>
+
             <select name="rubedo_pn" ng-model="current_pn_id" ng-change="loadPN()">
                 <option ng-repeat="pn in rubedo_pns" ng-value="pn.fields.pointNetId">{{pn.fields.pointNetId}}</option>
             </select>
+            
             <table class="pn_fiche rubedo_pn_fiche" ng-if="current_pn_id">
                 <tr ng-repeat="(key, value) in current_r_pn">
                     <td>{{key}}</td>
