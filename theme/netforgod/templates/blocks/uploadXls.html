@@ -3,18 +3,26 @@
     <input type="file" id="file" name="file"/>
     <button ng-click="uploadXLS()">
         <span ng-if="loading">...</span>
-        <span ng-else>Upload XLS file</span>
+        <span ng-if="!loading">Upload XLS file</span>
     </button>
 
     <div class="one_pn">
         <div class="onesime_pn">
-            <select name="onesime_pn" id="">
+            <select name="onesime_pn" ng-model="current_o_pn">
                 <option ng-repeat="pn in onesime_pns" ng-value="pn['Code PN']">{{pn['Code PN']}}</option>
             </select>
+            <table class="onesime_pn_fiche" ng-if="current_o_pn">
+                <tr ng-repeat="(key, value) in current_o_pn">
+                    <td>{{key}}</td>
+                    <td>{{value}}</td>
+                </tr>
+            </table>
         </div>
 
         <div class="rubedo_pn">
-
+            <select name="rubedo_pn" id="">
+                <option ng-repeat="pn in rubedo_pns" ng-value="pn.fields.pointNetId">{{pn.fields.pointNetId}}</option>
+            </select>
         </div>
     </div>
 

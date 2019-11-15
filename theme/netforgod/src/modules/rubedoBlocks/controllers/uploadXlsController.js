@@ -7,6 +7,8 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     me.logs = [];
     $scope.loading = false;
 
+    $scope.current_o_pn = null;
+
     $scope.uploadXLS = function() {
         let f = document.getElementById('file').files[0],
         r = new FileReader();
@@ -17,6 +19,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             let wb = XLSX.read(r.result, {type:"array"});
             window.workbook = wb;
             window.data = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]]);
+            window.data.sort((a,b) => a['Code PN'] < b['Code PN'] ? -1 : 1);
             $scope.onesime_pns = window.data;
 
             // we get netforgod PN list
@@ -36,7 +39,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         if (rubedo_pns.status != 200) return log("error", rubedo_pns);
         if (!rubedo_pns.data.success) return log("error", rubedo_pns);
         rubedo_pns = rubedo_pns.data.contents;
-        $scope.rubedo_pns = rubedo_pns.data.contents;
+        $scope.rubedo_pns = rubedo_pns;
 
         for (let i = 0; i < onesime_pns.length; i++) {
             let o_pn = onesime_pns[i];
