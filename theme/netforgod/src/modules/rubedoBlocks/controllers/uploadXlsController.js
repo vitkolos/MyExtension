@@ -7,6 +7,17 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     $scope.logs = [];
     $scope.loading = false;
 
+    // get all PNs from Rubedo
+    // the id below in getContents arguments, is the id of the Rubedo Query called "Points Net", it returns all Points Net in Rubedo
+    RubedoContentsService.getContents("5dcdbf568e707529379d34b1", null, null, {limit:20000}).then(rubedo_pns => {
+        window.rubedo_pns = rubedo_pns;
+        if (rubedo_pns.status != 200) return log("error", rubedo_pns);
+        if (!rubedo_pns.data.success) return log("error", rubedo_pns);
+        rubedo_pns = rubedo_pns.data.contents;
+        $scope.rubedo_pns = rubedo_pns;
+        console.log("Rubedo PNs loaded ! Grazie Signore !")
+    });
+
     $scope.current_o_pn = null;
     $scope.current_r_pn = null;
     $scope.loadPN = function() {
@@ -17,6 +28,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         }
     }
 
+    // get all PNs from pointsnet.ccn/onesime XLS export
     $scope.uploadXLS = function() {
         let f = document.getElementById('file').files[0],
         r = new FileReader();
@@ -32,7 +44,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
 
             // we get netforgod PN list
             window.rubedoContents = RubedoContentsService;
-            await updatePNs($scope.onesime_pns);
+            //await updatePNs($scope.onesime_pns);
 
             $scope.loading = false;
         }
@@ -41,13 +53,6 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     }
     
     async function updatePNs(onesime_pns) {
-        // the id below is the id of the Rubedo Query called "Points Net", it returns all Points Net in Rubedo
-        let rubedo_pns = await RubedoContentsService.getContents("5dcdbf568e707529379d34b1",null,null,{limit:20000});
-        window.rubedo_pns = rubedo_pns;
-        if (rubedo_pns.status != 200) return log("error", rubedo_pns);
-        if (!rubedo_pns.data.success) return log("error", rubedo_pns);
-        rubedo_pns = rubedo_pns.data.contents;
-        $scope.rubedo_pns = rubedo_pns;
 
         for (let i = 0; i < onesime_pns.length; i++) {
             let o_pn = onesime_pns[i];
