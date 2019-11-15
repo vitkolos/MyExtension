@@ -1,5 +1,5 @@
 <div ng-if="rubedo.current.user" ng-controller="uploadXlsController as ctrl">
-    Coucou Upload Excel
+    Ici tu peux uploader un fichier Excel d'export généré à partir de pointsnet.ccn pour mettre à joru tous les points net sur Rubedo.
     <input type="file" id="file" name="file"/>
     <button ng-click="uploadXLS()">
         <span ng-if="loading">...</span>
@@ -11,7 +11,7 @@
             <select name="onesime_pn" ng-model="current_pn_id" ng-change="loadPN()">
                 <option ng-repeat="pn in onesime_pns" ng-value="pn['Code PN']">{{pn['Code PN']}}</option>
             </select>
-            <table class="pn_fiche onesime_pn_fiche" ng-if="current_o_pn">
+            <table class="pn_fiche onesime_pn_fiche" ng-if="current_pn_id">
                 <tr ng-repeat="(key, value) in current_o_pn">
                     <td>{{key}}</td>
                     <td>{{value}}</td>
@@ -23,7 +23,7 @@
             <select name="rubedo_pn" ng-model="current_pn_id" ng-change="loadPN()">
                 <option ng-repeat="pn in rubedo_pns" ng-value="pn.fields.pointNetId">{{pn.fields.pointNetId}}</option>
             </select>
-            <table class="pn_fiche rubedo_pn_fiche" ng-if="current_r_pn">
+            <table class="pn_fiche rubedo_pn_fiche" ng-if="current_pn_id">
                 <tr ng-repeat="(key, value) in current_r_pn">
                     <td>{{key}}</td>
                     <td>{{value}}</td>
