@@ -25,10 +25,10 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         console.log('loadPN', $scope);
         if (from_source == 'rubedo') {
             console.log('from Rubedo', $scope.current_r_pn);
-            $scope.current_o_pn = $scope.onesime_pns.find(pn => pn['Code PN'] == $scope.current_r_pn.fields.pointNetId);
+            if ($scope.onesime_pns) $scope.current_o_pn = $scope.onesime_pns.find(pn => pn['Code PN'] == $scope.current_r_pn.fields.pointNetId);
         } else {
             console.log('from Onesime', $scope.current_o_pn);
-            $scope.current_r_pn = $scope.rubedo_pns.find(pn => pn.fields.pointNetId == $scope.current_o_pn['Code PN']);
+            if ($scope.rubedo_pns) $scope.current_r_pn = $scope.rubedo_pns.find(pn => pn.fields.pointNetId == $scope.current_o_pn['Code PN']);
         }
         console.log('o', $scope.current_o_pn, 'r', '$scope.current_r_pn');
     }
