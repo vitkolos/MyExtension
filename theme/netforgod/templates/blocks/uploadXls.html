@@ -33,7 +33,7 @@
             </select>
             
             <table class="pn_fiche rubedo_pn_fiche" ng-if="current_r_pn">
-                <tr ng-repeat="(key, value) in current_r_pn">
+                <tr ng-repeat="(key, value) in current_r_pn.fields">
                     <td>{{key}}</td>
                     <td>{{value}}</td>
                 </tr>
