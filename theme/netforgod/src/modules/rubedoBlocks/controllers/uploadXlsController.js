@@ -19,15 +19,14 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         console.log("Rubedo PNs loaded ! Grazie Signore !")
     });
 
-    $scope.current_pn_id = null;
     $scope.current_o_pn = null;
     $scope.current_r_pn = null;
-    $scope.loadPN = function() {
+    $scope.loadPN = function(from_source) {
         console.log('loadPN', $scope);
-        if ($scope.current_o_pn_id) {
-            console.log("loading PN")
-            $scope.current_o_pn = $scope.onesime_pns.find(pn => pn['Code PN'] == $scope.current_pn_id);
-            $scope.current_r_pn = $scope.rubedo_pns.find(pn => pn.fields.pointNetId == $scope.current_pn_id);
+        if (from_source == 'rubedo') {
+            $scope.current_o_pn = $scope.onesime_pns.find(pn => pn['Code PN'] == $scope.current_r_pn.fields.pointNetId);
+        } else {
+            $scope.current_r_pn = $scope.rubedo_pns.find(pn => pn.fields.pointNetId == $scope.current_o_pn['Code PN']);
         }
     }
 
