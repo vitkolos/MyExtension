@@ -4,10 +4,18 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
 
     $scope.workbook = null;
     let me = this;
-    me.logs = [];
+    $scope.logs = [];
     $scope.loading = false;
 
     $scope.current_o_pn = null;
+    $scope.current_r_pn = null;
+    $scope.loadPN = function() {
+        console.log("loading PN")
+        if ($scope.current_o_pn_id) {
+            $scope.current_o_pn = $scope.onesime_pns.find(pn => pn['Code PN'] == $scope.current_pn_id);
+            $scope.current_r_pn = $scope.rubedo_pns.find(pn => pn.fields.pointNetId == $scope.current_pn_id);
+        }
+    }
 
     $scope.uploadXLS = function() {
         let f = document.getElementById('file').files[0],
@@ -51,7 +59,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
                 log('warning', `There are ${r_pn.length} PN with the code ${o_pn['Code PN']}. All will be updated`);
             } else {
                 r_pn = r_pn[0];
-                log('info', `${o_pn['Adr1'] + ' ' + o_pn['Adr2']} == ${r_pn.fields.position.address}<br>${o_pn['Mail 1']} == ${r_pn.fields.email}`);
+                //log('info', `${o_pn['Adr1'] + ' ' + o_pn['Adr2']} == ${r_pn.fields.position.address}<br>${o_pn['Mail 1']} == ${r_pn.fields.email}`);
             }
 
             //if (i> 4) return;
@@ -61,7 +69,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
     function log(level, data) {
         level = level.toLowerCase();
         let data_s = (typeof data == 'string') ? data: JSON.stringify(data);
-        me.logs.push({level, msg: data_s});
+        $scope.logs.push({level, msg: data_s});
         if (level == "error" || level == "err") console.error(data);
         else if (level == "warning" || level == 'warn') console.warn(data);
         else console.log(data);
