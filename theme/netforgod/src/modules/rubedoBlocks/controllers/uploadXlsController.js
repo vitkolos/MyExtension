@@ -33,8 +33,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
         let f = document.getElementById('file').files[0],
         r = new FileReader();
 
-        r.onload = async function () {
-            $scope.loading = true;
+        r.onload = function () {
             window.result = r.result;
             let wb = XLSX.read(r.result, {type:"array"});
             window.workbook = wb;
@@ -49,6 +48,7 @@ function($scope, $http, RubedoPagesService, RubedoContentsService, RubedoOrdersS
             $scope.loading = false;
         }
         
+        $scope.loading = true;
         r.readAsArrayBuffer(f);
     }
     
