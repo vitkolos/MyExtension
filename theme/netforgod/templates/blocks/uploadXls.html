@@ -12,7 +12,7 @@
                     Il y a <b>{{onesime_pns.length}}</b> Points Net importés depuis le fichier Excel.
             </div>
 
-            <select name="onesime_pn" ng-options="pn as pn['Code PN'] for pn in onesime_pns track by pn['Code PN']" ng-model="current_o_pn" ng-change="loadPN('onesime')">
+            <select id="select_onesime_pn" name="onesime_pn" ng-options="pn as pn['Code PN'] for pn in onesime_pns track by pn['Code PN']" ng-model="current_o_pn" ng-change="loadPN('onesime')">
             </select>
 
             <table class="pn_fiche onesime_pn_fiche" ng-if="current_o_pn">
@@ -28,7 +28,7 @@
                 Il y a <b>{{rubedo_pns.length}}</b> Points Net sur Rubedo.
             </div>
 
-            <select name="rubedo_pn" ng-options="pn as pn.fields.pointNetId+' '+pn.text for pn in rubedo_pns track by pn.fields.pointNetId | orderBy:pointNetId" ng-model="current_r_pn" ng-change="loadPN('rubedo')">
+            <select id="select_rubedo_pn" name="rubedo_pn" ng-options="pn as pn.fields.pointNetId+' '+pn.text for pn in rubedo_pns track by pn.fields.pointNetId | orderBy:pointNetId" ng-model="current_r_pn" ng-change="loadPN('rubedo')">
                 <!-- <option ng-repeat="pn in rubedo_pns" ng-value="pn.fields.pointNetId">{{pn.fields.pointNetId}}</option> -->
             </select>
             
