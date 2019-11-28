@@ -25,10 +25,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     // (ce sont les ids des medias PDF correspondants)
     me.rgpd_links = {
         'fr': '5cada77739658847463d67dc',
+        'en': '5ddfdcc3396588a91b1321e1',
     }
     // on met le lien vers la bonne politique RGPD
     $scope.parameters = {}
-    $scope.parameters.rgpd_media_id = me.rgpd_links["fr"];
+    $scope.parameters.rgpd_media_id = me.rgpd_links["en"];
     if (me.content && me.content.locale && me.rgpd_links[me.content.locale]) $scope.parameters.rgpd_media_id = me.rgpd_links[me.content.locale];
     // =======================================================
     // =======================================================

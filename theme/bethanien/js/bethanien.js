@@ -327,10 +327,10 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($http) {
   return {
     getPolitiqueConfidentialiteId: function () {
-      let default_rgpd_id = "5da5c3c1396588b95dde8b45";
+      let default_rgpd_id = "5ddfdcc3396588a91b1321e1";
       return $http.get("api/v1/media", {
         params: {
-          query: {'DAMTypes': ['5da5c314396588215cde8b40']}, // this the damtype id of "Politique e confidentiatlié"
+          query: {'DAMTypes': ['5da5c314396588215cde8b40']}, // this the damtype id of "Politique de confidentiatlié"
           pageWorkspace: '545cd94b45205e91168b4567',
         }
       }).then(function (resp) {

@@ -43,10 +43,11 @@ angular.module("rubedoBlocks").lazy.controller("DonationController",['$scope','R
     // (ce sont les ids des medias PDF correspondants)
     me.rgpd_links = {
         'fr': '5cada77739658847463d67dc',
+        'en': '5ddfdcc3396588a91b1321e1',
     }
     // on met le lien vers la bonne politique RGPD
     $scope.parameters = {}
-    $scope.parameters.rgpd_media_id = me.rgpd_links["fr"];
+    $scope.parameters.rgpd_media_id = me.rgpd_links["en"];
     if ($scope.contentDetailCtrl.content && $scope.contentDetailCtrl.content.locale && me.rgpd_links[$scope.contentDetailCtrl.content.locale]) $scope.parameters.rgpd_media_id = me.rgpd_links[$scope.contentDetailCtrl.content.locale];
     // =======================================================
 
