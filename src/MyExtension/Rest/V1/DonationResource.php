@@ -632,6 +632,8 @@ class DonationResource extends AbstractResource
             /*Responsable international*/
             if( ($emailResponsableInternationalDons != $emailComptableNational) && ($emailResponsableInternationalDons != $emailResponsableNationalDons) && ($emailResponsableInternationalDons != $emailIntendantNational) ) {
                 $mailAdmin->setTo($emailResponsableInternationalDons);
+                $mailAdmin->setBody($messageAdmin, 'text/html', 'utf-8');
+                $mailerService->sendMessage($mailAdmin);
             }
             /*MAILS COMPTA*/
             if($emailComptableNational && ($emailComptableNational != $emailResponsableNationalDons) && ($emailComptableNational != $contactProjet["email"])){
