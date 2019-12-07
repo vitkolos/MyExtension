@@ -368,7 +368,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
             log(LOG_INFO, 'Inscription simulation', $scope.inscription, $scope.rubedo.current.page.workspace);
             log(LOG_INFO, 'Payment simulation : paiement par carte ?', $scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal')
-            if (window.SANDBOX) $scope.inscription.__window.SANDBOX__ = true;
+            if (window.SANDBOX) $scope.inscription.__SANDBOX__ = true;
 
             // =======================================================================
             //              ON LANCE L'INSCRIPTION
