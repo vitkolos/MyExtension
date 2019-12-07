@@ -1,15 +1,15 @@
 angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService','RgpdService',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService,RgpdService) {
     
     // ==============================================================================
-    //                INIT SANDBOX PARAMS FOR DEBUG
+    //                INIT window.SANDBOX PARAMS FOR DEBUG
     // ==============================================================================
 
-    let SANDBOX = false;
+    window.SANDBOX = false;
 
     let LOG_INFO = 1; let LOG_WARN = 2; let LOG_ERR = 3; let LOG_LEVELS = [0, 'INFO', 'WARNING', 'ERROR'];
-    let log = (niveau, msg, ...arg_list) => (SANDBOX) ? console.log(niveau, msg, ...arg_list): '';
-    if (SANDBOX) {
-        console.log('%c === SANDBOX MODE IS ON for InscriptionController === ', 'background: #c1573c;color: white;')
+    let log = (niveau, msg, ...arg_list) => (window.SANDBOX) ? console.log(niveau, msg, ...arg_list): '';
+    if (window.SANDBOX) {
+        console.log('%c === window.SANDBOX MODE IS ON for InscriptionController === ', 'background: #c1573c;color: white;')
     }
     // ==============================================================================
     // ==============================================================================
@@ -368,7 +368,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
             log(LOG_INFO, 'Inscription simulation', $scope.inscription, $scope.rubedo.current.page.workspace);
             log(LOG_INFO, 'Payment simulation : paiement par carte ?', $scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal')
-            if (SANDBOX) $scope.inscription.__SANDBOX__ = true;
+            if (window.SANDBOX) $scope.inscription.__window.SANDBOX__ = true;
 
             // =======================================================================
             //              ON LANCE L'INSCRIPTION
@@ -381,8 +381,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     if ($scope.inscription.modePaiement == 'carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
                         if (window.ga) window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
                         let payload = preparePaymentPayload(response);
-                        if (SANDBOX) log(LOG_INFO, 'Payment simulation payload=', payload);
-                        if (SANDBOX) return response;
+                        if (window.SANDBOX) log(LOG_INFO, 'Payment simulation payload=', payload);
+                        if (window.SANDBOX) return response;
 
                         // =========================================================================
                         //          ON LANCE LE PAIEMENT
@@ -486,8 +486,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         if (me.content.fields.lieuCommunautaire) payload.placeID = me.content.fields.lieuCommunautaire;
         if (window.ga) window.ga('send', 'event', 'inscription', 'payement carte', 'paiement complementaire', $scope.inscription.montantAPayerMaintenant);
 
-        if (SANDBOX) log(LOG_INFO, 'Payment complémentaire simulation payload=', payload);
-        if (SANDBOX) return;
+        if (window.SANDBOX) log(LOG_INFO, 'Payment complémentaire simulation payload=', payload);
+        if (window.SANDBOX) return;
         
         // =========================================================================
         //          ON LANCE LE PAIEMENT COMPLÉMENTAIRE
