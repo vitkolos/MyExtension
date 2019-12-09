@@ -311,7 +311,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if(me.content.fields.dateDebut && me.content.fields.dateDebut!='') $scope.inscription.propositionDate = propositionDate;
             $scope.inscription.dateDebut = me.content.fields.dateDebut;
             $scope.inscription.propositionLieu = me.content.fields.positionName;
-												$scope.inscription.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
+            $scope.inscription.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
             $scope.inscription.propositionUrl = me.content.canonicalUrl;
             $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
@@ -547,7 +547,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
     function initMoyensPaiement() {
         log(LOG_INFO, "Moyens de paiement debug INFO1", me.content, $scope.inscription);
-        if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement) me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement.filter(x => x);
+        if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement && typeof me.content.fields.moyens_paiement.moyens_paiement === 'object') me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement.filter(x => x);
         if (me.content.fields && !me.content.fields.moyens_paiement) me.content.fields.moyens_paiement = [];
         me.moyens_paiement_multiples = true;
         if (me.content.fields.moyens_paiement.length == 1 || typeof me.content.fields.moyens_paiement == "string") {
