@@ -76,7 +76,7 @@ class PaymentmeansResource extends AbstractResource
                 "virement"=>false,
                 "paypal"=>false,
                 "cheque"=>false,
-                "dotpay" => false
+                "dotpay" => false,
             );
             
             $paymentMeans = Manager::getService("SitesConfigCcn")->getConfig();

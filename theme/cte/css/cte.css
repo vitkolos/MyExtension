@@ -2126,7 +2126,7 @@ header.content {
   background-attachment: scroll;
   background-size: cover;
   height: 320px;
-  box-shadow: inset 0 0 0 1000px rgba(84, 84, 84, 0.25);
+  /* box-shadow:inset 0 0 0 1000px rgba(84,84,84,.25); */
   margin-bottom: 24px;
   line-height: 320px;
   text-align: center;
