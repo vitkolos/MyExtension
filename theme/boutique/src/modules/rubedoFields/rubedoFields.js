@@ -777,6 +777,7 @@
         };
         me.applySelectorConstraints();
         me.setCurrentVariation=function(variation){
+            console.log("variation", variation)
             me.currentVariation=variation;
             me.currentPrice=variation.price;
             me.oldPrice=variation.price;
