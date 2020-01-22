@@ -50,6 +50,7 @@ angular.module("rubedoBlocks").lazy.controller("MegaMenuController",['$scope','$
                     });
                 }
             });
+            console.log("menu pages", me.menu.pages);
         } else {
             me.menu={};
         }
