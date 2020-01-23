@@ -5,7 +5,7 @@ angular.module("rubedoBlocks").lazy.controller("BgImageController",["$scope","Ru
     // parse custom css
     me.css = {'width':'100%', 'margin-bottom': '0'};
     if ($scope.block.code) {
-        console.log("GOT CODE !")
+        console.log("GOT CODE !", $scope.block.code)
         let res = /css(\{[^\}]+\})/g.exec($scope.block.code);
         console.log("regex result", res)
         if (res && res.length > 1) {
