@@ -1,6 +1,7 @@
 angular.module("rubedoBlocks").lazy.controller("BgImageController",["$scope","RubedoPagesService", function($scope,RubedoPagesService){
     var me = this;
     var config = $scope.blockConfig;
+    console.log('bg_img config', config);
     if (config.externalURL){
         me.url=config.externalURL;
     } else if (config.imageLink&&mongoIdRegex.test(config.imageLink)){
