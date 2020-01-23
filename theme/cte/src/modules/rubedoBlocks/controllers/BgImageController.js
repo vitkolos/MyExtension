@@ -1,9 +1,21 @@
 angular.module("rubedoBlocks").lazy.controller("BgImageController",["$scope","RubedoPagesService", function($scope,RubedoPagesService){
     var me = this;
     var config = $scope.blockConfig;
-    console.log("mon css", me, $scope.block, $scope.block.code);
-    console.log('bg_img config', config);
+    
+    // parse custom css
     me.css = {'width':'100%', 'margin-bottom': '0'};
+    if ($scope.block.code) {
+        let res = /css(\{[^\}]+\})/g.exec($scope.block.code);
+        if (res && res.length > 1) {
+            try {
+                let custom_css = JSON.parse(res[1]);
+                me.css = {...me.css, ...custom_css}
+            } catch(e) {
+                console.log("Error in JSON parse for block.code : ", $scope.block)
+            }
+        } 
+    }
+    
     if (config.externalURL){
         me.url=config.externalURL;
     } else if (config.imageLink&&mongoIdRegex.test(config.imageLink)){
