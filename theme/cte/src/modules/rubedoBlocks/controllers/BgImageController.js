@@ -2,6 +2,7 @@ angular.module("rubedoBlocks").lazy.controller("BgImageController",["$scope","Ru
     var me = this;
     var config = $scope.blockConfig;
     console.log('bg_img config', config);
+    me.css = "width:100%;margin-bottom:0";
     if (config.externalURL){
         me.url=config.externalURL;
     } else if (config.imageLink&&mongoIdRegex.test(config.imageLink)){
