@@ -5,17 +5,14 @@ angular.module("rubedoBlocks").lazy.controller("BgImageController",["$scope","Ru
     // parse custom css
     me.css = {'width':'100%', 'margin-bottom': '0'};
     if ($scope.block.code) {
-        console.log("GOT CODE !", $scope.block.code)
         let res = /css(\{[^\}]+\})/g.exec($scope.block.code);
-        console.log("regex result", res)
         if (res && res.length > 1) {
             try {
                 let custom_css = JSON.parse(res[1]);
-                console.log("custom_css", custom_css)
                 me.css = {...me.css, ...custom_css}
-                console.log("me", me, me.css);
+                console.log("custom_css for bg_image", $scope.block.title, me.css);
             } catch(e) {
-                console.log("Error in JSON parse for block.code : ", $scope.block)
+                console.log("Error in JSON parse for block.code : ", res[1], $scope.block)
             }
         } 
     }
