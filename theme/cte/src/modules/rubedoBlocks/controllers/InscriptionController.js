@@ -317,7 +317,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
             $scope.inscription.contact = me.content.fields.contact;
             if (me.content.fields.mails_secretariat && me.content.fields.mails_secretariat.length>0) {
-                $scope.inscription.mails_secretariat = me.content.fields.mails_secretariat;
+                $scope.inscription.mails_secretariat = me.content.fields.mails_secretariat.filter(m => m.length > 2);
             }
             if(me.content.fields.codeOnesime) $scope.inscription.codeOnesime = me.content.fields.codeOnesime;
             $scope.inscription.mailInscription = me.content.fields.mailInscription;
