@@ -217,6 +217,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             function(response){
                                 if(response.data.success){
                                     me.paymentmeans = response.data.paymentMeans;
+                                    console.log('paymentmeans', me.paymentmeans)
                                 }
                             }
                         );
