@@ -210,14 +210,14 @@ a:active {
 }
 p a,
 li a {
-  box-shadow: inset 0 -2px 0 hsl(30, 28%, 45%);
+  box-shadow: inset 0 -2px 0 hsl(30, 28%, 77%);
   transition: background 0.3s ease;
 }
 p a:hover,
 p a:active,
 li a:hover,
 li a:active {
-  background-color: hsl(30, 28%, 45%);
+  background-color: hsl(30, 28%, 77%);
 }
 input:focus {
   outline: 0;
@@ -377,7 +377,7 @@ span.glyphicon {
 }
 .txt-marron,
 a.txt-marron {
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
 }
 .txt-beige,
 a.txt-beige {
@@ -442,7 +442,7 @@ span.font_icon a:active {
   box-shadow: none;
 }
 span.font_icon:hover {
-  background: hsl(30, 28%, 45%);
+  background: hsl(30, 28%, 77%);
 }
 span.font_icon:hover a {
   color: white;
@@ -1217,8 +1217,8 @@ blockquote {
   margin: 30px auto;
 }
 .bg-white blockquote {
-  border-top: 2px solid hsl(30, 28%, 45%);
-  border-bottom: 2px solid hsl(30, 28%, 45%);
+  border-top: 2px solid hsl(30, 28%, 77%);
+  border-bottom: 2px solid hsl(30, 28%, 77%);
 }
 blockquote p {
   font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -1290,7 +1290,7 @@ blockquote p {
 }
 .media.media2 {
   text-align: center;
-  border-bottom: solid 2px hsl(30, 28%, 45%);
+  border-bottom: solid 2px hsl(30, 28%, 77%);
   margin-bottom: 0;
   padding-bottom: 24px;
   margin-bottom: -2px;
@@ -1402,7 +1402,7 @@ blockquote p {
 .text-article .panel-default > .panel-heading {
   background-color: transparent;
   color: #2e2c29;
-  border-top: 2px solid hsl(30, 28%, 45%);
+  border-top: 2px solid hsl(30, 28%, 77%);
 }
 .text-article .panel-title > a {
   font-size: 1.2em;
@@ -1643,26 +1643,26 @@ blockquote p {
 .geo-search .search-result {
   padding: 12px;
   background-color: white;
-  border-bottom: solid 1px hsl(30, 28%, 45%);
+  border-bottom: solid 1px hsl(30, 28%, 77%);
 }
 .search-tags .search-result,
 .search-tags .search-result.checked:hover {
   padding: 12px 0;
   padding-left: 12px;
-  border-bottom: solid 1px hsl(30, 28%, 45%);
+  border-bottom: solid 1px hsl(30, 28%, 77%);
   background-color: transparent;
   color: #2e2c29;
 }
 .search-tags .search-result.checked,
 .search-tags .search-result:hover,
 .search-tags .search-result a:hover {
-  background-color: hsl(30, 28%, 45%);
+  background-color: hsl(30, 28%, 77%);
   color: white;
   border-bottom-color: white;
 }
 @media screen and (min-width: 768px) {
   .search-result {
-    border-bottom: solid 1px hsl(30, 28%, 45%);
+    border-bottom: solid 1px hsl(30, 28%, 77%);
     padding: 24px 0;
   }
 }
@@ -1683,7 +1683,7 @@ blockquote p {
   }
 }
 .border-top {
-  border-top: solid 2px hsl(30, 28%, 45%);
+  border-top: solid 2px hsl(30, 28%, 77%);
   margin-top: 0;
 }
 .border-top-red {
@@ -1694,7 +1694,7 @@ blockquote p {
   padding-top: 24px;
 }
 .border-bottom {
-  border-bottom: solid 2px hsl(30, 28%, 45%);
+  border-bottom: solid 2px hsl(30, 28%, 77%);
   margin-bottom: 0;
   padding-bottom: 24px;
 }
@@ -1711,7 +1711,7 @@ blockquote p {
 }
 .tags,
 .tags p {
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
   transition: box-shadow 0.3s ease;
 }
 .search-video {
@@ -2046,8 +2046,8 @@ p.red-sub {
 }
 .button.submit.disabled,
 .button.rouge.disabled {
-  color: hsl(30, 28%, 45%);
-  border: 2px solid hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
+  border: 2px solid hsl(30, 28%, 77%);
   cursor: default;
 }
 .prev-page a,
@@ -2342,7 +2342,7 @@ header.content.prop > div {
   padding-left: 0;
 }
 .regions-list li {
-  border-top: 2px solid hsl(30, 28%, 45%);
+  border-top: 2px solid hsl(30, 28%, 77%);
   padding: 6px 24px 6px 12px;
   font-family: 'Montserrat', 'Arimo', "Helvetica Neue", Helvetica, Arial, sans-serif;
   text-transform: uppercase;
@@ -2365,7 +2365,7 @@ header.content.prop > div {
   background-color: inherit;
 }
 .regions-list li:last-of-type {
-  border-bottom: 2px solid hsl(30, 28%, 45%);
+  border-bottom: 2px solid hsl(30, 28%, 77%);
 }
 .regions-list li a:after {
   position: absolute;
@@ -2387,7 +2387,7 @@ header.content.prop > div {
 .accueil {
   padding: 12px;
   color: white;
-  background-color: hsl(30, 28%, 45%);
+  background-color: hsl(30, 28%, 77%);
   margin-bottom: 24px;
 }
 .accueil p,
@@ -2411,7 +2411,7 @@ header.content.prop > div {
   font-size: 1em;
   background-color: white;
   font-family: 'Montserrat';
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
   padding: 6px 12px;
   font-weight: 400;
   margin: 12px 6px;
@@ -2431,7 +2431,7 @@ header.content.prop > div {
 .accueil p a:hover,
 .accueil p a:active {
   background-color: white;
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
 }
 /*General*/
 input[type=text],
@@ -2465,10 +2465,10 @@ input[type=email].ng-invalid:not(.ng-dirty) {
 .bg-white input[type=number].ng-invalid:not(.ng-dirty),
 .bg-white textarea.ng-invalid:not(.ng-dirty),
 .bg-white input[type=email].ng-invalid:not(.ng-dirty) {
-  border: 2px solid hsl(30, 28%, 45%);
+  border: 2px solid hsl(30, 28%, 77%);
 }
 .bg-white input[type=text] {
-  border-color: hsl(30, 28%, 45%);
+  border-color: hsl(30, 28%, 77%);
 }
 input[type=text].number {
   text-align: center;
@@ -2493,7 +2493,7 @@ input:focus {
 }
 input[type=checkbox]:disabled + label,
 input[type=radio]:disabled + label {
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
 }
 textarea:focus {
   outline: none;
@@ -2548,7 +2548,7 @@ input[type=checkbox] + label:before {
   left: 0;
   vertical-align: middle;
   background-color: white;
-  border: 1px solid hsl(30, 28%, 45%);
+  border: 1px solid hsl(30, 28%, 77%);
 }
 input[type=radio] + label:not(.sexe_label):before {
   border-radius: 10px;
@@ -2641,19 +2641,19 @@ ng-form[name="inscription_form"] input.montant-dons.displayed.ng-invalid {
   border-color: #c1573c;
 }
 ng-form[name="inscription_form"] input.montant-dons::-webkit-input-placeholder {
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
   font-style: italic;
 }
 ng-form[name="inscription_form"] input.montant-dons:-moz-placeholder {
   /* Firefox 18- */
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
 }
 ng-form[name="inscription_form"] input.montant-dons::-moz-placeholder {
   /* Firefox 19+ */
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
 }
 ng-form[name="inscription_form"] input.montant-dons:-ms-input-placeholder {
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
 }
 ng-form[name="inscription_form"] input[type=radio]:checked + label.sexe_label,
 ng-form[name="inscription_form"] input[type=radio] + label.sexe_label:hover {
@@ -2917,7 +2917,7 @@ label.label_style.left,
   font-size: 1em;
   background-color: white;
   font-family: 'Monterrat';
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
   padding: 6px 12px;
   font-weight: 400;
   margin: 12px 6px;
@@ -2937,7 +2937,7 @@ label.label_style.left,
 .accueil p a:hover,
 .accueil p a:active {
   background-color: white;
-  color: hsl(30, 28%, 45%);
+  color: hsl(30, 28%, 77%);
 }
 .fc-event {
   background-color: #2e2c29;
