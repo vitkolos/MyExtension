@@ -555,6 +555,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             me.moyens_paiement_multiples = false;
         }
         log(LOG_INFO, "Moyens de paiement debug INFO2", me.moyens_paiement_multiples, me.content);
+        if (me.content.fields.moyens_paiement.includes('cheque_vac')) {
+            me.paymentmeans.paymentModes.cheque_vac = true;
+        }
     }
 
     // fonction de gestion des templates de formulaires
