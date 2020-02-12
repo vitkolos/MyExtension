@@ -115,6 +115,7 @@
 	"Block.Inscription.Paf.ModePaiment": "",
 	"Block.Inscription.Paf.carte": "por tarjeta",
 	"Block.Inscription.Paf.cheque": "por cheque",
+	"Block.Inscription.Paf.cheque_vac": "por cheque de vacaciones",
 	"Block.Inscription.Paf.virement": "por transferencia",
 	"Block.Inscription.Paf.Virement.Period": "mediante transferencia bancaria periódica",
 	"Block.Inscription.Paf.Prelevement": "mediante transferencia bancaria periódica",

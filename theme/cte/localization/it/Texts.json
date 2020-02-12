@@ -115,6 +115,7 @@
 	"Block.Inscription.Paf.ModePaiment": "Metodo di pagamento",
 	"Block.Inscription.Paf.carte": "con carta",
 	"Block.Inscription.Paf.cheque": "con assegno",
+	"Block.Inscription.Paf.cheque_vac": "con assegno vacanze",
 	"Block.Inscription.Paf.virement": "con bonifico",
 	"Block.Inscription.Paf.Virement.Period": "con bonifico periodico",
 	"Block.Inscription.Paf.Prelevement": "con prelievo automatico",

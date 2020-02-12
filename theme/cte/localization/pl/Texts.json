@@ -115,6 +115,7 @@
 	"Block.Inscription.Paf.ModePaiment": "Sposób zapłaty",
 	"Block.Inscription.Paf.carte": "Karta bankowa​",
 	"Block.Inscription.Paf.cheque": "Czek​",
+	"Block.Inscription.Paf.cheque_vac": "Czekiem wakacyjnym",
 	"Block.Inscription.Paf.virement": "Przelew​",
 	"Block.Inscription.Paf.Virement.Period": "Regularny przelew​",
 	"Block.Inscription.Paf.Prelevement": "Zlecenie przelewu​",

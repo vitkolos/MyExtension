@@ -115,6 +115,7 @@
 	"Block.Inscription.Paf.ModePaiment": "Method of payment",
 	"Block.Inscription.Paf.carte": "by credit card",
 	"Block.Inscription.Paf.cheque": "by cheque/check",
+	"Block.Inscription.Paf.cheque_vac": "by holiday check",
 	"Block.Inscription.Paf.virement": "by bank transfer",
 	"Block.Inscription.Paf.Virement.Period": "by periodic bank transfer",
 	"Block.Inscription.Paf.Prelevement": "by automatic debit",

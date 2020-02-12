@@ -115,6 +115,7 @@
 	"Block.Inscription.Paf.ModePaiment": "Méthode de paiement",
 	"Block.Inscription.Paf.carte": "par carte",
 	"Block.Inscription.Paf.cheque": "par chèque",
+	"Block.Inscription.Paf.cheque_vac": "par chèque vacances",
 	"Block.Inscription.Paf.virement": "par virement",
 	"Block.Inscription.Paf.Virement.Period": "par virement périodique",
 	"Block.Inscription.Paf.Prelevement": "par prélèvement automatique",

@@ -115,6 +115,7 @@
 	"Block.Inscription.Paf.ModePaiment": "",
 	"Block.Inscription.Paf.carte": "per Kart",
 	"Block.Inscription.Paf.cheque": "per Scheck",
+	"Block.Inscription.Paf.cheque_vac": "per Urlaubsscheck",
 	"Block.Inscription.Paf.virement": "per Überweisung",
 	"Block.Inscription.Paf.Virement.Period": "per Dauerauftra",
 	"Block.Inscription.Paf.Prelevement": "per automatischen Bankeinzug",
