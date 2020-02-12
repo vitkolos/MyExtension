@@ -241,6 +241,15 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     //informations sur les moyens de payement
     me.paymentmeans = $scope.contentDetailCtrl.paymentmeans;
+    // alignement sur les options de paiement saisies dans la proposition
+    function alignPaymentMeans() {
+        if (me.content.fields.moyens_paiement.length == 0) return;
+        me.paymentmeans.paymentModes.carte = me.content.fields.moyens_paiement.includes('carte');
+        me.paymentmeans.paymentModes.cheque = me.content.fields.moyens_paiement.includes('cheque');
+        me.paymentmeans.paymentModes.cheque_vac = me.content.fields.moyens_paiement.includes('cheque_vac');
+    }
+    alignPaymentMeans();
+
     me.currentStage = 1;
     // affichage des sections du formulaire
     me.toggleStage = function(newStage){
@@ -555,9 +564,6 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             me.moyens_paiement_multiples = false;
         }
         log(LOG_INFO, "Moyens de paiement debug INFO2", me.moyens_paiement_multiples, me.content);
-        if (me.content.fields.moyens_paiement.includes('cheque_vac')) {
-            //me.paymentmeans.paymentModes.cheque_vac = true;
-        }
     }
 
     // fonction de gestion des templates de formulaires
