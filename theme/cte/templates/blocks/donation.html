@@ -49,7 +49,7 @@
                                                             <label for="montant4" class="sexe_label dons"><span ng-if="isMonnaieBefore">{{don.monnaie}}</span>{{contentDetailCtrl.content.fields.montant_4}}<span ng-if="!isMonnaieBefore">{{don.monnaie}}</span></label>
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
                                                             <label for="autre" class="sexe_label dons">{{rubedo.translate("Block.Inscription.SituationConjugale.Autre", "autre") | lowercase}}</label>
-                                                <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder='{{rubedo.translate("Block.Inscription.SituationConjugale.Autre", "Autre") }}' ng-pattern="/^[0-9]{1,7}$/" ng-required="don.montant=='autre'">
+                                                <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder='{{rubedo.translate("ccn_label_montant", "Montant") }}' ng-pattern="/^[0-9]{1,7}$/" ng-required="don.montant=='autre'">
                                                         
                                                 <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_1">
                                                         <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_1')}}" ng-init="fieldInputMode=false"></rubedo-field>
