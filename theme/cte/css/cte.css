@@ -2633,7 +2633,7 @@ ng-form[name="inscription_form"] input.montant-dons {
   border: 0;
 }
 ng-form[name="inscription_form"] input.montant-dons.displayed {
-  width: 100px;
+  width: 300px;
   transition: all ease-out 0.3s;
   border: 3px solid #fff;
 }
