@@ -609,6 +609,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             case 'fiances':
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
                 me.additional_infos = null;
+                break;
+            case 'fiances_binome':
+                me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
+                me.additional_infos = null;
                 break;   
             case 'famille':
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
