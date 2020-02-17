@@ -1,6 +1,6 @@
-<!--mail pour la réservation à Abuna Faraj Pilgrim House (Nazareth)-->
+<!--mail pour la réservation au foyer du Salesianum -->
 <html><body>
-  <h3>Identification</h3>
+  <h3 style="background: #e0dfdf;">Identification</h3>
 <table width="80%">
 <tr>
   <td> 
@@ -13,16 +13,23 @@
     Tel : { phone }<br/>
     Email : { email }
   </td>
-  <td> 
-    Rue : { street }<br />
-    Ville : { city }<br/>
-    Code postal : { codepostal }<br />
-    Pays : { country }
-  </td>
  </tr>
 </table>
 
-<h3>Le séjour</h3>
+<h3 style="background: #e0dfdf;">Adresse</h3>
+<table width="80%">
+  <tr>
+    <td width="100"><b>Rue : </b></td><td>{ street }</td>
+  </tr><tr>
+    <td width="100"><b>Ville : </b></td><td>{ city }</td>
+  </tr><tr>
+    <td width="100"><b>Code postal : </b></td><td>{ codepostal }</td>
+  </tr><tr>
+    <td width="100"><b>Pays : </b></td><td>{ country }</td>
+  </tr>
+</table>
+
+<h3 style="background: #e0dfdf;">Le séjour</h3>
 <table width="80%">
   <tr >
     <td>
@@ -31,40 +38,41 @@
   </tr>
 </table>
 
-<h3>Situation actuelle</h3>
+<h3 style="background: #e0dfdf;">Situation actuelle</h3>
 <table width="80%">
   <tr >
     <td>
-      Situation actuelle: { situation_actuelle }<br/> 
+      <span class="label"><b>Situation actuelle</b> : </span> { situation_actuelle }<br/><br />
       Nom et adresse de l'école ou employeur: <br />{ nom_ecole_actuelle }
     </td>
   </tr>
 </table>
 
-<h3>Situation prévue</h3>
+<h3 style="background: #e0dfdf;">Situation prévue</h3>
 <table width="80%">
   <tr >
     <td>
-      Situation prévue: { situation_prevue }<br/> 
-      Préciser si autre lien à l'université : { autre_lien_univ_prevu }<br />
+      <b>Situation prévue :</b> { situation_prevue }<br/>
+      <i>Préciser si autre lien à l'université : </i>{ autre_lien_univ_prevu }<br />
+      <br />
       Nom et adresse de l'école + section: <br />{ info_ecole_prevue }
     </td>
   </tr>
 </table>
 
-<h3>Détail des chambres et repas</h3>
+<h3 style="background: #e0dfdf;">Détail des chambres et repas</h3>
 <table width="80%">
   <tr >
     <td>
-      Chambre: { type_chambre }
+      <b>Chambre :</b> { type_chambre }
     </td>
     <td>
-      Pension: { pension }
+      <b>Pension :</b> { pension }
     </td>
   </tr>
   <tr>
     <td>
-      Remarques pour les repas :<br />
+      <br>Remarques pour les repas :<br />
       { remarks }
     </td>
   </tr>
