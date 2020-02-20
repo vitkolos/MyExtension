@@ -243,6 +243,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     me.paymentmeans = $scope.contentDetailCtrl.paymentmeans;
     // alignement sur les options de paiement saisies dans la proposition
     function alignPaymentMeans() {
+        console.log("align payments", me.content, me.content.fields);
         if (!me.content.fields.moyens_paiement) me.content.fields.moyens_paiement = [];
         if (me.content.fields.moyens_paiement.length == 0) return;
         me.paymentmeans.paymentModes.carte = me.content.fields.moyens_paiement.includes('carte');
