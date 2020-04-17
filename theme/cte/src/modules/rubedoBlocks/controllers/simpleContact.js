@@ -42,6 +42,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
                     me.contactData={subject:me.contactData.subject, template:me.contactData.template };
                     me.showForm=false;
                     me.showConfirmMessage=true;
+                    $scope.showConfirmMessage = true;
                     //$scope.rubedo.sendGaEvent('/form/', 'contact');
                     if(window.ga) {
                         window.ga('send', 'event', 'contact', 'envoi de mail',config.email);
