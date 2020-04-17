@@ -58,6 +58,11 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
             },
             function(response){
                 me.contactError=response.data.message;
+                console.log("Error while sending the email", payload);
+                $scope.showErrorMessage = true;
+                payload.subject = `An error occured on this website : ${location.href} - ` + payload.subject;
+                payload.to = 'web@chemin-neuf.org';
+                RubedoMailService.sendMail(payload)
             }
         ).catch(err => {
             console.log("An error occured while sending the email", payload);
