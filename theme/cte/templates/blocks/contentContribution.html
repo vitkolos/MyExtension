@@ -16,7 +16,7 @@
                 {{rubedo.translate("Blocks.Contrib.Label.NewContent", "New Content")}} : {{ccCtrl.contentType.type}}
         </h3>
         <h2 ng-if="ccCtrl.updateMode" class="text-center" ng-click="ccCtrl.showForm= !ccCtrl.showForm">{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}} : {{ccCtrl.existingContent.text}}  ({{rubedo.translate("Label."+ccCtrl.existingContent.status, ccCtrl.existingContent.status)}}) </h2>
-        <div ng-if="(!ccCtrl.updateMode && ccCtrl.showForm) || (ccCtrl.updateMode)" class="container">
+        <div ng-if="(!ccCtrl.updateMode && ccCtrl.showForm) || (ccCtrl.updateMode)" class="container" style="z-index: 9999999999999999999999;position: absolute;background: white;width: 90%;margin-left: 4%;">
             <div class="form-group" ng-if="blockConfig.contentType=='568e3d503bc32538118b48d6' || blockConfig.contentType=='5517c04245205ec708869bc6' " ng-controller="AlbumUploadController as uploadCtrl">
 
                 <label for="uploadFiles" class="col-sm-4 control-label">Photos de l'album</label>
