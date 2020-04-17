@@ -33,7 +33,6 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         payload.fields=contactSnap;
         angular.element('#myModal'+$scope.block.id+$scope.blockConfig.id).modal('hide');
         angular.element('#myModalsingle').modal('hide');
-        angular.element('.modal').modal('hide');
         payload.fields["website"] = $location.absUrl();
         RubedoMailService.sendMail(payload).then(
             function(response){
@@ -49,8 +48,10 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
                     }
                 } else {
                     me.contactError=response.data.message;
+                    $scope.showErrorMessage = true;
                 }
                 $('#myModal').modal('hide');
+                angular.element('.modal').modal('hide');
             },
             function(response){
                 me.contactError=response.data.message;
