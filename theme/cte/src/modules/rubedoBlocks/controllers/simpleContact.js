@@ -36,7 +36,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
         payload.fields["website"] = $location.absUrl();
         RubedoMailService.sendMail(payload).then(
             function(response){
-                console.log("send response", response)
+                console.log("send response", response, '#myModal'+$scope.block.id+$scope.blockConfig.id)
                 if (response.data.success){
                     me.contactData={subject:me.contactData.subject, template:me.contactData.template };
                     me.showForm=false;
