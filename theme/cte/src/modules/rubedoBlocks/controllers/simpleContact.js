@@ -5,7 +5,7 @@ angular.module("rubedoBlocks").lazy.controller('ContactBlockController',['$scope
     me.contactError=null;
     $scope.clearORPlaceholderHeight();
     //$window.current_language = this.current.page.locale;
-    console.log(me, $scope)
+    console.log(me, $scope, rubedo)
 
     // RGPD
     console.log("Init RGPD")
