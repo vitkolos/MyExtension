@@ -94,6 +94,7 @@ class DonationResource extends AbstractResource
         if(isset($accountInfos['codeCompta'])) $don['fields']['codeCompta'] = $accountInfos['codeCompta'];
         $don['fields']['text'] = $siteConfig['codePays'] . "_" . date("Y") . "_" . str_pad($donationNumber, 6, '0', STR_PAD_LEFT) ;
         $don['fields']['date_rgpd_accepted'] = $params["don"]['date_rgpd_accepted'];
+        if ($don["fields"]["modePaiement"]=="paypal") $don["fields"]["comptePaypalBeneficiaire"] = $paymentConfig['fields']['paypal'];
         $don['text'] =$don['fields']['text'] ;
         $don['writeWorkspace'] = "57237282c445ecf3008c7ddc";
         $don['target'] = "57237282c445ecf3008c7ddc";
@@ -123,7 +124,7 @@ class DonationResource extends AbstractResource
         //si payement par carte (Paybox) alors on envoie un mail au responsable international des dons et on procède au payement
         else if($don["fields"]["modePaiement"]=="paypal") {
 
-	    $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfig['fields'],$params['lang']->getLocale(),true);
+	        $this->envoyerMailsDon($don["fields"],$projectDetail,$paymentConfig['fields'],$params['lang']->getLocale(),true);
             $arrayToReturn = array("whatToDo" =>"proceedToPayment", "id" =>$don['fields']['text'], "paymentConfID" => $paymentConfID );
             
         }
