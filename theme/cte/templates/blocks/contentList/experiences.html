@@ -9,15 +9,15 @@
                 ng-class="contentListCtrl.columns">
 
             <!-- PICTURE -->
-            <div class="experience-img" ><!--ng-class="{'no-img':!content.fields.image}"-->
+            <div class="experience-img" ng-style="{'background': 'url('+ rubedo.imageUrl.getUrlByMediaId(content.fields.image) +')'}">
                 <!-- si le contenu a une image, on l'affiche dans la vignette -->
-                <img class="media-object pull-left" ng-if="content.fields.image"
+                <!-- <img class="media-object pull-left" ng-if="content.fields.image"
                              ng-src="{{ rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
-                             alt="{{ content.fields.text }}"/>
+                             alt="{{ content.fields.text }}"/> -->
                 <!-- si le contenu n'a pas d'image définie, on affiche une image par défaut -->
-                <img class="media-object pull-left" ng-if="!content.fields.image"
+                <!-- <img class="media-object pull-left" ng-if="!content.fields.image"
                             ng-src="{{ rubedo.imageUrl.getUrlByMediaId('57175694c445ecda008c4b31',{width:'400px',height:'266px',mode:'crop'}) }}"
-                            alt="{{ content.fields.text }}"/>
+                            alt="{{ content.fields.text }}"/> -->
             </div>
 
             <p class="experience_title">{{content.fields.text}}</p>
