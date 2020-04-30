@@ -31,11 +31,52 @@
     </div>
 
     <script>
-        $('.xp_ensavoirplus').click(function() {
-            $(this).next().addClass('show-xp-text');
-            $(this).next().click(function() {
-                $(this).removeClass('show-xp-text');
+        $(document).ready(function() {
+            $('.xp_ensavoirplus').click(function() {
+                $(this).next().addClass('show-xp-text');
+                $(this).next().click(function() {
+                    $(this).removeClass('show-xp-text');
+                })
             })
         })
     </script>
 </div>
+
+<style>
+    .experiences_back {
+        background: #00558a;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        height: 20rem;
+        margin-bottom: -9rem;
+    }
+    .experiences_back * {
+        color: white;
+    }
+    .list-item-img {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        height: 27rem;
+        background: #bfbfbf;
+    }
+    .experience_text {
+        background: white;
+        width: 100%;
+        padding: 1rem;
+        transform: translateY(0);
+        opacity: 0;
+        transition: transform .25s ease-in, -webkit-transform .25s ease-in, opacity 0.3s ease-in;
+    }
+    .show-xp-text {
+        transform: translateY(-100%);
+        opacity: 1;
+        transition: transform .25s ease-in, -webkit-transform .25s ease-in, opacity 0.1s ease-in;
+    }
+    .experience-img {
+        height: 320px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+</style>
