@@ -31,7 +31,12 @@
     </div>
 
     <script>
-        $(document).ready(function() {
+        function retry(fn_cond, fn_exec, max_retries = -5) {
+            if (max_retries == 0) return;
+            if (fn_cond()) return fn_exec();
+            return setTimeout(_ => retry(fn_cond, fn_exec, max_retries-1), 500);
+        }
+        retry(_ => $('.xp_ensavoirplus').length > 1,function() {
             console.log("nb xp = ", $('.xp_ensavoirplus').length);
             $('.xp_ensavoirplus').click(function() {
                 $(this).next().addClass('show-xp-text');
@@ -39,7 +44,7 @@
                     $(this).removeClass('show-xp-text');
                 })
             })
-        })
+        }, 7)
     </script>
 </div>
 
