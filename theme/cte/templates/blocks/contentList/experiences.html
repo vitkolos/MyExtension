@@ -1,4 +1,4 @@
-<div ng-controller="ContentListController as contentListCtrl"></div>
+<div ng-controller="ContentListController as contentListCtrl" class="xp_columns_container">
     <!-- MULTIPLE COLUMNS -->
     <div ng-style="contentListCtrl.blockStyle" class="xp_container">
 
@@ -51,6 +51,7 @@
 <style>
     .xp_container {
         width: 100%;
+        max-width: 30cm;
     }
 
     .experiences_back {
@@ -77,7 +78,7 @@
         padding: 1rem;
         transform: translateY(0);
         opacity: 0;
-        transition: transform .25s ease-in, -webkit-transform .25s ease-in, opacity 0.3s ease-in;
+        transition: transform .25s ease-in, -webkit-transform .25s ease-in, opacity 0.2s ease-in;
     }
     .show-xp-text {
         transform: translateY(-100%);
