@@ -1,8 +1,14 @@
 <div ng-controller="ContentListController as contentListCtrl"></div>
-    <h1>TEST</h1>
     <!-- MULTIPLE COLUMNS -->
     <div ng-style="contentListCtrl.blockStyle" ng-class="{'container' : blockConfig.container}">
-        <div ng-controller="ContentListDetailController as contentListDetailCtrl" ng-repeat="content in contentListCtrl.contents" ng-switch="content.typeId"  class="col-xs-6 col-xxs-12" ng-class="contentListCtrl.columns">
+
+        <!-- EACH COLUMN -->
+        <div    ng-controller="ContentListDetailController as contentListDetailCtrl" 
+                ng-repeat="content in contentListCtrl.contents" 
+                class="col-xs-6 col-xxs-12" 
+                ng-class="contentListCtrl.columns">
+
+            <!-- PICTURE -->
             <div class="list-item-img" ><!--ng-class="{'no-img':!content.fields.image}"-->
                 <!-- si le contenu a une image, on l'affiche dans la vignette -->
                 <img class="media-object pull-left" ng-if="content.fields.image"
@@ -13,7 +19,9 @@
                             ng-src="{{ rubedo.imageUrl.getUrlByMediaId('57175694c445ecda008c4b31',{width:'400px',height:'266px',mode:'crop'}) }}"
                             alt="{{ content.fields.text }}"/>
             </div>
+
             <p>MY ELEMENT</p>
         </div>
+
     </div>
 </div>
