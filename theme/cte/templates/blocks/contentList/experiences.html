@@ -9,7 +9,7 @@
                 ng-class="contentListCtrl.columns">
 
             <!-- PICTURE -->
-            <div class="list-item-img" ><!--ng-class="{'no-img':!content.fields.image}"-->
+            <div class="experience-img" ><!--ng-class="{'no-img':!content.fields.image}"-->
                 <!-- si le contenu a une image, on l'affiche dans la vignette -->
                 <img class="media-object pull-left" ng-if="content.fields.image"
                              ng-src="{{ rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
@@ -20,7 +20,12 @@
                             alt="{{ content.fields.text }}"/>
             </div>
 
-            <p>MY ELEMENT</p>
+            <p class="experience_title">{{content.fields.text}}</p>
+            <p class="xp_ensavoirplus">en savoir plus</p>
+            <div class="experience_text">
+                <p class="xp_subtitle">{{content.fields.subTitle}}</p>
+                <p class="xp_text">{{content.fields.summary}}</p>
+            </div>
         </div>
 
     </div>
