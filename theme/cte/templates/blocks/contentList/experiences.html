@@ -1,6 +1,6 @@
 <div ng-controller="ContentListController as contentListCtrl"></div>
     <!-- MULTIPLE COLUMNS -->
-    <div ng-style="contentListCtrl.blockStyle" ng-class="{'container' : blockConfig.container}">
+    <div ng-style="contentListCtrl.blockStyle" class="xp_container">
 
         <!-- EACH COLUMN -->
         <div    ng-controller="ContentListDetailController as contentListDetailCtrl" 
@@ -9,7 +9,7 @@
                 ng-class="contentListCtrl.columns">
 
             <!-- PICTURE -->
-            <div class="experience-img" ng-style="{'background': 'url('+ rubedo.imageUrl.getUrlByMediaId(content.fields.image) +')'}">
+            <div class="experience-img" ng-style="{'background': 'cover no-repeat url('+ rubedo.imageUrl.getUrlByMediaId(content.fields.image) +')'}">
                 <!-- si le contenu a une image, on l'affiche dans la vignette -->
                 <!-- <img class="media-object pull-left" ng-if="content.fields.image"
                              ng-src="{{ rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
@@ -49,6 +49,10 @@
 </div>
 
 <style>
+    .xp_container {
+        width: 100%;
+    }
+
     .experiences_back {
         background: #00558a;
         color: white;
@@ -84,6 +88,7 @@
         height: 320px;
         background-size: cover;
         background-repeat: no-repeat;
+        border-radius: 4px;
     }
 
     .experience_title {
