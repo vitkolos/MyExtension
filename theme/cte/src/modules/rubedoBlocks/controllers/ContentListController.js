@@ -15,6 +15,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
     me.template_foi = themePath+"/templates/blocks/contentList/foi.html";
     me.template_home = themePath+"/templates/blocks/contentList/home.html";
+    me.template_experience = themePath+"/templates/blocks/contentList/experiences.html";
     me.query="";
     me.taxoFilter="";
     me.filter = function(taxoTerm){
