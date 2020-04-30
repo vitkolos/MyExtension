@@ -29,4 +29,13 @@
         </div>
 
     </div>
+
+    <script>
+        $('.xp_ensavoirplus').click(function() {
+            $(this).next().addClass('show-xp-text');
+            $(this).next().click(function() {
+                $(this).removeClass('show-xp-text');
+            })
+        })
+    </script>
 </div>
