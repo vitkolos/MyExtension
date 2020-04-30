@@ -36,7 +36,7 @@
             if (fn_cond()) return fn_exec();
             return setTimeout(_ => retry(fn_cond, fn_exec, max_retries-1), 500);
         }
-        retry(_ => $('.xp_ensavoirplus').length > 1,function() {
+        retry(_ => $('.xp_ensavoirplus').length > 1, function() {
             console.log("nb xp = ", $('.xp_ensavoirplus').length);
             $('.xp_ensavoirplus').click(function() {
                 $(this).next().addClass('show-xp-text');
@@ -55,7 +55,7 @@
         text-align: center;
         padding: 1rem;
         height: 20rem;
-        margin-bottom: -9rem;
+        margin-bottom: -13rem;
     }
     .experiences_back * {
         color: white;
@@ -84,5 +84,19 @@
         height: 320px;
         background-size: cover;
         background-repeat: no-repeat;
+    }
+
+    .experience_title {
+        text-align: center;
+        padding: 1rem;
+    }
+    .xp_ensavoirplus {
+        cursor: pointer;
+        font-size: 1.2rem;
+        text-decoration: underline;
+        text-align: center;
+    }
+    .xp_text {
+        text-align: center;
     }
 </style>
