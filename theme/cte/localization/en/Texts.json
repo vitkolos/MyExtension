@@ -50,6 +50,7 @@
 	"famille": "Family",
 	"personne-avec-enfants": "Person with children",
 	"fiances": "Engaged",
+	"fiances_binome": "Engaged / Binome",
 	"adulte": "Individual",
 	"pretre": "Priest",
 	"Block.Inscription.Attente.Ligne1": "The session that you have chosen is complete.",
@@ -115,6 +116,7 @@
 	"Block.Inscription.Paf.ModePaiment": "Method of payment",
 	"Block.Inscription.Paf.carte": "by credit card",
 	"Block.Inscription.Paf.cheque": "by cheque/check",
+	"Block.Inscription.Paf.cheque_vac": "by holiday check",
 	"Block.Inscription.Paf.virement": "by bank transfer",
 	"Block.Inscription.Paf.Virement.Period": "by periodic bank transfer",
 	"Block.Inscription.Paf.Prelevement": "by automatic debit",
@@ -169,5 +171,7 @@
 	"Block.Paiement.Acces": "",
 	"ccn": "",
 	"Time.de": "from",
-	"couple_ephata": "Couple"
+	"couple_ephata": "Couple",
+	"Block.Inscription.PolitiqueRgpd": "the privacy policy of the Chemin Neuf Community",
+	"Block.Inscription.Jaccepte": "I accept"
 }

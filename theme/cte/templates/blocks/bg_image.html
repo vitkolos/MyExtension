@@ -7,8 +7,8 @@ header.content .linkbox a:hover{
 }
 header.content p a:hover, header.content p a:active{background: transparent}
 </style>
-<div ng-controller="BgImageController as imageCtrl" class="padding- no-margin" style="overflow-x:hidden" ng-class="{'padding-':blockConfig.displayMode=='title'}">
-        <header class="content prop" style="margin-bottom:0;width:100%;" ng-class="{'parallax':blockConfig.displayMode=='parallax', 'no-filter':(!blockConfig.pageTitle || blockConfig.noFilter)}"
+<div ng-controller="BgImageController as imageCtrl" class="padding- no-margin bg_image" style="overflow-x:hidden" ng-class="{'padding-':blockConfig.displayMode=='title'}">
+        <header class="content prop" ng-style="imageCtrl.css" ng-class="{'parallax':blockConfig.displayMode=='parallax', 'no-filter':(!blockConfig.pageTitle || blockConfig.noFilter)}"
                 afkl-lazy-image="{{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'480px',mode:'boxed'})}} 480w,  {{rubedo.imageUrl.getUrlByMediaId(blockConfig.imageFile ,{width:'1800px',mode:'boxed'})}} 800w"
                 afkl-lazy-image-options='{"background": true}'>
             <div ng-if="blockConfig.pageTitle" ng-include="rubedo.blockTemplateResolver.getTemplate('richText',{ })" ng-init="blockConfig = {contentId:blockConfig.pageTitle}" class="text-article">

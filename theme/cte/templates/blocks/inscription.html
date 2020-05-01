@@ -105,7 +105,7 @@
                             <div class="col-xs-12" ng-repeat="(paymentmode, value) in formCtrl.paymentmeans.paymentModes" ng-if="value">
                                     <input type="radio" name="modePaiement" ng-attr-id="{{paymentmode}}" ng-model="inscription.modePaiement" value={{paymentmode}} required>
                                     <label for="{{paymentmode}}">
-                                            {{rubedo.translate('Block.Inscription.Paf.'+paymentmode)}}
+                                            {{rubedo.translate('Block.Inscription.Paf.'+paymentmode, 'Chèques vacances')}}
                                     </label>
                             </div>                            
                         </div>  
@@ -138,9 +138,16 @@
             </div>
             <div ng-include="formCtrl.infosFin"></div>
 
-            
 
+            <!-- Checkbox accept RGPD -->
+            <div class="row text-center">
+                <div class="col-xs-12">
+                    <input type="checkbox" name="accept_rgpd" id="accept_rgpd" ng-model='inscription.rgpd' required>
+                    <label for="accept_rgpd">{{rubedo.translate("Block.Inscription.Jaccepte", "I accept")}} <a style="text-decoration: underline;" target="_blank" ng-href="/dam?media-id={{parameters.rgpd_media_id}}">{{rubedo.translate("Block.Inscription.PolitiqueRgpd", "the privacy policy of the Chemin Neuf community")}}</a></label>
+                </div>
+            </div>
             
+            <!-- Bouton de soumission du formulaire d'inscription -->
             <div class="row text-center">
                 <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="formCtrl.setCurrentStage(6,inscription_form.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Inscription.Valider","S'inscrire")}}</div><!----inscription_form.$valid)-->
                 <img src="/theme/cte/img/loader.gif" ng-if="processForm">

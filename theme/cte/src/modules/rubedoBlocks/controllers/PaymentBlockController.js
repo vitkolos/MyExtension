@@ -27,7 +27,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
             }
         });
     };
-				me.getContentById = function (contentId){
+	me.getContentById = function (contentId){
         var options = {
             siteId: $scope.rubedo.current.site.id,
             pageId: $scope.rubedo.current.page.id
@@ -36,7 +36,7 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
             function(response){
                 if(response.data.success){
                     me.proposition=response.data.content;
-																				me.content = angular.copy(me.proposition);
+                    me.content = angular.copy(me.proposition);
                     console.log(me.proposition);
                 }
             }
@@ -128,52 +128,52 @@ angular.module("rubedoBlocks").lazy.controller("PaymentBlockController",['$scope
             // validations préliminaires
             $scope.processForm=true;
 
-												 var payload = {
-																nom:$scope.inscription.nom,
-																prenom: $scope.inscription.surname,
-																email:$scope.inscription.email,
-																montant:$scope.inscription.montantTotalAPayer,
-																proposition:me.proposition.text,
-																idInscription: me.lastInscription.text,
-																paymentConfID:config.contentId,
-																paymentMeans:$scope.inscription.modePaiement,
-																paymentType:'paf'
-												};
-												console.log("me.content");
-												console.log(me.content);
-												if (me.proposition.fields.lieuCommunautaire) {
-																payload.placeID=me.content.fields.lieuCommunautaire;
-																//payload.placeID=me.proposition.fields.lieuCommunautaire;
-												}
-												if(window.ga) {
-																window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantTotalAPayer);
-												}
-												if ($scope.inscription.modePaiement=='dotpay') {
-																payload.infos=$scope.inscription;
-												}
-												PaymentService.payment(payload).then(function(response){
-																if (response.data.success) {
-																				$scope.parametres = response.data.parametres;
-																				/*délai pour laisser le formulaire se remplir*/
-																				$timeout(function() {
-																								$scope.processForm=false;
-																								document.getElementById('payment').submit();
-																				}, 100);
-																}
-																else {
-																				$scope.processForm=false;
-																				$scope.finInscription=true;  
-																				$scope.inscription={};
-																				$scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
-																}
-																
-												})
-												.catch(function(error){
-																$scope.processForm=false;
-																$scope.finInscription=true;
-																$scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de contacter le secrétariat - vous pourrez indiquer la raison de l'erreur : ";
-																$scope.errorMessage =error.data.message;
-												});
+            var payload = {
+                nom:$scope.inscription.nom,
+                prenom: $scope.inscription.surname,
+                email:$scope.inscription.email,
+                montant:$scope.inscription.montantTotalAPayer,
+                proposition:me.proposition.text,
+                idInscription: me.lastInscription.text,
+                paymentConfID:config.contentId,
+                paymentMeans:$scope.inscription.modePaiement,
+                paymentType:'paf'
+            };
+            console.log("me.content");
+            console.log(me.content);
+            if (me.proposition.fields.lieuCommunautaire) {
+                payload.placeID=me.content.fields.lieuCommunautaire;
+                //payload.placeID=me.proposition.fields.lieuCommunautaire;
+            }
+            if(window.ga) {
+                window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantTotalAPayer);
+            }
+            if ($scope.inscription.modePaiement=='dotpay') {
+                payload.infos=$scope.inscription;
+            }
+            PaymentService.payment(payload).then(function(response){
+                if (response.data.success) {
+                    $scope.parametres = response.data.parametres;
+                    /*délai pour laisser le formulaire se remplir*/
+                    $timeout(function() {
+                                    $scope.processForm=false;
+                                    document.getElementById('payment').submit();
+                    }, 100);
+                }
+                else {
+                    $scope.processForm=false;
+                    $scope.finInscription=true;  
+                    $scope.inscription={};
+                    $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de réessayer ou de contacter le secrétariat.";
+                }
+                            
+            })
+            .catch(function(error){
+                $scope.processForm=false;
+                $scope.finInscription=true;
+                $scope.message+="Il y a eu une erreur dans lors de l'enregistrement de votre paiement. Merci de contacter le secrétariat - vous pourrez indiquer la raison de l'erreur : ";
+                $scope.errorMessage =error.data.message;
+            });
 												
 	  
                 

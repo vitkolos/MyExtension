@@ -4,6 +4,7 @@ angular.module("rubedoBlocks").lazy.controller("LanguageMenuController", ['$scop
         var config = $scope.blockConfig;
         var urlArray = [];
         var contentId = "";
+        console.log('sc', $scope);
         me.languages = $scope.rubedo.current.site.languages;
         me.currentLang = $scope.rubedo.current.site.languages[$route.current.params.lang];
         me.mode = config.displayAs == "select";

@@ -159,9 +159,18 @@
     module.directive('rubedoPageLink',["RubedoPagesService",function (RubedoPagesService) {
             return {
                 link: function (scope, element, attrs) {
+                    // url parameters can be added ad the end of the ID
+                    let page_id = attrs.rubedoPageLink;
+                    let params = ""; // optional url parameters
+                    if (page_id.indexOf('?') > 0) {
+                        page_id = page_id.substr(0, 24);
+                        params = attrs.rubedoPageLink.substr(24);
+                    }
+                    //console.log("rubedoPageLink", attrs, page_id, params);
+
                     RubedoPagesService.getPageById(attrs.rubedoPageLink).then(function(response){
                         if (response.data.success){
-                            attrs.$set("href",response.data.url);
+                            attrs.$set("href",response.data.url + params);
                         }
                     });
 

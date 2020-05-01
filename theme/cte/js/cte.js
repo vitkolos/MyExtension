@@ -257,10 +257,6 @@ angular.module('rubedoBlocks').filter('isAfter', function ($filter) {
 });
 
 
-angular.module('rubedoBlocks').filter('encodeURIComponent', function($window) {
-    return $window.encodeURIComponent;
-});
-
 angular.module('rubedoBlocks').controller("AudioFileController",["$scope","RubedoMediaService",function($scope,RubedoMediaService){
         var me=this;
         var mediaId=$scope.audioFileId;
@@ -311,6 +307,117 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
     };
 }]);
 
+angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', function($window, $compile) {
+  // fix videoid if it's not an id but a youtube url
+  // and prepare the video options for youtube player
+  function prepare_video_options(vid, height = 360, width = 640) {
+      let options = {
+          height: height,
+          width: width,
+          videoId: vid,
+          autoplay: 0,
+      }
+      
+      if (!/^https?:\/\//.test(vid)) return options;
+      if (!/youtu\.?be/.test(vid)) {
+          console.error('This is not a youtube url : ' + vid);
+          return options;
+      }
+
+      let res = /([^\/]+?)(\?.+)?$/.exec(vid);
+      if (res.length < 2) return 'could not guess youtube id from ' + vid;
+      options.videoId = res[1];
+
+      // find other options (like ?t=46s to start the video after 46s)
+      if (res && res.length >= 3 && res[2]) {
+          console.log("original = ", vid)
+          let corresp = {'t': 'start', 'v': 'videoId'};
+          let raw_other_options = res[2].substr(1).split("&");
+
+          raw_other_options.map(function(el) {
+              let arr = el.split('=');
+              if (arr.length < 2) return;
+              if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
+              else options[arr[0]] = arr[1];
+          })
+          console.log("parsed options", options)
+      }
+
+      return options;
+  }
+
+  return {
+    restrict: "E",
+
+    scope: {
+      height:   "@",
+      width:    "@",
+      video:    "@"  
+    },
+
+    link: function(scope, element, attrs, controller) {
+      let player;
+      // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
+
+      // we load the youtube script if not already loaded
+      let youtube_script_url = "https://www.youtube.com/iframe_api";
+      let scripts = Array
+          .from(document.querySelectorAll('script'))
+          .map(scr => scr.src);
+      if (!scripts.includes(youtube_script_url)) {
+          let tag = document.createElement('script');
+          tag.src = youtube_script_url;
+          let firstScriptTag = document.getElementsByTagName('script')[0];
+          firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      }
+      
+
+      // prepare html of element
+      let id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
+      element.html(`<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
+          <div id="${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
+          </div>`
+      );
+      $compile(element.contents())(scope);
+
+      // prepare options
+      let options = prepare_video_options(scope.video);
+
+      // load youtube players
+      // the function onYoutubeIframeAPIReady is called once. 
+      // So we need to register all players before calling it
+      if (!$window['yt_players']) $window['yt_players'] = {};
+      if (!$window.yt_players[id]) $window.yt_players[id] = {id, options, player}
+      $window.onYouTubeIframeAPIReady = function() {
+        for (some_id in $window.yt_players) {
+          $window.yt_players[some_id].player = new YT.Player(document.getElementById(some_id), $window.yt_players[some_id].options);
+        }
+      };
+
+      // watch for film change
+      scope.$watch(_ => scope.video, function(newValue, oldValue) {
+        if (!oldValue || oldValue==newValue) return;
+        if (!$window.yt_players[id].player) return ($window.YT) ? $window.yt_players[id].player = new $window.YT.Player(document.getElementById(id), options) : false;
+        options = prepare_video_options(scope.video);
+        newvid_options = {videoId: options.videoId}
+        if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+        $window.yt_players[id].player.loadVideoById(newvid_options);
+      });
+
+      // reload YT player when the visibility status changes
+      scope.$watch(function() { return element.is(':visible') }, function() {
+        options = prepare_video_options(scope.video);
+        if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
+        newvid_options = {videoId: options.videoId}
+        if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+        player.loadVideoById(newvid_options);
+      });
+
+    }, // -- end link
+
+  }
+}]);
+
  angular.module('rubedoBlocks').directive('balanceText', function ($timeout) {
     return {
         restrict: 'C',
@@ -325,7 +432,40 @@ angular.module('rubedoBlocks').controller("AudioFileController",["$scope","Rubed
 });
 
 
+// This service is useful to retrieve the appropriate Rgpd policy
+angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($http) {
+  let debug = false;
+  return {
+    getPolitiqueConfidentialiteId: function () {
+      let default_rgpd_id = "5ddfdcc3396588a91b1321e1";
+      return $http.get("api/v1/media", {
+        params: {
+          query: {'DAMTypes': ['5da5c314396588215cde8b40']}, // this the damtype id of "Politique e confidentiatlié"
+          pageWorkspace: '545cd94b45205e91168b4567',
+        }
+      }).then(function (resp) {
+        // on error
+        if (!resp || !resp.data || !resp.data.success) {
+          console.error("Error1 in RgpdService", resp);
+          return default_rgpd_id;
+        }
+        if (resp.data.count == 0) {
+          if (debug) console.warn("in RgpdService : could not find rgpd policy file for this language, fallback to FR")
+          return default_rgpd_id;
+        }
 
+        // on success
+        if (debug) console.log("Rgpd found", resp.data.media.data[0]);
+        return resp.data.media.data[0].id;
+
+      }, function (data) {
+        // on error
+        console.error("Error2 in RgpdService", data);
+        return "";
+      })
+    }
+  }
+}]);
 
 
     angular.module('rubedoDataAccess').factory('RubedoMailService', ['$http',function($http) {

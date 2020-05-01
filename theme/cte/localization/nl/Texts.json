@@ -50,6 +50,7 @@
 	"famille": "Familie",
 	"personne-avec-enfants": "Personen met kinderen",
 	"fiances": "Verloofden",
+	"fiances_binome": "Verloofden / Binome",
 	"adulte": "Individueel",
 	"pretre": "",
 	"Block.Inscription.Attente.Ligne1": "De gekozen activiteit is volgeboekt.",
@@ -114,7 +115,8 @@
 	"Block.Inscription.Paf.Maintenant.Partie": "Een deel van de kosten",
 	"Block.Inscription.Paf.ModePaiment": "Wijze van betaling",
 	"Block.Inscription.Paf.carte": "met een bankkaart",
-	"Block.Inscription.Paf.cheque": "par chèque",
+	"Block.Inscription.Paf.cheque": "per cheque",
+	"Block.Inscription.Paf.cheque_vac": "vakantiecheque",
 	"Block.Inscription.Paf.virement": "met een overschrijving",
 	"Block.Inscription.Paf.Virement.Period": "met automatische overschrijving",
 	"Block.Inscription.Paf.Prelevement": "met domiciliëring",
@@ -169,5 +171,7 @@
 	"Block.Paiement.Acces": "",
 	"ccn": "",
 	"Time.de": "",
-	"couple_ephata": ""
+	"couple_ephata": "",
+	"Block.Inscription.PolitiqueRgpd": "het privacybeleid van de Chemin Neuf-gemeenschap",
+	"Block.Inscription.Jaccepte": "Ik accepteer"
 }

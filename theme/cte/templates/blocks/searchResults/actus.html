@@ -84,7 +84,8 @@
                     <p class="capital">{{datum.lastUpdateTime * 1000 | date}} </p>
                 </div>
                 <div class="col-sm-8">
-                    <jwplayer video-url="{{datum['fields.video'][0]}}"></jwplayer>
+                    <!-- <jwplayer video-url="{{datum['fields.video'][0]}}"></jwplayer> -->
+                    <youtube video="{{datum['fields.video'][0]}}"></youtube>
                 </div>
              </div>
 

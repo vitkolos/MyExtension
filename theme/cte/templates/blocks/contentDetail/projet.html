@@ -1,5 +1,7 @@
 <script async src="/theme/cte/src/modules/rubedoBlocks/controllers/DonationController.js"></script>
 <div class=" content_border">
+
+	<!-- Breadcrumb -->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-xs-12 ">
@@ -15,6 +17,8 @@
 			<button class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>{{rubedo.translate("Blocks.Contrib.Label.EditContent", "Edit content")}}</button>
 		</a>
 	</div>
+
+	<!-- Background Image with title and buttons -->
 	<div class="" style="overflow-y: hidden">
 		<header class="container-fluid content prop " ng-style="{'background-image':'url('+rubedo.imageUrl.getUrlByMediaId(fieldEntity['image'] ,{width:'1650px',mode:'boxed'})+')'}" ng-if="fieldEntity['image']">
 			<div class="text-article container" >
@@ -32,7 +36,7 @@
 		</header>
 	</div>
 
-
+	<!-- General Info -->
 	<div class="container-fluid">
 		<a name="infos_pratiques"></a>
 		<div class="row" >
@@ -40,6 +44,7 @@
 				<div class="col-xs-12"><h3>{{rubedo.translate("InfosPratiques", "Infos pratiques")}}</h3></div>
 				
 				<div  class="col-xs-6">
+
 					<!--Pays-->
 					<div class="container-fluid" ng-if="contentDetailCtrl.content.taxonomy['56be135cc445ece5018b552e'].length>0">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
@@ -51,6 +56,7 @@
 							</p>
 						</div>
 					</div>
+
 					<!--Type de projet-->
 					<div class="container-fluid">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
@@ -60,6 +66,17 @@
 							<p><span ng-repeat="taxonomy in contentDetailCtrl.content.taxonomy['54d6299445205e7877a6b28e']">
 								{{contentDetailCtrl.getTermInTaxo("54d6299445205e7877a6b28e",taxonomy)}}</span>
 							</p>
+						</div>
+					</div>
+
+					<!--Date création projet-->
+					<div class="container-fluid" ng-if="fieldEntity['date_creation_projet']">
+						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
+							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('date_creation_projet')}}</p>
+						</div>
+						<div class="col-xs-12 col-sm-8 ">
+							<p class="text-left">{{contentDetailCtrl.content.fields.date_creation_projet *1000 | date:'MMM yyyy'}}</p>
+
 						</div>
 					</div>
 					
@@ -75,7 +92,7 @@
 					</div>
 
 					<!--Budget-->
-					<!--<div class="container-fluid" ng-if="contentDetailCtrl.content.fields.budget>0">
+					<!-- <div class="container-fluid" ng-if="contentDetailCtrl.content.fields.budget>0">
 						<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 							<p class="capital text-left">{{contentDetailCtrl.getLabelByName('budget')}}</p>
 						</div>
@@ -87,11 +104,14 @@
 							<em><a ng-href="{{'http://www.xe.com/ecc/input.cgi?Template=se&Amount='+contentDetailCtrl.content.fields.budget+'&From='+contentDetailCtrl.content.fields.monnaie }}" target="_blank" style="font-size: 0.95em;">Convertir dans une autre monnaie</a></em></p>
 							<p><rubedo-field ng-if="fieldEditMode" field =  "{{contentDetailCtrl.getFieldByName('budget')}}"></rubedo-field></p>
 						</div>
-						</div>-->
+					</div> -->
 				</div>
+
+				<!-- Right column -->
 				<div class="col-xs-6">
+
+					<!-- Contact du projet -->
 					<div class="container-fluid">
-						<!--Contact du projet-->
 						<div ng-if="fieldEntity['nom']" class="col-xs-12">
 							<div class="col-xs-12 border-top-red no-padding">
 								<p class="capital text-left">{{contentDetailCtrl.getLabelByName('nom')}}</p>
@@ -107,8 +127,9 @@
 							</div>
 						</div>
 					</div>
+
+					<!-- Contact national -->
 					<div class="container-fluid">
-						<!--Contact national-->
 						<div ng-if="contentDetailCtrl.contactNational" class="col-xs-12">
 							<div class="col-xs-12  border-top-red no-padding">
 								<p class="capital text-left">{{rubedo.translate("Block.Dons.ContactNational", "Contact administratif et fiscal dans votre pays")}}</p>
@@ -125,7 +146,8 @@
 						</div>
 					</div>
 				</div>
-					<!---plan-->
+
+				<!-- Map -->
 				<div ng-if="fieldEntity['position']" ng-init="showMap=false" class="col-xs-12">
 					<div class="col-xs-12 col-sm-4 border-top-red no-padding">
 						<p class="capital text-left">{{contentDetailCtrl.getLabelByName('position')}}</p>
@@ -141,6 +163,8 @@
 			</div>
 			
 		</div>
+
+		<!-- Project content/description -->
 		<div class="row">
 			<div class="col-xs-12 bg-white" >
 				<div class="text-article">
@@ -150,6 +174,7 @@
 		</div>		
 		<a name="donner"></a>
 
+		<!-- donation Template -->
 		<div class="row padding-large" ng-controller="DonationController as donsCtrl">
 			<div ng-include="donsCtrl.donationTemplate"></div>
 		</div>

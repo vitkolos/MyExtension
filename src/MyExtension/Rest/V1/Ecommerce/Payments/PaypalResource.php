@@ -172,7 +172,7 @@ class PaypalResource extends AbstractResource
          $body .= $order['shippingAddress']['surname'] . ' ' . $order['shippingAddress']['name'] . '<br/>';
         if(isset($order['shippingAddress']['address1'])) $body .= $order['shippingAddress']['address1'] . '<br/>' ;
         if(isset($order['shippingAddress']['address2'])) $body .= $order['shippingAddress']['address2'] . '<br/>' ;
-        if(isset($order['shippingAddress']['postCode'])) $body .= $order['shippingAddress']['postCode'] . ' - ' . $order['billingAddress']['city'] . '<br/>' ;
+        if(isset($order['shippingAddress']['postCode'])) $body .= $order['shippingAddress']['postCode'] . ' - ' . $order['shippingAddress']['city'] . '<br/>' ;
         $body .= $order['shippingAddress']['country'];
         $body .= '</p>';
 

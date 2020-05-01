@@ -285,9 +285,10 @@ class ContentsCcn extends WorkflowAbstractCollection implements IContents
             $obj['target'][] = $obj['writeWorkspace'];
         }
         $obj = $this->_filterInputData($obj);
+        
         if ($this->_isValidInput) {
             $returnArray = parent::update($obj, $options, $live);
-        } else {
+        } else { 
             $returnArray = array(
                 'success' => false,
                 'msg' => 'invalid input data',

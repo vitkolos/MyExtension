@@ -86,7 +86,7 @@ class BartimeeResource extends AbstractResource
      */
     public function getAction($inputs)
     {
-        file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' -- start getAction in BartimeeResource.php : ' . json_encode($inputs) . "\n", FILE_APPEND | LOCK_EX);
+        //file_put_contents('/var/www/html/rubedo/log/custom_debug.log', date("Y-m-d H:i") . ' -- start getAction in BartimeeResource.php : ' . json_encode($inputs) . "\n", FILE_APPEND | LOCK_EX);
         $wasFiltered = AbstractCollection::disableUserFilter(true);
         /*Get last donation registered in Bartimee by name*/
         $dataService= Manager::getService('MongoDataAccess');

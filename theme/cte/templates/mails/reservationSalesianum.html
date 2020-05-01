@@ -1,0 +1,109 @@
+<!--mail pour la réservation au foyer du Salesianum -->
+<html><body>
+  <h3 style="background: #e0dfdf;">Identification</h3>
+<table width="80%">
+<tr>
+  <td> 
+    État Civil : { etat_civil }<br/>
+    Prénom : { surname }<br/>
+    Nom : { name }<br/>
+    Sexe : { sexe }
+  </td>
+  <td>
+    Date de naissance : { ddn }<br />
+    Tel : { phone }<br/>
+    Email : { email }
+  </td>
+ </tr>
+</table>
+
+<h3 style="background: #e0dfdf;">Adresse</h3>
+<table width="80%">
+  <tr>
+    <td width="100"><b>Rue : </b></td><td>{ street }</td>
+  </tr><tr>
+    <td width="100"><b>Ville : </b></td><td>{ city }</td>
+  </tr><tr>
+    <td width="100"><b>Code postal : </b></td><td>{ codepostal }</td>
+  </tr><tr>
+    <td width="100"><b>Pays : </b></td><td>{ country }</td>
+  </tr>
+</table>
+
+<h3 style="background: #e0dfdf;">Parent ou responsable légal</h3>
+<table width="80%">
+<tr>
+  <td> 
+    Prénom : { parent_surname }<br/>
+    Nom : { parent_name }<br/>
+  </td>
+  <td>
+    Tel : { parent_phone }<br/>
+    Email : { parent_email }
+  </td>
+ </tr>
+</table>
+
+<table width="80%">
+  <tr>
+    <td width="100"><b>Rue : </b></td><td>{ parent_street }</td>
+  </tr><tr>
+    <td width="100"><b>Ville : </b></td><td>{ parent_city }</td>
+  </tr><tr>
+    <td width="100"><b>Code postal : </b></td><td>{ parent_codepostal }</td>
+  </tr><tr>
+    <td width="100"><b>Pays : </b></td><td>{ parent_country }</td>
+  </tr>
+</table>
+
+<h3 style="background: #e0dfdf;">Le séjour</h3>
+<table width="80%">
+  <tr >
+    <td>
+      Du: { startDate } au { endDate }
+    </td>
+  </tr>
+</table>
+
+<h3 style="background: #e0dfdf;">Situation actuelle</h3>
+<table width="80%">
+  <tr >
+    <td>
+      <span class="label"><b>Situation actuelle</b> : </span> { situation_actuelle }<br/><br />
+      Nom et adresse de l'école ou employeur: <br />{ nom_ecole_actuelle }
+    </td>
+  </tr>
+</table>
+
+<h3 style="background: #e0dfdf;">Situation prévue</h3>
+<table width="80%">
+  <tr >
+    <td>
+      <b>Situation prévue :</b> { situation_prevue }<br/>
+      <i>Préciser si autre lien à l'université : </i>{ autre_lien_univ_prevu }<br />
+      <br />
+      Nom et adresse de l'école + section: <br />{ info_ecole_prevue }
+    </td>
+  </tr>
+</table>
+
+<h3 style="background: #e0dfdf;">Détail des chambres et repas</h3>
+<table width="80%">
+  <tr >
+    <td>
+      <b>Chambre :</b> { type_chambre }
+    </td>
+    <td>
+      <b>Pension :</b> { pension }
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <br>Remarques pour les repas :<br />
+      { remarks }
+    </td>
+  </tr>
+</table>
+
+
+</body></html>

@@ -1,22 +1,35 @@
-angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService) {
+angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService','RgpdService',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService,RgpdService) {
     
     // ==============================================================================
-    //                INIT SANDBOX PARAMS
+    //                INIT window.SANDBOX PARAMS FOR DEBUG
     // ==============================================================================
 
-    let SANDBOX = false;
+    window.SANDBOX = false;
 
     let LOG_INFO = 1; let LOG_WARN = 2; let LOG_ERR = 3; let LOG_LEVELS = [0, 'INFO', 'WARNING', 'ERROR'];
-    let log = (niveau, msg, ...arg_list) => (SANDBOX) ? console.log(niveau, msg, ...arg_list): '';
-    if (SANDBOX) {
-        console.log('%c === SANDBOX MODE IS ON 4 InscriptionController === ', 'background: #c1573c;color: white;')
+    let log = (niveau, msg, ...arg_list) => (window.SANDBOX) ? console.log(niveau, msg, ...arg_list): '';
+    if (window.SANDBOX) {
+        console.log('%c === window.SANDBOX MODE IS ON for InscriptionController === ', 'background: #c1573c;color: white;')
     }
+    // ==============================================================================
     // ==============================================================================
     
     var me = this;
     var themePath = '/theme/'+window.rubedoConfig.siteTheme;
     me.form = {};
     me.content = angular.copy($scope.proposition);
+
+    // =======================================================
+    //                  RGPD
+    // =======================================================
+    
+    // we get the good RGPD policy
+    $scope.parameters = {'rgpd_media_id': ''}
+    RgpdService.getPolitiqueConfidentialiteId().then(id => {
+        $scope.parameters.rgpd_media_id = id;
+    })
+    // =======================================================
+    // =======================================================
 
     // on initialise les moyens de paiement autorisés (carte ou chèque)
     initMoyensPaiement()
@@ -194,7 +207,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 }
             });           
         });
+        console.log('form questions loaded, me=', me, $scope.pageCANA, $scope)
     };
+
     /*récupérer le formulaire pour l'inscription*/
     if (me.content.fields.formulaire_pdf && me.content.fields.formulaire_pdf!="") {
         RubedoMediaService.getMediaById(me.content.fields.formulaire_pdf).then(
@@ -226,6 +241,17 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     
     //informations sur les moyens de payement
     me.paymentmeans = $scope.contentDetailCtrl.paymentmeans;
+    // alignement sur les options de paiement saisies dans la proposition
+    function alignPaymentMeans() {
+        if (!Array.isArray(me.content.fields.moyens_paiement)) initMoyensPaiement();
+        console.log("align payments", me.content, me.content.fields);
+        if (me.content.fields.moyens_paiement.length == 0) return;
+        me.paymentmeans.paymentModes.carte = me.content.fields.moyens_paiement.includes('carte');
+        me.paymentmeans.paymentModes.cheque = me.content.fields.moyens_paiement.includes('cheque');
+        me.paymentmeans.paymentModes.cheque_vac = me.content.fields.moyens_paiement.includes('cheque_vac');
+    }
+    alignPaymentMeans();
+
     me.currentStage = 1;
     // affichage des sections du formulaire
     me.toggleStage = function(newStage){
@@ -244,6 +270,12 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if (step==0) {me.toggleStage(1);}
             else if (step==1) {
                 log(LOG_INFO, 'STEP 1', $scope.inscription, me);
+                
+                // prevents ugly scrolling
+                $('html, body').animate({
+                    scrollTop: ($('#inscriptionStage1').offset().top)
+                },200);
+
                 if( $scope.inscription.email != $scope.inscription.email_verif){
                     $scope.mailError = true;me.currentStage=1;
                 }
@@ -252,11 +284,11 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     $scope.mailError = false;
                     me.currentStage=1;
                 }
-                else if (me.isComplement) {me.toggleStage(2);$scope.mailError = false;$scope.mailError2 = false;}
-                else if (me.isTransport) {me.toggleStage(3);$scope.mailError = false;$scope.mailError2 = false;}
-                else if (me.isLogement) {me.toggleStage(4);$scope.mailError = false;$scope.mailError2 = false;}
-                else if(me.isPaiement) {me.toggleStage(5);$scope.mailError = false;$scope.mailError2 = false;}
-                else {me.toggleStage(6);$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isComplement)   {me.toggleStage(2);$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isTransport)    {me.toggleStage(3);$scope.mailError = false;$scope.mailError2 = false;}
+                else if (me.isLogement)     {me.toggleStage(4);$scope.mailError = false;$scope.mailError2 = false;}
+                else if(me.isPaiement)      {me.toggleStage(5);$scope.mailError = false;$scope.mailError2 = false;}
+                else                        {me.toggleStage(6);$scope.mailError = false;$scope.mailError2 = false;}
             }
             else if (step==2) {
                 log(LOG_INFO, 'STEP 2');
@@ -290,13 +322,13 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             if(me.content.fields.dateDebut && me.content.fields.dateDebut!='') $scope.inscription.propositionDate = propositionDate;
             $scope.inscription.dateDebut = me.content.fields.dateDebut;
             $scope.inscription.propositionLieu = me.content.fields.positionName;
-												$scope.inscription.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
+            $scope.inscription.codeMonnaie = me.paymentmeans.nativePMConfig.codeMonnaie;
             $scope.inscription.propositionUrl = me.content.canonicalUrl;
             $scope.inscription.shortName = propositionTitle.replace(/[ -]/g, "_");
             $scope.inscription.accompte = me.content.fields.accompte ?me.content.fields.accompte : 0;
             $scope.inscription.contact = me.content.fields.contact;
             if (me.content.fields.mails_secretariat && me.content.fields.mails_secretariat.length>0) {
-                $scope.inscription.mails_secretariat = me.content.fields.mails_secretariat;
+                $scope.inscription.mails_secretariat = me.content.fields.mails_secretariat.filter(m => m.length > 2);
             }
             if(me.content.fields.codeOnesime) $scope.inscription.codeOnesime = me.content.fields.codeOnesime;
             $scope.inscription.mailInscription = me.content.fields.mailInscription;
@@ -316,6 +348,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             else if($scope.inscription.paiement_maintenant == 'totalite'){$scope.inscription.montantAPayerMaintenant=$scope.inscription.montantTotalAPayer}
             $scope.inscription.isPayment = me.isPaiement;
             if (!me.moyens_paiement_multiples) $scope.inscription.modePaiement = me.content.fields.moyens_paiement; // on force le moyen de paiement si jamais il n'y a pas le choix
+
+            // on ajoute la date d'acceptation de la politique de confidentialité rgpd
+            $scope.inscription.date_rgpd_accepted = Math.round(Date.now()/1000);
             
             /*STATUS DE L'INSCRIPTION*/
             log(LOG_INFO, 'step6 --> niveau ', me.content.fields.inscriptionState.inscriptionState, me.isPaiement, $scope.inscription.paiement_maintenant);
@@ -344,7 +379,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
             log(LOG_INFO, 'Inscription simulation', $scope.inscription, $scope.rubedo.current.page.workspace);
             log(LOG_INFO, 'Payment simulation : paiement par carte ?', $scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal')
-            if (SANDBOX) $scope.inscription.__SANDBOX__ = true;
+            if (window.SANDBOX) $scope.inscription.__SANDBOX__ = true;
 
             // =======================================================================
             //              ON LANCE L'INSCRIPTION
@@ -357,8 +392,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     if ($scope.inscription.modePaiement == 'carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
                         if (window.ga) window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
                         let payload = preparePaymentPayload(response);
-                        if (SANDBOX) log(LOG_INFO, 'Payment simulation payload=', payload);
-                        if (SANDBOX) return response;
+                        if (window.SANDBOX) log(LOG_INFO, 'Payment simulation payload=', payload);
+                        if (window.SANDBOX) return response;
 
                         // =========================================================================
                         //          ON LANCE LE PAIEMENT
@@ -391,7 +426,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                         $scope.processForm=false;
                         $scope.finInscription=true; 
                         $scope.inscription={};
-                        $scope.message += $scope.rubedo.translate("Block.Inscription.Success","Votre inscription a bien été prise en compte. Merci et à bientôt !");
+                        $scope.message += $scope.rubedo.translate("Block.Inscription.Succes","Votre inscription a bien été prise en compte. Merci et à bientôt !");
                     }
                 }
                 else {
@@ -462,8 +497,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         if (me.content.fields.lieuCommunautaire) payload.placeID = me.content.fields.lieuCommunautaire;
         if (window.ga) window.ga('send', 'event', 'inscription', 'payement carte', 'paiement complementaire', $scope.inscription.montantAPayerMaintenant);
 
-        if (SANDBOX) log(LOG_INFO, 'Payment complémentaire simulation payload=', payload);
-        if (SANDBOX) return;
+        if (window.SANDBOX) log(LOG_INFO, 'Payment complémentaire simulation payload=', payload);
+        if (window.SANDBOX) return;
         
         // =========================================================================
         //          ON LANCE LE PAIEMENT COMPLÉMENTAIRE
@@ -523,7 +558,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
     function initMoyensPaiement() {
         log(LOG_INFO, "Moyens de paiement debug INFO1", me.content, $scope.inscription);
-        if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement) me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement;
+        if (me.content.fields && me.content.fields.moyens_paiement && me.content.fields.moyens_paiement.moyens_paiement) {
+            if (typeof me.content.fields.moyens_paiement.moyens_paiement === 'object') me.content.fields.moyens_paiement = me.content.fields.moyens_paiement.moyens_paiement.filter(x => x);
+            else if (typeof me.content.fields.moyens_paiement.moyens_paiement === 'string') me.content.fields.moyens_paiement = [me.content.fields.moyens_paiement.moyens_paiement];
+        }
         if (me.content.fields && !me.content.fields.moyens_paiement) me.content.fields.moyens_paiement = [];
         me.moyens_paiement_multiples = true;
         if (me.content.fields.moyens_paiement.length == 1 || typeof me.content.fields.moyens_paiement == "string") {
@@ -574,6 +612,10 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                 me.additional_infos = null;
                 break;            
             case 'fiances':
+                me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
+                me.additional_infos = null;
+                break;
+            case 'fiances_binome':
                 me.general_infos = themePath+'/templates/blocks/formulaire/couple.html';
                 me.additional_infos = null;
                 break;   

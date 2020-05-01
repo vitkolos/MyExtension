@@ -217,6 +217,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             function(response){
                                 if(response.data.success){
                                     me.paymentmeans = response.data.paymentMeans;
+                                    console.log('paymentmeans', me.paymentmeans)
                                 }
                             }
                         );
@@ -236,17 +237,21 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                             };
                             RubedoSearchService.searchByQuery(optionsInscriptionsList).then(function(response){
                               if(response.data.success){
-                                $timeout(function(){me.inscriptions = response.data.results.data;},100);
+                                $timeout(function(){
+                                    me.inscriptions = response.data.results.data; 
+                                    for (let i = 0; i < me.inscriptions.length; i++) me.inscriptions[i].date_inscription = window.moment(me.inscriptions[i].lastUpdateTime * 1000).format("DD/MM/YYYY hh:mm");
+                                    console.log('inscriptions', me.inscriptions);
+                                },100);
                               } 
                             });
                             /*Get inscriptions list for dowlonad as csv */
-                            var payload={
+                            var payload = {
                                 propositionId:me.content.id
                             };
                             InscriptionService.exportInscriptions(payload).then(function(response){
                                 var csvData =  'data:application/csv;charset=utf-8,%EF%BB%BF' + encodeURIComponent(response.data.path);
                                 $timeout(function(){me.downloadUrl=  csvData;},100);
-                               /* var target = angular.element("#btnExport");
+                                /* var target = angular.element("#btnExport");
                                 target.attr({'href': csvData,'target': '_blank'});*/
                                 //setTimeout(function(){target[0].click();},200);
                             });

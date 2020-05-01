@@ -55,6 +55,7 @@ class MailResource extends AbstractResource
      */
     public function postAction($params)
     {
+        $this->log("starting new email params = " . json_encode($params));
         /** @var \Rubedo\Interfaces\Mail\IMailer $mailerService */
         $mailerService = Manager::getService('Mailer');
 
@@ -62,6 +63,10 @@ class MailResource extends AbstractResource
 
         /*$destinataires=$this->buildDest($params['to']);*/
         $destinataires=array($params['to']);
+
+        // for ephata, we send the mail also to web@chemin-neuf.org
+        if ($params['to'] == 'ephata@chemin-neuf.org') $destinataires[] = 'web@chemin-neuf.org';
+
         $senderMail=$params['from'];
         $senderDomain = explode("@", $senderMail);
         if($senderDomain[1] != "chemin-neuf.org"){
@@ -74,8 +79,15 @@ class MailResource extends AbstractResource
         $mailerObject->setFrom($from);
         $mailerObject->setCharset('utf-8');
         $mailerObject->setSubject($params['subject']);
-        if ($params['template'] == null) $mailerObject->setBody($this->buildEmail($params['fields']), 'text/html', 'utf-8');
-        else $mailerObject->setBody($this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']), 'text/html', 'utf-8');
+        if (!$params['template']) {
+            $myBody = $this->buildEmail($params['fields']);
+            $mailerObject->setBody($myBody, 'text/html', 'utf-8');
+            $this->log("no email template specified message body = " . str_replace("\n", "@@", $myBody));
+        } else {
+            $myBody = $this->buildEmailFromTemplate($params['fields'],$params['template'],$params['subject']);
+            $this->log("email template from ".$params['template']);
+            $mailerObject->setBody($myBody, 'text/html', 'utf-8');
+        }
         // Send e-mail
         $errors = [];
         if ($mailerService->sendMessage($mailerObject, $errors)) {
@@ -144,15 +156,15 @@ class MailResource extends AbstractResource
      */
     protected function buildEmailFromTemplate($fields,$template,$subject)
     {
-        
-         $body =file_get_contents('http://' . $_SERVER['HTTP_HOST']  .$template);
-          foreach ($fields as $name => $content) {
+        $url = 'http://' . $_SERVER['HTTP_HOST'] . $template;
+        $ctx = stream_context_create([
+            'ssl' => ['verify_peer' => false], // verify_peer = false means "don't verify the SSL certificate"
+            'http' => ['ignore_errors' => true],
+        ]);
+        $body = file_get_contents($url, FALSE, $ctx);
+        foreach ($fields as $name => $content) {
             $body = preg_replace('{{ '.$name.' }}', $content, $body);
         }
-       
-        /*foreach ($fields as $name => $content) {
-            $lines[] = $name . ' : ' . $content;
-        }*/
         return $body;
     }
     
@@ -265,7 +277,13 @@ class MailResource extends AbstractResource
                             ->setRequired()
                             ->setDescription('Traductions')
                     );
-    }    
+    }
+
+    private function log($msg) {
+        $log_file_path = '/var/www/html/rubedo/log/mailer_resource.log';
+        if (gettype($msg) != 'string') $msg = json_encode($msg);
+        file_put_contents($log_file_path, date("Y-m-d H:i") . ' ' . $msg . "\n", FILE_APPEND | LOCK_EX);
+    }
    
     
     

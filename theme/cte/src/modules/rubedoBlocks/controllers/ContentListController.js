@@ -1,4 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location){
+angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope','$compile','RubedoContentsService',"$route","RubedoContentTypesService","RubedoPagesService","TaxonomyService","$location","$sce",function($scope,$compile,RubedoContentsService,$route,RubedoContentTypesService,RubedoPagesService,TaxonomyService,$location,$sce){
+    
     var me = this;
     me.contentList=[];
     var config=$scope.blockConfig;
@@ -14,6 +15,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
     me.template_actus = themePath+"/templates/blocks/contentList/actus.html";
     me.template_foi = themePath+"/templates/blocks/contentList/foi.html";
     me.template_home = themePath+"/templates/blocks/contentList/home.html";
+    me.template_experience = themePath+"/templates/blocks/contentList/experiences.html";
     me.query="";
     me.taxoFilter="";
     me.filter = function(taxoTerm){
@@ -56,6 +58,25 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             });
         }
     }
+
+    // ====================================================================
+    /**
+     * Here we prepare special display condition :
+     * If we set blockConfig.enableContext to true, we display the contentList only if
+     * 
+     */
+    me.fromUrl = ($location.search()['from'] || '').replace(/https?\:\/\/[^\/]+\//, "/").replace(/\/$/, "");;
+    console.log("contentListCtrl", me);
+    me.contextUrl = "";
+    RubedoPagesService.getPageById(config.singlePage).then(function(response){
+        if (response.data.success){
+            me.contextUrl = response.data.url.replace(/\/$/, "");
+            console.log("got config page associée : ", response.data)
+            console.log("conditional display = ", !config.enableContext || me.fromUrl == me.contextUrl)
+        }
+    });
+    // ====================================================================
+
     me.titleOnly = config.showOnlyTitle;
     me.columns = config.columns && !config.infiniteScroll ? 'col-md-'+(12/config.columns):'col-md-12';
     me.showPaginator = config.showPager && !config.infiniteScroll;
@@ -305,6 +326,15 @@ angular.module("rubedoBlocks").lazy.controller("ContentListController",['$scope'
             return
         }
         console.log("putoffline success", res);
+    }
+
+    // For Youtube videos player
+    $scope.get_youtube_embed_url = function(url) {
+        if (!/youtu\.?be/.test(url)) return url;
+        let res = /[^\/=&]+?$/.exec(url);
+        if (!res.length) return url;
+        let id = res[0];
+        return $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + id + '?autoplay=0');
     }
     
     

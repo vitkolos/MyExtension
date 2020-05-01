@@ -26,6 +26,10 @@ blocksConfig.footer_fr={
 blocksConfig.footer_en={
            "template": "/templates/blocks/footer_en.html"
 };
+blocksConfig.uploadXls={
+    "template": "/templates/blocks/uploadXls.html",
+    "internalDependencies":["/src/modules/rubedoBlocks/controllers/uploadXlsController.js"]
+};
 
 angular.module('rubedoBlocks').filter('firstUpper', function() {
     return function(input, lang) {
@@ -41,15 +45,15 @@ angular.module('rubedoBlocks').filter('nfgDate', function($filter) {
     return function(input, format, locale) {
            var date = "";
            switch(locale){
-                      case 'pl':
-                                 if(format=="MMMM yyyy") {
-                                            var months = ["styczeń","luty","marzec","	kwiecień","maj","czerwiec","lipiec","	sierpień","wrzesień","październik","listopad","grudzień"];
-                                            var formattedDate =  new Date(input);
-                                            date = months[formattedDate.getMonth()] + " " + formattedDate.getFullYear();
-                                 }
-                                 else date = $filter('date')(input, format);
-                                 break;
-                      default : date = $filter('date')(input, format);
+                case 'pl':
+                    if(format=="MMMM yyyy") {
+                            var months = ["styczeń","luty","marzec","	kwiecień","maj","czerwiec","lipiec","	sierpień","wrzesień","październik","listopad","grudzień"];
+                            var formattedDate =  new Date(input);
+                            date = months[formattedDate.getMonth()] + " " + formattedDate.getFullYear();
+                    }
+                    else date = $filter('date')(input, format);
+                    break;
+                default : date = $filter('date')(input, format);
            }
         return date;
     }
@@ -154,6 +158,120 @@ angular.module('rubedoBlocks').directive('jwplayer', ['$compile', function ($com
     };
 }]);
 
+angular.module('rubedoBlocks').directive('youtube', ['$window', '$compile', function($window, $compile) {
+    // fix videoid if it's not an id but a youtube url
+    // and prepare the video options for youtube player
+    function prepare_video_options(vid, height = 360, width = 640) {
+        let options = {
+            height: height,
+            width: width,
+            videoId: vid,
+            autoplay: 0,
+        }
+        
+        if (!/^https?:\/\//.test(vid)) return options;
+        if (!/youtu\.?be/.test(vid)) {
+            console.error('This is not a youtube url : ' + vid);
+            return options;
+        }
+
+        let res = /([^\/]+?)(\?.+)?$/.exec(vid);
+        if (res.length < 2) return 'could not guess youtube id from ' + vid;
+        options.videoId = res[1];
+
+        // find other options (like ?t=46s to start the video after 46s)
+        if (res && res.length >= 3 && res[2]) {
+            let corresp = {'t': 'start', 'v': 'videoId'};
+            let raw_other_options = res[2].substr(1).split("&");
+
+            raw_other_options.map(function(el) {
+                let arr = el.split('=');
+                if (arr.length < 2) return;
+                if (corresp[arr[0]]) options[corresp[arr[0]]] = arr[1];
+                else options[arr[0]] = arr[1];
+            })
+        }
+
+        return options;
+    }
+
+    return {
+      restrict: "E",
+  
+      scope: {
+        height:   "@",
+        width:    "@",
+        video:    "@"  
+      },
+  
+      link: function(scope, element) {
+        let player;
+        // see https://developers.google.com/youtube/iframe_api_reference?hl=fr on how to embed a youtube iframe
+
+        // we load the youtube script if not already loaded
+        let youtube_script_url = "https://www.youtube.com/iframe_api";
+        let scripts = Array
+            .from(document.querySelectorAll('script'))
+            .map(scr => scr.src);
+        if (!scripts.includes(youtube_script_url)) {
+            let tag = document.createElement('script');
+            tag.src = youtube_script_url;
+            let firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+        
+
+        // prepare html of element
+        let id = 'random_player_' + Math.floor((Math.random() * 999999999) + 1);
+        element.html(`<div class="youtube-embed-wrapper ng-scope" style="position:relative;padding-bottom:56.25%;padding-top:30px;height:0;">
+            <div id="${id}" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
+            </div>`
+        );
+        $compile(element.contents())(scope);
+
+        // prepare options
+        let options = prepare_video_options(scope.video);
+
+        // load youtube players
+        // the function onYoutubeIframeAPIReady is called once. 
+        // So we need to register all players before calling it
+        if (!$window['yt_players']) $window['yt_players'] = {};
+        if (!$window.yt_players[id]) $window.yt_players[id] = {id, options, player}
+        $window.onYouTubeIframeAPIReady = function() {
+            for (some_id in $window.yt_players) {
+            $window.yt_players[some_id].player = new YT.Player(document.getElementById(some_id), $window.yt_players[some_id].options);
+            }
+        };
+  
+        // load youtube player
+        $window.onYouTubeIframeAPIReady = function() {
+          player = new YT.Player(document.getElementById(id), options);
+        };
+
+        // watch for film change
+        scope.$watch(_ => scope.video, function(newValue, oldValue) {
+            if (!oldValue || oldValue==newValue) return;
+            if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
+            options = prepare_video_options(scope.video);
+            newvid_options = {videoId: options.videoId}
+            if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+            player.loadVideoById(newvid_options);
+        });
+
+        // reload YT player when the visibility status changes
+        scope.$watch(function() { return element.is(':visible') }, function() {
+            options = prepare_video_options(scope.video);
+            if (!player) return ($window.YT) ? player = new $window.YT.Player(document.getElementById(id), options) : false;
+            newvid_options = {videoId: options.videoId}
+            if (options['start'] && options['start'].substr(-1) == 's') newvid_options.startSeconds = options.start.substr(0, options.start.length-1);
+            player.loadVideoById(newvid_options);
+        });
+
+      }, // -- end link
+
+    }
+  }]);
+
 
 
 angular.module('rubedoBlocks').directive('ngCopyable', function() {
@@ -216,7 +334,7 @@ angular.module('rubedoBlocks').directive('addthisToolbox', ['$timeout','$locatio
 		$scope.nbOfLikes=0;
 		$http({method: 'GET',url: 'https://graph.facebook.com/?id='+contentUrl})
 		.then(function successCallback(response) {
-			$scope.nbOfLikes += response.data.share.share_count;
+			if (response.data.share && response.data.share.share_count) $scope.nbOfLikes += response.data.share.share_count;
 		},
 		function errorCallback(response) {
 		});

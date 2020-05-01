@@ -45,7 +45,8 @@
 		</div>
 		<div class="col-xs-12 " ng-if="fieldEntity['video']">
 			<div class="text-article">
-				<jwplayer video-url="{{contentDetailCtrl.content.fields.video.url}}"></jwplayer>
+				<!-- <jwplayer video-url="{{contentDetailCtrl.content.fields.video.url}}"></jwplayer> -->
+				<youtube video="{{contentDetailCtrl.content.fields.video.url}}"></youtube>
 			</div>
 		</div>
 		<div class="col-xs-12 col-sm-12 padding-large" ng-if="fieldEntity['description']">

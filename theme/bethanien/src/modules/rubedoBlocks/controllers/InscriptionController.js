@@ -1,15 +1,15 @@
 angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope','$rootScope','RubedoContentsService','InscriptionService','PaymentService','RubedoMediaService','RubedoSearchService','$timeout','$filter','RubedoPagesService',function($scope,$rootScope,RubedoContentsService,InscriptionService,PaymentService,RubedoMediaService,RubedoSearchService,$timeout,$filter,RubedoPagesService) {
     
     // ==============================================================================
-    //                INIT SANDBOX PARAMS
+    //                INIT window.SANDBOX PARAMS
     // ==============================================================================
 
-    let SANDBOX = false;
+    window.SANDBOX = false;
 
     let LOG_INFO = 1; let LOG_WARN = 2; let LOG_ERR = 3; let LOG_LEVELS = [0, 'INFO', 'WARNING', 'ERROR'];
-    let log = (niveau, msg, ...arg_list) => (SANDBOX) ? console.log(niveau, msg, ...arg_list): '';
-    if (SANDBOX) {
-        console.log('%c === SANDBOX MODE IS ON 4 InscriptionController === ', 'background: #c1573c;color: white;')
+    let log = (niveau, msg, ...arg_list) => (window.SANDBOX) ? console.log(niveau, msg, ...arg_list): '';
+    if (window.SANDBOX) {
+        console.log('%c === window.SANDBOX MODE IS ON 4 InscriptionController === ', 'background: #c1573c;color: white;')
     }
     // ==============================================================================
     
@@ -17,6 +17,23 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
     var themePath = '/theme/'+window.rubedoConfig.siteTheme;
     me.form = {};
     me.content = angular.copy($scope.proposition);
+
+    // =======================================================
+    //                  RGPD
+    // =======================================================
+    // les différentes politiques de confidentialité par langue
+    // (ce sont les ids des medias PDF correspondants)
+    me.rgpd_links = {
+        'fr': '5cada77739658847463d67dc',
+        'en': '5ddfdcc3396588a91b1321e1',
+    }
+    // on met le lien vers la bonne politique RGPD
+    $scope.parameters = {}
+    $scope.parameters.rgpd_media_id = me.rgpd_links["en"];
+    if (me.content && me.content.locale && me.rgpd_links[me.content.locale]) $scope.parameters.rgpd_media_id = me.rgpd_links[me.content.locale];
+    // =======================================================
+    // =======================================================
+
 
     // on initialise les moyens de paiement autorisés (carte ou chèque)
     initMoyensPaiement()
@@ -317,6 +334,9 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
             $scope.inscription.isPayment = me.isPaiement;
             if (!me.moyens_paiement_multiples) $scope.inscription.modePaiement = me.content.fields.moyens_paiement; // on force le moyen de paiement si jamais il n'y a pas le choix
             
+            // on ajoute la date d'acceptation de la politique de confidentialité rgpd
+            $scope.inscription.date_rgpd_accepted = Math.round(Date.now()/1000);
+
             /*STATUS DE L'INSCRIPTION*/
             log(LOG_INFO, 'step6 --> niveau ', me.content.fields.inscriptionState.inscriptionState, me.isPaiement, $scope.inscription.paiement_maintenant);
             switch(me.content.fields.inscriptionState.inscriptionState) {
@@ -344,7 +364,7 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
 
             log(LOG_INFO, 'Inscription simulation', $scope.inscription, $scope.rubedo.current.page.workspace);
             log(LOG_INFO, 'Payment simulation : paiement par carte ?', $scope.inscription.modePaiement=='carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal')
-            if (SANDBOX) $scope.inscription.__SANDBOX__ = true;
+            if (window.SANDBOX) $scope.inscription.__window.SANDBOX__ = true;
 
             // =======================================================================
             //              ON LANCE L'INSCRIPTION
@@ -356,8 +376,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
                     if ($scope.inscription.modePaiement == 'carte' || $scope.inscription.modePaiement=='dotpay' || $scope.inscription.modePaiement=='paypal') { 
                         if (window.ga) window.ga('send', 'event', 'inscription', 'payement carte', 'inscriptions', $scope.inscription.montantAPayerMaintenant);
                         let payload = preparePaymentPayload(response);
-                        if (SANDBOX) log(LOG_INFO, 'Payment simulation payload=', payload);
-                        if (SANDBOX) return response;
+                        if (window.SANDBOX) log(LOG_INFO, 'Payment simulation payload=', payload);
+                        if (window.SANDBOX) return response;
 
                         // =========================================================================
                         //          ON LANCE LE PAIEMENT
@@ -461,8 +481,8 @@ angular.module("rubedoBlocks").lazy.controller("InscriptionController",['$scope'
         if (me.content.fields.lieuCommunautaire) payload.placeID = me.content.fields.lieuCommunautaire;
         if (window.ga) window.ga('send', 'event', 'inscription', 'payement carte', 'paiement complementaire', $scope.inscription.montantAPayerMaintenant);
 
-        if (SANDBOX) log(LOG_INFO, 'Payment complémentaire simulation payload=', payload);
-        if (SANDBOX) return;
+        if (window.SANDBOX) log(LOG_INFO, 'Payment complémentaire simulation payload=', payload);
+        if (window.SANDBOX) return;
         
         // =========================================================================
         //          ON LANCE LE PAIEMENT COMPLÉMENTAIRE

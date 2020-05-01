@@ -50,6 +50,7 @@
 	"famille": "Család",
 	"personne-avec-enfants": "Személy gyerekekkel",
 	"fiances": "Jegyespárok",
+	"fiances_binome": "Jegyespárok / Binome",
 	"adulte": "Egyéni",
 	"pretre": "Pap",
 	"Block.Inscription.Attente.Ligne1": "A választott program betelt.",
@@ -115,6 +116,7 @@
 	"Block.Inscription.Paf.ModePaiment": "",
 	"Block.Inscription.Paf.carte": "kártyás fizetés",
 	"Block.Inscription.Paf.cheque": "csekkes fizetés",
+	"Block.Inscription.Paf.cheque_vac": "csekkes fizetek",
 	"Block.Inscription.Paf.virement": "átutalás",
 	"Block.Inscription.Paf.Virement.Period": "rendszeres átutalás",
 	"Block.Inscription.Paf.Prelevement": "állandó beszedési megbízás",
@@ -169,5 +171,7 @@
 	"Block.Paiement.Acces": "",
 	"ccn": "",
 	"Time.de": "",
-	"couple_ephata": ""
+	"couple_ephata": "",
+	"Block.Inscription.PolitiqueRgpd": "a Chemin Neuf közösség adatvédelmi politikáját",
+	"Block.Inscription.Jaccepte": "Elfogadom"
 }

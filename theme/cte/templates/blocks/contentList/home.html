@@ -41,7 +41,8 @@
                       <p class="capital">{{content.createTime * 1000 | date}} </p>-->
                   </div>
                   <div class="col-sm-8">
-                      <jwplayer video-url="{{content.fields.video}}"></jwplayer>
+                      <!-- <jwplayer video-url="{{content.fields.video}}"></jwplayer> -->
+                      <youtube video="{{content.fields.video}}"></youtube>
                   </div>
               </div>
               <a ng-if="!fieldEditMode&&contentListCtrl.isFOContributeMode" ng-href="{{ contentListCtrl.editorPageUrl+'?content-edit='+content.id }}" title="éditer un contenu" class="btn btn-default ng-binding ng-scope">

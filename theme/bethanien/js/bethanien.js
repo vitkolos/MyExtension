@@ -184,6 +184,78 @@ angular.module('rubedo').filter('ligneNonVide', function () {
   };
 });
 
+// this directives shows the menu of each day
+angular.module('rubedoBlocks').directive('menuweek', function() {
+  return {
+    restrict: 'AC',
+    link: function(scope, elm, attrs) {
+      let element = $(elm);
+      
+      // get the info lines
+      let lignes = [];
+      element.children().each(function() {
+        lignes.push($(this).text())
+      })
+      
+      // build menu structure from lines
+      let menus = [];
+      let curr_menuday = {date:null, title:'', price: ' ', entries: []}
+      for (ligne of lignes) {
+        ligne = ligne.trim();
+        if (ligne == '') continue;
+        if (/\d{1,2}[\.\-\_\;\s\/]\d{1,2}[\.\-\_\;\s\/]\d{2,4}/.test(ligne)) { // ligne 19.10.2019
+          if (curr_menuday.date) {
+            menus.push(curr_menuday)
+            curr_menuday = {date:null, title:'', price: ' ', entries: []}
+          }
+          let date = /(\d{1,2})([\.\-\_\;\s\/])(\d{1,2})[\.\-\_\;\s\/](\d{2,4})/.exec(ligne)
+          curr_menuday.date = window.moment(date[0], "D".repeat(date[1].length) + date[2] + "M".repeat(date[3].length) + date[2] + "Y".repeat(date[4].length)).format('YYYYMMDD');
+          if (/^\s*\d{1,2}[\.\-\_\;\s\/]\d{1,2}[\.\-\_\;\s\/]\d{2,4}\s*$/.test(ligne)) continue;
+        }
+        if (/((CHF|EUR|USD|€)\s*[0-9\.\,\s]+|[0-9\.\,\s]+\s*(CHF|EUR|USD|€))/.test(ligne)) {
+          curr_menuday.price = ligne.trim();
+          continue;
+        }
+        console.log("ligne titre", ligne, /^(titel|title|titre)\s*\:/gi.test(ligne));
+        if (/^(titel|title|titre)\s*\:/gi.test(ligne))
+          curr_menuday.title = /^(titel|title|titre)\s*\:\s*(.+)$/gi.exec(ligne)[2].trim();
+        else if (!curr_menuday.title) curr_menuday.title = ligne.trim();
+        else if (/^[\s\*]+$/.test(ligne)) curr_menuday.entries.push('<p class="menusep">***</p>');
+        else curr_menuday.entries.push('<p class="entry">' + ligne.trim() + '</p>');
+      }
+      menus.push(curr_menuday)
+      console.log('menus', menus)
+
+      // build templates
+      element.html('');
+      for (menu of menus) {
+        element.append($(`<div class="col col-xs-10 col-md-5 menuday">
+            <div class="menuprice">${menu.price}</div>
+            <h2>${menu.title||moment(menu.date, 'YYYYMMDD').format('dddd')}</h2>
+            <img src="/theme/bethanien/img/olivier.png" alt="olivetree" class="olivier1">
+            <div class="menuentries">
+                ${menu.entries.join("\n")}
+            </div>
+            <img src="/theme/bethanien/img/olivier.png" alt="olivetree" class="olivier2">
+            <img src="/theme/bethanien/img/olivier.png" alt="olivetree" class="olivier3">
+        </div>`))
+      }
+
+      // load specific css
+      if (!$('head').children("link[href='/theme/bethanien/css/menu.css']").length) {
+        $("head").append("<link>");
+        var css = $("head").children(":last");
+        css.attr({
+              rel:  "stylesheet",
+              type: "text/css",
+              href: "/theme/bethanien/css/menu.css"
+        });
+      }
+
+    }
+  }
+});
+
 // directive qui gère le rendu du menu du restaurant de Bethanien
 angular.module('rubedoBlocks').directive('menuentry', function() {
   return {
@@ -250,6 +322,40 @@ angular.module('rubedoBlocks').filter('dateRange', function ($filter) {
 	return formattedDate;
     }
   });
+
+// This service is useful to retrieve the appropriate Rgpd policy
+angular.module('rubedoDataAccess').factory('RgpdService', ['$http', function($http) {
+  return {
+    getPolitiqueConfidentialiteId: function () {
+      let default_rgpd_id = "5ddfdcc3396588a91b1321e1";
+      return $http.get("api/v1/media", {
+        params: {
+          query: {'DAMTypes': ['5da5c314396588215cde8b40']}, // this the damtype id of "Politique de confidentiatlié"
+          pageWorkspace: '545cd94b45205e91168b4567',
+        }
+      }).then(function (resp) {
+        // on error
+        if (!resp || !resp.data || !resp.data.success) {
+          console.log("Error1 in RgpdService", resp);
+          return default_rgpd_id;
+        }
+        if (resp.data.count == 0) {
+          console.warn("in RgpdService : could not find rgpd policy file for this language, fallback to FR")
+          return default_rgpd_id;
+        }
+
+        // on success
+        console.log("Rgpd found", resp.data.media.data[0]);
+        return resp.data.media.data[0].id;
+
+      }, function (data) {
+        // on error
+        console.log("Error2 in RgpdService", data);
+        return "";
+      })
+    }
+  }
+}]);
 
 angular.module('rubedoDataAccess').factory('InscriptionService', ['$http',function($http) {
   var serviceInstance={};

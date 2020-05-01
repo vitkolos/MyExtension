@@ -25,25 +25,26 @@ angular.module("rubedoBlocks").lazy.controller("CarouselController",["$scope","R
                     setTimeout(function(){me.initCarousel();},100);
                     /*définir l"image de la page (balise meta)*/
                     //$scope.rubedo.current.page.image = $scope.rubedo.imageUrl.getUrlByMediaId(me.contents[0].fields[blockConfig.imageField],{width:'800px'});
-		    $scope.rubedo.setPageMetaImage(me.contents[0].fields[blockConfig.imageField]);
-                    angular.forEach(me.contents, function(content){
-                        if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !=""){
-			    if (content.fields.propositionReferenceeInterne == pageId) {
-				content.isSamePage= true;
-			    }
-			    else {
-                            RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
-                                    if (response.data.success){
-                                        content.contentLinkUrl = $filter('cleanUrl')(response.data.url);
-                                    }
-                                });
-			    }
-                        }
-                        else if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
+                    if (!me.contents || me.contents.length == 0) return;
+                    $scope.rubedo.setPageMetaImage(me.contents[0].fields[blockConfig.imageField]);
+                        angular.forEach(me.contents, function(content){
+                            if (content.fields.propositionReferenceeInterne && content.fields.propositionReferenceeInterne !=""){
+                                if (content.fields.propositionReferenceeInterne == pageId) {
+                                    content.isSamePage= true;
+                                }
+                                else {
+                                    RubedoPagesService.getPageById(content.fields.propositionReferenceeInterne).then(function(response){
+                                        if (response.data.success){
+                                            content.contentLinkUrl = $filter('cleanUrl')(response.data.url);
+                                        }
+                                    });
+                                }
+                            }
+                            else if (content.fields.propositionReferencee && content.fields.propositionReferencee !="") {
                                 content.contentLinkUrl = content.fields.propositionReferencee;
-				content.isExternal = true;
-                        }
-                        else content.contentLinkUrl = $filter('cleanUrl')(content.detailPageUrl);                        
+                                content.isExternal = true;
+                            }
+                            else content.contentLinkUrl = $filter('cleanUrl')(content.detailPageUrl);                        
                     });
                 }
             }

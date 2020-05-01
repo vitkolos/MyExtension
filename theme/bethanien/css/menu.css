@@ -1,24 +1,33 @@
-/* le conteneur du menu */
-ng-include.ng-scope > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
-  background-image: url("/dam?media-id=5bf6a796396588d3585e5a8b"), url("/dam?media-id=5bf6aa2d396588eb5c5e5a92");
-  background-origin: left bottom, left top;
-  background-size: contain, contain;
-  background-repeat: no-repeat, repeat;
+.cke_editable {
+  background: #dbdbdb;
 }
 
+/* le conteneur du menu */
+ng-include.ng-scope > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) {
+  /* background-image: url("/dam?media-id=5bf6a796396588d3585e5a8b"), url("/dam?media-id=5bf6aa2d396588eb5c5e5a92");
+  background-origin: left bottom, left top;
+  background-size: contain, contain;
+  background-repeat: no-repeat, repeat; */
+  background-image: url("/theme/bethanien/img/texture_blue_velvet.jpg");
+  background-repeat: repeat;
+}
+
+
 .texte {
-  padding: 1px 70px;
   max-width: 860px;
   font-size: 1.1em;
   line-height: 1.4em;
-  margin: 200px auto;
-  background-color: white;
-  box-shadow: #523d32 0 2px 13px 2px;
+  padding-top: 1rem;
 }
 
 /* le titre du menu */
+h1, h2, h3, h4 {
+  font-family: 'Playfair Display', Consolas;
+  color: white;
+}
 h1 {
-  margin-top: 10rem;
+  margin-top: 15rem; 
+  font-size: 5rem;
   padding-bottom: 5rem;
 }
 
@@ -27,7 +36,7 @@ h1::after { /* le trait bleu sous le titre */
   display: block;
   position: relative;
   left: 38%;
-  top: 10px;
+  top: 39px;
   width: 24%;
   height: 3px;
   background-color: #006BA8;
@@ -44,7 +53,7 @@ h1 + p {
 
 /* sous-titres */
 h2 {
-  color: #006BA8;
+  font-family: 'Playfair Display', Consolas;
   font-size: 2.7rem;
 }
 
@@ -77,4 +86,80 @@ td.menu_name span {
 td.menu_price {
   padding-left: 1rem;
   min-width: 90px;
+}
+
+
+/*///////////////////////////////////////////////////
+/////////// MENUS ///////////////////
+//////////////////////////////////////////////////*/
+
+.menuweek {
+  text-align: center;
+}
+.menuday {
+  position: relative;
+  background-color: hsl(42, 74%, 86%);
+  box-shadow: hsl(225, 75%, 7%) 0 2px 3px;
+  padding: 3rem 1rem 6rem 1rem;
+  margin: 4rem 3rem;
+}
+.menuday .menuprice {
+  position: relative;
+  top: 0;
+  left: -24px;
+  height: 29px;
+  font-size: 15px;
+  background-color: rgb(72, 91, 43);
+  color: white;
+  font-family: Consolas;
+  padding: 3px;
+  width: 97px;
+  box-shadow: #7c857c 1px 1px 2px;
+}
+.menuday .menuprice::before {
+  content: "\A";
+  border-style: solid;
+  border-width: 0px 15px 7px 0;
+  border-color: transparent hsla(84, 36%, 14%, 1) transparent transparent;
+  position: absolute;
+  left: -1px;
+  top: 29px;
+}
+.menuday h2 {
+  font-family: 'Freestyle Script';
+  color: rgb(72, 91, 43);
+  font-size: 4rem;
+  margin-bottom: 3rem;
+}
+.menuday p {
+  font-family: Consolas;
+  font-size: 1.4rem;
+  color: rgb(127, 127, 127);
+  margin-bottom: 0px;
+}
+.menuday p.menusep {
+  color: black;
+  margin: 2rem 0;
+}
+.olivier1 {
+  position: absolute;
+  top: 0px;
+  right: -3px;
+  width: 71px;
+  transform: rotate(114deg);
+}
+.olivier2 {
+  position: absolute;
+  bottom: 11px;
+  left: 21px;
+  width: 61px;
+  transform: rotate(-64deg);
+}
+.olivier3 {
+  position: absolute;
+  bottom: -18px;
+  right: -3px;
+  width: 68px;
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1) rotate(-60deg);
 }

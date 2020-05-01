@@ -31,6 +31,15 @@
         RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
             if (response.data.success){
                 me.menu=response.data.menu;
+                // ====================================================
+                //          Special treatment for "Nouvelles" page (ugly sorry)
+                // ====================================================
+                for (let i = 0; i < me.menu.pages.length; i++) {
+                    // for the "Nouvelles" page entry, we disable the menu dropdown that shows the sub-pages
+                    if (me.menu.pages[i].id == "5953595e396588483728664e") me.menu.pages[i].pages = undefined;
+                }
+                console.log('menuctrl', me);
+                // ====================================================
             } else {
                 me.menu={};
             }

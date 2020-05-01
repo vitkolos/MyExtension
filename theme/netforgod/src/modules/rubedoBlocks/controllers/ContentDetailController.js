@@ -1,5 +1,5 @@
-angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoContentTypesService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope","$timeout",
-                                                                          function($scope,RubedoContentsService, RubedoContentTypesService,RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope,$timeout){
+angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scope","RubedoContentsService","RubedoContentTypesService","RubedoMediaService","RubedoSearchService","RubedoPagesService","TaxonomyService","$http","$route","$location","$rootScope","$timeout","$sce",
+                                                                          function($scope,RubedoContentsService, RubedoContentTypesService,RubedoMediaService, RubedoSearchService,RubedoPagesService,TaxonomyService,$http,$route,$location,$rootScope,$timeout,$sce){
     var me = this;
     var config = $scope.blockConfig;
     var themePath="/theme/"+window.rubedoConfig.siteTheme;
@@ -58,7 +58,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         
         return value;
     };
-    me.getTermInTaxo=function(taxoKey,termId){
+    me.getTermInTaxo = function(taxoKey,termId){
         
         if(!me.taxo){return(null);} // pas de taxonomie pour ce type de contenu
         var term=null;
@@ -243,6 +243,8 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
                     }
                     else if ($scope.fieldEntity['trailer']) {
                         me.watch = 'trailer';
+                        $scope.fieldEntity['trailer'].id = /[^\/=]+?$/.exec($scope.fieldEntity['trailer'].url)[0];
+                        $scope.fieldEntity['trailer'].embed_url = $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + $scope.fieldEntity['trailer'].id + '?autoplay=0');
                         $scope.rubedo.current.page.video = response.data.content.fields.trailer.url;
                     }
                     else me.watch='no';
@@ -497,8 +499,7 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
         return res;
     };
     $scope.registerFieldEditChanges=me.registerEditChanges;
-    
-    
+
     
     me.generatePdf = function(){
 
@@ -544,13 +545,14 @@ angular.module("rubedoBlocks").lazy.controller("ContentDetailController",["$scop
 
    //generic field directive
   angular.module("rubedoBlocks").lazy.controller("RECFieldFilmController",["$scope","RubedoContentTypesService",function($scope,RubedoContentTypesService){
-      var me=this;
-      $scope.fields=[];
-      var config=$scope.field.config;
-      if (!$scope.fieldEntity[config.name]&&$scope.fieldInputMode){
-          $scope.fieldEntity[config.name]={ };
-      }
-      $scope.fieldEntity=$scope.fieldEntity[config.name];
+    var me = this;
+    $scope.fields = [];
+    var config = $scope.field.config;
+    if (!$scope.fieldEntity[config.name]&&$scope.fieldInputMode){
+        $scope.fieldEntity[config.name]={ };
+    }
+    $scope.fieldEntity=$scope.fieldEntity[config.name];
+
     me.getFieldByName=function(name){
         var field=null;
         angular.forEach($scope.fields,function(candidate){

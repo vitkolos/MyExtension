@@ -50,6 +50,7 @@
 	"famille": "Familie",
 	"personne-avec-enfants": "Person mit Kind(ern)",
 	"fiances": "Verlobte",
+	"fiances_binome": "Verlobte / Binome",
 	"adulte": "Einzelperson",
 	"pretre": "Priest",
 	"Block.Inscription.Attente.Ligne1": "Die Veranstaltung ist leider ausgebucht.",
@@ -115,6 +116,7 @@
 	"Block.Inscription.Paf.ModePaiment": "",
 	"Block.Inscription.Paf.carte": "per Kart",
 	"Block.Inscription.Paf.cheque": "per Scheck",
+	"Block.Inscription.Paf.cheque_vac": "per Urlaubsscheck",
 	"Block.Inscription.Paf.virement": "per Überweisung",
 	"Block.Inscription.Paf.Virement.Period": "per Dauerauftra",
 	"Block.Inscription.Paf.Prelevement": "per automatischen Bankeinzug",
@@ -169,5 +171,7 @@
 	"Block.Paiement.Acces": "",
 	"ccn": "Gemeinschaft Chemin Neuf",
 	"Time.de": "von",
-	"couple_ephata": ""
+	"couple_ephata": "",
+	"Block.Inscription.PolitiqueRgpd": "die Datenschutzbestimmungen der Gemeinschaft Chemin Neuf",
+	"Block.Inscription.Jaccepte": "Ich akzeptiere"
 }

@@ -50,6 +50,7 @@
 	"famille": "Familia",
 	"personne-avec-enfants": "Persona con niños",
 	"fiances": "Novios",
+	"fiances_binome": "Novios / Binome",
 	"adulte": "Individual",
 	"pretre": "",
 	"Block.Inscription.Attente.Ligne1": "La propuesta elegida esta complèta.",
@@ -104,7 +105,7 @@
 	"Block.Inscription.Mariage": "Fecha de matrimonio:",
 	"Block.Inscription.Mariage.Fiances": "Fecha de matrimonio si la saben:",
 	"Block.Inscription.Fiances": "Proyecto de matrimonio",
-	"Block.Inscription.Inscrire.Service": "Inscribirse en el servicio",
+	"Block.Inscription.Inscrire.Service": "Inscribirse al servicio",
 	"Block.Inscription.Paf": "Participación en los gastos:",
 	"Block.Inscription.Paf.Problemes": "El dinero no debe ser un obstáculo",
 	"Block.Inscription.Paf.Montant": "Importe",
@@ -115,6 +116,7 @@
 	"Block.Inscription.Paf.ModePaiment": "",
 	"Block.Inscription.Paf.carte": "por tarjeta",
 	"Block.Inscription.Paf.cheque": "por cheque",
+	"Block.Inscription.Paf.cheque_vac": "por cheque de vacaciones",
 	"Block.Inscription.Paf.virement": "por transferencia",
 	"Block.Inscription.Paf.Virement.Period": "mediante transferencia bancaria periódica",
 	"Block.Inscription.Paf.Prelevement": "mediante transferencia bancaria periódica",
@@ -169,5 +171,7 @@
 	"Block.Paiement.Acces": "",
 	"ccn": "",
 	"Time.de": "",
-	"couple_ephata": ""
+	"couple_ephata": "",
+	"Block.Inscription.PolitiqueRgpd": "la política de privacidad de la comunidad Chemin Neuf",
+	"Block.Inscription.Jaccepte": "Acepto"
 }

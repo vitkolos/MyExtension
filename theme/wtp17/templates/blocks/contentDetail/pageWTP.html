@@ -46,7 +46,8 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body" >
-                    <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="16:9"></jwplayer>
+                    <!-- <jwplayer ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video-url="{{contentDetailCtrl.content.fields.video.url}}" format="16:9"></jwplayer> -->
+                    <youtube ng-if="fieldEntity['video'] &&  contentDetailCtrl.content.fields.video.url" video="{{contentDetailCtrl.content.fields.video.url}}"></youtube>
                 </div>
             </div>
         </div>

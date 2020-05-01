@@ -1,0 +1,50 @@
+{
+    "type": "Upload fichiers Excel/csv",
+    "description": "Bloc pour les admins, pour pouvoir mettre à jour Rubedo par un fichier Excel",
+    "isECommerce": false,
+    "configBasique": {
+        "title": "Upload fichiers Excel/csv",
+        "bType": "uploadXls",
+        "flex": 1,
+        "champsConfig": {
+            "simple": [
+                {
+                    "categorie": "#ext-gen1287#",
+                    "champs": [
+                        {
+                            "type": "Ext.ux.TreePicker",
+                            "config": {
+                                "fieldLabel": "#ext-gen1443#",
+                                "name": "uploadXlsDetailPage"
+                            }
+                        }
+
+                    ]
+                }
+            ],
+            "avance": [{
+                "categorie": "Template",
+                "champs": [
+                  {
+                    "type": "Ext.form.field.Number",
+                    "config": {
+                      "fieldLabel": "#ext-gen1491#",
+                      "name": "blockMinHeight",
+                      "allowDecimals": false,
+                      "editable": true,
+                      "minValue": 0
+                    }
+                  }
+                ]
+            }],
+          "csEvents":{
+	  }
+        },
+        "configBloc": {}
+
+
+    },
+    "category": "#ext-gen1431#",
+    "bType": "uploadXls",
+    "id": "53184e22f05c1d2810010121"
+}

@@ -50,6 +50,7 @@
 	"famille": "Famille",
 	"personne-avec-enfants": "Personne avec enfants",
 	"fiances": "Fiancés",
+	"fiances_binome": "Fiancés / Binôme \"Est-ce bien Lui ? Est-ce bien Elle ?\"",
 	"adulte": "Individuel",
 	"pretre": "Prêtre",
 	"Block.Inscription.Attente.Ligne1": "La proposition choisie est complète.",
@@ -115,6 +116,7 @@
 	"Block.Inscription.Paf.ModePaiment": "Méthode de paiement",
 	"Block.Inscription.Paf.carte": "par carte",
 	"Block.Inscription.Paf.cheque": "par chèque",
+	"Block.Inscription.Paf.cheque_vac": "par chèque vacances",
 	"Block.Inscription.Paf.virement": "par virement",
 	"Block.Inscription.Paf.Virement.Period": "par virement périodique",
 	"Block.Inscription.Paf.Prelevement": "par prélèvement automatique",
@@ -169,5 +171,7 @@
 	"Block.Paiement.Acces": "Ci-dessous, vous pouvez procéder au paiement : ",
 	"ccn": "Communauté du Chemin Neuf",
 	"Time.de": "de",
-	"couple_ephata": "Couple"
+	"couple_ephata": "Couple",
+	"Block.Inscription.PolitiqueRgpd": "la politique de confidentialité de la Communauté du Chemin Neuf",
+	"Block.Inscription.Jaccepte": "J'accepte"
 }

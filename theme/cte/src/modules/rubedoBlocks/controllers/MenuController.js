@@ -5,7 +5,9 @@
         me.menu={};
         me.currentRouteline=$location.path();
         var lang = $route.current.params.lang;
-       var config=$scope.blockConfig;
+	   var config=$scope.blockConfig;
+	me.location_url_encoded = encodeURIComponent($location.absUrl());
+
 	me.menuTab = false; 
 	if ($scope.block.code == '1418') {
 	    me.menuClass="menu1418";
@@ -26,7 +28,7 @@
 	me.getMenu = function(){
 	    RubedoMenuService.getMenu(pageId, config.menuLevel).then(function(response){
 		if (response.data.success){
-		    me.menu=response.data.menu;
+			me.menu=response.data.menu;
 		    $scope.clearORPlaceholderHeight();
 		} else {
 		    me.menu={};

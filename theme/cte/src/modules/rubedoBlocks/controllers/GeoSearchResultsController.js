@@ -125,7 +125,7 @@ angular.module("rubedoBlocks").lazy.controller("GeoSearchResultsController",["$s
                 // or server returns response with an error status.
               });
         }
-	else if (config.centerAddress){
+	    else if (config.centerAddress){
             me.geocoder.geocode({
                 'address' : config.centerAddress
             }, function(results, status) {

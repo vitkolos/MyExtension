@@ -85,6 +85,7 @@ class ContentsResource extends AbstractResource
      */
     public function getAction($params)
     {
+
         if (isset($params['useDraftMode'])||isset($params['foContributeMode'])){
             Context::setIsDraft(true);
         }

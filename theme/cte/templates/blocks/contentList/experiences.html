@@ -1,0 +1,118 @@
+<div ng-controller="ContentListController as contentListCtrl" class="xp_columns_container">
+    <!-- MULTIPLE COLUMNS -->
+    <div ng-style="contentListCtrl.blockStyle" class="xp_container">
+
+        <!-- EACH COLUMN -->
+        <div    ng-controller="ContentListDetailController as contentListDetailCtrl" 
+                ng-repeat="content in contentListCtrl.contents" 
+                class="col-xs-6 col-xxs-12" 
+                ng-class="contentListCtrl.columns">
+
+            <!-- PICTURE -->
+            <div class="experience-img" ng-style="{'background': 'center / cover no-repeat url('+ rubedo.imageUrl.getUrlByMediaId(content.fields.image) +')'}">
+                <!-- si le contenu a une image, on l'affiche dans la vignette -->
+                <!-- <img class="media-object pull-left" ng-if="content.fields.image"
+                             ng-src="{{ rubedo.imageUrl.getUrlByMediaId(content.fields.image,{width:'400px',height:'266px',mode:'crop'}) }}"
+                             alt="{{ content.fields.text }}"/> -->
+                <!-- si le contenu n'a pas d'image définie, on affiche une image par défaut -->
+                <!-- <img class="media-object pull-left" ng-if="!content.fields.image"
+                            ng-src="{{ rubedo.imageUrl.getUrlByMediaId('57175694c445ecda008c4b31',{width:'400px',height:'266px',mode:'crop'}) }}"
+                            alt="{{ content.fields.text }}"/> -->
+            </div>
+
+            <p class="experience_title">{{content.fields.text}}</p>
+            <p class="xp_ensavoirplus">en savoir plus</p>
+            <div class="experience_text">
+                <p class="xp_subtitle">{{content.fields.subTitle}}</p>
+                <p class="xp_text">{{content.fields.summary}}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function retry(fn_cond, fn_exec, max_retries = -5) {
+            if (max_retries == 0) return;
+            if (fn_cond()) return fn_exec();
+            return setTimeout(_ => retry(fn_cond, fn_exec, max_retries-1), 500);
+        }
+        retry(_ => $('.xp_ensavoirplus').length > 1, function() {
+            console.log("nb xp = ", $('.xp_ensavoirplus').length);
+            $('.xp_ensavoirplus').click(function() {
+                $(this).next().addClass('show-xp-text');
+                $(this).next().click(function() {
+                    $(this).removeClass('show-xp-text');
+                })
+            })
+        }, 7)
+    </script>
+</div>
+
+<style>
+    .xp_columns_container {
+        display: flex;
+        justify-content: center;
+    }
+    .xp_container {
+        width: 100%;
+        max-width: 30cm;
+    }
+
+    .experiences_back {
+        background: #00558a;
+        color: white;
+        text-align: center;
+        padding: 1rem;
+        height: 35rem;
+        margin-bottom: -28rem;
+    }
+    .experiences_back * {
+        color: white;
+    }
+    .list-item-img {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        height: 27rem;
+        background: #bfbfbf;
+    }
+    .experience_text {
+        background: white;
+        width: 100%;
+        padding: 1rem;
+        transform: translateY(0);
+        opacity: 0;
+        transition: transform .25s ease-in, -webkit-transform .25s ease-in, opacity 0.2s ease-in;
+    }
+    .show-xp-text {
+        margin: 3px;
+        width: calc(100% - 6px);
+        transform: translateY(-100%);
+        opacity: 1;
+        transition: transform .25s ease-in, -webkit-transform .25s ease-in, opacity 0.1s ease-in;
+    }
+    .experience-img {
+        height: 320px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 4px;
+    }
+
+    .experience_title {
+        text-align: center;
+        padding: 1rem;
+    }
+    .xp_ensavoirplus {
+        cursor: pointer;
+        font-size: 1.2rem;
+        text-decoration: underline;
+        text-align: center;
+    }
+    .xp_text {
+        text-align: center;
+    }
+    .xp_subtitle {
+        text-align: center;
+        font-weight: bold;
+    }
+</style>

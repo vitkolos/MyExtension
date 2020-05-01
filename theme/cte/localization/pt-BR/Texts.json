@@ -50,6 +50,7 @@
 	"famille": "Família",
 	"personne-avec-enfants": "Pessoa com crianças",
 	"fiances": "Noivos",
+	"fiances_binome": "Noivos / Binome",
 	"adulte": "Individual",
 	"pretre": "",
 	"Block.Inscription.Attente.Ligne1": "A proposta selecionada está completa.",
@@ -113,8 +114,9 @@
 	"Block.Inscription.Paf.Maintenant.Totalite": "",
 	"Block.Inscription.Paf.Maintenant.Partie": "",
 	"Block.Inscription.Paf.ModePaiment": "",
-	"Block.Inscription.Paf.carte": "",
-	"Block.Inscription.Paf.cheque": "",
+	"Block.Inscription.Paf.carte": "cartão de crédito",
+	"Block.Inscription.Paf.cheque": "cheque",
+	"Block.Inscription.Paf.cheque_vac": "cheque de férias",
 	"Block.Inscription.Paf.virement": "",
 	"Block.Inscription.Paf.Virement.Period": "",
 	"Block.Inscription.Paf.Prelevement": "",
@@ -169,5 +171,7 @@
 	"Block.Paiement.Acces": "",
 	"ccn": "",
 	"Time.de": "",
-	"couple_ephata": ""
+	"couple_ephata": "",
+	"Block.Inscription.PolitiqueRgpd": "a política de privacidade da comunidade Chemin Neuf",
+	"Block.Inscription.Jaccepte": "Eu aceito"
 }

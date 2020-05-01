@@ -14,6 +14,8 @@
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==1}" ng-click="donsCtrl.setCurrentStage(1,infos_personnelles.$valid)">{{rubedo.translate("Block.Dons.Titre", "Mon don")}}
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>1"></span>
                 </h2>
+
+                <!-- Inscription Stage 1 : MY DONATION -->
                 <div id="inscriptionStage1" class="collapse in">
                         <ng-form name="infos_dons">
                                 <div class="row" ng-if="donsCtrl.fiscalitesCount>1">
@@ -31,6 +33,8 @@
                                                 </div>
                                         </div>
                                 </div>
+
+                                <!-- Amount of my donation -->
                                 <div class="row">
                                         <div class="col-sm-4 col-xs-12"><label for="nom" class="label_style">{{rubedo.translate("Block.Dons.Montant", "Montant du don")}} *</label></div>
                                         <div class="col-sm-8" ng-init="don.montant = contentDetailCtrl.content.fields.montant_1">                                          
@@ -45,7 +49,7 @@
                                                             <label for="montant4" class="sexe_label dons"><span ng-if="isMonnaieBefore">{{don.monnaie}}</span>{{contentDetailCtrl.content.fields.montant_4}}<span ng-if="!isMonnaieBefore">{{don.monnaie}}</span></label>
                                                 <input type="radio"  name="montant" id="autre" value="autre" ng-model="don.montant">
                                                             <label for="autre" class="sexe_label dons">{{rubedo.translate("Block.Inscription.SituationConjugale.Autre", "autre") | lowercase}}</label>
-                                                <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder='{{rubedo.translate("Block.Inscription.SituationConjugale.Autre", "Autre") }}' ng-pattern="/^[0-9]{1,7}$/" ng-required="don.montant=='autre'">
+                                                <input type="text" class="montant-dons" ng-class="{'displayed':don.montant=='autre'}" ng-model="don.montant_autre" placeholder='{{rubedo.translate("ccn_label_montant", "Montant") }}' ng-pattern="/^[0-9]{1,7}$/" ng-required="don.montant=='autre'">
                                                         
                                                 <div class="donResult" style="margin-top:12px" ng-if="don.montant == contentDetailCtrl.content.fields.montant_1">
                                                         <rubedo-field  field =  "{{contentDetailCtrl.getFieldByName('desc_1')}}" ng-init="fieldInputMode=false"></rubedo-field>
@@ -68,20 +72,22 @@
                                         </div>
                                 </div>
                                 
-                                <div class="row">
+                                <!-- Monthly / Quaterly -->
+                                <div class="row" ng-if="contentDetailCtrl.content.fields.don_frequences.don_frequences.includes('monthly')">
                                         <div class="col-sm-4 col-xs-12"><label for="nom" class="label_style"></label></div>
                                         <div class="col-sm-8">
                                                 <input type="checkbox"  name="mensuel" id="mensuel"  ng-model="don.mensuel">
                                                 <label for="mensuel">{{rubedo.translate("Block.Dons.Mensuel", "Rendre ce don mensuel")}}</label>
                                         </div>
                                 </div>
-                                <div class="row">
+                                <div class="row" ng-if="contentDetailCtrl.content.fields.don_frequences.don_frequences.includes('quaterly')">
                                         <div class="col-sm-4 col-xs-12"><label for="nom" class="label_style"></label></div>
                                         <div class="col-sm-8">
                                                 <input type="checkbox"  name="trimestriel" id="trimestriel"  ng-model="don.trimestriel">
-                                                            <label for="trimestriel">{{rubedo.translate("Block.Dons.Trimestriel", "Rendre ce don trimestriel")}}</label>
+                                                <label for="trimestriel">{{rubedo.translate("Block.Dons.Trimestriel", "Rendre ce don trimestriel")}}</label>
                                         </div>
                                 </div>
+
                                 <!---GITF AID for the UK-->
                                 <div class="row" ng-if="donsCtrl.paymentmeans.paymentMeans=='uk' ">
                                         <div class="col-sm-4 col-xs-12"><label class="label_style">Gift Aid</label></div>
@@ -105,10 +111,12 @@
                                     <p ng-if="infos_dons.$invalid && infos_dons.$dirty" class="txt-marron">{{rubedo.translate("Block.Inscription.Champs", "Merci de remplir les champs obligatoires")}}</p>
                                 </div>
                         </ng-form>
-                                        </div>
+                </div>
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==2}" >{{rubedo.translate("Block.Inscription.InfosPerso", "Informations personnelles")}}
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>2" ng-click="donsCtrl.setCurrentStage(2,true)"></span>
                 </h2>
+
+                <!-- INFOS PERSO -->
                 <div id="inscriptionStage2" class="collapse">
                         <ng-form name="infos_personnelles">
                                 <div class="row">
@@ -191,17 +199,10 @@
                                             <rubedo-notification></rubedo-notification>
                                         </div>
                                 </div>
-
-                                
-                                
-
-                              
-                                
-                                
-                                
-                                
                         </ng-form>
                 </div>
+
+                <!-- COMPLEMENTARY QUESTIONS -->
                 <h2 class="capital txt-red" ng-if="donsCtrl.questions.length>0" ng-class="{'displayed' : donsCtrl.currentStage==3}" >{{contentDetailCtrl.getLabelByName('questions')}}
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>3" ng-click="donsCtrl.setCurrentStage(3,true)"></span>
                 </h2>
@@ -215,6 +216,8 @@
                                 </div>
                         </ng-form>
                 </div>
+
+                <!-- PAYMENT -->
                 <h2 class="capital txt-red" ng-class="{'displayed' : donsCtrl.currentStage==4}" >{{rubedo.translate("Block.Paiment","Mon paiement")}} 
                         <span class="fa fa-pencil pull-right cursor-as-pointer" ng-if="donsCtrl.currentStage>4" ng-click="donsCtrl.setCurrentStage(4,true)"></span>
                 </h2>
@@ -275,7 +278,16 @@
                                                 </div>
                                         </div>  
                                        
-                                </div>                                
+                                </div>
+                                
+                                <!-- Checkbox accept RGPD -->
+                                <div class="row text-center">
+                                        <div class="col-xs-12">
+                                                <input type="checkbox" name="accept_rgpd" id="accept_rgpd" ng-model='don.rgpd' required>
+                                                <label for="accept_rgpd">{{rubedo.translate("Block.Inscription.Jaccepte", "I accept")}} <a style="text-decoration:underline" target="_blank" ng-href="/dam?media-id={{parameters.rgpd_media_id}}">{{rubedo.translate("Block.Inscription.PolitiqueRgpd", "the privacy policy of the Chemin Neuf community")}}</a></label>
+                                        </div>
+                                </div>
+
                                 <div class="row text-center">
                                         <div class="col-sm-12">
                                                 <div class="button submit" ng-class="{'disabled' : inscription_form.$invalid}" ng-click="donsCtrl.submit(inscription_form.$valid)" ng-if="!processForm && !finInscription">{{rubedo.translate("Block.Dons.Donner","Donner")}}</div><!----inscription_form.$valid)-->
